@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["V1ListParams"]
+__all__ = ["ProjectListParams"]
 
 
-class V1ListParams(TypedDict, total=False):
+class ProjectListParams(TypedDict, total=False):
     client_id: Optional[int]
     """Client ID filter for administrators."""
 

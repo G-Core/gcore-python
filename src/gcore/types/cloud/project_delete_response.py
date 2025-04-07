@@ -2,11 +2,11 @@
 
 from typing import List, Optional
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["V1DeleteResponse"]
+__all__ = ["ProjectDeleteResponse"]
 
 
-class V1DeleteResponse(BaseModel):
+class ProjectDeleteResponse(BaseModel):
     tasks: Optional[List[str]] = None
     """Task list"""

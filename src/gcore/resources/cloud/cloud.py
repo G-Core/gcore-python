@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .projects.projects import (
+from .projects import (
     ProjectsResource,
     AsyncProjectsResource,
     ProjectsResourceWithRawResponse,
@@ -12,6 +10,8 @@ from .projects.projects import (
     ProjectsResourceWithStreamingResponse,
     AsyncProjectsResourceWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["CloudResource", "AsyncCloudResource"]
 

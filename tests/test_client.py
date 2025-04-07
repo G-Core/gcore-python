@@ -28,7 +28,7 @@ from gcore._models import BaseModel, FinalRequestOptions
 from gcore._constants import RAW_RESPONSE_HEADER
 from gcore._exceptions import GcoreError, APIStatusError, APITimeoutError, APIResponseValidationError
 from gcore._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
-from gcore.types.cloud.projects.v1_create_params import V1CreateParams
+from gcore.types.cloud.project_create_params import ProjectCreateParams
 
 from .utils import update_env
 
@@ -362,11 +362,11 @@ class TestGcore:
 
         with client as c2:
             with pytest.raises(ValueError, match="Missing project_id argument;"):
-                c2.cloud.projects.v1.retrieve()
+                c2.cloud.projects.retrieve()
 
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, project_id=0)
         with client as c2:
-            c2.cloud.projects.v1.retrieve()
+            c2.cloud.projects.retrieve()
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(
@@ -723,7 +723,7 @@ class TestGcore:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/cloud/v1/projects",
-                body=cast(object, maybe_transform(dict(name="New Project"), V1CreateParams)),
+                body=cast(object, maybe_transform(dict(name="New Project"), ProjectCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -738,7 +738,7 @@ class TestGcore:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/cloud/v1/projects",
-                body=cast(object, maybe_transform(dict(name="New Project"), V1CreateParams)),
+                body=cast(object, maybe_transform(dict(name="New Project"), ProjectCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -771,7 +771,7 @@ class TestGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = client.cloud.projects.v1.with_raw_response.create(name="New Project")
+        response = client.cloud.projects.with_raw_response.create(name="New Project")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -793,7 +793,7 @@ class TestGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = client.cloud.projects.v1.with_raw_response.create(
+        response = client.cloud.projects.with_raw_response.create(
             name="New Project", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
@@ -818,7 +818,7 @@ class TestGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = client.cloud.projects.v1.with_raw_response.create(
+        response = client.cloud.projects.with_raw_response.create(
             name="New Project", extra_headers={"x-stainless-retry-count": "42"}
         )
 
@@ -1137,11 +1137,11 @@ class TestAsyncGcore:
 
         async with client as c2:
             with pytest.raises(ValueError, match="Missing project_id argument;"):
-                await c2.cloud.projects.v1.retrieve()
+                await c2.cloud.projects.retrieve()
 
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, project_id=0)
         async with client as c2:
-            await c2.cloud.projects.v1.retrieve()
+            await c2.cloud.projects.retrieve()
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(
@@ -1510,7 +1510,7 @@ class TestAsyncGcore:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/cloud/v1/projects",
-                body=cast(object, maybe_transform(dict(name="New Project"), V1CreateParams)),
+                body=cast(object, maybe_transform(dict(name="New Project"), ProjectCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1525,7 +1525,7 @@ class TestAsyncGcore:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/cloud/v1/projects",
-                body=cast(object, maybe_transform(dict(name="New Project"), V1CreateParams)),
+                body=cast(object, maybe_transform(dict(name="New Project"), ProjectCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1559,7 +1559,7 @@ class TestAsyncGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = await client.cloud.projects.v1.with_raw_response.create(name="New Project")
+        response = await client.cloud.projects.with_raw_response.create(name="New Project")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1584,7 +1584,7 @@ class TestAsyncGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = await client.cloud.projects.v1.with_raw_response.create(
+        response = await client.cloud.projects.with_raw_response.create(
             name="New Project", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
@@ -1610,7 +1610,7 @@ class TestAsyncGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = await client.cloud.projects.v1.with_raw_response.create(
+        response = await client.cloud.projects.with_raw_response.create(
             name="New Project", extra_headers={"x-stainless-retry-count": "42"}
         )
 
