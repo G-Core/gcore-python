@@ -34,7 +34,7 @@ client = Gcore(
     api_key=os.environ.get("GCORE_API_KEY"),  # This is the default and can be omitted
 )
 
-project = client.cloud.projects.v1.create(
+project = client.cloud.projects.create(
     name="New Project",
 )
 print(project.id)
@@ -60,7 +60,7 @@ client = AsyncGcore(
 
 
 async def main() -> None:
-    project = await client.cloud.projects.v1.create(
+    project = await client.cloud.projects.create(
         name="New Project",
     )
     print(project.id)
@@ -96,7 +96,7 @@ from gcore import Gcore
 client = Gcore()
 
 try:
-    client.cloud.projects.v1.create(
+    client.cloud.projects.create(
         name="New Project",
     )
 except gcore.APIConnectionError as e:
@@ -141,7 +141,7 @@ client = Gcore(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).cloud.projects.v1.create(
+client.with_options(max_retries=5).cloud.projects.create(
     name="New Project",
 )
 ```
@@ -166,7 +166,7 @@ client = Gcore(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).cloud.projects.v1.create(
+client.with_options(timeout=5.0).cloud.projects.create(
     name="New Project",
 )
 ```
@@ -209,13 +209,13 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from gcore import Gcore
 
 client = Gcore()
-response = client.cloud.projects.v1.with_raw_response.create(
+response = client.cloud.projects.with_raw_response.create(
     name="New Project",
 )
 print(response.headers.get('X-My-Header'))
 
-v1 = response.parse()  # get the object that `cloud.projects.v1.create()` would have returned
-print(v1.id)
+project = response.parse()  # get the object that `cloud.projects.create()` would have returned
+print(project.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/gcore-python/tree/main/src/gcore/_response.py) object.
@@ -229,7 +229,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.cloud.projects.v1.with_streaming_response.create(
+with client.cloud.projects.with_streaming_response.create(
     name="New Project",
 ) as response:
     print(response.headers.get("X-My-Header"))

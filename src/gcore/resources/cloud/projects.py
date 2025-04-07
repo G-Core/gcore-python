@@ -7,47 +7,47 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.cloud.projects import v1_list_params, v1_create_params, v1_update_params
-from ....types.cloud.projects.project import Project
-from ....types.cloud.projects.v1_list_response import V1ListResponse
-from ....types.cloud.projects.v1_delete_response import V1DeleteResponse
+from ...types.cloud import project_list_params, project_create_params, project_update_params
+from ..._base_client import make_request_options
+from ...types.cloud.project import Project
+from ...types.cloud.project_list_response import ProjectListResponse
+from ...types.cloud.project_delete_response import ProjectDeleteResponse
 
-__all__ = ["V1Resource", "AsyncV1Resource"]
+__all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
 
-class V1Resource(SyncAPIResource):
+class ProjectsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> V1ResourceWithRawResponse:
+    def with_raw_response(self) -> ProjectsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return V1ResourceWithRawResponse(self)
+        return ProjectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> V1ResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ProjectsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
         """
-        return V1ResourceWithStreamingResponse(self)
+        return ProjectsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -93,7 +93,7 @@ class V1Resource(SyncAPIResource):
                     "description": description,
                     "state": state,
                 },
-                v1_create_params.V1CreateParams,
+                project_create_params.ProjectCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -172,7 +172,7 @@ class V1Resource(SyncAPIResource):
                     "name": name,
                     "description": description,
                 },
-                v1_update_params.V1UpdateParams,
+                project_update_params.ProjectUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -194,7 +194,7 @@ class V1Resource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1ListResponse:
+    ) -> ProjectListResponse:
         """
         List projects
 
@@ -229,10 +229,10 @@ class V1Resource(SyncAPIResource):
                         "name": name,
                         "order_by": order_by,
                     },
-                    v1_list_params.V1ListParams,
+                    project_list_params.ProjectListParams,
                 ),
             ),
-            cast_to=V1ListResponse,
+            cast_to=ProjectListResponse,
         )
 
     def delete(
@@ -245,7 +245,7 @@ class V1Resource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1DeleteResponse:
+    ) -> ProjectDeleteResponse:
         """
         All cloud resources in all regions that belong to the project will be deleted
         and will not be recoverable
@@ -266,29 +266,29 @@ class V1Resource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=V1DeleteResponse,
+            cast_to=ProjectDeleteResponse,
         )
 
 
-class AsyncV1Resource(AsyncAPIResource):
+class AsyncProjectsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncProjectsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncV1ResourceWithRawResponse(self)
+        return AsyncProjectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncV1ResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncProjectsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
         """
-        return AsyncV1ResourceWithStreamingResponse(self)
+        return AsyncProjectsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -334,7 +334,7 @@ class AsyncV1Resource(AsyncAPIResource):
                     "description": description,
                     "state": state,
                 },
-                v1_create_params.V1CreateParams,
+                project_create_params.ProjectCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -413,7 +413,7 @@ class AsyncV1Resource(AsyncAPIResource):
                     "name": name,
                     "description": description,
                 },
-                v1_update_params.V1UpdateParams,
+                project_update_params.ProjectUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -435,7 +435,7 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1ListResponse:
+    ) -> ProjectListResponse:
         """
         List projects
 
@@ -470,10 +470,10 @@ class AsyncV1Resource(AsyncAPIResource):
                         "name": name,
                         "order_by": order_by,
                     },
-                    v1_list_params.V1ListParams,
+                    project_list_params.ProjectListParams,
                 ),
             ),
-            cast_to=V1ListResponse,
+            cast_to=ProjectListResponse,
         )
 
     async def delete(
@@ -486,7 +486,7 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1DeleteResponse:
+    ) -> ProjectDeleteResponse:
         """
         All cloud resources in all regions that belong to the project will be deleted
         and will not be recoverable
@@ -507,89 +507,89 @@ class AsyncV1Resource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=V1DeleteResponse,
+            cast_to=ProjectDeleteResponse,
         )
 
 
-class V1ResourceWithRawResponse:
-    def __init__(self, v1: V1Resource) -> None:
-        self._v1 = v1
+class ProjectsResourceWithRawResponse:
+    def __init__(self, projects: ProjectsResource) -> None:
+        self._projects = projects
 
         self.create = to_raw_response_wrapper(
-            v1.create,
+            projects.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            v1.retrieve,
+            projects.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            v1.update,
+            projects.update,
         )
         self.list = to_raw_response_wrapper(
-            v1.list,
+            projects.list,
         )
         self.delete = to_raw_response_wrapper(
-            v1.delete,
+            projects.delete,
         )
 
 
-class AsyncV1ResourceWithRawResponse:
-    def __init__(self, v1: AsyncV1Resource) -> None:
-        self._v1 = v1
+class AsyncProjectsResourceWithRawResponse:
+    def __init__(self, projects: AsyncProjectsResource) -> None:
+        self._projects = projects
 
         self.create = async_to_raw_response_wrapper(
-            v1.create,
+            projects.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            v1.retrieve,
+            projects.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            v1.update,
+            projects.update,
         )
         self.list = async_to_raw_response_wrapper(
-            v1.list,
+            projects.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            v1.delete,
+            projects.delete,
         )
 
 
-class V1ResourceWithStreamingResponse:
-    def __init__(self, v1: V1Resource) -> None:
-        self._v1 = v1
+class ProjectsResourceWithStreamingResponse:
+    def __init__(self, projects: ProjectsResource) -> None:
+        self._projects = projects
 
         self.create = to_streamed_response_wrapper(
-            v1.create,
+            projects.create,
         )
         self.retrieve = to_streamed_response_wrapper(
-            v1.retrieve,
+            projects.retrieve,
         )
         self.update = to_streamed_response_wrapper(
-            v1.update,
+            projects.update,
         )
         self.list = to_streamed_response_wrapper(
-            v1.list,
+            projects.list,
         )
         self.delete = to_streamed_response_wrapper(
-            v1.delete,
+            projects.delete,
         )
 
 
-class AsyncV1ResourceWithStreamingResponse:
-    def __init__(self, v1: AsyncV1Resource) -> None:
-        self._v1 = v1
+class AsyncProjectsResourceWithStreamingResponse:
+    def __init__(self, projects: AsyncProjectsResource) -> None:
+        self._projects = projects
 
         self.create = async_to_streamed_response_wrapper(
-            v1.create,
+            projects.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
-            v1.retrieve,
+            projects.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
-            v1.update,
+            projects.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            v1.list,
+            projects.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            v1.delete,
+            projects.delete,
         )

@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["V1CreateParams"]
+__all__ = ["ProjectCreateParams"]
 
 
-class V1CreateParams(TypedDict, total=False):
+class ProjectCreateParams(TypedDict, total=False):
     name: Required[str]
     """Unique project name for a client. Each client always has one "default" project."""
 

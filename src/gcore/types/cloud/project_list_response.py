@@ -3,12 +3,12 @@
 from typing import List
 
 from .project import Project
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["V1ListResponse"]
+__all__ = ["ProjectListResponse"]
 
 
-class V1ListResponse(BaseModel):
+class ProjectListResponse(BaseModel):
     count: int
     """Number of objects"""
 

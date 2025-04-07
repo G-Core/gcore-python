@@ -8,8 +8,22 @@ from .cloud import (
     CloudResourceWithStreamingResponse,
     AsyncCloudResourceWithStreamingResponse,
 )
+from .projects import (
+    ProjectsResource,
+    AsyncProjectsResource,
+    ProjectsResourceWithRawResponse,
+    AsyncProjectsResourceWithRawResponse,
+    ProjectsResourceWithStreamingResponse,
+    AsyncProjectsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "ProjectsResource",
+    "AsyncProjectsResource",
+    "ProjectsResourceWithRawResponse",
+    "AsyncProjectsResourceWithRawResponse",
+    "ProjectsResourceWithStreamingResponse",
+    "AsyncProjectsResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

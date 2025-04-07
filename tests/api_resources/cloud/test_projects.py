@@ -9,380 +9,380 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud.projects import (
+from gcore.types.cloud import (
     Project,
-    V1ListResponse,
-    V1DeleteResponse,
+    ProjectListResponse,
+    ProjectDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestV1:
+class TestProjects:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.create(
+        project = client.cloud.projects.create(
             name="New Project",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.create(
+        project = client.cloud.projects.create(
             name="New Project",
             client_id=3,
             description="Project description",
             state="ACTIVE",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.cloud.projects.v1.with_raw_response.create(
+        response = client.cloud.projects.with_raw_response.create(
             name="New Project",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = response.parse()
-        assert_matches_type(Project, v1, path=["response"])
+        project = response.parse()
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.cloud.projects.v1.with_streaming_response.create(
+        with client.cloud.projects.with_streaming_response.create(
             name="New Project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = response.parse()
-            assert_matches_type(Project, v1, path=["response"])
+            project = response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.retrieve(
+        project = client.cloud.projects.retrieve(
             project_id=0,
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Gcore) -> None:
-        response = client.cloud.projects.v1.with_raw_response.retrieve(
+        response = client.cloud.projects.with_raw_response.retrieve(
             project_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = response.parse()
-        assert_matches_type(Project, v1, path=["response"])
+        project = response.parse()
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Gcore) -> None:
-        with client.cloud.projects.v1.with_streaming_response.retrieve(
+        with client.cloud.projects.with_streaming_response.retrieve(
             project_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = response.parse()
-            assert_matches_type(Project, v1, path=["response"])
+            project = response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.update(
+        project = client.cloud.projects.update(
             project_id=0,
             name="New Project",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.update(
+        project = client.cloud.projects.update(
             project_id=0,
             name="New Project",
             description="Project description",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        response = client.cloud.projects.v1.with_raw_response.update(
+        response = client.cloud.projects.with_raw_response.update(
             project_id=0,
             name="New Project",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = response.parse()
-        assert_matches_type(Project, v1, path=["response"])
+        project = response.parse()
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with client.cloud.projects.v1.with_streaming_response.update(
+        with client.cloud.projects.with_streaming_response.update(
             project_id=0,
             name="New Project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = response.parse()
-            assert_matches_type(Project, v1, path=["response"])
+            project = response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.list()
-        assert_matches_type(V1ListResponse, v1, path=["response"])
+        project = client.cloud.projects.list()
+        assert_matches_type(ProjectListResponse, project, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.list(
+        project = client.cloud.projects.list(
             client_id=123,
             include_deleted=False,
             name="my-project",
             order_by=["created_at.asc"],
         )
-        assert_matches_type(V1ListResponse, v1, path=["response"])
+        assert_matches_type(ProjectListResponse, project, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.projects.v1.with_raw_response.list()
+        response = client.cloud.projects.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = response.parse()
-        assert_matches_type(V1ListResponse, v1, path=["response"])
+        project = response.parse()
+        assert_matches_type(ProjectListResponse, project, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.projects.v1.with_streaming_response.list() as response:
+        with client.cloud.projects.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = response.parse()
-            assert_matches_type(V1ListResponse, v1, path=["response"])
+            project = response.parse()
+            assert_matches_type(ProjectListResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
-        v1 = client.cloud.projects.v1.delete(
+        project = client.cloud.projects.delete(
             project_id=0,
         )
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
-        response = client.cloud.projects.v1.with_raw_response.delete(
+        response = client.cloud.projects.with_raw_response.delete(
             project_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = response.parse()
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        project = response.parse()
+        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
-        with client.cloud.projects.v1.with_streaming_response.delete(
+        with client.cloud.projects.with_streaming_response.delete(
             project_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = response.parse()
-            assert_matches_type(V1DeleteResponse, v1, path=["response"])
+            project = response.parse()
+            assert_matches_type(ProjectDeleteResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncV1:
+class TestAsyncProjects:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.create(
+        project = await async_client.cloud.projects.create(
             name="New Project",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.create(
+        project = await async_client.cloud.projects.create(
             name="New Project",
             client_id=3,
             description="Project description",
             state="ACTIVE",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.projects.v1.with_raw_response.create(
+        response = await async_client.cloud.projects.with_raw_response.create(
             name="New Project",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = await response.parse()
-        assert_matches_type(Project, v1, path=["response"])
+        project = await response.parse()
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.projects.v1.with_streaming_response.create(
+        async with async_client.cloud.projects.with_streaming_response.create(
             name="New Project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = await response.parse()
-            assert_matches_type(Project, v1, path=["response"])
+            project = await response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.retrieve(
+        project = await async_client.cloud.projects.retrieve(
             project_id=0,
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.projects.v1.with_raw_response.retrieve(
+        response = await async_client.cloud.projects.with_raw_response.retrieve(
             project_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = await response.parse()
-        assert_matches_type(Project, v1, path=["response"])
+        project = await response.parse()
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.projects.v1.with_streaming_response.retrieve(
+        async with async_client.cloud.projects.with_streaming_response.retrieve(
             project_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = await response.parse()
-            assert_matches_type(Project, v1, path=["response"])
+            project = await response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.update(
+        project = await async_client.cloud.projects.update(
             project_id=0,
             name="New Project",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.update(
+        project = await async_client.cloud.projects.update(
             project_id=0,
             name="New Project",
             description="Project description",
         )
-        assert_matches_type(Project, v1, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.projects.v1.with_raw_response.update(
+        response = await async_client.cloud.projects.with_raw_response.update(
             project_id=0,
             name="New Project",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = await response.parse()
-        assert_matches_type(Project, v1, path=["response"])
+        project = await response.parse()
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.projects.v1.with_streaming_response.update(
+        async with async_client.cloud.projects.with_streaming_response.update(
             project_id=0,
             name="New Project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = await response.parse()
-            assert_matches_type(Project, v1, path=["response"])
+            project = await response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.list()
-        assert_matches_type(V1ListResponse, v1, path=["response"])
+        project = await async_client.cloud.projects.list()
+        assert_matches_type(ProjectListResponse, project, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.list(
+        project = await async_client.cloud.projects.list(
             client_id=123,
             include_deleted=False,
             name="my-project",
             order_by=["created_at.asc"],
         )
-        assert_matches_type(V1ListResponse, v1, path=["response"])
+        assert_matches_type(ProjectListResponse, project, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.projects.v1.with_raw_response.list()
+        response = await async_client.cloud.projects.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = await response.parse()
-        assert_matches_type(V1ListResponse, v1, path=["response"])
+        project = await response.parse()
+        assert_matches_type(ProjectListResponse, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.projects.v1.with_streaming_response.list() as response:
+        async with async_client.cloud.projects.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = await response.parse()
-            assert_matches_type(V1ListResponse, v1, path=["response"])
+            project = await response.parse()
+            assert_matches_type(ProjectListResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
-        v1 = await async_client.cloud.projects.v1.delete(
+        project = await async_client.cloud.projects.delete(
             project_id=0,
         )
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.projects.v1.with_raw_response.delete(
+        response = await async_client.cloud.projects.with_raw_response.delete(
             project_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = await response.parse()
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        project = await response.parse()
+        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.projects.v1.with_streaming_response.delete(
+        async with async_client.cloud.projects.with_streaming_response.delete(
             project_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            v1 = await response.parse()
-            assert_matches_type(V1DeleteResponse, v1, path=["response"])
+            project = await response.parse()
+            assert_matches_type(ProjectDeleteResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
