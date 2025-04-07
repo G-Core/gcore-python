@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -183,11 +183,10 @@ class ProjectsResource(SyncAPIResource):
     def list(
         self,
         *,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
+        client_id: int | NotGiven = NOT_GIVEN,
         include_deleted: bool | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        order_by: Optional[List[Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"]]]
-        | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,11 +200,11 @@ class ProjectsResource(SyncAPIResource):
         Args:
           client_id: Client ID filter for administrators.
 
-          include_deleted: Whether to include deleted entries in the response.
+          include_deleted: Whether to include deleted projects in the response.
 
           name: Name to filter the results by.
 
-          order_by: Order by field and direction. Supports multiple values.
+          order_by: Order by field and direction.
 
           extra_headers: Send extra headers
 
@@ -424,11 +423,10 @@ class AsyncProjectsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
+        client_id: int | NotGiven = NOT_GIVEN,
         include_deleted: bool | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        order_by: Optional[List[Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"]]]
-        | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -442,11 +440,11 @@ class AsyncProjectsResource(AsyncAPIResource):
         Args:
           client_id: Client ID filter for administrators.
 
-          include_deleted: Whether to include deleted entries in the response.
+          include_deleted: Whether to include deleted projects in the response.
 
           name: Name to filter the results by.
 
-          order_by: Order by field and direction. Supports multiple values.
+          order_by: Order by field and direction.
 
           extra_headers: Send extra headers
 

@@ -144,10 +144,10 @@ class TestProjects:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         project = client.cloud.projects.list(
-            client_id=123,
+            client_id=1,
             include_deleted=False,
             name="my-project",
-            order_by=["created_at.asc"],
+            order_by="created_at.asc",
         )
         assert_matches_type(ProjectListResponse, project, path=["response"])
 
@@ -329,10 +329,10 @@ class TestAsyncProjects:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         project = await async_client.cloud.projects.list(
-            client_id=123,
+            client_id=1,
             include_deleted=False,
             name="my-project",
-            order_by=["created_at.asc"],
+            order_by="created_at.asc",
         )
         assert_matches_type(ProjectListResponse, project, path=["response"])
 
