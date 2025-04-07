@@ -76,8 +76,8 @@ class Gcore(SyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GCORE_API_KEY`
-        - `project_id` from `GCORE_PROJECT_ID`
-        - `region_id` from `GCORE_REGION_ID`
+        - `project_id` from `GCORE_PROJECT`
+        - `region_id` from `GCORE_REGION`
         """
         if api_key is None:
             api_key = os.environ.get("GCORE_API_KEY")
@@ -88,11 +88,11 @@ class Gcore(SyncAPIClient):
         self.api_key = api_key
 
         if project_id is None:
-            project_id = maybe_coerce_integer(os.environ.get("GCORE_PROJECT_ID"))
+            project_id = maybe_coerce_integer(os.environ.get("GCORE_PROJECT"))
         self.project_id = project_id
 
         if region_id is None:
-            region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION_ID"))
+            region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION"))
         self.region_id = region_id
 
         if base_url is None:
@@ -281,8 +281,8 @@ class AsyncGcore(AsyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GCORE_API_KEY`
-        - `project_id` from `GCORE_PROJECT_ID`
-        - `region_id` from `GCORE_REGION_ID`
+        - `project_id` from `GCORE_PROJECT`
+        - `region_id` from `GCORE_REGION`
         """
         if api_key is None:
             api_key = os.environ.get("GCORE_API_KEY")
@@ -293,11 +293,11 @@ class AsyncGcore(AsyncAPIClient):
         self.api_key = api_key
 
         if project_id is None:
-            project_id = maybe_coerce_integer(os.environ.get("GCORE_PROJECT_ID"))
+            project_id = maybe_coerce_integer(os.environ.get("GCORE_PROJECT"))
         self.project_id = project_id
 
         if region_id is None:
-            region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION_ID"))
+            region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION"))
         self.region_id = region_id
 
         if base_url is None:
