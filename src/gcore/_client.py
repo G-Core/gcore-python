@@ -190,7 +190,7 @@ class Gcore(SyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
-    def _get_project_id_path_param(self) -> str:
+    def _get_project_id_path_param(self) -> int:
         from_client = self.project_id
         if from_client is not None:
             return from_client
@@ -199,7 +199,7 @@ class Gcore(SyncAPIClient):
             "Missing project_id argument; Please provide it at the client level, e.g. Gcore(project_id='abcd') or per method."
         )
 
-    def _get_region_id_path_param(self) -> str:
+    def _get_region_id_path_param(self) -> int:
         from_client = self.region_id
         if from_client is not None:
             return from_client
@@ -395,7 +395,7 @@ class AsyncGcore(AsyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
-    def _get_project_id_path_param(self) -> str:
+    def _get_project_id_path_param(self) -> int:
         from_client = self.project_id
         if from_client is not None:
             return from_client
@@ -404,7 +404,7 @@ class AsyncGcore(AsyncAPIClient):
             "Missing project_id argument; Please provide it at the client level, e.g. AsyncGcore(project_id='abcd') or per method."
         )
 
-    def _get_region_id_path_param(self) -> str:
+    def _get_region_id_path_param(self) -> int:
         from_client = self.region_id
         if from_client is not None:
             return from_client
