@@ -147,7 +147,7 @@ class TestProjects:
             client_id=1,
             include_deleted=False,
             name="my-project",
-            order_by="created_at.asc",
+            order_by="name.desc",
         )
         assert_matches_type(ProjectListResponse, project, path=["response"])
 
@@ -332,7 +332,7 @@ class TestAsyncProjects:
             client_id=1,
             include_deleted=False,
             name="my-project",
-            order_by="created_at.asc",
+            order_by="name.desc",
         )
         assert_matches_type(ProjectListResponse, project, path=["response"])
 
