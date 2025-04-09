@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ProjectUpdateParams"]
+__all__ = ["ProjectReplaceParams"]
 
 
-class ProjectUpdateParams(TypedDict, total=False):
+class ProjectReplaceParams(TypedDict, total=False):
     project_id: int
 
     name: Required[str]
