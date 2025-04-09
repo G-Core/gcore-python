@@ -20,14 +20,6 @@ from .projects import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .quotas.quotas import (
-    QuotasResource,
-    AsyncQuotasResource,
-    QuotasResourceWithRawResponse,
-    AsyncQuotasResourceWithRawResponse,
-    QuotasResourceWithStreamingResponse,
-    AsyncQuotasResourceWithStreamingResponse,
-)
 
 __all__ = ["CloudResource", "AsyncCloudResource"]
 
@@ -36,10 +28,6 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def projects(self) -> ProjectsResource:
         return ProjectsResource(self._client)
-
-    @cached_property
-    def quotas(self) -> QuotasResource:
-        return QuotasResource(self._client)
 
     @cached_property
     def regions(self) -> RegionsResource:
@@ -69,10 +57,6 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def projects(self) -> AsyncProjectsResource:
         return AsyncProjectsResource(self._client)
-
-    @cached_property
-    def quotas(self) -> AsyncQuotasResource:
-        return AsyncQuotasResource(self._client)
 
     @cached_property
     def regions(self) -> AsyncRegionsResource:
@@ -107,10 +91,6 @@ class CloudResourceWithRawResponse:
         return ProjectsResourceWithRawResponse(self._cloud.projects)
 
     @cached_property
-    def quotas(self) -> QuotasResourceWithRawResponse:
-        return QuotasResourceWithRawResponse(self._cloud.quotas)
-
-    @cached_property
     def regions(self) -> RegionsResourceWithRawResponse:
         return RegionsResourceWithRawResponse(self._cloud.regions)
 
@@ -122,10 +102,6 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithRawResponse:
         return AsyncProjectsResourceWithRawResponse(self._cloud.projects)
-
-    @cached_property
-    def quotas(self) -> AsyncQuotasResourceWithRawResponse:
-        return AsyncQuotasResourceWithRawResponse(self._cloud.quotas)
 
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithRawResponse:
@@ -141,10 +117,6 @@ class CloudResourceWithStreamingResponse:
         return ProjectsResourceWithStreamingResponse(self._cloud.projects)
 
     @cached_property
-    def quotas(self) -> QuotasResourceWithStreamingResponse:
-        return QuotasResourceWithStreamingResponse(self._cloud.quotas)
-
-    @cached_property
     def regions(self) -> RegionsResourceWithStreamingResponse:
         return RegionsResourceWithStreamingResponse(self._cloud.regions)
 
@@ -156,10 +128,6 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithStreamingResponse:
         return AsyncProjectsResourceWithStreamingResponse(self._cloud.projects)
-
-    @cached_property
-    def quotas(self) -> AsyncQuotasResourceWithStreamingResponse:
-        return AsyncQuotasResourceWithStreamingResponse(self._cloud.quotas)
 
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithStreamingResponse:

@@ -8,14 +8,6 @@ from .cloud import (
     CloudResourceWithStreamingResponse,
     AsyncCloudResourceWithStreamingResponse,
 )
-from .quotas import (
-    QuotasResource,
-    AsyncQuotasResource,
-    QuotasResourceWithRawResponse,
-    AsyncQuotasResourceWithRawResponse,
-    QuotasResourceWithStreamingResponse,
-    AsyncQuotasResourceWithStreamingResponse,
-)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -40,12 +32,6 @@ __all__ = [
     "AsyncProjectsResourceWithRawResponse",
     "ProjectsResourceWithStreamingResponse",
     "AsyncProjectsResourceWithStreamingResponse",
-    "QuotasResource",
-    "AsyncQuotasResource",
-    "QuotasResourceWithRawResponse",
-    "AsyncQuotasResourceWithRawResponse",
-    "QuotasResourceWithStreamingResponse",
-    "AsyncQuotasResourceWithStreamingResponse",
     "RegionsResource",
     "AsyncRegionsResource",
     "RegionsResourceWithRawResponse",
