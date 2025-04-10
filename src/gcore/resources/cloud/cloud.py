@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .tasks import (
+    TasksResource,
+    AsyncTasksResource,
+    TasksResourceWithRawResponse,
+    AsyncTasksResourceWithRawResponse,
+    TasksResourceWithStreamingResponse,
+    AsyncTasksResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -28,6 +36,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def projects(self) -> ProjectsResource:
         return ProjectsResource(self._client)
+
+    @cached_property
+    def tasks(self) -> TasksResource:
+        return TasksResource(self._client)
 
     @cached_property
     def regions(self) -> RegionsResource:
@@ -57,6 +69,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def projects(self) -> AsyncProjectsResource:
         return AsyncProjectsResource(self._client)
+
+    @cached_property
+    def tasks(self) -> AsyncTasksResource:
+        return AsyncTasksResource(self._client)
 
     @cached_property
     def regions(self) -> AsyncRegionsResource:
@@ -91,6 +107,10 @@ class CloudResourceWithRawResponse:
         return ProjectsResourceWithRawResponse(self._cloud.projects)
 
     @cached_property
+    def tasks(self) -> TasksResourceWithRawResponse:
+        return TasksResourceWithRawResponse(self._cloud.tasks)
+
+    @cached_property
     def regions(self) -> RegionsResourceWithRawResponse:
         return RegionsResourceWithRawResponse(self._cloud.regions)
 
@@ -102,6 +122,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithRawResponse:
         return AsyncProjectsResourceWithRawResponse(self._cloud.projects)
+
+    @cached_property
+    def tasks(self) -> AsyncTasksResourceWithRawResponse:
+        return AsyncTasksResourceWithRawResponse(self._cloud.tasks)
 
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithRawResponse:
@@ -117,6 +141,10 @@ class CloudResourceWithStreamingResponse:
         return ProjectsResourceWithStreamingResponse(self._cloud.projects)
 
     @cached_property
+    def tasks(self) -> TasksResourceWithStreamingResponse:
+        return TasksResourceWithStreamingResponse(self._cloud.tasks)
+
+    @cached_property
     def regions(self) -> RegionsResourceWithStreamingResponse:
         return RegionsResourceWithStreamingResponse(self._cloud.regions)
 
@@ -128,6 +156,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithStreamingResponse:
         return AsyncProjectsResourceWithStreamingResponse(self._cloud.projects)
+
+    @cached_property
+    def tasks(self) -> AsyncTasksResourceWithStreamingResponse:
+        return AsyncTasksResourceWithStreamingResponse(self._cloud.tasks)
 
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithStreamingResponse:
