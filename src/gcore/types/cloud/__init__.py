@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from .task import Task as Task
 from .region import Region as Region
 from .project import Project as Project
+from .task_list_params import TaskListParams as TaskListParams
 from .region_list_params import RegionListParams as RegionListParams
 from .project_list_params import ProjectListParams as ProjectListParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
