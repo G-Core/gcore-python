@@ -139,7 +139,9 @@ class ProjectsResource(SyncAPIResource):
         *,
         client_id: int | NotGiven = NOT_GIVEN,
         include_deleted: bool | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -156,7 +158,11 @@ class ProjectsResource(SyncAPIResource):
 
           include_deleted: Whether to include deleted projects in the response.
 
+          limit: Limit value is used to limit the number of records in the result
+
           name: Name to filter the results by.
+
+          offset: Offset value is used to exclude the first set of records from the result
 
           order_by: Order by field and direction.
 
@@ -179,7 +185,9 @@ class ProjectsResource(SyncAPIResource):
                     {
                         "client_id": client_id,
                         "include_deleted": include_deleted,
+                        "limit": limit,
                         "name": name,
+                        "offset": offset,
                         "order_by": order_by,
                     },
                     project_list_params.ProjectListParams,
@@ -379,7 +387,9 @@ class AsyncProjectsResource(AsyncAPIResource):
         *,
         client_id: int | NotGiven = NOT_GIVEN,
         include_deleted: bool | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -396,7 +406,11 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           include_deleted: Whether to include deleted projects in the response.
 
+          limit: Limit value is used to limit the number of records in the result
+
           name: Name to filter the results by.
+
+          offset: Offset value is used to exclude the first set of records from the result
 
           order_by: Order by field and direction.
 
@@ -419,7 +433,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                     {
                         "client_id": client_id,
                         "include_deleted": include_deleted,
+                        "limit": limit,
                         "name": name,
+                        "offset": offset,
                         "order_by": order_by,
                     },
                     project_list_params.ProjectListParams,
