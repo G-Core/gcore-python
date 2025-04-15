@@ -103,7 +103,9 @@ class TestProjects:
         project = client.cloud.projects.list(
             client_id=1,
             include_deleted=False,
+            limit=100,
             name="my-project",
+            offset=0,
             order_by="name.desc",
         )
         assert_matches_type(ProjectListResponse, project, path=["response"])
@@ -288,7 +290,9 @@ class TestAsyncProjects:
         project = await async_client.cloud.projects.list(
             client_id=1,
             include_deleted=False,
+            limit=100,
             name="my-project",
+            offset=0,
             order_by="name.desc",
         )
         assert_matches_type(ProjectListResponse, project, path=["response"])
