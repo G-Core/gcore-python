@@ -80,6 +80,79 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
+## Pagination
+
+List methods in the Gcore API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from gcore import Gcore
+
+client = Gcore()
+
+all_projects = []
+# Automatically fetches more pages as needed.
+for project in client.cloud.projects.list(
+    limit=10,
+    offset=0,
+):
+    # Do something with project here
+    all_projects.append(project)
+print(all_projects)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from gcore import AsyncGcore
+
+client = AsyncGcore()
+
+
+async def main() -> None:
+    all_projects = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for project in client.cloud.projects.list(
+        limit=10,
+        offset=0,
+    ):
+        all_projects.append(project)
+    print(all_projects)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.cloud.projects.list(
+    limit=10,
+    offset=0,
+)
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.results)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.cloud.projects.list(
+    limit=10,
+    offset=0,
+)
+for project in first_page.results:
+    print(project.id)
+
+# Remove `await` for non-async usage.
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `gcore.APIConnectionError` is raised.

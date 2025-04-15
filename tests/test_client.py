@@ -362,11 +362,11 @@ class TestGcore:
 
         with client as c2:
             with pytest.raises(ValueError, match="Missing project_id argument;"):
-                c2.cloud.projects.retrieve()
+                c2.cloud.projects.delete()
 
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, project_id=0)
         with client as c2:
-            c2.cloud.projects.retrieve()
+            c2.cloud.projects.delete()
 
     def test_region_id_client_params(self) -> None:
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True)
@@ -1148,11 +1148,11 @@ class TestAsyncGcore:
 
         async with client as c2:
             with pytest.raises(ValueError, match="Missing project_id argument;"):
-                await c2.cloud.projects.retrieve()
+                await c2.cloud.projects.delete()
 
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, project_id=0)
         async with client as c2:
-            await c2.cloud.projects.retrieve()
+            await c2.cloud.projects.delete()
 
     async def test_region_id_client_params(self) -> None:
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True)

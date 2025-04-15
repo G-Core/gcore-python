@@ -20,10 +20,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.cloud import project_list_params, project_create_params, project_replace_params
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.project import Project
-from ...types.cloud.project_list_response import ProjectListResponse
 from ...types.cloud.project_delete_response import ProjectDeleteResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
@@ -101,39 +101,6 @@ class ProjectsResource(SyncAPIResource):
             cast_to=Project,
         )
 
-    def retrieve(
-        self,
-        *,
-        project_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
-        """
-        Get Project
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_project_id_path_param()
-        return self._get(
-            f"/cloud/v1/projects/{project_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Project,
-        )
-
     def list(
         self,
         *,
@@ -149,7 +116,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectListResponse:
+    ) -> SyncOffsetPage[Project]:
         """
         List projects
 
@@ -174,8 +141,9 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cloud/v1/projects",
+            page=SyncOffsetPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +161,7 @@ class ProjectsResource(SyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            cast_to=ProjectListResponse,
+            model=Project,
         )
 
     def delete(
@@ -228,6 +196,39 @@ class ProjectsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ProjectDeleteResponse,
+        )
+
+    def get(
+        self,
+        *,
+        project_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Project:
+        """
+        Get Project
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_project_id_path_param()
+        return self._get(
+            f"/cloud/v1/projects/{project_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Project,
         )
 
     def replace(
@@ -349,40 +350,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=Project,
         )
 
-    async def retrieve(
-        self,
-        *,
-        project_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
-        """
-        Get Project
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_project_id_path_param()
-        return await self._get(
-            f"/cloud/v1/projects/{project_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Project,
-        )
-
-    async def list(
+    def list(
         self,
         *,
         client_id: int | NotGiven = NOT_GIVEN,
@@ -397,7 +365,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectListResponse:
+    ) -> AsyncPaginator[Project, AsyncOffsetPage[Project]]:
         """
         List projects
 
@@ -422,14 +390,15 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cloud/v1/projects",
+            page=AsyncOffsetPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "client_id": client_id,
                         "include_deleted": include_deleted,
@@ -441,7 +410,7 @@ class AsyncProjectsResource(AsyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            cast_to=ProjectListResponse,
+            model=Project,
         )
 
     async def delete(
@@ -476,6 +445,39 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ProjectDeleteResponse,
+        )
+
+    async def get(
+        self,
+        *,
+        project_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Project:
+        """
+        Get Project
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_project_id_path_param()
+        return await self._get(
+            f"/cloud/v1/projects/{project_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Project,
         )
 
     async def replace(
@@ -532,14 +534,14 @@ class ProjectsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             projects.create,
         )
-        self.retrieve = to_raw_response_wrapper(
-            projects.retrieve,
-        )
         self.list = to_raw_response_wrapper(
             projects.list,
         )
         self.delete = to_raw_response_wrapper(
             projects.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            projects.get,
         )
         self.replace = to_raw_response_wrapper(
             projects.replace,
@@ -553,14 +555,14 @@ class AsyncProjectsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             projects.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
-            projects.retrieve,
-        )
         self.list = async_to_raw_response_wrapper(
             projects.list,
         )
         self.delete = async_to_raw_response_wrapper(
             projects.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            projects.get,
         )
         self.replace = async_to_raw_response_wrapper(
             projects.replace,
@@ -574,14 +576,14 @@ class ProjectsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             projects.create,
         )
-        self.retrieve = to_streamed_response_wrapper(
-            projects.retrieve,
-        )
         self.list = to_streamed_response_wrapper(
             projects.list,
         )
         self.delete = to_streamed_response_wrapper(
             projects.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            projects.get,
         )
         self.replace = to_streamed_response_wrapper(
             projects.replace,
@@ -595,14 +597,14 @@ class AsyncProjectsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             projects.create,
         )
-        self.retrieve = async_to_streamed_response_wrapper(
-            projects.retrieve,
-        )
         self.list = async_to_streamed_response_wrapper(
             projects.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             projects.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            projects.get,
         )
         self.replace = async_to_streamed_response_wrapper(
             projects.replace,
