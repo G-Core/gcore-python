@@ -16,6 +16,14 @@ from .tasks import (
     TasksResourceWithStreamingResponse,
     AsyncTasksResourceWithStreamingResponse,
 )
+from .quotas import (
+    QuotasResource,
+    AsyncQuotasResource,
+    QuotasResourceWithRawResponse,
+    AsyncQuotasResourceWithRawResponse,
+    QuotasResourceWithStreamingResponse,
+    AsyncQuotasResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncRegionsResourceWithRawResponse",
     "RegionsResourceWithStreamingResponse",
     "AsyncRegionsResourceWithStreamingResponse",
+    "QuotasResource",
+    "AsyncQuotasResource",
+    "QuotasResourceWithRawResponse",
+    "AsyncQuotasResourceWithRawResponse",
+    "QuotasResourceWithStreamingResponse",
+    "AsyncQuotasResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

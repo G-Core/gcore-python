@@ -28,6 +28,14 @@ from .projects import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .quotas.quotas import (
+    QuotasResource,
+    AsyncQuotasResource,
+    QuotasResourceWithRawResponse,
+    AsyncQuotasResourceWithRawResponse,
+    QuotasResourceWithStreamingResponse,
+    AsyncQuotasResourceWithStreamingResponse,
+)
 
 __all__ = ["CloudResource", "AsyncCloudResource"]
 
@@ -44,6 +52,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def regions(self) -> RegionsResource:
         return RegionsResource(self._client)
+
+    @cached_property
+    def quotas(self) -> QuotasResource:
+        return QuotasResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
@@ -77,6 +89,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def regions(self) -> AsyncRegionsResource:
         return AsyncRegionsResource(self._client)
+
+    @cached_property
+    def quotas(self) -> AsyncQuotasResource:
+        return AsyncQuotasResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -114,6 +130,10 @@ class CloudResourceWithRawResponse:
     def regions(self) -> RegionsResourceWithRawResponse:
         return RegionsResourceWithRawResponse(self._cloud.regions)
 
+    @cached_property
+    def quotas(self) -> QuotasResourceWithRawResponse:
+        return QuotasResourceWithRawResponse(self._cloud.quotas)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -130,6 +150,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithRawResponse:
         return AsyncRegionsResourceWithRawResponse(self._cloud.regions)
+
+    @cached_property
+    def quotas(self) -> AsyncQuotasResourceWithRawResponse:
+        return AsyncQuotasResourceWithRawResponse(self._cloud.quotas)
 
 
 class CloudResourceWithStreamingResponse:
@@ -148,6 +172,10 @@ class CloudResourceWithStreamingResponse:
     def regions(self) -> RegionsResourceWithStreamingResponse:
         return RegionsResourceWithStreamingResponse(self._cloud.regions)
 
+    @cached_property
+    def quotas(self) -> QuotasResourceWithStreamingResponse:
+        return QuotasResourceWithStreamingResponse(self._cloud.quotas)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -164,3 +192,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithStreamingResponse:
         return AsyncRegionsResourceWithStreamingResponse(self._cloud.regions)
+
+    @cached_property
+    def quotas(self) -> AsyncQuotasResourceWithStreamingResponse:
+        return AsyncQuotasResourceWithStreamingResponse(self._cloud.quotas)
