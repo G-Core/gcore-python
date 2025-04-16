@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+import time
+from typing import List, Union, Iterable, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import is_given, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -18,7 +19,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..._constants import KILO
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ...lib.polling import extract_timeout_value
 from ...types.cloud import task_list_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.task import Task
@@ -206,6 +209,26 @@ class TasksResource(SyncAPIResource):
             model=Task,
         )
 
+    def poll(
+        self, task_id: str, *, timeout: float | NotGiven = NOT_GIVEN, polling_interval_ms: int | NotGiven = NOT_GIVEN
+    ) -> Task:
+        if not is_given(polling_interval_ms):
+            polling_interval_ms = cast(int, self._client.polling_interval_ms)
+
+        if not is_given(timeout):
+            timeout = extract_timeout_value(self._client.timeout)
+
+        end_time = time.time() + timeout
+        while time.time() <= end_time:
+            task = self.retrieve(task_id)
+            if task.state == "ERROR":
+                raise ValueError(task.error or f"Task {task_id} failed")
+            elif task.state == "FINISHED":
+                return task
+            self._sleep(polling_interval_ms / KILO)
+
+        raise TimeoutError(f"Timed out waiting for task {task_id}")
+
 
 class AsyncTasksResource(AsyncAPIResource):
     @cached_property
@@ -386,6 +409,26 @@ class AsyncTasksResource(AsyncAPIResource):
             ),
             model=Task,
         )
+
+    async def poll(
+        self, task_id: str, *, timeout: float | NotGiven = NOT_GIVEN, polling_interval_ms: int | NotGiven = NOT_GIVEN
+    ) -> Task:
+        if not is_given(polling_interval_ms):
+            polling_interval_ms = cast(int, self._client.polling_interval_ms)
+
+        if not is_given(timeout):
+            timeout = extract_timeout_value(self._client.timeout)
+
+        end_time = time.time() + timeout
+        while time.time() <= end_time:
+            task = await self.retrieve(task_id)
+            if task.state == "ERROR":
+                raise ValueError(task.error or f"Task {task_id} failed")
+            elif task.state == "FINISHED":
+                return task
+            await self._sleep(polling_interval_ms / KILO)
+
+        raise TimeoutError(f"Timed out waiting for task {task_id}")
 
 
 class TasksResourceWithRawResponse:

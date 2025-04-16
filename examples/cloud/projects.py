@@ -52,6 +52,7 @@ def update_project(project_id: int) -> Project:
     print("=======================")
     return updated_project
 
+
 def delete_project(project_id: int) -> None:
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
     gcore.cloud.projects.delete(project_id=project_id)
