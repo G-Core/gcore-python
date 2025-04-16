@@ -34,6 +34,14 @@ from .projects import (
     ProjectsResourceWithStreamingResponse,
     AsyncProjectsResourceWithStreamingResponse,
 )
+from .ssh_keys import (
+    SSHKeysResource,
+    AsyncSSHKeysResource,
+    SSHKeysResourceWithRawResponse,
+    AsyncSSHKeysResourceWithRawResponse,
+    SSHKeysResourceWithStreamingResponse,
+    AsyncSSHKeysResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .quotas.quotas import (
@@ -68,6 +76,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def secrets(self) -> SecretsResource:
         return SecretsResource(self._client)
+
+    @cached_property
+    def ssh_keys(self) -> SSHKeysResource:
+        return SSHKeysResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
@@ -109,6 +121,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def secrets(self) -> AsyncSecretsResource:
         return AsyncSecretsResource(self._client)
+
+    @cached_property
+    def ssh_keys(self) -> AsyncSSHKeysResource:
+        return AsyncSSHKeysResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -154,6 +170,10 @@ class CloudResourceWithRawResponse:
     def secrets(self) -> SecretsResourceWithRawResponse:
         return SecretsResourceWithRawResponse(self._cloud.secrets)
 
+    @cached_property
+    def ssh_keys(self) -> SSHKeysResourceWithRawResponse:
+        return SSHKeysResourceWithRawResponse(self._cloud.ssh_keys)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -178,6 +198,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
         return AsyncSecretsResourceWithRawResponse(self._cloud.secrets)
+
+    @cached_property
+    def ssh_keys(self) -> AsyncSSHKeysResourceWithRawResponse:
+        return AsyncSSHKeysResourceWithRawResponse(self._cloud.ssh_keys)
 
 
 class CloudResourceWithStreamingResponse:
@@ -204,6 +228,10 @@ class CloudResourceWithStreamingResponse:
     def secrets(self) -> SecretsResourceWithStreamingResponse:
         return SecretsResourceWithStreamingResponse(self._cloud.secrets)
 
+    @cached_property
+    def ssh_keys(self) -> SSHKeysResourceWithStreamingResponse:
+        return SSHKeysResourceWithStreamingResponse(self._cloud.ssh_keys)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -228,3 +256,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
         return AsyncSecretsResourceWithStreamingResponse(self._cloud.secrets)
+
+    @cached_property
+    def ssh_keys(self) -> AsyncSSHKeysResourceWithStreamingResponse:
+        return AsyncSSHKeysResourceWithStreamingResponse(self._cloud.ssh_keys)

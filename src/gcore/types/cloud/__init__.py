@@ -6,12 +6,17 @@ from .task import Task as Task
 from .region import Region as Region
 from .secret import Secret as Secret
 from .project import Project as Project
+from .ssh_key import SSHKey as SSHKey
+from .created_ssh_key import CreatedSSHKey as CreatedSSHKey
 from .task_list_params import TaskListParams as TaskListParams
 from .region_list_params import RegionListParams as RegionListParams
 from .project_list_params import ProjectListParams as ProjectListParams
+from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .secret_create_params import SecretCreateParams as SecretCreateParams
 from .secret_list_response import SecretListResponse as SecretListResponse
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
+from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
+from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
 from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .region_retrieve_params import RegionRetrieveParams as RegionRetrieveParams
