@@ -46,6 +46,7 @@ class Gcore(SyncAPIClient):
     api_key: str
     project_id: int | None
     region_id: int | None
+    polling_interval_ms: int | None
 
     def __init__(
         self,
@@ -53,6 +54,7 @@ class Gcore(SyncAPIClient):
         api_key: str | None = None,
         project_id: int | None = None,
         region_id: int | None = None,
+        polling_interval_ms: int | None = 1000,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -94,6 +96,10 @@ class Gcore(SyncAPIClient):
         if region_id is None:
             region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION"))
         self.region_id = region_id
+
+        if polling_interval_ms is None:
+            polling_interval_ms = 1000
+        self.polling_interval_ms = polling_interval_ms
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
@@ -141,6 +147,7 @@ class Gcore(SyncAPIClient):
         api_key: str | None = None,
         project_id: int | None = None,
         region_id: int | None = None,
+        polling_interval_ms: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -177,6 +184,7 @@ class Gcore(SyncAPIClient):
             api_key=api_key or self.api_key,
             project_id=project_id or self.project_id,
             region_id=region_id or self.region_id,
+            polling_interval_ms=polling_interval_ms or self.polling_interval_ms,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -251,6 +259,7 @@ class AsyncGcore(AsyncAPIClient):
     api_key: str
     project_id: int | None
     region_id: int | None
+    polling_interval_ms: int | None
 
     def __init__(
         self,
@@ -258,6 +267,7 @@ class AsyncGcore(AsyncAPIClient):
         api_key: str | None = None,
         project_id: int | None = None,
         region_id: int | None = None,
+        polling_interval_ms: int | None = 1000,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -299,6 +309,10 @@ class AsyncGcore(AsyncAPIClient):
         if region_id is None:
             region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION"))
         self.region_id = region_id
+
+        if polling_interval_ms is None:
+            polling_interval_ms = 1000
+        self.polling_interval_ms = polling_interval_ms
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
@@ -346,6 +360,7 @@ class AsyncGcore(AsyncAPIClient):
         api_key: str | None = None,
         project_id: int | None = None,
         region_id: int | None = None,
+        polling_interval_ms: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -382,6 +397,7 @@ class AsyncGcore(AsyncAPIClient):
             api_key=api_key or self.api_key,
             project_id=project_id or self.project_id,
             region_id=region_id or self.region_id,
+            polling_interval_ms=polling_interval_ms or self.polling_interval_ms,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
