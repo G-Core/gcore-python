@@ -70,3 +70,25 @@ Methods:
 - <code title="get /cloud/v2/limits_request">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">list</a>(\*\*<a href="src/gcore/types/cloud/quotas/request_list_params.py">params</a>) -> None</code>
 - <code title="delete /cloud/v2/limits_request/{request_id}">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">delete</a>(request_id) -> None</code>
 - <code title="get /cloud/v2/limits_request/{request_id}">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">get</a>(request_id) -> <a href="./src/gcore/types/cloud/quotas/request_get_response.py">RequestGetResponse</a></code>
+
+## Secrets
+
+Types:
+
+```python
+from gcore.types.cloud import (
+    Secret,
+    SecretCreateResponse,
+    SecretListResponse,
+    SecretDeleteResponse,
+    SecretUploadTlsCertificateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/secret_create_response.py">SecretCreateResponse</a></code>
+- <code title="get /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret_list_response.py">SecretListResponse</a></code>
+- <code title="delete /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">delete</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret_delete_response.py">SecretDeleteResponse</a></code>
+- <code title="get /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">get</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret.py">Secret</a></code>
+- <code title="post /cloud/v2/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">upload_tls_certificate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_upload_tls_certificate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/secret_upload_tls_certificate_response.py">SecretUploadTlsCertificateResponse</a></code>

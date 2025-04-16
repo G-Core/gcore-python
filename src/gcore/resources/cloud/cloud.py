@@ -18,6 +18,14 @@ from .regions import (
     RegionsResourceWithStreamingResponse,
     AsyncRegionsResourceWithStreamingResponse,
 )
+from .secrets import (
+    SecretsResource,
+    AsyncSecretsResource,
+    SecretsResourceWithRawResponse,
+    AsyncSecretsResourceWithRawResponse,
+    SecretsResourceWithStreamingResponse,
+    AsyncSecretsResourceWithStreamingResponse,
+)
 from .projects import (
     ProjectsResource,
     AsyncProjectsResource,
@@ -58,6 +66,10 @@ class CloudResource(SyncAPIResource):
         return QuotasResource(self._client)
 
     @cached_property
+    def secrets(self) -> SecretsResource:
+        return SecretsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -93,6 +105,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def quotas(self) -> AsyncQuotasResource:
         return AsyncQuotasResource(self._client)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsResource:
+        return AsyncSecretsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -134,6 +150,10 @@ class CloudResourceWithRawResponse:
     def quotas(self) -> QuotasResourceWithRawResponse:
         return QuotasResourceWithRawResponse(self._cloud.quotas)
 
+    @cached_property
+    def secrets(self) -> SecretsResourceWithRawResponse:
+        return SecretsResourceWithRawResponse(self._cloud.secrets)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -154,6 +174,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def quotas(self) -> AsyncQuotasResourceWithRawResponse:
         return AsyncQuotasResourceWithRawResponse(self._cloud.quotas)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsResourceWithRawResponse:
+        return AsyncSecretsResourceWithRawResponse(self._cloud.secrets)
 
 
 class CloudResourceWithStreamingResponse:
@@ -176,6 +200,10 @@ class CloudResourceWithStreamingResponse:
     def quotas(self) -> QuotasResourceWithStreamingResponse:
         return QuotasResourceWithStreamingResponse(self._cloud.quotas)
 
+    @cached_property
+    def secrets(self) -> SecretsResourceWithStreamingResponse:
+        return SecretsResourceWithStreamingResponse(self._cloud.secrets)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -196,3 +224,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def quotas(self) -> AsyncQuotasResourceWithStreamingResponse:
         return AsyncQuotasResourceWithStreamingResponse(self._cloud.quotas)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
+        return AsyncSecretsResourceWithStreamingResponse(self._cloud.secrets)
