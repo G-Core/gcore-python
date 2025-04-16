@@ -10,5 +10,8 @@ from .region_list_params import RegionListParams as RegionListParams
 from .project_list_params import ProjectListParams as ProjectListParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
+from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .region_retrieve_params import RegionRetrieveParams as RegionRetrieveParams
 from .project_delete_response import ProjectDeleteResponse as ProjectDeleteResponse
+from .quota_get_global_response import QuotaGetGlobalResponse as QuotaGetGlobalResponse
+from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
