@@ -119,7 +119,7 @@ class Task(BaseModel):
     created_on: Optional[str] = None
     """Created timestamp"""
 
-    state: str
+    state: Literal["ERROR", "FINISHED", "NEW", "RUNNING"]
     """The task state"""
 
     task_type: str
