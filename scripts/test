@@ -54,6 +54,8 @@ fi
 
 export DEFER_PYDANTIC_BUILD=false
 
+unset GCORE_PROJECT
+
 echo "==> Running tests"
 rye run pytest "$@"
 
