@@ -48,6 +48,14 @@ from .projects import (
     ProjectsResourceWithStreamingResponse,
     AsyncProjectsResourceWithStreamingResponse,
 )
+from .ssh_keys import (
+    SSHKeysResource,
+    AsyncSSHKeysResource,
+    SSHKeysResourceWithRawResponse,
+    AsyncSSHKeysResourceWithRawResponse,
+    SSHKeysResourceWithStreamingResponse,
+    AsyncSSHKeysResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ProjectsResource",
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncSecretsResourceWithRawResponse",
     "SecretsResourceWithStreamingResponse",
     "AsyncSecretsResourceWithStreamingResponse",
+    "SSHKeysResource",
+    "AsyncSSHKeysResource",
+    "SSHKeysResourceWithRawResponse",
+    "AsyncSSHKeysResourceWithRawResponse",
+    "SSHKeysResourceWithStreamingResponse",
+    "AsyncSSHKeysResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",
