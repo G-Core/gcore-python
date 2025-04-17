@@ -56,6 +56,14 @@ from .ssh_keys import (
     SSHKeysResourceWithStreamingResponse,
     AsyncSSHKeysResourceWithStreamingResponse,
 )
+from .ip_ranges import (
+    IPRangesResource,
+    AsyncIPRangesResource,
+    IPRangesResourceWithRawResponse,
+    AsyncIPRangesResourceWithRawResponse,
+    IPRangesResourceWithStreamingResponse,
+    AsyncIPRangesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ProjectsResource",
@@ -94,6 +102,12 @@ __all__ = [
     "AsyncSSHKeysResourceWithRawResponse",
     "SSHKeysResourceWithStreamingResponse",
     "AsyncSSHKeysResourceWithStreamingResponse",
+    "IPRangesResource",
+    "AsyncIPRangesResource",
+    "IPRangesResourceWithRawResponse",
+    "AsyncIPRangesResourceWithRawResponse",
+    "IPRangesResourceWithStreamingResponse",
+    "AsyncIPRangesResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

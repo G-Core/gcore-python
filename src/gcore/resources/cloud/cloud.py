@@ -43,6 +43,14 @@ from .ssh_keys import (
     AsyncSSHKeysResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .ip_ranges import (
+    IPRangesResource,
+    AsyncIPRangesResource,
+    IPRangesResourceWithRawResponse,
+    AsyncIPRangesResourceWithRawResponse,
+    IPRangesResourceWithStreamingResponse,
+    AsyncIPRangesResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .quotas.quotas import (
     QuotasResource,
@@ -80,6 +88,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def ssh_keys(self) -> SSHKeysResource:
         return SSHKeysResource(self._client)
+
+    @cached_property
+    def ip_ranges(self) -> IPRangesResource:
+        return IPRangesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
@@ -125,6 +137,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResource:
         return AsyncSSHKeysResource(self._client)
+
+    @cached_property
+    def ip_ranges(self) -> AsyncIPRangesResource:
+        return AsyncIPRangesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -174,6 +190,10 @@ class CloudResourceWithRawResponse:
     def ssh_keys(self) -> SSHKeysResourceWithRawResponse:
         return SSHKeysResourceWithRawResponse(self._cloud.ssh_keys)
 
+    @cached_property
+    def ip_ranges(self) -> IPRangesResourceWithRawResponse:
+        return IPRangesResourceWithRawResponse(self._cloud.ip_ranges)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -202,6 +222,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResourceWithRawResponse:
         return AsyncSSHKeysResourceWithRawResponse(self._cloud.ssh_keys)
+
+    @cached_property
+    def ip_ranges(self) -> AsyncIPRangesResourceWithRawResponse:
+        return AsyncIPRangesResourceWithRawResponse(self._cloud.ip_ranges)
 
 
 class CloudResourceWithStreamingResponse:
@@ -232,6 +256,10 @@ class CloudResourceWithStreamingResponse:
     def ssh_keys(self) -> SSHKeysResourceWithStreamingResponse:
         return SSHKeysResourceWithStreamingResponse(self._cloud.ssh_keys)
 
+    @cached_property
+    def ip_ranges(self) -> IPRangesResourceWithStreamingResponse:
+        return IPRangesResourceWithStreamingResponse(self._cloud.ip_ranges)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -260,3 +288,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResourceWithStreamingResponse:
         return AsyncSSHKeysResourceWithStreamingResponse(self._cloud.ssh_keys)
+
+    @cached_property
+    def ip_ranges(self) -> AsyncIPRangesResourceWithStreamingResponse:
+        return AsyncIPRangesResourceWithStreamingResponse(self._cloud.ip_ranges)
