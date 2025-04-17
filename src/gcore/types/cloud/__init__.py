@@ -11,6 +11,7 @@ from .ip_ranges import IPRanges as IPRanges
 from .created_ssh_key import CreatedSSHKey as CreatedSSHKey
 from .task_list_params import TaskListParams as TaskListParams
 from .region_list_params import RegionListParams as RegionListParams
+from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
 from .project_list_params import ProjectListParams as ProjectListParams
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .secret_create_params import SecretCreateParams as SecretCreateParams

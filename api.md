@@ -1,5 +1,11 @@
 # Cloud
 
+Types:
+
+```python
+from gcore.types.cloud import InterfaceIPFamily, Network, Subnet
+```
+
 ## Projects
 
 Types:
