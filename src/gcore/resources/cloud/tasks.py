@@ -8,8 +8,11 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,7 +22,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ...types.cloud import task_list_params
+from ...types.cloud import task_list_params, task_acknowledge_all_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.task import Task
 
@@ -45,41 +48,6 @@ class TasksResource(SyncAPIResource):
         For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
         """
         return TasksResourceWithStreamingResponse(self)
-
-    def retrieve(
-        self,
-        task_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Task:
-        """
-        Get task
-
-        Args:
-          task_id: Task ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not task_id:
-            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
-        return self._get(
-            f"/cloud/v1/tasks/{task_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Task,
-        )
 
     def list(
         self,
@@ -206,28 +174,89 @@ class TasksResource(SyncAPIResource):
             model=Task,
         )
 
-
-class AsyncTasksResource(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncTasksResourceWithRawResponse:
+    def acknowledge_all(
+        self,
+        *,
+        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        region_id: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
-        This property can be used as a prefix for any HTTP method call to return
-        the raw response object instead of the parsed content.
+        Acknowledge all client tasks in project or region
 
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
-        return AsyncTasksResourceWithRawResponse(self)
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._post(
+            "/cloud/v1/tasks/acknowledge_all",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "project_id": project_id,
+                        "region_id": region_id,
+                    },
+                    task_acknowledge_all_params.TaskAcknowledgeAllParams,
+                ),
+            ),
+            cast_to=NoneType,
+        )
 
-    @cached_property
-    def with_streaming_response(self) -> AsyncTasksResourceWithStreamingResponse:
+    def acknowledge_one(
+        self,
+        task_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Task:
         """
-        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+        Acknowledge one task on project scope
 
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        Args:
+          task_id: Task ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
-        return AsyncTasksResourceWithStreamingResponse(self)
+        if not task_id:
+            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
+        return self._post(
+            f"/cloud/v1/tasks/{task_id}/acknowledge",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Task,
+        )
 
-    async def retrieve(
+    def get(
         self,
         task_id: str,
         *,
@@ -254,13 +283,34 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
-        return await self._get(
+        return self._get(
             f"/cloud/v1/tasks/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Task,
         )
+
+
+class AsyncTasksResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncTasksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncTasksResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncTasksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        """
+        return AsyncTasksResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -387,16 +437,139 @@ class AsyncTasksResource(AsyncAPIResource):
             model=Task,
         )
 
+    async def acknowledge_all(
+        self,
+        *,
+        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        region_id: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Acknowledge all client tasks in project or region
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._post(
+            "/cloud/v1/tasks/acknowledge_all",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "project_id": project_id,
+                        "region_id": region_id,
+                    },
+                    task_acknowledge_all_params.TaskAcknowledgeAllParams,
+                ),
+            ),
+            cast_to=NoneType,
+        )
+
+    async def acknowledge_one(
+        self,
+        task_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Task:
+        """
+        Acknowledge one task on project scope
+
+        Args:
+          task_id: Task ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not task_id:
+            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
+        return await self._post(
+            f"/cloud/v1/tasks/{task_id}/acknowledge",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Task,
+        )
+
+    async def get(
+        self,
+        task_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Task:
+        """
+        Get task
+
+        Args:
+          task_id: Task ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not task_id:
+            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
+        return await self._get(
+            f"/cloud/v1/tasks/{task_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Task,
+        )
+
 
 class TasksResourceWithRawResponse:
     def __init__(self, tasks: TasksResource) -> None:
         self._tasks = tasks
 
-        self.retrieve = to_raw_response_wrapper(
-            tasks.retrieve,
-        )
         self.list = to_raw_response_wrapper(
             tasks.list,
+        )
+        self.acknowledge_all = to_raw_response_wrapper(
+            tasks.acknowledge_all,
+        )
+        self.acknowledge_one = to_raw_response_wrapper(
+            tasks.acknowledge_one,
+        )
+        self.get = to_raw_response_wrapper(
+            tasks.get,
         )
 
 
@@ -404,11 +577,17 @@ class AsyncTasksResourceWithRawResponse:
     def __init__(self, tasks: AsyncTasksResource) -> None:
         self._tasks = tasks
 
-        self.retrieve = async_to_raw_response_wrapper(
-            tasks.retrieve,
-        )
         self.list = async_to_raw_response_wrapper(
             tasks.list,
+        )
+        self.acknowledge_all = async_to_raw_response_wrapper(
+            tasks.acknowledge_all,
+        )
+        self.acknowledge_one = async_to_raw_response_wrapper(
+            tasks.acknowledge_one,
+        )
+        self.get = async_to_raw_response_wrapper(
+            tasks.get,
         )
 
 
@@ -416,11 +595,17 @@ class TasksResourceWithStreamingResponse:
     def __init__(self, tasks: TasksResource) -> None:
         self._tasks = tasks
 
-        self.retrieve = to_streamed_response_wrapper(
-            tasks.retrieve,
-        )
         self.list = to_streamed_response_wrapper(
             tasks.list,
+        )
+        self.acknowledge_all = to_streamed_response_wrapper(
+            tasks.acknowledge_all,
+        )
+        self.acknowledge_one = to_streamed_response_wrapper(
+            tasks.acknowledge_one,
+        )
+        self.get = to_streamed_response_wrapper(
+            tasks.get,
         )
 
 
@@ -428,9 +613,15 @@ class AsyncTasksResourceWithStreamingResponse:
     def __init__(self, tasks: AsyncTasksResource) -> None:
         self._tasks = tasks
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            tasks.retrieve,
-        )
         self.list = async_to_streamed_response_wrapper(
             tasks.list,
+        )
+        self.acknowledge_all = async_to_streamed_response_wrapper(
+            tasks.acknowledge_all,
+        )
+        self.acknowledge_one = async_to_streamed_response_wrapper(
+            tasks.acknowledge_one,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            tasks.get,
         )
