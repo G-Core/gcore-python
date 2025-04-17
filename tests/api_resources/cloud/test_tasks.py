@@ -20,44 +20,6 @@ class TestTasks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_retrieve(self, client: Gcore) -> None:
-        task = client.cloud.tasks.retrieve(
-            "task_id",
-        )
-        assert_matches_type(Task, task, path=["response"])
-
-    @parametrize
-    def test_raw_response_retrieve(self, client: Gcore) -> None:
-        response = client.cloud.tasks.with_raw_response.retrieve(
-            "task_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        task = response.parse()
-        assert_matches_type(Task, task, path=["response"])
-
-    @parametrize
-    def test_streaming_response_retrieve(self, client: Gcore) -> None:
-        with client.cloud.tasks.with_streaming_response.retrieve(
-            "task_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            task = response.parse()
-            assert_matches_type(Task, task, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_retrieve(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
-            client.cloud.tasks.with_raw_response.retrieve(
-                "",
-            )
-
-    @parametrize
     def test_method_list(self, client: Gcore) -> None:
         task = client.cloud.tasks.list()
         assert_matches_type(SyncOffsetPage[Task], task, path=["response"])
@@ -98,47 +60,118 @@ class TestTasks:
 
         assert cast(Any, response.is_closed) is True
 
-
-class TestAsyncTasks:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    @parametrize
+    def test_method_acknowledge_all(self, client: Gcore) -> None:
+        task = client.cloud.tasks.acknowledge_all()
+        assert task is None
 
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGcore) -> None:
-        task = await async_client.cloud.tasks.retrieve(
+    def test_method_acknowledge_all_with_all_params(self, client: Gcore) -> None:
+        task = client.cloud.tasks.acknowledge_all(
+            project_id=0,
+            region_id=0,
+        )
+        assert task is None
+
+    @parametrize
+    def test_raw_response_acknowledge_all(self, client: Gcore) -> None:
+        response = client.cloud.tasks.with_raw_response.acknowledge_all()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        task = response.parse()
+        assert task is None
+
+    @parametrize
+    def test_streaming_response_acknowledge_all(self, client: Gcore) -> None:
+        with client.cloud.tasks.with_streaming_response.acknowledge_all() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            task = response.parse()
+            assert task is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_acknowledge_one(self, client: Gcore) -> None:
+        task = client.cloud.tasks.acknowledge_one(
             "task_id",
         )
         assert_matches_type(Task, task, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.tasks.with_raw_response.retrieve(
+    def test_raw_response_acknowledge_one(self, client: Gcore) -> None:
+        response = client.cloud.tasks.with_raw_response.acknowledge_one(
             "task_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        task = await response.parse()
+        task = response.parse()
         assert_matches_type(Task, task, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.tasks.with_streaming_response.retrieve(
+    def test_streaming_response_acknowledge_one(self, client: Gcore) -> None:
+        with client.cloud.tasks.with_streaming_response.acknowledge_one(
             "task_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            task = await response.parse()
+            task = response.parse()
             assert_matches_type(Task, task, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGcore) -> None:
+    def test_path_params_acknowledge_one(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
-            await async_client.cloud.tasks.with_raw_response.retrieve(
+            client.cloud.tasks.with_raw_response.acknowledge_one(
                 "",
             )
+
+    @parametrize
+    def test_method_get(self, client: Gcore) -> None:
+        task = client.cloud.tasks.get(
+            "task_id",
+        )
+        assert_matches_type(Task, task, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Gcore) -> None:
+        response = client.cloud.tasks.with_raw_response.get(
+            "task_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        task = response.parse()
+        assert_matches_type(Task, task, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Gcore) -> None:
+        with client.cloud.tasks.with_streaming_response.get(
+            "task_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            task = response.parse()
+            assert_matches_type(Task, task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
+            client.cloud.tasks.with_raw_response.get(
+                "",
+            )
+
+
+class TestAsyncTasks:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
@@ -180,3 +213,112 @@ class TestAsyncTasks:
             assert_matches_type(AsyncOffsetPage[Task], task, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_acknowledge_all(self, async_client: AsyncGcore) -> None:
+        task = await async_client.cloud.tasks.acknowledge_all()
+        assert task is None
+
+    @parametrize
+    async def test_method_acknowledge_all_with_all_params(self, async_client: AsyncGcore) -> None:
+        task = await async_client.cloud.tasks.acknowledge_all(
+            project_id=0,
+            region_id=0,
+        )
+        assert task is None
+
+    @parametrize
+    async def test_raw_response_acknowledge_all(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.tasks.with_raw_response.acknowledge_all()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        task = await response.parse()
+        assert task is None
+
+    @parametrize
+    async def test_streaming_response_acknowledge_all(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.tasks.with_streaming_response.acknowledge_all() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            task = await response.parse()
+            assert task is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_acknowledge_one(self, async_client: AsyncGcore) -> None:
+        task = await async_client.cloud.tasks.acknowledge_one(
+            "task_id",
+        )
+        assert_matches_type(Task, task, path=["response"])
+
+    @parametrize
+    async def test_raw_response_acknowledge_one(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.tasks.with_raw_response.acknowledge_one(
+            "task_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        task = await response.parse()
+        assert_matches_type(Task, task, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_acknowledge_one(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.tasks.with_streaming_response.acknowledge_one(
+            "task_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            task = await response.parse()
+            assert_matches_type(Task, task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_acknowledge_one(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
+            await async_client.cloud.tasks.with_raw_response.acknowledge_one(
+                "",
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncGcore) -> None:
+        task = await async_client.cloud.tasks.get(
+            "task_id",
+        )
+        assert_matches_type(Task, task, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.tasks.with_raw_response.get(
+            "task_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        task = await response.parse()
+        assert_matches_type(Task, task, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.tasks.with_streaming_response.get(
+            "task_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            task = await response.parse()
+            assert_matches_type(Task, task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
+            await async_client.cloud.tasks.with_raw_response.get(
+                "",
+            )

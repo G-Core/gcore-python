@@ -25,6 +25,7 @@ from .secret_create_response import SecretCreateResponse as SecretCreateResponse
 from .secret_delete_response import SecretDeleteResponse as SecretDeleteResponse
 from .project_delete_response import ProjectDeleteResponse as ProjectDeleteResponse
 from .quota_get_global_response import QuotaGetGlobalResponse as QuotaGetGlobalResponse
+from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
 from .secret_upload_tls_certificate_response import (
