@@ -210,7 +210,16 @@ class TasksResource(SyncAPIResource):
         )
 
     def poll(
-        self, task_id: str, *, timeout: float | NotGiven = NOT_GIVEN, polling_interval_ms: int | NotGiven = NOT_GIVEN
+        self,
+        task_id: str,
+        *,
+        polling_interval_ms: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
         if not is_given(polling_interval_ms):
             polling_interval_ms = cast(int, self._client.polling_interval_ms)
@@ -220,7 +229,12 @@ class TasksResource(SyncAPIResource):
 
         end_time = time.time() + timeout
         while time.time() <= end_time:
-            task = self.retrieve(task_id)
+            task = self.retrieve(
+                task_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
             if task.state == "ERROR":
                 raise ValueError(task.error or f"Task {task_id} failed")
             elif task.state == "FINISHED":
@@ -411,7 +425,16 @@ class AsyncTasksResource(AsyncAPIResource):
         )
 
     async def poll(
-        self, task_id: str, *, timeout: float | NotGiven = NOT_GIVEN, polling_interval_ms: int | NotGiven = NOT_GIVEN
+        self,
+        task_id: str,
+        *,
+        polling_interval_ms: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
         if not is_given(polling_interval_ms):
             polling_interval_ms = cast(int, self._client.polling_interval_ms)
@@ -421,7 +444,12 @@ class AsyncTasksResource(AsyncAPIResource):
 
         end_time = time.time() + timeout
         while time.time() <= end_time:
-            task = await self.retrieve(task_id)
+            task = await self.retrieve(
+                task_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
             if task.state == "ERROR":
                 raise ValueError(task.error or f"Task {task_id} failed")
             elif task.state == "FINISHED":
