@@ -7,6 +7,7 @@ from .region import Region as Region
 from .secret import Secret as Secret
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
+from .ip_ranges import IPRanges as IPRanges
 from .created_ssh_key import CreatedSSHKey as CreatedSSHKey
 from .task_list_params import TaskListParams as TaskListParams
 from .region_list_params import RegionListParams as RegionListParams
