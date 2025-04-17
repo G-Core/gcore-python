@@ -52,6 +52,9 @@ class Region(BaseModel):
     external_network_id: Optional[str] = None
     """External network ID for Neutron"""
 
+    file_share_types: Optional[List[Literal["standard", "vast"]]] = None
+    """List of available file share types"""
+
     has_ai: bool
     """Region has AI capability"""
 
