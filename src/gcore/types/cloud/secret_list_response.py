@@ -10,7 +10,13 @@ __all__ = ["SecretListResponse"]
 
 class SecretListResponse(BaseModel):
     count: int
-    """Number of objects"""
+    """
+    '#/components/schemas/SecretSerializerList/properties/count'
+    "$.components.schemas.SecretSerializerList.properties.count"
+    """
 
     results: List[Secret]
-    """Objects"""
+    """
+    '#/components/schemas/SecretSerializerList/properties/results'
+    "$.components.schemas.SecretSerializerList.properties.results"
+    """

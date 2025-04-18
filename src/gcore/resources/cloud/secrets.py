@@ -73,41 +73,42 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecretCreateResponse:
-        """Create secret
+        """
+        Create secret
 
         Args:
-          name: Secret name
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].post.parameters[0].schema"
 
-          payload: Secret payload.
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].post.parameters[1].schema"
 
-        For HTTPS-terminated load balancing, provide base64 encoded
-              conents of a PKCS12 file. The PKCS12 file is the combined TLS certificate, key,
-              and intermediate certificate chain obtained from an external certificate
-              authority. The file can be created via openssl, e.g.'openssl pkcs12 -export
-              -inkey server.key -in server.crt -certfile ca-chain.crt -passout pass: -out
-              server.p12'The key and certificate should be PEM-encoded, and the intermediate
-              certificate chain should be multiple PEM-encoded certs concatenated together
+          name: '#/components/schemas/CreateSecretSerializer/properties/name'
+              "$.components.schemas.CreateSecretSerializer.properties.name"
 
-          payload_content_encoding: The encoding used for the payload to be able to include it in the JSON request.
-              Currently only base64 is supported
+          payload: '#/components/schemas/CreateSecretSerializer/properties/payload'
+              "$.components.schemas.CreateSecretSerializer.properties.payload"
 
-          payload_content_type: The media type for the content of the payload
+          payload_content_encoding: '#/components/schemas/CreateSecretSerializer/properties/payload_content_encoding'
+              "$.components.schemas.CreateSecretSerializer.properties.payload_content_encoding"
 
-          secret_type: Secret type. symmetric - Used for storing byte arrays such as keys suitable for
-              symmetric encryption; public - Used for storing the public key of an asymmetric
-              keypair; private - Used for storing the private key of an asymmetric keypair;
-              passphrase - Used for storing plain text passphrases; certificate - Used for
-              storing cryptographic certificates such as X.509 certificates; opaque - Used for
-              backwards compatibility with previous versions of the API
+          payload_content_type: '#/components/schemas/CreateSecretSerializer/properties/payload_content_type'
+              "$.components.schemas.CreateSecretSerializer.properties.payload_content_type"
 
-          algorithm: Metadata provided by a user or system for informational purposes.
+          secret_type: '#/components/schemas/CreateSecretSerializer/properties/secret_type'
+              "$.components.schemas.CreateSecretSerializer.properties.secret_type"
 
-          bit_length: Metadata provided by a user or system for informational purposes. Value must be
-              greater than zero.
+          algorithm: '#/components/schemas/CreateSecretSerializer/properties/algorithm/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.algorithm.anyOf[0]"
 
-          expiration: Datetime when the secret will expire.
+          bit_length: '#/components/schemas/CreateSecretSerializer/properties/bit_length/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.bit_length.anyOf[0]"
 
-          mode: Metadata provided by a user or system for informational purposes.
+          expiration: '#/components/schemas/CreateSecretSerializer/properties/expiration/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.expiration.anyOf[0]"
+
+          mode: '#/components/schemas/CreateSecretSerializer/properties/mode/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.mode.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -159,6 +160,12 @@ class SecretsResource(SyncAPIResource):
         List secrets
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].get.parameters[1].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -196,6 +203,15 @@ class SecretsResource(SyncAPIResource):
         Delete secret
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}']['delete'].parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/delete/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}']['delete'].parameters[1].schema"
+
+          secret_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/delete/parameters/2/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}']['delete'].parameters[2].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -235,6 +251,15 @@ class SecretsResource(SyncAPIResource):
         Get secret
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}'].get.parameters[1].schema"
+
+          secret_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/get/parameters/2/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}'].get.parameters[2].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -276,11 +301,20 @@ class SecretsResource(SyncAPIResource):
         Create secret
 
         Args:
-          name: Secret name
+          project_id: '#/paths/%2Fcloud%2Fv2%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
+              "$.paths['/cloud/v2/secrets/{project_id}/{region_id}'].post.parameters[0].schema"
 
-          payload: Secret payload.
+          region_id: '#/paths/%2Fcloud%2Fv2%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
+              "$.paths['/cloud/v2/secrets/{project_id}/{region_id}'].post.parameters[1].schema"
 
-          expiration: Datetime when the secret will expire. Defaults to None
+          name: '#/components/schemas/CreateSecretSerializerV2/properties/name'
+              "$.components.schemas.CreateSecretSerializerV2.properties.name"
+
+          payload: '#/components/schemas/CreateSecretSerializerV2/properties/payload'
+              "$.components.schemas.CreateSecretSerializerV2.properties.payload"
+
+          expiration: '#/components/schemas/CreateSecretSerializerV2/properties/expiration/anyOf/0'
+              "$.components.schemas.CreateSecretSerializerV2.properties.expiration.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -352,41 +386,42 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecretCreateResponse:
-        """Create secret
+        """
+        Create secret
 
         Args:
-          name: Secret name
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].post.parameters[0].schema"
 
-          payload: Secret payload.
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].post.parameters[1].schema"
 
-        For HTTPS-terminated load balancing, provide base64 encoded
-              conents of a PKCS12 file. The PKCS12 file is the combined TLS certificate, key,
-              and intermediate certificate chain obtained from an external certificate
-              authority. The file can be created via openssl, e.g.'openssl pkcs12 -export
-              -inkey server.key -in server.crt -certfile ca-chain.crt -passout pass: -out
-              server.p12'The key and certificate should be PEM-encoded, and the intermediate
-              certificate chain should be multiple PEM-encoded certs concatenated together
+          name: '#/components/schemas/CreateSecretSerializer/properties/name'
+              "$.components.schemas.CreateSecretSerializer.properties.name"
 
-          payload_content_encoding: The encoding used for the payload to be able to include it in the JSON request.
-              Currently only base64 is supported
+          payload: '#/components/schemas/CreateSecretSerializer/properties/payload'
+              "$.components.schemas.CreateSecretSerializer.properties.payload"
 
-          payload_content_type: The media type for the content of the payload
+          payload_content_encoding: '#/components/schemas/CreateSecretSerializer/properties/payload_content_encoding'
+              "$.components.schemas.CreateSecretSerializer.properties.payload_content_encoding"
 
-          secret_type: Secret type. symmetric - Used for storing byte arrays such as keys suitable for
-              symmetric encryption; public - Used for storing the public key of an asymmetric
-              keypair; private - Used for storing the private key of an asymmetric keypair;
-              passphrase - Used for storing plain text passphrases; certificate - Used for
-              storing cryptographic certificates such as X.509 certificates; opaque - Used for
-              backwards compatibility with previous versions of the API
+          payload_content_type: '#/components/schemas/CreateSecretSerializer/properties/payload_content_type'
+              "$.components.schemas.CreateSecretSerializer.properties.payload_content_type"
 
-          algorithm: Metadata provided by a user or system for informational purposes.
+          secret_type: '#/components/schemas/CreateSecretSerializer/properties/secret_type'
+              "$.components.schemas.CreateSecretSerializer.properties.secret_type"
 
-          bit_length: Metadata provided by a user or system for informational purposes. Value must be
-              greater than zero.
+          algorithm: '#/components/schemas/CreateSecretSerializer/properties/algorithm/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.algorithm.anyOf[0]"
 
-          expiration: Datetime when the secret will expire.
+          bit_length: '#/components/schemas/CreateSecretSerializer/properties/bit_length/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.bit_length.anyOf[0]"
 
-          mode: Metadata provided by a user or system for informational purposes.
+          expiration: '#/components/schemas/CreateSecretSerializer/properties/expiration/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.expiration.anyOf[0]"
+
+          mode: '#/components/schemas/CreateSecretSerializer/properties/mode/anyOf/0'
+              "$.components.schemas.CreateSecretSerializer.properties.mode.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -438,6 +473,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         List secrets
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].get.parameters[1].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -475,6 +516,15 @@ class AsyncSecretsResource(AsyncAPIResource):
         Delete secret
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}']['delete'].parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/delete/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}']['delete'].parameters[1].schema"
+
+          secret_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/delete/parameters/2/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}']['delete'].parameters[2].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -514,6 +564,15 @@ class AsyncSecretsResource(AsyncAPIResource):
         Get secret
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}'].get.parameters[1].schema"
+
+          secret_id: '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsecret_id%7D/get/parameters/2/schema'
+              "$.paths['/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}'].get.parameters[2].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -555,11 +614,20 @@ class AsyncSecretsResource(AsyncAPIResource):
         Create secret
 
         Args:
-          name: Secret name
+          project_id: '#/paths/%2Fcloud%2Fv2%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
+              "$.paths['/cloud/v2/secrets/{project_id}/{region_id}'].post.parameters[0].schema"
 
-          payload: Secret payload.
+          region_id: '#/paths/%2Fcloud%2Fv2%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
+              "$.paths['/cloud/v2/secrets/{project_id}/{region_id}'].post.parameters[1].schema"
 
-          expiration: Datetime when the secret will expire. Defaults to None
+          name: '#/components/schemas/CreateSecretSerializerV2/properties/name'
+              "$.components.schemas.CreateSecretSerializerV2.properties.name"
+
+          payload: '#/components/schemas/CreateSecretSerializerV2/properties/payload'
+              "$.components.schemas.CreateSecretSerializerV2.properties.payload"
+
+          expiration: '#/components/schemas/CreateSecretSerializerV2/properties/expiration/anyOf/0'
+              "$.components.schemas.CreateSecretSerializerV2.properties.expiration.anyOf[0]"
 
           extra_headers: Send extra headers
 

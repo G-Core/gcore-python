@@ -9,4 +9,7 @@ __all__ = ["SecretUploadTlsCertificateResponse"]
 
 class SecretUploadTlsCertificateResponse(BaseModel):
     tasks: Optional[List[str]] = None
-    """Task list"""
+    """
+    '#/components/schemas/TaskIdListSchema/properties/tasks'
+    "$.components.schemas.TaskIdListSchema.properties.tasks"
+    """

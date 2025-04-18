@@ -9,23 +9,31 @@ __all__ = ["RegionListParams"]
 
 class RegionListParams(TypedDict, total=False):
     limit: int
-    """Limit the number of returned regions.
-
-    Falls back to default of 100 if not specified. Limited by max limit value of
-    1000
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/0'
+    "$.paths['/cloud/v1/regions'].get.parameters[0]"
     """
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/1'
+    "$.paths['/cloud/v1/regions'].get.parameters[1]"
+    """
 
     order_by: Literal["created_at.asc", "created_at.desc", "display_name.asc", "display_name.desc"]
-    """Order by field and direction."""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/2'
+    "$.paths['/cloud/v1/regions'].get.parameters[2]"
+    """
 
     product: Literal["containers", "inference"]
-    """If defined then return only regions that support given product."""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/3'
+    "$.paths['/cloud/v1/regions'].get.parameters[3]"
+    """
 
     show_volume_types: bool
     """
-    If true, null `available_volume_type` is replaced with a list of available
-    volume types.
+    '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/4'
+    "$.paths['/cloud/v1/regions'].get.parameters[4]"
     """

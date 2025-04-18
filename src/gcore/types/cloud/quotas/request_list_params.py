@@ -10,13 +10,19 @@ __all__ = ["RequestListParams"]
 
 class RequestListParams(TypedDict, total=False):
     limit: int
-    """Optional. Limit the number of returned items"""
+    """
+    '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/0'
+    "$.paths['/cloud/v2/limits_request'].get.parameters[0]"
+    """
 
     offset: int
-    """Optional.
-
-    Offset value is used to exclude the first set of records from the result
+    """
+    '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/1'
+    "$.paths['/cloud/v2/limits_request'].get.parameters[1]"
     """
 
     status: Optional[List[Literal["done", "in progress", "rejected"]]]
-    """List of limit requests statuses for filtering"""
+    """
+    '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/2/schema/anyOf/0'
+    "$.paths['/cloud/v2/limits_request'].get.parameters[2].schema.anyOf[0]"
+    """

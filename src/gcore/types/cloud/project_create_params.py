@@ -10,13 +10,25 @@ __all__ = ["ProjectCreateParams"]
 
 class ProjectCreateParams(TypedDict, total=False):
     name: Required[str]
-    """Unique project name for a client. Each client always has one "default" project."""
+    """
+    '#/components/schemas/CreateProjectSerializer/properties/name'
+    "$.components.schemas.CreateProjectSerializer.properties.name"
+    """
 
     client_id: Optional[int]
-    """ID associated with the client."""
+    """
+    '#/components/schemas/CreateProjectSerializer/properties/client_id/anyOf/0'
+    "$.components.schemas.CreateProjectSerializer.properties.client_id.anyOf[0]"
+    """
 
     description: Optional[str]
-    """Description of the project."""
+    """
+    '#/components/schemas/CreateProjectSerializer/properties/description/anyOf/0'
+    "$.components.schemas.CreateProjectSerializer.properties.description.anyOf[0]"
+    """
 
     state: Optional[str]
-    """State of the project."""
+    """
+    '#/components/schemas/CreateProjectSerializer/properties/state/anyOf/0'
+    "$.components.schemas.CreateProjectSerializer.properties.state.anyOf[0]"
+    """

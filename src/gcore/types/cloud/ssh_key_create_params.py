@@ -9,23 +9,25 @@ __all__ = ["SSHKeyCreateParams"]
 
 class SSHKeyCreateParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/post/parameters/0/schema'
+    "$.paths['/cloud/v1/ssh_keys/{project_id}'].post.parameters[0].schema"
+    """
 
     name: Required[str]
-    """SSH key name"""
+    """
+    '#/components/schemas/CreateSSHKeySerializer/properties/name'
+    "$.components.schemas.CreateSSHKeySerializer.properties.name"
+    """
 
     public_key: str
-    """The public part of an SSH key is the shareable portion of an SSH key pair.
-
-    It can be safely sent to servers or services to grant access. It does not
-    contain sensitive information.
-
-    - If you’re uploading your own key, provide the public part here (usually found
-      in a file like `id_ed25519.pub`).
-    - If you want the platform to generate an Ed25519 key pair for you, leave this
-      field empty — the system will return the private key in the response **once
-      only**.
+    """
+    '#/components/schemas/CreateSSHKeySerializer/properties/public_key'
+    "$.components.schemas.CreateSSHKeySerializer.properties.public_key"
     """
 
     shared_in_project: bool
-    """SSH key is shared with all users in the project"""
+    """
+    '#/components/schemas/CreateSSHKeySerializer/properties/shared_in_project'
+    "$.components.schemas.CreateSSHKeySerializer.properties.shared_in_project"
+    """

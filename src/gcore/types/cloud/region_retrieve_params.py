@@ -9,10 +9,13 @@ __all__ = ["RegionRetrieveParams"]
 
 class RegionRetrieveParams(TypedDict, total=False):
     region_id: int
-    """Region ID"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregions%2F%7Bregion_id%7D/get/parameters/0/schema'
+    "$.paths['/cloud/v1/regions/{region_id}'].get.parameters[0].schema"
+    """
 
     show_volume_types: bool
     """
-    If true, null `available_volume_type` is replaced with a list of available
-    volume types.
+    '#/paths/%2Fcloud%2Fv1%2Fregions%2F%7Bregion_id%7D/get/parameters/1'
+    "$.paths['/cloud/v1/regions/{region_id}'].get.parameters[1]"
     """

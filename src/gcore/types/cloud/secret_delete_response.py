@@ -9,4 +9,7 @@ __all__ = ["SecretDeleteResponse"]
 
 class SecretDeleteResponse(BaseModel):
     tasks: Optional[List[str]] = None
-    """Task list"""
+    """
+    '#/components/schemas/TaskIdListSchema/properties/tasks'
+    "$.components.schemas.TaskIdListSchema.properties.tasks"
+    """
