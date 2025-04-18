@@ -3,7 +3,43 @@
 Types:
 
 ```python
-from gcore.types.cloud import InterfaceIPFamily, Network, Subnet
+from gcore.types.cloud import (
+    ClientProfile,
+    ClientProfileField,
+    ClientProfileTemplate,
+    ClientProfileTemplateField,
+    DDOSProfileStatus,
+    FlavorHardwareDescription,
+    FloatingIP,
+    FloatingIPInterfaceNewInstance,
+    FloatingIPNewInterface,
+    FloatingIPStatus,
+    InstanceMetricsTimeUnit,
+    InterfaceIPFamily,
+    ItemPrice,
+    LaasIndexRetentionPolicy,
+    Listener,
+    LoadBalancer,
+    LoadBalancerFlavor,
+    LoadBalancerInstanceRole,
+    LoadBalancerLogging,
+    LoadBalancerStatList,
+    MandatoryID,
+    MemberConnectivity,
+    Name,
+    Network,
+    NetworkPortFixedIP,
+    OperatingStatus,
+    ProfileOptionList,
+    ProvisioningStatus,
+    RawMetadata,
+    Subnet,
+    Tag,
+    TagList,
+    TagUpdateList,
+    TaskIDList,
+    VrrpIP,
+)
 ```
 
 ## Projects
