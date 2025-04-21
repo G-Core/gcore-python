@@ -64,6 +64,14 @@ from .ip_ranges import (
     IPRangesResourceWithStreamingResponse,
     AsyncIPRangesResourceWithStreamingResponse,
 )
+from .reserved_fixed_ips import (
+    ReservedFixedIPsResource,
+    AsyncReservedFixedIPsResource,
+    ReservedFixedIPsResourceWithRawResponse,
+    AsyncReservedFixedIPsResourceWithRawResponse,
+    ReservedFixedIPsResourceWithStreamingResponse,
+    AsyncReservedFixedIPsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ProjectsResource",
@@ -108,6 +116,12 @@ __all__ = [
     "AsyncIPRangesResourceWithRawResponse",
     "IPRangesResourceWithStreamingResponse",
     "AsyncIPRangesResourceWithStreamingResponse",
+    "ReservedFixedIPsResource",
+    "AsyncReservedFixedIPsResource",
+    "ReservedFixedIPsResourceWithRawResponse",
+    "AsyncReservedFixedIPsResourceWithRawResponse",
+    "ReservedFixedIPsResourceWithStreamingResponse",
+    "AsyncReservedFixedIPsResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

@@ -60,6 +60,14 @@ from .quotas.quotas import (
     QuotasResourceWithStreamingResponse,
     AsyncQuotasResourceWithStreamingResponse,
 )
+from .reserved_fixed_ips.reserved_fixed_ips import (
+    ReservedFixedIPsResource,
+    AsyncReservedFixedIPsResource,
+    ReservedFixedIPsResourceWithRawResponse,
+    AsyncReservedFixedIPsResourceWithRawResponse,
+    ReservedFixedIPsResourceWithStreamingResponse,
+    AsyncReservedFixedIPsResourceWithStreamingResponse,
+)
 
 __all__ = ["CloudResource", "AsyncCloudResource"]
 
@@ -92,6 +100,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def ip_ranges(self) -> IPRangesResource:
         return IPRangesResource(self._client)
+
+    @cached_property
+    def reserved_fixed_ips(self) -> ReservedFixedIPsResource:
+        return ReservedFixedIPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
@@ -141,6 +153,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResource:
         return AsyncIPRangesResource(self._client)
+
+    @cached_property
+    def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResource:
+        return AsyncReservedFixedIPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -194,6 +210,10 @@ class CloudResourceWithRawResponse:
     def ip_ranges(self) -> IPRangesResourceWithRawResponse:
         return IPRangesResourceWithRawResponse(self._cloud.ip_ranges)
 
+    @cached_property
+    def reserved_fixed_ips(self) -> ReservedFixedIPsResourceWithRawResponse:
+        return ReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -226,6 +246,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithRawResponse:
         return AsyncIPRangesResourceWithRawResponse(self._cloud.ip_ranges)
+
+    @cached_property
+    def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithRawResponse:
+        return AsyncReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
 
 
 class CloudResourceWithStreamingResponse:
@@ -260,6 +284,10 @@ class CloudResourceWithStreamingResponse:
     def ip_ranges(self) -> IPRangesResourceWithStreamingResponse:
         return IPRangesResourceWithStreamingResponse(self._cloud.ip_ranges)
 
+    @cached_property
+    def reserved_fixed_ips(self) -> ReservedFixedIPsResourceWithStreamingResponse:
+        return ReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -292,3 +320,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithStreamingResponse:
         return AsyncIPRangesResourceWithStreamingResponse(self._cloud.ip_ranges)
+
+    @cached_property
+    def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithStreamingResponse:
+        return AsyncReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
