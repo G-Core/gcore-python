@@ -9,13 +9,25 @@ __all__ = ["SSHKeyListParams"]
 
 class SSHKeyListParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/0/schema'
+    "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[0].schema"
+    """
 
     limit: int
-    """Maximum number of SSH keys to return"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/1'
+    "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[1]"
+    """
 
     offset: int
-    """Offset for pagination"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/2'
+    "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[2]"
+    """
 
     order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"]
-    """Sort order for the SSH keys"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/3'
+    "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[3]"
+    """

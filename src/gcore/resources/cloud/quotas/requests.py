@@ -64,11 +64,14 @@ class RequestsResource(SyncAPIResource):
         Create request to change quotas
 
         Args:
-          description: Describe the reason, in general terms.
+          description: '#/components/schemas/LimitsRequestCreateSerializer/properties/description'
+              "$.components.schemas.LimitsRequestCreateSerializer.properties.description"
 
-          requested_limits: Limits you want to increase.
+          requested_limits: '#/components/schemas/LimitsRequestCreateSerializer/properties/requested_limits'
+              "$.components.schemas.LimitsRequestCreateSerializer.properties.requested_limits"
 
-          client_id: Client ID that requests the limit increase.
+          client_id: '#/components/schemas/LimitsRequestCreateSerializer/properties/client_id'
+              "$.components.schemas.LimitsRequestCreateSerializer.properties.client_id"
 
           extra_headers: Send extra headers
 
@@ -112,12 +115,14 @@ class RequestsResource(SyncAPIResource):
         Returns a list of sent requests to change current quotas and their statuses
 
         Args:
-          limit: Optional. Limit the number of returned items
+          limit: '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/0'
+              "$.paths['/cloud/v2/limits_request'].get.parameters[0]"
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          offset: '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/1'
+              "$.paths['/cloud/v2/limits_request'].get.parameters[1]"
 
-          status: List of limit requests statuses for filtering
+          status: '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/2/schema/anyOf/0'
+              "$.paths['/cloud/v2/limits_request'].get.parameters[2].schema.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -162,7 +167,8 @@ class RequestsResource(SyncAPIResource):
         Delete request to change quotas
 
         Args:
-          request_id: LimitRequest ID
+          request_id: '#/paths/%2Fcloud%2Fv2%2Flimits_request%2F%7Brequest_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v2/limits_request/{request_id}']['delete'].parameters[0].schema"
 
           extra_headers: Send extra headers
 
@@ -198,7 +204,8 @@ class RequestsResource(SyncAPIResource):
         Get request to change quota limits.
 
         Args:
-          request_id: LimitRequest ID
+          request_id: '#/paths/%2Fcloud%2Fv2%2Flimits_request%2F%7Brequest_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v2/limits_request/{request_id}'].get.parameters[0].schema"
 
           extra_headers: Send extra headers
 
@@ -256,11 +263,14 @@ class AsyncRequestsResource(AsyncAPIResource):
         Create request to change quotas
 
         Args:
-          description: Describe the reason, in general terms.
+          description: '#/components/schemas/LimitsRequestCreateSerializer/properties/description'
+              "$.components.schemas.LimitsRequestCreateSerializer.properties.description"
 
-          requested_limits: Limits you want to increase.
+          requested_limits: '#/components/schemas/LimitsRequestCreateSerializer/properties/requested_limits'
+              "$.components.schemas.LimitsRequestCreateSerializer.properties.requested_limits"
 
-          client_id: Client ID that requests the limit increase.
+          client_id: '#/components/schemas/LimitsRequestCreateSerializer/properties/client_id'
+              "$.components.schemas.LimitsRequestCreateSerializer.properties.client_id"
 
           extra_headers: Send extra headers
 
@@ -304,12 +314,14 @@ class AsyncRequestsResource(AsyncAPIResource):
         Returns a list of sent requests to change current quotas and their statuses
 
         Args:
-          limit: Optional. Limit the number of returned items
+          limit: '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/0'
+              "$.paths['/cloud/v2/limits_request'].get.parameters[0]"
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          offset: '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/1'
+              "$.paths['/cloud/v2/limits_request'].get.parameters[1]"
 
-          status: List of limit requests statuses for filtering
+          status: '#/paths/%2Fcloud%2Fv2%2Flimits_request/get/parameters/2/schema/anyOf/0'
+              "$.paths['/cloud/v2/limits_request'].get.parameters[2].schema.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -354,7 +366,8 @@ class AsyncRequestsResource(AsyncAPIResource):
         Delete request to change quotas
 
         Args:
-          request_id: LimitRequest ID
+          request_id: '#/paths/%2Fcloud%2Fv2%2Flimits_request%2F%7Brequest_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v2/limits_request/{request_id}']['delete'].parameters[0].schema"
 
           extra_headers: Send extra headers
 
@@ -390,7 +403,8 @@ class AsyncRequestsResource(AsyncAPIResource):
         Get request to change quota limits.
 
         Args:
-          request_id: LimitRequest ID
+          request_id: '#/paths/%2Fcloud%2Fv2%2Flimits_request%2F%7Brequest_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v2/limits_request/{request_id}'].get.parameters[0].schema"
 
           extra_headers: Send extra headers
 

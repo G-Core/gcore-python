@@ -48,3 +48,12 @@ jobs:
 
       - name: Run tests
         run: ./scripts/test
+
+    prevent-debug-release:
+      name: Prevent Debug SDK Release
+      runs-on: ubuntu-latest
+      steps:
+        - run: |
+            echo "This SDK was built in debug mode, this job is a failsafe to prevent releasing debug SDKs"
+            echo "Remove 'debug: true' from your Stainless config."
+            exit 1

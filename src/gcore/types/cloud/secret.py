@@ -11,54 +11,61 @@ __all__ = ["Secret"]
 
 class Secret(BaseModel):
     id: str
-    """Secret uuid"""
+    """
+    '#/components/schemas/SecretSerializer/properties/id'
+    "$.components.schemas.SecretSerializer.properties.id"
+    """
 
     name: str
-    """Secret name"""
+    """
+    '#/components/schemas/SecretSerializer/properties/name'
+    "$.components.schemas.SecretSerializer.properties.name"
+    """
 
     secret_type: Literal["certificate", "opaque", "passphrase", "private", "public", "symmetric"]
-    """Secret type, base64 encoded.
-
-    symmetric - Used for storing byte arrays such as keys suitable for symmetric
-    encryption; public - Used for storing the public key of an asymmetric keypair;
-    private - Used for storing the private key of an asymmetric keypair;
-    passphrase - Used for storing plain text passphrases; certificate - Used for
-    storing cryptographic certificates such as X.509 certificates; opaque - Used for
-    backwards compatibility with previous versions of the API
+    """
+    '#/components/schemas/SecretSerializer/properties/secret_type'
+    "$.components.schemas.SecretSerializer.properties.secret_type"
     """
 
     status: str
-    """Status"""
+    """
+    '#/components/schemas/SecretSerializer/properties/status'
+    "$.components.schemas.SecretSerializer.properties.status"
+    """
 
     algorithm: Optional[str] = None
-    """Metadata provided by a user or system for informational purposes.
-
-    Defaults to None
+    """
+    '#/components/schemas/SecretSerializer/properties/algorithm/anyOf/0'
+    "$.components.schemas.SecretSerializer.properties.algorithm.anyOf[0]"
     """
 
     bit_length: Optional[int] = None
-    """Metadata provided by a user or system for informational purposes.
-
-    Value must be greater than zero. Defaults to None
+    """
+    '#/components/schemas/SecretSerializer/properties/bit_length/anyOf/0'
+    "$.components.schemas.SecretSerializer.properties.bit_length.anyOf[0]"
     """
 
     content_types: Optional[Dict[str, str]] = None
-    """Describes the content-types that can be used to retrieve the payload.
-
-    The content-type used with symmetric secrets is application/octet-stream
+    """
+    '#/components/schemas/SecretSerializer/properties/content_types/anyOf/0'
+    "$.components.schemas.SecretSerializer.properties.content_types.anyOf[0]"
     """
 
     created: Optional[datetime] = None
-    """Datetime when the secret was created. The format is 2020-01-01T12:00:00+00:00"""
+    """
+    '#/components/schemas/SecretSerializer/properties/created/anyOf/0'
+    "$.components.schemas.SecretSerializer.properties.created.anyOf[0]"
+    """
 
     expiration: Optional[datetime] = None
-    """Datetime when the secret will expire.
-
-    The format is 2020-01-01T12:00:00+00:00. Defaults to None
+    """
+    '#/components/schemas/SecretSerializer/properties/expiration/anyOf/0'
+    "$.components.schemas.SecretSerializer.properties.expiration.anyOf[0]"
     """
 
     mode: Optional[str] = None
-    """Metadata provided by a user or system for informational purposes.
-
-    Defaults to None
+    """
+    '#/components/schemas/SecretSerializer/properties/mode/anyOf/0'
+    "$.components.schemas.SecretSerializer.properties.mode.anyOf[0]"
     """

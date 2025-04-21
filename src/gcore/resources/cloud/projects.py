@@ -63,18 +63,21 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
-        """Create project
+        """
+        Create project
 
         Args:
-          name: Unique project name for a client.
+          name: '#/components/schemas/CreateProjectSerializer/properties/name'
+              "$.components.schemas.CreateProjectSerializer.properties.name"
 
-        Each client always has one "default" project.
+          client_id: '#/components/schemas/CreateProjectSerializer/properties/client_id/anyOf/0'
+              "$.components.schemas.CreateProjectSerializer.properties.client_id.anyOf[0]"
 
-          client_id: ID associated with the client.
+          description: '#/components/schemas/CreateProjectSerializer/properties/description/anyOf/0'
+              "$.components.schemas.CreateProjectSerializer.properties.description.anyOf[0]"
 
-          description: Description of the project.
-
-          state: State of the project.
+          state: '#/components/schemas/CreateProjectSerializer/properties/state/anyOf/0'
+              "$.components.schemas.CreateProjectSerializer.properties.state.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -121,17 +124,23 @@ class ProjectsResource(SyncAPIResource):
         List projects
 
         Args:
-          client_id: Client ID filter for administrators.
+          client_id: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/0'
+              "$.paths['/cloud/v1/projects'].get.parameters[0]"
 
-          include_deleted: Whether to include deleted projects in the response.
+          include_deleted: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/1'
+              "$.paths['/cloud/v1/projects'].get.parameters[1]"
 
-          limit: Limit value is used to limit the number of records in the result
+          limit: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/2'
+              "$.paths['/cloud/v1/projects'].get.parameters[2]"
 
-          name: Name to filter the results by.
+          name: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/3'
+              "$.paths['/cloud/v1/projects'].get.parameters[3]"
 
-          offset: Offset value is used to exclude the first set of records from the result
+          offset: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/4'
+              "$.paths['/cloud/v1/projects'].get.parameters[4]"
 
-          order_by: Order by field and direction.
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/5'
+              "$.paths['/cloud/v1/projects'].get.parameters[5]"
 
           extra_headers: Send extra headers
 
@@ -180,6 +189,9 @@ class ProjectsResource(SyncAPIResource):
         and will not be recoverable
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fprojects%2F%7Bproject_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/projects/{project_id}']['delete'].parameters[0].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -213,6 +225,9 @@ class ProjectsResource(SyncAPIResource):
         Get Project
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fprojects%2F%7Bproject_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/projects/{project_id}'].get.parameters[0].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -248,9 +263,14 @@ class ProjectsResource(SyncAPIResource):
         Update Project
 
         Args:
-          name: Name of the entity, following a specific format.
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fprojects%2F%7Bproject_id%7D/put/parameters/0/schema'
+              "$.paths['/cloud/v1/projects/{project_id}'].put.parameters[0].schema"
 
-          description: Description of the project.
+          name: '#/components/schemas/NameDescriptionSerializer/properties/name'
+              "$.components.schemas.NameDescriptionSerializer.properties.name"
+
+          description: '#/components/schemas/NameDescriptionSerializer/properties/description/anyOf/0'
+              "$.components.schemas.NameDescriptionSerializer.properties.description.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -312,18 +332,21 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
-        """Create project
+        """
+        Create project
 
         Args:
-          name: Unique project name for a client.
+          name: '#/components/schemas/CreateProjectSerializer/properties/name'
+              "$.components.schemas.CreateProjectSerializer.properties.name"
 
-        Each client always has one "default" project.
+          client_id: '#/components/schemas/CreateProjectSerializer/properties/client_id/anyOf/0'
+              "$.components.schemas.CreateProjectSerializer.properties.client_id.anyOf[0]"
 
-          client_id: ID associated with the client.
+          description: '#/components/schemas/CreateProjectSerializer/properties/description/anyOf/0'
+              "$.components.schemas.CreateProjectSerializer.properties.description.anyOf[0]"
 
-          description: Description of the project.
-
-          state: State of the project.
+          state: '#/components/schemas/CreateProjectSerializer/properties/state/anyOf/0'
+              "$.components.schemas.CreateProjectSerializer.properties.state.anyOf[0]"
 
           extra_headers: Send extra headers
 
@@ -370,17 +393,23 @@ class AsyncProjectsResource(AsyncAPIResource):
         List projects
 
         Args:
-          client_id: Client ID filter for administrators.
+          client_id: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/0'
+              "$.paths['/cloud/v1/projects'].get.parameters[0]"
 
-          include_deleted: Whether to include deleted projects in the response.
+          include_deleted: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/1'
+              "$.paths['/cloud/v1/projects'].get.parameters[1]"
 
-          limit: Limit value is used to limit the number of records in the result
+          limit: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/2'
+              "$.paths['/cloud/v1/projects'].get.parameters[2]"
 
-          name: Name to filter the results by.
+          name: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/3'
+              "$.paths['/cloud/v1/projects'].get.parameters[3]"
 
-          offset: Offset value is used to exclude the first set of records from the result
+          offset: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/4'
+              "$.paths['/cloud/v1/projects'].get.parameters[4]"
 
-          order_by: Order by field and direction.
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/5'
+              "$.paths['/cloud/v1/projects'].get.parameters[5]"
 
           extra_headers: Send extra headers
 
@@ -429,6 +458,9 @@ class AsyncProjectsResource(AsyncAPIResource):
         and will not be recoverable
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fprojects%2F%7Bproject_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/projects/{project_id}']['delete'].parameters[0].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -462,6 +494,9 @@ class AsyncProjectsResource(AsyncAPIResource):
         Get Project
 
         Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fprojects%2F%7Bproject_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/projects/{project_id}'].get.parameters[0].schema"
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -497,9 +532,14 @@ class AsyncProjectsResource(AsyncAPIResource):
         Update Project
 
         Args:
-          name: Name of the entity, following a specific format.
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fprojects%2F%7Bproject_id%7D/put/parameters/0/schema'
+              "$.paths['/cloud/v1/projects/{project_id}'].put.parameters[0].schema"
 
-          description: Description of the project.
+          name: '#/components/schemas/NameDescriptionSerializer/properties/name'
+              "$.components.schemas.NameDescriptionSerializer.properties.name"
+
+          description: '#/components/schemas/NameDescriptionSerializer/properties/description/anyOf/0'
+              "$.components.schemas.NameDescriptionSerializer.properties.description.anyOf[0]"
 
           extra_headers: Send extra headers
 

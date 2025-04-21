@@ -10,7 +10,13 @@ __all__ = ["TaskAcknowledgeAllParams"]
 
 class TaskAcknowledgeAllParams(TypedDict, total=False):
     project_id: Optional[int]
-    """Project ID"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Ftasks%2Facknowledge_all/post/parameters/0/schema/anyOf/0'
+    "$.paths['/cloud/v1/tasks/acknowledge_all'].post.parameters[0].schema.anyOf[0]"
+    """
 
     region_id: Optional[int]
-    """Region ID"""
+    """
+    '#/paths/%2Fcloud%2Fv1%2Ftasks%2Facknowledge_all/post/parameters/1/schema/anyOf/0'
+    "$.paths['/cloud/v1/tasks/acknowledge_all'].post.parameters[1].schema.anyOf[0]"
+    """

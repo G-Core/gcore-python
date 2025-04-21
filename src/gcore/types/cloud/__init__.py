@@ -9,12 +9,10 @@ from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .ip_ranges import IPRanges as IPRanges
 from .created_ssh_key import CreatedSSHKey as CreatedSSHKey
-from .operating_status import OperatingStatus as OperatingStatus
 from .task_list_params import TaskListParams as TaskListParams
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .region_list_params import RegionListParams as RegionListParams
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
-from .member_connectivity import MemberConnectivity as MemberConnectivity
 from .project_list_params import ProjectListParams as ProjectListParams
 from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
@@ -34,6 +32,8 @@ from .instance_metrics_time_unit import InstanceMetricsTimeUnit as InstanceMetri
 from .load_balancer_instance_role import LoadBalancerInstanceRole as LoadBalancerInstanceRole
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
+from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
+from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
 from .secret_upload_tls_certificate_response import (
     SecretUploadTlsCertificateResponse as SecretUploadTlsCertificateResponse,
