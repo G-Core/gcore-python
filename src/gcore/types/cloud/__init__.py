@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+from .tag import Tag as Tag
 from .task import Task as Task
 from .region import Region as Region
 from .secret import Secret as Secret
+from .subnet import Subnet as Subnet
+from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .ip_ranges import IPRanges as IPRanges
@@ -12,6 +15,7 @@ from .task_id_list import TaskIDList as TaskIDList
 from .created_ssh_key import CreatedSSHKey as CreatedSSHKey
 from .operating_status import OperatingStatus as OperatingStatus
 from .task_list_params import TaskListParams as TaskListParams
+from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .region_list_params import RegionListParams as RegionListParams
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
@@ -32,4 +36,6 @@ from .instance_metrics_time_unit import InstanceMetricsTimeUnit as InstanceMetri
 from .load_balancer_instance_role import LoadBalancerInstanceRole as LoadBalancerInstanceRole
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
+from .reserved_fixed_ip_list_params import ReservedFixedIPListParams as ReservedFixedIPListParams
+from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
