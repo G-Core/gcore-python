@@ -10,10 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.cloud import (
-    Project,
-    ProjectDeleteResponse,
-)
+from gcore.types.cloud import Project, TaskIDList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -104,7 +101,7 @@ class TestProjects:
         project = client.cloud.projects.delete(
             project_id=0,
         )
-        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
+        assert_matches_type(TaskIDList, project, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
@@ -115,7 +112,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
+        assert_matches_type(TaskIDList, project, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
@@ -126,7 +123,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectDeleteResponse, project, path=["response"])
+            assert_matches_type(TaskIDList, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -291,7 +288,7 @@ class TestAsyncProjects:
         project = await async_client.cloud.projects.delete(
             project_id=0,
         )
-        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
+        assert_matches_type(TaskIDList, project, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
@@ -302,7 +299,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectDeleteResponse, project, path=["response"])
+        assert_matches_type(TaskIDList, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
@@ -313,7 +310,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectDeleteResponse, project, path=["response"])
+            assert_matches_type(TaskIDList, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

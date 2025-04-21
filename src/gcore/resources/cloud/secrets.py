@@ -24,10 +24,8 @@ from ..._response import (
 from ...types.cloud import secret_create_params, secret_upload_tls_certificate_params
 from ..._base_client import make_request_options
 from ...types.cloud.secret import Secret
+from ...types.cloud.task_id_list import TaskIDList
 from ...types.cloud.secret_list_response import SecretListResponse
-from ...types.cloud.secret_create_response import SecretCreateResponse
-from ...types.cloud.secret_delete_response import SecretDeleteResponse
-from ...types.cloud.secret_upload_tls_certificate_response import SecretUploadTlsCertificateResponse
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
@@ -72,7 +70,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretCreateResponse:
+    ) -> TaskIDList:
         """
         Create secret
 
@@ -141,7 +139,7 @@ class SecretsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecretCreateResponse,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -198,7 +196,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretDeleteResponse:
+    ) -> TaskIDList:
         """
         Delete secret
 
@@ -231,7 +229,7 @@ class SecretsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecretDeleteResponse,
+            cast_to=TaskIDList,
         )
 
     def get(
@@ -296,7 +294,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretUploadTlsCertificateResponse:
+    ) -> TaskIDList:
         """
         Create secret
 
@@ -341,7 +339,7 @@ class SecretsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecretUploadTlsCertificateResponse,
+            cast_to=TaskIDList,
         )
 
     def upload_tls_certificate_and_poll(
@@ -424,7 +422,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretCreateResponse:
+    ) -> TaskIDList:
         """
         Create secret
 
@@ -493,7 +491,7 @@ class AsyncSecretsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecretCreateResponse,
+            cast_to=TaskIDList,
         )
 
     async def list(
@@ -550,7 +548,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretDeleteResponse:
+    ) -> TaskIDList:
         """
         Delete secret
 
@@ -583,7 +581,7 @@ class AsyncSecretsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecretDeleteResponse,
+            cast_to=TaskIDList,
         )
 
     async def get(
@@ -648,7 +646,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretUploadTlsCertificateResponse:
+    ) -> TaskIDList:
         """
         Create secret
 
@@ -693,7 +691,7 @@ class AsyncSecretsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecretUploadTlsCertificateResponse,
+            cast_to=TaskIDList,
         )
 
     async def upload_tls_certificate_and_poll(

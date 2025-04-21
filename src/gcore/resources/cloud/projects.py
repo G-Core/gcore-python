@@ -24,7 +24,7 @@ from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.cloud import project_list_params, project_create_params, project_replace_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.project import Project
-from ...types.cloud.project_delete_response import ProjectDeleteResponse
+from ...types.cloud.task_id_list import TaskIDList
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -183,7 +183,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectDeleteResponse:
+    ) -> TaskIDList:
         """
         All cloud resources in all regions that belong to the project will be deleted
         and will not be recoverable
@@ -207,7 +207,7 @@ class ProjectsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProjectDeleteResponse,
+            cast_to=TaskIDList,
         )
 
     def get(
@@ -452,7 +452,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectDeleteResponse:
+    ) -> TaskIDList:
         """
         All cloud resources in all regions that belong to the project will be deleted
         and will not be recoverable
@@ -476,7 +476,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProjectDeleteResponse,
+            cast_to=TaskIDList,
         )
 
     async def get(
