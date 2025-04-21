@@ -2,7 +2,7 @@ import os
 
 from gcore import Gcore
 from gcore.pagination import SyncOffsetPage
-from gcore.types.cloud import SSHKey, CreatedSSHKey
+from gcore.types.cloud import SSHKey, SSHKeyCreated
 
 
 def get_ssh_key_by_id(ssh_key_id: str) -> SSHKey:
@@ -27,7 +27,7 @@ def list_all_ssh_keys() -> SyncOffsetPage[SSHKey]:
     return all_ssh_keys
 
 
-def create_new_ssh_key() -> CreatedSSHKey:
+def create_new_ssh_key() -> SSHKeyCreated:
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
     # Sample SSH key values
     ssh_key_name = "Example SSH Key"

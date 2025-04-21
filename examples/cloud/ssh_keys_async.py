@@ -3,7 +3,7 @@ import asyncio
 
 from gcore import AsyncGcore
 from gcore.pagination import AsyncOffsetPage
-from gcore.types.cloud import SSHKey, CreatedSSHKey
+from gcore.types.cloud import SSHKey, SSHKeyCreated
 
 
 async def get_ssh_key_by_id(ssh_key_id: str) -> SSHKey:
@@ -30,7 +30,7 @@ async def list_all_ssh_keys() -> AsyncOffsetPage[SSHKey]:
     return all_ssh_keys
 
 
-async def create_new_ssh_key() -> CreatedSSHKey:
+async def create_new_ssh_key() -> SSHKeyCreated:
     gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
     # Sample SSH key values
     ssh_key_name = "Example SSH Key"
