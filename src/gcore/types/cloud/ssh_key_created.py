@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["CreatedSSHKey"]
+__all__ = ["SSHKeyCreated"]
 
 
-class CreatedSSHKey(BaseModel):
+class SSHKeyCreated(BaseModel):
     id: str
     """
     '#/components/schemas/CreatedSSHKeySerializer/properties/id'

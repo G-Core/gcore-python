@@ -10,7 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.cloud import SSHKey, CreatedSSHKey
+from gcore.types.cloud import SSHKey, SSHKeyCreated
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestSSHKeys:
             project_id=1,
             name="my-ssh-key",
         )
-        assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+        assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -34,7 +34,7 @@ class TestSSHKeys:
             public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIjxL6g1II8NsO8odvBwGKvq2Dx/h/xrvsV9b9LVIYKm my-username@my-hostname",
             shared_in_project=True,
         )
-        assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+        assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -46,7 +46,7 @@ class TestSSHKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ssh_key = response.parse()
-        assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+        assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -58,7 +58,7 @@ class TestSSHKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ssh_key = response.parse()
-            assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+            assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,7 +243,7 @@ class TestAsyncSSHKeys:
             project_id=1,
             name="my-ssh-key",
         )
-        assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+        assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -253,7 +253,7 @@ class TestAsyncSSHKeys:
             public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIjxL6g1II8NsO8odvBwGKvq2Dx/h/xrvsV9b9LVIYKm my-username@my-hostname",
             shared_in_project=True,
         )
-        assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+        assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -265,7 +265,7 @@ class TestAsyncSSHKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ssh_key = await response.parse()
-        assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+        assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -277,7 +277,7 @@ class TestAsyncSSHKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ssh_key = await response.parse()
-            assert_matches_type(CreatedSSHKey, ssh_key, path=["response"])
+            assert_matches_type(SSHKeyCreated, ssh_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
