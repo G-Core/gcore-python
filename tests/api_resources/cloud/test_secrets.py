@@ -12,10 +12,8 @@ from tests.utils import assert_matches_type
 from gcore._utils import parse_datetime
 from gcore.types.cloud import (
     Secret,
+    TaskIDList,
     SecretListResponse,
-    SecretCreateResponse,
-    SecretDeleteResponse,
-    SecretUploadTlsCertificateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -35,7 +33,7 @@ class TestSecrets:
             payload_content_type="application/octet-stream",
             secret_type="certificate",
         )
-        assert_matches_type(SecretCreateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -52,7 +50,7 @@ class TestSecrets:
             expiration="2025-12-28T19:14:44.180394",
             mode="cbc",
         )
-        assert_matches_type(SecretCreateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -69,7 +67,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(SecretCreateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -86,7 +84,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(SecretCreateResponse, secret, path=["response"])
+            assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -131,7 +129,7 @@ class TestSecrets:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(SecretDeleteResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
@@ -144,7 +142,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(SecretDeleteResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
@@ -157,7 +155,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(SecretDeleteResponse, secret, path=["response"])
+            assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,7 +226,7 @@ class TestSecrets:
                 "private_key": "<private_key>",
             },
         )
-        assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_method_upload_tls_certificate_with_all_params(self, client: Gcore) -> None:
@@ -243,7 +241,7 @@ class TestSecrets:
             },
             expiration=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_raw_response_upload_tls_certificate(self, client: Gcore) -> None:
@@ -261,7 +259,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_upload_tls_certificate(self, client: Gcore) -> None:
@@ -279,7 +277,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+            assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -298,7 +296,7 @@ class TestAsyncSecrets:
             payload_content_type="application/octet-stream",
             secret_type="certificate",
         )
-        assert_matches_type(SecretCreateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -315,7 +313,7 @@ class TestAsyncSecrets:
             expiration="2025-12-28T19:14:44.180394",
             mode="cbc",
         )
-        assert_matches_type(SecretCreateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -332,7 +330,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(SecretCreateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -349,7 +347,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(SecretCreateResponse, secret, path=["response"])
+            assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -394,7 +392,7 @@ class TestAsyncSecrets:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(SecretDeleteResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
@@ -407,7 +405,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(SecretDeleteResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
@@ -420,7 +418,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(SecretDeleteResponse, secret, path=["response"])
+            assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -491,7 +489,7 @@ class TestAsyncSecrets:
                 "private_key": "<private_key>",
             },
         )
-        assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_method_upload_tls_certificate_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -506,7 +504,7 @@ class TestAsyncSecrets:
             },
             expiration=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_upload_tls_certificate(self, async_client: AsyncGcore) -> None:
@@ -524,7 +522,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+        assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_upload_tls_certificate(self, async_client: AsyncGcore) -> None:
@@ -542,6 +540,6 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(SecretUploadTlsCertificateResponse, secret, path=["response"])
+            assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True

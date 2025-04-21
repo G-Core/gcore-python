@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal, TypeAlias
 
-__all__ = ["LoadBalancerMemberConnectivity"]
+__all__ = ["MemberConnectivity"]
 
-LoadBalancerMemberConnectivity: TypeAlias = Literal["L2", "L3"]
+MemberConnectivity: TypeAlias = Literal["L2", "L3"]

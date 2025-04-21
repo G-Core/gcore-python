@@ -4,27 +4,39 @@ Types:
 
 ```python
 from gcore.types.cloud import (
-    DDOSProfile,
-    DDOSProfileField,
-    DDOSProfileOptionList,
+    ClientProfile,
+    ClientProfileField,
+    ClientProfileTemplate,
+    ClientProfileTemplateField,
     DDOSProfileStatus,
-    DDOSProfileTemplate,
-    DDOSProfileTemplateField,
     FlavorHardwareDescription,
     FloatingIP,
+    FloatingIPInterfaceNewInstance,
+    FloatingIPNewInterface,
     FloatingIPStatus,
     InstanceMetricsTimeUnit,
     InterfaceIPFamily,
+    ItemPrice,
+    LaasIndexRetentionPolicy,
+    Listener,
     LoadBalancer,
+    LoadBalancerFlavor,
     LoadBalancerInstanceRole,
-    LoadBalancerMemberConnectivity,
-    LoadBalancerOperatingStatus,
-    LoadBalancerStatistics,
+    LoadBalancerLogging,
+    LoadBalancerStatList,
+    MandatoryID,
+    MemberConnectivity,
+    Name,
     Network,
+    NetworkPortFixedIP,
+    OperatingStatus,
+    ProfileOptionList,
     ProvisioningStatus,
+    RawMetadata,
     Subnet,
     Tag,
     TagList,
+    TagUpdateList,
     TaskIDList,
     VrrpIP,
 )
@@ -35,14 +47,14 @@ from gcore.types.cloud import (
 Types:
 
 ```python
-from gcore.types.cloud import Project, ProjectDeleteResponse
+from gcore.types.cloud import Project
 ```
 
 Methods:
 
 - <code title="post /cloud/v1/projects">client.cloud.projects.<a href="./src/gcore/resources/cloud/projects.py">create</a>(\*\*<a href="src/gcore/types/cloud/project_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/project.py">Project</a></code>
 - <code title="get /cloud/v1/projects">client.cloud.projects.<a href="./src/gcore/resources/cloud/projects.py">list</a>(\*\*<a href="src/gcore/types/cloud/project_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/project.py">SyncOffsetPage[Project]</a></code>
-- <code title="delete /cloud/v1/projects/{project_id}">client.cloud.projects.<a href="./src/gcore/resources/cloud/projects.py">delete</a>(\*, project_id) -> <a href="./src/gcore/types/cloud/project_delete_response.py">ProjectDeleteResponse</a></code>
+- <code title="delete /cloud/v1/projects/{project_id}">client.cloud.projects.<a href="./src/gcore/resources/cloud/projects.py">delete</a>(\*, project_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/projects/{project_id}">client.cloud.projects.<a href="./src/gcore/resources/cloud/projects.py">get</a>(\*, project_id) -> <a href="./src/gcore/types/cloud/project.py">Project</a></code>
 - <code title="put /cloud/v1/projects/{project_id}">client.cloud.projects.<a href="./src/gcore/resources/cloud/projects.py">replace</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/project_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/project.py">Project</a></code>
 
@@ -108,22 +120,16 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import (
-    Secret,
-    SecretCreateResponse,
-    SecretListResponse,
-    SecretDeleteResponse,
-    SecretUploadTlsCertificateResponse,
-)
+from gcore.types.cloud import Secret, SecretListResponse
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/secret_create_response.py">SecretCreateResponse</a></code>
+- <code title="post /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret_list_response.py">SecretListResponse</a></code>
-- <code title="delete /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">delete</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret_delete_response.py">SecretDeleteResponse</a></code>
+- <code title="delete /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">delete</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">get</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret.py">Secret</a></code>
-- <code title="post /cloud/v2/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">upload_tls_certificate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_upload_tls_certificate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/secret_upload_tls_certificate_response.py">SecretUploadTlsCertificateResponse</a></code>
+- <code title="post /cloud/v2/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">upload_tls_certificate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_upload_tls_certificate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 ## SSHKeys
 
