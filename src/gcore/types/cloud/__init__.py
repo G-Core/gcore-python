@@ -28,6 +28,7 @@ from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
 from .project_list_params import ProjectListParams as ProjectListParams
 from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
+from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
 from .secret_create_params import SecretCreateParams as SecretCreateParams
 from .secret_list_response import SecretListResponse as SecretListResponse
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
@@ -43,7 +44,6 @@ from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOption
 from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStatistics
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams
-from .floating_ip_list_response import FloatingIPListResponse as FloatingIPListResponse
 from .quota_get_global_response import QuotaGetGlobalResponse as QuotaGetGlobalResponse
 from .instance_metrics_time_unit import InstanceMetricsTimeUnit as InstanceMetricsTimeUnit
 from .ddos_profile_template_field import DDOSProfileTemplateField as DDOSProfileTemplateField

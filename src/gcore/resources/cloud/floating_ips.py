@@ -24,8 +24,8 @@ from ...types.cloud import floating_ip_list_params, floating_ip_assign_params, f
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.floating_ip import FloatingIP
 from ...types.cloud.task_id_list import TaskIDList
+from ...types.cloud.floating_ip_detailed import FloatingIPDetailed
 from ...types.cloud.tag_update_list_param import TagUpdateListParam
-from ...types.cloud.floating_ip_list_response import FloatingIPListResponse
 
 __all__ = ["FloatingIPsResource", "AsyncFloatingIPsResource"]
 
@@ -127,7 +127,7 @@ class FloatingIPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[FloatingIPListResponse]:
+    ) -> SyncOffsetPage[FloatingIPDetailed]:
         """
         List floating IPs
 
@@ -164,7 +164,7 @@ class FloatingIPsResource(SyncAPIResource):
             region_id = self._client._get_region_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/floatingips/{project_id}/{region_id}",
-            page=SyncOffsetPage[FloatingIPListResponse],
+            page=SyncOffsetPage[FloatingIPDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -180,7 +180,7 @@ class FloatingIPsResource(SyncAPIResource):
                     floating_ip_list_params.FloatingIPListParams,
                 ),
             ),
-            model=FloatingIPListResponse,
+            model=FloatingIPDetailed,
         )
 
     def delete(
@@ -488,7 +488,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[FloatingIPListResponse, AsyncOffsetPage[FloatingIPListResponse]]:
+    ) -> AsyncPaginator[FloatingIPDetailed, AsyncOffsetPage[FloatingIPDetailed]]:
         """
         List floating IPs
 
@@ -525,7 +525,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             region_id = self._client._get_region_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/floatingips/{project_id}/{region_id}",
-            page=AsyncOffsetPage[FloatingIPListResponse],
+            page=AsyncOffsetPage[FloatingIPDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -541,7 +541,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
                     floating_ip_list_params.FloatingIPListParams,
                 ),
             ),
-            model=FloatingIPListResponse,
+            model=FloatingIPDetailed,
         )
 
     async def delete(

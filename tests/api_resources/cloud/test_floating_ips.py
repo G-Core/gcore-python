@@ -13,7 +13,7 @@ from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import (
     FloatingIP,
     TaskIDList,
-    FloatingIPListResponse,
+    FloatingIPDetailed,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -73,7 +73,7 @@ class TestFloatingIPs:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(SyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+        assert_matches_type(SyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -85,7 +85,7 @@ class TestFloatingIPs:
             metadata_kv="metadata_kv",
             offset=0,
         )
-        assert_matches_type(SyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+        assert_matches_type(SyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -97,7 +97,7 @@ class TestFloatingIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         floating_ip = response.parse()
-        assert_matches_type(SyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+        assert_matches_type(SyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -109,7 +109,7 @@ class TestFloatingIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             floating_ip = response.parse()
-            assert_matches_type(SyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+            assert_matches_type(SyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -367,7 +367,7 @@ class TestAsyncFloatingIPs:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(AsyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+        assert_matches_type(AsyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -379,7 +379,7 @@ class TestAsyncFloatingIPs:
             metadata_kv="metadata_kv",
             offset=0,
         )
-        assert_matches_type(AsyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+        assert_matches_type(AsyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -391,7 +391,7 @@ class TestAsyncFloatingIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         floating_ip = await response.parse()
-        assert_matches_type(AsyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+        assert_matches_type(AsyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -403,7 +403,7 @@ class TestAsyncFloatingIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             floating_ip = await response.parse()
-            assert_matches_type(AsyncOffsetPage[FloatingIPListResponse], floating_ip, path=["response"])
+            assert_matches_type(AsyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
