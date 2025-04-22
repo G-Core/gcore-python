@@ -11,7 +11,9 @@ from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .ip_ranges import IPRanges as IPRanges
+from .ip_version import IPVersion as IPVersion
 from .task_id_list import TaskIDList as TaskIDList
+from .neutron_route import NeutronRoute as NeutronRoute
 from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
 from .task_list_params import TaskListParams as TaskListParams
 from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP

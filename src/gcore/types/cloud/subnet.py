@@ -2,26 +2,13 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .tag import Tag
 from ..._models import BaseModel
+from .ip_version import IPVersion
+from .neutron_route import NeutronRoute
 
-__all__ = ["Subnet", "HostRoute"]
-
-
-class HostRoute(BaseModel):
-    destination: str
-    """
-    '#/components/schemas/NeutronRouteSerializer/properties/destination'
-    "$.components.schemas.NeutronRouteSerializer.properties.destination"
-    """
-
-    nexthop: str
-    """
-    '#/components/schemas/NeutronRouteSerializer/properties/nexthop'
-    "$.components.schemas.NeutronRouteSerializer.properties.nexthop"
-    """
+__all__ = ["Subnet"]
 
 
 class Subnet(BaseModel):
@@ -43,7 +30,7 @@ class Subnet(BaseModel):
     "$.components.schemas.SubnetSerializer.properties.enable_dhcp"
     """
 
-    ip_version: Literal[4, 6]
+    ip_version: IPVersion
     """
     '#/components/schemas/SubnetSerializer/properties/ip_version'
     "$.components.schemas.SubnetSerializer.properties.ip_version"
@@ -127,7 +114,7 @@ class Subnet(BaseModel):
     "$.components.schemas.SubnetSerializer.properties.has_router"
     """
 
-    host_routes: Optional[List[HostRoute]] = None
+    host_routes: Optional[List[NeutronRoute]] = None
     """
     '#/components/schemas/SubnetSerializer/properties/host_routes/anyOf/0'
     "$.components.schemas.SubnetSerializer.properties.host_routes.anyOf[0]"
