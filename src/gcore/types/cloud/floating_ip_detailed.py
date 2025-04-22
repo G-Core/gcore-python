@@ -10,7 +10,7 @@ from .load_balancer import LoadBalancer
 from .floating_ip_status import FloatingIPStatus
 
 __all__ = [
-    "FloatingIPListResponse",
+    "FloatingIPDetailed",
     "Instance",
     "InstanceAddress",
     "InstanceAddressSimpleAddressSerializer",
@@ -299,7 +299,7 @@ class Instance(BaseModel):
     """
 
 
-class FloatingIPListResponse(BaseModel):
+class FloatingIPDetailed(BaseModel):
     id: Optional[str] = None
     """
     '#/components/schemas/FloatingIPDetailedSerializer/properties/id/anyOf/0'
