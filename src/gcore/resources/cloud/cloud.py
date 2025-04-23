@@ -76,6 +76,14 @@ from .quotas.quotas import (
     QuotasResourceWithStreamingResponse,
     AsyncQuotasResourceWithStreamingResponse,
 )
+from .networks.networks import (
+    NetworksResource,
+    AsyncNetworksResource,
+    NetworksResourceWithRawResponse,
+    AsyncNetworksResourceWithRawResponse,
+    NetworksResourceWithStreamingResponse,
+    AsyncNetworksResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips.reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -120,6 +128,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def reserved_fixed_ips(self) -> ReservedFixedIPsResource:
         return ReservedFixedIPsResource(self._client)
+
+    @cached_property
+    def networks(self) -> NetworksResource:
+        return NetworksResource(self._client)
 
     @cached_property
     def volumes(self) -> VolumesResource:
@@ -181,6 +193,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResource:
         return AsyncReservedFixedIPsResource(self._client)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksResource:
+        return AsyncNetworksResource(self._client)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResource:
@@ -247,6 +263,10 @@ class CloudResourceWithRawResponse:
         return ReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
+    def networks(self) -> NetworksResourceWithRawResponse:
+        return NetworksResourceWithRawResponse(self._cloud.networks)
+
+    @cached_property
     def volumes(self) -> VolumesResourceWithRawResponse:
         return VolumesResourceWithRawResponse(self._cloud.volumes)
 
@@ -290,6 +310,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithRawResponse:
         return AsyncReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksResourceWithRawResponse:
+        return AsyncNetworksResourceWithRawResponse(self._cloud.networks)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResourceWithRawResponse:
@@ -337,6 +361,10 @@ class CloudResourceWithStreamingResponse:
         return ReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
+    def networks(self) -> NetworksResourceWithStreamingResponse:
+        return NetworksResourceWithStreamingResponse(self._cloud.networks)
+
+    @cached_property
     def volumes(self) -> VolumesResourceWithStreamingResponse:
         return VolumesResourceWithStreamingResponse(self._cloud.volumes)
 
@@ -380,6 +408,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithStreamingResponse:
         return AsyncReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
+        return AsyncNetworksResourceWithStreamingResponse(self._cloud.networks)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResourceWithStreamingResponse:

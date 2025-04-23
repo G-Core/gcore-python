@@ -188,6 +188,26 @@ Methods:
 - <code title="patch /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}">client.cloud.reserved_fixed_ips.vip.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip.py">toggle</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip_toggle_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ip.py">ReservedFixedIP</a></code>
 - <code title="patch /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip.py">update_connected_ports</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip_update_connected_ports_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/connected_port_list.py">ConnectedPortList</a></code>
 
+## Networks
+
+### Routers
+
+Types:
+
+```python
+from gcore.types.cloud.networks import Router, RouterList, SubnetID
+```
+
+Methods:
+
+- <code title="post /cloud/v1/routers/{project_id}/{region_id}">client.cloud.networks.routers.<a href="./src/gcore/resources/cloud/networks/routers.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/router_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/routers/{project_id}/{region_id}/{router_id}">client.cloud.networks.routers.<a href="./src/gcore/resources/cloud/networks/routers.py">update</a>(router_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/router_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/networks/router.py">Router</a></code>
+- <code title="get /cloud/v1/routers/{project_id}/{region_id}">client.cloud.networks.routers.<a href="./src/gcore/resources/cloud/networks/routers.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/router_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/networks/router.py">SyncOffsetPage[Router]</a></code>
+- <code title="delete /cloud/v1/routers/{project_id}/{region_id}/{router_id}">client.cloud.networks.routers.<a href="./src/gcore/resources/cloud/networks/routers.py">delete</a>(router_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach">client.cloud.networks.routers.<a href="./src/gcore/resources/cloud/networks/routers.py">attach_subnet</a>(router_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/router_attach_subnet_params.py">params</a>) -> <a href="./src/gcore/types/cloud/networks/router.py">Router</a></code>
+- <code title="post /cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach">client.cloud.networks.routers.<a href="./src/gcore/resources/cloud/networks/routers.py">detach_subnet</a>(router_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/router_detach_subnet_params.py">params</a>) -> <a href="./src/gcore/types/cloud/networks/router.py">Router</a></code>
+- <code title="get /cloud/v1/routers/{project_id}/{region_id}/{router_id}">client.cloud.networks.routers.<a href="./src/gcore/resources/cloud/networks/routers.py">get</a>(router_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/networks/router.py">Router</a></code>
+
 ## Volumes
 
 Types:

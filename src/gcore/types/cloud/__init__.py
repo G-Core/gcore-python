@@ -27,6 +27,7 @@ from .region_list_params import RegionListParams as RegionListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
 from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
+from .neutron_route_param import NeutronRouteParam as NeutronRouteParam
 from .project_list_params import ProjectListParams as ProjectListParams
 from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
