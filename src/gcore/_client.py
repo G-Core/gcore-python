@@ -19,11 +19,7 @@ from ._types import (
     ProxiesTypes,
     RequestOptions,
 )
-from ._utils import (
-    is_given,
-    get_async_library,
-    maybe_coerce_integer,
-)
+from ._utils import is_given, get_async_library, maybe_coerce_integer
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import GcoreError, APIStatusError
