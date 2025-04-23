@@ -26,6 +26,14 @@ from .secrets import (
     SecretsResourceWithStreamingResponse,
     AsyncSecretsResourceWithStreamingResponse,
 )
+from .volumes import (
+    VolumesResource,
+    AsyncVolumesResource,
+    VolumesResourceWithRawResponse,
+    AsyncVolumesResourceWithRawResponse,
+    VolumesResourceWithStreamingResponse,
+    AsyncVolumesResourceWithStreamingResponse,
+)
 from .projects import (
     ProjectsResource,
     AsyncProjectsResource,
@@ -114,6 +122,10 @@ class CloudResource(SyncAPIResource):
         return ReservedFixedIPsResource(self._client)
 
     @cached_property
+    def volumes(self) -> VolumesResource:
+        return VolumesResource(self._client)
+
+    @cached_property
     def floating_ips(self) -> FloatingIPsResource:
         return FloatingIPsResource(self._client)
 
@@ -169,6 +181,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResource:
         return AsyncReservedFixedIPsResource(self._client)
+
+    @cached_property
+    def volumes(self) -> AsyncVolumesResource:
+        return AsyncVolumesResource(self._client)
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResource:
@@ -231,6 +247,10 @@ class CloudResourceWithRawResponse:
         return ReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
+    def volumes(self) -> VolumesResourceWithRawResponse:
+        return VolumesResourceWithRawResponse(self._cloud.volumes)
+
+    @cached_property
     def floating_ips(self) -> FloatingIPsResourceWithRawResponse:
         return FloatingIPsResourceWithRawResponse(self._cloud.floating_ips)
 
@@ -270,6 +290,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithRawResponse:
         return AsyncReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
+
+    @cached_property
+    def volumes(self) -> AsyncVolumesResourceWithRawResponse:
+        return AsyncVolumesResourceWithRawResponse(self._cloud.volumes)
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithRawResponse:
@@ -313,6 +337,10 @@ class CloudResourceWithStreamingResponse:
         return ReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
+    def volumes(self) -> VolumesResourceWithStreamingResponse:
+        return VolumesResourceWithStreamingResponse(self._cloud.volumes)
+
+    @cached_property
     def floating_ips(self) -> FloatingIPsResourceWithStreamingResponse:
         return FloatingIPsResourceWithStreamingResponse(self._cloud.floating_ips)
 
@@ -352,6 +380,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithStreamingResponse:
         return AsyncReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
+
+    @cached_property
+    def volumes(self) -> AsyncVolumesResourceWithStreamingResponse:
+        return AsyncVolumesResourceWithStreamingResponse(self._cloud.volumes)
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithStreamingResponse:
