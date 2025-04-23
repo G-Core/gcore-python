@@ -190,6 +190,24 @@ Methods:
 
 ## Networks
 
+Methods:
+
+- <code title="post /cloud/v1/networks/{project_id}/{region_id}">client.cloud.networks.<a href="./src/gcore/resources/cloud/networks/networks.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/network_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/networks/{project_id}/{region_id}/{network_id}">client.cloud.networks.<a href="./src/gcore/resources/cloud/networks/networks.py">update</a>(network_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/network_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/network.py">Network</a></code>
+- <code title="get /cloud/v1/networks/{project_id}/{region_id}">client.cloud.networks.<a href="./src/gcore/resources/cloud/networks/networks.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/network_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/network.py">SyncOffsetPage[Network]</a></code>
+- <code title="delete /cloud/v1/networks/{project_id}/{region_id}/{network_id}">client.cloud.networks.<a href="./src/gcore/resources/cloud/networks/networks.py">delete</a>(network_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/networks/{project_id}/{region_id}/{network_id}">client.cloud.networks.<a href="./src/gcore/resources/cloud/networks/networks.py">get</a>(network_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/network.py">Network</a></code>
+
+### Subnets
+
+Methods:
+
+- <code title="post /cloud/v1/subnets/{project_id}/{region_id}">client.cloud.networks.subnets.<a href="./src/gcore/resources/cloud/networks/subnets.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/subnet_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}">client.cloud.networks.subnets.<a href="./src/gcore/resources/cloud/networks/subnets.py">update</a>(subnet_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/subnet_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/subnet.py">Subnet</a></code>
+- <code title="get /cloud/v1/subnets/{project_id}/{region_id}">client.cloud.networks.subnets.<a href="./src/gcore/resources/cloud/networks/subnets.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/networks/subnet_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/subnet.py">SyncOffsetPage[Subnet]</a></code>
+- <code title="delete /cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}">client.cloud.networks.subnets.<a href="./src/gcore/resources/cloud/networks/subnets.py">delete</a>(subnet_id, \*, project_id, region_id) -> None</code>
+- <code title="get /cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}">client.cloud.networks.subnets.<a href="./src/gcore/resources/cloud/networks/subnets.py">get</a>(subnet_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/subnet.py">Subnet</a></code>
+
 ### Routers
 
 Types:
