@@ -28,6 +28,7 @@ from .region_list_params import RegionListParams as RegionListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
 from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
+from .network_list_params import NetworkListParams as NetworkListParams
 from .neutron_route_param import NeutronRouteParam as NeutronRouteParam
 from .project_list_params import ProjectListParams as ProjectListParams
 from .provisioning_status import ProvisioningStatus as ProvisioningStatus
@@ -41,6 +42,8 @@ from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
 from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
 from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
+from .network_create_params import NetworkCreateParams as NetworkCreateParams
+from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
