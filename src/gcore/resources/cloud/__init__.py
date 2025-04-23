@@ -88,6 +88,14 @@ from .floating_ips import (
     FloatingIPsResourceWithStreamingResponse,
     AsyncFloatingIPsResourceWithStreamingResponse,
 )
+from .security_groups import (
+    SecurityGroupsResource,
+    AsyncSecurityGroupsResource,
+    SecurityGroupsResourceWithRawResponse,
+    AsyncSecurityGroupsResourceWithRawResponse,
+    SecurityGroupsResourceWithStreamingResponse,
+    AsyncSecurityGroupsResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -164,6 +172,12 @@ __all__ = [
     "AsyncFloatingIPsResourceWithRawResponse",
     "FloatingIPsResourceWithStreamingResponse",
     "AsyncFloatingIPsResourceWithStreamingResponse",
+    "SecurityGroupsResource",
+    "AsyncSecurityGroupsResource",
+    "SecurityGroupsResourceWithRawResponse",
+    "AsyncSecurityGroupsResourceWithRawResponse",
+    "SecurityGroupsResourceWithStreamingResponse",
+    "AsyncSecurityGroupsResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

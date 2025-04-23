@@ -84,6 +84,14 @@ from .networks.networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
+from .security_groups.security_groups import (
+    SecurityGroupsResource,
+    AsyncSecurityGroupsResource,
+    SecurityGroupsResourceWithRawResponse,
+    AsyncSecurityGroupsResourceWithRawResponse,
+    SecurityGroupsResourceWithStreamingResponse,
+    AsyncSecurityGroupsResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips.reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -140,6 +148,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def floating_ips(self) -> FloatingIPsResource:
         return FloatingIPsResource(self._client)
+
+    @cached_property
+    def security_groups(self) -> SecurityGroupsResource:
+        return SecurityGroupsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
@@ -205,6 +217,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResource:
         return AsyncFloatingIPsResource(self._client)
+
+    @cached_property
+    def security_groups(self) -> AsyncSecurityGroupsResource:
+        return AsyncSecurityGroupsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -274,6 +290,10 @@ class CloudResourceWithRawResponse:
     def floating_ips(self) -> FloatingIPsResourceWithRawResponse:
         return FloatingIPsResourceWithRawResponse(self._cloud.floating_ips)
 
+    @cached_property
+    def security_groups(self) -> SecurityGroupsResourceWithRawResponse:
+        return SecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -322,6 +342,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithRawResponse:
         return AsyncFloatingIPsResourceWithRawResponse(self._cloud.floating_ips)
+
+    @cached_property
+    def security_groups(self) -> AsyncSecurityGroupsResourceWithRawResponse:
+        return AsyncSecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
 
 
 class CloudResourceWithStreamingResponse:
@@ -372,6 +396,10 @@ class CloudResourceWithStreamingResponse:
     def floating_ips(self) -> FloatingIPsResourceWithStreamingResponse:
         return FloatingIPsResourceWithStreamingResponse(self._cloud.floating_ips)
 
+    @cached_property
+    def security_groups(self) -> SecurityGroupsResourceWithStreamingResponse:
+        return SecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -420,3 +448,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithStreamingResponse:
         return AsyncFloatingIPsResourceWithStreamingResponse(self._cloud.floating_ips)
+
+    @cached_property
+    def security_groups(self) -> AsyncSecurityGroupsResourceWithStreamingResponse:
+        return AsyncSecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
