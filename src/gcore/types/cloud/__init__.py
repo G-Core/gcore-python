@@ -7,6 +7,7 @@ from .task import Task as Task
 from .region import Region as Region
 from .secret import Secret as Secret
 from .subnet import Subnet as Subnet
+from .volume import Volume as Volume
 from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
@@ -23,6 +24,7 @@ from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
 from .ddos_profile_field import DDOSProfileField as DDOSProfileField
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .region_list_params import RegionListParams as RegionListParams
+from .volume_list_params import VolumeListParams as VolumeListParams
 from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
 from .project_list_params import ProjectListParams as ProjectListParams
@@ -31,6 +33,10 @@ from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
 from .secret_create_params import SecretCreateParams as SecretCreateParams
 from .secret_list_response import SecretListResponse as SecretListResponse
+from .volume_create_params import VolumeCreateParams as VolumeCreateParams
+from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
+from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
+from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
@@ -45,6 +51,7 @@ from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStat
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams
 from .quota_get_global_response import QuotaGetGlobalResponse as QuotaGetGlobalResponse
+from .volume_change_type_params import VolumeChangeTypeParams as VolumeChangeTypeParams
 from .instance_metrics_time_unit import InstanceMetricsTimeUnit as InstanceMetricsTimeUnit
 from .ddos_profile_template_field import DDOSProfileTemplateField as DDOSProfileTemplateField
 from .load_balancer_instance_role import LoadBalancerInstanceRole as LoadBalancerInstanceRole
@@ -53,5 +60,7 @@ from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetBy
 from .reserved_fixed_ip_list_params import ReservedFixedIPListParams as ReservedFixedIPListParams
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
 from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
+from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
+from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams

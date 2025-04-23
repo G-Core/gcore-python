@@ -40,6 +40,14 @@ from .secrets import (
     SecretsResourceWithStreamingResponse,
     AsyncSecretsResourceWithStreamingResponse,
 )
+from .volumes import (
+    VolumesResource,
+    AsyncVolumesResource,
+    VolumesResourceWithRawResponse,
+    AsyncVolumesResourceWithRawResponse,
+    VolumesResourceWithStreamingResponse,
+    AsyncVolumesResourceWithStreamingResponse,
+)
 from .projects import (
     ProjectsResource,
     AsyncProjectsResource,
@@ -130,6 +138,12 @@ __all__ = [
     "AsyncReservedFixedIPsResourceWithRawResponse",
     "ReservedFixedIPsResourceWithStreamingResponse",
     "AsyncReservedFixedIPsResourceWithStreamingResponse",
+    "VolumesResource",
+    "AsyncVolumesResource",
+    "VolumesResourceWithRawResponse",
+    "AsyncVolumesResourceWithRawResponse",
+    "VolumesResourceWithStreamingResponse",
+    "AsyncVolumesResourceWithStreamingResponse",
     "FloatingIPsResource",
     "AsyncFloatingIPsResource",
     "FloatingIPsResourceWithRawResponse",
