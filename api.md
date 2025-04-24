@@ -4,6 +4,8 @@ Types:
 
 ```python
 from gcore.types.cloud import (
+    BaremetalFlavorList,
+    Console,
     DDOSProfile,
     DDOSProfileField,
     DDOSProfileOptionList,
@@ -22,14 +24,12 @@ from gcore.types.cloud import (
     LoadBalancerOperatingStatus,
     LoadBalancerStatistics,
     Network,
-    NetworkAnySubnetFip,
-    NetworkSubnetFip,
     NeutronRoute,
+    PortList,
     ProvisioningStatus,
     Subnet,
     Tag,
     TagList,
-    TagUpdateList,
     TaskIDList,
 )
 ```

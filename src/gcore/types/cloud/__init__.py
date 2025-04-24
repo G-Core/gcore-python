@@ -47,7 +47,6 @@ from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
-from .tag_update_list_param import TagUpdateListParam as TagUpdateListParam
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
 from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .region_retrieve_params import RegionRetrieveParams as RegionRetrieveParams
