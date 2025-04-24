@@ -36,7 +36,7 @@ class TestFloatingIPs:
             project_id=1,
             region_id=1,
             fixed_ip_address="192.168.10.15",
-            metadata={"foo": "my-tag-value"},
+            metadata={"my-tag": "my-tag-value"},
             port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
@@ -330,7 +330,7 @@ class TestAsyncFloatingIPs:
             project_id=1,
             region_id=1,
             fixed_ip_address="192.168.10.15",
-            metadata={"foo": "my-tag-value"},
+            metadata={"my-tag": "my-tag-value"},
             port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
