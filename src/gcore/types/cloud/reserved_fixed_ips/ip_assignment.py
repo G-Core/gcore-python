@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-
 from ..subnet import Subnet
 from ...._models import BaseModel
 
