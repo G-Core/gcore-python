@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .tag import Tag as Tag
 from .task import Task as Task
+from .image import Image as Image
 from .region import Region as Region
 from .secret import Secret as Secret
 from .subnet import Subnet as Subnet
@@ -12,6 +13,7 @@ from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .ip_ranges import IPRanges as IPRanges
+from .image_list import ImageList as ImageList
 from .ip_version import IPVersion as IPVersion
 from .floating_ip import FloatingIP as FloatingIP
 from .ddos_profile import DDOSProfile as DDOSProfile
