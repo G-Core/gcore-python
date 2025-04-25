@@ -72,6 +72,22 @@ from .ssh_keys import (
     SSHKeysResourceWithStreamingResponse,
     AsyncSSHKeysResourceWithStreamingResponse,
 )
+from .baremetal import (
+    BaremetalResource,
+    AsyncBaremetalResource,
+    BaremetalResourceWithRawResponse,
+    AsyncBaremetalResourceWithRawResponse,
+    BaremetalResourceWithStreamingResponse,
+    AsyncBaremetalResourceWithStreamingResponse,
+)
+from .instances import (
+    InstancesResource,
+    AsyncInstancesResource,
+    InstancesResourceWithRawResponse,
+    AsyncInstancesResourceWithRawResponse,
+    InstancesResourceWithStreamingResponse,
+    AsyncInstancesResourceWithStreamingResponse,
+)
 from .ip_ranges import (
     IPRangesResource,
     AsyncIPRangesResource,
@@ -178,6 +194,18 @@ __all__ = [
     "AsyncSecurityGroupsResourceWithRawResponse",
     "SecurityGroupsResourceWithStreamingResponse",
     "AsyncSecurityGroupsResourceWithStreamingResponse",
+    "BaremetalResource",
+    "AsyncBaremetalResource",
+    "BaremetalResourceWithRawResponse",
+    "AsyncBaremetalResourceWithRawResponse",
+    "BaremetalResourceWithStreamingResponse",
+    "AsyncBaremetalResourceWithStreamingResponse",
+    "InstancesResource",
+    "AsyncInstancesResource",
+    "InstancesResourceWithRawResponse",
+    "AsyncInstancesResourceWithRawResponse",
+    "InstancesResourceWithStreamingResponse",
+    "AsyncInstancesResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

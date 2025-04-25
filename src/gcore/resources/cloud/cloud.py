@@ -84,6 +84,22 @@ from .networks.networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
+from .baremetal.baremetal import (
+    BaremetalResource,
+    AsyncBaremetalResource,
+    BaremetalResourceWithRawResponse,
+    AsyncBaremetalResourceWithRawResponse,
+    BaremetalResourceWithStreamingResponse,
+    AsyncBaremetalResourceWithStreamingResponse,
+)
+from .instances.instances import (
+    InstancesResource,
+    AsyncInstancesResource,
+    InstancesResourceWithRawResponse,
+    AsyncInstancesResourceWithRawResponse,
+    InstancesResourceWithStreamingResponse,
+    AsyncInstancesResourceWithStreamingResponse,
+)
 from .security_groups.security_groups import (
     SecurityGroupsResource,
     AsyncSecurityGroupsResource,
@@ -154,6 +170,14 @@ class CloudResource(SyncAPIResource):
         return SecurityGroupsResource(self._client)
 
     @cached_property
+    def baremetal(self) -> BaremetalResource:
+        return BaremetalResource(self._client)
+
+    @cached_property
+    def instances(self) -> InstancesResource:
+        return InstancesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -221,6 +245,14 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResource:
         return AsyncSecurityGroupsResource(self._client)
+
+    @cached_property
+    def baremetal(self) -> AsyncBaremetalResource:
+        return AsyncBaremetalResource(self._client)
+
+    @cached_property
+    def instances(self) -> AsyncInstancesResource:
+        return AsyncInstancesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -294,6 +326,14 @@ class CloudResourceWithRawResponse:
     def security_groups(self) -> SecurityGroupsResourceWithRawResponse:
         return SecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
 
+    @cached_property
+    def baremetal(self) -> BaremetalResourceWithRawResponse:
+        return BaremetalResourceWithRawResponse(self._cloud.baremetal)
+
+    @cached_property
+    def instances(self) -> InstancesResourceWithRawResponse:
+        return InstancesResourceWithRawResponse(self._cloud.instances)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -346,6 +386,14 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithRawResponse:
         return AsyncSecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
+
+    @cached_property
+    def baremetal(self) -> AsyncBaremetalResourceWithRawResponse:
+        return AsyncBaremetalResourceWithRawResponse(self._cloud.baremetal)
+
+    @cached_property
+    def instances(self) -> AsyncInstancesResourceWithRawResponse:
+        return AsyncInstancesResourceWithRawResponse(self._cloud.instances)
 
 
 class CloudResourceWithStreamingResponse:
@@ -400,6 +448,14 @@ class CloudResourceWithStreamingResponse:
     def security_groups(self) -> SecurityGroupsResourceWithStreamingResponse:
         return SecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
 
+    @cached_property
+    def baremetal(self) -> BaremetalResourceWithStreamingResponse:
+        return BaremetalResourceWithStreamingResponse(self._cloud.baremetal)
+
+    @cached_property
+    def instances(self) -> InstancesResourceWithStreamingResponse:
+        return InstancesResourceWithStreamingResponse(self._cloud.instances)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -452,3 +508,11 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithStreamingResponse:
         return AsyncSecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
+
+    @cached_property
+    def baremetal(self) -> AsyncBaremetalResourceWithStreamingResponse:
+        return AsyncBaremetalResourceWithStreamingResponse(self._cloud.baremetal)
+
+    @cached_property
+    def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
+        return AsyncInstancesResourceWithStreamingResponse(self._cloud.instances)
