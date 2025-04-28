@@ -100,6 +100,14 @@ from .instances.instances import (
     InstancesResourceWithStreamingResponse,
     AsyncInstancesResourceWithStreamingResponse,
 )
+from .file_shares.file_shares import (
+    FileSharesResource,
+    AsyncFileSharesResource,
+    FileSharesResourceWithRawResponse,
+    AsyncFileSharesResourceWithRawResponse,
+    FileSharesResourceWithStreamingResponse,
+    AsyncFileSharesResourceWithStreamingResponse,
+)
 from .security_groups.security_groups import (
     SecurityGroupsResource,
     AsyncSecurityGroupsResource,
@@ -178,6 +186,10 @@ class CloudResource(SyncAPIResource):
         return InstancesResource(self._client)
 
     @cached_property
+    def file_shares(self) -> FileSharesResource:
+        return FileSharesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -253,6 +265,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def instances(self) -> AsyncInstancesResource:
         return AsyncInstancesResource(self._client)
+
+    @cached_property
+    def file_shares(self) -> AsyncFileSharesResource:
+        return AsyncFileSharesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -334,6 +350,10 @@ class CloudResourceWithRawResponse:
     def instances(self) -> InstancesResourceWithRawResponse:
         return InstancesResourceWithRawResponse(self._cloud.instances)
 
+    @cached_property
+    def file_shares(self) -> FileSharesResourceWithRawResponse:
+        return FileSharesResourceWithRawResponse(self._cloud.file_shares)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -394,6 +414,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
         return AsyncInstancesResourceWithRawResponse(self._cloud.instances)
+
+    @cached_property
+    def file_shares(self) -> AsyncFileSharesResourceWithRawResponse:
+        return AsyncFileSharesResourceWithRawResponse(self._cloud.file_shares)
 
 
 class CloudResourceWithStreamingResponse:
@@ -456,6 +480,10 @@ class CloudResourceWithStreamingResponse:
     def instances(self) -> InstancesResourceWithStreamingResponse:
         return InstancesResourceWithStreamingResponse(self._cloud.instances)
 
+    @cached_property
+    def file_shares(self) -> FileSharesResourceWithStreamingResponse:
+        return FileSharesResourceWithStreamingResponse(self._cloud.file_shares)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -516,3 +544,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
         return AsyncInstancesResourceWithStreamingResponse(self._cloud.instances)
+
+    @cached_property
+    def file_shares(self) -> AsyncFileSharesResourceWithStreamingResponse:
+        return AsyncFileSharesResourceWithStreamingResponse(self._cloud.file_shares)
