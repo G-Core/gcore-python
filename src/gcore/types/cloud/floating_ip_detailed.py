@@ -13,8 +13,7 @@ __all__ = [
     "FloatingIPDetailed",
     "Instance",
     "InstanceAddress",
-    "InstanceAddressSimpleAddressSerializer",
-    "InstanceAddressAddressInterfaceSerializer",
+    "InstanceAddressAddressSerializer",
     "InstanceAddressAddressDetailedSerializer",
     "InstanceFlavor",
     "InstanceSecurityGroup",
@@ -22,37 +21,23 @@ __all__ = [
 ]
 
 
-class InstanceAddressSimpleAddressSerializer(BaseModel):
+class InstanceAddressAddressSerializer(BaseModel):
     addr: str
     """
-    '#/components/schemas/SimpleAddressSerializer/properties/addr'
-    "$.components.schemas.SimpleAddressSerializer.properties.addr"
-    """
-
-    type: str
-    """
-    '#/components/schemas/SimpleAddressSerializer/properties/type'
-    "$.components.schemas.SimpleAddressSerializer.properties.type"
-    """
-
-
-class InstanceAddressAddressInterfaceSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/AddressInterfaceSerializer/properties/addr'
-    "$.components.schemas.AddressInterfaceSerializer.properties.addr"
+    '#/components/schemas/AddressSerializer/properties/addr'
+    "$.components.schemas.AddressSerializer.properties.addr"
     """
 
     interface_name: Optional[str] = None
     """
-    '#/components/schemas/AddressInterfaceSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.AddressInterfaceSerializer.properties.interface_name.anyOf[0]"
+    '#/components/schemas/AddressSerializer/properties/interface_name/anyOf/0'
+    "$.components.schemas.AddressSerializer.properties.interface_name.anyOf[0]"
     """
 
     type: str
     """
-    '#/components/schemas/AddressInterfaceSerializer/properties/type'
-    "$.components.schemas.AddressInterfaceSerializer.properties.type"
+    '#/components/schemas/AddressSerializer/properties/type'
+    "$.components.schemas.AddressSerializer.properties.type"
     """
 
 
@@ -88,11 +73,7 @@ class InstanceAddressAddressDetailedSerializer(BaseModel):
     """
 
 
-InstanceAddress: TypeAlias = Union[
-    InstanceAddressSimpleAddressSerializer,
-    InstanceAddressAddressInterfaceSerializer,
-    InstanceAddressAddressDetailedSerializer,
-]
+InstanceAddress: TypeAlias = Union[InstanceAddressAddressSerializer, InstanceAddressAddressDetailedSerializer]
 
 
 class InstanceFlavor(BaseModel):
