@@ -84,9 +84,9 @@ class VipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
@@ -132,9 +132,9 @@ class VipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
@@ -184,9 +184,9 @@ class VipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._put(
@@ -239,9 +239,9 @@ class VipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
@@ -292,9 +292,9 @@ class VipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
@@ -364,9 +364,9 @@ class AsyncVipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
@@ -412,9 +412,9 @@ class AsyncVipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
@@ -464,9 +464,9 @@ class AsyncVipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._put(
@@ -519,9 +519,9 @@ class AsyncVipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(
@@ -572,9 +572,9 @@ class AsyncVipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(

@@ -89,9 +89,9 @@ class FloatingIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
             f"/cloud/v1/floatingips/{project_id}/{region_id}",
             body=maybe_transform(
@@ -155,9 +155,9 @@ class FloatingIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/floatingips/{project_id}/{region_id}",
             page=SyncOffsetPage[FloatingIPDetailed],
@@ -214,9 +214,9 @@ class FloatingIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._delete(
@@ -270,9 +270,9 @@ class FloatingIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._post(
@@ -325,9 +325,9 @@ class FloatingIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._get(
@@ -373,9 +373,9 @@ class FloatingIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._post(
@@ -450,9 +450,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
             f"/cloud/v1/floatingips/{project_id}/{region_id}",
             body=await async_maybe_transform(
@@ -516,9 +516,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/floatingips/{project_id}/{region_id}",
             page=AsyncOffsetPage[FloatingIPDetailed],
@@ -575,9 +575,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._delete(
@@ -631,9 +631,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._post(
@@ -686,9 +686,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._get(
@@ -734,9 +734,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._post(

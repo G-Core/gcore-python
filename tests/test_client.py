@@ -357,25 +357,25 @@ class TestGcore:
         url = httpx.URL(request.url)
         assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
 
-    def test_project_id_client_params(self) -> None:
+    def test_cloud_project_id_client_params(self) -> None:
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with client as c2:
-            with pytest.raises(ValueError, match="Missing project_id argument;"):
+            with pytest.raises(ValueError, match="Missing cloud_project_id argument;"):
                 c2.cloud.projects.delete()
 
-        client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, project_id=0)
+        client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_project_id=0)
         with client as c2:
             c2.cloud.projects.delete()
 
-    def test_region_id_client_params(self) -> None:
+    def test_cloud_region_id_client_params(self) -> None:
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with client as c2:
-            with pytest.raises(ValueError, match="Missing region_id argument;"):
+            with pytest.raises(ValueError, match="Missing cloud_region_id argument;"):
                 c2.cloud.regions.retrieve()
 
-        client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, region_id=0)
+        client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_region_id=0)
         with client as c2:
             c2.cloud.regions.retrieve()
 
@@ -1143,25 +1143,25 @@ class TestAsyncGcore:
         url = httpx.URL(request.url)
         assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
 
-    async def test_project_id_client_params(self) -> None:
+    async def test_cloud_project_id_client_params(self) -> None:
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         async with client as c2:
-            with pytest.raises(ValueError, match="Missing project_id argument;"):
+            with pytest.raises(ValueError, match="Missing cloud_project_id argument;"):
                 await c2.cloud.projects.delete()
 
-        client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, project_id=0)
+        client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_project_id=0)
         async with client as c2:
             await c2.cloud.projects.delete()
 
-    async def test_region_id_client_params(self) -> None:
+    async def test_cloud_region_id_client_params(self) -> None:
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         async with client as c2:
-            with pytest.raises(ValueError, match="Missing region_id argument;"):
+            with pytest.raises(ValueError, match="Missing cloud_region_id argument;"):
                 await c2.cloud.regions.retrieve()
 
-        client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, region_id=0)
+        client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_region_id=0)
         async with client as c2:
             await c2.cloud.regions.retrieve()
 

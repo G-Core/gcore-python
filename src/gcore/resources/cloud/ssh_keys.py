@@ -84,7 +84,7 @@ class SSHKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return self._post(
             f"/cloud/v1/ssh_keys/{project_id}",
             body=maybe_transform(
@@ -136,7 +136,7 @@ class SSHKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return self._patch(
@@ -187,7 +187,7 @@ class SSHKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/ssh_keys/{project_id}",
             page=SyncOffsetPage[SSHKey],
@@ -239,7 +239,7 @@ class SSHKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -282,7 +282,7 @@ class SSHKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return self._get(
@@ -353,7 +353,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return await self._post(
             f"/cloud/v1/ssh_keys/{project_id}",
             body=await async_maybe_transform(
@@ -405,7 +405,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return await self._patch(
@@ -458,7 +458,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/ssh_keys/{project_id}",
             page=AsyncOffsetPage[SSHKey],
@@ -510,7 +510,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -553,7 +553,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return await self._get(

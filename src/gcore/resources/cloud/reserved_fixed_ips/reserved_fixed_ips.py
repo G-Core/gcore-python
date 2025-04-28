@@ -315,9 +315,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
             f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             body=maybe_transform(
@@ -405,9 +405,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             page=SyncOffsetPage[ReservedFixedIP],
@@ -469,9 +469,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._delete(
@@ -517,9 +517,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
@@ -811,9 +811,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
             f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             body=await async_maybe_transform(
@@ -901,9 +901,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             page=AsyncOffsetPage[ReservedFixedIP],
@@ -965,9 +965,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._delete(
@@ -1013,9 +1013,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(

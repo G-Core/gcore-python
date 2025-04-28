@@ -198,7 +198,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return self._delete(
             f"/cloud/v1/projects/{project_id}",
             options=make_request_options(
@@ -234,7 +234,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return self._get(
             f"/cloud/v1/projects/{project_id}",
             options=make_request_options(
@@ -278,7 +278,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return self._put(
             f"/cloud/v1/projects/{project_id}",
             body=maybe_transform(
@@ -467,7 +467,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return await self._delete(
             f"/cloud/v1/projects/{project_id}",
             options=make_request_options(
@@ -503,7 +503,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return await self._get(
             f"/cloud/v1/projects/{project_id}",
             options=make_request_options(
@@ -547,7 +547,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         return await self._put(
             f"/cloud/v1/projects/{project_id}",
             body=await async_maybe_transform(
