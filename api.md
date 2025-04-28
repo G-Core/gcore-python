@@ -4,7 +4,6 @@ Types:
 
 ```python
 from gcore.types.cloud import (
-    BaremetalFlavorList,
     Console,
     DDOSProfile,
     DDOSProfileField,
@@ -26,8 +25,6 @@ from gcore.types.cloud import (
     LoadBalancerOperatingStatus,
     LoadBalancerStatistics,
     Network,
-    NeutronRoute,
-    PortList,
     ProvisioningStatus,
     Subnet,
     Tag,
@@ -99,13 +96,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.quotas import RequestGetResponse
+from gcore.types.cloud.quotas import RequestListResponse, RequestGetResponse
 ```
 
 Methods:
 
 - <code title="post /cloud/v2/limits_request">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">create</a>(\*\*<a href="src/gcore/types/cloud/quotas/request_create_params.py">params</a>) -> None</code>
-- <code title="get /cloud/v2/limits_request">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">list</a>(\*\*<a href="src/gcore/types/cloud/quotas/request_list_params.py">params</a>) -> None</code>
+- <code title="get /cloud/v2/limits_request">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">list</a>(\*\*<a href="src/gcore/types/cloud/quotas/request_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/quotas/request_list_response.py">SyncOffsetPage[RequestListResponse]</a></code>
 - <code title="delete /cloud/v2/limits_request/{request_id}">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">delete</a>(request_id) -> None</code>
 - <code title="get /cloud/v2/limits_request/{request_id}">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">get</a>(request_id) -> <a href="./src/gcore/types/cloud/quotas/request_get_response.py">RequestGetResponse</a></code>
 
