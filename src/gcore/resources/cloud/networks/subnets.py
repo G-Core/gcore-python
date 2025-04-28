@@ -24,6 +24,7 @@ from ....types.cloud.subnet import Subnet
 from ....types.cloud.networks import subnet_list_params, subnet_create_params, subnet_update_params
 from ....types.cloud.ip_version import IPVersion
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.neutron_route_param import NeutronRouteParam
 
 __all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
@@ -60,7 +61,7 @@ class SubnetsResource(SyncAPIResource):
         dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: bool | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
+        host_routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
@@ -159,7 +160,7 @@ class SubnetsResource(SyncAPIResource):
         dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: Optional[bool] | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
+        host_routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -453,7 +454,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: bool | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
+        host_routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
@@ -552,7 +553,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: Optional[bool] | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
+        host_routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
