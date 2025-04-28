@@ -96,6 +96,14 @@ from .ip_ranges import (
     IPRangesResourceWithStreamingResponse,
     AsyncIPRangesResourceWithStreamingResponse,
 )
+from .file_shares import (
+    FileSharesResource,
+    AsyncFileSharesResource,
+    FileSharesResourceWithRawResponse,
+    AsyncFileSharesResourceWithRawResponse,
+    FileSharesResourceWithStreamingResponse,
+    AsyncFileSharesResourceWithStreamingResponse,
+)
 from .floating_ips import (
     FloatingIPsResource,
     AsyncFloatingIPsResource,
@@ -206,6 +214,12 @@ __all__ = [
     "AsyncInstancesResourceWithRawResponse",
     "InstancesResourceWithStreamingResponse",
     "AsyncInstancesResourceWithStreamingResponse",
+    "FileSharesResource",
+    "AsyncFileSharesResource",
+    "FileSharesResourceWithRawResponse",
+    "AsyncFileSharesResourceWithRawResponse",
+    "FileSharesResourceWithStreamingResponse",
+    "AsyncFileSharesResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

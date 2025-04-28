@@ -13,6 +13,7 @@ from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .ip_ranges import IPRanges as IPRanges
+from .file_share import FileShare as FileShare
 from .image_list import ImageList as ImageList
 from .ip_version import IPVersion as IPVersion
 from .floating_ip import FloatingIP as FloatingIP
@@ -47,11 +48,15 @@ from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
+from .file_share_list_params import FileShareListParams as FileShareListParams
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
 from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .region_retrieve_params import RegionRetrieveParams as RegionRetrieveParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
+from .file_share_create_params import FileShareCreateParams as FileShareCreateParams
+from .file_share_resize_params import FileShareResizeParams as FileShareResizeParams
+from .file_share_update_params import FileShareUpdateParams as FileShareUpdateParams
 from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStatistics
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams

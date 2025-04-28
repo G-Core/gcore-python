@@ -309,3 +309,34 @@ Methods:
 - <code title="post /cloud/v1/images/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">create_from_volume</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_create_from_volume_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/images/{project_id}/{region_id}/{image_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">get</a>(image_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image.py">Image</a></code>
 - <code title="post /cloud/v1/downloadimage/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+## FileShares
+
+Types:
+
+```python
+from gcore.types.cloud import FileShare
+```
+
+Methods:
+
+- <code title="post /cloud/v1/file_shares/{project_id}/{region_id}">client.cloud.file_shares.<a href="./src/gcore/resources/cloud/file_shares/file_shares.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_share_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}">client.cloud.file_shares.<a href="./src/gcore/resources/cloud/file_shares/file_shares.py">update</a>(file_share_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_share_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/file_share.py">FileShare</a></code>
+- <code title="get /cloud/v1/file_shares/{project_id}/{region_id}">client.cloud.file_shares.<a href="./src/gcore/resources/cloud/file_shares/file_shares.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_share_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/file_share.py">SyncOffsetPage[FileShare]</a></code>
+- <code title="delete /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}">client.cloud.file_shares.<a href="./src/gcore/resources/cloud/file_shares/file_shares.py">delete</a>(file_share_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}">client.cloud.file_shares.<a href="./src/gcore/resources/cloud/file_shares/file_shares.py">get</a>(file_share_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/file_share.py">FileShare</a></code>
+- <code title="post /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend">client.cloud.file_shares.<a href="./src/gcore/resources/cloud/file_shares/file_shares.py">resize</a>(file_share_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_share_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+### AccessRules
+
+Types:
+
+```python
+from gcore.types.cloud.file_shares import AccessRule, AccessRuleList
+```
+
+Methods:
+
+- <code title="post /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">create</a>(file_share_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_shares/access_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/file_shares/access_rule.py">AccessRule</a></code>
+- <code title="get /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">list</a>(file_share_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/file_shares/access_rule_list.py">AccessRuleList</a></code>
+- <code title="delete /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">delete</a>(access_rule_id, \*, project_id, region_id, file_share_id) -> None</code>
