@@ -4,15 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
+from ..neutron_route import NeutronRoute
 
-__all__ = [
-    "Router",
-    "Interface",
-    "InterfaceIPAssignment",
-    "Route",
-    "ExternalGatewayInfo",
-    "ExternalGatewayInfoExternalFixedIP",
-]
+__all__ = ["Router", "Interface", "InterfaceIPAssignment", "ExternalGatewayInfo", "ExternalGatewayInfoExternalFixedIP"]
 
 
 class InterfaceIPAssignment(BaseModel):
@@ -52,20 +46,6 @@ class Interface(BaseModel):
     """
     '#/components/schemas/PortSerializer/properties/mac_address/anyOf/0'
     "$.components.schemas.PortSerializer.properties.mac_address.anyOf[0]"
-    """
-
-
-class Route(BaseModel):
-    destination: str
-    """
-    '#/components/schemas/RouteOutSerializer/properties/destination'
-    "$.components.schemas.RouteOutSerializer.properties.destination"
-    """
-
-    nexthop: str
-    """
-    '#/components/schemas/RouteOutSerializer/properties/nexthop'
-    "$.components.schemas.RouteOutSerializer.properties.nexthop"
     """
 
 
@@ -152,7 +132,7 @@ class Router(BaseModel):
     "$.components.schemas.RouterSerializer.properties.region_id"
     """
 
-    routes: List[Route]
+    routes: List[NeutronRoute]
     """
     '#/components/schemas/RouterSerializer/properties/routes'
     "$.components.schemas.RouterSerializer.properties.routes"

@@ -20,6 +20,7 @@ from .floating_ip import FloatingIP as FloatingIP
 from .ddos_profile import DDOSProfile as DDOSProfile
 from .task_id_list import TaskIDList as TaskIDList
 from .load_balancer import LoadBalancer as LoadBalancer
+from .neutron_route import NeutronRoute as NeutronRoute
 from .security_group import SecurityGroup as SecurityGroup
 from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
 from .task_list_params import TaskListParams as TaskListParams
@@ -31,6 +32,7 @@ from .volume_list_params import VolumeListParams as VolumeListParams
 from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
 from .network_list_params import NetworkListParams as NetworkListParams
+from .neutron_route_param import NeutronRouteParam as NeutronRouteParam
 from .project_list_params import ProjectListParams as ProjectListParams
 from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .security_group_rule import SecurityGroupRule as SecurityGroupRule

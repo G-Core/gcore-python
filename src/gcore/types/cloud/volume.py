@@ -163,7 +163,6 @@ class Volume(BaseModel):
         "reserved",
         "restoring-backup",
         "retyping",
-        "reverting",
         "uploading",
     ]
     """

@@ -27,6 +27,7 @@ from ....types.cloud.networks import (
 )
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.networks.router import Router
+from ....types.cloud.neutron_route_param import NeutronRouteParam
 
 __all__ = ["RoutersResource", "AsyncRoutersResource"]
 
@@ -59,7 +60,7 @@ class RoutersResource(SyncAPIResource):
         name: str,
         external_gateway_info: Optional[router_create_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
         interfaces: Optional[Iterable[router_create_params.Interface]] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_create_params.Route]] | NotGiven = NOT_GIVEN,
+        routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,7 +127,7 @@ class RoutersResource(SyncAPIResource):
         region_id: int | None = None,
         external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_update_params.Route]] | NotGiven = NOT_GIVEN,
+        routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -478,7 +479,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         name: str,
         external_gateway_info: Optional[router_create_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
         interfaces: Optional[Iterable[router_create_params.Interface]] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_create_params.Route]] | NotGiven = NOT_GIVEN,
+        routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -545,7 +546,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         region_id: int | None = None,
         external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_update_params.Route]] | NotGiven = NOT_GIVEN,
+        routes: Optional[Iterable[NeutronRouteParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

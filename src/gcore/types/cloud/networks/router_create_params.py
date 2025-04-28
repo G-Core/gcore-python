@@ -5,13 +5,14 @@ from __future__ import annotations
 from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..neutron_route_param import NeutronRouteParam
+
 __all__ = [
     "RouterCreateParams",
     "ExternalGatewayInfo",
     "ExternalGatewayInfoRouterExternalManualGwSerializer",
     "ExternalGatewayInfoRouterExternalDefaultGwSerializer",
     "Interface",
-    "Route",
 ]
 
 
@@ -46,7 +47,7 @@ class RouterCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateRouterSerializer.properties.interfaces.anyOf[0]"
     """
 
-    routes: Optional[Iterable[Route]]
+    routes: Optional[Iterable[NeutronRouteParam]]
     """
     '#/components/schemas/CreateRouterSerializer/properties/routes/anyOf/0'
     "$.components.schemas.CreateRouterSerializer.properties.routes.anyOf[0]"
@@ -103,18 +104,4 @@ class Interface(TypedDict, total=False):
     """
     '#/components/schemas/CreateRouterInterfaceSubnetSerializer/properties/type'
     "$.components.schemas.CreateRouterInterfaceSubnetSerializer.properties.type"
-    """
-
-
-class Route(TypedDict, total=False):
-    destination: Required[str]
-    """
-    '#/components/schemas/RouteInSerializer/properties/destination'
-    "$.components.schemas.RouteInSerializer.properties.destination"
-    """
-
-    nexthop: Required[str]
-    """
-    '#/components/schemas/RouteInSerializer/properties/nexthop'
-    "$.components.schemas.RouteInSerializer.properties.nexthop"
     """

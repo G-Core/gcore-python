@@ -17,11 +17,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ...._base_client import AsyncPaginator, make_request_options
+from ...._base_client import make_request_options
 from ....types.cloud.quotas import request_list_params, request_create_params
 from ....types.cloud.quotas.request_get_response import RequestGetResponse
-from ....types.cloud.quotas.request_list_response import RequestListResponse
 
 __all__ = ["RequestsResource", "AsyncRequestsResource"]
 
@@ -109,7 +107,7 @@ class RequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[RequestListResponse]:
+    ) -> None:
         """
         Returns a list of sent requests to change current quotas and their statuses
 
@@ -131,9 +129,9 @@ class RequestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._get(
             "/cloud/v2/limits_request",
-            page=SyncOffsetPage[RequestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -148,7 +146,7 @@ class RequestsResource(SyncAPIResource):
                     request_list_params.RequestListParams,
                 ),
             ),
-            model=RequestListResponse,
+            cast_to=NoneType,
         )
 
     def delete(
@@ -296,7 +294,7 @@ class AsyncRequestsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    def list(
+    async def list(
         self,
         *,
         limit: int | NotGiven = NOT_GIVEN,
@@ -308,7 +306,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RequestListResponse, AsyncOffsetPage[RequestListResponse]]:
+    ) -> None:
         """
         Returns a list of sent requests to change current quotas and their statuses
 
@@ -330,15 +328,15 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._get(
             "/cloud/v2/limits_request",
-            page=AsyncOffsetPage[RequestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -347,7 +345,7 @@ class AsyncRequestsResource(AsyncAPIResource):
                     request_list_params.RequestListParams,
                 ),
             ),
-            model=RequestListResponse,
+            cast_to=NoneType,
         )
 
     async def delete(

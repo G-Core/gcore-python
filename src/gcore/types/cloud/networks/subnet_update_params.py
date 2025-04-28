@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from typing import List, Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
-__all__ = ["SubnetUpdateParams", "HostRoute"]
+from ..neutron_route_param import NeutronRouteParam
+
+__all__ = ["SubnetUpdateParams"]
 
 
 class SubnetUpdateParams(TypedDict, total=False):
@@ -39,7 +41,7 @@ class SubnetUpdateParams(TypedDict, total=False):
     "$.components.schemas.PatchSubnetSerializer.properties.gateway_ip.anyOf[0]"
     """
 
-    host_routes: Optional[Iterable[HostRoute]]
+    host_routes: Optional[Iterable[NeutronRouteParam]]
     """
     '#/components/schemas/PatchSubnetSerializer/properties/host_routes/anyOf/0'
     "$.components.schemas.PatchSubnetSerializer.properties.host_routes.anyOf[0]"
@@ -49,18 +51,4 @@ class SubnetUpdateParams(TypedDict, total=False):
     """
     '#/components/schemas/PatchSubnetSerializer/properties/name/anyOf/0'
     "$.components.schemas.PatchSubnetSerializer.properties.name.anyOf[0]"
-    """
-
-
-class HostRoute(TypedDict, total=False):
-    destination: Required[str]
-    """
-    '#/components/schemas/RouteInSerializer/properties/destination'
-    "$.components.schemas.RouteInSerializer.properties.destination"
-    """
-
-    nexthop: Required[str]
-    """
-    '#/components/schemas/RouteInSerializer/properties/nexthop'
-    "$.components.schemas.RouteInSerializer.properties.nexthop"
     """
