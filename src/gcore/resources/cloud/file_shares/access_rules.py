@@ -87,9 +87,9 @@ class AccessRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._post(
@@ -142,9 +142,9 @@ class AccessRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._get(
@@ -194,9 +194,9 @@ class AccessRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         if not access_rule_id:
@@ -274,9 +274,9 @@ class AsyncAccessRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._post(
@@ -329,9 +329,9 @@ class AsyncAccessRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._get(
@@ -381,9 +381,9 @@ class AsyncAccessRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if project_id is None:
-            project_id = self._client._get_project_id_path_param()
+            project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         if not access_rule_id:

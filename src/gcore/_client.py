@@ -40,17 +40,17 @@ class Gcore(SyncAPIClient):
 
     # client options
     api_key: str
-    project_id: int | None
-    region_id: int | None
-    polling_interval_ms: int | None
+    cloud_project_id: int | None
+    cloud_region_id: int | None
+    cloud_polling_interval_ms: int | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_ms: int | None = 1000,
+        cloud_project_id: int | None = None,
+        cloud_region_id: int | None = None,
+        cloud_polling_interval_ms: int | None = 1000,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -74,8 +74,8 @@ class Gcore(SyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GCORE_API_KEY`
-        - `project_id` from `GCORE_PROJECT`
-        - `region_id` from `GCORE_REGION`
+        - `cloud_project_id` from `GCORE_CLOUD_PROJECT_ID`
+        - `cloud_region_id` from `GCORE_CLOUD_REGION_ID`
         """
         if api_key is None:
             api_key = os.environ.get("GCORE_API_KEY")
@@ -85,17 +85,17 @@ class Gcore(SyncAPIClient):
             )
         self.api_key = api_key
 
-        if project_id is None:
-            project_id = maybe_coerce_integer(os.environ.get("GCORE_PROJECT"))
-        self.project_id = project_id
+        if cloud_project_id is None:
+            cloud_project_id = maybe_coerce_integer(os.environ.get("GCORE_CLOUD_PROJECT_ID"))
+        self.cloud_project_id = cloud_project_id
 
-        if region_id is None:
-            region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION"))
-        self.region_id = region_id
+        if cloud_region_id is None:
+            cloud_region_id = maybe_coerce_integer(os.environ.get("GCORE_CLOUD_REGION_ID"))
+        self.cloud_region_id = cloud_region_id
 
-        if polling_interval_ms is None:
-            polling_interval_ms = 1000
-        self.polling_interval_ms = polling_interval_ms
+        if cloud_polling_interval_ms is None:
+            cloud_polling_interval_ms = 1000
+        self.cloud_polling_interval_ms = cloud_polling_interval_ms
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
@@ -141,9 +141,9 @@ class Gcore(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_ms: int | None = None,
+        cloud_project_id: int | None = None,
+        cloud_region_id: int | None = None,
+        cloud_polling_interval_ms: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -178,9 +178,9 @@ class Gcore(SyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             api_key=api_key or self.api_key,
-            project_id=project_id or self.project_id,
-            region_id=region_id or self.region_id,
-            polling_interval_ms=polling_interval_ms or self.polling_interval_ms,
+            cloud_project_id=cloud_project_id or self.cloud_project_id,
+            cloud_region_id=cloud_region_id or self.cloud_region_id,
+            cloud_polling_interval_ms=cloud_polling_interval_ms or self.cloud_polling_interval_ms,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -194,22 +194,22 @@ class Gcore(SyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
-    def _get_project_id_path_param(self) -> int:
-        from_client = self.project_id
+    def _get_cloud_project_id_path_param(self) -> int:
+        from_client = self.cloud_project_id
         if from_client is not None:
             return from_client
 
         raise ValueError(
-            "Missing project_id argument; Please provide it at the client level, e.g. Gcore(project_id='abcd') or per method."
+            "Missing cloud_project_id argument; Please provide it at the client level, e.g. Gcore(cloud_project_id='abcd') or per method."
         )
 
-    def _get_region_id_path_param(self) -> int:
-        from_client = self.region_id
+    def _get_cloud_region_id_path_param(self) -> int:
+        from_client = self.cloud_region_id
         if from_client is not None:
             return from_client
 
         raise ValueError(
-            "Missing region_id argument; Please provide it at the client level, e.g. Gcore(region_id='abcd') or per method."
+            "Missing cloud_region_id argument; Please provide it at the client level, e.g. Gcore(cloud_region_id='abcd') or per method."
         )
 
     @override
@@ -253,17 +253,17 @@ class AsyncGcore(AsyncAPIClient):
 
     # client options
     api_key: str
-    project_id: int | None
-    region_id: int | None
-    polling_interval_ms: int | None
+    cloud_project_id: int | None
+    cloud_region_id: int | None
+    cloud_polling_interval_ms: int | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_ms: int | None = 1000,
+        cloud_project_id: int | None = None,
+        cloud_region_id: int | None = None,
+        cloud_polling_interval_ms: int | None = 1000,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -287,8 +287,8 @@ class AsyncGcore(AsyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GCORE_API_KEY`
-        - `project_id` from `GCORE_PROJECT`
-        - `region_id` from `GCORE_REGION`
+        - `cloud_project_id` from `GCORE_CLOUD_PROJECT_ID`
+        - `cloud_region_id` from `GCORE_CLOUD_REGION_ID`
         """
         if api_key is None:
             api_key = os.environ.get("GCORE_API_KEY")
@@ -298,17 +298,17 @@ class AsyncGcore(AsyncAPIClient):
             )
         self.api_key = api_key
 
-        if project_id is None:
-            project_id = maybe_coerce_integer(os.environ.get("GCORE_PROJECT"))
-        self.project_id = project_id
+        if cloud_project_id is None:
+            cloud_project_id = maybe_coerce_integer(os.environ.get("GCORE_CLOUD_PROJECT_ID"))
+        self.cloud_project_id = cloud_project_id
 
-        if region_id is None:
-            region_id = maybe_coerce_integer(os.environ.get("GCORE_REGION"))
-        self.region_id = region_id
+        if cloud_region_id is None:
+            cloud_region_id = maybe_coerce_integer(os.environ.get("GCORE_CLOUD_REGION_ID"))
+        self.cloud_region_id = cloud_region_id
 
-        if polling_interval_ms is None:
-            polling_interval_ms = 1000
-        self.polling_interval_ms = polling_interval_ms
+        if cloud_polling_interval_ms is None:
+            cloud_polling_interval_ms = 1000
+        self.cloud_polling_interval_ms = cloud_polling_interval_ms
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
@@ -354,9 +354,9 @@ class AsyncGcore(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_ms: int | None = None,
+        cloud_project_id: int | None = None,
+        cloud_region_id: int | None = None,
+        cloud_polling_interval_ms: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -391,9 +391,9 @@ class AsyncGcore(AsyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             api_key=api_key or self.api_key,
-            project_id=project_id or self.project_id,
-            region_id=region_id or self.region_id,
-            polling_interval_ms=polling_interval_ms or self.polling_interval_ms,
+            cloud_project_id=cloud_project_id or self.cloud_project_id,
+            cloud_region_id=cloud_region_id or self.cloud_region_id,
+            cloud_polling_interval_ms=cloud_polling_interval_ms or self.cloud_polling_interval_ms,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -407,22 +407,22 @@ class AsyncGcore(AsyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
-    def _get_project_id_path_param(self) -> int:
-        from_client = self.project_id
+    def _get_cloud_project_id_path_param(self) -> int:
+        from_client = self.cloud_project_id
         if from_client is not None:
             return from_client
 
         raise ValueError(
-            "Missing project_id argument; Please provide it at the client level, e.g. AsyncGcore(project_id='abcd') or per method."
+            "Missing cloud_project_id argument; Please provide it at the client level, e.g. AsyncGcore(cloud_project_id='abcd') or per method."
         )
 
-    def _get_region_id_path_param(self) -> int:
-        from_client = self.region_id
+    def _get_cloud_region_id_path_param(self) -> int:
+        from_client = self.cloud_region_id
         if from_client is not None:
             return from_client
 
         raise ValueError(
-            "Missing region_id argument; Please provide it at the client level, e.g. AsyncGcore(region_id='abcd') or per method."
+            "Missing cloud_region_id argument; Please provide it at the client level, e.g. AsyncGcore(cloud_region_id='abcd') or per method."
         )
 
     @override

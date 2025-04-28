@@ -75,7 +75,7 @@ class RegionsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
             f"/cloud/v1/regions/{region_id}",
             options=make_request_options(
@@ -207,7 +207,7 @@ class AsyncRegionsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if region_id is None:
-            region_id = self._client._get_region_id_path_param()
+            region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
             f"/cloud/v1/regions/{region_id}",
             options=make_request_options(
