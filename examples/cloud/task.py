@@ -69,7 +69,7 @@ def get_task_by_id() -> Optional[Task]:
     print(f"=== GET TASK BY ID ({task_id_to_get}) ===")
     task: Optional[Task] = None
     try:
-        task = gcore.cloud.tasks.retrieve(task_id=task_id_to_get)
+        task = gcore.cloud.tasks.get(task_id=task_id_to_get)
         print(
             f"- Task ID: {task.id}, Type: {task.task_type}, State: {task.state},"
             f" Created: {task.created_on}"

@@ -186,7 +186,7 @@ class TasksResource(SyncAPIResource):
         timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
         if not is_given(polling_interval_ms):
-            polling_interval_ms = cast(int, self._client.polling_interval_ms)
+            polling_interval_ms = cast(int, self._client.cloud_polling_interval_ms)
 
         if not is_given(timeout):
             timeout = extract_timeout_value(self._client.timeout)
@@ -535,7 +535,7 @@ class AsyncTasksResource(AsyncAPIResource):
         timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
         if not is_given(polling_interval_ms):
-            polling_interval_ms = cast(int, self._client.polling_interval_ms)
+            polling_interval_ms = cast(int, self._client.cloud_polling_interval_ms)
 
         if not is_given(timeout):
             timeout = extract_timeout_value(self._client.timeout)
