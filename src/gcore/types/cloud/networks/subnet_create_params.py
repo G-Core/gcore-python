@@ -6,9 +6,8 @@ from typing import Dict, List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from ..ip_version import IPVersion
-from ..neutron_route_param import NeutronRouteParam
 
-__all__ = ["SubnetCreateParams"]
+__all__ = ["SubnetCreateParams", "HostRoute"]
 
 
 class SubnetCreateParams(TypedDict, total=False):
@@ -66,7 +65,7 @@ class SubnetCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateSubnetSerializer.properties.gateway_ip.anyOf[0]"
     """
 
-    host_routes: Optional[Iterable[NeutronRouteParam]]
+    host_routes: Optional[Iterable[HostRoute]]
     """
     '#/components/schemas/CreateSubnetSerializer/properties/host_routes/anyOf/0'
     "$.components.schemas.CreateSubnetSerializer.properties.host_routes.anyOf[0]"
@@ -88,4 +87,18 @@ class SubnetCreateParams(TypedDict, total=False):
     """
     '#/components/schemas/CreateSubnetSerializer/properties/router_id_to_connect/anyOf/0'
     "$.components.schemas.CreateSubnetSerializer.properties.router_id_to_connect.anyOf[0]"
+    """
+
+
+class HostRoute(TypedDict, total=False):
+    destination: Required[str]
+    """
+    '#/components/schemas/RouteInSerializer/properties/destination'
+    "$.components.schemas.RouteInSerializer.properties.destination"
+    """
+
+    nexthop: Required[str]
+    """
+    '#/components/schemas/RouteInSerializer/properties/nexthop'
+    "$.components.schemas.RouteInSerializer.properties.nexthop"
     """

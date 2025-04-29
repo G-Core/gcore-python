@@ -5,9 +5,7 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from ..neutron_route_param import NeutronRouteParam
-
-__all__ = ["RouterUpdateParams", "ExternalGatewayInfo"]
+__all__ = ["RouterUpdateParams", "ExternalGatewayInfo", "Route"]
 
 
 class RouterUpdateParams(TypedDict, total=False):
@@ -35,7 +33,7 @@ class RouterUpdateParams(TypedDict, total=False):
     "$.components.schemas.PatchRouterSerializer.properties.name.anyOf[0]"
     """
 
-    routes: Optional[Iterable[NeutronRouteParam]]
+    routes: Optional[Iterable[Route]]
     """
     '#/components/schemas/PatchRouterSerializer/properties/routes/anyOf/0'
     "$.components.schemas.PatchRouterSerializer.properties.routes.anyOf[0]"
@@ -59,4 +57,18 @@ class ExternalGatewayInfo(TypedDict, total=False):
     """
     '#/components/schemas/RouterExternalManualGwSerializer/properties/type'
     "$.components.schemas.RouterExternalManualGwSerializer.properties.type"
+    """
+
+
+class Route(TypedDict, total=False):
+    destination: Required[str]
+    """
+    '#/components/schemas/RouteInSerializer/properties/destination'
+    "$.components.schemas.RouteInSerializer.properties.destination"
+    """
+
+    nexthop: Required[str]
+    """
+    '#/components/schemas/RouteInSerializer/properties/nexthop'
+    "$.components.schemas.RouteInSerializer.properties.nexthop"
     """

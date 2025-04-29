@@ -6,9 +6,22 @@ from datetime import datetime
 from .tag import Tag
 from ..._models import BaseModel
 from .ip_version import IPVersion
-from .neutron_route import NeutronRoute
 
-__all__ = ["Subnet"]
+__all__ = ["Subnet", "HostRoute"]
+
+
+class HostRoute(BaseModel):
+    destination: str
+    """
+    '#/components/schemas/RouteOutSerializer/properties/destination'
+    "$.components.schemas.RouteOutSerializer.properties.destination"
+    """
+
+    nexthop: str
+    """
+    '#/components/schemas/RouteOutSerializer/properties/nexthop'
+    "$.components.schemas.RouteOutSerializer.properties.nexthop"
+    """
 
 
 class Subnet(BaseModel):
@@ -114,7 +127,7 @@ class Subnet(BaseModel):
     "$.components.schemas.SubnetSerializer.properties.has_router"
     """
 
-    host_routes: Optional[List[NeutronRoute]] = None
+    host_routes: Optional[List[HostRoute]] = None
     """
     '#/components/schemas/SubnetSerializer/properties/host_routes/anyOf/0'
     "$.components.schemas.SubnetSerializer.properties.host_routes.anyOf[0]"
