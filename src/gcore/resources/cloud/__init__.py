@@ -128,6 +128,14 @@ from .reserved_fixed_ips import (
     ReservedFixedIPsResourceWithStreamingResponse,
     AsyncReservedFixedIPsResourceWithStreamingResponse,
 )
+from .billing_reservations import (
+    BillingReservationsResource,
+    AsyncBillingReservationsResource,
+    BillingReservationsResourceWithRawResponse,
+    AsyncBillingReservationsResourceWithRawResponse,
+    BillingReservationsResourceWithStreamingResponse,
+    AsyncBillingReservationsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ProjectsResource",
@@ -220,6 +228,12 @@ __all__ = [
     "AsyncFileSharesResourceWithRawResponse",
     "FileSharesResourceWithStreamingResponse",
     "AsyncFileSharesResourceWithStreamingResponse",
+    "BillingReservationsResource",
+    "AsyncBillingReservationsResource",
+    "BillingReservationsResourceWithRawResponse",
+    "AsyncBillingReservationsResourceWithRawResponse",
+    "BillingReservationsResourceWithStreamingResponse",
+    "AsyncBillingReservationsResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

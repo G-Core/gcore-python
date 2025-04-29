@@ -343,3 +343,16 @@ Methods:
 - <code title="post /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">create</a>(file_share_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_shares/access_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/file_shares/access_rule.py">AccessRule</a></code>
 - <code title="get /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">list</a>(file_share_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/file_shares/access_rule_list.py">AccessRuleList</a></code>
 - <code title="delete /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">delete</a>(access_rule_id, \*, project_id, region_id, file_share_id) -> None</code>
+
+## BillingReservations
+
+Types:
+
+```python
+from gcore.types.cloud import BillingReservation
+```
+
+Methods:
+
+- <code title="get /cloud/v1/reservations">client.cloud.billing_reservations.<a href="./src/gcore/resources/cloud/billing_reservations.py">list</a>(\*\*<a href="src/gcore/types/cloud/billing_reservation_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/billing_reservation.py">SyncOffsetPage[BillingReservation]</a></code>
+- <code title="get /cloud/v1/reservations/{reservation_id}">client.cloud.billing_reservations.<a href="./src/gcore/resources/cloud/billing_reservations.py">get</a>(reservation_id) -> <a href="./src/gcore/types/cloud/billing_reservation.py">BillingReservation</a></code>

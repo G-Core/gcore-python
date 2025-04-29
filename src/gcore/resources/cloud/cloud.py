@@ -100,6 +100,14 @@ from .instances.instances import (
     InstancesResourceWithStreamingResponse,
     AsyncInstancesResourceWithStreamingResponse,
 )
+from .billing_reservations import (
+    BillingReservationsResource,
+    AsyncBillingReservationsResource,
+    BillingReservationsResourceWithRawResponse,
+    AsyncBillingReservationsResourceWithRawResponse,
+    BillingReservationsResourceWithStreamingResponse,
+    AsyncBillingReservationsResourceWithStreamingResponse,
+)
 from .file_shares.file_shares import (
     FileSharesResource,
     AsyncFileSharesResource,
@@ -190,6 +198,10 @@ class CloudResource(SyncAPIResource):
         return FileSharesResource(self._client)
 
     @cached_property
+    def billing_reservations(self) -> BillingReservationsResource:
+        return BillingReservationsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -269,6 +281,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def file_shares(self) -> AsyncFileSharesResource:
         return AsyncFileSharesResource(self._client)
+
+    @cached_property
+    def billing_reservations(self) -> AsyncBillingReservationsResource:
+        return AsyncBillingReservationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -354,6 +370,10 @@ class CloudResourceWithRawResponse:
     def file_shares(self) -> FileSharesResourceWithRawResponse:
         return FileSharesResourceWithRawResponse(self._cloud.file_shares)
 
+    @cached_property
+    def billing_reservations(self) -> BillingReservationsResourceWithRawResponse:
+        return BillingReservationsResourceWithRawResponse(self._cloud.billing_reservations)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -418,6 +438,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def file_shares(self) -> AsyncFileSharesResourceWithRawResponse:
         return AsyncFileSharesResourceWithRawResponse(self._cloud.file_shares)
+
+    @cached_property
+    def billing_reservations(self) -> AsyncBillingReservationsResourceWithRawResponse:
+        return AsyncBillingReservationsResourceWithRawResponse(self._cloud.billing_reservations)
 
 
 class CloudResourceWithStreamingResponse:
@@ -484,6 +508,10 @@ class CloudResourceWithStreamingResponse:
     def file_shares(self) -> FileSharesResourceWithStreamingResponse:
         return FileSharesResourceWithStreamingResponse(self._cloud.file_shares)
 
+    @cached_property
+    def billing_reservations(self) -> BillingReservationsResourceWithStreamingResponse:
+        return BillingReservationsResourceWithStreamingResponse(self._cloud.billing_reservations)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -548,3 +576,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def file_shares(self) -> AsyncFileSharesResourceWithStreamingResponse:
         return AsyncFileSharesResourceWithStreamingResponse(self._cloud.file_shares)
+
+    @cached_property
+    def billing_reservations(self) -> AsyncBillingReservationsResourceWithStreamingResponse:
+        return AsyncBillingReservationsResourceWithStreamingResponse(self._cloud.billing_reservations)
