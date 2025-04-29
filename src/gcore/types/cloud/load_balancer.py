@@ -76,26 +76,26 @@ class LoggingRetentionPolicy(BaseModel):
 class Logging(BaseModel):
     destination_region_id: Optional[int] = None
     """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/destination_region_id/anyOf/0'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.destination_region_id.anyOf[0]"
+    '#/components/schemas/LoggingOutSerializer/properties/destination_region_id/anyOf/0'
+    "$.components.schemas.LoggingOutSerializer.properties.destination_region_id.anyOf[0]"
     """
 
-    enabled: Optional[bool] = None
+    enabled: bool
     """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/enabled'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.enabled"
-    """
-
-    retention_policy: Optional[LoggingRetentionPolicy] = None
-    """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/retention_policy/anyOf/0'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.retention_policy.anyOf[0]"
+    '#/components/schemas/LoggingOutSerializer/properties/enabled'
+    "$.components.schemas.LoggingOutSerializer.properties.enabled"
     """
 
     topic_name: Optional[str] = None
     """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/topic_name/anyOf/0'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.topic_name.anyOf[0]"
+    '#/components/schemas/LoggingOutSerializer/properties/topic_name/anyOf/0'
+    "$.components.schemas.LoggingOutSerializer.properties.topic_name.anyOf[0]"
+    """
+
+    retention_policy: Optional[LoggingRetentionPolicy] = None
+    """
+    '#/components/schemas/LoggingOutSerializer/properties/retention_policy/anyOf/0'
+    "$.components.schemas.LoggingOutSerializer.properties.retention_policy.anyOf[0]"
     """
 
 

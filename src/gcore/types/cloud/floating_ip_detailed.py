@@ -13,85 +13,85 @@ __all__ = [
     "FloatingIPDetailed",
     "Instance",
     "InstanceAddress",
-    "InstanceAddressSimpleAddressSerializer",
-    "InstanceAddressAddressInterfaceSerializer",
-    "InstanceAddressAddressDetailedSerializer",
+    "InstanceAddressInstanceFloatingAddressSerializer",
+    "InstanceAddressInstanceFixedAddressShortSerializer",
+    "InstanceAddressInstanceFixedAddressSerializer",
     "InstanceFlavor",
     "InstanceSecurityGroup",
     "InstanceVolume",
 ]
 
 
-class InstanceAddressSimpleAddressSerializer(BaseModel):
+class InstanceAddressInstanceFloatingAddressSerializer(BaseModel):
     addr: str
     """
-    '#/components/schemas/SimpleAddressSerializer/properties/addr'
-    "$.components.schemas.SimpleAddressSerializer.properties.addr"
+    '#/components/schemas/InstanceFloatingAddressSerializer/properties/addr'
+    "$.components.schemas.InstanceFloatingAddressSerializer.properties.addr"
     """
 
-    type: str
+    type: Literal["floating"]
     """
-    '#/components/schemas/SimpleAddressSerializer/properties/type'
-    "$.components.schemas.SimpleAddressSerializer.properties.type"
+    '#/components/schemas/InstanceFloatingAddressSerializer/properties/type'
+    "$.components.schemas.InstanceFloatingAddressSerializer.properties.type"
     """
 
 
-class InstanceAddressAddressInterfaceSerializer(BaseModel):
+class InstanceAddressInstanceFixedAddressShortSerializer(BaseModel):
     addr: str
     """
-    '#/components/schemas/AddressInterfaceSerializer/properties/addr'
-    "$.components.schemas.AddressInterfaceSerializer.properties.addr"
+    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/addr'
+    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.addr"
     """
 
     interface_name: Optional[str] = None
     """
-    '#/components/schemas/AddressInterfaceSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.AddressInterfaceSerializer.properties.interface_name.anyOf[0]"
+    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/interface_name/anyOf/0'
+    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.interface_name.anyOf[0]"
     """
 
-    type: str
+    type: Literal["fixed"]
     """
-    '#/components/schemas/AddressInterfaceSerializer/properties/type'
-    "$.components.schemas.AddressInterfaceSerializer.properties.type"
+    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/type'
+    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.type"
     """
 
 
-class InstanceAddressAddressDetailedSerializer(BaseModel):
+class InstanceAddressInstanceFixedAddressSerializer(BaseModel):
     addr: str
     """
-    '#/components/schemas/AddressDetailedSerializer/properties/addr'
-    "$.components.schemas.AddressDetailedSerializer.properties.addr"
+    '#/components/schemas/InstanceFixedAddressSerializer/properties/addr'
+    "$.components.schemas.InstanceFixedAddressSerializer.properties.addr"
     """
 
     interface_name: Optional[str] = None
     """
-    '#/components/schemas/AddressDetailedSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.AddressDetailedSerializer.properties.interface_name.anyOf[0]"
+    '#/components/schemas/InstanceFixedAddressSerializer/properties/interface_name/anyOf/0'
+    "$.components.schemas.InstanceFixedAddressSerializer.properties.interface_name.anyOf[0]"
     """
 
     subnet_id: str
     """
-    '#/components/schemas/AddressDetailedSerializer/properties/subnet_id'
-    "$.components.schemas.AddressDetailedSerializer.properties.subnet_id"
+    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_id'
+    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_id"
     """
 
     subnet_name: str
     """
-    '#/components/schemas/AddressDetailedSerializer/properties/subnet_name'
-    "$.components.schemas.AddressDetailedSerializer.properties.subnet_name"
+    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_name'
+    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_name"
     """
 
-    type: str
+    type: Literal["fixed"]
     """
-    '#/components/schemas/AddressDetailedSerializer/properties/type'
-    "$.components.schemas.AddressDetailedSerializer.properties.type"
+    '#/components/schemas/InstanceFixedAddressSerializer/properties/type'
+    "$.components.schemas.InstanceFixedAddressSerializer.properties.type"
     """
 
 
 InstanceAddress: TypeAlias = Union[
-    InstanceAddressSimpleAddressSerializer,
-    InstanceAddressAddressInterfaceSerializer,
-    InstanceAddressAddressDetailedSerializer,
+    InstanceAddressInstanceFloatingAddressSerializer,
+    InstanceAddressInstanceFixedAddressShortSerializer,
+    InstanceAddressInstanceFixedAddressSerializer,
 ]
 
 

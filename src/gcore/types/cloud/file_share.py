@@ -110,6 +110,7 @@ class FileShare(BaseModel):
         "creating_from_snapshot",
         "deleted",
         "deleting",
+        "ensuring",
         "error",
         "error_deleting",
         "extending",
