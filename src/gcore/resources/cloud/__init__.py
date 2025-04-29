@@ -112,6 +112,14 @@ from .floating_ips import (
     FloatingIPsResourceWithStreamingResponse,
     AsyncFloatingIPsResourceWithStreamingResponse,
 )
+from .load_balancers import (
+    LoadBalancersResource,
+    AsyncLoadBalancersResource,
+    LoadBalancersResourceWithRawResponse,
+    AsyncLoadBalancersResourceWithRawResponse,
+    LoadBalancersResourceWithStreamingResponse,
+    AsyncLoadBalancersResourceWithStreamingResponse,
+)
 from .security_groups import (
     SecurityGroupsResource,
     AsyncSecurityGroupsResource,
@@ -188,6 +196,12 @@ __all__ = [
     "AsyncIPRangesResourceWithRawResponse",
     "IPRangesResourceWithStreamingResponse",
     "AsyncIPRangesResourceWithStreamingResponse",
+    "LoadBalancersResource",
+    "AsyncLoadBalancersResource",
+    "LoadBalancersResourceWithRawResponse",
+    "AsyncLoadBalancersResourceWithRawResponse",
+    "LoadBalancersResourceWithStreamingResponse",
+    "AsyncLoadBalancersResourceWithStreamingResponse",
     "ReservedFixedIPsResource",
     "AsyncReservedFixedIPsResource",
     "ReservedFixedIPsResourceWithRawResponse",

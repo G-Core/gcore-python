@@ -124,6 +124,14 @@ from .file_shares.file_shares import (
     FileSharesResourceWithStreamingResponse,
     AsyncFileSharesResourceWithStreamingResponse,
 )
+from .load_balancers.load_balancers import (
+    LoadBalancersResource,
+    AsyncLoadBalancersResource,
+    LoadBalancersResourceWithRawResponse,
+    AsyncLoadBalancersResourceWithRawResponse,
+    LoadBalancersResourceWithStreamingResponse,
+    AsyncLoadBalancersResourceWithStreamingResponse,
+)
 from .security_groups.security_groups import (
     SecurityGroupsResource,
     AsyncSecurityGroupsResource,
@@ -172,6 +180,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def ip_ranges(self) -> IPRangesResource:
         return IPRangesResource(self._client)
+
+    @cached_property
+    def load_balancers(self) -> LoadBalancersResource:
+        return LoadBalancersResource(self._client)
 
     @cached_property
     def reserved_fixed_ips(self) -> ReservedFixedIPsResource:
@@ -261,6 +273,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResource:
         return AsyncIPRangesResource(self._client)
+
+    @cached_property
+    def load_balancers(self) -> AsyncLoadBalancersResource:
+        return AsyncLoadBalancersResource(self._client)
 
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResource:
@@ -355,6 +371,10 @@ class CloudResourceWithRawResponse:
         return IPRangesResourceWithRawResponse(self._cloud.ip_ranges)
 
     @cached_property
+    def load_balancers(self) -> LoadBalancersResourceWithRawResponse:
+        return LoadBalancersResourceWithRawResponse(self._cloud.load_balancers)
+
+    @cached_property
     def reserved_fixed_ips(self) -> ReservedFixedIPsResourceWithRawResponse:
         return ReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
 
@@ -426,6 +446,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithRawResponse:
         return AsyncIPRangesResourceWithRawResponse(self._cloud.ip_ranges)
+
+    @cached_property
+    def load_balancers(self) -> AsyncLoadBalancersResourceWithRawResponse:
+        return AsyncLoadBalancersResourceWithRawResponse(self._cloud.load_balancers)
 
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithRawResponse:
@@ -501,6 +525,10 @@ class CloudResourceWithStreamingResponse:
         return IPRangesResourceWithStreamingResponse(self._cloud.ip_ranges)
 
     @cached_property
+    def load_balancers(self) -> LoadBalancersResourceWithStreamingResponse:
+        return LoadBalancersResourceWithStreamingResponse(self._cloud.load_balancers)
+
+    @cached_property
     def reserved_fixed_ips(self) -> ReservedFixedIPsResourceWithStreamingResponse:
         return ReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
 
@@ -572,6 +600,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithStreamingResponse:
         return AsyncIPRangesResourceWithStreamingResponse(self._cloud.ip_ranges)
+
+    @cached_property
+    def load_balancers(self) -> AsyncLoadBalancersResourceWithStreamingResponse:
+        return AsyncLoadBalancersResourceWithStreamingResponse(self._cloud.load_balancers)
 
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithStreamingResponse:
