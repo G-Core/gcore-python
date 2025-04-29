@@ -29,6 +29,7 @@ from .ddos_profile_field import DDOSProfileField as DDOSProfileField
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .region_list_params import RegionListParams as RegionListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
+from .billing_reservation import BillingReservation as BillingReservation
 from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
 from .network_list_params import NetworkListParams as NetworkListParams
@@ -75,6 +76,7 @@ from .security_group_create_params import SecurityGroupCreateParams as SecurityG
 from .security_group_update_params import SecurityGroupUpdateParams as SecurityGroupUpdateParams
 from .reserved_fixed_ip_list_params import ReservedFixedIPListParams as ReservedFixedIPListParams
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
+from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams
 from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
