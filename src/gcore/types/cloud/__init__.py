@@ -22,6 +22,7 @@ from .task_id_list import TaskIDList as TaskIDList
 from .load_balancer import LoadBalancer as LoadBalancer
 from .neutron_route import NeutronRoute as NeutronRoute
 from .security_group import SecurityGroup as SecurityGroup
+from .placement_group import PlacementGroup as PlacementGroup
 from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
 from .task_list_params import TaskListParams as TaskListParams
 from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
@@ -39,6 +40,7 @@ from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .security_group_rule import SecurityGroupRule as SecurityGroupRule
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
+from .placement_group_list import PlacementGroupList as PlacementGroupList
 from .secret_create_params import SecretCreateParams as SecretCreateParams
 from .secret_list_response import SecretListResponse as SecretListResponse
 from .volume_create_params import VolumeCreateParams as VolumeCreateParams
@@ -74,6 +76,7 @@ from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowl
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
 from .security_group_create_params import SecurityGroupCreateParams as SecurityGroupCreateParams
 from .security_group_update_params import SecurityGroupUpdateParams as SecurityGroupUpdateParams
+from .placement_group_create_params import PlacementGroupCreateParams as PlacementGroupCreateParams
 from .reserved_fixed_ip_list_params import ReservedFixedIPListParams as ReservedFixedIPListParams
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
 from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams

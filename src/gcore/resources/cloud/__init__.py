@@ -120,6 +120,14 @@ from .security_groups import (
     SecurityGroupsResourceWithStreamingResponse,
     AsyncSecurityGroupsResourceWithStreamingResponse,
 )
+from .placement_groups import (
+    PlacementGroupsResource,
+    AsyncPlacementGroupsResource,
+    PlacementGroupsResourceWithRawResponse,
+    AsyncPlacementGroupsResourceWithRawResponse,
+    PlacementGroupsResourceWithStreamingResponse,
+    AsyncPlacementGroupsResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -210,6 +218,12 @@ __all__ = [
     "AsyncSecurityGroupsResourceWithRawResponse",
     "SecurityGroupsResourceWithStreamingResponse",
     "AsyncSecurityGroupsResourceWithStreamingResponse",
+    "PlacementGroupsResource",
+    "AsyncPlacementGroupsResource",
+    "PlacementGroupsResourceWithRawResponse",
+    "AsyncPlacementGroupsResourceWithRawResponse",
+    "PlacementGroupsResourceWithStreamingResponse",
+    "AsyncPlacementGroupsResourceWithStreamingResponse",
     "BaremetalResource",
     "AsyncBaremetalResource",
     "BaremetalResourceWithRawResponse",
