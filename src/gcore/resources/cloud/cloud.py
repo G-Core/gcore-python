@@ -76,6 +76,14 @@ from .quotas.quotas import (
     QuotasResourceWithStreamingResponse,
     AsyncQuotasResourceWithStreamingResponse,
 )
+from .placement_groups import (
+    PlacementGroupsResource,
+    AsyncPlacementGroupsResource,
+    PlacementGroupsResourceWithRawResponse,
+    AsyncPlacementGroupsResourceWithRawResponse,
+    PlacementGroupsResourceWithStreamingResponse,
+    AsyncPlacementGroupsResourceWithStreamingResponse,
+)
 from .networks.networks import (
     NetworksResource,
     AsyncNetworksResource,
@@ -186,6 +194,10 @@ class CloudResource(SyncAPIResource):
         return SecurityGroupsResource(self._client)
 
     @cached_property
+    def placement_groups(self) -> PlacementGroupsResource:
+        return PlacementGroupsResource(self._client)
+
+    @cached_property
     def baremetal(self) -> BaremetalResource:
         return BaremetalResource(self._client)
 
@@ -269,6 +281,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResource:
         return AsyncSecurityGroupsResource(self._client)
+
+    @cached_property
+    def placement_groups(self) -> AsyncPlacementGroupsResource:
+        return AsyncPlacementGroupsResource(self._client)
 
     @cached_property
     def baremetal(self) -> AsyncBaremetalResource:
@@ -359,6 +375,10 @@ class CloudResourceWithRawResponse:
         return SecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
 
     @cached_property
+    def placement_groups(self) -> PlacementGroupsResourceWithRawResponse:
+        return PlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
+
+    @cached_property
     def baremetal(self) -> BaremetalResourceWithRawResponse:
         return BaremetalResourceWithRawResponse(self._cloud.baremetal)
 
@@ -426,6 +446,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithRawResponse:
         return AsyncSecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
+
+    @cached_property
+    def placement_groups(self) -> AsyncPlacementGroupsResourceWithRawResponse:
+        return AsyncPlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
     @cached_property
     def baremetal(self) -> AsyncBaremetalResourceWithRawResponse:
@@ -497,6 +521,10 @@ class CloudResourceWithStreamingResponse:
         return SecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
 
     @cached_property
+    def placement_groups(self) -> PlacementGroupsResourceWithStreamingResponse:
+        return PlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
+
+    @cached_property
     def baremetal(self) -> BaremetalResourceWithStreamingResponse:
         return BaremetalResourceWithStreamingResponse(self._cloud.baremetal)
 
@@ -564,6 +592,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithStreamingResponse:
         return AsyncSecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
+
+    @cached_property
+    def placement_groups(self) -> AsyncPlacementGroupsResourceWithStreamingResponse:
+        return AsyncPlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 
     @cached_property
     def baremetal(self) -> AsyncBaremetalResourceWithStreamingResponse:

@@ -1,0 +1,529 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Literal
+
+import httpx
+
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...types.cloud import placement_group_create_params
+from ..._base_client import make_request_options
+from ...types.cloud.task_id_list import TaskIDList
+from ...types.cloud.placement_group import PlacementGroup
+from ...types.cloud.placement_group_list import PlacementGroupList
+
+__all__ = ["PlacementGroupsResource", "AsyncPlacementGroupsResource"]
+
+
+class PlacementGroupsResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> PlacementGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return PlacementGroupsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PlacementGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        """
+        return PlacementGroupsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str,
+        policy: Literal["affinity", "anti-affinity", "soft-anti-affinity"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PlacementGroup:
+        """
+        Create an affinity or anti-affinity or soft-anti-affinity placement group
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[1].schema"
+
+          name: '#/components/schemas/CreateServerGroupSerializer/properties/name'
+              "$.components.schemas.CreateServerGroupSerializer.properties.name"
+
+          policy: '#/components/schemas/CreateServerGroupSerializer/properties/policy'
+              "$.components.schemas.CreateServerGroupSerializer.properties.policy"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._post(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "policy": policy,
+                },
+                placement_group_create_params.PlacementGroupCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PlacementGroup,
+        )
+
+    def list(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PlacementGroupList:
+        """
+        List placement groups
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[1].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._get(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PlacementGroupList,
+        )
+
+    def delete(
+        self,
+        group_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TaskIDList:
+        """
+        Delete placement group
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[1].schema"
+
+          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/2/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[2].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return self._delete(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def get(
+        self,
+        group_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PlacementGroup:
+        """
+        Get placement group
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[1].schema"
+
+          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/2/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[2].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return self._get(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PlacementGroup,
+        )
+
+
+class AsyncPlacementGroupsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncPlacementGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncPlacementGroupsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncPlacementGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        """
+        return AsyncPlacementGroupsResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str,
+        policy: Literal["affinity", "anti-affinity", "soft-anti-affinity"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PlacementGroup:
+        """
+        Create an affinity or anti-affinity or soft-anti-affinity placement group
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[1].schema"
+
+          name: '#/components/schemas/CreateServerGroupSerializer/properties/name'
+              "$.components.schemas.CreateServerGroupSerializer.properties.name"
+
+          policy: '#/components/schemas/CreateServerGroupSerializer/properties/policy'
+              "$.components.schemas.CreateServerGroupSerializer.properties.policy"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return await self._post(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "policy": policy,
+                },
+                placement_group_create_params.PlacementGroupCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PlacementGroup,
+        )
+
+    async def list(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PlacementGroupList:
+        """
+        List placement groups
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[1].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return await self._get(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PlacementGroupList,
+        )
+
+    async def delete(
+        self,
+        group_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TaskIDList:
+        """
+        Delete placement group
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[1].schema"
+
+          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/2/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[2].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return await self._delete(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def get(
+        self,
+        group_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PlacementGroup:
+        """
+        Get placement group
+
+        Args:
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/0/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[0].schema"
+
+          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/1/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[1].schema"
+
+          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/2/schema'
+              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[2].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return await self._get(
+            f"/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PlacementGroup,
+        )
+
+
+class PlacementGroupsResourceWithRawResponse:
+    def __init__(self, placement_groups: PlacementGroupsResource) -> None:
+        self._placement_groups = placement_groups
+
+        self.create = to_raw_response_wrapper(
+            placement_groups.create,
+        )
+        self.list = to_raw_response_wrapper(
+            placement_groups.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            placement_groups.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            placement_groups.get,
+        )
+
+
+class AsyncPlacementGroupsResourceWithRawResponse:
+    def __init__(self, placement_groups: AsyncPlacementGroupsResource) -> None:
+        self._placement_groups = placement_groups
+
+        self.create = async_to_raw_response_wrapper(
+            placement_groups.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            placement_groups.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            placement_groups.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            placement_groups.get,
+        )
+
+
+class PlacementGroupsResourceWithStreamingResponse:
+    def __init__(self, placement_groups: PlacementGroupsResource) -> None:
+        self._placement_groups = placement_groups
+
+        self.create = to_streamed_response_wrapper(
+            placement_groups.create,
+        )
+        self.list = to_streamed_response_wrapper(
+            placement_groups.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            placement_groups.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            placement_groups.get,
+        )
+
+
+class AsyncPlacementGroupsResourceWithStreamingResponse:
+    def __init__(self, placement_groups: AsyncPlacementGroupsResource) -> None:
+        self._placement_groups = placement_groups
+
+        self.create = async_to_streamed_response_wrapper(
+            placement_groups.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            placement_groups.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            placement_groups.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            placement_groups.get,
+        )
