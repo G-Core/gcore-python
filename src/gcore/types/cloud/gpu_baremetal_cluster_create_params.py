@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .interface_ip_family import InterfaceIPFamily
+from .tag_update_list_param import TagUpdateListParam
 
 __all__ = [
     "GPUBaremetalClusterCreateParams",
@@ -85,7 +86,7 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateAIClusterGPUSerializer.properties.password"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateAIClusterGPUSerializer/properties/tags'
     "$.components.schemas.CreateAIClusterGPUSerializer.properties.tags"

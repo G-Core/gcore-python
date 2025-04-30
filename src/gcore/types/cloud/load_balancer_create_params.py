@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .http_method import HTTPMethod
@@ -11,6 +11,7 @@ from .lb_pool_protocol import LbPoolProtocol
 from .health_monitor_type import HealthMonitorType
 from .interface_ip_family import InterfaceIPFamily
 from .lb_listener_protocol import LbListenerProtocol
+from .tag_update_list_param import TagUpdateListParam
 from .session_persistence_type import SessionPersistenceType
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
@@ -85,7 +86,7 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateLoadbalancerSerializer.properties.preferred_connectivity"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateLoadbalancerSerializer/properties/tags'
     "$.components.schemas.CreateLoadbalancerSerializer.properties.tags"

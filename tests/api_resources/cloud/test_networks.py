@@ -10,7 +10,10 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.cloud import Network, TaskIDList
+from gcore.types.cloud import (
+    Network,
+    TaskIDList,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -34,7 +37,7 @@ class TestNetworks:
             region_id=0,
             name="my network",
             create_router=True,
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type="vxlan",
         )
         assert_matches_type(TaskIDList, network, path=["response"])
@@ -276,7 +279,7 @@ class TestAsyncNetworks:
             region_id=0,
             name="my network",
             create_router=True,
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type="vxlan",
         )
         assert_matches_type(TaskIDList, network, path=["response"])

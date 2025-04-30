@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict
 from typing_extensions import Literal, Required, TypedDict
+
+from .tag_update_list_param import TagUpdateListParam
 
 __all__ = ["NetworkCreateParams"]
 
@@ -33,7 +34,7 @@ class NetworkCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateNetworkSerializer.properties.create_router"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateNetworkSerializer/properties/tags'
     "$.components.schemas.CreateNetworkSerializer.properties.tags"

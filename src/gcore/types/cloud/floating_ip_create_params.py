@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import TypedDict
+
+from .tag_update_list_param import TagUpdateListParam
 
 __all__ = ["FloatingIPCreateParams"]
 
@@ -33,7 +35,7 @@ class FloatingIPCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateFloatingIPSerializer.properties.port_id.anyOf[0]"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateFloatingIPSerializer/properties/tags'
     "$.components.schemas.CreateFloatingIPSerializer.properties.tags"

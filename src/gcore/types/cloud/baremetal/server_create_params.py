@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..interface_ip_family import InterfaceIPFamily
+from ..tag_update_list_param import TagUpdateListParam
 
 __all__ = [
     "ServerCreateParams",
@@ -101,7 +102,7 @@ class ServerCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
     "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"

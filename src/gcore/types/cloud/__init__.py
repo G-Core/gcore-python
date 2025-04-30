@@ -16,6 +16,7 @@ from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .capacity import Capacity as Capacity
+from .instance import Instance as Instance
 from .registry import Registry as Registry
 from .gpu_image import GPUImage as GPUImage
 from .ip_ranges import IPRanges as IPRanges
@@ -34,6 +35,7 @@ from .lb_algorithm import LbAlgorithm as LbAlgorithm
 from .registry_tag import RegistryTag as RegistryTag
 from .task_id_list import TaskIDList as TaskIDList
 from .deploy_status import DeployStatus as DeployStatus
+from .instance_list import InstanceList as InstanceList
 from .load_balancer import LoadBalancer as LoadBalancer
 from .member_status import MemberStatus as MemberStatus
 from .registry_list import RegistryList as RegistryList
@@ -61,6 +63,7 @@ from .ddos_profile_field import DDOSProfileField as DDOSProfileField
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .gpu_cluster_server import GPUClusterServer as GPUClusterServer
 from .ingress_opts_param import IngressOptsParam as IngressOptsParam
+from .instance_interface import InstanceInterface as InstanceInterface
 from .region_list_params import RegionListParams as RegionListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
 from .billing_reservation import BillingReservation as BillingReservation
@@ -75,6 +78,7 @@ from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .container_probe_exec import ContainerProbeExec as ContainerProbeExec
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
 from .gpu_baremetal_flavor import GPUBaremetalFlavor as GPUBaremetalFlavor
+from .instance_list_params import InstanceListParams as InstanceListParams
 from .lb_listener_protocol import LbListenerProtocol as LbListenerProtocol
 from .load_balancer_status import LoadBalancerStatus as LoadBalancerStatus
 from .loadbalancer_metrics import LoadbalancerMetrics as LoadbalancerMetrics
@@ -95,8 +99,14 @@ from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
+from .tag_update_list_param import TagUpdateListParam as TagUpdateListParam
 from .container_probe_config import ContainerProbeConfig as ContainerProbeConfig
 from .file_share_list_params import FileShareListParams as FileShareListParams
+from .instance_action_params import InstanceActionParams as InstanceActionParams
+from .instance_create_params import InstanceCreateParams as InstanceCreateParams
+from .instance_delete_params import InstanceDeleteParams as InstanceDeleteParams
+from .instance_resize_params import InstanceResizeParams as InstanceResizeParams
+from .instance_update_params import InstanceUpdateParams as InstanceUpdateParams
 from .lb_session_persistence import LbSessionPersistence as LbSessionPersistence
 from .network_interface_list import NetworkInterfaceList as NetworkInterfaceList
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
@@ -131,6 +141,7 @@ from .security_group_list_params import SecurityGroupListParams as SecurityGroup
 from .container_scale_trigger_sqs import ContainerScaleTriggerSqs as ContainerScaleTriggerSqs
 from .ddos_profile_template_field import DDOSProfileTemplateField as DDOSProfileTemplateField
 from .flavor_hardware_description import FlavorHardwareDescription as FlavorHardwareDescription
+from .instance_get_console_params import InstanceGetConsoleParams as InstanceGetConsoleParams
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
 from .load_balancer_instance_role import LoadBalancerInstanceRole as LoadBalancerInstanceRole
 from .load_balancer_resize_params import LoadBalancerResizeParams as LoadBalancerResizeParams
@@ -156,3 +167,12 @@ from .gpu_baremetal_cluster_delete_params import GPUBaremetalClusterDeleteParams
 from .gpu_baremetal_cluster_resize_params import GPUBaremetalClusterResizeParams as GPUBaremetalClusterResizeParams
 from .gpu_baremetal_cluster_rebuild_params import GPUBaremetalClusterRebuildParams as GPUBaremetalClusterRebuildParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
+from .instance_assign_security_group_params import (
+    InstanceAssignSecurityGroupParams as InstanceAssignSecurityGroupParams,
+)
+from .instance_add_to_placement_group_params import (
+    InstanceAddToPlacementGroupParams as InstanceAddToPlacementGroupParams,
+)
+from .instance_unassign_security_group_params import (
+    InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,
+)

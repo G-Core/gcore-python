@@ -8,6 +8,22 @@ from .images import (
     ImagesResourceWithStreamingResponse,
     AsyncImagesResourceWithStreamingResponse,
 )
+from .flavors import (
+    FlavorsResource,
+    AsyncFlavorsResource,
+    FlavorsResourceWithRawResponse,
+    AsyncFlavorsResourceWithRawResponse,
+    FlavorsResourceWithStreamingResponse,
+    AsyncFlavorsResourceWithStreamingResponse,
+)
+from .metrics import (
+    MetricsResource,
+    AsyncMetricsResource,
+    MetricsResourceWithRawResponse,
+    AsyncMetricsResourceWithRawResponse,
+    MetricsResourceWithStreamingResponse,
+    AsyncMetricsResourceWithStreamingResponse,
+)
 from .instances import (
     InstancesResource,
     AsyncInstancesResource,
@@ -16,14 +32,40 @@ from .instances import (
     InstancesResourceWithStreamingResponse,
     AsyncInstancesResourceWithStreamingResponse,
 )
+from .interfaces import (
+    InterfacesResource,
+    AsyncInterfacesResource,
+    InterfacesResourceWithRawResponse,
+    AsyncInterfacesResourceWithRawResponse,
+    InterfacesResourceWithStreamingResponse,
+    AsyncInterfacesResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "FlavorsResource",
+    "AsyncFlavorsResource",
+    "FlavorsResourceWithRawResponse",
+    "AsyncFlavorsResourceWithRawResponse",
+    "FlavorsResourceWithStreamingResponse",
+    "AsyncFlavorsResourceWithStreamingResponse",
+    "InterfacesResource",
+    "AsyncInterfacesResource",
+    "InterfacesResourceWithRawResponse",
+    "AsyncInterfacesResourceWithRawResponse",
+    "InterfacesResourceWithStreamingResponse",
+    "AsyncInterfacesResourceWithStreamingResponse",
     "ImagesResource",
     "AsyncImagesResource",
     "ImagesResourceWithRawResponse",
     "AsyncImagesResourceWithRawResponse",
     "ImagesResourceWithStreamingResponse",
     "AsyncImagesResourceWithStreamingResponse",
+    "MetricsResource",
+    "AsyncMetricsResource",
+    "MetricsResourceWithRawResponse",
+    "AsyncMetricsResourceWithRawResponse",
+    "MetricsResourceWithStreamingResponse",
+    "AsyncMetricsResourceWithStreamingResponse",
     "InstancesResource",
     "AsyncInstancesResource",
     "InstancesResourceWithRawResponse",

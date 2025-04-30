@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import List, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -24,6 +24,7 @@ from ....types.cloud.subnet import Subnet
 from ....types.cloud.networks import subnet_list_params, subnet_create_params, subnet_update_params
 from ....types.cloud.ip_version import IPVersion
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.tag_update_list_param import TagUpdateListParam
 
 __all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
@@ -63,7 +64,7 @@ class SubnetsResource(SyncAPIResource):
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -456,7 +457,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

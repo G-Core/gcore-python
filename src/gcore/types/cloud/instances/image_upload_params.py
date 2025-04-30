@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ..tag_update_list_param import TagUpdateListParam
 
 __all__ = ["ImageUploadParams"]
 
@@ -87,7 +89,7 @@ class ImageUploadParams(TypedDict, total=False):
     "$.components.schemas.ImageDownloadSerializer.properties.ssh_key"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/ImageDownloadSerializer/properties/tags'
     "$.components.schemas.ImageDownloadSerializer.properties.tags"

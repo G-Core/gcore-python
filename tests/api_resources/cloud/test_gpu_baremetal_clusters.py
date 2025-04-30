@@ -62,7 +62,7 @@ class TestGPUBaremetalClusters:
             instances_count=1,
             keypair_name="my-keypair",
             password="password",
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             user_data="user_data",
             username="username",
         )
@@ -560,7 +560,7 @@ class TestAsyncGPUBaremetalClusters:
             instances_count=1,
             keypair_name="my-keypair",
             password="password",
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             user_data="user_data",
             username="username",
         )
