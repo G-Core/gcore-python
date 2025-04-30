@@ -80,6 +80,14 @@ from .baremetal import (
     BaremetalResourceWithStreamingResponse,
     AsyncBaremetalResourceWithStreamingResponse,
 )
+from .inference import (
+    InferenceResource,
+    AsyncInferenceResource,
+    InferenceResourceWithRawResponse,
+    AsyncInferenceResourceWithRawResponse,
+    InferenceResourceWithStreamingResponse,
+    AsyncInferenceResourceWithStreamingResponse,
+)
 from .instances import (
     InstancesResource,
     AsyncInstancesResource,
@@ -232,6 +240,12 @@ __all__ = [
     "AsyncSecurityGroupsResourceWithRawResponse",
     "SecurityGroupsResourceWithStreamingResponse",
     "AsyncSecurityGroupsResourceWithStreamingResponse",
+    "InferenceResource",
+    "AsyncInferenceResource",
+    "InferenceResourceWithRawResponse",
+    "AsyncInferenceResourceWithRawResponse",
+    "InferenceResourceWithStreamingResponse",
+    "AsyncInferenceResourceWithStreamingResponse",
     "PlacementGroupsResource",
     "AsyncPlacementGroupsResource",
     "PlacementGroupsResourceWithRawResponse",
