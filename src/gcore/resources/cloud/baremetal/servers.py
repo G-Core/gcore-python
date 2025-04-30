@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -22,6 +22,7 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.baremetal import server_list_params, server_create_params, server_rebuild_params
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.tag_update_list_param import TagUpdateListParam
 from ....types.cloud.baremetal.baremetal_server import BaremetalServer
 
 __all__ = ["ServersResource", "AsyncServersResource"]
@@ -62,7 +63,7 @@ class ServersResource(SyncAPIResource):
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -418,7 +419,7 @@ class AsyncServersResource(AsyncAPIResource):
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -63,7 +63,7 @@ class TestServers:
             name_templates=["my-bare-metal-{ip_octets}"],
             names=["my-bare-metal"],
             password="password",
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             user_data="user_data",
             username="username",
         )
@@ -266,7 +266,7 @@ class TestAsyncServers:
             name_templates=["my-bare-metal-{ip_octets}"],
             names=["my-bare-metal"],
             password="password",
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             user_data="user_data",
             username="username",
         )

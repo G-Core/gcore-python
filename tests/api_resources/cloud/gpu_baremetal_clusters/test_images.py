@@ -167,7 +167,7 @@ class TestImages:
             os_type="linux",
             os_version="19.04",
             ssh_key="allow",
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -355,7 +355,7 @@ class TestAsyncImages:
             os_type="linux",
             os_version="19.04",
             ssh_key="allow",
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 

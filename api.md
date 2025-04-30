@@ -20,6 +20,8 @@ from gcore.types.cloud import (
     GPUImageList,
     Image,
     ImageList,
+    Instance,
+    InstanceList,
     InstanceMetricsTimeUnit,
     InterfaceIPFamily,
     IPVersion,
@@ -29,12 +31,16 @@ from gcore.types.cloud import (
     LoadBalancerOperatingStatus,
     LoadBalancerStatistics,
     Network,
+    NetworkAnySubnetFip,
     NetworkInterface,
     NetworkInterfaceList,
+    NetworkSubnetFip,
     ProvisioningStatus,
+    RemoteConsole,
     Subnet,
     Tag,
     TagList,
+    TagUpdateList,
     TaskIDList,
 )
 ```
@@ -596,19 +602,6 @@ Methods:
 - <code title="get /cloud/v1/bminstances/{project_id}/{region_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_server.py">SyncOffsetPage[BaremetalServer]</a></code>
 - <code title="post /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">rebuild</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_rebuild_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
-## Instances
-
-### Images
-
-Methods:
-
-- <code title="patch /cloud/v1/images/{project_id}/{region_id}/{image_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">update</a>(image_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image.py">Image</a></code>
-- <code title="get /cloud/v1/images/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image_list.py">ImageList</a></code>
-- <code title="delete /cloud/v1/images/{project_id}/{region_id}/{image_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/images/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">create_from_volume</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_create_from_volume_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/images/{project_id}/{region_id}/{image_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">get</a>(image_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image.py">Image</a></code>
-- <code title="post /cloud/v1/downloadimage/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-
 ## Registries
 
 Types:
@@ -768,3 +761,73 @@ Methods:
 - <code title="delete /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">get</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image.py">GPUImage</a></code>
 - <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+## Instances
+
+Types:
+
+```python
+from gcore.types.cloud import InstanceInterface
+```
+
+Methods:
+
+- <code title="post /cloud/v2/instances/{project_id}/{region_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">update</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance.py">Instance</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance.py">SyncOffsetPage[Instance]</a></code>
+- <code title="delete /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">delete</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">action</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">add_to_placement_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_add_to_placement_group_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">assign_security_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_assign_security_group_params.py">params</a>) -> None</code>
+- <code title="post /cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">disable_port_security</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance_interface.py">InstanceInterface</a></code>
+- <code title="post /cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">enable_port_security</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance_interface.py">InstanceInterface</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">get</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance.py">Instance</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">get_console</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_get_console_params.py">params</a>) -> <a href="./src/gcore/types/cloud/console.py">Console</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">remove_from_placement_group</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">resize</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">unassign_security_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_unassign_security_group_params.py">params</a>) -> None</code>
+
+### Flavors
+
+Types:
+
+```python
+from gcore.types.cloud.instances import InstanceFlavor, InstanceFlavorList
+```
+
+Methods:
+
+- <code title="get /cloud/v1/flavors/{project_id}/{region_id}">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_list.py">InstanceFlavorList</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list_for_resize</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_for_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_list.py">InstanceFlavorList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/available_flavors">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list_suitable</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_suitable_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_list.py">InstanceFlavorList</a></code>
+
+### Interfaces
+
+Methods:
+
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">list</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/network_interface_list.py">NetworkInterfaceList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">attach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_attach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">detach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_detach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+### Images
+
+Methods:
+
+- <code title="patch /cloud/v1/images/{project_id}/{region_id}/{image_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">update</a>(image_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image.py">Image</a></code>
+- <code title="get /cloud/v1/images/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image_list.py">ImageList</a></code>
+- <code title="delete /cloud/v1/images/{project_id}/{region_id}/{image_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/images/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">create_from_volume</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_create_from_volume_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/images/{project_id}/{region_id}/{image_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">get</a>(image_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image.py">Image</a></code>
+- <code title="post /cloud/v1/downloadimage/{project_id}/{region_id}">client.cloud.instances.images.<a href="./src/gcore/resources/cloud/instances/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+### Metrics
+
+Types:
+
+```python
+from gcore.types.cloud.instances import Metrics, MetricsList
+```
+
+Methods:
+
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics">client.cloud.instances.metrics.<a href="./src/gcore/resources/cloud/instances/metrics.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/metrics_list.py">MetricsList</a></code>

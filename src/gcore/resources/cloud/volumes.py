@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import List, Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -31,6 +31,7 @@ from ...types.cloud import (
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.volume import Volume
 from ...types.cloud.task_id_list import TaskIDList
+from ...types.cloud.tag_update_list_param import TagUpdateListParam
 
 __all__ = ["VolumesResource", "AsyncVolumesResource"]
 
@@ -68,7 +69,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -138,7 +139,7 @@ class VolumesResource(SyncAPIResource):
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -207,7 +208,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -276,7 +277,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         snapshot_id: str | NotGiven = NOT_GIVEN,
@@ -881,7 +882,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -951,7 +952,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1020,7 +1021,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1089,7 +1090,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         snapshot_id: str | NotGiven = NOT_GIVEN,

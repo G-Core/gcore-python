@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from .tag_update_list_param import TagUpdateListParam
 
 __all__ = [
     "FileShareCreateParams",
@@ -57,7 +59,7 @@ class CreateStandardFileShareSerializer(TypedDict, total=False):
     "$.components.schemas.CreateStandardFileShareSerializer.properties.access"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateStandardFileShareSerializer/properties/tags'
     "$.components.schemas.CreateStandardFileShareSerializer.properties.tags"
@@ -135,7 +137,7 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     "$.components.schemas.CreateVastFileShareSerializer.properties.volume_type"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateVastFileShareSerializer/properties/tags'
     "$.components.schemas.CreateVastFileShareSerializer.properties.tags"

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from .tag_update_list_param import TagUpdateListParam
 
 __all__ = [
     "VolumeCreateParams",
@@ -68,7 +70,7 @@ class CreateVolumeFromImageSerializer(TypedDict, total=False):
     "$.components.schemas.CreateVolumeFromImageSerializer.properties.lifecycle_policy_ids"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateVolumeFromImageSerializer/properties/tags'
     "$.components.schemas.CreateVolumeFromImageSerializer.properties.tags"
@@ -136,7 +138,7 @@ class CreateVolumeFromSnapshotSerializer(TypedDict, total=False):
     "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.size"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/tags'
     "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.tags"
@@ -198,7 +200,7 @@ class CreateNewVolumeSerializer(TypedDict, total=False):
     "$.components.schemas.CreateNewVolumeSerializer.properties.lifecycle_policy_ids"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateNewVolumeSerializer/properties/tags'
     "$.components.schemas.CreateNewVolumeSerializer.properties.tags"

@@ -45,7 +45,7 @@ class TestVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -107,7 +107,7 @@ class TestVolumes:
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
             size=10,
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -166,7 +166,7 @@ class TestVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -692,7 +692,7 @@ class TestAsyncVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -754,7 +754,7 @@ class TestAsyncVolumes:
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
             size=10,
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -813,7 +813,7 @@ class TestAsyncVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"my-tag": "my-tag-value"},
+            tags={"foo": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])

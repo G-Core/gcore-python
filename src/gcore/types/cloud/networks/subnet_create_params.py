@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from ..ip_version import IPVersion
+from ..tag_update_list_param import TagUpdateListParam
 
 __all__ = ["SubnetCreateParams", "HostRoute"]
 
@@ -83,7 +84,7 @@ class SubnetCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateSubnetSerializer.properties.router_id_to_connect.anyOf[0]"
     """
 
-    tags: Dict[str, str]
+    tags: TagUpdateListParam
     """
     '#/components/schemas/CreateSubnetSerializer/properties/tags'
     "$.components.schemas.CreateSubnetSerializer.properties.tags"

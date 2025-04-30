@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -21,6 +21,7 @@ from ...._base_client import make_request_options
 from ....types.cloud.gpu_image import GPUImage
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.gpu_image_list import GPUImageList
+from ....types.cloud.tag_update_list_param import TagUpdateListParam
 from ....types.cloud.gpu_baremetal_clusters import image_upload_params
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
@@ -198,7 +199,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -454,7 +455,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
