@@ -176,6 +176,14 @@ from .billing_reservations import (
     BillingReservationsResourceWithStreamingResponse,
     AsyncBillingReservationsResourceWithStreamingResponse,
 )
+from .gpu_baremetal_clusters import (
+    GPUBaremetalClustersResource,
+    AsyncGPUBaremetalClustersResource,
+    GPUBaremetalClustersResourceWithRawResponse,
+    AsyncGPUBaremetalClustersResourceWithRawResponse,
+    GPUBaremetalClustersResourceWithStreamingResponse,
+    AsyncGPUBaremetalClustersResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ProjectsResource",
@@ -304,6 +312,12 @@ __all__ = [
     "AsyncBillingReservationsResourceWithRawResponse",
     "BillingReservationsResourceWithStreamingResponse",
     "AsyncBillingReservationsResourceWithStreamingResponse",
+    "GPUBaremetalClustersResource",
+    "AsyncGPUBaremetalClustersResource",
+    "GPUBaremetalClustersResourceWithRawResponse",
+    "AsyncGPUBaremetalClustersResourceWithRawResponse",
+    "GPUBaremetalClustersResourceWithStreamingResponse",
+    "AsyncGPUBaremetalClustersResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",
