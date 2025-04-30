@@ -51,11 +51,12 @@ jobs:
       - name: Run tests
         run: ./scripts/test
 
-    prevent-debug-release:
-      name: Prevent Debug SDK Release
-      runs-on: ${{ github.repository == 'stainless-sdks/gcore-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-      steps:
-        - run: |
-            echo "This SDK was built in debug mode, this job is a failsafe to prevent releasing debug SDKs"
-            echo "Remove 'debug: true' from your Stainless config."
-            exit 1
+  prevent-debug-release:
+    name: Prevent Debug SDK Release
+    runs-on: ${{ github.repository == 'stainless-sdks/gcore-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    steps:
+      - name: Debug Mode Failsafe
+        run: |
+          echo "This SDK was built in debug mode, this job is a failsafe to prevent releasing debug SDKs"
+          echo "Remove 'debug: true' from your Stainless config."
+          exit 1
