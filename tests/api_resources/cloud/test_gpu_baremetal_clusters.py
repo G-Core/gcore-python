@@ -25,8 +25,8 @@ class TestGPUBaremetalClusters:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -43,8 +43,8 @@ class TestGPUBaremetalClusters:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -71,8 +71,8 @@ class TestGPUBaremetalClusters:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -93,8 +93,8 @@ class TestGPUBaremetalClusters:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.gpu_baremetal_clusters.with_streaming_response.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -113,40 +113,6 @@ class TestGPUBaremetalClusters:
             assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_create(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-                project_id="",
-                region_id="region_id",
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `region_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-                project_id="project_id",
-                region_id="",
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
@@ -454,8 +420,8 @@ class TestGPUBaremetalClusters:
     def test_method_resize(self, client: Gcore) -> None:
         gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.resize(
             cluster_id="cluster_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             instances_count=1,
         )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
@@ -464,8 +430,8 @@ class TestGPUBaremetalClusters:
     def test_raw_response_resize(self, client: Gcore) -> None:
         response = client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
             cluster_id="cluster_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             instances_count=1,
         )
 
@@ -478,8 +444,8 @@ class TestGPUBaremetalClusters:
     def test_streaming_response_resize(self, client: Gcore) -> None:
         with client.cloud.gpu_baremetal_clusters.with_streaming_response.resize(
             cluster_id="cluster_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             instances_count=1,
         ) as response:
             assert not response.is_closed
@@ -492,27 +458,11 @@ class TestGPUBaremetalClusters:
 
     @parametrize
     def test_path_params_resize(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
-                cluster_id="cluster_id",
-                project_id="",
-                region_id="region_id",
-                instances_count=1,
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `region_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
-                cluster_id="cluster_id",
-                project_id="project_id",
-                region_id="",
-                instances_count=1,
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
             client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
                 cluster_id="",
-                project_id="project_id",
-                region_id="region_id",
+                project_id=0,
+                region_id=0,
                 instances_count=1,
             )
 
@@ -523,8 +473,8 @@ class TestAsyncGPUBaremetalClusters:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -541,8 +491,8 @@ class TestAsyncGPUBaremetalClusters:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -569,8 +519,8 @@ class TestAsyncGPUBaremetalClusters:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -591,8 +541,8 @@ class TestAsyncGPUBaremetalClusters:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.create(
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             flavor="bm3-ai-1xlarge-h100-80-8",
             image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
             interfaces=[
@@ -611,40 +561,6 @@ class TestAsyncGPUBaremetalClusters:
             assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_create(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-                project_id="",
-                region_id="region_id",
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `region_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-                project_id="project_id",
-                region_id="",
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
@@ -952,8 +868,8 @@ class TestAsyncGPUBaremetalClusters:
     async def test_method_resize(self, async_client: AsyncGcore) -> None:
         gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.resize(
             cluster_id="cluster_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             instances_count=1,
         )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
@@ -962,8 +878,8 @@ class TestAsyncGPUBaremetalClusters:
     async def test_raw_response_resize(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
             cluster_id="cluster_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             instances_count=1,
         )
 
@@ -976,8 +892,8 @@ class TestAsyncGPUBaremetalClusters:
     async def test_streaming_response_resize(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.resize(
             cluster_id="cluster_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             instances_count=1,
         ) as response:
             assert not response.is_closed
@@ -990,26 +906,10 @@ class TestAsyncGPUBaremetalClusters:
 
     @parametrize
     async def test_path_params_resize(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
-                cluster_id="cluster_id",
-                project_id="",
-                region_id="region_id",
-                instances_count=1,
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `region_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
-                cluster_id="cluster_id",
-                project_id="project_id",
-                region_id="",
-                instances_count=1,
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
             await async_client.cloud.gpu_baremetal_clusters.with_raw_response.resize(
                 cluster_id="",
-                project_id="project_id",
-                region_id="region_id",
+                project_id=0,
+                region_id=0,
                 instances_count=1,
             )

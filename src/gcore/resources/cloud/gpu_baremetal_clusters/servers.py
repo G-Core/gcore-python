@@ -54,8 +54,8 @@ class ServersResource(SyncAPIResource):
         self,
         instance_id: str,
         *,
-        project_id: str | None = None,
-        region_id: str | None = None,
+        project_id: int | None = None,
+        region_id: int | None = None,
         cluster_id: str,
         delete_floatings: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -94,12 +94,8 @@ class ServersResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not project_id:
-            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        if not region_id:
-            raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         if not instance_id:
@@ -654,8 +650,8 @@ class AsyncServersResource(AsyncAPIResource):
         self,
         instance_id: str,
         *,
-        project_id: str | None = None,
-        region_id: str | None = None,
+        project_id: int | None = None,
+        region_id: int | None = None,
         cluster_id: str,
         delete_floatings: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -694,12 +690,8 @@ class AsyncServersResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not project_id:
-            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        if not region_id:
-            raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         if not instance_id:

@@ -21,8 +21,8 @@ class TestServers:
     def test_method_delete(self, client: Gcore) -> None:
         server = client.cloud.gpu_baremetal_clusters.servers.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
         )
         assert_matches_type(TaskIDList, server, path=["response"])
@@ -31,8 +31,8 @@ class TestServers:
     def test_method_delete_with_all_params(self, client: Gcore) -> None:
         server = client.cloud.gpu_baremetal_clusters.servers.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
             delete_floatings=True,
         )
@@ -42,8 +42,8 @@ class TestServers:
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
         )
 
@@ -56,8 +56,8 @@ class TestServers:
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
         ) as response:
             assert not response.is_closed
@@ -70,35 +70,19 @@ class TestServers:
 
     @parametrize
     def test_path_params_delete(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
-                instance_id="instance_id",
-                project_id="",
-                region_id="region_id",
-                cluster_id="cluster_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `region_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
-                instance_id="instance_id",
-                project_id="project_id",
-                region_id="",
-                cluster_id="cluster_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
             client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
                 instance_id="instance_id",
-                project_id="project_id",
-                region_id="region_id",
+                project_id=0,
+                region_id=0,
                 cluster_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
                 instance_id="",
-                project_id="project_id",
-                region_id="region_id",
+                project_id=0,
+                region_id=0,
                 cluster_id="cluster_id",
             )
 
@@ -615,8 +599,8 @@ class TestAsyncServers:
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         server = await async_client.cloud.gpu_baremetal_clusters.servers.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
         )
         assert_matches_type(TaskIDList, server, path=["response"])
@@ -625,8 +609,8 @@ class TestAsyncServers:
     async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
         server = await async_client.cloud.gpu_baremetal_clusters.servers.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
             delete_floatings=True,
         )
@@ -636,8 +620,8 @@ class TestAsyncServers:
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
         )
 
@@ -650,8 +634,8 @@ class TestAsyncServers:
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.delete(
             instance_id="instance_id",
-            project_id="project_id",
-            region_id="region_id",
+            project_id=0,
+            region_id=0,
             cluster_id="cluster_id",
         ) as response:
             assert not response.is_closed
@@ -664,35 +648,19 @@ class TestAsyncServers:
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
-                instance_id="instance_id",
-                project_id="",
-                region_id="region_id",
-                cluster_id="cluster_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `region_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
-                instance_id="instance_id",
-                project_id="project_id",
-                region_id="",
-                cluster_id="cluster_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
             await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
                 instance_id="instance_id",
-                project_id="project_id",
-                region_id="region_id",
+                project_id=0,
+                region_id=0,
                 cluster_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
                 instance_id="",
-                project_id="project_id",
-                region_id="region_id",
+                project_id=0,
+                region_id=0,
                 cluster_id="cluster_id",
             )
 
