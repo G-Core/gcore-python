@@ -4,13 +4,13 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..tag import Tag
-from ...._models import BaseModel
+from .tag import Tag
+from ..._models import BaseModel
 
-__all__ = ["ImageUpdateResponse"]
+__all__ = ["Image"]
 
 
-class ImageUpdateResponse(BaseModel):
+class Image(BaseModel):
     id: str
     """
     '#/components/schemas/ImageSerializer/properties/id'

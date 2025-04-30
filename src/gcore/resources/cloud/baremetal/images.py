@@ -19,7 +19,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.baremetal import image_list_params
-from ....types.cloud.baremetal.image_list_response import ImageListResponse
+from ....types.cloud.image_list import ImageList
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
 
@@ -60,7 +60,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageListResponse:
+    ) -> ImageList:
         """Retrieve the available images list for bare metal servers.
 
         Returned entities may
@@ -118,7 +118,7 @@ class ImagesResource(SyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageListResponse,
+            cast_to=ImageList,
         )
 
 
@@ -158,7 +158,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageListResponse:
+    ) -> ImageList:
         """Retrieve the available images list for bare metal servers.
 
         Returned entities may
@@ -216,7 +216,7 @@ class AsyncImagesResource(AsyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageListResponse,
+            cast_to=ImageList,
         )
 
 

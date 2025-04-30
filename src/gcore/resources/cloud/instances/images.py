@@ -18,6 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from ....types.cloud.image import Image
 from ....types.cloud.instances import (
     image_get_params,
     image_list_params,
@@ -25,10 +26,8 @@ from ....types.cloud.instances import (
     image_upload_params,
     image_create_from_volume_params,
 )
+from ....types.cloud.image_list import ImageList
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.instances.image_get_response import ImageGetResponse
-from ....types.cloud.instances.image_list_response import ImageListResponse
-from ....types.cloud.instances.image_update_response import ImageUpdateResponse
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
 
@@ -72,7 +71,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageUpdateResponse:
+    ) -> Image:
         """
         Update image fields
 
@@ -138,7 +137,7 @@ class ImagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ImageUpdateResponse,
+            cast_to=Image,
         )
 
     def list(
@@ -157,7 +156,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageListResponse:
+    ) -> ImageList:
         """Retrieve an available images list.
 
         Returned entities owned by the project and
@@ -215,7 +214,7 @@ class ImagesResource(SyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageListResponse,
+            cast_to=ImageList,
         )
 
     def delete(
@@ -376,7 +375,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageGetResponse:
+    ) -> Image:
         """
         Get image
 
@@ -416,7 +415,7 @@ class ImagesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"include_prices": include_prices}, image_get_params.ImageGetParams),
             ),
-            cast_to=ImageGetResponse,
+            cast_to=Image,
         )
 
     def upload(
@@ -566,7 +565,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageUpdateResponse:
+    ) -> Image:
         """
         Update image fields
 
@@ -632,7 +631,7 @@ class AsyncImagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ImageUpdateResponse,
+            cast_to=Image,
         )
 
     async def list(
@@ -651,7 +650,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageListResponse:
+    ) -> ImageList:
         """Retrieve an available images list.
 
         Returned entities owned by the project and
@@ -709,7 +708,7 @@ class AsyncImagesResource(AsyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageListResponse,
+            cast_to=ImageList,
         )
 
     async def delete(
@@ -870,7 +869,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageGetResponse:
+    ) -> Image:
         """
         Get image
 
@@ -910,7 +909,7 @@ class AsyncImagesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"include_prices": include_prices}, image_get_params.ImageGetParams),
             ),
-            cast_to=ImageGetResponse,
+            cast_to=Image,
         )
 
     async def upload(
