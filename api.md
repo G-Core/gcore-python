@@ -563,6 +563,33 @@ Methods:
 
 - <code title="get /cloud/v1/bmimages/{project_id}/{region_id}">client.cloud.baremetal.images.<a href="./src/gcore/resources/cloud/baremetal/images.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/image_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/image_list.py">ImageList</a></code>
 
+### Flavors
+
+Types:
+
+```python
+from gcore.types.cloud.baremetal import FlavorListResponse, FlavorListSuitableResponse
+```
+
+Methods:
+
+- <code title="get /cloud/v1/bmflavors/{project_id}/{region_id}">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/flavor_list_response.py">FlavorListResponse</a></code>
+- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}/available_flavors">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list_suitable</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_suitable_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/flavor_list_suitable_response.py">FlavorListSuitableResponse</a></code>
+
+### Servers
+
+Types:
+
+```python
+from gcore.types.cloud.baremetal import BaremetalServer
+```
+
+Methods:
+
+- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/bminstances/{project_id}/{region_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_server.py">SyncOffsetPage[BaremetalServer]</a></code>
+- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">rebuild</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_rebuild_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
 ## Instances
 
 ### Images

@@ -8,6 +8,22 @@ from .images import (
     ImagesResourceWithStreamingResponse,
     AsyncImagesResourceWithStreamingResponse,
 )
+from .flavors import (
+    FlavorsResource,
+    AsyncFlavorsResource,
+    FlavorsResourceWithRawResponse,
+    AsyncFlavorsResourceWithRawResponse,
+    FlavorsResourceWithStreamingResponse,
+    AsyncFlavorsResourceWithStreamingResponse,
+)
+from .servers import (
+    ServersResource,
+    AsyncServersResource,
+    ServersResourceWithRawResponse,
+    AsyncServersResourceWithRawResponse,
+    ServersResourceWithStreamingResponse,
+    AsyncServersResourceWithStreamingResponse,
+)
 from .baremetal import (
     BaremetalResource,
     AsyncBaremetalResource,
@@ -24,6 +40,18 @@ __all__ = [
     "AsyncImagesResourceWithRawResponse",
     "ImagesResourceWithStreamingResponse",
     "AsyncImagesResourceWithStreamingResponse",
+    "FlavorsResource",
+    "AsyncFlavorsResource",
+    "FlavorsResourceWithRawResponse",
+    "AsyncFlavorsResourceWithRawResponse",
+    "FlavorsResourceWithStreamingResponse",
+    "AsyncFlavorsResourceWithStreamingResponse",
+    "ServersResource",
+    "AsyncServersResource",
+    "ServersResourceWithRawResponse",
+    "AsyncServersResourceWithRawResponse",
+    "ServersResourceWithStreamingResponse",
+    "AsyncServersResourceWithStreamingResponse",
     "BaremetalResource",
     "AsyncBaremetalResource",
     "BaremetalResourceWithRawResponse",

@@ -10,6 +10,22 @@ from .images import (
     ImagesResourceWithStreamingResponse,
     AsyncImagesResourceWithStreamingResponse,
 )
+from .flavors import (
+    FlavorsResource,
+    AsyncFlavorsResource,
+    FlavorsResourceWithRawResponse,
+    AsyncFlavorsResourceWithRawResponse,
+    FlavorsResourceWithStreamingResponse,
+    AsyncFlavorsResourceWithStreamingResponse,
+)
+from .servers import (
+    ServersResource,
+    AsyncServersResource,
+    ServersResourceWithRawResponse,
+    AsyncServersResourceWithRawResponse,
+    ServersResourceWithStreamingResponse,
+    AsyncServersResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
@@ -20,6 +36,14 @@ class BaremetalResource(SyncAPIResource):
     @cached_property
     def images(self) -> ImagesResource:
         return ImagesResource(self._client)
+
+    @cached_property
+    def flavors(self) -> FlavorsResource:
+        return FlavorsResource(self._client)
+
+    @cached_property
+    def servers(self) -> ServersResource:
+        return ServersResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> BaremetalResourceWithRawResponse:
@@ -45,6 +69,14 @@ class AsyncBaremetalResource(AsyncAPIResource):
     @cached_property
     def images(self) -> AsyncImagesResource:
         return AsyncImagesResource(self._client)
+
+    @cached_property
+    def flavors(self) -> AsyncFlavorsResource:
+        return AsyncFlavorsResource(self._client)
+
+    @cached_property
+    def servers(self) -> AsyncServersResource:
+        return AsyncServersResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBaremetalResourceWithRawResponse:
@@ -74,6 +106,14 @@ class BaremetalResourceWithRawResponse:
     def images(self) -> ImagesResourceWithRawResponse:
         return ImagesResourceWithRawResponse(self._baremetal.images)
 
+    @cached_property
+    def flavors(self) -> FlavorsResourceWithRawResponse:
+        return FlavorsResourceWithRawResponse(self._baremetal.flavors)
+
+    @cached_property
+    def servers(self) -> ServersResourceWithRawResponse:
+        return ServersResourceWithRawResponse(self._baremetal.servers)
+
 
 class AsyncBaremetalResourceWithRawResponse:
     def __init__(self, baremetal: AsyncBaremetalResource) -> None:
@@ -82,6 +122,14 @@ class AsyncBaremetalResourceWithRawResponse:
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
         return AsyncImagesResourceWithRawResponse(self._baremetal.images)
+
+    @cached_property
+    def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
+        return AsyncFlavorsResourceWithRawResponse(self._baremetal.flavors)
+
+    @cached_property
+    def servers(self) -> AsyncServersResourceWithRawResponse:
+        return AsyncServersResourceWithRawResponse(self._baremetal.servers)
 
 
 class BaremetalResourceWithStreamingResponse:
@@ -92,6 +140,14 @@ class BaremetalResourceWithStreamingResponse:
     def images(self) -> ImagesResourceWithStreamingResponse:
         return ImagesResourceWithStreamingResponse(self._baremetal.images)
 
+    @cached_property
+    def flavors(self) -> FlavorsResourceWithStreamingResponse:
+        return FlavorsResourceWithStreamingResponse(self._baremetal.flavors)
+
+    @cached_property
+    def servers(self) -> ServersResourceWithStreamingResponse:
+        return ServersResourceWithStreamingResponse(self._baremetal.servers)
+
 
 class AsyncBaremetalResourceWithStreamingResponse:
     def __init__(self, baremetal: AsyncBaremetalResource) -> None:
@@ -100,3 +156,11 @@ class AsyncBaremetalResourceWithStreamingResponse:
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
         return AsyncImagesResourceWithStreamingResponse(self._baremetal.images)
+
+    @cached_property
+    def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
+        return AsyncFlavorsResourceWithStreamingResponse(self._baremetal.flavors)
+
+    @cached_property
+    def servers(self) -> AsyncServersResourceWithStreamingResponse:
+        return AsyncServersResourceWithStreamingResponse(self._baremetal.servers)
