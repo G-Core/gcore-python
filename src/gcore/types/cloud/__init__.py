@@ -15,6 +15,7 @@ from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .capacity import Capacity as Capacity
+from .registry import Registry as Registry
 from .ip_ranges import IPRanges as IPRanges
 from .l7_policy import L7Policy as L7Policy
 from .file_share import FileShare as FileShare
@@ -28,10 +29,12 @@ from .aws_iam_data import AwsIamData as AwsIamData
 from .ddos_profile import DDOSProfile as DDOSProfile
 from .l7_rule_list import L7RuleList as L7RuleList
 from .lb_algorithm import LbAlgorithm as LbAlgorithm
+from .registry_tag import RegistryTag as RegistryTag
 from .task_id_list import TaskIDList as TaskIDList
 from .deploy_status import DeployStatus as DeployStatus
 from .load_balancer import LoadBalancer as LoadBalancer
 from .member_status import MemberStatus as MemberStatus
+from .registry_list import RegistryList as RegistryList
 from .l7_policy_list import L7PolicyList as L7PolicyList
 from .lb_flavor_list import LbFlavorList as LbFlavorList
 from .security_group import SecurityGroup as SecurityGroup
@@ -91,6 +94,8 @@ from .lb_session_persistence import LbSessionPersistence as LbSessionPersistence
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
 from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .region_retrieve_params import RegionRetrieveParams as RegionRetrieveParams
+from .registry_create_params import RegistryCreateParams as RegistryCreateParams
+from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .detailed_lb_pool_member import DetailedLbPoolMember as DetailedLbPoolMember
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
 from .container_probe_http_get import ContainerProbeHTTPGet as ContainerProbeHTTPGet
