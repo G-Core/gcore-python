@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ImageGetParams"]
 
@@ -24,28 +24,4 @@ class ImageGetParams(TypedDict, total=False):
     """
     '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/3'
     "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[3]"
-    """
-
-    metadata_k: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/4'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[4]"
-    """
-
-    metadata_kv: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/5'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[5]"
-    """
-
-    private: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/6'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[6]"
-    """
-
-    visibility: Literal["private", "public", "shared"]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/7'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[7]"
     """

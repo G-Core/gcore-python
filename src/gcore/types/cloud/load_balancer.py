@@ -135,6 +135,12 @@ class LoadBalancer(BaseModel):
     "$.components.schemas.LoadbalancerSerializer.properties.region_id"
     """
 
+    tags_v2: List[Tag]
+    """
+    '#/components/schemas/LoadbalancerSerializer/properties/tags_v2'
+    "$.components.schemas.LoadbalancerSerializer.properties.tags_v2"
+    """
+
     additional_vips: Optional[List[AdditionalVip]] = None
     """
     '#/components/schemas/LoadbalancerSerializer/properties/additional_vips'
@@ -175,12 +181,6 @@ class LoadBalancer(BaseModel):
     """
     '#/components/schemas/LoadbalancerSerializer/properties/logging/anyOf/0'
     "$.components.schemas.LoadbalancerSerializer.properties.logging.anyOf[0]"
-    """
-
-    metadata: Optional[List[Tag]] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/metadata'
-    "$.components.schemas.LoadbalancerSerializer.properties.metadata"
     """
 
     preferred_connectivity: Optional[LoadBalancerMemberConnectivity] = None

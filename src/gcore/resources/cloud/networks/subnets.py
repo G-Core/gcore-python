@@ -62,8 +62,8 @@ class SubnetsResource(SyncAPIResource):
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,11 +108,11 @@ class SubnetsResource(SyncAPIResource):
           ip_version: '#/components/schemas/CreateSubnetSerializer/properties/ip_version'
               "$.components.schemas.CreateSubnetSerializer.properties.ip_version"
 
-          metadata: '#/components/schemas/CreateSubnetSerializer/properties/metadata/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.metadata.anyOf[0]"
-
           router_id_to_connect: '#/components/schemas/CreateSubnetSerializer/properties/router_id_to_connect/anyOf/0'
               "$.components.schemas.CreateSubnetSerializer.properties.router_id_to_connect.anyOf[0]"
+
+          tags: '#/components/schemas/CreateSubnetSerializer/properties/tags'
+              "$.components.schemas.CreateSubnetSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -139,8 +139,8 @@ class SubnetsResource(SyncAPIResource):
                     "gateway_ip": gateway_ip,
                     "host_routes": host_routes,
                     "ip_version": ip_version,
-                    "metadata": metadata,
                     "router_id_to_connect": router_id_to_connect,
+                    "tags": tags,
                 },
                 subnet_create_params.SubnetCreateParams,
             ),
@@ -234,8 +234,6 @@ class SubnetsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: List[str] | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         network_id: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal[
@@ -253,6 +251,8 @@ class SubnetsResource(SyncAPIResource):
             "updated_at.desc",
         ]
         | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -273,19 +273,19 @@ class SubnetsResource(SyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          network_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[4]"
 
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[5]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[6]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[7]"
 
           extra_headers: Send extra headers
@@ -311,11 +311,11 @@ class SubnetsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "network_id": network_id,
                         "offset": offset,
                         "order_by": order_by,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     subnet_list_params.SubnetListParams,
                 ),
@@ -455,8 +455,8 @@ class AsyncSubnetsResource(AsyncAPIResource):
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -501,11 +501,11 @@ class AsyncSubnetsResource(AsyncAPIResource):
           ip_version: '#/components/schemas/CreateSubnetSerializer/properties/ip_version'
               "$.components.schemas.CreateSubnetSerializer.properties.ip_version"
 
-          metadata: '#/components/schemas/CreateSubnetSerializer/properties/metadata/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.metadata.anyOf[0]"
-
           router_id_to_connect: '#/components/schemas/CreateSubnetSerializer/properties/router_id_to_connect/anyOf/0'
               "$.components.schemas.CreateSubnetSerializer.properties.router_id_to_connect.anyOf[0]"
+
+          tags: '#/components/schemas/CreateSubnetSerializer/properties/tags'
+              "$.components.schemas.CreateSubnetSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -532,8 +532,8 @@ class AsyncSubnetsResource(AsyncAPIResource):
                     "gateway_ip": gateway_ip,
                     "host_routes": host_routes,
                     "ip_version": ip_version,
-                    "metadata": metadata,
                     "router_id_to_connect": router_id_to_connect,
+                    "tags": tags,
                 },
                 subnet_create_params.SubnetCreateParams,
             ),
@@ -627,8 +627,6 @@ class AsyncSubnetsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: List[str] | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         network_id: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal[
@@ -646,6 +644,8 @@ class AsyncSubnetsResource(AsyncAPIResource):
             "updated_at.desc",
         ]
         | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -666,19 +666,19 @@ class AsyncSubnetsResource(AsyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          network_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[4]"
 
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[5]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[6]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
               "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[7]"
 
           extra_headers: Send extra headers
@@ -704,11 +704,11 @@ class AsyncSubnetsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "network_id": network_id,
                         "offset": offset,
                         "order_by": order_by,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     subnet_list_params.SubnetListParams,
                 ),

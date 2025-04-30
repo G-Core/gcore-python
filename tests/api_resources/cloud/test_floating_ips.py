@@ -36,8 +36,8 @@ class TestFloatingIPs:
             project_id=1,
             region_id=1,
             fixed_ip_address="192.168.10.15",
-            metadata={"my-tag": "my-tag-value"},
             port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
 
@@ -81,9 +81,9 @@ class TestFloatingIPs:
             project_id=1,
             region_id=1,
             limit=1000,
-            metadata_k=["key1", "key2"],
-            metadata_kv="metadata_kv",
             offset=0,
+            tag_key=["key1", "key2"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 
@@ -330,8 +330,8 @@ class TestAsyncFloatingIPs:
             project_id=1,
             region_id=1,
             fixed_ip_address="192.168.10.15",
-            metadata={"my-tag": "my-tag-value"},
             port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
 
@@ -375,9 +375,9 @@ class TestAsyncFloatingIPs:
             project_id=1,
             region_id=1,
             limit=1000,
-            metadata_k=["key1", "key2"],
-            metadata_kv="metadata_kv",
             offset=0,
+            tag_key=["key1", "key2"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[FloatingIPDetailed], floating_ip, path=["response"])
 

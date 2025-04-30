@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .tag import Tag
@@ -32,18 +32,6 @@ class FileShare(BaseModel):
     """
     '#/components/schemas/FileShareSerializer/properties/creator_task_id'
     "$.components.schemas.FileShareSerializer.properties.creator_task_id"
-    """
-
-    metadata: Dict[str, str]
-    """
-    '#/components/schemas/FileShareSerializer/properties/metadata'
-    "$.components.schemas.FileShareSerializer.properties.metadata"
-    """
-
-    metadata_detailed: List[Tag]
-    """
-    '#/components/schemas/FileShareSerializer/properties/metadata_detailed'
-    "$.components.schemas.FileShareSerializer.properties.metadata_detailed"
     """
 
     name: str

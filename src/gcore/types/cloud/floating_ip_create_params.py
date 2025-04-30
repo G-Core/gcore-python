@@ -27,14 +27,14 @@ class FloatingIPCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
     """
 
-    metadata: Dict[str, str]
-    """
-    '#/components/schemas/CreateFloatingIPSerializer/properties/metadata'
-    "$.components.schemas.CreateFloatingIPSerializer.properties.metadata"
-    """
-
     port_id: Optional[str]
     """
     '#/components/schemas/CreateFloatingIPSerializer/properties/port_id/anyOf/0'
     "$.components.schemas.CreateFloatingIPSerializer.properties.port_id.anyOf[0]"
+    """
+
+    tags: Dict[str, str]
+    """
+    '#/components/schemas/CreateFloatingIPSerializer/properties/tags'
+    "$.components.schemas.CreateFloatingIPSerializer.properties.tags"
     """

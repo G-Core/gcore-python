@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ImageCreateFromVolumeParams"]
@@ -23,60 +23,60 @@ class ImageCreateFromVolumeParams(TypedDict, total=False):
 
     name: Required[str]
     """
-    '#/components/schemas/ImageCreateSchema/properties/name'
-    "$.components.schemas.ImageCreateSchema.properties.name"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/name'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.name"
     """
 
     volume_id: Required[str]
     """
-    '#/components/schemas/ImageCreateSchema/properties/volume_id'
-    "$.components.schemas.ImageCreateSchema.properties.volume_id"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/volume_id'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.volume_id"
     """
 
     architecture: Literal["aarch64", "x86_64"]
     """
-    '#/components/schemas/ImageCreateSchema/properties/architecture'
-    "$.components.schemas.ImageCreateSchema.properties.architecture"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/architecture'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.architecture"
     """
 
-    hw_firmware_type: Literal["bios", "uefi"]
+    hw_firmware_type: Optional[Literal["bios", "uefi"]]
     """
-    '#/components/schemas/ImageCreateSchema/properties/hw_firmware_type'
-    "$.components.schemas.ImageCreateSchema.properties.hw_firmware_type"
-    """
-
-    hw_machine_type: Literal["i440", "q35"]
-    """
-    '#/components/schemas/ImageCreateSchema/properties/hw_machine_type'
-    "$.components.schemas.ImageCreateSchema.properties.hw_machine_type"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_firmware_type/anyOf/0'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_firmware_type.anyOf[0]"
     """
 
-    is_baremetal: Optional[bool]
+    hw_machine_type: Optional[Literal["pc", "q35"]]
     """
-    '#/components/schemas/ImageCreateSchema/properties/is_baremetal'
-    "$.components.schemas.ImageCreateSchema.properties.is_baremetal"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_machine_type/anyOf/0'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_machine_type.anyOf[0]"
     """
 
-    metadata: object
+    is_baremetal: bool
     """
-    '#/components/schemas/ImageCreateSchema/properties/metadata'
-    "$.components.schemas.ImageCreateSchema.properties.metadata"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/is_baremetal'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.is_baremetal"
     """
 
     os_type: Literal["linux", "windows"]
     """
-    '#/components/schemas/ImageCreateSchema/properties/os_type'
-    "$.components.schemas.ImageCreateSchema.properties.os_type"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/os_type'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.os_type"
     """
 
-    source: str
+    source: Literal["volume"]
     """
-    '#/components/schemas/ImageCreateSchema/properties/source'
-    "$.components.schemas.ImageCreateSchema.properties.source"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/source'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.source"
     """
 
     ssh_key: Literal["allow", "deny", "required"]
     """
-    '#/components/schemas/ImageCreateSchema/properties/ssh_key'
-    "$.components.schemas.ImageCreateSchema.properties.ssh_key"
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/ssh_key'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.ssh_key"
+    """
+
+    tags: Dict[str, str]
+    """
+    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/tags'
+    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.tags"
     """

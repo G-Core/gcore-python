@@ -57,10 +57,10 @@ class CreateStandardFileShareSerializer(TypedDict, total=False):
     "$.components.schemas.CreateStandardFileShareSerializer.properties.access"
     """
 
-    metadata: Dict[str, str]
+    tags: Dict[str, str]
     """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/metadata'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.metadata"
+    '#/components/schemas/CreateStandardFileShareSerializer/properties/tags'
+    "$.components.schemas.CreateStandardFileShareSerializer.properties.tags"
     """
 
     volume_type: Literal["default_share_type"]
@@ -135,10 +135,10 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     "$.components.schemas.CreateVastFileShareSerializer.properties.volume_type"
     """
 
-    metadata: Dict[str, str]
+    tags: Dict[str, str]
     """
-    '#/components/schemas/CreateVastFileShareSerializer/properties/metadata'
-    "$.components.schemas.CreateVastFileShareSerializer.properties.metadata"
+    '#/components/schemas/CreateVastFileShareSerializer/properties/tags'
+    "$.components.schemas.CreateVastFileShareSerializer.properties.tags"
     """
 
 

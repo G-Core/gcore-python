@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["NetworkCreateParams"]
@@ -33,10 +33,10 @@ class NetworkCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateNetworkSerializer.properties.create_router"
     """
 
-    metadata: Optional[Dict[str, str]]
+    tags: Dict[str, str]
     """
-    '#/components/schemas/CreateNetworkSerializer/properties/metadata/anyOf/0'
-    "$.components.schemas.CreateNetworkSerializer.properties.metadata.anyOf[0]"
+    '#/components/schemas/CreateNetworkSerializer/properties/tags'
+    "$.components.schemas.CreateNetworkSerializer.properties.tags"
     """
 
     type: Literal["vlan", "vxlan"]

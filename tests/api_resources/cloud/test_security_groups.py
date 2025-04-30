@@ -37,7 +37,6 @@ class TestSecurityGroups:
             security_group={
                 "name": "my_security_group",
                 "description": "Some description",
-                "metadata": {"my-tag": "bar"},
                 "security_group_rules": [
                     {
                         "description": "Some description",
@@ -50,7 +49,7 @@ class TestSecurityGroups:
                         "remote_ip_prefix": "10.0.0.0/8",
                     }
                 ],
-                "tags": ["string"],
+                "tags": {"my-tag": "bar"},
             },
             instances=["00000000-0000-4000-8000-000000000000"],
         )
@@ -168,9 +167,9 @@ class TestSecurityGroups:
             project_id=0,
             region_id=0,
             limit=0,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
             offset=0,
+            tag_key=["string"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[SecurityGroup], security_group, path=["response"])
 
@@ -409,7 +408,6 @@ class TestAsyncSecurityGroups:
             security_group={
                 "name": "my_security_group",
                 "description": "Some description",
-                "metadata": {"my-tag": "bar"},
                 "security_group_rules": [
                     {
                         "description": "Some description",
@@ -422,7 +420,7 @@ class TestAsyncSecurityGroups:
                         "remote_ip_prefix": "10.0.0.0/8",
                     }
                 ],
-                "tags": ["string"],
+                "tags": {"my-tag": "bar"},
             },
             instances=["00000000-0000-4000-8000-000000000000"],
         )
@@ -540,9 +538,9 @@ class TestAsyncSecurityGroups:
             project_id=0,
             region_id=0,
             limit=0,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
             offset=0,
+            tag_key=["string"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[SecurityGroup], security_group, path=["response"])
 

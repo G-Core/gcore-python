@@ -107,12 +107,6 @@ class Volume(BaseModel):
     "$.components.schemas.VolumeSerializer.properties.is_root_volume"
     """
 
-    metadata_detailed: List[Tag]
-    """
-    '#/components/schemas/VolumeSerializer/properties/metadata_detailed'
-    "$.components.schemas.VolumeSerializer.properties.metadata_detailed"
-    """
-
     name: str
     """
     '#/components/schemas/VolumeSerializer/properties/name'
@@ -199,12 +193,6 @@ class Volume(BaseModel):
     """
     '#/components/schemas/VolumeSerializer/properties/limiter_stats/anyOf/0'
     "$.components.schemas.VolumeSerializer.properties.limiter_stats.anyOf[0]"
-    """
-
-    metadata: Optional[Dict[str, str]] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/metadata/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.metadata.anyOf[0]"
     """
 
     snapshot_ids: Optional[List[str]] = None

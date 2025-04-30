@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import TypedDict
 
 __all__ = ["SecurityGroupListParams"]
@@ -26,19 +27,19 @@ class SecurityGroupListParams(TypedDict, total=False):
     "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[2]"
     """
 
-    metadata_k: str
+    offset: int
     """
     '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
     "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[3]"
     """
 
-    metadata_kv: str
+    tag_key: List[str]
     """
     '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
     "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[4]"
     """
 
-    offset: int
+    tag_key_value: str
     """
     '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
     "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[5]"

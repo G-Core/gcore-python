@@ -302,6 +302,7 @@ class RoutersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
+        ip_address: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -322,8 +323,11 @@ class RoutersResource(SyncAPIResource):
           router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/2/schema'
               "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[2].schema"
 
-          subnet_id: '#/components/schemas/SubnetIdSerializer/properties/subnet_id'
-              "$.components.schemas.SubnetIdSerializer.properties.subnet_id"
+          subnet_id: '#/components/schemas/AddRouterInterfaceSerializer/properties/subnet_id'
+              "$.components.schemas.AddRouterInterfaceSerializer.properties.subnet_id"
+
+          ip_address: '#/components/schemas/AddRouterInterfaceSerializer/properties/ip_address'
+              "$.components.schemas.AddRouterInterfaceSerializer.properties.ip_address"
 
           extra_headers: Send extra headers
 
@@ -341,7 +345,13 @@ class RoutersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return self._post(
             f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach",
-            body=maybe_transform({"subnet_id": subnet_id}, router_attach_subnet_params.RouterAttachSubnetParams),
+            body=maybe_transform(
+                {
+                    "subnet_id": subnet_id,
+                    "ip_address": ip_address,
+                },
+                router_attach_subnet_params.RouterAttachSubnetParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -721,6 +731,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
+        ip_address: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -741,8 +752,11 @@ class AsyncRoutersResource(AsyncAPIResource):
           router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/2/schema'
               "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[2].schema"
 
-          subnet_id: '#/components/schemas/SubnetIdSerializer/properties/subnet_id'
-              "$.components.schemas.SubnetIdSerializer.properties.subnet_id"
+          subnet_id: '#/components/schemas/AddRouterInterfaceSerializer/properties/subnet_id'
+              "$.components.schemas.AddRouterInterfaceSerializer.properties.subnet_id"
+
+          ip_address: '#/components/schemas/AddRouterInterfaceSerializer/properties/ip_address'
+              "$.components.schemas.AddRouterInterfaceSerializer.properties.ip_address"
 
           extra_headers: Send extra headers
 
@@ -761,7 +775,11 @@ class AsyncRoutersResource(AsyncAPIResource):
         return await self._post(
             f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach",
             body=await async_maybe_transform(
-                {"subnet_id": subnet_id}, router_attach_subnet_params.RouterAttachSubnetParams
+                {
+                    "subnet_id": subnet_id,
+                    "ip_address": ip_address,
+                },
+                router_attach_subnet_params.RouterAttachSubnetParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

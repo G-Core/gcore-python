@@ -34,7 +34,7 @@ class TestNetworks:
             region_id=0,
             name="my network",
             create_router=True,
-            metadata={"my-tag": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type="vxlan",
         )
         assert_matches_type(TaskIDList, network, path=["response"])
@@ -131,10 +131,10 @@ class TestNetworks:
             project_id=0,
             region_id=0,
             limit=0,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
             offset=0,
             order_by="order_by",
+            tag_key=["string"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[Network], network, path=["response"])
 
@@ -276,7 +276,7 @@ class TestAsyncNetworks:
             region_id=0,
             name="my network",
             create_router=True,
-            metadata={"my-tag": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type="vxlan",
         )
         assert_matches_type(TaskIDList, network, path=["response"])
@@ -373,10 +373,10 @@ class TestAsyncNetworks:
             project_id=0,
             region_id=0,
             limit=0,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
             offset=0,
             order_by="order_by",
+            tag_key=["string"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[Network], network, path=["response"])
 

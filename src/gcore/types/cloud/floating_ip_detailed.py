@@ -192,18 +192,6 @@ class Instance(BaseModel):
     "$.components.schemas.InstanceInFloatingSerializer.properties.keypair_name.anyOf[0]"
     """
 
-    metadata: Dict[str, str]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/metadata'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.metadata"
-    """
-
-    metadata_detailed: List[Tag]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/metadata_detailed'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.metadata_detailed"
-    """
-
     project_id: int
     """
     '#/components/schemas/InstanceInFloatingSerializer/properties/project_id'
@@ -352,12 +340,6 @@ class FloatingIPDetailed(BaseModel):
     """
     '#/components/schemas/FloatingIPDetailedSerializer/properties/loadbalancer/anyOf/0'
     "$.components.schemas.FloatingIPDetailedSerializer.properties.loadbalancer.anyOf[0]"
-    """
-
-    metadata: List[Tag]
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/metadata'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.metadata"
     """
 
     port_id: Optional[str] = None

@@ -20,8 +20,6 @@ __all__ = [
     "Flavor",
     "FlavorHardwareDescription",
     "InstanceIsolation",
-    "SecurityGroup",
-    "Volume",
 ]
 
 
@@ -259,28 +257,6 @@ class InstanceIsolation(BaseModel):
     """
 
 
-class SecurityGroup(BaseModel):
-    name: str
-    """
-    '#/components/schemas/NameSerializerPydantic/properties/name'
-    "$.components.schemas.NameSerializerPydantic.properties.name"
-    """
-
-
-class Volume(BaseModel):
-    id: str
-    """
-    '#/components/schemas/InstanceVolumeSerializer/properties/id'
-    "$.components.schemas.InstanceVolumeSerializer.properties.id"
-    """
-
-    delete_on_termination: bool
-    """
-    '#/components/schemas/InstanceVolumeSerializer/properties/delete_on_termination'
-    "$.components.schemas.InstanceVolumeSerializer.properties.delete_on_termination"
-    """
-
-
 class BaremetalServer(BaseModel):
     addresses: Dict[str, List[Address]]
     """
@@ -372,12 +348,6 @@ class BaremetalServer(BaseModel):
     "$.components.schemas.BareMetalServerSerializer.properties.region_id"
     """
 
-    security_groups: List[SecurityGroup]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/security_groups'
-    "$.components.schemas.BareMetalServerSerializer.properties.security_groups"
-    """
-
     status: Literal[
         "ACTIVE",
         "BUILD",
@@ -440,22 +410,4 @@ class BaremetalServer(BaseModel):
     """
     '#/components/schemas/BareMetalServerSerializer/properties/vm_state'
     "$.components.schemas.BareMetalServerSerializer.properties.vm_state"
-    """
-
-    volumes: List[Volume]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/volumes'
-    "$.components.schemas.BareMetalServerSerializer.properties.volumes"
-    """
-
-    metadata: Optional[Dict[str, str]] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/metadata'
-    "$.components.schemas.BareMetalServerSerializer.properties.metadata"
-    """
-
-    metadata_detailed: Optional[List[Tag]] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/metadata_detailed'
-    "$.components.schemas.BareMetalServerSerializer.properties.metadata_detailed"
     """

@@ -67,12 +67,6 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateLoadbalancerSerializer.properties.logging"
     """
 
-    metadata: Dict[str, str]
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/metadata'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.metadata"
-    """
-
     name: str
     """
     '#/components/schemas/CreateLoadbalancerSerializer/properties/name'
@@ -91,10 +85,10 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateLoadbalancerSerializer.properties.preferred_connectivity"
     """
 
-    tag: List[str]
+    tags: Dict[str, str]
     """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/tag'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.tag"
+    '#/components/schemas/CreateLoadbalancerSerializer/properties/tags'
+    "$.components.schemas.CreateLoadbalancerSerializer.properties.tags"
     """
 
     vip_ip_family: InterfaceIPFamily

@@ -45,7 +45,7 @@ class TestVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            metadata={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -106,8 +106,8 @@ class TestVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            metadata={"foo": "my-tag-value"},
             size=10,
+            tags={"my-tag": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -166,7 +166,7 @@ class TestVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            metadata={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -272,10 +272,10 @@ class TestVolumes:
             id_part="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             instance_id="169942e0-9b53-42df-95ef-1a8b6525c2bd",
             limit=1000,
-            metadata_k=["key1", "key2"],
-            metadata_kv="metadata_kv",
             name_part="test",
             offset=0,
+            tag_key=["key1", "key2"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[Volume], volume, path=["response"])
 
@@ -692,7 +692,7 @@ class TestAsyncVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            metadata={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -753,8 +753,8 @@ class TestAsyncVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            metadata={"foo": "my-tag-value"},
             size=10,
+            tags={"my-tag": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -813,7 +813,7 @@ class TestAsyncVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            metadata={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -919,10 +919,10 @@ class TestAsyncVolumes:
             id_part="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             instance_id="169942e0-9b53-42df-95ef-1a8b6525c2bd",
             limit=1000,
-            metadata_k=["key1", "key2"],
-            metadata_kv="metadata_kv",
             name_part="test",
             offset=0,
+            tag_key=["key1", "key2"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[Volume], volume, path=["response"])
 

@@ -74,7 +74,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -108,8 +108,8 @@ class FileSharesResource(SyncAPIResource):
           access: '#/components/schemas/CreateStandardFileShareSerializer/properties/access'
               "$.components.schemas.CreateStandardFileShareSerializer.properties.access"
 
-          metadata: '#/components/schemas/CreateStandardFileShareSerializer/properties/metadata'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateStandardFileShareSerializer/properties/tags'
+              "$.components.schemas.CreateStandardFileShareSerializer.properties.tags"
 
           volume_type: '#/components/schemas/CreateStandardFileShareSerializer/properties/volume_type'
               "$.components.schemas.CreateStandardFileShareSerializer.properties.volume_type"
@@ -134,7 +134,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         volume_type: Literal["vast_share_type"],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,8 +164,8 @@ class FileSharesResource(SyncAPIResource):
           volume_type: '#/components/schemas/CreateVastFileShareSerializer/properties/volume_type'
               "$.components.schemas.CreateVastFileShareSerializer.properties.volume_type"
 
-          metadata: '#/components/schemas/CreateVastFileShareSerializer/properties/metadata'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateVastFileShareSerializer/properties/tags'
+              "$.components.schemas.CreateVastFileShareSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -188,7 +188,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -210,7 +210,7 @@ class FileSharesResource(SyncAPIResource):
                     "protocol": protocol,
                     "size": size,
                     "access": access,
-                    "metadata": metadata,
+                    "tags": tags,
                     "volume_type": volume_type,
                 },
                 file_share_create_params.FileShareCreateParams,
@@ -520,7 +520,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -554,8 +554,8 @@ class AsyncFileSharesResource(AsyncAPIResource):
           access: '#/components/schemas/CreateStandardFileShareSerializer/properties/access'
               "$.components.schemas.CreateStandardFileShareSerializer.properties.access"
 
-          metadata: '#/components/schemas/CreateStandardFileShareSerializer/properties/metadata'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateStandardFileShareSerializer/properties/tags'
+              "$.components.schemas.CreateStandardFileShareSerializer.properties.tags"
 
           volume_type: '#/components/schemas/CreateStandardFileShareSerializer/properties/volume_type'
               "$.components.schemas.CreateStandardFileShareSerializer.properties.volume_type"
@@ -580,7 +580,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         volume_type: Literal["vast_share_type"],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -610,8 +610,8 @@ class AsyncFileSharesResource(AsyncAPIResource):
           volume_type: '#/components/schemas/CreateVastFileShareSerializer/properties/volume_type'
               "$.components.schemas.CreateVastFileShareSerializer.properties.volume_type"
 
-          metadata: '#/components/schemas/CreateVastFileShareSerializer/properties/metadata'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateVastFileShareSerializer/properties/tags'
+              "$.components.schemas.CreateVastFileShareSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -634,7 +634,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -656,7 +656,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
                     "protocol": protocol,
                     "size": size,
                     "access": access,
-                    "metadata": metadata,
+                    "tags": tags,
                     "volume_type": volume_type,
                 },
                 file_share_create_params.FileShareCreateParams,
