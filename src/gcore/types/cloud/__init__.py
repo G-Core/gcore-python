@@ -9,6 +9,7 @@ from .region import Region as Region
 from .secret import Secret as Secret
 from .subnet import Subnet as Subnet
 from .volume import Volume as Volume
+from .console import Console as Console
 from .l7_rule import L7Rule as L7Rule
 from .logging import Logging as Logging
 from .network import Network as Network
@@ -16,6 +17,7 @@ from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .capacity import Capacity as Capacity
 from .registry import Registry as Registry
+from .gpu_image import GPUImage as GPUImage
 from .ip_ranges import IPRanges as IPRanges
 from .l7_policy import L7Policy as L7Policy
 from .file_share import FileShare as FileShare
@@ -35,6 +37,7 @@ from .deploy_status import DeployStatus as DeployStatus
 from .load_balancer import LoadBalancer as LoadBalancer
 from .member_status import MemberStatus as MemberStatus
 from .registry_list import RegistryList as RegistryList
+from .gpu_image_list import GPUImageList as GPUImageList
 from .l7_policy_list import L7PolicyList as L7PolicyList
 from .lb_flavor_list import LbFlavorList as LbFlavorList
 from .security_group import SecurityGroup as SecurityGroup
@@ -51,10 +54,12 @@ from .lb_listener_list import LbListenerList as LbListenerList
 from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol
 from .task_list_params import TaskListParams as TaskListParams
 from .lb_health_monitor import LbHealthMonitor as LbHealthMonitor
+from .network_interface import NetworkInterface as NetworkInterface
 from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
 from .aws_iam_data_param import AwsIamDataParam as AwsIamDataParam
 from .ddos_profile_field import DDOSProfileField as DDOSProfileField
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
+from .gpu_cluster_server import GPUClusterServer as GPUClusterServer
 from .ingress_opts_param import IngressOptsParam as IngressOptsParam
 from .region_list_params import RegionListParams as RegionListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
@@ -69,6 +74,7 @@ from .security_group_rule import SecurityGroupRule as SecurityGroupRule
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .container_probe_exec import ContainerProbeExec as ContainerProbeExec
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
+from .gpu_baremetal_flavor import GPUBaremetalFlavor as GPUBaremetalFlavor
 from .lb_listener_protocol import LbListenerProtocol as LbListenerProtocol
 from .load_balancer_status import LoadBalancerStatus as LoadBalancerStatus
 from .loadbalancer_metrics import LoadbalancerMetrics as LoadbalancerMetrics
@@ -82,6 +88,7 @@ from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
 from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .detailed_lb_pool_list import DetailedLbPoolList as DetailedLbPoolList
+from .gpu_baremetal_cluster import GPUBaremetalCluster as GPUBaremetalCluster
 from .health_monitor_status import HealthMonitorStatus as HealthMonitorStatus
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
@@ -91,6 +98,7 @@ from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
 from .container_probe_config import ContainerProbeConfig as ContainerProbeConfig
 from .file_share_list_params import FileShareListParams as FileShareListParams
 from .lb_session_persistence import LbSessionPersistence as LbSessionPersistence
+from .network_interface_list import NetworkInterfaceList as NetworkInterfaceList
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
 from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .region_retrieve_params import RegionRetrieveParams as RegionRetrieveParams
@@ -98,6 +106,7 @@ from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .detailed_lb_pool_member import DetailedLbPoolMember as DetailedLbPoolMember
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
+from .gpu_cluster_server_list import GPUClusterServerList as GPUClusterServerList
 from .container_probe_http_get import ContainerProbeHTTPGet as ContainerProbeHTTPGet
 from .container_scale_triggers import ContainerScaleTriggers as ContainerScaleTriggers
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
@@ -109,6 +118,7 @@ from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStat
 from .session_persistence_type import SessionPersistenceType as SessionPersistenceType
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams
+from .gpu_baremetal_flavor_list import GPUBaremetalFlavorList as GPUBaremetalFlavorList
 from .load_balancer_list_params import LoadBalancerListParams as LoadBalancerListParams
 from .load_balancer_status_list import LoadBalancerStatusList as LoadBalancerStatusList
 from .loadbalancer_metrics_list import LoadbalancerMetricsList as LoadbalancerMetricsList
@@ -138,6 +148,11 @@ from .billing_reservation_list_params import BillingReservationListParams as Bil
 from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
 from .container_scale_trigger_threshold import ContainerScaleTriggerThreshold as ContainerScaleTriggerThreshold
+from .gpu_baremetal_cluster_list_params import GPUBaremetalClusterListParams as GPUBaremetalClusterListParams
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams
+from .gpu_baremetal_cluster_create_params import GPUBaremetalClusterCreateParams as GPUBaremetalClusterCreateParams
+from .gpu_baremetal_cluster_delete_params import GPUBaremetalClusterDeleteParams as GPUBaremetalClusterDeleteParams
+from .gpu_baremetal_cluster_resize_params import GPUBaremetalClusterResizeParams as GPUBaremetalClusterResizeParams
+from .gpu_baremetal_cluster_rebuild_params import GPUBaremetalClusterRebuildParams as GPUBaremetalClusterRebuildParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
