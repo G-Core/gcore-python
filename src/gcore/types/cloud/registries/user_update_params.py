@@ -1,0 +1,39 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Required, TypedDict
+
+__all__ = ["UserUpdateParams"]
+
+
+class UserUpdateParams(TypedDict, total=False):
+    project_id: int
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/0/schema'
+    "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[0].schema"
+    """
+
+    region_id: int
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/1/schema'
+    "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[1].schema"
+    """
+
+    registry_id: Required[int]
+    """
+    '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/2/schema'
+    "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[2].schema"
+    """
+
+    duration: Required[int]
+    """
+    '#/components/schemas/RegistryUserUpdateSerializer/properties/duration'
+    "$.components.schemas.RegistryUserUpdateSerializer.properties.duration"
+    """
+
+    read_only: bool
+    """
+    '#/components/schemas/RegistryUserUpdateSerializer/properties/read_only'
+    "$.components.schemas.RegistryUserUpdateSerializer.properties.read_only"
+    """

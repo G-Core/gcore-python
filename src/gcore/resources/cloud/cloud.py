@@ -132,6 +132,14 @@ from .billing_reservations import (
     BillingReservationsResourceWithStreamingResponse,
     AsyncBillingReservationsResourceWithStreamingResponse,
 )
+from .registries.registries import (
+    RegistriesResource,
+    AsyncRegistriesResource,
+    RegistriesResourceWithRawResponse,
+    AsyncRegistriesResourceWithRawResponse,
+    RegistriesResourceWithStreamingResponse,
+    AsyncRegistriesResourceWithStreamingResponse,
+)
 from .file_shares.file_shares import (
     FileSharesResource,
     AsyncFileSharesResource,
@@ -242,6 +250,10 @@ class CloudResource(SyncAPIResource):
         return InstancesResource(self._client)
 
     @cached_property
+    def registries(self) -> RegistriesResource:
+        return RegistriesResource(self._client)
+
+    @cached_property
     def file_shares(self) -> FileSharesResource:
         return FileSharesResource(self._client)
 
@@ -341,6 +353,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def instances(self) -> AsyncInstancesResource:
         return AsyncInstancesResource(self._client)
+
+    @cached_property
+    def registries(self) -> AsyncRegistriesResource:
+        return AsyncRegistriesResource(self._client)
 
     @cached_property
     def file_shares(self) -> AsyncFileSharesResource:
@@ -447,6 +463,10 @@ class CloudResourceWithRawResponse:
         return InstancesResourceWithRawResponse(self._cloud.instances)
 
     @cached_property
+    def registries(self) -> RegistriesResourceWithRawResponse:
+        return RegistriesResourceWithRawResponse(self._cloud.registries)
+
+    @cached_property
     def file_shares(self) -> FileSharesResourceWithRawResponse:
         return FileSharesResourceWithRawResponse(self._cloud.file_shares)
 
@@ -530,6 +550,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
         return AsyncInstancesResourceWithRawResponse(self._cloud.instances)
+
+    @cached_property
+    def registries(self) -> AsyncRegistriesResourceWithRawResponse:
+        return AsyncRegistriesResourceWithRawResponse(self._cloud.registries)
 
     @cached_property
     def file_shares(self) -> AsyncFileSharesResourceWithRawResponse:
@@ -617,6 +641,10 @@ class CloudResourceWithStreamingResponse:
         return InstancesResourceWithStreamingResponse(self._cloud.instances)
 
     @cached_property
+    def registries(self) -> RegistriesResourceWithStreamingResponse:
+        return RegistriesResourceWithStreamingResponse(self._cloud.registries)
+
+    @cached_property
     def file_shares(self) -> FileSharesResourceWithStreamingResponse:
         return FileSharesResourceWithStreamingResponse(self._cloud.file_shares)
 
@@ -700,6 +728,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
         return AsyncInstancesResourceWithStreamingResponse(self._cloud.instances)
+
+    @cached_property
+    def registries(self) -> AsyncRegistriesResourceWithStreamingResponse:
+        return AsyncRegistriesResourceWithStreamingResponse(self._cloud.registries)
 
     @cached_property
     def file_shares(self) -> AsyncFileSharesResourceWithStreamingResponse:

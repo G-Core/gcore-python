@@ -112,6 +112,14 @@ from .ip_ranges import (
     IPRangesResourceWithStreamingResponse,
     AsyncIPRangesResourceWithStreamingResponse,
 )
+from .registries import (
+    RegistriesResource,
+    AsyncRegistriesResource,
+    RegistriesResourceWithRawResponse,
+    AsyncRegistriesResourceWithRawResponse,
+    RegistriesResourceWithStreamingResponse,
+    AsyncRegistriesResourceWithStreamingResponse,
+)
 from .file_shares import (
     FileSharesResource,
     AsyncFileSharesResource,
@@ -278,6 +286,12 @@ __all__ = [
     "AsyncInstancesResourceWithRawResponse",
     "InstancesResourceWithStreamingResponse",
     "AsyncInstancesResourceWithStreamingResponse",
+    "RegistriesResource",
+    "AsyncRegistriesResource",
+    "RegistriesResourceWithRawResponse",
+    "AsyncRegistriesResourceWithRawResponse",
+    "RegistriesResourceWithStreamingResponse",
+    "AsyncRegistriesResourceWithStreamingResponse",
     "FileSharesResource",
     "AsyncFileSharesResource",
     "FileSharesResourceWithRawResponse",
