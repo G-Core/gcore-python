@@ -100,6 +100,14 @@ from .baremetal.baremetal import (
     BaremetalResourceWithStreamingResponse,
     AsyncBaremetalResourceWithStreamingResponse,
 )
+from .inference.inference import (
+    InferenceResource,
+    AsyncInferenceResource,
+    InferenceResourceWithRawResponse,
+    AsyncInferenceResourceWithRawResponse,
+    InferenceResourceWithStreamingResponse,
+    AsyncInferenceResourceWithStreamingResponse,
+)
 from .instances.instances import (
     InstancesResource,
     AsyncInstancesResource,
@@ -206,6 +214,10 @@ class CloudResource(SyncAPIResource):
         return SecurityGroupsResource(self._client)
 
     @cached_property
+    def inference(self) -> InferenceResource:
+        return InferenceResource(self._client)
+
+    @cached_property
     def placement_groups(self) -> PlacementGroupsResource:
         return PlacementGroupsResource(self._client)
 
@@ -297,6 +309,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResource:
         return AsyncSecurityGroupsResource(self._client)
+
+    @cached_property
+    def inference(self) -> AsyncInferenceResource:
+        return AsyncInferenceResource(self._client)
 
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResource:
@@ -395,6 +411,10 @@ class CloudResourceWithRawResponse:
         return SecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
 
     @cached_property
+    def inference(self) -> InferenceResourceWithRawResponse:
+        return InferenceResourceWithRawResponse(self._cloud.inference)
+
+    @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithRawResponse:
         return PlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
@@ -470,6 +490,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithRawResponse:
         return AsyncSecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
+
+    @cached_property
+    def inference(self) -> AsyncInferenceResourceWithRawResponse:
+        return AsyncInferenceResourceWithRawResponse(self._cloud.inference)
 
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithRawResponse:
@@ -549,6 +573,10 @@ class CloudResourceWithStreamingResponse:
         return SecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
 
     @cached_property
+    def inference(self) -> InferenceResourceWithStreamingResponse:
+        return InferenceResourceWithStreamingResponse(self._cloud.inference)
+
+    @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithStreamingResponse:
         return PlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 
@@ -624,6 +652,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithStreamingResponse:
         return AsyncSecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
+
+    @cached_property
+    def inference(self) -> AsyncInferenceResourceWithStreamingResponse:
+        return AsyncInferenceResourceWithStreamingResponse(self._cloud.inference)
 
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithStreamingResponse:
