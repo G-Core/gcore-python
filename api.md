@@ -408,6 +408,23 @@ Methods:
 - <code title="delete /cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}">client.cloud.security_groups.rules.<a href="./src/gcore/resources/cloud/security_groups/rules.py">delete</a>(rule_id, \*, project_id, region_id) -> None</code>
 - <code title="put /cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}">client.cloud.security_groups.rules.<a href="./src/gcore/resources/cloud/security_groups/rules.py">replace</a>(rule_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_groups/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/security_group_rule.py">SecurityGroupRule</a></code>
 
+## Users
+
+### RoleAssignments
+
+Types:
+
+```python
+from gcore.types.cloud.users import RoleAssignment, RoleAssignmentUpdateDelete
+```
+
+Methods:
+
+- <code title="post /cloud/v1/users/assignments">client.cloud.users.role_assignments.<a href="./src/gcore/resources/cloud/users/role_assignments.py">create</a>(\*\*<a href="src/gcore/types/cloud/users/role_assignment_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/users/role_assignment.py">RoleAssignment</a></code>
+- <code title="patch /cloud/v1/users/assignments/{assignment_id}">client.cloud.users.role_assignments.<a href="./src/gcore/resources/cloud/users/role_assignments.py">update</a>(assignment_id, \*\*<a href="src/gcore/types/cloud/users/role_assignment_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/users/role_assignment_update_delete.py">RoleAssignmentUpdateDelete</a></code>
+- <code title="get /cloud/v1/users/assignments">client.cloud.users.role_assignments.<a href="./src/gcore/resources/cloud/users/role_assignments.py">list</a>(\*\*<a href="src/gcore/types/cloud/users/role_assignment_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/users/role_assignment.py">SyncOffsetPage[RoleAssignment]</a></code>
+- <code title="delete /cloud/v1/users/assignments/{assignment_id}">client.cloud.users.role_assignments.<a href="./src/gcore/resources/cloud/users/role_assignments.py">delete</a>(assignment_id) -> <a href="./src/gcore/types/cloud/users/role_assignment_update_delete.py">RoleAssignmentUpdateDelete</a></code>
+
 ## Inference
 
 Types:

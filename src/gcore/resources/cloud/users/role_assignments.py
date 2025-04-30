@@ -1,0 +1,557 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Optional
+
+import httpx
+
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.cloud.users import (
+    role_assignment_list_params,
+    role_assignment_create_params,
+    role_assignment_update_params,
+)
+from ....types.cloud.users.role_assignment import RoleAssignment
+from ....types.cloud.users.role_assignment_update_delete import RoleAssignmentUpdateDelete
+
+__all__ = ["RoleAssignmentsResource", "AsyncRoleAssignmentsResource"]
+
+
+class RoleAssignmentsResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> RoleAssignmentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return RoleAssignmentsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RoleAssignmentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        """
+        return RoleAssignmentsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        role: str,
+        user_id: int,
+        client_id: Optional[int] | NotGiven = NOT_GIVEN,
+        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RoleAssignment:
+        """
+        Assign role to existing user
+
+        Args:
+          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
+              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+
+          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
+              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+
+          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+
+          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/cloud/v1/users/assignments",
+            body=maybe_transform(
+                {
+                    "role": role,
+                    "user_id": user_id,
+                    "client_id": client_id,
+                    "project_id": project_id,
+                },
+                role_assignment_create_params.RoleAssignmentCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RoleAssignment,
+        )
+
+    def update(
+        self,
+        assignment_id: int,
+        *,
+        role: str,
+        user_id: int,
+        client_id: Optional[int] | NotGiven = NOT_GIVEN,
+        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RoleAssignmentUpdateDelete:
+        """
+        Modify role assignment to existing user
+
+        Args:
+          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/patch/parameters/0/schema'
+              "$.paths['/cloud/v1/users/assignments/{assignment_id}'].patch.parameters[0].schema"
+
+          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
+              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+
+          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
+              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+
+          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+
+          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._patch(
+            f"/cloud/v1/users/assignments/{assignment_id}",
+            body=maybe_transform(
+                {
+                    "role": role,
+                    "user_id": user_id,
+                    "client_id": client_id,
+                    "project_id": project_id,
+                },
+                role_assignment_update_params.RoleAssignmentUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RoleAssignmentUpdateDelete,
+        )
+
+    def list(
+        self,
+        *,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        project_id: int | NotGiven = NOT_GIVEN,
+        user_id: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncOffsetPage[RoleAssignment]:
+        """
+        List assignments
+
+        Args:
+          limit: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/0'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[0]"
+
+          offset: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/1'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[1]"
+
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/2'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[2]"
+
+          user_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/3'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[3]"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/cloud/v1/users/assignments",
+            page=SyncOffsetPage[RoleAssignment],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                        "project_id": project_id,
+                        "user_id": user_id,
+                    },
+                    role_assignment_list_params.RoleAssignmentListParams,
+                ),
+            ),
+            model=RoleAssignment,
+        )
+
+    def delete(
+        self,
+        assignment_id: int,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RoleAssignmentUpdateDelete:
+        """
+        Delete role assignment
+
+        Args:
+          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/users/assignments/{assignment_id}']['delete'].parameters[0].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._delete(
+            f"/cloud/v1/users/assignments/{assignment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RoleAssignmentUpdateDelete,
+        )
+
+
+class AsyncRoleAssignmentsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncRoleAssignmentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncRoleAssignmentsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRoleAssignmentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        """
+        return AsyncRoleAssignmentsResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        role: str,
+        user_id: int,
+        client_id: Optional[int] | NotGiven = NOT_GIVEN,
+        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RoleAssignment:
+        """
+        Assign role to existing user
+
+        Args:
+          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
+              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+
+          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
+              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+
+          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+
+          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/cloud/v1/users/assignments",
+            body=await async_maybe_transform(
+                {
+                    "role": role,
+                    "user_id": user_id,
+                    "client_id": client_id,
+                    "project_id": project_id,
+                },
+                role_assignment_create_params.RoleAssignmentCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RoleAssignment,
+        )
+
+    async def update(
+        self,
+        assignment_id: int,
+        *,
+        role: str,
+        user_id: int,
+        client_id: Optional[int] | NotGiven = NOT_GIVEN,
+        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RoleAssignmentUpdateDelete:
+        """
+        Modify role assignment to existing user
+
+        Args:
+          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/patch/parameters/0/schema'
+              "$.paths['/cloud/v1/users/assignments/{assignment_id}'].patch.parameters[0].schema"
+
+          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
+              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+
+          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
+              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+
+          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+
+          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
+              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._patch(
+            f"/cloud/v1/users/assignments/{assignment_id}",
+            body=await async_maybe_transform(
+                {
+                    "role": role,
+                    "user_id": user_id,
+                    "client_id": client_id,
+                    "project_id": project_id,
+                },
+                role_assignment_update_params.RoleAssignmentUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RoleAssignmentUpdateDelete,
+        )
+
+    def list(
+        self,
+        *,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        project_id: int | NotGiven = NOT_GIVEN,
+        user_id: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[RoleAssignment, AsyncOffsetPage[RoleAssignment]]:
+        """
+        List assignments
+
+        Args:
+          limit: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/0'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[0]"
+
+          offset: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/1'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[1]"
+
+          project_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/2'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[2]"
+
+          user_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/3'
+              "$.paths['/cloud/v1/users/assignments'].get.parameters[3]"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/cloud/v1/users/assignments",
+            page=AsyncOffsetPage[RoleAssignment],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                        "project_id": project_id,
+                        "user_id": user_id,
+                    },
+                    role_assignment_list_params.RoleAssignmentListParams,
+                ),
+            ),
+            model=RoleAssignment,
+        )
+
+    async def delete(
+        self,
+        assignment_id: int,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RoleAssignmentUpdateDelete:
+        """
+        Delete role assignment
+
+        Args:
+          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/delete/parameters/0/schema'
+              "$.paths['/cloud/v1/users/assignments/{assignment_id}']['delete'].parameters[0].schema"
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._delete(
+            f"/cloud/v1/users/assignments/{assignment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RoleAssignmentUpdateDelete,
+        )
+
+
+class RoleAssignmentsResourceWithRawResponse:
+    def __init__(self, role_assignments: RoleAssignmentsResource) -> None:
+        self._role_assignments = role_assignments
+
+        self.create = to_raw_response_wrapper(
+            role_assignments.create,
+        )
+        self.update = to_raw_response_wrapper(
+            role_assignments.update,
+        )
+        self.list = to_raw_response_wrapper(
+            role_assignments.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            role_assignments.delete,
+        )
+
+
+class AsyncRoleAssignmentsResourceWithRawResponse:
+    def __init__(self, role_assignments: AsyncRoleAssignmentsResource) -> None:
+        self._role_assignments = role_assignments
+
+        self.create = async_to_raw_response_wrapper(
+            role_assignments.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            role_assignments.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            role_assignments.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            role_assignments.delete,
+        )
+
+
+class RoleAssignmentsResourceWithStreamingResponse:
+    def __init__(self, role_assignments: RoleAssignmentsResource) -> None:
+        self._role_assignments = role_assignments
+
+        self.create = to_streamed_response_wrapper(
+            role_assignments.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            role_assignments.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            role_assignments.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            role_assignments.delete,
+        )
+
+
+class AsyncRoleAssignmentsResourceWithStreamingResponse:
+    def __init__(self, role_assignments: AsyncRoleAssignmentsResource) -> None:
+        self._role_assignments = role_assignments
+
+        self.create = async_to_streamed_response_wrapper(
+            role_assignments.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            role_assignments.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            role_assignments.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            role_assignments.delete,
+        )

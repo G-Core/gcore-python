@@ -60,6 +60,14 @@ from .ip_ranges import (
     AsyncIPRangesResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .users.users import (
+    UsersResource,
+    AsyncUsersResource,
+    UsersResourceWithRawResponse,
+    AsyncUsersResourceWithRawResponse,
+    UsersResourceWithStreamingResponse,
+    AsyncUsersResourceWithStreamingResponse,
+)
 from .floating_ips import (
     FloatingIPsResource,
     AsyncFloatingIPsResource,
@@ -214,6 +222,10 @@ class CloudResource(SyncAPIResource):
         return SecurityGroupsResource(self._client)
 
     @cached_property
+    def users(self) -> UsersResource:
+        return UsersResource(self._client)
+
+    @cached_property
     def inference(self) -> InferenceResource:
         return InferenceResource(self._client)
 
@@ -309,6 +321,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResource:
         return AsyncSecurityGroupsResource(self._client)
+
+    @cached_property
+    def users(self) -> AsyncUsersResource:
+        return AsyncUsersResource(self._client)
 
     @cached_property
     def inference(self) -> AsyncInferenceResource:
@@ -411,6 +427,10 @@ class CloudResourceWithRawResponse:
         return SecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
 
     @cached_property
+    def users(self) -> UsersResourceWithRawResponse:
+        return UsersResourceWithRawResponse(self._cloud.users)
+
+    @cached_property
     def inference(self) -> InferenceResourceWithRawResponse:
         return InferenceResourceWithRawResponse(self._cloud.inference)
 
@@ -490,6 +510,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithRawResponse:
         return AsyncSecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
+
+    @cached_property
+    def users(self) -> AsyncUsersResourceWithRawResponse:
+        return AsyncUsersResourceWithRawResponse(self._cloud.users)
 
     @cached_property
     def inference(self) -> AsyncInferenceResourceWithRawResponse:
@@ -573,6 +597,10 @@ class CloudResourceWithStreamingResponse:
         return SecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
 
     @cached_property
+    def users(self) -> UsersResourceWithStreamingResponse:
+        return UsersResourceWithStreamingResponse(self._cloud.users)
+
+    @cached_property
     def inference(self) -> InferenceResourceWithStreamingResponse:
         return InferenceResourceWithStreamingResponse(self._cloud.inference)
 
@@ -652,6 +680,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithStreamingResponse:
         return AsyncSecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
+
+    @cached_property
+    def users(self) -> AsyncUsersResourceWithStreamingResponse:
+        return AsyncUsersResourceWithStreamingResponse(self._cloud.users)
 
     @cached_property
     def inference(self) -> AsyncInferenceResourceWithStreamingResponse:

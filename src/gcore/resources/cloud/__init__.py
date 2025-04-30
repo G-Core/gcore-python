@@ -16,6 +16,14 @@ from .tasks import (
     TasksResourceWithStreamingResponse,
     AsyncTasksResourceWithStreamingResponse,
 )
+from .users import (
+    UsersResource,
+    AsyncUsersResource,
+    UsersResourceWithRawResponse,
+    AsyncUsersResourceWithRawResponse,
+    UsersResourceWithStreamingResponse,
+    AsyncUsersResourceWithStreamingResponse,
+)
 from .quotas import (
     QuotasResource,
     AsyncQuotasResource,
@@ -240,6 +248,12 @@ __all__ = [
     "AsyncSecurityGroupsResourceWithRawResponse",
     "SecurityGroupsResourceWithStreamingResponse",
     "AsyncSecurityGroupsResourceWithStreamingResponse",
+    "UsersResource",
+    "AsyncUsersResource",
+    "UsersResourceWithRawResponse",
+    "AsyncUsersResourceWithRawResponse",
+    "UsersResourceWithStreamingResponse",
+    "AsyncUsersResourceWithStreamingResponse",
     "InferenceResource",
     "AsyncInferenceResource",
     "InferenceResourceWithRawResponse",
