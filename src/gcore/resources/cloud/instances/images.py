@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -18,7 +18,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloud.image import Image
 from ....types.cloud.instances import (
     image_get_params,
     image_list_params,
@@ -26,8 +25,10 @@ from ....types.cloud.instances import (
     image_upload_params,
     image_create_from_volume_params,
 )
-from ....types.cloud.image_list import ImageList
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.instances.image_get_response import ImageGetResponse
+from ....types.cloud.instances.image_list_response import ImageListResponse
+from ....types.cloud.instances.image_update_response import ImageUpdateResponse
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
 
@@ -59,19 +60,19 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["i440", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        hw_machine_type: Literal["pc", "q35"] | NotGiven = NOT_GIVEN,
+        is_baremetal: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    ) -> ImageUpdateResponse:
         """
         Update image fields
 
@@ -85,26 +86,26 @@ class ImagesResource(SyncAPIResource):
           image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/2/schema'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[2].schema"
 
-          hw_firmware_type: '#/components/schemas/UpdateImageSchema/properties/hw_firmware_type'
-              "$.components.schemas.UpdateImageSchema.properties.hw_firmware_type"
+          hw_firmware_type: '#/components/schemas/UpdateImageSerializer/properties/hw_firmware_type'
+              "$.components.schemas.UpdateImageSerializer.properties.hw_firmware_type"
 
-          hw_machine_type: '#/components/schemas/UpdateImageSchema/properties/hw_machine_type'
-              "$.components.schemas.UpdateImageSchema.properties.hw_machine_type"
+          hw_machine_type: '#/components/schemas/UpdateImageSerializer/properties/hw_machine_type'
+              "$.components.schemas.UpdateImageSerializer.properties.hw_machine_type"
 
-          is_baremetal: '#/components/schemas/UpdateImageSchema/properties/is_baremetal'
-              "$.components.schemas.UpdateImageSchema.properties.is_baremetal"
+          is_baremetal: '#/components/schemas/UpdateImageSerializer/properties/is_baremetal'
+              "$.components.schemas.UpdateImageSerializer.properties.is_baremetal"
 
-          metadata: '#/components/schemas/UpdateImageSchema/properties/metadata'
-              "$.components.schemas.UpdateImageSchema.properties.metadata"
+          name: '#/components/schemas/UpdateImageSerializer/properties/name'
+              "$.components.schemas.UpdateImageSerializer.properties.name"
 
-          name: '#/components/schemas/UpdateImageSchema/properties/name'
-              "$.components.schemas.UpdateImageSchema.properties.name"
+          os_type: '#/components/schemas/UpdateImageSerializer/properties/os_type'
+              "$.components.schemas.UpdateImageSerializer.properties.os_type"
 
-          os_type: '#/components/schemas/UpdateImageSchema/properties/os_type'
-              "$.components.schemas.UpdateImageSchema.properties.os_type"
+          ssh_key: '#/components/schemas/UpdateImageSerializer/properties/ssh_key'
+              "$.components.schemas.UpdateImageSerializer.properties.ssh_key"
 
-          ssh_key: '#/components/schemas/UpdateImageSchema/properties/ssh_key'
-              "$.components.schemas.UpdateImageSchema.properties.ssh_key"
+          tags: '#/components/schemas/UpdateImageSerializer/properties/tags'
+              "$.components.schemas.UpdateImageSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -127,17 +128,17 @@ class ImagesResource(SyncAPIResource):
                     "hw_firmware_type": hw_firmware_type,
                     "hw_machine_type": hw_machine_type,
                     "is_baremetal": is_baremetal,
-                    "metadata": metadata,
                     "name": name,
                     "os_type": os_type,
                     "ssh_key": ssh_key,
+                    "tags": tags,
                 },
                 image_update_params.ImageUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Image,
+            cast_to=ImageUpdateResponse,
         )
 
     def list(
@@ -146,9 +147,9 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         private: str | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -156,7 +157,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageList:
+    ) -> ImageListResponse:
         """Retrieve an available images list.
 
         Returned entities owned by the project and
@@ -172,13 +173,13 @@ class ImagesResource(SyncAPIResource):
           include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[4]"
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[5]"
 
           visibility: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
@@ -206,15 +207,15 @@ class ImagesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "include_prices": include_prices,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "private": private,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                         "visibility": visibility,
                     },
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            cast_to=ImageListResponse,
         )
 
     def delete(
@@ -273,13 +274,13 @@ class ImagesResource(SyncAPIResource):
         name: str,
         volume_id: str,
         architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["i440", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
+        is_baremetal: bool | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -288,7 +289,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create image
+        Create image from volume
 
         Args:
           project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
@@ -297,35 +298,35 @@ class ImagesResource(SyncAPIResource):
           region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[1].schema"
 
-          name: '#/components/schemas/ImageCreateSchema/properties/name'
-              "$.components.schemas.ImageCreateSchema.properties.name"
+          name: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/name'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.name"
 
-          volume_id: '#/components/schemas/ImageCreateSchema/properties/volume_id'
-              "$.components.schemas.ImageCreateSchema.properties.volume_id"
+          volume_id: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/volume_id'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.volume_id"
 
-          architecture: '#/components/schemas/ImageCreateSchema/properties/architecture'
-              "$.components.schemas.ImageCreateSchema.properties.architecture"
+          architecture: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/architecture'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.architecture"
 
-          hw_firmware_type: '#/components/schemas/ImageCreateSchema/properties/hw_firmware_type'
-              "$.components.schemas.ImageCreateSchema.properties.hw_firmware_type"
+          hw_firmware_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_firmware_type/anyOf/0'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_firmware_type.anyOf[0]"
 
-          hw_machine_type: '#/components/schemas/ImageCreateSchema/properties/hw_machine_type'
-              "$.components.schemas.ImageCreateSchema.properties.hw_machine_type"
+          hw_machine_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_machine_type/anyOf/0'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_machine_type.anyOf[0]"
 
-          is_baremetal: '#/components/schemas/ImageCreateSchema/properties/is_baremetal'
-              "$.components.schemas.ImageCreateSchema.properties.is_baremetal"
+          is_baremetal: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/is_baremetal'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.is_baremetal"
 
-          metadata: '#/components/schemas/ImageCreateSchema/properties/metadata'
-              "$.components.schemas.ImageCreateSchema.properties.metadata"
+          os_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/os_type'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.os_type"
 
-          os_type: '#/components/schemas/ImageCreateSchema/properties/os_type'
-              "$.components.schemas.ImageCreateSchema.properties.os_type"
+          source: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/source'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.source"
 
-          source: '#/components/schemas/ImageCreateSchema/properties/source'
-              "$.components.schemas.ImageCreateSchema.properties.source"
+          ssh_key: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/ssh_key'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.ssh_key"
 
-          ssh_key: '#/components/schemas/ImageCreateSchema/properties/ssh_key'
-              "$.components.schemas.ImageCreateSchema.properties.ssh_key"
+          tags: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/tags'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -349,10 +350,10 @@ class ImagesResource(SyncAPIResource):
                     "hw_firmware_type": hw_firmware_type,
                     "hw_machine_type": hw_machine_type,
                     "is_baremetal": is_baremetal,
-                    "metadata": metadata,
                     "os_type": os_type,
                     "source": source,
                     "ssh_key": ssh_key,
+                    "tags": tags,
                 },
                 image_create_from_volume_params.ImageCreateFromVolumeParams,
             ),
@@ -369,17 +370,13 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
-        private: str | NotGiven = NOT_GIVEN,
-        visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    ) -> ImageGetResponse:
         """
         Get image
 
@@ -395,18 +392,6 @@ class ImagesResource(SyncAPIResource):
 
           include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[3]"
-
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[4]"
-
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[5]"
-
-          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[6]"
-
-          visibility: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[7]"
 
           extra_headers: Send extra headers
 
@@ -429,18 +414,9 @@ class ImagesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "include_prices": include_prices,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
-                        "private": private,
-                        "visibility": visibility,
-                    },
-                    image_get_params.ImageGetParams,
-                ),
+                query=maybe_transform({"include_prices": include_prices}, image_get_params.ImageGetParams),
             ),
-            cast_to=Image,
+            cast_to=ImageGetResponse,
         )
 
     def upload(
@@ -452,14 +428,14 @@ class ImagesResource(SyncAPIResource):
         url: str,
         architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
         cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["i440", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        os_distro: str | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
+        is_baremetal: bool | NotGiven = NOT_GIVEN,
+        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        os_version: str | NotGiven = NOT_GIVEN,
+        os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -477,41 +453,41 @@ class ImagesResource(SyncAPIResource):
           region_id: '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
               "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[1].schema"
 
-          name: '#/components/schemas/ImageDownloadSchema/properties/name'
-              "$.components.schemas.ImageDownloadSchema.properties.name"
+          name: '#/components/schemas/ImageDownloadSerializer/properties/name'
+              "$.components.schemas.ImageDownloadSerializer.properties.name"
 
-          url: '#/components/schemas/ImageDownloadSchema/properties/url'
-              "$.components.schemas.ImageDownloadSchema.properties.url"
+          url: '#/components/schemas/ImageDownloadSerializer/properties/url'
+              "$.components.schemas.ImageDownloadSerializer.properties.url"
 
-          architecture: '#/components/schemas/ImageDownloadSchema/properties/architecture'
-              "$.components.schemas.ImageDownloadSchema.properties.architecture"
+          architecture: '#/components/schemas/ImageDownloadSerializer/properties/architecture'
+              "$.components.schemas.ImageDownloadSerializer.properties.architecture"
 
-          cow_format: '#/components/schemas/ImageDownloadSchema/properties/cow_format'
-              "$.components.schemas.ImageDownloadSchema.properties.cow_format"
+          cow_format: '#/components/schemas/ImageDownloadSerializer/properties/cow_format'
+              "$.components.schemas.ImageDownloadSerializer.properties.cow_format"
 
-          hw_firmware_type: '#/components/schemas/ImageDownloadSchema/properties/hw_firmware_type'
-              "$.components.schemas.ImageDownloadSchema.properties.hw_firmware_type"
+          hw_firmware_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_firmware_type/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.hw_firmware_type.anyOf[0]"
 
-          hw_machine_type: '#/components/schemas/ImageDownloadSchema/properties/hw_machine_type'
-              "$.components.schemas.ImageDownloadSchema.properties.hw_machine_type"
+          hw_machine_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_machine_type/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.hw_machine_type.anyOf[0]"
 
-          is_baremetal: '#/components/schemas/ImageDownloadSchema/properties/is_baremetal'
-              "$.components.schemas.ImageDownloadSchema.properties.is_baremetal"
+          is_baremetal: '#/components/schemas/ImageDownloadSerializer/properties/is_baremetal'
+              "$.components.schemas.ImageDownloadSerializer.properties.is_baremetal"
 
-          metadata: '#/components/schemas/ImageDownloadSchema/properties/metadata'
-              "$.components.schemas.ImageDownloadSchema.properties.metadata"
+          os_distro: '#/components/schemas/ImageDownloadSerializer/properties/os_distro/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.os_distro.anyOf[0]"
 
-          os_distro: '#/components/schemas/ImageDownloadSchema/properties/os_distro'
-              "$.components.schemas.ImageDownloadSchema.properties.os_distro"
+          os_type: '#/components/schemas/ImageDownloadSerializer/properties/os_type'
+              "$.components.schemas.ImageDownloadSerializer.properties.os_type"
 
-          os_type: '#/components/schemas/ImageDownloadSchema/properties/os_type'
-              "$.components.schemas.ImageDownloadSchema.properties.os_type"
+          os_version: '#/components/schemas/ImageDownloadSerializer/properties/os_version/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.os_version.anyOf[0]"
 
-          os_version: '#/components/schemas/ImageDownloadSchema/properties/os_version'
-              "$.components.schemas.ImageDownloadSchema.properties.os_version"
+          ssh_key: '#/components/schemas/ImageDownloadSerializer/properties/ssh_key'
+              "$.components.schemas.ImageDownloadSerializer.properties.ssh_key"
 
-          ssh_key: '#/components/schemas/ImageDownloadSchema/properties/ssh_key'
-              "$.components.schemas.ImageDownloadSchema.properties.ssh_key"
+          tags: '#/components/schemas/ImageDownloadSerializer/properties/tags'
+              "$.components.schemas.ImageDownloadSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -536,11 +512,11 @@ class ImagesResource(SyncAPIResource):
                     "hw_firmware_type": hw_firmware_type,
                     "hw_machine_type": hw_machine_type,
                     "is_baremetal": is_baremetal,
-                    "metadata": metadata,
                     "os_distro": os_distro,
                     "os_type": os_type,
                     "os_version": os_version,
                     "ssh_key": ssh_key,
+                    "tags": tags,
                 },
                 image_upload_params.ImageUploadParams,
             ),
@@ -578,19 +554,19 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["i440", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        hw_machine_type: Literal["pc", "q35"] | NotGiven = NOT_GIVEN,
+        is_baremetal: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    ) -> ImageUpdateResponse:
         """
         Update image fields
 
@@ -604,26 +580,26 @@ class AsyncImagesResource(AsyncAPIResource):
           image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/2/schema'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[2].schema"
 
-          hw_firmware_type: '#/components/schemas/UpdateImageSchema/properties/hw_firmware_type'
-              "$.components.schemas.UpdateImageSchema.properties.hw_firmware_type"
+          hw_firmware_type: '#/components/schemas/UpdateImageSerializer/properties/hw_firmware_type'
+              "$.components.schemas.UpdateImageSerializer.properties.hw_firmware_type"
 
-          hw_machine_type: '#/components/schemas/UpdateImageSchema/properties/hw_machine_type'
-              "$.components.schemas.UpdateImageSchema.properties.hw_machine_type"
+          hw_machine_type: '#/components/schemas/UpdateImageSerializer/properties/hw_machine_type'
+              "$.components.schemas.UpdateImageSerializer.properties.hw_machine_type"
 
-          is_baremetal: '#/components/schemas/UpdateImageSchema/properties/is_baremetal'
-              "$.components.schemas.UpdateImageSchema.properties.is_baremetal"
+          is_baremetal: '#/components/schemas/UpdateImageSerializer/properties/is_baremetal'
+              "$.components.schemas.UpdateImageSerializer.properties.is_baremetal"
 
-          metadata: '#/components/schemas/UpdateImageSchema/properties/metadata'
-              "$.components.schemas.UpdateImageSchema.properties.metadata"
+          name: '#/components/schemas/UpdateImageSerializer/properties/name'
+              "$.components.schemas.UpdateImageSerializer.properties.name"
 
-          name: '#/components/schemas/UpdateImageSchema/properties/name'
-              "$.components.schemas.UpdateImageSchema.properties.name"
+          os_type: '#/components/schemas/UpdateImageSerializer/properties/os_type'
+              "$.components.schemas.UpdateImageSerializer.properties.os_type"
 
-          os_type: '#/components/schemas/UpdateImageSchema/properties/os_type'
-              "$.components.schemas.UpdateImageSchema.properties.os_type"
+          ssh_key: '#/components/schemas/UpdateImageSerializer/properties/ssh_key'
+              "$.components.schemas.UpdateImageSerializer.properties.ssh_key"
 
-          ssh_key: '#/components/schemas/UpdateImageSchema/properties/ssh_key'
-              "$.components.schemas.UpdateImageSchema.properties.ssh_key"
+          tags: '#/components/schemas/UpdateImageSerializer/properties/tags'
+              "$.components.schemas.UpdateImageSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -646,17 +622,17 @@ class AsyncImagesResource(AsyncAPIResource):
                     "hw_firmware_type": hw_firmware_type,
                     "hw_machine_type": hw_machine_type,
                     "is_baremetal": is_baremetal,
-                    "metadata": metadata,
                     "name": name,
                     "os_type": os_type,
                     "ssh_key": ssh_key,
+                    "tags": tags,
                 },
                 image_update_params.ImageUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Image,
+            cast_to=ImageUpdateResponse,
         )
 
     async def list(
@@ -665,9 +641,9 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         private: str | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -675,7 +651,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageList:
+    ) -> ImageListResponse:
         """Retrieve an available images list.
 
         Returned entities owned by the project and
@@ -691,13 +667,13 @@ class AsyncImagesResource(AsyncAPIResource):
           include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[4]"
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[5]"
 
           visibility: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
@@ -725,15 +701,15 @@ class AsyncImagesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "include_prices": include_prices,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "private": private,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                         "visibility": visibility,
                     },
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            cast_to=ImageListResponse,
         )
 
     async def delete(
@@ -792,13 +768,13 @@ class AsyncImagesResource(AsyncAPIResource):
         name: str,
         volume_id: str,
         architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["i440", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
+        is_baremetal: bool | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        source: str | NotGiven = NOT_GIVEN,
+        source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -807,7 +783,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create image
+        Create image from volume
 
         Args:
           project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
@@ -816,35 +792,35 @@ class AsyncImagesResource(AsyncAPIResource):
           region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[1].schema"
 
-          name: '#/components/schemas/ImageCreateSchema/properties/name'
-              "$.components.schemas.ImageCreateSchema.properties.name"
+          name: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/name'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.name"
 
-          volume_id: '#/components/schemas/ImageCreateSchema/properties/volume_id'
-              "$.components.schemas.ImageCreateSchema.properties.volume_id"
+          volume_id: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/volume_id'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.volume_id"
 
-          architecture: '#/components/schemas/ImageCreateSchema/properties/architecture'
-              "$.components.schemas.ImageCreateSchema.properties.architecture"
+          architecture: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/architecture'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.architecture"
 
-          hw_firmware_type: '#/components/schemas/ImageCreateSchema/properties/hw_firmware_type'
-              "$.components.schemas.ImageCreateSchema.properties.hw_firmware_type"
+          hw_firmware_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_firmware_type/anyOf/0'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_firmware_type.anyOf[0]"
 
-          hw_machine_type: '#/components/schemas/ImageCreateSchema/properties/hw_machine_type'
-              "$.components.schemas.ImageCreateSchema.properties.hw_machine_type"
+          hw_machine_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_machine_type/anyOf/0'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_machine_type.anyOf[0]"
 
-          is_baremetal: '#/components/schemas/ImageCreateSchema/properties/is_baremetal'
-              "$.components.schemas.ImageCreateSchema.properties.is_baremetal"
+          is_baremetal: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/is_baremetal'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.is_baremetal"
 
-          metadata: '#/components/schemas/ImageCreateSchema/properties/metadata'
-              "$.components.schemas.ImageCreateSchema.properties.metadata"
+          os_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/os_type'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.os_type"
 
-          os_type: '#/components/schemas/ImageCreateSchema/properties/os_type'
-              "$.components.schemas.ImageCreateSchema.properties.os_type"
+          source: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/source'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.source"
 
-          source: '#/components/schemas/ImageCreateSchema/properties/source'
-              "$.components.schemas.ImageCreateSchema.properties.source"
+          ssh_key: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/ssh_key'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.ssh_key"
 
-          ssh_key: '#/components/schemas/ImageCreateSchema/properties/ssh_key'
-              "$.components.schemas.ImageCreateSchema.properties.ssh_key"
+          tags: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/tags'
+              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -868,10 +844,10 @@ class AsyncImagesResource(AsyncAPIResource):
                     "hw_firmware_type": hw_firmware_type,
                     "hw_machine_type": hw_machine_type,
                     "is_baremetal": is_baremetal,
-                    "metadata": metadata,
                     "os_type": os_type,
                     "source": source,
                     "ssh_key": ssh_key,
+                    "tags": tags,
                 },
                 image_create_from_volume_params.ImageCreateFromVolumeParams,
             ),
@@ -888,17 +864,13 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
-        private: str | NotGiven = NOT_GIVEN,
-        visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    ) -> ImageGetResponse:
         """
         Get image
 
@@ -914,18 +886,6 @@ class AsyncImagesResource(AsyncAPIResource):
 
           include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[3]"
-
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[4]"
-
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[5]"
-
-          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[6]"
-
-          visibility: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[7]"
 
           extra_headers: Send extra headers
 
@@ -948,18 +908,9 @@ class AsyncImagesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "include_prices": include_prices,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
-                        "private": private,
-                        "visibility": visibility,
-                    },
-                    image_get_params.ImageGetParams,
-                ),
+                query=await async_maybe_transform({"include_prices": include_prices}, image_get_params.ImageGetParams),
             ),
-            cast_to=Image,
+            cast_to=ImageGetResponse,
         )
 
     async def upload(
@@ -971,14 +922,14 @@ class AsyncImagesResource(AsyncAPIResource):
         url: str,
         architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
         cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["i440", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        os_distro: str | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
+        is_baremetal: bool | NotGiven = NOT_GIVEN,
+        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        os_version: str | NotGiven = NOT_GIVEN,
+        os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -996,41 +947,41 @@ class AsyncImagesResource(AsyncAPIResource):
           region_id: '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
               "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[1].schema"
 
-          name: '#/components/schemas/ImageDownloadSchema/properties/name'
-              "$.components.schemas.ImageDownloadSchema.properties.name"
+          name: '#/components/schemas/ImageDownloadSerializer/properties/name'
+              "$.components.schemas.ImageDownloadSerializer.properties.name"
 
-          url: '#/components/schemas/ImageDownloadSchema/properties/url'
-              "$.components.schemas.ImageDownloadSchema.properties.url"
+          url: '#/components/schemas/ImageDownloadSerializer/properties/url'
+              "$.components.schemas.ImageDownloadSerializer.properties.url"
 
-          architecture: '#/components/schemas/ImageDownloadSchema/properties/architecture'
-              "$.components.schemas.ImageDownloadSchema.properties.architecture"
+          architecture: '#/components/schemas/ImageDownloadSerializer/properties/architecture'
+              "$.components.schemas.ImageDownloadSerializer.properties.architecture"
 
-          cow_format: '#/components/schemas/ImageDownloadSchema/properties/cow_format'
-              "$.components.schemas.ImageDownloadSchema.properties.cow_format"
+          cow_format: '#/components/schemas/ImageDownloadSerializer/properties/cow_format'
+              "$.components.schemas.ImageDownloadSerializer.properties.cow_format"
 
-          hw_firmware_type: '#/components/schemas/ImageDownloadSchema/properties/hw_firmware_type'
-              "$.components.schemas.ImageDownloadSchema.properties.hw_firmware_type"
+          hw_firmware_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_firmware_type/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.hw_firmware_type.anyOf[0]"
 
-          hw_machine_type: '#/components/schemas/ImageDownloadSchema/properties/hw_machine_type'
-              "$.components.schemas.ImageDownloadSchema.properties.hw_machine_type"
+          hw_machine_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_machine_type/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.hw_machine_type.anyOf[0]"
 
-          is_baremetal: '#/components/schemas/ImageDownloadSchema/properties/is_baremetal'
-              "$.components.schemas.ImageDownloadSchema.properties.is_baremetal"
+          is_baremetal: '#/components/schemas/ImageDownloadSerializer/properties/is_baremetal'
+              "$.components.schemas.ImageDownloadSerializer.properties.is_baremetal"
 
-          metadata: '#/components/schemas/ImageDownloadSchema/properties/metadata'
-              "$.components.schemas.ImageDownloadSchema.properties.metadata"
+          os_distro: '#/components/schemas/ImageDownloadSerializer/properties/os_distro/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.os_distro.anyOf[0]"
 
-          os_distro: '#/components/schemas/ImageDownloadSchema/properties/os_distro'
-              "$.components.schemas.ImageDownloadSchema.properties.os_distro"
+          os_type: '#/components/schemas/ImageDownloadSerializer/properties/os_type'
+              "$.components.schemas.ImageDownloadSerializer.properties.os_type"
 
-          os_type: '#/components/schemas/ImageDownloadSchema/properties/os_type'
-              "$.components.schemas.ImageDownloadSchema.properties.os_type"
+          os_version: '#/components/schemas/ImageDownloadSerializer/properties/os_version/anyOf/0'
+              "$.components.schemas.ImageDownloadSerializer.properties.os_version.anyOf[0]"
 
-          os_version: '#/components/schemas/ImageDownloadSchema/properties/os_version'
-              "$.components.schemas.ImageDownloadSchema.properties.os_version"
+          ssh_key: '#/components/schemas/ImageDownloadSerializer/properties/ssh_key'
+              "$.components.schemas.ImageDownloadSerializer.properties.ssh_key"
 
-          ssh_key: '#/components/schemas/ImageDownloadSchema/properties/ssh_key'
-              "$.components.schemas.ImageDownloadSchema.properties.ssh_key"
+          tags: '#/components/schemas/ImageDownloadSerializer/properties/tags'
+              "$.components.schemas.ImageDownloadSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -1055,11 +1006,11 @@ class AsyncImagesResource(AsyncAPIResource):
                     "hw_firmware_type": hw_firmware_type,
                     "hw_machine_type": hw_machine_type,
                     "is_baremetal": is_baremetal,
-                    "metadata": metadata,
                     "os_distro": os_distro,
                     "os_type": os_type,
                     "os_version": os_version,
                     "ssh_key": ssh_key,
+                    "tags": tags,
                 },
                 image_upload_params.ImageUploadParams,
             ),

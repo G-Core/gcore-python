@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["ImageUpdateParams"]
@@ -23,42 +23,42 @@ class ImageUpdateParams(TypedDict, total=False):
 
     hw_firmware_type: Literal["bios", "uefi"]
     """
-    '#/components/schemas/UpdateImageSchema/properties/hw_firmware_type'
-    "$.components.schemas.UpdateImageSchema.properties.hw_firmware_type"
+    '#/components/schemas/UpdateImageSerializer/properties/hw_firmware_type'
+    "$.components.schemas.UpdateImageSerializer.properties.hw_firmware_type"
     """
 
-    hw_machine_type: Literal["i440", "q35"]
+    hw_machine_type: Literal["pc", "q35"]
     """
-    '#/components/schemas/UpdateImageSchema/properties/hw_machine_type'
-    "$.components.schemas.UpdateImageSchema.properties.hw_machine_type"
-    """
-
-    is_baremetal: Optional[bool]
-    """
-    '#/components/schemas/UpdateImageSchema/properties/is_baremetal'
-    "$.components.schemas.UpdateImageSchema.properties.is_baremetal"
+    '#/components/schemas/UpdateImageSerializer/properties/hw_machine_type'
+    "$.components.schemas.UpdateImageSerializer.properties.hw_machine_type"
     """
 
-    metadata: object
+    is_baremetal: bool
     """
-    '#/components/schemas/UpdateImageSchema/properties/metadata'
-    "$.components.schemas.UpdateImageSchema.properties.metadata"
+    '#/components/schemas/UpdateImageSerializer/properties/is_baremetal'
+    "$.components.schemas.UpdateImageSerializer.properties.is_baremetal"
     """
 
     name: str
     """
-    '#/components/schemas/UpdateImageSchema/properties/name'
-    "$.components.schemas.UpdateImageSchema.properties.name"
+    '#/components/schemas/UpdateImageSerializer/properties/name'
+    "$.components.schemas.UpdateImageSerializer.properties.name"
     """
 
     os_type: Literal["linux", "windows"]
     """
-    '#/components/schemas/UpdateImageSchema/properties/os_type'
-    "$.components.schemas.UpdateImageSchema.properties.os_type"
+    '#/components/schemas/UpdateImageSerializer/properties/os_type'
+    "$.components.schemas.UpdateImageSerializer.properties.os_type"
     """
 
     ssh_key: Literal["allow", "deny", "required"]
     """
-    '#/components/schemas/UpdateImageSchema/properties/ssh_key'
-    "$.components.schemas.UpdateImageSchema.properties.ssh_key"
+    '#/components/schemas/UpdateImageSerializer/properties/ssh_key'
+    "$.components.schemas.UpdateImageSerializer.properties.ssh_key"
+    """
+
+    tags: Dict[str, str]
+    """
+    '#/components/schemas/UpdateImageSerializer/properties/tags'
+    "$.components.schemas.UpdateImageSerializer.properties.tags"
     """

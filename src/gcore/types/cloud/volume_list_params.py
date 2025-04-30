@@ -57,25 +57,25 @@ class VolumeListParams(TypedDict, total=False):
     "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[7]"
     """
 
-    metadata_k: List[str]
+    name_part: str
     """
     '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
     "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[8]"
     """
 
-    metadata_kv: str
+    offset: int
     """
     '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
     "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[9]"
     """
 
-    name_part: str
+    tag_key: List[str]
     """
     '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
     "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[10]"
     """
 
-    offset: int
+    tag_key_value: str
     """
     '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
     "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[11]"

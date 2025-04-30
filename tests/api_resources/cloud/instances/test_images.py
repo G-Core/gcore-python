@@ -9,7 +9,12 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import Image, ImageList, TaskIDList
+from gcore.types.cloud import TaskIDList
+from gcore.types.cloud.instances import (
+    ImageGetResponse,
+    ImageListResponse,
+    ImageUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +29,7 @@ class TestImages:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
@@ -33,14 +38,14 @@ class TestImages:
             project_id=0,
             region_id=0,
             hw_firmware_type="bios",
-            hw_machine_type="i440",
-            is_baremetal=True,
-            metadata={},
-            name="string",
+            hw_machine_type="q35",
+            is_baremetal=False,
+            name="my-image",
             os_type="linux",
             ssh_key="allow",
+            tags={"my-tag": "my-tag-value"},
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
@@ -53,7 +58,7 @@ class TestImages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         image = response.parse()
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
@@ -66,7 +71,7 @@ class TestImages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             image = response.parse()
-            assert_matches_type(Image, image, path=["response"])
+            assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +90,7 @@ class TestImages:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ImageList, image, path=["response"])
+        assert_matches_type(ImageListResponse, image, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -93,12 +98,12 @@ class TestImages:
             project_id=0,
             region_id=0,
             include_prices=True,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
             private="private",
+            tag_key=["string"],
+            tag_key_value="tag_key_value",
             visibility="private",
         )
-        assert_matches_type(ImageList, image, path=["response"])
+        assert_matches_type(ImageListResponse, image, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -110,7 +115,7 @@ class TestImages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         image = response.parse()
-        assert_matches_type(ImageList, image, path=["response"])
+        assert_matches_type(ImageListResponse, image, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -122,7 +127,7 @@ class TestImages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             image = response.parse()
-            assert_matches_type(ImageList, image, path=["response"])
+            assert_matches_type(ImageListResponse, image, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -177,7 +182,7 @@ class TestImages:
         image = client.cloud.instances.images.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
         )
         assert_matches_type(TaskIDList, image, path=["response"])
@@ -187,16 +192,16 @@ class TestImages:
         image = client.cloud.instances.images.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
             architecture="x86_64",
             hw_firmware_type="bios",
             hw_machine_type="q35",
             is_baremetal=False,
-            metadata={"key": "value"},
             os_type="linux",
             source="volume",
             ssh_key="allow",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -205,7 +210,7 @@ class TestImages:
         response = client.cloud.instances.images.with_raw_response.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
         )
 
@@ -219,7 +224,7 @@ class TestImages:
         with client.cloud.instances.images.with_streaming_response.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
         ) as response:
             assert not response.is_closed
@@ -237,7 +242,7 @@ class TestImages:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageGetResponse, image, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Gcore) -> None:
@@ -246,12 +251,8 @@ class TestImages:
             project_id=0,
             region_id=0,
             include_prices=True,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
-            private="private",
-            visibility="private",
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageGetResponse, image, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -264,7 +265,7 @@ class TestImages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         image = response.parse()
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageGetResponse, image, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -277,7 +278,7 @@ class TestImages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             image = response.parse()
-            assert_matches_type(Image, image, path=["response"])
+            assert_matches_type(ImageGetResponse, image, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -295,7 +296,7 @@ class TestImages:
         image = client.cloud.instances.images.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
         )
         assert_matches_type(TaskIDList, image, path=["response"])
@@ -305,18 +306,18 @@ class TestImages:
         image = client.cloud.instances.images.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
             architecture="x86_64",
             cow_format=False,
             hw_firmware_type="bios",
             hw_machine_type="q35",
             is_baremetal=False,
-            metadata={"key": "value"},
-            os_distro="os_distro",
+            os_distro="ubuntu",
             os_type="linux",
-            os_version="os_version",
+            os_version="22.04",
             ssh_key="allow",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -325,7 +326,7 @@ class TestImages:
         response = client.cloud.instances.images.with_raw_response.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
         )
 
@@ -339,7 +340,7 @@ class TestImages:
         with client.cloud.instances.images.with_streaming_response.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
         ) as response:
             assert not response.is_closed
@@ -361,7 +362,7 @@ class TestAsyncImages:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -370,14 +371,14 @@ class TestAsyncImages:
             project_id=0,
             region_id=0,
             hw_firmware_type="bios",
-            hw_machine_type="i440",
-            is_baremetal=True,
-            metadata={},
-            name="string",
+            hw_machine_type="q35",
+            is_baremetal=False,
+            name="my-image",
             os_type="linux",
             ssh_key="allow",
+            tags={"my-tag": "my-tag-value"},
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
@@ -390,7 +391,7 @@ class TestAsyncImages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         image = await response.parse()
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
@@ -403,7 +404,7 @@ class TestAsyncImages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             image = await response.parse()
-            assert_matches_type(Image, image, path=["response"])
+            assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -422,7 +423,7 @@ class TestAsyncImages:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ImageList, image, path=["response"])
+        assert_matches_type(ImageListResponse, image, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -430,12 +431,12 @@ class TestAsyncImages:
             project_id=0,
             region_id=0,
             include_prices=True,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
             private="private",
+            tag_key=["string"],
+            tag_key_value="tag_key_value",
             visibility="private",
         )
-        assert_matches_type(ImageList, image, path=["response"])
+        assert_matches_type(ImageListResponse, image, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -447,7 +448,7 @@ class TestAsyncImages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         image = await response.parse()
-        assert_matches_type(ImageList, image, path=["response"])
+        assert_matches_type(ImageListResponse, image, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -459,7 +460,7 @@ class TestAsyncImages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             image = await response.parse()
-            assert_matches_type(ImageList, image, path=["response"])
+            assert_matches_type(ImageListResponse, image, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -514,7 +515,7 @@ class TestAsyncImages:
         image = await async_client.cloud.instances.images.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
         )
         assert_matches_type(TaskIDList, image, path=["response"])
@@ -524,16 +525,16 @@ class TestAsyncImages:
         image = await async_client.cloud.instances.images.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
             architecture="x86_64",
             hw_firmware_type="bios",
             hw_machine_type="q35",
             is_baremetal=False,
-            metadata={"key": "value"},
             os_type="linux",
             source="volume",
             ssh_key="allow",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -542,7 +543,7 @@ class TestAsyncImages:
         response = await async_client.cloud.instances.images.with_raw_response.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
         )
 
@@ -556,7 +557,7 @@ class TestAsyncImages:
         async with async_client.cloud.instances.images.with_streaming_response.create_from_volume(
             project_id=0,
             region_id=0,
-            name="test_image",
+            name="my-image",
             volume_id="d478ae29-dedc-4869-82f0-96104425f565",
         ) as response:
             assert not response.is_closed
@@ -574,7 +575,7 @@ class TestAsyncImages:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageGetResponse, image, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -583,12 +584,8 @@ class TestAsyncImages:
             project_id=0,
             region_id=0,
             include_prices=True,
-            metadata_k="metadata_k",
-            metadata_kv="metadata_kv",
-            private="private",
-            visibility="private",
         )
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageGetResponse, image, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -601,7 +598,7 @@ class TestAsyncImages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         image = await response.parse()
-        assert_matches_type(Image, image, path=["response"])
+        assert_matches_type(ImageGetResponse, image, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -614,7 +611,7 @@ class TestAsyncImages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             image = await response.parse()
-            assert_matches_type(Image, image, path=["response"])
+            assert_matches_type(ImageGetResponse, image, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -632,7 +629,7 @@ class TestAsyncImages:
         image = await async_client.cloud.instances.images.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
         )
         assert_matches_type(TaskIDList, image, path=["response"])
@@ -642,18 +639,18 @@ class TestAsyncImages:
         image = await async_client.cloud.instances.images.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
             architecture="x86_64",
             cow_format=False,
             hw_firmware_type="bios",
             hw_machine_type="q35",
             is_baremetal=False,
-            metadata={"key": "value"},
-            os_distro="os_distro",
+            os_distro="ubuntu",
             os_type="linux",
-            os_version="os_version",
+            os_version="22.04",
             ssh_key="allow",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -662,7 +659,7 @@ class TestAsyncImages:
         response = await async_client.cloud.instances.images.with_raw_response.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
         )
 
@@ -676,7 +673,7 @@ class TestAsyncImages:
         async with async_client.cloud.instances.images.with_streaming_response.upload(
             project_id=0,
             region_id=0,
-            name="image_name",
+            name="my-image",
             url="http://mirror.noris.net/cirros/0.4.0/cirros-0.4.0-x86_64-disk.img",
         ) as response:
             assert not response.is_closed

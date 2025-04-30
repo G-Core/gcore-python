@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal
 
 import httpx
@@ -18,7 +19,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.baremetal import image_list_params
-from ....types.cloud.image_list import ImageList
+from ....types.cloud.baremetal.image_list_response import ImageListResponse
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
 
@@ -49,9 +50,9 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         private: str | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -59,7 +60,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageList:
+    ) -> ImageListResponse:
         """Retrieve the available images list for bare metal servers.
 
         Returned entities may
@@ -75,13 +76,13 @@ class ImagesResource(SyncAPIResource):
           include_prices: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          private: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[4]"
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[5]"
 
           visibility: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
@@ -109,15 +110,15 @@ class ImagesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "include_prices": include_prices,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "private": private,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                         "visibility": visibility,
                     },
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            cast_to=ImageListResponse,
         )
 
 
@@ -147,9 +148,9 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         private: str | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -157,7 +158,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageList:
+    ) -> ImageListResponse:
         """Retrieve the available images list for bare metal servers.
 
         Returned entities may
@@ -173,13 +174,13 @@ class AsyncImagesResource(AsyncAPIResource):
           include_prices: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          private: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[4]"
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[5]"
 
           visibility: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
@@ -207,15 +208,15 @@ class AsyncImagesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "include_prices": include_prices,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "private": private,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                         "visibility": visibility,
                     },
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            cast_to=ImageListResponse,
         )
 
 

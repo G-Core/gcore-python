@@ -48,8 +48,8 @@ class TestSubnets:
                 }
             ],
             ip_version=4,
-            metadata={"my-tag": "my-tag-value"},
             router_id_to_connect="00000000-0000-4000-8000-000000000000",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, subnet, path=["response"])
 
@@ -164,11 +164,11 @@ class TestSubnets:
             project_id=1,
             region_id=1,
             limit=1000,
-            metadata_k=["key1", "key2"],
-            metadata_kv="metadata_kv",
             network_id="b30d0de7-bca2-4c83-9c57-9e645bd2cc92",
             offset=0,
             order_by="name.asc",
+            tag_key=["key1", "key2"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[Subnet], subnet, path=["response"])
 
@@ -324,8 +324,8 @@ class TestAsyncSubnets:
                 }
             ],
             ip_version=4,
-            metadata={"my-tag": "my-tag-value"},
             router_id_to_connect="00000000-0000-4000-8000-000000000000",
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, subnet, path=["response"])
 
@@ -440,11 +440,11 @@ class TestAsyncSubnets:
             project_id=1,
             region_id=1,
             limit=1000,
-            metadata_k=["key1", "key2"],
-            metadata_kv="metadata_kv",
             network_id="b30d0de7-bca2-4c83-9c57-9e645bd2cc92",
             offset=0,
             order_by="name.asc",
+            tag_key=["key1", "key2"],
+            tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[Subnet], subnet, path=["response"])
 

@@ -42,12 +42,6 @@ class LoadBalancerStatus(BaseModel):
     "$.components.schemas.LoadBalancerStatusSerializer.properties.provisioning_status"
     """
 
-    metadata: Optional[List[Tag]] = None
-    """
-    '#/components/schemas/LoadBalancerStatusSerializer/properties/metadata'
-    "$.components.schemas.LoadBalancerStatusSerializer.properties.metadata"
-    """
-
     tags: Optional[List[Tag]] = None
     """
     '#/components/schemas/LoadBalancerStatusSerializer/properties/tags'

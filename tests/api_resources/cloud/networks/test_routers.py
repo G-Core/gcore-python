@@ -243,19 +243,30 @@ class TestRouters:
     @parametrize
     def test_method_attach_subnet(self, client: Gcore) -> None:
         router = client.cloud.networks.routers.attach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
+        )
+        assert_matches_type(Router, router, path=["response"])
+
+    @parametrize
+    def test_method_attach_subnet_with_all_params(self, client: Gcore) -> None:
+        router = client.cloud.networks.routers.attach_subnet(
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
+            ip_address="ip_address",
         )
         assert_matches_type(Router, router, path=["response"])
 
     @parametrize
     def test_raw_response_attach_subnet(self, client: Gcore) -> None:
         response = client.cloud.networks.routers.with_raw_response.attach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         )
 
@@ -267,9 +278,9 @@ class TestRouters:
     @parametrize
     def test_streaming_response_attach_subnet(self, client: Gcore) -> None:
         with client.cloud.networks.routers.with_streaming_response.attach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         ) as response:
             assert not response.is_closed
@@ -285,8 +296,8 @@ class TestRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             client.cloud.networks.routers.with_raw_response.attach_subnet(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 subnet_id="subnet_id",
             )
 
@@ -612,19 +623,30 @@ class TestAsyncRouters:
     @parametrize
     async def test_method_attach_subnet(self, async_client: AsyncGcore) -> None:
         router = await async_client.cloud.networks.routers.attach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
+        )
+        assert_matches_type(Router, router, path=["response"])
+
+    @parametrize
+    async def test_method_attach_subnet_with_all_params(self, async_client: AsyncGcore) -> None:
+        router = await async_client.cloud.networks.routers.attach_subnet(
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
+            ip_address="ip_address",
         )
         assert_matches_type(Router, router, path=["response"])
 
     @parametrize
     async def test_raw_response_attach_subnet(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.routers.with_raw_response.attach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         )
 
@@ -636,9 +658,9 @@ class TestAsyncRouters:
     @parametrize
     async def test_streaming_response_attach_subnet(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.routers.with_streaming_response.attach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         ) as response:
             assert not response.is_closed
@@ -654,8 +676,8 @@ class TestAsyncRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             await async_client.cloud.networks.routers.with_raw_response.attach_subnet(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 subnet_id="subnet_id",
             )
 

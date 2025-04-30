@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import TypedDict
 
 __all__ = ["LoadBalancerListParams"]
@@ -38,37 +39,37 @@ class LoadBalancerListParams(TypedDict, total=False):
     "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[4]"
     """
 
-    metadata_k: str
+    name: str
     """
     '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
     "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[5]"
     """
 
-    metadata_kv: str
+    offset: int
     """
     '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
     "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[6]"
     """
 
-    name: str
+    order_by: str
     """
     '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
     "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[7]"
     """
 
-    offset: int
+    show_stats: bool
     """
     '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
     "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[8]"
     """
 
-    order_by: str
+    tag_key: List[str]
     """
     '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
     "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[9]"
     """
 
-    show_stats: bool
+    tag_key_value: str
     """
     '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
     "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[10]"

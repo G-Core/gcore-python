@@ -22,6 +22,12 @@ class RouterAttachSubnetParams(TypedDict, total=False):
 
     subnet_id: Required[str]
     """
-    '#/components/schemas/SubnetIdSerializer/properties/subnet_id'
-    "$.components.schemas.SubnetIdSerializer.properties.subnet_id"
+    '#/components/schemas/AddRouterInterfaceSerializer/properties/subnet_id'
+    "$.components.schemas.AddRouterInterfaceSerializer.properties.subnet_id"
+    """
+
+    ip_address: str
+    """
+    '#/components/schemas/AddRouterInterfaceSerializer/properties/ip_address'
+    "$.components.schemas.AddRouterInterfaceSerializer.properties.ip_address"
     """

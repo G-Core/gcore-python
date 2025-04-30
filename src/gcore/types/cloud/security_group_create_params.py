@@ -122,20 +122,14 @@ class SecurityGroup(TypedDict, total=False):
     "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.description.anyOf[0]"
     """
 
-    metadata: Dict[str, object]
-    """
-    '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/metadata'
-    "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.metadata"
-    """
-
     security_group_rules: Iterable[SecurityGroupSecurityGroupRule]
     """
     '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/security_group_rules'
     "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.security_group_rules"
     """
 
-    tags: Optional[List[str]]
+    tags: Dict[str, object]
     """
-    '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/tags/anyOf/0'
-    "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.tags.anyOf[0]"
+    '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/tags'
+    "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.tags"
     """

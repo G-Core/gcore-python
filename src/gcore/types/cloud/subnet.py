@@ -133,12 +133,6 @@ class Subnet(BaseModel):
     "$.components.schemas.SubnetSerializer.properties.host_routes.anyOf[0]"
     """
 
-    metadata: Optional[List[Tag]] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/metadata'
-    "$.components.schemas.SubnetSerializer.properties.metadata"
-    """
-
     task_id: Optional[str] = None
     """
     '#/components/schemas/SubnetSerializer/properties/task_id/anyOf/0'

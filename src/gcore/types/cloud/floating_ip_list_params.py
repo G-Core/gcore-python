@@ -27,19 +27,19 @@ class FloatingIPListParams(TypedDict, total=False):
     "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[2]"
     """
 
-    metadata_k: List[str]
+    offset: int
     """
     '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
     "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[3]"
     """
 
-    metadata_kv: str
+    tag_key: List[str]
     """
     '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
     "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[4]"
     """
 
-    offset: int
+    tag_key_value: str
     """
     '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
     "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[5]"

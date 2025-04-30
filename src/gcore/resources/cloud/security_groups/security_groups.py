@@ -187,9 +187,9 @@ class SecurityGroupsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,13 +210,13 @@ class SecurityGroupsResource(SyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[4]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[5]"
 
           extra_headers: Send extra headers
@@ -242,9 +242,9 @@ class SecurityGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "offset": offset,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     security_group_list_params.SecurityGroupListParams,
                 ),
@@ -602,9 +602,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -625,13 +625,13 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[4]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[5]"
 
           extra_headers: Send extra headers
@@ -657,9 +657,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "offset": offset,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     security_group_list_params.SecurityGroupListParams,
                 ),

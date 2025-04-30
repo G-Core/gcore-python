@@ -77,16 +77,16 @@ class SubnetCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateSubnetSerializer.properties.ip_version"
     """
 
-    metadata: Optional[Dict[str, str]]
-    """
-    '#/components/schemas/CreateSubnetSerializer/properties/metadata/anyOf/0'
-    "$.components.schemas.CreateSubnetSerializer.properties.metadata.anyOf[0]"
-    """
-
     router_id_to_connect: Optional[str]
     """
     '#/components/schemas/CreateSubnetSerializer/properties/router_id_to_connect/anyOf/0'
     "$.components.schemas.CreateSubnetSerializer.properties.router_id_to_connect.anyOf[0]"
+    """
+
+    tags: Dict[str, str]
+    """
+    '#/components/schemas/CreateSubnetSerializer/properties/tags'
+    "$.components.schemas.CreateSubnetSerializer.properties.tags"
     """
 
 

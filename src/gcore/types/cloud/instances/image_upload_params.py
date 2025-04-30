@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ImageUploadParams"]
@@ -23,72 +23,72 @@ class ImageUploadParams(TypedDict, total=False):
 
     name: Required[str]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/name'
-    "$.components.schemas.ImageDownloadSchema.properties.name"
+    '#/components/schemas/ImageDownloadSerializer/properties/name'
+    "$.components.schemas.ImageDownloadSerializer.properties.name"
     """
 
     url: Required[str]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/url'
-    "$.components.schemas.ImageDownloadSchema.properties.url"
+    '#/components/schemas/ImageDownloadSerializer/properties/url'
+    "$.components.schemas.ImageDownloadSerializer.properties.url"
     """
 
     architecture: Literal["aarch64", "x86_64"]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/architecture'
-    "$.components.schemas.ImageDownloadSchema.properties.architecture"
+    '#/components/schemas/ImageDownloadSerializer/properties/architecture'
+    "$.components.schemas.ImageDownloadSerializer.properties.architecture"
     """
 
     cow_format: bool
     """
-    '#/components/schemas/ImageDownloadSchema/properties/cow_format'
-    "$.components.schemas.ImageDownloadSchema.properties.cow_format"
+    '#/components/schemas/ImageDownloadSerializer/properties/cow_format'
+    "$.components.schemas.ImageDownloadSerializer.properties.cow_format"
     """
 
-    hw_firmware_type: Literal["bios", "uefi"]
+    hw_firmware_type: Optional[Literal["bios", "uefi"]]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/hw_firmware_type'
-    "$.components.schemas.ImageDownloadSchema.properties.hw_firmware_type"
-    """
-
-    hw_machine_type: Literal["i440", "q35"]
-    """
-    '#/components/schemas/ImageDownloadSchema/properties/hw_machine_type'
-    "$.components.schemas.ImageDownloadSchema.properties.hw_machine_type"
+    '#/components/schemas/ImageDownloadSerializer/properties/hw_firmware_type/anyOf/0'
+    "$.components.schemas.ImageDownloadSerializer.properties.hw_firmware_type.anyOf[0]"
     """
 
-    is_baremetal: Optional[bool]
+    hw_machine_type: Optional[Literal["pc", "q35"]]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/is_baremetal'
-    "$.components.schemas.ImageDownloadSchema.properties.is_baremetal"
-    """
-
-    metadata: object
-    """
-    '#/components/schemas/ImageDownloadSchema/properties/metadata'
-    "$.components.schemas.ImageDownloadSchema.properties.metadata"
+    '#/components/schemas/ImageDownloadSerializer/properties/hw_machine_type/anyOf/0'
+    "$.components.schemas.ImageDownloadSerializer.properties.hw_machine_type.anyOf[0]"
     """
 
-    os_distro: str
+    is_baremetal: bool
     """
-    '#/components/schemas/ImageDownloadSchema/properties/os_distro'
-    "$.components.schemas.ImageDownloadSchema.properties.os_distro"
+    '#/components/schemas/ImageDownloadSerializer/properties/is_baremetal'
+    "$.components.schemas.ImageDownloadSerializer.properties.is_baremetal"
+    """
+
+    os_distro: Optional[str]
+    """
+    '#/components/schemas/ImageDownloadSerializer/properties/os_distro/anyOf/0'
+    "$.components.schemas.ImageDownloadSerializer.properties.os_distro.anyOf[0]"
     """
 
     os_type: Literal["linux", "windows"]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/os_type'
-    "$.components.schemas.ImageDownloadSchema.properties.os_type"
+    '#/components/schemas/ImageDownloadSerializer/properties/os_type'
+    "$.components.schemas.ImageDownloadSerializer.properties.os_type"
     """
 
-    os_version: str
+    os_version: Optional[str]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/os_version'
-    "$.components.schemas.ImageDownloadSchema.properties.os_version"
+    '#/components/schemas/ImageDownloadSerializer/properties/os_version/anyOf/0'
+    "$.components.schemas.ImageDownloadSerializer.properties.os_version.anyOf[0]"
     """
 
     ssh_key: Literal["allow", "deny", "required"]
     """
-    '#/components/schemas/ImageDownloadSchema/properties/ssh_key'
-    "$.components.schemas.ImageDownloadSchema.properties.ssh_key"
+    '#/components/schemas/ImageDownloadSerializer/properties/ssh_key'
+    "$.components.schemas.ImageDownloadSerializer.properties.ssh_key"
+    """
+
+    tags: Dict[str, str]
+    """
+    '#/components/schemas/ImageDownloadSerializer/properties/tags'
+    "$.components.schemas.ImageDownloadSerializer.properties.tags"
     """

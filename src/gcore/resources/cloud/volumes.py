@@ -68,7 +68,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -109,8 +109,8 @@ class VolumesResource(SyncAPIResource):
           lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromImageSerializer/properties/lifecycle_policy_ids'
               "$.components.schemas.CreateVolumeFromImageSerializer.properties.lifecycle_policy_ids"
 
-          metadata: '#/components/schemas/CreateVolumeFromImageSerializer/properties/metadata'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateVolumeFromImageSerializer/properties/tags'
+              "$.components.schemas.CreateVolumeFromImageSerializer.properties.tags"
 
           type_name: '#/components/schemas/CreateVolumeFromImageSerializer/properties/type_name'
               "$.components.schemas.CreateVolumeFromImageSerializer.properties.type_name"
@@ -137,8 +137,8 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -176,11 +176,11 @@ class VolumesResource(SyncAPIResource):
           lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/lifecycle_policy_ids'
               "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.lifecycle_policy_ids"
 
-          metadata: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/metadata'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.metadata"
-
           size: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/size'
               "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.size"
+
+          tags: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/tags'
+              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.tags"
 
           type_name: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/type_name'
               "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.type_name"
@@ -207,7 +207,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -245,8 +245,8 @@ class VolumesResource(SyncAPIResource):
           lifecycle_policy_ids: '#/components/schemas/CreateNewVolumeSerializer/properties/lifecycle_policy_ids'
               "$.components.schemas.CreateNewVolumeSerializer.properties.lifecycle_policy_ids"
 
-          metadata: '#/components/schemas/CreateNewVolumeSerializer/properties/metadata'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateNewVolumeSerializer/properties/tags'
+              "$.components.schemas.CreateNewVolumeSerializer.properties.tags"
 
           type_name: '#/components/schemas/CreateNewVolumeSerializer/properties/type_name'
               "$.components.schemas.CreateNewVolumeSerializer.properties.type_name"
@@ -276,7 +276,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         snapshot_id: str | NotGiven = NOT_GIVEN,
@@ -302,7 +302,7 @@ class VolumesResource(SyncAPIResource):
                     "attachment_tag": attachment_tag,
                     "instance_id_to_attach_to": instance_id_to_attach_to,
                     "lifecycle_policy_ids": lifecycle_policy_ids,
-                    "metadata": metadata,
+                    "tags": tags,
                     "type_name": type_name,
                     "snapshot_id": snapshot_id,
                 },
@@ -378,10 +378,10 @@ class VolumesResource(SyncAPIResource):
         id_part: str | NotGiven = NOT_GIVEN,
         instance_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: List[str] | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         name_part: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -417,16 +417,16 @@ class VolumesResource(SyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[7]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
+          name_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[8]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[9]"
 
-          name_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[10]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[11]"
 
           extra_headers: Send extra headers
@@ -457,10 +457,10 @@ class VolumesResource(SyncAPIResource):
                         "id_part": id_part,
                         "instance_id": instance_id,
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "name_part": name_part,
                         "offset": offset,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     volume_list_params.VolumeListParams,
                 ),
@@ -881,7 +881,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -922,8 +922,8 @@ class AsyncVolumesResource(AsyncAPIResource):
           lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromImageSerializer/properties/lifecycle_policy_ids'
               "$.components.schemas.CreateVolumeFromImageSerializer.properties.lifecycle_policy_ids"
 
-          metadata: '#/components/schemas/CreateVolumeFromImageSerializer/properties/metadata'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateVolumeFromImageSerializer/properties/tags'
+              "$.components.schemas.CreateVolumeFromImageSerializer.properties.tags"
 
           type_name: '#/components/schemas/CreateVolumeFromImageSerializer/properties/type_name'
               "$.components.schemas.CreateVolumeFromImageSerializer.properties.type_name"
@@ -950,8 +950,8 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -989,11 +989,11 @@ class AsyncVolumesResource(AsyncAPIResource):
           lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/lifecycle_policy_ids'
               "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.lifecycle_policy_ids"
 
-          metadata: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/metadata'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.metadata"
-
           size: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/size'
               "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.size"
+
+          tags: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/tags'
+              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.tags"
 
           type_name: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/type_name'
               "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.type_name"
@@ -1020,7 +1020,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1058,8 +1058,8 @@ class AsyncVolumesResource(AsyncAPIResource):
           lifecycle_policy_ids: '#/components/schemas/CreateNewVolumeSerializer/properties/lifecycle_policy_ids'
               "$.components.schemas.CreateNewVolumeSerializer.properties.lifecycle_policy_ids"
 
-          metadata: '#/components/schemas/CreateNewVolumeSerializer/properties/metadata'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.metadata"
+          tags: '#/components/schemas/CreateNewVolumeSerializer/properties/tags'
+              "$.components.schemas.CreateNewVolumeSerializer.properties.tags"
 
           type_name: '#/components/schemas/CreateNewVolumeSerializer/properties/type_name'
               "$.components.schemas.CreateNewVolumeSerializer.properties.type_name"
@@ -1089,7 +1089,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | NotGiven = NOT_GIVEN,
         instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
         lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
         | NotGiven = NOT_GIVEN,
         snapshot_id: str | NotGiven = NOT_GIVEN,
@@ -1115,7 +1115,7 @@ class AsyncVolumesResource(AsyncAPIResource):
                     "attachment_tag": attachment_tag,
                     "instance_id_to_attach_to": instance_id_to_attach_to,
                     "lifecycle_policy_ids": lifecycle_policy_ids,
-                    "metadata": metadata,
+                    "tags": tags,
                     "type_name": type_name,
                     "snapshot_id": snapshot_id,
                 },
@@ -1191,10 +1191,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         id_part: str | NotGiven = NOT_GIVEN,
         instance_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: List[str] | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         name_part: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1230,16 +1230,16 @@ class AsyncVolumesResource(AsyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[7]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
+          name_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[8]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[9]"
 
-          name_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[10]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
               "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[11]"
 
           extra_headers: Send extra headers
@@ -1270,10 +1270,10 @@ class AsyncVolumesResource(AsyncAPIResource):
                         "id_part": id_part,
                         "instance_id": instance_id,
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "name_part": name_part,
                         "offset": offset,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     volume_list_params.VolumeListParams,
                 ),

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .tag import Tag as Tag
 from .task import Task as Task
-from .image import Image as Image
 from .region import Region as Region
 from .secret import Secret as Secret
 from .subnet import Subnet as Subnet
@@ -18,7 +17,6 @@ from .capacity import Capacity as Capacity
 from .ip_ranges import IPRanges as IPRanges
 from .l7_policy import L7Policy as L7Policy
 from .file_share import FileShare as FileShare
-from .image_list import ImageList as ImageList
 from .ip_version import IPVersion as IPVersion
 from .floating_ip import FloatingIP as FloatingIP
 from .http_method import HTTPMethod as HTTPMethod

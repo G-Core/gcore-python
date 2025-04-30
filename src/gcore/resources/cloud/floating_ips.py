@@ -52,8 +52,8 @@ class FloatingIPsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         fixed_ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         port_id: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,11 +74,11 @@ class FloatingIPsResource(SyncAPIResource):
           fixed_ip_address: '#/components/schemas/CreateFloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
               "$.components.schemas.CreateFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
 
-          metadata: '#/components/schemas/CreateFloatingIPSerializer/properties/metadata'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.metadata"
-
           port_id: '#/components/schemas/CreateFloatingIPSerializer/properties/port_id/anyOf/0'
               "$.components.schemas.CreateFloatingIPSerializer.properties.port_id.anyOf[0]"
+
+          tags: '#/components/schemas/CreateFloatingIPSerializer/properties/tags'
+              "$.components.schemas.CreateFloatingIPSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -97,8 +97,8 @@ class FloatingIPsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "fixed_ip_address": fixed_ip_address,
-                    "metadata": metadata,
                     "port_id": port_id,
+                    "tags": tags,
                 },
                 floating_ip_create_params.FloatingIPCreateParams,
             ),
@@ -114,9 +114,9 @@ class FloatingIPsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: List[str] | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,13 +137,13 @@ class FloatingIPsResource(SyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          offset: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[4]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[5]"
 
           extra_headers: Send extra headers
@@ -169,9 +169,9 @@ class FloatingIPsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "offset": offset,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     floating_ip_list_params.FloatingIPListParams,
                 ),
@@ -413,8 +413,8 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         fixed_ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         port_id: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -435,11 +435,11 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           fixed_ip_address: '#/components/schemas/CreateFloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
               "$.components.schemas.CreateFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
 
-          metadata: '#/components/schemas/CreateFloatingIPSerializer/properties/metadata'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.metadata"
-
           port_id: '#/components/schemas/CreateFloatingIPSerializer/properties/port_id/anyOf/0'
               "$.components.schemas.CreateFloatingIPSerializer.properties.port_id.anyOf[0]"
+
+          tags: '#/components/schemas/CreateFloatingIPSerializer/properties/tags'
+              "$.components.schemas.CreateFloatingIPSerializer.properties.tags"
 
           extra_headers: Send extra headers
 
@@ -458,8 +458,8 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "fixed_ip_address": fixed_ip_address,
-                    "metadata": metadata,
                     "port_id": port_id,
+                    "tags": tags,
                 },
                 floating_ip_create_params.FloatingIPCreateParams,
             ),
@@ -475,9 +475,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: List[str] | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -498,13 +498,13 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          offset: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[4]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[5]"
 
           extra_headers: Send extra headers
@@ -530,9 +530,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "offset": offset,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     floating_ip_list_params.FloatingIPListParams,
                 ),

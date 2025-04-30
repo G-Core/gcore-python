@@ -83,12 +83,6 @@ class ServerCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateBareMetalServerSerializer.properties.keypair_name.anyOf[0]"
     """
 
-    metadata: Dict[str, str]
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/metadata'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.metadata"
-    """
-
     name_templates: List[str]
     """
     '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
@@ -105,6 +99,12 @@ class ServerCreateParams(TypedDict, total=False):
     """
     '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
     "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+    """
+
+    tags: Dict[str, str]
+    """
+    '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
+    "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
     """
 
     user_data: str

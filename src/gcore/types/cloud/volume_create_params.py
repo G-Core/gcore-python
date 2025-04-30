@@ -68,10 +68,10 @@ class CreateVolumeFromImageSerializer(TypedDict, total=False):
     "$.components.schemas.CreateVolumeFromImageSerializer.properties.lifecycle_policy_ids"
     """
 
-    metadata: Dict[str, str]
+    tags: Dict[str, str]
     """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/metadata'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.metadata"
+    '#/components/schemas/CreateVolumeFromImageSerializer/properties/tags'
+    "$.components.schemas.CreateVolumeFromImageSerializer.properties.tags"
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
@@ -130,16 +130,16 @@ class CreateVolumeFromSnapshotSerializer(TypedDict, total=False):
     "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.lifecycle_policy_ids"
     """
 
-    metadata: Dict[str, str]
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/metadata'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.metadata"
-    """
-
     size: int
     """
     '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/size'
     "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.size"
+    """
+
+    tags: Dict[str, str]
+    """
+    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/tags'
+    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.tags"
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
@@ -198,10 +198,10 @@ class CreateNewVolumeSerializer(TypedDict, total=False):
     "$.components.schemas.CreateNewVolumeSerializer.properties.lifecycle_policy_ids"
     """
 
-    metadata: Dict[str, str]
+    tags: Dict[str, str]
     """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/metadata'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.metadata"
+    '#/components/schemas/CreateNewVolumeSerializer/properties/tags'
+    "$.components.schemas.CreateNewVolumeSerializer.properties.tags"
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]

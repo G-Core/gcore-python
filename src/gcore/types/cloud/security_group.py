@@ -53,6 +53,12 @@ class SecurityGroup(BaseModel):
     "$.components.schemas.SecurityGroupSerializer.properties.revision_number"
     """
 
+    tags_v2: List[Tag]
+    """
+    '#/components/schemas/SecurityGroupSerializer/properties/tags_v2'
+    "$.components.schemas.SecurityGroupSerializer.properties.tags_v2"
+    """
+
     updated_at: datetime
     """
     '#/components/schemas/SecurityGroupSerializer/properties/updated_at'
@@ -65,20 +71,8 @@ class SecurityGroup(BaseModel):
     "$.components.schemas.SecurityGroupSerializer.properties.description.anyOf[0]"
     """
 
-    metadata: Optional[List[Tag]] = None
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/metadata'
-    "$.components.schemas.SecurityGroupSerializer.properties.metadata"
-    """
-
     security_group_rules: Optional[List[SecurityGroupRule]] = None
     """
     '#/components/schemas/SecurityGroupSerializer/properties/security_group_rules'
     "$.components.schemas.SecurityGroupSerializer.properties.security_group_rules"
-    """
-
-    tags: Optional[List[str]] = None
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/tags/anyOf/0'
-    "$.components.schemas.SecurityGroupSerializer.properties.tags.anyOf[0]"
     """

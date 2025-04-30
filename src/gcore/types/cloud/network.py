@@ -28,12 +28,6 @@ class Network(BaseModel):
     "$.components.schemas.NetworkSerializer.properties.external"
     """
 
-    metadata: List[Tag]
-    """
-    '#/components/schemas/NetworkSerializer/properties/metadata'
-    "$.components.schemas.NetworkSerializer.properties.metadata"
-    """
-
     name: str
     """
     '#/components/schemas/NetworkSerializer/properties/name'

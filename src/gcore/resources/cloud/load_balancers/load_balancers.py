@@ -137,11 +137,10 @@ class LoadBalancersResource(SyncAPIResource):
         floating_ip: load_balancer_create_params.FloatingIP | NotGiven = NOT_GIVEN,
         listeners: Iterable[load_balancer_create_params.Listener] | NotGiven = NOT_GIVEN,
         logging: load_balancer_create_params.Logging | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tag: List[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,
@@ -175,9 +174,6 @@ class LoadBalancersResource(SyncAPIResource):
           logging: '#/components/schemas/CreateLoadbalancerSerializer/properties/logging'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.logging"
 
-          metadata: '#/components/schemas/CreateLoadbalancerSerializer/properties/metadata'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.metadata"
-
           name: '#/components/schemas/CreateLoadbalancerSerializer/properties/name'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.name"
 
@@ -187,8 +183,8 @@ class LoadBalancersResource(SyncAPIResource):
           preferred_connectivity: '#/components/schemas/CreateLoadbalancerSerializer/properties/preferred_connectivity'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.preferred_connectivity"
 
-          tag: '#/components/schemas/CreateLoadbalancerSerializer/properties/tag'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.tag"
+          tags: '#/components/schemas/CreateLoadbalancerSerializer/properties/tags'
+              "$.components.schemas.CreateLoadbalancerSerializer.properties.tags"
 
           vip_ip_family: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_ip_family'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_ip_family"
@@ -222,11 +218,10 @@ class LoadBalancersResource(SyncAPIResource):
                     "floating_ip": floating_ip,
                     "listeners": listeners,
                     "logging": logging,
-                    "metadata": metadata,
                     "name": name,
                     "name_template": name_template,
                     "preferred_connectivity": preferred_connectivity,
-                    "tag": tag,
+                    "tags": tags,
                     "vip_ip_family": vip_ip_family,
                     "vip_network_id": vip_network_id,
                     "vip_port_id": vip_port_id,
@@ -317,12 +312,12 @@ class LoadBalancersResource(SyncAPIResource):
         assigned_floating: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         logging_enabled: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         show_stats: bool | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         with_ddos: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -350,22 +345,22 @@ class LoadBalancersResource(SyncAPIResource):
           logging_enabled: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[4]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          name: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[5]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
+          offset: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[6]"
 
-          name: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[7]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
+          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[8]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[9]"
 
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[10]"
 
           with_ddos: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
@@ -396,12 +391,12 @@ class LoadBalancersResource(SyncAPIResource):
                         "assigned_floating": assigned_floating,
                         "limit": limit,
                         "logging_enabled": logging_enabled,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "name": name,
                         "offset": offset,
                         "order_by": order_by,
                         "show_stats": show_stats,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                         "with_ddos": with_ddos,
                     },
                     load_balancer_list_params.LoadBalancerListParams,
@@ -684,11 +679,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         floating_ip: load_balancer_create_params.FloatingIP | NotGiven = NOT_GIVEN,
         listeners: Iterable[load_balancer_create_params.Listener] | NotGiven = NOT_GIVEN,
         logging: load_balancer_create_params.Logging | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tag: List[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,
@@ -722,9 +716,6 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           logging: '#/components/schemas/CreateLoadbalancerSerializer/properties/logging'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.logging"
 
-          metadata: '#/components/schemas/CreateLoadbalancerSerializer/properties/metadata'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.metadata"
-
           name: '#/components/schemas/CreateLoadbalancerSerializer/properties/name'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.name"
 
@@ -734,8 +725,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           preferred_connectivity: '#/components/schemas/CreateLoadbalancerSerializer/properties/preferred_connectivity'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.preferred_connectivity"
 
-          tag: '#/components/schemas/CreateLoadbalancerSerializer/properties/tag'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.tag"
+          tags: '#/components/schemas/CreateLoadbalancerSerializer/properties/tags'
+              "$.components.schemas.CreateLoadbalancerSerializer.properties.tags"
 
           vip_ip_family: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_ip_family'
               "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_ip_family"
@@ -769,11 +760,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "floating_ip": floating_ip,
                     "listeners": listeners,
                     "logging": logging,
-                    "metadata": metadata,
                     "name": name,
                     "name_template": name_template,
                     "preferred_connectivity": preferred_connectivity,
-                    "tag": tag,
+                    "tags": tags,
                     "vip_ip_family": vip_ip_family,
                     "vip_network_id": vip_network_id,
                     "vip_port_id": vip_port_id,
@@ -864,12 +854,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         assigned_floating: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         logging_enabled: bool | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         show_stats: bool | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         with_ddos: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -897,22 +887,22 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           logging_enabled: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[4]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          name: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[5]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
+          offset: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[6]"
 
-          name: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[7]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
+          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[8]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[9]"
 
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
               "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[10]"
 
           with_ddos: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
@@ -943,12 +933,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                         "assigned_floating": assigned_floating,
                         "limit": limit,
                         "logging_enabled": logging_enabled,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "name": name,
                         "offset": offset,
                         "order_by": order_by,
                         "show_stats": show_stats,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                         "with_ddos": with_ddos,
                     },
                     load_balancer_list_params.LoadBalancerListParams,

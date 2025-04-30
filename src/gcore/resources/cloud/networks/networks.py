@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List
 from typing_extensions import Literal
 
 import httpx
@@ -77,7 +77,7 @@ class NetworksResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         create_router: bool | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type: Literal["vlan", "vxlan"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -102,8 +102,8 @@ class NetworksResource(SyncAPIResource):
           create_router: '#/components/schemas/CreateNetworkSerializer/properties/create_router'
               "$.components.schemas.CreateNetworkSerializer.properties.create_router"
 
-          metadata: '#/components/schemas/CreateNetworkSerializer/properties/metadata/anyOf/0'
-              "$.components.schemas.CreateNetworkSerializer.properties.metadata.anyOf[0]"
+          tags: '#/components/schemas/CreateNetworkSerializer/properties/tags'
+              "$.components.schemas.CreateNetworkSerializer.properties.tags"
 
           type: '#/components/schemas/CreateNetworkSerializer/properties/type'
               "$.components.schemas.CreateNetworkSerializer.properties.type"
@@ -126,7 +126,7 @@ class NetworksResource(SyncAPIResource):
                 {
                     "name": name,
                     "create_router": create_router,
-                    "metadata": metadata,
+                    "tags": tags,
                     "type": type,
                 },
                 network_create_params.NetworkCreateParams,
@@ -196,10 +196,10 @@ class NetworksResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -220,16 +220,16 @@ class NetworksResource(SyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[4]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[5]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[6]"
 
           extra_headers: Send extra headers
@@ -255,10 +255,10 @@ class NetworksResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "offset": offset,
                         "order_by": order_by,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     network_list_params.NetworkListParams,
                 ),
@@ -398,7 +398,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         create_router: bool | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type: Literal["vlan", "vxlan"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -423,8 +423,8 @@ class AsyncNetworksResource(AsyncAPIResource):
           create_router: '#/components/schemas/CreateNetworkSerializer/properties/create_router'
               "$.components.schemas.CreateNetworkSerializer.properties.create_router"
 
-          metadata: '#/components/schemas/CreateNetworkSerializer/properties/metadata/anyOf/0'
-              "$.components.schemas.CreateNetworkSerializer.properties.metadata.anyOf[0]"
+          tags: '#/components/schemas/CreateNetworkSerializer/properties/tags'
+              "$.components.schemas.CreateNetworkSerializer.properties.tags"
 
           type: '#/components/schemas/CreateNetworkSerializer/properties/type'
               "$.components.schemas.CreateNetworkSerializer.properties.type"
@@ -447,7 +447,7 @@ class AsyncNetworksResource(AsyncAPIResource):
                 {
                     "name": name,
                     "create_router": create_router,
-                    "metadata": metadata,
+                    "tags": tags,
                     "type": type,
                 },
                 network_create_params.NetworkCreateParams,
@@ -517,10 +517,10 @@ class AsyncNetworksResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_k: str | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
+        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -541,16 +541,16 @@ class AsyncNetworksResource(AsyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[2]"
 
-          metadata_k: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[3]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[4]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
+          tag_key: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[5]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
               "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[6]"
 
           extra_headers: Send extra headers
@@ -576,10 +576,10 @@ class AsyncNetworksResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
-                        "metadata_k": metadata_k,
-                        "metadata_kv": metadata_kv,
                         "offset": offset,
                         "order_by": order_by,
+                        "tag_key": tag_key,
+                        "tag_key_value": tag_key_value,
                     },
                     network_list_params.NetworkListParams,
                 ),

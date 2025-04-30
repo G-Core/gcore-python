@@ -53,12 +53,6 @@ class FloatingIP(BaseModel):
     "$.components.schemas.FloatingIPSerializer.properties.floating_ip_address.anyOf[0]"
     """
 
-    metadata: List[Tag]
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/metadata'
-    "$.components.schemas.FloatingIPSerializer.properties.metadata"
-    """
-
     port_id: Optional[str] = None
     """
     '#/components/schemas/FloatingIPSerializer/properties/port_id/anyOf/0'

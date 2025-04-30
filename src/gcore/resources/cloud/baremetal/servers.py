@@ -59,10 +59,10 @@ class ServersResource(SyncAPIResource):
         ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
         image_id: str | NotGiven = NOT_GIVEN,
         keypair_name: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -103,9 +103,6 @@ class ServersResource(SyncAPIResource):
           keypair_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/keypair_name/anyOf/0'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.keypair_name.anyOf[0]"
 
-          metadata: '#/components/schemas/CreateBareMetalServerSerializer/properties/metadata'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.metadata"
-
           name_templates: '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.name_templates"
 
@@ -114,6 +111,9 @@ class ServersResource(SyncAPIResource):
 
           password: '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+
+          tags: '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
+              "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
 
           user_data: '#/components/schemas/CreateBareMetalServerSerializer/properties/user_data'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.user_data"
@@ -144,10 +144,10 @@ class ServersResource(SyncAPIResource):
                     "ddos_profile": ddos_profile,
                     "image_id": image_id,
                     "keypair_name": keypair_name,
-                    "metadata": metadata,
                     "name_templates": name_templates,
                     "names": names,
                     "password": password,
+                    "tags": tags,
                     "user_data": user_data,
                     "username": username,
                 },
@@ -171,8 +171,6 @@ class ServersResource(SyncAPIResource):
         include_k8s: bool | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
-        metadata_v: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         only_isolated: bool | NotGiven = NOT_GIVEN,
@@ -185,6 +183,8 @@ class ServersResource(SyncAPIResource):
             "ACTIVE", "BUILD", "ERROR", "HARD_REBOOT", "REBOOT", "REBUILD", "RESCUE", "SHUTOFF", "SUSPENDED"
         ]
         | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
+        tag_value: List[str] | NotGiven = NOT_GIVEN,
         type_ddos_profile: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         with_ddos: bool | NotGiven = NOT_GIVEN,
@@ -227,34 +227,34 @@ class ServersResource(SyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[8]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
+          name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[9]"
 
-          metadata_v: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[10]"
 
-          name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
+          only_isolated: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[11]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
+          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[12]"
 
-          only_isolated: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[13]"
 
-          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
+          profile_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[14]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
+          protection_status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[15]"
 
-          profile_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
+          status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[16]"
 
-          protection_status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[17]"
 
-          status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
+          tag_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[18]"
 
           type_ddos_profile: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/19'
@@ -298,8 +298,6 @@ class ServersResource(SyncAPIResource):
                         "include_k8s": include_k8s,
                         "ip": ip,
                         "limit": limit,
-                        "metadata_kv": metadata_kv,
-                        "metadata_v": metadata_v,
                         "name": name,
                         "offset": offset,
                         "only_isolated": only_isolated,
@@ -308,6 +306,8 @@ class ServersResource(SyncAPIResource):
                         "profile_name": profile_name,
                         "protection_status": protection_status,
                         "status": status,
+                        "tag_key_value": tag_key_value,
+                        "tag_value": tag_value,
                         "type_ddos_profile": type_ddos_profile,
                         "uuid": uuid,
                         "with_ddos": with_ddos,
@@ -415,10 +415,10 @@ class AsyncServersResource(AsyncAPIResource):
         ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
         image_id: str | NotGiven = NOT_GIVEN,
         keypair_name: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -459,9 +459,6 @@ class AsyncServersResource(AsyncAPIResource):
           keypair_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/keypair_name/anyOf/0'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.keypair_name.anyOf[0]"
 
-          metadata: '#/components/schemas/CreateBareMetalServerSerializer/properties/metadata'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.metadata"
-
           name_templates: '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.name_templates"
 
@@ -470,6 +467,9 @@ class AsyncServersResource(AsyncAPIResource):
 
           password: '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+
+          tags: '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
+              "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
 
           user_data: '#/components/schemas/CreateBareMetalServerSerializer/properties/user_data'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.user_data"
@@ -500,10 +500,10 @@ class AsyncServersResource(AsyncAPIResource):
                     "ddos_profile": ddos_profile,
                     "image_id": image_id,
                     "keypair_name": keypair_name,
-                    "metadata": metadata,
                     "name_templates": name_templates,
                     "names": names,
                     "password": password,
+                    "tags": tags,
                     "user_data": user_data,
                     "username": username,
                 },
@@ -527,8 +527,6 @@ class AsyncServersResource(AsyncAPIResource):
         include_k8s: bool | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        metadata_kv: str | NotGiven = NOT_GIVEN,
-        metadata_v: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         only_isolated: bool | NotGiven = NOT_GIVEN,
@@ -541,6 +539,8 @@ class AsyncServersResource(AsyncAPIResource):
             "ACTIVE", "BUILD", "ERROR", "HARD_REBOOT", "REBOOT", "REBUILD", "RESCUE", "SHUTOFF", "SUSPENDED"
         ]
         | NotGiven = NOT_GIVEN,
+        tag_key_value: str | NotGiven = NOT_GIVEN,
+        tag_value: List[str] | NotGiven = NOT_GIVEN,
         type_ddos_profile: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         with_ddos: bool | NotGiven = NOT_GIVEN,
@@ -583,34 +583,34 @@ class AsyncServersResource(AsyncAPIResource):
           limit: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[8]"
 
-          metadata_kv: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
+          name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[9]"
 
-          metadata_v: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
+          offset: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[10]"
 
-          name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
+          only_isolated: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[11]"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
+          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[12]"
 
-          only_isolated: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
+          order_by: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[13]"
 
-          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
+          profile_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[14]"
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
+          protection_status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[15]"
 
-          profile_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
+          status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[16]"
 
-          protection_status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
+          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[17]"
 
-          status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
+          tag_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
               "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[18]"
 
           type_ddos_profile: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/19'
@@ -654,8 +654,6 @@ class AsyncServersResource(AsyncAPIResource):
                         "include_k8s": include_k8s,
                         "ip": ip,
                         "limit": limit,
-                        "metadata_kv": metadata_kv,
-                        "metadata_v": metadata_v,
                         "name": name,
                         "offset": offset,
                         "only_isolated": only_isolated,
@@ -664,6 +662,8 @@ class AsyncServersResource(AsyncAPIResource):
                         "profile_name": profile_name,
                         "protection_status": protection_status,
                         "status": status,
+                        "tag_key_value": tag_key_value,
+                        "tag_value": tag_value,
                         "type_ddos_profile": type_ddos_profile,
                         "uuid": uuid,
                         "with_ddos": with_ddos,
