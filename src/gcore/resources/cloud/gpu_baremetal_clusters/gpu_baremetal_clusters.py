@@ -104,8 +104,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
     def create(
         self,
         *,
-        project_id: str | None = None,
-        region_id: str | None = None,
+        project_id: int | None = None,
+        region_id: int | None = None,
         flavor: str,
         image_id: str,
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
@@ -173,12 +173,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not project_id:
-            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        if not region_id:
-            raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         return self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}",
             body=maybe_transform(
@@ -552,8 +548,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         self,
         cluster_id: str,
         *,
-        project_id: str | None = None,
-        region_id: str | None = None,
+        project_id: int | None = None,
+        region_id: int | None = None,
         instances_count: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -588,12 +584,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not project_id:
-            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        if not region_id:
-            raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
@@ -648,8 +640,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        project_id: str | None = None,
-        region_id: str | None = None,
+        project_id: int | None = None,
+        region_id: int | None = None,
         flavor: str,
         image_id: str,
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
@@ -717,12 +709,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not project_id:
-            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        if not region_id:
-            raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         return await self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}",
             body=await async_maybe_transform(
@@ -1096,8 +1084,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         self,
         cluster_id: str,
         *,
-        project_id: str | None = None,
-        region_id: str | None = None,
+        project_id: int | None = None,
+        region_id: int | None = None,
         instances_count: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1132,12 +1120,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not project_id:
-            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        if not region_id:
-            raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
