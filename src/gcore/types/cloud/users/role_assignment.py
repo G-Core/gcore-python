@@ -10,49 +10,24 @@ __all__ = ["RoleAssignment"]
 
 class RoleAssignment(BaseModel):
     id: int
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/id'
-    "$.components.schemas.RoleAssignmentSerializer.properties.id"
-    """
+    """Assignment ID"""
 
     assigned_by: Optional[int] = None
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/assigned_by/anyOf/0'
-    "$.components.schemas.RoleAssignmentSerializer.properties.assigned_by.anyOf[0]"
-    """
 
     client_id: int
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/client_id'
-    "$.components.schemas.RoleAssignmentSerializer.properties.client_id"
-    """
+    """Client ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/created_at'
-    "$.components.schemas.RoleAssignmentSerializer.properties.created_at"
-    """
+    """Created timestamp"""
 
     project_id: Optional[int] = None
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/project_id/anyOf/0'
-    "$.components.schemas.RoleAssignmentSerializer.properties.project_id.anyOf[0]"
-    """
+    """Project ID"""
 
     role: str
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/role'
-    "$.components.schemas.RoleAssignmentSerializer.properties.role"
-    """
+    """User role"""
 
     updated_at: Optional[datetime] = None
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/updated_at/anyOf/0'
-    "$.components.schemas.RoleAssignmentSerializer.properties.updated_at.anyOf[0]"
-    """
+    """Updated timestamp"""
 
     user_id: int
-    """
-    '#/components/schemas/RoleAssignmentSerializer/properties/user_id'
-    "$.components.schemas.RoleAssignmentSerializer.properties.user_id"
-    """
+    """User ID"""

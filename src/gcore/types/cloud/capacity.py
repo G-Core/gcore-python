@@ -7,13 +7,7 @@ __all__ = ["Capacity"]
 
 class Capacity(BaseModel):
     capacity: int
-    """
-    '#/components/schemas/CapacityDetailsSerializer/properties/capacity'
-    "$.components.schemas.CapacityDetailsSerializer.properties.capacity"
-    """
+    """Available capacity."""
 
     flavor_name: str
-    """
-    '#/components/schemas/CapacityDetailsSerializer/properties/flavor_name'
-    "$.components.schemas.CapacityDetailsSerializer.properties.flavor_name"
-    """
+    """Flavor name."""

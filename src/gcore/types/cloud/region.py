@@ -11,183 +11,91 @@ __all__ = ["Region", "Coordinates"]
 
 class Coordinates(BaseModel):
     latitude: float
-    """
-    '#/components/schemas/Coordinate/properties/latitude'
-    "$.components.schemas.Coordinate.properties.latitude"
-    """
 
     longitude: float
-    """
-    '#/components/schemas/Coordinate/properties/longitude'
-    "$.components.schemas.Coordinate.properties.longitude"
-    """
 
 
 class Region(BaseModel):
     id: int
-    """
-    '#/components/schemas/RegionSerializer/properties/id'
-    "$.components.schemas.RegionSerializer.properties.id"
-    """
+    """Region ID"""
 
     access_level: Literal["core", "edge"]
-    """
-    '#/components/schemas/RegionSerializer/properties/access_level'
-    "$.components.schemas.RegionSerializer.properties.access_level"
-    """
+    """The access level of the region."""
 
     ai_service_endpoint_id: Optional[int] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/ai_service_endpoint_id/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.ai_service_endpoint_id.anyOf[0]"
-    """
+    """AI service API endpoint ID"""
 
     available_volume_types: Optional[List[str]] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/available_volume_types/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.available_volume_types.anyOf[0]"
-    """
+    """List of available volume types, 'standard', 'ssd_hiiops', 'cold']."""
 
     coordinates: Optional[Coordinates] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/coordinates/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.coordinates.anyOf[0]"
-    """
+    """Coordinates of the region"""
 
     country: Optional[str] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/country/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.country.anyOf[0]"
-    """
+    """Country"""
 
     created_at: datetime
-    """
-    '#/components/schemas/RegionSerializer/properties/created_at'
-    "$.components.schemas.RegionSerializer.properties.created_at"
-    """
+    """Region creation date and time"""
 
     created_on: datetime
-    """
-    '#/components/schemas/RegionSerializer/properties/created_on'
-    "$.components.schemas.RegionSerializer.properties.created_on"
-    """
+    """This field is deprecated. Use `created_at` instead."""
 
     ddos_endpoint_id: Optional[int] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/ddos_endpoint_id/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.ddos_endpoint_id.anyOf[0]"
-    """
+    """DDoS endpoint ID"""
 
     display_name: str
-    """
-    '#/components/schemas/RegionSerializer/properties/display_name'
-    "$.components.schemas.RegionSerializer.properties.display_name"
-    """
+    """Human-readable region name"""
 
     endpoint_type: Literal["admin", "internal", "public"]
-    """
-    '#/components/schemas/RegionSerializer/properties/endpoint_type'
-    "$.components.schemas.RegionSerializer.properties.endpoint_type"
-    """
+    """Endpoint type"""
 
     external_network_id: Optional[str] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/external_network_id/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.external_network_id.anyOf[0]"
-    """
+    """External network ID for Neutron"""
 
     file_share_types: Optional[List[Literal["standard", "vast"]]] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/file_share_types/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.file_share_types.anyOf[0]"
-    """
+    """List of available file share types"""
 
     has_ai: bool
-    """
-    '#/components/schemas/RegionSerializer/properties/has_ai'
-    "$.components.schemas.RegionSerializer.properties.has_ai"
-    """
+    """Region has AI capability"""
 
     has_ai_gpu: bool
-    """
-    '#/components/schemas/RegionSerializer/properties/has_ai_gpu'
-    "$.components.schemas.RegionSerializer.properties.has_ai_gpu"
-    """
+    """Region has AI GPU capability"""
 
     has_baremetal: bool
-    """
-    '#/components/schemas/RegionSerializer/properties/has_baremetal'
-    "$.components.schemas.RegionSerializer.properties.has_baremetal"
-    """
+    """Region has bare metal capability"""
 
     has_basic_vm: bool
-    """
-    '#/components/schemas/RegionSerializer/properties/has_basic_vm'
-    "$.components.schemas.RegionSerializer.properties.has_basic_vm"
-    """
+    """Region has basic vm capability"""
 
     has_k8s: bool
-    """
-    '#/components/schemas/RegionSerializer/properties/has_k8s'
-    "$.components.schemas.RegionSerializer.properties.has_k8s"
-    """
+    """Region has managed kubernetes capability"""
 
     has_kvm: bool
-    """
-    '#/components/schemas/RegionSerializer/properties/has_kvm'
-    "$.components.schemas.RegionSerializer.properties.has_kvm"
-    """
+    """Region has KVM virtualization capability"""
 
     has_sfs: bool
-    """
-    '#/components/schemas/RegionSerializer/properties/has_sfs'
-    "$.components.schemas.RegionSerializer.properties.has_sfs"
-    """
+    """Region has SFS capability"""
 
     keystone_id: int
-    """
-    '#/components/schemas/RegionSerializer/properties/keystone_id'
-    "$.components.schemas.RegionSerializer.properties.keystone_id"
-    """
+    """Foreign key to Keystone entity"""
 
     keystone_name: str
-    """
-    '#/components/schemas/RegionSerializer/properties/keystone_name'
-    "$.components.schemas.RegionSerializer.properties.keystone_name"
-    """
+    """Technical region name"""
 
     metrics_database_id: Optional[int] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/metrics_database_id/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.metrics_database_id.anyOf[0]"
-    """
+    """Foreign key to Metrics database entity"""
 
     state: Literal["ACTIVE", "DELETED", "DELETING", "DELETION_FAILED", "INACTIVE", "MAINTENANCE", "NEW"]
-    """
-    '#/components/schemas/RegionSerializer/properties/state'
-    "$.components.schemas.RegionSerializer.properties.state"
-    """
+    """Region state"""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.task_id.anyOf[0]"
-    """
+    """This field is deprecated and can be ignored"""
 
     vlan_physical_network: str
-    """
-    '#/components/schemas/RegionSerializer/properties/vlan_physical_network'
-    "$.components.schemas.RegionSerializer.properties.vlan_physical_network"
-    """
+    """Physical network name to create vlan networks"""
 
     zone: Optional[Literal["AMERICAS", "APAC", "EMEA", "RUSSIA_AND_CIS"]] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/zone/anyOf/0'
-    "$.components.schemas.RegionSerializer.properties.zone.anyOf[0]"
-    """
+    """Geographical zone"""
 
     has_dbaas: Optional[bool] = None
-    """
-    '#/components/schemas/RegionSerializer/properties/has_dbaas'
-    "$.components.schemas.RegionSerializer.properties.has_dbaas"
-    """
+    """Region has DBAAS service"""

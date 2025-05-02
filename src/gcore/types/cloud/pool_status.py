@@ -13,37 +13,19 @@ __all__ = ["PoolStatus"]
 
 class PoolStatus(BaseModel):
     id: str
-    """
-    '#/components/schemas/PoolStatusSerializer/properties/id'
-    "$.components.schemas.PoolStatusSerializer.properties.id"
-    """
+    """UUID of the entity"""
 
     members: List[MemberStatus]
-    """
-    '#/components/schemas/PoolStatusSerializer/properties/members'
-    "$.components.schemas.PoolStatusSerializer.properties.members"
-    """
+    """Members (servers) of the pool"""
 
     name: str
-    """
-    '#/components/schemas/PoolStatusSerializer/properties/name'
-    "$.components.schemas.PoolStatusSerializer.properties.name"
-    """
+    """Name of the load balancer pool"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/PoolStatusSerializer/properties/operating_status'
-    "$.components.schemas.PoolStatusSerializer.properties.operating_status"
-    """
+    """Operating status of the entity"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/PoolStatusSerializer/properties/provisioning_status'
-    "$.components.schemas.PoolStatusSerializer.properties.provisioning_status"
-    """
+    """Provisioning status of the entity"""
 
     health_monitor: Optional[HealthMonitorStatus] = None
-    """
-    '#/components/schemas/PoolStatusSerializer/properties/health_monitor'
-    "$.components.schemas.PoolStatusSerializer.properties.health_monitor"
-    """
+    """Health Monitor of the Pool"""

@@ -10,13 +10,7 @@ __all__ = ["InstanceFlavorList"]
 
 class InstanceFlavorList(BaseModel):
     count: int
-    """
-    '#/components/schemas/InstanceFlavorExtendedCollectionSerializer/properties/count'
-    "$.components.schemas.InstanceFlavorExtendedCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[InstanceFlavor]
-    """
-    '#/components/schemas/InstanceFlavorExtendedCollectionSerializer/properties/results'
-    "$.components.schemas.InstanceFlavorExtendedCollectionSerializer.properties.results"
-    """
+    """Objects"""

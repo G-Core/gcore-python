@@ -7,55 +7,28 @@ __all__ = ["InferenceFlavor"]
 
 class InferenceFlavor(BaseModel):
     cpu: float
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/cpu'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.cpu"
-    """
+    """Inference flavor cpu count."""
 
     description: str
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/description'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.description"
-    """
+    """Inference flavor description."""
 
     gpu: int
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/gpu'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.gpu"
-    """
+    """Inference flavor gpu count."""
 
     gpu_compute_capability: str
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/gpu_compute_capability'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.gpu_compute_capability"
-    """
+    """Inference flavor gpu compute capability."""
 
     gpu_memory: float
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/gpu_memory'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.gpu_memory"
-    """
+    """Inference flavor gpu memory in Gi."""
 
     gpu_model: str
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/gpu_model'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.gpu_model"
-    """
+    """Inference flavor gpu model."""
 
     is_gpu_shared: bool
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/is_gpu_shared'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.is_gpu_shared"
-    """
+    """Inference flavor is gpu shared."""
 
     memory: float
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/memory'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.memory"
-    """
+    """Inference flavor memory in Gi."""
 
     name: str
-    """
-    '#/components/schemas/InferenceFlavorOutSerializerV3/properties/name'
-    "$.components.schemas.InferenceFlavorOutSerializerV3.properties.name"
-    """
+    """Inference flavor name."""

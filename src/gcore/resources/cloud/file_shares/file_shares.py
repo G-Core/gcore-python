@@ -88,32 +88,27 @@ class FileSharesResource(SyncAPIResource):
         Create file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateStandardFileShareSerializer/properties/name'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.name"
+          name: File share name
 
-          network: '#/components/schemas/CreateStandardFileShareSerializer/properties/network'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.network"
+          network: File share network configuration
 
-          protocol: '#/components/schemas/CreateStandardFileShareSerializer/properties/protocol'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.protocol"
+          protocol: File share protocol
 
-          size: '#/components/schemas/CreateStandardFileShareSerializer/properties/size'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.size"
+          size: File share size
 
-          access: '#/components/schemas/CreateStandardFileShareSerializer/properties/access'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.access"
+          access: Access Rules
 
-          tags: '#/components/schemas/CreateStandardFileShareSerializer/properties/tags'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          volume_type: '#/components/schemas/CreateStandardFileShareSerializer/properties/volume_type'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.volume_type"
+          volume_type: File share volume type
 
           extra_headers: Send extra headers
 
@@ -147,26 +142,23 @@ class FileSharesResource(SyncAPIResource):
         Create file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateVastFileShareSerializer/properties/name'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.name"
+          name: File share name
 
-          protocol: '#/components/schemas/CreateVastFileShareSerializer/properties/protocol'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.protocol"
+          protocol: File share protocol
 
-          size: '#/components/schemas/CreateVastFileShareSerializer/properties/size'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.size"
+          size: File share size
 
-          volume_type: '#/components/schemas/CreateVastFileShareSerializer/properties/volume_type'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.volume_type"
+          volume_type: File share volume type
 
-          tags: '#/components/schemas/CreateVastFileShareSerializer/properties/tags'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -240,17 +232,13 @@ class FileSharesResource(SyncAPIResource):
         Rename file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].patch.parameters[2].schema"
+          file_share_id: File Share ID
 
-          name: '#/components/schemas/NameSerializer/properties/name'
-              "$.components.schemas.NameSerializer.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -293,17 +281,14 @@ class FileSharesResource(SyncAPIResource):
         List file shares
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[2]"
+          limit: Optional. Limit the number of returned items
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -353,14 +338,11 @@ class FileSharesResource(SyncAPIResource):
         Delete file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}']['delete'].parameters[2].schema"
+          file_share_id: File Share ID
 
           extra_headers: Send extra headers
 
@@ -401,14 +383,11 @@ class FileSharesResource(SyncAPIResource):
         Get file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].get.parameters[2].schema"
+          file_share_id: File Share ID
 
           extra_headers: Send extra headers
 
@@ -450,17 +429,13 @@ class FileSharesResource(SyncAPIResource):
         Resize file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[2].schema"
+          file_share_id: File Share ID
 
-          size: '#/components/schemas/ResizeSfsSerializer/properties/size'
-              "$.components.schemas.ResizeSfsSerializer.properties.size"
+          size: File Share new size in GiB.
 
           extra_headers: Send extra headers
 
@@ -534,32 +509,27 @@ class AsyncFileSharesResource(AsyncAPIResource):
         Create file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateStandardFileShareSerializer/properties/name'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.name"
+          name: File share name
 
-          network: '#/components/schemas/CreateStandardFileShareSerializer/properties/network'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.network"
+          network: File share network configuration
 
-          protocol: '#/components/schemas/CreateStandardFileShareSerializer/properties/protocol'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.protocol"
+          protocol: File share protocol
 
-          size: '#/components/schemas/CreateStandardFileShareSerializer/properties/size'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.size"
+          size: File share size
 
-          access: '#/components/schemas/CreateStandardFileShareSerializer/properties/access'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.access"
+          access: Access Rules
 
-          tags: '#/components/schemas/CreateStandardFileShareSerializer/properties/tags'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          volume_type: '#/components/schemas/CreateStandardFileShareSerializer/properties/volume_type'
-              "$.components.schemas.CreateStandardFileShareSerializer.properties.volume_type"
+          volume_type: File share volume type
 
           extra_headers: Send extra headers
 
@@ -593,26 +563,23 @@ class AsyncFileSharesResource(AsyncAPIResource):
         Create file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateVastFileShareSerializer/properties/name'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.name"
+          name: File share name
 
-          protocol: '#/components/schemas/CreateVastFileShareSerializer/properties/protocol'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.protocol"
+          protocol: File share protocol
 
-          size: '#/components/schemas/CreateVastFileShareSerializer/properties/size'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.size"
+          size: File share size
 
-          volume_type: '#/components/schemas/CreateVastFileShareSerializer/properties/volume_type'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.volume_type"
+          volume_type: File share volume type
 
-          tags: '#/components/schemas/CreateVastFileShareSerializer/properties/tags'
-              "$.components.schemas.CreateVastFileShareSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -686,17 +653,13 @@ class AsyncFileSharesResource(AsyncAPIResource):
         Rename file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].patch.parameters[2].schema"
+          file_share_id: File Share ID
 
-          name: '#/components/schemas/NameSerializer/properties/name'
-              "$.components.schemas.NameSerializer.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -739,17 +702,14 @@ class AsyncFileSharesResource(AsyncAPIResource):
         List file shares
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[2]"
+          limit: Optional. Limit the number of returned items
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -799,14 +759,11 @@ class AsyncFileSharesResource(AsyncAPIResource):
         Delete file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}']['delete'].parameters[2].schema"
+          file_share_id: File Share ID
 
           extra_headers: Send extra headers
 
@@ -847,14 +804,11 @@ class AsyncFileSharesResource(AsyncAPIResource):
         Get file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}'].get.parameters[2].schema"
+          file_share_id: File Share ID
 
           extra_headers: Send extra headers
 
@@ -896,17 +850,13 @@ class AsyncFileSharesResource(AsyncAPIResource):
         Resize file share
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[2].schema"
+          file_share_id: File Share ID
 
-          size: '#/components/schemas/ResizeSfsSerializer/properties/size'
-              "$.components.schemas.ResizeSfsSerializer.properties.size"
+          size: File Share new size in GiB.
 
           extra_headers: Send extra headers
 

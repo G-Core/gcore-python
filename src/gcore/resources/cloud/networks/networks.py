@@ -91,23 +91,17 @@ class NetworksResource(SyncAPIResource):
         Create network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: Network name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].post.parameters[1].schema"
+          create_router: Defaults to True
 
-          name: '#/components/schemas/CreateNetworkSerializer/properties/name'
-              "$.components.schemas.CreateNetworkSerializer.properties.name"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          create_router: '#/components/schemas/CreateNetworkSerializer/properties/create_router'
-              "$.components.schemas.CreateNetworkSerializer.properties.create_router"
-
-          tags: '#/components/schemas/CreateNetworkSerializer/properties/tags'
-              "$.components.schemas.CreateNetworkSerializer.properties.tags"
-
-          type: '#/components/schemas/CreateNetworkSerializer/properties/type'
-              "$.components.schemas.CreateNetworkSerializer.properties.type"
+          type: vlan or vxlan network type is allowed. Default value is vxlan
 
           extra_headers: Send extra headers
 
@@ -156,17 +150,7 @@ class NetworksResource(SyncAPIResource):
         Change network name
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].patch.parameters[1].schema"
-
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].patch.parameters[2].schema"
-
-          name: '#/components/schemas/NameSerializerPydantic/properties/name'
-              "$.components.schemas.NameSerializerPydantic.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -212,26 +196,17 @@ class NetworksResource(SyncAPIResource):
         List networks
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned limit request entities.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[1].schema"
+          offset: Offset value is used to exclude the first set of records from the result.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[2]"
+          order_by: Order networks by fields and directions (name.asc). Default is `created_at.asc`.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[3]"
+          tag_key: Filter by tag keys.
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[5]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[6]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
+              --data-urlencode "tag_key_value={"key": "value"}" --url
+              "http://localhost:1111/v1/networks/1/1"
 
           extra_headers: Send extra headers
 
@@ -284,15 +259,6 @@ class NetworksResource(SyncAPIResource):
         Delete network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}']['delete'].parameters[1].schema"
-
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -332,15 +298,6 @@ class NetworksResource(SyncAPIResource):
         Get network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].get.parameters[1].schema"
-
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -412,23 +369,17 @@ class AsyncNetworksResource(AsyncAPIResource):
         Create network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: Network name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].post.parameters[1].schema"
+          create_router: Defaults to True
 
-          name: '#/components/schemas/CreateNetworkSerializer/properties/name'
-              "$.components.schemas.CreateNetworkSerializer.properties.name"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          create_router: '#/components/schemas/CreateNetworkSerializer/properties/create_router'
-              "$.components.schemas.CreateNetworkSerializer.properties.create_router"
-
-          tags: '#/components/schemas/CreateNetworkSerializer/properties/tags'
-              "$.components.schemas.CreateNetworkSerializer.properties.tags"
-
-          type: '#/components/schemas/CreateNetworkSerializer/properties/type'
-              "$.components.schemas.CreateNetworkSerializer.properties.type"
+          type: vlan or vxlan network type is allowed. Default value is vxlan
 
           extra_headers: Send extra headers
 
@@ -477,17 +428,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         Change network name
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].patch.parameters[1].schema"
-
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].patch.parameters[2].schema"
-
-          name: '#/components/schemas/NameSerializerPydantic/properties/name'
-              "$.components.schemas.NameSerializerPydantic.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -533,26 +474,17 @@ class AsyncNetworksResource(AsyncAPIResource):
         List networks
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned limit request entities.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[1].schema"
+          offset: Offset value is used to exclude the first set of records from the result.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[2]"
+          order_by: Order networks by fields and directions (name.asc). Default is `created_at.asc`.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[3]"
+          tag_key: Filter by tag keys.
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[5]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].get.parameters[6]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
+              --data-urlencode "tag_key_value={"key": "value"}" --url
+              "http://localhost:1111/v1/networks/1/1"
 
           extra_headers: Send extra headers
 
@@ -605,15 +537,6 @@ class AsyncNetworksResource(AsyncAPIResource):
         Delete network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}']['delete'].parameters[1].schema"
-
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -653,15 +576,6 @@ class AsyncNetworksResource(AsyncAPIResource):
         Get network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].get.parameters[1].schema"
-
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bnetwork_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/networks/{project_id}/{region_id}/{network_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

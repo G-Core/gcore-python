@@ -66,23 +66,13 @@ class FlavorsResource(SyncAPIResource):
         as 0. If you get Pricing Error contact the support
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[0].schema"
+          disabled: Flag for filtering disabled flavors in the region. Defaults to true
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[1].schema"
+          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
 
-          disabled: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[2]"
+          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
 
-          exclude_linux: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[3]"
-
-          exclude_windows: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[4]"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[5]"
+          include_prices: Set to true if the response should include flavor prices
 
           extra_headers: Send extra headers
 
@@ -134,17 +124,7 @@ class FlavorsResource(SyncAPIResource):
         List suitable flavors for instance resize
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[2].schema"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[3]"
+          include_prices: Set to true if flavor listing should include flavor prices
 
           extra_headers: Send extra headers
 
@@ -188,21 +168,14 @@ class FlavorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InstanceFlavorList:
-        """
-        List suitable flavors for instance creation
+        """List suitable flavors for instance creation
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[0].schema"
+          volumes: Volumes details.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[1].schema"
+        Non-important info such as names may be omitted.
 
-          volumes: '#/components/schemas/CreateInstanceVolumeListSchema/properties/volumes'
-              "$.components.schemas.CreateInstanceVolumeListSchema.properties.volumes"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/2'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[2]"
+          include_prices: Set to true if flavor listing should include flavor prices
 
           extra_headers: Send extra headers
 
@@ -275,23 +248,13 @@ class AsyncFlavorsResource(AsyncAPIResource):
         as 0. If you get Pricing Error contact the support
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[0].schema"
+          disabled: Flag for filtering disabled flavors in the region. Defaults to true
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[1].schema"
+          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
 
-          disabled: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[2]"
+          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
 
-          exclude_linux: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[3]"
-
-          exclude_windows: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[4]"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/flavors/{project_id}/{region_id}'].get.parameters[5]"
+          include_prices: Set to true if the response should include flavor prices
 
           extra_headers: Send extra headers
 
@@ -343,17 +306,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         List suitable flavors for instance resize
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[2].schema"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Favailable_flavors/get/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors'].get.parameters[3]"
+          include_prices: Set to true if flavor listing should include flavor prices
 
           extra_headers: Send extra headers
 
@@ -397,21 +350,14 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InstanceFlavorList:
-        """
-        List suitable flavors for instance creation
+        """List suitable flavors for instance creation
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[0].schema"
+          volumes: Volumes details.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[1].schema"
+        Non-important info such as names may be omitted.
 
-          volumes: '#/components/schemas/CreateInstanceVolumeListSchema/properties/volumes'
-              "$.components.schemas.CreateInstanceVolumeListSchema.properties.volumes"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/2'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[2]"
+          include_prices: Set to true if flavor listing should include flavor prices
 
           extra_headers: Send extra headers
 

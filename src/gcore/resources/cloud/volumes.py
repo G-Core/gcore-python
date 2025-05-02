@@ -83,38 +83,34 @@ class VolumesResource(SyncAPIResource):
         Create volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          image_id: '#/components/schemas/CreateVolumeFromImageSerializer/properties/image_id'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.image_id"
+          image_id: Image ID
 
-          name: '#/components/schemas/CreateVolumeFromImageSerializer/properties/name'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.name"
+          name: Volume name
 
-          size: '#/components/schemas/CreateVolumeFromImageSerializer/properties/size'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.size"
+          size: Volume size in GiB
 
-          source: '#/components/schemas/CreateVolumeFromImageSerializer/properties/source'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.source"
+          source: Volume source type
 
-          attachment_tag: '#/components/schemas/CreateVolumeFromImageSerializer/properties/attachment_tag'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
+              conjunction with instance_id_to_attach_to
 
-          instance_id_to_attach_to: '#/components/schemas/CreateVolumeFromImageSerializer/properties/instance_id_to_attach_to'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.instance_id_to_attach_to"
+          instance_id_to_attach_to: instance_id to attach newly-created volume to
 
-          lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromImageSerializer/properties/lifecycle_policy_ids'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.lifecycle_policy_ids"
+          lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+              volume
 
-          tags: '#/components/schemas/CreateVolumeFromImageSerializer/properties/tags'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          type_name: '#/components/schemas/CreateVolumeFromImageSerializer/properties/type_name'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.type_name"
+          type_name: Volume type. Defaults to `standard`. If not specified for source `snapshot`,
+              volume type will be derived from the snapshot volume.
 
           extra_headers: Send extra headers
 
@@ -153,38 +149,35 @@ class VolumesResource(SyncAPIResource):
         Create volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/name'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.name"
+          name: Volume name
 
-          snapshot_id: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/snapshot_id'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.snapshot_id"
+          snapshot_id: Snapshot ID
 
-          source: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/source'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.source"
+          source: Volume source type
 
-          attachment_tag: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/attachment_tag'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
+              conjunction with instance_id_to_attach_to
 
-          instance_id_to_attach_to: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/instance_id_to_attach_to'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.instance_id_to_attach_to"
+          instance_id_to_attach_to: instance_id to attach newly-created volume to
 
-          lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/lifecycle_policy_ids'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.lifecycle_policy_ids"
+          lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+              volume
 
-          size: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/size'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.size"
+          size: Volume size in GiB. If specified, value must be equal to respective snapshot
+              size
 
-          tags: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/tags'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          type_name: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/type_name'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.type_name"
+          type_name: Volume type. Defaults to `standard`. If not specified for source `snapshot`,
+              volume type will be derived from the snapshot volume.
 
           extra_headers: Send extra headers
 
@@ -222,35 +215,32 @@ class VolumesResource(SyncAPIResource):
         Create volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateNewVolumeSerializer/properties/name'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.name"
+          name: Volume name
 
-          size: '#/components/schemas/CreateNewVolumeSerializer/properties/size'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.size"
+          size: Volume size in GiB
 
-          source: '#/components/schemas/CreateNewVolumeSerializer/properties/source'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.source"
+          source: Volume source type
 
-          attachment_tag: '#/components/schemas/CreateNewVolumeSerializer/properties/attachment_tag'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
+              conjunction with instance_id_to_attach_to
 
-          instance_id_to_attach_to: '#/components/schemas/CreateNewVolumeSerializer/properties/instance_id_to_attach_to'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.instance_id_to_attach_to"
+          instance_id_to_attach_to: instance_id to attach newly-created volume to
 
-          lifecycle_policy_ids: '#/components/schemas/CreateNewVolumeSerializer/properties/lifecycle_policy_ids'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.lifecycle_policy_ids"
+          lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+              volume
 
-          tags: '#/components/schemas/CreateNewVolumeSerializer/properties/tags'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          type_name: '#/components/schemas/CreateNewVolumeSerializer/properties/type_name'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.type_name"
+          type_name: Volume type. Defaults to `standard`. If not specified for source `snapshot`,
+              volume type will be derived from the snapshot volume.
 
           extra_headers: Send extra headers
 
@@ -333,17 +323,13 @@ class VolumesResource(SyncAPIResource):
         Rename volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].patch.parameters[2].schema"
+          volume_id: Volume ID
 
-          name: '#/components/schemas/NameSerializer/properties/name'
-              "$.components.schemas.NameSerializer.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -394,41 +380,33 @@ class VolumesResource(SyncAPIResource):
         List volumes
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          bootable: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[2]"
+          bootable: Filter by bootable field
 
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[3]"
+          cluster_id: Filter volumes by k8s cluster ID
 
-          has_attachments: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[4]"
+          has_attachments: Filter by the presence of attachments
 
-          id_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[5]"
+          id_part: Filter the volume list result by the ID part of the volume
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[6]"
+          instance_id: Filter volumes by instance ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[7]"
+          limit: Optional. Limit the number of returned items
 
-          name_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[8]"
+          name_part: Filter volumes by name_part inclusion in volume name.Any substring can be used
+              and volumes will be returned with names containing the substring.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[9]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[10]"
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[11]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -487,17 +465,13 @@ class VolumesResource(SyncAPIResource):
         Delete volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[2].schema"
+          volume_id: Volume ID
 
-          snapshots: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/3'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[3]"
+          snapshots: Comma separated list of snapshot IDs to be deleted with the volume.
 
           extra_headers: Send extra headers
 
@@ -546,20 +520,15 @@ class VolumesResource(SyncAPIResource):
         instance with shared flavor
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fattach/post/parameters/0/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fattach/post/parameters/1/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fattach/post/parameters/2/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          instance_id: '#/components/schemas/AttachVolumeToInstanceSerializer/properties/instance_id'
-              "$.components.schemas.AttachVolumeToInstanceSerializer.properties.instance_id"
+          instance_id: Instance ID.
 
-          attachment_tag: '#/components/schemas/AttachVolumeToInstanceSerializer/properties/attachment_tag'
-              "$.components.schemas.AttachVolumeToInstanceSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the normal tags).
 
           extra_headers: Send extra headers
 
@@ -608,17 +577,13 @@ class VolumesResource(SyncAPIResource):
         Change volume type
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fretype/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fretype/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fretype/post/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          volume_type: '#/components/schemas/VolumeRetypeSerializer/properties/volume_type'
-              "$.components.schemas.VolumeRetypeSerializer.properties.volume_type"
+          volume_type: New volume type name
 
           extra_headers: Send extra headers
 
@@ -661,17 +626,13 @@ class VolumesResource(SyncAPIResource):
         Detach the volume from instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/0/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/1/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/2/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          instance_id: '#/components/schemas/InstanceIdSerializer/properties/instance_id'
-              "$.components.schemas.InstanceIdSerializer.properties.instance_id"
+          instance_id: Instance ID
 
           extra_headers: Send extra headers
 
@@ -715,14 +676,11 @@ class VolumesResource(SyncAPIResource):
         Get volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].get.parameters[2].schema"
+          volume_id: Volume ID
 
           extra_headers: Send extra headers
 
@@ -764,17 +722,13 @@ class VolumesResource(SyncAPIResource):
         Extend volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          size: '#/components/schemas/SizeSerializer/properties/size'
-              "$.components.schemas.SizeSerializer.properties.size"
+          size: New volume size in GiB
 
           extra_headers: Send extra headers
 
@@ -816,14 +770,11 @@ class VolumesResource(SyncAPIResource):
         Revert volume to it's last snapshot
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Frevert/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Frevert/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Frevert/post/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert'].post.parameters[2].schema"
+          volume_id: Volume ID
 
           extra_headers: Send extra headers
 
@@ -896,38 +847,34 @@ class AsyncVolumesResource(AsyncAPIResource):
         Create volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          image_id: '#/components/schemas/CreateVolumeFromImageSerializer/properties/image_id'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.image_id"
+          image_id: Image ID
 
-          name: '#/components/schemas/CreateVolumeFromImageSerializer/properties/name'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.name"
+          name: Volume name
 
-          size: '#/components/schemas/CreateVolumeFromImageSerializer/properties/size'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.size"
+          size: Volume size in GiB
 
-          source: '#/components/schemas/CreateVolumeFromImageSerializer/properties/source'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.source"
+          source: Volume source type
 
-          attachment_tag: '#/components/schemas/CreateVolumeFromImageSerializer/properties/attachment_tag'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
+              conjunction with instance_id_to_attach_to
 
-          instance_id_to_attach_to: '#/components/schemas/CreateVolumeFromImageSerializer/properties/instance_id_to_attach_to'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.instance_id_to_attach_to"
+          instance_id_to_attach_to: instance_id to attach newly-created volume to
 
-          lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromImageSerializer/properties/lifecycle_policy_ids'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.lifecycle_policy_ids"
+          lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+              volume
 
-          tags: '#/components/schemas/CreateVolumeFromImageSerializer/properties/tags'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          type_name: '#/components/schemas/CreateVolumeFromImageSerializer/properties/type_name'
-              "$.components.schemas.CreateVolumeFromImageSerializer.properties.type_name"
+          type_name: Volume type. Defaults to `standard`. If not specified for source `snapshot`,
+              volume type will be derived from the snapshot volume.
 
           extra_headers: Send extra headers
 
@@ -966,38 +913,35 @@ class AsyncVolumesResource(AsyncAPIResource):
         Create volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/name'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.name"
+          name: Volume name
 
-          snapshot_id: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/snapshot_id'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.snapshot_id"
+          snapshot_id: Snapshot ID
 
-          source: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/source'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.source"
+          source: Volume source type
 
-          attachment_tag: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/attachment_tag'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
+              conjunction with instance_id_to_attach_to
 
-          instance_id_to_attach_to: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/instance_id_to_attach_to'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.instance_id_to_attach_to"
+          instance_id_to_attach_to: instance_id to attach newly-created volume to
 
-          lifecycle_policy_ids: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/lifecycle_policy_ids'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.lifecycle_policy_ids"
+          lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+              volume
 
-          size: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/size'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.size"
+          size: Volume size in GiB. If specified, value must be equal to respective snapshot
+              size
 
-          tags: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/tags'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          type_name: '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/type_name'
-              "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.type_name"
+          type_name: Volume type. Defaults to `standard`. If not specified for source `snapshot`,
+              volume type will be derived from the snapshot volume.
 
           extra_headers: Send extra headers
 
@@ -1035,35 +979,32 @@ class AsyncVolumesResource(AsyncAPIResource):
         Create volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/CreateNewVolumeSerializer/properties/name'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.name"
+          name: Volume name
 
-          size: '#/components/schemas/CreateNewVolumeSerializer/properties/size'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.size"
+          size: Volume size in GiB
 
-          source: '#/components/schemas/CreateNewVolumeSerializer/properties/source'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.source"
+          source: Volume source type
 
-          attachment_tag: '#/components/schemas/CreateNewVolumeSerializer/properties/attachment_tag'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
+              conjunction with instance_id_to_attach_to
 
-          instance_id_to_attach_to: '#/components/schemas/CreateNewVolumeSerializer/properties/instance_id_to_attach_to'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.instance_id_to_attach_to"
+          instance_id_to_attach_to: instance_id to attach newly-created volume to
 
-          lifecycle_policy_ids: '#/components/schemas/CreateNewVolumeSerializer/properties/lifecycle_policy_ids'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.lifecycle_policy_ids"
+          lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+              volume
 
-          tags: '#/components/schemas/CreateNewVolumeSerializer/properties/tags'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          type_name: '#/components/schemas/CreateNewVolumeSerializer/properties/type_name'
-              "$.components.schemas.CreateNewVolumeSerializer.properties.type_name"
+          type_name: Volume type. Defaults to `standard`. If not specified for source `snapshot`,
+              volume type will be derived from the snapshot volume.
 
           extra_headers: Send extra headers
 
@@ -1146,17 +1087,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         Rename volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].patch.parameters[2].schema"
+          volume_id: Volume ID
 
-          name: '#/components/schemas/NameSerializer/properties/name'
-              "$.components.schemas.NameSerializer.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -1207,41 +1144,33 @@ class AsyncVolumesResource(AsyncAPIResource):
         List volumes
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          bootable: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[2]"
+          bootable: Filter by bootable field
 
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[3]"
+          cluster_id: Filter volumes by k8s cluster ID
 
-          has_attachments: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[4]"
+          has_attachments: Filter by the presence of attachments
 
-          id_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[5]"
+          id_part: Filter the volume list result by the ID part of the volume
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[6]"
+          instance_id: Filter volumes by instance ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[7]"
+          limit: Optional. Limit the number of returned items
 
-          name_part: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[8]"
+          name_part: Filter volumes by name_part inclusion in volume name.Any substring can be used
+              and volumes will be returned with names containing the substring.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[9]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[10]"
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[11]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -1300,17 +1229,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         Delete volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[2].schema"
+          volume_id: Volume ID
 
-          snapshots: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/delete/parameters/3'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}']['delete'].parameters[3]"
+          snapshots: Comma separated list of snapshot IDs to be deleted with the volume.
 
           extra_headers: Send extra headers
 
@@ -1359,20 +1284,15 @@ class AsyncVolumesResource(AsyncAPIResource):
         instance with shared flavor
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fattach/post/parameters/0/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fattach/post/parameters/1/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fattach/post/parameters/2/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          instance_id: '#/components/schemas/AttachVolumeToInstanceSerializer/properties/instance_id'
-              "$.components.schemas.AttachVolumeToInstanceSerializer.properties.instance_id"
+          instance_id: Instance ID.
 
-          attachment_tag: '#/components/schemas/AttachVolumeToInstanceSerializer/properties/attachment_tag'
-              "$.components.schemas.AttachVolumeToInstanceSerializer.properties.attachment_tag"
+          attachment_tag: Block device attachment tag (not exposed in the normal tags).
 
           extra_headers: Send extra headers
 
@@ -1421,17 +1341,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         Change volume type
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fretype/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fretype/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fretype/post/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          volume_type: '#/components/schemas/VolumeRetypeSerializer/properties/volume_type'
-              "$.components.schemas.VolumeRetypeSerializer.properties.volume_type"
+          volume_type: New volume type name
 
           extra_headers: Send extra headers
 
@@ -1476,17 +1392,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         Detach the volume from instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/0/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/1/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/2/schema'
-              "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          instance_id: '#/components/schemas/InstanceIdSerializer/properties/instance_id'
-              "$.components.schemas.InstanceIdSerializer.properties.instance_id"
+          instance_id: Instance ID
 
           extra_headers: Send extra headers
 
@@ -1530,14 +1442,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         Get volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}'].get.parameters[2].schema"
+          volume_id: Volume ID
 
           extra_headers: Send extra headers
 
@@ -1579,17 +1488,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         Extend volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[2].schema"
+          volume_id: Volume ID
 
-          size: '#/components/schemas/SizeSerializer/properties/size'
-              "$.components.schemas.SizeSerializer.properties.size"
+          size: New volume size in GiB
 
           extra_headers: Send extra headers
 
@@ -1631,14 +1536,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         Revert volume to it's last snapshot
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Frevert/post/parameters/0/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Frevert/post/parameters/1/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert'].post.parameters[1].schema"
+          region_id: Region ID
 
-          volume_id: '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Frevert/post/parameters/2/schema'
-              "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert'].post.parameters[2].schema"
+          volume_id: Volume ID
 
           extra_headers: Send extra headers
 

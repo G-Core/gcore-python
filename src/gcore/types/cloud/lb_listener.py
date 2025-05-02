@@ -13,135 +13,85 @@ __all__ = ["LbListener", "UserList"]
 
 class UserList(BaseModel):
     encrypted_password: str
-    """
-    '#/components/schemas/UserListItem/properties/encrypted_password'
-    "$.components.schemas.UserListItem.properties.encrypted_password"
-    """
+    """Encrypted password to auth via Basic Authentication"""
 
     username: str
-    """
-    '#/components/schemas/UserListItem/properties/username'
-    "$.components.schemas.UserListItem.properties.username"
-    """
+    """Username to auth via Basic Authentication"""
 
 
 class LbListener(BaseModel):
     id: str
-    """
-    '#/components/schemas/LbListenerSerializer/properties/id'
-    "$.components.schemas.LbListenerSerializer.properties.id"
-    """
+    """Load balancer listener ID"""
 
     connection_limit: int
-    """
-    '#/components/schemas/LbListenerSerializer/properties/connection_limit'
-    "$.components.schemas.LbListenerSerializer.properties.connection_limit"
-    """
+    """Limit of simultaneous connections"""
 
     insert_headers: object
-    """
-    '#/components/schemas/LbListenerSerializer/properties/insert_headers'
-    "$.components.schemas.LbListenerSerializer.properties.insert_headers"
+    """Dictionary of additional header insertion into HTTP headers.
+
+    Only used with HTTP and TERMINATED_HTTPS protocols.
     """
 
     name: str
-    """
-    '#/components/schemas/LbListenerSerializer/properties/name'
-    "$.components.schemas.LbListenerSerializer.properties.name"
-    """
+    """Load balancer listener name"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/LbListenerSerializer/properties/operating_status'
-    "$.components.schemas.LbListenerSerializer.properties.operating_status"
-    """
+    """Listener operating status"""
 
     protocol: LbListenerProtocol
-    """
-    '#/components/schemas/LbListenerSerializer/properties/protocol'
-    "$.components.schemas.LbListenerSerializer.properties.protocol"
-    """
+    """Load balancer protocol"""
 
     protocol_port: int
-    """
-    '#/components/schemas/LbListenerSerializer/properties/protocol_port'
-    "$.components.schemas.LbListenerSerializer.properties.protocol_port"
-    """
+    """Protocol port"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/LbListenerSerializer/properties/provisioning_status'
-    "$.components.schemas.LbListenerSerializer.properties.provisioning_status"
-    """
+    """Listener lifecycle status"""
 
     allowed_cidrs: Optional[List[str]] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/allowed_cidrs/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.allowed_cidrs.anyOf[0]"
-    """
+    """Network CIDRs from which service will be accessible"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     loadbalancer_id: Optional[str] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/loadbalancer_id/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.loadbalancer_id.anyOf[0]"
-    """
+    """Load balancer ID"""
 
     pool_count: Optional[int] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/pool_count/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.pool_count.anyOf[0]"
-    """
+    """Number of pools (for UI)"""
 
     secret_id: Optional[str] = None
     """
-    '#/components/schemas/LbListenerSerializer/properties/secret_id/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.secret_id.anyOf[0]"
+    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+    load balancer
     """
 
     sni_secret_id: Optional[List[str]] = None
     """
-    '#/components/schemas/LbListenerSerializer/properties/sni_secret_id/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.sni_secret_id.anyOf[0]"
+    List of secret's ID containing PKCS12 format certificate/key bundles for
+    TERMINATED_HTTPS or PROMETHEUS listeners
     """
 
     stats: Optional[LoadBalancerStatistics] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/stats/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.stats.anyOf[0]"
+    """Statistics of the load balancer.
+
+    It is available only in get functions by a flag.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     timeout_client_data: Optional[int] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/timeout_client_data/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.timeout_client_data.anyOf[0]"
-    """
+    """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/timeout_member_connect/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-    """
+    """Backend member connection timeout in milliseconds"""
 
     timeout_member_data: Optional[int] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/timeout_member_data/anyOf/0'
-    "$.components.schemas.LbListenerSerializer.properties.timeout_member_data.anyOf[0]"
-    """
+    """Backend member inactivity timeout in milliseconds"""
 
     user_list: Optional[List[UserList]] = None
-    """
-    '#/components/schemas/LbListenerSerializer/properties/user_list'
-    "$.components.schemas.LbListenerSerializer.properties.user_list"
-    """
+    """Load balancer listener users list"""

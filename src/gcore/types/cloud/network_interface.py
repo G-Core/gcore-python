@@ -13,129 +13,66 @@ __all__ = ["NetworkInterface", "SubPort"]
 
 class SubPort(BaseModel):
     allowed_address_pairs: List[AllowedAddressPairs]
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/allowed_address_pairs'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.allowed_address_pairs"
-    """
+    """Group of subnet masks and/or IP addresses that share the current IP as VIP"""
 
     floatingip_details: List[FloatingIP]
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/floatingip_details'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.floatingip_details"
-    """
+    """Bodies of floating IPs that are NAT-ing IPs of this port"""
 
     ip_assignments: List[IPAssignment]
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/ip_assignments'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.ip_assignments"
-    """
+    """IP addresses assigned to this port"""
 
     network_details: NetworkDetails
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/network_details'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.network_details"
-    """
+    """Body of the network this port is attached to"""
 
     network_id: str
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/network_id'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.network_id"
-    """
+    """ID of the network the port is attached to"""
 
     port_id: str
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/port_id'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.port_id"
-    """
+    """ID of virtual ethernet port object"""
 
     port_security_enabled: bool
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/port_security_enabled'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.port_security_enabled"
-    """
+    """Port security status"""
 
     segmentation_id: int
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/segmentation_id'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.segmentation_id"
-    """
+    """id of network segment"""
 
     segmentation_type: str
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/segmentation_type'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.segmentation_type"
-    """
+    """type of network segment"""
 
     interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.interface_name.anyOf[0]"
-    """
+    """Interface name"""
 
     mac_address: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInterfaceSubportSerializer/properties/mac_address/anyOf/0'
-    "$.components.schemas.InstanceInterfaceSubportSerializer.properties.mac_address.anyOf[0]"
-    """
+    """MAC address of the virtual port"""
 
 
 class NetworkInterface(BaseModel):
     allowed_address_pairs: List[AllowedAddressPairs]
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/allowed_address_pairs'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.allowed_address_pairs"
-    """
+    """Group of subnet masks and/or IP addresses that share the current IP as VIP"""
 
     floatingip_details: List[FloatingIP]
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/floatingip_details'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.floatingip_details"
-    """
+    """Bodies of floating IPs that are NAT-ing IPs of this port"""
 
     ip_assignments: List[IPAssignment]
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/ip_assignments'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.ip_assignments"
-    """
+    """IP addresses assigned to this port"""
 
     network_details: NetworkDetails
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/network_details'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.network_details"
-    """
+    """Body of the network this port is attached to"""
 
     network_id: str
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/network_id'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.network_id"
-    """
+    """ID of the network the port is attached to"""
 
     port_id: str
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/port_id'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.port_id"
-    """
+    """ID of virtual ethernet port object"""
 
     port_security_enabled: bool
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/port_security_enabled'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.port_security_enabled"
-    """
+    """Port security status"""
 
     sub_ports: List[SubPort]
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/sub_ports'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.sub_ports"
-    """
+    """body of ports that are included into trunk port"""
 
     interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.interface_name.anyOf[0]"
-    """
+    """Interface name"""
 
     mac_address: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInterfaceTrunkSerializer/properties/mac_address/anyOf/0'
-    "$.components.schemas.InstanceInterfaceTrunkSerializer.properties.mac_address.anyOf[0]"
-    """
+    """MAC address of the virtual port"""

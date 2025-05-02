@@ -11,82 +11,46 @@ __all__ = ["FileShare"]
 
 class FileShare(BaseModel):
     id: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/id'
-    "$.components.schemas.FileShareSerializer.properties.id"
-    """
+    """File share ID"""
 
     connection_point: Optional[str] = None
-    """
-    '#/components/schemas/FileShareSerializer/properties/connection_point/anyOf/0'
-    "$.components.schemas.FileShareSerializer.properties.connection_point.anyOf[0]"
-    """
+    """Connection point. Can be null during File share creation"""
 
     created_at: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/created_at'
-    "$.components.schemas.FileShareSerializer.properties.created_at"
-    """
+    """Datetime when the file share was created"""
 
     creator_task_id: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/creator_task_id'
-    "$.components.schemas.FileShareSerializer.properties.creator_task_id"
-    """
+    """Task that created this entity"""
 
     name: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/name'
-    "$.components.schemas.FileShareSerializer.properties.name"
-    """
+    """File share name"""
 
     network_id: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/network_id'
-    "$.components.schemas.FileShareSerializer.properties.network_id"
-    """
+    """Network ID."""
 
     network_name: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/network_name'
-    "$.components.schemas.FileShareSerializer.properties.network_name"
-    """
+    """Network name."""
 
     project_id: int
-    """
-    '#/components/schemas/FileShareSerializer/properties/project_id'
-    "$.components.schemas.FileShareSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     protocol: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/protocol'
-    "$.components.schemas.FileShareSerializer.properties.protocol"
-    """
+    """File share protocol"""
 
     region: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/region'
-    "$.components.schemas.FileShareSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/FileShareSerializer/properties/region_id'
-    "$.components.schemas.FileShareSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     share_network_name: Optional[str] = None
-    """
-    '#/components/schemas/FileShareSerializer/properties/share_network_name/anyOf/0'
-    "$.components.schemas.FileShareSerializer.properties.share_network_name.anyOf[0]"
+    """Share network name.
+
+    May be null if the file share was created with volume type VAST
     """
 
     size: int
-    """
-    '#/components/schemas/FileShareSerializer/properties/size'
-    "$.components.schemas.FileShareSerializer.properties.size"
-    """
+    """File share size, GiB"""
 
     status: Literal[
         "available",
@@ -118,37 +82,30 @@ class FileShare(BaseModel):
         "unmanage_starting",
         "unmanaged",
     ]
-    """
-    '#/components/schemas/FileShareSerializer/properties/status'
-    "$.components.schemas.FileShareSerializer.properties.status"
-    """
+    """File share status"""
 
     subnet_id: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/subnet_id'
-    "$.components.schemas.FileShareSerializer.properties.subnet_id"
-    """
+    """Subnet ID."""
 
     subnet_name: str
-    """
-    '#/components/schemas/FileShareSerializer/properties/subnet_name'
-    "$.components.schemas.FileShareSerializer.properties.subnet_name"
-    """
+    """Subnet name."""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/FileShareSerializer/properties/tags'
-    "$.components.schemas.FileShareSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/FileShareSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.FileShareSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     volume_type: Literal["default_share_type", "vast_share_type"]
-    """
-    '#/components/schemas/FileShareSerializer/properties/volume_type'
-    "$.components.schemas.FileShareSerializer.properties.volume_type"
-    """
+    """File share disk type"""

@@ -12,161 +12,87 @@ __all__ = ["ReservedFixedIP", "Attachment", "Reservation"]
 
 class Attachment(BaseModel):
     resource_id: Optional[str] = None
-    """
-    '#/components/schemas/AttachmentSerializer/properties/resource_id/anyOf/0'
-    "$.components.schemas.AttachmentSerializer.properties.resource_id.anyOf[0]"
-    """
+    """Resource ID"""
 
     resource_type: Optional[str] = None
-    """
-    '#/components/schemas/AttachmentSerializer/properties/resource_type/anyOf/0'
-    "$.components.schemas.AttachmentSerializer.properties.resource_type.anyOf[0]"
-    """
+    """Resource type"""
 
 
 class Reservation(BaseModel):
     resource_id: Optional[str] = None
-    """
-    '#/components/schemas/ReservationSerializer/properties/resource_id/anyOf/0'
-    "$.components.schemas.ReservationSerializer.properties.resource_id.anyOf[0]"
-    """
+    """ID of the instance or load balancer the IP is attached to"""
 
     resource_type: Optional[str] = None
-    """
-    '#/components/schemas/ReservationSerializer/properties/resource_type/anyOf/0'
-    "$.components.schemas.ReservationSerializer.properties.resource_type.anyOf[0]"
-    """
+    """Resource type of the resource the IP is attached to"""
 
     status: Optional[str] = None
-    """
-    '#/components/schemas/ReservationSerializer/properties/status/anyOf/0'
-    "$.components.schemas.ReservationSerializer.properties.status.anyOf[0]"
-    """
+    """IP reservation status"""
 
 
 class ReservedFixedIP(BaseModel):
     allowed_address_pairs: List[AllowedAddressPairs]
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/allowed_address_pairs'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.allowed_address_pairs"
-    """
+    """Group of subnet masks and/or IP addresses that share the current IP as VIP"""
 
     attachments: List[Attachment]
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/attachments'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.attachments"
-    """
+    """Reserved fixed IP attachment entities"""
 
     created_at: datetime
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/created_at'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.created_at"
-    """
+    """Datetime when the reserved fixed IP was created"""
 
     is_external: bool
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/is_external'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.is_external"
-    """
+    """If reserved fixed IP belongs to a public network"""
 
     is_vip: bool
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/is_vip'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.is_vip"
-    """
+    """If reserved fixed IP is a VIP"""
 
     name: str
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/name'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.name"
-    """
+    """Reserved fixed IP name"""
 
     network: Network
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/network'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.network"
-    """
+    """Network details"""
 
     network_id: str
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/network_id'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.network_id"
-    """
+    """ID of the network the port is attached to"""
 
     port_id: str
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/port_id'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.port_id"
-    """
+    """ID of the port underlying the reserved fixed IP"""
 
     region: str
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/region'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/region_id'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     reservation: Reservation
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/reservation'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.reservation"
-    """
+    """Reserved fixed IP status with resource type and ID it is attached to"""
 
     status: str
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/status'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.status"
-    """
+    """Underlying port status"""
 
     updated_at: datetime
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/updated_at'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.updated_at"
-    """
+    """Datetime when the reserved fixed IP was last updated"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     fixed_ip_address: Optional[str] = None
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/fixed_ip_address/anyOf/0'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.fixed_ip_address.anyOf[0]"
-    """
+    """IPv4 address of the reserved fixed IP"""
 
     fixed_ipv6_address: Optional[str] = None
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/fixed_ipv6_address/anyOf/0'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.fixed_ipv6_address.anyOf[0]"
-    """
+    """IPv6 address of the reserved fixed IP"""
 
     project_id: Optional[int] = None
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/project_id/anyOf/0'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.project_id.anyOf[0]"
-    """
+    """Project ID"""
 
     subnet_id: Optional[str] = None
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/subnet_id/anyOf/0'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.subnet_id.anyOf[0]"
-    """
+    """ID of the subnet that owns the IP address"""
 
     subnet_v6_id: Optional[str] = None
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/subnet_v6_id/anyOf/0'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.subnet_v6_id.anyOf[0]"
-    """
+    """ID of the subnet that owns the IPv6 address"""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/ReservedFixedIPSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.ReservedFixedIPSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """

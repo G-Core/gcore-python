@@ -11,31 +11,16 @@ __all__ = ["ConnectedPort"]
 
 class ConnectedPort(BaseModel):
     instance_id: str
-    """
-    '#/components/schemas/ConnectedDevicesVIPSerializer/properties/instance_id'
-    "$.components.schemas.ConnectedDevicesVIPSerializer.properties.instance_id"
-    """
+    """ID of the instance that owns the port"""
 
     instance_name: str
-    """
-    '#/components/schemas/ConnectedDevicesVIPSerializer/properties/instance_name'
-    "$.components.schemas.ConnectedDevicesVIPSerializer.properties.instance_name"
-    """
+    """Name of the instance that owns the port"""
 
     ip_assignments: List[IPWithSubnet]
-    """
-    '#/components/schemas/ConnectedDevicesVIPSerializer/properties/ip_assignments'
-    "$.components.schemas.ConnectedDevicesVIPSerializer.properties.ip_assignments"
-    """
+    """IP addresses assigned to this port"""
 
     network: Network
-    """
-    '#/components/schemas/ConnectedDevicesVIPSerializer/properties/network'
-    "$.components.schemas.ConnectedDevicesVIPSerializer.properties.network"
-    """
+    """Network details"""
 
     port_id: str
-    """
-    '#/components/schemas/ConnectedDevicesVIPSerializer/properties/port_id'
-    "$.components.schemas.ConnectedDevicesVIPSerializer.properties.port_id"
-    """
+    """Port ID that shares VIP"""

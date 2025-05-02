@@ -9,13 +9,7 @@ __all__ = ["BaremetalFloatingAddress"]
 
 class BaremetalFloatingAddress(BaseModel):
     addr: str
-    """
-    '#/components/schemas/BareMetalFloatingAddressSerializer/properties/addr'
-    "$.components.schemas.BareMetalFloatingAddressSerializer.properties.addr"
-    """
+    """Address"""
 
     type: Literal["floating"]
-    """
-    '#/components/schemas/BareMetalFloatingAddressSerializer/properties/type'
-    "$.components.schemas.BareMetalFloatingAddressSerializer.properties.type"
-    """
+    """Type of the address"""

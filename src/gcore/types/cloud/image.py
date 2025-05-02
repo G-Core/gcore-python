@@ -12,157 +12,89 @@ __all__ = ["Image"]
 
 class Image(BaseModel):
     id: str
-    """
-    '#/components/schemas/ImageSerializer/properties/id'
-    "$.components.schemas.ImageSerializer.properties.id"
-    """
+    """Image ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/ImageSerializer/properties/created_at'
-    "$.components.schemas.ImageSerializer.properties.created_at"
-    """
+    """Datetime when the image was created"""
 
     disk_format: str
-    """
-    '#/components/schemas/ImageSerializer/properties/disk_format'
-    "$.components.schemas.ImageSerializer.properties.disk_format"
-    """
+    """Disk format"""
 
     min_disk: int
-    """
-    '#/components/schemas/ImageSerializer/properties/min_disk'
-    "$.components.schemas.ImageSerializer.properties.min_disk"
-    """
+    """Minimal boot volume required"""
 
     min_ram: int
-    """
-    '#/components/schemas/ImageSerializer/properties/min_ram'
-    "$.components.schemas.ImageSerializer.properties.min_ram"
-    """
+    """Minimal VM RAM required"""
 
     name: str
-    """
-    '#/components/schemas/ImageSerializer/properties/name'
-    "$.components.schemas.ImageSerializer.properties.name"
-    """
+    """Image display name"""
 
     os_distro: str
-    """
-    '#/components/schemas/ImageSerializer/properties/os_distro'
-    "$.components.schemas.ImageSerializer.properties.os_distro"
-    """
+    """OS Distribution, i.e. Debian, CentOS, Ubuntu, CoreOS etc."""
 
     os_type: Literal["linux", "windows"]
-    """
-    '#/components/schemas/ImageSerializer/properties/os_type'
-    "$.components.schemas.ImageSerializer.properties.os_type"
-    """
+    """The operating system installed on the image."""
 
     os_version: str
-    """
-    '#/components/schemas/ImageSerializer/properties/os_version'
-    "$.components.schemas.ImageSerializer.properties.os_version"
-    """
+    """OS version, i.e. 19.04 (for Ubuntu) or 9.4 for Debian"""
 
     project_id: int
-    """
-    '#/components/schemas/ImageSerializer/properties/project_id'
-    "$.components.schemas.ImageSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/ImageSerializer/properties/region'
-    "$.components.schemas.ImageSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/ImageSerializer/properties/region_id'
-    "$.components.schemas.ImageSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     size: int
-    """
-    '#/components/schemas/ImageSerializer/properties/size'
-    "$.components.schemas.ImageSerializer.properties.size"
-    """
+    """Image size in bytes"""
 
     status: str
-    """
-    '#/components/schemas/ImageSerializer/properties/status'
-    "$.components.schemas.ImageSerializer.properties.status"
-    """
+    """Image status, i.e. active"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/ImageSerializer/properties/tags'
-    "$.components.schemas.ImageSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     updated_at: datetime
-    """
-    '#/components/schemas/ImageSerializer/properties/updated_at'
-    "$.components.schemas.ImageSerializer.properties.updated_at"
-    """
+    """Datetime when the image was updated"""
 
     visibility: str
-    """
-    '#/components/schemas/ImageSerializer/properties/visibility'
-    "$.components.schemas.ImageSerializer.properties.visibility"
-    """
+    """Image visibility. Globally visible images are public"""
 
     architecture: Optional[Literal["aarch64", "x86_64"]] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/architecture'
-    "$.components.schemas.ImageSerializer.properties.architecture"
-    """
+    """An image architecture type: aarch64, x86_64"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     description: Optional[str] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/description/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.description.anyOf[0]"
-    """
+    """Image description"""
 
     display_order: Optional[int] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/display_order/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.display_order.anyOf[0]"
-    """
 
     hw_firmware_type: Optional[Literal["bios", "uefi"]] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/hw_firmware_type/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.hw_firmware_type.anyOf[0]"
-    """
+    """Specifies the type of firmware with which to boot the guest."""
 
     hw_machine_type: Optional[Literal["pc", "q35"]] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/hw_machine_type/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.hw_machine_type.anyOf[0]"
-    """
+    """A virtual chipset type."""
 
     is_baremetal: Optional[bool] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/is_baremetal/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.is_baremetal.anyOf[0]"
-    """
+    """Set to true if the image will be used by bare metal servers. Defaults to false."""
 
     ssh_key: Optional[Literal["allow", "deny", "required"]] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/ssh_key/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.ssh_key.anyOf[0]"
-    """
+    """Whether the image supports SSH key or not"""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/ImageSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.ImageSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """

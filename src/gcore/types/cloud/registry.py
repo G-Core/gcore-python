@@ -9,49 +9,25 @@ __all__ = ["Registry"]
 
 class Registry(BaseModel):
     id: int
-    """
-    '#/components/schemas/RegistrySerializer/properties/id'
-    "$.components.schemas.RegistrySerializer.properties.id"
-    """
+    """Registry ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/RegistrySerializer/properties/created_at'
-    "$.components.schemas.RegistrySerializer.properties.created_at"
-    """
+    """Registry creation date-time"""
 
     name: str
-    """
-    '#/components/schemas/RegistrySerializer/properties/name'
-    "$.components.schemas.RegistrySerializer.properties.name"
-    """
+    """Registry name"""
 
     repo_count: int
-    """
-    '#/components/schemas/RegistrySerializer/properties/repo_count'
-    "$.components.schemas.RegistrySerializer.properties.repo_count"
-    """
+    """Number of repositories in the registry"""
 
     storage_limit: int
-    """
-    '#/components/schemas/RegistrySerializer/properties/storage_limit'
-    "$.components.schemas.RegistrySerializer.properties.storage_limit"
-    """
+    """Registry storage limit, GiB"""
 
     storage_used: int
-    """
-    '#/components/schemas/RegistrySerializer/properties/storage_used'
-    "$.components.schemas.RegistrySerializer.properties.storage_used"
-    """
+    """Registry storage used, bytes"""
 
     updated_at: datetime
-    """
-    '#/components/schemas/RegistrySerializer/properties/updated_at'
-    "$.components.schemas.RegistrySerializer.properties.updated_at"
-    """
+    """Registry modification date-time"""
 
     url: str
-    """
-    '#/components/schemas/RegistrySerializer/properties/url'
-    "$.components.schemas.RegistrySerializer.properties.url"
-    """
+    """Registry url"""

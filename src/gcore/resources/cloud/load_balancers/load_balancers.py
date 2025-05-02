@@ -157,47 +157,40 @@ class LoadBalancersResource(SyncAPIResource):
         Create load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].post.parameters[0].schema"
+          flavor: Load balancer flavor name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].post.parameters[1].schema"
+          floating_ip: Floating IP configuration for assignment
 
-          flavor: '#/components/schemas/CreateLoadbalancerSerializer/properties/flavor'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.flavor"
+          listeners: Load balancer listeners. Maximum 50 per LB (excluding Prometheus endpoint
+              listener).
 
-          floating_ip: '#/components/schemas/CreateLoadbalancerSerializer/properties/floating_ip'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.floating_ip"
+          logging: Logging configuration
 
-          listeners: '#/components/schemas/CreateLoadbalancerSerializer/properties/listeners'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.listeners"
+          name: Load balancer name
 
-          logging: '#/components/schemas/CreateLoadbalancerSerializer/properties/logging'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.logging"
+          name_template: Load balancer name which will be changed by template.
 
-          name: '#/components/schemas/CreateLoadbalancerSerializer/properties/name'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.name"
+          preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
+              members. L2 provides best performance, L3 provides less IPs usage. It is taking
+              effect only if instance_id + ip_address is provided, not subnet_id + ip_address,
+              because we're considering this as intentional subnet_id specification.
 
-          name_template: '#/components/schemas/CreateLoadbalancerSerializer/properties/name_template'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.name_template"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          preferred_connectivity: '#/components/schemas/CreateLoadbalancerSerializer/properties/preferred_connectivity'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.preferred_connectivity"
+          vip_ip_family: IP family for load balancer subnet auto-selection if vip_network_id is specified
 
-          tags: '#/components/schemas/CreateLoadbalancerSerializer/properties/tags'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.tags"
+          vip_network_id: Network ID for load balancer. If not specified, default external network will be
+              used. Mutually exclusive with vip_port_id
 
-          vip_ip_family: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_ip_family'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_ip_family"
+          vip_port_id: Existing Reserved Fixed IP port ID for load balancer. Mutually exclusive with
+              vip_network_id
 
-          vip_network_id: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_network_id'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_network_id"
-
-          vip_port_id: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_port_id'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_port_id"
-
-          vip_subnet_id: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_subnet_id'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_subnet_id"
+          vip_subnet_id: Subnet ID for load balancer. If not specified, any subnet from vip_network_id
+              will be selected. Ignored when vip_network_id is not specified.
 
           extra_headers: Send extra headers
 
@@ -257,23 +250,12 @@ class LoadBalancersResource(SyncAPIResource):
         for load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].patch.parameters[0].schema"
+          logging: Logging configuration
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].patch.parameters[1].schema"
+          name: Name.
 
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].patch.parameters[2].schema"
-
-          logging: '#/components/schemas/LoadBalancerPatchSerializer/properties/logging'
-              "$.components.schemas.LoadBalancerPatchSerializer.properties.logging"
-
-          name: '#/components/schemas/LoadBalancerPatchSerializer/properties/name'
-              "$.components.schemas.LoadBalancerPatchSerializer.properties.name"
-
-          preferred_connectivity: '#/components/schemas/LoadBalancerPatchSerializer/properties/preferred_connectivity'
-              "$.components.schemas.LoadBalancerPatchSerializer.properties.preferred_connectivity"
+          preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
+              members
 
           extra_headers: Send extra headers
 
@@ -331,41 +313,30 @@ class LoadBalancersResource(SyncAPIResource):
         List load balancers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[0].schema"
+          assigned_floating: With or without assigned floating IP
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[1].schema"
+          limit: Limit the number of returned limit request entities.
 
-          assigned_floating: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[2]"
+          logging_enabled: With or without logging
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[3]"
+          name: Filter by name
 
-          logging_enabled: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[4]"
+          offset: Offset value is used to exclude the first set of records from the result.
 
-          name: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[5]"
+          order_by: Ordering Load Balancer list result by name, created_at, updated_at,
+              operating_status, provisioning_status, vip_address, vip_ip_family and flavor
+              fields of the load balancer and directions (name.asc), default is
+              "created_at.asc"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[6]"
+          show_stats: Show statistics
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[7]"
+          tag_key: Filter by tag keys.
 
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[8]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
+              --data-urlencode "tag_key_value={"key": "value"}" --url
+              "http://localhost:1111/v1/loadbalancers/1/1"
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[9]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[10]"
-
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[11]"
+          with_ddos: Show Advanced DDoS protection profile, if exists
 
           extra_headers: Send extra headers
 
@@ -423,15 +394,6 @@ class LoadBalancersResource(SyncAPIResource):
         Delete load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}']['delete'].parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -472,17 +434,7 @@ class LoadBalancersResource(SyncAPIResource):
         Failover loadbalancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Ffailover/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Ffailover/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover'].post.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Ffailover/post/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover'].post.parameters[2].schema"
-
-          force: '#/components/schemas/FailoverLoadBalancer/properties/force'
-              "$.components.schemas.FailoverLoadBalancer.properties.force"
+          force: Validate current load balancer status before failover or not.
 
           extra_headers: Send extra headers
 
@@ -526,20 +478,9 @@ class LoadBalancersResource(SyncAPIResource):
         Get load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[0].schema"
+          show_stats: Show statistics
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[2].schema"
-
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[3]"
-
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[4]"
+          with_ddos: Show DDoS profile
 
           extra_headers: Send extra headers
 
@@ -591,17 +532,7 @@ class LoadBalancersResource(SyncAPIResource):
         Resize loadbalancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fresize/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fresize/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize'].post.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fresize/post/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize'].post.parameters[2].schema"
-
-          flavor: '#/components/schemas/ResizeLoadBalancer/properties/flavor'
-              "$.components.schemas.ResizeLoadBalancer.properties.flavor"
+          flavor: Name of the desired flavor to resize to.
 
           extra_headers: Send extra headers
 
@@ -699,47 +630,40 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Create load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].post.parameters[0].schema"
+          flavor: Load balancer flavor name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].post.parameters[1].schema"
+          floating_ip: Floating IP configuration for assignment
 
-          flavor: '#/components/schemas/CreateLoadbalancerSerializer/properties/flavor'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.flavor"
+          listeners: Load balancer listeners. Maximum 50 per LB (excluding Prometheus endpoint
+              listener).
 
-          floating_ip: '#/components/schemas/CreateLoadbalancerSerializer/properties/floating_ip'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.floating_ip"
+          logging: Logging configuration
 
-          listeners: '#/components/schemas/CreateLoadbalancerSerializer/properties/listeners'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.listeners"
+          name: Load balancer name
 
-          logging: '#/components/schemas/CreateLoadbalancerSerializer/properties/logging'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.logging"
+          name_template: Load balancer name which will be changed by template.
 
-          name: '#/components/schemas/CreateLoadbalancerSerializer/properties/name'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.name"
+          preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
+              members. L2 provides best performance, L3 provides less IPs usage. It is taking
+              effect only if instance_id + ip_address is provided, not subnet_id + ip_address,
+              because we're considering this as intentional subnet_id specification.
 
-          name_template: '#/components/schemas/CreateLoadbalancerSerializer/properties/name_template'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.name_template"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          preferred_connectivity: '#/components/schemas/CreateLoadbalancerSerializer/properties/preferred_connectivity'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.preferred_connectivity"
+          vip_ip_family: IP family for load balancer subnet auto-selection if vip_network_id is specified
 
-          tags: '#/components/schemas/CreateLoadbalancerSerializer/properties/tags'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.tags"
+          vip_network_id: Network ID for load balancer. If not specified, default external network will be
+              used. Mutually exclusive with vip_port_id
 
-          vip_ip_family: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_ip_family'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_ip_family"
+          vip_port_id: Existing Reserved Fixed IP port ID for load balancer. Mutually exclusive with
+              vip_network_id
 
-          vip_network_id: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_network_id'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_network_id"
-
-          vip_port_id: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_port_id'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_port_id"
-
-          vip_subnet_id: '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_subnet_id'
-              "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_subnet_id"
+          vip_subnet_id: Subnet ID for load balancer. If not specified, any subnet from vip_network_id
+              will be selected. Ignored when vip_network_id is not specified.
 
           extra_headers: Send extra headers
 
@@ -799,23 +723,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         for load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].patch.parameters[0].schema"
+          logging: Logging configuration
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].patch.parameters[1].schema"
+          name: Name.
 
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].patch.parameters[2].schema"
-
-          logging: '#/components/schemas/LoadBalancerPatchSerializer/properties/logging'
-              "$.components.schemas.LoadBalancerPatchSerializer.properties.logging"
-
-          name: '#/components/schemas/LoadBalancerPatchSerializer/properties/name'
-              "$.components.schemas.LoadBalancerPatchSerializer.properties.name"
-
-          preferred_connectivity: '#/components/schemas/LoadBalancerPatchSerializer/properties/preferred_connectivity'
-              "$.components.schemas.LoadBalancerPatchSerializer.properties.preferred_connectivity"
+          preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
+              members
 
           extra_headers: Send extra headers
 
@@ -873,41 +786,30 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         List load balancers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[0].schema"
+          assigned_floating: With or without assigned floating IP
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[1].schema"
+          limit: Limit the number of returned limit request entities.
 
-          assigned_floating: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[2]"
+          logging_enabled: With or without logging
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[3]"
+          name: Filter by name
 
-          logging_enabled: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[4]"
+          offset: Offset value is used to exclude the first set of records from the result.
 
-          name: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[5]"
+          order_by: Ordering Load Balancer list result by name, created_at, updated_at,
+              operating_status, provisioning_status, vip_address, vip_ip_family and flavor
+              fields of the load balancer and directions (name.asc), default is
+              "created_at.asc"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[6]"
+          show_stats: Show statistics
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[7]"
+          tag_key: Filter by tag keys.
 
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[8]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
+              --data-urlencode "tag_key_value={"key": "value"}" --url
+              "http://localhost:1111/v1/loadbalancers/1/1"
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[9]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[10]"
-
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[11]"
+          with_ddos: Show Advanced DDoS protection profile, if exists
 
           extra_headers: Send extra headers
 
@@ -965,15 +867,6 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Delete load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}']['delete'].parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1014,17 +907,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Failover loadbalancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Ffailover/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Ffailover/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover'].post.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Ffailover/post/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover'].post.parameters[2].schema"
-
-          force: '#/components/schemas/FailoverLoadBalancer/properties/force'
-              "$.components.schemas.FailoverLoadBalancer.properties.force"
+          force: Validate current load balancer status before failover or not.
 
           extra_headers: Send extra headers
 
@@ -1070,20 +953,9 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Get load balancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[0].schema"
+          show_stats: Show statistics
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[2].schema"
-
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[3]"
-
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}'].get.parameters[4]"
+          with_ddos: Show DDoS profile
 
           extra_headers: Send extra headers
 
@@ -1135,17 +1007,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Resize loadbalancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fresize/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fresize/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize'].post.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fresize/post/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize'].post.parameters[2].schema"
-
-          flavor: '#/components/schemas/ResizeLoadBalancer/properties/flavor'
-              "$.components.schemas.ResizeLoadBalancer.properties.flavor"
+          flavor: Name of the desired flavor to resize to.
 
           extra_headers: Send extra headers
 

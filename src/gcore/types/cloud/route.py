@@ -7,13 +7,10 @@ __all__ = ["Route"]
 
 class Route(BaseModel):
     destination: str
-    """
-    '#/components/schemas/RouteOutSerializer/properties/destination'
-    "$.components.schemas.RouteOutSerializer.properties.destination"
-    """
+    """CIDR of destination IPv4 subnet."""
 
     nexthop: str
     """
-    '#/components/schemas/RouteOutSerializer/properties/nexthop'
-    "$.components.schemas.RouteOutSerializer.properties.nexthop"
+    IPv4 address to forward traffic to if it's destination IP matches 'destination'
+    CIDR.
     """

@@ -10,73 +10,44 @@ __all__ = ["LoadBalancerListParams"]
 
 class LoadBalancerListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[1].schema"
-    """
 
     assigned_floating: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[2]"
-    """
+    """With or without assigned floating IP"""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[3]"
-    """
+    """Limit the number of returned limit request entities."""
 
     logging_enabled: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[4]"
-    """
+    """With or without logging"""
 
     name: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[5]"
-    """
+    """Filter by name"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[6]"
-    """
+    """Offset value is used to exclude the first set of records from the result."""
 
     order_by: str
     """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[7]"
+    Ordering Load Balancer list result by name, created_at, updated_at,
+    operating_status, provisioning_status, vip_address, vip_ip_family and flavor
+    fields of the load balancer and directions (name.asc), default is
+    "created_at.asc"
     """
 
     show_stats: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[8]"
-    """
+    """Show statistics"""
 
     tag_key: List[str]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[9]"
-    """
+    """Filter by tag keys."""
 
     tag_key_value: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[10]"
+    """Filter by tag key-value pairs.
+
+    Must be a valid JSON string. curl -G --data-urlencode "tag_key_value={"key":
+    "value"}" --url "http://localhost:1111/v1/loadbalancers/1/1"
     """
 
     with_ddos: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].get.parameters[11]"
-    """
+    """Show Advanced DDoS protection profile, if exists"""

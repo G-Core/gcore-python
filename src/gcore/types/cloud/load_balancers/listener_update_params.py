@@ -10,81 +10,46 @@ __all__ = ["ListenerUpdateParams", "UserList"]
 
 class ListenerUpdateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/0/schema'
-    "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/1/schema'
-    "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[1].schema"
-    """
 
     allowed_cidrs: Optional[List[str]]
-    """
-    '#/components/schemas/PatchLbListenerSerializer/properties/allowed_cidrs/anyOf/0'
-    "$.components.schemas.PatchLbListenerSerializer.properties.allowed_cidrs.anyOf[0]"
-    """
+    """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
-    """
-    '#/components/schemas/PatchLbListenerSerializer/properties/connection_limit'
-    "$.components.schemas.PatchLbListenerSerializer.properties.connection_limit"
-    """
+    """Limit of simultaneous connections"""
 
     name: str
-    """
-    '#/components/schemas/PatchLbListenerSerializer/properties/name'
-    "$.components.schemas.PatchLbListenerSerializer.properties.name"
-    """
+    """Load balancer listener name"""
 
     secret_id: Optional[str]
     """
-    '#/components/schemas/PatchLbListenerSerializer/properties/secret_id/anyOf/0'
-    "$.components.schemas.PatchLbListenerSerializer.properties.secret_id.anyOf[0]"
+    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+    load balancer
     """
 
     sni_secret_id: Optional[List[str]]
     """
-    '#/components/schemas/PatchLbListenerSerializer/properties/sni_secret_id/anyOf/0'
-    "$.components.schemas.PatchLbListenerSerializer.properties.sni_secret_id.anyOf[0]"
+    List of secret's ID containing PKCS12 format certificate/key bundfles for
+    TERMINATED_HTTPS or PROMETHEUS listeners
     """
 
     timeout_client_data: Optional[int]
-    """
-    '#/components/schemas/PatchLbListenerSerializer/properties/timeout_client_data/anyOf/0'
-    "$.components.schemas.PatchLbListenerSerializer.properties.timeout_client_data.anyOf[0]"
-    """
+    """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int]
-    """
-    '#/components/schemas/PatchLbListenerSerializer/properties/timeout_member_connect/anyOf/0'
-    "$.components.schemas.PatchLbListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-    """
+    """Backend member connection timeout in milliseconds"""
 
     timeout_member_data: Optional[int]
-    """
-    '#/components/schemas/PatchLbListenerSerializer/properties/timeout_member_data/anyOf/0'
-    "$.components.schemas.PatchLbListenerSerializer.properties.timeout_member_data.anyOf[0]"
-    """
+    """Backend member inactivity timeout in milliseconds"""
 
     user_list: Optional[Iterable[UserList]]
-    """
-    '#/components/schemas/PatchLbListenerSerializer/properties/user_list/anyOf/0'
-    "$.components.schemas.PatchLbListenerSerializer.properties.user_list.anyOf[0]"
-    """
+    """Load balancer listener users list"""
 
 
 class UserList(TypedDict, total=False):
     encrypted_password: Required[str]
-    """
-    '#/components/schemas/UserListItem/properties/encrypted_password'
-    "$.components.schemas.UserListItem.properties.encrypted_password"
-    """
+    """Encrypted password to auth via Basic Authentication"""
 
     username: Required[str]
-    """
-    '#/components/schemas/UserListItem/properties/username'
-    "$.components.schemas.UserListItem.properties.username"
-    """
+    """Username to auth via Basic Authentication"""

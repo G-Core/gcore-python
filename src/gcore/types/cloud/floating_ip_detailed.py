@@ -26,124 +26,67 @@ InstanceAddress: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddr
 
 class InstanceFlavor(BaseModel):
     flavor_id: str
-    """
-    '#/components/schemas/BaseFlavorSerializer/properties/flavor_id'
-    "$.components.schemas.BaseFlavorSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/BaseFlavorSerializer/properties/flavor_name'
-    "$.components.schemas.BaseFlavorSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     ram: int
-    """
-    '#/components/schemas/BaseFlavorSerializer/properties/ram'
-    "$.components.schemas.BaseFlavorSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     vcpus: int
-    """
-    '#/components/schemas/BaseFlavorSerializer/properties/vcpus'
-    "$.components.schemas.BaseFlavorSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
 
 class InstanceSecurityGroup(BaseModel):
     name: str
-    """
-    '#/components/schemas/NameSerializerPydantic/properties/name'
-    "$.components.schemas.NameSerializerPydantic.properties.name"
-    """
+    """Name."""
 
 
 class InstanceVolume(BaseModel):
     id: str
-    """
-    '#/components/schemas/InstanceVolumeSerializer/properties/id'
-    "$.components.schemas.InstanceVolumeSerializer.properties.id"
-    """
+    """Volume ID"""
 
     delete_on_termination: bool
-    """
-    '#/components/schemas/InstanceVolumeSerializer/properties/delete_on_termination'
-    "$.components.schemas.InstanceVolumeSerializer.properties.delete_on_termination"
-    """
+    """Whether the volume is deleted together with the VM"""
 
 
 class Instance(BaseModel):
     addresses: Dict[str, List[InstanceAddress]]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/addresses'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.addresses"
-    """
+    """Map of network_name to list of addresses in that network"""
 
     creator_task_id: str
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/creator_task_id'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.creator_task_id"
-    """
+    """Task that created this entity"""
 
     flavor: InstanceFlavor
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/flavor'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.flavor"
-    """
+    """Flavor"""
 
     instance_created: datetime
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/instance_created'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.instance_created"
-    """
+    """Datetime when instance was created"""
 
     instance_description: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/instance_description/anyOf/0'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.instance_description.anyOf[0]"
-    """
+    """Instance description"""
 
     instance_id: str
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/instance_id'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.instance_id"
-    """
+    """Instance ID"""
 
     instance_name: str
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/instance_name'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.instance_name"
-    """
+    """Instance name"""
 
     project_id: int
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/project_id'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/region'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/region_id'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     security_groups: List[InstanceSecurityGroup]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/security_groups'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.security_groups"
-    """
+    """Security groups"""
 
     ssh_key_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/ssh_key_name/anyOf/0'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.ssh_key_name.anyOf[0]"
-    """
+    """SSH key name assigned to instance"""
 
     status: Literal[
         "ACTIVE",
@@ -167,28 +110,27 @@ class Instance(BaseModel):
         "UNKNOWN",
         "VERIFY_RESIZE",
     ]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/status'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.status"
-    """
+    """Instance status"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/tags'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     task_state: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/task_state/anyOf/0'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.task_state.anyOf[0]"
-    """
+    """Task state"""
 
     vm_state: Literal[
         "active",
@@ -204,129 +146,77 @@ class Instance(BaseModel):
         "stopped",
         "suspended",
     ]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/vm_state'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.vm_state"
-    """
+    """Virtual machine state (active)"""
 
     volumes: List[InstanceVolume]
-    """
-    '#/components/schemas/InstanceInFloatingSerializer/properties/volumes'
-    "$.components.schemas.InstanceInFloatingSerializer.properties.volumes"
-    """
+    """List of volumes"""
 
 
 class FloatingIPDetailed(BaseModel):
     id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/id/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.id.anyOf[0]"
-    """
+    """Floating IP ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/created_at'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.created_at"
-    """
+    """Datetime when the floating IP was created"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     dns_domain: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/dns_domain/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.dns_domain.anyOf[0]"
-    """
+    """This field is deprecated and can be ignored"""
 
     dns_name: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/dns_name/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.dns_name.anyOf[0]"
-    """
+    """This field is deprecated and can be ignored"""
 
     fixed_ip_address: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/fixed_ip_address/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.fixed_ip_address.anyOf[0]"
-    """
+    """IP address of the port the floating IP is attached to"""
 
     floating_ip_address: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/floating_ip_address/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.floating_ip_address.anyOf[0]"
-    """
+    """IP Address of the floating IP"""
 
     instance: Optional[Instance] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/instance/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.instance.anyOf[0]"
-    """
+    """Instance the floating IP is attached to"""
 
     loadbalancer: Optional[LoadBalancer] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/loadbalancer/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.loadbalancer.anyOf[0]"
-    """
+    """Load balancer the floating IP is attached to"""
 
     port_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/port_id/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.port_id.anyOf[0]"
-    """
+    """Port ID"""
 
     project_id: int
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/project_id'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/region'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/region_id'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     router_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/router_id/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.router_id.anyOf[0]"
-    """
+    """Router ID"""
 
     status: Optional[FloatingIPStatus] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/status/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.status.anyOf[0]"
-    """
+    """Floating IP status"""
 
     subnet_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/subnet_id/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.subnet_id.anyOf[0]"
-    """
+    """This field is deprecated and can be ignored"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/tags'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     updated_at: datetime
-    """
-    '#/components/schemas/FloatingIPDetailedSerializer/properties/updated_at'
-    "$.components.schemas.FloatingIPDetailedSerializer.properties.updated_at"
-    """
+    """Datetime when the floating IP was last updated"""

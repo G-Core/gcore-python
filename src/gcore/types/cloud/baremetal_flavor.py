@@ -10,91 +10,49 @@ __all__ = ["BaremetalFlavor"]
 
 class BaremetalFlavor(BaseModel):
     architecture: str
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/architecture'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.architecture"
-    """
+    """Flavor architecture type"""
 
     disabled: bool
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/disabled'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.disabled"
-    """
+    """Disabled flavor flag"""
 
     flavor_id: str
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/flavor_id'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/flavor_name'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     os_type: str
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/os_type'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.os_type"
-    """
+    """Flavor operating system"""
 
     ram: int
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/ram'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     resource_class: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/resource_class/anyOf/0'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.resource_class.anyOf[0]"
-    """
+    """Flavor resource class for mapping to hardware capacity"""
 
     vcpus: int
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/vcpus'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
     capacity: Optional[int] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/capacity/anyOf/0'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.capacity.anyOf[0]"
-    """
+    """Number of available instances of given configuration"""
 
     currency_code: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/currency_code/anyOf/0'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.currency_code.anyOf[0]"
-    """
+    """Currency code. Shown if the include_prices query parameter if set to true"""
 
     hardware_description: Optional[Dict[str, str]] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/hardware_description'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.hardware_description"
-    """
+    """Additional hardware description"""
 
     price_per_hour: Optional[float] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/price_per_hour/anyOf/0'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.price_per_hour.anyOf[0]"
-    """
+    """Price per hour. Shown if the include_prices query parameter if set to true"""
 
     price_per_month: Optional[float] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/price_per_month/anyOf/0'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.price_per_month.anyOf[0]"
-    """
+    """Price per month. Shown if the include_prices query parameter if set to true"""
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/price_status/anyOf/0'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.price_status.anyOf[0]"
-    """
+    """Price status for the UI"""
 
     reserved_in_stock: Optional[int] = None
-    """
-    '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/reserved_in_stock/anyOf/0'
-    "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.reserved_in_stock.anyOf[0]"
+    """Count of reserved but not used nodes.
+
+    If a client don't have reservations for the flavor, it's None.
     """

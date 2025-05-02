@@ -28,317 +28,195 @@ __all__ = [
 
 class DeploymentCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/post/parameters/0/schema'
-    "$.paths['/cloud/v3/inference/{project_id}/deployments'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     containers: Required[Iterable[Container]]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/containers'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.containers"
-    """
+    """List of containers for the inference instance."""
 
     flavor_name: Required[str]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/flavor_name'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.flavor_name"
-    """
+    """Flavor name for the inference instance."""
 
     image: Required[str]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/image'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.image"
+    """Docker image for the inference instance.
+
+    This field should contain the image name and tag in the format 'name:tag', e.g.,
+    'nginx:latest'. It defaults to Docker Hub as the image registry, but any
+    accessible Docker image URL can be specified.
     """
 
     listening_port: Required[int]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/listening_port'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.listening_port"
-    """
+    """Listening port for the inference instance."""
 
     name: Required[str]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/name'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.name"
-    """
+    """Inference instance name."""
 
     auth_enabled: bool
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/auth_enabled'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.auth_enabled"
+    """Set to `true` to enable API key authentication for the inference instance.
+
+    `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
+    for the requests to the instance if enabled
     """
 
     command: Optional[List[str]]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/command/anyOf/0'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.command.anyOf[0]"
-    """
+    """Command to be executed when running a container from an image."""
 
     credentials_name: Optional[str]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/credentials_name/anyOf/0'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.credentials_name.anyOf[0]"
-    """
+    """Registry credentials name"""
 
     description: Optional[str]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/description/anyOf/0'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.description.anyOf[0]"
-    """
+    """Inference instance description."""
 
     envs: Dict[str, str]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/envs'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.envs"
-    """
+    """Environment variables for the inference instance."""
 
     ingress_opts: Optional[IngressOptsParam]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/ingress_opts/anyOf/0'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.ingress_opts.anyOf[0]"
-    """
+    """Ingress options for the inference instance"""
 
     logging: Optional[Logging]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/logging/anyOf/0'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.logging.anyOf[0]"
-    """
+    """Logging configuration for the inference instance"""
 
     probes: Optional[Probes]
-    """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/probes/anyOf/0'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.probes.anyOf[0]"
+    """Probes configured for all containers of the inference instance.
+
+    If probes are not provided, and the image_name is from a the Model Catalog
+    registry, the default probes will be used.
     """
 
     api_timeout: Annotated[Optional[int], PropertyInfo(alias="timeout")]
     """
-    '#/components/schemas/InferenceInstanceInSerializerV3/properties/timeout/anyOf/0'
-    "$.components.schemas.InferenceInstanceInSerializerV3.properties.timeout.anyOf[0]"
+    Specifies the duration in seconds without any requests after which the
+    containers will be downscaled to their minimum scale value as defined by
+    `scale.min`. If set, this helps in optimizing resource usage by reducing the
+    number of container instances during periods of inactivity. The default value
+    when the parameter is not set is 120.
     """
 
 
 class ContainerScaleTriggersCPU(TypedDict, total=False):
     threshold: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersThresholdSerializer/properties/threshold'
-    "$.components.schemas.ContainerScaleTriggersThresholdSerializer.properties.threshold"
-    """
+    """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersGPUMemory(TypedDict, total=False):
     threshold: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersThresholdSerializer/properties/threshold'
-    "$.components.schemas.ContainerScaleTriggersThresholdSerializer.properties.threshold"
-    """
+    """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersGPUUtilization(TypedDict, total=False):
     threshold: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersThresholdSerializer/properties/threshold'
-    "$.components.schemas.ContainerScaleTriggersThresholdSerializer.properties.threshold"
-    """
+    """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersHTTP(TypedDict, total=False):
     rate: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersRateSerializer/properties/rate'
-    "$.components.schemas.ContainerScaleTriggersRateSerializer.properties.rate"
-    """
+    """Request count per 'window' seconds for the http trigger"""
 
     window: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersRateSerializer/properties/window'
-    "$.components.schemas.ContainerScaleTriggersRateSerializer.properties.window"
-    """
+    """Time window for rate calculation in seconds"""
 
 
 class ContainerScaleTriggersMemory(TypedDict, total=False):
     threshold: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersThresholdSerializer/properties/threshold'
-    "$.components.schemas.ContainerScaleTriggersThresholdSerializer.properties.threshold"
-    """
+    """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersSqs(TypedDict, total=False):
     activation_queue_length: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/activation_queue_length'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.activation_queue_length"
-    """
+    """Number of messages for activation"""
 
     aws_region: Required[str]
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/aws_region'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.aws_region"
-    """
+    """AWS region"""
 
     queue_length: Required[int]
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/queue_length'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.queue_length"
-    """
+    """Number of messages for one replica"""
 
     queue_url: Required[str]
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/queue_url'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.queue_url"
-    """
+    """SQS queue URL"""
 
     secret_name: Required[str]
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/secret_name'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.secret_name"
-    """
+    """Auth secret name"""
 
     aws_endpoint: Optional[str]
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/aws_endpoint/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.aws_endpoint.anyOf[0]"
-    """
+    """Custom AWS endpoint"""
 
     scale_on_delayed: bool
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/scale_on_delayed'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.scale_on_delayed"
-    """
+    """Scale on delayed messages"""
 
     scale_on_flight: bool
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsSerializer/properties/scale_on_flight'
-    "$.components.schemas.ContainerScaleTriggersSqsSerializer.properties.scale_on_flight"
-    """
+    """Scale on in-flight messages"""
 
 
 class ContainerScaleTriggers(TypedDict, total=False):
     cpu: Optional[ContainerScaleTriggersCPU]
-    """
-    '#/components/schemas/ContainerScaleTriggersSerializer/properties/cpu/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSerializer.properties.cpu.anyOf[0]"
-    """
+    """CPU trigger configuration"""
 
     gpu_memory: Optional[ContainerScaleTriggersGPUMemory]
-    """
-    '#/components/schemas/ContainerScaleTriggersSerializer/properties/gpu_memory/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSerializer.properties.gpu_memory.anyOf[0]"
+    """GPU memory trigger configuration.
+
+    Calculated by DCGM_FI_DEV_MEM_COPY_UTIL metric
     """
 
     gpu_utilization: Optional[ContainerScaleTriggersGPUUtilization]
-    """
-    '#/components/schemas/ContainerScaleTriggersSerializer/properties/gpu_utilization/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSerializer.properties.gpu_utilization.anyOf[0]"
+    """GPU utilization trigger configuration.
+
+    Calculated by DCGM_FI_DEV_GPU_UTIL metric
     """
 
     http: Optional[ContainerScaleTriggersHTTP]
-    """
-    '#/components/schemas/ContainerScaleTriggersSerializer/properties/http/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSerializer.properties.http.anyOf[0]"
-    """
+    """HTTP trigger configuration"""
 
     memory: Optional[ContainerScaleTriggersMemory]
-    """
-    '#/components/schemas/ContainerScaleTriggersSerializer/properties/memory/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSerializer.properties.memory.anyOf[0]"
-    """
+    """Memory trigger configuration"""
 
     sqs: Optional[ContainerScaleTriggersSqs]
-    """
-    '#/components/schemas/ContainerScaleTriggersSerializer/properties/sqs/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSerializer.properties.sqs.anyOf[0]"
-    """
+    """SQS trigger configuration"""
 
 
 class ContainerScale(TypedDict, total=False):
     max: Required[int]
-    """
-    '#/components/schemas/ContainerScaleSerializerV3/properties/max'
-    "$.components.schemas.ContainerScaleSerializerV3.properties.max"
-    """
+    """Maximum scale for the container"""
 
     min: Required[int]
-    """
-    '#/components/schemas/ContainerScaleSerializerV3/properties/min'
-    "$.components.schemas.ContainerScaleSerializerV3.properties.min"
-    """
+    """Minimum scale for the container"""
 
     cooldown_period: Optional[int]
-    """
-    '#/components/schemas/ContainerScaleSerializerV3/properties/cooldown_period/anyOf/0'
-    "$.components.schemas.ContainerScaleSerializerV3.properties.cooldown_period.anyOf[0]"
-    """
+    """Cooldown period between scaling actions in seconds"""
 
     polling_interval: Optional[int]
-    """
-    '#/components/schemas/ContainerScaleSerializerV3/properties/polling_interval/anyOf/0'
-    "$.components.schemas.ContainerScaleSerializerV3.properties.polling_interval.anyOf[0]"
-    """
+    """Polling interval for scaling triggers in seconds"""
 
     triggers: ContainerScaleTriggers
-    """
-    '#/components/schemas/ContainerScaleSerializerV3/properties/triggers'
-    "$.components.schemas.ContainerScaleSerializerV3.properties.triggers"
-    """
+    """Triggers for scaling actions"""
 
 
 class Container(TypedDict, total=False):
     region_id: Required[int]
-    """
-    '#/components/schemas/ContainerInSerializerV3/properties/region_id'
-    "$.components.schemas.ContainerInSerializerV3.properties.region_id"
-    """
+    """Region id for the container"""
 
     scale: Required[ContainerScale]
-    """
-    '#/components/schemas/ContainerInSerializerV3/properties/scale'
-    "$.components.schemas.ContainerInSerializerV3.properties.scale"
-    """
+    """Scale for the container"""
 
 
 class Logging(TypedDict, total=False):
     destination_region_id: Optional[int]
-    """
-    '#/components/schemas/LoggingInSerializer/properties/destination_region_id/anyOf/0'
-    "$.components.schemas.LoggingInSerializer.properties.destination_region_id.anyOf[0]"
-    """
+    """ID of the region in which the logs will be stored"""
 
     enabled: bool
-    """
-    '#/components/schemas/LoggingInSerializer/properties/enabled'
-    "$.components.schemas.LoggingInSerializer.properties.enabled"
-    """
+    """Enable or disable log streaming"""
 
     retention_policy: Optional[LaasIndexRetentionPolicyParam]
-    """
-    '#/components/schemas/LoggingInSerializer/properties/retention_policy/anyOf/0'
-    "$.components.schemas.LoggingInSerializer.properties.retention_policy.anyOf[0]"
-    """
+    """Logs retention policy"""
 
     topic_name: Optional[str]
-    """
-    '#/components/schemas/LoggingInSerializer/properties/topic_name/anyOf/0'
-    "$.components.schemas.LoggingInSerializer.properties.topic_name.anyOf[0]"
-    """
+    """The topic name to stream logs to"""
 
 
 class Probes(TypedDict, total=False):
     liveness_probe: Optional[ContainerProbeConfigCreateParam]
-    """
-    '#/components/schemas/InferenceInstanceProbesSerializerV2/properties/liveness_probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceProbesSerializerV2.properties.liveness_probe.anyOf[0]"
-    """
+    """Liveness probe configuration"""
 
     readiness_probe: Optional[ContainerProbeConfigCreateParam]
-    """
-    '#/components/schemas/InferenceInstanceProbesSerializerV2/properties/readiness_probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceProbesSerializerV2.properties.readiness_probe.anyOf[0]"
-    """
+    """Readiness probe configuration"""
 
     startup_probe: Optional[ContainerProbeConfigCreateParam]
-    """
-    '#/components/schemas/InferenceInstanceProbesSerializerV2/properties/startup_probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceProbesSerializerV2.properties.startup_probe.anyOf[0]"
-    """
+    """Startup probe configuration"""

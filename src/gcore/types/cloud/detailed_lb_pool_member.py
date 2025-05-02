@@ -11,61 +11,37 @@ __all__ = ["DetailedLbPoolMember"]
 
 class DetailedLbPoolMember(BaseModel):
     id: str
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/id'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.id"
-    """
+    """Member ID must be provided if an existing member is being updated"""
 
     address: str
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/address'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.address"
-    """
+    """Member IP address"""
 
     admin_state_up: bool
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/admin_state_up'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.admin_state_up"
-    """
+    """true if enabled. Defaults to true"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/operating_status'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.operating_status"
-    """
+    """Member operating status of the entity"""
 
     protocol_port: int
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/protocol_port'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.protocol_port"
-    """
+    """Member IP port"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/provisioning_status'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.provisioning_status"
-    """
+    """Pool member lifecycle status"""
 
     weight: int
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/weight'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.weight"
-    """
+    """Member weight. Valid values: 0 to 256, defaults to 1"""
 
     monitor_address: Optional[str] = None
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/monitor_address/anyOf/0'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.monitor_address.anyOf[0]"
+    """An alternate IP address used for health monitoring of a backend member.
+
+    Default is null which monitors the member address.
     """
 
     monitor_port: Optional[int] = None
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/monitor_port/anyOf/0'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.monitor_port.anyOf[0]"
+    """An alternate protocol port used for health monitoring of a backend member.
+
+    Default is null which monitors the member protocol_port.
     """
 
     subnet_id: Optional[str] = None
-    """
-    '#/components/schemas/DetailedLbPoolMemberSerializer/properties/subnet_id/anyOf/0'
-    "$.components.schemas.DetailedLbPoolMemberSerializer.properties.subnet_id.anyOf[0]"
-    """
+    """Either subnet_id or instance_id should be provided"""

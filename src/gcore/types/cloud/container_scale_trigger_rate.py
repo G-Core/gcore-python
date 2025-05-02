@@ -7,13 +7,7 @@ __all__ = ["ContainerScaleTriggerRate"]
 
 class ContainerScaleTriggerRate(BaseModel):
     rate: int
-    """
-    '#/components/schemas/ContainerScaleTriggersRateOutSerializer/properties/rate'
-    "$.components.schemas.ContainerScaleTriggersRateOutSerializer.properties.rate"
-    """
+    """Request count per 'window' seconds for the http trigger"""
 
     window: int
-    """
-    '#/components/schemas/ContainerScaleTriggersRateOutSerializer/properties/window'
-    "$.components.schemas.ContainerScaleTriggersRateOutSerializer.properties.window"
-    """
+    """Time window for rate calculation in seconds"""

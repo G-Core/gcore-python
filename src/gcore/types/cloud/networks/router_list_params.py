@@ -9,25 +9,11 @@ __all__ = ["RouterListParams"]
 
 class RouterListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[1].schema"
-    """
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[2]"
-    """
+    """Limit the number of returned limit request entities."""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[3]"
-    """
+    """Offset value is used to exclude the first set of records from the result."""

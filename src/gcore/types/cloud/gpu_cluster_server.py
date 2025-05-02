@@ -20,216 +20,117 @@ Address: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddress]
 
 class FixedIPAssignment(BaseModel):
     external: bool
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/external'
-    "$.components.schemas.IpAssignmentsSerializer.properties.external"
-    """
+    """Is network external"""
 
     ip_address: str
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/ip_address'
-    "$.components.schemas.IpAssignmentsSerializer.properties.ip_address"
-    """
+    """Ip address"""
 
     subnet_id: str
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/subnet_id'
-    "$.components.schemas.IpAssignmentsSerializer.properties.subnet_id"
-    """
+    """Interface subnet id"""
 
 
 class FlavorHardwareDescription(BaseModel):
     cpu: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/cpu'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.cpu"
-    """
+    """Human-readable CPU description"""
 
     disk: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/disk'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.disk"
-    """
+    """Human-readable disk description"""
 
     gpu: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/gpu'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.gpu"
-    """
+    """Human-readable GPU description"""
 
     license: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/license'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.license"
-    """
+    """If the flavor is licensed, this field contains the license type"""
 
     network: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/network'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.network"
-    """
+    """Human-readable NIC description"""
 
     ram: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/ram'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.ram"
-    """
+    """Human-readable RAM description"""
 
 
 class Flavor(BaseModel):
     architecture: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/architecture'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.architecture"
-    """
+    """CPU architecture"""
 
     flavor_id: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/flavor_id'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/flavor_name'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     hardware_description: FlavorHardwareDescription
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/hardware_description'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.hardware_description"
-    """
+    """Additional hardware description"""
 
     os_type: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/os_type'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.os_type"
-    """
+    """Operating system"""
 
     ram: int
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/ram'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     resource_class: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/resource_class'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.resource_class"
-    """
+    """Flavor resource class for mapping to hardware capacity"""
 
     vcpus: int
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/vcpus'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
 
 class SecurityGroup(BaseModel):
     name: str
-    """
-    '#/components/schemas/NameSerializerPydantic/properties/name'
-    "$.components.schemas.NameSerializerPydantic.properties.name"
-    """
+    """Name."""
 
 
 class GPUClusterServer(BaseModel):
     addresses: Dict[str, List[Address]]
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/addresses'
-    "$.components.schemas.GPUClusterServerSerializer.properties.addresses"
-    """
+    """Map of network_name to list of addresses in that network"""
 
     blackhole_ports: List[BlackholePort]
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/blackhole_ports'
-    "$.components.schemas.GPUClusterServerSerializer.properties.blackhole_ports"
-    """
+    """IP addresses of the instances that are blackholed by DDoS mitigation system"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     ddos_profile: Optional[DDOSProfile] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/ddos_profile/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.ddos_profile.anyOf[0]"
+    """Advanced DDoS protection profile.
+
+    It is always `null` if query parameter `with_ddos=true` is not set.
     """
 
     fixed_ip_assignments: Optional[List[FixedIPAssignment]] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/fixed_ip_assignments/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.fixed_ip_assignments.anyOf[0]"
-    """
+    """Fixed IP assigned to instance"""
 
     flavor: Flavor
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/flavor'
-    "$.components.schemas.GPUClusterServerSerializer.properties.flavor"
-    """
+    """Flavor"""
 
     instance_created: datetime
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/instance_created'
-    "$.components.schemas.GPUClusterServerSerializer.properties.instance_created"
-    """
+    """Datetime when instance was created"""
 
     instance_description: Optional[str] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/instance_description/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.instance_description.anyOf[0]"
-    """
+    """Instance description"""
 
     instance_id: str
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/instance_id'
-    "$.components.schemas.GPUClusterServerSerializer.properties.instance_id"
-    """
+    """Instance ID"""
 
     instance_isolation: Optional[InstanceIsolation] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/instance_isolation/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.instance_isolation.anyOf[0]"
-    """
+    """Instance isolation information"""
 
     instance_name: str
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/instance_name'
-    "$.components.schemas.GPUClusterServerSerializer.properties.instance_name"
-    """
+    """Instance name"""
 
     project_id: int
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/project_id'
-    "$.components.schemas.GPUClusterServerSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/region'
-    "$.components.schemas.GPUClusterServerSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/region_id'
-    "$.components.schemas.GPUClusterServerSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     security_groups: List[SecurityGroup]
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/security_groups'
-    "$.components.schemas.GPUClusterServerSerializer.properties.security_groups"
-    """
+    """Security groups"""
 
     ssh_key_name: Optional[str] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/ssh_key_name/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.ssh_key_name.anyOf[0]"
-    """
+    """SSH key name assigned to instance"""
 
     status: Literal[
         "ACTIVE",
@@ -253,28 +154,27 @@ class GPUClusterServer(BaseModel):
         "UNKNOWN",
         "VERIFY_RESIZE",
     ]
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/status'
-    "$.components.schemas.GPUClusterServerSerializer.properties.status"
-    """
+    """Instance status"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/tags'
-    "$.components.schemas.GPUClusterServerSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     task_state: Optional[str] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/task_state/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.task_state.anyOf[0]"
-    """
+    """Task state"""
 
     vm_state: Literal[
         "active",
@@ -290,7 +190,4 @@ class GPUClusterServer(BaseModel):
         "stopped",
         "suspended",
     ]
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/vm_state'
-    "$.components.schemas.GPUClusterServerSerializer.properties.vm_state"
-    """
+    """Virtual machine state (active)"""

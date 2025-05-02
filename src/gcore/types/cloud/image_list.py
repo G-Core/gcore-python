@@ -10,13 +10,7 @@ __all__ = ["ImageList"]
 
 class ImageList(BaseModel):
     count: int
-    """
-    '#/components/schemas/ImageCollectionSerializer/properties/count'
-    "$.components.schemas.ImageCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[Image]
-    """
-    '#/components/schemas/ImageCollectionSerializer/properties/results'
-    "$.components.schemas.ImageCollectionSerializer.properties.results"
-    """
+    """Objects"""

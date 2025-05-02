@@ -10,31 +10,21 @@ __all__ = ["BaremetalFixedAddress"]
 
 class BaremetalFixedAddress(BaseModel):
     addr: str
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/addr'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.addr"
-    """
+    """Address"""
 
     interface_name: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.interface_name.anyOf[0]"
+    """Interface name.
+
+    This field will be `null` if `with_interfaces_name=true` is not set in the
+    request when listing servers. It will also be `null` if the `interface_name` was
+    not specified during server creation or when attaching the interface.
     """
 
     subnet_id: str
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/subnet_id'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.subnet_id"
-    """
+    """The unique identifier of the subnet associated with this address."""
 
     subnet_name: str
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/subnet_name'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.subnet_name"
-    """
+    """The name of the subnet associated with this address."""
 
     type: Literal["fixed"]
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/type'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.type"
-    """
+    """Type of the address"""

@@ -11,37 +11,24 @@ __all__ = ["NetworkCreateParams"]
 
 class NetworkCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fnetworks%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/networks/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateNetworkSerializer/properties/name'
-    "$.components.schemas.CreateNetworkSerializer.properties.name"
-    """
+    """Network name"""
 
     create_router: bool
-    """
-    '#/components/schemas/CreateNetworkSerializer/properties/create_router'
-    "$.components.schemas.CreateNetworkSerializer.properties.create_router"
-    """
+    """Defaults to True"""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateNetworkSerializer/properties/tags'
-    "$.components.schemas.CreateNetworkSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     type: Literal["vlan", "vxlan"]
-    """
-    '#/components/schemas/CreateNetworkSerializer/properties/type'
-    "$.components.schemas.CreateNetworkSerializer.properties.type"
-    """
+    """vlan or vxlan network type is allowed. Default value is vxlan"""

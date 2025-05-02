@@ -10,61 +10,35 @@ __all__ = ["MemberAddParams"]
 
 class MemberAddParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/0/schema'
-    "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/1/schema'
-    "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[1].schema"
-    """
 
     address: Required[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/address'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.address"
-    """
+    """Member IP address"""
 
     protocol_port: Required[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/protocol_port'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.protocol_port"
-    """
+    """Member IP port"""
 
     admin_state_up: Optional[bool]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/admin_state_up/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.admin_state_up.anyOf[0]"
-    """
+    """true if enabled. Defaults to true"""
 
     instance_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/instance_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.instance_id.anyOf[0]"
-    """
+    """Either subnet_id or instance_id should be provided"""
 
     monitor_address: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_address/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_address.anyOf[0]"
+    """An alternate IP address used for health monitoring of a backend member.
+
+    Default is null which monitors the member address.
     """
 
     monitor_port: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_port/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_port.anyOf[0]"
+    """An alternate protocol port used for health monitoring of a backend member.
+
+    Default is null which monitors the member protocol_port.
     """
 
     subnet_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/subnet_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.subnet_id.anyOf[0]"
-    """
+    """Either subnet_id or instance_id should be provided"""
 
     weight: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/weight/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.weight.anyOf[0]"
-    """
+    """Member weight. Valid values: 0 to 256, defaults to 1"""

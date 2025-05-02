@@ -11,275 +11,143 @@ __all__ = ["BillingReservation", "AmountPrices", "Resource"]
 
 class AmountPrices(BaseModel):
     commit_price_per_month: str
-    """
-    '#/components/schemas/BillingReservationAmountPricesResponseSerializer/properties/commit_price_per_month'
-    "$.components.schemas.BillingReservationAmountPricesResponseSerializer.properties.commit_price_per_month"
-    """
+    """Commit price of the item charged per month"""
 
     commit_price_per_unit: str
-    """
-    '#/components/schemas/BillingReservationAmountPricesResponseSerializer/properties/commit_price_per_unit'
-    "$.components.schemas.BillingReservationAmountPricesResponseSerializer.properties.commit_price_per_unit"
-    """
+    """Commit price of the item charged per hour"""
 
     commit_price_total: str
-    """
-    '#/components/schemas/BillingReservationAmountPricesResponseSerializer/properties/commit_price_total'
-    "$.components.schemas.BillingReservationAmountPricesResponseSerializer.properties.commit_price_total"
-    """
+    """Commit price of the item charged for all period reservation"""
 
     currency_code: str
-    """
-    '#/components/schemas/BillingReservationAmountPricesResponseSerializer/properties/currency_code'
-    "$.components.schemas.BillingReservationAmountPricesResponseSerializer.properties.currency_code"
-    """
+    """Currency code (3 letter code per ISO 4217)"""
 
     overcommit_price_per_month: str
-    """
-    '#/components/schemas/BillingReservationAmountPricesResponseSerializer/properties/overcommit_price_per_month'
-    "$.components.schemas.BillingReservationAmountPricesResponseSerializer.properties.overcommit_price_per_month"
-    """
+    """Overcommit price of the item charged per month"""
 
     overcommit_price_per_unit: str
-    """
-    '#/components/schemas/BillingReservationAmountPricesResponseSerializer/properties/overcommit_price_per_unit'
-    "$.components.schemas.BillingReservationAmountPricesResponseSerializer.properties.overcommit_price_per_unit"
-    """
+    """Overcommit price of the item charged per hour"""
 
     overcommit_price_total: str
-    """
-    '#/components/schemas/BillingReservationAmountPricesResponseSerializer/properties/overcommit_price_total'
-    "$.components.schemas.BillingReservationAmountPricesResponseSerializer.properties.overcommit_price_total"
-    """
+    """Overcommit price of the item charged for all period reservation"""
 
 
 class Resource(BaseModel):
     activity_period: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/activity_period'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.activity_period"
-    """
+    """Name of the billing period, e.g month"""
 
     activity_period_length: int
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/activity_period_length'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.activity_period_length"
-    """
+    """Length of the full reservation period by `activity_period`"""
 
     billing_plan_item_id: int
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/billing_plan_item_id'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.billing_plan_item_id"
-    """
+    """Billing plan item id"""
 
     commit_price_per_month: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/commit_price_per_month'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.commit_price_per_month"
-    """
+    """Commit price of the item charged per month"""
 
     commit_price_per_unit: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/commit_price_per_unit'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.commit_price_per_unit"
-    """
+    """Commit price of the item charged per hour"""
 
     commit_price_total: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/commit_price_total'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.commit_price_total"
-    """
+    """Commit price of the item charged for all period reservation"""
 
     overcommit_billing_plan_item_id: int
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/overcommit_billing_plan_item_id'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.overcommit_billing_plan_item_id"
-    """
+    """Overcommit billing plan item id"""
 
     overcommit_price_per_month: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/overcommit_price_per_month'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.overcommit_price_per_month"
-    """
+    """Overcommit price of the item charged per month"""
 
     overcommit_price_per_unit: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/overcommit_price_per_unit'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.overcommit_price_per_unit"
-    """
+    """Overcommit price of the item charged per hour"""
 
     overcommit_price_total: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/overcommit_price_total'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.overcommit_price_total"
-    """
+    """Overcommit price of the item charged for all period reservation"""
 
     resource_count: int
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/resource_count'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.resource_count"
-    """
+    """Number of reserved resource items"""
 
     resource_name: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/resource_name'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.resource_name"
-    """
+    """Resource name"""
 
     resource_type: Literal["flavor"]
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/resource_type'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.resource_type"
-    """
+    """Resource type"""
 
     unit_name: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/unit_name'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.unit_name"
-    """
+    """Billing unit name"""
 
     unit_size_month: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/unit_size_month'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.unit_size_month"
-    """
+    """Minimal billing size, for example it is 744 hours per 1 month."""
 
     unit_size_total: str
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/unit_size_total'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.unit_size_total"
-    """
+    """Unit size month multiplied by count of resources in the reservation"""
 
     cpu: Optional[str] = None
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/cpu/anyOf/0'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.cpu.anyOf[0]"
-    """
+    """Baremetal CPU description"""
 
     disk: Optional[str] = None
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/disk/anyOf/0'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.disk.anyOf[0]"
-    """
+    """Baremetal disk description"""
 
     ram: Optional[str] = None
-    """
-    '#/components/schemas/BillingReservationResourceSerializer/properties/ram/anyOf/0'
-    "$.components.schemas.BillingReservationResourceSerializer.properties.ram.anyOf[0]"
-    """
+    """Baremetal RAM description"""
 
 
 class BillingReservation(BaseModel):
     id: int
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/id'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.id"
-    """
+    """Reservation id"""
 
     active_from: date
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/active_from'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.active_from"
-    """
+    """Reservation active from date"""
 
     active_to: date
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/active_to'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.active_to"
-    """
+    """Reservation active to date"""
 
     activity_period: str
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/activity_period'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.activity_period"
-    """
+    """Name of the billing period, e.g month"""
 
     activity_period_length: int
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/activity_period_length'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.activity_period_length"
-    """
+    """Length of the full reservation period by `activity_period`"""
 
     amount_prices: AmountPrices
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/amount_prices'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.amount_prices"
-    """
+    """Reservation amount prices"""
 
     billing_plan_id: int
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/billing_plan_id'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.billing_plan_id"
-    """
+    """Billing plan id"""
 
     created_at: datetime
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/created_at'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.created_at"
-    """
+    """Reservation creation date"""
 
     error: Optional[str] = None
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/error/anyOf/0'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.error.anyOf[0]"
-    """
+    """Error message if any occured during reservation"""
 
     eta: Optional[date] = None
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/eta/anyOf/0'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.eta.anyOf[0]"
+    """ETA delivery if bare metal out of stock.
+
+    Value None means that bare metal in stock.
     """
 
     is_expiration_message_visible: bool
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/is_expiration_message_visible'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.is_expiration_message_visible"
-    """
+    """Hide or show expiration message to customer."""
 
     name: str
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/name'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.name"
-    """
+    """Reservation name"""
 
     next_statuses: List[str]
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/next_statuses'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.next_statuses"
-    """
+    """List of possible next reservation statuses"""
 
     region_id: int
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/region_id'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.region_id"
-    """
+    """Region id"""
 
     region_name: str
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/region_name'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.region_name"
-    """
+    """Region name"""
 
     remind_expiration_message: Optional[date] = None
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/remind_expiration_message/anyOf/0'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.remind_expiration_message.anyOf[0]"
-    """
+    """The date when show expiration date to customer"""
 
     resources: List[Resource]
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/resources'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.resources"
-    """
+    """List of reservation resources"""
 
     status: str
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/status'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.status"
-    """
+    """Reservation status"""
 
     user_status: str
-    """
-    '#/components/schemas/BillingReservationItemResponseSerializer/properties/user_status'
-    "$.components.schemas.BillingReservationItemResponseSerializer.properties.user_status"
-    """
+    """User status"""

@@ -10,13 +10,7 @@ __all__ = ["ConnectedPortList"]
 
 class ConnectedPortList(BaseModel):
     count: int
-    """
-    '#/components/schemas/ConnectedDevicesVIPSerializerList/properties/count'
-    "$.components.schemas.ConnectedDevicesVIPSerializerList.properties.count"
-    """
+    """Number of objects"""
 
     results: List[ConnectedPort]
-    """
-    '#/components/schemas/ConnectedDevicesVIPSerializerList/properties/results'
-    "$.components.schemas.ConnectedDevicesVIPSerializerList.properties.results"
-    """
+    """Objects"""

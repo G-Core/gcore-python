@@ -13,129 +13,88 @@ __all__ = ["InstanceListParams"]
 
 class InstanceListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[1].schema"
-    """
+    """Region ID"""
 
     available_floating: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[2]"
-    """
+    """Only show instances which are able to handle floating address"""
 
     changes_before: Annotated[Union[str, datetime], PropertyInfo(alias="changes-before", format="iso8601")]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[3]"
-    """
+    """Filters the instances by a date and time stamp when the instances last changed."""
 
     changes_since: Annotated[Union[str, datetime], PropertyInfo(alias="changes-since", format="iso8601")]
     """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[4]"
+    Filters the instances by a date and time stamp when the instances last changed
+    status.
     """
 
     exclude_flavor_prefix: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[5]"
-    """
+    """Exclude instances with specified flavor prefix"""
 
     exclude_secgroup: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[6]"
-    """
+    """Exclude instances with specified security group name"""
 
     flavor_id: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[7]"
-    """
+    """Filter out instances by flavor_id. Flavor id must match exactly."""
 
     flavor_prefix: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[8]"
-    """
+    """Filter out instances by flavor_prefix."""
 
     include_ai: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[9]"
-    """
+    """Include GPU clusters' servers"""
 
     include_baremetal: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[10]"
-    """
+    """Include bare metal servers. Please, use `GET /v1/bminstances/` instead"""
 
     include_k8s: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[11]"
-    """
+    """Include managed k8s worker nodes"""
 
     ip: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[12]"
+    """An IPv4 address to filter results by.
+
+    Note: partial matches are allowed. For example, searching for 192.168.0.1 will
+    return 192.168.0.1, 192.168.0.10, 192.168.0.110, and so on.
     """
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[13]"
-    """
+    """Optional. Limit the number of returned items"""
 
     name: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[14]"
+    """Filter instances by name.
+
+    You can provide a full or partial name, instances with matching names will be
+    returned. For example, entering 'test' will return all instances that contain
+    'test' in their name.
     """
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[15]"
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
     """
 
     only_isolated: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[16]"
-    """
+    """Include only isolated instances"""
 
     only_with_fixed_external_ip: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[17]"
-    """
+    """Return bare metals only with external fixed IP addresses."""
 
     order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[18]"
-    """
+    """Order by field and direction."""
 
     profile_name: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/19'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[19]"
+    """Filter result by ddos protection profile name.
+
+    Effective only with with_ddos set to true.
     """
 
     protection_status: Literal["Active", "Queued", "Error"]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/20'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[20]"
+    """Filter result by DDoS protection_status.
+
+    if parameter is provided. Effective only with with_ddos set to true. (Active,
+    Queued or Error)
     """
 
     status: Literal[
@@ -156,43 +115,32 @@ class InstanceListParams(TypedDict, total=False):
         "SUSPENDED",
         "VERIFY_RESIZE",
     ]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/21'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[21]"
-    """
+    """Filters instances by status."""
 
     tag_key_value: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/22'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[22]"
+    """Optional.
+
+    Filter by tag key-value pairs. curl -G --data-urlencode "tag_key_value={"key":
+    "value"}" --url "https://example.com/cloud/v1/resource/1/1"
     """
 
     tag_value: List[str]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/23'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[23]"
-    """
+    """Optional. Filter by tag values. ?tag_value=value1&tag_value=value2"""
 
     type_ddos_profile: Literal["basic", "advanced"]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/24'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[24]"
+    """Return bare metals either only with advanced or only basic DDoS protection.
+
+    Effective only with with_ddos set to true. (advanced or basic)
     """
 
     uuid: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/25'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[25]"
-    """
+    """Filter the server list result by the UUID of the server. Allowed UUID part"""
 
     with_ddos: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/26'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[26]"
+    """Include DDoS profile information in the response when set to `true`.
+
+    Otherwise, the `ddos_profile` field in the response is `null` by default.
     """
 
     with_interfaces_name: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/27'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[27]"
-    """
+    """Include `interface_name` in the addresses"""

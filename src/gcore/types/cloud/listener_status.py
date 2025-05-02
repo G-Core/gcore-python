@@ -12,31 +12,16 @@ __all__ = ["ListenerStatus"]
 
 class ListenerStatus(BaseModel):
     id: str
-    """
-    '#/components/schemas/ListenerStatusSerializer/properties/id'
-    "$.components.schemas.ListenerStatusSerializer.properties.id"
-    """
+    """UUID of the entity"""
 
     name: str
-    """
-    '#/components/schemas/ListenerStatusSerializer/properties/name'
-    "$.components.schemas.ListenerStatusSerializer.properties.name"
-    """
+    """Name of the load balancer listener"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/ListenerStatusSerializer/properties/operating_status'
-    "$.components.schemas.ListenerStatusSerializer.properties.operating_status"
-    """
+    """Operating status of the entity"""
 
     pools: List[PoolStatus]
-    """
-    '#/components/schemas/ListenerStatusSerializer/properties/pools'
-    "$.components.schemas.ListenerStatusSerializer.properties.pools"
-    """
+    """Pools of the Listeners"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/ListenerStatusSerializer/properties/provisioning_status'
-    "$.components.schemas.ListenerStatusSerializer.properties.provisioning_status"
-    """
+    """Provisioning status of the entity"""

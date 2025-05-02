@@ -71,23 +71,13 @@ class RoutersResource(SyncAPIResource):
         Create router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: name of router
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].post.parameters[1].schema"
+          external_gateway_info
 
-          name: '#/components/schemas/CreateRouterSerializer/properties/name'
-              "$.components.schemas.CreateRouterSerializer.properties.name"
+          interfaces: List of interfaces to attach to router immediately after creation.
 
-          external_gateway_info: '#/components/schemas/CreateRouterSerializer/properties/external_gateway_info'
-              "$.components.schemas.CreateRouterSerializer.properties.external_gateway_info"
-
-          interfaces: '#/components/schemas/CreateRouterSerializer/properties/interfaces/anyOf/0'
-              "$.components.schemas.CreateRouterSerializer.properties.interfaces.anyOf[0]"
-
-          routes: '#/components/schemas/CreateRouterSerializer/properties/routes/anyOf/0'
-              "$.components.schemas.CreateRouterSerializer.properties.routes.anyOf[0]"
+          routes: List of custom routes.
 
           extra_headers: Send extra headers
 
@@ -138,23 +128,11 @@ class RoutersResource(SyncAPIResource):
         Update router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].patch.parameters[0].schema"
+          external_gateway_info: New external gateway.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].patch.parameters[1].schema"
+          name: New name of router
 
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].patch.parameters[2].schema"
-
-          external_gateway_info: '#/components/schemas/PatchRouterSerializer/properties/external_gateway_info/anyOf/0'
-              "$.components.schemas.PatchRouterSerializer.properties.external_gateway_info.anyOf[0]"
-
-          name: '#/components/schemas/PatchRouterSerializer/properties/name/anyOf/0'
-              "$.components.schemas.PatchRouterSerializer.properties.name.anyOf[0]"
-
-          routes: '#/components/schemas/PatchRouterSerializer/properties/routes/anyOf/0'
-              "$.components.schemas.PatchRouterSerializer.properties.routes.anyOf[0]"
+          routes: List of custom routes.
 
           extra_headers: Send extra headers
 
@@ -204,17 +182,9 @@ class RoutersResource(SyncAPIResource):
         List routers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned limit request entities.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          limit: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[2]"
-
-          offset: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Offset value is used to exclude the first set of records from the result.
 
           extra_headers: Send extra headers
 
@@ -264,15 +234,6 @@ class RoutersResource(SyncAPIResource):
         Delete router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}']['delete'].parameters[1].schema"
-
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -314,20 +275,16 @@ class RoutersResource(SyncAPIResource):
         Attach subnet to router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[1].schema"
+          region_id: Region ID
 
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[2].schema"
+          router_id: Router ID
 
-          subnet_id: '#/components/schemas/AddRouterInterfaceSerializer/properties/subnet_id'
-              "$.components.schemas.AddRouterInterfaceSerializer.properties.subnet_id"
+          subnet_id: Subnet ID on which router interface will be created
 
-          ip_address: '#/components/schemas/AddRouterInterfaceSerializer/properties/ip_address'
-              "$.components.schemas.AddRouterInterfaceSerializer.properties.ip_address"
+          ip_address: IP address to assign for router's interface, if not specified, address will be
+              selected automatically
 
           extra_headers: Send extra headers
 
@@ -376,17 +333,7 @@ class RoutersResource(SyncAPIResource):
         Detach subnet from router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[1].schema"
-
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[2].schema"
-
-          subnet_id: '#/components/schemas/SubnetIdSerializer/properties/subnet_id'
-              "$.components.schemas.SubnetIdSerializer.properties.subnet_id"
+          subnet_id: Target IP is identified by it's subnet
 
           extra_headers: Send extra headers
 
@@ -428,15 +375,6 @@ class RoutersResource(SyncAPIResource):
         Get specific router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].get.parameters[1].schema"
-
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -500,23 +438,13 @@ class AsyncRoutersResource(AsyncAPIResource):
         Create router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: name of router
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].post.parameters[1].schema"
+          external_gateway_info
 
-          name: '#/components/schemas/CreateRouterSerializer/properties/name'
-              "$.components.schemas.CreateRouterSerializer.properties.name"
+          interfaces: List of interfaces to attach to router immediately after creation.
 
-          external_gateway_info: '#/components/schemas/CreateRouterSerializer/properties/external_gateway_info'
-              "$.components.schemas.CreateRouterSerializer.properties.external_gateway_info"
-
-          interfaces: '#/components/schemas/CreateRouterSerializer/properties/interfaces/anyOf/0'
-              "$.components.schemas.CreateRouterSerializer.properties.interfaces.anyOf[0]"
-
-          routes: '#/components/schemas/CreateRouterSerializer/properties/routes/anyOf/0'
-              "$.components.schemas.CreateRouterSerializer.properties.routes.anyOf[0]"
+          routes: List of custom routes.
 
           extra_headers: Send extra headers
 
@@ -567,23 +495,11 @@ class AsyncRoutersResource(AsyncAPIResource):
         Update router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].patch.parameters[0].schema"
+          external_gateway_info: New external gateway.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].patch.parameters[1].schema"
+          name: New name of router
 
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].patch.parameters[2].schema"
-
-          external_gateway_info: '#/components/schemas/PatchRouterSerializer/properties/external_gateway_info/anyOf/0'
-              "$.components.schemas.PatchRouterSerializer.properties.external_gateway_info.anyOf[0]"
-
-          name: '#/components/schemas/PatchRouterSerializer/properties/name/anyOf/0'
-              "$.components.schemas.PatchRouterSerializer.properties.name.anyOf[0]"
-
-          routes: '#/components/schemas/PatchRouterSerializer/properties/routes/anyOf/0'
-              "$.components.schemas.PatchRouterSerializer.properties.routes.anyOf[0]"
+          routes: List of custom routes.
 
           extra_headers: Send extra headers
 
@@ -633,17 +549,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         List routers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned limit request entities.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          limit: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[2]"
-
-          offset: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Offset value is used to exclude the first set of records from the result.
 
           extra_headers: Send extra headers
 
@@ -693,15 +601,6 @@ class AsyncRoutersResource(AsyncAPIResource):
         Delete router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}']['delete'].parameters[1].schema"
-
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -743,20 +642,16 @@ class AsyncRoutersResource(AsyncAPIResource):
         Attach subnet to router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[1].schema"
+          region_id: Region ID
 
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fattach/post/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach'].post.parameters[2].schema"
+          router_id: Router ID
 
-          subnet_id: '#/components/schemas/AddRouterInterfaceSerializer/properties/subnet_id'
-              "$.components.schemas.AddRouterInterfaceSerializer.properties.subnet_id"
+          subnet_id: Subnet ID on which router interface will be created
 
-          ip_address: '#/components/schemas/AddRouterInterfaceSerializer/properties/ip_address'
-              "$.components.schemas.AddRouterInterfaceSerializer.properties.ip_address"
+          ip_address: IP address to assign for router's interface, if not specified, address will be
+              selected automatically
 
           extra_headers: Send extra headers
 
@@ -805,17 +700,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         Detach subnet from router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[1].schema"
-
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[2].schema"
-
-          subnet_id: '#/components/schemas/SubnetIdSerializer/properties/subnet_id'
-              "$.components.schemas.SubnetIdSerializer.properties.subnet_id"
+          subnet_id: Target IP is identified by it's subnet
 
           extra_headers: Send extra headers
 
@@ -859,15 +744,6 @@ class AsyncRoutersResource(AsyncAPIResource):
         Get specific router
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].get.parameters[1].schema"
-
-          router_id: '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

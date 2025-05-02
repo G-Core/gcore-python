@@ -10,81 +10,47 @@ __all__ = ["FlavorListSuitableParams", "Volume"]
 
 class FlavorListSuitableParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/0/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/1/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[1].schema"
-    """
 
     volumes: Required[Iterable[Volume]]
-    """
-    '#/components/schemas/CreateInstanceVolumeListSchema/properties/volumes'
-    "$.components.schemas.CreateInstanceVolumeListSchema.properties.volumes"
-    """
+    """Volumes details. Non-important info such as names may be omitted."""
 
     include_prices: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/2'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/available_flavors'].post.parameters[2]"
-    """
+    """Set to true if flavor listing should include flavor prices"""
 
 
 class Volume(TypedDict, total=False):
     source: Required[Literal["apptemplate", "existing-volume", "image", "new-volume", "snapshot"]]
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/source'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.source"
-    """
+    """Volume source"""
 
     apptemplate_id: str
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/apptemplate_id'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.apptemplate_id"
-    """
+    """App template ID. Mandatory if volume is created from marketplace template"""
 
     boot_index: int
     """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/boot_index'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.boot_index"
+    0 should be set for primary boot device Unique positive values for other
+    bootable devices.Negative - boot prohibited
     """
 
     image_id: str
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/image_id'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.image_id"
-    """
+    """Image ID. Mandatory if volume is created from image"""
 
     name: Optional[str]
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/name'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.name"
-    """
 
     size: int
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/size'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.size"
+    """Volume size.
+
+    Must be specified when source is 'new-volume' or 'image'. If specified for
+    source 'snapshot' or 'existing-volume', value must be equal to respective
+    snapshot or volume size
     """
 
     snapshot_id: str
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/snapshot_id'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.snapshot_id"
-    """
+    """Volume snapshot ID. Mandatory if volume is created from a snapshot"""
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/type_name'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.type_name"
-    """
+    """One of 'standard', 'ssd_hiiops', 'ssd_local', 'ssd_lowlatency', 'cold', 'ultra'"""
 
     volume_id: str
-    """
-    '#/components/schemas/CheckFlavorVolumeSchema/properties/volume_id'
-    "$.components.schemas.CheckFlavorVolumeSchema.properties.volume_id"
-    """
+    """Volume ID. Mandatory if volume is pre-existing volume"""

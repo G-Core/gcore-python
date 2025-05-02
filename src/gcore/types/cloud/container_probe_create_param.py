@@ -14,49 +14,25 @@ __all__ = ["ContainerProbeCreateParam"]
 
 class ContainerProbeCreateParam(TypedDict, total=False):
     exec: Optional[ContainerProbeExecCreateParam]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/exec/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.exec.anyOf[0]"
-    """
+    """Exec probe configuration"""
 
     failure_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/failure_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.failure_threshold"
-    """
+    """The number of consecutive probe failures that mark the container as unhealthy."""
 
     http_get: Optional[ContainerProbeHTTPGetCreateParam]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/http_get/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.http_get.anyOf[0]"
-    """
+    """HTTP GET probe configuration"""
 
     initial_delay_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/initial_delay_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.initial_delay_seconds"
-    """
+    """The initial delay before starting the first probe."""
 
     period_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/period_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.period_seconds"
-    """
+    """How often (in seconds) to perform the probe."""
 
     success_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/success_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.success_threshold"
-    """
+    """The number of consecutive successful probes that mark the container as healthy."""
 
     tcp_socket: Optional[ContainerProbeTcpSocketCreateParam]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/tcp_socket/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.tcp_socket.anyOf[0]"
-    """
+    """TCP socket probe configuration"""
 
     timeout_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/timeout_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.timeout_seconds"
-    """
+    """The timeout for each probe."""

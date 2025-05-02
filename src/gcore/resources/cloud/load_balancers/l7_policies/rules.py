@@ -78,32 +78,19 @@ class RulesResource(SyncAPIResource):
         Create load balancer L7 rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[0].schema"
+          compare_type: The comparison type for the L7 rule
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[1].schema"
+          type: The L7 rule type
 
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[2].schema"
+          value: The value to use for the comparison. For example, the file type to compare
 
-          compare_type: '#/components/schemas/CreateL7RuleSchema/properties/compare_type'
-              "$.components.schemas.CreateL7RuleSchema.properties.compare_type"
+          invert: When true the logic of the rule is inverted. For example, with invert true,
+              'equal to' would become 'not equal to'. Default is false.
 
-          type: '#/components/schemas/CreateL7RuleSchema/properties/type'
-              "$.components.schemas.CreateL7RuleSchema.properties.type"
+          key: The key to use for the comparison. For example, the name of the cookie to
+              evaluate.
 
-          value: '#/components/schemas/CreateL7RuleSchema/properties/value'
-              "$.components.schemas.CreateL7RuleSchema.properties.value"
-
-          invert: '#/components/schemas/CreateL7RuleSchema/properties/invert'
-              "$.components.schemas.CreateL7RuleSchema.properties.invert"
-
-          key: '#/components/schemas/CreateL7RuleSchema/properties/key'
-              "$.components.schemas.CreateL7RuleSchema.properties.key"
-
-          tags: '#/components/schemas/CreateL7RuleSchema/properties/tags'
-              "$.components.schemas.CreateL7RuleSchema.properties.tags"
+          tags: A list of simple strings assigned to the l7 rule
 
           extra_headers: Send extra headers
 
@@ -155,15 +142,6 @@ class RulesResource(SyncAPIResource):
         List load balancer L7 policy rules
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].get.parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/get/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,18 +182,6 @@ class RulesResource(SyncAPIResource):
         Delete load balancer L7 rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[2].schema"
-
-          l7rule_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -258,18 +224,6 @@ class RulesResource(SyncAPIResource):
         Get load balancer L7 rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[2].schema"
-
-          l7rule_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/3/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -328,35 +282,19 @@ class RulesResource(SyncAPIResource):
         Replace load balancer L7 rule properties
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[0].schema"
+          compare_type: The comparison type for the L7 rule
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[1].schema"
+          invert: When true the logic of the rule is inverted. For example, with invert true,
+              'equal to' would become 'not equal to'. Default is false.
 
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[2].schema"
+          key: The key to use for the comparison. For example, the name of the cookie to
+              evaluate.
 
-          l7rule_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/3/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[3].schema"
+          tags: A list of simple strings assigned to the l7 rule
 
-          compare_type: '#/components/schemas/UpdateL7RuleSchema/properties/compare_type'
-              "$.components.schemas.UpdateL7RuleSchema.properties.compare_type"
+          type: The L7 rule type
 
-          invert: '#/components/schemas/UpdateL7RuleSchema/properties/invert'
-              "$.components.schemas.UpdateL7RuleSchema.properties.invert"
-
-          key: '#/components/schemas/UpdateL7RuleSchema/properties/key'
-              "$.components.schemas.UpdateL7RuleSchema.properties.key"
-
-          tags: '#/components/schemas/UpdateL7RuleSchema/properties/tags'
-              "$.components.schemas.UpdateL7RuleSchema.properties.tags"
-
-          type: '#/components/schemas/UpdateL7RuleSchema/properties/type'
-              "$.components.schemas.UpdateL7RuleSchema.properties.type"
-
-          value: '#/components/schemas/UpdateL7RuleSchema/properties/value'
-              "$.components.schemas.UpdateL7RuleSchema.properties.value"
+          value: The value to use for the comparison. For example, the file type to compare
 
           extra_headers: Send extra headers
 
@@ -446,32 +384,19 @@ class AsyncRulesResource(AsyncAPIResource):
         Create load balancer L7 rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[0].schema"
+          compare_type: The comparison type for the L7 rule
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[1].schema"
+          type: The L7 rule type
 
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[2].schema"
+          value: The value to use for the comparison. For example, the file type to compare
 
-          compare_type: '#/components/schemas/CreateL7RuleSchema/properties/compare_type'
-              "$.components.schemas.CreateL7RuleSchema.properties.compare_type"
+          invert: When true the logic of the rule is inverted. For example, with invert true,
+              'equal to' would become 'not equal to'. Default is false.
 
-          type: '#/components/schemas/CreateL7RuleSchema/properties/type'
-              "$.components.schemas.CreateL7RuleSchema.properties.type"
+          key: The key to use for the comparison. For example, the name of the cookie to
+              evaluate.
 
-          value: '#/components/schemas/CreateL7RuleSchema/properties/value'
-              "$.components.schemas.CreateL7RuleSchema.properties.value"
-
-          invert: '#/components/schemas/CreateL7RuleSchema/properties/invert'
-              "$.components.schemas.CreateL7RuleSchema.properties.invert"
-
-          key: '#/components/schemas/CreateL7RuleSchema/properties/key'
-              "$.components.schemas.CreateL7RuleSchema.properties.key"
-
-          tags: '#/components/schemas/CreateL7RuleSchema/properties/tags'
-              "$.components.schemas.CreateL7RuleSchema.properties.tags"
+          tags: A list of simple strings assigned to the l7 rule
 
           extra_headers: Send extra headers
 
@@ -523,15 +448,6 @@ class AsyncRulesResource(AsyncAPIResource):
         List load balancer L7 policy rules
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].get.parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/get/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -572,18 +488,6 @@ class AsyncRulesResource(AsyncAPIResource):
         Delete load balancer L7 rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[2].schema"
-
-          l7rule_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -626,18 +530,6 @@ class AsyncRulesResource(AsyncAPIResource):
         Get load balancer L7 rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[2].schema"
-
-          l7rule_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/get/parameters/3/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].get.parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -696,35 +588,19 @@ class AsyncRulesResource(AsyncAPIResource):
         Replace load balancer L7 rule properties
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[0].schema"
+          compare_type: The comparison type for the L7 rule
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[1].schema"
+          invert: When true the logic of the rule is inverted. For example, with invert true,
+              'equal to' would become 'not equal to'. Default is false.
 
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[2].schema"
+          key: The key to use for the comparison. For example, the name of the cookie to
+              evaluate.
 
-          l7rule_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules%2F%7Bl7rule_id%7D/put/parameters/3/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}'].put.parameters[3].schema"
+          tags: A list of simple strings assigned to the l7 rule
 
-          compare_type: '#/components/schemas/UpdateL7RuleSchema/properties/compare_type'
-              "$.components.schemas.UpdateL7RuleSchema.properties.compare_type"
+          type: The L7 rule type
 
-          invert: '#/components/schemas/UpdateL7RuleSchema/properties/invert'
-              "$.components.schemas.UpdateL7RuleSchema.properties.invert"
-
-          key: '#/components/schemas/UpdateL7RuleSchema/properties/key'
-              "$.components.schemas.UpdateL7RuleSchema.properties.key"
-
-          tags: '#/components/schemas/UpdateL7RuleSchema/properties/tags'
-              "$.components.schemas.UpdateL7RuleSchema.properties.tags"
-
-          type: '#/components/schemas/UpdateL7RuleSchema/properties/type'
-              "$.components.schemas.UpdateL7RuleSchema.properties.type"
-
-          value: '#/components/schemas/UpdateL7RuleSchema/properties/value'
-              "$.components.schemas.UpdateL7RuleSchema.properties.value"
+          value: The value to use for the comparison. For example, the file type to compare
 
           extra_headers: Send extra headers
 

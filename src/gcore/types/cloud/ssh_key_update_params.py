@@ -9,13 +9,7 @@ __all__ = ["SSHKeyUpdateParams"]
 
 class SSHKeyUpdateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/patch/parameters/0/schema'
-    "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].patch.parameters[0].schema"
-    """
+    """Project ID"""
 
     shared_in_project: Required[bool]
-    """
-    '#/components/schemas/ShareSSHKeySerializer/properties/shared_in_project'
-    "$.components.schemas.ShareSSHKeySerializer.properties.shared_in_project"
-    """
+    """Share your ssh key with all users in the project"""

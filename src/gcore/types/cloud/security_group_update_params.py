@@ -10,66 +10,40 @@ __all__ = ["SecurityGroupUpdateParams", "ChangedRule"]
 
 class SecurityGroupUpdateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/0/schema'
-    "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/1/schema'
-    "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[1].schema"
-    """
 
     changed_rules: Iterable[ChangedRule]
-    """
-    '#/components/schemas/UpdateSecurityGroupSerializer/properties/changed_rules'
-    "$.components.schemas.UpdateSecurityGroupSerializer.properties.changed_rules"
-    """
+    """List of rules to create or delete"""
 
     name: str
-    """
-    '#/components/schemas/UpdateSecurityGroupSerializer/properties/name'
-    "$.components.schemas.UpdateSecurityGroupSerializer.properties.name"
-    """
+    """Name"""
 
 
 class ChangedRule(TypedDict, total=False):
     action: Required[Literal["create", "delete"]]
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/action'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.action"
-    """
+    """Action for a rule"""
 
     description: str
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/description'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.description"
-    """
+    """Security grpup rule description"""
 
     direction: Literal["egress", "ingress"]
     """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/direction'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.direction"
+    Ingress or egress, which is the direction in which the security group rule is
+    applied
     """
 
     ethertype: Optional[Literal["IPv4", "IPv6"]]
     """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/ethertype/anyOf/0'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.ethertype.anyOf[0]"
+    Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
+    or egress rules.
     """
 
     port_range_max: int
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/port_range_max'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.port_range_max"
-    """
+    """The maximum port number in the range that is matched by the security group rule"""
 
     port_range_min: int
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/port_range_min'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.port_range_min"
-    """
+    """The minimum port number in the range that is matched by the security group rule"""
 
     protocol: Literal[
         "ah",
@@ -97,25 +71,13 @@ class ChangedRule(TypedDict, total=False):
         "udplite",
         "vrrp",
     ]
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/protocol'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.protocol"
-    """
+    """Protocol"""
 
     remote_group_id: Optional[str]
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/remote_group_id/anyOf/0'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.remote_group_id.anyOf[0]"
-    """
+    """The remote group UUID to associate with this security group rule"""
 
     remote_ip_prefix: Optional[str]
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
-    """
+    """The remote IP prefix that is matched by this security group rule"""
 
     security_group_rule_id: Optional[str]
-    """
-    '#/components/schemas/UpdateSecurityGroupRuleSerializer/properties/security_group_rule_id/anyOf/0'
-    "$.components.schemas.UpdateSecurityGroupRuleSerializer.properties.security_group_rule_id.anyOf[0]"
-    """
+    """UUID of rule to be deleted. Required for action 'delete' only"""

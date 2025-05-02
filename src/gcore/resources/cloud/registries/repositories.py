@@ -56,15 +56,6 @@ class RepositoriesResource(SyncAPIResource):
         List repositories
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories'].get.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories/get/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -103,18 +94,6 @@ class RepositoriesResource(SyncAPIResource):
         Delete a repository
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[2].schema"
-
-          repository_name: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -176,15 +155,6 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         List repositories
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories'].get.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories/get/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -223,18 +193,6 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         Delete a repository
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[2].schema"
-
-          repository_name: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Frepositories%2F%7Brepository_name%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

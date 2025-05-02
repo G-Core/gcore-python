@@ -9,13 +9,7 @@ __all__ = ["InferenceApikeySecret"]
 
 class InferenceApikeySecret(BaseModel):
     secret: str
-    """
-    '#/components/schemas/InferenceInstanceApikeySecretSerializerV3/properties/secret'
-    "$.components.schemas.InferenceInstanceApikeySecretSerializerV3.properties.secret"
-    """
+    """API key secret"""
 
     status: Literal["PENDING", "READY"]
-    """
-    '#/components/schemas/InferenceInstanceApikeySecretSerializerV3/properties/status'
-    "$.components.schemas.InferenceInstanceApikeySecretSerializerV3.properties.status"
-    """
+    """API key status"""

@@ -7,25 +7,13 @@ __all__ = ["InferenceRegistryCredential"]
 
 class InferenceRegistryCredential(BaseModel):
     name: str
-    """
-    '#/components/schemas/InferenceRegistryCredentialOutSerializer/properties/name'
-    "$.components.schemas.InferenceRegistryCredentialOutSerializer.properties.name"
-    """
+    """Registry credential name."""
 
     project_id: int
-    """
-    '#/components/schemas/InferenceRegistryCredentialOutSerializer/properties/project_id'
-    "$.components.schemas.InferenceRegistryCredentialOutSerializer.properties.project_id"
-    """
+    """Project ID to which the inference registry credentials belongs."""
 
     registry_url: str
-    """
-    '#/components/schemas/InferenceRegistryCredentialOutSerializer/properties/registry_url'
-    "$.components.schemas.InferenceRegistryCredentialOutSerializer.properties.registry_url"
-    """
+    """Registry URL."""
 
     username: str
-    """
-    '#/components/schemas/InferenceRegistryCredentialOutSerializer/properties/username'
-    "$.components.schemas.InferenceRegistryCredentialOutSerializer.properties.username"
-    """
+    """Registry username."""

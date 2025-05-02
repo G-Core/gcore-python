@@ -31,129 +31,113 @@ __all__ = [
 
 class ServerCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     flavor: Required[str]
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/flavor'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.flavor"
-    """
+    """The flavor of the instance."""
 
     interfaces: Required[Iterable[Interface]]
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/interfaces'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.interfaces"
+    """A list of network interfaces for the server.
+
+    You can create one or more interfaces—private, public, or both.
     """
 
     app_config: Optional[object]
     """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/app_config/anyOf/0'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.app_config.anyOf[0]"
+    Parameters for the application template if creating the instance from an
+    `apptemplate`.
     """
 
     apptemplate_id: str
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/apptemplate_id'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.apptemplate_id"
-    """
+    """Apptemplate ID. Either `image_id` or `apptemplate_id` is required."""
 
     ddos_profile: DDOSProfile
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/ddos_profile'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.ddos_profile"
-    """
+    """Enable advanced DDoS protection for the server"""
 
     image_id: str
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/image_id'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.image_id"
-    """
+    """Image ID. Either `image_id` or `apptemplate_id` is required."""
 
     name_templates: List[str]
     """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.name_templates"
+    If you want server names to be automatically generated using IP octets, you can
+    specify name templates instead of setting names manually.Provide a list of
+    templated names that should be replaced using the selected template. The
+    following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
+    `{one_ip_octet}`.
     """
 
     names: List[str]
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/names'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.names"
-    """
+    """List of server names. Specify one name to create a single server."""
 
     password: str
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+    """For Linux instances, 'username' and 'password' are used to create a new user.
+
+    When only 'password' is provided, it is set as the password for the default user
+    of the image. For Windows instances, 'username' cannot be specified. Use the
+    'password' field to set the password for the 'Admin' user on Windows. Use the
+    'user_data' field to provide a script to create new users on Windows. The
+    password of the Admin user cannot be updated via 'user_data'.
     """
 
     ssh_key_name: Optional[str]
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/ssh_key_name/anyOf/0'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.ssh_key_name.anyOf[0]"
-    """
+    """Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint."""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     user_data: str
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/user_data'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.user_data"
+    """String in base64 format.
+
+    For Linux instances, 'user_data' is ignored when 'password' field is provided.
+    For Windows instances, Admin user password is set by 'password' field and cannot
+    be updated via 'user_data'. Examples of the user_data:
+    https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """
 
     username: str
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/username'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.username"
+    """For Linux instances, 'username' and 'password' are used to create a new user.
+
+    For Windows instances, 'username' cannot be specified. Use 'password' field to
+    set the password for the 'Admin' user on Windows.
     """
 
 
 class InterfaceCreateBareMetalExternalInterfaceSerializer(TypedDict, total=False):
     type: Required[Literal["external"]]
-    """
-    '#/components/schemas/CreateBareMetalExternalInterfaceSerializer/properties/type'
-    "$.components.schemas.CreateBareMetalExternalInterfaceSerializer.properties.type"
-    """
+    """A public IP address will be assigned to the instance."""
 
     interface_name: str
-    """
-    '#/components/schemas/CreateBareMetalExternalInterfaceSerializer/properties/interface_name'
-    "$.components.schemas.CreateBareMetalExternalInterfaceSerializer.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     ip_family: Optional[InterfaceIPFamily]
-    """
-    '#/components/schemas/CreateBareMetalExternalInterfaceSerializer/properties/ip_family/anyOf/0'
-    "$.components.schemas.CreateBareMetalExternalInterfaceSerializer.properties.ip_family.anyOf[0]"
-    """
+    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     port_group: int
-    """
-    '#/components/schemas/CreateBareMetalExternalInterfaceSerializer/properties/port_group'
-    "$.components.schemas.CreateBareMetalExternalInterfaceSerializer.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
 
 class InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
     TypedDict, total=False
 ):
     source: Required[Literal["new"]]
-    """
-    '#/components/schemas/NewInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.NewInstanceFloatingIpInterfaceSerializer.properties.source"
+    """A new floating IP will be created and attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -162,14 +146,16 @@ class InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPExistingInstanc
 ):
     existing_floating_id: Required[str]
     """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/existing_floating_id'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.existing_floating_id"
+    An existing available floating IP id must be specified if the source is set to
+    `existing`
     """
 
     source: Required[Literal["existing"]]
-    """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.source"
+    """An existing available floating IP will be attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -181,49 +167,40 @@ InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIP: TypeAlias = Union[
 
 class InterfaceCreateBareMetalSubnetInterfaceSerializer(TypedDict, total=False):
     network_id: Required[str]
-    """
-    '#/components/schemas/CreateBareMetalSubnetInterfaceSerializer/properties/network_id'
-    "$.components.schemas.CreateBareMetalSubnetInterfaceSerializer.properties.network_id"
-    """
+    """The network where the instance will be connected."""
 
     subnet_id: Required[str]
-    """
-    '#/components/schemas/CreateBareMetalSubnetInterfaceSerializer/properties/subnet_id'
-    "$.components.schemas.CreateBareMetalSubnetInterfaceSerializer.properties.subnet_id"
-    """
+    """The instance will get an IP address from this subnet."""
 
     type: Required[Literal["subnet"]]
-    """
-    '#/components/schemas/CreateBareMetalSubnetInterfaceSerializer/properties/type'
-    "$.components.schemas.CreateBareMetalSubnetInterfaceSerializer.properties.type"
+    """The instance will get an IP address from the selected network.
+
+    If you choose to add a floating IP, the instance will be reachable from the
+    internet. Otherwise, it will only have a private IP within the network.
     """
 
     floating_ip: InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIP
-    """
-    '#/components/schemas/CreateBareMetalSubnetInterfaceSerializer/properties/floating_ip'
-    "$.components.schemas.CreateBareMetalSubnetInterfaceSerializer.properties.floating_ip"
-    """
+    """Allows the instance to have a public IP that can be reached from the internet."""
 
     interface_name: str
-    """
-    '#/components/schemas/CreateBareMetalSubnetInterfaceSerializer/properties/interface_name'
-    "$.components.schemas.CreateBareMetalSubnetInterfaceSerializer.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     port_group: int
-    """
-    '#/components/schemas/CreateBareMetalSubnetInterfaceSerializer/properties/port_group'
-    "$.components.schemas.CreateBareMetalSubnetInterfaceSerializer.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
 
 class InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
     TypedDict, total=False
 ):
     source: Required[Literal["new"]]
-    """
-    '#/components/schemas/NewInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.NewInstanceFloatingIpInterfaceSerializer.properties.source"
+    """A new floating IP will be created and attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -232,14 +209,16 @@ class InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPExistingInst
 ):
     existing_floating_id: Required[str]
     """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/existing_floating_id'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.existing_floating_id"
+    An existing available floating IP id must be specified if the source is set to
+    `existing`
     """
 
     source: Required[Literal["existing"]]
-    """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.source"
+    """An existing available floating IP will be attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -251,55 +230,39 @@ InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIP: TypeAlias = Unio
 
 class InterfaceCreateBareMetalAnySubnetInterfaceSerializer(TypedDict, total=False):
     network_id: Required[str]
-    """
-    '#/components/schemas/CreateBareMetalAnySubnetInterfaceSerializer/properties/network_id'
-    "$.components.schemas.CreateBareMetalAnySubnetInterfaceSerializer.properties.network_id"
-    """
+    """The network where the instance will be connected."""
 
     type: Required[Literal["any_subnet"]]
-    """
-    '#/components/schemas/CreateBareMetalAnySubnetInterfaceSerializer/properties/type'
-    "$.components.schemas.CreateBareMetalAnySubnetInterfaceSerializer.properties.type"
-    """
+    """Instance will be attached to a subnet with the largest count of free IPs."""
 
     floating_ip: InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIP
-    """
-    '#/components/schemas/CreateBareMetalAnySubnetInterfaceSerializer/properties/floating_ip'
-    "$.components.schemas.CreateBareMetalAnySubnetInterfaceSerializer.properties.floating_ip"
-    """
+    """Allows the instance to have a public IP that can be reached from the internet."""
 
     interface_name: str
-    """
-    '#/components/schemas/CreateBareMetalAnySubnetInterfaceSerializer/properties/interface_name'
-    "$.components.schemas.CreateBareMetalAnySubnetInterfaceSerializer.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     ip_address: str
-    """
-    '#/components/schemas/CreateBareMetalAnySubnetInterfaceSerializer/properties/ip_address'
-    "$.components.schemas.CreateBareMetalAnySubnetInterfaceSerializer.properties.ip_address"
-    """
+    """You can specify a specific IP address from your subnet."""
 
     ip_family: Optional[InterfaceIPFamily]
-    """
-    '#/components/schemas/CreateBareMetalAnySubnetInterfaceSerializer/properties/ip_family/anyOf/0'
-    "$.components.schemas.CreateBareMetalAnySubnetInterfaceSerializer.properties.ip_family.anyOf[0]"
-    """
+    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     port_group: int
-    """
-    '#/components/schemas/CreateBareMetalAnySubnetInterfaceSerializer/properties/port_group'
-    "$.components.schemas.CreateBareMetalAnySubnetInterfaceSerializer.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
 
 class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
     TypedDict, total=False
 ):
     source: Required[Literal["new"]]
-    """
-    '#/components/schemas/NewInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.NewInstanceFloatingIpInterfaceSerializer.properties.source"
+    """A new floating IP will be created and attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -308,14 +271,16 @@ class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPExisti
 ):
     existing_floating_id: Required[str]
     """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/existing_floating_id'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.existing_floating_id"
+    An existing available floating IP id must be specified if the source is set to
+    `existing`
     """
 
     source: Required[Literal["existing"]]
-    """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.source"
+    """An existing available floating IP will be attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -327,34 +292,26 @@ InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIP: TypeAlias 
 
 class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializer(TypedDict, total=False):
     port_id: Required[str]
-    """
-    '#/components/schemas/CreateBareMetalReservedFixedIpInterfaceSerializer/properties/port_id'
-    "$.components.schemas.CreateBareMetalReservedFixedIpInterfaceSerializer.properties.port_id"
-    """
+    """Network ID the subnet belongs to. Port will be plugged in this network."""
 
     type: Required[Literal["reserved_fixed_ip"]]
-    """
-    '#/components/schemas/CreateBareMetalReservedFixedIpInterfaceSerializer/properties/type'
-    "$.components.schemas.CreateBareMetalReservedFixedIpInterfaceSerializer.properties.type"
+    """An existing available reserved fixed IP will be attached to the instance.
+
+    If the reserved IP is not public and you choose to add a floating IP, the
+    instance will be accessible from the internet.
     """
 
     floating_ip: InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIP
-    """
-    '#/components/schemas/CreateBareMetalReservedFixedIpInterfaceSerializer/properties/floating_ip'
-    "$.components.schemas.CreateBareMetalReservedFixedIpInterfaceSerializer.properties.floating_ip"
-    """
+    """Allows the instance to have a public IP that can be reached from the internet."""
 
     interface_name: str
-    """
-    '#/components/schemas/CreateBareMetalReservedFixedIpInterfaceSerializer/properties/interface_name'
-    "$.components.schemas.CreateBareMetalReservedFixedIpInterfaceSerializer.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     port_group: int
-    """
-    '#/components/schemas/CreateBareMetalReservedFixedIpInterfaceSerializer/properties/port_group'
-    "$.components.schemas.CreateBareMetalReservedFixedIpInterfaceSerializer.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
 
 Interface: TypeAlias = Union[
@@ -367,45 +324,24 @@ Interface: TypeAlias = Union[
 
 class DDOSProfileField(TypedDict, total=False):
     base_field: Optional[int]
-    """
-    '#/components/schemas/CreateBareMetalDDoSProfileFieldSerializer/properties/base_field/anyOf/0'
-    "$.components.schemas.CreateBareMetalDDoSProfileFieldSerializer.properties.base_field.anyOf[0]"
-    """
+    """ID of DDoS profile field"""
 
     field_name: Optional[str]
-    """
-    '#/components/schemas/CreateBareMetalDDoSProfileFieldSerializer/properties/field_name/anyOf/0'
-    "$.components.schemas.CreateBareMetalDDoSProfileFieldSerializer.properties.field_name.anyOf[0]"
-    """
+    """Name of DDoS profile field"""
 
     field_value: Union[Iterable[object], int, str, None]
-    """
-    '#/components/schemas/CreateBareMetalDDoSProfileFieldSerializer/properties/field_value'
-    "$.components.schemas.CreateBareMetalDDoSProfileFieldSerializer.properties.field_value"
-    """
+    """Complex value. Only one of 'value' or 'field_value' must be specified."""
 
     value: Optional[str]
-    """
-    '#/components/schemas/CreateBareMetalDDoSProfileFieldSerializer/properties/value/anyOf/0'
-    "$.components.schemas.CreateBareMetalDDoSProfileFieldSerializer.properties.value.anyOf[0]"
-    """
+    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
 
 
 class DDOSProfile(TypedDict, total=False):
     profile_template: Required[int]
-    """
-    '#/components/schemas/CreateDDoSProfileSerializer/properties/profile_template'
-    "$.components.schemas.CreateDDoSProfileSerializer.properties.profile_template"
-    """
+    """DDoS profile template ID"""
 
     fields: Optional[Iterable[DDOSProfileField]]
-    """
-    '#/components/schemas/CreateDDoSProfileSerializer/properties/fields/anyOf/0'
-    "$.components.schemas.CreateDDoSProfileSerializer.properties.fields.anyOf[0]"
-    """
+    """DDoS profile parameters"""
 
     profile_template_name: Optional[str]
-    """
-    '#/components/schemas/CreateDDoSProfileSerializer/properties/profile_template_name/anyOf/0'
-    "$.components.schemas.CreateDDoSProfileSerializer.properties.profile_template_name.anyOf[0]"
-    """
+    """DDoS profile template name"""

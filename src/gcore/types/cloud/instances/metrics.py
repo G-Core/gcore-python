@@ -11,81 +11,42 @@ __all__ = ["Metrics", "Disk"]
 
 class Disk(BaseModel):
     disk_bps_read: Optional[float] = FieldInfo(alias="disk_Bps_read", default=None)
-    """
-    '#/components/schemas/DisksMetrics/properties/disk_Bps_read/anyOf/0'
-    "$.components.schemas.DisksMetrics.properties.disk_Bps_read.anyOf[0]"
-    """
+    """Disk read, Bytes per second"""
 
     disk_bps_write: Optional[float] = FieldInfo(alias="disk_Bps_write", default=None)
-    """
-    '#/components/schemas/DisksMetrics/properties/disk_Bps_write/anyOf/0'
-    "$.components.schemas.DisksMetrics.properties.disk_Bps_write.anyOf[0]"
-    """
+    """Disk write, Bytes per second"""
 
     disk_iops_read: Optional[float] = None
-    """
-    '#/components/schemas/DisksMetrics/properties/disk_iops_read/anyOf/0'
-    "$.components.schemas.DisksMetrics.properties.disk_iops_read.anyOf[0]"
-    """
+    """Disk read, iops"""
 
     disk_iops_write: Optional[float] = None
-    """
-    '#/components/schemas/DisksMetrics/properties/disk_iops_write/anyOf/0'
-    "$.components.schemas.DisksMetrics.properties.disk_iops_write.anyOf[0]"
-    """
+    """Disk write, iops"""
 
     disk_name: Optional[str] = None
-    """
-    '#/components/schemas/DisksMetrics/properties/disk_name/anyOf/0'
-    "$.components.schemas.DisksMetrics.properties.disk_name.anyOf[0]"
-    """
+    """Disk attached slot name"""
 
 
 class Metrics(BaseModel):
     time: str
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/time'
-    "$.components.schemas.InstanceMetricsSerializer.properties.time"
-    """
+    """Timestamp"""
 
     cpu_util: Optional[float] = None
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/cpu_util/anyOf/0'
-    "$.components.schemas.InstanceMetricsSerializer.properties.cpu_util.anyOf[0]"
-    """
+    """CPU utilization, % (max 100% for multi-core)"""
 
     disks: Optional[List[Disk]] = None
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/disks/anyOf/0'
-    "$.components.schemas.InstanceMetricsSerializer.properties.disks.anyOf[0]"
-    """
+    """Disks metrics for each of the disks attached"""
 
     memory_util: Optional[float] = None
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/memory_util/anyOf/0'
-    "$.components.schemas.InstanceMetricsSerializer.properties.memory_util.anyOf[0]"
-    """
+    """RAM utilization, %"""
 
     network_bps_egress: Optional[float] = FieldInfo(alias="network_Bps_egress", default=None)
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/network_Bps_egress/anyOf/0'
-    "$.components.schemas.InstanceMetricsSerializer.properties.network_Bps_egress.anyOf[0]"
-    """
+    """Network out, bytes per second"""
 
     network_bps_ingress: Optional[float] = FieldInfo(alias="network_Bps_ingress", default=None)
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/network_Bps_ingress/anyOf/0'
-    "$.components.schemas.InstanceMetricsSerializer.properties.network_Bps_ingress.anyOf[0]"
-    """
+    """Network in, bytes per second"""
 
     network_pps_egress: Optional[float] = None
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/network_pps_egress/anyOf/0'
-    "$.components.schemas.InstanceMetricsSerializer.properties.network_pps_egress.anyOf[0]"
-    """
+    """Network out, packets per second"""
 
     network_pps_ingress: Optional[float] = None
-    """
-    '#/components/schemas/InstanceMetricsSerializer/properties/network_pps_ingress/anyOf/0'
-    "$.components.schemas.InstanceMetricsSerializer.properties.network_pps_ingress.anyOf[0]"
-    """
+    """Network in, packets per second"""

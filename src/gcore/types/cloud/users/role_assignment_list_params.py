@@ -9,25 +9,17 @@ __all__ = ["RoleAssignmentListParams"]
 
 class RoleAssignmentListParams(TypedDict, total=False):
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/0'
-    "$.paths['/cloud/v1/users/assignments'].get.parameters[0]"
+    """Limit the number of returned items.
+
+    Falls back to default of 1000 if not specified. Limited by max limit value of
+    1000
     """
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/1'
-    "$.paths['/cloud/v1/users/assignments'].get.parameters[1]"
-    """
+    """Offset value is used to exclude the first set of records from the result"""
 
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/2'
-    "$.paths['/cloud/v1/users/assignments'].get.parameters[2]"
-    """
+    """Project ID"""
 
     user_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/3'
-    "$.paths['/cloud/v1/users/assignments'].get.parameters[3]"
-    """
+    """User ID for filtering"""

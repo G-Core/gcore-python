@@ -10,73 +10,47 @@ __all__ = ["VolumeListParams"]
 
 class VolumeListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[1].schema"
-    """
+    """Region ID"""
 
     bootable: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[2]"
-    """
+    """Filter by bootable field"""
 
     cluster_id: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[3]"
-    """
+    """Filter volumes by k8s cluster ID"""
 
     has_attachments: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[4]"
-    """
+    """Filter by the presence of attachments"""
 
     id_part: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[5]"
-    """
+    """Filter the volume list result by the ID part of the volume"""
 
     instance_id: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[6]"
-    """
+    """Filter volumes by instance ID"""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[7]"
-    """
+    """Optional. Limit the number of returned items"""
 
     name_part: str
     """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[8]"
+    Filter volumes by name_part inclusion in volume name.Any substring can be used
+    and volumes will be returned with names containing the substring.
     """
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[9]"
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
     """
 
     tag_key: List[str]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[10]"
-    """
+    """Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2"""
 
     tag_key_value: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].get.parameters[11]"
+    """Optional.
+
+    Filter by tag key-value pairs. curl -G --data-urlencode "tag_key_value={"key":
+    "value"}" --url "https://example.com/cloud/v1/resource/1/1"
     """

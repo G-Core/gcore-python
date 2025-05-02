@@ -68,38 +68,23 @@ class MembersResource(SyncAPIResource):
         Create load balancer pool member
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[0].schema"
+          address: Member IP address
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[1].schema"
+          protocol_port: Member IP port
 
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[2].schema"
+          admin_state_up: true if enabled. Defaults to true
 
-          address: '#/components/schemas/CreateLbPoolMemberSerializer/properties/address'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.address"
+          instance_id: Either subnet_id or instance_id should be provided
 
-          protocol_port: '#/components/schemas/CreateLbPoolMemberSerializer/properties/protocol_port'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.protocol_port"
+          monitor_address: An alternate IP address used for health monitoring of a backend member. Default
+              is null which monitors the member address.
 
-          admin_state_up: '#/components/schemas/CreateLbPoolMemberSerializer/properties/admin_state_up/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.admin_state_up.anyOf[0]"
+          monitor_port: An alternate protocol port used for health monitoring of a backend member.
+              Default is null which monitors the member protocol_port.
 
-          instance_id: '#/components/schemas/CreateLbPoolMemberSerializer/properties/instance_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.instance_id.anyOf[0]"
+          subnet_id: Either subnet_id or instance_id should be provided
 
-          monitor_address: '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_address/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_address.anyOf[0]"
-
-          monitor_port: '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_port/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_port.anyOf[0]"
-
-          subnet_id: '#/components/schemas/CreateLbPoolMemberSerializer/properties/subnet_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.subnet_id.anyOf[0]"
-
-          weight: '#/components/schemas/CreateLbPoolMemberSerializer/properties/weight/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.weight.anyOf[0]"
+          weight: Member weight. Valid values: 0 to 256, defaults to 1
 
           extra_headers: Send extra headers
 
@@ -154,18 +139,6 @@ class MembersResource(SyncAPIResource):
         Delete load balancer pool member
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[2].schema"
-
-          member_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -236,38 +209,23 @@ class AsyncMembersResource(AsyncAPIResource):
         Create load balancer pool member
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[0].schema"
+          address: Member IP address
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[1].schema"
+          protocol_port: Member IP port
 
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember/post/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member'].post.parameters[2].schema"
+          admin_state_up: true if enabled. Defaults to true
 
-          address: '#/components/schemas/CreateLbPoolMemberSerializer/properties/address'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.address"
+          instance_id: Either subnet_id or instance_id should be provided
 
-          protocol_port: '#/components/schemas/CreateLbPoolMemberSerializer/properties/protocol_port'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.protocol_port"
+          monitor_address: An alternate IP address used for health monitoring of a backend member. Default
+              is null which monitors the member address.
 
-          admin_state_up: '#/components/schemas/CreateLbPoolMemberSerializer/properties/admin_state_up/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.admin_state_up.anyOf[0]"
+          monitor_port: An alternate protocol port used for health monitoring of a backend member.
+              Default is null which monitors the member protocol_port.
 
-          instance_id: '#/components/schemas/CreateLbPoolMemberSerializer/properties/instance_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.instance_id.anyOf[0]"
+          subnet_id: Either subnet_id or instance_id should be provided
 
-          monitor_address: '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_address/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_address.anyOf[0]"
-
-          monitor_port: '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_port/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_port.anyOf[0]"
-
-          subnet_id: '#/components/schemas/CreateLbPoolMemberSerializer/properties/subnet_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.subnet_id.anyOf[0]"
-
-          weight: '#/components/schemas/CreateLbPoolMemberSerializer/properties/weight/anyOf/0'
-              "$.components.schemas.CreateLbPoolMemberSerializer.properties.weight.anyOf[0]"
+          weight: Member weight. Valid values: 0 to 256, defaults to 1
 
           extra_headers: Send extra headers
 
@@ -322,18 +280,6 @@ class AsyncMembersResource(AsyncAPIResource):
         Delete load balancer pool member
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[2].schema"
-
-          member_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fmember%2F%7Bmember_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

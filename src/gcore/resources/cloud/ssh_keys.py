@@ -63,17 +63,21 @@ class SSHKeysResource(SyncAPIResource):
         To generate a key, omit the public_key parameter from the request body
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          name: '#/components/schemas/CreateSSHKeySerializer/properties/name'
-              "$.components.schemas.CreateSSHKeySerializer.properties.name"
+          name: SSH key name
 
-          public_key: '#/components/schemas/CreateSSHKeySerializer/properties/public_key'
-              "$.components.schemas.CreateSSHKeySerializer.properties.public_key"
+          public_key: The public part of an SSH key is the shareable portion of an SSH key pair. It
+              can be safely sent to servers or services to grant access. It does not contain
+              sensitive information.
 
-          shared_in_project: '#/components/schemas/CreateSSHKeySerializer/properties/shared_in_project'
-              "$.components.schemas.CreateSSHKeySerializer.properties.shared_in_project"
+              - If you’re uploading your own key, provide the public part here (usually found
+                in a file like `id_ed25519.pub`).
+              - If you want the platform to generate an Ed25519 key pair for you, leave this
+                field empty — the system will return the private key in the response **once
+                only**.
+
+          shared_in_project: SSH key is shared with all users in the project
 
           extra_headers: Send extra headers
 
@@ -118,14 +122,11 @@ class SSHKeysResource(SyncAPIResource):
         Share or unshare SSH key with users
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          ssh_key_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].patch.parameters[1].schema"
+          ssh_key_id: SSH key ID
 
-          shared_in_project: '#/components/schemas/ShareSSHKeySerializer/properties/shared_in_project'
-              "$.components.schemas.ShareSSHKeySerializer.properties.shared_in_project"
+          shared_in_project: Share your ssh key with all users in the project
 
           extra_headers: Send extra headers
 
@@ -166,17 +167,13 @@ class SSHKeysResource(SyncAPIResource):
         List SSH keys
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/1'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[1]"
+          limit: Maximum number of SSH keys to return
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[2]"
+          offset: Offset for pagination
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[3]"
+          order_by: Sort order for the SSH keys
 
           extra_headers: Send extra headers
 
@@ -224,11 +221,9 @@ class SSHKeysResource(SyncAPIResource):
         Delete SSH key
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          ssh_key_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}']['delete'].parameters[1].schema"
+          ssh_key_id: SSH key ID
 
           extra_headers: Send extra headers
 
@@ -267,11 +262,9 @@ class SSHKeysResource(SyncAPIResource):
         Get SSH key
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          ssh_key_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].get.parameters[1].schema"
+          ssh_key_id: SSH key ID
 
           extra_headers: Send extra headers
 
@@ -332,17 +325,21 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         To generate a key, omit the public_key parameter from the request body
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          name: '#/components/schemas/CreateSSHKeySerializer/properties/name'
-              "$.components.schemas.CreateSSHKeySerializer.properties.name"
+          name: SSH key name
 
-          public_key: '#/components/schemas/CreateSSHKeySerializer/properties/public_key'
-              "$.components.schemas.CreateSSHKeySerializer.properties.public_key"
+          public_key: The public part of an SSH key is the shareable portion of an SSH key pair. It
+              can be safely sent to servers or services to grant access. It does not contain
+              sensitive information.
 
-          shared_in_project: '#/components/schemas/CreateSSHKeySerializer/properties/shared_in_project'
-              "$.components.schemas.CreateSSHKeySerializer.properties.shared_in_project"
+              - If you’re uploading your own key, provide the public part here (usually found
+                in a file like `id_ed25519.pub`).
+              - If you want the platform to generate an Ed25519 key pair for you, leave this
+                field empty — the system will return the private key in the response **once
+                only**.
+
+          shared_in_project: SSH key is shared with all users in the project
 
           extra_headers: Send extra headers
 
@@ -387,14 +384,11 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         Share or unshare SSH key with users
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          ssh_key_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].patch.parameters[1].schema"
+          ssh_key_id: SSH key ID
 
-          shared_in_project: '#/components/schemas/ShareSSHKeySerializer/properties/shared_in_project'
-              "$.components.schemas.ShareSSHKeySerializer.properties.shared_in_project"
+          shared_in_project: Share your ssh key with all users in the project
 
           extra_headers: Send extra headers
 
@@ -437,17 +431,13 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         List SSH keys
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/1'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[1]"
+          limit: Maximum number of SSH keys to return
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[2]"
+          offset: Offset for pagination
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}'].get.parameters[3]"
+          order_by: Sort order for the SSH keys
 
           extra_headers: Send extra headers
 
@@ -495,11 +485,9 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         Delete SSH key
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          ssh_key_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}']['delete'].parameters[1].schema"
+          ssh_key_id: SSH key ID
 
           extra_headers: Send extra headers
 
@@ -538,11 +526,9 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         Get SSH key
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          ssh_key_id: '#/paths/%2Fcloud%2Fv1%2Fssh_keys%2F%7Bproject_id%7D%2F%7Bssh_key_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}'].get.parameters[1].schema"
+          ssh_key_id: SSH key ID
 
           extra_headers: Send extra headers
 

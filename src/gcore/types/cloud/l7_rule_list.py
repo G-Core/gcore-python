@@ -10,13 +10,7 @@ __all__ = ["L7RuleList"]
 
 class L7RuleList(BaseModel):
     count: Optional[int] = None
-    """
-    '#/components/schemas/L7RuleListSchema/properties/count'
-    "$.components.schemas.L7RuleListSchema.properties.count"
-    """
+    """Number of objects"""
 
     results: Optional[List[L7Rule]] = None
-    """
-    '#/components/schemas/L7RuleListSchema/properties/results'
-    "$.components.schemas.L7RuleListSchema.properties.results"
-    """
+    """Objects"""

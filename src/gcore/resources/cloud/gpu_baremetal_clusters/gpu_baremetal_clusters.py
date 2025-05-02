@@ -127,41 +127,34 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         Create a new GPU cluster.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}'].post.parameters[0].schema"
+          flavor: Flavor name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}'].post.parameters[1].schema"
+          image_id: Image ID
 
-          flavor: '#/components/schemas/CreateAIClusterGPUSerializer/properties/flavor'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.flavor"
+          interfaces: Subnet IPs and floating IPs
 
-          image_id: '#/components/schemas/CreateAIClusterGPUSerializer/properties/image_id'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.image_id"
+          name: GPU Cluster name
 
-          interfaces: '#/components/schemas/CreateAIClusterGPUSerializer/properties/interfaces'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.interfaces"
+          instances_count: Number of servers to create
 
-          name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/name'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.name"
+          password: A password for a bare metal server. This parameter is used to set a password for
+              the "Admin" user on a Windows instance, a default user or a new user on a Linux
+              instance
 
-          instances_count: '#/components/schemas/CreateAIClusterGPUSerializer/properties/instances_count'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.instances_count"
+          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
 
-          password: '#/components/schemas/CreateAIClusterGPUSerializer/properties/password'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.password"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          ssh_key_name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/ssh_key_name'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.ssh_key_name"
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
-          tags: '#/components/schemas/CreateAIClusterGPUSerializer/properties/tags'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.tags"
-
-          user_data: '#/components/schemas/CreateAIClusterGPUSerializer/properties/user_data'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.user_data"
-
-          username: '#/components/schemas/CreateAIClusterGPUSerializer/properties/username'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.username"
+          username: A name of a new user in the Linux instance. It may be passed with a 'password'
+              parameter
 
           extra_headers: Send extra headers
 
@@ -216,17 +209,9 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         List GPU clusters
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned clusters
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          limit: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[2]"
-
-          offset: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Offset value is used to exclude the first set of records from the result
 
           extra_headers: Send extra headers
 
@@ -279,23 +264,13 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         Delete GPU cluster
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[0].schema"
+          delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
+              used with floatings.
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[1].schema"
+          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
+              delete_floatings.
 
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[2].schema"
-
-          delete_floatings: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/3'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[3]"
-
-          floatings: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/4'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[4]"
-
-          reserved_fixed_ips: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/5'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[5]"
+          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the servers
 
           extra_headers: Send extra headers
 
@@ -347,15 +322,6 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         Get GPU cluster
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}'].get.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -395,15 +361,6 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         Powercycle (stop and start) all GPU cluster nodes, aka hard reboot
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fpowercycle/post/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fpowercycle/post/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle'].post.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fpowercycle/post/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -443,15 +400,6 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         Reboot all GPU cluster nodes
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Freboot/post/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Freboot/post/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot'].post.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Freboot/post/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -496,23 +444,13 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         provided to change the cluster image.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[0].schema"
+          nodes: List of nodes uuids to be rebuild
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[1].schema"
+          image_id: AI GPU image ID
 
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[2].schema"
-
-          nodes: '#/components/schemas/RebuildClusterSerializer/properties/nodes'
-              "$.components.schemas.RebuildClusterSerializer.properties.nodes"
-
-          image_id: '#/components/schemas/RebuildClusterSerializer/properties/image_id/anyOf/0'
-              "$.components.schemas.RebuildClusterSerializer.properties.image_id.anyOf[0]"
-
-          user_data: '#/components/schemas/RebuildClusterSerializer/properties/user_data/anyOf/0'
-              "$.components.schemas.RebuildClusterSerializer.properties.user_data.anyOf[0]"
+          user_data:
+              String in base64 format.Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers
 
@@ -562,17 +500,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         Resize an existing AI GPU cluster.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fresize/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fresize/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize'].post.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fresize/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize'].post.parameters[2].schema"
-
-          instances_count: '#/components/schemas/ResizeAIClusterGPUSerializerV1/properties/instances_count'
-              "$.components.schemas.ResizeAIClusterGPUSerializerV1.properties.instances_count"
+          instances_count: Resized (total) number of instances
 
           extra_headers: Send extra headers
 
@@ -663,41 +591,34 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         Create a new GPU cluster.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}'].post.parameters[0].schema"
+          flavor: Flavor name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}'].post.parameters[1].schema"
+          image_id: Image ID
 
-          flavor: '#/components/schemas/CreateAIClusterGPUSerializer/properties/flavor'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.flavor"
+          interfaces: Subnet IPs and floating IPs
 
-          image_id: '#/components/schemas/CreateAIClusterGPUSerializer/properties/image_id'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.image_id"
+          name: GPU Cluster name
 
-          interfaces: '#/components/schemas/CreateAIClusterGPUSerializer/properties/interfaces'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.interfaces"
+          instances_count: Number of servers to create
 
-          name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/name'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.name"
+          password: A password for a bare metal server. This parameter is used to set a password for
+              the "Admin" user on a Windows instance, a default user or a new user on a Linux
+              instance
 
-          instances_count: '#/components/schemas/CreateAIClusterGPUSerializer/properties/instances_count'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.instances_count"
+          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
 
-          password: '#/components/schemas/CreateAIClusterGPUSerializer/properties/password'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.password"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          ssh_key_name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/ssh_key_name'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.ssh_key_name"
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
-          tags: '#/components/schemas/CreateAIClusterGPUSerializer/properties/tags'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.tags"
-
-          user_data: '#/components/schemas/CreateAIClusterGPUSerializer/properties/user_data'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.user_data"
-
-          username: '#/components/schemas/CreateAIClusterGPUSerializer/properties/username'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.username"
+          username: A name of a new user in the Linux instance. It may be passed with a 'password'
+              parameter
 
           extra_headers: Send extra headers
 
@@ -752,17 +673,9 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         List GPU clusters
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned clusters
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          limit: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[2]"
-
-          offset: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Offset value is used to exclude the first set of records from the result
 
           extra_headers: Send extra headers
 
@@ -815,23 +728,13 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         Delete GPU cluster
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[0].schema"
+          delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
+              used with floatings.
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[1].schema"
+          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
+              delete_floatings.
 
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[2].schema"
-
-          delete_floatings: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/3'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[3]"
-
-          floatings: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/4'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[4]"
-
-          reserved_fixed_ips: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/delete/parameters/5'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}']['delete'].parameters[5]"
+          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the servers
 
           extra_headers: Send extra headers
 
@@ -883,15 +786,6 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         Get GPU cluster
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}'].get.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -931,15 +825,6 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         Powercycle (stop and start) all GPU cluster nodes, aka hard reboot
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fpowercycle/post/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fpowercycle/post/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle'].post.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fpowercycle/post/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -979,15 +864,6 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         Reboot all GPU cluster nodes
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Freboot/post/parameters/0/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Freboot/post/parameters/1/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot'].post.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Freboot/post/parameters/2/schema'
-              "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1032,23 +908,13 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         provided to change the cluster image.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[0].schema"
+          nodes: List of nodes uuids to be rebuild
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[1].schema"
+          image_id: AI GPU image ID
 
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[2].schema"
-
-          nodes: '#/components/schemas/RebuildClusterSerializer/properties/nodes'
-              "$.components.schemas.RebuildClusterSerializer.properties.nodes"
-
-          image_id: '#/components/schemas/RebuildClusterSerializer/properties/image_id/anyOf/0'
-              "$.components.schemas.RebuildClusterSerializer.properties.image_id.anyOf[0]"
-
-          user_data: '#/components/schemas/RebuildClusterSerializer/properties/user_data/anyOf/0'
-              "$.components.schemas.RebuildClusterSerializer.properties.user_data.anyOf[0]"
+          user_data:
+              String in base64 format.Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers
 
@@ -1098,17 +964,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         Resize an existing AI GPU cluster.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fresize/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fresize/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize'].post.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fresize/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize'].post.parameters[2].schema"
-
-          instances_count: '#/components/schemas/ResizeAIClusterGPUSerializerV1/properties/instances_count'
-              "$.components.schemas.ResizeAIClusterGPUSerializerV1.properties.instances_count"
+          instances_count: Resized (total) number of instances
 
           extra_headers: Send extra headers
 

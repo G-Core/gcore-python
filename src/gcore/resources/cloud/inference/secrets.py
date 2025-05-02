@@ -61,17 +61,13 @@ class SecretsResource(SyncAPIResource):
         Create Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].post.parameters[0].schema"
+          project_id: Project ID
 
-          data: '#/components/schemas/InferenceBoxSecretsInSerializer/properties/data'
-              "$.components.schemas.InferenceBoxSecretsInSerializer.properties.data"
+          data: Secret data.
 
-          name: '#/components/schemas/InferenceBoxSecretsInSerializer/properties/name'
-              "$.components.schemas.InferenceBoxSecretsInSerializer.properties.name"
+          name: Secret name.
 
-          type: '#/components/schemas/InferenceBoxSecretsInSerializer/properties/type'
-              "$.components.schemas.InferenceBoxSecretsInSerializer.properties.type"
+          type: Secret type. Currently only `aws-iam` is supported.
 
           extra_headers: Send extra headers
 
@@ -112,18 +108,17 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[InferenceSecret]:
-        """
-        List Secrets for Inference
+        """List Secrets for Inference
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/get/parameters/1'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].get.parameters[1]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/get/parameters/2'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].get.parameters[2]"
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -170,11 +165,9 @@ class SecretsResource(SyncAPIResource):
         Delete Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          secret_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}']['delete'].parameters[1].schema"
+          secret_name: Inference secret name.
 
           extra_headers: Send extra headers
 
@@ -213,11 +206,9 @@ class SecretsResource(SyncAPIResource):
         Get Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          secret_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].get.parameters[1].schema"
+          secret_name: Inference secret name.
 
           extra_headers: Send extra headers
 
@@ -257,17 +248,13 @@ class SecretsResource(SyncAPIResource):
         Update Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].put.parameters[0].schema"
+          project_id: Project ID
 
-          secret_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].put.parameters[1].schema"
+          secret_name: Inference secret name.
 
-          data: '#/components/schemas/InferenceSecretInUpdateSerializer/properties/data'
-              "$.components.schemas.InferenceSecretInUpdateSerializer.properties.data"
+          data: Secret data.
 
-          type: '#/components/schemas/InferenceSecretInUpdateSerializer/properties/type'
-              "$.components.schemas.InferenceSecretInUpdateSerializer.properties.type"
+          type: Secret type.
 
           extra_headers: Send extra headers
 
@@ -335,17 +322,13 @@ class AsyncSecretsResource(AsyncAPIResource):
         Create Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].post.parameters[0].schema"
+          project_id: Project ID
 
-          data: '#/components/schemas/InferenceBoxSecretsInSerializer/properties/data'
-              "$.components.schemas.InferenceBoxSecretsInSerializer.properties.data"
+          data: Secret data.
 
-          name: '#/components/schemas/InferenceBoxSecretsInSerializer/properties/name'
-              "$.components.schemas.InferenceBoxSecretsInSerializer.properties.name"
+          name: Secret name.
 
-          type: '#/components/schemas/InferenceBoxSecretsInSerializer/properties/type'
-              "$.components.schemas.InferenceBoxSecretsInSerializer.properties.type"
+          type: Secret type. Currently only `aws-iam` is supported.
 
           extra_headers: Send extra headers
 
@@ -386,18 +369,17 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[InferenceSecret, AsyncOffsetPage[InferenceSecret]]:
-        """
-        List Secrets for Inference
+        """List Secrets for Inference
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/get/parameters/1'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].get.parameters[1]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/get/parameters/2'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets'].get.parameters[2]"
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -444,11 +426,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         Delete Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          secret_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}']['delete'].parameters[1].schema"
+          secret_name: Inference secret name.
 
           extra_headers: Send extra headers
 
@@ -487,11 +467,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         Get Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          secret_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].get.parameters[1].schema"
+          secret_name: Inference secret name.
 
           extra_headers: Send extra headers
 
@@ -531,17 +509,13 @@ class AsyncSecretsResource(AsyncAPIResource):
         Update Inference Secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].put.parameters[0].schema"
+          project_id: Project ID
 
-          secret_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].put.parameters[1].schema"
+          secret_name: Inference secret name.
 
-          data: '#/components/schemas/InferenceSecretInUpdateSerializer/properties/data'
-              "$.components.schemas.InferenceSecretInUpdateSerializer.properties.data"
+          data: Secret data.
 
-          type: '#/components/schemas/InferenceSecretInUpdateSerializer/properties/type'
-              "$.components.schemas.InferenceSecretInUpdateSerializer.properties.type"
+          type: Secret type.
 
           extra_headers: Send extra headers
 

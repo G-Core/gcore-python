@@ -9,31 +9,16 @@ __all__ = ["RegistryCredentialCreateParams"]
 
 class RegistryCredentialCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/post/parameters/0/schema'
-    "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     name: Required[str]
-    """
-    '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/name'
-    "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.name"
-    """
+    """Registry credential name."""
 
     password: Required[str]
-    """
-    '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/password'
-    "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.password"
-    """
+    """Registry password."""
 
     registry_url: Required[str]
-    """
-    '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/registry_url'
-    "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.registry_url"
-    """
+    """Registry URL."""
 
     username: Required[str]
-    """
-    '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/username'
-    "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.username"
-    """
+    """Registry username."""

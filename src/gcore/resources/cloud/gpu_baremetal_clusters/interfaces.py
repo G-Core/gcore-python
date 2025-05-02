@@ -56,15 +56,6 @@ class InterfacesResource(SyncAPIResource):
         List network interfaces attached to GPU cluster servers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Finterfaces/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Finterfaces/get/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces'].get.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Finterfaces/get/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -125,15 +116,6 @@ class AsyncInterfacesResource(AsyncAPIResource):
         List network interfaces attached to GPU cluster servers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Finterfaces/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Finterfaces/get/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces'].get.parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Finterfaces/get/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

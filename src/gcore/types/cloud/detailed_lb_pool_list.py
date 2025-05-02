@@ -10,13 +10,7 @@ __all__ = ["DetailedLbPoolList"]
 
 class DetailedLbPoolList(BaseModel):
     count: int
-    """
-    '#/components/schemas/DetailedLbPoolSerializerList/properties/count'
-    "$.components.schemas.DetailedLbPoolSerializerList.properties.count"
-    """
+    """Number of objects"""
 
     results: List[DetailedLbPool]
-    """
-    '#/components/schemas/DetailedLbPoolSerializerList/properties/results'
-    "$.components.schemas.DetailedLbPoolSerializerList.properties.results"
-    """
+    """Objects"""

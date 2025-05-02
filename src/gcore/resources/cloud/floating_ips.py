@@ -66,20 +66,21 @@ class FloatingIPsResource(SyncAPIResource):
         Create floating IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          fixed_ip_address: '#/components/schemas/CreateFloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
+          fixed_ip_address: If the port has multiple IP addresses, a specific one can be selected using this
+              field. If not specified, the first IP in the port's list will be used by
+              default.
 
-          port_id: '#/components/schemas/CreateFloatingIPSerializer/properties/port_id/anyOf/0'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.port_id.anyOf[0]"
+          port_id: If provided, the floating IP will be immediately attached to the specified port.
 
-          tags: '#/components/schemas/CreateFloatingIPSerializer/properties/tags'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -129,23 +130,20 @@ class FloatingIPsResource(SyncAPIResource):
         List floating IPs
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[2]"
+          limit: Optional. Limit the number of returned items
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[4]"
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[5]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -197,15 +195,6 @@ class FloatingIPsResource(SyncAPIResource):
         Delete floating IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}']['delete'].parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -247,20 +236,9 @@ class FloatingIPsResource(SyncAPIResource):
         Assign floating IP to instance or loadbalancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Fassign/post/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign'].post.parameters[0].schema"
+          port_id: Port ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Fassign/post/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign'].post.parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Fassign/post/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign'].post.parameters[2].schema"
-
-          port_id: '#/components/schemas/AssignFloatingIPSerializer/properties/port_id'
-              "$.components.schemas.AssignFloatingIPSerializer.properties.port_id"
-
-          fixed_ip_address: '#/components/schemas/AssignFloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
-              "$.components.schemas.AssignFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
+          fixed_ip_address: Fixed IP address
 
           extra_headers: Send extra headers
 
@@ -308,15 +286,6 @@ class FloatingIPsResource(SyncAPIResource):
         Get floating IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}'].get.parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -356,15 +325,6 @@ class FloatingIPsResource(SyncAPIResource):
         Unassign floating IP from the instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Funassign/post/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Funassign/post/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign'].post.parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Funassign/post/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -427,20 +387,21 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         Create floating IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          fixed_ip_address: '#/components/schemas/CreateFloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
+          fixed_ip_address: If the port has multiple IP addresses, a specific one can be selected using this
+              field. If not specified, the first IP in the port's list will be used by
+              default.
 
-          port_id: '#/components/schemas/CreateFloatingIPSerializer/properties/port_id/anyOf/0'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.port_id.anyOf[0]"
+          port_id: If provided, the floating IP will be immediately attached to the specified port.
 
-          tags: '#/components/schemas/CreateFloatingIPSerializer/properties/tags'
-              "$.components.schemas.CreateFloatingIPSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -490,23 +451,20 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         List floating IPs
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[2]"
+          limit: Optional. Limit the number of returned items
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[3]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[4]"
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].get.parameters[5]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -558,15 +516,6 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         Delete floating IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}']['delete'].parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -608,20 +557,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         Assign floating IP to instance or loadbalancer
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Fassign/post/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign'].post.parameters[0].schema"
+          port_id: Port ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Fassign/post/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign'].post.parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Fassign/post/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign'].post.parameters[2].schema"
-
-          port_id: '#/components/schemas/AssignFloatingIPSerializer/properties/port_id'
-              "$.components.schemas.AssignFloatingIPSerializer.properties.port_id"
-
-          fixed_ip_address: '#/components/schemas/AssignFloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
-              "$.components.schemas.AssignFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
+          fixed_ip_address: Fixed IP address
 
           extra_headers: Send extra headers
 
@@ -669,15 +607,6 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         Get floating IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}'].get.parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -717,15 +646,6 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         Unassign floating IP from the instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Funassign/post/parameters/0/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Funassign/post/parameters/1/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign'].post.parameters[1].schema"
-
-          floating_ip_id: '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfloating_ip_id%7D%2Funassign/post/parameters/2/schema'
-              "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

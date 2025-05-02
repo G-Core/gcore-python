@@ -12,67 +12,34 @@ __all__ = ["SecurityGroup"]
 
 class SecurityGroup(BaseModel):
     id: str
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/id'
-    "$.components.schemas.SecurityGroupSerializer.properties.id"
-    """
+    """Security group ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/created_at'
-    "$.components.schemas.SecurityGroupSerializer.properties.created_at"
-    """
+    """Datetime when the security group was created"""
 
     name: str
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/name'
-    "$.components.schemas.SecurityGroupSerializer.properties.name"
-    """
+    """Security group name"""
 
     project_id: int
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/project_id'
-    "$.components.schemas.SecurityGroupSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/region'
-    "$.components.schemas.SecurityGroupSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/region_id'
-    "$.components.schemas.SecurityGroupSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     revision_number: int
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/revision_number'
-    "$.components.schemas.SecurityGroupSerializer.properties.revision_number"
-    """
+    """The number of revisions"""
 
     tags_v2: List[Tag]
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/tags_v2'
-    "$.components.schemas.SecurityGroupSerializer.properties.tags_v2"
-    """
+    """Tags for a security group"""
 
     updated_at: datetime
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/updated_at'
-    "$.components.schemas.SecurityGroupSerializer.properties.updated_at"
-    """
+    """Datetime when the security group was last updated"""
 
     description: Optional[str] = None
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/description/anyOf/0'
-    "$.components.schemas.SecurityGroupSerializer.properties.description.anyOf[0]"
-    """
+    """Security group description"""
 
     security_group_rules: Optional[List[SecurityGroupRule]] = None
-    """
-    '#/components/schemas/SecurityGroupSerializer/properties/security_group_rules'
-    "$.components.schemas.SecurityGroupSerializer.properties.security_group_rules"
-    """
+    """Security group rules"""

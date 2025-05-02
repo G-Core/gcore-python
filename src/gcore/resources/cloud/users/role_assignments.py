@@ -67,17 +67,13 @@ class RoleAssignmentsResource(SyncAPIResource):
         Assign role to existing user
 
         Args:
-          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
-              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+          role: User role
 
-          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
-              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+          user_id: User ID
 
-          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+          client_id: Client ID. Required if project_id is specified
 
-          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+          project_id: Project ID
 
           extra_headers: Send extra headers
 
@@ -123,20 +119,15 @@ class RoleAssignmentsResource(SyncAPIResource):
         Modify role assignment to existing user
 
         Args:
-          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/users/assignments/{assignment_id}'].patch.parameters[0].schema"
+          assignment_id: Assignment ID
 
-          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
-              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+          role: User role
 
-          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
-              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+          user_id: User ID
 
-          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+          client_id: Client ID. Required if project_id is specified
 
-          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+          project_id: Project ID
 
           extra_headers: Send extra headers
 
@@ -177,21 +168,19 @@ class RoleAssignmentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[RoleAssignment]:
-        """
-        List assignments
+        """List assignments
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/0'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[0]"
+          limit: Limit the number of returned items.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/1'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[1]"
+        Falls back to default of 1000 if not
+              specified. Limited by max limit value of 1000
 
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/2'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[2]"
+          offset: Offset value is used to exclude the first set of records from the result
 
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/3'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[3]"
+          project_id: Project ID
+
+          user_id: User ID for filtering
 
           extra_headers: Send extra headers
 
@@ -237,8 +226,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         Delete role assignment
 
         Args:
-          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/users/assignments/{assignment_id}']['delete'].parameters[0].schema"
+          assignment_id: Assignment ID
 
           extra_headers: Send extra headers
 
@@ -295,17 +283,13 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         Assign role to existing user
 
         Args:
-          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
-              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+          role: User role
 
-          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
-              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+          user_id: User ID
 
-          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+          client_id: Client ID. Required if project_id is specified
 
-          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+          project_id: Project ID
 
           extra_headers: Send extra headers
 
@@ -351,20 +335,15 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         Modify role assignment to existing user
 
         Args:
-          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/users/assignments/{assignment_id}'].patch.parameters[0].schema"
+          assignment_id: Assignment ID
 
-          role: '#/components/schemas/RequestAssignmentSerializer/properties/role'
-              "$.components.schemas.RequestAssignmentSerializer.properties.role"
+          role: User role
 
-          user_id: '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
-              "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
+          user_id: User ID
 
-          client_id: '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
+          client_id: Client ID. Required if project_id is specified
 
-          project_id: '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
-              "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
+          project_id: Project ID
 
           extra_headers: Send extra headers
 
@@ -405,21 +384,19 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[RoleAssignment, AsyncOffsetPage[RoleAssignment]]:
-        """
-        List assignments
+        """List assignments
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/0'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[0]"
+          limit: Limit the number of returned items.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/1'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[1]"
+        Falls back to default of 1000 if not
+              specified. Limited by max limit value of 1000
 
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/2'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[2]"
+          offset: Offset value is used to exclude the first set of records from the result
 
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments/get/parameters/3'
-              "$.paths['/cloud/v1/users/assignments'].get.parameters[3]"
+          project_id: Project ID
+
+          user_id: User ID for filtering
 
           extra_headers: Send extra headers
 
@@ -465,8 +442,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         Delete role assignment
 
         Args:
-          assignment_id: '#/paths/%2Fcloud%2Fv1%2Fusers%2Fassignments%2F%7Bassignment_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/users/assignments/{assignment_id}']['delete'].parameters[0].schema"
+          assignment_id: Assignment ID
 
           extra_headers: Send extra headers
 

@@ -10,33 +10,21 @@ __all__ = ["SubnetListParams"]
 
 class SubnetListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[1].schema"
-    """
+    """Region ID"""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[2]"
-    """
+    """Optional. Limit the number of returned items"""
 
     network_id: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[3]"
-    """
+    """Only list subnets of this network"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[4]"
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
     """
 
     order_by: Literal[
@@ -54,18 +42,17 @@ class SubnetListParams(TypedDict, total=False):
         "updated_at.desc",
     ]
     """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[5]"
+    Ordering subnets list result by `name`, `created_at`, `updated_at`,
+    `available_ips`, `total_ips`, and `cidr` (default) fields of the subnet and
+    directions (`name.asc`).
     """
 
     tag_key: List[str]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[6]"
-    """
+    """Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2"""
 
     tag_key_value: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[7]"
+    """Optional.
+
+    Filter by tag key-value pairs. curl -G --data-urlencode "tag_key_value={"key":
+    "value"}" --url "https://example.com/cloud/v1/resource/1/1"
     """

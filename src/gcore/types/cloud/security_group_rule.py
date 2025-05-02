@@ -11,64 +11,40 @@ __all__ = ["SecurityGroupRule"]
 
 class SecurityGroupRule(BaseModel):
     id: str
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/id'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.id"
-    """
+    """The ID of the security group rule"""
 
     created_at: datetime
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/created_at'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.created_at"
-    """
+    """Datetime when the rule was created"""
 
     direction: Literal["egress", "ingress"]
     """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/direction'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.direction"
+    Ingress or egress, which is the direction in which the security group rule is
+    applied
     """
 
     revision_number: int
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/revision_number'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.revision_number"
-    """
+    """The revision number of the resource"""
 
     security_group_id: str
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/security_group_id'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.security_group_id"
-    """
+    """The security group ID to associate with this security group rule"""
 
     updated_at: datetime
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/updated_at'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.updated_at"
-    """
+    """Datetime when the rule was last updated"""
 
     description: Optional[str] = None
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/description/anyOf/0'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.description.anyOf[0]"
-    """
+    """Rule description"""
 
     ethertype: Optional[Literal["IPv4", "IPv6"]] = None
     """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/ethertype/anyOf/0'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.ethertype.anyOf[0]"
+    Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
+    or egress rules.
     """
 
     port_range_max: Optional[int] = None
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/port_range_max/anyOf/0'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.port_range_max.anyOf[0]"
-    """
+    """The maximum port number in the range that is matched by the security group rule"""
 
     port_range_min: Optional[int] = None
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/port_range_min/anyOf/0'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.port_range_min.anyOf[0]"
-    """
+    """The minimum port number in the range that is matched by the security group rule"""
 
     protocol: Optional[
         Literal[
@@ -98,19 +74,10 @@ class SecurityGroupRule(BaseModel):
             "vrrp",
         ]
     ] = None
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/protocol/anyOf/0'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.protocol.anyOf[0]"
-    """
+    """Protocol"""
 
     remote_group_id: Optional[str] = None
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/remote_group_id/anyOf/0'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.remote_group_id.anyOf[0]"
-    """
+    """The remote group UUID to associate with this security group rule"""
 
     remote_ip_prefix: Optional[str] = None
-    """
-    '#/components/schemas/SecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-    "$.components.schemas.SecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
-    """
+    """The remote IP prefix that is matched by this security group rule"""

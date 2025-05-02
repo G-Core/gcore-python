@@ -17,199 +17,157 @@ __all__ = [
 
 class CreateVolumeFromImageSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     image_id: Required[str]
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/image_id'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.image_id"
-    """
+    """Image ID"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/name'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.name"
-    """
+    """Volume name"""
 
     size: Required[int]
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/size'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.size"
-    """
+    """Volume size in GiB"""
 
     source: Required[Literal["image"]]
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/source'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.source"
-    """
+    """Volume source type"""
 
     attachment_tag: str
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/attachment_tag'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.attachment_tag"
+    """Block device attachment tag (not exposed in the user tags).
+
+    Only used in conjunction with instance_id_to_attach_to
     """
 
     instance_id_to_attach_to: str
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/instance_id_to_attach_to'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.instance_id_to_attach_to"
-    """
+    """instance_id to attach newly-created volume to"""
 
     lifecycle_policy_ids: Iterable[int]
     """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/lifecycle_policy_ids'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.lifecycle_policy_ids"
+    List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+    volume
     """
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/tags'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-    """
-    '#/components/schemas/CreateVolumeFromImageSerializer/properties/type_name'
-    "$.components.schemas.CreateVolumeFromImageSerializer.properties.type_name"
+    """Volume type.
+
+    Defaults to `standard`. If not specified for source `snapshot`, volume type will
+    be derived from the snapshot volume.
     """
 
 
 class CreateVolumeFromSnapshotSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/name'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.name"
-    """
+    """Volume name"""
 
     snapshot_id: Required[str]
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/snapshot_id'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.snapshot_id"
-    """
+    """Snapshot ID"""
 
     source: Required[Literal["snapshot"]]
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/source'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.source"
-    """
+    """Volume source type"""
 
     attachment_tag: str
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/attachment_tag'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.attachment_tag"
+    """Block device attachment tag (not exposed in the user tags).
+
+    Only used in conjunction with instance_id_to_attach_to
     """
 
     instance_id_to_attach_to: str
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/instance_id_to_attach_to'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.instance_id_to_attach_to"
-    """
+    """instance_id to attach newly-created volume to"""
 
     lifecycle_policy_ids: Iterable[int]
     """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/lifecycle_policy_ids'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.lifecycle_policy_ids"
+    List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+    volume
     """
 
     size: int
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/size'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.size"
+    """Volume size in GiB.
+
+    If specified, value must be equal to respective snapshot size
     """
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/tags'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-    """
-    '#/components/schemas/CreateVolumeFromSnapshotSerializer/properties/type_name'
-    "$.components.schemas.CreateVolumeFromSnapshotSerializer.properties.type_name"
+    """Volume type.
+
+    Defaults to `standard`. If not specified for source `snapshot`, volume type will
+    be derived from the snapshot volume.
     """
 
 
 class CreateNewVolumeSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/name'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.name"
-    """
+    """Volume name"""
 
     size: Required[int]
-    """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/size'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.size"
-    """
+    """Volume size in GiB"""
 
     source: Required[Literal["new-volume"]]
-    """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/source'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.source"
-    """
+    """Volume source type"""
 
     attachment_tag: str
-    """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/attachment_tag'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.attachment_tag"
+    """Block device attachment tag (not exposed in the user tags).
+
+    Only used in conjunction with instance_id_to_attach_to
     """
 
     instance_id_to_attach_to: str
-    """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/instance_id_to_attach_to'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.instance_id_to_attach_to"
-    """
+    """instance_id to attach newly-created volume to"""
 
     lifecycle_policy_ids: Iterable[int]
     """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/lifecycle_policy_ids'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.lifecycle_policy_ids"
+    List of lifecycle policy IDs (snapshot creation schedules) to associate with the
+    volume
     """
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/tags'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-    """
-    '#/components/schemas/CreateNewVolumeSerializer/properties/type_name'
-    "$.components.schemas.CreateNewVolumeSerializer.properties.type_name"
+    """Volume type.
+
+    Defaults to `standard`. If not specified for source `snapshot`, volume type will
+    be derived from the snapshot volume.
     """
 
 

@@ -9,13 +9,7 @@ __all__ = ["AllowedAddressPairs"]
 
 class AllowedAddressPairs(BaseModel):
     ip_address: str
-    """
-    '#/components/schemas/AllowedAddressPairsSerializer/properties/ip_address/anyOf/0'
-    "$.components.schemas.AllowedAddressPairsSerializer.properties.ip_address.anyOf[0]"
-    """
+    """Subnet mask or IP address of the port specified in allowed_address_pairs"""
 
     mac_address: Optional[str] = None
-    """
-    '#/components/schemas/AllowedAddressPairsSerializer/properties/mac_address/anyOf/0'
-    "$.components.schemas.AllowedAddressPairsSerializer.properties.mac_address.anyOf[0]"
-    """
+    """MAC address of the port specified in allowed_address_pairs"""

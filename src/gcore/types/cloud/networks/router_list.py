@@ -10,13 +10,7 @@ __all__ = ["RouterList"]
 
 class RouterList(BaseModel):
     count: int
-    """
-    '#/components/schemas/RouterSerializerList/properties/count'
-    "$.components.schemas.RouterSerializerList.properties.count"
-    """
+    """Number of objects"""
 
     results: List[Router]
-    """
-    '#/components/schemas/RouterSerializerList/properties/results'
-    "$.components.schemas.RouterSerializerList.properties.results"
-    """
+    """Objects"""

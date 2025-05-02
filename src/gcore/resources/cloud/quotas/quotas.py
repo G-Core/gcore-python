@@ -88,11 +88,9 @@ class QuotasResource(SyncAPIResource):
         Get a quota by region
 
         Args:
-          client_id: '#/paths/%2Fcloud%2Fv2%2Fregional_quotas%2F%7Bclient_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/regional_quotas/{client_id}/{region_id}'].get.parameters[0].schema"
+          client_id: Client ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fregional_quotas%2F%7Bclient_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v2/regional_quotas/{client_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
           extra_headers: Send extra headers
 
@@ -127,8 +125,7 @@ class QuotasResource(SyncAPIResource):
         Get global quota
 
         Args:
-          client_id: '#/paths/%2Fcloud%2Fv2%2Fglobal_quotas%2F%7Bclient_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/global_quotas/{client_id}'].get.parameters[0].schema"
+          client_id: Client ID
 
           extra_headers: Send extra headers
 
@@ -206,11 +203,9 @@ class AsyncQuotasResource(AsyncAPIResource):
         Get a quota by region
 
         Args:
-          client_id: '#/paths/%2Fcloud%2Fv2%2Fregional_quotas%2F%7Bclient_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/regional_quotas/{client_id}/{region_id}'].get.parameters[0].schema"
+          client_id: Client ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Fregional_quotas%2F%7Bclient_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v2/regional_quotas/{client_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
           extra_headers: Send extra headers
 
@@ -245,8 +240,7 @@ class AsyncQuotasResource(AsyncAPIResource):
         Get global quota
 
         Args:
-          client_id: '#/paths/%2Fcloud%2Fv2%2Fglobal_quotas%2F%7Bclient_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v2/global_quotas/{client_id}'].get.parameters[0].schema"
+          client_id: Client ID
 
           extra_headers: Send extra headers
 

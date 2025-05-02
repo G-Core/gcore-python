@@ -9,19 +9,13 @@ __all__ = ["RegistryCredentialListParams"]
 
 class RegistryCredentialListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/0/schema'
-    "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[0].schema"
-    """
+    """Project ID"""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/1'
-    "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[1]"
-    """
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/2'
-    "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[2]"
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
     """

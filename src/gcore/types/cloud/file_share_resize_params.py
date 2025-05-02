@@ -9,19 +9,10 @@ __all__ = ["FileShareResizeParams"]
 
 class FileShareResizeParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/0/schema'
-    "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Fextend/post/parameters/1/schema'
-    "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     size: Required[int]
-    """
-    '#/components/schemas/ResizeSfsSerializer/properties/size'
-    "$.components.schemas.ResizeSfsSerializer.properties.size"
-    """
+    """File Share new size in GiB."""

@@ -12,31 +12,29 @@ __all__ = ["FloatingIPCreateParams"]
 
 class FloatingIPCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffloatingips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/floatingips/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     fixed_ip_address: Optional[str]
     """
-    '#/components/schemas/CreateFloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
-    "$.components.schemas.CreateFloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
+    If the port has multiple IP addresses, a specific one can be selected using this
+    field. If not specified, the first IP in the port's list will be used by
+    default.
     """
 
     port_id: Optional[str]
     """
-    '#/components/schemas/CreateFloatingIPSerializer/properties/port_id/anyOf/0'
-    "$.components.schemas.CreateFloatingIPSerializer.properties.port_id.anyOf[0]"
+    If provided, the floating IP will be immediately attached to the specified port.
     """
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateFloatingIPSerializer/properties/tags'
-    "$.components.schemas.CreateFloatingIPSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """

@@ -63,11 +63,9 @@ class ImagesResource(SyncAPIResource):
         List bare metal GPU images
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/get/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/get/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].get.parameters[1].schema"
+          region_id: Region ID
 
           extra_headers: Send extra headers
 
@@ -106,14 +104,11 @@ class ImagesResource(SyncAPIResource):
         Delete bare metal GPU image by ID
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          image_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}']['delete'].parameters[2].schema"
+          image_id: Image ID
 
           extra_headers: Send extra headers
 
@@ -154,14 +149,11 @@ class ImagesResource(SyncAPIResource):
         Get bare metal GPU image by ID
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          image_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}'].get.parameters[2].schema"
+          image_id: Image ID
 
           extra_headers: Send extra headers
 
@@ -211,41 +203,34 @@ class ImagesResource(SyncAPIResource):
         Upload new bare metal GPU image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/post/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/post/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/name'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.name"
+          name: Image name
 
-          url: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/url/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.url.anyOf[0]"
+          url: Image URL
 
-          architecture: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/architecture/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.architecture.anyOf[0]"
+          architecture: Image architecture type: aarch64, x86_64
 
-          cow_format: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/cow_format'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.cow_format"
+          cow_format: When True, image cannot be deleted unless all volumes, created from it, are
+              deleted.
 
-          hw_firmware_type: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/hw_firmware_type/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.hw_firmware_type.anyOf[0]"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          os_distro: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/os_distro/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.os_distro.anyOf[0]"
+          os_distro: OS Distribution, i.e. Debian, CentOS, Ubuntu, CoreOS etc.
 
-          os_type: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/os_type/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.os_type.anyOf[0]"
+          os_type: The operating system installed on the image. Linux by default
 
-          os_version: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/os_version/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.os_version.anyOf[0]"
+          os_version: OS version, i.e. 19.04 (for Ubuntu) or 9.4 for Debian
 
-          ssh_key: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/ssh_key'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.ssh_key"
+          ssh_key: Permission to use a ssh key in instances
 
-          tags: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/tags'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -319,11 +304,9 @@ class AsyncImagesResource(AsyncAPIResource):
         List bare metal GPU images
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/get/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/get/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].get.parameters[1].schema"
+          region_id: Region ID
 
           extra_headers: Send extra headers
 
@@ -362,14 +345,11 @@ class AsyncImagesResource(AsyncAPIResource):
         Delete bare metal GPU image by ID
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          image_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}']['delete'].parameters[2].schema"
+          image_id: Image ID
 
           extra_headers: Send extra headers
 
@@ -410,14 +390,11 @@ class AsyncImagesResource(AsyncAPIResource):
         Get bare metal GPU image by ID
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          image_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages%2F%7Bimage_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}'].get.parameters[2].schema"
+          image_id: Image ID
 
           extra_headers: Send extra headers
 
@@ -467,41 +444,34 @@ class AsyncImagesResource(AsyncAPIResource):
         Upload new bare metal GPU image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/post/parameters/0/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv3%2Fgpu%2Fbaremetal%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fimages/post/parameters/1/schema'
-              "$.paths['/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images'].post.parameters[1].schema"
+          region_id: Region ID
 
-          name: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/name'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.name"
+          name: Image name
 
-          url: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/url/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.url.anyOf[0]"
+          url: Image URL
 
-          architecture: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/architecture/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.architecture.anyOf[0]"
+          architecture: Image architecture type: aarch64, x86_64
 
-          cow_format: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/cow_format'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.cow_format"
+          cow_format: When True, image cannot be deleted unless all volumes, created from it, are
+              deleted.
 
-          hw_firmware_type: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/hw_firmware_type/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.hw_firmware_type.anyOf[0]"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          os_distro: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/os_distro/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.os_distro.anyOf[0]"
+          os_distro: OS Distribution, i.e. Debian, CentOS, Ubuntu, CoreOS etc.
 
-          os_type: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/os_type/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.os_type.anyOf[0]"
+          os_type: The operating system installed on the image. Linux by default
 
-          os_version: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/os_version/anyOf/0'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.os_version.anyOf[0]"
+          os_version: OS version, i.e. 19.04 (for Ubuntu) or 9.4 for Debian
 
-          ssh_key: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/ssh_key'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.ssh_key"
+          ssh_key: Permission to use a ssh key in instances
 
-          tags: '#/components/schemas/UploadBaremetalGpuImageSerializer/properties/tags'
-              "$.components.schemas.UploadBaremetalGpuImageSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 

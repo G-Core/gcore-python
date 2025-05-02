@@ -10,13 +10,7 @@ __all__ = ["PlacementGroupList"]
 
 class PlacementGroupList(BaseModel):
     count: int
-    """
-    '#/components/schemas/ServerGroupSerializerList/properties/count'
-    "$.components.schemas.ServerGroupSerializerList.properties.count"
-    """
+    """Number of objects"""
 
     results: List[PlacementGroup]
-    """
-    '#/components/schemas/ServerGroupSerializerList/properties/results'
-    "$.components.schemas.ServerGroupSerializerList.properties.results"
-    """
+    """Objects"""

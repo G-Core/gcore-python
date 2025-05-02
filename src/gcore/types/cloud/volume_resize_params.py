@@ -9,19 +9,10 @@ __all__ = ["VolumeResizeParams"]
 
 class VolumeResizeParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/0/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fextend/post/parameters/1/schema'
-    "$.paths['/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     size: Required[int]
-    """
-    '#/components/schemas/SizeSerializer/properties/size'
-    "$.components.schemas.SizeSerializer.properties.size"
-    """
+    """New volume size in GiB"""

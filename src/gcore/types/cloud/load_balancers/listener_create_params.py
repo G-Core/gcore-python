@@ -12,105 +12,61 @@ __all__ = ["ListenerCreateParams", "UserList"]
 
 class ListenerCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     loadbalancer_id: Required[str]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/loadbalancer_id'
-    "$.components.schemas.CreateLbListenerSerializer.properties.loadbalancer_id"
-    """
+    """Load balancer ID"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/name'
-    "$.components.schemas.CreateLbListenerSerializer.properties.name"
-    """
+    """Load balancer listener name"""
 
     protocol: Required[LbListenerProtocol]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/protocol'
-    "$.components.schemas.CreateLbListenerSerializer.properties.protocol"
-    """
+    """Load balancer listener protocol"""
 
     protocol_port: Required[int]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/protocol_port'
-    "$.components.schemas.CreateLbListenerSerializer.properties.protocol_port"
-    """
+    """Protocol port"""
 
     allowed_cidrs: Optional[List[str]]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/allowed_cidrs/anyOf/0'
-    "$.components.schemas.CreateLbListenerSerializer.properties.allowed_cidrs.anyOf[0]"
-    """
+    """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/connection_limit'
-    "$.components.schemas.CreateLbListenerSerializer.properties.connection_limit"
-    """
+    """Limit of the simultaneous connections"""
 
     insert_x_forwarded: bool
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/insert_x_forwarded'
-    "$.components.schemas.CreateLbListenerSerializer.properties.insert_x_forwarded"
+    """Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
+
+    Only used with HTTP or TERMINATED_HTTPS protocols.
     """
 
     secret_id: str
     """
-    '#/components/schemas/CreateLbListenerSerializer/properties/secret_id/anyOf/0'
-    "$.components.schemas.CreateLbListenerSerializer.properties.secret_id.anyOf[0]"
+    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+    listener
     """
 
     sni_secret_id: List[str]
     """
-    '#/components/schemas/CreateLbListenerSerializer/properties/sni_secret_id'
-    "$.components.schemas.CreateLbListenerSerializer.properties.sni_secret_id"
+    List of secrets IDs containing PKCS12 format certificate/key bundles for
+    TERMINATED_HTTPS or PROMETHEUS listeners
     """
 
     timeout_client_data: Optional[int]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/timeout_client_data/anyOf/0'
-    "$.components.schemas.CreateLbListenerSerializer.properties.timeout_client_data.anyOf[0]"
-    """
+    """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/timeout_member_connect/anyOf/0'
-    "$.components.schemas.CreateLbListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-    """
+    """Backend member connection timeout in milliseconds"""
 
     timeout_member_data: Optional[int]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/timeout_member_data/anyOf/0'
-    "$.components.schemas.CreateLbListenerSerializer.properties.timeout_member_data.anyOf[0]"
-    """
+    """Backend member inactivity timeout in milliseconds"""
 
     user_list: Iterable[UserList]
-    """
-    '#/components/schemas/CreateLbListenerSerializer/properties/user_list'
-    "$.components.schemas.CreateLbListenerSerializer.properties.user_list"
-    """
+    """Load balancer listener list of username and encrypted password items"""
 
 
 class UserList(TypedDict, total=False):
     encrypted_password: Required[str]
-    """
-    '#/components/schemas/UserListItem/properties/encrypted_password'
-    "$.components.schemas.UserListItem.properties.encrypted_password"
-    """
+    """Encrypted password to auth via Basic Authentication"""
 
     username: Required[str]
-    """
-    '#/components/schemas/UserListItem/properties/username'
-    "$.components.schemas.UserListItem.properties.username"
-    """
+    """Username to auth via Basic Authentication"""

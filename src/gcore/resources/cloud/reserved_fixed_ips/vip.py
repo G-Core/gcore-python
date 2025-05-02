@@ -66,15 +66,6 @@ class VipResource(SyncAPIResource):
         List instance ports that are available for connecting to VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Favailable_devices/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Favailable_devices/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices'].get.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Favailable_devices/get/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -114,15 +105,6 @@ class VipResource(SyncAPIResource):
         List instance ports that share VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].get.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/get/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -163,17 +145,7 @@ class VipResource(SyncAPIResource):
         Replace ports that share VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[2].schema"
-
-          port_ids: '#/components/schemas/PortIDsForVIPSerializer/properties/port_ids'
-              "$.components.schemas.PortIDsForVIPSerializer.properties.port_ids"
+          port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers
 
@@ -218,17 +190,7 @@ class VipResource(SyncAPIResource):
         Switch VIP status of reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].patch.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].patch.parameters[2].schema"
-
-          is_vip: '#/components/schemas/PatchReservedFixedIPSerializer/properties/is_vip'
-              "$.components.schemas.PatchReservedFixedIPSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP should be a VIP
 
           extra_headers: Send extra headers
 
@@ -271,17 +233,7 @@ class VipResource(SyncAPIResource):
         Add ports that share VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].patch.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].patch.parameters[2].schema"
-
-          port_ids: '#/components/schemas/PortIDsForVIPSerializer/properties/port_ids'
-              "$.components.schemas.PortIDsForVIPSerializer.properties.port_ids"
+          port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers
 
@@ -346,15 +298,6 @@ class AsyncVipResource(AsyncAPIResource):
         List instance ports that are available for connecting to VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Favailable_devices/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Favailable_devices/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices'].get.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Favailable_devices/get/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -394,15 +337,6 @@ class AsyncVipResource(AsyncAPIResource):
         List instance ports that share VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].get.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/get/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -443,17 +377,7 @@ class AsyncVipResource(AsyncAPIResource):
         Replace ports that share VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[2].schema"
-
-          port_ids: '#/components/schemas/PortIDsForVIPSerializer/properties/port_ids'
-              "$.components.schemas.PortIDsForVIPSerializer.properties.port_ids"
+          port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers
 
@@ -498,17 +422,7 @@ class AsyncVipResource(AsyncAPIResource):
         Switch VIP status of reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].patch.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].patch.parameters[2].schema"
-
-          is_vip: '#/components/schemas/PatchReservedFixedIPSerializer/properties/is_vip'
-              "$.components.schemas.PatchReservedFixedIPSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP should be a VIP
 
           extra_headers: Send extra headers
 
@@ -551,17 +465,7 @@ class AsyncVipResource(AsyncAPIResource):
         Add ports that share VIP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].patch.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].patch.parameters[2].schema"
-
-          port_ids: '#/components/schemas/PortIDsForVIPSerializer/properties/port_ids'
-              "$.components.schemas.PortIDsForVIPSerializer.properties.port_ids"
+          port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers
 

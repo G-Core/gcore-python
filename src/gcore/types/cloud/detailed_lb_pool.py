@@ -16,131 +16,72 @@ __all__ = ["DetailedLbPool", "Listener", "Loadbalancer"]
 
 class Listener(BaseModel):
     id: str
-    """
-    '#/components/schemas/MandatoryIdSerializerPydantic/properties/id'
-    "$.components.schemas.MandatoryIdSerializerPydantic.properties.id"
-    """
+    """Resource ID"""
 
 
 class Loadbalancer(BaseModel):
     id: str
-    """
-    '#/components/schemas/MandatoryIdSerializerPydantic/properties/id'
-    "$.components.schemas.MandatoryIdSerializerPydantic.properties.id"
-    """
+    """Resource ID"""
 
 
 class DetailedLbPool(BaseModel):
     id: str
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/id'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.id"
-    """
+    """Pool ID"""
 
     ca_secret_id: Optional[str] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/ca_secret_id/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.ca_secret_id.anyOf[0]"
-    """
+    """Secret ID of CA certificate bundle"""
 
     crl_secret_id: Optional[str] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/crl_secret_id/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.crl_secret_id.anyOf[0]"
-    """
+    """Secret ID of CA revocation list file"""
 
     lb_algorithm: LbAlgorithm
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/lb_algorithm'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.lb_algorithm"
-    """
+    """Load balancer algorithm"""
 
     listeners: List[Listener]
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/listeners'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.listeners"
-    """
+    """Listeners IDs"""
 
     loadbalancers: List[Loadbalancer]
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/loadbalancers'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.loadbalancers"
-    """
+    """Load balancers IDs"""
 
     members: List[DetailedLbPoolMember]
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/members'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.members"
-    """
+    """Pool members"""
 
     name: str
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/name'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.name"
-    """
+    """Pool name"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/operating_status'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.operating_status"
-    """
+    """Pool operating status"""
 
     protocol: LbPoolProtocol
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/protocol'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.protocol"
-    """
+    """Protocol"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/provisioning_status'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.provisioning_status"
-    """
+    """Pool lifecycle status"""
 
     secret_id: Optional[str] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/secret_id/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.secret_id.anyOf[0]"
-    """
+    """Secret ID for TLS client authentication to the member servers"""
 
     session_persistence: Optional[LbSessionPersistence] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/session_persistence/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.session_persistence.anyOf[0]"
-    """
+    """Session persistence parameters"""
 
     timeout_client_data: Optional[int] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/timeout_client_data/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.timeout_client_data.anyOf[0]"
-    """
+    """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/timeout_member_connect/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.timeout_member_connect.anyOf[0]"
-    """
+    """Backend member connection timeout in milliseconds"""
 
     timeout_member_data: Optional[int] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/timeout_member_data/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.timeout_member_data.anyOf[0]"
-    """
+    """Backend member inactivity timeout in milliseconds"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     healthmonitor: Optional[LbHealthMonitor] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/healthmonitor/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.healthmonitor.anyOf[0]"
-    """
+    """Health monitor parameters"""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/DetailedLbPoolSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.DetailedLbPoolSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """

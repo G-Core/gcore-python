@@ -10,25 +10,13 @@ __all__ = ["HealthMonitorStatus"]
 
 class HealthMonitorStatus(BaseModel):
     id: str
-    """
-    '#/components/schemas/HealthMonitorStatusSerializer/properties/id'
-    "$.components.schemas.HealthMonitorStatusSerializer.properties.id"
-    """
+    """UUID of the entity"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/HealthMonitorStatusSerializer/properties/operating_status'
-    "$.components.schemas.HealthMonitorStatusSerializer.properties.operating_status"
-    """
+    """Operating status of the entity"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/HealthMonitorStatusSerializer/properties/provisioning_status'
-    "$.components.schemas.HealthMonitorStatusSerializer.properties.provisioning_status"
-    """
+    """Provisioning status of the entity"""
 
     type: HealthMonitorType
-    """
-    '#/components/schemas/HealthMonitorStatusSerializer/properties/type'
-    "$.components.schemas.HealthMonitorStatusSerializer.properties.type"
-    """
+    """Type of the Health Monitor"""

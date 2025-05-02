@@ -10,67 +10,45 @@ __all__ = ["L7PolicyCreateParams"]
 
 class L7PolicyCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     action: Required[Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"]]
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/action'
-    "$.components.schemas.CreateL7PolicySchema.properties.action"
-    """
+    """Action"""
 
     listener_id: Required[str]
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/listener_id'
-    "$.components.schemas.CreateL7PolicySchema.properties.listener_id"
-    """
+    """Listener ID"""
 
     name: str
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/name'
-    "$.components.schemas.CreateL7PolicySchema.properties.name"
-    """
+    """Human-readable name of the policy"""
 
     position: int
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/position'
-    "$.components.schemas.CreateL7PolicySchema.properties.position"
-    """
+    """The position of this policy on the listener. Positions start at 1."""
 
     redirect_http_code: int
     """
-    '#/components/schemas/CreateL7PolicySchema/properties/redirect_http_code'
-    "$.components.schemas.CreateL7PolicySchema.properties.redirect_http_code"
+    Requests matching this policy will be redirected to the specified URL or Prefix
+    URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
+    REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
     """
 
     redirect_pool_id: str
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/redirect_pool_id'
-    "$.components.schemas.CreateL7PolicySchema.properties.redirect_pool_id"
+    """Requests matching this policy will be redirected to the pool withthis ID.
+
+    Only valid if action is REDIRECT_TO_POOL.
     """
 
     redirect_prefix: str
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/redirect_prefix'
-    "$.components.schemas.CreateL7PolicySchema.properties.redirect_prefix"
+    """Requests matching this policy will be redirected to this Prefix URL.
+
+    Only valid if action is REDIRECT_PREFIX.
     """
 
     redirect_url: str
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/redirect_url'
-    "$.components.schemas.CreateL7PolicySchema.properties.redirect_url"
+    """Requests matching this policy will be redirected to this URL.
+
+    Only valid if action is REDIRECT_TO_URL.
     """
 
     tags: List[str]
-    """
-    '#/components/schemas/CreateL7PolicySchema/properties/tags'
-    "$.components.schemas.CreateL7PolicySchema.properties.tags"
-    """
+    """A list of simple strings assigned to the resource."""

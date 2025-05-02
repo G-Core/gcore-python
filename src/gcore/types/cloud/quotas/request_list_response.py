@@ -10,385 +10,196 @@ __all__ = ["RequestListResponse", "RequestedLimits", "RequestedLimitsGlobalLimit
 
 class RequestedLimitsGlobalLimits(BaseModel):
     inference_cpu_millicore_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/CreateGlobalQuotasLimitsSerializer/properties/inference_cpu_millicore_count_limit'
-    "$.components.schemas.CreateGlobalQuotasLimitsSerializer.properties.inference_cpu_millicore_count_limit"
-    """
+    """Inference CPU millicore count limit"""
 
     inference_gpu_a100_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/CreateGlobalQuotasLimitsSerializer/properties/inference_gpu_a100_count_limit'
-    "$.components.schemas.CreateGlobalQuotasLimitsSerializer.properties.inference_gpu_a100_count_limit"
-    """
+    """Inference GPU A100 Count limit"""
 
     inference_gpu_h100_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/CreateGlobalQuotasLimitsSerializer/properties/inference_gpu_h100_count_limit'
-    "$.components.schemas.CreateGlobalQuotasLimitsSerializer.properties.inference_gpu_h100_count_limit"
-    """
+    """Inference GPU H100 Count limit"""
 
     inference_gpu_l40s_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/CreateGlobalQuotasLimitsSerializer/properties/inference_gpu_l40s_count_limit'
-    "$.components.schemas.CreateGlobalQuotasLimitsSerializer.properties.inference_gpu_l40s_count_limit"
-    """
+    """Inference GPU L40s Count limit"""
 
     inference_instance_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/CreateGlobalQuotasLimitsSerializer/properties/inference_instance_count_limit'
-    "$.components.schemas.CreateGlobalQuotasLimitsSerializer.properties.inference_instance_count_limit"
-    """
+    """Inference instance count limit"""
 
     keypair_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/CreateGlobalQuotasLimitsSerializer/properties/keypair_count_limit'
-    "$.components.schemas.CreateGlobalQuotasLimitsSerializer.properties.keypair_count_limit"
-    """
+    """SSH Keys Count limit"""
 
     project_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/CreateGlobalQuotasLimitsSerializer/properties/project_count_limit'
-    "$.components.schemas.CreateGlobalQuotasLimitsSerializer.properties.project_count_limit"
-    """
+    """Projects Count limit"""
 
 
 class RequestedLimitsRegionalLimit(BaseModel):
     baremetal_basic_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/baremetal_basic_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.baremetal_basic_count_limit"
-    """
+    """Basic bare metal servers count limit"""
 
     baremetal_gpu_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/baremetal_gpu_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.baremetal_gpu_count_limit"
-    """
+    """AI GPU bare metal servers count limit"""
 
     baremetal_hf_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/baremetal_hf_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.baremetal_hf_count_limit"
-    """
+    """High-frequency bare metal servers count limit"""
 
     baremetal_infrastructure_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/baremetal_infrastructure_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.baremetal_infrastructure_count_limit"
-    """
+    """Infrastructure bare metal servers count limit"""
 
     baremetal_network_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/baremetal_network_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.baremetal_network_count_limit"
-    """
+    """Bare metal Network Count limit"""
 
     baremetal_storage_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/baremetal_storage_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.baremetal_storage_count_limit"
-    """
+    """Storage bare metal servers count limit"""
 
     caas_container_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/caas_container_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.caas_container_count_limit"
-    """
+    """Containers count limit"""
 
     caas_cpu_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/caas_cpu_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.caas_cpu_count_limit"
-    """
+    """mCPU count for containers limit"""
 
     caas_gpu_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/caas_gpu_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.caas_gpu_count_limit"
-    """
+    """Containers gpu count limit"""
 
     caas_ram_size_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/caas_ram_size_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.caas_ram_size_limit"
-    """
+    """MB memory count for containers limit"""
 
     cluster_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/cluster_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.cluster_count_limit"
-    """
+    """K8s clusters count limit"""
 
     cpu_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/cpu_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.cpu_count_limit"
-    """
+    """vCPU Count limit"""
 
     dbaas_postgres_cluster_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/dbaas_postgres_cluster_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.dbaas_postgres_cluster_count_limit"
-    """
+    """DBaaS cluster count limit"""
 
     external_ip_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/external_ip_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.external_ip_count_limit"
-    """
+    """External IP Count limit"""
 
     faas_cpu_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/faas_cpu_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.faas_cpu_count_limit"
-    """
+    """mCPU count for functions limit"""
 
     faas_function_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/faas_function_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.faas_function_count_limit"
-    """
+    """Functions count limit"""
 
     faas_namespace_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/faas_namespace_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.faas_namespace_count_limit"
-    """
+    """Functions namespace count limit"""
 
     faas_ram_size_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/faas_ram_size_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.faas_ram_size_limit"
-    """
+    """MB memory count for functions limit"""
 
     firewall_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/firewall_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.firewall_count_limit"
-    """
+    """Firewalls Count limit"""
 
     floating_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/floating_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.floating_count_limit"
-    """
+    """Floating IP Count limit"""
 
     gpu_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/gpu_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.gpu_count_limit"
-    """
+    """GPU Count limit"""
 
     gpu_virtual_a100_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/gpu_virtual_a100_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.gpu_virtual_a100_count_limit"
-    """
+    """Virtual A100 GPU card count limit"""
 
     gpu_virtual_h100_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/gpu_virtual_h100_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.gpu_virtual_h100_count_limit"
-    """
+    """Virtual H100 GPU card count limit"""
 
     gpu_virtual_l40s_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/gpu_virtual_l40s_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.gpu_virtual_l40s_count_limit"
-    """
+    """Virtual L40S GPU card count limit"""
 
     image_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/image_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.image_count_limit"
-    """
+    """Images Count limit"""
 
     image_size_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/image_size_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.image_size_limit"
-    """
+    """Images Size, GiB limit"""
 
     ipu_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/ipu_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.ipu_count_limit"
-    """
+    """IPU Count limit"""
 
     laas_topic_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/laas_topic_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.laas_topic_count_limit"
-    """
+    """LaaS Topics Count limit"""
 
     loadbalancer_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/loadbalancer_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.loadbalancer_count_limit"
-    """
+    """Load Balancers Count limit"""
 
     network_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/network_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.network_count_limit"
-    """
+    """Networks Count limit"""
 
     ram_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/ram_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.ram_limit"
-    """
+    """RAM Size, GiB limit"""
 
     region_id: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/region_id'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     registry_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/registry_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.registry_count_limit"
-    """
+    """Registries count limit"""
 
     registry_storage_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/registry_storage_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.registry_storage_limit"
-    """
+    """Registries volume usage, GiB limit"""
 
     router_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/router_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.router_count_limit"
-    """
+    """Routers Count limit"""
 
     secret_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/secret_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.secret_count_limit"
-    """
+    """Secret Count limit"""
 
     servergroup_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/servergroup_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.servergroup_count_limit"
-    """
+    """Placement Group Count limit"""
 
     sfs_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/sfs_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.sfs_count_limit"
-    """
+    """Shared file system Count limit"""
 
     sfs_size_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/sfs_size_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.sfs_size_limit"
-    """
+    """Shared file system Size, GiB limit"""
 
     shared_vm_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/shared_vm_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.shared_vm_count_limit"
-    """
+    """Basic VMs Count limit"""
 
     snapshot_schedule_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/snapshot_schedule_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.snapshot_schedule_count_limit"
-    """
+    """Snapshot Schedules Count limit"""
 
     subnet_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/subnet_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.subnet_count_limit"
-    """
+    """Subnets Count limit"""
 
     vm_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/vm_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.vm_count_limit"
-    """
+    """Instances Dedicated Count limit"""
 
     volume_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/volume_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.volume_count_limit"
-    """
+    """Volumes Count limit"""
 
     volume_size_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/volume_size_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.volume_size_limit"
-    """
+    """Volumes Size, GiB limit"""
 
     volume_snapshots_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/volume_snapshots_count_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.volume_snapshots_count_limit"
-    """
+    """Snapshots Count limit"""
 
     volume_snapshots_size_limit: Optional[int] = None
-    """
-    '#/components/schemas/RegionalQuotasLimitsSerializer/properties/volume_snapshots_size_limit'
-    "$.components.schemas.RegionalQuotasLimitsSerializer.properties.volume_snapshots_size_limit"
-    """
+    """Snapshots Size, GiB limit"""
 
 
 class RequestedLimits(BaseModel):
     global_limits: Optional[RequestedLimitsGlobalLimits] = None
-    """
-    '#/components/schemas/AllClientQuotasLimitsSerializer/properties/global_limits'
-    "$.components.schemas.AllClientQuotasLimitsSerializer.properties.global_limits"
-    """
+    """Global entity quota limits"""
 
     regional_limits: Optional[List[RequestedLimitsRegionalLimit]] = None
-    """
-    '#/components/schemas/AllClientQuotasLimitsSerializer/properties/regional_limits'
-    "$.components.schemas.AllClientQuotasLimitsSerializer.properties.regional_limits"
-    """
+    """Regions and their quota limits"""
 
 
 class RequestListResponse(BaseModel):
     id: int
-    """
-    '#/components/schemas/LimitsRequestSerializer/properties/id'
-    "$.components.schemas.LimitsRequestSerializer.properties.id"
-    """
+    """Request ID"""
 
     client_id: int
-    """
-    '#/components/schemas/LimitsRequestSerializer/properties/client_id'
-    "$.components.schemas.LimitsRequestSerializer.properties.client_id"
-    """
+    """Client ID"""
 
     requested_limits: RequestedLimits
-    """
-    '#/components/schemas/LimitsRequestSerializer/properties/requested_limits'
-    "$.components.schemas.LimitsRequestSerializer.properties.requested_limits"
-    """
+    """Requested limits."""
 
     status: str
-    """
-    '#/components/schemas/LimitsRequestSerializer/properties/status'
-    "$.components.schemas.LimitsRequestSerializer.properties.status"
-    """
+    """Request status"""
 
     created_at: Optional[datetime] = None
-    """
-    '#/components/schemas/LimitsRequestSerializer/properties/created_at'
-    "$.components.schemas.LimitsRequestSerializer.properties.created_at"
-    """
+    """Datetime when the request was created."""
 
     description: Optional[str] = None
-    """
-    '#/components/schemas/LimitsRequestSerializer/properties/description/anyOf/0'
-    "$.components.schemas.LimitsRequestSerializer.properties.description.anyOf[0]"
-    """
+    """Describe the reason, in general terms."""
 
     updated_at: Optional[datetime] = None
-    """
-    '#/components/schemas/LimitsRequestSerializer/properties/updated_at/anyOf/0'
-    "$.components.schemas.LimitsRequestSerializer.properties.updated_at.anyOf[0]"
-    """
+    """Datetime when the request was updated."""

@@ -10,13 +10,7 @@ __all__ = ["RegistryUserList"]
 
 class RegistryUserList(BaseModel):
     count: int
-    """
-    '#/components/schemas/RegistryUserCollectionSerializer/properties/count'
-    "$.components.schemas.RegistryUserCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[RegistryUser]
-    """
-    '#/components/schemas/RegistryUserCollectionSerializer/properties/results'
-    "$.components.schemas.RegistryUserCollectionSerializer.properties.results"
-    """
+    """Objects"""

@@ -9,7 +9,4 @@ __all__ = ["TaskIDList"]
 
 class TaskIDList(BaseModel):
     tasks: List[str]
-    """
-    '#/components/schemas/TaskIDsSerializer/properties/tasks'
-    "$.components.schemas.TaskIDsSerializer.properties.tasks"
-    """
+    """List of task IDs"""

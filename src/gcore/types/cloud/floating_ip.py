@@ -12,103 +12,66 @@ __all__ = ["FloatingIP"]
 
 class FloatingIP(BaseModel):
     id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/id/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.id.anyOf[0]"
-    """
+    """Floating IP ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/created_at'
-    "$.components.schemas.FloatingIPSerializer.properties.created_at"
-    """
+    """Datetime when the floating IP was created"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     dns_domain: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/dns_domain/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.dns_domain.anyOf[0]"
-    """
+    """This field is deprecated and can be ignored"""
 
     dns_name: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/dns_name/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.dns_name.anyOf[0]"
-    """
+    """This field is deprecated and can be ignored"""
 
     fixed_ip_address: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/fixed_ip_address/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.fixed_ip_address.anyOf[0]"
-    """
+    """IP address of the port the floating IP is attached to"""
 
     floating_ip_address: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/floating_ip_address/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.floating_ip_address.anyOf[0]"
-    """
+    """IP Address of the floating IP"""
 
     port_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/port_id/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.port_id.anyOf[0]"
+    """Port ID the floating IP is attached to.
+
+    The `fixed_ip_address` is the IP address of the port.
     """
 
     project_id: int
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/project_id'
-    "$.components.schemas.FloatingIPSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/region'
-    "$.components.schemas.FloatingIPSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/region_id'
-    "$.components.schemas.FloatingIPSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     router_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/router_id/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.router_id.anyOf[0]"
-    """
+    """Router ID"""
 
     status: Optional[FloatingIPStatus] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/status/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.status.anyOf[0]"
-    """
+    """Floating IP status"""
 
     subnet_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/subnet_id/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.subnet_id.anyOf[0]"
-    """
+    """This field is deprecated and can be ignored"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/tags'
-    "$.components.schemas.FloatingIPSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.FloatingIPSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     updated_at: datetime
-    """
-    '#/components/schemas/FloatingIPSerializer/properties/updated_at'
-    "$.components.schemas.FloatingIPSerializer.properties.updated_at"
-    """
+    """Datetime when the floating IP was last updated"""

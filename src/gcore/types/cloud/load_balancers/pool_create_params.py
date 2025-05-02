@@ -16,223 +16,126 @@ __all__ = ["PoolCreateParams", "Healthmonitor", "Member", "SessionPersistence"]
 
 class PoolCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     lb_algorithm: Required[LbAlgorithm]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/lb_algorithm'
-    "$.components.schemas.CreateLbPoolSerializer.properties.lb_algorithm"
-    """
+    """Load balancer algorithm"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/name'
-    "$.components.schemas.CreateLbPoolSerializer.properties.name"
-    """
+    """Pool name"""
 
     protocol: Required[LbPoolProtocol]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/protocol'
-    "$.components.schemas.CreateLbPoolSerializer.properties.protocol"
-    """
+    """Protocol"""
 
     ca_secret_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/ca_secret_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.ca_secret_id.anyOf[0]"
-    """
+    """Secret ID of CA certificate bundle"""
 
     crl_secret_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/crl_secret_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.crl_secret_id.anyOf[0]"
-    """
+    """Secret ID of CA revocation list file"""
 
     healthmonitor: Optional[Healthmonitor]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/healthmonitor/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.healthmonitor.anyOf[0]"
-    """
+    """Health monitor details"""
 
     listener_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/listener_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.listener_id.anyOf[0]"
-    """
+    """Listener ID"""
 
     loadbalancer_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/loadbalancer_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.loadbalancer_id.anyOf[0]"
-    """
+    """Loadbalancer ID"""
 
     members: Optional[Iterable[Member]]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/members/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.members.anyOf[0]"
-    """
+    """Pool members"""
 
     secret_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/secret_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.secret_id.anyOf[0]"
-    """
+    """Secret ID for TLS client authentication to the member servers"""
 
     session_persistence: Optional[SessionPersistence]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/session_persistence/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.session_persistence.anyOf[0]"
-    """
+    """Session persistence details"""
 
     timeout_client_data: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/timeout_client_data/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.timeout_client_data.anyOf[0]"
-    """
+    """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_connect/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_connect.anyOf[0]"
-    """
+    """Backend member connection timeout in milliseconds"""
 
     timeout_member_data: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_data/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_data.anyOf[0]"
-    """
+    """Backend member inactivity timeout in milliseconds"""
 
 
 class Healthmonitor(TypedDict, total=False):
     delay: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/delay'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.delay"
-    """
+    """The time, in seconds, between sending probes to members"""
 
     max_retries: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries"
-    """
+    """Number of successes before the member is switched to ONLINE state"""
 
     timeout: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/timeout'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.timeout"
-    """
+    """The maximum time to connect. Must be less than the delay value"""
 
     type: Required[HealthMonitorType]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/type'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.type"
-    """
+    """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/expected_codes/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.expected_codes.anyOf[0]"
-    """
+    """Can only be used together with `HTTP` or `HTTPS` health monitor type."""
 
     http_method: Optional[HTTPMethod]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/http_method/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.http_method.anyOf[0]"
+    """HTTP method.
+
+    Can only be used together with `HTTP` or `HTTPS` health monitor type.
     """
 
     max_retries_down: Optional[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries_down/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries_down.anyOf[0]"
-    """
+    """Number of failures before the member is switched to ERROR state."""
 
     url_path: Optional[str]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/url_path/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.url_path.anyOf[0]"
+    """URL Path.
+
+    Defaults to '/'. Can only be used together with `HTTP` or `HTTPS` health monitor
+    type.
     """
 
 
 class Member(TypedDict, total=False):
     address: Required[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/address'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.address"
-    """
+    """Member IP address"""
 
     protocol_port: Required[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/protocol_port'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.protocol_port"
-    """
+    """Member IP port"""
 
     admin_state_up: Optional[bool]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/admin_state_up/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.admin_state_up.anyOf[0]"
-    """
+    """true if enabled. Defaults to true"""
 
     instance_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/instance_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.instance_id.anyOf[0]"
-    """
+    """Either subnet_id or instance_id should be provided"""
 
     monitor_address: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_address/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_address.anyOf[0]"
+    """An alternate IP address used for health monitoring of a backend member.
+
+    Default is null which monitors the member address.
     """
 
     monitor_port: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_port/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_port.anyOf[0]"
+    """An alternate protocol port used for health monitoring of a backend member.
+
+    Default is null which monitors the member protocol_port.
     """
 
     subnet_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/subnet_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.subnet_id.anyOf[0]"
-    """
+    """Either subnet_id or instance_id should be provided"""
 
     weight: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/weight/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.weight.anyOf[0]"
-    """
+    """Member weight. Valid values: 0 to 256, defaults to 1"""
 
 
 class SessionPersistence(TypedDict, total=False):
     type: Required[SessionPersistenceType]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/type'
-    "$.components.schemas.MutateLbSessionPersistence.properties.type"
-    """
+    """Session persistence type"""
 
     cookie_name: Optional[str]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/cookie_name/anyOf/0'
-    "$.components.schemas.MutateLbSessionPersistence.properties.cookie_name.anyOf[0]"
-    """
+    """Should be set if app cookie or http cookie is used"""
 
     persistence_granularity: Optional[str]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/persistence_granularity/anyOf/0'
-    "$.components.schemas.MutateLbSessionPersistence.properties.persistence_granularity.anyOf[0]"
-    """
+    """Subnet mask if source_ip is used. For UDP ports only"""
 
     persistence_timeout: Optional[int]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/persistence_timeout/anyOf/0'
-    "$.components.schemas.MutateLbSessionPersistence.properties.persistence_timeout.anyOf[0]"
-    """
+    """Session persistence timeout. For UDP ports only"""

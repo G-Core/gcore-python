@@ -69,20 +69,8 @@ class ServersResource(SyncAPIResource):
         Remove single node from GPU cluster.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[2].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[3].schema"
-
-          delete_floatings: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/4'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[4]"
+          delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's
+              True.
 
           extra_headers: Send extra headers
 
@@ -138,32 +126,17 @@ class ServersResource(SyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          interface_name: Interface name
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          ddos_profile: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.ddos_profile.allOf[0]"
+          port_group: Each group will be added to the separate trunk.
 
-          interface_name: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/interface_name'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.interface_name"
+          security_groups: List of security group IDs
 
-          ip_family: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/ip_family'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.ip_family"
-
-          port_group: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/port_group'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/security_groups'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/type'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.type"
+          type: Must be 'external'. Union tag
 
           extra_headers: Send extra headers
 
@@ -200,32 +173,17 @@ class ServersResource(SyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          subnet_id: Port will get an IP address from this subnet
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          interface_name: Interface name
 
-          subnet_id: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/subnet_id'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.subnet_id"
+          port_group: Each group will be added to the separate trunk.
 
-          ddos_profile: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.ddos_profile.allOf[0]"
+          security_groups: List of security group IDs
 
-          interface_name: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/interface_name'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.interface_name"
-
-          port_group: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/port_group'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/security_groups'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/type'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.type"
+          type: Must be 'subnet'
 
           extra_headers: Send extra headers
 
@@ -263,35 +221,19 @@ class ServersResource(SyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          network_id: Port will get an IP address in this network subnet
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          interface_name: Interface name
 
-          network_id: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/network_id'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.network_id"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          ddos_profile: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.ddos_profile.allOf[0]"
+          port_group: Each group will be added to the separate trunk.
 
-          interface_name: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/interface_name'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.interface_name"
+          security_groups: List of security group IDs
 
-          ip_family: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/ip_family'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.ip_family"
-
-          port_group: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/port_group'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/security_groups'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/type'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.type"
+          type: Must be 'any_subnet'
 
           extra_headers: Send extra headers
 
@@ -329,32 +271,17 @@ class ServersResource(SyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          port_id: Port ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          interface_name: Interface name
 
-          port_id: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/port_id'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.port_id"
+          port_group: Each group will be added to the separate trunk.
 
-          ddos_profile: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.ddos_profile.allOf[0]"
+          security_groups: List of security group IDs
 
-          interface_name: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/interface_name'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.interface_name"
-
-          port_group: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/port_group'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/security_groups'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/type'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.type"
+          type: Must be 'reserved_fixed_ip'. Union tag
 
           extra_headers: Send extra headers
 
@@ -437,20 +364,9 @@ class ServersResource(SyncAPIResource):
         Detach interface from GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdetach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface'].post.parameters[0].schema"
+          ip_address: IP address
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdetach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdetach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface'].post.parameters[2].schema"
-
-          ip_address: '#/components/schemas/PortIdWithIpSchema/properties/ip_address'
-              "$.components.schemas.PortIdWithIpSchema.properties.ip_address"
-
-          port_id: '#/components/schemas/PortIdWithIpSchema/properties/port_id'
-              "$.components.schemas.PortIdWithIpSchema.properties.port_id"
+          port_id: ID of the port
 
           extra_headers: Send extra headers
 
@@ -498,15 +414,6 @@ class ServersResource(SyncAPIResource):
         Get GPU cluster node console URL
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -546,15 +453,6 @@ class ServersResource(SyncAPIResource):
         Powercycle (stop and start) one GPU cluster node, aka hard reboot
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fpowercycle/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fpowercycle/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fpowercycle/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -594,15 +492,6 @@ class ServersResource(SyncAPIResource):
         Reboot one GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Freboot/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Freboot/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Freboot/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -665,20 +554,8 @@ class AsyncServersResource(AsyncAPIResource):
         Remove single node from GPU cluster.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[1].schema"
-
-          cluster_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[2].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[3].schema"
-
-          delete_floatings: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Fnode%2F%7Binstance_id%7D/delete/parameters/4'
-              "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}']['delete'].parameters[4]"
+          delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's
+              True.
 
           extra_headers: Send extra headers
 
@@ -736,32 +613,17 @@ class AsyncServersResource(AsyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          interface_name: Interface name
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          ddos_profile: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.ddos_profile.allOf[0]"
+          port_group: Each group will be added to the separate trunk.
 
-          interface_name: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/interface_name'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.interface_name"
+          security_groups: List of security group IDs
 
-          ip_family: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/ip_family'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.ip_family"
-
-          port_group: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/port_group'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/security_groups'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/type'
-              "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.type"
+          type: Must be 'external'. Union tag
 
           extra_headers: Send extra headers
 
@@ -798,32 +660,17 @@ class AsyncServersResource(AsyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          subnet_id: Port will get an IP address from this subnet
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          interface_name: Interface name
 
-          subnet_id: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/subnet_id'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.subnet_id"
+          port_group: Each group will be added to the separate trunk.
 
-          ddos_profile: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.ddos_profile.allOf[0]"
+          security_groups: List of security group IDs
 
-          interface_name: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/interface_name'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.interface_name"
-
-          port_group: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/port_group'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/security_groups'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/type'
-              "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.type"
+          type: Must be 'subnet'
 
           extra_headers: Send extra headers
 
@@ -861,35 +708,19 @@ class AsyncServersResource(AsyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          network_id: Port will get an IP address in this network subnet
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          interface_name: Interface name
 
-          network_id: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/network_id'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.network_id"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          ddos_profile: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.ddos_profile.allOf[0]"
+          port_group: Each group will be added to the separate trunk.
 
-          interface_name: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/interface_name'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.interface_name"
+          security_groups: List of security group IDs
 
-          ip_family: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/ip_family'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.ip_family"
-
-          port_group: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/port_group'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/security_groups'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceAnySubnetSchema/properties/type'
-              "$.components.schemas.NewInterfaceAnySubnetSchema.properties.type"
+          type: Must be 'any_subnet'
 
           extra_headers: Send extra headers
 
@@ -927,32 +758,17 @@ class AsyncServersResource(AsyncAPIResource):
         Attach interface to GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
+          port_id: Port ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
+          ddos_profile: Advanced DDoS protection.
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[2].schema"
+          interface_name: Interface name
 
-          port_id: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/port_id'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.port_id"
+          port_group: Each group will be added to the separate trunk.
 
-          ddos_profile: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/ddos_profile/allOf/0'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.ddos_profile.allOf[0]"
+          security_groups: List of security group IDs
 
-          interface_name: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/interface_name'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.interface_name"
-
-          port_group: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/port_group'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.port_group"
-
-          security_groups: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/security_groups'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.security_groups"
-
-          type: '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/type'
-              "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.type"
+          type: Must be 'reserved_fixed_ip'. Union tag
 
           extra_headers: Send extra headers
 
@@ -1035,20 +851,9 @@ class AsyncServersResource(AsyncAPIResource):
         Detach interface from GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdetach_interface/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface'].post.parameters[0].schema"
+          ip_address: IP address
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdetach_interface/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdetach_interface/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface'].post.parameters[2].schema"
-
-          ip_address: '#/components/schemas/PortIdWithIpSchema/properties/ip_address'
-              "$.components.schemas.PortIdWithIpSchema.properties.ip_address"
-
-          port_id: '#/components/schemas/PortIdWithIpSchema/properties/port_id'
-              "$.components.schemas.PortIdWithIpSchema.properties.port_id"
+          port_id: ID of the port
 
           extra_headers: Send extra headers
 
@@ -1096,15 +901,6 @@ class AsyncServersResource(AsyncAPIResource):
         Get GPU cluster node console URL
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1144,15 +940,6 @@ class AsyncServersResource(AsyncAPIResource):
         Powercycle (stop and start) one GPU cluster node, aka hard reboot
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fpowercycle/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fpowercycle/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fpowercycle/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1192,15 +979,6 @@ class AsyncServersResource(AsyncAPIResource):
         Reboot one GPU cluster node
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Freboot/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Freboot/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Freboot/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

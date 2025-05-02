@@ -9,7 +9,4 @@ __all__ = ["ContainerProbeTcpSocketCreateParam"]
 
 class ContainerProbeTcpSocketCreateParam(TypedDict, total=False):
     port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeTcpSocketConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeTcpSocketConfigSerializerV2.properties.port"
-    """
+    """Port number to check if it's open."""

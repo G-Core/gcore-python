@@ -10,13 +10,7 @@ __all__ = ["BaremetalFlavorList"]
 
 class BaremetalFlavorList(BaseModel):
     count: int
-    """
-    '#/components/schemas/BareMetalFlavorExtendedCollectionSerializer/properties/count'
-    "$.components.schemas.BareMetalFlavorExtendedCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[BaremetalFlavor]
-    """
-    '#/components/schemas/BareMetalFlavorExtendedCollectionSerializer/properties/results'
-    "$.components.schemas.BareMetalFlavorExtendedCollectionSerializer.properties.results"
-    """
+    """Objects"""

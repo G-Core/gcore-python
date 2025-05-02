@@ -13,49 +13,21 @@ __all__ = ["DDOSProfile"]
 
 class DDOSProfile(BaseModel):
     id: int
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/id'
-    "$.components.schemas.GetClientProfileSerializer.properties.id"
-    """
+    """DDoS protection profile ID"""
 
     profile_template: DDOSProfileTemplate
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/profile_template'
-    "$.components.schemas.GetClientProfileSerializer.properties.profile_template"
-    """
+    """Template data"""
 
     fields: Optional[List[DDOSProfileField]] = None
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/fields'
-    "$.components.schemas.GetClientProfileSerializer.properties.fields"
-    """
 
     options: Optional[DDOSProfileOptionList] = None
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/options/anyOf/0'
-    "$.components.schemas.GetClientProfileSerializer.properties.options.anyOf[0]"
-    """
 
     profile_template_description: Optional[str] = None
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/profile_template_description/anyOf/0'
-    "$.components.schemas.GetClientProfileSerializer.properties.profile_template_description.anyOf[0]"
-    """
+    """DDoS profile template description"""
 
     protocols: Optional[List[object]] = None
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/protocols/anyOf/0'
-    "$.components.schemas.GetClientProfileSerializer.properties.protocols.anyOf[0]"
-    """
+    """List of protocols"""
 
     site: Optional[str] = None
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/site/anyOf/0'
-    "$.components.schemas.GetClientProfileSerializer.properties.site.anyOf[0]"
-    """
 
     status: Optional[DDOSProfileStatus] = None
-    """
-    '#/components/schemas/GetClientProfileSerializer/properties/status/anyOf/0'
-    "$.components.schemas.GetClientProfileSerializer.properties.status.anyOf[0]"
-    """

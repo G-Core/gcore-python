@@ -10,13 +10,7 @@ __all__ = ["NetworkInterfaceList"]
 
 class NetworkInterfaceList(BaseModel):
     count: int
-    """
-    '#/components/schemas/InstanceInterfaceTrunkCollectionSerializer/properties/count'
-    "$.components.schemas.InstanceInterfaceTrunkCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[NetworkInterface]
-    """
-    '#/components/schemas/InstanceInterfaceTrunkCollectionSerializer/properties/results'
-    "$.components.schemas.InstanceInterfaceTrunkCollectionSerializer.properties.results"
-    """
+    """Objects"""

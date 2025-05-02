@@ -10,13 +10,7 @@ __all__ = ["RegionCapacityList"]
 
 class RegionCapacityList(BaseModel):
     count: int
-    """
-    '#/components/schemas/RegionCapacityOutSerializerV3List/properties/count'
-    "$.components.schemas.RegionCapacityOutSerializerV3List.properties.count"
-    """
+    """Number of objects"""
 
     results: List[RegionCapacity]
-    """
-    '#/components/schemas/RegionCapacityOutSerializerV3List/properties/results'
-    "$.components.schemas.RegionCapacityOutSerializerV3List.properties.results"
-    """
+    """Objects"""

@@ -10,19 +10,10 @@ __all__ = ["InferenceProbes"]
 
 class InferenceProbes(BaseModel):
     liveness_probe: Optional[ContainerProbeConfig] = None
-    """
-    '#/components/schemas/InferenceInstanceProbesOutSerializerV2/properties/liveness_probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceProbesOutSerializerV2.properties.liveness_probe.anyOf[0]"
-    """
+    """Liveness probe configuration"""
 
     readiness_probe: Optional[ContainerProbeConfig] = None
-    """
-    '#/components/schemas/InferenceInstanceProbesOutSerializerV2/properties/readiness_probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceProbesOutSerializerV2.properties.readiness_probe.anyOf[0]"
-    """
+    """Readiness probe configuration"""
 
     startup_probe: Optional[ContainerProbeConfig] = None
-    """
-    '#/components/schemas/InferenceInstanceProbesOutSerializerV2/properties/startup_probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceProbesOutSerializerV2.properties.startup_probe.anyOf[0]"
-    """
+    """Startup probe configuration"""

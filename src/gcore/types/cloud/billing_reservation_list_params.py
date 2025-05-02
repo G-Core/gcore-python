@@ -13,69 +13,42 @@ __all__ = ["BillingReservationListParams"]
 
 class BillingReservationListParams(TypedDict, total=False):
     activated_from: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/0'
-    "$.paths['/cloud/v1/reservations'].get.parameters[0]"
-    """
+    """Lower bound, starting from what date the reservation was/will be activated"""
 
     activated_to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/1'
-    "$.paths['/cloud/v1/reservations'].get.parameters[1]"
-    """
+    """High bound, before what date the reservation was/will be activated"""
 
     created_from: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/2'
-    "$.paths['/cloud/v1/reservations'].get.parameters[2]"
+    Lower bound the filter, showing result(s) equal to or greater than date the
+    reservation was created
     """
 
     created_to: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/3'
-    "$.paths['/cloud/v1/reservations'].get.parameters[3]"
+    High bound the filter, showing result(s) equal to or less date the reservation
+    was created
     """
 
     deactivated_from: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/4'
-    "$.paths['/cloud/v1/reservations'].get.parameters[4]"
-    """
+    """Lower bound, starting from what date the reservation was/will be deactivated"""
 
     deactivated_to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/5'
-    "$.paths['/cloud/v1/reservations'].get.parameters[5]"
-    """
+    """High bound, before what date the reservation was/will be deactivated"""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/6'
-    "$.paths['/cloud/v1/reservations'].get.parameters[6]"
-    """
+    """Limit of reservation list page"""
 
     metric_name: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/7'
-    "$.paths['/cloud/v1/reservations'].get.parameters[7]"
-    """
+    """Name from billing features for specific resource"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/8'
-    "$.paths['/cloud/v1/reservations'].get.parameters[8]"
-    """
+    """Offset in reservation list"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/9'
-    "$.paths['/cloud/v1/reservations'].get.parameters[9]"
-    """
+    """Region for reservation"""
 
     status: List[
         Literal["ACTIVATED", "APPROVED", "COPIED", "CREATED", "EXPIRED", "REJECTED", "RESERVED", "WAITING_FOR_PAYMENT"]
     ]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/10'
-    "$.paths['/cloud/v1/reservations'].get.parameters[10]"
-    """
+    """Field for fixed a status by reservation workflow"""

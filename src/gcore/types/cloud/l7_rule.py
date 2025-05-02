@@ -10,71 +10,48 @@ __all__ = ["L7Rule"]
 
 class L7Rule(BaseModel):
     id: Optional[str] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/id'
-    "$.components.schemas.L7RuleSchema.properties.id"
-    """
+    """L7Rule ID"""
 
     compare_type: Optional[Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"]] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/compare_type'
-    "$.components.schemas.L7RuleSchema.properties.compare_type"
-    """
+    """The comparison type for the L7 rule"""
 
     invert: Optional[bool] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/invert'
-    "$.components.schemas.L7RuleSchema.properties.invert"
+    """When true the logic of the rule is inverted.
+
+    For example, with invert true, 'equal to' would become 'not equal to'. Default
+    is false.
     """
 
     key: Optional[str] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/key'
-    "$.components.schemas.L7RuleSchema.properties.key"
+    """The key to use for the comparison.
+
+    For example, the name of the cookie to evaluate.
     """
 
     operating_status: Optional[Literal["DEGRADED", "DRAINING", "ERROR", "NO_MONITOR", "OFFLINE", "ONLINE"]] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/operating_status'
-    "$.components.schemas.L7RuleSchema.properties.operating_status"
-    """
+    """L7 policy operating status"""
 
     project_id: Optional[int] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/project_id'
-    "$.components.schemas.L7RuleSchema.properties.project_id"
-    """
+    """Project ID"""
 
     provisioning_status: Optional[
         Literal["ACTIVE", "DELETED", "ERROR", "PENDING_CREATE", "PENDING_DELETE", "PENDING_UPDATE"]
     ] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/provisioning_status'
-    "$.components.schemas.L7RuleSchema.properties.provisioning_status"
-    """
 
     region: Optional[str] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/region'
-    "$.components.schemas.L7RuleSchema.properties.region"
-    """
+    """Region name"""
 
     region_id: Optional[int] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/region_id'
-    "$.components.schemas.L7RuleSchema.properties.region_id"
-    """
+    """Region ID"""
 
     tags: Optional[List[str]] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/tags'
-    "$.components.schemas.L7RuleSchema.properties.tags"
-    """
+    """A list of simple strings assigned to the l7 rule"""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/task_id'
-    "$.components.schemas.L7RuleSchema.properties.task_id"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     type: Optional[
@@ -89,13 +66,7 @@ class L7Rule(BaseModel):
             "SSL_VERIFY_RESULT",
         ]
     ] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/type'
-    "$.components.schemas.L7RuleSchema.properties.type"
-    """
+    """The L7 rule type"""
 
     value: Optional[str] = None
-    """
-    '#/components/schemas/L7RuleSchema/properties/value'
-    "$.components.schemas.L7RuleSchema.properties.value"
-    """
+    """The value to use for the comparison. For example, the file type to compare."""

@@ -10,13 +10,7 @@ __all__ = ["AccessRuleList"]
 
 class AccessRuleList(BaseModel):
     count: int
-    """
-    '#/components/schemas/AccessRuleCollectionSerializer/properties/count'
-    "$.components.schemas.AccessRuleCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[AccessRule]
-    """
-    '#/components/schemas/AccessRuleCollectionSerializer/properties/results'
-    "$.components.schemas.AccessRuleCollectionSerializer.properties.results"
-    """
+    """Objects"""

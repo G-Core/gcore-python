@@ -7,7 +7,4 @@ __all__ = ["ContainerProbeTcpSocket"]
 
 class ContainerProbeTcpSocket(BaseModel):
     port: int
-    """
-    '#/components/schemas/ContainerProbeTcpSocketConfigOutSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeTcpSocketConfigOutSerializerV2.properties.port"
-    """
+    """Port number to check if it's open."""

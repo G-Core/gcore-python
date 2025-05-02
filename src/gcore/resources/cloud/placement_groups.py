@@ -63,17 +63,9 @@ class PlacementGroupsResource(SyncAPIResource):
         Create an affinity or anti-affinity or soft-anti-affinity placement group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: The name of the server group.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[1].schema"
-
-          name: '#/components/schemas/CreateServerGroupSerializer/properties/name'
-              "$.components.schemas.CreateServerGroupSerializer.properties.name"
-
-          policy: '#/components/schemas/CreateServerGroupSerializer/properties/policy'
-              "$.components.schemas.CreateServerGroupSerializer.properties.policy"
+          policy: The server group policy.
 
           extra_headers: Send extra headers
 
@@ -118,12 +110,6 @@ class PlacementGroupsResource(SyncAPIResource):
         List placement groups
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -161,15 +147,6 @@ class PlacementGroupsResource(SyncAPIResource):
         Delete placement group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,15 +186,6 @@ class PlacementGroupsResource(SyncAPIResource):
         Get placement group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -279,17 +247,9 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         Create an affinity or anti-affinity or soft-anti-affinity placement group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: The name of the server group.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].post.parameters[1].schema"
-
-          name: '#/components/schemas/CreateServerGroupSerializer/properties/name'
-              "$.components.schemas.CreateServerGroupSerializer.properties.name"
-
-          policy: '#/components/schemas/CreateServerGroupSerializer/properties/policy'
-              "$.components.schemas.CreateServerGroupSerializer.properties.policy"
+          policy: The server group policy.
 
           extra_headers: Send extra headers
 
@@ -334,12 +294,6 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         List placement groups
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -377,15 +331,6 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         Delete placement group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -425,15 +370,6 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         Get placement group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fservergroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/servergroups/{project_id}/{region_id}/{group_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

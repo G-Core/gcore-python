@@ -66,26 +66,17 @@ class UsersResource(SyncAPIResource):
         Create a user
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].post.parameters[0].schema"
+          duration: User account operating time, days
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].post.parameters[1].schema"
+          name: A name for the registry user.
 
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/post/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].post.parameters[2].schema"
+              Should be in lowercase, consisting only of numbers and letters,
 
-          duration: '#/components/schemas/RegistryUserCreateSerializer/properties/duration'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.duration"
+              with maximum length of 16 characters
 
-          name: '#/components/schemas/RegistryUserCreateSerializer/properties/name'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.name"
+          read_only: Read-only user
 
-          read_only: '#/components/schemas/RegistryUserCreateSerializer/properties/read_only'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.read_only"
-
-          secret: '#/components/schemas/RegistryUserCreateSerializer/properties/secret'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.secret"
+          secret: User secret
 
           extra_headers: Send extra headers
 
@@ -136,23 +127,9 @@ class UsersResource(SyncAPIResource):
         Update a user
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[0].schema"
+          duration: User account operating time, days
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[2].schema"
-
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[3].schema"
-
-          duration: '#/components/schemas/RegistryUserUpdateSerializer/properties/duration'
-              "$.components.schemas.RegistryUserUpdateSerializer.properties.duration"
-
-          read_only: '#/components/schemas/RegistryUserUpdateSerializer/properties/read_only'
-              "$.components.schemas.RegistryUserUpdateSerializer.properties.read_only"
+          read_only: Read-only user
 
           extra_headers: Send extra headers
 
@@ -198,15 +175,6 @@ class UsersResource(SyncAPIResource):
         Get user list
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].get.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/get/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -245,18 +213,6 @@ class UsersResource(SyncAPIResource):
         Delete a user
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[2].schema"
-
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -296,17 +252,7 @@ class UsersResource(SyncAPIResource):
         Batch create users
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[2].schema"
-
-          users: '#/components/schemas/RegistryBatchUsersCreateSerializer/properties/users'
-              "$.components.schemas.RegistryBatchUsersCreateSerializer.properties.users"
+          users: Set of users
 
           extra_headers: Send extra headers
 
@@ -347,18 +293,6 @@ class UsersResource(SyncAPIResource):
         Refresh a secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[2].schema"
-
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -422,26 +356,17 @@ class AsyncUsersResource(AsyncAPIResource):
         Create a user
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].post.parameters[0].schema"
+          duration: User account operating time, days
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].post.parameters[1].schema"
+          name: A name for the registry user.
 
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/post/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].post.parameters[2].schema"
+              Should be in lowercase, consisting only of numbers and letters,
 
-          duration: '#/components/schemas/RegistryUserCreateSerializer/properties/duration'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.duration"
+              with maximum length of 16 characters
 
-          name: '#/components/schemas/RegistryUserCreateSerializer/properties/name'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.name"
+          read_only: Read-only user
 
-          read_only: '#/components/schemas/RegistryUserCreateSerializer/properties/read_only'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.read_only"
-
-          secret: '#/components/schemas/RegistryUserCreateSerializer/properties/secret'
-              "$.components.schemas.RegistryUserCreateSerializer.properties.secret"
+          secret: User secret
 
           extra_headers: Send extra headers
 
@@ -492,23 +417,9 @@ class AsyncUsersResource(AsyncAPIResource):
         Update a user
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[0].schema"
+          duration: User account operating time, days
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[2].schema"
-
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/patch/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}'].patch.parameters[3].schema"
-
-          duration: '#/components/schemas/RegistryUserUpdateSerializer/properties/duration'
-              "$.components.schemas.RegistryUserUpdateSerializer.properties.duration"
-
-          read_only: '#/components/schemas/RegistryUserUpdateSerializer/properties/read_only'
-              "$.components.schemas.RegistryUserUpdateSerializer.properties.read_only"
+          read_only: Read-only user
 
           extra_headers: Send extra headers
 
@@ -554,15 +465,6 @@ class AsyncUsersResource(AsyncAPIResource):
         Get user list
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].get.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers/get/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -601,18 +503,6 @@ class AsyncUsersResource(AsyncAPIResource):
         Delete a user
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[2].schema"
-
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}']['delete'].parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -652,17 +542,7 @@ class AsyncUsersResource(AsyncAPIResource):
         Batch create users
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[2].schema"
-
-          users: '#/components/schemas/RegistryBatchUsersCreateSerializer/properties/users'
-              "$.components.schemas.RegistryBatchUsersCreateSerializer.properties.users"
+          users: Set of users
 
           extra_headers: Send extra headers
 
@@ -703,18 +583,6 @@ class AsyncUsersResource(AsyncAPIResource):
         Refresh a secret
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[2].schema"
-
-          user_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2F%7Buser_id%7D%2Frefresh_secret/post/parameters/3/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret'].post.parameters[3].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

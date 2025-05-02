@@ -10,13 +10,7 @@ __all__ = ["LoadBalancerStatusList"]
 
 class LoadBalancerStatusList(BaseModel):
     count: int
-    """
-    '#/components/schemas/LoadBalancerStatusSerializerList/properties/count'
-    "$.components.schemas.LoadBalancerStatusSerializerList.properties.count"
-    """
+    """Number of objects"""
 
     results: List[LoadBalancerStatus]
-    """
-    '#/components/schemas/LoadBalancerStatusSerializerList/properties/results'
-    "$.components.schemas.LoadBalancerStatusSerializerList.properties.results"
-    """
+    """Objects"""

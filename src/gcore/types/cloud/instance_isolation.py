@@ -9,7 +9,4 @@ __all__ = ["InstanceIsolation"]
 
 class InstanceIsolation(BaseModel):
     reason: Optional[str] = None
-    """
-    '#/components/schemas/IsolationSerializer/properties/reason/anyOf/0'
-    "$.components.schemas.IsolationSerializer.properties.reason.anyOf[0]"
-    """
+    """The reason of instance isolation if it is isolated from external internet."""
