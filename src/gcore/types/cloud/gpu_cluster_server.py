@@ -364,12 +364,6 @@ class GPUClusterServer(BaseModel):
     "$.components.schemas.GPUClusterServerSerializer.properties.instance_name"
     """
 
-    keypair_name: Optional[str] = None
-    """
-    '#/components/schemas/GPUClusterServerSerializer/properties/keypair_name/anyOf/0'
-    "$.components.schemas.GPUClusterServerSerializer.properties.keypair_name.anyOf[0]"
-    """
-
     project_id: int
     """
     '#/components/schemas/GPUClusterServerSerializer/properties/project_id'
@@ -392,6 +386,12 @@ class GPUClusterServer(BaseModel):
     """
     '#/components/schemas/GPUClusterServerSerializer/properties/security_groups'
     "$.components.schemas.GPUClusterServerSerializer.properties.security_groups"
+    """
+
+    ssh_key_name: Optional[str] = None
+    """
+    '#/components/schemas/GPUClusterServerSerializer/properties/ssh_key_name/anyOf/0'
+    "$.components.schemas.GPUClusterServerSerializer.properties.ssh_key_name.anyOf[0]"
     """
 
     status: Literal[

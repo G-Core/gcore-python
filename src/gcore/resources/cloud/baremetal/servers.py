@@ -59,10 +59,10 @@ class ServersResource(SyncAPIResource):
         apptemplate_id: str | NotGiven = NOT_GIVEN,
         ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
         image_id: str | NotGiven = NOT_GIVEN,
-        keypair_name: Optional[str] | NotGiven = NOT_GIVEN,
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
@@ -101,9 +101,6 @@ class ServersResource(SyncAPIResource):
           image_id: '#/components/schemas/CreateBareMetalServerSerializer/properties/image_id'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.image_id"
 
-          keypair_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/keypair_name/anyOf/0'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.keypair_name.anyOf[0]"
-
           name_templates: '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.name_templates"
 
@@ -112,6 +109,9 @@ class ServersResource(SyncAPIResource):
 
           password: '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+
+          ssh_key_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/ssh_key_name/anyOf/0'
+              "$.components.schemas.CreateBareMetalServerSerializer.properties.ssh_key_name.anyOf[0]"
 
           tags: '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
@@ -144,10 +144,10 @@ class ServersResource(SyncAPIResource):
                     "apptemplate_id": apptemplate_id,
                     "ddos_profile": ddos_profile,
                     "image_id": image_id,
-                    "keypair_name": keypair_name,
                     "name_templates": name_templates,
                     "names": names,
                     "password": password,
+                    "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
                     "username": username,
@@ -415,10 +415,10 @@ class AsyncServersResource(AsyncAPIResource):
         apptemplate_id: str | NotGiven = NOT_GIVEN,
         ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
         image_id: str | NotGiven = NOT_GIVEN,
-        keypair_name: Optional[str] | NotGiven = NOT_GIVEN,
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
@@ -457,9 +457,6 @@ class AsyncServersResource(AsyncAPIResource):
           image_id: '#/components/schemas/CreateBareMetalServerSerializer/properties/image_id'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.image_id"
 
-          keypair_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/keypair_name/anyOf/0'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.keypair_name.anyOf[0]"
-
           name_templates: '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.name_templates"
 
@@ -468,6 +465,9 @@ class AsyncServersResource(AsyncAPIResource):
 
           password: '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+
+          ssh_key_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/ssh_key_name/anyOf/0'
+              "$.components.schemas.CreateBareMetalServerSerializer.properties.ssh_key_name.anyOf[0]"
 
           tags: '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
               "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
@@ -500,10 +500,10 @@ class AsyncServersResource(AsyncAPIResource):
                     "apptemplate_id": apptemplate_id,
                     "ddos_profile": ddos_profile,
                     "image_id": image_id,
-                    "keypair_name": keypair_name,
                     "name_templates": name_templates,
                     "names": names,
                     "password": password,
+                    "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
                     "username": username,

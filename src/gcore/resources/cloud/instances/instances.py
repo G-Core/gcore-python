@@ -119,12 +119,12 @@ class InstancesResource(SyncAPIResource):
         volumes: Iterable[instance_create_params.Volume],
         allow_app_ports: bool | NotGiven = NOT_GIVEN,
         configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        keypair_name: Optional[str] | NotGiven = NOT_GIVEN,
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
@@ -170,9 +170,6 @@ class InstancesResource(SyncAPIResource):
           configuration: '#/components/schemas/CreateInstanceSerializerV2/properties/configuration/anyOf/0'
               "$.components.schemas.CreateInstanceSerializerV2.properties.configuration.anyOf[0]"
 
-          keypair_name: '#/components/schemas/CreateInstanceSerializerV2/properties/keypair_name/anyOf/0'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.keypair_name.anyOf[0]"
-
           name_templates: '#/components/schemas/CreateInstanceSerializerV2/properties/name_templates'
               "$.components.schemas.CreateInstanceSerializerV2.properties.name_templates"
 
@@ -187,6 +184,9 @@ class InstancesResource(SyncAPIResource):
 
           servergroup_id: '#/components/schemas/CreateInstanceSerializerV2/properties/servergroup_id'
               "$.components.schemas.CreateInstanceSerializerV2.properties.servergroup_id"
+
+          ssh_key_name: '#/components/schemas/CreateInstanceSerializerV2/properties/ssh_key_name/anyOf/0'
+              "$.components.schemas.CreateInstanceSerializerV2.properties.ssh_key_name.anyOf[0]"
 
           tags: '#/components/schemas/CreateInstanceSerializerV2/properties/tags'
               "$.components.schemas.CreateInstanceSerializerV2.properties.tags"
@@ -218,12 +218,12 @@ class InstancesResource(SyncAPIResource):
                     "volumes": volumes,
                     "allow_app_ports": allow_app_ports,
                     "configuration": configuration,
-                    "keypair_name": keypair_name,
                     "name_templates": name_templates,
                     "names": names,
                     "password": password,
                     "security_groups": security_groups,
                     "servergroup_id": servergroup_id,
+                    "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
                     "username": username,
@@ -1235,12 +1235,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         volumes: Iterable[instance_create_params.Volume],
         allow_app_ports: bool | NotGiven = NOT_GIVEN,
         configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        keypair_name: Optional[str] | NotGiven = NOT_GIVEN,
         name_templates: List[str] | NotGiven = NOT_GIVEN,
         names: List[str] | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
@@ -1286,9 +1286,6 @@ class AsyncInstancesResource(AsyncAPIResource):
           configuration: '#/components/schemas/CreateInstanceSerializerV2/properties/configuration/anyOf/0'
               "$.components.schemas.CreateInstanceSerializerV2.properties.configuration.anyOf[0]"
 
-          keypair_name: '#/components/schemas/CreateInstanceSerializerV2/properties/keypair_name/anyOf/0'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.keypair_name.anyOf[0]"
-
           name_templates: '#/components/schemas/CreateInstanceSerializerV2/properties/name_templates'
               "$.components.schemas.CreateInstanceSerializerV2.properties.name_templates"
 
@@ -1303,6 +1300,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           servergroup_id: '#/components/schemas/CreateInstanceSerializerV2/properties/servergroup_id'
               "$.components.schemas.CreateInstanceSerializerV2.properties.servergroup_id"
+
+          ssh_key_name: '#/components/schemas/CreateInstanceSerializerV2/properties/ssh_key_name/anyOf/0'
+              "$.components.schemas.CreateInstanceSerializerV2.properties.ssh_key_name.anyOf[0]"
 
           tags: '#/components/schemas/CreateInstanceSerializerV2/properties/tags'
               "$.components.schemas.CreateInstanceSerializerV2.properties.tags"
@@ -1334,12 +1334,12 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "volumes": volumes,
                     "allow_app_ports": allow_app_ports,
                     "configuration": configuration,
-                    "keypair_name": keypair_name,
                     "name_templates": name_templates,
                     "names": names,
                     "password": password,
                     "security_groups": security_groups,
                     "servergroup_id": servergroup_id,
+                    "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
                     "username": username,

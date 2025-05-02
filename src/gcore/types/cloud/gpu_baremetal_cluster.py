@@ -91,12 +91,6 @@ class GPUBaremetalCluster(BaseModel):
     "$.components.schemas.AIClusterSerializer.properties.interfaces.anyOf[0]"
     """
 
-    keypair_name: Optional[str] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/keypair_name/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.keypair_name.anyOf[0]"
-    """
-
     password: Optional[str] = None
     """
     '#/components/schemas/AIClusterSerializer/properties/password/anyOf/0'
@@ -125,6 +119,12 @@ class GPUBaremetalCluster(BaseModel):
     """
     '#/components/schemas/AIClusterSerializer/properties/servers'
     "$.components.schemas.AIClusterSerializer.properties.servers"
+    """
+
+    ssh_key_name: Optional[str] = None
+    """
+    '#/components/schemas/AIClusterSerializer/properties/ssh_key_name/anyOf/0'
+    "$.components.schemas.AIClusterSerializer.properties.ssh_key_name.anyOf[0]"
     """
 
     tags: List[Tag]
