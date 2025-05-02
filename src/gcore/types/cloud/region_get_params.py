@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["RegionRetrieveParams"]
+__all__ = ["RegionGetParams"]
 
 
-class RegionRetrieveParams(TypedDict, total=False):
+class RegionGetParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 

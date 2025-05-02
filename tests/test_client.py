@@ -373,11 +373,11 @@ class TestGcore:
 
         with client as c2:
             with pytest.raises(ValueError, match="Missing cloud_region_id argument;"):
-                c2.cloud.regions.retrieve()
+                c2.cloud.regions.get()
 
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_region_id=0)
         with client as c2:
-            c2.cloud.regions.retrieve()
+            c2.cloud.regions.get()
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(
@@ -1159,11 +1159,11 @@ class TestAsyncGcore:
 
         async with client as c2:
             with pytest.raises(ValueError, match="Missing cloud_region_id argument;"):
-                await c2.cloud.regions.retrieve()
+                await c2.cloud.regions.get()
 
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_region_id=0)
         async with client as c2:
-            await c2.cloud.regions.retrieve()
+            await c2.cloud.regions.get()
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(

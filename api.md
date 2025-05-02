@@ -98,8 +98,8 @@ from gcore.types.cloud import Region
 
 Methods:
 
-- <code title="get /cloud/v1/regions/{region_id}">client.cloud.regions.<a href="./src/gcore/resources/cloud/regions.py">retrieve</a>(\*, region_id, \*\*<a href="src/gcore/types/cloud/region_retrieve_params.py">params</a>) -> <a href="./src/gcore/types/cloud/region.py">Region</a></code>
 - <code title="get /cloud/v1/regions">client.cloud.regions.<a href="./src/gcore/resources/cloud/regions.py">list</a>(\*\*<a href="src/gcore/types/cloud/region_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/region.py">SyncOffsetPage[Region]</a></code>
+- <code title="get /cloud/v1/regions/{region_id}">client.cloud.regions.<a href="./src/gcore/resources/cloud/regions.py">get</a>(\*, region_id, \*\*<a href="src/gcore/types/cloud/region_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/region.py">Region</a></code>
 
 ## Quotas
 

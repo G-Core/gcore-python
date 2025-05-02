@@ -64,6 +64,7 @@ from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol
 from .task_list_params import TaskListParams as TaskListParams
 from .lb_health_monitor import LbHealthMonitor as LbHealthMonitor
 from .network_interface import NetworkInterface as NetworkInterface
+from .region_get_params import RegionGetParams as RegionGetParams
 from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
 from .aws_iam_data_param import AwsIamDataParam as AwsIamDataParam
 from .ddos_profile_field import DDOSProfileField as DDOSProfileField
@@ -122,7 +123,6 @@ from .lb_session_persistence import LbSessionPersistence as LbSessionPersistence
 from .network_interface_list import NetworkInterfaceList as NetworkInterfaceList
 from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
 from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
-from .region_retrieve_params import RegionRetrieveParams as RegionRetrieveParams
 from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .detailed_lb_pool_member import DetailedLbPoolMember as DetailedLbPoolMember
