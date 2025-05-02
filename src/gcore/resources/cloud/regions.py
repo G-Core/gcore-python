@@ -17,7 +17,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ...types.cloud import region_list_params, region_retrieve_params
+from ...types.cloud import region_get_params, region_list_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.region import Region
 
@@ -43,51 +43,6 @@ class RegionsResource(SyncAPIResource):
         For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
         """
         return RegionsResourceWithStreamingResponse(self)
-
-    def retrieve(
-        self,
-        *,
-        region_id: int | None = None,
-        show_volume_types: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Region:
-        """
-        Get region
-
-        Args:
-          region_id: Region ID
-
-          show_volume_types: If true, null `available_volume_type` is replaced with a list of available
-              volume types.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
-            f"/cloud/v1/regions/{region_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"show_volume_types": show_volume_types}, region_retrieve_params.RegionRetrieveParams
-                ),
-            ),
-            cast_to=Region,
-        )
 
     def list(
         self,
@@ -152,28 +107,7 @@ class RegionsResource(SyncAPIResource):
             model=Region,
         )
 
-
-class AsyncRegionsResource(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncRegionsResourceWithRawResponse:
-        """
-        This property can be used as a prefix for any HTTP method call to return
-        the raw response object instead of the parsed content.
-
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
-        """
-        return AsyncRegionsResourceWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncRegionsResourceWithStreamingResponse:
-        """
-        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
-
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
-        """
-        return AsyncRegionsResourceWithStreamingResponse(self)
-
-    async def retrieve(
+    def get(
         self,
         *,
         region_id: int | None = None,
@@ -204,19 +138,38 @@ class AsyncRegionsResource(AsyncAPIResource):
         """
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get(
             f"/cloud/v1/regions/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"show_volume_types": show_volume_types}, region_retrieve_params.RegionRetrieveParams
-                ),
+                query=maybe_transform({"show_volume_types": show_volume_types}, region_get_params.RegionGetParams),
             ),
             cast_to=Region,
         )
+
+
+class AsyncRegionsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncRegionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncRegionsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRegionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        """
+        return AsyncRegionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -281,16 +234,61 @@ class AsyncRegionsResource(AsyncAPIResource):
             model=Region,
         )
 
+    async def get(
+        self,
+        *,
+        region_id: int | None = None,
+        show_volume_types: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Region:
+        """
+        Get region
+
+        Args:
+          region_id: Region ID
+
+          show_volume_types: If true, null `available_volume_type` is replaced with a list of available
+              volume types.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return await self._get(
+            f"/cloud/v1/regions/{region_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"show_volume_types": show_volume_types}, region_get_params.RegionGetParams
+                ),
+            ),
+            cast_to=Region,
+        )
+
 
 class RegionsResourceWithRawResponse:
     def __init__(self, regions: RegionsResource) -> None:
         self._regions = regions
 
-        self.retrieve = to_raw_response_wrapper(
-            regions.retrieve,
-        )
         self.list = to_raw_response_wrapper(
             regions.list,
+        )
+        self.get = to_raw_response_wrapper(
+            regions.get,
         )
 
 
@@ -298,11 +296,11 @@ class AsyncRegionsResourceWithRawResponse:
     def __init__(self, regions: AsyncRegionsResource) -> None:
         self._regions = regions
 
-        self.retrieve = async_to_raw_response_wrapper(
-            regions.retrieve,
-        )
         self.list = async_to_raw_response_wrapper(
             regions.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            regions.get,
         )
 
 
@@ -310,11 +308,11 @@ class RegionsResourceWithStreamingResponse:
     def __init__(self, regions: RegionsResource) -> None:
         self._regions = regions
 
-        self.retrieve = to_streamed_response_wrapper(
-            regions.retrieve,
-        )
         self.list = to_streamed_response_wrapper(
             regions.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            regions.get,
         )
 
 
@@ -322,9 +320,9 @@ class AsyncRegionsResourceWithStreamingResponse:
     def __init__(self, regions: AsyncRegionsResource) -> None:
         self._regions = regions
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            regions.retrieve,
-        )
         self.list = async_to_streamed_response_wrapper(
             regions.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            regions.get,
         )
