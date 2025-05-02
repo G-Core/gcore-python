@@ -10,60 +10,33 @@ __all__ = ["SecurityGroupCreateParams", "SecurityGroup", "SecurityGroupSecurityG
 
 class SecurityGroupCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     security_group: Required[SecurityGroup]
-    """
-    '#/components/schemas/CreateSecurityGroupSerializer/properties/security_group'
-    "$.components.schemas.CreateSecurityGroupSerializer.properties.security_group"
-    """
+    """Security group"""
 
     instances: List[str]
-    """
-    '#/components/schemas/CreateSecurityGroupSerializer/properties/instances'
-    "$.components.schemas.CreateSecurityGroupSerializer.properties.instances"
-    """
+    """List of instances"""
 
 
 class SecurityGroupSecurityGroupRule(TypedDict, total=False):
     description: str
-    """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/description'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.description"
-    """
+    """Rule description"""
 
     direction: Literal["egress", "ingress"]
     """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/direction'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.direction"
+    Ingress or egress, which is the direction in which the security group is applied
     """
 
     ethertype: Literal["IPv4", "IPv6"]
-    """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/ethertype'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.ethertype"
-    """
+    """Ether type"""
 
     port_range_max: Optional[int]
-    """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/port_range_max/anyOf/0'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.port_range_max.anyOf[0]"
-    """
+    """The maximum port number in the range that is matched by the security group rule"""
 
     port_range_min: Optional[int]
-    """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/port_range_min/anyOf/0'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.port_range_min.anyOf[0]"
-    """
+    """The minimum port number in the range that is matched by the security group rule"""
 
     protocol: Literal[
         "ah",
@@ -91,45 +64,31 @@ class SecurityGroupSecurityGroupRule(TypedDict, total=False):
         "udplite",
         "vrrp",
     ]
-    """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/protocol'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.protocol"
-    """
+    """Protocol"""
 
     remote_group_id: str
-    """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/remote_group_id'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.remote_group_id"
-    """
+    """The remote group UUID to associate with this security group"""
 
     remote_ip_prefix: Optional[str]
-    """
-    '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-    "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
-    """
+    """The remote IP prefix that is matched by this security group rule"""
 
 
 class SecurityGroup(TypedDict, total=False):
     name: Required[str]
-    """
-    '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/name'
-    "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.name"
-    """
+    """Security group name"""
 
     description: Optional[str]
-    """
-    '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/description/anyOf/0'
-    "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.description.anyOf[0]"
-    """
+    """Security group description"""
 
     security_group_rules: Iterable[SecurityGroupSecurityGroupRule]
-    """
-    '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/security_group_rules'
-    "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.security_group_rules"
-    """
+    """Security group rules"""
 
     tags: Dict[str, object]
-    """
-    '#/components/schemas/SingleCreateSecurityGroupSerializer/properties/tags'
-    "$.components.schemas.SingleCreateSecurityGroupSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """

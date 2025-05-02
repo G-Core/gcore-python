@@ -11,31 +11,16 @@ __all__ = ["Container"]
 
 class Container(BaseModel):
     address: Optional[str] = None
-    """
-    '#/components/schemas/ContainerOutSerializerV3/properties/address/anyOf/0'
-    "$.components.schemas.ContainerOutSerializerV3.properties.address.anyOf[0]"
-    """
+    """Address of the inference instance"""
 
     deploy_status: DeployStatus
-    """
-    '#/components/schemas/ContainerOutSerializerV3/properties/deploy_status'
-    "$.components.schemas.ContainerOutSerializerV3.properties.deploy_status"
-    """
+    """Status of the containers deployment"""
 
     error_message: Optional[str] = None
-    """
-    '#/components/schemas/ContainerOutSerializerV3/properties/error_message/anyOf/0'
-    "$.components.schemas.ContainerOutSerializerV3.properties.error_message.anyOf[0]"
-    """
+    """Error message if the container deployment failed"""
 
     region_id: int
-    """
-    '#/components/schemas/ContainerOutSerializerV3/properties/region_id'
-    "$.components.schemas.ContainerOutSerializerV3.properties.region_id"
-    """
+    """Region name for the container"""
 
     scale: ContainerScale
-    """
-    '#/components/schemas/ContainerOutSerializerV3/properties/scale'
-    "$.components.schemas.ContainerOutSerializerV3.properties.scale"
-    """
+    """Scale for the container"""

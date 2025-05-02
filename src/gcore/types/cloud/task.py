@@ -10,270 +10,138 @@ __all__ = ["Task", "CreatedResources"]
 
 class CreatedResources(BaseModel):
     ai_clusters: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/ai_clusters'
-    "$.components.schemas.CreatedResources.properties.ai_clusters"
-    """
+    """IDs of created AI clusters"""
 
     api_keys: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/api_keys'
-    "$.components.schemas.CreatedResources.properties.api_keys"
-    """
+    """IDs of created API keys"""
 
     caas_containers: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/caas_containers'
-    "$.components.schemas.CreatedResources.properties.caas_containers"
-    """
+    """IDs of created CaaS containers"""
 
     ddos_profiles: Optional[List[int]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/ddos_profiles'
-    "$.components.schemas.CreatedResources.properties.ddos_profiles"
-    """
+    """IDs of created ddos protection profiles"""
 
     faas_functions: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/faas_functions'
-    "$.components.schemas.CreatedResources.properties.faas_functions"
-    """
+    """IDs of created FaaS functions"""
 
     faas_namespaces: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/faas_namespaces'
-    "$.components.schemas.CreatedResources.properties.faas_namespaces"
-    """
+    """IDs of created FaaS namespaces"""
 
     file_shares: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/file_shares'
-    "$.components.schemas.CreatedResources.properties.file_shares"
-    """
+    """IDs of created file shares"""
 
     floatingips: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/floatingips'
-    "$.components.schemas.CreatedResources.properties.floatingips"
-    """
+    """IDs of created floating IPs"""
 
     healthmonitors: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/healthmonitors'
-    "$.components.schemas.CreatedResources.properties.healthmonitors"
-    """
+    """IDs of created health monitors"""
 
     heat: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/heat'
-    "$.components.schemas.CreatedResources.properties.heat"
-    """
+    """IDs of created heat resources"""
 
     images: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/images'
-    "$.components.schemas.CreatedResources.properties.images"
-    """
+    """IDs of created images"""
 
     inference_instances: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/inference_instances'
-    "$.components.schemas.CreatedResources.properties.inference_instances"
-    """
+    """IDs of created inference instances"""
 
     instances: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/instances'
-    "$.components.schemas.CreatedResources.properties.instances"
-    """
+    """IDs of created instances"""
 
     k8s_clusters: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/k8s_clusters'
-    "$.components.schemas.CreatedResources.properties.k8s_clusters"
-    """
+    """IDs of created Kubernetes clusters"""
 
     k8s_pools: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/k8s_pools'
-    "$.components.schemas.CreatedResources.properties.k8s_pools"
-    """
+    """IDs of created Kubernetes pools"""
 
     l7polices: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/l7polices'
-    "$.components.schemas.CreatedResources.properties.l7polices"
-    """
+    """IDs of created L7 policies"""
 
     l7rules: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/l7rules'
-    "$.components.schemas.CreatedResources.properties.l7rules"
-    """
+    """IDs of created L7 rules"""
 
     laas_topic: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/laas_topic'
-    "$.components.schemas.CreatedResources.properties.laas_topic"
-    """
+    """IDs of created LaaS topics"""
 
     listeners: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/listeners'
-    "$.components.schemas.CreatedResources.properties.listeners"
-    """
+    """IDs of created load balancer listeners"""
 
     loadbalancers: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/loadbalancers'
-    "$.components.schemas.CreatedResources.properties.loadbalancers"
-    """
+    """IDs of created load balancers"""
 
     members: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/members'
-    "$.components.schemas.CreatedResources.properties.members"
-    """
+    """IDs of created pool members"""
 
     networks: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/networks'
-    "$.components.schemas.CreatedResources.properties.networks"
-    """
+    """IDs of created networks"""
 
     pools: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/pools'
-    "$.components.schemas.CreatedResources.properties.pools"
-    """
+    """IDs of created load balancer pools"""
 
     ports: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/ports'
-    "$.components.schemas.CreatedResources.properties.ports"
-    """
+    """IDs of created ports"""
 
     postgresql_clusters: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/postgresql_clusters'
-    "$.components.schemas.CreatedResources.properties.postgresql_clusters"
-    """
+    """IDs of created postgres clusters"""
 
     projects: Optional[List[int]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/projects'
-    "$.components.schemas.CreatedResources.properties.projects"
-    """
+    """IDs of created projects"""
 
     registry_registries: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/registry_registries'
-    "$.components.schemas.CreatedResources.properties.registry_registries"
-    """
+    """IDs of created registry registries"""
 
     registry_users: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/registry_users'
-    "$.components.schemas.CreatedResources.properties.registry_users"
-    """
+    """IDs of created registry users"""
 
     routers: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/routers'
-    "$.components.schemas.CreatedResources.properties.routers"
-    """
+    """IDs of created routers"""
 
     secrets: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/secrets'
-    "$.components.schemas.CreatedResources.properties.secrets"
-    """
+    """IDs of created secrets"""
 
     servergroups: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/servergroups'
-    "$.components.schemas.CreatedResources.properties.servergroups"
-    """
+    """IDs of created server groups"""
 
     snapshots: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/snapshots'
-    "$.components.schemas.CreatedResources.properties.snapshots"
-    """
+    """IDs of created volume snapshots"""
 
     subnets: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/subnets'
-    "$.components.schemas.CreatedResources.properties.subnets"
-    """
+    """IDs of created subnets"""
 
     volumes: Optional[List[str]] = None
-    """
-    '#/components/schemas/CreatedResources/properties/volumes'
-    "$.components.schemas.CreatedResources.properties.volumes"
-    """
+    """IDs of created volumes"""
 
 
 class Task(BaseModel):
     id: str
-    """
-    '#/components/schemas/TaskSerializer/properties/id'
-    "$.components.schemas.TaskSerializer.properties.id"
-    """
+    """The task ID"""
 
     created_on: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/created_on/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.created_on.anyOf[0]"
-    """
+    """Created timestamp"""
 
     state: Literal["ERROR", "FINISHED", "NEW", "RUNNING"]
-    """
-    '#/components/schemas/TaskSerializer/properties/state'
-    "$.components.schemas.TaskSerializer.properties.state"
-    """
+    """The task state"""
 
     task_type: str
-    """
-    '#/components/schemas/TaskSerializer/properties/task_type'
-    "$.components.schemas.TaskSerializer.properties.task_type"
-    """
+    """The task type"""
 
     user_id: int
-    """
-    '#/components/schemas/TaskSerializer/properties/user_id'
-    "$.components.schemas.TaskSerializer.properties.user_id"
-    """
+    """The user ID that initiated the task"""
 
     acknowledged_at: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/acknowledged_at/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.acknowledged_at.anyOf[0]"
-    """
+    """If task was acknowledged, this field stores acknowledge timestamp"""
 
     acknowledged_by: Optional[int] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/acknowledged_by/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.acknowledged_by.anyOf[0]"
-    """
+    """If task was acknowledged, this field stores user_id of the person"""
 
     client_id: Optional[int] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/client_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.client_id.anyOf[0]"
-    """
+    """The client ID"""
 
     created_resources: Optional[CreatedResources] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/created_resources/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.created_resources.anyOf[0]"
-    """
+    """If the task creates resources, this field will contain their IDs"""
 
     data: Optional[object] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/data/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.data.anyOf[0]"
-    """
+    """Task parameters"""
 
     detailed_state: Optional[
         Literal[
@@ -290,67 +158,34 @@ class Task(BaseModel):
             "VIPU_CONTROLLER",
         ]
     ] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/detailed_state/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.detailed_state.anyOf[0]"
-    """
+    """Task detailed state that is more specific to task type"""
 
     error: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/error/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.error.anyOf[0]"
-    """
+    """The error value"""
 
     finished_on: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/finished_on/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.finished_on.anyOf[0]"
-    """
+    """Finished timestamp"""
 
     job_id: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/job_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.job_id.anyOf[0]"
-    """
+    """Job ID"""
 
     lifecycle_policy_id: Optional[int] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/lifecycle_policy_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.lifecycle_policy_id.anyOf[0]"
-    """
+    """Lifecycle policy ID"""
 
     project_id: Optional[int] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/project_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.project_id.anyOf[0]"
-    """
+    """The project ID"""
 
     region_id: Optional[int] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/region_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.region_id.anyOf[0]"
-    """
+    """The region ID"""
 
     request_id: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/request_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.request_id.anyOf[0]"
-    """
+    """The request ID"""
 
     schedule_id: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/schedule_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.schedule_id.anyOf[0]"
-    """
+    """Schedule ID"""
 
     updated_on: Optional[str] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/updated_on/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.updated_on.anyOf[0]"
-    """
+    """Last updated timestamp"""
 
     user_client_id: Optional[int] = None
-    """
-    '#/components/schemas/TaskSerializer/properties/user_client_id/anyOf/0'
-    "$.components.schemas.TaskSerializer.properties.user_client_id.anyOf[0]"
-    """
+    """Client, specified in user's JWT"""

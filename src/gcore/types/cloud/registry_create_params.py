@@ -9,25 +9,16 @@ __all__ = ["RegistryCreateParams"]
 
 class RegistryCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     name: Required[str]
-    """
-    '#/components/schemas/RegistryCreateSerializer/properties/name'
-    "$.components.schemas.RegistryCreateSerializer.properties.name"
+    """A name for the container registry.
+
+    Should be in lowercase, consisting only of numbers, letters and -,
+
+    with maximum length of 24 characters
     """
 
     storage_limit: int
-    """
-    '#/components/schemas/RegistryCreateSerializer/properties/storage_limit'
-    "$.components.schemas.RegistryCreateSerializer.properties.storage_limit"
-    """
+    """Registry storage limit, GiB"""

@@ -7,7 +7,4 @@ __all__ = ["RoleAssignmentUpdateDelete"]
 
 class RoleAssignmentUpdateDelete(BaseModel):
     assignment_id: int
-    """
-    '#/components/schemas/AssignmentSerializer/properties/assignment_id'
-    "$.components.schemas.AssignmentSerializer.properties.assignment_id"
-    """
+    """Assignment ID"""

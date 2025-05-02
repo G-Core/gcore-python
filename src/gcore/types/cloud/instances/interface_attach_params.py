@@ -28,424 +28,221 @@ __all__ = [
 
 class NewInterfaceExternalExtendSchemaWithDDOS(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
-    """
 
     ddos_profile: NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-    """
-    '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/ddos_profile/allOf/0'
-    "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.ddos_profile.allOf[0]"
-    """
+    """Advanced DDoS protection."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/interface_name'
-    "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.interface_name"
-    """
+    """Interface name"""
 
     ip_family: Literal["dual", "ipv4", "ipv6"]
-    """
-    '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/ip_family'
-    "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.ip_family"
-    """
+    """Which subnets should be selected: IPv4, IPv6 or use dual stack."""
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/port_group'
-    "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.port_group"
-    """
+    """Each group will be added to the separate trunk."""
 
     security_groups: Iterable[NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/security_groups'
-    "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.security_groups"
-    """
+    """List of security group IDs"""
 
     type: str
-    """
-    '#/components/schemas/NewInterfaceExternalExtendSchemaWithDdos/properties/type'
-    "$.components.schemas.NewInterfaceExternalExtendSchemaWithDdos.properties.type"
-    """
+    """Must be 'external'. Union tag"""
 
 
 class NewInterfaceExternalExtendSchemaWithDdosddosProfileField(TypedDict, total=False):
     base_field: Optional[int]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/base_field'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.base_field"
-    """
+    """ID of DDoS profile field"""
 
     field_name: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_name'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_name"
-    """
+    """Name of DDoS profile field"""
 
     field_value: object
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_value"
-    """
+    """Complex value. Only one of 'value' or 'field_value' must be specified."""
 
     value: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.value"
-    """
+    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
 
 
 class NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile(TypedDict, total=False):
     profile_template: Required[int]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template"
-    """
+    """DDoS profile template ID."""
 
     fields: Iterable[NewInterfaceExternalExtendSchemaWithDdosddosProfileField]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/fields'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.fields"
-    """
+    """Protection parameters."""
 
     profile_template_name: str
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template_name'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template_name"
-    """
+    """DDoS profile template name."""
 
 
 class NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSchema/properties/id'
-    "$.components.schemas.MandatoryIdSchema.properties.id"
-    """
+    """Resource ID"""
 
 
 class NewInterfaceSpecificSubnetSchema(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
-    """
 
     subnet_id: Required[str]
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/subnet_id'
-    "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.subnet_id"
-    """
+    """Port will get an IP address from this subnet"""
 
     ddos_profile: NewInterfaceSpecificSubnetSchemaDDOSProfile
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/ddos_profile/allOf/0'
-    "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.ddos_profile.allOf[0]"
-    """
+    """Advanced DDoS protection."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/interface_name'
-    "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.interface_name"
-    """
+    """Interface name"""
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/port_group'
-    "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.port_group"
-    """
+    """Each group will be added to the separate trunk."""
 
     security_groups: Iterable[NewInterfaceSpecificSubnetSchemaSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/security_groups'
-    "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.security_groups"
-    """
+    """List of security group IDs"""
 
     type: str
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetSchema/properties/type'
-    "$.components.schemas.NewInterfaceSpecificSubnetSchema.properties.type"
-    """
+    """Must be 'subnet'"""
 
 
 class NewInterfaceSpecificSubnetSchemaDDOSProfileField(TypedDict, total=False):
     base_field: Optional[int]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/base_field'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.base_field"
-    """
+    """ID of DDoS profile field"""
 
     field_name: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_name'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_name"
-    """
+    """Name of DDoS profile field"""
 
     field_value: object
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_value"
-    """
+    """Complex value. Only one of 'value' or 'field_value' must be specified."""
 
     value: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.value"
-    """
+    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
 
 
 class NewInterfaceSpecificSubnetSchemaDDOSProfile(TypedDict, total=False):
     profile_template: Required[int]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template"
-    """
+    """DDoS profile template ID."""
 
     fields: Iterable[NewInterfaceSpecificSubnetSchemaDDOSProfileField]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/fields'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.fields"
-    """
+    """Protection parameters."""
 
     profile_template_name: str
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template_name'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template_name"
-    """
+    """DDoS profile template name."""
 
 
 class NewInterfaceSpecificSubnetSchemaSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSchema/properties/id'
-    "$.components.schemas.MandatoryIdSchema.properties.id"
-    """
+    """Resource ID"""
 
 
 class NewInterfaceAnySubnetSchema(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
-    """
 
     network_id: Required[str]
-    """
-    '#/components/schemas/NewInterfaceAnySubnetSchema/properties/network_id'
-    "$.components.schemas.NewInterfaceAnySubnetSchema.properties.network_id"
-    """
+    """Port will get an IP address in this network subnet"""
 
     ddos_profile: NewInterfaceAnySubnetSchemaDDOSProfile
-    """
-    '#/components/schemas/NewInterfaceAnySubnetSchema/properties/ddos_profile/allOf/0'
-    "$.components.schemas.NewInterfaceAnySubnetSchema.properties.ddos_profile.allOf[0]"
-    """
+    """Advanced DDoS protection."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceAnySubnetSchema/properties/interface_name'
-    "$.components.schemas.NewInterfaceAnySubnetSchema.properties.interface_name"
-    """
+    """Interface name"""
 
     ip_family: Literal["dual", "ipv4", "ipv6"]
-    """
-    '#/components/schemas/NewInterfaceAnySubnetSchema/properties/ip_family'
-    "$.components.schemas.NewInterfaceAnySubnetSchema.properties.ip_family"
-    """
+    """Which subnets should be selected: IPv4, IPv6 or use dual stack."""
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceAnySubnetSchema/properties/port_group'
-    "$.components.schemas.NewInterfaceAnySubnetSchema.properties.port_group"
-    """
+    """Each group will be added to the separate trunk."""
 
     security_groups: Iterable[NewInterfaceAnySubnetSchemaSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceAnySubnetSchema/properties/security_groups'
-    "$.components.schemas.NewInterfaceAnySubnetSchema.properties.security_groups"
-    """
+    """List of security group IDs"""
 
     type: str
-    """
-    '#/components/schemas/NewInterfaceAnySubnetSchema/properties/type'
-    "$.components.schemas.NewInterfaceAnySubnetSchema.properties.type"
-    """
+    """Must be 'any_subnet'"""
 
 
 class NewInterfaceAnySubnetSchemaDDOSProfileField(TypedDict, total=False):
     base_field: Optional[int]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/base_field'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.base_field"
-    """
+    """ID of DDoS profile field"""
 
     field_name: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_name'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_name"
-    """
+    """Name of DDoS profile field"""
 
     field_value: object
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_value"
-    """
+    """Complex value. Only one of 'value' or 'field_value' must be specified."""
 
     value: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.value"
-    """
+    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
 
 
 class NewInterfaceAnySubnetSchemaDDOSProfile(TypedDict, total=False):
     profile_template: Required[int]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template"
-    """
+    """DDoS profile template ID."""
 
     fields: Iterable[NewInterfaceAnySubnetSchemaDDOSProfileField]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/fields'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.fields"
-    """
+    """Protection parameters."""
 
     profile_template_name: str
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template_name'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template_name"
-    """
+    """DDoS profile template name."""
 
 
 class NewInterfaceAnySubnetSchemaSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSchema/properties/id'
-    "$.components.schemas.MandatoryIdSchema.properties.id"
-    """
+    """Resource ID"""
 
 
 class NewInterfaceReservedFixedIPSchema(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/0/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fattach_interface/post/parameters/1/schema'
-    "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface'].post.parameters[1].schema"
-    """
 
     port_id: Required[str]
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/port_id'
-    "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.port_id"
-    """
+    """Port ID"""
 
     ddos_profile: NewInterfaceReservedFixedIPSchemaDDOSProfile
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/ddos_profile/allOf/0'
-    "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.ddos_profile.allOf[0]"
-    """
+    """Advanced DDoS protection."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/interface_name'
-    "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.interface_name"
-    """
+    """Interface name"""
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/port_group'
-    "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.port_group"
-    """
+    """Each group will be added to the separate trunk."""
 
     security_groups: Iterable[NewInterfaceReservedFixedIPSchemaSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/security_groups'
-    "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.security_groups"
-    """
+    """List of security group IDs"""
 
     type: str
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpSchema/properties/type'
-    "$.components.schemas.NewInterfaceReservedFixedIpSchema.properties.type"
-    """
+    """Must be 'reserved_fixed_ip'. Union tag"""
 
 
 class NewInterfaceReservedFixedIPSchemaDDOSProfileField(TypedDict, total=False):
     base_field: Optional[int]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/base_field'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.base_field"
-    """
+    """ID of DDoS profile field"""
 
     field_name: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_name'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_name"
-    """
+    """Name of DDoS profile field"""
 
     field_value: object
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/field_value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.field_value"
-    """
+    """Complex value. Only one of 'value' or 'field_value' must be specified."""
 
     value: Optional[str]
-    """
-    '#/components/schemas/DeprecatedCreateClientProfileFieldSchema/properties/value'
-    "$.components.schemas.DeprecatedCreateClientProfileFieldSchema.properties.value"
-    """
+    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
 
 
 class NewInterfaceReservedFixedIPSchemaDDOSProfile(TypedDict, total=False):
     profile_template: Required[int]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template"
-    """
+    """DDoS profile template ID."""
 
     fields: Iterable[NewInterfaceReservedFixedIPSchemaDDOSProfileField]
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/fields'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.fields"
-    """
+    """Protection parameters."""
 
     profile_template_name: str
-    """
-    '#/components/schemas/DeprecatedCreateDdosProfileSchema/properties/profile_template_name'
-    "$.components.schemas.DeprecatedCreateDdosProfileSchema.properties.profile_template_name"
-    """
+    """DDoS profile template name."""
 
 
 class NewInterfaceReservedFixedIPSchemaSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSchema/properties/id'
-    "$.components.schemas.MandatoryIdSchema.properties.id"
-    """
+    """Resource ID"""
 
 
 InterfaceAttachParams: TypeAlias = Union[

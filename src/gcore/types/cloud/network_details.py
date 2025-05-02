@@ -12,109 +12,68 @@ __all__ = ["NetworkDetails"]
 
 class NetworkDetails(BaseModel):
     id: str
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/id'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.id"
-    """
+    """Network ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/created_at'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.created_at"
-    """
+    """Datetime when the network was created"""
 
     external: bool
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/external'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.external"
-    """
+    """True if the network `router:external` attribute"""
 
     name: str
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/name'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.name"
-    """
+    """Network name"""
 
     port_security_enabled: bool
     """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/port_security_enabled'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.port_security_enabled"
+    Indicates port_security_enabled status of all newly created in the network
+    ports.
     """
 
     region: str
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/region'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/region_id'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     shared: bool
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/shared'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.shared"
-    """
+    """True when the network is shared with your project by external owner"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/tags'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     type: str
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/type'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.type"
-    """
+    """Network type (vlan, vxlan)"""
 
     updated_at: datetime
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/updated_at'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.updated_at"
-    """
+    """Datetime when the network was last updated"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     default: Optional[bool] = None
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/default/anyOf/0'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties['default'].anyOf[0]"
-    """
+    """True if network has is_default attribute"""
 
     mtu: Optional[int] = None
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/mtu'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.mtu"
-    """
+    """MTU (maximum transmission unit). Default value is 1450"""
 
     project_id: Optional[int] = None
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/project_id/anyOf/0'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.project_id.anyOf[0]"
-    """
+    """Project ID"""
 
     segmentation_id: Optional[int] = None
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/segmentation_id/anyOf/0'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.segmentation_id.anyOf[0]"
-    """
+    """Id of network segment"""
 
     subnets: Optional[List[Subnet]] = None
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/subnets/anyOf/0'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.subnets.anyOf[0]"
-    """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/NetworkSubnetworkSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.NetworkSubnetworkSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """

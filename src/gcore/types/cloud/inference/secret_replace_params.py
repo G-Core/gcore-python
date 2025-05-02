@@ -11,19 +11,10 @@ __all__ = ["SecretReplaceParams"]
 
 class SecretReplaceParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets%2F%7Bsecret_name%7D/put/parameters/0/schema'
-    "$.paths['/cloud/v3/inference/{project_id}/secrets/{secret_name}'].put.parameters[0].schema"
-    """
+    """Project ID"""
 
     data: Required[AwsIamDataParam]
-    """
-    '#/components/schemas/InferenceSecretInUpdateSerializer/properties/data'
-    "$.components.schemas.InferenceSecretInUpdateSerializer.properties.data"
-    """
+    """Secret data."""
 
     type: Required[str]
-    """
-    '#/components/schemas/InferenceSecretInUpdateSerializer/properties/type'
-    "$.components.schemas.InferenceSecretInUpdateSerializer.properties.type"
-    """
+    """Secret type."""

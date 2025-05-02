@@ -10,55 +10,38 @@ __all__ = ["Project"]
 
 class Project(BaseModel):
     id: int
-    """
-    '#/components/schemas/ProjectSerializer/properties/id'
-    "$.components.schemas.ProjectSerializer.properties.id"
-    """
+    """Project ID, which is automatically generated upon creation."""
 
     client_id: int
-    """
-    '#/components/schemas/ProjectSerializer/properties/client_id'
-    "$.components.schemas.ProjectSerializer.properties.client_id"
-    """
+    """ID associated with the client."""
 
     created_at: datetime
-    """
-    '#/components/schemas/ProjectSerializer/properties/created_at'
-    "$.components.schemas.ProjectSerializer.properties.created_at"
-    """
+    """Datetime of creation, which is automatically generated."""
 
     is_default: bool
-    """
-    '#/components/schemas/ProjectSerializer/properties/is_default'
-    "$.components.schemas.ProjectSerializer.properties.is_default"
+    """Indicates if the project is the default one.
+
+    Each client always has one default project.
     """
 
     name: str
-    """
-    '#/components/schemas/ProjectSerializer/properties/name'
-    "$.components.schemas.ProjectSerializer.properties.name"
-    """
+    """Unique project name for a client."""
 
     state: str
-    """
-    '#/components/schemas/ProjectSerializer/properties/state'
-    "$.components.schemas.ProjectSerializer.properties.state"
-    """
+    """The state of the project."""
 
     deleted_at: Optional[datetime] = None
     """
-    '#/components/schemas/ProjectSerializer/properties/deleted_at/anyOf/0'
-    "$.components.schemas.ProjectSerializer.properties.deleted_at.anyOf[0]"
+    Datetime of deletion, which is automatically generated if the project is
+    deleted.
     """
 
     description: Optional[str] = None
-    """
-    '#/components/schemas/ProjectSerializer/properties/description/anyOf/0'
-    "$.components.schemas.ProjectSerializer.properties.description.anyOf[0]"
-    """
+    """Description of the project."""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/ProjectSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.ProjectSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """

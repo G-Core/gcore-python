@@ -13,73 +13,36 @@ __all__ = ["LbHealthMonitor"]
 
 class LbHealthMonitor(BaseModel):
     id: str
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/id'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.id"
-    """
+    """Health monitor ID"""
 
     admin_state_up: bool
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/admin_state_up'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.admin_state_up"
-    """
+    """true if enabled. Defaults to true"""
 
     delay: int
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/delay'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.delay"
-    """
+    """The time, in seconds, between sending probes to members"""
 
     max_retries: int
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/max_retries'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.max_retries"
-    """
+    """Number of successes before the member is switched to ONLINE state"""
 
     max_retries_down: int
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/max_retries_down'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.max_retries_down"
-    """
+    """Number of failures before the member is switched to ERROR state"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/operating_status'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.operating_status"
-    """
+    """Health Monitor operating status"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/provisioning_status'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.provisioning_status"
-    """
+    """Health monitor lifecycle status"""
 
     timeout: int
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/timeout'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.timeout"
-    """
+    """The maximum time to connect. Must be less than the delay value"""
 
     type: HealthMonitorType
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/type'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.type"
-    """
+    """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str] = None
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/expected_codes/anyOf/0'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.expected_codes.anyOf[0]"
-    """
 
     http_method: Optional[HTTPMethod] = None
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/http_method/anyOf/0'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.http_method.anyOf[0]"
-    """
+    """HTTP method"""
 
     url_path: Optional[str] = None
-    """
-    '#/components/schemas/LbHealthMonitorSerializer/properties/url_path/anyOf/0'
-    "$.components.schemas.LbHealthMonitorSerializer.properties.url_path.anyOf[0]"
-    """
+    """URL Path. Defaults to '/'"""

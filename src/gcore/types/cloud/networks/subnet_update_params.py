@@ -10,57 +10,38 @@ __all__ = ["SubnetUpdateParams", "HostRoute"]
 
 class SubnetUpdateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/0/schema'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/1/schema'
-    "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[1].schema"
-    """
+    """Region ID"""
 
     dns_nameservers: Optional[List[str]]
-    """
-    '#/components/schemas/PatchSubnetSerializer/properties/dns_nameservers/anyOf/0'
-    "$.components.schemas.PatchSubnetSerializer.properties.dns_nameservers.anyOf[0]"
-    """
+    """List IP addresses of DNS servers to advertise via DHCP."""
 
     enable_dhcp: Optional[bool]
-    """
-    '#/components/schemas/PatchSubnetSerializer/properties/enable_dhcp/anyOf/0'
-    "$.components.schemas.PatchSubnetSerializer.properties.enable_dhcp.anyOf[0]"
-    """
+    """True if DHCP should be enabled"""
 
     gateway_ip: Optional[str]
-    """
-    '#/components/schemas/PatchSubnetSerializer/properties/gateway_ip/anyOf/0'
-    "$.components.schemas.PatchSubnetSerializer.properties.gateway_ip.anyOf[0]"
+    """Default GW IPv4 address to advertise in DHCP routes in this subnet.
+
+    Omit this field to let the cloud backend allocate it automatically. Set to null
+    if no gateway must be advertised by this subnet's DHCP (useful when attaching
+    instances to multiple subnets in order to prevent default route conflicts).
     """
 
     host_routes: Optional[Iterable[HostRoute]]
-    """
-    '#/components/schemas/PatchSubnetSerializer/properties/host_routes/anyOf/0'
-    "$.components.schemas.PatchSubnetSerializer.properties.host_routes.anyOf[0]"
-    """
+    """List of custom static routes to advertise via DHCP."""
 
     name: Optional[str]
-    """
-    '#/components/schemas/PatchSubnetSerializer/properties/name/anyOf/0'
-    "$.components.schemas.PatchSubnetSerializer.properties.name.anyOf[0]"
-    """
+    """Name"""
 
 
 class HostRoute(TypedDict, total=False):
     destination: Required[str]
-    """
-    '#/components/schemas/RouteInSerializer/properties/destination'
-    "$.components.schemas.RouteInSerializer.properties.destination"
-    """
+    """CIDR of destination IPv4 subnet."""
 
     nexthop: Required[str]
     """
-    '#/components/schemas/RouteInSerializer/properties/nexthop'
-    "$.components.schemas.RouteInSerializer.properties.nexthop"
+    IPv4 address to forward traffic to if it's destination IP matches 'destination'
+    CIDR.
     """

@@ -10,25 +10,13 @@ __all__ = ["Logging"]
 
 class Logging(BaseModel):
     destination_region_id: Optional[int] = None
-    """
-    '#/components/schemas/LoggingOutSerializer/properties/destination_region_id/anyOf/0'
-    "$.components.schemas.LoggingOutSerializer.properties.destination_region_id.anyOf[0]"
-    """
+    """ID of the region in which the logs will be stored"""
 
     enabled: bool
-    """
-    '#/components/schemas/LoggingOutSerializer/properties/enabled'
-    "$.components.schemas.LoggingOutSerializer.properties.enabled"
-    """
+    """Indicates if log streaming is enabled or disabled"""
 
     topic_name: Optional[str] = None
-    """
-    '#/components/schemas/LoggingOutSerializer/properties/topic_name/anyOf/0'
-    "$.components.schemas.LoggingOutSerializer.properties.topic_name.anyOf[0]"
-    """
+    """The topic name to stream logs to"""
 
     retention_policy: Optional[LaasIndexRetentionPolicy] = None
-    """
-    '#/components/schemas/LoggingOutSerializer/properties/retention_policy/anyOf/0'
-    "$.components.schemas.LoggingOutSerializer.properties.retention_policy.anyOf[0]"
-    """
+    """Logs retention policy"""

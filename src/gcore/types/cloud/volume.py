@@ -14,128 +14,68 @@ __all__ = ["Volume", "Attachment", "LimiterStats"]
 
 class Attachment(BaseModel):
     attachment_id: str
-    """
-    '#/components/schemas/VolumeAttachmentSerializer/properties/attachment_id'
-    "$.components.schemas.VolumeAttachmentSerializer.properties.attachment_id"
-    """
+    """The unique identifier of the attachment object."""
 
     volume_id: str
-    """
-    '#/components/schemas/VolumeAttachmentSerializer/properties/volume_id'
-    "$.components.schemas.VolumeAttachmentSerializer.properties.volume_id"
-    """
+    """The unique identifier of the attached volume."""
 
     attached_at: Optional[datetime] = None
-    """
-    '#/components/schemas/VolumeAttachmentSerializer/properties/attached_at/anyOf/0'
-    "$.components.schemas.VolumeAttachmentSerializer.properties.attached_at.anyOf[0]"
-    """
+    """The date and time when the attachment was created."""
 
     device: Optional[str] = None
-    """
-    '#/components/schemas/VolumeAttachmentSerializer/properties/device/anyOf/0'
-    "$.components.schemas.VolumeAttachmentSerializer.properties.device.anyOf[0]"
-    """
+    """The block device name inside the guest instance."""
 
     flavor_id: Optional[str] = None
-    """
-    '#/components/schemas/VolumeAttachmentSerializer/properties/flavor_id/anyOf/0'
-    "$.components.schemas.VolumeAttachmentSerializer.properties.flavor_id.anyOf[0]"
-    """
+    """The flavor ID of the instance."""
 
     instance_name: Optional[str] = None
-    """
-    '#/components/schemas/VolumeAttachmentSerializer/properties/instance_name/anyOf/0'
-    "$.components.schemas.VolumeAttachmentSerializer.properties.instance_name.anyOf[0]"
-    """
+    """The name of the instance if attached and the server name is known."""
 
     server_id: Optional[str] = None
-    """
-    '#/components/schemas/VolumeAttachmentSerializer/properties/server_id/anyOf/0'
-    "$.components.schemas.VolumeAttachmentSerializer.properties.server_id.anyOf[0]"
-    """
+    """The unique identifier of the instance."""
 
 
 class LimiterStats(BaseModel):
     iops_base_limit: int
-    """
-    '#/components/schemas/VolumeLimiterStatsSerializer/properties/iops_base_limit'
-    "$.components.schemas.VolumeLimiterStatsSerializer.properties.iops_base_limit"
-    """
+    """The sustained IOPS (Input/Output Operations Per Second) limit."""
 
     iops_burst_limit: int
-    """
-    '#/components/schemas/VolumeLimiterStatsSerializer/properties/iops_burst_limit'
-    "$.components.schemas.VolumeLimiterStatsSerializer.properties.iops_burst_limit"
-    """
+    """The burst IOPS limit."""
 
     m_bps_base_limit: int = FieldInfo(alias="MBps_base_limit")
-    """
-    '#/components/schemas/VolumeLimiterStatsSerializer/properties/MBps_base_limit'
-    "$.components.schemas.VolumeLimiterStatsSerializer.properties.MBps_base_limit"
-    """
+    """The sustained bandwidth limit in megabytes per second (MBps)."""
 
     m_bps_burst_limit: int = FieldInfo(alias="MBps_burst_limit")
-    """
-    '#/components/schemas/VolumeLimiterStatsSerializer/properties/MBps_burst_limit'
-    "$.components.schemas.VolumeLimiterStatsSerializer.properties.MBps_burst_limit"
-    """
+    """The burst bandwidth limit in megabytes per second (MBps)."""
 
 
 class Volume(BaseModel):
     id: str
-    """
-    '#/components/schemas/VolumeSerializer/properties/id'
-    "$.components.schemas.VolumeSerializer.properties.id"
-    """
+    """The unique identifier of the volume."""
 
     bootable: bool
-    """
-    '#/components/schemas/VolumeSerializer/properties/bootable'
-    "$.components.schemas.VolumeSerializer.properties.bootable"
-    """
+    """Indicates whether the volume is bootable."""
 
     created_at: datetime
-    """
-    '#/components/schemas/VolumeSerializer/properties/created_at'
-    "$.components.schemas.VolumeSerializer.properties.created_at"
-    """
+    """The date and time when the volume was created."""
 
     is_root_volume: bool
-    """
-    '#/components/schemas/VolumeSerializer/properties/is_root_volume'
-    "$.components.schemas.VolumeSerializer.properties.is_root_volume"
-    """
+    """Indicates whether this is a root volume."""
 
     name: str
-    """
-    '#/components/schemas/VolumeSerializer/properties/name'
-    "$.components.schemas.VolumeSerializer.properties.name"
-    """
+    """The name of the volume."""
 
     project_id: int
-    """
-    '#/components/schemas/VolumeSerializer/properties/project_id'
-    "$.components.schemas.VolumeSerializer.properties.project_id"
-    """
+    """Project ID."""
 
     region: str
-    """
-    '#/components/schemas/VolumeSerializer/properties/region'
-    "$.components.schemas.VolumeSerializer.properties.region"
-    """
+    """The region where the volume is located."""
 
     region_id: int
-    """
-    '#/components/schemas/VolumeSerializer/properties/region_id'
-    "$.components.schemas.VolumeSerializer.properties.region_id"
-    """
+    """The identifier of the region."""
 
     size: int
-    """
-    '#/components/schemas/VolumeSerializer/properties/size'
-    "$.components.schemas.VolumeSerializer.properties.size"
-    """
+    """The size of the volume in gibibytes (GiB)."""
 
     status: Literal[
         "attaching",
@@ -160,61 +100,42 @@ class Volume(BaseModel):
         "reverting",
         "uploading",
     ]
-    """
-    '#/components/schemas/VolumeSerializer/properties/status'
-    "$.components.schemas.VolumeSerializer.properties.status"
-    """
+    """The current status of the volume."""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/VolumeSerializer/properties/tags'
-    "$.components.schemas.VolumeSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     volume_type: str
-    """
-    '#/components/schemas/VolumeSerializer/properties/volume_type'
-    "$.components.schemas.VolumeSerializer.properties.volume_type"
-    """
+    """The type of volume storage."""
 
     attachments: Optional[List[Attachment]] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/attachments/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.attachments.anyOf[0]"
-    """
+    """List of attachments associated with the volume."""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """The ID of the task that created this volume."""
 
     limiter_stats: Optional[LimiterStats] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/limiter_stats/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.limiter_stats.anyOf[0]"
-    """
+    """Schema representing the Quality of Service (QoS) parameters for a volume."""
 
     snapshot_ids: Optional[List[str]] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/snapshot_ids/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.snapshot_ids.anyOf[0]"
-    """
+    """List of snapshot IDs associated with this volume."""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     updated_at: Optional[datetime] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/updated_at/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.updated_at.anyOf[0]"
-    """
+    """The date and time when the volume was last updated."""
 
     volume_image_metadata: Optional[Dict[str, str]] = None
-    """
-    '#/components/schemas/VolumeSerializer/properties/volume_image_metadata/anyOf/0'
-    "$.components.schemas.VolumeSerializer.properties.volume_image_metadata.anyOf[0]"
-    """
+    """Image metadata for volumes created from an image."""

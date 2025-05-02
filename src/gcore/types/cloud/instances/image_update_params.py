@@ -11,55 +11,33 @@ __all__ = ["ImageUpdateParams"]
 
 class ImageUpdateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/0/schema'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/1/schema'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[1].schema"
-    """
 
     hw_firmware_type: Literal["bios", "uefi"]
-    """
-    '#/components/schemas/UpdateImageSerializer/properties/hw_firmware_type'
-    "$.components.schemas.UpdateImageSerializer.properties.hw_firmware_type"
-    """
+    """Specifies the type of firmware with which to boot the guest."""
 
     hw_machine_type: Literal["pc", "q35"]
-    """
-    '#/components/schemas/UpdateImageSerializer/properties/hw_machine_type'
-    "$.components.schemas.UpdateImageSerializer.properties.hw_machine_type"
-    """
+    """A virtual chipset type."""
 
     is_baremetal: bool
-    """
-    '#/components/schemas/UpdateImageSerializer/properties/is_baremetal'
-    "$.components.schemas.UpdateImageSerializer.properties.is_baremetal"
-    """
+    """Set to true if the image will be used by bare metal servers."""
 
     name: str
-    """
-    '#/components/schemas/UpdateImageSerializer/properties/name'
-    "$.components.schemas.UpdateImageSerializer.properties.name"
-    """
+    """Image display name"""
 
     os_type: Literal["linux", "windows"]
-    """
-    '#/components/schemas/UpdateImageSerializer/properties/os_type'
-    "$.components.schemas.UpdateImageSerializer.properties.os_type"
-    """
+    """The operating system installed on the image."""
 
     ssh_key: Literal["allow", "deny", "required"]
-    """
-    '#/components/schemas/UpdateImageSerializer/properties/ssh_key'
-    "$.components.schemas.UpdateImageSerializer.properties.ssh_key"
-    """
+    """Whether the image supports SSH key or not"""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/UpdateImageSerializer/properties/tags'
-    "$.components.schemas.UpdateImageSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """

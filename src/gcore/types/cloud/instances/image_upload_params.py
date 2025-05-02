@@ -12,85 +12,51 @@ __all__ = ["ImageUploadParams"]
 
 class ImageUploadParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     name: Required[str]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/name'
-    "$.components.schemas.ImageDownloadSerializer.properties.name"
-    """
+    """Image name"""
 
     url: Required[str]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/url'
-    "$.components.schemas.ImageDownloadSerializer.properties.url"
-    """
+    """URL"""
 
     architecture: Literal["aarch64", "x86_64"]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/architecture'
-    "$.components.schemas.ImageDownloadSerializer.properties.architecture"
-    """
+    """Image CPU architecture type: `aarch64`, `x86_64`"""
 
     cow_format: bool
     """
-    '#/components/schemas/ImageDownloadSerializer/properties/cow_format'
-    "$.components.schemas.ImageDownloadSerializer.properties.cow_format"
+    When True, image cannot be deleted unless all volumes, created from it, are
+    deleted.
     """
 
     hw_firmware_type: Optional[Literal["bios", "uefi"]]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/hw_firmware_type/anyOf/0'
-    "$.components.schemas.ImageDownloadSerializer.properties.hw_firmware_type.anyOf[0]"
-    """
+    """Specifies the type of firmware with which to boot the guest."""
 
     hw_machine_type: Optional[Literal["pc", "q35"]]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/hw_machine_type/anyOf/0'
-    "$.components.schemas.ImageDownloadSerializer.properties.hw_machine_type.anyOf[0]"
-    """
+    """A virtual chipset type."""
 
     is_baremetal: bool
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/is_baremetal'
-    "$.components.schemas.ImageDownloadSerializer.properties.is_baremetal"
-    """
+    """Set to true if the image will be used by bare metal servers. Defaults to false."""
 
     os_distro: Optional[str]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/os_distro/anyOf/0'
-    "$.components.schemas.ImageDownloadSerializer.properties.os_distro.anyOf[0]"
-    """
+    """OS Distribution, i.e. Debian, CentOS, Ubuntu, CoreOS etc."""
 
     os_type: Literal["linux", "windows"]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/os_type'
-    "$.components.schemas.ImageDownloadSerializer.properties.os_type"
-    """
+    """The operating system installed on the image."""
 
     os_version: Optional[str]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/os_version/anyOf/0'
-    "$.components.schemas.ImageDownloadSerializer.properties.os_version.anyOf[0]"
-    """
+    """OS version, i.e. 22.04 (for Ubuntu) or 9.4 for Debian"""
 
     ssh_key: Literal["allow", "deny", "required"]
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/ssh_key'
-    "$.components.schemas.ImageDownloadSerializer.properties.ssh_key"
-    """
+    """Whether the image supports SSH key or not"""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/ImageDownloadSerializer/properties/tags'
-    "$.components.schemas.ImageDownloadSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """

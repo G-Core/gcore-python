@@ -9,25 +9,13 @@ __all__ = ["InferenceLog"]
 
 class InferenceLog(BaseModel):
     message: str
-    """
-    '#/components/schemas/InferenceInstanceLogSerializerV3/properties/message'
-    "$.components.schemas.InferenceInstanceLogSerializerV3.properties.message"
-    """
+    """Log message."""
 
     pod: str
-    """
-    '#/components/schemas/InferenceInstanceLogSerializerV3/properties/pod'
-    "$.components.schemas.InferenceInstanceLogSerializerV3.properties.pod"
-    """
+    """Pod name."""
 
     region_id: int
-    """
-    '#/components/schemas/InferenceInstanceLogSerializerV3/properties/region_id'
-    "$.components.schemas.InferenceInstanceLogSerializerV3.properties.region_id"
-    """
+    """Region ID where the container is deployed."""
 
     time: datetime
-    """
-    '#/components/schemas/InferenceInstanceLogSerializerV3/properties/time'
-    "$.components.schemas.InferenceInstanceLogSerializerV3.properties.time"
-    """
+    """Log message timestamp in ISO 8601 format."""

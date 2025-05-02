@@ -9,25 +9,11 @@ __all__ = ["GPUBaremetalClusterListParams"]
 
 class GPUBaremetalClusterListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-    "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-    "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[1].schema"
-    """
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-    "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[2]"
-    """
+    """Limit the number of returned clusters"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Fai%2Fclusters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-    "$.paths['/cloud/v2/ai/clusters/{project_id}/{region_id}'].get.parameters[3]"
-    """
+    """Offset value is used to exclude the first set of records from the result"""

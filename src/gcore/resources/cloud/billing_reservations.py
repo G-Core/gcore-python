@@ -76,38 +76,29 @@ class BillingReservationsResource(SyncAPIResource):
         List reservations
 
         Args:
-          activated_from: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/0'
-              "$.paths['/cloud/v1/reservations'].get.parameters[0]"
+          activated_from: Lower bound, starting from what date the reservation was/will be activated
 
-          activated_to: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/1'
-              "$.paths['/cloud/v1/reservations'].get.parameters[1]"
+          activated_to: High bound, before what date the reservation was/will be activated
 
-          created_from: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/2'
-              "$.paths['/cloud/v1/reservations'].get.parameters[2]"
+          created_from: Lower bound the filter, showing result(s) equal to or greater than date the
+              reservation was created
 
-          created_to: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/3'
-              "$.paths['/cloud/v1/reservations'].get.parameters[3]"
+          created_to: High bound the filter, showing result(s) equal to or less date the reservation
+              was created
 
-          deactivated_from: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/4'
-              "$.paths['/cloud/v1/reservations'].get.parameters[4]"
+          deactivated_from: Lower bound, starting from what date the reservation was/will be deactivated
 
-          deactivated_to: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/5'
-              "$.paths['/cloud/v1/reservations'].get.parameters[5]"
+          deactivated_to: High bound, before what date the reservation was/will be deactivated
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/6'
-              "$.paths['/cloud/v1/reservations'].get.parameters[6]"
+          limit: Limit of reservation list page
 
-          metric_name: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/7'
-              "$.paths['/cloud/v1/reservations'].get.parameters[7]"
+          metric_name: Name from billing features for specific resource
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/8'
-              "$.paths['/cloud/v1/reservations'].get.parameters[8]"
+          offset: Offset in reservation list
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/9'
-              "$.paths['/cloud/v1/reservations'].get.parameters[9]"
+          region_id: Region for reservation
 
-          status: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/10'
-              "$.paths['/cloud/v1/reservations'].get.parameters[10]"
+          status: Field for fixed a status by reservation workflow
 
           extra_headers: Send extra headers
 
@@ -160,8 +151,7 @@ class BillingReservationsResource(SyncAPIResource):
         Get specific reservation
 
         Args:
-          reservation_id: '#/paths/%2Fcloud%2Fv1%2Freservations%2F%7Breservation_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reservations/{reservation_id}'].get.parameters[0].schema"
+          reservation_id: ID of the reservation
 
           extra_headers: Send extra headers
 
@@ -230,38 +220,29 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         List reservations
 
         Args:
-          activated_from: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/0'
-              "$.paths['/cloud/v1/reservations'].get.parameters[0]"
+          activated_from: Lower bound, starting from what date the reservation was/will be activated
 
-          activated_to: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/1'
-              "$.paths['/cloud/v1/reservations'].get.parameters[1]"
+          activated_to: High bound, before what date the reservation was/will be activated
 
-          created_from: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/2'
-              "$.paths['/cloud/v1/reservations'].get.parameters[2]"
+          created_from: Lower bound the filter, showing result(s) equal to or greater than date the
+              reservation was created
 
-          created_to: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/3'
-              "$.paths['/cloud/v1/reservations'].get.parameters[3]"
+          created_to: High bound the filter, showing result(s) equal to or less date the reservation
+              was created
 
-          deactivated_from: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/4'
-              "$.paths['/cloud/v1/reservations'].get.parameters[4]"
+          deactivated_from: Lower bound, starting from what date the reservation was/will be deactivated
 
-          deactivated_to: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/5'
-              "$.paths['/cloud/v1/reservations'].get.parameters[5]"
+          deactivated_to: High bound, before what date the reservation was/will be deactivated
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/6'
-              "$.paths['/cloud/v1/reservations'].get.parameters[6]"
+          limit: Limit of reservation list page
 
-          metric_name: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/7'
-              "$.paths['/cloud/v1/reservations'].get.parameters[7]"
+          metric_name: Name from billing features for specific resource
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/8'
-              "$.paths['/cloud/v1/reservations'].get.parameters[8]"
+          offset: Offset in reservation list
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/9'
-              "$.paths['/cloud/v1/reservations'].get.parameters[9]"
+          region_id: Region for reservation
 
-          status: '#/paths/%2Fcloud%2Fv1%2Freservations/get/parameters/10'
-              "$.paths['/cloud/v1/reservations'].get.parameters[10]"
+          status: Field for fixed a status by reservation workflow
 
           extra_headers: Send extra headers
 
@@ -314,8 +295,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         Get specific reservation
 
         Args:
-          reservation_id: '#/paths/%2Fcloud%2Fv1%2Freservations%2F%7Breservation_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reservations/{reservation_id}'].get.parameters[0].schema"
+          reservation_id: ID of the reservation
 
           extra_headers: Send extra headers
 

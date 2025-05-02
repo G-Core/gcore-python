@@ -11,49 +11,29 @@ __all__ = ["SSHKey"]
 
 class SSHKey(BaseModel):
     id: str
-    """
-    '#/components/schemas/SSHKeySerializer/properties/id'
-    "$.components.schemas.SSHKeySerializer.properties.id"
-    """
+    """SSH key ID"""
 
     created_at: Optional[datetime] = None
-    """
-    '#/components/schemas/SSHKeySerializer/properties/created_at/anyOf/0'
-    "$.components.schemas.SSHKeySerializer.properties.created_at.anyOf[0]"
-    """
+    """SSH key creation time"""
 
     fingerprint: str
-    """
-    '#/components/schemas/SSHKeySerializer/properties/fingerprint'
-    "$.components.schemas.SSHKeySerializer.properties.fingerprint"
-    """
+    """Fingerprint"""
 
     name: str
-    """
-    '#/components/schemas/SSHKeySerializer/properties/name'
-    "$.components.schemas.SSHKeySerializer.properties.name"
-    """
+    """SSH key name"""
 
     project_id: Optional[int] = None
-    """
-    '#/components/schemas/SSHKeySerializer/properties/project_id/anyOf/0'
-    "$.components.schemas.SSHKeySerializer.properties.project_id.anyOf[0]"
-    """
+    """Project ID"""
 
     public_key: str
-    """
-    '#/components/schemas/SSHKeySerializer/properties/public_key'
-    "$.components.schemas.SSHKeySerializer.properties.public_key"
+    """The public part of an SSH key is the shareable portion of an SSH key pair.
+
+    It can be safely sent to servers or services to grant access. It does not
+    contain sensitive information.
     """
 
     shared_in_project: bool
-    """
-    '#/components/schemas/SSHKeySerializer/properties/shared_in_project'
-    "$.components.schemas.SSHKeySerializer.properties.shared_in_project"
-    """
+    """SSH key will be visible to all users in the project"""
 
     state: Literal["ACTIVE", "DELETING"]
-    """
-    '#/components/schemas/SSHKeySerializer/properties/state'
-    "$.components.schemas.SSHKeySerializer.properties.state"
-    """
+    """SSH key state"""

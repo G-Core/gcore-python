@@ -9,67 +9,39 @@ __all__ = ["ReservedFixedIPListParams"]
 
 class ReservedFixedIPListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[1].schema"
-    """
 
     available_only: bool
     """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[2]"
+    Set to true if the response should only list IP addresses that are not attached
+    to any instance
     """
 
     device_id: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[3]"
-    """
+    """Filter IPs by device ID it is attached to"""
 
     external_only: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[4]"
-    """
+    """Set to true if the response should only list public IP addresses"""
 
     internal_only: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[5]"
-    """
+    """Set to true if the response should only list private IP addresses"""
 
     ip_address: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[6]"
-    """
+    """An IPv4 address to filter results by. Regular expression allowed"""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[7]"
-    """
+    """Limit the number of returned IPs"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[8]"
-    """
+    """Offset value is used to exclude the first set of records from the result"""
 
     order_by: str
     """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[9]"
+    Ordering reserved fixed IP list result by name, status, updated_at, created_at
+    or fixed_ip_address fields of the reserved fixed IP and directions (status.asc),
+    default is "fixed_ip_address.asc"
     """
 
     vip_only: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[10]"
-    """
+    """Set to true if the response should only list VIPs"""

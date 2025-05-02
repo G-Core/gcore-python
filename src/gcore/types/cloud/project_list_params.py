@@ -9,37 +9,19 @@ __all__ = ["ProjectListParams"]
 
 class ProjectListParams(TypedDict, total=False):
     client_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/0'
-    "$.paths['/cloud/v1/projects'].get.parameters[0]"
-    """
+    """Client ID filter for administrators."""
 
     include_deleted: bool
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/1'
-    "$.paths['/cloud/v1/projects'].get.parameters[1]"
-    """
+    """Whether to include deleted projects in the response."""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/2'
-    "$.paths['/cloud/v1/projects'].get.parameters[2]"
-    """
+    """Limit value is used to limit the number of records in the result"""
 
     name: str
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/3'
-    "$.paths['/cloud/v1/projects'].get.parameters[3]"
-    """
+    """Name to filter the results by."""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/4'
-    "$.paths['/cloud/v1/projects'].get.parameters[4]"
-    """
+    """Offset value is used to exclude the first set of records from the result"""
 
     order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"]
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fprojects/get/parameters/5'
-    "$.paths['/cloud/v1/projects'].get.parameters[5]"
-    """
+    """Order by field and direction."""

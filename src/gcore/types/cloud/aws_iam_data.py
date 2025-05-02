@@ -7,13 +7,7 @@ __all__ = ["AwsIamData"]
 
 class AwsIamData(BaseModel):
     aws_access_key_id: str
-    """
-    '#/components/schemas/AwsIamData/properties/aws_access_key_id'
-    "$.components.schemas.AwsIamData.properties.aws_access_key_id"
-    """
+    """AWS IAM key ID."""
 
     aws_secret_access_key: str
-    """
-    '#/components/schemas/AwsIamData/properties/aws_secret_access_key'
-    "$.components.schemas.AwsIamData.properties.aws_secret_access_key"
-    """
+    """AWS IAM secret key."""

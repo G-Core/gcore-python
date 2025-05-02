@@ -10,25 +10,13 @@ __all__ = ["LbSessionPersistence"]
 
 class LbSessionPersistence(BaseModel):
     type: SessionPersistenceType
-    """
-    '#/components/schemas/LbSessionPersistence/properties/type'
-    "$.components.schemas.LbSessionPersistence.properties.type"
-    """
+    """Session persistence type"""
 
     cookie_name: Optional[str] = None
-    """
-    '#/components/schemas/LbSessionPersistence/properties/cookie_name/anyOf/0'
-    "$.components.schemas.LbSessionPersistence.properties.cookie_name.anyOf[0]"
-    """
+    """Should be set if app cookie or http cookie is used"""
 
     persistence_granularity: Optional[str] = None
-    """
-    '#/components/schemas/LbSessionPersistence/properties/persistence_granularity/anyOf/0'
-    "$.components.schemas.LbSessionPersistence.properties.persistence_granularity.anyOf[0]"
-    """
+    """Subnet mask if source_ip is used. For UDP ports only"""
 
     persistence_timeout: Optional[int] = None
-    """
-    '#/components/schemas/LbSessionPersistence/properties/persistence_timeout/anyOf/0'
-    "$.components.schemas.LbSessionPersistence.properties.persistence_timeout.anyOf[0]"
-    """
+    """Session persistence timeout. For UDP ports only"""

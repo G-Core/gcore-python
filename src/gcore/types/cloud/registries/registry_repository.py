@@ -9,43 +9,22 @@ __all__ = ["RegistryRepository"]
 
 class RegistryRepository(BaseModel):
     id: int
-    """
-    '#/components/schemas/RegistryRepositorySerializer/properties/id'
-    "$.components.schemas.RegistryRepositorySerializer.properties.id"
-    """
+    """Repository ID"""
 
     artifact_count: int
-    """
-    '#/components/schemas/RegistryRepositorySerializer/properties/artifact_count'
-    "$.components.schemas.RegistryRepositorySerializer.properties.artifact_count"
-    """
+    """Number of artifacts in the repository"""
 
     created_at: datetime
-    """
-    '#/components/schemas/RegistryRepositorySerializer/properties/created_at'
-    "$.components.schemas.RegistryRepositorySerializer.properties.created_at"
-    """
+    """Repository creation date-time"""
 
     name: str
-    """
-    '#/components/schemas/RegistryRepositorySerializer/properties/name'
-    "$.components.schemas.RegistryRepositorySerializer.properties.name"
-    """
+    """Repository name"""
 
     pull_count: int
-    """
-    '#/components/schemas/RegistryRepositorySerializer/properties/pull_count'
-    "$.components.schemas.RegistryRepositorySerializer.properties.pull_count"
-    """
+    """Number of pools from the repository"""
 
     registry_id: int
-    """
-    '#/components/schemas/RegistryRepositorySerializer/properties/registry_id'
-    "$.components.schemas.RegistryRepositorySerializer.properties.registry_id"
-    """
+    """Repository registry ID"""
 
     updated_at: datetime
-    """
-    '#/components/schemas/RegistryRepositorySerializer/properties/updated_at'
-    "$.components.schemas.RegistryRepositorySerializer.properties.updated_at"
-    """
+    """Repository modification date-time"""

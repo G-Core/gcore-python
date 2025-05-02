@@ -10,43 +10,22 @@ __all__ = ["RegistryUserCreated"]
 
 class RegistryUserCreated(BaseModel):
     id: int
-    """
-    '#/components/schemas/RegistryUserCreateResponseSerializer/properties/id'
-    "$.components.schemas.RegistryUserCreateResponseSerializer.properties.id"
-    """
+    """User ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/RegistryUserCreateResponseSerializer/properties/created_at'
-    "$.components.schemas.RegistryUserCreateResponseSerializer.properties.created_at"
-    """
+    """User creation date-time"""
 
     duration: int
-    """
-    '#/components/schemas/RegistryUserCreateResponseSerializer/properties/duration'
-    "$.components.schemas.RegistryUserCreateResponseSerializer.properties.duration"
-    """
+    """User account operating time, days"""
 
     expires_at: datetime
-    """
-    '#/components/schemas/RegistryUserCreateResponseSerializer/properties/expires_at'
-    "$.components.schemas.RegistryUserCreateResponseSerializer.properties.expires_at"
-    """
+    """User operation end date-time"""
 
     name: str
-    """
-    '#/components/schemas/RegistryUserCreateResponseSerializer/properties/name'
-    "$.components.schemas.RegistryUserCreateResponseSerializer.properties.name"
-    """
+    """User name"""
 
     read_only: Optional[bool] = None
-    """
-    '#/components/schemas/RegistryUserCreateResponseSerializer/properties/read_only'
-    "$.components.schemas.RegistryUserCreateResponseSerializer.properties.read_only"
-    """
+    """Read-only user"""
 
     secret: Optional[str] = None
-    """
-    '#/components/schemas/RegistryUserCreateResponseSerializer/properties/secret'
-    "$.components.schemas.RegistryUserCreateResponseSerializer.properties.secret"
-    """
+    """User secret"""

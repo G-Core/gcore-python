@@ -10,19 +10,8 @@ __all__ = ["VipReplaceConnectedPortsParams"]
 
 class VipReplaceConnectedPortsParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/0/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fconnected_devices/put/parameters/1/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices'].put.parameters[1].schema"
-    """
 
     port_ids: List[str]
-    """
-    '#/components/schemas/PortIDsForVIPSerializer/properties/port_ids'
-    "$.components.schemas.PortIDsForVIPSerializer.properties.port_ids"
-    """
+    """List of port IDs that will share one VIP"""

@@ -33,109 +33,97 @@ __all__ = [
 
 class LoadBalancerCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     flavor: str
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/flavor'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.flavor"
-    """
+    """Load balancer flavor name"""
 
     floating_ip: FloatingIP
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/floating_ip'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.floating_ip"
-    """
+    """Floating IP configuration for assignment"""
 
     listeners: Iterable[Listener]
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/listeners'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.listeners"
+    """Load balancer listeners.
+
+    Maximum 50 per LB (excluding Prometheus endpoint listener).
     """
 
     logging: Logging
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/logging'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.logging"
-    """
+    """Logging configuration"""
 
     name: str
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/name'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.name"
-    """
+    """Load balancer name"""
 
     name_template: str
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/name_template'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.name_template"
-    """
+    """Load balancer name which will be changed by template."""
 
     preferred_connectivity: LoadBalancerMemberConnectivity
     """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/preferred_connectivity'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.preferred_connectivity"
+    Preferred option to establish connectivity between load balancer and its pools
+    members. L2 provides best performance, L3 provides less IPs usage. It is taking
+    effect only if instance_id + ip_address is provided, not subnet_id + ip_address,
+    because we're considering this as intentional subnet_id specification.
     """
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/tags'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     vip_ip_family: InterfaceIPFamily
     """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_ip_family'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_ip_family"
+    IP family for load balancer subnet auto-selection if vip_network_id is specified
     """
 
     vip_network_id: str
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_network_id'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_network_id"
+    """Network ID for load balancer.
+
+    If not specified, default external network will be used. Mutually exclusive with
+    vip_port_id
     """
 
     vip_port_id: str
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_port_id'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_port_id"
+    """Existing Reserved Fixed IP port ID for load balancer.
+
+    Mutually exclusive with vip_network_id
     """
 
     vip_subnet_id: str
-    """
-    '#/components/schemas/CreateLoadbalancerSerializer/properties/vip_subnet_id'
-    "$.components.schemas.CreateLoadbalancerSerializer.properties.vip_subnet_id"
+    """Subnet ID for load balancer.
+
+    If not specified, any subnet from vip_network_id will be selected. Ignored when
+    vip_network_id is not specified.
     """
 
 
 class FloatingIPNewInstanceFloatingIPInterfaceSerializer(TypedDict, total=False):
     source: Required[Literal["new"]]
-    """
-    '#/components/schemas/NewInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.NewInstanceFloatingIpInterfaceSerializer.properties.source"
+    """A new floating IP will be created and attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
 class FloatingIPExistingInstanceFloatingIPInterfaceSerializer(TypedDict, total=False):
     existing_floating_id: Required[str]
     """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/existing_floating_id'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.existing_floating_id"
+    An existing available floating IP id must be specified if the source is set to
+    `existing`
     """
 
     source: Required[Literal["existing"]]
-    """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.source"
+    """An existing available floating IP will be attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -146,331 +134,194 @@ FloatingIP: TypeAlias = Union[
 
 class ListenerPoolHealthmonitor(TypedDict, total=False):
     delay: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/delay'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.delay"
-    """
+    """The time, in seconds, between sending probes to members"""
 
     max_retries: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries"
-    """
+    """Number of successes before the member is switched to ONLINE state"""
 
     timeout: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/timeout'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.timeout"
-    """
+    """The maximum time to connect. Must be less than the delay value"""
 
     type: Required[HealthMonitorType]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/type'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.type"
-    """
+    """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/expected_codes/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.expected_codes.anyOf[0]"
-    """
+    """Can only be used together with `HTTP` or `HTTPS` health monitor type."""
 
     http_method: Optional[HTTPMethod]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/http_method/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.http_method.anyOf[0]"
+    """HTTP method.
+
+    Can only be used together with `HTTP` or `HTTPS` health monitor type.
     """
 
     max_retries_down: Optional[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries_down/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries_down.anyOf[0]"
-    """
+    """Number of failures before the member is switched to ERROR state."""
 
     url_path: Optional[str]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/url_path/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.url_path.anyOf[0]"
+    """URL Path.
+
+    Defaults to '/'. Can only be used together with `HTTP` or `HTTPS` health monitor
+    type.
     """
 
 
 class ListenerPoolMember(TypedDict, total=False):
     address: Required[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/address'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.address"
-    """
+    """Member IP address"""
 
     protocol_port: Required[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/protocol_port'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.protocol_port"
-    """
+    """Member IP port"""
 
     admin_state_up: Optional[bool]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/admin_state_up/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.admin_state_up.anyOf[0]"
-    """
+    """true if enabled. Defaults to true"""
 
     instance_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/instance_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.instance_id.anyOf[0]"
-    """
+    """Either subnet_id or instance_id should be provided"""
 
     monitor_address: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_address/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_address.anyOf[0]"
+    """An alternate IP address used for health monitoring of a backend member.
+
+    Default is null which monitors the member address.
     """
 
     monitor_port: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/monitor_port/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.monitor_port.anyOf[0]"
+    """An alternate protocol port used for health monitoring of a backend member.
+
+    Default is null which monitors the member protocol_port.
     """
 
     subnet_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/subnet_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.subnet_id.anyOf[0]"
-    """
+    """Either subnet_id or instance_id should be provided"""
 
     weight: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolMemberSerializer/properties/weight/anyOf/0'
-    "$.components.schemas.CreateLbPoolMemberSerializer.properties.weight.anyOf[0]"
-    """
+    """Member weight. Valid values: 0 to 256, defaults to 1"""
 
 
 class ListenerPoolSessionPersistence(TypedDict, total=False):
     type: Required[SessionPersistenceType]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/type'
-    "$.components.schemas.MutateLbSessionPersistence.properties.type"
-    """
+    """Session persistence type"""
 
     cookie_name: Optional[str]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/cookie_name/anyOf/0'
-    "$.components.schemas.MutateLbSessionPersistence.properties.cookie_name.anyOf[0]"
-    """
+    """Should be set if app cookie or http cookie is used"""
 
     persistence_granularity: Optional[str]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/persistence_granularity/anyOf/0'
-    "$.components.schemas.MutateLbSessionPersistence.properties.persistence_granularity.anyOf[0]"
-    """
+    """Subnet mask if source_ip is used. For UDP ports only"""
 
     persistence_timeout: Optional[int]
-    """
-    '#/components/schemas/MutateLbSessionPersistence/properties/persistence_timeout/anyOf/0'
-    "$.components.schemas.MutateLbSessionPersistence.properties.persistence_timeout.anyOf[0]"
-    """
+    """Session persistence timeout. For UDP ports only"""
 
 
 class ListenerPool(TypedDict, total=False):
     lb_algorithm: Required[LbAlgorithm]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/lb_algorithm'
-    "$.components.schemas.CreateLbPoolSerializer.properties.lb_algorithm"
-    """
+    """Load balancer algorithm"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/name'
-    "$.components.schemas.CreateLbPoolSerializer.properties.name"
-    """
+    """Pool name"""
 
     protocol: Required[LbPoolProtocol]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/protocol'
-    "$.components.schemas.CreateLbPoolSerializer.properties.protocol"
-    """
+    """Protocol"""
 
     ca_secret_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/ca_secret_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.ca_secret_id.anyOf[0]"
-    """
+    """Secret ID of CA certificate bundle"""
 
     crl_secret_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/crl_secret_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.crl_secret_id.anyOf[0]"
-    """
+    """Secret ID of CA revocation list file"""
 
     healthmonitor: Optional[ListenerPoolHealthmonitor]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/healthmonitor/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.healthmonitor.anyOf[0]"
-    """
+    """Health monitor details"""
 
     listener_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/listener_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.listener_id.anyOf[0]"
-    """
+    """Listener ID"""
 
     loadbalancer_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/loadbalancer_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.loadbalancer_id.anyOf[0]"
-    """
+    """Loadbalancer ID"""
 
     members: Optional[Iterable[ListenerPoolMember]]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/members/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.members.anyOf[0]"
-    """
+    """Pool members"""
 
     secret_id: Optional[str]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/secret_id/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.secret_id.anyOf[0]"
-    """
+    """Secret ID for TLS client authentication to the member servers"""
 
     session_persistence: Optional[ListenerPoolSessionPersistence]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/session_persistence/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.session_persistence.anyOf[0]"
-    """
+    """Session persistence details"""
 
     timeout_client_data: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/timeout_client_data/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.timeout_client_data.anyOf[0]"
-    """
+    """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_connect/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_connect.anyOf[0]"
-    """
+    """Backend member connection timeout in milliseconds"""
 
     timeout_member_data: Optional[int]
-    """
-    '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_data/anyOf/0'
-    "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_data.anyOf[0]"
-    """
+    """Backend member inactivity timeout in milliseconds"""
 
 
 class ListenerUserList(TypedDict, total=False):
     encrypted_password: Required[str]
-    """
-    '#/components/schemas/UserListItem/properties/encrypted_password'
-    "$.components.schemas.UserListItem.properties.encrypted_password"
-    """
+    """Encrypted password to auth via Basic Authentication"""
 
     username: Required[str]
-    """
-    '#/components/schemas/UserListItem/properties/username'
-    "$.components.schemas.UserListItem.properties.username"
-    """
+    """Username to auth via Basic Authentication"""
 
 
 class Listener(TypedDict, total=False):
     name: Required[str]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/name'
-    "$.components.schemas.CreateListenerSerializer.properties.name"
-    """
+    """Load balancer listener name"""
 
     protocol: Required[LbListenerProtocol]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/protocol'
-    "$.components.schemas.CreateListenerSerializer.properties.protocol"
-    """
+    """Load balancer listener protocol"""
 
     protocol_port: Required[int]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/protocol_port'
-    "$.components.schemas.CreateListenerSerializer.properties.protocol_port"
-    """
+    """Protocol port"""
 
     allowed_cidrs: Optional[List[str]]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/allowed_cidrs/anyOf/0'
-    "$.components.schemas.CreateListenerSerializer.properties.allowed_cidrs.anyOf[0]"
-    """
+    """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/connection_limit'
-    "$.components.schemas.CreateListenerSerializer.properties.connection_limit"
-    """
+    """Limit of the simultaneous connections"""
 
     insert_x_forwarded: bool
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/insert_x_forwarded'
-    "$.components.schemas.CreateListenerSerializer.properties.insert_x_forwarded"
+    """Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
+
+    Only used with HTTP or TERMINATED_HTTPS protocols.
     """
 
     pools: Iterable[ListenerPool]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/pools'
-    "$.components.schemas.CreateListenerSerializer.properties.pools"
-    """
+    """Member pools"""
 
     secret_id: str
     """
-    '#/components/schemas/CreateListenerSerializer/properties/secret_id/anyOf/0'
-    "$.components.schemas.CreateListenerSerializer.properties.secret_id.anyOf[0]"
+    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+    listener
     """
 
     sni_secret_id: List[str]
     """
-    '#/components/schemas/CreateListenerSerializer/properties/sni_secret_id'
-    "$.components.schemas.CreateListenerSerializer.properties.sni_secret_id"
+    List of secrets IDs containing PKCS12 format certificate/key bundles for
+    TERMINATED_HTTPS or PROMETHEUS listeners
     """
 
     timeout_client_data: Optional[int]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/timeout_client_data/anyOf/0'
-    "$.components.schemas.CreateListenerSerializer.properties.timeout_client_data.anyOf[0]"
-    """
+    """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/timeout_member_connect/anyOf/0'
-    "$.components.schemas.CreateListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-    """
+    """Backend member connection timeout in milliseconds"""
 
     timeout_member_data: Optional[int]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/timeout_member_data/anyOf/0'
-    "$.components.schemas.CreateListenerSerializer.properties.timeout_member_data.anyOf[0]"
-    """
+    """Backend member inactivity timeout in milliseconds"""
 
     user_list: Iterable[ListenerUserList]
-    """
-    '#/components/schemas/CreateListenerSerializer/properties/user_list'
-    "$.components.schemas.CreateListenerSerializer.properties.user_list"
-    """
+    """Load balancer listener list of username and encrypted password items"""
 
 
 class Logging(TypedDict, total=False):
     destination_region_id: Optional[int]
-    """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/destination_region_id/anyOf/0'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.destination_region_id.anyOf[0]"
-    """
+    """Destination region id to which the logs will be written"""
 
     enabled: bool
-    """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/enabled'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.enabled"
-    """
+    """Enable/disable forwarding logs to LaaS"""
 
     retention_policy: Optional[LaasIndexRetentionPolicyParam]
-    """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/retention_policy/anyOf/0'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.retention_policy.anyOf[0]"
-    """
+    """The logs retention policy"""
 
     topic_name: Optional[str]
-    """
-    '#/components/schemas/LoadbalancerLoggingSerializer/properties/topic_name/anyOf/0'
-    "$.components.schemas.LoadbalancerLoggingSerializer.properties.topic_name.anyOf[0]"
-    """
+    """The topic name to which the logs will be written"""

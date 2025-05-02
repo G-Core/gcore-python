@@ -10,13 +10,7 @@ __all__ = ["GPUClusterServerList"]
 
 class GPUClusterServerList(BaseModel):
     count: int
-    """
-    '#/components/schemas/GPUClusterServerCollectionSerializer/properties/count'
-    "$.components.schemas.GPUClusterServerCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[GPUClusterServer]
-    """
-    '#/components/schemas/GPUClusterServerCollectionSerializer/properties/results'
-    "$.components.schemas.GPUClusterServerCollectionSerializer.properties.results"
-    """
+    """Objects"""

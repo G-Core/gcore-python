@@ -9,13 +9,7 @@ __all__ = ["DDOSProfileOptionList"]
 
 class DDOSProfileOptionList(BaseModel):
     active: Optional[bool] = None
-    """
-    '#/components/schemas/ProfileOptionsSerializer/properties/active/anyOf/0'
-    "$.components.schemas.ProfileOptionsSerializer.properties.active.anyOf[0]"
-    """
+    """Activate profile."""
 
     bgp: Optional[bool] = None
-    """
-    '#/components/schemas/ProfileOptionsSerializer/properties/bgp/anyOf/0'
-    "$.components.schemas.ProfileOptionsSerializer.properties.bgp.anyOf[0]"
-    """
+    """Activate BGP protocol."""

@@ -102,53 +102,33 @@ class PoolsResource(SyncAPIResource):
         Create load balancer pool
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].post.parameters[0].schema"
+          lb_algorithm: Load balancer algorithm
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].post.parameters[1].schema"
+          name: Pool name
 
-          lb_algorithm: '#/components/schemas/CreateLbPoolSerializer/properties/lb_algorithm'
-              "$.components.schemas.CreateLbPoolSerializer.properties.lb_algorithm"
+          protocol: Protocol
 
-          name: '#/components/schemas/CreateLbPoolSerializer/properties/name'
-              "$.components.schemas.CreateLbPoolSerializer.properties.name"
+          ca_secret_id: Secret ID of CA certificate bundle
 
-          protocol: '#/components/schemas/CreateLbPoolSerializer/properties/protocol'
-              "$.components.schemas.CreateLbPoolSerializer.properties.protocol"
+          crl_secret_id: Secret ID of CA revocation list file
 
-          ca_secret_id: '#/components/schemas/CreateLbPoolSerializer/properties/ca_secret_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.ca_secret_id.anyOf[0]"
+          healthmonitor: Health monitor details
 
-          crl_secret_id: '#/components/schemas/CreateLbPoolSerializer/properties/crl_secret_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.crl_secret_id.anyOf[0]"
+          listener_id: Listener ID
 
-          healthmonitor: '#/components/schemas/CreateLbPoolSerializer/properties/healthmonitor/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.healthmonitor.anyOf[0]"
+          loadbalancer_id: Loadbalancer ID
 
-          listener_id: '#/components/schemas/CreateLbPoolSerializer/properties/listener_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.listener_id.anyOf[0]"
+          members: Pool members
 
-          loadbalancer_id: '#/components/schemas/CreateLbPoolSerializer/properties/loadbalancer_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.loadbalancer_id.anyOf[0]"
+          secret_id: Secret ID for TLS client authentication to the member servers
 
-          members: '#/components/schemas/CreateLbPoolSerializer/properties/members/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.members.anyOf[0]"
+          session_persistence: Session persistence details
 
-          secret_id: '#/components/schemas/CreateLbPoolSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.secret_id.anyOf[0]"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          session_persistence: '#/components/schemas/CreateLbPoolSerializer/properties/session_persistence/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.session_persistence.anyOf[0]"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          timeout_client_data: '#/components/schemas/CreateLbPoolSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.timeout_client_data.anyOf[0]"
-
-          timeout_member_connect: '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_data.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
           extra_headers: Send extra headers
 
@@ -220,50 +200,30 @@ class PoolsResource(SyncAPIResource):
         they will be overwritten.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].patch.parameters[0].schema"
+          ca_secret_id: Secret ID of CA certificate bundle
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].patch.parameters[1].schema"
+          crl_secret_id: Secret ID of CA revocation list file
 
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].patch.parameters[2].schema"
+          healthmonitor: New pool health monitor settings
 
-          ca_secret_id: '#/components/schemas/PatchLbPoolSerializer/properties/ca_secret_id/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.ca_secret_id.anyOf[0]"
+          lb_algorithm: New load balancer pool algorithm of how to distribute requests
 
-          crl_secret_id: '#/components/schemas/PatchLbPoolSerializer/properties/crl_secret_id/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.crl_secret_id.anyOf[0]"
+          members: New sequence of load balancer pool members. If members are the same (by
+              address + port), they will be kept as is without recreation and downtime.
 
-          healthmonitor: '#/components/schemas/PatchLbPoolSerializer/properties/healthmonitor/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.healthmonitor.anyOf[0]"
+          name: New pool name
 
-          lb_algorithm: '#/components/schemas/PatchLbPoolSerializer/properties/lb_algorithm'
-              "$.components.schemas.PatchLbPoolSerializer.properties.lb_algorithm"
+          protocol: New communication protocol
 
-          members: '#/components/schemas/PatchLbPoolSerializer/properties/members/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.members.anyOf[0]"
+          secret_id: Secret ID for TLS client authentication to the member servers
 
-          name: '#/components/schemas/PatchLbPoolSerializer/properties/name'
-              "$.components.schemas.PatchLbPoolSerializer.properties.name"
+          session_persistence: New session persistence settings
 
-          protocol: '#/components/schemas/PatchLbPoolSerializer/properties/protocol'
-              "$.components.schemas.PatchLbPoolSerializer.properties.protocol"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          secret_id: '#/components/schemas/PatchLbPoolSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.secret_id.anyOf[0]"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          session_persistence: '#/components/schemas/PatchLbPoolSerializer/properties/session_persistence/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.session_persistence.anyOf[0]"
-
-          timeout_client_data: '#/components/schemas/PatchLbPoolSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.timeout_client_data.anyOf[0]"
-
-          timeout_member_connect: '#/components/schemas/PatchLbPoolSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/PatchLbPoolSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.timeout_member_data.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
           extra_headers: Send extra headers
 
@@ -323,20 +283,12 @@ class PoolsResource(SyncAPIResource):
         List load balancer pools
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[0].schema"
+          details: If true, show member and healthmonitor details of each pool (increases request
+              time)
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[1].schema"
+          listener_id: Load balancer listener ID
 
-          details: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[2]"
-
-          listener_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[3]"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[4]"
+          loadbalancer_id: Load balancer ID
 
           extra_headers: Send extra headers
 
@@ -386,15 +338,6 @@ class PoolsResource(SyncAPIResource):
         Delete load balancer pool
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}']['delete'].parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -434,15 +377,6 @@ class PoolsResource(SyncAPIResource):
         Get load balancer pool
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].get.parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -524,53 +458,33 @@ class AsyncPoolsResource(AsyncAPIResource):
         Create load balancer pool
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].post.parameters[0].schema"
+          lb_algorithm: Load balancer algorithm
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].post.parameters[1].schema"
+          name: Pool name
 
-          lb_algorithm: '#/components/schemas/CreateLbPoolSerializer/properties/lb_algorithm'
-              "$.components.schemas.CreateLbPoolSerializer.properties.lb_algorithm"
+          protocol: Protocol
 
-          name: '#/components/schemas/CreateLbPoolSerializer/properties/name'
-              "$.components.schemas.CreateLbPoolSerializer.properties.name"
+          ca_secret_id: Secret ID of CA certificate bundle
 
-          protocol: '#/components/schemas/CreateLbPoolSerializer/properties/protocol'
-              "$.components.schemas.CreateLbPoolSerializer.properties.protocol"
+          crl_secret_id: Secret ID of CA revocation list file
 
-          ca_secret_id: '#/components/schemas/CreateLbPoolSerializer/properties/ca_secret_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.ca_secret_id.anyOf[0]"
+          healthmonitor: Health monitor details
 
-          crl_secret_id: '#/components/schemas/CreateLbPoolSerializer/properties/crl_secret_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.crl_secret_id.anyOf[0]"
+          listener_id: Listener ID
 
-          healthmonitor: '#/components/schemas/CreateLbPoolSerializer/properties/healthmonitor/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.healthmonitor.anyOf[0]"
+          loadbalancer_id: Loadbalancer ID
 
-          listener_id: '#/components/schemas/CreateLbPoolSerializer/properties/listener_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.listener_id.anyOf[0]"
+          members: Pool members
 
-          loadbalancer_id: '#/components/schemas/CreateLbPoolSerializer/properties/loadbalancer_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.loadbalancer_id.anyOf[0]"
+          secret_id: Secret ID for TLS client authentication to the member servers
 
-          members: '#/components/schemas/CreateLbPoolSerializer/properties/members/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.members.anyOf[0]"
+          session_persistence: Session persistence details
 
-          secret_id: '#/components/schemas/CreateLbPoolSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.secret_id.anyOf[0]"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          session_persistence: '#/components/schemas/CreateLbPoolSerializer/properties/session_persistence/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.session_persistence.anyOf[0]"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          timeout_client_data: '#/components/schemas/CreateLbPoolSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.timeout_client_data.anyOf[0]"
-
-          timeout_member_connect: '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/CreateLbPoolSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.CreateLbPoolSerializer.properties.timeout_member_data.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
           extra_headers: Send extra headers
 
@@ -642,50 +556,30 @@ class AsyncPoolsResource(AsyncAPIResource):
         they will be overwritten.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].patch.parameters[0].schema"
+          ca_secret_id: Secret ID of CA certificate bundle
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].patch.parameters[1].schema"
+          crl_secret_id: Secret ID of CA revocation list file
 
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].patch.parameters[2].schema"
+          healthmonitor: New pool health monitor settings
 
-          ca_secret_id: '#/components/schemas/PatchLbPoolSerializer/properties/ca_secret_id/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.ca_secret_id.anyOf[0]"
+          lb_algorithm: New load balancer pool algorithm of how to distribute requests
 
-          crl_secret_id: '#/components/schemas/PatchLbPoolSerializer/properties/crl_secret_id/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.crl_secret_id.anyOf[0]"
+          members: New sequence of load balancer pool members. If members are the same (by
+              address + port), they will be kept as is without recreation and downtime.
 
-          healthmonitor: '#/components/schemas/PatchLbPoolSerializer/properties/healthmonitor/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.healthmonitor.anyOf[0]"
+          name: New pool name
 
-          lb_algorithm: '#/components/schemas/PatchLbPoolSerializer/properties/lb_algorithm'
-              "$.components.schemas.PatchLbPoolSerializer.properties.lb_algorithm"
+          protocol: New communication protocol
 
-          members: '#/components/schemas/PatchLbPoolSerializer/properties/members/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.members.anyOf[0]"
+          secret_id: Secret ID for TLS client authentication to the member servers
 
-          name: '#/components/schemas/PatchLbPoolSerializer/properties/name'
-              "$.components.schemas.PatchLbPoolSerializer.properties.name"
+          session_persistence: New session persistence settings
 
-          protocol: '#/components/schemas/PatchLbPoolSerializer/properties/protocol'
-              "$.components.schemas.PatchLbPoolSerializer.properties.protocol"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          secret_id: '#/components/schemas/PatchLbPoolSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.secret_id.anyOf[0]"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          session_persistence: '#/components/schemas/PatchLbPoolSerializer/properties/session_persistence/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.session_persistence.anyOf[0]"
-
-          timeout_client_data: '#/components/schemas/PatchLbPoolSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.timeout_client_data.anyOf[0]"
-
-          timeout_member_connect: '#/components/schemas/PatchLbPoolSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/PatchLbPoolSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.PatchLbPoolSerializer.properties.timeout_member_data.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
           extra_headers: Send extra headers
 
@@ -745,20 +639,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         List load balancer pools
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[0].schema"
+          details: If true, show member and healthmonitor details of each pool (increases request
+              time)
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[1].schema"
+          listener_id: Load balancer listener ID
 
-          details: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[2]"
-
-          listener_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[3]"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}'].get.parameters[4]"
+          loadbalancer_id: Load balancer ID
 
           extra_headers: Send extra headers
 
@@ -808,15 +694,6 @@ class AsyncPoolsResource(AsyncAPIResource):
         Delete load balancer pool
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}']['delete'].parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -856,15 +733,6 @@ class AsyncPoolsResource(AsyncAPIResource):
         Get load balancer pool
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].get.parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

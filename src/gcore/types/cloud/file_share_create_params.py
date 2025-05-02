@@ -18,129 +18,86 @@ __all__ = [
 
 class CreateStandardFileShareSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/name'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.name"
-    """
+    """File share name"""
 
     network: Required[CreateStandardFileShareSerializerNetwork]
-    """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/network'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.network"
-    """
+    """File share network configuration"""
 
     protocol: Required[Literal["NFS"]]
-    """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/protocol'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.protocol"
-    """
+    """File share protocol"""
 
     size: Required[int]
-    """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/size'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.size"
-    """
+    """File share size"""
 
     access: Iterable[CreateStandardFileShareSerializerAccess]
-    """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/access'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.access"
-    """
+    """Access Rules"""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/tags'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     volume_type: Literal["default_share_type"]
-    """
-    '#/components/schemas/CreateStandardFileShareSerializer/properties/volume_type'
-    "$.components.schemas.CreateStandardFileShareSerializer.properties.volume_type"
-    """
+    """File share volume type"""
 
 
 class CreateStandardFileShareSerializerNetwork(TypedDict, total=False):
     network_id: Required[str]
-    """
-    '#/components/schemas/FileShareNetworkSerializer/properties/network_id'
-    "$.components.schemas.FileShareNetworkSerializer.properties.network_id"
-    """
+    """Network ID."""
 
     subnet_id: str
-    """
-    '#/components/schemas/FileShareNetworkSerializer/properties/subnet_id'
-    "$.components.schemas.FileShareNetworkSerializer.properties.subnet_id"
+    """Subnetwork ID.
+
+    If the subnet is not selected, it will be selected automatically.
     """
 
 
 class CreateStandardFileShareSerializerAccess(TypedDict, total=False):
     access_mode: Required[Literal["ro", "rw"]]
-    """
-    '#/components/schemas/CreateAccessRuleSerializer/properties/access_mode'
-    "$.components.schemas.CreateAccessRuleSerializer.properties.access_mode"
-    """
+    """Access mode"""
 
     ip_address: Required[str]
-    """
-    '#/components/schemas/CreateAccessRuleSerializer/properties/ip_address/anyOf/0'
-    "$.components.schemas.CreateAccessRuleSerializer.properties.ip_address.anyOf[0]"
-    """
+    """Source IP or network"""
 
 
 class CreateVastFileShareSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateVastFileShareSerializer/properties/name'
-    "$.components.schemas.CreateVastFileShareSerializer.properties.name"
-    """
+    """File share name"""
 
     protocol: Required[Literal["NFS"]]
-    """
-    '#/components/schemas/CreateVastFileShareSerializer/properties/protocol'
-    "$.components.schemas.CreateVastFileShareSerializer.properties.protocol"
-    """
+    """File share protocol"""
 
     size: Required[int]
-    """
-    '#/components/schemas/CreateVastFileShareSerializer/properties/size'
-    "$.components.schemas.CreateVastFileShareSerializer.properties.size"
-    """
+    """File share size"""
 
     volume_type: Required[Literal["vast_share_type"]]
-    """
-    '#/components/schemas/CreateVastFileShareSerializer/properties/volume_type'
-    "$.components.schemas.CreateVastFileShareSerializer.properties.volume_type"
-    """
+    """File share volume type"""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateVastFileShareSerializer/properties/tags'
-    "$.components.schemas.CreateVastFileShareSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
 

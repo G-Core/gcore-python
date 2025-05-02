@@ -13,121 +13,75 @@ __all__ = ["Subnet"]
 
 class Subnet(BaseModel):
     cidr: str
-    """
-    '#/components/schemas/SubnetSerializer/properties/cidr'
-    "$.components.schemas.SubnetSerializer.properties.cidr"
-    """
+    """CIDR"""
 
     created_at: datetime
-    """
-    '#/components/schemas/SubnetSerializer/properties/created_at'
-    "$.components.schemas.SubnetSerializer.properties.created_at"
-    """
+    """Datetime when the subnet was created"""
 
     enable_dhcp: bool
-    """
-    '#/components/schemas/SubnetSerializer/properties/enable_dhcp'
-    "$.components.schemas.SubnetSerializer.properties.enable_dhcp"
-    """
+    """True if DHCP should be enabled"""
 
     ip_version: IPVersion
-    """
-    '#/components/schemas/SubnetSerializer/properties/ip_version'
-    "$.components.schemas.SubnetSerializer.properties.ip_version"
-    """
+    """IP version"""
 
     name: str
-    """
-    '#/components/schemas/SubnetSerializer/properties/name'
-    "$.components.schemas.SubnetSerializer.properties.name"
-    """
+    """Subnet name"""
 
     network_id: str
-    """
-    '#/components/schemas/SubnetSerializer/properties/network_id'
-    "$.components.schemas.SubnetSerializer.properties.network_id"
-    """
+    """Network ID"""
 
     project_id: int
-    """
-    '#/components/schemas/SubnetSerializer/properties/project_id'
-    "$.components.schemas.SubnetSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/SubnetSerializer/properties/region'
-    "$.components.schemas.SubnetSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/SubnetSerializer/properties/region_id'
-    "$.components.schemas.SubnetSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/SubnetSerializer/properties/tags'
-    "$.components.schemas.SubnetSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     updated_at: datetime
-    """
-    '#/components/schemas/SubnetSerializer/properties/updated_at'
-    "$.components.schemas.SubnetSerializer.properties.updated_at"
-    """
+    """Datetime when the subnet was last updated"""
 
     id: Optional[str] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/id/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.id.anyOf[0]"
-    """
+    """Subnet id."""
 
     available_ips: Optional[int] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/available_ips/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.available_ips.anyOf[0]"
-    """
+    """Number of available ips in subnet"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     dns_nameservers: Optional[List[str]] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/dns_nameservers/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.dns_nameservers.anyOf[0]"
-    """
+    """List IP addresses of a DNS resolver reachable from the network"""
 
     gateway_ip: Optional[str] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/gateway_ip/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.gateway_ip.anyOf[0]"
+    """Default GW IPv4 address, advertised in DHCP routes of this subnet.
+
+    If null, no gateway is advertised by this subnet.
     """
 
     has_router: Optional[bool] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/has_router'
-    "$.components.schemas.SubnetSerializer.properties.has_router"
-    """
+    """Subnet has router attached to it"""
 
     host_routes: Optional[List[Route]] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/host_routes/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.host_routes.anyOf[0]"
-    """
+    """List of custom static routes to advertise via DHCP."""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     total_ips: Optional[int] = None
-    """
-    '#/components/schemas/SubnetSerializer/properties/total_ips/anyOf/0'
-    "$.components.schemas.SubnetSerializer.properties.total_ips.anyOf[0]"
-    """
+    """Total number of ips in subnet"""

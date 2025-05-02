@@ -7,13 +7,7 @@ __all__ = ["IPAssignment"]
 
 class IPAssignment(BaseModel):
     ip_address: str
-    """
-    '#/components/schemas/PortIpSubnetIdSerializer/properties/ip_address'
-    "$.components.schemas.PortIpSubnetIdSerializer.properties.ip_address"
-    """
+    """IP address"""
 
     subnet_id: str
-    """
-    '#/components/schemas/PortIpSubnetIdSerializer/properties/subnet_id'
-    "$.components.schemas.PortIpSubnetIdSerializer.properties.subnet_id"
-    """
+    """ID of the subnet that allocated the IP"""

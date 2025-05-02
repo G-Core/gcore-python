@@ -10,13 +10,7 @@ __all__ = ["LbListenerList"]
 
 class LbListenerList(BaseModel):
     count: int
-    """
-    '#/components/schemas/LbListenerSerializerList/properties/count'
-    "$.components.schemas.LbListenerSerializerList.properties.count"
-    """
+    """Number of objects"""
 
     results: List[LbListener]
-    """
-    '#/components/schemas/LbListenerSerializerList/properties/results'
-    "$.components.schemas.LbListenerSerializerList.properties.results"
-    """
+    """Objects"""

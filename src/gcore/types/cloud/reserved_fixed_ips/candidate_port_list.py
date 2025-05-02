@@ -10,13 +10,7 @@ __all__ = ["CandidatePortList"]
 
 class CandidatePortList(BaseModel):
     count: int
-    """
-    '#/components/schemas/VIPAttachCandidateSerializerList/properties/count'
-    "$.components.schemas.VIPAttachCandidateSerializerList.properties.count"
-    """
+    """Number of objects"""
 
     results: List[CandidatePort]
-    """
-    '#/components/schemas/VIPAttachCandidateSerializerList/properties/results'
-    "$.components.schemas.VIPAttachCandidateSerializerList.properties.results"
-    """
+    """Objects"""

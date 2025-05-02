@@ -10,31 +10,16 @@ __all__ = ["ContainerProbeHTTPGetCreateParam"]
 
 class ContainerProbeHTTPGetCreateParam(TypedDict, total=False):
     port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.port"
-    """
+    """Port number the probe should connect to."""
 
     headers: Dict[str, str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/headers'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.headers"
-    """
+    """HTTP headers to be sent with the request."""
 
     host: Optional[str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/host/anyOf/0'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.host.anyOf[0]"
-    """
+    """Host name to send HTTP request to."""
 
     path: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/path'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.path"
-    """
+    """The endpoint to send the HTTP request to."""
 
     schema: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/schema'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.schema"
-    """
+    """Schema to use for the HTTP request."""

@@ -7,7 +7,10 @@ __all__ = ["IngressOptsOut"]
 
 class IngressOptsOut(BaseModel):
     disable_response_buffering: bool
-    """
-    '#/components/schemas/IngressOptsOutSerializer/properties/disable_response_buffering'
-    "$.components.schemas.IngressOptsOutSerializer.properties.disable_response_buffering"
+    """Disable response buffering if true.
+
+    A client usually has a much slower connection and can not consume the response
+    data as fast as it is produced by an upstream application. Ingress tries to
+    buffer the whole response in order to release the upstream application as soon
+    as possible.By default, the response buffering is enabled.
     """

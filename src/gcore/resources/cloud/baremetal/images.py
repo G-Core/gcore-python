@@ -67,26 +67,17 @@ class ImagesResource(SyncAPIResource):
         or may not be owned by the project
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[0].schema"
+          include_prices: Show price
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[1].schema"
+          private: Any value to show private images
 
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[2]"
+          tag_key: Filter by tag keys.
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[3]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
+              --data-urlencode 'tag_key_value={"key": "value"}' --url
+              'http://localhost:1111/v1/images/1/1'"
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[5]"
-
-          visibility: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[6]"
+          visibility: Image visibility. Globally visible images are public
 
           extra_headers: Send extra headers
 
@@ -165,26 +156,17 @@ class AsyncImagesResource(AsyncAPIResource):
         or may not be owned by the project
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[0].schema"
+          include_prices: Show price
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[1].schema"
+          private: Any value to show private images
 
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[2]"
+          tag_key: Filter by tag keys.
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[3]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
+              --data-urlencode 'tag_key_value={"key": "value"}' --url
+              'http://localhost:1111/v1/images/1/1'"
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[5]"
-
-          visibility: '#/paths/%2Fcloud%2Fv1%2Fbmimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/bmimages/{project_id}/{region_id}'].get.parameters[6]"
+          visibility: Image visibility. Globally visible images are public
 
           extra_headers: Send extra headers
 

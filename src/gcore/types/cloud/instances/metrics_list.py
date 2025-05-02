@@ -10,13 +10,7 @@ __all__ = ["MetricsList"]
 
 class MetricsList(BaseModel):
     count: int
-    """
-    '#/components/schemas/InstanceMetricsListSerializer/properties/count'
-    "$.components.schemas.InstanceMetricsListSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[Metrics]
-    """
-    '#/components/schemas/InstanceMetricsListSerializer/properties/results'
-    "$.components.schemas.InstanceMetricsListSerializer.properties.results"
-    """
+    """Objects"""

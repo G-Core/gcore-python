@@ -10,13 +10,7 @@ __all__ = ["GPUImageList"]
 
 class GPUImageList(BaseModel):
     count: int
-    """
-    '#/components/schemas/ListGpuImageSerializer/properties/count'
-    "$.components.schemas.ListGpuImageSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[GPUImage]
-    """
-    '#/components/schemas/ListGpuImageSerializer/properties/results'
-    "$.components.schemas.ListGpuImageSerializer.properties.results"
-    """
+    """Objects"""

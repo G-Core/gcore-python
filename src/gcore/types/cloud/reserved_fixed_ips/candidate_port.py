@@ -11,31 +11,16 @@ __all__ = ["CandidatePort"]
 
 class CandidatePort(BaseModel):
     instance_id: str
-    """
-    '#/components/schemas/VIPAttachCandidateSerializer/properties/instance_id'
-    "$.components.schemas.VIPAttachCandidateSerializer.properties.instance_id"
-    """
+    """ID of the instance that owns the port"""
 
     instance_name: str
-    """
-    '#/components/schemas/VIPAttachCandidateSerializer/properties/instance_name'
-    "$.components.schemas.VIPAttachCandidateSerializer.properties.instance_name"
-    """
+    """Name of the instance that owns the port"""
 
     ip_assignments: List[IPWithSubnet]
-    """
-    '#/components/schemas/VIPAttachCandidateSerializer/properties/ip_assignments'
-    "$.components.schemas.VIPAttachCandidateSerializer.properties.ip_assignments"
-    """
+    """IP addresses assigned to this port"""
 
     network: Network
-    """
-    '#/components/schemas/VIPAttachCandidateSerializer/properties/network'
-    "$.components.schemas.VIPAttachCandidateSerializer.properties.network"
-    """
+    """Network details"""
 
     port_id: str
-    """
-    '#/components/schemas/VIPAttachCandidateSerializer/properties/port_id'
-    "$.components.schemas.VIPAttachCandidateSerializer.properties.port_id"
-    """
+    """Port ID that shares VIP"""

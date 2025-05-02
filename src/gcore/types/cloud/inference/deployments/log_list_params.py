@@ -10,31 +10,19 @@ __all__ = ["LogListParams"]
 
 class LogListParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Flogs/get/parameters/0/schema'
-    "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs'].get.parameters[0].schema"
-    """
+    """Project ID"""
 
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Flogs/get/parameters/2'
-    "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs'].get.parameters[2]"
-    """
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Flogs/get/parameters/3'
-    "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs'].get.parameters[3]"
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
     """
 
     order_by: Literal["time.asc", "time.desc"]
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Flogs/get/parameters/4'
-    "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs'].get.parameters[4]"
-    """
+    """Order by field"""
 
     region_id: Optional[int]
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Flogs/get/parameters/5/schema/anyOf/0'
-    "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs'].get.parameters[5].schema.anyOf[0]"
-    """
+    """Region ID"""

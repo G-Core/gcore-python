@@ -108,17 +108,13 @@ class RegistriesResource(SyncAPIResource):
         Create a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: A name for the container registry.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].post.parameters[1].schema"
+              Should be in lowercase, consisting only of numbers, letters and -,
 
-          name: '#/components/schemas/RegistryCreateSerializer/properties/name'
-              "$.components.schemas.RegistryCreateSerializer.properties.name"
+              with maximum length of 24 characters
 
-          storage_limit: '#/components/schemas/RegistryCreateSerializer/properties/storage_limit'
-              "$.components.schemas.RegistryCreateSerializer.properties.storage_limit"
+          storage_limit: Registry storage limit, GiB
 
           extra_headers: Send extra headers
 
@@ -163,12 +159,6 @@ class RegistriesResource(SyncAPIResource):
         Get registry list
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -206,15 +196,6 @@ class RegistriesResource(SyncAPIResource):
         Delete a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}']['delete'].parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -253,15 +234,6 @@ class RegistriesResource(SyncAPIResource):
         Get a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}'].get.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -300,17 +272,7 @@ class RegistriesResource(SyncAPIResource):
         Resize a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fresize/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fresize/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize'].patch.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fresize/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize'].patch.parameters[2].schema"
-
-          storage_limit: '#/components/schemas/RegistryResizeSerializer/properties/storage_limit'
-              "$.components.schemas.RegistryResizeSerializer.properties.storage_limit"
+          storage_limit: Registry storage limit, GiB
 
           extra_headers: Send extra headers
 
@@ -388,17 +350,13 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Create a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: A name for the container registry.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].post.parameters[1].schema"
+              Should be in lowercase, consisting only of numbers, letters and -,
 
-          name: '#/components/schemas/RegistryCreateSerializer/properties/name'
-              "$.components.schemas.RegistryCreateSerializer.properties.name"
+              with maximum length of 24 characters
 
-          storage_limit: '#/components/schemas/RegistryCreateSerializer/properties/storage_limit'
-              "$.components.schemas.RegistryCreateSerializer.properties.storage_limit"
+          storage_limit: Registry storage limit, GiB
 
           extra_headers: Send extra headers
 
@@ -443,12 +401,6 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Get registry list
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -486,15 +438,6 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Delete a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}']['delete'].parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -533,15 +476,6 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Get a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}'].get.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -580,17 +514,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Resize a registry
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fresize/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize'].patch.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fresize/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize'].patch.parameters[1].schema"
-
-          registry_id: '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fresize/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize'].patch.parameters[2].schema"
-
-          storage_limit: '#/components/schemas/RegistryResizeSerializer/properties/storage_limit'
-              "$.components.schemas.RegistryResizeSerializer.properties.storage_limit"
+          storage_limit: Registry storage limit, GiB
 
           extra_headers: Send extra headers
 

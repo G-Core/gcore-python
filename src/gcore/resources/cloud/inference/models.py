@@ -56,18 +56,17 @@ class ModelsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[MlcatalogModelCard]:
-        """
-        List models from catalog
+        """List models from catalog
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/0'
-              "$.paths['/cloud/v3/inference/models'].get.parameters[0]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/1'
-              "$.paths['/cloud/v3/inference/models'].get.parameters[1]"
+        Limit the number of returned items
 
-          order_by: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/2'
-              "$.paths['/cloud/v3/inference/models'].get.parameters[2]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          order_by: Order instances by transmitted fields and directions
 
           extra_headers: Send extra headers
 
@@ -112,8 +111,7 @@ class ModelsResource(SyncAPIResource):
         Get model from catalog
 
         Args:
-          model_id: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels%2F%7Bmodel_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/models/{model_id}'].get.parameters[0].schema"
+          model_id: Model ID
 
           extra_headers: Send extra headers
 
@@ -167,18 +165,17 @@ class AsyncModelsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[MlcatalogModelCard, AsyncOffsetPage[MlcatalogModelCard]]:
-        """
-        List models from catalog
+        """List models from catalog
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/0'
-              "$.paths['/cloud/v3/inference/models'].get.parameters[0]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/1'
-              "$.paths['/cloud/v3/inference/models'].get.parameters[1]"
+        Limit the number of returned items
 
-          order_by: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/2'
-              "$.paths['/cloud/v3/inference/models'].get.parameters[2]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          order_by: Order instances by transmitted fields and directions
 
           extra_headers: Send extra headers
 
@@ -223,8 +220,7 @@ class AsyncModelsResource(AsyncAPIResource):
         Get model from catalog
 
         Args:
-          model_id: '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels%2F%7Bmodel_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/models/{model_id}'].get.parameters[0].schema"
+          model_id: Model ID
 
           extra_headers: Send extra headers
 

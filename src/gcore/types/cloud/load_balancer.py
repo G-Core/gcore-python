@@ -20,213 +20,125 @@ __all__ = ["LoadBalancer", "AdditionalVip", "Flavor", "Listener", "VrrpIP"]
 
 class AdditionalVip(BaseModel):
     ip_address: str
-    """
-    '#/components/schemas/NetworkPortFixedIp/properties/ip_address'
-    "$.components.schemas.NetworkPortFixedIp.properties.ip_address"
-    """
+    """IP address"""
 
     subnet_id: str
-    """
-    '#/components/schemas/NetworkPortFixedIp/properties/subnet_id'
-    "$.components.schemas.NetworkPortFixedIp.properties.subnet_id"
-    """
+    """Subnet UUID"""
 
 
 class Flavor(BaseModel):
     flavor_id: str
-    """
-    '#/components/schemas/LbFlavorSerializer/properties/flavor_id'
-    "$.components.schemas.LbFlavorSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/LbFlavorSerializer/properties/flavor_name'
-    "$.components.schemas.LbFlavorSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     ram: int
-    """
-    '#/components/schemas/LbFlavorSerializer/properties/ram'
-    "$.components.schemas.LbFlavorSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     vcpus: int
-    """
-    '#/components/schemas/LbFlavorSerializer/properties/vcpus'
-    "$.components.schemas.LbFlavorSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
 
 class Listener(BaseModel):
     id: str
-    """
-    '#/components/schemas/ListenerSerializer/properties/id'
-    "$.components.schemas.ListenerSerializer.properties.id"
-    """
+    """Listener ID"""
 
 
 class VrrpIP(BaseModel):
     ip_address: str
-    """
-    '#/components/schemas/VRRPIP/properties/ip_address'
-    "$.components.schemas.VRRPIP.properties.ip_address"
-    """
+    """IP address"""
 
     role: LoadBalancerInstanceRole
-    """
-    '#/components/schemas/VRRPIP/properties/role'
-    "$.components.schemas.VRRPIP.properties.role"
-    """
+    """LoadBalancer instance role to which VRRP IP belong"""
 
     subnet_id: str
-    """
-    '#/components/schemas/VRRPIP/properties/subnet_id'
-    "$.components.schemas.VRRPIP.properties.subnet_id"
-    """
+    """Subnet UUID"""
 
 
 class LoadBalancer(BaseModel):
     id: str
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/id'
-    "$.components.schemas.LoadbalancerSerializer.properties.id"
-    """
+    """Load balancer ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/created_at'
-    "$.components.schemas.LoadbalancerSerializer.properties.created_at"
-    """
+    """Datetime when the load balancer was created"""
 
     name: str
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/name'
-    "$.components.schemas.LoadbalancerSerializer.properties.name"
-    """
+    """Load balancer name"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/operating_status'
-    "$.components.schemas.LoadbalancerSerializer.properties.operating_status"
-    """
+    """Load balancer operating status"""
 
     project_id: int
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/project_id'
-    "$.components.schemas.LoadbalancerSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/provisioning_status'
-    "$.components.schemas.LoadbalancerSerializer.properties.provisioning_status"
-    """
+    """Load balancer lifecycle status"""
 
     region: str
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/region'
-    "$.components.schemas.LoadbalancerSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/region_id'
-    "$.components.schemas.LoadbalancerSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     tags_v2: List[Tag]
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/tags_v2'
-    "$.components.schemas.LoadbalancerSerializer.properties.tags_v2"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     additional_vips: Optional[List[AdditionalVip]] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/additional_vips'
-    "$.components.schemas.LoadbalancerSerializer.properties.additional_vips"
-    """
+    """List of additional IP addresses"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     ddos_profile: Optional[DDOSProfile] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/ddos_profile/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.ddos_profile.anyOf[0]"
-    """
+    """Loadbalancer advanced DDoS protection profile."""
 
     flavor: Optional[Flavor] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/flavor/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.flavor.anyOf[0]"
-    """
+    """Load balancer flavor (if not default)"""
 
     floating_ips: Optional[List[FloatingIP]] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/floating_ips'
-    "$.components.schemas.LoadbalancerSerializer.properties.floating_ips"
-    """
+    """List of assigned floating IPs"""
 
     listeners: Optional[List[Listener]] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/listeners'
-    "$.components.schemas.LoadbalancerSerializer.properties.listeners"
-    """
+    """Load balancer listeners"""
 
     logging: Optional[Logging] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/logging/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.logging.anyOf[0]"
-    """
+    """Logging configuration"""
 
     preferred_connectivity: Optional[LoadBalancerMemberConnectivity] = None
     """
-    '#/components/schemas/LoadbalancerSerializer/properties/preferred_connectivity'
-    "$.components.schemas.LoadbalancerSerializer.properties.preferred_connectivity"
+    Preferred option to establish connectivity between load balancer and its pools
+    members
     """
 
     stats: Optional[LoadBalancerStatistics] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/stats/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.stats.anyOf[0]"
-    """
+    """Statistics of load balancer."""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     updated_at: Optional[datetime] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/updated_at/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.updated_at.anyOf[0]"
-    """
+    """Datetime when the load balancer was last updated"""
 
     vip_address: Optional[str] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/vip_address/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.vip_address.anyOf[0]"
-    """
+    """Load balancer IP address"""
 
     vip_ip_family: Optional[InterfaceIPFamily] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/vip_ip_family/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.vip_ip_family.anyOf[0]"
-    """
+    """Load balancer IP family"""
 
     vip_port_id: Optional[str] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/vip_port_id/anyOf/0'
-    "$.components.schemas.LoadbalancerSerializer.properties.vip_port_id.anyOf[0]"
-    """
+    """The ID of the Virtual IP (VIP) port."""
 
     vrrp_ips: Optional[List[VrrpIP]] = None
-    """
-    '#/components/schemas/LoadbalancerSerializer/properties/vrrp_ips'
-    "$.components.schemas.LoadbalancerSerializer.properties.vrrp_ips"
-    """
+    """List of VRRP IP addresses"""

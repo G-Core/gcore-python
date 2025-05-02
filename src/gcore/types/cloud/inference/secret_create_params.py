@@ -11,25 +11,13 @@ __all__ = ["SecretCreateParams"]
 
 class SecretCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fsecrets/post/parameters/0/schema'
-    "$.paths['/cloud/v3/inference/{project_id}/secrets'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     data: Required[AwsIamDataParam]
-    """
-    '#/components/schemas/InferenceBoxSecretsInSerializer/properties/data'
-    "$.components.schemas.InferenceBoxSecretsInSerializer.properties.data"
-    """
+    """Secret data."""
 
     name: Required[str]
-    """
-    '#/components/schemas/InferenceBoxSecretsInSerializer/properties/name'
-    "$.components.schemas.InferenceBoxSecretsInSerializer.properties.name"
-    """
+    """Secret name."""
 
     type: Required[str]
-    """
-    '#/components/schemas/InferenceBoxSecretsInSerializer/properties/type'
-    "$.components.schemas.InferenceBoxSecretsInSerializer.properties.type"
-    """
+    """Secret type. Currently only `aws-iam` is supported."""

@@ -11,49 +11,25 @@ __all__ = ["RegistryArtifact"]
 
 class RegistryArtifact(BaseModel):
     id: int
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/id'
-    "$.components.schemas.RegistryArtifactSerializer.properties.id"
-    """
+    """Repository ID"""
 
     digest: str
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/digest'
-    "$.components.schemas.RegistryArtifactSerializer.properties.digest"
-    """
+    """Artifact digest"""
 
     pulled_at: datetime
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/pulled_at'
-    "$.components.schemas.RegistryArtifactSerializer.properties.pulled_at"
-    """
+    """Artifact last pull date-time"""
 
     pushed_at: datetime
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/pushed_at'
-    "$.components.schemas.RegistryArtifactSerializer.properties.pushed_at"
-    """
+    """Artifact push date-time"""
 
     registry_id: int
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/registry_id'
-    "$.components.schemas.RegistryArtifactSerializer.properties.registry_id"
-    """
+    """Artifact registry ID"""
 
     repository_id: int
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/repository_id'
-    "$.components.schemas.RegistryArtifactSerializer.properties.repository_id"
-    """
+    """Artifact repository ID"""
 
     size: int
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/size'
-    "$.components.schemas.RegistryArtifactSerializer.properties.size"
-    """
+    """Artifact size, bytes"""
 
     tags: List[RegistryTag]
-    """
-    '#/components/schemas/RegistryArtifactSerializer/properties/tags'
-    "$.components.schemas.RegistryArtifactSerializer.properties.tags"
-    """
+    """Artifact tags"""

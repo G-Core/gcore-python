@@ -10,13 +10,7 @@ __all__ = ["ContainerProbeConfig"]
 
 class ContainerProbeConfig(BaseModel):
     enabled: bool
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationOutSerializerV2/properties/enabled'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationOutSerializerV2.properties.enabled"
-    """
+    """Whether the probe is enabled or not."""
 
     probe: Optional[ContainerProbe] = None
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationOutSerializerV2/properties/probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationOutSerializerV2.properties.probe.anyOf[0]"
-    """
+    """Probe configuration (exec, http_get or tcp_socket)"""

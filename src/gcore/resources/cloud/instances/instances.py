@@ -149,53 +149,64 @@ class InstancesResource(SyncAPIResource):
         via 'user_data'.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          flavor: '#/components/schemas/CreateInstanceSerializerV2/properties/flavor'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.flavor"
+          flavor: The flavor of the instance.
 
-          interfaces: '#/components/schemas/CreateInstanceSerializerV2/properties/interfaces'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.interfaces"
+          interfaces: A list of network interfaces for the instance. You can create one or more
+              interfaces—private, public, or both.
 
-          volumes: '#/components/schemas/CreateInstanceSerializerV2/properties/volumes'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.volumes"
+          volumes: List of volumes for instances
 
-          allow_app_ports: '#/components/schemas/CreateInstanceSerializerV2/properties/allow_app_ports'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.allow_app_ports"
+          allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
+              application ports in the security group for instances created from a marketplace
+              application template.
 
-          configuration: '#/components/schemas/CreateInstanceSerializerV2/properties/configuration/anyOf/0'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.configuration.anyOf[0]"
+          configuration: Parameters for the application template if creating the instance from an
+              `apptemplate`.
 
-          name_templates: '#/components/schemas/CreateInstanceSerializerV2/properties/name_templates'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.name_templates"
+          name_templates: If you want instance names to be automatically generated using IP octets, you
+              can specify name templates instead of setting names manually.Provide a list of
+              templated names that should be replaced using the selected template. The
+              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
+              `{one_ip_octet}`.
 
-          names: '#/components/schemas/CreateInstanceSerializerV2/properties/names'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.names"
+          names: List of instance names. Specify one name to create a single instance.
 
-          password: '#/components/schemas/CreateInstanceSerializerV2/properties/password'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.password"
+          password: For Linux instances, 'username' and 'password' are used to create a new user.
+              When only 'password' is provided, it is set as the password for the default user
+              of the image. For Windows instances, 'username' cannot be specified. Use the
+              'password' field to set the password for the 'Admin' user on Windows. Use the
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
-          security_groups: '#/components/schemas/CreateInstanceSerializerV2/properties/security_groups'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.security_groups"
+          security_groups: Applies only to instances and is ignored for bare metal. Specifies security
+              group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id: '#/components/schemas/CreateInstanceSerializerV2/properties/servergroup_id'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.servergroup_id"
+          servergroup_id: Server group ID for instance placement policy. Can be an anti-affinity,
+              affinity, or soft-anti-affinity group. `anti-affinity` ensures instances are
+              placed on different hosts for high availability. `affinity` places instances on
+              the same host for low-latency communication. `soft-anti-affinity` tries to place
+              instances on different hosts but allows sharing if needed.
 
-          ssh_key_name: '#/components/schemas/CreateInstanceSerializerV2/properties/ssh_key_name/anyOf/0'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.ssh_key_name.anyOf[0]"
+          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
 
-          tags: '#/components/schemas/CreateInstanceSerializerV2/properties/tags'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          user_data: '#/components/schemas/CreateInstanceSerializerV2/properties/user_data'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.user_data"
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+              'password' field is provided. For Windows instances, Admin user password is set
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
+              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
-          username: '#/components/schemas/CreateInstanceSerializerV2/properties/username'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.username"
+          username: For Linux instances, 'username' and 'password' are used to create a new user.
+              For Windows instances, 'username' cannot be specified. Use 'password' field to
+              set the password for the 'Admin' user on Windows.
 
           extra_headers: Send extra headers
 
@@ -254,17 +265,13 @@ class InstancesResource(SyncAPIResource):
         Rename instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].patch.parameters[2].schema"
+          instance_id: Instance ID
 
-          name: '#/components/schemas/NameSerializer/properties/name'
-              "$.components.schemas.NameSerializer.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -349,89 +356,73 @@ class InstancesResource(SyncAPIResource):
         List instances
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          available_floating: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[2]"
+          available_floating: Only show instances which are able to handle floating address
 
-          changes_before: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[3]"
+          changes_before: Filters the instances by a date and time stamp when the instances last changed.
 
-          changes_since: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[4]"
+          changes_since: Filters the instances by a date and time stamp when the instances last changed
+              status.
 
-          exclude_flavor_prefix: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[5]"
+          exclude_flavor_prefix: Exclude instances with specified flavor prefix
 
-          exclude_secgroup: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[6]"
+          exclude_secgroup: Exclude instances with specified security group name
 
-          flavor_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[7]"
+          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
 
-          flavor_prefix: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[8]"
+          flavor_prefix: Filter out instances by flavor_prefix.
 
-          include_ai: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[9]"
+          include_ai: Include GPU clusters' servers
 
-          include_baremetal: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[10]"
+          include_baremetal: Include bare metal servers. Please, use `GET /v1/bminstances/` instead
 
-          include_k8s: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[11]"
+          include_k8s: Include managed k8s worker nodes
 
-          ip: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[12]"
+          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
+              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
+              192.168.0.110, and so on.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[13]"
+          limit: Optional. Limit the number of returned items
 
-          name: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[14]"
+          name: Filter instances by name. You can provide a full or partial name, instances with
+              matching names will be returned. For example, entering 'test' will return all
+              instances that contain 'test' in their name.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[15]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          only_isolated: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[16]"
+          only_isolated: Include only isolated instances
 
-          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[17]"
+          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[18]"
+          order_by: Order by field and direction.
 
-          profile_name: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/19'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[19]"
+          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
+              to true.
 
-          protection_status: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/20'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[20]"
+          protection_status: Filter result by DDoS protection_status. if parameter is provided. Effective
+              only with with_ddos set to true. (Active, Queued or Error)
 
-          status: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/21'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[21]"
+          status: Filters instances by status.
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/22'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[22]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/23'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[23]"
+          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
 
-          type_ddos_profile: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/24'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[24]"
+          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
+              Effective only with with_ddos set to true. (advanced or basic)
 
-          uuid: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/25'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[25]"
+          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/26'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[26]"
+          with_ddos: Include DDoS profile information in the response when set to `true`. Otherwise,
+              the `ddos_profile` field in the response is `null` by default.
 
-          with_interfaces_name: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/27'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[27]"
+          with_interfaces_name: Include `interface_name` in the addresses
 
           extra_headers: Send extra headers
 
@@ -509,26 +500,21 @@ class InstancesResource(SyncAPIResource):
         Delete instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[2].schema"
+          instance_id: Instance ID
 
-          delete_floatings: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[3]"
+          delete_floatings: True if it is required to delete floating IPs assigned to the instance. Can't be
+              used with `floatings`.
 
-          floatings: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/4'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[4]"
+          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
+              `delete_floatings`.
 
-          reserved_fixed_ips: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/5'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[5]"
+          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the instance
 
-          volumes: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/6'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[6]"
+          volumes: Comma separated list of volume IDs to be deleted with the instance
 
           extra_headers: Send extra headers
 
@@ -585,20 +571,9 @@ class InstancesResource(SyncAPIResource):
         Suspend and resume are not available for baremetal instances.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/0/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[0].schema"
+          action: Instance action name
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/1/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/2/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[2].schema"
-
-          action: '#/components/schemas/StartActionInstanceSerializer/properties/action'
-              "$.components.schemas.StartActionInstanceSerializer.properties.action"
-
-          activate_profile: '#/components/schemas/StartActionInstanceSerializer/properties/activate_profile/anyOf/0'
-              "$.components.schemas.StartActionInstanceSerializer.properties.activate_profile.anyOf[0]"
+          activate_profile: Used on start instance to activate Advanced DDoS profile
 
           extra_headers: Send extra headers
 
@@ -630,17 +605,7 @@ class InstancesResource(SyncAPIResource):
         Suspend and resume are not available for baremetal instances.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/0/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/1/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/2/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[2].schema"
-
-          action: '#/components/schemas/BasicActionInstanceSerializer/properties/action'
-              "$.components.schemas.BasicActionInstanceSerializer.properties.action"
+          action: Instance action name
 
           extra_headers: Send extra headers
 
@@ -707,17 +672,7 @@ class InstancesResource(SyncAPIResource):
         Put instance into the server group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fput_into_servergroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fput_into_servergroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fput_into_servergroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup'].post.parameters[2].schema"
-
-          servergroup_id: '#/components/schemas/InstancePutServerGroupSchema/properties/servergroup_id'
-              "$.components.schemas.InstancePutServerGroupSchema.properties.servergroup_id"
+          servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
 
           extra_headers: Send extra headers
 
@@ -767,20 +722,9 @@ class InstancesResource(SyncAPIResource):
         all ports, use the NULL value for the port_id field
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faddsecuritygroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup'].post.parameters[0].schema"
+          name: Security group name, applies to all ports
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faddsecuritygroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faddsecuritygroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup'].post.parameters[2].schema"
-
-          name: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/name'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.name"
-
-          ports_security_group_names: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/ports_security_group_names'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.ports_security_group_names"
+          ports_security_group_names: Port security groups mapping
 
           extra_headers: Send extra headers
 
@@ -829,15 +773,6 @@ class InstancesResource(SyncAPIResource):
         Disable port security for instance interface
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fdisable_port_security/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fdisable_port_security/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security'].post.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fdisable_port_security/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -877,15 +812,6 @@ class InstancesResource(SyncAPIResource):
         Enable port security for instance interface
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fenable_port_security/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fenable_port_security/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security'].post.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fenable_port_security/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -931,14 +857,11 @@ class InstancesResource(SyncAPIResource):
           - `'ru'`
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].get.parameters[2].schema"
+          instance_id: Instance ID
 
           extra_headers: Send extra headers
 
@@ -980,17 +903,7 @@ class InstancesResource(SyncAPIResource):
         Get instance console URL
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[2].schema"
-
-          console_type: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[3]"
+          console_type: Console type
 
           extra_headers: Send extra headers
 
@@ -1037,15 +950,6 @@ class InstancesResource(SyncAPIResource):
         Remove instance from the server group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fremove_from_servergroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fremove_from_servergroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fremove_from_servergroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1086,17 +990,7 @@ class InstancesResource(SyncAPIResource):
         Change flavor of the instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fchangeflavor/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fchangeflavor/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fchangeflavor/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor'].post.parameters[2].schema"
-
-          flavor_id: '#/components/schemas/FlavorIdSchema/properties/flavor_id'
-              "$.components.schemas.FlavorIdSchema.properties.flavor_id"
+          flavor_id: Flavor ID
 
           extra_headers: Send extra headers
 
@@ -1143,20 +1037,9 @@ class InstancesResource(SyncAPIResource):
         groups to all ports, use the NULL value for the port_id field
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdelsecuritygroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup'].post.parameters[0].schema"
+          name: Security group name, applies to all ports
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdelsecuritygroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdelsecuritygroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup'].post.parameters[2].schema"
-
-          name: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/name'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.name"
-
-          ports_security_group_names: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/ports_security_group_names'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.ports_security_group_names"
+          ports_security_group_names: Port security groups mapping
 
           extra_headers: Send extra headers
 
@@ -1265,53 +1148,64 @@ class AsyncInstancesResource(AsyncAPIResource):
         via 'user_data'.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          flavor: '#/components/schemas/CreateInstanceSerializerV2/properties/flavor'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.flavor"
+          flavor: The flavor of the instance.
 
-          interfaces: '#/components/schemas/CreateInstanceSerializerV2/properties/interfaces'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.interfaces"
+          interfaces: A list of network interfaces for the instance. You can create one or more
+              interfaces—private, public, or both.
 
-          volumes: '#/components/schemas/CreateInstanceSerializerV2/properties/volumes'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.volumes"
+          volumes: List of volumes for instances
 
-          allow_app_ports: '#/components/schemas/CreateInstanceSerializerV2/properties/allow_app_ports'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.allow_app_ports"
+          allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
+              application ports in the security group for instances created from a marketplace
+              application template.
 
-          configuration: '#/components/schemas/CreateInstanceSerializerV2/properties/configuration/anyOf/0'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.configuration.anyOf[0]"
+          configuration: Parameters for the application template if creating the instance from an
+              `apptemplate`.
 
-          name_templates: '#/components/schemas/CreateInstanceSerializerV2/properties/name_templates'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.name_templates"
+          name_templates: If you want instance names to be automatically generated using IP octets, you
+              can specify name templates instead of setting names manually.Provide a list of
+              templated names that should be replaced using the selected template. The
+              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
+              `{one_ip_octet}`.
 
-          names: '#/components/schemas/CreateInstanceSerializerV2/properties/names'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.names"
+          names: List of instance names. Specify one name to create a single instance.
 
-          password: '#/components/schemas/CreateInstanceSerializerV2/properties/password'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.password"
+          password: For Linux instances, 'username' and 'password' are used to create a new user.
+              When only 'password' is provided, it is set as the password for the default user
+              of the image. For Windows instances, 'username' cannot be specified. Use the
+              'password' field to set the password for the 'Admin' user on Windows. Use the
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
-          security_groups: '#/components/schemas/CreateInstanceSerializerV2/properties/security_groups'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.security_groups"
+          security_groups: Applies only to instances and is ignored for bare metal. Specifies security
+              group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id: '#/components/schemas/CreateInstanceSerializerV2/properties/servergroup_id'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.servergroup_id"
+          servergroup_id: Server group ID for instance placement policy. Can be an anti-affinity,
+              affinity, or soft-anti-affinity group. `anti-affinity` ensures instances are
+              placed on different hosts for high availability. `affinity` places instances on
+              the same host for low-latency communication. `soft-anti-affinity` tries to place
+              instances on different hosts but allows sharing if needed.
 
-          ssh_key_name: '#/components/schemas/CreateInstanceSerializerV2/properties/ssh_key_name/anyOf/0'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.ssh_key_name.anyOf[0]"
+          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
 
-          tags: '#/components/schemas/CreateInstanceSerializerV2/properties/tags'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          user_data: '#/components/schemas/CreateInstanceSerializerV2/properties/user_data'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.user_data"
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+              'password' field is provided. For Windows instances, Admin user password is set
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
+              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
-          username: '#/components/schemas/CreateInstanceSerializerV2/properties/username'
-              "$.components.schemas.CreateInstanceSerializerV2.properties.username"
+          username: For Linux instances, 'username' and 'password' are used to create a new user.
+              For Windows instances, 'username' cannot be specified. Use 'password' field to
+              set the password for the 'Admin' user on Windows.
 
           extra_headers: Send extra headers
 
@@ -1370,17 +1264,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         Rename instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].patch.parameters[2].schema"
+          instance_id: Instance ID
 
-          name: '#/components/schemas/NameSerializer/properties/name'
-              "$.components.schemas.NameSerializer.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -1465,89 +1355,73 @@ class AsyncInstancesResource(AsyncAPIResource):
         List instances
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          available_floating: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[2]"
+          available_floating: Only show instances which are able to handle floating address
 
-          changes_before: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[3]"
+          changes_before: Filters the instances by a date and time stamp when the instances last changed.
 
-          changes_since: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[4]"
+          changes_since: Filters the instances by a date and time stamp when the instances last changed
+              status.
 
-          exclude_flavor_prefix: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[5]"
+          exclude_flavor_prefix: Exclude instances with specified flavor prefix
 
-          exclude_secgroup: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[6]"
+          exclude_secgroup: Exclude instances with specified security group name
 
-          flavor_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[7]"
+          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
 
-          flavor_prefix: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[8]"
+          flavor_prefix: Filter out instances by flavor_prefix.
 
-          include_ai: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[9]"
+          include_ai: Include GPU clusters' servers
 
-          include_baremetal: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[10]"
+          include_baremetal: Include bare metal servers. Please, use `GET /v1/bminstances/` instead
 
-          include_k8s: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[11]"
+          include_k8s: Include managed k8s worker nodes
 
-          ip: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[12]"
+          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
+              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
+              192.168.0.110, and so on.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[13]"
+          limit: Optional. Limit the number of returned items
 
-          name: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[14]"
+          name: Filter instances by name. You can provide a full or partial name, instances with
+              matching names will be returned. For example, entering 'test' will return all
+              instances that contain 'test' in their name.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[15]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          only_isolated: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[16]"
+          only_isolated: Include only isolated instances
 
-          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[17]"
+          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[18]"
+          order_by: Order by field and direction.
 
-          profile_name: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/19'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[19]"
+          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
+              to true.
 
-          protection_status: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/20'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[20]"
+          protection_status: Filter result by DDoS protection_status. if parameter is provided. Effective
+              only with with_ddos set to true. (Active, Queued or Error)
 
-          status: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/21'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[21]"
+          status: Filters instances by status.
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/22'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[22]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/23'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[23]"
+          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
 
-          type_ddos_profile: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/24'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[24]"
+          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
+              Effective only with with_ddos set to true. (advanced or basic)
 
-          uuid: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/25'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[25]"
+          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/26'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[26]"
+          with_ddos: Include DDoS profile information in the response when set to `true`. Otherwise,
+              the `ddos_profile` field in the response is `null` by default.
 
-          with_interfaces_name: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/27'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}'].get.parameters[27]"
+          with_interfaces_name: Include `interface_name` in the addresses
 
           extra_headers: Send extra headers
 
@@ -1625,26 +1499,21 @@ class AsyncInstancesResource(AsyncAPIResource):
         Delete instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[2].schema"
+          instance_id: Instance ID
 
-          delete_floatings: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[3]"
+          delete_floatings: True if it is required to delete floating IPs assigned to the instance. Can't be
+              used with `floatings`.
 
-          floatings: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/4'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[4]"
+          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
+              `delete_floatings`.
 
-          reserved_fixed_ips: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/5'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[5]"
+          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the instance
 
-          volumes: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/delete/parameters/6'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}']['delete'].parameters[6]"
+          volumes: Comma separated list of volume IDs to be deleted with the instance
 
           extra_headers: Send extra headers
 
@@ -1701,20 +1570,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         Suspend and resume are not available for baremetal instances.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/0/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[0].schema"
+          action: Instance action name
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/1/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/2/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[2].schema"
-
-          action: '#/components/schemas/StartActionInstanceSerializer/properties/action'
-              "$.components.schemas.StartActionInstanceSerializer.properties.action"
-
-          activate_profile: '#/components/schemas/StartActionInstanceSerializer/properties/activate_profile/anyOf/0'
-              "$.components.schemas.StartActionInstanceSerializer.properties.activate_profile.anyOf[0]"
+          activate_profile: Used on start instance to activate Advanced DDoS profile
 
           extra_headers: Send extra headers
 
@@ -1746,17 +1604,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         Suspend and resume are not available for baremetal instances.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/0/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/1/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv2%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faction/post/parameters/2/schema'
-              "$.paths['/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action'].post.parameters[2].schema"
-
-          action: '#/components/schemas/BasicActionInstanceSerializer/properties/action'
-              "$.components.schemas.BasicActionInstanceSerializer.properties.action"
+          action: Instance action name
 
           extra_headers: Send extra headers
 
@@ -1823,17 +1671,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         Put instance into the server group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fput_into_servergroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fput_into_servergroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fput_into_servergroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup'].post.parameters[2].schema"
-
-          servergroup_id: '#/components/schemas/InstancePutServerGroupSchema/properties/servergroup_id'
-              "$.components.schemas.InstancePutServerGroupSchema.properties.servergroup_id"
+          servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
 
           extra_headers: Send extra headers
 
@@ -1883,20 +1721,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         all ports, use the NULL value for the port_id field
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faddsecuritygroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup'].post.parameters[0].schema"
+          name: Security group name, applies to all ports
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faddsecuritygroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Faddsecuritygroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup'].post.parameters[2].schema"
-
-          name: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/name'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.name"
-
-          ports_security_group_names: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/ports_security_group_names'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.ports_security_group_names"
+          ports_security_group_names: Port security groups mapping
 
           extra_headers: Send extra headers
 
@@ -1945,15 +1772,6 @@ class AsyncInstancesResource(AsyncAPIResource):
         Disable port security for instance interface
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fdisable_port_security/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fdisable_port_security/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security'].post.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fdisable_port_security/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1993,15 +1811,6 @@ class AsyncInstancesResource(AsyncAPIResource):
         Enable port security for instance interface
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fenable_port_security/post/parameters/0/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fenable_port_security/post/parameters/1/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security'].post.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Fports%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D%2Fenable_port_security/post/parameters/2/schema'
-              "$.paths['/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2047,14 +1856,11 @@ class AsyncInstancesResource(AsyncAPIResource):
           - `'ru'`
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}'].get.parameters[2].schema"
+          instance_id: Instance ID
 
           extra_headers: Send extra headers
 
@@ -2096,17 +1902,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         Get instance console URL
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[2].schema"
-
-          console_type: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fget_console/get/parameters/3'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console'].get.parameters[3]"
+          console_type: Console type
 
           extra_headers: Send extra headers
 
@@ -2153,15 +1949,6 @@ class AsyncInstancesResource(AsyncAPIResource):
         Remove instance from the server group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fremove_from_servergroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fremove_from_servergroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fremove_from_servergroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2202,17 +1989,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         Change flavor of the instance
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fchangeflavor/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fchangeflavor/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fchangeflavor/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor'].post.parameters[2].schema"
-
-          flavor_id: '#/components/schemas/FlavorIdSchema/properties/flavor_id'
-              "$.components.schemas.FlavorIdSchema.properties.flavor_id"
+          flavor_id: Flavor ID
 
           extra_headers: Send extra headers
 
@@ -2259,20 +2036,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         groups to all ports, use the NULL value for the port_id field
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdelsecuritygroup/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup'].post.parameters[0].schema"
+          name: Security group name, applies to all ports
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdelsecuritygroup/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup'].post.parameters[1].schema"
-
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fdelsecuritygroup/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup'].post.parameters[2].schema"
-
-          name: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/name'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.name"
-
-          ports_security_group_names: '#/components/schemas/InstancePortsSecurityGroupsSchema/properties/ports_security_group_names'
-              "$.components.schemas.InstancePortsSecurityGroupsSchema.properties.ports_security_group_names"
+          ports_security_group_names: Port security groups mapping
 
           extra_headers: Send extra headers
 

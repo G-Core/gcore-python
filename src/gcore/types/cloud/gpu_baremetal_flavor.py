@@ -19,214 +19,115 @@ __all__ = [
 
 class GPUBaremetalFlavorSerializerWithoutPriceHardwareDescription(BaseModel):
     cpu: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/cpu'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.cpu"
-    """
+    """Human-readable CPU description"""
 
     disk: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/disk'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.disk"
-    """
+    """Human-readable disk description"""
 
     gpu: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/gpu'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.gpu"
-    """
+    """Human-readable GPU description"""
 
     network: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/network'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.network"
-    """
+    """Human-readable NIC description"""
 
     ram: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/ram'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.ram"
-    """
+    """Human-readable RAM description"""
 
 
 class GPUBaremetalFlavorSerializerWithoutPriceHardwareProperties(BaseModel):
     gpu_count: Optional[int] = None
-    """
-    '#/components/schemas/GpuFlavorHardwareProperties/properties/gpu_count/anyOf/0'
-    "$.components.schemas.GpuFlavorHardwareProperties.properties.gpu_count.anyOf[0]"
-    """
+    """The total count of available GPUs."""
 
     gpu_manufacturer: Optional[str] = None
-    """
-    '#/components/schemas/GpuFlavorHardwareProperties/properties/gpu_manufacturer/anyOf/0'
-    "$.components.schemas.GpuFlavorHardwareProperties.properties.gpu_manufacturer.anyOf[0]"
-    """
+    """The manufacturer of the graphics processing GPU"""
 
     gpu_model: Optional[str] = None
-    """
-    '#/components/schemas/GpuFlavorHardwareProperties/properties/gpu_model/anyOf/0'
-    "$.components.schemas.GpuFlavorHardwareProperties.properties.gpu_model.anyOf[0]"
-    """
+    """GPU model"""
 
 
 class GPUBaremetalFlavorSerializerWithoutPrice(BaseModel):
     architecture: Optional[str] = None
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithoutPrice/properties/architecture/anyOf/0'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithoutPrice.properties.architecture.anyOf[0]"
-    """
+    """Flavor architecture type"""
 
     capacity: int
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithoutPrice/properties/capacity'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithoutPrice.properties.capacity"
-    """
+    """Number of available instances of given flavor"""
 
     disabled: bool
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithoutPrice/properties/disabled'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithoutPrice.properties.disabled"
-    """
+    """If the flavor is disabled, new resources cannot be created using this flavor."""
 
     hardware_description: GPUBaremetalFlavorSerializerWithoutPriceHardwareDescription
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithoutPrice/properties/hardware_description'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithoutPrice.properties.hardware_description"
-    """
+    """Additional bare metal hardware description"""
 
     hardware_properties: GPUBaremetalFlavorSerializerWithoutPriceHardwareProperties
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithoutPrice/properties/hardware_properties'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithoutPrice.properties.hardware_properties"
-    """
+    """Additional bare metal hardware properties"""
 
     name: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithoutPrice/properties/name'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithoutPrice.properties.name"
-    """
+    """Flavor name"""
 
 
 class GPUBaremetalFlavorSerializerWithPricesHardwareDescription(BaseModel):
     cpu: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/cpu'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.cpu"
-    """
+    """Human-readable CPU description"""
 
     disk: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/disk'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.disk"
-    """
+    """Human-readable disk description"""
 
     gpu: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/gpu'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.gpu"
-    """
+    """Human-readable GPU description"""
 
     network: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/network'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.network"
-    """
+    """Human-readable NIC description"""
 
     ram: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorHardwareDescriptionSerializer/properties/ram'
-    "$.components.schemas.GpuBaremetalFlavorHardwareDescriptionSerializer.properties.ram"
-    """
+    """Human-readable RAM description"""
 
 
 class GPUBaremetalFlavorSerializerWithPricesHardwareProperties(BaseModel):
     gpu_count: Optional[int] = None
-    """
-    '#/components/schemas/GpuFlavorHardwareProperties/properties/gpu_count/anyOf/0'
-    "$.components.schemas.GpuFlavorHardwareProperties.properties.gpu_count.anyOf[0]"
-    """
+    """The total count of available GPUs."""
 
     gpu_manufacturer: Optional[str] = None
-    """
-    '#/components/schemas/GpuFlavorHardwareProperties/properties/gpu_manufacturer/anyOf/0'
-    "$.components.schemas.GpuFlavorHardwareProperties.properties.gpu_manufacturer.anyOf[0]"
-    """
+    """The manufacturer of the graphics processing GPU"""
 
     gpu_model: Optional[str] = None
-    """
-    '#/components/schemas/GpuFlavorHardwareProperties/properties/gpu_model/anyOf/0'
-    "$.components.schemas.GpuFlavorHardwareProperties.properties.gpu_model.anyOf[0]"
-    """
+    """GPU model"""
 
 
 class GPUBaremetalFlavorSerializerWithPricesPrice(BaseModel):
     currency_code: Optional[str] = None
-    """
-    '#/components/schemas/FlavorPrice/properties/currency_code/anyOf/0'
-    "$.components.schemas.FlavorPrice.properties.currency_code.anyOf[0]"
-    """
+    """Currency code. Shown if the include_prices query parameter if set to true"""
 
     price_per_hour: Optional[float] = None
-    """
-    '#/components/schemas/FlavorPrice/properties/price_per_hour/anyOf/0'
-    "$.components.schemas.FlavorPrice.properties.price_per_hour.anyOf[0]"
-    """
+    """Price per hour. Shown if the include_prices query parameter if set to true"""
 
     price_per_month: Optional[float] = None
-    """
-    '#/components/schemas/FlavorPrice/properties/price_per_month/anyOf/0'
-    "$.components.schemas.FlavorPrice.properties.price_per_month.anyOf[0]"
-    """
+    """Price per month. Shown if the include_prices query parameter if set to true"""
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
-    """
-    '#/components/schemas/FlavorPrice/properties/price_status/anyOf/0'
-    "$.components.schemas.FlavorPrice.properties.price_status.anyOf[0]"
-    """
+    """Price status for the UI"""
 
 
 class GPUBaremetalFlavorSerializerWithPrices(BaseModel):
     architecture: Optional[str] = None
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithPrices/properties/architecture/anyOf/0'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithPrices.properties.architecture.anyOf[0]"
-    """
+    """Flavor architecture type"""
 
     capacity: int
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithPrices/properties/capacity'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithPrices.properties.capacity"
-    """
+    """Number of available instances of given flavor"""
 
     disabled: bool
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithPrices/properties/disabled'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithPrices.properties.disabled"
-    """
+    """If the flavor is disabled, new resources cannot be created using this flavor."""
 
     hardware_description: GPUBaremetalFlavorSerializerWithPricesHardwareDescription
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithPrices/properties/hardware_description'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithPrices.properties.hardware_description"
-    """
+    """Additional virtual hardware description"""
 
     hardware_properties: GPUBaremetalFlavorSerializerWithPricesHardwareProperties
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithPrices/properties/hardware_properties'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithPrices.properties.hardware_properties"
-    """
+    """Additional bare metal hardware properties"""
 
     name: str
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithPrices/properties/name'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithPrices.properties.name"
-    """
+    """Flavor name"""
 
     price: GPUBaremetalFlavorSerializerWithPricesPrice
-    """
-    '#/components/schemas/GpuBaremetalFlavorSerializerWithPrices/properties/price'
-    "$.components.schemas.GpuBaremetalFlavorSerializerWithPrices.properties.price"
-    """
+    """Flavor price"""
 
 
 GPUBaremetalFlavor: TypeAlias = Union[GPUBaremetalFlavorSerializerWithoutPrice, GPUBaremetalFlavorSerializerWithPrices]

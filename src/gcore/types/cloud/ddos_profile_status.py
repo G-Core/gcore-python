@@ -7,13 +7,7 @@ __all__ = ["DDOSProfileStatus"]
 
 class DDOSProfileStatus(BaseModel):
     error_description: str
-    """
-    '#/components/schemas/DdosProfileStatusSerializer/properties/error_description'
-    "$.components.schemas.DdosProfileStatusSerializer.properties.error_description"
-    """
+    """Description of the error, if it exists"""
 
     status: str
-    """
-    '#/components/schemas/DdosProfileStatusSerializer/properties/status'
-    "$.components.schemas.DdosProfileStatusSerializer.properties.status"
-    """
+    """Profile status"""

@@ -10,79 +10,40 @@ __all__ = ["InstanceFlavor"]
 
 class InstanceFlavor(BaseModel):
     architecture: str
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/architecture'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.architecture"
-    """
+    """Flavor architecture type"""
 
     disabled: bool
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/disabled'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.disabled"
-    """
+    """Disabled flavor flag"""
 
     flavor_id: str
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/flavor_id'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/flavor_name'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     os_type: str
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/os_type'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.os_type"
-    """
+    """Flavor operating system"""
 
     ram: int
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/ram'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     vcpus: int
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/vcpus'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
     capacity: Optional[int] = None
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/capacity/anyOf/0'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.capacity.anyOf[0]"
-    """
+    """Number of available instances of given configuration"""
 
     currency_code: Optional[str] = None
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/currency_code/anyOf/0'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.currency_code.anyOf[0]"
-    """
+    """Currency code. Shown if the include_prices query parameter if set to true"""
 
     hardware_description: Optional[Dict[str, str]] = None
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/hardware_description'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.hardware_description"
-    """
+    """Additional hardware description"""
 
     price_per_hour: Optional[float] = None
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/price_per_hour/anyOf/0'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.price_per_hour.anyOf[0]"
-    """
+    """Price per hour. Shown if the include_prices query parameter if set to true"""
 
     price_per_month: Optional[float] = None
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/price_per_month/anyOf/0'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.price_per_month.anyOf[0]"
-    """
+    """Price per month. Shown if the include_prices query parameter if set to true"""
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
-    """
-    '#/components/schemas/InstanceFlavorExtendedSerializer/properties/price_status/anyOf/0'
-    "$.components.schemas.InstanceFlavorExtendedSerializer.properties.price_status.anyOf[0]"
-    """
+    """Price status for the UI"""

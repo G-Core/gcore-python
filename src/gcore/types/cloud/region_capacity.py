@@ -10,13 +10,7 @@ __all__ = ["RegionCapacity"]
 
 class RegionCapacity(BaseModel):
     capacity: List[Capacity]
-    """
-    '#/components/schemas/RegionCapacityOutSerializerV3/properties/capacity'
-    "$.components.schemas.RegionCapacityOutSerializerV3.properties.capacity"
-    """
+    """List of capacities by flavor."""
 
     region_id: int
-    """
-    '#/components/schemas/RegionCapacityOutSerializerV3/properties/region_id'
-    "$.components.schemas.RegionCapacityOutSerializerV3.properties.region_id"
-    """
+    """Region ID."""

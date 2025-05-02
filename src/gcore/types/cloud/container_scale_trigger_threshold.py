@@ -7,7 +7,4 @@ __all__ = ["ContainerScaleTriggerThreshold"]
 
 class ContainerScaleTriggerThreshold(BaseModel):
     threshold: int
-    """
-    '#/components/schemas/ContainerScaleTriggersThresholdOutSerializer/properties/threshold'
-    "$.components.schemas.ContainerScaleTriggersThresholdOutSerializer.properties.threshold"
-    """
+    """Threshold value for the trigger in percentage"""

@@ -10,7 +10,4 @@ __all__ = ["LaasIndexRetentionPolicyParam"]
 
 class LaasIndexRetentionPolicyParam(TypedDict, total=False):
     period: Required[Optional[int]]
-    """
-    '#/components/schemas/LaasIndexRetentionPolicyPydanticSerializer/properties/period/anyOf/0'
-    "$.components.schemas.LaasIndexRetentionPolicyPydanticSerializer.properties.period.anyOf[0]"
-    """
+    """Duration of days for which logs must be kept."""

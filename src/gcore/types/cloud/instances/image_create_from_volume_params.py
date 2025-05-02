@@ -12,73 +12,42 @@ __all__ = ["ImageCreateFromVolumeParams"]
 
 class ImageCreateFromVolumeParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     name: Required[str]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/name'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.name"
-    """
+    """Image name"""
 
     volume_id: Required[str]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/volume_id'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.volume_id"
-    """
+    """Required if source is volume. Volume id"""
 
     architecture: Literal["aarch64", "x86_64"]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/architecture'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.architecture"
-    """
+    """Image CPU architecture type: `aarch64`, `x86_64`"""
 
     hw_firmware_type: Optional[Literal["bios", "uefi"]]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_firmware_type/anyOf/0'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_firmware_type.anyOf[0]"
-    """
+    """Specifies the type of firmware with which to boot the guest."""
 
     hw_machine_type: Optional[Literal["pc", "q35"]]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_machine_type/anyOf/0'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_machine_type.anyOf[0]"
-    """
+    """A virtual chipset type."""
 
     is_baremetal: bool
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/is_baremetal'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.is_baremetal"
-    """
+    """Set to true if the image will be used by bare metal servers. Defaults to false."""
 
     os_type: Literal["linux", "windows"]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/os_type'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.os_type"
-    """
+    """The operating system installed on the image."""
 
     source: Literal["volume"]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/source'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.source"
-    """
+    """Image source"""
 
     ssh_key: Literal["allow", "deny", "required"]
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/ssh_key'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.ssh_key"
-    """
+    """Whether the image supports SSH key or not"""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/ImageCreateFromVolumeSerializer/properties/tags'
-    "$.components.schemas.ImageCreateFromVolumeSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """

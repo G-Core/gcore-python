@@ -7,19 +7,10 @@ __all__ = ["Tag"]
 
 class Tag(BaseModel):
     key: str
-    """
-    '#/components/schemas/TagSerializer/properties/key'
-    "$.components.schemas.TagSerializer.properties.key"
-    """
+    """Tag key. The maximum size for a key is 255 bytes."""
 
     read_only: bool
-    """
-    '#/components/schemas/TagSerializer/properties/read_only'
-    "$.components.schemas.TagSerializer.properties.read_only"
-    """
+    """If true, the tag is read-only and cannot be modified by the user"""
 
     value: str
-    """
-    '#/components/schemas/TagSerializer/properties/value'
-    "$.components.schemas.TagSerializer.properties.value"
-    """
+    """Tag value. The maximum size for a value is 1024 bytes."""

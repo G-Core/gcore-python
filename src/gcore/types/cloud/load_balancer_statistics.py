@@ -7,31 +7,16 @@ __all__ = ["LoadBalancerStatistics"]
 
 class LoadBalancerStatistics(BaseModel):
     active_connections: int
-    """
-    '#/components/schemas/LoadbalancerStatsSerializer/properties/active_connections'
-    "$.components.schemas.LoadbalancerStatsSerializer.properties.active_connections"
-    """
+    """Currently active connections"""
 
     bytes_in: int
-    """
-    '#/components/schemas/LoadbalancerStatsSerializer/properties/bytes_in'
-    "$.components.schemas.LoadbalancerStatsSerializer.properties.bytes_in"
-    """
+    """Total bytes received"""
 
     bytes_out: int
-    """
-    '#/components/schemas/LoadbalancerStatsSerializer/properties/bytes_out'
-    "$.components.schemas.LoadbalancerStatsSerializer.properties.bytes_out"
-    """
+    """Total bytes sent"""
 
     request_errors: int
-    """
-    '#/components/schemas/LoadbalancerStatsSerializer/properties/request_errors'
-    "$.components.schemas.LoadbalancerStatsSerializer.properties.request_errors"
-    """
+    """Total requests that were unable to be fulfilled"""
 
     total_connections: int
-    """
-    '#/components/schemas/LoadbalancerStatsSerializer/properties/total_connections'
-    "$.components.schemas.LoadbalancerStatsSerializer.properties.total_connections"
-    """
+    """Total connections handled"""

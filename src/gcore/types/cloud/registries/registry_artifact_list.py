@@ -10,13 +10,7 @@ __all__ = ["RegistryArtifactList"]
 
 class RegistryArtifactList(BaseModel):
     count: int
-    """
-    '#/components/schemas/RegistryArtifactCollectionSerializer/properties/count'
-    "$.components.schemas.RegistryArtifactCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[RegistryArtifact]
-    """
-    '#/components/schemas/RegistryArtifactCollectionSerializer/properties/results'
-    "$.components.schemas.RegistryArtifactCollectionSerializer.properties.results"
-    """
+    """Objects"""

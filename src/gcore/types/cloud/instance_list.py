@@ -10,13 +10,7 @@ __all__ = ["InstanceList"]
 
 class InstanceList(BaseModel):
     count: int
-    """
-    '#/components/schemas/InstanceCollectionSerializer/properties/count'
-    "$.components.schemas.InstanceCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[Instance]
-    """
-    '#/components/schemas/InstanceCollectionSerializer/properties/results'
-    "$.components.schemas.InstanceCollectionSerializer.properties.results"
-    """
+    """Objects"""

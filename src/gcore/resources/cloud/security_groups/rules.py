@@ -95,38 +95,21 @@ class RulesResource(SyncAPIResource):
         Add new rule to security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frules/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules'].post.parameters[0].schema"
+          description: Rule description
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frules/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules'].post.parameters[1].schema"
+          direction: Ingress or egress, which is the direction in which the security group is applied
 
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frules/post/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules'].post.parameters[2].schema"
+          ethertype: Ether type
 
-          description: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/description'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.description"
+          port_range_max: The maximum port number in the range that is matched by the security group rule
 
-          direction: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/direction'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.direction"
+          port_range_min: The minimum port number in the range that is matched by the security group rule
 
-          ethertype: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/ethertype'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.ethertype"
+          protocol: Protocol
 
-          port_range_max: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/port_range_max/anyOf/0'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.port_range_max.anyOf[0]"
+          remote_group_id: The remote group UUID to associate with this security group
 
-          port_range_min: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/port_range_min/anyOf/0'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.port_range_min.anyOf[0]"
-
-          protocol: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/protocol'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.protocol"
-
-          remote_group_id: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/remote_group_id'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.remote_group_id"
-
-          remote_ip_prefix: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
+          remote_ip_prefix: The remote IP prefix that is matched by this security group rule
 
           extra_headers: Send extra headers
 
@@ -180,15 +163,6 @@ class RulesResource(SyncAPIResource):
         Delete security group rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}']['delete'].parameters[1].schema"
-
-          rule_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -264,41 +238,25 @@ class RulesResource(SyncAPIResource):
         Edit the security group rule: delete old and create new rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[0].schema"
+          direction: Ingress or egress, which is the direction in which the security group rule is
+              applied
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[1].schema"
+          security_group_id: Parent security group of this rule
 
-          rule_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[2].schema"
+          description: Rule description
 
-          direction: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/direction'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.direction"
+          ethertype: Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
+              or egress rules.
 
-          security_group_id: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/security_group_id'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.security_group_id"
+          port_range_max: The maximum port number in the range that is matched by the security group rule
 
-          description: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/description'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.description"
+          port_range_min: The minimum port number in the range that is matched by the security group rule
 
-          ethertype: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/ethertype/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.ethertype.anyOf[0]"
+          protocol: Protocol
 
-          port_range_max: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/port_range_max/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.port_range_max.anyOf[0]"
+          remote_group_id: The remote group UUID to associate with this security group rule
 
-          port_range_min: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/port_range_min/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.port_range_min.anyOf[0]"
-
-          protocol: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/protocol'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.protocol"
-
-          remote_group_id: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/remote_group_id/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.remote_group_id.anyOf[0]"
-
-          remote_ip_prefix: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
+          remote_ip_prefix: The remote IP prefix that is matched by this security group rule
 
           extra_headers: Send extra headers
 
@@ -408,38 +366,21 @@ class AsyncRulesResource(AsyncAPIResource):
         Add new rule to security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frules/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules'].post.parameters[0].schema"
+          description: Rule description
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frules/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules'].post.parameters[1].schema"
+          direction: Ingress or egress, which is the direction in which the security group is applied
 
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frules/post/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules'].post.parameters[2].schema"
+          ethertype: Ether type
 
-          description: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/description'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.description"
+          port_range_max: The maximum port number in the range that is matched by the security group rule
 
-          direction: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/direction'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.direction"
+          port_range_min: The minimum port number in the range that is matched by the security group rule
 
-          ethertype: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/ethertype'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.ethertype"
+          protocol: Protocol
 
-          port_range_max: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/port_range_max/anyOf/0'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.port_range_max.anyOf[0]"
+          remote_group_id: The remote group UUID to associate with this security group
 
-          port_range_min: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/port_range_min/anyOf/0'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.port_range_min.anyOf[0]"
-
-          protocol: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/protocol'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.protocol"
-
-          remote_group_id: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/remote_group_id'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.remote_group_id"
-
-          remote_ip_prefix: '#/components/schemas/CreateSecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-              "$.components.schemas.CreateSecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
+          remote_ip_prefix: The remote IP prefix that is matched by this security group rule
 
           extra_headers: Send extra headers
 
@@ -493,15 +434,6 @@ class AsyncRulesResource(AsyncAPIResource):
         Delete security group rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}']['delete'].parameters[1].schema"
-
-          rule_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -577,41 +509,25 @@ class AsyncRulesResource(AsyncAPIResource):
         Edit the security group rule: delete old and create new rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[0].schema"
+          direction: Ingress or egress, which is the direction in which the security group rule is
+              applied
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[1].schema"
+          security_group_id: Parent security group of this rule
 
-          rule_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[2].schema"
+          description: Rule description
 
-          direction: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/direction'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.direction"
+          ethertype: Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
+              or egress rules.
 
-          security_group_id: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/security_group_id'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.security_group_id"
+          port_range_max: The maximum port number in the range that is matched by the security group rule
 
-          description: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/description'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.description"
+          port_range_min: The minimum port number in the range that is matched by the security group rule
 
-          ethertype: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/ethertype/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.ethertype.anyOf[0]"
+          protocol: Protocol
 
-          port_range_max: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/port_range_max/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.port_range_max.anyOf[0]"
+          remote_group_id: The remote group UUID to associate with this security group rule
 
-          port_range_min: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/port_range_min/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.port_range_min.anyOf[0]"
-
-          protocol: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/protocol'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.protocol"
-
-          remote_group_id: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/remote_group_id/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.remote_group_id.anyOf[0]"
-
-          remote_ip_prefix: '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-              "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
+          remote_ip_prefix: The remote IP prefix that is matched by this security group rule
 
           extra_headers: Send extra headers
 

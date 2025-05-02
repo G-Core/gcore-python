@@ -9,13 +9,7 @@ __all__ = ["FloatingAddress"]
 
 class FloatingAddress(BaseModel):
     addr: str
-    """
-    '#/components/schemas/InstanceFloatingAddressSerializer/properties/addr'
-    "$.components.schemas.InstanceFloatingAddressSerializer.properties.addr"
-    """
+    """Address"""
 
     type: Literal["floating"]
-    """
-    '#/components/schemas/InstanceFloatingAddressSerializer/properties/type'
-    "$.components.schemas.InstanceFloatingAddressSerializer.properties.type"
-    """
+    """Type of the address"""

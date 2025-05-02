@@ -81,50 +81,34 @@ class ListenersResource(SyncAPIResource):
         Create load balancer listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].post.parameters[0].schema"
+          loadbalancer_id: Load balancer ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].post.parameters[1].schema"
+          name: Load balancer listener name
 
-          loadbalancer_id: '#/components/schemas/CreateLbListenerSerializer/properties/loadbalancer_id'
-              "$.components.schemas.CreateLbListenerSerializer.properties.loadbalancer_id"
+          protocol: Load balancer listener protocol
 
-          name: '#/components/schemas/CreateLbListenerSerializer/properties/name'
-              "$.components.schemas.CreateLbListenerSerializer.properties.name"
+          protocol_port: Protocol port
 
-          protocol: '#/components/schemas/CreateLbListenerSerializer/properties/protocol'
-              "$.components.schemas.CreateLbListenerSerializer.properties.protocol"
+          allowed_cidrs: Network CIDRs from which service will be accessible
 
-          protocol_port: '#/components/schemas/CreateLbListenerSerializer/properties/protocol_port'
-              "$.components.schemas.CreateLbListenerSerializer.properties.protocol_port"
+          connection_limit: Limit of the simultaneous connections
 
-          allowed_cidrs: '#/components/schemas/CreateLbListenerSerializer/properties/allowed_cidrs/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.allowed_cidrs.anyOf[0]"
+          insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
+              Only used with HTTP or TERMINATED_HTTPS protocols.
 
-          connection_limit: '#/components/schemas/CreateLbListenerSerializer/properties/connection_limit'
-              "$.components.schemas.CreateLbListenerSerializer.properties.connection_limit"
+          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+              listener
 
-          insert_x_forwarded: '#/components/schemas/CreateLbListenerSerializer/properties/insert_x_forwarded'
-              "$.components.schemas.CreateLbListenerSerializer.properties.insert_x_forwarded"
+          sni_secret_id: List of secrets IDs containing PKCS12 format certificate/key bundles for
+              TERMINATED_HTTPS or PROMETHEUS listeners
 
-          secret_id: '#/components/schemas/CreateLbListenerSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.secret_id.anyOf[0]"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          sni_secret_id: '#/components/schemas/CreateLbListenerSerializer/properties/sni_secret_id'
-              "$.components.schemas.CreateLbListenerSerializer.properties.sni_secret_id"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          timeout_client_data: '#/components/schemas/CreateLbListenerSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.timeout_client_data.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
-          timeout_member_connect: '#/components/schemas/CreateLbListenerSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/CreateLbListenerSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.timeout_member_data.anyOf[0]"
-
-          user_list: '#/components/schemas/CreateLbListenerSerializer/properties/user_list'
-              "$.components.schemas.CreateLbListenerSerializer.properties.user_list"
+          user_list: Load balancer listener list of username and encrypted password items
 
           extra_headers: Send extra headers
 
@@ -190,41 +174,25 @@ class ListenersResource(SyncAPIResource):
         Update listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[0].schema"
+          allowed_cidrs: Network CIDRs from which service will be accessible
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[1].schema"
+          connection_limit: Limit of simultaneous connections
 
-          listener_id: '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[2].schema"
+          name: Load balancer listener name
 
-          allowed_cidrs: '#/components/schemas/PatchLbListenerSerializer/properties/allowed_cidrs/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.allowed_cidrs.anyOf[0]"
+          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+              load balancer
 
-          connection_limit: '#/components/schemas/PatchLbListenerSerializer/properties/connection_limit'
-              "$.components.schemas.PatchLbListenerSerializer.properties.connection_limit"
+          sni_secret_id: List of secret's ID containing PKCS12 format certificate/key bundfles for
+              TERMINATED_HTTPS or PROMETHEUS listeners
 
-          name: '#/components/schemas/PatchLbListenerSerializer/properties/name'
-              "$.components.schemas.PatchLbListenerSerializer.properties.name"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          secret_id: '#/components/schemas/PatchLbListenerSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.secret_id.anyOf[0]"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          sni_secret_id: '#/components/schemas/PatchLbListenerSerializer/properties/sni_secret_id/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.sni_secret_id.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
-          timeout_client_data: '#/components/schemas/PatchLbListenerSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.timeout_client_data.anyOf[0]"
-
-          timeout_member_connect: '#/components/schemas/PatchLbListenerSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/PatchLbListenerSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.timeout_member_data.anyOf[0]"
-
-          user_list: '#/components/schemas/PatchLbListenerSerializer/properties/user_list/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.user_list.anyOf[0]"
+          user_list: Load balancer listener users list
 
           extra_headers: Send extra headers
 
@@ -280,17 +248,9 @@ class ListenersResource(SyncAPIResource):
         List load balancer listeners
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[0].schema"
+          loadbalancer_id: Load balancer ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[2]"
-
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[3]"
+          show_stats: Show statistics
 
           extra_headers: Send extra headers
 
@@ -339,15 +299,6 @@ class ListenersResource(SyncAPIResource):
         Delete load balancer listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}']['delete'].parameters[1].schema"
-
-          listener_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -388,17 +339,7 @@ class ListenersResource(SyncAPIResource):
         Get listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[1].schema"
-
-          listener_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[2].schema"
-
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[3]"
+          show_stats: Show statistics
 
           extra_headers: Send extra headers
 
@@ -476,50 +417,34 @@ class AsyncListenersResource(AsyncAPIResource):
         Create load balancer listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].post.parameters[0].schema"
+          loadbalancer_id: Load balancer ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].post.parameters[1].schema"
+          name: Load balancer listener name
 
-          loadbalancer_id: '#/components/schemas/CreateLbListenerSerializer/properties/loadbalancer_id'
-              "$.components.schemas.CreateLbListenerSerializer.properties.loadbalancer_id"
+          protocol: Load balancer listener protocol
 
-          name: '#/components/schemas/CreateLbListenerSerializer/properties/name'
-              "$.components.schemas.CreateLbListenerSerializer.properties.name"
+          protocol_port: Protocol port
 
-          protocol: '#/components/schemas/CreateLbListenerSerializer/properties/protocol'
-              "$.components.schemas.CreateLbListenerSerializer.properties.protocol"
+          allowed_cidrs: Network CIDRs from which service will be accessible
 
-          protocol_port: '#/components/schemas/CreateLbListenerSerializer/properties/protocol_port'
-              "$.components.schemas.CreateLbListenerSerializer.properties.protocol_port"
+          connection_limit: Limit of the simultaneous connections
 
-          allowed_cidrs: '#/components/schemas/CreateLbListenerSerializer/properties/allowed_cidrs/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.allowed_cidrs.anyOf[0]"
+          insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
+              Only used with HTTP or TERMINATED_HTTPS protocols.
 
-          connection_limit: '#/components/schemas/CreateLbListenerSerializer/properties/connection_limit'
-              "$.components.schemas.CreateLbListenerSerializer.properties.connection_limit"
+          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+              listener
 
-          insert_x_forwarded: '#/components/schemas/CreateLbListenerSerializer/properties/insert_x_forwarded'
-              "$.components.schemas.CreateLbListenerSerializer.properties.insert_x_forwarded"
+          sni_secret_id: List of secrets IDs containing PKCS12 format certificate/key bundles for
+              TERMINATED_HTTPS or PROMETHEUS listeners
 
-          secret_id: '#/components/schemas/CreateLbListenerSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.secret_id.anyOf[0]"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          sni_secret_id: '#/components/schemas/CreateLbListenerSerializer/properties/sni_secret_id'
-              "$.components.schemas.CreateLbListenerSerializer.properties.sni_secret_id"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          timeout_client_data: '#/components/schemas/CreateLbListenerSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.timeout_client_data.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
-          timeout_member_connect: '#/components/schemas/CreateLbListenerSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/CreateLbListenerSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.CreateLbListenerSerializer.properties.timeout_member_data.anyOf[0]"
-
-          user_list: '#/components/schemas/CreateLbListenerSerializer/properties/user_list'
-              "$.components.schemas.CreateLbListenerSerializer.properties.user_list"
+          user_list: Load balancer listener list of username and encrypted password items
 
           extra_headers: Send extra headers
 
@@ -585,41 +510,25 @@ class AsyncListenersResource(AsyncAPIResource):
         Update listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[0].schema"
+          allowed_cidrs: Network CIDRs from which service will be accessible
 
-          region_id: '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[1].schema"
+          connection_limit: Limit of simultaneous connections
 
-          listener_id: '#/paths/%2Fcloud%2Fv2%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}'].patch.parameters[2].schema"
+          name: Load balancer listener name
 
-          allowed_cidrs: '#/components/schemas/PatchLbListenerSerializer/properties/allowed_cidrs/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.allowed_cidrs.anyOf[0]"
+          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
+              load balancer
 
-          connection_limit: '#/components/schemas/PatchLbListenerSerializer/properties/connection_limit'
-              "$.components.schemas.PatchLbListenerSerializer.properties.connection_limit"
+          sni_secret_id: List of secret's ID containing PKCS12 format certificate/key bundfles for
+              TERMINATED_HTTPS or PROMETHEUS listeners
 
-          name: '#/components/schemas/PatchLbListenerSerializer/properties/name'
-              "$.components.schemas.PatchLbListenerSerializer.properties.name"
+          timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          secret_id: '#/components/schemas/PatchLbListenerSerializer/properties/secret_id/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.secret_id.anyOf[0]"
+          timeout_member_connect: Backend member connection timeout in milliseconds
 
-          sni_secret_id: '#/components/schemas/PatchLbListenerSerializer/properties/sni_secret_id/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.sni_secret_id.anyOf[0]"
+          timeout_member_data: Backend member inactivity timeout in milliseconds
 
-          timeout_client_data: '#/components/schemas/PatchLbListenerSerializer/properties/timeout_client_data/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.timeout_client_data.anyOf[0]"
-
-          timeout_member_connect: '#/components/schemas/PatchLbListenerSerializer/properties/timeout_member_connect/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.timeout_member_connect.anyOf[0]"
-
-          timeout_member_data: '#/components/schemas/PatchLbListenerSerializer/properties/timeout_member_data/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.timeout_member_data.anyOf[0]"
-
-          user_list: '#/components/schemas/PatchLbListenerSerializer/properties/user_list/anyOf/0'
-              "$.components.schemas.PatchLbListenerSerializer.properties.user_list.anyOf[0]"
+          user_list: Load balancer listener users list
 
           extra_headers: Send extra headers
 
@@ -675,17 +584,9 @@ class AsyncListenersResource(AsyncAPIResource):
         List load balancer listeners
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[0].schema"
+          loadbalancer_id: Load balancer ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[2]"
-
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}'].get.parameters[3]"
+          show_stats: Show statistics
 
           extra_headers: Send extra headers
 
@@ -734,15 +635,6 @@ class AsyncListenersResource(AsyncAPIResource):
         Delete load balancer listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}']['delete'].parameters[1].schema"
-
-          listener_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -783,17 +675,7 @@ class AsyncListenersResource(AsyncAPIResource):
         Get listener
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[1].schema"
-
-          listener_id: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[2].schema"
-
-          show_stats: '#/paths/%2Fcloud%2Fv1%2Flblisteners%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Blistener_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}'].get.parameters[3]"
+          show_stats: Show statistics
 
           extra_headers: Send extra headers
 

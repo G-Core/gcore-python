@@ -11,109 +11,55 @@ __all__ = ["MlcatalogModelCard"]
 
 class MlcatalogModelCard(BaseModel):
     id: str
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/id'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.id"
-    """
+    """Model ID."""
 
     category: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/category/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.category.anyOf[0]"
-    """
+    """Category of the model."""
 
     default_flavor_name: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/default_flavor_name/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.default_flavor_name.anyOf[0]"
-    """
+    """Default flavor for the model."""
 
     description: str
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/description'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.description"
-    """
+    """Description of the model."""
 
     developer: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/developer/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.developer.anyOf[0]"
-    """
+    """Developer of the model."""
 
     documentation_page: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/documentation_page/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.documentation_page.anyOf[0]"
-    """
+    """Path to the documentation page."""
 
     eula_url: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/eula_url/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.eula_url.anyOf[0]"
-    """
+    """URL to the EULA text."""
 
     example_curl_request: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/example_curl_request/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.example_curl_request.anyOf[0]"
-    """
+    """Example curl request to the model."""
 
     has_eula: bool
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/has_eula'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.has_eula"
-    """
+    """Whether the model has an EULA."""
 
     image_registry_id: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/image_registry_id/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.image_registry_id.anyOf[0]"
-    """
+    """Image registry of the model."""
 
     image_url: str
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/image_url'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.image_url"
-    """
+    """Image URL of the model."""
 
     inference_backend: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/inference_backend/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.inference_backend.anyOf[0]"
-    """
+    """Describing underlying inference engine."""
 
     inference_frontend: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/inference_frontend/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.inference_frontend.anyOf[0]"
-    """
+    """Describing model frontend type."""
 
     api_model_id: Optional[str] = FieldInfo(alias="model_id", default=None)
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/model_id/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.model_id.anyOf[0]"
-    """
+    """Model name to perform inference call."""
 
     name: str
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/name'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.name"
-    """
+    """Name of the model."""
 
     openai_compatibility: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/openai_compatibility/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.openai_compatibility.anyOf[0]"
-    """
+    """OpenAI compatibility level."""
 
     port: int
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/port'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.port"
-    """
+    """Port on which the model runs."""
 
     version: Optional[str] = None
-    """
-    '#/components/schemas/MLCatalogModelCardSerializerV3/properties/version/anyOf/0'
-    "$.components.schemas.MLCatalogModelCardSerializerV3.properties.version.anyOf[0]"
-    """
+    """Version of the model."""

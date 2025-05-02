@@ -8,19 +8,10 @@ __all__ = ["IPWithSubnet"]
 
 class IPWithSubnet(BaseModel):
     ip_address: str
-    """
-    '#/components/schemas/PortIpWithSubnetSerializer/properties/ip_address'
-    "$.components.schemas.PortIpWithSubnetSerializer.properties.ip_address"
-    """
+    """IP address"""
 
     subnet: Subnet
-    """
-    '#/components/schemas/PortIpWithSubnetSerializer/properties/subnet'
-    "$.components.schemas.PortIpWithSubnetSerializer.properties.subnet"
-    """
+    """Subnet details"""
 
     subnet_id: str
-    """
-    '#/components/schemas/PortIpWithSubnetSerializer/properties/subnet_id'
-    "$.components.schemas.PortIpWithSubnetSerializer.properties.subnet_id"
-    """
+    """ID of the subnet that allocated the IP"""

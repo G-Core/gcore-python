@@ -62,20 +62,9 @@ class MetricsResource(SyncAPIResource):
         Get loadbalancer metrics, including cpu, memory and network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fmetrics/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics'].post.parameters[0].schema"
+          time_interval: Time interval
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fmetrics/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics'].post.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fmetrics/post/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics'].post.parameters[2].schema"
-
-          time_interval: '#/components/schemas/LoadbalancerMetricsRequestSerializer/properties/time_interval'
-              "$.components.schemas.LoadbalancerMetricsRequestSerializer.properties.time_interval"
-
-          time_unit: '#/components/schemas/LoadbalancerMetricsRequestSerializer/properties/time_unit'
-              "$.components.schemas.LoadbalancerMetricsRequestSerializer.properties.time_unit"
+          time_unit: Time interval unit
 
           extra_headers: Send extra headers
 
@@ -146,20 +135,9 @@ class AsyncMetricsResource(AsyncAPIResource):
         Get loadbalancer metrics, including cpu, memory and network
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fmetrics/post/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics'].post.parameters[0].schema"
+          time_interval: Time interval
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fmetrics/post/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics'].post.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fmetrics/post/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics'].post.parameters[2].schema"
-
-          time_interval: '#/components/schemas/LoadbalancerMetricsRequestSerializer/properties/time_interval'
-              "$.components.schemas.LoadbalancerMetricsRequestSerializer.properties.time_interval"
-
-          time_unit: '#/components/schemas/LoadbalancerMetricsRequestSerializer/properties/time_unit'
-              "$.components.schemas.LoadbalancerMetricsRequestSerializer.properties.time_unit"
+          time_unit: Time interval unit
 
           extra_headers: Send extra headers
 

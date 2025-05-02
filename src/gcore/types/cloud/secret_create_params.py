@@ -10,67 +10,55 @@ __all__ = ["SecretCreateParams"]
 
 class SecretCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecrets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/secrets/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/name'
-    "$.components.schemas.CreateSecretSerializer.properties.name"
-    """
+    """Secret name"""
 
     payload: Required[str]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/payload'
-    "$.components.schemas.CreateSecretSerializer.properties.payload"
+    """Secret payload.
+
+    For HTTPS-terminated load balancing, provide base64 encoded conents of a PKCS12
+    file. The PKCS12 file is the combined TLS certificate, key, and intermediate
+    certificate chain obtained from an external certificate authority. The file can
+    be created via openssl, e.g.'openssl pkcs12 -export -inkey server.key -in
+    server.crt -certfile ca-chain.crt -passout pass: -out server.p12'The key and
+    certificate should be PEM-encoded, and the intermediate certificate chain should
+    be multiple PEM-encoded certs concatenated together
     """
 
     payload_content_encoding: Required[Literal["base64"]]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/payload_content_encoding'
-    "$.components.schemas.CreateSecretSerializer.properties.payload_content_encoding"
+    """The encoding used for the payload to be able to include it in the JSON request.
+
+    Currently only base64 is supported
     """
 
     payload_content_type: Required[str]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/payload_content_type'
-    "$.components.schemas.CreateSecretSerializer.properties.payload_content_type"
-    """
+    """The media type for the content of the payload"""
 
     secret_type: Required[Literal["certificate", "opaque", "passphrase", "private", "public", "symmetric"]]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/secret_type'
-    "$.components.schemas.CreateSecretSerializer.properties.secret_type"
+    """Secret type.
+
+    symmetric - Used for storing byte arrays such as keys suitable for symmetric
+    encryption; public - Used for storing the public key of an asymmetric keypair;
+    private - Used for storing the private key of an asymmetric keypair;
+    passphrase - Used for storing plain text passphrases; certificate - Used for
+    storing cryptographic certificates such as X.509 certificates; opaque - Used for
+    backwards compatibility with previous versions of the API
     """
 
     algorithm: Optional[str]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/algorithm/anyOf/0'
-    "$.components.schemas.CreateSecretSerializer.properties.algorithm.anyOf[0]"
-    """
+    """Metadata provided by a user or system for informational purposes."""
 
     bit_length: Optional[int]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/bit_length/anyOf/0'
-    "$.components.schemas.CreateSecretSerializer.properties.bit_length.anyOf[0]"
+    """Metadata provided by a user or system for informational purposes.
+
+    Value must be greater than zero.
     """
 
     expiration: Optional[str]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/expiration/anyOf/0'
-    "$.components.schemas.CreateSecretSerializer.properties.expiration.anyOf[0]"
-    """
+    """Datetime when the secret will expire."""
 
     mode: Optional[str]
-    """
-    '#/components/schemas/CreateSecretSerializer/properties/mode/anyOf/0'
-    "$.components.schemas.CreateSecretSerializer.properties.mode.anyOf[0]"
-    """
+    """Metadata provided by a user or system for informational purposes."""

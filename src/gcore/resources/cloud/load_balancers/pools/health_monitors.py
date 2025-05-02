@@ -71,38 +71,23 @@ class HealthMonitorsResource(SyncAPIResource):
         Create Load Balancer Pool Health Monitor
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[0].schema"
+          delay: The time, in seconds, between sending probes to members
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[1].schema"
+          max_retries: Number of successes before the member is switched to ONLINE state
 
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[2].schema"
+          api_timeout: The maximum time to connect. Must be less than the delay value
 
-          delay: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/delay'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.delay"
+          type: Health monitor type. Once health monitor is created, cannot be changed.
 
-          max_retries: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries"
+          expected_codes: Can only be used together with `HTTP` or `HTTPS` health monitor type.
 
-          api_timeout: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/timeout'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.timeout"
+          http_method: HTTP method. Can only be used together with `HTTP` or `HTTPS` health monitor
+              type.
 
-          type: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/type'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.type"
+          max_retries_down: Number of failures before the member is switched to ERROR state.
 
-          expected_codes: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/expected_codes/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.expected_codes.anyOf[0]"
-
-          http_method: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/http_method/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.http_method.anyOf[0]"
-
-          max_retries_down: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries_down/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries_down.anyOf[0]"
-
-          url_path: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/url_path/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.url_path.anyOf[0]"
+          url_path: URL Path. Defaults to '/'. Can only be used together with `HTTP` or `HTTPS`
+              health monitor type.
 
           extra_headers: Send extra headers
 
@@ -156,15 +141,6 @@ class HealthMonitorsResource(SyncAPIResource):
         Delete load balancer pool health monitor
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor']['delete'].parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -234,38 +210,23 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         Create Load Balancer Pool Health Monitor
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[0].schema"
+          delay: The time, in seconds, between sending probes to members
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[1].schema"
+          max_retries: Number of successes before the member is switched to ONLINE state
 
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[2].schema"
+          api_timeout: The maximum time to connect. Must be less than the delay value
 
-          delay: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/delay'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.delay"
+          type: Health monitor type. Once health monitor is created, cannot be changed.
 
-          max_retries: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries"
+          expected_codes: Can only be used together with `HTTP` or `HTTPS` health monitor type.
 
-          api_timeout: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/timeout'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.timeout"
+          http_method: HTTP method. Can only be used together with `HTTP` or `HTTPS` health monitor
+              type.
 
-          type: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/type'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.type"
+          max_retries_down: Number of failures before the member is switched to ERROR state.
 
-          expected_codes: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/expected_codes/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.expected_codes.anyOf[0]"
-
-          http_method: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/http_method/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.http_method.anyOf[0]"
-
-          max_retries_down: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries_down/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries_down.anyOf[0]"
-
-          url_path: '#/components/schemas/CreateLbHealthMonitorSerializer/properties/url_path/anyOf/0'
-              "$.components.schemas.CreateLbHealthMonitorSerializer.properties.url_path.anyOf[0]"
+          url_path: URL Path. Defaults to '/'. Can only be used together with `HTTP` or `HTTPS`
+              health monitor type.
 
           extra_headers: Send extra headers
 
@@ -319,15 +280,6 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         Delete load balancer pool health monitor
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor']['delete'].parameters[1].schema"
-
-          pool_id: '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

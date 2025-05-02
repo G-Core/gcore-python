@@ -12,132 +12,80 @@ __all__ = ["GPUBaremetalCluster", "Interface"]
 
 class Interface(BaseModel):
     network_id: str
-    """
-    '#/components/schemas/AIClusterNetworkSerializer/properties/network_id'
-    "$.components.schemas.AIClusterNetworkSerializer.properties.network_id"
-    """
+    """Network ID"""
 
     port_id: str
-    """
-    '#/components/schemas/AIClusterNetworkSerializer/properties/port_id'
-    "$.components.schemas.AIClusterNetworkSerializer.properties.port_id"
-    """
+    """Network ID the subnet belongs to. Port will be plugged in this network"""
 
     subnet_id: str
-    """
-    '#/components/schemas/AIClusterNetworkSerializer/properties/subnet_id'
-    "$.components.schemas.AIClusterNetworkSerializer.properties.subnet_id"
-    """
+    """Port is assigned to IP address from the subnet"""
 
     type: str
-    """
-    '#/components/schemas/AIClusterNetworkSerializer/properties/type'
-    "$.components.schemas.AIClusterNetworkSerializer.properties.type"
-    """
+    """Network type"""
 
 
 class GPUBaremetalCluster(BaseModel):
     cluster_id: str
-    """
-    '#/components/schemas/AIClusterSerializer/properties/cluster_id'
-    "$.components.schemas.AIClusterSerializer.properties.cluster_id"
-    """
+    """GPU Cluster ID"""
 
     cluster_name: str
-    """
-    '#/components/schemas/AIClusterSerializer/properties/cluster_name'
-    "$.components.schemas.AIClusterSerializer.properties.cluster_name"
-    """
+    """GPU Cluster Name"""
 
     cluster_status: Literal["ACTIVE", "ERROR", "PENDING", "SUSPENDED"]
-    """
-    '#/components/schemas/AIClusterSerializer/properties/cluster_status'
-    "$.components.schemas.AIClusterSerializer.properties.cluster_status"
-    """
+    """GPU Cluster status"""
 
     created_at: Optional[str] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/created_at/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.created_at.anyOf[0]"
-    """
+    """Datetime when the cluster was created"""
 
     creator_task_id: str
-    """
-    '#/components/schemas/AIClusterSerializer/properties/creator_task_id'
-    "$.components.schemas.AIClusterSerializer.properties.creator_task_id"
-    """
+    """Task that created this entity"""
 
     flavor: str
-    """
-    '#/components/schemas/AIClusterSerializer/properties/flavor'
-    "$.components.schemas.AIClusterSerializer.properties.flavor"
-    """
+    """Flavor ID is the same as the name"""
 
     image_id: str
-    """
-    '#/components/schemas/AIClusterSerializer/properties/image_id'
-    "$.components.schemas.AIClusterSerializer.properties.image_id"
-    """
+    """Image ID"""
 
     image_name: str
-    """
-    '#/components/schemas/AIClusterSerializer/properties/image_name'
-    "$.components.schemas.AIClusterSerializer.properties.image_name"
-    """
+    """Image name"""
 
     interfaces: Optional[List[Interface]] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/interfaces/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.interfaces.anyOf[0]"
-    """
+    """Networks managed by user and associated with the cluster"""
 
     password: Optional[str] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/password/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.password.anyOf[0]"
+    """A password for a bare metal server.
+
+    This parameter is used to set a password for the "Admin" user on a Windows
+    instance, a default user or a new user on a Linux instance
     """
 
     project_id: int
-    """
-    '#/components/schemas/AIClusterSerializer/properties/project_id'
-    "$.components.schemas.AIClusterSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/AIClusterSerializer/properties/region'
-    "$.components.schemas.AIClusterSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/AIClusterSerializer/properties/region_id'
-    "$.components.schemas.AIClusterSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     servers: List[GPUClusterServer]
-    """
-    '#/components/schemas/AIClusterSerializer/properties/servers'
-    "$.components.schemas.AIClusterSerializer.properties.servers"
-    """
+    """GPU cluster servers"""
 
     ssh_key_name: Optional[str] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/ssh_key_name/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.ssh_key_name.anyOf[0]"
-    """
+    """Keypair name to inject into new cluster(s)"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/AIClusterSerializer/properties/tags'
-    "$.components.schemas.AIClusterSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.task_id.anyOf[0]"
-    """
+    """Task ID associated with the cluster"""
 
     task_status: Literal[
         "CLUSTER_CLEAN_UP",
@@ -152,19 +100,17 @@ class GPUBaremetalCluster(BaseModel):
         "POST_DEPLOY_SETUP",
         "VIPU_CONTROLLER",
     ]
-    """
-    '#/components/schemas/AIClusterSerializer/properties/task_status'
-    "$.components.schemas.AIClusterSerializer.properties.task_status"
-    """
+    """Task status"""
 
     user_data: Optional[str] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/user_data/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.user_data.anyOf[0]"
+    """String in base64 format.
+
+    Must not be passed together with 'username' or 'password'. Examples of the
+    user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """
 
     username: Optional[str] = None
-    """
-    '#/components/schemas/AIClusterSerializer/properties/username/anyOf/0'
-    "$.components.schemas.AIClusterSerializer.properties.username.anyOf[0]"
+    """A name of a new user in the Linux instance.
+
+    It may be passed with a 'password' parameter
     """

@@ -10,19 +10,15 @@ __all__ = ["FixedAddressShort"]
 
 class FixedAddressShort(BaseModel):
     addr: str
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/addr'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.addr"
-    """
+    """IP address"""
 
     interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.interface_name.anyOf[0]"
+    """Interface name.
+
+    This field will be `null` if `with_interfaces_name=true` is not set in the
+    request when listing instances. It will also be `null` if the `interface_name`
+    was not specified during instance creation or when attaching the interface.
     """
 
     type: Literal["fixed"]
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/type'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.type"
-    """
+    """Type of the address"""

@@ -10,22 +10,11 @@ __all__ = ["RuleCreateParams"]
 
 class RuleCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/0/schema'
-    "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D%2Frules/post/parameters/1/schema'
-    "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules'].post.parameters[1].schema"
-    """
 
     compare_type: Required[Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"]]
-    """
-    '#/components/schemas/CreateL7RuleSchema/properties/compare_type'
-    "$.components.schemas.CreateL7RuleSchema.properties.compare_type"
-    """
+    """The comparison type for the L7 rule"""
 
     type: Required[
         Literal[
@@ -39,31 +28,23 @@ class RuleCreateParams(TypedDict, total=False):
             "SSL_VERIFY_RESULT",
         ]
     ]
-    """
-    '#/components/schemas/CreateL7RuleSchema/properties/type'
-    "$.components.schemas.CreateL7RuleSchema.properties.type"
-    """
+    """The L7 rule type"""
 
     value: Required[str]
-    """
-    '#/components/schemas/CreateL7RuleSchema/properties/value'
-    "$.components.schemas.CreateL7RuleSchema.properties.value"
-    """
+    """The value to use for the comparison. For example, the file type to compare"""
 
     invert: bool
-    """
-    '#/components/schemas/CreateL7RuleSchema/properties/invert'
-    "$.components.schemas.CreateL7RuleSchema.properties.invert"
+    """When true the logic of the rule is inverted.
+
+    For example, with invert true, 'equal to' would become 'not equal to'. Default
+    is false.
     """
 
     key: str
-    """
-    '#/components/schemas/CreateL7RuleSchema/properties/key'
-    "$.components.schemas.CreateL7RuleSchema.properties.key"
+    """The key to use for the comparison.
+
+    For example, the name of the cookie to evaluate.
     """
 
     tags: List[str]
-    """
-    '#/components/schemas/CreateL7RuleSchema/properties/tags'
-    "$.components.schemas.CreateL7RuleSchema.properties.tags"
-    """
+    """A list of simple strings assigned to the l7 rule"""

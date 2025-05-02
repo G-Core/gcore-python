@@ -83,38 +83,28 @@ class L7PoliciesResource(SyncAPIResource):
         Create load balancer L7 policy
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].post.parameters[0].schema"
+          action: Action
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].post.parameters[1].schema"
+          listener_id: Listener ID
 
-          action: '#/components/schemas/CreateL7PolicySchema/properties/action'
-              "$.components.schemas.CreateL7PolicySchema.properties.action"
+          name: Human-readable name of the policy
 
-          listener_id: '#/components/schemas/CreateL7PolicySchema/properties/listener_id'
-              "$.components.schemas.CreateL7PolicySchema.properties.listener_id"
+          position: The position of this policy on the listener. Positions start at 1.
 
-          name: '#/components/schemas/CreateL7PolicySchema/properties/name'
-              "$.components.schemas.CreateL7PolicySchema.properties.name"
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
+              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
-          position: '#/components/schemas/CreateL7PolicySchema/properties/position'
-              "$.components.schemas.CreateL7PolicySchema.properties.position"
+          redirect_pool_id: Requests matching this policy will be redirected to the pool withthis ID. Only
+              valid if action is REDIRECT_TO_POOL.
 
-          redirect_http_code: '#/components/schemas/CreateL7PolicySchema/properties/redirect_http_code'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_http_code"
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
+              if action is REDIRECT_PREFIX.
 
-          redirect_pool_id: '#/components/schemas/CreateL7PolicySchema/properties/redirect_pool_id'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_pool_id"
+          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
+              action is REDIRECT_TO_URL.
 
-          redirect_prefix: '#/components/schemas/CreateL7PolicySchema/properties/redirect_prefix'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_prefix"
-
-          redirect_url: '#/components/schemas/CreateL7PolicySchema/properties/redirect_url'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_url"
-
-          tags: '#/components/schemas/CreateL7PolicySchema/properties/tags'
-              "$.components.schemas.CreateL7PolicySchema.properties.tags"
+          tags: A list of simple strings assigned to the resource.
 
           extra_headers: Send extra headers
 
@@ -166,12 +156,6 @@ class L7PoliciesResource(SyncAPIResource):
         List load balancer L7 policies
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,15 +193,6 @@ class L7PoliciesResource(SyncAPIResource):
         Delete load balancer L7 policy
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}']['delete'].parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -257,15 +232,6 @@ class L7PoliciesResource(SyncAPIResource):
         Get load balancer L7 policy
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].get.parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -313,38 +279,26 @@ class L7PoliciesResource(SyncAPIResource):
         Replace load balancer L7 policy properties
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].put.parameters[0].schema"
+          action: Action
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].put.parameters[1].schema"
+          name: Human-readable name of the policy
 
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/put/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].put.parameters[2].schema"
+          position: The position of this policy on the listener. Positions start at 1.
 
-          action: '#/components/schemas/UpdateL7PolicySchema/properties/action'
-              "$.components.schemas.UpdateL7PolicySchema.properties.action"
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
+              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
-          name: '#/components/schemas/UpdateL7PolicySchema/properties/name'
-              "$.components.schemas.UpdateL7PolicySchema.properties.name"
+          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID. Only
+              valid if action is REDIRECT_TO_POOL.
 
-          position: '#/components/schemas/UpdateL7PolicySchema/properties/position'
-              "$.components.schemas.UpdateL7PolicySchema.properties.position"
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
+              if action is REDIRECT_PREFIX.
 
-          redirect_http_code: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_http_code'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_http_code"
+          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
+              action is REDIRECT_TO_URL.
 
-          redirect_pool_id: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_pool_id'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_pool_id"
-
-          redirect_prefix: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_prefix'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_prefix"
-
-          redirect_url: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_url'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_url"
-
-          tags: '#/components/schemas/UpdateL7PolicySchema/properties/tags'
-              "$.components.schemas.UpdateL7PolicySchema.properties.tags"
+          tags: A list of simple strings assigned to the resource.
 
           extra_headers: Send extra headers
 
@@ -431,38 +385,28 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         Create load balancer L7 policy
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].post.parameters[0].schema"
+          action: Action
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].post.parameters[1].schema"
+          listener_id: Listener ID
 
-          action: '#/components/schemas/CreateL7PolicySchema/properties/action'
-              "$.components.schemas.CreateL7PolicySchema.properties.action"
+          name: Human-readable name of the policy
 
-          listener_id: '#/components/schemas/CreateL7PolicySchema/properties/listener_id'
-              "$.components.schemas.CreateL7PolicySchema.properties.listener_id"
+          position: The position of this policy on the listener. Positions start at 1.
 
-          name: '#/components/schemas/CreateL7PolicySchema/properties/name'
-              "$.components.schemas.CreateL7PolicySchema.properties.name"
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
+              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
-          position: '#/components/schemas/CreateL7PolicySchema/properties/position'
-              "$.components.schemas.CreateL7PolicySchema.properties.position"
+          redirect_pool_id: Requests matching this policy will be redirected to the pool withthis ID. Only
+              valid if action is REDIRECT_TO_POOL.
 
-          redirect_http_code: '#/components/schemas/CreateL7PolicySchema/properties/redirect_http_code'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_http_code"
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
+              if action is REDIRECT_PREFIX.
 
-          redirect_pool_id: '#/components/schemas/CreateL7PolicySchema/properties/redirect_pool_id'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_pool_id"
+          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
+              action is REDIRECT_TO_URL.
 
-          redirect_prefix: '#/components/schemas/CreateL7PolicySchema/properties/redirect_prefix'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_prefix"
-
-          redirect_url: '#/components/schemas/CreateL7PolicySchema/properties/redirect_url'
-              "$.components.schemas.CreateL7PolicySchema.properties.redirect_url"
-
-          tags: '#/components/schemas/CreateL7PolicySchema/properties/tags'
-              "$.components.schemas.CreateL7PolicySchema.properties.tags"
+          tags: A list of simple strings assigned to the resource.
 
           extra_headers: Send extra headers
 
@@ -514,12 +458,6 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         List load balancer L7 policies
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -557,15 +495,6 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         Delete load balancer L7 policy
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}']['delete'].parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -605,15 +534,6 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         Get load balancer L7 policy
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].get.parameters[1].schema"
-
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -661,38 +581,26 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         Replace load balancer L7 policy properties
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].put.parameters[0].schema"
+          action: Action
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].put.parameters[1].schema"
+          name: Human-readable name of the policy
 
-          l7policy_id: '#/paths/%2Fcloud%2Fv1%2Fl7policies%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bl7policy_id%7D/put/parameters/2/schema'
-              "$.paths['/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}'].put.parameters[2].schema"
+          position: The position of this policy on the listener. Positions start at 1.
 
-          action: '#/components/schemas/UpdateL7PolicySchema/properties/action'
-              "$.components.schemas.UpdateL7PolicySchema.properties.action"
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
+              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
-          name: '#/components/schemas/UpdateL7PolicySchema/properties/name'
-              "$.components.schemas.UpdateL7PolicySchema.properties.name"
+          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID. Only
+              valid if action is REDIRECT_TO_POOL.
 
-          position: '#/components/schemas/UpdateL7PolicySchema/properties/position'
-              "$.components.schemas.UpdateL7PolicySchema.properties.position"
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
+              if action is REDIRECT_PREFIX.
 
-          redirect_http_code: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_http_code'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_http_code"
+          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
+              action is REDIRECT_TO_URL.
 
-          redirect_pool_id: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_pool_id'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_pool_id"
-
-          redirect_prefix: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_prefix'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_prefix"
-
-          redirect_url: '#/components/schemas/UpdateL7PolicySchema/properties/redirect_url'
-              "$.components.schemas.UpdateL7PolicySchema.properties.redirect_url"
-
-          tags: '#/components/schemas/UpdateL7PolicySchema/properties/tags'
-              "$.components.schemas.UpdateL7PolicySchema.properties.tags"
+          tags: A list of simple strings assigned to the resource.
 
           extra_headers: Send extra headers
 

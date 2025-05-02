@@ -11,55 +11,43 @@ __all__ = ["SSHKeyCreated"]
 
 class SSHKeyCreated(BaseModel):
     id: str
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/id'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.id"
-    """
+    """SSH key ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/created_at'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.created_at"
-    """
+    """SSH key creation time"""
 
     fingerprint: str
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/fingerprint'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.fingerprint"
-    """
+    """Fingerprint"""
 
     name: str
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/name'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.name"
-    """
+    """SSH key name"""
 
     private_key: Optional[str] = None
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/private_key/anyOf/0'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.private_key.anyOf[0]"
+    """The private part of an SSH key is the confidential portion of the key pair.
+
+    It should never be shared or exposed. This key is used to prove your identity
+    when connecting to a server.
+
+    If you omit the `public_key`, the platform will generate a key for you. The
+    private_key will be returned **once** in the API response. Be sure to save it
+    securely, as it cannot be retrieved again later.
+
+    Best practice: Save the private key to a secure location on your machine (e.g.,
+    `~/.ssh/id_ed25519`) and set the file permissions to be readable only by you.
     """
 
     project_id: int
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/project_id'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.project_id"
-    """
+    """Project ID"""
 
     public_key: str
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/public_key'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.public_key"
+    """The public part of an SSH key is the shareable portion of an SSH key pair.
+
+    It can be safely sent to servers or services to grant access. It does not
+    contain sensitive information.
     """
 
     shared_in_project: bool
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/shared_in_project'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.shared_in_project"
-    """
+    """SSH key will be visible to all users in the project"""
 
     state: Literal["ACTIVE", "DELETING"]
-    """
-    '#/components/schemas/CreatedSSHKeySerializer/properties/state'
-    "$.components.schemas.CreatedSSHKeySerializer.properties.state"
-    """
+    """SSH key state"""

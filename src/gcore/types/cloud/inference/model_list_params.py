@@ -11,19 +11,13 @@ __all__ = ["ModelListParams"]
 
 class ModelListParams(TypedDict, total=False):
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/0'
-    "$.paths['/cloud/v3/inference/models'].get.parameters[0]"
-    """
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/1'
-    "$.paths['/cloud/v3/inference/models'].get.parameters[1]"
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
     """
 
     order_by: MlcatalogOrderByChoices
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2Fmodels/get/parameters/2'
-    "$.paths['/cloud/v3/inference/models'].get.parameters[2]"
-    """
+    """Order instances by transmitted fields and directions"""

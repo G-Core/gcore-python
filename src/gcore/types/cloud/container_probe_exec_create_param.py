@@ -10,7 +10,4 @@ __all__ = ["ContainerProbeExecCreateParam"]
 
 class ContainerProbeExecCreateParam(TypedDict, total=False):
     command: Required[List[str]]
-    """
-    '#/components/schemas/ContainerProbeExecConfigSerializerV2/properties/command'
-    "$.components.schemas.ContainerProbeExecConfigSerializerV2.properties.command"
-    """
+    """Command to be executed inside the running container."""

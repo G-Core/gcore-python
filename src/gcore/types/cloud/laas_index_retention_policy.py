@@ -9,7 +9,4 @@ __all__ = ["LaasIndexRetentionPolicy"]
 
 class LaasIndexRetentionPolicy(BaseModel):
     period: Optional[int] = None
-    """
-    '#/components/schemas/LaasIndexRetentionPolicyPydanticSerializer/properties/period/anyOf/0'
-    "$.components.schemas.LaasIndexRetentionPolicyPydanticSerializer.properties.period.anyOf[0]"
-    """
+    """Duration of days for which logs must be kept."""

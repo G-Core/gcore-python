@@ -10,31 +10,17 @@ __all__ = ["GPUBaremetalClusterRebuildParams"]
 
 class GPUBaremetalClusterRebuildParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/0/schema'
-    "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bcluster_id%7D%2Frebuild/post/parameters/1/schema'
-    "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild'].post.parameters[1].schema"
-    """
 
     nodes: Required[List[str]]
-    """
-    '#/components/schemas/RebuildClusterSerializer/properties/nodes'
-    "$.components.schemas.RebuildClusterSerializer.properties.nodes"
-    """
+    """List of nodes uuids to be rebuild"""
 
     image_id: Optional[str]
-    """
-    '#/components/schemas/RebuildClusterSerializer/properties/image_id/anyOf/0'
-    "$.components.schemas.RebuildClusterSerializer.properties.image_id.anyOf[0]"
-    """
+    """AI GPU image ID"""
 
     user_data: Optional[str]
     """
-    '#/components/schemas/RebuildClusterSerializer/properties/user_data/anyOf/0'
-    "$.components.schemas.RebuildClusterSerializer.properties.user_data.anyOf[0]"
+    String in base64 format.Examples of the user_data:
+    https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """

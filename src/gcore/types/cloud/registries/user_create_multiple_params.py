@@ -10,45 +10,27 @@ __all__ = ["UserCreateMultipleParams", "User"]
 
 class UserCreateMultipleParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/0/schema'
-    "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fregistries%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bregistry_id%7D%2Fusers%2Fbatch/post/parameters/1/schema'
-    "$.paths['/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch'].post.parameters[1].schema"
-    """
 
     users: Required[Iterable[User]]
-    """
-    '#/components/schemas/RegistryBatchUsersCreateSerializer/properties/users'
-    "$.components.schemas.RegistryBatchUsersCreateSerializer.properties.users"
-    """
+    """Set of users"""
 
 
 class User(TypedDict, total=False):
     duration: Required[int]
-    """
-    '#/components/schemas/RegistryUserCreateSerializer/properties/duration'
-    "$.components.schemas.RegistryUserCreateSerializer.properties.duration"
-    """
+    """User account operating time, days"""
 
     name: Required[str]
-    """
-    '#/components/schemas/RegistryUserCreateSerializer/properties/name'
-    "$.components.schemas.RegistryUserCreateSerializer.properties.name"
+    """A name for the registry user.
+
+    Should be in lowercase, consisting only of numbers and letters,
+
+    with maximum length of 16 characters
     """
 
     read_only: bool
-    """
-    '#/components/schemas/RegistryUserCreateSerializer/properties/read_only'
-    "$.components.schemas.RegistryUserCreateSerializer.properties.read_only"
-    """
+    """Read-only user"""
 
     secret: str
-    """
-    '#/components/schemas/RegistryUserCreateSerializer/properties/secret'
-    "$.components.schemas.RegistryUserCreateSerializer.properties.secret"
-    """
+    """User secret"""

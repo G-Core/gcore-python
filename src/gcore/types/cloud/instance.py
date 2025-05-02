@@ -33,250 +33,133 @@ Address: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddress]
 
 class FixedIPAssignment(BaseModel):
     external: bool
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/external'
-    "$.components.schemas.IpAssignmentsSerializer.properties.external"
-    """
+    """Is network external"""
 
     ip_address: str
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/ip_address'
-    "$.components.schemas.IpAssignmentsSerializer.properties.ip_address"
-    """
+    """Ip address"""
 
     subnet_id: str
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/subnet_id'
-    "$.components.schemas.IpAssignmentsSerializer.properties.subnet_id"
-    """
+    """Interface subnet id"""
 
 
 class FlavorInstanceFlavorSerializerHardwareDescription(BaseModel):
     ram: str
-    """
-    '#/components/schemas/InstanceFlavorHardwareDescriptionSerializer/properties/ram'
-    "$.components.schemas.InstanceFlavorHardwareDescriptionSerializer.properties.ram"
-    """
+    """RAM description"""
 
     vcpus: str
-    """
-    '#/components/schemas/InstanceFlavorHardwareDescriptionSerializer/properties/vcpus'
-    "$.components.schemas.InstanceFlavorHardwareDescriptionSerializer.properties.vcpus"
-    """
+    """CPU description"""
 
 
 class FlavorInstanceFlavorSerializer(BaseModel):
     architecture: str
-    """
-    '#/components/schemas/InstanceFlavorSerializer/properties/architecture'
-    "$.components.schemas.InstanceFlavorSerializer.properties.architecture"
-    """
+    """CPU architecture"""
 
     flavor_id: str
-    """
-    '#/components/schemas/InstanceFlavorSerializer/properties/flavor_id'
-    "$.components.schemas.InstanceFlavorSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/InstanceFlavorSerializer/properties/flavor_name'
-    "$.components.schemas.InstanceFlavorSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     hardware_description: FlavorInstanceFlavorSerializerHardwareDescription
-    """
-    '#/components/schemas/InstanceFlavorSerializer/properties/hardware_description'
-    "$.components.schemas.InstanceFlavorSerializer.properties.hardware_description"
-    """
+    """Additional hardware description"""
 
     os_type: str
-    """
-    '#/components/schemas/InstanceFlavorSerializer/properties/os_type'
-    "$.components.schemas.InstanceFlavorSerializer.properties.os_type"
-    """
+    """Flavor operating system"""
 
     ram: int
-    """
-    '#/components/schemas/InstanceFlavorSerializer/properties/ram'
-    "$.components.schemas.InstanceFlavorSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     vcpus: int
-    """
-    '#/components/schemas/InstanceFlavorSerializer/properties/vcpus'
-    "$.components.schemas.InstanceFlavorSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
 
 class FlavorBareMetalFlavorSerializerHardwareDescription(BaseModel):
     cpu: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/cpu'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.cpu"
-    """
+    """Human-readable CPU description"""
 
     disk: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/disk'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.disk"
-    """
+    """Human-readable disk description"""
 
     license: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/license'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.license"
-    """
+    """If the flavor is licensed, this field contains the license type"""
 
     network: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/network'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.network"
-    """
+    """Human-readable NIC description"""
 
     ram: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/ram'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.ram"
-    """
+    """Human-readable RAM description"""
 
 
 class FlavorBareMetalFlavorSerializer(BaseModel):
     architecture: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/architecture'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.architecture"
-    """
+    """CPU architecture"""
 
     flavor_id: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/flavor_id'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/flavor_name'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     hardware_description: FlavorBareMetalFlavorSerializerHardwareDescription
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/hardware_description'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.hardware_description"
-    """
+    """Additional hardware description"""
 
     os_type: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/os_type'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.os_type"
-    """
+    """Operating system"""
 
     ram: int
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/ram'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     resource_class: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/resource_class'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.resource_class"
-    """
+    """Flavor resource class for mapping to hardware capacity"""
 
     vcpus: int
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/vcpus'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
 
 class FlavorDeprecatedGPUClusterFlavorSerializerHardwareDescription(BaseModel):
     cpu: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/cpu'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.cpu"
-    """
+    """Human-readable CPU description"""
 
     disk: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/disk'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.disk"
-    """
+    """Human-readable disk description"""
 
     gpu: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/gpu'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.gpu"
-    """
+    """Human-readable GPU description"""
 
     license: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/license'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.license"
-    """
+    """If the flavor is licensed, this field contains the license type"""
 
     network: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/network'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.network"
-    """
+    """Human-readable NIC description"""
 
     ram: str
-    """
-    '#/components/schemas/DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer/properties/ram'
-    "$.components.schemas.DeprecatedAIClusterServerFlavorHardwareDescriptionSerializer.properties.ram"
-    """
+    """Human-readable RAM description"""
 
 
 class FlavorDeprecatedGPUClusterFlavorSerializer(BaseModel):
     architecture: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/architecture'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.architecture"
-    """
+    """CPU architecture"""
 
     flavor_id: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/flavor_id'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/flavor_name'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     hardware_description: FlavorDeprecatedGPUClusterFlavorSerializerHardwareDescription
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/hardware_description'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.hardware_description"
-    """
+    """Additional hardware description"""
 
     os_type: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/os_type'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.os_type"
-    """
+    """Operating system"""
 
     ram: int
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/ram'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     resource_class: str
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/resource_class'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.resource_class"
-    """
+    """Flavor resource class for mapping to hardware capacity"""
 
     vcpus: int
-    """
-    '#/components/schemas/DeprecatedGpuClusterFlavorSerializer/properties/vcpus'
-    "$.components.schemas.DeprecatedGpuClusterFlavorSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
 
 Flavor: TypeAlias = Union[
@@ -286,122 +169,68 @@ Flavor: TypeAlias = Union[
 
 class SecurityGroup(BaseModel):
     name: str
-    """
-    '#/components/schemas/NameSerializerPydantic/properties/name'
-    "$.components.schemas.NameSerializerPydantic.properties.name"
-    """
+    """Name."""
 
 
 class Volume(BaseModel):
     id: str
-    """
-    '#/components/schemas/InstanceVolumeSerializer/properties/id'
-    "$.components.schemas.InstanceVolumeSerializer.properties.id"
-    """
+    """Volume ID"""
 
     delete_on_termination: bool
-    """
-    '#/components/schemas/InstanceVolumeSerializer/properties/delete_on_termination'
-    "$.components.schemas.InstanceVolumeSerializer.properties.delete_on_termination"
-    """
+    """Whether the volume is deleted together with the VM"""
 
 
 class Instance(BaseModel):
     addresses: Dict[str, List[Address]]
-    """
-    '#/components/schemas/InstanceSerializer/properties/addresses'
-    "$.components.schemas.InstanceSerializer.properties.addresses"
-    """
+    """Map of network_name to list of addresses in that network"""
 
     blackhole_ports: List[BlackholePort]
-    """
-    '#/components/schemas/InstanceSerializer/properties/blackhole_ports'
-    "$.components.schemas.InstanceSerializer.properties.blackhole_ports"
-    """
+    """IP addresses of the instances that are blackholed by DDoS mitigation system"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     ddos_profile: Optional[DDOSProfile] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/ddos_profile/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.ddos_profile.anyOf[0]"
+    """Advanced DDoS protection profile.
+
+    It is always `null` if query parameter `with_ddos=true` is not set.
     """
 
     fixed_ip_assignments: Optional[List[FixedIPAssignment]] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/fixed_ip_assignments/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.fixed_ip_assignments.anyOf[0]"
-    """
+    """Fixed IP assigned to instance"""
 
     flavor: Flavor
-    """
-    '#/components/schemas/InstanceSerializer/properties/flavor'
-    "$.components.schemas.InstanceSerializer.properties.flavor"
-    """
+    """Flavor"""
 
     instance_created: datetime
-    """
-    '#/components/schemas/InstanceSerializer/properties/instance_created'
-    "$.components.schemas.InstanceSerializer.properties.instance_created"
-    """
+    """Datetime when instance was created"""
 
     instance_description: Optional[str] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/instance_description/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.instance_description.anyOf[0]"
-    """
+    """Instance description"""
 
     instance_id: str
-    """
-    '#/components/schemas/InstanceSerializer/properties/instance_id'
-    "$.components.schemas.InstanceSerializer.properties.instance_id"
-    """
+    """Instance ID"""
 
     instance_isolation: Optional[InstanceIsolation] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/instance_isolation/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.instance_isolation.anyOf[0]"
-    """
+    """Instance isolation information"""
 
     instance_name: str
-    """
-    '#/components/schemas/InstanceSerializer/properties/instance_name'
-    "$.components.schemas.InstanceSerializer.properties.instance_name"
-    """
+    """Instance name"""
 
     project_id: int
-    """
-    '#/components/schemas/InstanceSerializer/properties/project_id'
-    "$.components.schemas.InstanceSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/InstanceSerializer/properties/region'
-    "$.components.schemas.InstanceSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/InstanceSerializer/properties/region_id'
-    "$.components.schemas.InstanceSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     security_groups: List[SecurityGroup]
-    """
-    '#/components/schemas/InstanceSerializer/properties/security_groups'
-    "$.components.schemas.InstanceSerializer.properties.security_groups"
-    """
+    """Security groups"""
 
     ssh_key_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/ssh_key_name/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.ssh_key_name.anyOf[0]"
-    """
+    """SSH key assigned to instance"""
 
     status: Literal[
         "ACTIVE",
@@ -425,28 +254,27 @@ class Instance(BaseModel):
         "UNKNOWN",
         "VERIFY_RESIZE",
     ]
-    """
-    '#/components/schemas/InstanceSerializer/properties/status'
-    "$.components.schemas.InstanceSerializer.properties.status"
-    """
+    """Instance status"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/InstanceSerializer/properties/tags'
-    "$.components.schemas.InstanceSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     task_state: Optional[str] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/task_state/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.task_state.anyOf[0]"
-    """
+    """Task state"""
 
     vm_state: Literal[
         "active",
@@ -462,13 +290,7 @@ class Instance(BaseModel):
         "stopped",
         "suspended",
     ]
-    """
-    '#/components/schemas/InstanceSerializer/properties/vm_state'
-    "$.components.schemas.InstanceSerializer.properties.vm_state"
-    """
+    """Virtual machine state (active)"""
 
     volumes: List[Volume]
-    """
-    '#/components/schemas/InstanceSerializer/properties/volumes'
-    "$.components.schemas.InstanceSerializer.properties.volumes"
-    """
+    """List of volumes"""

@@ -56,12 +56,6 @@ class StatusesResource(SyncAPIResource):
         List load balancers statuses
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fstatus/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/status'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fstatus/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/status'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -99,15 +93,6 @@ class StatusesResource(SyncAPIResource):
         Get load balancer status
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fstatus/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fstatus/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status'].get.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fstatus/get/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -167,12 +152,6 @@ class AsyncStatusesResource(AsyncAPIResource):
         List load balancers statuses
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fstatus/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/status'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Fstatus/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/status'].get.parameters[1].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -210,15 +189,6 @@ class AsyncStatusesResource(AsyncAPIResource):
         Get load balancer status
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fstatus/get/parameters/0/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fstatus/get/parameters/1/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status'].get.parameters[1].schema"
-
-          loadbalancer_id: '#/paths/%2Fcloud%2Fv1%2Floadbalancers%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bloadbalancer_id%7D%2Fstatus/get/parameters/2/schema'
-              "$.paths['/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

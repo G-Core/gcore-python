@@ -12,13 +12,7 @@ __all__ = ["ContainerProbeConfigCreateParam"]
 
 class ContainerProbeConfigCreateParam(TypedDict, total=False):
     enabled: Required[bool]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/enabled'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.enabled"
-    """
+    """Whether the probe is enabled or not."""
 
     probe: Optional[ContainerProbeCreateParam]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.probe.anyOf[0]"
-    """
+    """Probe configuration (exec, http_get or tcp_socket)"""

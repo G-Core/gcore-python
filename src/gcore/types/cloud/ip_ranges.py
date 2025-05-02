@@ -9,7 +9,4 @@ __all__ = ["IPRanges"]
 
 class IPRanges(BaseModel):
     ranges: List[str]
-    """
-    '#/components/schemas/IPRangesSerializer/properties/ranges'
-    "$.components.schemas.IPRangesSerializer.properties.ranges"
-    """
+    """IP ranges list"""

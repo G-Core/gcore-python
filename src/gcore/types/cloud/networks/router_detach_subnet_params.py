@@ -9,19 +9,8 @@ __all__ = ["RouterDetachSubnetParams"]
 
 class RouterDetachSubnetParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/0/schema'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brouter_id%7D%2Fdetach/post/parameters/1/schema'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach'].post.parameters[1].schema"
-    """
 
     subnet_id: Required[str]
-    """
-    '#/components/schemas/SubnetIdSerializer/properties/subnet_id'
-    "$.components.schemas.SubnetIdSerializer.properties.subnet_id"
-    """
+    """Target IP is identified by it's subnet"""

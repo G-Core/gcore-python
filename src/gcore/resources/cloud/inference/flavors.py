@@ -54,15 +54,15 @@ class FlavorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[InferenceFlavor]:
-        """
-        List inference flavors
+        """List inference flavors
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors/get/parameters/0'
-              "$.paths['/cloud/v3/inference/flavors'].get.parameters[0]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors/get/parameters/1'
-              "$.paths['/cloud/v3/inference/flavors'].get.parameters[1]"
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -106,8 +106,7 @@ class FlavorsResource(SyncAPIResource):
         Get inference flavor
 
         Args:
-          flavor_name: '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors%2F%7Bflavor_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/flavors/{flavor_name}'].get.parameters[0].schema"
+          flavor_name: Inference flavor name.
 
           extra_headers: Send extra headers
 
@@ -160,15 +159,15 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[InferenceFlavor, AsyncOffsetPage[InferenceFlavor]]:
-        """
-        List inference flavors
+        """List inference flavors
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors/get/parameters/0'
-              "$.paths['/cloud/v3/inference/flavors'].get.parameters[0]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors/get/parameters/1'
-              "$.paths['/cloud/v3/inference/flavors'].get.parameters[1]"
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -212,8 +211,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         Get inference flavor
 
         Args:
-          flavor_name: '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors%2F%7Bflavor_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/flavors/{flavor_name}'].get.parameters[0].schema"
+          flavor_name: Inference flavor name.
 
           extra_headers: Send extra headers
 

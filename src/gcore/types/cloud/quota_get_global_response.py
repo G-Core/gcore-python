@@ -9,85 +9,43 @@ __all__ = ["QuotaGetGlobalResponse"]
 
 class QuotaGetGlobalResponse(BaseModel):
     inference_cpu_millicore_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_cpu_millicore_count_limit'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_cpu_millicore_count_limit"
-    """
+    """Inference CPU millicore count limit"""
 
     inference_cpu_millicore_count_usage: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_cpu_millicore_count_usage'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_cpu_millicore_count_usage"
-    """
+    """Inference CPU millicore count usage"""
 
     inference_gpu_a100_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_gpu_a100_count_limit'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_gpu_a100_count_limit"
-    """
+    """Inference GPU A100 Count limit"""
 
     inference_gpu_a100_count_usage: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_gpu_a100_count_usage'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_gpu_a100_count_usage"
-    """
+    """Inference GPU A100 Count usage"""
 
     inference_gpu_h100_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_gpu_h100_count_limit'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_gpu_h100_count_limit"
-    """
+    """Inference GPU H100 Count limit"""
 
     inference_gpu_h100_count_usage: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_gpu_h100_count_usage'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_gpu_h100_count_usage"
-    """
+    """Inference GPU H100 Count usage"""
 
     inference_gpu_l40s_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_gpu_l40s_count_limit'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_gpu_l40s_count_limit"
-    """
+    """Inference GPU L40s Count limit"""
 
     inference_gpu_l40s_count_usage: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_gpu_l40s_count_usage'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_gpu_l40s_count_usage"
-    """
+    """Inference GPU L40s Count usage"""
 
     inference_instance_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_instance_count_limit'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_instance_count_limit"
-    """
+    """Inference instance count limit"""
 
     inference_instance_count_usage: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/inference_instance_count_usage'
-    "$.components.schemas.GlobalQuotasSerializer.properties.inference_instance_count_usage"
-    """
+    """Inference instance count usage"""
 
     keypair_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/keypair_count_limit'
-    "$.components.schemas.GlobalQuotasSerializer.properties.keypair_count_limit"
-    """
+    """SSH Keys Count limit"""
 
     keypair_count_usage: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/keypair_count_usage'
-    "$.components.schemas.GlobalQuotasSerializer.properties.keypair_count_usage"
-    """
+    """SSH Keys Count usage"""
 
     project_count_limit: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/project_count_limit'
-    "$.components.schemas.GlobalQuotasSerializer.properties.project_count_limit"
-    """
+    """Projects Count limit"""
 
     project_count_usage: Optional[int] = None
-    """
-    '#/components/schemas/GlobalQuotasSerializer/properties/project_count_usage'
-    "$.components.schemas.GlobalQuotasSerializer.properties.project_count_usage"
-    """
+    """Projects Count usage"""

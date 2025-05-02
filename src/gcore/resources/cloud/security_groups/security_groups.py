@@ -79,17 +79,9 @@ class SecurityGroupsResource(SyncAPIResource):
         Create security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].post.parameters[0].schema"
+          security_group: Security group
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].post.parameters[1].schema"
-
-          security_group: '#/components/schemas/CreateSecurityGroupSerializer/properties/security_group'
-              "$.components.schemas.CreateSecurityGroupSerializer.properties.security_group"
-
-          instances: '#/components/schemas/CreateSecurityGroupSerializer/properties/instances'
-              "$.components.schemas.CreateSecurityGroupSerializer.properties.instances"
+          instances: List of instances
 
           extra_headers: Send extra headers
 
@@ -137,20 +129,9 @@ class SecurityGroupsResource(SyncAPIResource):
         Change security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[0].schema"
+          changed_rules: List of rules to create or delete
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[2].schema"
-
-          changed_rules: '#/components/schemas/UpdateSecurityGroupSerializer/properties/changed_rules'
-              "$.components.schemas.UpdateSecurityGroupSerializer.properties.changed_rules"
-
-          name: '#/components/schemas/UpdateSecurityGroupSerializer/properties/name'
-              "$.components.schemas.UpdateSecurityGroupSerializer.properties.name"
+          name: Name
 
           extra_headers: Send extra headers
 
@@ -201,23 +182,15 @@ class SecurityGroupsResource(SyncAPIResource):
         Get security groups
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned limit request entities.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[1].schema"
+          offset: Offset value is used to exclude the first set of records from the result.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[2]"
+          tag_key: Filter by tag keys.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[3]"
-
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[5]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
+              --data-urlencode "tag_key_value={"key": "value"}" --url
+              "http://localhost:1111/v1/securitygroups/1/1"
 
           extra_headers: Send extra headers
 
@@ -269,15 +242,6 @@ class SecurityGroupsResource(SyncAPIResource):
         Delete security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -319,17 +283,7 @@ class SecurityGroupsResource(SyncAPIResource):
         Create a deep copy of security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Fcopy/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Fcopy/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy'].post.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Fcopy/post/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy'].post.parameters[2].schema"
-
-          name: '#/components/schemas/NameSerializerPydantic/properties/name'
-              "$.components.schemas.NameSerializerPydantic.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -372,15 +326,6 @@ class SecurityGroupsResource(SyncAPIResource):
         Get security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].get.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -420,15 +365,6 @@ class SecurityGroupsResource(SyncAPIResource):
         Revert security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frevert/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frevert/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert'].post.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frevert/post/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -494,17 +430,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Create security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].post.parameters[0].schema"
+          security_group: Security group
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].post.parameters[1].schema"
-
-          security_group: '#/components/schemas/CreateSecurityGroupSerializer/properties/security_group'
-              "$.components.schemas.CreateSecurityGroupSerializer.properties.security_group"
-
-          instances: '#/components/schemas/CreateSecurityGroupSerializer/properties/instances'
-              "$.components.schemas.CreateSecurityGroupSerializer.properties.instances"
+          instances: List of instances
 
           extra_headers: Send extra headers
 
@@ -552,20 +480,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Change security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[0].schema"
+          changed_rules: List of rules to create or delete
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].patch.parameters[2].schema"
-
-          changed_rules: '#/components/schemas/UpdateSecurityGroupSerializer/properties/changed_rules'
-              "$.components.schemas.UpdateSecurityGroupSerializer.properties.changed_rules"
-
-          name: '#/components/schemas/UpdateSecurityGroupSerializer/properties/name'
-              "$.components.schemas.UpdateSecurityGroupSerializer.properties.name"
+          name: Name
 
           extra_headers: Send extra headers
 
@@ -616,23 +533,15 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Get security groups
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[0].schema"
+          limit: Limit the number of returned limit request entities.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[1].schema"
+          offset: Offset value is used to exclude the first set of records from the result.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[2]"
+          tag_key: Filter by tag keys.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[3]"
-
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}'].get.parameters[5]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
+              --data-urlencode "tag_key_value={"key": "value"}" --url
+              "http://localhost:1111/v1/securitygroups/1/1"
 
           extra_headers: Send extra headers
 
@@ -684,15 +593,6 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Delete security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -734,17 +634,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Create a deep copy of security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Fcopy/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Fcopy/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy'].post.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Fcopy/post/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy'].post.parameters[2].schema"
-
-          name: '#/components/schemas/NameSerializerPydantic/properties/name'
-              "$.components.schemas.NameSerializerPydantic.properties.name"
+          name: Name.
 
           extra_headers: Send extra headers
 
@@ -787,15 +677,6 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Get security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].get.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -835,15 +716,6 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Revert security group
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frevert/post/parameters/0/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert'].post.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frevert/post/parameters/1/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert'].post.parameters[1].schema"
-
-          group_id: '#/paths/%2Fcloud%2Fv1%2Fsecuritygroups%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bgroup_id%7D%2Frevert/post/parameters/2/schema'
-              "$.paths['/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert'].post.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

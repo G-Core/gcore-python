@@ -10,37 +10,19 @@ __all__ = ["RegistryUser"]
 
 class RegistryUser(BaseModel):
     id: int
-    """
-    '#/components/schemas/RegistryUserSerializer/properties/id'
-    "$.components.schemas.RegistryUserSerializer.properties.id"
-    """
+    """User ID"""
 
     created_at: datetime
-    """
-    '#/components/schemas/RegistryUserSerializer/properties/created_at'
-    "$.components.schemas.RegistryUserSerializer.properties.created_at"
-    """
+    """User creation date-time"""
 
     duration: int
-    """
-    '#/components/schemas/RegistryUserSerializer/properties/duration'
-    "$.components.schemas.RegistryUserSerializer.properties.duration"
-    """
+    """User account operating time, days"""
 
     expires_at: datetime
-    """
-    '#/components/schemas/RegistryUserSerializer/properties/expires_at'
-    "$.components.schemas.RegistryUserSerializer.properties.expires_at"
-    """
+    """User operation end date-time"""
 
     name: str
-    """
-    '#/components/schemas/RegistryUserSerializer/properties/name'
-    "$.components.schemas.RegistryUserSerializer.properties.name"
-    """
+    """User name"""
 
     read_only: Optional[bool] = None
-    """
-    '#/components/schemas/RegistryUserSerializer/properties/read_only'
-    "$.components.schemas.RegistryUserSerializer.properties.read_only"
-    """
+    """Read-only user"""

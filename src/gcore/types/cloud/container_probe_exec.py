@@ -9,7 +9,4 @@ __all__ = ["ContainerProbeExec"]
 
 class ContainerProbeExec(BaseModel):
     command: List[str]
-    """
-    '#/components/schemas/ContainerProbeExecConfigOutSerializerV2/properties/command'
-    "$.components.schemas.ContainerProbeExecConfigOutSerializerV2.properties.command"
-    """
+    """Command to be executed inside the running container."""

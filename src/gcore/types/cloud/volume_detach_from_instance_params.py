@@ -9,19 +9,10 @@ __all__ = ["VolumeDetachFromInstanceParams"]
 
 class VolumeDetachFromInstanceParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/0/schema'
-    "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[0].schema"
-    """
+    """Project ID"""
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv2%2Fvolumes%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bvolume_id%7D%2Fdetach/post/parameters/1/schema'
-    "$.paths['/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach'].post.parameters[1].schema"
-    """
+    """Region ID"""
 
     instance_id: Required[str]
-    """
-    '#/components/schemas/InstanceIdSerializer/properties/instance_id'
-    "$.components.schemas.InstanceIdSerializer.properties.instance_id"
-    """
+    """Instance ID"""

@@ -10,31 +10,29 @@ __all__ = ["FixedAddress"]
 
 class FixedAddress(BaseModel):
     addr: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/addr'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.addr"
-    """
+    """IP address"""
 
     interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.interface_name.anyOf[0]"
+    """Interface name.
+
+    This field will be `null` if `with_interfaces_name=true` is not set in the
+    request when listing instances. It will also be `null` if the `interface_name`
+    was not specified during instance creation or when attaching the interface.
     """
 
     subnet_id: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_id'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_id"
+    """The unique identifier of the subnet associated with this address.
+
+    Included only in the response for a single-resource lookup (GET by ID). For the
+    trunk subports, this field is always set.
     """
 
     subnet_name: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_name'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_name"
+    """The name of the subnet associated with this address.
+
+    Included only in the response for a single-resource lookup (GET by ID). For the
+    trunk subports, this field is always set.
     """
 
     type: Literal["fixed"]
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/type'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.type"
-    """
+    """Type of the address"""

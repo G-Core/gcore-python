@@ -13,55 +13,28 @@ __all__ = ["InstanceInterface"]
 
 class InstanceInterface(BaseModel):
     allowed_address_pairs: List[AllowedAddressPairs]
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/allowed_address_pairs'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.allowed_address_pairs"
-    """
+    """Group of subnet masks and/or IP addresses that share the current IP as VIP"""
 
     floatingip_details: List[FloatingIP]
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/floatingip_details'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.floatingip_details"
-    """
+    """Bodies of floating IPs that are NAT-ing IPs of this port"""
 
     ip_assignments: List[IPAssignment]
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/ip_assignments'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.ip_assignments"
-    """
+    """IP addresses assigned to this port"""
 
     network_details: NetworkDetails
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/network_details'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.network_details"
-    """
+    """Body of the network this port is attached to"""
 
     network_id: str
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/network_id'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.network_id"
-    """
+    """ID of the network the port is attached to"""
 
     port_id: str
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/port_id'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.port_id"
-    """
+    """ID of virtual ethernet port object"""
 
     port_security_enabled: bool
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/port_security_enabled'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.port_security_enabled"
-    """
+    """Port security status"""
 
     interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.interface_name.anyOf[0]"
-    """
+    """Interface name"""
 
     mac_address: Optional[str] = None
-    """
-    '#/components/schemas/InstanceInterfaceSerializer/properties/mac_address/anyOf/0'
-    "$.components.schemas.InstanceInterfaceSerializer.properties.mac_address.anyOf[0]"
-    """
+    """MAC address of the virtual port"""

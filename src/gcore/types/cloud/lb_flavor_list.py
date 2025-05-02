@@ -13,69 +13,36 @@ ResultHardwareDescription: TypeAlias = Union[FlavorHardwareDescription, object]
 
 class Result(BaseModel):
     flavor_id: str
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/flavor_id'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/flavor_name'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     hardware_description: ResultHardwareDescription
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/hardware_description'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.hardware_description"
-    """
+    """Additional hardware description."""
 
     ram: int
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/ram'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     vcpus: int
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/vcpus'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
     currency_code: Optional[str] = None
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/currency_code/anyOf/0'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.currency_code.anyOf[0]"
-    """
+    """Currency code. Shown if the include_prices query parameter if set to true"""
 
     price_per_hour: Optional[float] = None
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/price_per_hour/anyOf/0'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.price_per_hour.anyOf[0]"
-    """
+    """Price per hour. Shown if the include_prices query parameter if set to true"""
 
     price_per_month: Optional[float] = None
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/price_per_month/anyOf/0'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.price_per_month.anyOf[0]"
-    """
+    """Price per month. Shown if the include_prices query parameter if set to true"""
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
-    """
-    '#/components/schemas/LbFlavorPricingSerializer/properties/price_status/anyOf/0'
-    "$.components.schemas.LbFlavorPricingSerializer.properties.price_status.anyOf[0]"
-    """
+    """Price status for the UI"""
 
 
 class LbFlavorList(BaseModel):
     count: int
-    """
-    '#/components/schemas/LbFlavorPricingCollectionSerializer/properties/count'
-    "$.components.schemas.LbFlavorPricingCollectionSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[Result]
-    """
-    '#/components/schemas/LbFlavorPricingCollectionSerializer/properties/results'
-    "$.components.schemas.LbFlavorPricingCollectionSerializer.properties.results"
-    """
+    """Objects"""

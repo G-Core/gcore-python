@@ -10,13 +10,7 @@ __all__ = ["L7PolicyList"]
 
 class L7PolicyList(BaseModel):
     count: Optional[int] = None
-    """
-    '#/components/schemas/L7PolicyListSchema/properties/count'
-    "$.components.schemas.L7PolicyListSchema.properties.count"
-    """
+    """Number of objects"""
 
     results: Optional[List[L7Policy]] = None
-    """
-    '#/components/schemas/L7PolicyListSchema/properties/results'
-    "$.components.schemas.L7PolicyListSchema.properties.results"
-    """
+    """Objects"""

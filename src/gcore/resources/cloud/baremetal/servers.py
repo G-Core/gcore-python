@@ -77,50 +77,55 @@ class ServersResource(SyncAPIResource):
         Create a new bare metal server or multiple servers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          flavor: '#/components/schemas/CreateBareMetalServerSerializer/properties/flavor'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.flavor"
+          flavor: The flavor of the instance.
 
-          interfaces: '#/components/schemas/CreateBareMetalServerSerializer/properties/interfaces'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.interfaces"
+          interfaces: A list of network interfaces for the server. You can create one or more
+              interfaces—private, public, or both.
 
-          app_config: '#/components/schemas/CreateBareMetalServerSerializer/properties/app_config/anyOf/0'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.app_config.anyOf[0]"
+          app_config: Parameters for the application template if creating the instance from an
+              `apptemplate`.
 
-          apptemplate_id: '#/components/schemas/CreateBareMetalServerSerializer/properties/apptemplate_id'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.apptemplate_id"
+          apptemplate_id: Apptemplate ID. Either `image_id` or `apptemplate_id` is required.
 
-          ddos_profile: '#/components/schemas/CreateBareMetalServerSerializer/properties/ddos_profile'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.ddos_profile"
+          ddos_profile: Enable advanced DDoS protection for the server
 
-          image_id: '#/components/schemas/CreateBareMetalServerSerializer/properties/image_id'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.image_id"
+          image_id: Image ID. Either `image_id` or `apptemplate_id` is required.
 
-          name_templates: '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.name_templates"
+          name_templates: If you want server names to be automatically generated using IP octets, you can
+              specify name templates instead of setting names manually.Provide a list of
+              templated names that should be replaced using the selected template. The
+              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
+              `{one_ip_octet}`.
 
-          names: '#/components/schemas/CreateBareMetalServerSerializer/properties/names'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.names"
+          names: List of server names. Specify one name to create a single server.
 
-          password: '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+          password: For Linux instances, 'username' and 'password' are used to create a new user.
+              When only 'password' is provided, it is set as the password for the default user
+              of the image. For Windows instances, 'username' cannot be specified. Use the
+              'password' field to set the password for the 'Admin' user on Windows. Use the
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
-          ssh_key_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/ssh_key_name/anyOf/0'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.ssh_key_name.anyOf[0]"
+          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
 
-          tags: '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          user_data: '#/components/schemas/CreateBareMetalServerSerializer/properties/user_data'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.user_data"
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+              'password' field is provided. For Windows instances, Admin user password is set
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
+              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
-          username: '#/components/schemas/CreateBareMetalServerSerializer/properties/username'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.username"
+          username: For Linux instances, 'username' and 'password' are used to create a new user.
+              For Windows instances, 'username' cannot be specified. Use 'password' field to
+              set the password for the 'Admin' user on Windows.
 
           extra_headers: Send extra headers
 
@@ -201,74 +206,64 @@ class ServersResource(SyncAPIResource):
         List bare metal servers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          changes_before: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[2]"
+          changes_before: Filters the instances by a date and time stamp when the instances last changed.
 
-          changes_since: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[3]"
+          changes_since: Filters the instances by a date and time stamp when the instances last changed
+              status.
 
-          flavor_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[4]"
+          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
 
-          flavor_prefix: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[5]"
+          flavor_prefix: Filter out instances by flavor_prefix.
 
-          include_k8s: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[6]"
+          include_k8s: Include managed k8s worker nodes
 
-          ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[7]"
+          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
+              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
+              192.168.0.110, and so on.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[8]"
+          limit: Optional. Limit the number of returned items
 
-          name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[9]"
+          name: Filter instances by name. You can provide a full or partial name, instances with
+              matching names will be returned. For example, entering 'test' will return all
+              instances that contain 'test' in their name.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[10]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          only_isolated: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[11]"
+          only_isolated: Include only isolated instances
 
-          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[12]"
+          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[13]"
+          order_by: Order by field and direction.
 
-          profile_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[14]"
+          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
+              to true.
 
-          protection_status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[15]"
+          protection_status: Filter result by DDoS protection_status. Effective only with with_ddos set to
+              true. (Active, Queued or Error)
 
-          status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[16]"
+          status: Filters instances by a server status, as a string.
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[17]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[18]"
+          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
 
-          type_ddos_profile: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/19'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[19]"
+          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
+              Effective only with with_ddos set to true. (advanced or basic)
 
-          uuid: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/20'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[20]"
+          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/21'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[21]"
+          with_ddos: Include DDoS profile information for bare-metal servers in the response when set
+              to `true`. Otherwise, the `ddos_profile` field in the response is `null` by
+              default.
 
-          with_interfaces_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/22'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[22]"
+          with_interfaces_name: Include `interface_name` in the addresses
 
           extra_headers: Send extra headers
 
@@ -339,20 +334,11 @@ class ServersResource(SyncAPIResource):
         Rebuild bare metal server
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[0].schema"
+          image_id: Image ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[1].schema"
-
-          server_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/2/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[2].schema"
-
-          image_id: '#/components/schemas/RebuildBaremetalSchema/properties/image_id'
-              "$.components.schemas.RebuildBaremetalSchema.properties.image_id"
-
-          user_data: '#/components/schemas/RebuildBaremetalSchema/properties/user_data'
-              "$.components.schemas.RebuildBaremetalSchema.properties.user_data"
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers
 
@@ -433,50 +419,55 @@ class AsyncServersResource(AsyncAPIResource):
         Create a new bare metal server or multiple servers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          flavor: '#/components/schemas/CreateBareMetalServerSerializer/properties/flavor'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.flavor"
+          flavor: The flavor of the instance.
 
-          interfaces: '#/components/schemas/CreateBareMetalServerSerializer/properties/interfaces'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.interfaces"
+          interfaces: A list of network interfaces for the server. You can create one or more
+              interfaces—private, public, or both.
 
-          app_config: '#/components/schemas/CreateBareMetalServerSerializer/properties/app_config/anyOf/0'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.app_config.anyOf[0]"
+          app_config: Parameters for the application template if creating the instance from an
+              `apptemplate`.
 
-          apptemplate_id: '#/components/schemas/CreateBareMetalServerSerializer/properties/apptemplate_id'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.apptemplate_id"
+          apptemplate_id: Apptemplate ID. Either `image_id` or `apptemplate_id` is required.
 
-          ddos_profile: '#/components/schemas/CreateBareMetalServerSerializer/properties/ddos_profile'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.ddos_profile"
+          ddos_profile: Enable advanced DDoS protection for the server
 
-          image_id: '#/components/schemas/CreateBareMetalServerSerializer/properties/image_id'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.image_id"
+          image_id: Image ID. Either `image_id` or `apptemplate_id` is required.
 
-          name_templates: '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.name_templates"
+          name_templates: If you want server names to be automatically generated using IP octets, you can
+              specify name templates instead of setting names manually.Provide a list of
+              templated names that should be replaced using the selected template. The
+              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
+              `{one_ip_octet}`.
 
-          names: '#/components/schemas/CreateBareMetalServerSerializer/properties/names'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.names"
+          names: List of server names. Specify one name to create a single server.
 
-          password: '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+          password: For Linux instances, 'username' and 'password' are used to create a new user.
+              When only 'password' is provided, it is set as the password for the default user
+              of the image. For Windows instances, 'username' cannot be specified. Use the
+              'password' field to set the password for the 'Admin' user on Windows. Use the
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
-          ssh_key_name: '#/components/schemas/CreateBareMetalServerSerializer/properties/ssh_key_name/anyOf/0'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.ssh_key_name.anyOf[0]"
+          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
 
-          tags: '#/components/schemas/CreateBareMetalServerSerializer/properties/tags'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
-          user_data: '#/components/schemas/CreateBareMetalServerSerializer/properties/user_data'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.user_data"
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+              'password' field is provided. For Windows instances, Admin user password is set
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
+              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
-          username: '#/components/schemas/CreateBareMetalServerSerializer/properties/username'
-              "$.components.schemas.CreateBareMetalServerSerializer.properties.username"
+          username: For Linux instances, 'username' and 'password' are used to create a new user.
+              For Windows instances, 'username' cannot be specified. Use 'password' field to
+              set the password for the 'Admin' user on Windows.
 
           extra_headers: Send extra headers
 
@@ -557,74 +548,64 @@ class AsyncServersResource(AsyncAPIResource):
         List bare metal servers
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          changes_before: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[2]"
+          changes_before: Filters the instances by a date and time stamp when the instances last changed.
 
-          changes_since: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[3]"
+          changes_since: Filters the instances by a date and time stamp when the instances last changed
+              status.
 
-          flavor_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[4]"
+          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
 
-          flavor_prefix: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[5]"
+          flavor_prefix: Filter out instances by flavor_prefix.
 
-          include_k8s: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[6]"
+          include_k8s: Include managed k8s worker nodes
 
-          ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[7]"
+          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
+              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
+              192.168.0.110, and so on.
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[8]"
+          limit: Optional. Limit the number of returned items
 
-          name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[9]"
+          name: Filter instances by name. You can provide a full or partial name, instances with
+              matching names will be returned. For example, entering 'test' will return all
+              instances that contain 'test' in their name.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[10]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          only_isolated: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/11'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[11]"
+          only_isolated: Include only isolated instances
 
-          only_with_fixed_external_ip: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/12'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[12]"
+          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/13'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[13]"
+          order_by: Order by field and direction.
 
-          profile_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/14'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[14]"
+          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
+              to true.
 
-          protection_status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/15'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[15]"
+          protection_status: Filter result by DDoS protection_status. Effective only with with_ddos set to
+              true. (Active, Queued or Error)
 
-          status: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/16'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[16]"
+          status: Filters instances by a server status, as a string.
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/17'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[17]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/18'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[18]"
+          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
 
-          type_ddos_profile: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/19'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[19]"
+          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
+              Effective only with with_ddos set to true. (advanced or basic)
 
-          uuid: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/20'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[20]"
+          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
-          with_ddos: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/21'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[21]"
+          with_ddos: Include DDoS profile information for bare-metal servers in the response when set
+              to `true`. Otherwise, the `ddos_profile` field in the response is `null` by
+              default.
 
-          with_interfaces_name: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/22'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}'].get.parameters[22]"
+          with_interfaces_name: Include `interface_name` in the addresses
 
           extra_headers: Send extra headers
 
@@ -695,20 +676,11 @@ class AsyncServersResource(AsyncAPIResource):
         Rebuild bare metal server
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[0].schema"
+          image_id: Image ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[1].schema"
-
-          server_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/2/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[2].schema"
-
-          image_id: '#/components/schemas/RebuildBaremetalSchema/properties/image_id'
-              "$.components.schemas.RebuildBaremetalSchema.properties.image_id"
-
-          user_data: '#/components/schemas/RebuildBaremetalSchema/properties/user_data'
-              "$.components.schemas.RebuildBaremetalSchema.properties.user_data"
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers
 

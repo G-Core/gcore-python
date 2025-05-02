@@ -9,49 +9,25 @@ __all__ = ["ContainerScaleTriggerSqs"]
 
 class ContainerScaleTriggerSqs(BaseModel):
     activation_queue_length: int
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/activation_queue_length'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.activation_queue_length"
-    """
+    """Number of messages for activation"""
 
     aws_endpoint: Optional[str] = None
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/aws_endpoint/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.aws_endpoint.anyOf[0]"
-    """
+    """Custom AWS endpoint"""
 
     aws_region: str
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/aws_region'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.aws_region"
-    """
+    """AWS region"""
 
     queue_length: int
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/queue_length'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.queue_length"
-    """
+    """Number of messages for one replica"""
 
     queue_url: str
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/queue_url'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.queue_url"
-    """
+    """SQS queue URL"""
 
     scale_on_delayed: bool
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/scale_on_delayed'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.scale_on_delayed"
-    """
+    """Scale on delayed messages"""
 
     scale_on_flight: bool
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/scale_on_flight'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.scale_on_flight"
-    """
+    """Scale on in-flight messages"""
 
     secret_name: str
-    """
-    '#/components/schemas/ContainerScaleTriggersSqsOutSerializer/properties/secret_name'
-    "$.components.schemas.ContainerScaleTriggersSqsOutSerializer.properties.secret_name"
-    """
+    """Auth secret name"""

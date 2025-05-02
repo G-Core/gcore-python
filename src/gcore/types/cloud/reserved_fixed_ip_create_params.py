@@ -19,168 +19,83 @@ __all__ = [
 
 class NewReservedFixedIPExternalSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     type: Required[Literal["external"]]
-    """
-    '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/type'
-    "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.type"
-    """
+    """Must be 'external'"""
 
     ip_family: Optional[InterfaceIPFamily]
-    """
-    '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/ip_family/anyOf/0'
-    "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.ip_family.anyOf[0]"
-    """
+    """Which subnets should be selected: IPv4, IPv6 or use dual stack."""
 
     is_vip: bool
-    """
-    '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/is_vip'
-    "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.is_vip"
-    """
+    """If reserved fixed IP is a VIP"""
 
 
 class NewReservedFixedIPSpecificSubnetSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     subnet_id: Required[str]
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/subnet_id'
-    "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.subnet_id"
-    """
+    """Reserved fixed IP will be allocated in this subnet"""
 
     type: Required[Literal["subnet"]]
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/type'
-    "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.type"
-    """
+    """Must be 'subnet'."""
 
     is_vip: bool
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/is_vip'
-    "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.is_vip"
-    """
+    """If reserved fixed IP is a VIP"""
 
 
 class NewReservedFixedIPAnySubnetSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     network_id: Required[str]
-    """
-    '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/network_id'
-    "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.network_id"
-    """
+    """Reserved fixed IP will be allocated in a subnet of this network"""
 
     type: Required[Literal["any_subnet"]]
-    """
-    '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/type'
-    "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.type"
-    """
+    """Must be 'any_subnet'."""
 
     ip_family: Optional[InterfaceIPFamily]
-    """
-    '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/ip_family/anyOf/0'
-    "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.ip_family.anyOf[0]"
-    """
+    """Which subnets should be selected: IPv4, IPv6 or use dual stack."""
 
     is_vip: bool
-    """
-    '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/is_vip'
-    "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.is_vip"
-    """
+    """If reserved fixed IP is a VIP"""
 
 
 class NewReservedFixedIPSpecificIPAddressSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     ip_address: Required[str]
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/ip_address'
-    "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.ip_address"
-    """
+    """Reserved fixed IP will be allocated the given IP address"""
 
     network_id: Required[str]
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/network_id'
-    "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.network_id"
-    """
+    """Reserved fixed IP will be allocated in a subnet of this network"""
 
     type: Required[Literal["ip_address"]]
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/type'
-    "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.type"
-    """
+    """Must be 'ip_address'."""
 
     is_vip: bool
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/is_vip'
-    "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.is_vip"
-    """
+    """If reserved fixed IP is a VIP"""
 
 
 class NewReservedFixedIPSpecificPortSerializer(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     port_id: Required[str]
     """
-    '#/components/schemas/NewReservedFixedIpSpecificPortSerializer/properties/port_id'
-    "$.components.schemas.NewReservedFixedIpSpecificPortSerializer.properties.port_id"
+    Port ID to make a reserved fixed IP (for example, `vip_port_id` of the Load
+    Balancer entity).
     """
 
     type: Required[Literal["port"]]
-    """
-    '#/components/schemas/NewReservedFixedIpSpecificPortSerializer/properties/type'
-    "$.components.schemas.NewReservedFixedIpSpecificPortSerializer.properties.type"
-    """
+    """Must be 'port'."""
 
 
 ReservedFixedIPCreateParams: TypeAlias = Union[

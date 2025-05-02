@@ -88,50 +88,46 @@ class DeploymentsResource(SyncAPIResource):
         Create inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].post.parameters[0].schema"
+          project_id: Project ID
 
-          containers: '#/components/schemas/InferenceInstanceInSerializerV3/properties/containers'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.containers"
+          containers: List of containers for the inference instance.
 
-          flavor_name: '#/components/schemas/InferenceInstanceInSerializerV3/properties/flavor_name'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.flavor_name"
+          flavor_name: Flavor name for the inference instance.
 
-          image: '#/components/schemas/InferenceInstanceInSerializerV3/properties/image'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.image"
+          image: Docker image for the inference instance. This field should contain the image
+              name and tag in the format 'name:tag', e.g., 'nginx:latest'. It defaults to
+              Docker Hub as the image registry, but any accessible Docker image URL can be
+              specified.
 
-          listening_port: '#/components/schemas/InferenceInstanceInSerializerV3/properties/listening_port'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.listening_port"
+          listening_port: Listening port for the inference instance.
 
-          name: '#/components/schemas/InferenceInstanceInSerializerV3/properties/name'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.name"
+          name: Inference instance name.
 
-          auth_enabled: '#/components/schemas/InferenceInstanceInSerializerV3/properties/auth_enabled'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.auth_enabled"
+          auth_enabled: Set to `true` to enable API key authentication for the inference instance.
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
+              for the requests to the instance if enabled
 
-          command: '#/components/schemas/InferenceInstanceInSerializerV3/properties/command/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.command.anyOf[0]"
+          command: Command to be executed when running a container from an image.
 
-          credentials_name: '#/components/schemas/InferenceInstanceInSerializerV3/properties/credentials_name/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.credentials_name.anyOf[0]"
+          credentials_name: Registry credentials name
 
-          description: '#/components/schemas/InferenceInstanceInSerializerV3/properties/description/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.description.anyOf[0]"
+          description: Inference instance description.
 
-          envs: '#/components/schemas/InferenceInstanceInSerializerV3/properties/envs'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.envs"
+          envs: Environment variables for the inference instance.
 
-          ingress_opts: '#/components/schemas/InferenceInstanceInSerializerV3/properties/ingress_opts/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.ingress_opts.anyOf[0]"
+          ingress_opts: Ingress options for the inference instance
 
-          logging: '#/components/schemas/InferenceInstanceInSerializerV3/properties/logging/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.logging.anyOf[0]"
+          logging: Logging configuration for the inference instance
 
-          probes: '#/components/schemas/InferenceInstanceInSerializerV3/properties/probes/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.probes.anyOf[0]"
+          probes: Probes configured for all containers of the inference instance. If probes are
+              not provided, and the image_name is from a the Model Catalog registry, the
+              default probes will be used.
 
-          api_timeout: '#/components/schemas/InferenceInstanceInSerializerV3/properties/timeout/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.timeout.anyOf[0]"
+          api_timeout: Specifies the duration in seconds without any requests after which the
+              containers will be downscaled to their minimum scale value as defined by
+              `scale.min`. If set, this helps in optimizing resource usage by reducing the
+              number of container instances during periods of inactivity. The default value
+              when the parameter is not set is 120.
 
           extra_headers: Send extra headers
 
@@ -199,50 +195,44 @@ class DeploymentsResource(SyncAPIResource):
         Update inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].patch.parameters[1].schema"
+          deployment_name: Inference instance name.
 
-          auth_enabled: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/auth_enabled/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.auth_enabled.anyOf[0]"
+          auth_enabled: Set to `true` to enable API key authentication for the inference instance.
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
+              for the requests to the instance if enabled
 
-          command: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/command/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.command.anyOf[0]"
+          command: Command to be executed when running a container from an image.
 
-          containers: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/containers/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.containers.anyOf[0]"
+          containers: List of containers for the inference instance.
 
-          credentials_name: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/credentials_name/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.credentials_name.anyOf[0]"
+          credentials_name: Registry credentials name
 
-          description: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/description/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.description.anyOf[0]"
+          description: Inference instance description.
 
-          envs: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/envs/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.envs.anyOf[0]"
+          envs: Environment variables for the inference instance.
 
-          flavor_name: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/flavor_name/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.flavor_name.anyOf[0]"
+          flavor_name: Flavor name for the inference instance.
 
-          image: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/image/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.image.anyOf[0]"
+          image: Docker image for the inference instance. This field should contain the image
+              name and tag in the format 'name:tag', e.g., 'nginx:latest'. It defaults to
+              Docker Hub as the image registry, but any accessible Docker image URL can be
+              specified.
 
-          ingress_opts: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/ingress_opts/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.ingress_opts.anyOf[0]"
+          ingress_opts: Ingress options for the inference instance
 
-          listening_port: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/listening_port/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.listening_port.anyOf[0]"
+          listening_port: Listening port for the inference instance.
 
-          logging: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/logging/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.logging.anyOf[0]"
+          logging: Logging configuration for the inference instance
 
-          probes: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/probes/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.probes.anyOf[0]"
+          probes: Probes configured for all containers of the inference instance.
 
-          api_timeout: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/timeout/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.timeout.anyOf[0]"
+          api_timeout: Specifies the duration in seconds without any requests after which the
+              containers will be downscaled to their minimum scale value as defined by
+              `scale.min`. If set, this helps in optimizing resource usage by reducing the
+              number of container instances during periods of inactivity. The default value
+              when the parameter is not set is 120.
 
           extra_headers: Send extra headers
 
@@ -295,18 +285,17 @@ class DeploymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Inference]:
-        """
-        List inference deployments
+        """List inference deployments
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/get/parameters/1'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].get.parameters[1]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/get/parameters/2'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].get.parameters[2]"
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -353,11 +342,9 @@ class DeploymentsResource(SyncAPIResource):
         Delete inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}']['delete'].parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -395,11 +382,9 @@ class DeploymentsResource(SyncAPIResource):
         Get inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].get.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -437,11 +422,9 @@ class DeploymentsResource(SyncAPIResource):
         Get inference deployment API key
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fapikey/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey'].get.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fapikey/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey'].get.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -486,11 +469,9 @@ class DeploymentsResource(SyncAPIResource):
           according to the configured scaling rules.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstart/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/start'].post.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstart/post/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/start'].post.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -536,11 +517,9 @@ class DeploymentsResource(SyncAPIResource):
         - While stopped, the deployment will **not** incur any charges.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstop/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/stop'].post.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstop/post/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/stop'].post.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -617,50 +596,46 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Create inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].post.parameters[0].schema"
+          project_id: Project ID
 
-          containers: '#/components/schemas/InferenceInstanceInSerializerV3/properties/containers'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.containers"
+          containers: List of containers for the inference instance.
 
-          flavor_name: '#/components/schemas/InferenceInstanceInSerializerV3/properties/flavor_name'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.flavor_name"
+          flavor_name: Flavor name for the inference instance.
 
-          image: '#/components/schemas/InferenceInstanceInSerializerV3/properties/image'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.image"
+          image: Docker image for the inference instance. This field should contain the image
+              name and tag in the format 'name:tag', e.g., 'nginx:latest'. It defaults to
+              Docker Hub as the image registry, but any accessible Docker image URL can be
+              specified.
 
-          listening_port: '#/components/schemas/InferenceInstanceInSerializerV3/properties/listening_port'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.listening_port"
+          listening_port: Listening port for the inference instance.
 
-          name: '#/components/schemas/InferenceInstanceInSerializerV3/properties/name'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.name"
+          name: Inference instance name.
 
-          auth_enabled: '#/components/schemas/InferenceInstanceInSerializerV3/properties/auth_enabled'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.auth_enabled"
+          auth_enabled: Set to `true` to enable API key authentication for the inference instance.
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
+              for the requests to the instance if enabled
 
-          command: '#/components/schemas/InferenceInstanceInSerializerV3/properties/command/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.command.anyOf[0]"
+          command: Command to be executed when running a container from an image.
 
-          credentials_name: '#/components/schemas/InferenceInstanceInSerializerV3/properties/credentials_name/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.credentials_name.anyOf[0]"
+          credentials_name: Registry credentials name
 
-          description: '#/components/schemas/InferenceInstanceInSerializerV3/properties/description/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.description.anyOf[0]"
+          description: Inference instance description.
 
-          envs: '#/components/schemas/InferenceInstanceInSerializerV3/properties/envs'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.envs"
+          envs: Environment variables for the inference instance.
 
-          ingress_opts: '#/components/schemas/InferenceInstanceInSerializerV3/properties/ingress_opts/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.ingress_opts.anyOf[0]"
+          ingress_opts: Ingress options for the inference instance
 
-          logging: '#/components/schemas/InferenceInstanceInSerializerV3/properties/logging/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.logging.anyOf[0]"
+          logging: Logging configuration for the inference instance
 
-          probes: '#/components/schemas/InferenceInstanceInSerializerV3/properties/probes/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.probes.anyOf[0]"
+          probes: Probes configured for all containers of the inference instance. If probes are
+              not provided, and the image_name is from a the Model Catalog registry, the
+              default probes will be used.
 
-          api_timeout: '#/components/schemas/InferenceInstanceInSerializerV3/properties/timeout/anyOf/0'
-              "$.components.schemas.InferenceInstanceInSerializerV3.properties.timeout.anyOf[0]"
+          api_timeout: Specifies the duration in seconds without any requests after which the
+              containers will be downscaled to their minimum scale value as defined by
+              `scale.min`. If set, this helps in optimizing resource usage by reducing the
+              number of container instances during periods of inactivity. The default value
+              when the parameter is not set is 120.
 
           extra_headers: Send extra headers
 
@@ -728,50 +703,44 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Update inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].patch.parameters[1].schema"
+          deployment_name: Inference instance name.
 
-          auth_enabled: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/auth_enabled/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.auth_enabled.anyOf[0]"
+          auth_enabled: Set to `true` to enable API key authentication for the inference instance.
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
+              for the requests to the instance if enabled
 
-          command: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/command/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.command.anyOf[0]"
+          command: Command to be executed when running a container from an image.
 
-          containers: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/containers/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.containers.anyOf[0]"
+          containers: List of containers for the inference instance.
 
-          credentials_name: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/credentials_name/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.credentials_name.anyOf[0]"
+          credentials_name: Registry credentials name
 
-          description: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/description/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.description.anyOf[0]"
+          description: Inference instance description.
 
-          envs: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/envs/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.envs.anyOf[0]"
+          envs: Environment variables for the inference instance.
 
-          flavor_name: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/flavor_name/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.flavor_name.anyOf[0]"
+          flavor_name: Flavor name for the inference instance.
 
-          image: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/image/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.image.anyOf[0]"
+          image: Docker image for the inference instance. This field should contain the image
+              name and tag in the format 'name:tag', e.g., 'nginx:latest'. It defaults to
+              Docker Hub as the image registry, but any accessible Docker image URL can be
+              specified.
 
-          ingress_opts: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/ingress_opts/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.ingress_opts.anyOf[0]"
+          ingress_opts: Ingress options for the inference instance
 
-          listening_port: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/listening_port/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.listening_port.anyOf[0]"
+          listening_port: Listening port for the inference instance.
 
-          logging: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/logging/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.logging.anyOf[0]"
+          logging: Logging configuration for the inference instance
 
-          probes: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/probes/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.probes.anyOf[0]"
+          probes: Probes configured for all containers of the inference instance.
 
-          api_timeout: '#/components/schemas/InferenceInstanceInUpdateSerializerV3/properties/timeout/anyOf/0'
-              "$.components.schemas.InferenceInstanceInUpdateSerializerV3.properties.timeout.anyOf[0]"
+          api_timeout: Specifies the duration in seconds without any requests after which the
+              containers will be downscaled to their minimum scale value as defined by
+              `scale.min`. If set, this helps in optimizing resource usage by reducing the
+              number of container instances during periods of inactivity. The default value
+              when the parameter is not set is 120.
 
           extra_headers: Send extra headers
 
@@ -824,18 +793,17 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Inference, AsyncOffsetPage[Inference]]:
-        """
-        List inference deployments
+        """List inference deployments
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/get/parameters/1'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].get.parameters[1]"
+          limit: Optional.
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments/get/parameters/2'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments'].get.parameters[2]"
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -882,11 +850,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Delete inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}']['delete'].parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -924,11 +890,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Get inference deployment
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}'].get.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -966,11 +930,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Get inference deployment API key
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fapikey/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey'].get.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fapikey/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey'].get.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -1015,11 +977,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           according to the configured scaling rules.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstart/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/start'].post.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstart/post/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/start'].post.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 
@@ -1065,11 +1025,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         - While stopped, the deployment will **not** incur any charges.
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstop/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/stop'].post.parameters[0].schema"
+          project_id: Project ID
 
-          deployment_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fdeployments%2F%7Bdeployment_name%7D%2Fstop/post/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/deployments/{deployment_name}/stop'].post.parameters[1].schema"
+          deployment_name: Inference instance name.
 
           extra_headers: Send extra headers
 

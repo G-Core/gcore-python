@@ -12,16 +12,10 @@ __all__ = ["BlackholePort"]
 
 class BlackholePort(BaseModel):
     alarm_end: datetime = FieldInfo(alias="AlarmEnd")
-    """
-    '#/components/schemas/BlackholePortSerializer/properties/AlarmEnd'
-    "$.components.schemas.BlackholePortSerializer.properties.AlarmEnd"
-    """
+    """A date-time string giving the time that the alarm ended"""
 
     alarm_start: datetime = FieldInfo(alias="AlarmStart")
-    """
-    '#/components/schemas/BlackholePortSerializer/properties/AlarmStart'
-    "$.components.schemas.BlackholePortSerializer.properties.AlarmStart"
-    """
+    """A date-time string giving the time that the alarm started"""
 
     alarm_state: Literal[
         "ACK_REQ",
@@ -61,25 +55,12 @@ class BlackholePort(BaseModel):
         "starting",
         "starting_fail",
     ] = FieldInfo(alias="AlarmState")
-    """
-    '#/components/schemas/BlackholePortSerializer/properties/AlarmState'
-    "$.components.schemas.BlackholePortSerializer.properties.AlarmState"
-    """
+    """Current state of alarm"""
 
     alert_duration: str = FieldInfo(alias="AlertDuration")
-    """
-    '#/components/schemas/BlackholePortSerializer/properties/AlertDuration'
-    "$.components.schemas.BlackholePortSerializer.properties.AlertDuration"
-    """
+    """Total alert duration"""
 
     destination_ip: str = FieldInfo(alias="DestinationIP")
-    """
-    '#/components/schemas/BlackholePortSerializer/properties/DestinationIP'
-    "$.components.schemas.BlackholePortSerializer.properties.DestinationIP"
-    """
+    """Notification destination IP address"""
 
     id: int = FieldInfo(alias="ID")
-    """
-    '#/components/schemas/BlackholePortSerializer/properties/ID'
-    "$.components.schemas.BlackholePortSerializer.properties.ID"
-    """

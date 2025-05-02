@@ -10,25 +10,13 @@ __all__ = ["RoleAssignmentCreateParams"]
 
 class RoleAssignmentCreateParams(TypedDict, total=False):
     role: Required[str]
-    """
-    '#/components/schemas/RequestAssignmentSerializer/properties/role'
-    "$.components.schemas.RequestAssignmentSerializer.properties.role"
-    """
+    """User role"""
 
     user_id: Required[int]
-    """
-    '#/components/schemas/RequestAssignmentSerializer/properties/user_id'
-    "$.components.schemas.RequestAssignmentSerializer.properties.user_id"
-    """
+    """User ID"""
 
     client_id: Optional[int]
-    """
-    '#/components/schemas/RequestAssignmentSerializer/properties/client_id/anyOf/0'
-    "$.components.schemas.RequestAssignmentSerializer.properties.client_id.anyOf[0]"
-    """
+    """Client ID. Required if project_id is specified"""
 
     project_id: Optional[int]
-    """
-    '#/components/schemas/RequestAssignmentSerializer/properties/project_id/anyOf/0'
-    "$.components.schemas.RequestAssignmentSerializer.properties.project_id.anyOf[0]"
-    """
+    """Project ID"""

@@ -13,37 +13,26 @@ __all__ = ["LoadBalancerStatus"]
 
 class LoadBalancerStatus(BaseModel):
     id: str
-    """
-    '#/components/schemas/LoadBalancerStatusSerializer/properties/id'
-    "$.components.schemas.LoadBalancerStatusSerializer.properties.id"
-    """
+    """UUID of the entity"""
 
     listeners: List[ListenerStatus]
-    """
-    '#/components/schemas/LoadBalancerStatusSerializer/properties/listeners'
-    "$.components.schemas.LoadBalancerStatusSerializer.properties.listeners"
-    """
+    """Listeners of the Load Balancer"""
 
     name: str
-    """
-    '#/components/schemas/LoadBalancerStatusSerializer/properties/name'
-    "$.components.schemas.LoadBalancerStatusSerializer.properties.name"
-    """
+    """Name of the load balancer"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/LoadBalancerStatusSerializer/properties/operating_status'
-    "$.components.schemas.LoadBalancerStatusSerializer.properties.operating_status"
-    """
+    """Operating status of the entity"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/LoadBalancerStatusSerializer/properties/provisioning_status'
-    "$.components.schemas.LoadBalancerStatusSerializer.properties.provisioning_status"
-    """
+    """Provisioning status of the entity"""
 
     tags: Optional[List[Tag]] = None
-    """
-    '#/components/schemas/LoadBalancerStatusSerializer/properties/tags'
-    "$.components.schemas.LoadBalancerStatusSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """

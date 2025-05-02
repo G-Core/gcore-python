@@ -11,105 +11,76 @@ __all__ = ["L7Policy"]
 
 class L7Policy(BaseModel):
     id: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/id'
-    "$.components.schemas.L7PolicySchema.properties.id"
-    """
+    """ID"""
 
     action: Optional[Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"]] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/action'
-    "$.components.schemas.L7PolicySchema.properties.action"
-    """
+    """Action"""
 
     listener_id: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/listener_id'
-    "$.components.schemas.L7PolicySchema.properties.listener_id"
-    """
+    """Listener ID"""
 
     name: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/name'
-    "$.components.schemas.L7PolicySchema.properties.name"
-    """
+    """Human-readable name of the policy"""
 
     operating_status: Optional[Literal["DEGRADED", "DRAINING", "ERROR", "NO_MONITOR", "OFFLINE", "ONLINE"]] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/operating_status'
-    "$.components.schemas.L7PolicySchema.properties.operating_status"
-    """
+    """L7 policy operating status"""
 
     position: Optional[int] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/position'
-    "$.components.schemas.L7PolicySchema.properties.position"
-    """
+    """The position of this policy on the listener. Positions start at 1."""
 
     project_id: Optional[int] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/project_id'
-    "$.components.schemas.L7PolicySchema.properties.project_id"
-    """
+    """Project ID"""
 
     provisioning_status: Optional[
         Literal["ACTIVE", "DELETED", "ERROR", "PENDING_CREATE", "PENDING_DELETE", "PENDING_UPDATE"]
     ] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/provisioning_status'
-    "$.components.schemas.L7PolicySchema.properties.provisioning_status"
-    """
 
     redirect_http_code: Optional[int] = None
     """
-    '#/components/schemas/L7PolicySchema/properties/redirect_http_code'
-    "$.components.schemas.L7PolicySchema.properties.redirect_http_code"
+    Requests matching this policy will be redirected to the specified URL or Prefix
+    URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
+    REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
     """
 
     redirect_pool_id: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/redirect_pool_id'
-    "$.components.schemas.L7PolicySchema.properties.redirect_pool_id"
+    """Requests matching this policy will be redirected to the pool with this ID.
+
+    Only valid if action is REDIRECT_TO_POOL.
     """
 
     redirect_prefix: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/redirect_prefix'
-    "$.components.schemas.L7PolicySchema.properties.redirect_prefix"
+    """Requests matching this policy will be redirected to this Prefix URL.
+
+    Only valid if action is REDIRECT_PREFIX.
     """
 
     redirect_url: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/redirect_url'
-    "$.components.schemas.L7PolicySchema.properties.redirect_url"
+    """Requests matching this policy will be redirected to this URL.
+
+    Only valid if action is REDIRECT_TO_URL.
     """
 
     region: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/region'
-    "$.components.schemas.L7PolicySchema.properties.region"
-    """
+    """Region name"""
 
     region_id: Optional[int] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/region_id'
-    "$.components.schemas.L7PolicySchema.properties.region_id"
-    """
+    """Region ID"""
 
     rules: Optional[List[L7Rule]] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/rules'
-    "$.components.schemas.L7PolicySchema.properties.rules"
+    """Rules.
+
+    All the rules associated with a given policy are logically ANDed together. A
+    request must match all the policy’s rules to match the policy.If you need to
+    express a logical OR operation between rules, then do this by creating multiple
+    policies with the same action.
     """
 
     tags: Optional[List[str]] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/tags'
-    "$.components.schemas.L7PolicySchema.properties.tags"
-    """
+    """A list of simple strings assigned to the resource."""
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/L7PolicySchema/properties/task_id'
-    "$.components.schemas.L7PolicySchema.properties.task_id"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """

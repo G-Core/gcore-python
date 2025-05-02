@@ -33,115 +33,83 @@ __all__ = [
 
 class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fai%2Fclusters%2Fgpu%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     flavor: Required[str]
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/flavor'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.flavor"
-    """
+    """Flavor name"""
 
     image_id: Required[str]
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/image_id'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.image_id"
-    """
+    """Image ID"""
 
     interfaces: Required[Iterable[Interface]]
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/interfaces'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.interfaces"
-    """
+    """Subnet IPs and floating IPs"""
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/name'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.name"
-    """
+    """GPU Cluster name"""
 
     instances_count: int
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/instances_count'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.instances_count"
-    """
+    """Number of servers to create"""
 
     password: str
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/password'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.password"
+    """A password for a bare metal server.
+
+    This parameter is used to set a password for the "Admin" user on a Windows
+    instance, a default user or a new user on a Linux instance
     """
 
     ssh_key_name: str
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/ssh_key_name'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.ssh_key_name"
-    """
+    """Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint."""
 
     tags: TagUpdateListParam
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/tags'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.tags"
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     user_data: str
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/user_data'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.user_data"
+    """String in base64 format.
+
+    Must not be passed together with 'username' or 'password'. Examples of the
+    user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """
 
     username: str
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/username'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.username"
+    """A name of a new user in the Linux instance.
+
+    It may be passed with a 'password' parameter
     """
 
 
 class InterfaceNewInterfaceExternalSerializerPydanticSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSerializerPydantic/properties/id'
-    "$.components.schemas.MandatoryIdSerializerPydantic.properties.id"
-    """
+    """Resource ID"""
 
 
 class InterfaceNewInterfaceExternalSerializerPydantic(TypedDict, total=False):
     type: Required[Literal["external"]]
-    """
-    '#/components/schemas/NewInterfaceExternalSerializerPydantic/properties/type'
-    "$.components.schemas.NewInterfaceExternalSerializerPydantic.properties.type"
-    """
+    """A public IP address will be assigned to the instance."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceExternalSerializerPydantic/properties/interface_name'
-    "$.components.schemas.NewInterfaceExternalSerializerPydantic.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     ip_family: Optional[InterfaceIPFamily]
-    """
-    '#/components/schemas/NewInterfaceExternalSerializerPydantic/properties/ip_family/anyOf/0'
-    "$.components.schemas.NewInterfaceExternalSerializerPydantic.properties.ip_family.anyOf[0]"
-    """
+    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceExternalSerializerPydantic/properties/port_group'
-    "$.components.schemas.NewInterfaceExternalSerializerPydantic.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
     security_groups: Iterable[InterfaceNewInterfaceExternalSerializerPydanticSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceExternalSerializerPydantic/properties/security_groups'
-    "$.components.schemas.NewInterfaceExternalSerializerPydantic.properties.security_groups"
+    """Applies only to instances and is ignored for bare metal.
+
+    Specifies security group UUIDs to be applied to the instance network interface.
     """
 
 
@@ -149,9 +117,11 @@ class InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticFloatingIPNewInsta
     TypedDict, total=False
 ):
     source: Required[Literal["new"]]
-    """
-    '#/components/schemas/NewInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.NewInstanceFloatingIpInterfaceSerializer.properties.source"
+    """A new floating IP will be created and attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -160,14 +130,16 @@ class InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticFloatingIPExisting
 ):
     existing_floating_id: Required[str]
     """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/existing_floating_id'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.existing_floating_id"
+    An existing available floating IP id must be specified if the source is set to
+    `existing`
     """
 
     source: Required[Literal["existing"]]
-    """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.source"
+    """An existing available floating IP will be attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -179,53 +151,39 @@ InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticFloatingIP: TypeAlias = 
 
 class InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSerializerPydantic/properties/id'
-    "$.components.schemas.MandatoryIdSerializerPydantic.properties.id"
-    """
+    """Resource ID"""
 
 
 class InterfaceNewInterfaceSpecificSubnetFipSerializerPydantic(TypedDict, total=False):
     network_id: Required[str]
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetFipSerializerPydantic/properties/network_id'
-    "$.components.schemas.NewInterfaceSpecificSubnetFipSerializerPydantic.properties.network_id"
-    """
+    """The network where the instance will be connected."""
 
     subnet_id: Required[str]
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetFipSerializerPydantic/properties/subnet_id'
-    "$.components.schemas.NewInterfaceSpecificSubnetFipSerializerPydantic.properties.subnet_id"
-    """
+    """The instance will get an IP address from this subnet."""
 
     type: Required[Literal["subnet"]]
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetFipSerializerPydantic/properties/type'
-    "$.components.schemas.NewInterfaceSpecificSubnetFipSerializerPydantic.properties.type"
+    """The instance will get an IP address from the selected network.
+
+    If you choose to add a floating IP, the instance will be reachable from the
+    internet. Otherwise, it will only have a private IP within the network.
     """
 
     floating_ip: InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticFloatingIP
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetFipSerializerPydantic/properties/floating_ip'
-    "$.components.schemas.NewInterfaceSpecificSubnetFipSerializerPydantic.properties.floating_ip"
-    """
+    """Allows the instance to have a public IP that can be reached from the internet."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetFipSerializerPydantic/properties/interface_name'
-    "$.components.schemas.NewInterfaceSpecificSubnetFipSerializerPydantic.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetFipSerializerPydantic/properties/port_group'
-    "$.components.schemas.NewInterfaceSpecificSubnetFipSerializerPydantic.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
     security_groups: Iterable[InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceSpecificSubnetFipSerializerPydantic/properties/security_groups'
-    "$.components.schemas.NewInterfaceSpecificSubnetFipSerializerPydantic.properties.security_groups"
+    """Applies only to instances and is ignored for bare metal.
+
+    Specifies security group UUIDs to be applied to the instance network interface.
     """
 
 
@@ -233,9 +191,11 @@ class InterfaceNewInterfaceAnySubnetFipSerializerPydanticFloatingIPNewInstanceFl
     TypedDict, total=False
 ):
     source: Required[Literal["new"]]
-    """
-    '#/components/schemas/NewInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.NewInstanceFloatingIpInterfaceSerializer.properties.source"
+    """A new floating IP will be created and attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -244,14 +204,16 @@ class InterfaceNewInterfaceAnySubnetFipSerializerPydanticFloatingIPExistingInsta
 ):
     existing_floating_id: Required[str]
     """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/existing_floating_id'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.existing_floating_id"
+    An existing available floating IP id must be specified if the source is set to
+    `existing`
     """
 
     source: Required[Literal["existing"]]
-    """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.source"
+    """An existing available floating IP will be attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -263,59 +225,38 @@ InterfaceNewInterfaceAnySubnetFipSerializerPydanticFloatingIP: TypeAlias = Union
 
 class InterfaceNewInterfaceAnySubnetFipSerializerPydanticSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSerializerPydantic/properties/id'
-    "$.components.schemas.MandatoryIdSerializerPydantic.properties.id"
-    """
+    """Resource ID"""
 
 
 class InterfaceNewInterfaceAnySubnetFipSerializerPydantic(TypedDict, total=False):
     network_id: Required[str]
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/network_id'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.network_id"
-    """
+    """The network where the instance will be connected."""
 
     type: Required[Literal["any_subnet"]]
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/type'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.type"
-    """
+    """Instance will be attached to a subnet with the largest count of free IPs."""
 
     floating_ip: InterfaceNewInterfaceAnySubnetFipSerializerPydanticFloatingIP
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/floating_ip'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.floating_ip"
-    """
+    """Allows the instance to have a public IP that can be reached from the internet."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/interface_name'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     ip_address: str
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/ip_address'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.ip_address"
-    """
+    """You can specify a specific IP address from your subnet."""
 
     ip_family: Optional[InterfaceIPFamily]
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/ip_family/anyOf/0'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.ip_family.anyOf[0]"
-    """
+    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/port_group'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
     security_groups: Iterable[InterfaceNewInterfaceAnySubnetFipSerializerPydanticSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceAnySubnetFipSerializerPydantic/properties/security_groups'
-    "$.components.schemas.NewInterfaceAnySubnetFipSerializerPydantic.properties.security_groups"
+    """Applies only to instances and is ignored for bare metal.
+
+    Specifies security group UUIDs to be applied to the instance network interface.
     """
 
 
@@ -323,9 +264,11 @@ class InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticFloatingIPNewInst
     TypedDict, total=False
 ):
     source: Required[Literal["new"]]
-    """
-    '#/components/schemas/NewInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.NewInstanceFloatingIpInterfaceSerializer.properties.source"
+    """A new floating IP will be created and attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -334,14 +277,16 @@ class InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticFloatingIPExistin
 ):
     existing_floating_id: Required[str]
     """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/existing_floating_id'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.existing_floating_id"
+    An existing available floating IP id must be specified if the source is set to
+    `existing`
     """
 
     source: Required[Literal["existing"]]
-    """
-    '#/components/schemas/ExistingInstanceFloatingIpInterfaceSerializer/properties/source'
-    "$.components.schemas.ExistingInstanceFloatingIpInterfaceSerializer.properties.source"
+    """An existing available floating IP will be attached to the instance.
+
+    A floating IP is a public IP that makes the instance accessible from the
+    internet, even if it only has a private IP. It works like SNAT, allowing
+    outgoing and incoming traffic.
     """
 
 
@@ -353,47 +298,36 @@ InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticFloatingIP: TypeAlias =
 
 class InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticSecurityGroup(TypedDict, total=False):
     id: Required[str]
-    """
-    '#/components/schemas/MandatoryIdSerializerPydantic/properties/id'
-    "$.components.schemas.MandatoryIdSerializerPydantic.properties.id"
-    """
+    """Resource ID"""
 
 
 class InterfaceNewInterfaceReservedFixedIPFipSerializerPydantic(TypedDict, total=False):
     port_id: Required[str]
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpFipSerializerPydantic/properties/port_id'
-    "$.components.schemas.NewInterfaceReservedFixedIpFipSerializerPydantic.properties.port_id"
-    """
+    """Network ID the subnet belongs to. Port will be plugged in this network."""
 
     type: Required[Literal["reserved_fixed_ip"]]
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpFipSerializerPydantic/properties/type'
-    "$.components.schemas.NewInterfaceReservedFixedIpFipSerializerPydantic.properties.type"
+    """An existing available reserved fixed IP will be attached to the instance.
+
+    If the reserved IP is not public and you choose to add a floating IP, the
+    instance will be accessible from the internet.
     """
 
     floating_ip: InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticFloatingIP
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpFipSerializerPydantic/properties/floating_ip'
-    "$.components.schemas.NewInterfaceReservedFixedIpFipSerializerPydantic.properties.floating_ip"
-    """
+    """Allows the instance to have a public IP that can be reached from the internet."""
 
     interface_name: str
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpFipSerializerPydantic/properties/interface_name'
-    "$.components.schemas.NewInterfaceReservedFixedIpFipSerializerPydantic.properties.interface_name"
+    """Interface name.
+
+    Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
     port_group: int
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpFipSerializerPydantic/properties/port_group'
-    "$.components.schemas.NewInterfaceReservedFixedIpFipSerializerPydantic.properties.port_group"
-    """
+    """Applicable only to bare metal. Each group is added to a separate trunk."""
 
     security_groups: Iterable[InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticSecurityGroup]
-    """
-    '#/components/schemas/NewInterfaceReservedFixedIpFipSerializerPydantic/properties/security_groups'
-    "$.components.schemas.NewInterfaceReservedFixedIpFipSerializerPydantic.properties.security_groups"
+    """Applies only to instances and is ignored for bare metal.
+
+    Specifies security group UUIDs to be applied to the instance network interface.
     """
 
 

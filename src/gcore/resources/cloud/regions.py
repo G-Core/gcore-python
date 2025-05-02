@@ -60,11 +60,10 @@ class RegionsResource(SyncAPIResource):
         Get region
 
         Args:
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregions%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/regions/{region_id}'].get.parameters[0].schema"
+          region_id: Region ID
 
-          show_volume_types: '#/paths/%2Fcloud%2Fv1%2Fregions%2F%7Bregion_id%7D/get/parameters/1'
-              "$.paths['/cloud/v1/regions/{region_id}'].get.parameters[1]"
+          show_volume_types: If true, null `available_volume_type` is replaced with a list of available
+              volume types.
 
           extra_headers: Send extra headers
 
@@ -106,24 +105,22 @@ class RegionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Region]:
-        """
-        List regions
+        """List regions
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/0'
-              "$.paths['/cloud/v1/regions'].get.parameters[0]"
+          limit: Limit the number of returned regions.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/1'
-              "$.paths['/cloud/v1/regions'].get.parameters[1]"
+        Falls back to default of 100 if not
+              specified. Limited by max limit value of 1000
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/2'
-              "$.paths['/cloud/v1/regions'].get.parameters[2]"
+          offset: Offset value is used to exclude the first set of records from the result
 
-          product: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/3'
-              "$.paths['/cloud/v1/regions'].get.parameters[3]"
+          order_by: Order by field and direction.
 
-          show_volume_types: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/4'
-              "$.paths['/cloud/v1/regions'].get.parameters[4]"
+          product: If defined then return only regions that support given product.
+
+          show_volume_types: If true, null `available_volume_type` is replaced with a list of available
+              volume types.
 
           extra_headers: Send extra headers
 
@@ -192,11 +189,10 @@ class AsyncRegionsResource(AsyncAPIResource):
         Get region
 
         Args:
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fregions%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/regions/{region_id}'].get.parameters[0].schema"
+          region_id: Region ID
 
-          show_volume_types: '#/paths/%2Fcloud%2Fv1%2Fregions%2F%7Bregion_id%7D/get/parameters/1'
-              "$.paths['/cloud/v1/regions/{region_id}'].get.parameters[1]"
+          show_volume_types: If true, null `available_volume_type` is replaced with a list of available
+              volume types.
 
           extra_headers: Send extra headers
 
@@ -238,24 +234,22 @@ class AsyncRegionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Region, AsyncOffsetPage[Region]]:
-        """
-        List regions
+        """List regions
 
         Args:
-          limit: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/0'
-              "$.paths['/cloud/v1/regions'].get.parameters[0]"
+          limit: Limit the number of returned regions.
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/1'
-              "$.paths['/cloud/v1/regions'].get.parameters[1]"
+        Falls back to default of 100 if not
+              specified. Limited by max limit value of 1000
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/2'
-              "$.paths['/cloud/v1/regions'].get.parameters[2]"
+          offset: Offset value is used to exclude the first set of records from the result
 
-          product: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/3'
-              "$.paths['/cloud/v1/regions'].get.parameters[3]"
+          order_by: Order by field and direction.
 
-          show_volume_types: '#/paths/%2Fcloud%2Fv1%2Fregions/get/parameters/4'
-              "$.paths['/cloud/v1/regions'].get.parameters[4]"
+          product: If defined then return only regions that support given product.
+
+          show_volume_types: If true, null `available_volume_type` is replaced with a list of available
+              volume types.
 
           extra_headers: Send extra headers
 

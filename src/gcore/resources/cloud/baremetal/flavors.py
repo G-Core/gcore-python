@@ -66,29 +66,18 @@ class FlavorsResource(SyncAPIResource):
         as 0. If you get Pricing Error contact the support
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[0].schema"
+          disabled: Flag for filtering disabled flavors in the region. Defaults to true
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[1].schema"
+          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
 
-          disabled: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[2]"
+          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
 
-          exclude_linux: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[3]"
+          include_capacity: Set to true if the response should include flavor capacity
 
-          exclude_windows: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[4]"
+          include_prices: Set to true if the response should include flavor prices
 
-          include_capacity: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[5]"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[6]"
-
-          include_reservation_stock: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[7]"
+          include_reservation_stock: Optional. Set to true if flavor listing should include count of reserved
+              resources in stock.
 
           extra_headers: Send extra headers
 
@@ -143,20 +132,11 @@ class FlavorsResource(SyncAPIResource):
         List suitalbe flavors for bare metal server creation
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors'].post.parameters[0].schema"
+          include_prices: Set to true if flavor listing should include flavor prices
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors'].post.parameters[1].schema"
+          apptemplate_id: Apptemplate ID
 
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/2'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors'].post.parameters[2]"
-
-          apptemplate_id: '#/components/schemas/AvailableBaremetalFlavorsRequestSchema/properties/apptemplate_id'
-              "$.components.schemas.AvailableBaremetalFlavorsRequestSchema.properties.apptemplate_id"
-
-          image_id: '#/components/schemas/AvailableBaremetalFlavorsRequestSchema/properties/image_id'
-              "$.components.schemas.AvailableBaremetalFlavorsRequestSchema.properties.image_id"
+          image_id: Image ID
 
           extra_headers: Send extra headers
 
@@ -237,29 +217,18 @@ class AsyncFlavorsResource(AsyncAPIResource):
         as 0. If you get Pricing Error contact the support
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[0].schema"
+          disabled: Flag for filtering disabled flavors in the region. Defaults to true
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[1].schema"
+          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
 
-          disabled: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[2]"
+          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
 
-          exclude_linux: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[3]"
+          include_capacity: Set to true if the response should include flavor capacity
 
-          exclude_windows: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[4]"
+          include_prices: Set to true if the response should include flavor prices
 
-          include_capacity: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[5]"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[6]"
-
-          include_reservation_stock: '#/paths/%2Fcloud%2Fv1%2Fbmflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/bmflavors/{project_id}/{region_id}'].get.parameters[7]"
+          include_reservation_stock: Optional. Set to true if flavor listing should include count of reserved
+              resources in stock.
 
           extra_headers: Send extra headers
 
@@ -314,20 +283,11 @@ class AsyncFlavorsResource(AsyncAPIResource):
         List suitalbe flavors for bare metal server creation
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/0/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors'].post.parameters[0].schema"
+          include_prices: Set to true if flavor listing should include flavor prices
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/1/schema'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors'].post.parameters[1].schema"
+          apptemplate_id: Apptemplate ID
 
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2Favailable_flavors/post/parameters/2'
-              "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors'].post.parameters[2]"
-
-          apptemplate_id: '#/components/schemas/AvailableBaremetalFlavorsRequestSchema/properties/apptemplate_id'
-              "$.components.schemas.AvailableBaremetalFlavorsRequestSchema.properties.apptemplate_id"
-
-          image_id: '#/components/schemas/AvailableBaremetalFlavorsRequestSchema/properties/image_id'
-              "$.components.schemas.AvailableBaremetalFlavorsRequestSchema.properties.image_id"
+          image_id: Image ID
 
           extra_headers: Send extra headers
 

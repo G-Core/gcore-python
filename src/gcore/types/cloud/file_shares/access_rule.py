@@ -9,25 +9,13 @@ __all__ = ["AccessRule"]
 
 class AccessRule(BaseModel):
     id: str
-    """
-    '#/components/schemas/AccessRuleSerializer/properties/id'
-    "$.components.schemas.AccessRuleSerializer.properties.id"
-    """
+    """Access Rule ID"""
 
     access_level: Literal["ro", "rw"]
-    """
-    '#/components/schemas/AccessRuleSerializer/properties/access_level'
-    "$.components.schemas.AccessRuleSerializer.properties.access_level"
-    """
+    """Access mode"""
 
     access_to: str
-    """
-    '#/components/schemas/AccessRuleSerializer/properties/access_to/anyOf/0'
-    "$.components.schemas.AccessRuleSerializer.properties.access_to.anyOf[0]"
-    """
+    """Source IP or network"""
 
     state: Literal["active", "applying", "denying", "error", "new", "queued_to_apply", "queued_to_deny"]
-    """
-    '#/components/schemas/AccessRuleSerializer/properties/state'
-    "$.components.schemas.AccessRuleSerializer.properties.state"
-    """
+    """Access Rule state"""

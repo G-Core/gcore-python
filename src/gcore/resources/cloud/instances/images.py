@@ -77,35 +77,23 @@ class ImagesResource(SyncAPIResource):
         Update image fields
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[0].schema"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[1].schema"
+          hw_machine_type: A virtual chipset type.
 
-          image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[2].schema"
+          is_baremetal: Set to true if the image will be used by bare metal servers.
 
-          hw_firmware_type: '#/components/schemas/UpdateImageSerializer/properties/hw_firmware_type'
-              "$.components.schemas.UpdateImageSerializer.properties.hw_firmware_type"
+          name: Image display name
 
-          hw_machine_type: '#/components/schemas/UpdateImageSerializer/properties/hw_machine_type'
-              "$.components.schemas.UpdateImageSerializer.properties.hw_machine_type"
+          os_type: The operating system installed on the image.
 
-          is_baremetal: '#/components/schemas/UpdateImageSerializer/properties/is_baremetal'
-              "$.components.schemas.UpdateImageSerializer.properties.is_baremetal"
+          ssh_key: Whether the image supports SSH key or not
 
-          name: '#/components/schemas/UpdateImageSerializer/properties/name'
-              "$.components.schemas.UpdateImageSerializer.properties.name"
-
-          os_type: '#/components/schemas/UpdateImageSerializer/properties/os_type'
-              "$.components.schemas.UpdateImageSerializer.properties.os_type"
-
-          ssh_key: '#/components/schemas/UpdateImageSerializer/properties/ssh_key'
-              "$.components.schemas.UpdateImageSerializer.properties.ssh_key"
-
-          tags: '#/components/schemas/UpdateImageSerializer/properties/tags'
-              "$.components.schemas.UpdateImageSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -164,26 +152,17 @@ class ImagesResource(SyncAPIResource):
         public OR shared with the client
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[0].schema"
+          include_prices: Show price
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[1].schema"
+          private: Any value to show private images
 
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[2]"
+          tag_key: Filter by tag keys.
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[3]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
+              --data-urlencode 'tag_key_value={"key": "value"}' --url
+              'http://localhost:1111/v1/images/1/1'"
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[5]"
-
-          visibility: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[6]"
+          visibility: Image visibility. Globally visible images are public
 
           extra_headers: Send extra headers
 
@@ -235,15 +214,6 @@ class ImagesResource(SyncAPIResource):
         Delete the image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}']['delete'].parameters[1].schema"
-
-          image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -292,41 +262,29 @@ class ImagesResource(SyncAPIResource):
         Create image from volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: Image name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[1].schema"
+          volume_id: Required if source is volume. Volume id
 
-          name: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/name'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.name"
+          architecture: Image CPU architecture type: `aarch64`, `x86_64`
 
-          volume_id: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/volume_id'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.volume_id"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          architecture: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/architecture'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.architecture"
+          hw_machine_type: A virtual chipset type.
 
-          hw_firmware_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_firmware_type/anyOf/0'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_firmware_type.anyOf[0]"
+          is_baremetal: Set to true if the image will be used by bare metal servers. Defaults to false.
 
-          hw_machine_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_machine_type/anyOf/0'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_machine_type.anyOf[0]"
+          os_type: The operating system installed on the image.
 
-          is_baremetal: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/is_baremetal'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.is_baremetal"
+          source: Image source
 
-          os_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/os_type'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.os_type"
+          ssh_key: Whether the image supports SSH key or not
 
-          source: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/source'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.source"
-
-          ssh_key: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/ssh_key'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.ssh_key"
-
-          tags: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/tags'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -381,17 +339,7 @@ class ImagesResource(SyncAPIResource):
         Get image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[1].schema"
-
-          image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[2].schema"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[3]"
+          include_prices: Show price
 
           extra_headers: Send extra headers
 
@@ -447,47 +395,34 @@ class ImagesResource(SyncAPIResource):
         Upload image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: Image name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[1].schema"
+          url: URL
 
-          name: '#/components/schemas/ImageDownloadSerializer/properties/name'
-              "$.components.schemas.ImageDownloadSerializer.properties.name"
+          architecture: Image CPU architecture type: `aarch64`, `x86_64`
 
-          url: '#/components/schemas/ImageDownloadSerializer/properties/url'
-              "$.components.schemas.ImageDownloadSerializer.properties.url"
+          cow_format: When True, image cannot be deleted unless all volumes, created from it, are
+              deleted.
 
-          architecture: '#/components/schemas/ImageDownloadSerializer/properties/architecture'
-              "$.components.schemas.ImageDownloadSerializer.properties.architecture"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          cow_format: '#/components/schemas/ImageDownloadSerializer/properties/cow_format'
-              "$.components.schemas.ImageDownloadSerializer.properties.cow_format"
+          hw_machine_type: A virtual chipset type.
 
-          hw_firmware_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_firmware_type/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.hw_firmware_type.anyOf[0]"
+          is_baremetal: Set to true if the image will be used by bare metal servers. Defaults to false.
 
-          hw_machine_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_machine_type/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.hw_machine_type.anyOf[0]"
+          os_distro: OS Distribution, i.e. Debian, CentOS, Ubuntu, CoreOS etc.
 
-          is_baremetal: '#/components/schemas/ImageDownloadSerializer/properties/is_baremetal'
-              "$.components.schemas.ImageDownloadSerializer.properties.is_baremetal"
+          os_type: The operating system installed on the image.
 
-          os_distro: '#/components/schemas/ImageDownloadSerializer/properties/os_distro/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.os_distro.anyOf[0]"
+          os_version: OS version, i.e. 22.04 (for Ubuntu) or 9.4 for Debian
 
-          os_type: '#/components/schemas/ImageDownloadSerializer/properties/os_type'
-              "$.components.schemas.ImageDownloadSerializer.properties.os_type"
+          ssh_key: Whether the image supports SSH key or not
 
-          os_version: '#/components/schemas/ImageDownloadSerializer/properties/os_version/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.os_version.anyOf[0]"
-
-          ssh_key: '#/components/schemas/ImageDownloadSerializer/properties/ssh_key'
-              "$.components.schemas.ImageDownloadSerializer.properties.ssh_key"
-
-          tags: '#/components/schemas/ImageDownloadSerializer/properties/tags'
-              "$.components.schemas.ImageDownloadSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -571,35 +506,23 @@ class AsyncImagesResource(AsyncAPIResource):
         Update image fields
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[0].schema"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[1].schema"
+          hw_machine_type: A virtual chipset type.
 
-          image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].patch.parameters[2].schema"
+          is_baremetal: Set to true if the image will be used by bare metal servers.
 
-          hw_firmware_type: '#/components/schemas/UpdateImageSerializer/properties/hw_firmware_type'
-              "$.components.schemas.UpdateImageSerializer.properties.hw_firmware_type"
+          name: Image display name
 
-          hw_machine_type: '#/components/schemas/UpdateImageSerializer/properties/hw_machine_type'
-              "$.components.schemas.UpdateImageSerializer.properties.hw_machine_type"
+          os_type: The operating system installed on the image.
 
-          is_baremetal: '#/components/schemas/UpdateImageSerializer/properties/is_baremetal'
-              "$.components.schemas.UpdateImageSerializer.properties.is_baremetal"
+          ssh_key: Whether the image supports SSH key or not
 
-          name: '#/components/schemas/UpdateImageSerializer/properties/name'
-              "$.components.schemas.UpdateImageSerializer.properties.name"
-
-          os_type: '#/components/schemas/UpdateImageSerializer/properties/os_type'
-              "$.components.schemas.UpdateImageSerializer.properties.os_type"
-
-          ssh_key: '#/components/schemas/UpdateImageSerializer/properties/ssh_key'
-              "$.components.schemas.UpdateImageSerializer.properties.ssh_key"
-
-          tags: '#/components/schemas/UpdateImageSerializer/properties/tags'
-              "$.components.schemas.UpdateImageSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -658,26 +581,17 @@ class AsyncImagesResource(AsyncAPIResource):
         public OR shared with the client
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[0].schema"
+          include_prices: Show price
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[1].schema"
+          private: Any value to show private images
 
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[2]"
+          tag_key: Filter by tag keys.
 
-          private: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[3]"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
+              --data-urlencode 'tag_key_value={"key": "value"}' --url
+              'http://localhost:1111/v1/images/1/1'"
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[4]"
-
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[5]"
-
-          visibility: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].get.parameters[6]"
+          visibility: Image visibility. Globally visible images are public
 
           extra_headers: Send extra headers
 
@@ -729,15 +643,6 @@ class AsyncImagesResource(AsyncAPIResource):
         Delete the image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}']['delete'].parameters[1].schema"
-
-          image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -786,41 +691,29 @@ class AsyncImagesResource(AsyncAPIResource):
         Create image from volume
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: Image name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}'].post.parameters[1].schema"
+          volume_id: Required if source is volume. Volume id
 
-          name: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/name'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.name"
+          architecture: Image CPU architecture type: `aarch64`, `x86_64`
 
-          volume_id: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/volume_id'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.volume_id"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          architecture: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/architecture'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.architecture"
+          hw_machine_type: A virtual chipset type.
 
-          hw_firmware_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_firmware_type/anyOf/0'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_firmware_type.anyOf[0]"
+          is_baremetal: Set to true if the image will be used by bare metal servers. Defaults to false.
 
-          hw_machine_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/hw_machine_type/anyOf/0'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.hw_machine_type.anyOf[0]"
+          os_type: The operating system installed on the image.
 
-          is_baremetal: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/is_baremetal'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.is_baremetal"
+          source: Image source
 
-          os_type: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/os_type'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.os_type"
+          ssh_key: Whether the image supports SSH key or not
 
-          source: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/source'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.source"
-
-          ssh_key: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/ssh_key'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.ssh_key"
-
-          tags: '#/components/schemas/ImageCreateFromVolumeSerializer/properties/tags'
-              "$.components.schemas.ImageCreateFromVolumeSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -875,17 +768,7 @@ class AsyncImagesResource(AsyncAPIResource):
         Get image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[1].schema"
-
-          image_id: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[2].schema"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Fimages%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bimage_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/images/{project_id}/{region_id}/{image_id}'].get.parameters[3]"
+          include_prices: Show price
 
           extra_headers: Send extra headers
 
@@ -941,47 +824,34 @@ class AsyncImagesResource(AsyncAPIResource):
         Upload image
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[0].schema"
+          name: Image name
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fdownloadimage%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/downloadimage/{project_id}/{region_id}'].post.parameters[1].schema"
+          url: URL
 
-          name: '#/components/schemas/ImageDownloadSerializer/properties/name'
-              "$.components.schemas.ImageDownloadSerializer.properties.name"
+          architecture: Image CPU architecture type: `aarch64`, `x86_64`
 
-          url: '#/components/schemas/ImageDownloadSerializer/properties/url'
-              "$.components.schemas.ImageDownloadSerializer.properties.url"
+          cow_format: When True, image cannot be deleted unless all volumes, created from it, are
+              deleted.
 
-          architecture: '#/components/schemas/ImageDownloadSerializer/properties/architecture'
-              "$.components.schemas.ImageDownloadSerializer.properties.architecture"
+          hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
-          cow_format: '#/components/schemas/ImageDownloadSerializer/properties/cow_format'
-              "$.components.schemas.ImageDownloadSerializer.properties.cow_format"
+          hw_machine_type: A virtual chipset type.
 
-          hw_firmware_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_firmware_type/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.hw_firmware_type.anyOf[0]"
+          is_baremetal: Set to true if the image will be used by bare metal servers. Defaults to false.
 
-          hw_machine_type: '#/components/schemas/ImageDownloadSerializer/properties/hw_machine_type/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.hw_machine_type.anyOf[0]"
+          os_distro: OS Distribution, i.e. Debian, CentOS, Ubuntu, CoreOS etc.
 
-          is_baremetal: '#/components/schemas/ImageDownloadSerializer/properties/is_baremetal'
-              "$.components.schemas.ImageDownloadSerializer.properties.is_baremetal"
+          os_type: The operating system installed on the image.
 
-          os_distro: '#/components/schemas/ImageDownloadSerializer/properties/os_distro/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.os_distro.anyOf[0]"
+          os_version: OS version, i.e. 22.04 (for Ubuntu) or 9.4 for Debian
 
-          os_type: '#/components/schemas/ImageDownloadSerializer/properties/os_type'
-              "$.components.schemas.ImageDownloadSerializer.properties.os_type"
+          ssh_key: Whether the image supports SSH key or not
 
-          os_version: '#/components/schemas/ImageDownloadSerializer/properties/os_version/anyOf/0'
-              "$.components.schemas.ImageDownloadSerializer.properties.os_version.anyOf[0]"
-
-          ssh_key: '#/components/schemas/ImageDownloadSerializer/properties/ssh_key'
-              "$.components.schemas.ImageDownloadSerializer.properties.ssh_key"
-
-          tags: '#/components/schemas/ImageDownloadSerializer/properties/tags'
-              "$.components.schemas.ImageDownloadSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 

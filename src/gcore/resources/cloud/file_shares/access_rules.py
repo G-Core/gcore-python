@@ -63,20 +63,15 @@ class AccessRulesResource(SyncAPIResource):
         Create file share access rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].post.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/post/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].post.parameters[2].schema"
+          file_share_id: File Share ID
 
-          access_mode: '#/components/schemas/CreateAccessRuleSerializer/properties/access_mode'
-              "$.components.schemas.CreateAccessRuleSerializer.properties.access_mode"
+          access_mode: Access mode
 
-          ip_address: '#/components/schemas/CreateAccessRuleSerializer/properties/ip_address/anyOf/0'
-              "$.components.schemas.CreateAccessRuleSerializer.properties.ip_address.anyOf[0]"
+          ip_address: Source IP or network
 
           extra_headers: Send extra headers
 
@@ -124,14 +119,11 @@ class AccessRulesResource(SyncAPIResource):
         Get file share access rules
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/get/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/get/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].get.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/get/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].get.parameters[2].schema"
+          file_share_id: File Share ID
 
           extra_headers: Send extra headers
 
@@ -173,17 +165,13 @@ class AccessRulesResource(SyncAPIResource):
         Delete file share access rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[2].schema"
+          file_share_id: File Share ID
 
-          access_rule_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[3].schema"
+          access_rule_id: Access Rule ID
 
           extra_headers: Send extra headers
 
@@ -250,20 +238,15 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Create file share access rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/post/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/post/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].post.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/post/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].post.parameters[2].schema"
+          file_share_id: File Share ID
 
-          access_mode: '#/components/schemas/CreateAccessRuleSerializer/properties/access_mode'
-              "$.components.schemas.CreateAccessRuleSerializer.properties.access_mode"
+          access_mode: Access mode
 
-          ip_address: '#/components/schemas/CreateAccessRuleSerializer/properties/ip_address/anyOf/0'
-              "$.components.schemas.CreateAccessRuleSerializer.properties.ip_address.anyOf[0]"
+          ip_address: Source IP or network
 
           extra_headers: Send extra headers
 
@@ -311,14 +294,11 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Get file share access rules
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/get/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/get/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].get.parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule/get/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule'].get.parameters[2].schema"
+          file_share_id: File Share ID
 
           extra_headers: Send extra headers
 
@@ -360,17 +340,13 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Delete file share access rule
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          file_share_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[2].schema"
+          file_share_id: File Share ID
 
-          access_rule_id: '#/paths/%2Fcloud%2Fv1%2Ffile_shares%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bfile_share_id%7D%2Faccess_rule%2F%7Baccess_rule_id%7D/delete/parameters/3/schema'
-              "$.paths['/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}']['delete'].parameters[3].schema"
+          access_rule_id: Access Rule ID
 
           extra_headers: Send extra headers
 

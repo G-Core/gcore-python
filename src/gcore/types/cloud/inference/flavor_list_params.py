@@ -9,13 +9,10 @@ __all__ = ["FlavorListParams"]
 
 class FlavorListParams(TypedDict, total=False):
     limit: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors/get/parameters/0'
-    "$.paths['/cloud/v3/inference/flavors'].get.parameters[0]"
-    """
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """
-    '#/paths/%2Fcloud%2Fv3%2Finference%2Fflavors/get/parameters/1'
-    "$.paths['/cloud/v3/inference/flavors'].get.parameters[1]"
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
     """

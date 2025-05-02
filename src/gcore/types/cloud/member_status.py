@@ -9,31 +9,16 @@ __all__ = ["MemberStatus"]
 
 class MemberStatus(BaseModel):
     id: str
-    """
-    '#/components/schemas/MemberStatusSerializer/properties/id'
-    "$.components.schemas.MemberStatusSerializer.properties.id"
-    """
+    """UUID of the entity"""
 
     address: str
-    """
-    '#/components/schemas/MemberStatusSerializer/properties/address'
-    "$.components.schemas.MemberStatusSerializer.properties.address"
-    """
+    """Address of the member (server)"""
 
     operating_status: LoadBalancerOperatingStatus
-    """
-    '#/components/schemas/MemberStatusSerializer/properties/operating_status'
-    "$.components.schemas.MemberStatusSerializer.properties.operating_status"
-    """
+    """Operating status of the entity"""
 
     protocol_port: int
-    """
-    '#/components/schemas/MemberStatusSerializer/properties/protocol_port'
-    "$.components.schemas.MemberStatusSerializer.properties.protocol_port"
-    """
+    """Port of the member (server)"""
 
     provisioning_status: ProvisioningStatus
-    """
-    '#/components/schemas/MemberStatusSerializer/properties/provisioning_status'
-    "$.components.schemas.MemberStatusSerializer.properties.provisioning_status"
-    """
+    """Provisioning status of the entity"""

@@ -66,20 +66,15 @@ class RegistryCredentialsResource(SyncAPIResource):
         Create inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].post.parameters[0].schema"
+          project_id: Project ID
 
-          name: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/name'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.name"
+          name: Registry credential name.
 
-          password: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/password'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.password"
+          password: Registry password.
 
-          registry_url: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/registry_url'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.registry_url"
+          registry_url: Registry URL.
 
-          username: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/username'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.username"
+          username: Registry username.
 
           extra_headers: Send extra headers
 
@@ -125,14 +120,12 @@ class RegistryCredentialsResource(SyncAPIResource):
         List inference registry credentials
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/1'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[1]"
+          limit: Optional. Limit the number of returned items
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/2'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[2]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -179,11 +172,9 @@ class RegistryCredentialsResource(SyncAPIResource):
         Delete inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          credential_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}']['delete'].parameters[1].schema"
+          credential_name: Registry credential name.
 
           extra_headers: Send extra headers
 
@@ -222,11 +213,9 @@ class RegistryCredentialsResource(SyncAPIResource):
         Get inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          credential_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].get.parameters[1].schema"
+          credential_name: Registry credential name.
 
           extra_headers: Send extra headers
 
@@ -267,20 +256,15 @@ class RegistryCredentialsResource(SyncAPIResource):
         Update inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].put.parameters[0].schema"
+          project_id: Project ID
 
-          credential_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].put.parameters[1].schema"
+          credential_name: Registry credential name.
 
-          password: '#/components/schemas/InferenceRegistryCredentialInUpdateSerializer/properties/password'
-              "$.components.schemas.InferenceRegistryCredentialInUpdateSerializer.properties.password"
+          password: Registry password.
 
-          registry_url: '#/components/schemas/InferenceRegistryCredentialInUpdateSerializer/properties/registry_url'
-              "$.components.schemas.InferenceRegistryCredentialInUpdateSerializer.properties.registry_url"
+          registry_url: Registry URL.
 
-          username: '#/components/schemas/InferenceRegistryCredentialInUpdateSerializer/properties/username'
-              "$.components.schemas.InferenceRegistryCredentialInUpdateSerializer.properties.username"
+          username: Registry username.
 
           extra_headers: Send extra headers
 
@@ -351,20 +335,15 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         Create inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/post/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].post.parameters[0].schema"
+          project_id: Project ID
 
-          name: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/name'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.name"
+          name: Registry credential name.
 
-          password: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/password'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.password"
+          password: Registry password.
 
-          registry_url: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/registry_url'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.registry_url"
+          registry_url: Registry URL.
 
-          username: '#/components/schemas/InferenceRegistryCredentialInSerializer/properties/username'
-              "$.components.schemas.InferenceRegistryCredentialInSerializer.properties.username"
+          username: Registry username.
 
           extra_headers: Send extra headers
 
@@ -410,14 +389,12 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         List inference registry credentials
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[0].schema"
+          project_id: Project ID
 
-          limit: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/1'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[1]"
+          limit: Optional. Limit the number of returned items
 
-          offset: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials/get/parameters/2'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials'].get.parameters[2]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -464,11 +441,9 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         Delete inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          credential_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}']['delete'].parameters[1].schema"
+          credential_name: Registry credential name.
 
           extra_headers: Send extra headers
 
@@ -507,11 +482,9 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         Get inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          credential_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].get.parameters[1].schema"
+          credential_name: Registry credential name.
 
           extra_headers: Send extra headers
 
@@ -552,20 +525,15 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         Update inference registry credential
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/put/parameters/0/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].put.parameters[0].schema"
+          project_id: Project ID
 
-          credential_name: '#/paths/%2Fcloud%2Fv3%2Finference%2F%7Bproject_id%7D%2Fregistry_credentials%2F%7Bcredential_name%7D/put/parameters/1/schema'
-              "$.paths['/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}'].put.parameters[1].schema"
+          credential_name: Registry credential name.
 
-          password: '#/components/schemas/InferenceRegistryCredentialInUpdateSerializer/properties/password'
-              "$.components.schemas.InferenceRegistryCredentialInUpdateSerializer.properties.password"
+          password: Registry password.
 
-          registry_url: '#/components/schemas/InferenceRegistryCredentialInUpdateSerializer/properties/registry_url'
-              "$.components.schemas.InferenceRegistryCredentialInUpdateSerializer.properties.registry_url"
+          registry_url: Registry URL.
 
-          username: '#/components/schemas/InferenceRegistryCredentialInUpdateSerializer/properties/username'
-              "$.components.schemas.InferenceRegistryCredentialInUpdateSerializer.properties.username"
+          username: Registry username.
 
           extra_headers: Send extra headers
 

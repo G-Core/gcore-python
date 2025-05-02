@@ -14,61 +14,36 @@ __all__ = ["HealthMonitorCreateParams"]
 
 class HealthMonitorCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/0/schema'
-    "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Flbpools%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bpool_id%7D%2Fhealthmonitor/post/parameters/1/schema'
-    "$.paths['/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor'].post.parameters[1].schema"
-    """
 
     delay: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/delay'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.delay"
-    """
+    """The time, in seconds, between sending probes to members"""
 
     max_retries: Required[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries"
-    """
+    """Number of successes before the member is switched to ONLINE state"""
 
     api_timeout: Required[Annotated[int, PropertyInfo(alias="timeout")]]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/timeout'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.timeout"
-    """
+    """The maximum time to connect. Must be less than the delay value"""
 
     type: Required[HealthMonitorType]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/type'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.type"
-    """
+    """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/expected_codes/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.expected_codes.anyOf[0]"
-    """
+    """Can only be used together with `HTTP` or `HTTPS` health monitor type."""
 
     http_method: Optional[HTTPMethod]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/http_method/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.http_method.anyOf[0]"
+    """HTTP method.
+
+    Can only be used together with `HTTP` or `HTTPS` health monitor type.
     """
 
     max_retries_down: Optional[int]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/max_retries_down/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.max_retries_down.anyOf[0]"
-    """
+    """Number of failures before the member is switched to ERROR state."""
 
     url_path: Optional[str]
-    """
-    '#/components/schemas/CreateLbHealthMonitorSerializer/properties/url_path/anyOf/0'
-    "$.components.schemas.CreateLbHealthMonitorSerializer.properties.url_path.anyOf[0]"
+    """URL Path.
+
+    Defaults to '/'. Can only be used together with `HTTP` or `HTTPS` health monitor
+    type.
     """

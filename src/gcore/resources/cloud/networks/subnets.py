@@ -76,44 +76,41 @@ class SubnetsResource(SyncAPIResource):
         Create subnet
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          cidr: '#/components/schemas/CreateSubnetSerializer/properties/cidr'
-              "$.components.schemas.CreateSubnetSerializer.properties.cidr"
+          cidr: CIDR
 
-          name: '#/components/schemas/CreateSubnetSerializer/properties/name'
-              "$.components.schemas.CreateSubnetSerializer.properties.name"
+          name: Subnet name
 
-          network_id: '#/components/schemas/CreateSubnetSerializer/properties/network_id'
-              "$.components.schemas.CreateSubnetSerializer.properties.network_id"
+          network_id: Network ID
 
-          connect_to_network_router: '#/components/schemas/CreateSubnetSerializer/properties/connect_to_network_router'
-              "$.components.schemas.CreateSubnetSerializer.properties.connect_to_network_router"
+          connect_to_network_router: True if the network's router should get a gateway in this subnet. Must be
+              explicitly 'false' when gateway_ip is null.
 
-          dns_nameservers: '#/components/schemas/CreateSubnetSerializer/properties/dns_nameservers/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.dns_nameservers.anyOf[0]"
+          dns_nameservers: List IP addresses of DNS servers to advertise via DHCP.
 
-          enable_dhcp: '#/components/schemas/CreateSubnetSerializer/properties/enable_dhcp'
-              "$.components.schemas.CreateSubnetSerializer.properties.enable_dhcp"
+          enable_dhcp: True if DHCP should be enabled
 
-          gateway_ip: '#/components/schemas/CreateSubnetSerializer/properties/gateway_ip/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.gateway_ip.anyOf[0]"
+          gateway_ip: Default GW IPv4 address to advertise in DHCP routes in this subnet. Omit this
+              field to let the cloud backend allocate it automatically. Set to null if no
+              gateway must be advertised by this subnet's DHCP (useful when attaching
+              instances to multiple subnets in order to prevent default route conflicts).
 
-          host_routes: '#/components/schemas/CreateSubnetSerializer/properties/host_routes/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.host_routes.anyOf[0]"
+          host_routes: List of custom static routes to advertise via DHCP.
 
-          ip_version: '#/components/schemas/CreateSubnetSerializer/properties/ip_version'
-              "$.components.schemas.CreateSubnetSerializer.properties.ip_version"
+          ip_version: IP version
 
-          router_id_to_connect: '#/components/schemas/CreateSubnetSerializer/properties/router_id_to_connect/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.router_id_to_connect.anyOf[0]"
+          router_id_to_connect: ID of the router to connect to. Requires `connect_to_network_router` set to
+              true. If not specified, attempts to find a router created during network
+              creation.
 
-          tags: '#/components/schemas/CreateSubnetSerializer/properties/tags'
-              "$.components.schemas.CreateSubnetSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -173,29 +170,24 @@ class SubnetsResource(SyncAPIResource):
         Change subnet properties
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          subnet_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[2].schema"
+          subnet_id: Subnet ID
 
-          dns_nameservers: '#/components/schemas/PatchSubnetSerializer/properties/dns_nameservers/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.dns_nameservers.anyOf[0]"
+          dns_nameservers: List IP addresses of DNS servers to advertise via DHCP.
 
-          enable_dhcp: '#/components/schemas/PatchSubnetSerializer/properties/enable_dhcp/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.enable_dhcp.anyOf[0]"
+          enable_dhcp: True if DHCP should be enabled
 
-          gateway_ip: '#/components/schemas/PatchSubnetSerializer/properties/gateway_ip/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.gateway_ip.anyOf[0]"
+          gateway_ip: Default GW IPv4 address to advertise in DHCP routes in this subnet. Omit this
+              field to let the cloud backend allocate it automatically. Set to null if no
+              gateway must be advertised by this subnet's DHCP (useful when attaching
+              instances to multiple subnets in order to prevent default route conflicts).
 
-          host_routes: '#/components/schemas/PatchSubnetSerializer/properties/host_routes/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.host_routes.anyOf[0]"
+          host_routes: List of custom static routes to advertise via DHCP.
 
-          name: '#/components/schemas/PatchSubnetSerializer/properties/name/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.name.anyOf[0]"
+          name: Name
 
           extra_headers: Send extra headers
 
@@ -265,29 +257,26 @@ class SubnetsResource(SyncAPIResource):
         List subnets
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[2]"
+          limit: Optional. Limit the number of returned items
 
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[3]"
+          network_id: Only list subnets of this network
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[4]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[5]"
+          order_by: Ordering subnets list result by `name`, `created_at`, `updated_at`,
+              `available_ips`, `total_ips`, and `cidr` (default) fields of the subnet and
+              directions (`name.asc`).
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[6]"
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[7]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -341,14 +330,11 @@ class SubnetsResource(SyncAPIResource):
         Delete subnet
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          subnet_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}']['delete'].parameters[2].schema"
+          subnet_id: Subnet ID
 
           extra_headers: Send extra headers
 
@@ -390,14 +376,11 @@ class SubnetsResource(SyncAPIResource):
         Get subnet
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          subnet_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].get.parameters[2].schema"
+          subnet_id: Subnet ID
 
           extra_headers: Send extra headers
 
@@ -469,44 +452,41 @@ class AsyncSubnetsResource(AsyncAPIResource):
         Create subnet
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].post.parameters[1].schema"
+          region_id: Region ID
 
-          cidr: '#/components/schemas/CreateSubnetSerializer/properties/cidr'
-              "$.components.schemas.CreateSubnetSerializer.properties.cidr"
+          cidr: CIDR
 
-          name: '#/components/schemas/CreateSubnetSerializer/properties/name'
-              "$.components.schemas.CreateSubnetSerializer.properties.name"
+          name: Subnet name
 
-          network_id: '#/components/schemas/CreateSubnetSerializer/properties/network_id'
-              "$.components.schemas.CreateSubnetSerializer.properties.network_id"
+          network_id: Network ID
 
-          connect_to_network_router: '#/components/schemas/CreateSubnetSerializer/properties/connect_to_network_router'
-              "$.components.schemas.CreateSubnetSerializer.properties.connect_to_network_router"
+          connect_to_network_router: True if the network's router should get a gateway in this subnet. Must be
+              explicitly 'false' when gateway_ip is null.
 
-          dns_nameservers: '#/components/schemas/CreateSubnetSerializer/properties/dns_nameservers/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.dns_nameservers.anyOf[0]"
+          dns_nameservers: List IP addresses of DNS servers to advertise via DHCP.
 
-          enable_dhcp: '#/components/schemas/CreateSubnetSerializer/properties/enable_dhcp'
-              "$.components.schemas.CreateSubnetSerializer.properties.enable_dhcp"
+          enable_dhcp: True if DHCP should be enabled
 
-          gateway_ip: '#/components/schemas/CreateSubnetSerializer/properties/gateway_ip/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.gateway_ip.anyOf[0]"
+          gateway_ip: Default GW IPv4 address to advertise in DHCP routes in this subnet. Omit this
+              field to let the cloud backend allocate it automatically. Set to null if no
+              gateway must be advertised by this subnet's DHCP (useful when attaching
+              instances to multiple subnets in order to prevent default route conflicts).
 
-          host_routes: '#/components/schemas/CreateSubnetSerializer/properties/host_routes/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.host_routes.anyOf[0]"
+          host_routes: List of custom static routes to advertise via DHCP.
 
-          ip_version: '#/components/schemas/CreateSubnetSerializer/properties/ip_version'
-              "$.components.schemas.CreateSubnetSerializer.properties.ip_version"
+          ip_version: IP version
 
-          router_id_to_connect: '#/components/schemas/CreateSubnetSerializer/properties/router_id_to_connect/anyOf/0'
-              "$.components.schemas.CreateSubnetSerializer.properties.router_id_to_connect.anyOf[0]"
+          router_id_to_connect: ID of the router to connect to. Requires `connect_to_network_router` set to
+              true. If not specified, attempts to find a router created during network
+              creation.
 
-          tags: '#/components/schemas/CreateSubnetSerializer/properties/tags'
-              "$.components.schemas.CreateSubnetSerializer.properties.tags"
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Some tags are read-only and cannot be
+              modified by the user. Tags are also integrated with cost reports, allowing cost
+              data to be filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -566,29 +546,24 @@ class AsyncSubnetsResource(AsyncAPIResource):
         Change subnet properties
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[1].schema"
+          region_id: Region ID
 
-          subnet_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/patch/parameters/2/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].patch.parameters[2].schema"
+          subnet_id: Subnet ID
 
-          dns_nameservers: '#/components/schemas/PatchSubnetSerializer/properties/dns_nameservers/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.dns_nameservers.anyOf[0]"
+          dns_nameservers: List IP addresses of DNS servers to advertise via DHCP.
 
-          enable_dhcp: '#/components/schemas/PatchSubnetSerializer/properties/enable_dhcp/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.enable_dhcp.anyOf[0]"
+          enable_dhcp: True if DHCP should be enabled
 
-          gateway_ip: '#/components/schemas/PatchSubnetSerializer/properties/gateway_ip/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.gateway_ip.anyOf[0]"
+          gateway_ip: Default GW IPv4 address to advertise in DHCP routes in this subnet. Omit this
+              field to let the cloud backend allocate it automatically. Set to null if no
+              gateway must be advertised by this subnet's DHCP (useful when attaching
+              instances to multiple subnets in order to prevent default route conflicts).
 
-          host_routes: '#/components/schemas/PatchSubnetSerializer/properties/host_routes/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.host_routes.anyOf[0]"
+          host_routes: List of custom static routes to advertise via DHCP.
 
-          name: '#/components/schemas/PatchSubnetSerializer/properties/name/anyOf/0'
-              "$.components.schemas.PatchSubnetSerializer.properties.name.anyOf[0]"
+          name: Name
 
           extra_headers: Send extra headers
 
@@ -658,29 +633,26 @@ class AsyncSubnetsResource(AsyncAPIResource):
         List subnets
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[2]"
+          limit: Optional. Limit the number of returned items
 
-          network_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[3]"
+          network_id: Only list subnets of this network
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[4]"
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          order_by: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[5]"
+          order_by: Ordering subnets list result by `name`, `created_at`, `updated_at`,
+              `available_ips`, `total_ips`, and `cidr` (default) fields of the subnet and
+              directions (`name.asc`).
 
-          tag_key: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[6]"
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
 
-          tag_key_value: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}'].get.parameters[7]"
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -734,14 +706,11 @@ class AsyncSubnetsResource(AsyncAPIResource):
         Delete subnet
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}']['delete'].parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}']['delete'].parameters[1].schema"
+          region_id: Region ID
 
-          subnet_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}']['delete'].parameters[2].schema"
+          subnet_id: Subnet ID
 
           extra_headers: Send extra headers
 
@@ -783,14 +752,11 @@ class AsyncSubnetsResource(AsyncAPIResource):
         Get subnet
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].get.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].get.parameters[1].schema"
+          region_id: Region ID
 
-          subnet_id: '#/paths/%2Fcloud%2Fv1%2Fsubnets%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bsubnet_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}'].get.parameters[2].schema"
+          subnet_id: Subnet ID
 
           extra_headers: Send extra headers
 

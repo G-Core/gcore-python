@@ -17,74 +17,38 @@ __all__ = [
 
 class RouterCreateParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Frouters%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-    "$.paths['/cloud/v1/routers/{project_id}/{region_id}'].post.parameters[1].schema"
-    """
 
     name: Required[str]
-    """
-    '#/components/schemas/CreateRouterSerializer/properties/name'
-    "$.components.schemas.CreateRouterSerializer.properties.name"
-    """
+    """name of router"""
 
     external_gateway_info: Optional[ExternalGatewayInfo]
-    """
-    '#/components/schemas/CreateRouterSerializer/properties/external_gateway_info'
-    "$.components.schemas.CreateRouterSerializer.properties.external_gateway_info"
-    """
 
     interfaces: Optional[Iterable[Interface]]
-    """
-    '#/components/schemas/CreateRouterSerializer/properties/interfaces/anyOf/0'
-    "$.components.schemas.CreateRouterSerializer.properties.interfaces.anyOf[0]"
-    """
+    """List of interfaces to attach to router immediately after creation."""
 
     routes: Optional[Iterable[Route]]
-    """
-    '#/components/schemas/CreateRouterSerializer/properties/routes/anyOf/0'
-    "$.components.schemas.CreateRouterSerializer.properties.routes.anyOf[0]"
-    """
+    """List of custom routes."""
 
 
 class ExternalGatewayInfoRouterExternalManualGwSerializer(TypedDict, total=False):
     network_id: Required[str]
-    """
-    '#/components/schemas/RouterExternalManualGwSerializer/properties/network_id'
-    "$.components.schemas.RouterExternalManualGwSerializer.properties.network_id"
-    """
+    """id of the external network."""
 
     enable_snat: bool
-    """
-    '#/components/schemas/RouterExternalManualGwSerializer/properties/enable_snat'
-    "$.components.schemas.RouterExternalManualGwSerializer.properties.enable_snat"
-    """
+    """Is SNAT enabled. Defaults to true."""
 
     type: Literal["manual"]
-    """
-    '#/components/schemas/RouterExternalManualGwSerializer/properties/type'
-    "$.components.schemas.RouterExternalManualGwSerializer.properties.type"
-    """
+    """must be 'manual'."""
 
 
 class ExternalGatewayInfoRouterExternalDefaultGwSerializer(TypedDict, total=False):
     enable_snat: bool
-    """
-    '#/components/schemas/RouterExternalDefaultGwSerializer/properties/enable_snat'
-    "$.components.schemas.RouterExternalDefaultGwSerializer.properties.enable_snat"
-    """
+    """Is SNAT enabled. Defaults to true."""
 
     type: Literal["default"]
-    """
-    '#/components/schemas/RouterExternalDefaultGwSerializer/properties/type'
-    "$.components.schemas.RouterExternalDefaultGwSerializer.properties.type"
-    """
+    """must be 'default'."""
 
 
 ExternalGatewayInfo: TypeAlias = Union[
@@ -94,27 +58,18 @@ ExternalGatewayInfo: TypeAlias = Union[
 
 class Interface(TypedDict, total=False):
     subnet_id: Required[str]
-    """
-    '#/components/schemas/CreateRouterInterfaceSubnetSerializer/properties/subnet_id'
-    "$.components.schemas.CreateRouterInterfaceSubnetSerializer.properties.subnet_id"
-    """
+    """id of the subnet to attach to."""
 
     type: Literal["subnet"]
-    """
-    '#/components/schemas/CreateRouterInterfaceSubnetSerializer/properties/type'
-    "$.components.schemas.CreateRouterInterfaceSubnetSerializer.properties.type"
-    """
+    """must be 'subnet'."""
 
 
 class Route(TypedDict, total=False):
     destination: Required[str]
-    """
-    '#/components/schemas/RouteInSerializer/properties/destination'
-    "$.components.schemas.RouteInSerializer.properties.destination"
-    """
+    """CIDR of destination IPv4 subnet."""
 
     nexthop: Required[str]
     """
-    '#/components/schemas/RouteInSerializer/properties/nexthop'
-    "$.components.schemas.RouteInSerializer.properties.nexthop"
+    IPv4 address to forward traffic to if it's destination IP matches 'destination'
+    CIDR.
     """

@@ -19,196 +19,106 @@ Address: TypeAlias = Union[BaremetalFloatingAddress, BaremetalFixedAddress]
 
 class FixedIPAssignment(BaseModel):
     external: bool
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/external'
-    "$.components.schemas.IpAssignmentsSerializer.properties.external"
-    """
+    """Is network external"""
 
     ip_address: str
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/ip_address'
-    "$.components.schemas.IpAssignmentsSerializer.properties.ip_address"
-    """
+    """Ip address"""
 
     subnet_id: str
-    """
-    '#/components/schemas/IpAssignmentsSerializer/properties/subnet_id'
-    "$.components.schemas.IpAssignmentsSerializer.properties.subnet_id"
-    """
+    """Interface subnet id"""
 
 
 class FlavorHardwareDescription(BaseModel):
     cpu: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/cpu'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.cpu"
-    """
+    """Human-readable CPU description"""
 
     disk: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/disk'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.disk"
-    """
+    """Human-readable disk description"""
 
     license: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/license'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.license"
-    """
+    """If the flavor is licensed, this field contains the license type"""
 
     network: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/network'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.network"
-    """
+    """Human-readable NIC description"""
 
     ram: str
-    """
-    '#/components/schemas/BareMetalFlavorHardwareDescriptionSerializer/properties/ram'
-    "$.components.schemas.BareMetalFlavorHardwareDescriptionSerializer.properties.ram"
-    """
+    """Human-readable RAM description"""
 
 
 class Flavor(BaseModel):
     architecture: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/architecture'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.architecture"
-    """
+    """CPU architecture"""
 
     flavor_id: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/flavor_id'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.flavor_id"
-    """
+    """Flavor ID is the same as name"""
 
     flavor_name: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/flavor_name'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.flavor_name"
-    """
+    """Flavor name"""
 
     hardware_description: FlavorHardwareDescription
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/hardware_description'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.hardware_description"
-    """
+    """Additional hardware description"""
 
     os_type: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/os_type'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.os_type"
-    """
+    """Operating system"""
 
     ram: int
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/ram'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.ram"
-    """
+    """RAM size in MiB"""
 
     resource_class: str
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/resource_class'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.resource_class"
-    """
+    """Flavor resource class for mapping to hardware capacity"""
 
     vcpus: int
-    """
-    '#/components/schemas/BareMetalFlavorSerializer/properties/vcpus'
-    "$.components.schemas.BareMetalFlavorSerializer.properties.vcpus"
-    """
+    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
 
 
 class BaremetalServer(BaseModel):
     addresses: Dict[str, List[Address]]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/addresses'
-    "$.components.schemas.BareMetalServerSerializer.properties.addresses"
-    """
+    """Map of network_name to list of addresses in that network"""
 
     blackhole_ports: List[BlackholePort]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/blackhole_ports'
-    "$.components.schemas.BareMetalServerSerializer.properties.blackhole_ports"
-    """
+    """IP addresses of the instances that are blackholed by DDoS mitigation system"""
 
     creator_task_id: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/creator_task_id/anyOf/0'
-    "$.components.schemas.BareMetalServerSerializer.properties.creator_task_id.anyOf[0]"
-    """
+    """Task that created this entity"""
 
     ddos_profile: Optional[DDOSProfile] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/ddos_profile/anyOf/0'
-    "$.components.schemas.BareMetalServerSerializer.properties.ddos_profile.anyOf[0]"
+    """Bare metal advanced DDoS protection profile.
+
+    It is always `null` if query parameter `with_ddos=true` is not set.
     """
 
     fixed_ip_assignments: List[FixedIPAssignment]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/fixed_ip_assignments'
-    "$.components.schemas.BareMetalServerSerializer.properties.fixed_ip_assignments"
-    """
+    """Fixed IP assigned to instance"""
 
     flavor: Flavor
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/flavor'
-    "$.components.schemas.BareMetalServerSerializer.properties.flavor"
-    """
+    """Flavor"""
 
     instance_created: datetime
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/instance_created'
-    "$.components.schemas.BareMetalServerSerializer.properties.instance_created"
-    """
+    """Datetime when bare metal server was created"""
 
     instance_description: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/instance_description/anyOf/0'
-    "$.components.schemas.BareMetalServerSerializer.properties.instance_description.anyOf[0]"
-    """
+    """Bare metal server description"""
 
     instance_id: str
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/instance_id'
-    "$.components.schemas.BareMetalServerSerializer.properties.instance_id"
-    """
+    """Bare metal server ID"""
 
     instance_isolation: Optional[InstanceIsolation] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/instance_isolation/anyOf/0'
-    "$.components.schemas.BareMetalServerSerializer.properties.instance_isolation.anyOf[0]"
-    """
+    """Instance isolation information"""
 
     instance_name: str
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/instance_name'
-    "$.components.schemas.BareMetalServerSerializer.properties.instance_name"
-    """
+    """Bare metal server name"""
 
     project_id: int
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/project_id'
-    "$.components.schemas.BareMetalServerSerializer.properties.project_id"
-    """
+    """Project ID"""
 
     region: str
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/region'
-    "$.components.schemas.BareMetalServerSerializer.properties.region"
-    """
+    """Region name"""
 
     region_id: int
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/region_id'
-    "$.components.schemas.BareMetalServerSerializer.properties.region_id"
-    """
+    """Region ID"""
 
     ssh_key_name: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/ssh_key_name/anyOf/0'
-    "$.components.schemas.BareMetalServerSerializer.properties.ssh_key_name.anyOf[0]"
-    """
+    """SSH key assigned to bare metal server"""
 
     status: Literal[
         "ACTIVE",
@@ -232,28 +142,27 @@ class BaremetalServer(BaseModel):
         "UNKNOWN",
         "VERIFY_RESIZE",
     ]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/status'
-    "$.components.schemas.BareMetalServerSerializer.properties.status"
-    """
+    """Bare metal server status"""
 
     tags: List[Tag]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/tags'
-    "$.components.schemas.BareMetalServerSerializer.properties.tags"
+    """List of key-value tags associated with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
     """
 
     task_id: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/task_id/anyOf/0'
-    "$.components.schemas.BareMetalServerSerializer.properties.task_id.anyOf[0]"
+    """The UUID of the active task that currently holds a lock on the resource.
+
+    This lock prevents concurrent modifications to ensure consistency. If `null`,
+    the resource is not locked.
     """
 
     task_state: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/task_state/anyOf/0'
-    "$.components.schemas.BareMetalServerSerializer.properties.task_state.anyOf[0]"
-    """
+    """Task state"""
 
     vm_state: Literal[
         "active",
@@ -269,7 +178,4 @@ class BaremetalServer(BaseModel):
         "stopped",
         "suspended",
     ]
-    """
-    '#/components/schemas/BareMetalServerSerializer/properties/vm_state'
-    "$.components.schemas.BareMetalServerSerializer.properties.vm_state"
-    """
+    """Bare metal server state"""

@@ -62,20 +62,15 @@ class MetricsResource(SyncAPIResource):
         Get instance metrics, including cpu, memory, network and disk metrics
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fmetrics/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fmetrics/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics'].post.parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fmetrics/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics'].post.parameters[2].schema"
+          instance_id: Instance ID
 
-          time_interval: '#/components/schemas/InstanceMetricsRequestSerializer/properties/time_interval'
-              "$.components.schemas.InstanceMetricsRequestSerializer.properties.time_interval"
+          time_interval: Time interval.
 
-          time_unit: '#/components/schemas/InstanceMetricsRequestSerializer/properties/time_unit'
-              "$.components.schemas.InstanceMetricsRequestSerializer.properties.time_unit"
+          time_unit: Time interval unit.
 
           extra_headers: Send extra headers
 
@@ -146,20 +141,15 @@ class AsyncMetricsResource(AsyncAPIResource):
         Get instance metrics, including cpu, memory, network and disk metrics
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fmetrics/post/parameters/0/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics'].post.parameters[0].schema"
+          project_id: Project ID
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fmetrics/post/parameters/1/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics'].post.parameters[1].schema"
+          region_id: Region ID
 
-          instance_id: '#/paths/%2Fcloud%2Fv1%2Finstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Binstance_id%7D%2Fmetrics/post/parameters/2/schema'
-              "$.paths['/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics'].post.parameters[2].schema"
+          instance_id: Instance ID
 
-          time_interval: '#/components/schemas/InstanceMetricsRequestSerializer/properties/time_interval'
-              "$.components.schemas.InstanceMetricsRequestSerializer.properties.time_interval"
+          time_interval: Time interval.
 
-          time_unit: '#/components/schemas/InstanceMetricsRequestSerializer/properties/time_unit'
-              "$.components.schemas.InstanceMetricsRequestSerializer.properties.time_unit"
+          time_unit: Time interval unit.
 
           extra_headers: Send extra headers
 

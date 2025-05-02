@@ -9,25 +9,15 @@ __all__ = ["ServerRebuildParams"]
 
 class ServerRebuildParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/0/schema'
-    "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fbminstances%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bserver_id%7D%2Frebuild/post/parameters/1/schema'
-    "$.paths['/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild'].post.parameters[1].schema"
-    """
 
     image_id: str
-    """
-    '#/components/schemas/RebuildBaremetalSchema/properties/image_id'
-    "$.components.schemas.RebuildBaremetalSchema.properties.image_id"
-    """
+    """Image ID"""
 
     user_data: str
-    """
-    '#/components/schemas/RebuildBaremetalSchema/properties/user_data'
-    "$.components.schemas.RebuildBaremetalSchema.properties.user_data"
+    """String in base64 format.
+
+    Must not be passed together with 'username' or 'password'. Examples of the
+    user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """

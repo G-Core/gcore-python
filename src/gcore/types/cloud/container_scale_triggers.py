@@ -12,37 +12,25 @@ __all__ = ["ContainerScaleTriggers"]
 
 class ContainerScaleTriggers(BaseModel):
     cpu: Optional[ContainerScaleTriggerThreshold] = None
-    """
-    '#/components/schemas/ContainerScaleTriggersOutSerializer/properties/cpu/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersOutSerializer.properties.cpu.anyOf[0]"
-    """
+    """CPU trigger configuration"""
 
     gpu_memory: Optional[ContainerScaleTriggerThreshold] = None
-    """
-    '#/components/schemas/ContainerScaleTriggersOutSerializer/properties/gpu_memory/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersOutSerializer.properties.gpu_memory.anyOf[0]"
+    """GPU memory trigger configuration.
+
+    Calculated by DCGM_FI_DEV_MEM_COPY_UTIL metric
     """
 
     gpu_utilization: Optional[ContainerScaleTriggerThreshold] = None
-    """
-    '#/components/schemas/ContainerScaleTriggersOutSerializer/properties/gpu_utilization/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersOutSerializer.properties.gpu_utilization.anyOf[0]"
+    """GPU utilization trigger configuration.
+
+    Calculated by DCGM_FI_DEV_GPU_UTIL metric
     """
 
     http: Optional[ContainerScaleTriggerRate] = None
-    """
-    '#/components/schemas/ContainerScaleTriggersOutSerializer/properties/http/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersOutSerializer.properties.http.anyOf[0]"
-    """
+    """HTTP trigger configuration"""
 
     memory: Optional[ContainerScaleTriggerThreshold] = None
-    """
-    '#/components/schemas/ContainerScaleTriggersOutSerializer/properties/memory/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersOutSerializer.properties.memory.anyOf[0]"
-    """
+    """Memory trigger configuration"""
 
     sqs: Optional[ContainerScaleTriggerSqs] = None
-    """
-    '#/components/schemas/ContainerScaleTriggersOutSerializer/properties/sqs/anyOf/0'
-    "$.components.schemas.ContainerScaleTriggersOutSerializer.properties.sqs.anyOf[0]"
-    """
+    """SQS trigger configuration"""

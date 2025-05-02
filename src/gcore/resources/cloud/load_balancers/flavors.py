@@ -61,14 +61,7 @@ class FlavorsResource(SyncAPIResource):
         price values as 0. If you get Pricing Error contact the support
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lbflavors/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lbflavors/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Flbflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/lbflavors/{project_id}/{region_id}'].get.parameters[2]"
+          include_prices: Set to true if the response should include flavor prices
 
           extra_headers: Send extra headers
 
@@ -135,14 +128,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         price values as 0. If you get Pricing Error contact the support
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Flbflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/lbflavors/{project_id}/{region_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Flbflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/lbflavors/{project_id}/{region_id}'].get.parameters[1].schema"
-
-          include_prices: '#/paths/%2Fcloud%2Fv1%2Flbflavors%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/lbflavors/{project_id}/{region_id}'].get.parameters[2]"
+          include_prices: Set to true if the response should include flavor prices
 
           extra_headers: Send extra headers
 

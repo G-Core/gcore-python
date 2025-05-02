@@ -10,52 +10,32 @@ __all__ = ["RuleReplaceParams"]
 
 class RuleReplaceParams(TypedDict, total=False):
     project_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/0/schema'
-    "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[0].schema"
-    """
 
     region_id: int
-    """
-    '#/paths/%2Fcloud%2Fv1%2Fsecuritygrouprules%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Brule_id%7D/put/parameters/1/schema'
-    "$.paths['/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}'].put.parameters[1].schema"
-    """
 
     direction: Required[Literal["egress", "ingress"]]
     """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/direction'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.direction"
+    Ingress or egress, which is the direction in which the security group rule is
+    applied
     """
 
     security_group_id: Required[str]
-    """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/security_group_id'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.security_group_id"
-    """
+    """Parent security group of this rule"""
 
     description: str
-    """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/description'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.description"
-    """
+    """Rule description"""
 
     ethertype: Optional[Literal["IPv4", "IPv6"]]
     """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/ethertype/anyOf/0'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.ethertype.anyOf[0]"
+    Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
+    or egress rules.
     """
 
     port_range_max: Optional[int]
-    """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/port_range_max/anyOf/0'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.port_range_max.anyOf[0]"
-    """
+    """The maximum port number in the range that is matched by the security group rule"""
 
     port_range_min: Optional[int]
-    """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/port_range_min/anyOf/0'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.port_range_min.anyOf[0]"
-    """
+    """The minimum port number in the range that is matched by the security group rule"""
 
     protocol: Literal[
         "ah",
@@ -83,19 +63,10 @@ class RuleReplaceParams(TypedDict, total=False):
         "udplite",
         "vrrp",
     ]
-    """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/protocol'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.protocol"
-    """
+    """Protocol"""
 
     remote_group_id: Optional[str]
-    """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/remote_group_id/anyOf/0'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.remote_group_id.anyOf[0]"
-    """
+    """The remote group UUID to associate with this security group rule"""
 
     remote_ip_prefix: Optional[str]
-    """
-    '#/components/schemas/ChangeSecurityGroupRuleSerializer/properties/remote_ip_prefix/anyOf/0'
-    "$.components.schemas.ChangeSecurityGroupRuleSerializer.properties.remote_ip_prefix.anyOf[0]"
-    """
+    """The remote IP prefix that is matched by this security group rule"""

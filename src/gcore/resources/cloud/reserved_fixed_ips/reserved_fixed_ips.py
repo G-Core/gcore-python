@@ -79,20 +79,11 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          type: Must be 'external'
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          type: '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.type"
-
-          ip_family: '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/ip_family/anyOf/0'
-              "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.ip_family.anyOf[0]"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -124,20 +115,11 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          subnet_id: Reserved fixed IP will be allocated in this subnet
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          type: Must be 'subnet'.
 
-          subnet_id: '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/subnet_id'
-              "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.subnet_id"
-
-          type: '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.type"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -170,23 +152,13 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          type: Must be 'any_subnet'.
 
-          network_id: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/network_id'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.network_id"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          type: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.type"
-
-          ip_family: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/ip_family/anyOf/0'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.ip_family.anyOf[0]"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -219,23 +191,13 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          ip_address: Reserved fixed IP will be allocated the given IP address
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          ip_address: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/ip_address'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.ip_address"
+          type: Must be 'ip_address'.
 
-          network_id: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/network_id'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.network_id"
-
-          type: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.type"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -266,17 +228,10 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          port_id: Port ID to make a reserved fixed IP (for example, `vip_port_id` of the Load
+              Balancer entity).
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
-
-          port_id: '#/components/schemas/NewReservedFixedIpSpecificPortSerializer/properties/port_id'
-              "$.components.schemas.NewReservedFixedIpSpecificPortSerializer.properties.port_id"
-
-          type: '#/components/schemas/NewReservedFixedIpSpecificPortSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpSpecificPortSerializer.properties.type"
+          type: Must be 'port'.
 
           extra_headers: Send extra headers
 
@@ -363,38 +318,26 @@ class ReservedFixedIPsResource(SyncAPIResource):
         List reserved fixed IPs
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[0].schema"
+          available_only: Set to true if the response should only list IP addresses that are not attached
+              to any instance
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[1].schema"
+          device_id: Filter IPs by device ID it is attached to
 
-          available_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[2]"
+          external_only: Set to true if the response should only list public IP addresses
 
-          device_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[3]"
+          internal_only: Set to true if the response should only list private IP addresses
 
-          external_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[4]"
+          ip_address: An IPv4 address to filter results by. Regular expression allowed
 
-          internal_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[5]"
+          limit: Limit the number of returned IPs
 
-          ip_address: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[6]"
+          offset: Offset value is used to exclude the first set of records from the result
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[7]"
+          order_by: Ordering reserved fixed IP list result by name, status, updated_at, created_at
+              or fixed_ip_address fields of the reserved fixed IP and directions (status.asc),
+              default is "fixed_ip_address.asc"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[8]"
-
-          order_by: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[9]"
-
-          vip_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[10]"
+          vip_only: Set to true if the response should only list VIPs
 
           extra_headers: Send extra headers
 
@@ -451,15 +394,6 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Delete reserved fixed ip
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}']['delete'].parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -499,15 +433,6 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Get reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].get.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -575,20 +500,11 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          type: Must be 'external'
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          type: '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.type"
-
-          ip_family: '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/ip_family/anyOf/0'
-              "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.ip_family.anyOf[0]"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpExternalSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpExternalSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -620,20 +536,11 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          subnet_id: Reserved fixed IP will be allocated in this subnet
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          type: Must be 'subnet'.
 
-          subnet_id: '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/subnet_id'
-              "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.subnet_id"
-
-          type: '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.type"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpSpecificSubnetSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpSpecificSubnetSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -666,23 +573,13 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          type: Must be 'any_subnet'.
 
-          network_id: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/network_id'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.network_id"
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
-          type: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.type"
-
-          ip_family: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/ip_family/anyOf/0'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.ip_family.anyOf[0]"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpAnySubnetSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpAnySubnetSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -715,23 +612,13 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          ip_address: Reserved fixed IP will be allocated the given IP address
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
+          network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          ip_address: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/ip_address'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.ip_address"
+          type: Must be 'ip_address'.
 
-          network_id: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/network_id'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.network_id"
-
-          type: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.type"
-
-          is_vip: '#/components/schemas/NewReservedFixedIpSpecificIpAddressSerializer/properties/is_vip'
-              "$.components.schemas.NewReservedFixedIpSpecificIpAddressSerializer.properties.is_vip"
+          is_vip: If reserved fixed IP is a VIP
 
           extra_headers: Send extra headers
 
@@ -762,17 +649,10 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[0].schema"
+          port_id: Port ID to make a reserved fixed IP (for example, `vip_port_id` of the Load
+              Balancer entity).
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/post/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].post.parameters[1].schema"
-
-          port_id: '#/components/schemas/NewReservedFixedIpSpecificPortSerializer/properties/port_id'
-              "$.components.schemas.NewReservedFixedIpSpecificPortSerializer.properties.port_id"
-
-          type: '#/components/schemas/NewReservedFixedIpSpecificPortSerializer/properties/type'
-              "$.components.schemas.NewReservedFixedIpSpecificPortSerializer.properties.type"
+          type: Must be 'port'.
 
           extra_headers: Send extra headers
 
@@ -859,38 +739,26 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         List reserved fixed IPs
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[0].schema"
+          available_only: Set to true if the response should only list IP addresses that are not attached
+              to any instance
 
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[1].schema"
+          device_id: Filter IPs by device ID it is attached to
 
-          available_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/2'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[2]"
+          external_only: Set to true if the response should only list public IP addresses
 
-          device_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/3'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[3]"
+          internal_only: Set to true if the response should only list private IP addresses
 
-          external_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/4'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[4]"
+          ip_address: An IPv4 address to filter results by. Regular expression allowed
 
-          internal_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/5'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[5]"
+          limit: Limit the number of returned IPs
 
-          ip_address: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/6'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[6]"
+          offset: Offset value is used to exclude the first set of records from the result
 
-          limit: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/7'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[7]"
+          order_by: Ordering reserved fixed IP list result by name, status, updated_at, created_at
+              or fixed_ip_address fields of the reserved fixed IP and directions (status.asc),
+              default is "fixed_ip_address.asc"
 
-          offset: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/8'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[8]"
-
-          order_by: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/9'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[9]"
-
-          vip_only: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D/get/parameters/10'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}'].get.parameters[10]"
+          vip_only: Set to true if the response should only list VIPs
 
           extra_headers: Send extra headers
 
@@ -947,15 +815,6 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Delete reserved fixed ip
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/delete/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}']['delete'].parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/delete/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}']['delete'].parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/delete/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}']['delete'].parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -995,15 +854,6 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Get reserved fixed IP
 
         Args:
-          project_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/get/parameters/0/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].get.parameters[0].schema"
-
-          region_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/get/parameters/1/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].get.parameters[1].schema"
-
-          port_id: '#/paths/%2Fcloud%2Fv1%2Freserved_fixed_ips%2F%7Bproject_id%7D%2F%7Bregion_id%7D%2F%7Bport_id%7D/get/parameters/2/schema'
-              "$.paths['/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}'].get.parameters[2].schema"
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

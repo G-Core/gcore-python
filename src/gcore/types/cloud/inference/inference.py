@@ -14,109 +14,82 @@ __all__ = ["Inference"]
 
 class Inference(BaseModel):
     address: Optional[str] = None
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/address/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.address.anyOf[0]"
-    """
+    """Address of the inference instance"""
 
     auth_enabled: bool
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/auth_enabled'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.auth_enabled"
+    """`true` if instance uses API key authentication.
+
+    `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
+    for the requests to the instance if enabled.
     """
 
     command: Optional[str] = None
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/command/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.command.anyOf[0]"
-    """
+    """Command to be executed when running a container from an image."""
 
     containers: List[Container]
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/containers'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.containers"
-    """
+    """List of containers for the inference instance"""
 
     created_at: Optional[str] = None
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/created_at/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.created_at.anyOf[0]"
-    """
+    """Inference instance creation date in ISO 8601 format."""
 
     credentials_name: str
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/credentials_name'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.credentials_name"
-    """
+    """Registry credentials name"""
 
     description: str
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/description'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.description"
-    """
+    """Inference instance description."""
 
     envs: Optional[Dict[str, str]] = None
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/envs/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.envs.anyOf[0]"
-    """
+    """Environment variables for the inference instance"""
 
     flavor_name: str
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/flavor_name'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.flavor_name"
-    """
+    """Flavor name for the inference instance"""
 
     image: str
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/image'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.image"
+    """Docker image for the inference instance.
+
+    This field should contain the image name and tag in the format 'name:tag', e.g.,
+    'nginx:latest'. It defaults to Docker Hub as the image registry, but any
+    accessible Docker image URL can be specified.
     """
 
     ingress_opts: Optional[IngressOptsOut] = None
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/ingress_opts/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.ingress_opts.anyOf[0]"
-    """
+    """Ingress options for the inference instance"""
 
     listening_port: int
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/listening_port'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.listening_port"
-    """
+    """Listening port for the inference instance."""
 
     logging: Optional[Logging] = None
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/logging/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.logging.anyOf[0]"
-    """
+    """Logging configuration for the inference instance"""
 
     name: str
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/name'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.name"
-    """
+    """Inference instance name."""
 
     probes: Optional[InferenceProbes] = None
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/probes/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.probes.anyOf[0]"
-    """
+    """Probes configured for all containers of the inference instance."""
 
     project_id: int
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/project_id'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.project_id"
-    """
+    """Project ID. If not provided, your default project ID will be used."""
 
     status: Literal["ACTIVE", "DELETING", "DEPLOYING", "DISABLED", "PARTIALLYDEPLOYED"]
-    """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/status'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.status"
+    """Inference instance status.
+
+    Value can be one of the following:
+
+    - `DEPLOYING` - The instance is being deployed. Containers are not yet created.
+    - `PARTIALLYDEPLOYED` - All containers have been created, but some may not be
+      ready yet. Instances stuck in this state typically indicate either image being
+      pulled, or a failure of some kind. In the latter case, the `error_message`
+      field of the respective container object in the `containers` collection
+      explains the failure reason.
+    - `ACTIVE` - The instance is running and ready to accept requests.
+    - `DISABLED` - The instance is disabled and not accepting any requests.
+    - `DELETING` - The instance is being deleted.
     """
 
     timeout: Optional[int] = None
     """
-    '#/components/schemas/InferenceInstanceOutSerializerV3/properties/timeout/anyOf/0'
-    "$.components.schemas.InferenceInstanceOutSerializerV3.properties.timeout.anyOf[0]"
+    Specifies the duration in seconds without any requests after which the
+    containers will be downscaled to their minimum scale value as defined by
+    `scale.min`. If set, this helps in optimizing resource usage by reducing the
+    number of container instances during periods of inactivity.
     """

@@ -10,13 +10,7 @@ __all__ = ["GPUBaremetalFlavorList"]
 
 class GPUBaremetalFlavorList(BaseModel):
     count: int
-    """
-    '#/components/schemas/ListGpuBaremetalFlavorSerializer/properties/count'
-    "$.components.schemas.ListGpuBaremetalFlavorSerializer.properties.count"
-    """
+    """Number of objects"""
 
     results: List[GPUBaremetalFlavor]
-    """
-    '#/components/schemas/ListGpuBaremetalFlavorSerializer/properties/results'
-    "$.components.schemas.ListGpuBaremetalFlavorSerializer.properties.results"
-    """
+    """Objects"""
