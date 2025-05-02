@@ -9,13 +9,13 @@ from pydantic import Field as FieldInfo
 from .tag import Tag
 from ..._models import BaseModel
 from .ddos_profile import DDOSProfile
+from .fixed_address import FixedAddress
+from .floating_address import FloatingAddress
+from .fixed_address_short import FixedAddressShort
 
 __all__ = [
     "GPUClusterServer",
     "Address",
-    "AddressInstanceFloatingAddressSerializer",
-    "AddressInstanceFixedAddressShortSerializer",
-    "AddressInstanceFixedAddressSerializer",
     "BlackholePort",
     "FixedIPAssignment",
     "Flavor",
@@ -24,78 +24,7 @@ __all__ = [
     "SecurityGroup",
 ]
 
-
-class AddressInstanceFloatingAddressSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/InstanceFloatingAddressSerializer/properties/addr'
-    "$.components.schemas.InstanceFloatingAddressSerializer.properties.addr"
-    """
-
-    type: Literal["floating"]
-    """
-    '#/components/schemas/InstanceFloatingAddressSerializer/properties/type'
-    "$.components.schemas.InstanceFloatingAddressSerializer.properties.type"
-    """
-
-
-class AddressInstanceFixedAddressShortSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/addr'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.addr"
-    """
-
-    interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.interface_name.anyOf[0]"
-    """
-
-    type: Literal["fixed"]
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/type'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.type"
-    """
-
-
-class AddressInstanceFixedAddressSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/addr'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.addr"
-    """
-
-    interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.interface_name.anyOf[0]"
-    """
-
-    subnet_id: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_id'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_id"
-    """
-
-    subnet_name: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_name'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_name"
-    """
-
-    type: Literal["fixed"]
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/type'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.type"
-    """
-
-
-Address: TypeAlias = Union[
-    AddressInstanceFloatingAddressSerializer,
-    AddressInstanceFixedAddressShortSerializer,
-    AddressInstanceFixedAddressSerializer,
-]
+Address: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddress]
 
 
 class BlackholePort(BaseModel):

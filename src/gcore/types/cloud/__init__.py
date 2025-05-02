@@ -5,6 +5,7 @@ from __future__ import annotations
 from .tag import Tag as Tag
 from .task import Task as Task
 from .image import Image as Image
+from .route import Route as Route
 from .region import Region as Region
 from .secret import Secret as Secret
 from .subnet import Subnet as Subnet
@@ -35,6 +36,7 @@ from .lb_algorithm import LbAlgorithm as LbAlgorithm
 from .registry_tag import RegistryTag as RegistryTag
 from .task_id_list import TaskIDList as TaskIDList
 from .deploy_status import DeployStatus as DeployStatus
+from .fixed_address import FixedAddress as FixedAddress
 from .instance_list import InstanceList as InstanceList
 from .load_balancer import LoadBalancer as LoadBalancer
 from .member_status import MemberStatus as MemberStatus
@@ -49,7 +51,9 @@ from .listener_status import ListenerStatus as ListenerStatus
 from .placement_group import PlacementGroup as PlacementGroup
 from .region_capacity import RegionCapacity as RegionCapacity
 from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
+from .baremetal_flavor import BaremetalFlavor as BaremetalFlavor
 from .detailed_lb_pool import DetailedLbPool as DetailedLbPool
+from .floating_address import FloatingAddress as FloatingAddress
 from .inference_probes import InferenceProbes as InferenceProbes
 from .ingress_opts_out import IngressOptsOut as IngressOptsOut
 from .lb_listener_list import LbListenerList as LbListenerList
@@ -68,6 +72,7 @@ from .region_list_params import RegionListParams as RegionListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
 from .billing_reservation import BillingReservation as BillingReservation
 from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
+from .fixed_address_short import FixedAddressShort as FixedAddressShort
 from .health_monitor_type import HealthMonitorType as HealthMonitorType
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
 from .network_list_params import NetworkListParams as NetworkListParams
@@ -90,6 +95,7 @@ from .volume_create_params import VolumeCreateParams as VolumeCreateParams
 from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
 from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
 from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
+from .baremetal_flavor_list import BaremetalFlavorList as BaremetalFlavorList
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .detailed_lb_pool_list import DetailedLbPoolList as DetailedLbPoolList
 from .gpu_baremetal_cluster import GPUBaremetalCluster as GPUBaremetalCluster

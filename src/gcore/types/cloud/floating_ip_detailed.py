@@ -6,93 +6,22 @@ from typing_extensions import Literal, TypeAlias
 
 from .tag import Tag
 from ..._models import BaseModel
+from .fixed_address import FixedAddress
 from .load_balancer import LoadBalancer
+from .floating_address import FloatingAddress
 from .floating_ip_status import FloatingIPStatus
+from .fixed_address_short import FixedAddressShort
 
 __all__ = [
     "FloatingIPDetailed",
     "Instance",
     "InstanceAddress",
-    "InstanceAddressInstanceFloatingAddressSerializer",
-    "InstanceAddressInstanceFixedAddressShortSerializer",
-    "InstanceAddressInstanceFixedAddressSerializer",
     "InstanceFlavor",
     "InstanceSecurityGroup",
     "InstanceVolume",
 ]
 
-
-class InstanceAddressInstanceFloatingAddressSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/InstanceFloatingAddressSerializer/properties/addr'
-    "$.components.schemas.InstanceFloatingAddressSerializer.properties.addr"
-    """
-
-    type: Literal["floating"]
-    """
-    '#/components/schemas/InstanceFloatingAddressSerializer/properties/type'
-    "$.components.schemas.InstanceFloatingAddressSerializer.properties.type"
-    """
-
-
-class InstanceAddressInstanceFixedAddressShortSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/addr'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.addr"
-    """
-
-    interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.interface_name.anyOf[0]"
-    """
-
-    type: Literal["fixed"]
-    """
-    '#/components/schemas/InstanceFixedAddressShortSerializer/properties/type'
-    "$.components.schemas.InstanceFixedAddressShortSerializer.properties.type"
-    """
-
-
-class InstanceAddressInstanceFixedAddressSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/addr'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.addr"
-    """
-
-    interface_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.interface_name.anyOf[0]"
-    """
-
-    subnet_id: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_id'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_id"
-    """
-
-    subnet_name: str
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/subnet_name'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.subnet_name"
-    """
-
-    type: Literal["fixed"]
-    """
-    '#/components/schemas/InstanceFixedAddressSerializer/properties/type'
-    "$.components.schemas.InstanceFixedAddressSerializer.properties.type"
-    """
-
-
-InstanceAddress: TypeAlias = Union[
-    InstanceAddressInstanceFloatingAddressSerializer,
-    InstanceAddressInstanceFixedAddressShortSerializer,
-    InstanceAddressInstanceFixedAddressSerializer,
-]
+InstanceAddress: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddress]
 
 
 class InstanceFlavor(BaseModel):
