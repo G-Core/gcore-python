@@ -13,6 +13,7 @@ from .interface_ip_family import InterfaceIPFamily
 from .lb_listener_protocol import LbListenerProtocol
 from .tag_update_list_param import TagUpdateListParam
 from .session_persistence_type import SessionPersistenceType
+from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
 __all__ = [
@@ -27,7 +28,6 @@ __all__ = [
     "ListenerPoolSessionPersistence",
     "ListenerUserList",
     "Logging",
-    "LoggingRetentionPolicy",
 ]
 
 
@@ -450,14 +450,6 @@ class Listener(TypedDict, total=False):
     """
 
 
-class LoggingRetentionPolicy(TypedDict, total=False):
-    period: Required[Optional[int]]
-    """
-    '#/components/schemas/LaasIndexRetentionPolicyPydanticSerializer/properties/period/anyOf/0'
-    "$.components.schemas.LaasIndexRetentionPolicyPydanticSerializer.properties.period.anyOf[0]"
-    """
-
-
 class Logging(TypedDict, total=False):
     destination_region_id: Optional[int]
     """
@@ -471,7 +463,7 @@ class Logging(TypedDict, total=False):
     "$.components.schemas.LoadbalancerLoggingSerializer.properties.enabled"
     """
 
-    retention_policy: Optional[LoggingRetentionPolicy]
+    retention_policy: Optional[LaasIndexRetentionPolicyParam]
     """
     '#/components/schemas/LoadbalancerLoggingSerializer/properties/retention_policy/anyOf/0'
     "$.components.schemas.LoadbalancerLoggingSerializer.properties.retention_policy.anyOf[0]"

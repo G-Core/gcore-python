@@ -7,6 +7,8 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 from ..ingress_opts_param import IngressOptsParam
+from ..laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
+from ..container_probe_config_create_param import ContainerProbeConfigCreateParam
 
 __all__ = [
     "DeploymentCreateParams",
@@ -20,23 +22,7 @@ __all__ = [
     "ContainerScaleTriggersMemory",
     "ContainerScaleTriggersSqs",
     "Logging",
-    "LoggingRetentionPolicy",
     "Probes",
-    "ProbesLivenessProbe",
-    "ProbesLivenessProbeProbe",
-    "ProbesLivenessProbeProbeExec",
-    "ProbesLivenessProbeProbeHTTPGet",
-    "ProbesLivenessProbeProbeTcpSocket",
-    "ProbesReadinessProbe",
-    "ProbesReadinessProbeProbe",
-    "ProbesReadinessProbeProbeExec",
-    "ProbesReadinessProbeProbeHTTPGet",
-    "ProbesReadinessProbeProbeTcpSocket",
-    "ProbesStartupProbe",
-    "ProbesStartupProbeProbe",
-    "ProbesStartupProbeProbeExec",
-    "ProbesStartupProbeProbeHTTPGet",
-    "ProbesStartupProbeProbeTcpSocket",
 ]
 
 
@@ -312,14 +298,6 @@ class Container(TypedDict, total=False):
     """
 
 
-class LoggingRetentionPolicy(TypedDict, total=False):
-    period: Required[Optional[int]]
-    """
-    '#/components/schemas/LaasIndexRetentionPolicyPydanticSerializer/properties/period/anyOf/0'
-    "$.components.schemas.LaasIndexRetentionPolicyPydanticSerializer.properties.period.anyOf[0]"
-    """
-
-
 class Logging(TypedDict, total=False):
     destination_region_id: Optional[int]
     """
@@ -333,7 +311,7 @@ class Logging(TypedDict, total=False):
     "$.components.schemas.LoggingInSerializer.properties.enabled"
     """
 
-    retention_policy: Optional[LoggingRetentionPolicy]
+    retention_policy: Optional[LaasIndexRetentionPolicyParam]
     """
     '#/components/schemas/LoggingInSerializer/properties/retention_policy/anyOf/0'
     "$.components.schemas.LoggingInSerializer.properties.retention_policy.anyOf[0]"
@@ -346,356 +324,20 @@ class Logging(TypedDict, total=False):
     """
 
 
-class ProbesLivenessProbeProbeExec(TypedDict, total=False):
-    command: Required[List[str]]
-    """
-    '#/components/schemas/ContainerProbeExecConfigSerializerV2/properties/command'
-    "$.components.schemas.ContainerProbeExecConfigSerializerV2.properties.command"
-    """
-
-
-class ProbesLivenessProbeProbeHTTPGet(TypedDict, total=False):
-    port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.port"
-    """
-
-    headers: Dict[str, str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/headers'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.headers"
-    """
-
-    host: Optional[str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/host/anyOf/0'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.host.anyOf[0]"
-    """
-
-    path: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/path'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.path"
-    """
-
-    schema: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/schema'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.schema"
-    """
-
-
-class ProbesLivenessProbeProbeTcpSocket(TypedDict, total=False):
-    port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeTcpSocketConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeTcpSocketConfigSerializerV2.properties.port"
-    """
-
-
-class ProbesLivenessProbeProbe(TypedDict, total=False):
-    exec: Optional[ProbesLivenessProbeProbeExec]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/exec/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.exec.anyOf[0]"
-    """
-
-    failure_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/failure_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.failure_threshold"
-    """
-
-    http_get: Optional[ProbesLivenessProbeProbeHTTPGet]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/http_get/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.http_get.anyOf[0]"
-    """
-
-    initial_delay_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/initial_delay_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.initial_delay_seconds"
-    """
-
-    period_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/period_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.period_seconds"
-    """
-
-    success_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/success_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.success_threshold"
-    """
-
-    tcp_socket: Optional[ProbesLivenessProbeProbeTcpSocket]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/tcp_socket/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.tcp_socket.anyOf[0]"
-    """
-
-    timeout_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/timeout_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.timeout_seconds"
-    """
-
-
-class ProbesLivenessProbe(TypedDict, total=False):
-    enabled: Required[bool]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/enabled'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.enabled"
-    """
-
-    probe: Optional[ProbesLivenessProbeProbe]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.probe.anyOf[0]"
-    """
-
-
-class ProbesReadinessProbeProbeExec(TypedDict, total=False):
-    command: Required[List[str]]
-    """
-    '#/components/schemas/ContainerProbeExecConfigSerializerV2/properties/command'
-    "$.components.schemas.ContainerProbeExecConfigSerializerV2.properties.command"
-    """
-
-
-class ProbesReadinessProbeProbeHTTPGet(TypedDict, total=False):
-    port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.port"
-    """
-
-    headers: Dict[str, str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/headers'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.headers"
-    """
-
-    host: Optional[str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/host/anyOf/0'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.host.anyOf[0]"
-    """
-
-    path: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/path'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.path"
-    """
-
-    schema: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/schema'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.schema"
-    """
-
-
-class ProbesReadinessProbeProbeTcpSocket(TypedDict, total=False):
-    port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeTcpSocketConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeTcpSocketConfigSerializerV2.properties.port"
-    """
-
-
-class ProbesReadinessProbeProbe(TypedDict, total=False):
-    exec: Optional[ProbesReadinessProbeProbeExec]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/exec/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.exec.anyOf[0]"
-    """
-
-    failure_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/failure_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.failure_threshold"
-    """
-
-    http_get: Optional[ProbesReadinessProbeProbeHTTPGet]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/http_get/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.http_get.anyOf[0]"
-    """
-
-    initial_delay_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/initial_delay_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.initial_delay_seconds"
-    """
-
-    period_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/period_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.period_seconds"
-    """
-
-    success_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/success_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.success_threshold"
-    """
-
-    tcp_socket: Optional[ProbesReadinessProbeProbeTcpSocket]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/tcp_socket/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.tcp_socket.anyOf[0]"
-    """
-
-    timeout_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/timeout_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.timeout_seconds"
-    """
-
-
-class ProbesReadinessProbe(TypedDict, total=False):
-    enabled: Required[bool]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/enabled'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.enabled"
-    """
-
-    probe: Optional[ProbesReadinessProbeProbe]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.probe.anyOf[0]"
-    """
-
-
-class ProbesStartupProbeProbeExec(TypedDict, total=False):
-    command: Required[List[str]]
-    """
-    '#/components/schemas/ContainerProbeExecConfigSerializerV2/properties/command'
-    "$.components.schemas.ContainerProbeExecConfigSerializerV2.properties.command"
-    """
-
-
-class ProbesStartupProbeProbeHTTPGet(TypedDict, total=False):
-    port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.port"
-    """
-
-    headers: Dict[str, str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/headers'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.headers"
-    """
-
-    host: Optional[str]
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/host/anyOf/0'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.host.anyOf[0]"
-    """
-
-    path: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/path'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.path"
-    """
-
-    schema: str
-    """
-    '#/components/schemas/ContainerProbeHttpGetConfigSerializerV2/properties/schema'
-    "$.components.schemas.ContainerProbeHttpGetConfigSerializerV2.properties.schema"
-    """
-
-
-class ProbesStartupProbeProbeTcpSocket(TypedDict, total=False):
-    port: Required[int]
-    """
-    '#/components/schemas/ContainerProbeTcpSocketConfigSerializerV2/properties/port'
-    "$.components.schemas.ContainerProbeTcpSocketConfigSerializerV2.properties.port"
-    """
-
-
-class ProbesStartupProbeProbe(TypedDict, total=False):
-    exec: Optional[ProbesStartupProbeProbeExec]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/exec/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.exec.anyOf[0]"
-    """
-
-    failure_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/failure_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.failure_threshold"
-    """
-
-    http_get: Optional[ProbesStartupProbeProbeHTTPGet]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/http_get/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.http_get.anyOf[0]"
-    """
-
-    initial_delay_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/initial_delay_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.initial_delay_seconds"
-    """
-
-    period_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/period_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.period_seconds"
-    """
-
-    success_threshold: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/success_threshold'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.success_threshold"
-    """
-
-    tcp_socket: Optional[ProbesStartupProbeProbeTcpSocket]
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/tcp_socket/anyOf/0'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.tcp_socket.anyOf[0]"
-    """
-
-    timeout_seconds: int
-    """
-    '#/components/schemas/ContainerProbeSerializerV2/properties/timeout_seconds'
-    "$.components.schemas.ContainerProbeSerializerV2.properties.timeout_seconds"
-    """
-
-
-class ProbesStartupProbe(TypedDict, total=False):
-    enabled: Required[bool]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/enabled'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.enabled"
-    """
-
-    probe: Optional[ProbesStartupProbeProbe]
-    """
-    '#/components/schemas/InferenceInstanceContainerProbeConfigurationSerializerV2/properties/probe/anyOf/0'
-    "$.components.schemas.InferenceInstanceContainerProbeConfigurationSerializerV2.properties.probe.anyOf[0]"
-    """
-
-
 class Probes(TypedDict, total=False):
-    liveness_probe: Optional[ProbesLivenessProbe]
+    liveness_probe: Optional[ContainerProbeConfigCreateParam]
     """
     '#/components/schemas/InferenceInstanceProbesSerializerV2/properties/liveness_probe/anyOf/0'
     "$.components.schemas.InferenceInstanceProbesSerializerV2.properties.liveness_probe.anyOf[0]"
     """
 
-    readiness_probe: Optional[ProbesReadinessProbe]
+    readiness_probe: Optional[ContainerProbeConfigCreateParam]
     """
     '#/components/schemas/InferenceInstanceProbesSerializerV2/properties/readiness_probe/anyOf/0'
     "$.components.schemas.InferenceInstanceProbesSerializerV2.properties.readiness_probe.anyOf[0]"
     """
 
-    startup_probe: Optional[ProbesStartupProbe]
+    startup_probe: Optional[ContainerProbeConfigCreateParam]
     """
     '#/components/schemas/InferenceInstanceProbesSerializerV2/properties/startup_probe/anyOf/0'
     "$.components.schemas.InferenceInstanceProbesSerializerV2.properties.startup_probe.anyOf[0]"

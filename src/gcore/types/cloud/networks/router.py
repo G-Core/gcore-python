@@ -5,26 +5,13 @@ from datetime import datetime
 
 from ..route import Route
 from ...._models import BaseModel
+from ..ip_assignment import IPAssignment
 
-__all__ = ["Router", "Interface", "InterfaceIPAssignment", "ExternalGatewayInfo", "ExternalGatewayInfoExternalFixedIP"]
-
-
-class InterfaceIPAssignment(BaseModel):
-    ip_address: str
-    """
-    '#/components/schemas/PortIpSubnetIdSerializer/properties/ip_address'
-    "$.components.schemas.PortIpSubnetIdSerializer.properties.ip_address"
-    """
-
-    subnet_id: str
-    """
-    '#/components/schemas/PortIpSubnetIdSerializer/properties/subnet_id'
-    "$.components.schemas.PortIpSubnetIdSerializer.properties.subnet_id"
-    """
+__all__ = ["Router", "Interface", "ExternalGatewayInfo"]
 
 
 class Interface(BaseModel):
-    ip_assignments: List[InterfaceIPAssignment]
+    ip_assignments: List[IPAssignment]
     """
     '#/components/schemas/PortSerializer/properties/ip_assignments'
     "$.components.schemas.PortSerializer.properties.ip_assignments"
@@ -49,20 +36,6 @@ class Interface(BaseModel):
     """
 
 
-class ExternalGatewayInfoExternalFixedIP(BaseModel):
-    ip_address: str
-    """
-    '#/components/schemas/PortIpSubnetIdSerializer/properties/ip_address'
-    "$.components.schemas.PortIpSubnetIdSerializer.properties.ip_address"
-    """
-
-    subnet_id: str
-    """
-    '#/components/schemas/PortIpSubnetIdSerializer/properties/subnet_id'
-    "$.components.schemas.PortIpSubnetIdSerializer.properties.subnet_id"
-    """
-
-
 class ExternalGatewayInfo(BaseModel):
     enable_snat: bool
     """
@@ -70,7 +43,7 @@ class ExternalGatewayInfo(BaseModel):
     "$.components.schemas.ExternalGatewaySerializer.properties.enable_snat"
     """
 
-    external_fixed_ips: List[ExternalGatewayInfoExternalFixedIP]
+    external_fixed_ips: List[IPAssignment]
     """
     '#/components/schemas/ExternalGatewaySerializer/properties/external_fixed_ips'
     "$.components.schemas.ExternalGatewaySerializer.properties.external_fixed_ips"
