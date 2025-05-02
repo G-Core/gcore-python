@@ -38,9 +38,11 @@ from .task_id_list import TaskIDList as TaskIDList
 from .deploy_status import DeployStatus as DeployStatus
 from .fixed_address import FixedAddress as FixedAddress
 from .instance_list import InstanceList as InstanceList
+from .ip_assignment import IPAssignment as IPAssignment
 from .load_balancer import LoadBalancer as LoadBalancer
 from .member_status import MemberStatus as MemberStatus
 from .registry_list import RegistryList as RegistryList
+from .blackhole_port import BlackholePort as BlackholePort
 from .gpu_image_list import GPUImageList as GPUImageList
 from .l7_policy_list import L7PolicyList as L7PolicyList
 from .lb_flavor_list import LbFlavorList as LbFlavorList
@@ -48,6 +50,7 @@ from .security_group import SecurityGroup as SecurityGroup
 from .container_probe import ContainerProbe as ContainerProbe
 from .container_scale import ContainerScale as ContainerScale
 from .listener_status import ListenerStatus as ListenerStatus
+from .network_details import NetworkDetails as NetworkDetails
 from .placement_group import PlacementGroup as PlacementGroup
 from .region_capacity import RegionCapacity as RegionCapacity
 from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
@@ -68,6 +71,7 @@ from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .gpu_cluster_server import GPUClusterServer as GPUClusterServer
 from .ingress_opts_param import IngressOptsParam as IngressOptsParam
 from .instance_interface import InstanceInterface as InstanceInterface
+from .instance_isolation import InstanceIsolation as InstanceIsolation
 from .region_list_params import RegionListParams as RegionListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
 from .billing_reservation import BillingReservation as BillingReservation
@@ -95,6 +99,7 @@ from .volume_create_params import VolumeCreateParams as VolumeCreateParams
 from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
 from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
 from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
+from .allowed_address_pairs import AllowedAddressPairs as AllowedAddressPairs
 from .baremetal_flavor_list import BaremetalFlavorList as BaremetalFlavorList
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .detailed_lb_pool_list import DetailedLbPoolList as DetailedLbPoolList
@@ -148,11 +153,13 @@ from .container_scale_trigger_sqs import ContainerScaleTriggerSqs as ContainerSc
 from .ddos_profile_template_field import DDOSProfileTemplateField as DDOSProfileTemplateField
 from .flavor_hardware_description import FlavorHardwareDescription as FlavorHardwareDescription
 from .instance_get_console_params import InstanceGetConsoleParams as InstanceGetConsoleParams
+from .laas_index_retention_policy import LaasIndexRetentionPolicy as LaasIndexRetentionPolicy
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
 from .load_balancer_instance_role import LoadBalancerInstanceRole as LoadBalancerInstanceRole
 from .load_balancer_resize_params import LoadBalancerResizeParams as LoadBalancerResizeParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
+from .container_probe_create_param import ContainerProbeCreateParam as ContainerProbeCreateParam
 from .container_scale_trigger_rate import ContainerScaleTriggerRate as ContainerScaleTriggerRate
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
 from .security_group_create_params import SecurityGroupCreateParams as SecurityGroupCreateParams
@@ -164,20 +171,27 @@ from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadB
 from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams
 from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
+from .container_probe_exec_create_param import ContainerProbeExecCreateParam as ContainerProbeExecCreateParam
 from .container_scale_trigger_threshold import ContainerScaleTriggerThreshold as ContainerScaleTriggerThreshold
 from .gpu_baremetal_cluster_list_params import GPUBaremetalClusterListParams as GPUBaremetalClusterListParams
+from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams
+from .container_probe_config_create_param import ContainerProbeConfigCreateParam as ContainerProbeConfigCreateParam
 from .gpu_baremetal_cluster_create_params import GPUBaremetalClusterCreateParams as GPUBaremetalClusterCreateParams
 from .gpu_baremetal_cluster_delete_params import GPUBaremetalClusterDeleteParams as GPUBaremetalClusterDeleteParams
 from .gpu_baremetal_cluster_resize_params import GPUBaremetalClusterResizeParams as GPUBaremetalClusterResizeParams
 from .gpu_baremetal_cluster_rebuild_params import GPUBaremetalClusterRebuildParams as GPUBaremetalClusterRebuildParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
+from .container_probe_http_get_create_param import ContainerProbeHTTPGetCreateParam as ContainerProbeHTTPGetCreateParam
 from .instance_assign_security_group_params import (
     InstanceAssignSecurityGroupParams as InstanceAssignSecurityGroupParams,
 )
 from .instance_add_to_placement_group_params import (
     InstanceAddToPlacementGroupParams as InstanceAddToPlacementGroupParams,
+)
+from .container_probe_tcp_socket_create_param import (
+    ContainerProbeTcpSocketCreateParam as ContainerProbeTcpSocketCreateParam,
 )
 from .instance_unassign_security_group_params import (
     InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,

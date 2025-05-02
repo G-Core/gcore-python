@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
+from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
-__all__ = ["LoadBalancerUpdateParams", "Logging", "LoggingRetentionPolicy"]
+__all__ = ["LoadBalancerUpdateParams", "Logging"]
 
 
 class LoadBalancerUpdateParams(TypedDict, total=False):
@@ -42,14 +43,6 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     """
 
 
-class LoggingRetentionPolicy(TypedDict, total=False):
-    period: Required[Optional[int]]
-    """
-    '#/components/schemas/LaasIndexRetentionPolicyPydanticSerializer/properties/period/anyOf/0'
-    "$.components.schemas.LaasIndexRetentionPolicyPydanticSerializer.properties.period.anyOf[0]"
-    """
-
-
 class Logging(TypedDict, total=False):
     destination_region_id: Optional[int]
     """
@@ -63,7 +56,7 @@ class Logging(TypedDict, total=False):
     "$.components.schemas.LoadbalancerLoggingSerializer.properties.enabled"
     """
 
-    retention_policy: Optional[LoggingRetentionPolicy]
+    retention_policy: Optional[LaasIndexRetentionPolicyParam]
     """
     '#/components/schemas/LoadbalancerLoggingSerializer/properties/retention_policy/anyOf/0'
     "$.components.schemas.LoadbalancerLoggingSerializer.properties.retention_policy.anyOf[0]"

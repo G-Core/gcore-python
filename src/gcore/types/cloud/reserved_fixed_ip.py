@@ -5,22 +5,9 @@ from datetime import datetime
 
 from .network import Network
 from ..._models import BaseModel
+from .allowed_address_pairs import AllowedAddressPairs
 
-__all__ = ["ReservedFixedIP", "AllowedAddressPair", "Attachment", "Reservation"]
-
-
-class AllowedAddressPair(BaseModel):
-    ip_address: str
-    """
-    '#/components/schemas/AllowedAddressPairsSerializer/properties/ip_address/anyOf/0'
-    "$.components.schemas.AllowedAddressPairsSerializer.properties.ip_address.anyOf[0]"
-    """
-
-    mac_address: Optional[str] = None
-    """
-    '#/components/schemas/AllowedAddressPairsSerializer/properties/mac_address/anyOf/0'
-    "$.components.schemas.AllowedAddressPairsSerializer.properties.mac_address.anyOf[0]"
-    """
+__all__ = ["ReservedFixedIP", "Attachment", "Reservation"]
 
 
 class Attachment(BaseModel):
@@ -58,7 +45,7 @@ class Reservation(BaseModel):
 
 
 class ReservedFixedIP(BaseModel):
-    allowed_address_pairs: List[AllowedAddressPair]
+    allowed_address_pairs: List[AllowedAddressPairs]
     """
     '#/components/schemas/ReservedFixedIPSerializer/properties/allowed_address_pairs'
     "$.components.schemas.ReservedFixedIPSerializer.properties.allowed_address_pairs"

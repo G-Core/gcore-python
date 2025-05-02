@@ -4,7 +4,7 @@ from typing import List
 
 from ..network import Network
 from ...._models import BaseModel
-from .ip_assignment import IPAssignment
+from .ip_with_subnet import IPWithSubnet
 
 __all__ = ["ConnectedPort"]
 
@@ -22,7 +22,7 @@ class ConnectedPort(BaseModel):
     "$.components.schemas.ConnectedDevicesVIPSerializer.properties.instance_name"
     """
 
-    ip_assignments: List[IPAssignment]
+    ip_assignments: List[IPWithSubnet]
     """
     '#/components/schemas/ConnectedDevicesVIPSerializer/properties/ip_assignments'
     "$.components.schemas.ConnectedDevicesVIPSerializer.properties.ip_assignments"

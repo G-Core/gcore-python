@@ -3,10 +3,10 @@
 from ..subnet import Subnet
 from ...._models import BaseModel
 
-__all__ = ["IPAssignment"]
+__all__ = ["IPWithSubnet"]
 
 
-class IPAssignment(BaseModel):
+class IPWithSubnet(BaseModel):
     ip_address: str
     """
     '#/components/schemas/PortIpWithSubnetSerializer/properties/ip_address'
