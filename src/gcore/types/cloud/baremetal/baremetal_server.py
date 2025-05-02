@@ -9,12 +9,12 @@ from pydantic import Field as FieldInfo
 from ..tag import Tag
 from ...._models import BaseModel
 from ..ddos_profile import DDOSProfile
+from .baremetal_fixed_address import BaremetalFixedAddress
+from .baremetal_floating_address import BaremetalFloatingAddress
 
 __all__ = [
     "BaremetalServer",
     "Address",
-    "AddressBareMetalFloatingAddressSerializer",
-    "AddressBareMetalFixedAddressSerializer",
     "BlackholePort",
     "FixedIPAssignment",
     "Flavor",
@@ -22,54 +22,7 @@ __all__ = [
     "InstanceIsolation",
 ]
 
-
-class AddressBareMetalFloatingAddressSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/BareMetalFloatingAddressSerializer/properties/addr'
-    "$.components.schemas.BareMetalFloatingAddressSerializer.properties.addr"
-    """
-
-    type: Literal["floating"]
-    """
-    '#/components/schemas/BareMetalFloatingAddressSerializer/properties/type'
-    "$.components.schemas.BareMetalFloatingAddressSerializer.properties.type"
-    """
-
-
-class AddressBareMetalFixedAddressSerializer(BaseModel):
-    addr: str
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/addr'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.addr"
-    """
-
-    interface_name: Optional[str] = None
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/interface_name/anyOf/0'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.interface_name.anyOf[0]"
-    """
-
-    subnet_id: str
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/subnet_id'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.subnet_id"
-    """
-
-    subnet_name: str
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/subnet_name'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.subnet_name"
-    """
-
-    type: Literal["fixed"]
-    """
-    '#/components/schemas/BareMetalFixedAddressSerializer/properties/type'
-    "$.components.schemas.BareMetalFixedAddressSerializer.properties.type"
-    """
-
-
-Address: TypeAlias = Union[AddressBareMetalFloatingAddressSerializer, AddressBareMetalFixedAddressSerializer]
+Address: TypeAlias = Union[BaremetalFloatingAddress, BaremetalFixedAddress]
 
 
 class BlackholePort(BaseModel):

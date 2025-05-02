@@ -4,6 +4,8 @@ Types:
 
 ```python
 from gcore.types.cloud import (
+    BaremetalFlavor,
+    BaremetalFlavorList,
     Console,
     DDOSProfile,
     DDOSProfileField,
@@ -11,7 +13,10 @@ from gcore.types.cloud import (
     DDOSProfileStatus,
     DDOSProfileTemplate,
     DDOSProfileTemplateField,
+    FixedAddress,
+    FixedAddressShort,
     FlavorHardwareDescription,
+    FloatingAddress,
     FloatingIP,
     FloatingIPStatus,
     GPUClusterServer,
@@ -36,7 +41,7 @@ from gcore.types.cloud import (
     NetworkInterfaceList,
     NetworkSubnetFip,
     ProvisioningStatus,
-    RemoteConsole,
+    Route,
     Subnet,
     Tag,
     TagList,
@@ -577,23 +582,21 @@ Methods:
 
 ### Flavors
 
-Types:
-
-```python
-from gcore.types.cloud.baremetal import FlavorListResponse, FlavorListSuitableResponse
-```
-
 Methods:
 
-- <code title="get /cloud/v1/bmflavors/{project_id}/{region_id}">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/flavor_list_response.py">FlavorListResponse</a></code>
-- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}/available_flavors">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list_suitable</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_suitable_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/flavor_list_suitable_response.py">FlavorListSuitableResponse</a></code>
+- <code title="get /cloud/v1/bmflavors/{project_id}/{region_id}">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_flavor_list.py">BaremetalFlavorList</a></code>
+- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}/available_flavors">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list_suitable</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_suitable_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_flavor_list.py">BaremetalFlavorList</a></code>
 
 ### Servers
 
 Types:
 
 ```python
-from gcore.types.cloud.baremetal import BaremetalServer
+from gcore.types.cloud.baremetal import (
+    BaremetalFixedAddress,
+    BaremetalFloatingAddress,
+    BaremetalServer,
+)
 ```
 
 Methods:

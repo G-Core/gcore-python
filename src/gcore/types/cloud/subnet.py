@@ -4,24 +4,11 @@ from typing import List, Optional
 from datetime import datetime
 
 from .tag import Tag
+from .route import Route
 from ..._models import BaseModel
 from .ip_version import IPVersion
 
-__all__ = ["Subnet", "HostRoute"]
-
-
-class HostRoute(BaseModel):
-    destination: str
-    """
-    '#/components/schemas/RouteOutSerializer/properties/destination'
-    "$.components.schemas.RouteOutSerializer.properties.destination"
-    """
-
-    nexthop: str
-    """
-    '#/components/schemas/RouteOutSerializer/properties/nexthop'
-    "$.components.schemas.RouteOutSerializer.properties.nexthop"
-    """
+__all__ = ["Subnet"]
 
 
 class Subnet(BaseModel):
@@ -127,7 +114,7 @@ class Subnet(BaseModel):
     "$.components.schemas.SubnetSerializer.properties.has_router"
     """
 
-    host_routes: Optional[List[HostRoute]] = None
+    host_routes: Optional[List[Route]] = None
     """
     '#/components/schemas/SubnetSerializer/properties/host_routes/anyOf/0'
     "$.components.schemas.SubnetSerializer.properties.host_routes.anyOf[0]"

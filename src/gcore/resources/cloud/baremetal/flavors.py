@@ -16,8 +16,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.baremetal import flavor_list_params, flavor_list_suitable_params
-from ....types.cloud.baremetal.flavor_list_response import FlavorListResponse
-from ....types.cloud.baremetal.flavor_list_suitable_response import FlavorListSuitableResponse
+from ....types.cloud.baremetal_flavor_list import BaremetalFlavorList
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
@@ -59,7 +58,7 @@ class FlavorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlavorListResponse:
+    ) -> BaremetalFlavorList:
         """Retrieve a list of flavors.
 
         When the include_prices query parameter is
@@ -122,7 +121,7 @@ class FlavorsResource(SyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            cast_to=FlavorListResponse,
+            cast_to=BaremetalFlavorList,
         )
 
     def list_suitable(
@@ -139,7 +138,7 @@ class FlavorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlavorListSuitableResponse:
+    ) -> BaremetalFlavorList:
         """
         List suitalbe flavors for bare metal server creation
 
@@ -189,7 +188,7 @@ class FlavorsResource(SyncAPIResource):
                     {"include_prices": include_prices}, flavor_list_suitable_params.FlavorListSuitableParams
                 ),
             ),
-            cast_to=FlavorListSuitableResponse,
+            cast_to=BaremetalFlavorList,
         )
 
 
@@ -230,7 +229,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlavorListResponse:
+    ) -> BaremetalFlavorList:
         """Retrieve a list of flavors.
 
         When the include_prices query parameter is
@@ -293,7 +292,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            cast_to=FlavorListResponse,
+            cast_to=BaremetalFlavorList,
         )
 
     async def list_suitable(
@@ -310,7 +309,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlavorListSuitableResponse:
+    ) -> BaremetalFlavorList:
         """
         List suitalbe flavors for bare metal server creation
 
@@ -360,7 +359,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     {"include_prices": include_prices}, flavor_list_suitable_params.FlavorListSuitableParams
                 ),
             ),
-            cast_to=FlavorListSuitableResponse,
+            cast_to=BaremetalFlavorList,
         )
 
 

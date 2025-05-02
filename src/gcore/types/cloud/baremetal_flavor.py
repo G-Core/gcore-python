@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["FlavorListResponse", "Result"]
+__all__ = ["BaremetalFlavor"]
 
 
-class Result(BaseModel):
+class BaremetalFlavor(BaseModel):
     architecture: str
     """
     '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/architecture'
@@ -97,18 +97,4 @@ class Result(BaseModel):
     """
     '#/components/schemas/BareMetalFlavorExtendedSerializer/properties/reserved_in_stock/anyOf/0'
     "$.components.schemas.BareMetalFlavorExtendedSerializer.properties.reserved_in_stock.anyOf[0]"
-    """
-
-
-class FlavorListResponse(BaseModel):
-    count: int
-    """
-    '#/components/schemas/BareMetalFlavorExtendedCollectionSerializer/properties/count'
-    "$.components.schemas.BareMetalFlavorExtendedCollectionSerializer.properties.count"
-    """
-
-    results: List[Result]
-    """
-    '#/components/schemas/BareMetalFlavorExtendedCollectionSerializer/properties/results'
-    "$.components.schemas.BareMetalFlavorExtendedCollectionSerializer.properties.results"
     """
