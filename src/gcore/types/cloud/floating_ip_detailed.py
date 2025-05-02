@@ -1,27 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from .tag import Tag
 from ..._models import BaseModel
-from .fixed_address import FixedAddress
 from .load_balancer import LoadBalancer
-from .floating_address import FloatingAddress
 from .floating_ip_status import FloatingIPStatus
-from .fixed_address_short import FixedAddressShort
+from .floating_ip_detailed_address_union import FloatingIPDetailedAddressUnion
 
-__all__ = [
-    "FloatingIPDetailed",
-    "Instance",
-    "InstanceAddress",
-    "InstanceFlavor",
-    "InstanceSecurityGroup",
-    "InstanceVolume",
-]
-
-InstanceAddress: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddress]
+__all__ = ["FloatingIPDetailed", "Instance", "InstanceFlavor", "InstanceSecurityGroup", "InstanceVolume"]
 
 
 class InstanceFlavor(BaseModel):
@@ -52,7 +41,7 @@ class InstanceVolume(BaseModel):
 
 
 class Instance(BaseModel):
-    addresses: Dict[str, List[InstanceAddress]]
+    addresses: Dict[str, List[FloatingIPDetailedAddressUnion]]
     """Map of network_name to list of addresses in that network"""
 
     creator_task_id: str
