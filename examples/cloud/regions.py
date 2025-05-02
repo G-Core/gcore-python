@@ -9,7 +9,7 @@ def get_region_by_id() -> Region:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"))
     # Region ID can also be omitted — it defaults to the GCORE_CLOUD_REGION_ID environment variable
-    region = gcore.cloud.regions.retrieve(region_id=int(os.environ.get("GCORE_CLOUD_REGION_ID", "76")))
+    region = gcore.cloud.regions.get(region_id=int(os.environ.get("GCORE_CLOUD_REGION_ID", "76")))
 
     print("\n=== GET REGION BY ID ===")
     print(f"Region ID: {region.id}, Display Name: {region.display_name}")
