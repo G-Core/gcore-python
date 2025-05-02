@@ -76,12 +76,6 @@ class InstanceCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateInstanceSerializerV2.properties.configuration.anyOf[0]"
     """
 
-    keypair_name: Optional[str]
-    """
-    '#/components/schemas/CreateInstanceSerializerV2/properties/keypair_name/anyOf/0'
-    "$.components.schemas.CreateInstanceSerializerV2.properties.keypair_name.anyOf[0]"
-    """
-
     name_templates: List[str]
     """
     '#/components/schemas/CreateInstanceSerializerV2/properties/name_templates'
@@ -110,6 +104,12 @@ class InstanceCreateParams(TypedDict, total=False):
     """
     '#/components/schemas/CreateInstanceSerializerV2/properties/servergroup_id'
     "$.components.schemas.CreateInstanceSerializerV2.properties.servergroup_id"
+    """
+
+    ssh_key_name: Optional[str]
+    """
+    '#/components/schemas/CreateInstanceSerializerV2/properties/ssh_key_name/anyOf/0'
+    "$.components.schemas.CreateInstanceSerializerV2.properties.ssh_key_name.anyOf[0]"
     """
 
     tags: TagUpdateListParam

@@ -74,16 +74,16 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateAIClusterGPUSerializer.properties.instances_count"
     """
 
-    keypair_name: str
-    """
-    '#/components/schemas/CreateAIClusterGPUSerializer/properties/keypair_name'
-    "$.components.schemas.CreateAIClusterGPUSerializer.properties.keypair_name"
-    """
-
     password: str
     """
     '#/components/schemas/CreateAIClusterGPUSerializer/properties/password'
     "$.components.schemas.CreateAIClusterGPUSerializer.properties.password"
+    """
+
+    ssh_key_name: str
+    """
+    '#/components/schemas/CreateAIClusterGPUSerializer/properties/ssh_key_name'
+    "$.components.schemas.CreateAIClusterGPUSerializer.properties.ssh_key_name"
     """
 
     tags: TagUpdateListParam

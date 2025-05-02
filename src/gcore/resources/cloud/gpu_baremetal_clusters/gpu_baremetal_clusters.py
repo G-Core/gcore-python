@@ -111,8 +111,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
-        keypair_name: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
@@ -148,11 +148,11 @@ class GPUBaremetalClustersResource(SyncAPIResource):
           instances_count: '#/components/schemas/CreateAIClusterGPUSerializer/properties/instances_count'
               "$.components.schemas.CreateAIClusterGPUSerializer.properties.instances_count"
 
-          keypair_name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/keypair_name'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.keypair_name"
-
           password: '#/components/schemas/CreateAIClusterGPUSerializer/properties/password'
               "$.components.schemas.CreateAIClusterGPUSerializer.properties.password"
+
+          ssh_key_name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/ssh_key_name'
+              "$.components.schemas.CreateAIClusterGPUSerializer.properties.ssh_key_name"
 
           tags: '#/components/schemas/CreateAIClusterGPUSerializer/properties/tags'
               "$.components.schemas.CreateAIClusterGPUSerializer.properties.tags"
@@ -184,8 +184,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
-                    "keypair_name": keypair_name,
                     "password": password,
+                    "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
                     "username": username,
@@ -647,8 +647,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
-        keypair_name: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
@@ -684,11 +684,11 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
           instances_count: '#/components/schemas/CreateAIClusterGPUSerializer/properties/instances_count'
               "$.components.schemas.CreateAIClusterGPUSerializer.properties.instances_count"
 
-          keypair_name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/keypair_name'
-              "$.components.schemas.CreateAIClusterGPUSerializer.properties.keypair_name"
-
           password: '#/components/schemas/CreateAIClusterGPUSerializer/properties/password'
               "$.components.schemas.CreateAIClusterGPUSerializer.properties.password"
+
+          ssh_key_name: '#/components/schemas/CreateAIClusterGPUSerializer/properties/ssh_key_name'
+              "$.components.schemas.CreateAIClusterGPUSerializer.properties.ssh_key_name"
 
           tags: '#/components/schemas/CreateAIClusterGPUSerializer/properties/tags'
               "$.components.schemas.CreateAIClusterGPUSerializer.properties.tags"
@@ -720,8 +720,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
-                    "keypair_name": keypair_name,
                     "password": password,
+                    "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
                     "username": username,

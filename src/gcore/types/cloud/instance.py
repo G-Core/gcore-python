@@ -529,12 +529,6 @@ class Instance(BaseModel):
     "$.components.schemas.InstanceSerializer.properties.instance_name"
     """
 
-    keypair_name: Optional[str] = None
-    """
-    '#/components/schemas/InstanceSerializer/properties/keypair_name/anyOf/0'
-    "$.components.schemas.InstanceSerializer.properties.keypair_name.anyOf[0]"
-    """
-
     project_id: int
     """
     '#/components/schemas/InstanceSerializer/properties/project_id'
@@ -557,6 +551,12 @@ class Instance(BaseModel):
     """
     '#/components/schemas/InstanceSerializer/properties/security_groups'
     "$.components.schemas.InstanceSerializer.properties.security_groups"
+    """
+
+    ssh_key_name: Optional[str] = None
+    """
+    '#/components/schemas/InstanceSerializer/properties/ssh_key_name/anyOf/0'
+    "$.components.schemas.InstanceSerializer.properties.ssh_key_name.anyOf[0]"
     """
 
     status: Literal[

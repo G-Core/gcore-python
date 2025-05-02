@@ -78,12 +78,6 @@ class ServerCreateParams(TypedDict, total=False):
     "$.components.schemas.CreateBareMetalServerSerializer.properties.image_id"
     """
 
-    keypair_name: Optional[str]
-    """
-    '#/components/schemas/CreateBareMetalServerSerializer/properties/keypair_name/anyOf/0'
-    "$.components.schemas.CreateBareMetalServerSerializer.properties.keypair_name.anyOf[0]"
-    """
-
     name_templates: List[str]
     """
     '#/components/schemas/CreateBareMetalServerSerializer/properties/name_templates'
@@ -100,6 +94,12 @@ class ServerCreateParams(TypedDict, total=False):
     """
     '#/components/schemas/CreateBareMetalServerSerializer/properties/password'
     "$.components.schemas.CreateBareMetalServerSerializer.properties.password"
+    """
+
+    ssh_key_name: Optional[str]
+    """
+    '#/components/schemas/CreateBareMetalServerSerializer/properties/ssh_key_name/anyOf/0'
+    "$.components.schemas.CreateBareMetalServerSerializer.properties.ssh_key_name.anyOf[0]"
     """
 
     tags: TagUpdateListParam
