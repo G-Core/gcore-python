@@ -19,8 +19,8 @@ def upload_tls_cert() -> Secret:
         name="sdk-example-secret",
         payload=payload,
         # Project ID and Region ID are also read from environment variables if not provided explicitly
-        project_id=int(os.environ.get("GCORE_PROJECT", "100")),
-        region_id=int(os.environ.get("GCORE_REGION", "76")),
+        project_id=int(os.environ.get("GCORE_CLOUD_PROJECT_ID", "100")),
+        region_id=int(os.environ.get("GCORE_CLOUD_REGION_ID", "76")),
     )
 
     print("\n=== CREATE SECRET ===")

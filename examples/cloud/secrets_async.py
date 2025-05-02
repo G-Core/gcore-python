@@ -22,8 +22,8 @@ async def upload_tls_cert() -> Secret:
         name="sdk-example-secret",
         payload=payload,
         # Project ID and Region ID are also read from environment variables if not provided explicitly
-        project_id=int(os.environ.get("GCORE_PROJECT", "100")),
-        region_id=int(os.environ.get("GCORE_REGION", "76")),
+        project_id=int(os.environ.get("GCORE_CLOUD_PROJECT_ID", "100")),
+        region_id=int(os.environ.get("GCORE_CLOUD_REGION_ID", "76")),
     )
 
     print("\n=== CREATE SECRET ===")
@@ -36,8 +36,8 @@ async def get_secret_by_id(secret_id: str) -> Secret:
     gcore = AsyncGcore()
     secret = await gcore.cloud.secrets.get(
         secret_id=secret_id,
-        project_id=int(os.environ.get("GCORE_PROJECT", "100")),
-        region_id=int(os.environ.get("GCORE_REGION", "76")),
+        project_id=int(os.environ.get("GCORE_CLOUD_PROJECT_ID", "100")),
+        region_id=int(os.environ.get("GCORE_CLOUD_REGION_ID", "76")),
     )
 
     print("\n=== GET SECRET BY ID ===")
@@ -64,8 +64,8 @@ async def delete_secret(secret_id: str) -> None:
     gcore = AsyncGcore()
     await gcore.cloud.secrets.delete(
         secret_id=secret_id,
-        project_id=int(os.environ.get("GCORE_PROJECT", "100")),
-        region_id=int(os.environ.get("GCORE_REGION", "76")),
+        project_id=int(os.environ.get("GCORE_CLOUD_PROJECT_ID", "100")),
+        region_id=int(os.environ.get("GCORE_CLOUD_REGION_ID", "76")),
     )
 
     print("\n=== DELETE SECRET ===")

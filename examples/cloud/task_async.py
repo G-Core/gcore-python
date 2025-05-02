@@ -18,10 +18,10 @@ async def list_tasks() -> Optional[AsyncOffsetPage[Task]]:
         api_key=os.environ.get("GCORE_API_KEY"),
         base_url=base_url if base_url else None, # Pass base_url only if it's set
     )
-    # Get project ID from environment variable GCORE_PROJECT, defaulting to 1 if not set
-    project_id = int(os.environ.get("GCORE_PROJECT", "1"))
-    # Get region ID from environment variable GCORE_REGION, defaulting to 1 if not set
-    region_id = int(os.environ.get("GCORE_REGION", "1"))
+    # Get project ID from environment variable GCORE_CLOUD_PROJECT_ID, defaulting to 1 if not set
+    project_id = int(os.environ.get("GCORE_CLOUD_PROJECT_ID", "1"))
+    # Get region ID from environment variable GCORE_CLOUD_REGION_ID, defaulting to 1 if not set
+    region_id = int(os.environ.get("GCORE_CLOUD_REGION_ID", "1"))
 
     print(f"\n=== LIST ALL TASKS (Project: {project_id}, Region: {region_id}) ===")
     tasks: Optional[AsyncOffsetPage[Task]] = None

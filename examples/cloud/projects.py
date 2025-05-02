@@ -9,7 +9,7 @@ def get_project_by_id() -> Project:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
     # Project ID can be specified via environment variable or default to 100
-    project_id = int(os.environ.get("GCORE_PROJECT", "100"))
+    project_id = int(os.environ.get("GCORE_CLOUD_PROJECT_ID", "100"))
     project = gcore.cloud.projects.get(project_id=project_id)
 
     print("\n=== GET PROJECT BY ID ===")
