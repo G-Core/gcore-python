@@ -165,23 +165,23 @@ client = Gcore()
 task_id_list = client.cloud.instances.create(
     project_id=1,
     region_id=1,
-    flavor="g1-standard-1-2",
-    interfaces=[{"subnet_id": "your-subnet-uuid"}],
+    flavor="g2-standard-4-8",
+    interfaces=[{"type": "external"}],
     volumes=[
-        {
+        {   
+            "source": "image",
             "image_id": "your-image-uuid",
             "size": 50,
-            "type_name": "standard",
-            "is_bootable": True,
+            "type_name": "ssd_hiiops",
+            "boot_index": 0,
         },
         {
+            "source": "new-volume",
             "size": 100,
             "type_name": "ssd_hiiops",
-            "is_bootable": False,
         },
     ],
-    names=["my-awesome-instance"],
-    user_data="IyEvYmluL2Jhc2gKZWNobyAiSGVsbG8sIFdvcmxkISIgPj4gL3RtcC9jbG91ZC1pbml0Lm91dAo=",
+    names=["my-instance"],
 )
 print(task_id_list.tasks)
 ```
@@ -224,7 +224,6 @@ Error codes are as follows:
 | 401         | `AuthenticationError`      |
 | 403         | `PermissionDeniedError`    |
 | 404         | `NotFoundError`            |
-| 422         | `UnprocessableEntityError` |
 | 429         | `RateLimitError`           |
 | >=500       | `InternalServerError`      |
 | N/A         | `APIConnectionError`       |
