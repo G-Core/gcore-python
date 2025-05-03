@@ -20,7 +20,6 @@ from gcore.types.cloud import (
     FlavorHardwareDescription,
     FloatingAddress,
     FloatingIP,
-    FloatingIPDetailedAddressUnion,
     FloatingIPStatus,
     GPUClusterServer,
     GPUClusterServerList,
