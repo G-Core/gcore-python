@@ -19,7 +19,6 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._constants import KILO
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...lib.polling import extract_timeout_value
 from ...types.cloud import task_list_params, task_acknowledge_all_params
@@ -215,7 +214,7 @@ class TasksResource(SyncAPIResource):
         self,
         task_id: str,
         *,
-        polling_interval_ms: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -223,8 +222,8 @@ class TasksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
-        if not is_given(polling_interval_ms):
-            polling_interval_ms = cast(int, self._client.cloud_polling_interval_ms)
+        if not is_given(polling_interval_seconds):
+            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
 
         if not is_given(timeout):
             timeout = extract_timeout_value(self._client.timeout)
@@ -241,7 +240,7 @@ class TasksResource(SyncAPIResource):
                 raise ValueError(task.error or f"Task {task_id} failed")
             elif task.state == "FINISHED":
                 return task
-            self._sleep(polling_interval_ms / KILO)
+            self._sleep(polling_interval_seconds)
 
         raise TimeoutError(f"Timed out waiting for task {task_id}")
 
@@ -595,7 +594,7 @@ class AsyncTasksResource(AsyncAPIResource):
         self,
         task_id: str,
         *,
-        polling_interval_ms: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -603,8 +602,8 @@ class AsyncTasksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
-        if not is_given(polling_interval_ms):
-            polling_interval_ms = cast(int, self._client.cloud_polling_interval_ms)
+        if not is_given(polling_interval_seconds):
+            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
 
         if not is_given(timeout):
             timeout = extract_timeout_value(self._client.timeout)
@@ -621,7 +620,7 @@ class AsyncTasksResource(AsyncAPIResource):
                 raise ValueError(task.error or f"Task {task_id} failed")
             elif task.state == "FINISHED":
                 return task
-            await self._sleep(polling_interval_ms / KILO)
+            await self._sleep(polling_interval_seconds)
 
         raise TimeoutError(f"Timed out waiting for task {task_id}")
 
