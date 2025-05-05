@@ -79,7 +79,7 @@ from .l7_policies.l7_policies import (
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.load_balancer import LoadBalancer
 from ....types.cloud.interface_ip_family import InterfaceIPFamily
-from ....types.cloud.tag_update_list_param import TagUpdateListParam
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
 __all__ = ["LoadBalancersResource", "AsyncLoadBalancersResource"]
@@ -141,7 +141,7 @@ class LoadBalancersResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,
@@ -614,7 +614,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,

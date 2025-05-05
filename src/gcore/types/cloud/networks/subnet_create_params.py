@@ -6,7 +6,7 @@ from typing import List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from ..ip_version import IPVersion
-from ..tag_update_list_param import TagUpdateListParam
+from ..tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["SubnetCreateParams", "HostRoute"]
 
@@ -60,7 +60,7 @@ class SubnetCreateParams(TypedDict, total=False):
     find a router created during network creation.
     """
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

@@ -11,7 +11,7 @@ from .lb_pool_protocol import LbPoolProtocol
 from .health_monitor_type import HealthMonitorType
 from .interface_ip_family import InterfaceIPFamily
 from .lb_listener_protocol import LbListenerProtocol
-from .tag_update_list_param import TagUpdateListParam
+from .tag_update_map_param import TagUpdateMapParam
 from .session_persistence_type import SessionPersistenceType
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity
@@ -65,7 +65,7 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     because we're considering this as intentional subnet_id specification.
     """
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from ..tag_update_list_param import TagUpdateListParam
+from ..tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["ImageUpdateParams"]
 
@@ -32,7 +32,7 @@ class ImageUpdateParams(TypedDict, total=False):
     ssh_key: Literal["allow", "deny", "required"]
     """Whether the image supports SSH key or not"""
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

@@ -28,7 +28,7 @@ from ....types.cloud.instances import (
 )
 from ....types.cloud.image_list import ImageList
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.tag_update_list_param import TagUpdateListParam
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
 
@@ -65,7 +65,7 @@ class ImagesResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,7 +250,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,7 +383,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -494,7 +494,7 @@ class AsyncImagesResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -679,7 +679,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -812,7 +812,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

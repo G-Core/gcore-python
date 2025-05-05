@@ -5,6 +5,6 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import TypeAlias
 
-__all__ = ["TagUpdateListParam"]
+__all__ = ["TagUpdateMapParam"]
 
-TagUpdateListParam: TypeAlias = Dict[str, str]
+TagUpdateMapParam: TypeAlias = Dict[str, str]

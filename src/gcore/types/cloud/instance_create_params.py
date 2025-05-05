@@ -6,7 +6,7 @@ from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .interface_ip_family import InterfaceIPFamily
-from .tag_update_list_param import TagUpdateListParam
+from .tag_update_map_param import TagUpdateMapParam
 
 __all__ = [
     "InstanceCreateParams",
@@ -115,7 +115,7 @@ class InstanceCreateParams(TypedDict, total=False):
     <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
     """
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -391,7 +391,7 @@ class VolumeCreateInstanceCreateNewVolumeSerializer(TypedDict, total=False):
     If not specified, a name will be generated automatically.
     """
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -452,7 +452,7 @@ class VolumeCreateInstanceCreateVolumeFromImageSerializer(TypedDict, total=False
     - For basic VMs: the size is set automatically based on the flavor.
     """
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -506,7 +506,7 @@ class VolumeCreateInstanceCreateVolumeFromSnapshotSerializer(TypedDict, total=Fa
     If not specified, a name will be generated automatically.
     """
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -552,7 +552,7 @@ class VolumeCreateInstanceCreateVolumeFromApptemplateSerializer(TypedDict, total
     size: int
     """Volume size in GiB."""
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -597,7 +597,7 @@ class VolumeCreateInstanceExistingVolumeSerializer(TypedDict, total=False):
     delete_on_termination: bool
     """Set to `true` to automatically delete the volume when the instance is deleted."""
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

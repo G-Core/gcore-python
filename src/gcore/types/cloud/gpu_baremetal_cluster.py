@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from .tag import Tag
 from ..._models import BaseModel
-from .gpu_cluster_server import GPUClusterServer
+from .gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 
 __all__ = ["GPUBaremetalCluster", "Interface"]
 
@@ -68,7 +68,7 @@ class GPUBaremetalCluster(BaseModel):
     region_id: int
     """Region ID"""
 
-    servers: List[GPUClusterServer]
+    servers: List[GPUBaremetalClusterServer]
     """GPU cluster servers"""
 
     ssh_key_name: Optional[str] = None
