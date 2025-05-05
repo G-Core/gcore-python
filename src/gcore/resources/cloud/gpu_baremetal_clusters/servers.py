@@ -66,7 +66,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Remove single node from GPU cluster.
+        Delete bare metal GPU server from cluster
 
         Args:
           delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's
@@ -123,7 +123,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           ddos_profile: Advanced DDoS protection.
@@ -170,7 +170,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           subnet_id: Port will get an IP address from this subnet
@@ -218,7 +218,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           network_id: Port will get an IP address in this network subnet
@@ -268,7 +268,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           port_id: Port ID
@@ -361,7 +361,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Detach interface from GPU cluster node
+        Detach interface from bare metal GPU cluster server
 
         Args:
           ip_address: IP address
@@ -411,7 +411,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Console:
         """
-        Get GPU cluster node console URL
+        Get bare metal GPU cluster server console URL
 
         Args:
           extra_headers: Send extra headers
@@ -450,7 +450,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServer:
         """
-        Powercycle (stop and start) one GPU cluster node, aka hard reboot
+        Stops and then starts the server, effectively performing a hard reboot.
 
         Args:
           extra_headers: Send extra headers
@@ -489,7 +489,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServer:
         """
-        Reboot one GPU cluster node
+        Reboot one bare metal GPU cluster server
 
         Args:
           extra_headers: Send extra headers
@@ -551,7 +551,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Remove single node from GPU cluster.
+        Delete bare metal GPU server from cluster
 
         Args:
           delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's
@@ -610,7 +610,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           ddos_profile: Advanced DDoS protection.
@@ -657,7 +657,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           subnet_id: Port will get an IP address from this subnet
@@ -705,7 +705,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           network_id: Port will get an IP address in this network subnet
@@ -755,7 +755,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Attach interface to GPU cluster node
+        Attach interface to bare metal GPU cluster server
 
         Args:
           port_id: Port ID
@@ -848,7 +848,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Detach interface from GPU cluster node
+        Detach interface from bare metal GPU cluster server
 
         Args:
           ip_address: IP address
@@ -898,7 +898,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Console:
         """
-        Get GPU cluster node console URL
+        Get bare metal GPU cluster server console URL
 
         Args:
           extra_headers: Send extra headers
@@ -937,7 +937,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServer:
         """
-        Powercycle (stop and start) one GPU cluster node, aka hard reboot
+        Stops and then starts the server, effectively performing a hard reboot.
 
         Args:
           extra_headers: Send extra headers
@@ -976,7 +976,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServer:
         """
-        Reboot one GPU cluster node
+        Reboot one bare metal GPU cluster server
 
         Args:
           extra_headers: Send extra headers

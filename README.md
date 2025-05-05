@@ -181,7 +181,8 @@ task_id_list = client.cloud.instances.create(
             "type_name": "ssd_hiiops",
         },
     ],
-    names=["my-instance"],
+    user_data="IyEvYmluL2Jhc2gKZWNobyAiSGVsbG8sIFdvcmxkISIgPj4gL3RtcC9jbG91ZC1pbml0Lm91dAo=",
+    name="my-instance",
 )
 print(task_id_list.tasks)
 ```

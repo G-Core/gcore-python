@@ -111,11 +111,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,37 +121,28 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create a new GPU cluster.
+        Create bare metal GPU cluster
 
         Args:
           flavor: Flavor name
 
           image_id: Image ID
 
-          interfaces: Subnet IPs and floating IPs
+          interfaces: A list of network interfaces for the server. You can create one or more
+              interfaces - private, public, or both.
 
           name: GPU Cluster name
 
           instances_count: Number of servers to create
 
-          password: A password for a bare metal server. This parameter is used to set a password for
-              the "Admin" user on a Windows instance, a default user or a new user on a Linux
-              instance
-
-          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
-
-          user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the user_data:
-              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          username: A name of a new user in the Linux instance. It may be passed with a 'password'
-              parameter
 
           extra_headers: Send extra headers
 
@@ -177,11 +165,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
-                    "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
-                    "user_data": user_data,
-                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),
@@ -206,7 +191,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[GPUBaremetalCluster]:
         """
-        List GPU clusters
+        List bare metal GPU clusters
 
         Args:
           limit: Limit the number of returned clusters
@@ -261,7 +246,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete GPU cluster
+        Delete bare metal GPU cluster
 
         Args:
           delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
@@ -319,7 +304,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUBaremetalCluster:
         """
-        Get GPU cluster
+        Get bare metal GPU cluster
 
         Args:
           extra_headers: Send extra headers
@@ -358,7 +343,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServerList:
         """
-        Powercycle (stop and start) all GPU cluster nodes, aka hard reboot
+        Stops and then starts all cluster servers, effectively performing a hard reboot.
 
         Args:
           extra_headers: Send extra headers
@@ -397,7 +382,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServerList:
         """
-        Reboot all GPU cluster nodes
+        Reboot all bare metal GPU cluster servers
 
         Args:
           extra_headers: Send extra headers
@@ -438,10 +423,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Rebuild one or many nodes from GPU cluster.
-
-        All cluster nodes need to be
-        provided to change the cluster image.
+        """
+        All cluster nodes must be specified to update the cluster image.
 
         Args:
           nodes: List of nodes uuids to be rebuild
@@ -497,7 +480,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Resize an existing AI GPU cluster.
+        Resize bare metal GPU cluster
 
         Args:
           instances_count: Resized (total) number of instances
@@ -575,11 +558,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -588,37 +568,28 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create a new GPU cluster.
+        Create bare metal GPU cluster
 
         Args:
           flavor: Flavor name
 
           image_id: Image ID
 
-          interfaces: Subnet IPs and floating IPs
+          interfaces: A list of network interfaces for the server. You can create one or more
+              interfaces - private, public, or both.
 
           name: GPU Cluster name
 
           instances_count: Number of servers to create
 
-          password: A password for a bare metal server. This parameter is used to set a password for
-              the "Admin" user on a Windows instance, a default user or a new user on a Linux
-              instance
-
-          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
-
-          user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the user_data:
-              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          username: A name of a new user in the Linux instance. It may be passed with a 'password'
-              parameter
 
           extra_headers: Send extra headers
 
@@ -641,11 +612,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
-                    "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
-                    "user_data": user_data,
-                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),
@@ -670,7 +638,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[GPUBaremetalCluster, AsyncOffsetPage[GPUBaremetalCluster]]:
         """
-        List GPU clusters
+        List bare metal GPU clusters
 
         Args:
           limit: Limit the number of returned clusters
@@ -725,7 +693,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete GPU cluster
+        Delete bare metal GPU cluster
 
         Args:
           delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
@@ -783,7 +751,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUBaremetalCluster:
         """
-        Get GPU cluster
+        Get bare metal GPU cluster
 
         Args:
           extra_headers: Send extra headers
@@ -822,7 +790,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServerList:
         """
-        Powercycle (stop and start) all GPU cluster nodes, aka hard reboot
+        Stops and then starts all cluster servers, effectively performing a hard reboot.
 
         Args:
           extra_headers: Send extra headers
@@ -861,7 +829,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUClusterServerList:
         """
-        Reboot all GPU cluster nodes
+        Reboot all bare metal GPU cluster servers
 
         Args:
           extra_headers: Send extra headers
@@ -902,10 +870,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Rebuild one or many nodes from GPU cluster.
-
-        All cluster nodes need to be
-        provided to change the cluster image.
+        """
+        All cluster nodes must be specified to update the cluster image.
 
         Args:
           nodes: List of nodes uuids to be rebuild
@@ -961,7 +927,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Resize an existing AI GPU cluster.
+        Resize bare metal GPU cluster
 
         Args:
           instances_count: Resized (total) number of instances

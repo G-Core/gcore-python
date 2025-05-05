@@ -81,11 +81,17 @@ class SecurityGroup(BaseModel):
 
 
 class GPUClusterServer(BaseModel):
+    id: str
+    """GPU server ID"""
+
     addresses: Dict[str, List[Address]]
     """Map of network_name to list of addresses in that network"""
 
     blackhole_ports: List[BlackholePort]
     """IP addresses of the instances that are blackholed by DDoS mitigation system"""
+
+    created_at: datetime
+    """Datetime when GPU server was created"""
 
     creator_task_id: Optional[str] = None
     """Task that created this entity"""
@@ -102,20 +108,14 @@ class GPUClusterServer(BaseModel):
     flavor: Flavor
     """Flavor"""
 
-    instance_created: datetime
-    """Datetime when instance was created"""
-
     instance_description: Optional[str] = None
     """Instance description"""
-
-    instance_id: str
-    """Instance ID"""
 
     instance_isolation: Optional[InstanceIsolation] = None
     """Instance isolation information"""
 
-    instance_name: str
-    """Instance name"""
+    name: str
+    """GPU server name"""
 
     project_id: int
     """Project ID"""

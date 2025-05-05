@@ -72,11 +72,17 @@ class Flavor(BaseModel):
 
 
 class BaremetalServer(BaseModel):
+    id: str
+    """Bare metal server ID"""
+
     addresses: Dict[str, List[Address]]
     """Map of network_name to list of addresses in that network"""
 
     blackhole_ports: List[BlackholePort]
     """IP addresses of the instances that are blackholed by DDoS mitigation system"""
+
+    created_at: datetime
+    """Datetime when bare metal server was created"""
 
     creator_task_id: Optional[str] = None
     """Task that created this entity"""
@@ -91,21 +97,12 @@ class BaremetalServer(BaseModel):
     """Fixed IP assigned to instance"""
 
     flavor: Flavor
-    """Flavor"""
-
-    instance_created: datetime
-    """Datetime when bare metal server was created"""
-
-    instance_description: Optional[str] = None
-    """Bare metal server description"""
-
-    instance_id: str
-    """Bare metal server ID"""
+    """Flavor details"""
 
     instance_isolation: Optional[InstanceIsolation] = None
     """Instance isolation information"""
 
-    instance_name: str
+    name: str
     """Bare metal server name"""
 
     project_id: int

@@ -378,7 +378,7 @@ class TestVolumes:
             project_id=1,
             region_id=1,
             instance_id="169942e0-9b53-42df-95ef-1a8b6525c2bd",
-            attachment_tag="root",
+            attachment_tag="boot",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
 
@@ -1025,7 +1025,7 @@ class TestAsyncVolumes:
             project_id=1,
             region_id=1,
             instance_id="169942e0-9b53-42df-95ef-1a8b6525c2bd",
-            attachment_tag="root",
+            attachment_tag="boot",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
 

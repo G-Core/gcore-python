@@ -59,8 +59,8 @@ class ServersResource(SyncAPIResource):
         apptemplate_id: str | NotGiven = NOT_GIVEN,
         ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
         image_id: str | NotGiven = NOT_GIVEN,
-        name_templates: List[str] | NotGiven = NOT_GIVEN,
-        names: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
@@ -74,7 +74,24 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create a new bare metal server or multiple servers
+        For Linux,
+
+        - Use the `user_data` field to provide a
+          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
+          script</a> in base64 to apply configurations to the instance.
+        - Specify the `username` and `password` to create a new user.
+        - When only `password` is provided, it is set as the password for the default
+          user of the image.
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
+        - Use the `user_data` field to provide a
+          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
+          script</a> in base64 to create new users on Windows.
+        - Use the `password` field to set the password for the 'Admin' user on Windows.
+        - The password of the Admin user cannot be updated via `user_data`.
+        - The `username` cannot be specified in the request.
 
         Args:
           project_id: Project ID
@@ -84,7 +101,7 @@ class ServersResource(SyncAPIResource):
           flavor: The flavor of the instance.
 
           interfaces: A list of network interfaces for the server. You can create one or more
-              interfaces—private, public, or both.
+              interfaces - private, public, or both.
 
           app_config: Parameters for the application template if creating the instance from an
               `apptemplate`.
@@ -95,13 +112,13 @@ class ServersResource(SyncAPIResource):
 
           image_id: Image ID. Either `image_id` or `apptemplate_id` is required.
 
-          name_templates: If you want server names to be automatically generated using IP octets, you can
-              specify name templates instead of setting names manually.Provide a list of
-              templated names that should be replaced using the selected template. The
-              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
-              `{one_ip_octet}`.
+          name: Server name.
 
-          names: List of server names. Specify one name to create a single server.
+          name_template: If you want server names to be automatically generated based on IP addresses,
+              you can provide a name template instead of specifying the name manually. The
+              template should include a placeholder that will be replaced during provisioning.
+              Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
+              `{two_ip_octets}`, and `{one_ip_octet}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
@@ -110,7 +127,8 @@ class ServersResource(SyncAPIResource):
               'user_data' field to provide a script to create new users on Windows. The
               password of the Admin user cannot be updated via 'user_data'.
 
-          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -149,8 +167,8 @@ class ServersResource(SyncAPIResource):
                     "apptemplate_id": apptemplate_id,
                     "ddos_profile": ddos_profile,
                     "image_id": image_id,
-                    "name_templates": name_templates,
-                    "names": names,
+                    "name": name,
+                    "name_template": name_template,
                     "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
@@ -401,8 +419,8 @@ class AsyncServersResource(AsyncAPIResource):
         apptemplate_id: str | NotGiven = NOT_GIVEN,
         ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
         image_id: str | NotGiven = NOT_GIVEN,
-        name_templates: List[str] | NotGiven = NOT_GIVEN,
-        names: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
         tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
@@ -416,7 +434,24 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create a new bare metal server or multiple servers
+        For Linux,
+
+        - Use the `user_data` field to provide a
+          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
+          script</a> in base64 to apply configurations to the instance.
+        - Specify the `username` and `password` to create a new user.
+        - When only `password` is provided, it is set as the password for the default
+          user of the image.
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
+        - Use the `user_data` field to provide a
+          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
+          script</a> in base64 to create new users on Windows.
+        - Use the `password` field to set the password for the 'Admin' user on Windows.
+        - The password of the Admin user cannot be updated via `user_data`.
+        - The `username` cannot be specified in the request.
 
         Args:
           project_id: Project ID
@@ -426,7 +461,7 @@ class AsyncServersResource(AsyncAPIResource):
           flavor: The flavor of the instance.
 
           interfaces: A list of network interfaces for the server. You can create one or more
-              interfaces—private, public, or both.
+              interfaces - private, public, or both.
 
           app_config: Parameters for the application template if creating the instance from an
               `apptemplate`.
@@ -437,13 +472,13 @@ class AsyncServersResource(AsyncAPIResource):
 
           image_id: Image ID. Either `image_id` or `apptemplate_id` is required.
 
-          name_templates: If you want server names to be automatically generated using IP octets, you can
-              specify name templates instead of setting names manually.Provide a list of
-              templated names that should be replaced using the selected template. The
-              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
-              `{one_ip_octet}`.
+          name: Server name.
 
-          names: List of server names. Specify one name to create a single server.
+          name_template: If you want server names to be automatically generated based on IP addresses,
+              you can provide a name template instead of specifying the name manually. The
+              template should include a placeholder that will be replaced during provisioning.
+              Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
+              `{two_ip_octets}`, and `{one_ip_octet}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
@@ -452,7 +487,8 @@ class AsyncServersResource(AsyncAPIResource):
               'user_data' field to provide a script to create new users on Windows. The
               password of the Admin user cannot be updated via 'user_data'.
 
-          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -491,8 +527,8 @@ class AsyncServersResource(AsyncAPIResource):
                     "apptemplate_id": apptemplate_id,
                     "ddos_profile": ddos_profile,
                     "image_id": image_id,
-                    "name_templates": name_templates,
-                    "names": names,
+                    "name": name,
+                    "name_template": name_template,
                     "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,

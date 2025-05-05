@@ -119,8 +119,8 @@ class InstancesResource(SyncAPIResource):
         volumes: Iterable[instance_create_params.Volume],
         allow_app_ports: bool | NotGiven = NOT_GIVEN,
         configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        name_templates: List[str] | NotGiven = NOT_GIVEN,
-        names: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
@@ -135,18 +135,25 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Create one or many instances or basic VMs.
+        """
+        For Linux,
 
-        For Linux instances, use the
-        'username' and 'password' to create a new user. When only 'password' is
-        provided, it is set as the password for the default user of the image. The
-        'user_data' is ignored when the 'password' is specified. Use the 'user_data'
-        field to provide a cloud-init script in base64 to apply configurations to the
-        instance. For Windows instances, the 'username' cannot be specified in the
-        request. Use the 'password' field to set the password for the 'Admin' user on
-        Windows. Use the 'user_data' field to provide a cloudbase-init script in base64
-        to create new users on Windows. The password of the Admin user cannot be updated
-        via 'user_data'.
+        - Use the `user_data` field to provide a
+          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
+          script</a> in base64 to apply configurations to the instance.
+        - Specify the `username` and `password` to create a new user.
+        - When only `password` is provided, it is set as the password for the default
+          user of the image.
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
+        - Use the `user_data` field to provide a
+          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
+          script</a> in base64 to create new users on Windows.
+        - Use the `password` field to set the password for the 'Admin' user on Windows.
+        - The password of the Admin user cannot be updated via `user_data`.
+        - The `username` cannot be specified in the request.
 
         Args:
           project_id: Project ID
@@ -156,9 +163,9 @@ class InstancesResource(SyncAPIResource):
           flavor: The flavor of the instance.
 
           interfaces: A list of network interfaces for the instance. You can create one or more
-              interfaces—private, public, or both.
+              interfaces - private, public, or both.
 
-          volumes: List of volumes for instances
+          volumes: List of volumes that will be attached to the instance.
 
           allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
               application ports in the security group for instances created from a marketplace
@@ -167,13 +174,13 @@ class InstancesResource(SyncAPIResource):
           configuration: Parameters for the application template if creating the instance from an
               `apptemplate`.
 
-          name_templates: If you want instance names to be automatically generated using IP octets, you
-              can specify name templates instead of setting names manually.Provide a list of
-              templated names that should be replaced using the selected template. The
-              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
-              `{one_ip_octet}`.
+          name: Instance name.
 
-          names: List of instance names. Specify one name to create a single instance.
+          name_template: If you want the instance name to be automatically generated based on IP
+              addresses, you can provide a name template instead of specifying the name
+              manually. The template should include a placeholder that will be replaced during
+              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
+              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
@@ -182,16 +189,20 @@ class InstancesResource(SyncAPIResource):
               'user_data' field to provide a script to create new users on Windows. The
               password of the Admin user cannot be updated via 'user_data'.
 
-          security_groups: Applies only to instances and is ignored for bare metal. Specifies security
-              group UUIDs to be applied to all instance network interfaces.
+          security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id: Server group ID for instance placement policy. Can be an anti-affinity,
-              affinity, or soft-anti-affinity group. `anti-affinity` ensures instances are
-              placed on different hosts for high availability. `affinity` places instances on
-              the same host for low-latency communication. `soft-anti-affinity` tries to place
-              instances on different hosts but allows sharing if needed.
+          servergroup_id: Placement group ID for instance placement policy.
 
-          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
+              Supported group types:
+
+              - `anti-affinity`: Ensures instances are placed on different hosts for high
+                availability.
+              - `affinity`: Places instances on the same host for low-latency communication.
+              - `soft-anti-affinity`: Tries to place instances on different hosts but allows
+                sharing if needed.
+
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -229,8 +240,8 @@ class InstancesResource(SyncAPIResource):
                     "volumes": volumes,
                     "allow_app_ports": allow_app_ports,
                     "configuration": configuration,
-                    "name_templates": name_templates,
-                    "names": names,
+                    "name": name,
+                    "name_template": name_template,
                     "password": password,
                     "security_groups": security_groups,
                     "servergroup_id": servergroup_id,
@@ -1118,8 +1129,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         volumes: Iterable[instance_create_params.Volume],
         allow_app_ports: bool | NotGiven = NOT_GIVEN,
         configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        name_templates: List[str] | NotGiven = NOT_GIVEN,
-        names: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
@@ -1134,18 +1145,25 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Create one or many instances or basic VMs.
+        """
+        For Linux,
 
-        For Linux instances, use the
-        'username' and 'password' to create a new user. When only 'password' is
-        provided, it is set as the password for the default user of the image. The
-        'user_data' is ignored when the 'password' is specified. Use the 'user_data'
-        field to provide a cloud-init script in base64 to apply configurations to the
-        instance. For Windows instances, the 'username' cannot be specified in the
-        request. Use the 'password' field to set the password for the 'Admin' user on
-        Windows. Use the 'user_data' field to provide a cloudbase-init script in base64
-        to create new users on Windows. The password of the Admin user cannot be updated
-        via 'user_data'.
+        - Use the `user_data` field to provide a
+          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
+          script</a> in base64 to apply configurations to the instance.
+        - Specify the `username` and `password` to create a new user.
+        - When only `password` is provided, it is set as the password for the default
+          user of the image.
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
+        - Use the `user_data` field to provide a
+          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
+          script</a> in base64 to create new users on Windows.
+        - Use the `password` field to set the password for the 'Admin' user on Windows.
+        - The password of the Admin user cannot be updated via `user_data`.
+        - The `username` cannot be specified in the request.
 
         Args:
           project_id: Project ID
@@ -1155,9 +1173,9 @@ class AsyncInstancesResource(AsyncAPIResource):
           flavor: The flavor of the instance.
 
           interfaces: A list of network interfaces for the instance. You can create one or more
-              interfaces—private, public, or both.
+              interfaces - private, public, or both.
 
-          volumes: List of volumes for instances
+          volumes: List of volumes that will be attached to the instance.
 
           allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
               application ports in the security group for instances created from a marketplace
@@ -1166,13 +1184,13 @@ class AsyncInstancesResource(AsyncAPIResource):
           configuration: Parameters for the application template if creating the instance from an
               `apptemplate`.
 
-          name_templates: If you want instance names to be automatically generated using IP octets, you
-              can specify name templates instead of setting names manually.Provide a list of
-              templated names that should be replaced using the selected template. The
-              following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
-              `{one_ip_octet}`.
+          name: Instance name.
 
-          names: List of instance names. Specify one name to create a single instance.
+          name_template: If you want the instance name to be automatically generated based on IP
+              addresses, you can provide a name template instead of specifying the name
+              manually. The template should include a placeholder that will be replaced during
+              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
+              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
@@ -1181,16 +1199,20 @@ class AsyncInstancesResource(AsyncAPIResource):
               'user_data' field to provide a script to create new users on Windows. The
               password of the Admin user cannot be updated via 'user_data'.
 
-          security_groups: Applies only to instances and is ignored for bare metal. Specifies security
-              group UUIDs to be applied to all instance network interfaces.
+          security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id: Server group ID for instance placement policy. Can be an anti-affinity,
-              affinity, or soft-anti-affinity group. `anti-affinity` ensures instances are
-              placed on different hosts for high availability. `affinity` places instances on
-              the same host for low-latency communication. `soft-anti-affinity` tries to place
-              instances on different hosts but allows sharing if needed.
+          servergroup_id: Placement group ID for instance placement policy.
 
-          ssh_key_name: Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint.
+              Supported group types:
+
+              - `anti-affinity`: Ensures instances are placed on different hosts for high
+                availability.
+              - `affinity`: Places instances on the same host for low-latency communication.
+              - `soft-anti-affinity`: Tries to place instances on different hosts but allows
+                sharing if needed.
+
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -1228,8 +1250,8 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "volumes": volumes,
                     "allow_app_ports": allow_app_ports,
                     "configuration": configuration,
-                    "name_templates": name_templates,
-                    "names": names,
+                    "name": name,
+                    "name_template": name_template,
                     "password": password,
                     "security_groups": security_groups,
                     "servergroup_id": servergroup_id,

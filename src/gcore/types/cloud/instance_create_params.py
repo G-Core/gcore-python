@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .interface_ip_family import InterfaceIPFamily
@@ -29,6 +29,11 @@ __all__ = [
     "InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticFloatingIPExistingInstanceFloatingIPInterfaceSerializer",
     "InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticSecurityGroup",
     "Volume",
+    "VolumeCreateInstanceCreateNewVolumeSerializer",
+    "VolumeCreateInstanceCreateVolumeFromImageSerializer",
+    "VolumeCreateInstanceCreateVolumeFromSnapshotSerializer",
+    "VolumeCreateInstanceCreateVolumeFromApptemplateSerializer",
+    "VolumeCreateInstanceExistingVolumeSerializer",
     "SecurityGroup",
 ]
 
@@ -46,11 +51,11 @@ class InstanceCreateParams(TypedDict, total=False):
     interfaces: Required[Iterable[Interface]]
     """A list of network interfaces for the instance.
 
-    You can create one or more interfaces—private, public, or both.
+    You can create one or more interfaces - private, public, or both.
     """
 
     volumes: Required[Iterable[Volume]]
-    """List of volumes for instances"""
+    """List of volumes that will be attached to the instance."""
 
     allow_app_ports: bool
     """Set to `true` if creating the instance from an `apptemplate`.
@@ -65,17 +70,17 @@ class InstanceCreateParams(TypedDict, total=False):
     `apptemplate`.
     """
 
-    name_templates: List[str]
-    """
-    If you want instance names to be automatically generated using IP octets, you
-    can specify name templates instead of setting names manually.Provide a list of
-    templated names that should be replaced using the selected template. The
-    following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
-    `{one_ip_octet}`.
-    """
+    name: str
+    """Instance name."""
 
-    names: List[str]
-    """List of instance names. Specify one name to create a single instance."""
+    name_template: str
+    """
+    If you want the instance name to be automatically generated based on IP
+    addresses, you can provide a name template instead of specifying the name
+    manually. The template should include a placeholder that will be replaced during
+    provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
+    IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+    """
 
     password: str
     """For Linux instances, 'username' and 'password' are used to create a new user.
@@ -88,23 +93,27 @@ class InstanceCreateParams(TypedDict, total=False):
     """
 
     security_groups: Iterable[SecurityGroup]
-    """Applies only to instances and is ignored for bare metal.
-
+    """
     Specifies security group UUIDs to be applied to all instance network interfaces.
     """
 
     servergroup_id: str
-    """Server group ID for instance placement policy.
+    """Placement group ID for instance placement policy.
 
-    Can be an anti-affinity, affinity, or soft-anti-affinity group. `anti-affinity`
-    ensures instances are placed on different hosts for high availability.
-    `affinity` places instances on the same host for low-latency communication.
-    `soft-anti-affinity` tries to place instances on different hosts but allows
-    sharing if needed.
+    Supported group types:
+
+    - `anti-affinity`: Ensures instances are placed on different hosts for high
+      availability.
+    - `affinity`: Places instances on the same host for low-latency communication.
+    - `soft-anti-affinity`: Tries to place instances on different hosts but allows
+      sharing if needed.
     """
 
     ssh_key_name: Optional[str]
-    """Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint."""
+    """
+    Specifies the name of the SSH keypair, created via the
+    <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+    """
 
     tags: TagUpdateListParam
     """Key-value tags to associate with the resource.
@@ -151,14 +160,8 @@ class InterfaceNewInterfaceExternalSerializerPydantic(TypedDict, total=False):
     ip_family: Optional[InterfaceIPFamily]
     """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
-    port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
-
     security_groups: Iterable[InterfaceNewInterfaceExternalSerializerPydanticSecurityGroup]
-    """Applies only to instances and is ignored for bare metal.
-
-    Specifies security group UUIDs to be applied to the instance network interface.
-    """
+    """Specifies security group UUIDs to be applied to the instance network interface."""
 
 
 class InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -225,14 +228,8 @@ class InterfaceNewInterfaceSpecificSubnetFipSerializerPydantic(TypedDict, total=
     Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
-    port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
-
     security_groups: Iterable[InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticSecurityGroup]
-    """Applies only to instances and is ignored for bare metal.
-
-    Specifies security group UUIDs to be applied to the instance network interface.
-    """
+    """Specifies security group UUIDs to be applied to the instance network interface."""
 
 
 class InterfaceNewInterfaceAnySubnetFipSerializerPydanticFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -298,14 +295,8 @@ class InterfaceNewInterfaceAnySubnetFipSerializerPydantic(TypedDict, total=False
     ip_family: Optional[InterfaceIPFamily]
     """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
-    port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
-
     security_groups: Iterable[InterfaceNewInterfaceAnySubnetFipSerializerPydanticSecurityGroup]
-    """Applies only to instances and is ignored for bare metal.
-
-    Specifies security group UUIDs to be applied to the instance network interface.
-    """
+    """Specifies security group UUIDs to be applied to the instance network interface."""
 
 
 class InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -369,14 +360,8 @@ class InterfaceNewInterfaceReservedFixedIPFipSerializerPydantic(TypedDict, total
     Defaults to `null` and is returned as `null` in the API response if not set.
     """
 
-    port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
-
     security_groups: Iterable[InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticSecurityGroup]
-    """Applies only to instances and is ignored for bare metal.
-
-    Specifies security group UUIDs to be applied to the instance network interface.
-    """
+    """Specifies security group UUIDs to be applied to the instance network interface."""
 
 
 Interface: TypeAlias = Union[
@@ -387,49 +372,24 @@ Interface: TypeAlias = Union[
 ]
 
 
-class Volume(TypedDict, total=False):
-    source: Required[Literal["apptemplate", "existing-volume", "image", "new-volume", "snapshot"]]
-    """Volume source.
+class VolumeCreateInstanceCreateNewVolumeSerializer(TypedDict, total=False):
+    size: Required[int]
+    """Volume size in GiB."""
 
-    For `image`, specify `image_id` and `size`. For `new-volume`, specify `size`.
-    For `existing-volume`, specify `volume_id`. For `snapshot`, specify
-    `snapshot_id`. For `apptemplate`, specify `apptemplate_id`.
-    """
-
-    apptemplate_id: str
-    """App template ID. Required if `source` is `apptemplate`"""
+    source: Required[Literal["new-volume"]]
+    """New volume will be created from scratch and attached to the instance."""
 
     attachment_tag: str
     """Block device attachment tag (not exposed in the normal tags)"""
 
-    boot_index: int
-    """0 means that this is the primary boot device.
-
-    A unique positive value is set for the other bootable devices. A negative number
-    means that the boot is prohibited.
-    """
-
     delete_on_termination: bool
-    """Whether the volume should be deleted along with the VM"""
-
-    image_id: str
-    """Image ID. Required if `source` is `image`"""
+    """Set to `true` to automatically delete the volume when the instance is deleted."""
 
     name: str
     """The name of the volume.
 
     If not specified, a name will be generated automatically.
     """
-
-    size: int
-    """Required when the `source` is either `new-volume` or `image`.
-
-    If specified for the `snapshot` or `existing-volume` `source`, the value must
-    match the size of the snapshot or the existing volume, respectively.
-    """
-
-    snapshot_id: str
-    """Volume snapshot ID. Required if `source` is `snapshot`"""
 
     tags: TagUpdateListParam
     """Key-value tags to associate with the resource.
@@ -442,20 +402,219 @@ class Volume(TypedDict, total=False):
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-    """Volume type name.
+    """Volume type name. Supported values:
 
-    Supported values: `standard` – Network SSD block storage offering stable
-    performance with high random I/O and data reliability (6 IOPS per 1 GiB, 0.4
-    MB/s per 1 GiB). Max IOPS: 4500. Max bandwidth: 300 MB/s. `ssd_hiiops` –
-    High-performance SSD storage for latency-sensitive transactional workloads (60
-    IOPS per 1 GiB, 2.5 MB/s per 1 GiB). Max IOPS: 9000. Max bandwidth: 500 MB/s.
-    `ssd_lowlatency` – SSD storage optimized for low-latency and real-time
-    processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
-    resizing are not supported for `ssd_lowlatency`.
+    - `standard` - Network SSD block storage offering stable performance with high
+      random I/O and data reliability (6 IOPS per 1 GiB, 0.4 MB/s per 1 GiB). Max
+      IOPS: 4500. Max bandwidth: 300 MB/s.
+    - `ssd_hiiops` - High-performance SSD storage for latency-sensitive
+      transactional workloads (60 IOPS per 1 GiB, 2.5 MB/s per 1 GiB). Max
+      IOPS: 9000. Max bandwidth: 500 MB/s.
+    - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
+      processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
+      resizing are **not** supported for `ssd_lowlatency`.
     """
 
-    volume_id: str
-    """Volume ID. Required if `source` is `existing-volume`"""
+
+class VolumeCreateInstanceCreateVolumeFromImageSerializer(TypedDict, total=False):
+    image_id: Required[str]
+    """Image ID."""
+
+    source: Required[Literal["image"]]
+    """New volume will be created from the image and attached to the instance.
+
+    Specify `boot_index=0` to boot from this volume.
+    """
+
+    attachment_tag: str
+    """Block device attachment tag (not exposed in the normal tags)"""
+
+    boot_index: int
+    """
+    - `0` means that this is the primary boot device;
+    - A unique positive value is set for the secondary bootable devices;
+    - A negative number means that the boot is prohibited.
+    """
+
+    delete_on_termination: bool
+    """Set to `true` to automatically delete the volume when the instance is deleted."""
+
+    name: str
+    """The name of the volume.
+
+    If not specified, a name will be generated automatically.
+    """
+
+    size: int
+    """Volume size in GiB.
+
+    - For instances: **specify the desired volume size explicitly**.
+    - For basic VMs: the size is set automatically based on the flavor.
+    """
+
+    tags: TagUpdateListParam
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
+    """
+
+    type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
+    """Volume type name. Supported values:
+
+    - `standard` - Network SSD block storage offering stable performance with high
+      random I/O and data reliability (6 IOPS per 1 GiB, 0.4 MB/s per 1 GiB). Max
+      IOPS: 4500. Max bandwidth: 300 MB/s.
+    - `ssd_hiiops` - High-performance SSD storage for latency-sensitive
+      transactional workloads (60 IOPS per 1 GiB, 2.5 MB/s per 1 GiB). Max
+      IOPS: 9000. Max bandwidth: 500 MB/s.
+    - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
+      processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
+      resizing are **not** supported for `ssd_lowlatency`.
+    """
+
+
+class VolumeCreateInstanceCreateVolumeFromSnapshotSerializer(TypedDict, total=False):
+    size: Required[int]
+    """Volume size in GiB."""
+
+    snapshot_id: Required[str]
+    """Snapshot ID."""
+
+    source: Required[Literal["snapshot"]]
+    """New volume will be created from the snapshot and attached to the instance."""
+
+    attachment_tag: str
+    """Block device attachment tag (not exposed in the normal tags)"""
+
+    boot_index: int
+    """
+    - `0` means that this is the primary boot device;
+    - A unique positive value is set for the secondary bootable devices;
+    - A negative number means that the boot is prohibited.
+    """
+
+    delete_on_termination: bool
+    """Set to `true` to automatically delete the volume when the instance is deleted."""
+
+    name: str
+    """The name of the volume.
+
+    If not specified, a name will be generated automatically.
+    """
+
+    tags: TagUpdateListParam
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
+    """
+
+    type_name: Literal["ssd_hiiops", "standard"]
+    """Specifies the volume type.
+
+    If omitted, the type from the source volume will be used by default.
+    """
+
+
+class VolumeCreateInstanceCreateVolumeFromApptemplateSerializer(TypedDict, total=False):
+    apptemplate_id: Required[str]
+    """App template ID."""
+
+    source: Required[Literal["apptemplate"]]
+    """New volume will be created from the app template and attached to the instance."""
+
+    attachment_tag: str
+    """Block device attachment tag (not exposed in the normal tags)"""
+
+    boot_index: int
+    """
+    - `0` means that this is the primary boot device;
+    - A unique positive value is set for the secondary bootable devices;
+    - A negative number means that the boot is prohibited.
+    """
+
+    delete_on_termination: bool
+    """Set to `true` to automatically delete the volume when the instance is deleted."""
+
+    name: str
+    """The name of the volume.
+
+    If not specified, a name will be generated automatically.
+    """
+
+    size: int
+    """Volume size in GiB."""
+
+    tags: TagUpdateListParam
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
+    """
+
+    type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
+    """Volume type name. Supported values:
+
+    - `standard` - Network SSD block storage offering stable performance with high
+      random I/O and data reliability (6 IOPS per 1 GiB, 0.4 MB/s per 1 GiB). Max
+      IOPS: 4500. Max bandwidth: 300 MB/s.
+    - `ssd_hiiops` - High-performance SSD storage for latency-sensitive
+      transactional workloads (60 IOPS per 1 GiB, 2.5 MB/s per 1 GiB). Max
+      IOPS: 9000. Max bandwidth: 500 MB/s.
+    - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
+      processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
+      resizing are **not** supported for `ssd_lowlatency`.
+    """
+
+
+class VolumeCreateInstanceExistingVolumeSerializer(TypedDict, total=False):
+    source: Required[Literal["existing-volume"]]
+    """Existing available volume will be attached to the instance."""
+
+    volume_id: Required[str]
+    """Volume ID."""
+
+    attachment_tag: str
+    """Block device attachment tag (not exposed in the normal tags)"""
+
+    boot_index: int
+    """
+    - `0` means that this is the primary boot device;
+    - A unique positive value is set for the secondary bootable devices;
+    - A negative number means that the boot is prohibited.
+    """
+
+    delete_on_termination: bool
+    """Set to `true` to automatically delete the volume when the instance is deleted."""
+
+    tags: TagUpdateListParam
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Some
+    tags are read-only and cannot be modified by the user. Tags are also integrated
+    with cost reports, allowing cost data to be filtered based on tag keys or
+    values.
+    """
+
+
+Volume: TypeAlias = Union[
+    VolumeCreateInstanceCreateNewVolumeSerializer,
+    VolumeCreateInstanceCreateVolumeFromImageSerializer,
+    VolumeCreateInstanceCreateVolumeFromSnapshotSerializer,
+    VolumeCreateInstanceCreateVolumeFromApptemplateSerializer,
+    VolumeCreateInstanceExistingVolumeSerializer,
+]
 
 
 class SecurityGroup(TypedDict, total=False):
