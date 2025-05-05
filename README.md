@@ -180,7 +180,6 @@ task_id_list = client.cloud.instances.create(
             "is_bootable": False,
         },
     ],
-    names=["my-awesome-instance"],
     user_data="IyEvYmluL2Jhc2gKZWNobyAiSGVsbG8sIFdvcmxkISIgPj4gL3RtcC9jbG91ZC1pbml0Lm91dAo=",
 )
 print(task_id_list.tasks)

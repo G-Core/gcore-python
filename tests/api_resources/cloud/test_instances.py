@@ -31,7 +31,12 @@ class TestInstances:
             region_id=1,
             flavor="g2-standard-32-64",
             interfaces=[{"type": "external"}],
-            volumes=[{"source": "image"}],
+            volumes=[
+                {
+                    "size": 20,
+                    "source": "new-volume",
+                }
+            ],
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
 
@@ -46,30 +51,24 @@ class TestInstances:
                     "type": "external",
                     "interface_name": "eth0",
                     "ip_family": "ipv4",
-                    "port_group": 0,
                     "security_groups": [{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
                 }
             ],
             volumes=[
                 {
-                    "source": "image",
-                    "apptemplate_id": "grafana",
-                    "attachment_tag": "root",
-                    "boot_index": 0,
+                    "size": 20,
+                    "source": "new-volume",
+                    "attachment_tag": "boot",
                     "delete_on_termination": False,
-                    "image_id": "f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
                     "name": "boot-volume",
-                    "size": 10,
-                    "snapshot_id": "f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
                     "tags": {"foo": "my-tag-value"},
                     "type_name": "ssd_hiiops",
-                    "volume_id": "f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
                 }
             ],
             allow_app_ports=True,
             configuration={},
-            name_templates=["my-instance-{ip_octets}"],
-            names=["my-instance"],
+            name="my-instance",
+            name_template="name_template",
             password="password",
             security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             servergroup_id="servergroup_id",
@@ -87,7 +86,12 @@ class TestInstances:
             region_id=1,
             flavor="g2-standard-32-64",
             interfaces=[{"type": "external"}],
-            volumes=[{"source": "image"}],
+            volumes=[
+                {
+                    "size": 20,
+                    "source": "new-volume",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -102,7 +106,12 @@ class TestInstances:
             region_id=1,
             flavor="g2-standard-32-64",
             interfaces=[{"type": "external"}],
-            volumes=[{"source": "image"}],
+            volumes=[
+                {
+                    "size": 20,
+                    "source": "new-volume",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -883,7 +892,12 @@ class TestAsyncInstances:
             region_id=1,
             flavor="g2-standard-32-64",
             interfaces=[{"type": "external"}],
-            volumes=[{"source": "image"}],
+            volumes=[
+                {
+                    "size": 20,
+                    "source": "new-volume",
+                }
+            ],
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
 
@@ -898,30 +912,24 @@ class TestAsyncInstances:
                     "type": "external",
                     "interface_name": "eth0",
                     "ip_family": "ipv4",
-                    "port_group": 0,
                     "security_groups": [{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
                 }
             ],
             volumes=[
                 {
-                    "source": "image",
-                    "apptemplate_id": "grafana",
-                    "attachment_tag": "root",
-                    "boot_index": 0,
+                    "size": 20,
+                    "source": "new-volume",
+                    "attachment_tag": "boot",
                     "delete_on_termination": False,
-                    "image_id": "f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
                     "name": "boot-volume",
-                    "size": 10,
-                    "snapshot_id": "f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
                     "tags": {"foo": "my-tag-value"},
                     "type_name": "ssd_hiiops",
-                    "volume_id": "f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
                 }
             ],
             allow_app_ports=True,
             configuration={},
-            name_templates=["my-instance-{ip_octets}"],
-            names=["my-instance"],
+            name="my-instance",
+            name_template="name_template",
             password="password",
             security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             servergroup_id="servergroup_id",
@@ -939,7 +947,12 @@ class TestAsyncInstances:
             region_id=1,
             flavor="g2-standard-32-64",
             interfaces=[{"type": "external"}],
-            volumes=[{"source": "image"}],
+            volumes=[
+                {
+                    "size": 20,
+                    "source": "new-volume",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -954,7 +967,12 @@ class TestAsyncInstances:
             region_id=1,
             flavor="g2-standard-32-64",
             interfaces=[{"type": "external"}],
-            volumes=[{"source": "image"}],
+            volumes=[
+                {
+                    "size": 20,
+                    "source": "new-volume",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

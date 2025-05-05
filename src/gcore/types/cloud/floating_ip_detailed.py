@@ -52,8 +52,14 @@ class InstanceVolume(BaseModel):
 
 
 class Instance(BaseModel):
+    id: str
+    """Instance ID"""
+
     addresses: Dict[str, List[InstanceAddress]]
     """Map of network_name to list of addresses in that network"""
+
+    created_at: datetime
+    """Datetime when instance was created"""
 
     creator_task_id: str
     """Task that created this entity"""
@@ -61,16 +67,10 @@ class Instance(BaseModel):
     flavor: InstanceFlavor
     """Flavor"""
 
-    instance_created: datetime
-    """Datetime when instance was created"""
-
     instance_description: Optional[str] = None
     """Instance description"""
 
-    instance_id: str
-    """Instance ID"""
-
-    instance_name: str
+    name: str
     """Instance name"""
 
     project_id: int

@@ -54,17 +54,12 @@ class TestGPUBaremetalClusters:
                     "type": "subnet",
                     "floating_ip": {"source": "new"},
                     "interface_name": "interface_name",
-                    "port_group": 0,
-                    "security_groups": [{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
                 }
             ],
             name="my-gpu-cluster",
             instances_count=1,
-            password="password",
             ssh_key_name="my-ssh-key",
             tags={"foo": "my-tag-value"},
-            user_data="user_data",
-            username="username",
         )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
@@ -502,17 +497,12 @@ class TestAsyncGPUBaremetalClusters:
                     "type": "subnet",
                     "floating_ip": {"source": "new"},
                     "interface_name": "interface_name",
-                    "port_group": 0,
-                    "security_groups": [{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
                 }
             ],
             name="my-gpu-cluster",
             instances_count=1,
-            password="password",
             ssh_key_name="my-ssh-key",
             tags={"foo": "my-tag-value"},
-            user_data="user_data",
-            username="username",
         )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 

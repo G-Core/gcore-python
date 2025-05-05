@@ -53,7 +53,7 @@ class InterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> NetworkInterfaceList:
         """
-        List network interfaces attached to GPU cluster servers
+        Returns the network interfaces attached to the servers in the cluster.
 
         Args:
           extra_headers: Send extra headers
@@ -113,7 +113,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> NetworkInterfaceList:
         """
-        List network interfaces attached to GPU cluster servers
+        Returns the network interfaces attached to the servers in the cluster.
 
         Args:
           extra_headers: Send extra headers

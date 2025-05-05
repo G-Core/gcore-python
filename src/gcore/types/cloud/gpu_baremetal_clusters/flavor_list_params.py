@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["FlavorListParams"]
@@ -15,8 +14,8 @@ class FlavorListParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
-    hide_disabled: Optional[bool]
-    """Flag for filtering disabled flavors in the region."""
+    hide_disabled: bool
+    """Set to `true` to remove the disabled flavors from the response."""
 
-    include_prices: Optional[bool]
-    """Set to true if the response should include flavor prices."""
+    include_prices: bool
+    """Set to `true` if the response should include flavor prices."""

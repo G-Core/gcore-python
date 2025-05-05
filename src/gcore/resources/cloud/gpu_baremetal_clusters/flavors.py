@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -48,8 +46,8 @@ class FlavorsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        hide_disabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        include_prices: Optional[bool] | NotGiven = NOT_GIVEN,
+        hide_disabled: bool | NotGiven = NOT_GIVEN,
+        include_prices: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,9 +63,9 @@ class FlavorsResource(SyncAPIResource):
 
           region_id: Region ID
 
-          hide_disabled: Flag for filtering disabled flavors in the region.
+          hide_disabled: Set to `true` to remove the disabled flavors from the response.
 
-          include_prices: Set to true if the response should include flavor prices.
+          include_prices: Set to `true` if the response should include flavor prices.
 
           extra_headers: Send extra headers
 
@@ -125,8 +123,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        hide_disabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        include_prices: Optional[bool] | NotGiven = NOT_GIVEN,
+        hide_disabled: bool | NotGiven = NOT_GIVEN,
+        include_prices: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,9 +140,9 @@ class AsyncFlavorsResource(AsyncAPIResource):
 
           region_id: Region ID
 
-          hide_disabled: Flag for filtering disabled flavors in the region.
+          hide_disabled: Set to `true` to remove the disabled flavors from the response.
 
-          include_prices: Set to true if the response should include flavor prices.
+          include_prices: Set to `true` if the response should include flavor prices.
 
           extra_headers: Send extra headers
 

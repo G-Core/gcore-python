@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..interface_ip_family import InterfaceIPFamily
@@ -42,7 +42,7 @@ class ServerCreateParams(TypedDict, total=False):
     interfaces: Required[Iterable[Interface]]
     """A list of network interfaces for the server.
 
-    You can create one or more interfaces—private, public, or both.
+    You can create one or more interfaces - private, public, or both.
     """
 
     app_config: Optional[object]
@@ -60,17 +60,17 @@ class ServerCreateParams(TypedDict, total=False):
     image_id: str
     """Image ID. Either `image_id` or `apptemplate_id` is required."""
 
-    name_templates: List[str]
-    """
-    If you want server names to be automatically generated using IP octets, you can
-    specify name templates instead of setting names manually.Provide a list of
-    templated names that should be replaced using the selected template. The
-    following template formats are supported: `{ip_octets}`, `{two_ip_octets}`, and
-    `{one_ip_octet}`.
-    """
+    name: str
+    """Server name."""
 
-    names: List[str]
-    """List of server names. Specify one name to create a single server."""
+    name_template: str
+    """
+    If you want server names to be automatically generated based on IP addresses,
+    you can provide a name template instead of specifying the name manually. The
+    template should include a placeholder that will be replaced during provisioning.
+    Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
+    `{two_ip_octets}`, and `{one_ip_octet}`.
+    """
 
     password: str
     """For Linux instances, 'username' and 'password' are used to create a new user.
@@ -83,7 +83,10 @@ class ServerCreateParams(TypedDict, total=False):
     """
 
     ssh_key_name: Optional[str]
-    """Specifies the name of the SSH keypair, created via the `/v1/ssh_keys` endpoint."""
+    """
+    Specifies the name of the SSH keypair, created via the
+    <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+    """
 
     tags: TagUpdateListParam
     """Key-value tags to associate with the resource.
@@ -126,7 +129,12 @@ class InterfaceCreateBareMetalExternalInterfaceSerializer(TypedDict, total=False
     """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
+    """Specifies the trunk group to which this interface belongs.
+
+    Applicable only for bare metal servers. Each unique port group is mapped to a
+    separate trunk port. Use this to control how interfaces are grouped across
+    trunks.
+    """
 
 
 class InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -189,7 +197,12 @@ class InterfaceCreateBareMetalSubnetInterfaceSerializer(TypedDict, total=False):
     """
 
     port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
+    """Specifies the trunk group to which this interface belongs.
+
+    Applicable only for bare metal servers. Each unique port group is mapped to a
+    separate trunk port. Use this to control how interfaces are grouped across
+    trunks.
+    """
 
 
 class InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -251,7 +264,12 @@ class InterfaceCreateBareMetalAnySubnetInterfaceSerializer(TypedDict, total=Fals
     """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
+    """Specifies the trunk group to which this interface belongs.
+
+    Applicable only for bare metal servers. Each unique port group is mapped to a
+    separate trunk port. Use this to control how interfaces are grouped across
+    trunks.
+    """
 
 
 class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -311,7 +329,12 @@ class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializer(TypedDict, tota
     """
 
     port_group: int
-    """Applicable only to bare metal. Each group is added to a separate trunk."""
+    """Specifies the trunk group to which this interface belongs.
+
+    Applicable only for bare metal servers. Each unique port group is mapped to a
+    separate trunk port. Use this to control how interfaces are grouped across
+    trunks.
+    """
 
 
 Interface: TypeAlias = Union[
