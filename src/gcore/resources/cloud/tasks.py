@@ -224,6 +224,8 @@ class TasksResource(SyncAPIResource):
     ) -> Task:
         if not is_given(polling_interval_seconds):
             polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
+        # Ensure the polling interval is at least 1 second
+        polling_interval_seconds = max(1, polling_interval_seconds)
 
         if not is_given(timeout):
             timeout = extract_timeout_value(self._client.timeout)
