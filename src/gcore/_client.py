@@ -42,7 +42,7 @@ class Gcore(SyncAPIClient):
     api_key: str
     cloud_project_id: int | None
     cloud_region_id: int | None
-    cloud_polling_interval_ms: int | None
+    cloud_polling_interval_seconds: int | None
 
     def __init__(
         self,
@@ -50,7 +50,7 @@ class Gcore(SyncAPIClient):
         api_key: str | None = None,
         cloud_project_id: int | None = None,
         cloud_region_id: int | None = None,
-        cloud_polling_interval_ms: int | None = 1000,
+        cloud_polling_interval_seconds: int | None = 3,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -93,9 +93,9 @@ class Gcore(SyncAPIClient):
             cloud_region_id = maybe_coerce_integer(os.environ.get("GCORE_CLOUD_REGION_ID"))
         self.cloud_region_id = cloud_region_id
 
-        if cloud_polling_interval_ms is None:
-            cloud_polling_interval_ms = 1000
-        self.cloud_polling_interval_ms = cloud_polling_interval_ms
+        if cloud_polling_interval_seconds is None:
+            cloud_polling_interval_seconds = 3
+        self.cloud_polling_interval_seconds = cloud_polling_interval_seconds
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
@@ -143,7 +143,7 @@ class Gcore(SyncAPIClient):
         api_key: str | None = None,
         cloud_project_id: int | None = None,
         cloud_region_id: int | None = None,
-        cloud_polling_interval_ms: int | None = None,
+        cloud_polling_interval_seconds: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -180,7 +180,7 @@ class Gcore(SyncAPIClient):
             api_key=api_key or self.api_key,
             cloud_project_id=cloud_project_id or self.cloud_project_id,
             cloud_region_id=cloud_region_id or self.cloud_region_id,
-            cloud_polling_interval_ms=cloud_polling_interval_ms or self.cloud_polling_interval_ms,
+            cloud_polling_interval_seconds=cloud_polling_interval_seconds or self.cloud_polling_interval_seconds,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -255,7 +255,7 @@ class AsyncGcore(AsyncAPIClient):
     api_key: str
     cloud_project_id: int | None
     cloud_region_id: int | None
-    cloud_polling_interval_ms: int | None
+    cloud_polling_interval_seconds: int | None
 
     def __init__(
         self,
@@ -263,7 +263,7 @@ class AsyncGcore(AsyncAPIClient):
         api_key: str | None = None,
         cloud_project_id: int | None = None,
         cloud_region_id: int | None = None,
-        cloud_polling_interval_ms: int | None = 1000,
+        cloud_polling_interval_seconds: int | None = 3,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -306,9 +306,9 @@ class AsyncGcore(AsyncAPIClient):
             cloud_region_id = maybe_coerce_integer(os.environ.get("GCORE_CLOUD_REGION_ID"))
         self.cloud_region_id = cloud_region_id
 
-        if cloud_polling_interval_ms is None:
-            cloud_polling_interval_ms = 1000
-        self.cloud_polling_interval_ms = cloud_polling_interval_ms
+        if cloud_polling_interval_seconds is None:
+            cloud_polling_interval_seconds = 3
+        self.cloud_polling_interval_seconds = cloud_polling_interval_seconds
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
@@ -356,7 +356,7 @@ class AsyncGcore(AsyncAPIClient):
         api_key: str | None = None,
         cloud_project_id: int | None = None,
         cloud_region_id: int | None = None,
-        cloud_polling_interval_ms: int | None = None,
+        cloud_polling_interval_seconds: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -393,7 +393,7 @@ class AsyncGcore(AsyncAPIClient):
             api_key=api_key or self.api_key,
             cloud_project_id=cloud_project_id or self.cloud_project_id,
             cloud_region_id=cloud_region_id or self.cloud_region_id,
-            cloud_polling_interval_ms=cloud_polling_interval_ms or self.cloud_polling_interval_ms,
+            cloud_polling_interval_seconds=cloud_polling_interval_seconds or self.cloud_polling_interval_seconds,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
