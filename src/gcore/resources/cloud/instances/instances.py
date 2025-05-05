@@ -68,7 +68,7 @@ from ....types.cloud.console import Console
 from ....types.cloud.instance import Instance
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.instance_interface import InstanceInterface
-from ....types.cloud.tag_update_list_param import TagUpdateListParam
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["InstancesResource", "AsyncInstancesResource"]
 
@@ -125,7 +125,7 @@ class InstancesResource(SyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1135,7 +1135,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

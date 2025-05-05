@@ -13,7 +13,14 @@ from .floating_address import FloatingAddress
 from .instance_isolation import InstanceIsolation
 from .fixed_address_short import FixedAddressShort
 
-__all__ = ["GPUClusterServer", "Address", "FixedIPAssignment", "Flavor", "FlavorHardwareDescription", "SecurityGroup"]
+__all__ = [
+    "GPUBaremetalClusterServer",
+    "Address",
+    "FixedIPAssignment",
+    "Flavor",
+    "FlavorHardwareDescription",
+    "SecurityGroup",
+]
 
 Address: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddress]
 
@@ -80,7 +87,7 @@ class SecurityGroup(BaseModel):
     """Name."""
 
 
-class GPUClusterServer(BaseModel):
+class GPUBaremetalClusterServer(BaseModel):
     id: str
     """GPU server ID"""
 

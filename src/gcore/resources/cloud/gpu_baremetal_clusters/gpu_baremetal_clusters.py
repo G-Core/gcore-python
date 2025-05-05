@@ -58,9 +58,9 @@ from ....types.cloud import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.gpu_baremetal_cluster import GPUBaremetalCluster
-from ....types.cloud.tag_update_list_param import TagUpdateListParam
-from ....types.cloud.gpu_cluster_server_list import GPUClusterServerList
+from ....types.cloud.gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList
 
 __all__ = ["GPUBaremetalClustersResource", "AsyncGPUBaremetalClustersResource"]
 
@@ -112,7 +112,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -341,7 +341,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServerList:
+    ) -> GPUBaremetalClusterServerList:
         """
         Stops and then starts all cluster servers, effectively performing a hard reboot.
 
@@ -365,7 +365,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServerList,
+            cast_to=GPUBaremetalClusterServerList,
         )
 
     def reboot_all_servers(
@@ -380,7 +380,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServerList:
+    ) -> GPUBaremetalClusterServerList:
         """
         Reboot all bare metal GPU cluster servers
 
@@ -404,7 +404,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServerList,
+            cast_to=GPUBaremetalClusterServerList,
         )
 
     def rebuild(
@@ -559,7 +559,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -788,7 +788,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServerList:
+    ) -> GPUBaremetalClusterServerList:
         """
         Stops and then starts all cluster servers, effectively performing a hard reboot.
 
@@ -812,7 +812,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServerList,
+            cast_to=GPUBaremetalClusterServerList,
         )
 
     async def reboot_all_servers(
@@ -827,7 +827,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServerList:
+    ) -> GPUBaremetalClusterServerList:
         """
         Reboot all bare metal GPU cluster servers
 
@@ -851,7 +851,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServerList,
+            cast_to=GPUBaremetalClusterServerList,
         )
 
     async def rebuild(

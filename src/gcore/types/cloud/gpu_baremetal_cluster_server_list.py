@@ -3,14 +3,14 @@
 from typing import List
 
 from ..._models import BaseModel
-from .gpu_cluster_server import GPUClusterServer
+from .gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 
-__all__ = ["GPUClusterServerList"]
+__all__ = ["GPUBaremetalClusterServerList"]
 
 
-class GPUClusterServerList(BaseModel):
+class GPUBaremetalClusterServerList(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[GPUClusterServer]
+    results: List[GPUBaremetalClusterServer]
     """Objects"""

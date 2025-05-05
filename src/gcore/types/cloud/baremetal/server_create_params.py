@@ -6,7 +6,7 @@ from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..interface_ip_family import InterfaceIPFamily
-from ..tag_update_list_param import TagUpdateListParam
+from ..tag_update_map_param import TagUpdateMapParam
 
 __all__ = [
     "ServerCreateParams",
@@ -88,7 +88,7 @@ class ServerCreateParams(TypedDict, total=False):
     <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
     """
 
-    tags: TagUpdateListParam
+    tags: TagUpdateMapParam
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

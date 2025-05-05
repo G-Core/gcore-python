@@ -22,7 +22,7 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.baremetal import server_list_params, server_create_params, server_rebuild_params
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.tag_update_list_param import TagUpdateListParam
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.baremetal.baremetal_server import BaremetalServer
 
 __all__ = ["ServersResource", "AsyncServersResource"]
@@ -63,7 +63,7 @@ class ServersResource(SyncAPIResource):
         name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -423,7 +423,7 @@ class AsyncServersResource(AsyncAPIResource):
         name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateListParam | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -20,12 +20,12 @@ from ...._response import (
 from ...._base_client import make_request_options
 from ....types.cloud.console import Console
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.gpu_cluster_server import GPUClusterServer
 from ....types.cloud.gpu_baremetal_clusters import (
     server_delete_params,
     server_attach_interface_params,
     server_detach_interface_params,
 )
+from ....types.cloud.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 
 __all__ = ["ServersResource", "AsyncServersResource"]
 
@@ -448,7 +448,7 @@ class ServersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServer:
+    ) -> GPUBaremetalClusterServer:
         """
         Stops and then starts the server, effectively performing a hard reboot.
 
@@ -472,7 +472,7 @@ class ServersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServer,
+            cast_to=GPUBaremetalClusterServer,
         )
 
     def reboot(
@@ -487,7 +487,7 @@ class ServersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServer:
+    ) -> GPUBaremetalClusterServer:
         """
         Reboot one bare metal GPU cluster server
 
@@ -511,7 +511,7 @@ class ServersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServer,
+            cast_to=GPUBaremetalClusterServer,
         )
 
 
@@ -935,7 +935,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServer:
+    ) -> GPUBaremetalClusterServer:
         """
         Stops and then starts the server, effectively performing a hard reboot.
 
@@ -959,7 +959,7 @@ class AsyncServersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServer,
+            cast_to=GPUBaremetalClusterServer,
         )
 
     async def reboot(
@@ -974,7 +974,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUClusterServer:
+    ) -> GPUBaremetalClusterServer:
         """
         Reboot one bare metal GPU cluster server
 
@@ -998,7 +998,7 @@ class AsyncServersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUClusterServer,
+            cast_to=GPUBaremetalClusterServer,
         )
 
 

@@ -69,7 +69,6 @@ from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
 from .aws_iam_data_param import AwsIamDataParam as AwsIamDataParam
 from .ddos_profile_field import DDOSProfileField as DDOSProfileField
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
-from .gpu_cluster_server import GPUClusterServer as GPUClusterServer
 from .ingress_opts_param import IngressOptsParam as IngressOptsParam
 from .instance_interface import InstanceInterface as InstanceInterface
 from .instance_isolation import InstanceIsolation as InstanceIsolation
@@ -96,6 +95,7 @@ from .placement_group_list import PlacementGroupList as PlacementGroupList
 from .region_capacity_list import RegionCapacityList as RegionCapacityList
 from .secret_create_params import SecretCreateParams as SecretCreateParams
 from .secret_list_response import SecretListResponse as SecretListResponse
+from .tag_update_map_param import TagUpdateMapParam as TagUpdateMapParam
 from .volume_create_params import VolumeCreateParams as VolumeCreateParams
 from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
 from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
@@ -111,7 +111,6 @@ from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
-from .tag_update_list_param import TagUpdateListParam as TagUpdateListParam
 from .container_probe_config import ContainerProbeConfig as ContainerProbeConfig
 from .file_share_list_params import FileShareListParams as FileShareListParams
 from .instance_action_params import InstanceActionParams as InstanceActionParams
@@ -127,7 +126,6 @@ from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .detailed_lb_pool_member import DetailedLbPoolMember as DetailedLbPoolMember
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
-from .gpu_cluster_server_list import GPUClusterServerList as GPUClusterServerList
 from .container_probe_http_get import ContainerProbeHTTPGet as ContainerProbeHTTPGet
 from .container_scale_triggers import ContainerScaleTriggers as ContainerScaleTriggers
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
@@ -161,6 +159,7 @@ from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalance
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
 from .container_probe_create_param import ContainerProbeCreateParam as ContainerProbeCreateParam
 from .container_scale_trigger_rate import ContainerScaleTriggerRate as ContainerScaleTriggerRate
+from .gpu_baremetal_cluster_server import GPUBaremetalClusterServer as GPUBaremetalClusterServer
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
 from .security_group_create_params import SecurityGroupCreateParams as SecurityGroupCreateParams
 from .security_group_update_params import SecurityGroupUpdateParams as SecurityGroupUpdateParams
@@ -174,6 +173,7 @@ from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as Vo
 from .container_probe_exec_create_param import ContainerProbeExecCreateParam as ContainerProbeExecCreateParam
 from .container_scale_trigger_threshold import ContainerScaleTriggerThreshold as ContainerScaleTriggerThreshold
 from .gpu_baremetal_cluster_list_params import GPUBaremetalClusterListParams as GPUBaremetalClusterListParams
+from .gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList as GPUBaremetalClusterServerList
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams

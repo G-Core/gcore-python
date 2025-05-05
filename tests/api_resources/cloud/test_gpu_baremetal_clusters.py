@@ -13,7 +13,7 @@ from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import (
     TaskIDList,
     GPUBaremetalCluster,
-    GPUClusterServerList,
+    GPUBaremetalClusterServerList,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -264,7 +264,7 @@ class TestGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_powercycle_all_servers(self, client: Gcore) -> None:
@@ -277,7 +277,7 @@ class TestGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = response.parse()
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_streaming_response_powercycle_all_servers(self, client: Gcore) -> None:
@@ -290,7 +290,7 @@ class TestGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = response.parse()
-            assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -310,7 +310,7 @@ class TestGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_reboot_all_servers(self, client: Gcore) -> None:
@@ -323,7 +323,7 @@ class TestGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = response.parse()
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_streaming_response_reboot_all_servers(self, client: Gcore) -> None:
@@ -336,7 +336,7 @@ class TestGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = response.parse()
-            assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -707,7 +707,7 @@ class TestAsyncGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_powercycle_all_servers(self, async_client: AsyncGcore) -> None:
@@ -720,7 +720,7 @@ class TestAsyncGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = await response.parse()
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_streaming_response_powercycle_all_servers(self, async_client: AsyncGcore) -> None:
@@ -733,7 +733,7 @@ class TestAsyncGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = await response.parse()
-            assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -753,7 +753,7 @@ class TestAsyncGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_reboot_all_servers(self, async_client: AsyncGcore) -> None:
@@ -766,7 +766,7 @@ class TestAsyncGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = await response.parse()
-        assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_streaming_response_reboot_all_servers(self, async_client: AsyncGcore) -> None:
@@ -779,7 +779,7 @@ class TestAsyncGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = await response.parse()
-            assert_matches_type(GPUClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
