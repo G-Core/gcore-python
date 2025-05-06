@@ -20,7 +20,7 @@ or products provided by Gcore please follow the respective company's security re
 
 ### Gcore Terms and Policies
 
-Please contact dev-feedback@gcore.com for any questions or concerns regarding security of our services.
+Please contact support@gcore.com for any questions or concerns regarding security of our services.
 
 ---
 
