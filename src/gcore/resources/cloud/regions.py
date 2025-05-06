@@ -31,7 +31,7 @@ class RegionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
         return RegionsResourceWithRawResponse(self)
 
@@ -40,7 +40,7 @@ class RegionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return RegionsResourceWithStreamingResponse(self)
 
@@ -158,7 +158,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
         return AsyncRegionsResourceWithRawResponse(self)
 
@@ -167,7 +167,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/gcore-python#with_streaming_response
+        For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return AsyncRegionsResourceWithStreamingResponse(self)
 
