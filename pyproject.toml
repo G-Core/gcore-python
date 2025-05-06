@@ -1,6 +1,6 @@
 [project]
 name = "gcore"
-version = "0.1.0-alpha.1"
+version = "0.1.0-alpha.2"
 description = "The official Python library for the gcore API"
 dynamic = ["readme"]
 license = "Apache-2.0"
