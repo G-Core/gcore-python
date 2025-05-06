@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-05-06)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/G-Core/gcore-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Documentation
+
+* enable pypi publishing ([6fd398f](https://github.com/G-Core/gcore-python/commit/6fd398f307673c521d41acef7ee6833977d8b108))
+
 ## 0.1.0-alpha.1 (2025-05-06)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/G-Core/gcore-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
