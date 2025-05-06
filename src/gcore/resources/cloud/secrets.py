@@ -68,14 +68,17 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Create secret
+        """
+        Create secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Secret name
 
-          payload: Secret payload.
-
-        For HTTPS-terminated load balancing, provide base64 encoded
+          payload: Secret payload. For HTTPS-terminated load balancing, provide base64 encoded
               conents of a PKCS12 file. The PKCS12 file is the combined TLS certificate, key,
               and intermediate certificate chain obtained from an external certificate
               authority. The file can be created via openssl, e.g.'openssl pkcs12 -export
@@ -154,6 +157,10 @@ class SecretsResource(SyncAPIResource):
         List secrets
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -191,6 +198,12 @@ class SecretsResource(SyncAPIResource):
         Delete secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          secret_id: Secret ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -230,6 +243,12 @@ class SecretsResource(SyncAPIResource):
         Get secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          secret_id: Secret ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -271,6 +290,10 @@ class SecretsResource(SyncAPIResource):
         Create secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Secret name
 
           payload: Secret payload.
@@ -347,14 +370,17 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Create secret
+        """
+        Create secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Secret name
 
-          payload: Secret payload.
-
-        For HTTPS-terminated load balancing, provide base64 encoded
+          payload: Secret payload. For HTTPS-terminated load balancing, provide base64 encoded
               conents of a PKCS12 file. The PKCS12 file is the combined TLS certificate, key,
               and intermediate certificate chain obtained from an external certificate
               authority. The file can be created via openssl, e.g.'openssl pkcs12 -export
@@ -433,6 +459,10 @@ class AsyncSecretsResource(AsyncAPIResource):
         List secrets
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -470,6 +500,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         Delete secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          secret_id: Secret ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -509,6 +545,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         Get secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          secret_id: Secret ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -550,6 +592,10 @@ class AsyncSecretsResource(AsyncAPIResource):
         Create secret
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Secret name
 
           payload: Secret payload.

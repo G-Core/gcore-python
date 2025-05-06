@@ -25,8 +25,8 @@ class TestSecrets:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         secret = client.cloud.secrets.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -38,8 +38,8 @@ class TestSecrets:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         secret = client.cloud.secrets.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -55,8 +55,8 @@ class TestSecrets:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.secrets.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -72,8 +72,8 @@ class TestSecrets:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.secrets.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -91,16 +91,16 @@ class TestSecrets:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         secret = client.cloud.secrets.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(SecretListResponse, secret, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.secrets.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -111,8 +111,8 @@ class TestSecrets:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.secrets.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,18 +125,18 @@ class TestSecrets:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         secret = client.cloud.secrets.delete(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.secrets.with_raw_response.delete(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -147,9 +147,9 @@ class TestSecrets:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.secrets.with_streaming_response.delete(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -164,25 +164,25 @@ class TestSecrets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
             client.cloud.secrets.with_raw_response.delete(
                 secret_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         secret = client.cloud.secrets.get(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Secret, secret, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.secrets.with_raw_response.get(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -193,9 +193,9 @@ class TestSecrets:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.secrets.with_streaming_response.get(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -210,15 +210,15 @@ class TestSecrets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
             client.cloud.secrets.with_raw_response.get(
                 secret_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_upload_tls_certificate(self, client: Gcore) -> None:
         secret = client.cloud.secrets.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
@@ -231,8 +231,8 @@ class TestSecrets:
     @parametrize
     def test_method_upload_tls_certificate_with_all_params(self, client: Gcore) -> None:
         secret = client.cloud.secrets.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
@@ -246,8 +246,8 @@ class TestSecrets:
     @parametrize
     def test_raw_response_upload_tls_certificate(self, client: Gcore) -> None:
         response = client.cloud.secrets.with_raw_response.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
@@ -264,8 +264,8 @@ class TestSecrets:
     @parametrize
     def test_streaming_response_upload_tls_certificate(self, client: Gcore) -> None:
         with client.cloud.secrets.with_streaming_response.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
@@ -288,8 +288,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         secret = await async_client.cloud.secrets.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -301,8 +301,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         secret = await async_client.cloud.secrets.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -318,8 +318,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.secrets.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -335,8 +335,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.secrets.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="AES key",
             payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
             payload_content_encoding="base64",
@@ -354,16 +354,16 @@ class TestAsyncSecrets:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         secret = await async_client.cloud.secrets.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(SecretListResponse, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.secrets.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -374,8 +374,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.secrets.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -388,18 +388,18 @@ class TestAsyncSecrets:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         secret = await async_client.cloud.secrets.delete(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.secrets.with_raw_response.delete(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -410,9 +410,9 @@ class TestAsyncSecrets:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.secrets.with_streaming_response.delete(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -427,25 +427,25 @@ class TestAsyncSecrets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
             await async_client.cloud.secrets.with_raw_response.delete(
                 secret_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         secret = await async_client.cloud.secrets.get(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Secret, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.secrets.with_raw_response.get(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -456,9 +456,9 @@ class TestAsyncSecrets:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.secrets.with_streaming_response.get(
-            secret_id="secret_id",
-            project_id=0,
-            region_id=0,
+            secret_id="bfc7824b-31b6-4a28-a0c4-7df137139215",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -473,15 +473,15 @@ class TestAsyncSecrets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
             await async_client.cloud.secrets.with_raw_response.get(
                 secret_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_upload_tls_certificate(self, async_client: AsyncGcore) -> None:
         secret = await async_client.cloud.secrets.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
@@ -494,8 +494,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_method_upload_tls_certificate_with_all_params(self, async_client: AsyncGcore) -> None:
         secret = await async_client.cloud.secrets.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
@@ -509,8 +509,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_raw_response_upload_tls_certificate(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.secrets.with_raw_response.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
@@ -527,8 +527,8 @@ class TestAsyncSecrets:
     @parametrize
     async def test_streaming_response_upload_tls_certificate(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.secrets.with_streaming_response.upload_tls_certificate(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="Load balancer certificate #1",
             payload={
                 "certificate": "<certificate>",
