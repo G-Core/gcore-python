@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal, TypeAlias
 
-__all__ = ["SessionPersistenceType"]
+__all__ = ["LbSessionPersistenceType"]
 
-SessionPersistenceType: TypeAlias = Literal["APP_COOKIE", "HTTP_COOKIE", "SOURCE_IP"]
+LbSessionPersistenceType: TypeAlias = Literal["APP_COOKIE", "HTTP_COOKIE", "SOURCE_IP"]

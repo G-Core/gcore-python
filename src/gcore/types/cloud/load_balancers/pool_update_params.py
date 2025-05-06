@@ -8,8 +8,8 @@ from typing_extensions import Required, TypedDict
 from ..http_method import HTTPMethod
 from ..lb_algorithm import LbAlgorithm
 from ..lb_pool_protocol import LbPoolProtocol
-from ..health_monitor_type import HealthMonitorType
-from ..session_persistence_type import SessionPersistenceType
+from ..lb_health_monitor_type import LbHealthMonitorType
+from ..lb_session_persistence_type import LbSessionPersistenceType
 
 __all__ = ["PoolUpdateParams", "Healthmonitor", "Member", "SessionPersistence"]
 
@@ -82,7 +82,7 @@ class Healthmonitor(TypedDict, total=False):
     max_retries_down: Optional[int]
     """Number of failures before the member is switched to ERROR state."""
 
-    type: Optional[HealthMonitorType]
+    type: Optional[LbHealthMonitorType]
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
     url_path: Optional[str]
@@ -126,7 +126,7 @@ class Member(TypedDict, total=False):
 
 
 class SessionPersistence(TypedDict, total=False):
-    type: Required[SessionPersistenceType]
+    type: Required[LbSessionPersistenceType]
     """Session persistence type"""
 
     cookie_name: Optional[str]

@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["L7Rule"]
+__all__ = ["LoadBalancerL7Rule"]
 
 
-class L7Rule(BaseModel):
+class LoadBalancerL7Rule(BaseModel):
     id: Optional[str] = None
     """L7Rule ID"""
 

@@ -8,11 +8,11 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .http_method import HTTPMethod
 from .lb_algorithm import LbAlgorithm
 from .lb_pool_protocol import LbPoolProtocol
-from .health_monitor_type import HealthMonitorType
 from .interface_ip_family import InterfaceIPFamily
 from .lb_listener_protocol import LbListenerProtocol
 from .tag_update_map_param import TagUpdateMapParam
-from .session_persistence_type import SessionPersistenceType
+from .lb_health_monitor_type import LbHealthMonitorType
+from .lb_session_persistence_type import LbSessionPersistenceType
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
@@ -142,7 +142,7 @@ class ListenerPoolHealthmonitor(TypedDict, total=False):
     timeout: Required[int]
     """The maximum time to connect. Must be less than the delay value"""
 
-    type: Required[HealthMonitorType]
+    type: Required[LbHealthMonitorType]
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str]
@@ -198,7 +198,7 @@ class ListenerPoolMember(TypedDict, total=False):
 
 
 class ListenerPoolSessionPersistence(TypedDict, total=False):
-    type: Required[SessionPersistenceType]
+    type: Required[LbSessionPersistenceType]
     """Session persistence type"""
 
     cookie_name: Optional[str]

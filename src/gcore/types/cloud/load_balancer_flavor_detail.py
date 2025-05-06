@@ -1,24 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .flavor_hardware_description import FlavorHardwareDescription
 
-__all__ = ["LbFlavorList", "Result", "ResultHardwareDescription"]
+__all__ = ["LoadBalancerFlavorDetail", "HardwareDescription"]
 
-ResultHardwareDescription: TypeAlias = Union[FlavorHardwareDescription, object]
+HardwareDescription: TypeAlias = Union[FlavorHardwareDescription, object]
 
 
-class Result(BaseModel):
+class LoadBalancerFlavorDetail(BaseModel):
     flavor_id: str
     """Flavor ID is the same as name"""
 
     flavor_name: str
     """Flavor name"""
 
-    hardware_description: ResultHardwareDescription
+    hardware_description: HardwareDescription
     """Additional hardware description."""
 
     ram: int
@@ -38,11 +38,3 @@ class Result(BaseModel):
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
     """Price status for the UI"""
-
-
-class LbFlavorList(BaseModel):
-    count: int
-    """Number of objects"""
-
-    results: List[Result]
-    """Objects"""

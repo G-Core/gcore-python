@@ -3,13 +3,13 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from .l7_rule import L7Rule
 from ..._models import BaseModel
+from .load_balancer_l7_rule import LoadBalancerL7Rule
 
-__all__ = ["L7Policy"]
+__all__ = ["LoadBalancerL7Policy"]
 
 
-class L7Policy(BaseModel):
+class LoadBalancerL7Policy(BaseModel):
     id: Optional[str] = None
     """ID"""
 
@@ -66,7 +66,7 @@ class L7Policy(BaseModel):
     region_id: Optional[int] = None
     """Region ID"""
 
-    rules: Optional[List[L7Rule]] = None
+    rules: Optional[List[LoadBalancerL7Rule]] = None
     """Rules.
 
     All the rules associated with a given policy are logically ANDed together. A

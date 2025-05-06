@@ -6,10 +6,10 @@ from ..._models import BaseModel
 from .provisioning_status import ProvisioningStatus
 from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["DetailedLbPoolMember"]
+__all__ = ["Member"]
 
 
-class DetailedLbPoolMember(BaseModel):
+class Member(BaseModel):
     id: str
     """Member ID must be provided if an existing member is being updated"""
 

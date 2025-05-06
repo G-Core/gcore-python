@@ -26,10 +26,10 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.cloud.l7_policy import L7Policy
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.l7_policy_list import L7PolicyList
 from .....types.cloud.load_balancers import l7_policy_create_params, l7_policy_replace_params
+from .....types.cloud.load_balancer_l7_policy import LoadBalancerL7Policy
+from .....types.cloud.load_balancer_l7_policy_list import LoadBalancerL7PolicyList
 
 __all__ = ["L7PoliciesResource", "AsyncL7PoliciesResource"]
 
@@ -151,7 +151,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> L7PolicyList:
+    ) -> LoadBalancerL7PolicyList:
         """
         List load balancer L7 policies
 
@@ -173,7 +173,7 @@ class L7PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=L7PolicyList,
+            cast_to=LoadBalancerL7PolicyList,
         )
 
     def delete(
@@ -227,7 +227,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> L7Policy:
+    ) -> LoadBalancerL7Policy:
         """
         Get load balancer L7 policy
 
@@ -251,7 +251,7 @@ class L7PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=L7Policy,
+            cast_to=LoadBalancerL7Policy,
         )
 
     def replace(
@@ -453,7 +453,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> L7PolicyList:
+    ) -> LoadBalancerL7PolicyList:
         """
         List load balancer L7 policies
 
@@ -475,7 +475,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=L7PolicyList,
+            cast_to=LoadBalancerL7PolicyList,
         )
 
     async def delete(
@@ -529,7 +529,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> L7Policy:
+    ) -> LoadBalancerL7Policy:
         """
         Get load balancer L7 policy
 
@@ -553,7 +553,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=L7Policy,
+            cast_to=LoadBalancerL7Policy,
         )
 
     async def replace(
