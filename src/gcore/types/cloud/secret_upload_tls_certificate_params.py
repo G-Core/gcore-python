@@ -13,8 +13,10 @@ __all__ = ["SecretUploadTlsCertificateParams", "Payload"]
 
 class SecretUploadTlsCertificateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     name: Required[str]
     """Secret name"""
