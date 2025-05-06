@@ -5,7 +5,7 @@ description = "The official Python library for the gcore API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Gcore", email = "dev-feedback@gcore.com" },
+{ name = "Gcore", email = "support@gcore.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
