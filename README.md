@@ -15,12 +15,9 @@ The REST API documentation can be found on [api.gcore.com](https://api.gcore.com
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/G-Core/gcore-python.git
+# install from PyPI
+pip install --pre gcore
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre gcore`
 
 ## Usage
 
