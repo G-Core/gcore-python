@@ -3,14 +3,14 @@
 from typing import List
 
 from ..._models import BaseModel
-from .lb_listener import LbListener
+from .load_balancer_metrics import LoadBalancerMetrics
 
-__all__ = ["LbListenerList"]
+__all__ = ["LoadBalancerMetricsList"]
 
 
-class LbListenerList(BaseModel):
+class LoadBalancerMetricsList(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[LbListener]
+    results: List[LoadBalancerMetrics]
     """Objects"""

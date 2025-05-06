@@ -3,14 +3,14 @@
 from typing import List
 
 from ..._models import BaseModel
-from .detailed_lb_pool import DetailedLbPool
+from .load_balancer_pool import LoadBalancerPool
 
-__all__ = ["DetailedLbPoolList"]
+__all__ = ["LoadBalancerPoolList"]
 
 
-class DetailedLbPoolList(BaseModel):
+class LoadBalancerPoolList(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[DetailedLbPool]
+    results: List[LoadBalancerPool]
     """Objects"""

@@ -8,7 +8,7 @@ from .lb_listener_protocol import LbListenerProtocol
 from .load_balancer_statistics import LoadBalancerStatistics
 from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["LbListener", "UserList"]
+__all__ = ["LoadBalancerListenerDetail", "UserList"]
 
 
 class UserList(BaseModel):
@@ -19,7 +19,7 @@ class UserList(BaseModel):
     """Username to auth via Basic Authentication"""
 
 
-class LbListener(BaseModel):
+class LoadBalancerListenerDetail(BaseModel):
     id: str
     """Load balancer listener ID"""
 

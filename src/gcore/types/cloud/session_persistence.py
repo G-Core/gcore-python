@@ -3,13 +3,13 @@
 from typing import Optional
 
 from ..._models import BaseModel
-from .session_persistence_type import SessionPersistenceType
+from .lb_session_persistence_type import LbSessionPersistenceType
 
-__all__ = ["LbSessionPersistence"]
+__all__ = ["SessionPersistence"]
 
 
-class LbSessionPersistence(BaseModel):
-    type: SessionPersistenceType
+class SessionPersistence(BaseModel):
+    type: LbSessionPersistenceType
     """Session persistence type"""
 
     cookie_name: Optional[str] = None

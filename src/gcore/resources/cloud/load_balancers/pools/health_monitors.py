@@ -16,12 +16,12 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .....types.cloud import HTTPMethod, HealthMonitorType
+from .....types.cloud import HTTPMethod, LbHealthMonitorType
 from ....._base_client import make_request_options
 from .....types.cloud.http_method import HTTPMethod
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.health_monitor_type import HealthMonitorType
 from .....types.cloud.load_balancers.pools import health_monitor_create_params
+from .....types.cloud.lb_health_monitor_type import LbHealthMonitorType
 
 __all__ = ["HealthMonitorsResource", "AsyncHealthMonitorsResource"]
 
@@ -55,7 +55,7 @@ class HealthMonitorsResource(SyncAPIResource):
         delay: int,
         max_retries: int,
         api_timeout: int,
-        type: HealthMonitorType,
+        type: LbHealthMonitorType,
         expected_codes: Optional[str] | NotGiven = NOT_GIVEN,
         http_method: Optional[HTTPMethod] | NotGiven = NOT_GIVEN,
         max_retries_down: Optional[int] | NotGiven = NOT_GIVEN,
@@ -194,7 +194,7 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         delay: int,
         max_retries: int,
         api_timeout: int,
-        type: HealthMonitorType,
+        type: LbHealthMonitorType,
         expected_codes: Optional[str] | NotGiven = NOT_GIVEN,
         http_method: Optional[HTTPMethod] | NotGiven = NOT_GIVEN,
         max_retries_down: Optional[int] | NotGiven = NOT_GIVEN,

@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["LoadbalancerMetrics"]
+__all__ = ["LoadBalancerMetrics"]
 
 
-class LoadbalancerMetrics(BaseModel):
+class LoadBalancerMetrics(BaseModel):
     cpu_util: Optional[float] = None
     """CPU utilization, % (max 100% for multi-core)"""
 

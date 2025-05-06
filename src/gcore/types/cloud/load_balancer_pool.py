@@ -2,16 +2,16 @@
 
 from typing import List, Optional
 
+from .member import Member
 from ..._models import BaseModel
 from .lb_algorithm import LbAlgorithm
+from .health_monitor import HealthMonitor
 from .lb_pool_protocol import LbPoolProtocol
-from .lb_health_monitor import LbHealthMonitor
 from .provisioning_status import ProvisioningStatus
-from .lb_session_persistence import LbSessionPersistence
-from .detailed_lb_pool_member import DetailedLbPoolMember
+from .session_persistence import SessionPersistence
 from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["DetailedLbPool", "Listener", "Loadbalancer"]
+__all__ = ["LoadBalancerPool", "Listener", "Loadbalancer"]
 
 
 class Listener(BaseModel):
@@ -24,7 +24,7 @@ class Loadbalancer(BaseModel):
     """Resource ID"""
 
 
-class DetailedLbPool(BaseModel):
+class LoadBalancerPool(BaseModel):
     id: str
     """Pool ID"""
 
@@ -43,7 +43,7 @@ class DetailedLbPool(BaseModel):
     loadbalancers: List[Loadbalancer]
     """Load balancers IDs"""
 
-    members: List[DetailedLbPoolMember]
+    members: List[Member]
     """Pool members"""
 
     name: str
@@ -61,7 +61,7 @@ class DetailedLbPool(BaseModel):
     secret_id: Optional[str] = None
     """Secret ID for TLS client authentication to the member servers"""
 
-    session_persistence: Optional[LbSessionPersistence] = None
+    session_persistence: Optional[SessionPersistence] = None
     """Session persistence parameters"""
 
     timeout_client_data: Optional[int] = None
@@ -76,7 +76,7 @@ class DetailedLbPool(BaseModel):
     creator_task_id: Optional[str] = None
     """Task that created this entity"""
 
-    healthmonitor: Optional[LbHealthMonitor] = None
+    healthmonitor: Optional[HealthMonitor] = None
     """Health monitor parameters"""
 
     task_id: Optional[str] = None

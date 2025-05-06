@@ -4,14 +4,14 @@ from typing import Optional
 
 from ..._models import BaseModel
 from .http_method import HTTPMethod
-from .health_monitor_type import HealthMonitorType
 from .provisioning_status import ProvisioningStatus
+from .lb_health_monitor_type import LbHealthMonitorType
 from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["LbHealthMonitor"]
+__all__ = ["HealthMonitor"]
 
 
-class LbHealthMonitor(BaseModel):
+class HealthMonitor(BaseModel):
     id: str
     """Health monitor ID"""
 
@@ -36,7 +36,7 @@ class LbHealthMonitor(BaseModel):
     timeout: int
     """The maximum time to connect. Must be less than the delay value"""
 
-    type: HealthMonitorType
+    type: LbHealthMonitorType
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str] = None

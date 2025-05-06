@@ -37,9 +37,9 @@ from ....._base_client import make_request_options
 from .....types.cloud.lb_algorithm import LbAlgorithm
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancers import pool_list_params, pool_create_params, pool_update_params
-from .....types.cloud.detailed_lb_pool import DetailedLbPool
 from .....types.cloud.lb_pool_protocol import LbPoolProtocol
-from .....types.cloud.detailed_lb_pool_list import DetailedLbPoolList
+from .....types.cloud.load_balancer_pool import LoadBalancerPool
+from .....types.cloud.load_balancer_pool_list import LoadBalancerPoolList
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
@@ -278,7 +278,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DetailedLbPoolList:
+    ) -> LoadBalancerPoolList:
         """
         List load balancer pools
 
@@ -318,7 +318,7 @@ class PoolsResource(SyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=DetailedLbPoolList,
+            cast_to=LoadBalancerPoolList,
         )
 
     def delete(
@@ -372,7 +372,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DetailedLbPool:
+    ) -> LoadBalancerPool:
         """
         Get load balancer pool
 
@@ -396,7 +396,7 @@ class PoolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DetailedLbPool,
+            cast_to=LoadBalancerPool,
         )
 
 
@@ -634,7 +634,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DetailedLbPoolList:
+    ) -> LoadBalancerPoolList:
         """
         List load balancer pools
 
@@ -674,7 +674,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=DetailedLbPoolList,
+            cast_to=LoadBalancerPoolList,
         )
 
     async def delete(
@@ -728,7 +728,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DetailedLbPool:
+    ) -> LoadBalancerPool:
         """
         Get load balancer pool
 
@@ -752,7 +752,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DetailedLbPool,
+            cast_to=LoadBalancerPool,
         )
 
 

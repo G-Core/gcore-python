@@ -3,14 +3,14 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from .l7_policy import L7Policy
+from .load_balancer_l7_rule import LoadBalancerL7Rule
 
-__all__ = ["L7PolicyList"]
+__all__ = ["LoadBalancerL7RuleList"]
 
 
-class L7PolicyList(BaseModel):
+class LoadBalancerL7RuleList(BaseModel):
     count: Optional[int] = None
     """Number of objects"""
 
-    results: Optional[List[L7Policy]] = None
+    results: Optional[List[LoadBalancerL7Rule]] = None
     """Objects"""

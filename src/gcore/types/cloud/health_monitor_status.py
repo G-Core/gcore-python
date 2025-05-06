@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from ..._models import BaseModel
-from .health_monitor_type import HealthMonitorType
 from .provisioning_status import ProvisioningStatus
+from .lb_health_monitor_type import LbHealthMonitorType
 from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
 __all__ = ["HealthMonitorStatus"]
@@ -18,5 +18,5 @@ class HealthMonitorStatus(BaseModel):
     provisioning_status: ProvisioningStatus
     """Provisioning status of the entity"""
 
-    type: HealthMonitorType
+    type: LbHealthMonitorType
     """Type of the Health Monitor"""

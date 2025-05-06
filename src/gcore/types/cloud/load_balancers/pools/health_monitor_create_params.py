@@ -7,7 +7,7 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 from ...http_method import HTTPMethod
-from ...health_monitor_type import HealthMonitorType
+from ...lb_health_monitor_type import LbHealthMonitorType
 
 __all__ = ["HealthMonitorCreateParams"]
 
@@ -26,7 +26,7 @@ class HealthMonitorCreateParams(TypedDict, total=False):
     api_timeout: Required[Annotated[int, PropertyInfo(alias="timeout")]]
     """The maximum time to connect. Must be less than the delay value"""
 
-    type: Required[HealthMonitorType]
+    type: Required[LbHealthMonitorType]
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str]

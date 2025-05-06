@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList, DetailedLbPool, DetailedLbPoolList
+from gcore.types.cloud import TaskIDList, LoadBalancerPool, LoadBalancerPoolList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -215,7 +215,7 @@ class TestPools:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -226,7 +226,7 @@ class TestPools:
             listener_id="listener_id",
             loadbalancer_id="loadbalancer_id",
         )
-        assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -238,7 +238,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -250,7 +250,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+            assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -307,7 +307,7 @@ class TestPools:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(DetailedLbPool, pool, path=["response"])
+        assert_matches_type(LoadBalancerPool, pool, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -320,7 +320,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(DetailedLbPool, pool, path=["response"])
+        assert_matches_type(LoadBalancerPool, pool, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -333,7 +333,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(DetailedLbPool, pool, path=["response"])
+            assert_matches_type(LoadBalancerPool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -548,7 +548,7 @@ class TestAsyncPools:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -559,7 +559,7 @@ class TestAsyncPools:
             listener_id="listener_id",
             loadbalancer_id="loadbalancer_id",
         )
-        assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -571,7 +571,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -583,7 +583,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(DetailedLbPoolList, pool, path=["response"])
+            assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -640,7 +640,7 @@ class TestAsyncPools:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(DetailedLbPool, pool, path=["response"])
+        assert_matches_type(LoadBalancerPool, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -653,7 +653,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(DetailedLbPool, pool, path=["response"])
+        assert_matches_type(LoadBalancerPool, pool, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -666,7 +666,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(DetailedLbPool, pool, path=["response"])
+            assert_matches_type(LoadBalancerPool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

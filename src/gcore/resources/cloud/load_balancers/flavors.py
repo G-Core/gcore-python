@@ -15,8 +15,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloud.lb_flavor_list import LbFlavorList
 from ....types.cloud.load_balancers import flavor_list_params
+from ....types.cloud.load_balancer_flavor_list import LoadBalancerFlavorList
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
@@ -53,7 +53,7 @@ class FlavorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LbFlavorList:
+    ) -> LoadBalancerFlavorList:
         """Retrieve a list of load balancer flavors.
 
         When the include_prices query
@@ -84,7 +84,7 @@ class FlavorsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"include_prices": include_prices}, flavor_list_params.FlavorListParams),
             ),
-            cast_to=LbFlavorList,
+            cast_to=LoadBalancerFlavorList,
         )
 
 
@@ -120,7 +120,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LbFlavorList:
+    ) -> LoadBalancerFlavorList:
         """Retrieve a list of load balancer flavors.
 
         When the include_prices query
@@ -153,7 +153,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     {"include_prices": include_prices}, flavor_list_params.FlavorListParams
                 ),
             ),
-            cast_to=LbFlavorList,
+            cast_to=LoadBalancerFlavorList,
         )
 
 
