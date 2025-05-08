@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Detecting breaking changes"
+git checkout "$1" -- tests/api_resources tests/test_client.py tests/test_response.py
+./scripts/lint
