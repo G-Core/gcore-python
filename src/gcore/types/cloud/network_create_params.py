@@ -11,8 +11,10 @@ __all__ = ["NetworkCreateParams"]
 
 class NetworkCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     name: Required[str]
     """Network name"""
