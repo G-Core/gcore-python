@@ -8,22 +8,22 @@ from .waap import (
     WaapResourceWithStreamingResponse,
     AsyncWaapResourceWithStreamingResponse,
 )
-from .cloud import (
-    CloudResource,
-    AsyncCloudResource,
-    CloudResourceWithRawResponse,
-    AsyncCloudResourceWithRawResponse,
-    CloudResourceWithStreamingResponse,
-    AsyncCloudResourceWithStreamingResponse,
+from .domains import (
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "CloudResource",
-    "AsyncCloudResource",
-    "CloudResourceWithRawResponse",
-    "AsyncCloudResourceWithRawResponse",
-    "CloudResourceWithStreamingResponse",
-    "AsyncCloudResourceWithStreamingResponse",
+    "DomainsResource",
+    "AsyncDomainsResource",
+    "DomainsResourceWithRawResponse",
+    "AsyncDomainsResourceWithRawResponse",
+    "DomainsResourceWithStreamingResponse",
+    "AsyncDomainsResourceWithStreamingResponse",
     "WaapResource",
     "AsyncWaapResource",
     "WaapResourceWithRawResponse",
