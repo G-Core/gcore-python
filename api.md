@@ -849,3 +849,34 @@ from gcore.types.cloud.instances import Metrics, MetricsList
 Methods:
 
 - <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics">client.cloud.instances.metrics.<a href="./src/gcore/resources/cloud/instances/metrics.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/metrics_list.py">MetricsList</a></code>
+
+# Waap
+
+Types:
+
+```python
+from gcore.types.waap import (
+    WaapAPIURLs,
+    WaapDetailedDomain,
+    WaapDomainDDOSSettings,
+    WaapDomainSettings,
+    WaapDomainStatus,
+    WaapSummaryDomain,
+)
+```
+
+## Domains
+
+Methods:
+
+- <code title="patch /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domain_update_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/domains">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list</a>(\*\*<a href="src/gcore/types/waap/domain_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_summary_domain.py">SyncOffsetPage[WaapSummaryDomain]</a></code>
+- <code title="delete /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">delete</a>(domain_id) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_detailed_domain.py">WaapDetailedDomain</a></code>
+
+### Settings
+
+Methods:
+
+- <code title="patch /waap/v1/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/setting_update_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_domain_settings.py">WaapDomainSettings</a></code>
