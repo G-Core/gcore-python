@@ -150,38 +150,6 @@ for project in first_page.results:
 # Remove `await` for non-async usage.
 ```
 
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from gcore import Gcore
-
-client = Gcore()
-
-task_id_list = client.cloud.instances.create(
-    project_id=1,
-    region_id=1,
-    flavor="g1-standard-1-2",
-    interfaces=[{"subnet_id": "your-subnet-uuid"}],
-    volumes=[
-        {
-            "image_id": "your-image-uuid",
-            "size": 50,
-            "type_name": "standard",
-            "is_bootable": True,
-        },
-        {
-            "size": 100,
-            "type_name": "ssd_hiiops",
-            "is_bootable": False,
-        },
-    ],
-    user_data="IyEvYmluL2Jhc2gKZWNobyAiSGVsbG8sIFdvcmxkISIgPj4gL3RtcC9jbG91ZC1pbml0Lm91dAo=",
-)
-print(task_id_list.tasks)
-```
-
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `gcore.APIConnectionError` is raised.
