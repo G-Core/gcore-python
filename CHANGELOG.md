@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0 (2025-05-10)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0](https://github.com/G-Core/gcore-python/compare/v0.1.0-alpha.2...v0.1.0)
+
+### Features
+
+* **api:** aggregated API specs update ([cec6475](https://github.com/G-Core/gcore-python/commit/cec6475d84b2d4e1472fd8cd55516ee1996afb9c))
+
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([0590fad](https://github.com/G-Core/gcore-python/commit/0590fad35f72036253f6cea26b41677e79479dab))
+
+
+### Chores
+
+* **internal:** avoid errors for isinstance checks on proxies ([898a7a8](https://github.com/G-Core/gcore-python/commit/898a7a894783e8a539aba481d8c2e38cba81552b))
+
+
+### Documentation
+
+* remove or fix invalid readme examples ([ec85d9f](https://github.com/G-Core/gcore-python/commit/ec85d9f27446b2d496842d67058a049733d55627))
+
 ## 0.1.0-alpha.2 (2025-05-06)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/G-Core/gcore-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)

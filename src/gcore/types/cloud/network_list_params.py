@@ -3,34 +3,39 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["NetworkListParams"]
 
 
 class NetworkListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     limit: int
-    """Limit the number of returned limit request entities."""
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result."""
+    """Optional.
 
-    order_by: str
-    """Order networks by fields and directions (name.asc).
+    Offset value is used to exclude the first set of records from the result
+    """
 
-    Default is `created_at.asc`.
+    order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"]
+    """
+    Ordering networks list result by `name`, `created_at` fields of the network and
+    directions (`created_at.desc`).
     """
 
     tag_key: List[str]
-    """Filter by tag keys."""
+    """Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2"""
 
     tag_key_value: str
-    """Filter by tag key-value pairs.
+    """Optional.
 
-    Must be a valid JSON string. curl -G --data-urlencode "tag_key_value={"key":
-    "value"}" --url "http://localhost:1111/v1/networks/1/1"
+    Filter by tag key-value pairs. curl -G --data-urlencode "tag_key_value={"key":
+    "value"}" --url "https://example.com/cloud/v1/resource/1/1"
     """

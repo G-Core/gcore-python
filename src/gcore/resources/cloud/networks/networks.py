@@ -91,6 +91,10 @@ class NetworksResource(SyncAPIResource):
         Create network
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Network name
 
           create_router: Defaults to True
@@ -150,6 +154,12 @@ class NetworksResource(SyncAPIResource):
         Change network name
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          network_id: Network ID
+
           name: Name.
 
           extra_headers: Send extra headers
@@ -182,7 +192,7 @@ class NetworksResource(SyncAPIResource):
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         tag_key: List[str] | NotGiven = NOT_GIVEN,
         tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -196,17 +206,23 @@ class NetworksResource(SyncAPIResource):
         List networks
 
         Args:
-          limit: Limit the number of returned limit request entities.
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          region_id: Region ID
 
-          order_by: Order networks by fields and directions (name.asc). Default is `created_at.asc`.
+          limit: Optional. Limit the number of returned items
 
-          tag_key: Filter by tag keys.
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "tag_key_value={"key": "value"}" --url
-              "http://localhost:1111/v1/networks/1/1"
+          order_by: Ordering networks list result by `name`, `created_at` fields of the network and
+              directions (`created_at.desc`).
+
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -259,6 +275,12 @@ class NetworksResource(SyncAPIResource):
         Delete network
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          network_id: Network ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -298,6 +320,12 @@ class NetworksResource(SyncAPIResource):
         Get network
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          network_id: Network ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -369,6 +397,10 @@ class AsyncNetworksResource(AsyncAPIResource):
         Create network
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Network name
 
           create_router: Defaults to True
@@ -428,6 +460,12 @@ class AsyncNetworksResource(AsyncAPIResource):
         Change network name
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          network_id: Network ID
+
           name: Name.
 
           extra_headers: Send extra headers
@@ -460,7 +498,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         tag_key: List[str] | NotGiven = NOT_GIVEN,
         tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -474,17 +512,23 @@ class AsyncNetworksResource(AsyncAPIResource):
         List networks
 
         Args:
-          limit: Limit the number of returned limit request entities.
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          region_id: Region ID
 
-          order_by: Order networks by fields and directions (name.asc). Default is `created_at.asc`.
+          limit: Optional. Limit the number of returned items
 
-          tag_key: Filter by tag keys.
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "tag_key_value={"key": "value"}" --url
-              "http://localhost:1111/v1/networks/1/1"
+          order_by: Ordering networks list result by `name`, `created_at` fields of the network and
+              directions (`created_at.desc`).
+
+          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+
+          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
+              "tag_key_value={"key": "value"}" --url
+              "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
 
@@ -537,6 +581,12 @@ class AsyncNetworksResource(AsyncAPIResource):
         Delete network
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          network_id: Network ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -576,6 +626,12 @@ class AsyncNetworksResource(AsyncAPIResource):
         Get network
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          network_id: Network ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
