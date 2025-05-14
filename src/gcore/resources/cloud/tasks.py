@@ -48,6 +48,42 @@ class TasksResource(SyncAPIResource):
         """
         return TasksResourceWithStreamingResponse(self)
 
+    def poll(
+        self,
+        task_id: str,
+        *,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | NotGiven = NOT_GIVEN,
+    ) -> Task:
+        if not is_given(polling_interval_seconds):
+            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
+        # Ensure the polling interval is at least 1 second
+        polling_interval_seconds = max(1, polling_interval_seconds)
+
+        if not is_given(timeout):
+            timeout = extract_timeout_value(self._client.timeout)
+
+        end_time = time.time() + timeout
+        while time.time() <= end_time:
+            task = self.get(
+                task_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
+            if task.state == "ERROR":
+                raise ValueError(task.error or f"Task {task_id} failed")
+            elif task.state == "FINISHED":
+                return task
+            self._sleep(polling_interval_seconds)
+
+        raise TimeoutError(f"Timed out waiting for task {task_id}")
+
     def list(
         self,
         *,
@@ -174,42 +210,6 @@ class TasksResource(SyncAPIResource):
             ),
             model=Task,
         )
-
-    def poll(
-        self,
-        task_id: str,
-        *,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | NotGiven = NOT_GIVEN,
-    ) -> Task:
-        if not is_given(polling_interval_seconds):
-            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
-        # Ensure the polling interval is at least 1 second
-        polling_interval_seconds = max(1, polling_interval_seconds)
-
-        if not is_given(timeout):
-            timeout = extract_timeout_value(self._client.timeout)
-
-        end_time = time.time() + timeout
-        while time.time() <= end_time:
-            task = self.get(
-                task_id,
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-            )
-            if task.state == "ERROR":
-                raise ValueError(task.error or f"Task {task_id} failed")
-            elif task.state == "FINISHED":
-                return task
-            self._sleep(polling_interval_seconds)
-
-        raise TimeoutError(f"Timed out waiting for task {task_id}")
 
     def acknowledge_all(
         self,
@@ -348,6 +348,40 @@ class AsyncTasksResource(AsyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return AsyncTasksResourceWithStreamingResponse(self)
+
+    async def poll(
+        self,
+        task_id: str,
+        *,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | NotGiven = NOT_GIVEN,
+    ) -> Task:
+        if not is_given(polling_interval_seconds):
+            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
+
+        if not is_given(timeout):
+            timeout = extract_timeout_value(self._client.timeout)
+
+        end_time = time.time() + timeout
+        while time.time() <= end_time:
+            task = await self.get(
+                task_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
+            if task.state == "ERROR":
+                raise ValueError(task.error or f"Task {task_id} failed")
+            elif task.state == "FINISHED":
+                return task
+            await self._sleep(polling_interval_seconds)
+
+        raise TimeoutError(f"Timed out waiting for task {task_id}")
 
     def list(
         self,
@@ -592,40 +626,6 @@ class AsyncTasksResource(AsyncAPIResource):
             ),
             cast_to=Task,
         )
-
-    async def poll(
-        self,
-        task_id: str,
-        *,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | NotGiven = NOT_GIVEN,
-    ) -> Task:
-        if not is_given(polling_interval_seconds):
-            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
-
-        if not is_given(timeout):
-            timeout = extract_timeout_value(self._client.timeout)
-
-        end_time = time.time() + timeout
-        while time.time() <= end_time:
-            task = await self.get(
-                task_id,
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-            )
-            if task.state == "ERROR":
-                raise ValueError(task.error or f"Task {task_id} failed")
-            elif task.state == "FINISHED":
-                return task
-            await self._sleep(polling_interval_seconds)
-
-        raise TimeoutError(f"Timed out waiting for task {task_id}")
 
 
 class TasksResourceWithRawResponse:
