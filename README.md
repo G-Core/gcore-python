@@ -16,7 +16,7 @@ The REST API documentation can be found on [api.gcore.com](https://api.gcore.com
 
 ```sh
 # install from PyPI
-pip install --pre gcore
+pip install gcore
 ```
 
 ## Usage
@@ -148,40 +148,6 @@ for project in first_page.results:
     print(project.id)
 
 # Remove `await` for non-async usage.
-```
-
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from gcore import Gcore
-
-client = Gcore()
-
-task_id_list = client.cloud.instances.create(
-    project_id=1,
-    region_id=1,
-    flavor="g2-standard-4-8",
-    interfaces=[{"type": "external"}],
-    volumes=[
-        {   
-            "source": "image",
-            "image_id": "your-image-uuid",
-            "size": 50,
-            "type_name": "ssd_hiiops",
-            "boot_index": 0,
-        },
-        {
-            "source": "new-volume",
-            "size": 100,
-            "type_name": "ssd_hiiops",
-        },
-    ],
-    user_data="IyEvYmluL2Jhc2gKZWNobyAiSGVsbG8sIFdvcmxkISIgPj4gL3RtcC9jbG91ZC1pbml0Lm91dAo=",
-    name="my-instance",
-)
-print(task_id_list.tasks)
 ```
 
 ## Handling errors
