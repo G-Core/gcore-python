@@ -165,7 +165,7 @@ task_id_list = client.cloud.instances.create(
     flavor="g2-standard-4-8",
     interfaces=[{"type": "external"}],
     volumes=[
-        {   
+        {
             "source": "image",
             "image_id": "your-image-uuid",
             "size": 50,

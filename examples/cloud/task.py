@@ -15,7 +15,7 @@ def list_tasks() -> Optional[SyncOffsetPage[Task]]:
     base_url = os.environ.get("GCORE_API_URL")
     gcore = Gcore(
         api_key=os.environ.get("GCORE_API_KEY"),
-        base_url=base_url if base_url else None, # Pass base_url only if it's set
+        base_url=base_url if base_url else None,  # Pass base_url only if it's set
     )
     # Get project ID from environment variable GCORE_CLOUD_PROJECT_ID, defaulting to 1 if not set
     project_id = int(os.environ.get("GCORE_CLOUD_PROJECT_ID", "1"))
@@ -33,16 +33,13 @@ def list_tasks() -> Optional[SyncOffsetPage[Task]]:
         # Check if tasks_page is not None before iterating
         if tasks:
             for task in tasks:
-                print(
-                    f"- Task ID: {task.id}, Type: {task.task_type}, State: {task.state},"
-                    f" Created: {task.created_on}"
-                )
+                print(f"- Task ID: {task.id}, Type: {task.task_type}, State: {task.state}, Created: {task.created_on}")
                 count += 1
 
             if count == 0:
                 print("No tasks found.")
         else:
-            print("Could not retrieve tasks.") # Handle case where tasks_page might remain None
+            print("Could not retrieve tasks.")  # Handle case where tasks_page might remain None
 
     except Exception as e:
         print(f"Error listing tasks: {e}")  # Basic error logging
@@ -64,22 +61,19 @@ def get_task_by_id() -> Optional[Task]:
 
     # Replace with a valid task ID from your account.
     # You might need to run list_tasks first to find one.
-    task_id_to_get = "your-task-id-here" # TODO: Replace with an actual task ID
+    task_id_to_get = "your-task-id-here"  # TODO: Replace with an actual task ID
 
     print(f"=== GET TASK BY ID ({task_id_to_get}) ===")
     task: Optional[Task] = None
     try:
         task = gcore.cloud.tasks.get(task_id=task_id_to_get)
-        print(
-            f"- Task ID: {task.id}, Type: {task.task_type}, State: {task.state},"
-            f" Created: {task.created_on}"
-        )
+        print(f"- Task ID: {task.id}, Type: {task.task_type}, State: {task.state}, Created: {task.created_on}")
     except HTTPStatusError as e:
         # Handle cases like 404 Not Found gracefully
         if e.response.status_code == 404:
-             print(f"Info: Task '{task_id_to_get}' not found.")
+            print(f"Info: Task '{task_id_to_get}' not found.")
         else:
-             print(f"Error retrieving task '{task_id_to_get}': {e}")
+            print(f"Error retrieving task '{task_id_to_get}': {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
