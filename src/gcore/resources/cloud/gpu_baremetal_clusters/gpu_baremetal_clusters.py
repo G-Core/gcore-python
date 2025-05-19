@@ -111,8 +111,11 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,6 +138,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
 
           instances_count: Number of servers to create
 
+          password: A password for a bare metal server. This parameter is used to set a password for
+              the "Admin" user on a Windows instance, a default user or a new user on a Linux
+              instance
+
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
@@ -143,6 +150,13 @@ class GPUBaremetalClustersResource(SyncAPIResource):
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
+
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+
+          username: A name of a new user in the Linux instance. It may be passed with a 'password'
+              parameter
 
           extra_headers: Send extra headers
 
@@ -165,8 +179,11 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
+                    "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
+                    "user_data": user_data,
+                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),
@@ -558,8 +575,11 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -582,6 +602,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
 
           instances_count: Number of servers to create
 
+          password: A password for a bare metal server. This parameter is used to set a password for
+              the "Admin" user on a Windows instance, a default user or a new user on a Linux
+              instance
+
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
@@ -590,6 +614,13 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
+
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+
+          username: A name of a new user in the Linux instance. It may be passed with a 'password'
+              parameter
 
           extra_headers: Send extra headers
 
@@ -612,8 +643,11 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
+                    "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
+                    "user_data": user_data,
+                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),

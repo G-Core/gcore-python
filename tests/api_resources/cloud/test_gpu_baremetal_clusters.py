@@ -58,8 +58,11 @@ class TestGPUBaremetalClusters:
             ],
             name="my-gpu-cluster",
             instances_count=1,
+            password="password",
             ssh_key_name="my-ssh-key",
             tags={"foo": "my-tag-value"},
+            user_data="user_data",
+            username="username",
         )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
@@ -501,8 +504,11 @@ class TestAsyncGPUBaremetalClusters:
             ],
             name="my-gpu-cluster",
             instances_count=1,
+            password="password",
             ssh_key_name="my-ssh-key",
             tags={"foo": "my-tag-value"},
+            user_data="user_data",
+            username="username",
         )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
