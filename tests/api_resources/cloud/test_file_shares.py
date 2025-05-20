@@ -213,7 +213,9 @@ class TestFileShares:
             project_id=1,
             region_id=1,
             limit=1000,
+            name="test-sfs",
             offset=0,
+            type_name="standard",
         )
         assert_matches_type(SyncOffsetPage[FileShare], file_share, path=["response"])
 
@@ -581,7 +583,9 @@ class TestAsyncFileShares:
             project_id=1,
             region_id=1,
             limit=1000,
+            name="test-sfs",
             offset=0,
+            type_name="standard",
         )
         assert_matches_type(AsyncOffsetPage[FileShare], file_share, path=["response"])
 
