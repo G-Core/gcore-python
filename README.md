@@ -16,7 +16,7 @@ The REST API documentation can be found on [api.gcore.com](https://api.gcore.com
 
 ```sh
 # install from PyPI
-pip install --pre gcore
+pip install gcore
 ```
 
 ## Usage
