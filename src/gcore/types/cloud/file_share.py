@@ -107,5 +107,8 @@ class FileShare(BaseModel):
     the resource is not locked.
     """
 
+    type_name: Literal["standard", "vast"]
+    """File share type name"""
+
     volume_type: Literal["default_share_type", "vast_share_type"]
     """File share disk type"""

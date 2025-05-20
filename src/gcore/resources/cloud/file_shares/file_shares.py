@@ -269,7 +269,9 @@ class FileSharesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        type_name: Literal["standard", "vast"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,8 +289,12 @@ class FileSharesResource(SyncAPIResource):
 
           limit: Optional. Limit the number of returned items
 
+          name: File share name. Uses partial match.
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          type_name: File share type name
 
           extra_headers: Send extra headers
 
@@ -313,7 +319,9 @@ class FileSharesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "type_name": type_name,
                     },
                     file_share_list_params.FileShareListParams,
                 ),
@@ -690,7 +698,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        type_name: Literal["standard", "vast"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -708,8 +718,12 @@ class AsyncFileSharesResource(AsyncAPIResource):
 
           limit: Optional. Limit the number of returned items
 
+          name: File share name. Uses partial match.
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          type_name: File share type name
 
           extra_headers: Send extra headers
 
@@ -734,7 +748,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "type_name": type_name,
                     },
                     file_share_list_params.FileShareListParams,
                 ),
