@@ -387,7 +387,124 @@ class ServersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        interfaces: Iterable[server_create_params.Interface],
+        app_config: Optional[object] | NotGiven = NOT_GIVEN,
+        apptemplate_id: str | NotGiven = NOT_GIVEN,
+        ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
+        image_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> BaremetalServer:
+        """
+        Create a bare metal server and wait for it to be ready.
+        """
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            interfaces=interfaces,
+            app_config=app_config,
+            apptemplate_id=apptemplate_id,
+            ddos_profile=ddos_profile,
+            image_id=image_id,
+            name=name,
+            name_template=name_template,
+            password=password,
+            ssh_key_name=ssh_key_name,
+            tags=tags,
+            user_data=user_data,
+            username=username,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.instances:
+            raise ValueError("No server was created")
+        server_id = task.created_resources.instances[0]
+        servers = self.list(
+            project_id=project_id,
+            region_id=region_id,
+            uuid=server_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if len(servers.results) != 1:
+            raise ValueError(f"Server {server_id} not found")
+        return servers.results[0]
 
+    def rebuild_and_poll(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> BaremetalServer:
+        """
+        Rebuild a bare metal server and wait for it to be ready.
+        """
+        response = self.rebuild(
+            server_id=server_id,
+            project_id=project_id,
+            region_id=region_id,
+            image_id=image_id,
+            user_data=user_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")        
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        servers = self.list(
+            project_id=project_id,
+            region_id=region_id,
+            uuid=server_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if len(servers.results) != 1:
+            raise ValueError(f"Server {server_id} not found")
+        return servers.results[0]
+
+    
 class AsyncServersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncServersResourceWithRawResponse:
@@ -746,6 +863,123 @@ class AsyncServersResource(AsyncAPIResource):
             ),
             cast_to=TaskIDList,
         )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        interfaces: Iterable[server_create_params.Interface],
+        app_config: Optional[object] | NotGiven = NOT_GIVEN,
+        apptemplate_id: str | NotGiven = NOT_GIVEN,
+        ddos_profile: server_create_params.DDOSProfile | NotGiven = NOT_GIVEN,
+        image_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> BaremetalServer:
+        """
+        Create a bare metal server and wait for it to be ready.
+        """
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            interfaces=interfaces,
+            app_config=app_config,
+            apptemplate_id=apptemplate_id,
+            ddos_profile=ddos_profile,
+            image_id=image_id,
+            name=name,
+            name_template=name_template,
+            password=password,
+            ssh_key_name=ssh_key_name,
+            tags=tags,
+            user_data=user_data,
+            username=username,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")        
+        task =await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.instances:
+            raise ValueError("No server was created")
+        server_id = task.created_resources.instances[0]
+        servers = await self.list(
+            project_id=project_id,
+            region_id=region_id,
+            uuid=server_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if len(servers.results) != 1:
+            raise ValueError(f"Server {server_id} not found")
+        return servers.results[0]
+
+    async def rebuild_and_poll(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> BaremetalServer:
+        """
+        Rebuild a bare metal server and wait for it to be ready.
+        """
+        response = await self.rebuild(
+            server_id=server_id,
+            project_id=project_id,
+            region_id=region_id,
+            image_id=image_id,
+            user_data=user_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")        
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        servers = await self.list(
+            project_id=project_id,
+            region_id=region_id,
+            uuid=server_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if len(servers.results) != 1:
+            raise ValueError(f"Server {server_id} not found")
+        return servers.results[0]    
 
 
 class ServersResourceWithRawResponse:
