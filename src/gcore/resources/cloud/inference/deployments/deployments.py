@@ -542,6 +542,159 @@ class DeploymentsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        containers: Iterable[deployment_create_params.Container],
+        flavor_name: str,
+        image: str,
+        listening_port: int,
+        name: str,
+        auth_enabled: bool | NotGiven = NOT_GIVEN,
+        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        envs: Dict[str, str] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
+        probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
+        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> Inference:
+        response = self.create(
+            project_id=project_id,
+            containers=containers,
+            flavor_name=flavor_name,
+            image=image,
+            listening_port=listening_port,
+            name=name,
+            auth_enabled=auth_enabled,
+            command=command,
+            credentials_name=credentials_name,
+            description=description,
+            envs=envs,
+            ingress_opts=ingress_opts,
+            logging=logging,
+            probes=probes,
+            api_timeout=api_timeout,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.inference_instances or len(task.created_resources.inference_instances) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return self.get(
+            deployment_name=task.created_resources.inference_instances[0],
+            project_id=project_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    def update_and_poll(
+        self,
+        deployment_name: str,
+        *,
+        project_id: int | None = None,
+        auth_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
+        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        flavor_name: Optional[str] | NotGiven = NOT_GIVEN,
+        image: Optional[str] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        listening_port: Optional[int] | NotGiven = NOT_GIVEN,
+        logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
+        probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
+        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> Inference:
+        response = self.update(
+            deployment_name=deployment_name,
+            project_id=project_id,
+            auth_enabled=auth_enabled,
+            command=command,
+            containers=containers,
+            credentials_name=credentials_name,
+            description=description,
+            envs=envs,
+            flavor_name=flavor_name,
+            image=image,
+            ingress_opts=ingress_opts,
+            listening_port=listening_port,
+            logging=logging,
+            probes=probes,
+            api_timeout=api_timeout,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            deployment_name=deployment_name,
+            project_id=project_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    def delete_and_poll(
+        self,
+        deployment_name: str,
+        *,
+        project_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = self.delete(
+            deployment_name=deployment_name,
+            project_id=project_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
 
 class AsyncDeploymentsResource(AsyncAPIResource):
     @cached_property
@@ -1048,6 +1201,159 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        containers: Iterable[deployment_create_params.Container],
+        flavor_name: str,
+        image: str,
+        listening_port: int,
+        name: str,
+        auth_enabled: bool | NotGiven = NOT_GIVEN,
+        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        envs: Dict[str, str] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
+        probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
+        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> Inference:
+        response = await self.create(
+            project_id=project_id,
+            containers=containers,
+            flavor_name=flavor_name,
+            image=image,
+            listening_port=listening_port,
+            name=name,
+            auth_enabled=auth_enabled,
+            command=command,
+            credentials_name=credentials_name,
+            description=description,
+            envs=envs,
+            ingress_opts=ingress_opts,
+            logging=logging,
+            probes=probes,
+            api_timeout=api_timeout,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.inference_instances or len(task.created_resources.inference_instances) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return await self.get(
+            deployment_name=task.created_resources.inference_instances[0],
+            project_id=project_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    async def update_and_poll(
+        self,
+        deployment_name: str,
+        *,
+        project_id: int | None = None,
+        auth_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
+        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        flavor_name: Optional[str] | NotGiven = NOT_GIVEN,
+        image: Optional[str] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        listening_port: Optional[int] | NotGiven = NOT_GIVEN,
+        logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
+        probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
+        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> Inference:
+        response = await self.update(
+            deployment_name=deployment_name,
+            project_id=project_id,
+            auth_enabled=auth_enabled,
+            command=command,
+            containers=containers,
+            credentials_name=credentials_name,
+            description=description,
+            envs=envs,
+            flavor_name=flavor_name,
+            image=image,
+            ingress_opts=ingress_opts,
+            listening_port=listening_port,
+            logging=logging,
+            probes=probes,
+            api_timeout=api_timeout,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            deployment_name=deployment_name,
+            project_id=project_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    async def delete_and_poll(
+        self,
+        deployment_name: str,
+        *,
+        project_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = await self.delete(
+            deployment_name=deployment_name,
+            project_id=project_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
         )
 
 

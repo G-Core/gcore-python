@@ -399,6 +399,165 @@ class PoolsResource(SyncAPIResource):
             cast_to=LoadBalancerPool,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        lb_algorithm: LbAlgorithm,
+        name: str,
+        protocol: LbPoolProtocol,
+        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        healthmonitor: Optional[pool_create_params.Healthmonitor] | NotGiven = NOT_GIVEN,
+        listener_id: Optional[str] | NotGiven = NOT_GIVEN,
+        loadbalancer_id: Optional[str] | NotGiven = NOT_GIVEN,
+        members: Optional[Iterable[pool_create_params.Member]] | NotGiven = NOT_GIVEN,
+        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        session_persistence: Optional[pool_create_params.SessionPersistence] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerPool:
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            lb_algorithm=lb_algorithm,
+            name=name,
+            protocol=protocol,
+            ca_secret_id=ca_secret_id,
+            crl_secret_id=crl_secret_id,
+            healthmonitor=healthmonitor,
+            listener_id=listener_id,
+            loadbalancer_id=loadbalancer_id,
+            members=members,
+            secret_id=secret_id,
+            session_persistence=session_persistence,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.pools or len(task.created_resources.pools) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return self.get(
+            pool_id=task.created_resources.pools[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    def delete_and_poll(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = self.delete(
+            pool_id=pool_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
+    def update_and_poll(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        healthmonitor: Optional[pool_update_params.Healthmonitor] | NotGiven = NOT_GIVEN,
+        lb_algorithm: LbAlgorithm | NotGiven = NOT_GIVEN,
+        members: Optional[Iterable[pool_update_params.Member]] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        protocol: LbPoolProtocol | NotGiven = NOT_GIVEN,
+        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        session_persistence: Optional[pool_update_params.SessionPersistence] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerPool:
+        response = self.update(
+            pool_id=pool_id,
+            project_id=project_id,
+            region_id=region_id,
+            ca_secret_id=ca_secret_id,
+            crl_secret_id=crl_secret_id,
+            healthmonitor=healthmonitor,
+            lb_algorithm=lb_algorithm,
+            members=members,
+            name=name,
+            protocol=protocol,
+            secret_id=secret_id,
+            session_persistence=session_persistence,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            pool_id=pool_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
 
 class AsyncPoolsResource(AsyncAPIResource):
     @cached_property
@@ -753,6 +912,165 @@ class AsyncPoolsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=LoadBalancerPool,
+        )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        lb_algorithm: LbAlgorithm,
+        name: str,
+        protocol: LbPoolProtocol,
+        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        healthmonitor: Optional[pool_create_params.Healthmonitor] | NotGiven = NOT_GIVEN,
+        listener_id: Optional[str] | NotGiven = NOT_GIVEN,
+        loadbalancer_id: Optional[str] | NotGiven = NOT_GIVEN,
+        members: Optional[Iterable[pool_create_params.Member]] | NotGiven = NOT_GIVEN,
+        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        session_persistence: Optional[pool_create_params.SessionPersistence] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerPool:
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            lb_algorithm=lb_algorithm,
+            name=name,
+            protocol=protocol,
+            ca_secret_id=ca_secret_id,
+            crl_secret_id=crl_secret_id,
+            healthmonitor=healthmonitor,
+            listener_id=listener_id,
+            loadbalancer_id=loadbalancer_id,
+            members=members,
+            secret_id=secret_id,
+            session_persistence=session_persistence,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.pools or len(task.created_resources.pools) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return await self.get(
+            pool_id=task.created_resources.pools[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    async def delete_and_poll(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = await self.delete(
+            pool_id=pool_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
+    async def update_and_poll(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        healthmonitor: Optional[pool_update_params.Healthmonitor] | NotGiven = NOT_GIVEN,
+        lb_algorithm: LbAlgorithm | NotGiven = NOT_GIVEN,
+        members: Optional[Iterable[pool_update_params.Member]] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        protocol: LbPoolProtocol | NotGiven = NOT_GIVEN,
+        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        session_persistence: Optional[pool_update_params.SessionPersistence] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerPool:
+        response = await self.update(
+            pool_id=pool_id,
+            project_id=project_id,
+            region_id=region_id,
+            ca_secret_id=ca_secret_id,
+            crl_secret_id=crl_secret_id,
+            healthmonitor=healthmonitor,
+            lb_algorithm=lb_algorithm,
+            members=members,
+            name=name,
+            protocol=protocol,
+            secret_id=secret_id,
+            session_persistence=session_persistence,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            timeout=timeout,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            pool_id=pool_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
         )
 
 

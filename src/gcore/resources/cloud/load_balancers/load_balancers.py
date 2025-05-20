@@ -557,6 +557,179 @@ class LoadBalancersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str | NotGiven = NOT_GIVEN,
+        floating_ip: load_balancer_create_params.FloatingIP | NotGiven = NOT_GIVEN,
+        listeners: Iterable[load_balancer_create_params.Listener] | NotGiven = NOT_GIVEN,
+        logging: load_balancer_create_params.Logging | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
+        preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
+        vip_network_id: str | NotGiven = NOT_GIVEN,
+        vip_port_id: str | NotGiven = NOT_GIVEN,
+        vip_subnet_id: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancer:
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            floating_ip=floating_ip,
+            listeners=listeners,
+            logging=logging,
+            name=name,
+            name_template=name_template,
+            preferred_connectivity=preferred_connectivity,
+            tags=tags,
+            vip_ip_family=vip_ip_family,
+            vip_network_id=vip_network_id,
+            vip_port_id=vip_port_id,
+            vip_subnet_id=vip_subnet_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.loadbalancers or len(task.created_resources.loadbalancers) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return self.get(
+            loadbalancer_id=task.created_resources.loadbalancers[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    def delete_and_poll(
+        self,
+        loadbalancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = self.delete(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
+    def failover_and_poll(
+        self,
+        loadbalancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        force: bool | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancer:
+        response = self.failover(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            force=force,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    def resize_and_poll(
+        self,
+        loadbalancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancer:
+        response = self.resize(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
 
 class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
@@ -1030,6 +1203,179 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str | NotGiven = NOT_GIVEN,
+        floating_ip: load_balancer_create_params.FloatingIP | NotGiven = NOT_GIVEN,
+        listeners: Iterable[load_balancer_create_params.Listener] | NotGiven = NOT_GIVEN,
+        logging: load_balancer_create_params.Logging | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
+        preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
+        vip_network_id: str | NotGiven = NOT_GIVEN,
+        vip_port_id: str | NotGiven = NOT_GIVEN,
+        vip_subnet_id: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancer:
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            floating_ip=floating_ip,
+            listeners=listeners,
+            logging=logging,
+            name=name,
+            name_template=name_template,
+            preferred_connectivity=preferred_connectivity,
+            tags=tags,
+            vip_ip_family=vip_ip_family,
+            vip_network_id=vip_network_id,
+            vip_port_id=vip_port_id,
+            vip_subnet_id=vip_subnet_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.loadbalancers or len(task.created_resources.loadbalancers) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return await self.get(
+            loadbalancer_id=task.created_resources.loadbalancers[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    async def delete_and_poll(
+        self,
+        loadbalancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = await self.delete(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
+    async def failover_and_poll(
+        self,
+        loadbalancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        force: bool | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancer:
+        response = await self.failover(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            force=force,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    async def resize_and_poll(
+        self,
+        loadbalancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancer:
+        response = await self.resize(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            loadbalancer_id=loadbalancer_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
         )
 
 
