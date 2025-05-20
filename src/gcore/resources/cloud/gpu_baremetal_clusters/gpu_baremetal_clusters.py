@@ -111,8 +111,11 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,6 +138,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
 
           instances_count: Number of servers to create
 
+          password: A password for a bare metal server. This parameter is used to set a password for
+              the "Admin" user on a Windows instance, a default user or a new user on a Linux
+              instance
+
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
@@ -143,6 +150,13 @@ class GPUBaremetalClustersResource(SyncAPIResource):
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
+
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+
+          username: A name of a new user in the Linux instance. It may be passed with a 'password'
+              parameter
 
           extra_headers: Send extra headers
 
@@ -165,8 +179,11 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
+                    "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
+                    "user_data": user_data,
+                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),
@@ -498,7 +515,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
-            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")            
         return self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=maybe_transform(
@@ -509,6 +526,164 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        image_id: str,
+        interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
+        name: str,
+        instances_count: int | NotGiven = NOT_GIVEN,
+        ssh_key_name: str | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUBaremetalCluster:
+        """
+        Create a bare metal GPU cluster and wait for it to be ready.
+        """
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            image_id=image_id,
+            interfaces=interfaces,
+            name=name,
+            instances_count=instances_count,
+            ssh_key_name=ssh_key_name,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.ai_clusters:
+            raise ValueError("No cluster was created")
+        cluster_id = task.created_resources.ai_clusters[0]
+        return self.get(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+    def rebuild_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        nodes: List[str],
+        image_id: Optional[str] | NotGiven = NOT_GIVEN,
+        user_data: Optional[str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUBaremetalCluster:
+        """
+        Rebuild a bare metal GPU cluster and wait for it to be ready.
+        """
+        response = self.rebuild(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            nodes=nodes,
+            image_id=image_id,
+            user_data=user_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+    def resize_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        instances_count: int,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUBaremetalCluster:
+        """
+        Resize a bare metal GPU cluster and wait for it to be ready.
+        """
+        response = self.resize(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            instances_count=instances_count,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
         )
 
 
@@ -558,8 +733,11 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -582,6 +760,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
 
           instances_count: Number of servers to create
 
+          password: A password for a bare metal server. This parameter is used to set a password for
+              the "Admin" user on a Windows instance, a default user or a new user on a Linux
+              instance
+
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
 
@@ -590,6 +772,13 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
+
+          user_data: String in base64 format. Must not be passed together with 'username' or
+              'password'. Examples of the user_data:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+
+          username: A name of a new user in the Linux instance. It may be passed with a 'password'
+              parameter
 
           extra_headers: Send extra headers
 
@@ -612,8 +801,11 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "interfaces": interfaces,
                     "name": name,
                     "instances_count": instances_count,
+                    "password": password,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
+                    "user_data": user_data,
+                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),
@@ -945,7 +1137,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
-            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")            
         return await self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=await async_maybe_transform(
@@ -956,6 +1148,164 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        image_id: str,
+        interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
+        name: str,
+        instances_count: int | NotGiven = NOT_GIVEN,
+        ssh_key_name: str | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUBaremetalCluster:
+        """
+        Create a bare metal GPU cluster and wait for it to be ready.
+        """
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            image_id=image_id,
+            interfaces=interfaces,
+            name=name,
+            instances_count=instances_count,
+            ssh_key_name=ssh_key_name,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.ai_clusters:
+            raise ValueError("No cluster was created")
+        cluster_id = task.created_resources.ai_clusters[0]
+        return await self.get(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+    async def rebuild_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        nodes: List[str],
+        image_id: Optional[str] | NotGiven = NOT_GIVEN,
+        user_data: Optional[str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUBaremetalCluster:
+        """
+        Rebuild a bare metal GPU cluster and wait for it to be ready.
+        """
+        response = await self.rebuild(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            nodes=nodes,
+            image_id=image_id,
+            user_data=user_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+    async def resize_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        instances_count: int,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUBaremetalCluster:
+        """
+        Resize a bare metal GPU cluster and wait for it to be ready.
+        """
+        response = await self.resize(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            instances_count=instances_count,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
         )
 
 

@@ -36,6 +36,7 @@ class TestBillingReservations:
             limit=1,
             metric_name="metric_name",
             offset=0,
+            order_by="active_from.asc",
             region_id=0,
             status=["ACTIVATED"],
         )
@@ -113,6 +114,7 @@ class TestAsyncBillingReservations:
             limit=1,
             metric_name="metric_name",
             offset=0,
+            order_by="active_from.asc",
             region_id=0,
             status=["ACTIVATED"],
         )

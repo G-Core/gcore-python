@@ -24,8 +24,8 @@ class TestNetworks:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         network = client.cloud.networks.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
         )
         assert_matches_type(TaskIDList, network, path=["response"])
@@ -33,8 +33,8 @@ class TestNetworks:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         network = client.cloud.networks.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
             create_router=True,
             tags={"foo": "my-tag-value"},
@@ -45,8 +45,8 @@ class TestNetworks:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.networks.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
         )
 
@@ -58,8 +58,8 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.networks.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
         ) as response:
             assert not response.is_closed
@@ -73,9 +73,9 @@ class TestNetworks:
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         network = client.cloud.networks.update(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
         )
         assert_matches_type(Network, network, path=["response"])
@@ -83,9 +83,9 @@ class TestNetworks:
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.cloud.networks.with_raw_response.update(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
         )
 
@@ -97,9 +97,9 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.cloud.networks.with_streaming_response.update(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
         ) as response:
             assert not response.is_closed
@@ -115,28 +115,28 @@ class TestNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             client.cloud.networks.with_raw_response.update(
                 network_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 name="some_name",
             )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         network = client.cloud.networks.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(SyncOffsetPage[Network], network, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         network = client.cloud.networks.list(
-            project_id=0,
-            region_id=0,
-            limit=0,
+            project_id=1,
+            region_id=1,
+            limit=1000,
             offset=0,
-            order_by="order_by",
-            tag_key=["string"],
+            order_by="created_at.desc",
+            tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[Network], network, path=["response"])
@@ -144,8 +144,8 @@ class TestNetworks:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.networks.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -156,8 +156,8 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.networks.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -170,18 +170,18 @@ class TestNetworks:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         network = client.cloud.networks.delete(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, network, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.networks.with_raw_response.delete(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -192,9 +192,9 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.networks.with_streaming_response.delete(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -209,25 +209,25 @@ class TestNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             client.cloud.networks.with_raw_response.delete(
                 network_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         network = client.cloud.networks.get(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Network, network, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.networks.with_raw_response.get(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -238,9 +238,9 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.networks.with_streaming_response.get(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -255,8 +255,8 @@ class TestNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             client.cloud.networks.with_raw_response.get(
                 network_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
 
@@ -266,8 +266,8 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         network = await async_client.cloud.networks.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
         )
         assert_matches_type(TaskIDList, network, path=["response"])
@@ -275,8 +275,8 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         network = await async_client.cloud.networks.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
             create_router=True,
             tags={"foo": "my-tag-value"},
@@ -287,8 +287,8 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
         )
 
@@ -300,8 +300,8 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my network",
         ) as response:
             assert not response.is_closed
@@ -315,9 +315,9 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         network = await async_client.cloud.networks.update(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
         )
         assert_matches_type(Network, network, path=["response"])
@@ -325,9 +325,9 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.with_raw_response.update(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
         )
 
@@ -339,9 +339,9 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.with_streaming_response.update(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
         ) as response:
             assert not response.is_closed
@@ -357,28 +357,28 @@ class TestAsyncNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             await async_client.cloud.networks.with_raw_response.update(
                 network_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 name="some_name",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         network = await async_client.cloud.networks.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(AsyncOffsetPage[Network], network, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         network = await async_client.cloud.networks.list(
-            project_id=0,
-            region_id=0,
-            limit=0,
+            project_id=1,
+            region_id=1,
+            limit=1000,
             offset=0,
-            order_by="order_by",
-            tag_key=["string"],
+            order_by="created_at.desc",
+            tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[Network], network, path=["response"])
@@ -386,8 +386,8 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -398,8 +398,8 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -412,18 +412,18 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         network = await async_client.cloud.networks.delete(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, network, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.with_raw_response.delete(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -434,9 +434,9 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.with_streaming_response.delete(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -451,25 +451,25 @@ class TestAsyncNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             await async_client.cloud.networks.with_raw_response.delete(
                 network_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         network = await async_client.cloud.networks.get(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Network, network, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.with_raw_response.get(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -480,9 +480,9 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.with_streaming_response.get(
-            network_id="network_id",
-            project_id=0,
-            region_id=0,
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -497,6 +497,6 @@ class TestAsyncNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             await async_client.cloud.networks.with_raw_response.get(
                 network_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )

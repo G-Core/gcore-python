@@ -28,6 +28,7 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.waap import waap
 from .resources.cloud import cloud
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Gcore", "AsyncGcore", "Client", "AsyncClient"]
@@ -35,6 +36,7 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Gcore", "A
 
 class Gcore(SyncAPIClient):
     cloud: cloud.CloudResource
+    waap: waap.WaapResource
     with_raw_response: GcoreWithRawResponse
     with_streaming_response: GcoreWithStreamedResponse
 
@@ -114,6 +116,7 @@ class Gcore(SyncAPIClient):
         )
 
         self.cloud = cloud.CloudResource(self)
+        self.waap = waap.WaapResource(self)
         self.with_raw_response = GcoreWithRawResponse(self)
         self.with_streaming_response = GcoreWithStreamedResponse(self)
 
@@ -248,6 +251,7 @@ class Gcore(SyncAPIClient):
 
 class AsyncGcore(AsyncAPIClient):
     cloud: cloud.AsyncCloudResource
+    waap: waap.AsyncWaapResource
     with_raw_response: AsyncGcoreWithRawResponse
     with_streaming_response: AsyncGcoreWithStreamedResponse
 
@@ -327,6 +331,7 @@ class AsyncGcore(AsyncAPIClient):
         )
 
         self.cloud = cloud.AsyncCloudResource(self)
+        self.waap = waap.AsyncWaapResource(self)
         self.with_raw_response = AsyncGcoreWithRawResponse(self)
         self.with_streaming_response = AsyncGcoreWithStreamedResponse(self)
 
@@ -462,21 +467,25 @@ class AsyncGcore(AsyncAPIClient):
 class GcoreWithRawResponse:
     def __init__(self, client: Gcore) -> None:
         self.cloud = cloud.CloudResourceWithRawResponse(client.cloud)
+        self.waap = waap.WaapResourceWithRawResponse(client.waap)
 
 
 class AsyncGcoreWithRawResponse:
     def __init__(self, client: AsyncGcore) -> None:
         self.cloud = cloud.AsyncCloudResourceWithRawResponse(client.cloud)
+        self.waap = waap.AsyncWaapResourceWithRawResponse(client.waap)
 
 
 class GcoreWithStreamedResponse:
     def __init__(self, client: Gcore) -> None:
         self.cloud = cloud.CloudResourceWithStreamingResponse(client.cloud)
+        self.waap = waap.WaapResourceWithStreamingResponse(client.waap)
 
 
 class AsyncGcoreWithStreamedResponse:
     def __init__(self, client: AsyncGcore) -> None:
         self.cloud = cloud.AsyncCloudResourceWithStreamingResponse(client.cloud)
+        self.waap = waap.AsyncWaapResourceWithStreamingResponse(client.waap)
 
 
 Client = Gcore

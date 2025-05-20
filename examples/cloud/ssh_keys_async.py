@@ -34,7 +34,7 @@ async def create_new_ssh_key() -> SSHKeyCreated:
     gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
     # Sample SSH key values
     ssh_key_name = "Example SSH Key"
-    
+
     new_ssh_key = await gcore.cloud.ssh_keys.create(name=ssh_key_name)
 
     print("\n=== CREATE NEW SSH KEY ===")

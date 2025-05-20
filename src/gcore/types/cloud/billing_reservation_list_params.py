@@ -45,6 +45,11 @@ class BillingReservationListParams(TypedDict, total=False):
     offset: int
     """Offset in reservation list"""
 
+    order_by: Literal[
+        "active_from.asc", "active_from.desc", "active_to.asc", "active_to.desc", "created_at.asc", "created_at.desc"
+    ]
+    """Order by field and direction."""
+
     region_id: int
     """Region for reservation"""
 

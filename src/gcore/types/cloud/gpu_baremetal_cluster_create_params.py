@@ -42,6 +42,13 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     instances_count: int
     """Number of servers to create"""
 
+    password: str
+    """A password for a bare metal server.
+
+    This parameter is used to set a password for the "Admin" user on a Windows
+    instance, a default user or a new user on a Linux instance
+    """
+
     ssh_key_name: str
     """
     Specifies the name of the SSH keypair, created via the
@@ -56,6 +63,19 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     tags are read-only and cannot be modified by the user. Tags are also integrated
     with cost reports, allowing cost data to be filtered based on tag keys or
     values.
+    """
+
+    user_data: str
+    """String in base64 format.
+
+    Must not be passed together with 'username' or 'password'. Examples of the
+    user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+    """
+
+    username: str
+    """A name of a new user in the Linux instance.
+
+    It may be passed with a 'password' parameter
     """
 
 

@@ -58,6 +58,15 @@ class BillingReservationsResource(SyncAPIResource):
         limit: int | NotGiven = NOT_GIVEN,
         metric_name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        order_by: Literal[
+            "active_from.asc",
+            "active_from.desc",
+            "active_to.asc",
+            "active_to.desc",
+            "created_at.asc",
+            "created_at.desc",
+        ]
+        | NotGiven = NOT_GIVEN,
         region_id: int | NotGiven = NOT_GIVEN,
         status: List[
             Literal[
@@ -96,6 +105,8 @@ class BillingReservationsResource(SyncAPIResource):
 
           offset: Offset in reservation list
 
+          order_by: Order by field and direction.
+
           region_id: Region for reservation
 
           status: Field for fixed a status by reservation workflow
@@ -127,6 +138,7 @@ class BillingReservationsResource(SyncAPIResource):
                         "limit": limit,
                         "metric_name": metric_name,
                         "offset": offset,
+                        "order_by": order_by,
                         "region_id": region_id,
                         "status": status,
                     },
@@ -202,6 +214,15 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         limit: int | NotGiven = NOT_GIVEN,
         metric_name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        order_by: Literal[
+            "active_from.asc",
+            "active_from.desc",
+            "active_to.asc",
+            "active_to.desc",
+            "created_at.asc",
+            "created_at.desc",
+        ]
+        | NotGiven = NOT_GIVEN,
         region_id: int | NotGiven = NOT_GIVEN,
         status: List[
             Literal[
@@ -240,6 +261,8 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
 
           offset: Offset in reservation list
 
+          order_by: Order by field and direction.
+
           region_id: Region for reservation
 
           status: Field for fixed a status by reservation workflow
@@ -271,6 +294,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
                         "limit": limit,
                         "metric_name": metric_name,
                         "offset": offset,
+                        "order_by": order_by,
                         "region_id": region_id,
                         "status": status,
                     },

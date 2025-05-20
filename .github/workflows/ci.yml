@@ -30,6 +30,30 @@ jobs:
       - name: Run lints
         run: ./scripts/lint
 
+  upload:
+    if: github.repository == 'stainless-sdks/gcore-python'
+    timeout-minutes: 10
+    name: upload
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: depot-ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get GitHub OIDC Token
+        id: github-oidc
+        uses: actions/github-script@v6
+        with:
+          script: core.setOutput('github_token', await core.getIDToken());
+
+      - name: Upload tarball
+        env:
+          URL: https://pkg.stainless.com/s
+          AUTH: ${{ steps.github-oidc.outputs.github_token }}
+          SHA: ${{ github.sha }}
+        run: ./scripts/utils/upload-artifact.sh
+
   test:
     timeout-minutes: 10
     name: test
@@ -50,3 +74,35 @@ jobs:
 
       - name: Run tests
         run: ./scripts/test
+
+  detect_breaking_changes:
+    name: detect-breaking-changes
+    if: github.event_name == 'pull_request'
+    # Don't try to detect breaking changes if linting fails with the change. That means it's already failing
+    # and will likely fail at an earlier revision for the same reason, which doesn't indicate a breaking
+    # change.
+    needs: lint
+    runs-on: ${{ github.repository == 'stainless-sdks/gcore-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    steps:
+      - name: Calculate fetch-depth
+        run: |
+          echo "FETCH_DEPTH=$(expr ${{ github.event.pull_request.commits }} + 1)" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v4
+        with:
+          # Ensure we can check out the pull request base in the script below.
+          fetch-depth: ${{ env.FETCH_DEPTH }}
+
+      - name: Install Rye
+        run: |
+          curl -sSf https://rye.astral.sh/get | bash
+          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+        env:
+          RYE_VERSION: '0.44.0'
+          RYE_INSTALL_OPTION: '--yes'
+      - name: Install dependencies
+        run: |
+          rye sync --all-features
+
+      - name: Detect breaking changes
+        run: ./scripts/detect-breaking-changes ${{ github.event.pull_request.base.sha }}

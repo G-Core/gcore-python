@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.1.0 (2025-05-20)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0](https://github.com/G-Core/gcore-python/compare/v0.1.0-alpha.2...v0.1.0)
+
+### Features
+
+* **api:** aggregated API specs update ([8173c1e](https://github.com/G-Core/gcore-python/commit/8173c1ea495b7b27876fa8b777070e3a28407f0d))
+* **api:** aggregated API specs update ([22e6e90](https://github.com/G-Core/gcore-python/commit/22e6e90558ebaa7e4d5b50000ef0a8706037ab3f))
+* **baremetal:** add polling methods ([#38](https://github.com/G-Core/gcore-python/issues/38)) ([0423186](https://github.com/G-Core/gcore-python/commit/0423186035ceb14e772adf585ec3664755c4902f))
+* **gpu_cloud:** add polling methods ([#40](https://github.com/G-Core/gcore-python/issues/40)) ([b209a4d](https://github.com/G-Core/gcore-python/commit/b209a4d6bf565559503462a4d28a8d6ed45c18b8))
+* **instances:** add polling methods ([#36](https://github.com/G-Core/gcore-python/issues/36)) ([64ec95d](https://github.com/G-Core/gcore-python/commit/64ec95d62a0ee4ca69ad7df78ef875eb3dd81ecf))
+* **load_balancers, inference, gpu_cloud, instances:** add polling methods ([#44](https://github.com/G-Core/gcore-python/issues/44)) ([ba106ad](https://github.com/G-Core/gcore-python/commit/ba106adf1b54b9109574da93e9617e777f6890cc))
+* **loadbalancers,inference:** add polling methods ([#39](https://github.com/G-Core/gcore-python/issues/39)) ([55bbc2f](https://github.com/G-Core/gcore-python/commit/55bbc2f56049f10b6360e53fcaed25ec343ce6fa))
+
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([74d6f0d](https://github.com/G-Core/gcore-python/commit/74d6f0d5763de81c2017943d3a39633f32ee20c4))
+
+
+### Chores
+
+* **ci:** fix installation instructions ([8dc3dcf](https://github.com/G-Core/gcore-python/commit/8dc3dcf9beda9745d64f906a2d386d930e04bbe2))
+* **ci:** upload sdks to package manager ([370efcf](https://github.com/G-Core/gcore-python/commit/370efcfd392562b1fbc28ef9b87dc9c65ba8363c))
+* **internal:** avoid errors for isinstance checks on proxies ([6ccc750](https://github.com/G-Core/gcore-python/commit/6ccc7507b9882b0c9eb5b0ac2d5ec57035d6f959))
+* **internal:** codegen related update ([67c1836](https://github.com/G-Core/gcore-python/commit/67c183613a3c3ac4ecc6a7c2a17ca09b80838a8e))
+
+
+### Documentation
+
+* remove or fix invalid readme examples ([457d409](https://github.com/G-Core/gcore-python/commit/457d4091f05eee8bd4862c262cce7bef5c071e7e))
+
 ## 0.1.0-alpha.2 (2025-05-06)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/G-Core/gcore-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)

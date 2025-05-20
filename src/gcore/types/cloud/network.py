@@ -16,8 +16,17 @@ class Network(BaseModel):
     created_at: datetime
     """Datetime when the network was created"""
 
+    creator_task_id: Optional[str] = None
+    """Task that created this entity"""
+
+    default: Optional[bool] = None
+    """True if network has is_default attribute"""
+
     external: bool
     """True if the network `router:external` attribute"""
+
+    mtu: int
+    """MTU (maximum transmission unit). Default value is 1450"""
 
     name: str
     """Network name"""
@@ -28,11 +37,17 @@ class Network(BaseModel):
     ports.
     """
 
+    project_id: Optional[int] = None
+    """Project ID"""
+
     region: str
     """Region name"""
 
     region_id: int
     """Region ID"""
+
+    segmentation_id: Optional[int] = None
+    """Id of network segment"""
 
     shared: bool
     """True when the network is shared with your project by external owner"""
@@ -50,30 +65,15 @@ class Network(BaseModel):
     values.
     """
 
-    type: str
-    """Network type (vlan, vxlan)"""
-
-    updated_at: datetime
-    """Datetime when the network was last updated"""
-
-    creator_task_id: Optional[str] = None
-    """Task that created this entity"""
-
-    default: Optional[bool] = None
-    """True if network has is_default attribute"""
-
-    mtu: Optional[int] = None
-    """MTU (maximum transmission unit). Default value is 1450"""
-
-    project_id: Optional[int] = None
-    """Project ID"""
-
-    segmentation_id: Optional[int] = None
-    """Id of network segment"""
-
     task_id: Optional[str] = None
     """The UUID of the active task that currently holds a lock on the resource.
 
     This lock prevents concurrent modifications to ensure consistency. If `null`,
     the resource is not locked.
     """
+
+    type: str
+    """Network type (vlan, vxlan)"""
+
+    updated_at: datetime
+    """Datetime when the network was last updated"""

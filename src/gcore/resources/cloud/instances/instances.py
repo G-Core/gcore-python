@@ -258,6 +258,76 @@ class InstancesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        interfaces: Iterable[instance_create_params.Interface],
+        volumes: Iterable[instance_create_params.Volume],
+        allow_app_ports: bool | NotGiven = NOT_GIVEN,
+        configuration: Optional[object] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
+        servergroup_id: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """Create one or many instances or basic VMs and poll for the result."""
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            interfaces=interfaces,
+            volumes=volumes,
+            allow_app_ports=allow_app_ports,
+            configuration=configuration,
+            name_template=name_template,
+            name=name,
+            password=password,
+            security_groups=security_groups,
+            servergroup_id=servergroup_id,
+            ssh_key_name=ssh_key_name,
+            tags=tags,
+            user_data=user_data,
+            username=username,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if (
+            not task.created_resources
+            or not task.created_resources.instances
+            or len(task.created_resources.instances) != 1
+        ):
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return self.get(
+            instance_id=task.created_resources.instances[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+        )
+
     def update(
         self,
         instance_id: str,
@@ -561,6 +631,48 @@ class InstancesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def delete_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        delete_floatings: bool | NotGiven = NOT_GIVEN,
+        floatings: str | NotGiven = NOT_GIVEN,
+        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
+        volumes: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Delete instance and poll for the result
+        """
+        response = self.delete(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            delete_floatings=delete_floatings,
+            floatings=floatings,
+            reserved_fixed_ips=reserved_fixed_ips,
+            volumes=volumes,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
     @overload
     def action(
         self,
@@ -709,6 +821,48 @@ class InstancesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    def add_to_placement_group_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        servergroup_id: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Put instance into the server group and poll for the result
+        """
+        response = self.add_to_placement_group(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            servergroup_id=servergroup_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
         )
 
     def assign_security_group(
@@ -983,6 +1137,46 @@ class InstancesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def remove_from_placement_group_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Remove instance from the server group and poll for the result
+        """
+        response = self.remove_from_placement_group(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+        )
+
     def resize(
         self,
         instance_id: str,
@@ -1024,6 +1218,48 @@ class InstancesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    def resize_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor_id: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Change flavor of the instance and poll for the result
+        """
+        response = self.resize(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            flavor_id=flavor_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
         )
 
     def unassign_security_group(
@@ -1266,6 +1502,76 @@ class AsyncInstancesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        interfaces: Iterable[instance_create_params.Interface],
+        volumes: Iterable[instance_create_params.Volume],
+        allow_app_ports: bool | NotGiven = NOT_GIVEN,
+        configuration: Optional[object] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        name_template: str | NotGiven = NOT_GIVEN,
+        password: str | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
+        servergroup_id: str | NotGiven = NOT_GIVEN,
+        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        user_data: str | NotGiven = NOT_GIVEN,
+        username: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """Create one or many instances or basic VMs and poll for the result."""
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            interfaces=interfaces,
+            volumes=volumes,
+            allow_app_ports=allow_app_ports,
+            configuration=configuration,
+            name_template=name_template,
+            name=name,
+            password=password,
+            security_groups=security_groups,
+            servergroup_id=servergroup_id,
+            ssh_key_name=ssh_key_name,
+            tags=tags,
+            user_data=user_data,
+            username=username,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if (
+            not task.created_resources
+            or not task.created_resources.instances
+            or len(task.created_resources.instances) != 1
+        ):
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return await self.get(
+            instance_id=task.created_resources.instances[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
         )
 
     async def update(
@@ -1571,6 +1877,48 @@ class AsyncInstancesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def delete_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        delete_floatings: bool | NotGiven = NOT_GIVEN,
+        floatings: str | NotGiven = NOT_GIVEN,
+        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
+        volumes: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Delete instance and poll for the result
+        """
+        response = await self.delete(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            delete_floatings=delete_floatings,
+            floatings=floatings,
+            reserved_fixed_ips=reserved_fixed_ips,
+            volumes=volumes,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
     @overload
     async def action(
         self,
@@ -1719,6 +2067,48 @@ class AsyncInstancesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def add_to_placement_group_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        servergroup_id: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Put instance into the server group and poll for the result
+        """
+        response = await self.add_to_placement_group(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            servergroup_id=servergroup_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
         )
 
     async def assign_security_group(
@@ -1993,6 +2383,46 @@ class AsyncInstancesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def remove_from_placement_group_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Remove instance from the server group and poll for the result
+        """
+        response = await self.remove_from_placement_group(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+        )
+
     async def resize(
         self,
         instance_id: str,
@@ -2034,6 +2464,48 @@ class AsyncInstancesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def resize_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor_id: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Change flavor of the instance and poll for the result
+        """
+        response = await self.resize(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            flavor_id=flavor_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
         )
 
     async def unassign_security_group(
