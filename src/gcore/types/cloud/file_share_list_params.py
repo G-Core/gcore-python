@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["FileShareListParams"]
 
@@ -17,8 +17,14 @@ class FileShareListParams(TypedDict, total=False):
     limit: int
     """Optional. Limit the number of returned items"""
 
+    name: str
+    """File share name. Uses partial match."""
+
     offset: int
     """Optional.
 
     Offset value is used to exclude the first set of records from the result
     """
+
+    type_name: Literal["standard", "vast"]
+    """File share type name"""
