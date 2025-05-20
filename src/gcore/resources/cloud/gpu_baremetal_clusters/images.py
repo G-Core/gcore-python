@@ -132,6 +132,42 @@ class ImagesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def delete_and_poll(
+        self,
+        image_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Delete a bare metal GPU image and wait for the deletion to complete.
+        """
+        response = self.delete(
+            image_id=image_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
     def get(
         self,
         image_id: str,
@@ -267,6 +303,72 @@ class ImagesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def upload_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str,
+        url: str,
+        architecture: Optional[Literal["aarch64", "x86_64"]] | NotGiven = NOT_GIVEN,
+        cow_format: bool | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
+        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
+        os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
+        os_version: Optional[str] | NotGiven = NOT_GIVEN,
+        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUImage:
+        """
+        Upload a new bare metal GPU image and wait for the upload to complete.
+        """
+        response = self.upload(
+            project_id=project_id,
+            region_id=region_id,
+            name=name,
+            url=url,
+            architecture=architecture,
+            cow_format=cow_format,
+            hw_firmware_type=hw_firmware_type,
+            os_distro=os_distro,
+            os_type=os_type,
+            os_version=os_version,
+            ssh_key=ssh_key,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.images:
+            raise ValueError("No image was created")
+        image_id = task.created_resources.images[0]
+        return self.get(
+            image_id=image_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
 
 class AsyncImagesResource(AsyncAPIResource):
     @cached_property
@@ -371,6 +473,42 @@ class AsyncImagesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def delete_and_poll(
+        self,
+        image_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Delete a bare metal GPU image and wait for the deletion to complete.
+        """
+        response = await self.delete(
+            image_id=image_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
         )
 
     async def get(
@@ -506,6 +644,72 @@ class AsyncImagesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def upload_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str,
+        url: str,
+        architecture: Optional[Literal["aarch64", "x86_64"]] | NotGiven = NOT_GIVEN,
+        cow_format: bool | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
+        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
+        os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
+        os_version: Optional[str] | NotGiven = NOT_GIVEN,
+        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
+        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GPUImage:
+        """
+        Upload a new bare metal GPU image and wait for the upload to complete.
+        """
+        response = await self.upload(
+            project_id=project_id,
+            region_id=region_id,
+            name=name,
+            url=url,
+            architecture=architecture,
+            cow_format=cow_format,
+            hw_firmware_type=hw_firmware_type,
+            os_distro=os_distro,
+            os_type=os_type,
+            os_version=os_version,
+            ssh_key=ssh_key,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.images:
+            raise ValueError("No image was created")
+        image_id = task.created_resources.images[0]
+        return await self.get(
+            image_id=image_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
         )
 
 

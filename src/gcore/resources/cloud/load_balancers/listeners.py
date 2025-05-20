@@ -367,6 +367,157 @@ class ListenersResource(SyncAPIResource):
             cast_to=LoadBalancerListenerDetail,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        loadbalancer_id: str,
+        name: str,
+        protocol: LbListenerProtocol,
+        protocol_port: int,
+        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        connection_limit: int | NotGiven = NOT_GIVEN,
+        insert_x_forwarded: bool | NotGiven = NOT_GIVEN,
+        secret_id: str | NotGiven = NOT_GIVEN,
+        sni_secret_id: List[str] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        user_list: Iterable[listener_create_params.UserList] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerListenerDetail:
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            loadbalancer_id=loadbalancer_id,
+            name=name,
+            protocol=protocol,
+            protocol_port=protocol_port,
+            allowed_cidrs=allowed_cidrs,
+            connection_limit=connection_limit,
+            insert_x_forwarded=insert_x_forwarded,
+            secret_id=secret_id,
+            sni_secret_id=sni_secret_id,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            user_list=user_list,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.listeners or len(task.created_resources.listeners) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return self.get(
+            listener_id=task.created_resources.listeners[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    def delete_and_poll(
+        self,
+        listener_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = self.delete(
+            listener_id=listener_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
+    def update_and_poll(
+        self,
+        listener_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        connection_limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        sni_secret_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        user_list: Optional[Iterable[listener_update_params.UserList]] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerListenerDetail:
+        response = self.update(
+            listener_id=listener_id,
+            project_id=project_id,
+            region_id=region_id,
+            allowed_cidrs=allowed_cidrs,
+            connection_limit=connection_limit,
+            name=name,
+            secret_id=secret_id,
+            sni_secret_id=sni_secret_id,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            user_list=user_list,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            listener_id=listener_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
 
 class AsyncListenersResource(AsyncAPIResource):
     @cached_property
@@ -703,6 +854,156 @@ class AsyncListenersResource(AsyncAPIResource):
             cast_to=LoadBalancerListenerDetail,
         )
 
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        loadbalancer_id: str,
+        name: str,
+        protocol: LbListenerProtocol,
+        protocol_port: int,
+        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        connection_limit: int | NotGiven = NOT_GIVEN,
+        insert_x_forwarded: bool | NotGiven = NOT_GIVEN,
+        secret_id: str | NotGiven = NOT_GIVEN,
+        sni_secret_id: List[str] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        user_list: Iterable[listener_create_params.UserList] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerListenerDetail:
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            loadbalancer_id=loadbalancer_id,
+            name=name,
+            protocol=protocol,
+            protocol_port=protocol_port,
+            allowed_cidrs=allowed_cidrs,
+            connection_limit=connection_limit,
+            insert_x_forwarded=insert_x_forwarded,
+            secret_id=secret_id,
+            sni_secret_id=sni_secret_id,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            user_list=user_list,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.listeners or len(task.created_resources.listeners) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return await self.get(
+            listener_id=task.created_resources.listeners[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+    
+    async def delete_and_poll(
+        self,
+        listener_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = await self.delete(
+            listener_id=listener_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )    
+
+    async def update_and_poll(
+        self,
+        listener_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        connection_limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
+        sni_secret_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
+        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        user_list: Optional[Iterable[listener_update_params.UserList]] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerListenerDetail:
+        response = await self.update(
+            listener_id=listener_id,
+            project_id=project_id,
+            region_id=region_id,
+            allowed_cidrs=allowed_cidrs,
+            connection_limit=connection_limit,
+            name=name,
+            secret_id=secret_id,
+            sni_secret_id=sni_secret_id,
+            timeout_client_data=timeout_client_data,
+            timeout_member_connect=timeout_member_connect,
+            timeout_member_data=timeout_member_data,
+            user_list=user_list,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            listener_id=listener_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
 
 class ListenersResourceWithRawResponse:
     def __init__(self, listeners: ListenersResource) -> None:

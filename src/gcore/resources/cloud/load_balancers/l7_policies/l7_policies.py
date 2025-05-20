@@ -335,6 +335,147 @@ class L7PoliciesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        listener_id: str,
+        name: str | NotGiven = NOT_GIVEN,
+        position: int | NotGiven = NOT_GIVEN,
+        redirect_http_code: int | NotGiven = NOT_GIVEN,
+        redirect_pool_id: str | NotGiven = NOT_GIVEN,
+        redirect_prefix: str | NotGiven = NOT_GIVEN,
+        redirect_url: str | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            action=action,
+            listener_id=listener_id,
+            name=name,
+            position=position,
+            redirect_http_code=redirect_http_code,
+            redirect_pool_id=redirect_pool_id,
+            redirect_prefix=redirect_prefix,
+            redirect_url=redirect_url,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.l7polices or len(task.created_resources.l7polices) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return self.get(
+            l7policy_id=task.created_resources.l7polices[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    def delete_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = self.delete(
+            l7policy_id=l7policy_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
+    def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        name: str | NotGiven = NOT_GIVEN,
+        position: int | NotGiven = NOT_GIVEN,
+        redirect_http_code: int | NotGiven = NOT_GIVEN,
+        redirect_pool_id: str | NotGiven = NOT_GIVEN,
+        redirect_prefix: str | NotGiven = NOT_GIVEN,
+        redirect_url: str | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        response = self.replace(
+            l7policy_id=l7policy_id,
+            project_id=project_id,
+            region_id=region_id,
+            action=action,
+            name=name,
+            position=position,
+            redirect_http_code=redirect_http_code,
+            redirect_pool_id=redirect_pool_id,
+            redirect_prefix=redirect_prefix,
+            redirect_url=redirect_url,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            l7policy_id=l7policy_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
 
 class AsyncL7PoliciesResource(AsyncAPIResource):
     @cached_property
@@ -635,6 +776,147 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        listener_id: str,
+        name: str | NotGiven = NOT_GIVEN,
+        position: int | NotGiven = NOT_GIVEN,
+        redirect_http_code: int | NotGiven = NOT_GIVEN,
+        redirect_pool_id: str | NotGiven = NOT_GIVEN,
+        redirect_prefix: str | NotGiven = NOT_GIVEN,
+        redirect_url: str | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            action=action,
+            listener_id=listener_id,
+            name=name,
+            position=position,
+            redirect_http_code=redirect_http_code,
+            redirect_pool_id=redirect_pool_id,
+            redirect_prefix=redirect_prefix,
+            redirect_url=redirect_url,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.l7polices or len(task.created_resources.l7polices) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return await self.get(
+            l7policy_id=task.created_resources.l7polices[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
+        )
+
+    async def delete_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> None:
+        response = await self.delete(
+            l7policy_id=l7policy_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+
+    async def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        name: str | NotGiven = NOT_GIVEN,
+        position: int | NotGiven = NOT_GIVEN,
+        redirect_http_code: int | NotGiven = NOT_GIVEN,
+        redirect_pool_id: str | NotGiven = NOT_GIVEN,
+        redirect_prefix: str | NotGiven = NOT_GIVEN,
+        redirect_url: str | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        response = await self.replace(
+            l7policy_id=l7policy_id,
+            project_id=project_id,
+            region_id=region_id,
+            action=action,
+            name=name,
+            position=position,
+            redirect_http_code=redirect_http_code,
+            redirect_pool_id=redirect_pool_id,
+            redirect_prefix=redirect_prefix,
+            redirect_url=redirect_url,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            l7policy_id=l7policy_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            timeout=timeout,
         )
 
 
