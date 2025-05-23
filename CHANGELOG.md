@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0 (2025-05-23)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/G-Core/gcore-python/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** aggregated API specs update ([badf4d4](https://github.com/G-Core/gcore-python/commit/badf4d4b54ba218de9d202ac4357d4de63f0a562))
+* **api:** aggregated API specs update ([10c1840](https://github.com/G-Core/gcore-python/commit/10c18405b9fad9efaccde0edf160f71f00e6edea))
+
+
+### Chores
+
+* **docs:** grammar improvements ([4837bc0](https://github.com/G-Core/gcore-python/commit/4837bc00b9478a2c92e04f6a3284cc7e39179568))
+* **internal:** version bump ([9d18d7f](https://github.com/G-Core/gcore-python/commit/9d18d7fb274c7a893fd1d6b752b22cab15223aca))
+
 ## 0.1.0 (2025-05-20)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0](https://github.com/G-Core/gcore-python/compare/v0.1.0-alpha.2...v0.1.0)
