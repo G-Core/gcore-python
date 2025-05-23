@@ -30,6 +30,9 @@ class TaskListParams(TypedDict, total=False):
     offset: int
     """Offset value is used to exclude the first set of records from the result"""
 
+    order_by: Literal["asc", "desc"]
+    """Sorting by creation date. Oldest first, or most recent first"""
+
     project_id: Optional[Iterable[int]]
     """The project ID to filter the tasks by project.
 
@@ -42,8 +45,11 @@ class TaskListParams(TypedDict, total=False):
     Supports multiple values of kind key=value1&key=value2
     """
 
-    sorting: Optional[Literal["asc", "desc"]]
-    """Sorting by creation date. Oldest first, or most recent first"""
+    sorting: Literal["asc", "desc"]
+    """(DEPRECATED Use 'order_by' instead) Sorting by creation date.
+
+    Oldest first, or most recent first
+    """
 
     state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]]
     """Filter the tasks by state.
