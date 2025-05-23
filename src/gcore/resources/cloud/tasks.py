@@ -91,9 +91,10 @@ class TasksResource(SyncAPIResource):
         is_acknowledged: Optional[bool] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         project_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
         region_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        sorting: Optional[Literal["asc", "desc"]] | NotGiven = NOT_GIVEN,
+        sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | NotGiven = NOT_GIVEN,
         task_type: Optional[str] | NotGiven = NOT_GIVEN,
         to_timestamp: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
@@ -119,13 +120,16 @@ class TasksResource(SyncAPIResource):
 
           offset: Offset value is used to exclude the first set of records from the result
 
+          order_by: Sorting by creation date. Oldest first, or most recent first
+
           project_id: The project ID to filter the tasks by project. Supports multiple values of kind
               key=value1&key=value2
 
           region_id: The region ID to filter the tasks by region. Supports multiple values of kind
               key=value1&key=value2
 
-          sorting: Sorting by creation date. Oldest first, or most recent first
+          sorting: (DEPRECATED Use 'order_by' instead) Sorting by creation date. Oldest first, or
+              most recent first
 
           state: Filter the tasks by state. Supports multiple values of kind
               key=value1&key=value2
@@ -198,6 +202,7 @@ class TasksResource(SyncAPIResource):
                         "is_acknowledged": is_acknowledged,
                         "limit": limit,
                         "offset": offset,
+                        "order_by": order_by,
                         "project_id": project_id,
                         "region_id": region_id,
                         "sorting": sorting,
@@ -390,9 +395,10 @@ class AsyncTasksResource(AsyncAPIResource):
         is_acknowledged: Optional[bool] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         project_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
         region_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        sorting: Optional[Literal["asc", "desc"]] | NotGiven = NOT_GIVEN,
+        sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | NotGiven = NOT_GIVEN,
         task_type: Optional[str] | NotGiven = NOT_GIVEN,
         to_timestamp: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
@@ -418,13 +424,16 @@ class AsyncTasksResource(AsyncAPIResource):
 
           offset: Offset value is used to exclude the first set of records from the result
 
+          order_by: Sorting by creation date. Oldest first, or most recent first
+
           project_id: The project ID to filter the tasks by project. Supports multiple values of kind
               key=value1&key=value2
 
           region_id: The region ID to filter the tasks by region. Supports multiple values of kind
               key=value1&key=value2
 
-          sorting: Sorting by creation date. Oldest first, or most recent first
+          sorting: (DEPRECATED Use 'order_by' instead) Sorting by creation date. Oldest first, or
+              most recent first
 
           state: Filter the tasks by state. Supports multiple values of kind
               key=value1&key=value2
@@ -497,6 +506,7 @@ class AsyncTasksResource(AsyncAPIResource):
                         "is_acknowledged": is_acknowledged,
                         "limit": limit,
                         "offset": offset,
+                        "order_by": order_by,
                         "project_id": project_id,
                         "region_id": region_id,
                         "sorting": sorting,

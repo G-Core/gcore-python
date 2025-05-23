@@ -36,9 +36,6 @@ class CreatedResources(BaseModel):
     healthmonitors: Optional[List[str]] = None
     """IDs of created health monitors"""
 
-    heat: Optional[List[str]] = None
-    """IDs of created heat resources"""
-
     images: Optional[List[str]] = None
     """IDs of created images"""
 
