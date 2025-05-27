@@ -8,7 +8,6 @@ from typing_extensions import Required, Annotated, TypedDict
 from ...._utils import PropertyInfo
 from ..ingress_opts_param import IngressOptsParam
 from ..laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
-from ..container_probe_config_create_param import ContainerProbeConfigCreateParam
 
 __all__ = [
     "DeploymentUpdateParams",
@@ -23,6 +22,21 @@ __all__ = [
     "ContainerScaleTriggersSqs",
     "Logging",
     "Probes",
+    "ProbesLivenessProbe",
+    "ProbesLivenessProbeProbe",
+    "ProbesLivenessProbeProbeExec",
+    "ProbesLivenessProbeProbeHTTPGet",
+    "ProbesLivenessProbeProbeTcpSocket",
+    "ProbesReadinessProbe",
+    "ProbesReadinessProbeProbe",
+    "ProbesReadinessProbeProbeExec",
+    "ProbesReadinessProbeProbeHTTPGet",
+    "ProbesReadinessProbeProbeTcpSocket",
+    "ProbesStartupProbe",
+    "ProbesStartupProbeProbe",
+    "ProbesStartupProbeProbeExec",
+    "ProbesStartupProbeProbeHTTPGet",
+    "ProbesStartupProbeProbeTcpSocket",
 ]
 
 
@@ -30,7 +44,7 @@ class DeploymentUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
-    auth_enabled: Optional[bool]
+    auth_enabled: bool
     """Set to `true` to enable API key authentication for the inference instance.
 
     `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
@@ -52,7 +66,7 @@ class DeploymentUpdateParams(TypedDict, total=False):
     envs: Optional[Dict[str, str]]
     """Environment variables for the inference instance."""
 
-    flavor_name: Optional[str]
+    flavor_name: str
     """Flavor name for the inference instance."""
 
     image: Optional[str]
@@ -204,12 +218,195 @@ class Logging(TypedDict, total=False):
     """The topic name to stream logs to"""
 
 
+class ProbesLivenessProbeProbeExec(TypedDict, total=False):
+    command: List[str]
+    """Command to be executed inside the running container."""
+
+
+class ProbesLivenessProbeProbeHTTPGet(TypedDict, total=False):
+    headers: Dict[str, str]
+    """HTTP headers to be sent with the request."""
+
+    host: str
+    """Host name to send HTTP request to."""
+
+    path: str
+    """The endpoint to send the HTTP request to."""
+
+    port: int
+    """Port number the probe should connect to."""
+
+    schema: str
+    """Schema to use for the HTTP request."""
+
+
+class ProbesLivenessProbeProbeTcpSocket(TypedDict, total=False):
+    port: int
+    """Port number to check if it's open."""
+
+
+class ProbesLivenessProbeProbe(TypedDict, total=False):
+    exec: Optional[ProbesLivenessProbeProbeExec]
+    """Exec probe configuration"""
+
+    failure_threshold: int
+    """The number of consecutive probe failures that mark the container as unhealthy."""
+
+    http_get: Optional[ProbesLivenessProbeProbeHTTPGet]
+    """HTTP GET probe configuration"""
+
+    initial_delay_seconds: int
+    """The initial delay before starting the first probe."""
+
+    period_seconds: int
+    """How often (in seconds) to perform the probe."""
+
+    success_threshold: int
+    """The number of consecutive successful probes that mark the container as healthy."""
+
+    tcp_socket: Optional[ProbesLivenessProbeProbeTcpSocket]
+    """TCP socket probe configuration"""
+
+    timeout_seconds: int
+    """The timeout for each probe."""
+
+
+class ProbesLivenessProbe(TypedDict, total=False):
+    enabled: bool
+    """Whether the probe is enabled or not."""
+
+    probe: ProbesLivenessProbeProbe
+    """Probe configuration (exec, http_get or tcp_socket)"""
+
+
+class ProbesReadinessProbeProbeExec(TypedDict, total=False):
+    command: List[str]
+    """Command to be executed inside the running container."""
+
+
+class ProbesReadinessProbeProbeHTTPGet(TypedDict, total=False):
+    headers: Dict[str, str]
+    """HTTP headers to be sent with the request."""
+
+    host: str
+    """Host name to send HTTP request to."""
+
+    path: str
+    """The endpoint to send the HTTP request to."""
+
+    port: int
+    """Port number the probe should connect to."""
+
+    schema: str
+    """Schema to use for the HTTP request."""
+
+
+class ProbesReadinessProbeProbeTcpSocket(TypedDict, total=False):
+    port: int
+    """Port number to check if it's open."""
+
+
+class ProbesReadinessProbeProbe(TypedDict, total=False):
+    exec: Optional[ProbesReadinessProbeProbeExec]
+    """Exec probe configuration"""
+
+    failure_threshold: int
+    """The number of consecutive probe failures that mark the container as unhealthy."""
+
+    http_get: Optional[ProbesReadinessProbeProbeHTTPGet]
+    """HTTP GET probe configuration"""
+
+    initial_delay_seconds: int
+    """The initial delay before starting the first probe."""
+
+    period_seconds: int
+    """How often (in seconds) to perform the probe."""
+
+    success_threshold: int
+    """The number of consecutive successful probes that mark the container as healthy."""
+
+    tcp_socket: Optional[ProbesReadinessProbeProbeTcpSocket]
+    """TCP socket probe configuration"""
+
+    timeout_seconds: int
+    """The timeout for each probe."""
+
+
+class ProbesReadinessProbe(TypedDict, total=False):
+    enabled: bool
+    """Whether the probe is enabled or not."""
+
+    probe: ProbesReadinessProbeProbe
+    """Probe configuration (exec, http_get or tcp_socket)"""
+
+
+class ProbesStartupProbeProbeExec(TypedDict, total=False):
+    command: List[str]
+    """Command to be executed inside the running container."""
+
+
+class ProbesStartupProbeProbeHTTPGet(TypedDict, total=False):
+    headers: Dict[str, str]
+    """HTTP headers to be sent with the request."""
+
+    host: str
+    """Host name to send HTTP request to."""
+
+    path: str
+    """The endpoint to send the HTTP request to."""
+
+    port: int
+    """Port number the probe should connect to."""
+
+    schema: str
+    """Schema to use for the HTTP request."""
+
+
+class ProbesStartupProbeProbeTcpSocket(TypedDict, total=False):
+    port: int
+    """Port number to check if it's open."""
+
+
+class ProbesStartupProbeProbe(TypedDict, total=False):
+    exec: Optional[ProbesStartupProbeProbeExec]
+    """Exec probe configuration"""
+
+    failure_threshold: int
+    """The number of consecutive probe failures that mark the container as unhealthy."""
+
+    http_get: Optional[ProbesStartupProbeProbeHTTPGet]
+    """HTTP GET probe configuration"""
+
+    initial_delay_seconds: int
+    """The initial delay before starting the first probe."""
+
+    period_seconds: int
+    """How often (in seconds) to perform the probe."""
+
+    success_threshold: int
+    """The number of consecutive successful probes that mark the container as healthy."""
+
+    tcp_socket: Optional[ProbesStartupProbeProbeTcpSocket]
+    """TCP socket probe configuration"""
+
+    timeout_seconds: int
+    """The timeout for each probe."""
+
+
+class ProbesStartupProbe(TypedDict, total=False):
+    enabled: bool
+    """Whether the probe is enabled or not."""
+
+    probe: ProbesStartupProbeProbe
+    """Probe configuration (exec, http_get or tcp_socket)"""
+
+
 class Probes(TypedDict, total=False):
-    liveness_probe: Optional[ContainerProbeConfigCreateParam]
+    liveness_probe: Optional[ProbesLivenessProbe]
     """Liveness probe configuration"""
 
-    readiness_probe: Optional[ContainerProbeConfigCreateParam]
+    readiness_probe: Optional[ProbesReadinessProbe]
     """Readiness probe configuration"""
 
-    startup_probe: Optional[ContainerProbeConfigCreateParam]
+    startup_probe: Optional[ProbesStartupProbe]
     """Startup probe configuration"""

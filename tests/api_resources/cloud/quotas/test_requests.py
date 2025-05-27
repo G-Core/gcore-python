@@ -43,7 +43,10 @@ class TestRequests:
                 "regional_limits": [
                     {
                         "baremetal_basic_count_limit": 0,
+                        "baremetal_gpu_a100_count_limit": 0,
                         "baremetal_gpu_count_limit": 0,
+                        "baremetal_gpu_h100_count_limit": 0,
+                        "baremetal_gpu_l40s_count_limit": 0,
                         "baremetal_hf_count_limit": 0,
                         "baremetal_infrastructure_count_limit": 0,
                         "baremetal_network_count_limit": 0,
@@ -261,7 +264,10 @@ class TestAsyncRequests:
                 "regional_limits": [
                     {
                         "baremetal_basic_count_limit": 0,
+                        "baremetal_gpu_a100_count_limit": 0,
                         "baremetal_gpu_count_limit": 0,
+                        "baremetal_gpu_h100_count_limit": 0,
+                        "baremetal_gpu_l40s_count_limit": 0,
                         "baremetal_hf_count_limit": 0,
                         "baremetal_infrastructure_count_limit": 0,
                         "baremetal_network_count_limit": 0,
