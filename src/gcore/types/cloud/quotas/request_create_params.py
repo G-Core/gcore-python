@@ -46,8 +46,17 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     baremetal_basic_count_limit: int
     """Basic bare metal servers count limit"""
 
+    baremetal_gpu_a100_count_limit: int
+    """Baremetal A100 GPU card count limit"""
+
     baremetal_gpu_count_limit: int
     """AI GPU bare metal servers count limit"""
+
+    baremetal_gpu_h100_count_limit: int
+    """Baremetal H100 GPU card count limit"""
+
+    baremetal_gpu_l40s_count_limit: int
+    """Baremetal L40S GPU card count limit"""
 
     baremetal_hf_count_limit: int
     """High-frequency bare metal servers count limit"""
