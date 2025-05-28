@@ -117,7 +117,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a bare metal GPU server from cluster and wait for the deletion to complete.
+        Delete a bare metal GPU server from cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.delete(
             instance_id=instance_id,
@@ -130,8 +130,8 @@ class ServersResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks or len(response.tasks) < 1:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
@@ -644,7 +644,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a bare metal GPU server from cluster and wait for the deletion to complete.
+        Delete a bare metal GPU server from cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.delete(
             instance_id=instance_id,
@@ -657,8 +657,8 @@ class AsyncServersResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks or len(response.tasks) < 1:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
