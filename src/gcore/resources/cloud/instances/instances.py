@@ -650,7 +650,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete instance and poll for the result
+        Delete instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.delete(
             instance_id=instance_id,
@@ -665,8 +665,8 @@ class InstancesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -839,7 +839,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        Put instance into the server group and poll for the result
+        Put instance into the server group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.add_to_placement_group(
             instance_id=instance_id,
@@ -851,8 +851,8 @@ class InstancesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -1152,7 +1152,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        Remove instance from the server group and poll for the result
+        Remove instance from the server group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.remove_from_placement_group(
             instance_id=instance_id,
@@ -1163,8 +1163,8 @@ class InstancesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -1236,7 +1236,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        Change flavor of the instance and poll for the result
+        Change flavor of the instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.resize(
             instance_id=instance_id,
@@ -1248,8 +1248,8 @@ class InstancesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -1896,7 +1896,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete instance and poll for the result
+        Delete instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.delete(
             instance_id=instance_id,
@@ -1911,8 +1911,8 @@ class AsyncInstancesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -2085,7 +2085,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        Put instance into the server group and poll for the result
+        Put instance into the server group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.add_to_placement_group(
             instance_id=instance_id,
@@ -2097,8 +2097,8 @@ class AsyncInstancesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -2398,7 +2398,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        Remove instance from the server group and poll for the result
+        Remove instance from the server group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.remove_from_placement_group(
             instance_id=instance_id,
@@ -2409,8 +2409,8 @@ class AsyncInstancesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -2482,7 +2482,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        Change flavor of the instance and poll for the result
+        Change flavor of the instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.resize(
             instance_id=instance_id,
@@ -2494,8 +2494,8 @@ class AsyncInstancesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,

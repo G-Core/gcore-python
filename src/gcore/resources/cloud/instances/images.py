@@ -250,6 +250,9 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
+        """
+        Delete image and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
         response = self.delete(
             image_id=image_id,
             project_id=project_id,
@@ -259,8 +262,8 @@ class ImagesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -834,6 +837,9 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
+        """
+        Delete image and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
         response = await self.delete(
             image_id=image_id,
             project_id=project_id,
@@ -843,8 +849,8 @@ class AsyncImagesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,

@@ -479,6 +479,9 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """
+        Delete pool and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
         response = self.delete(
             pool_id=pool_id,
             project_id=project_id,
@@ -488,8 +491,8 @@ class PoolsResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -522,6 +525,9 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerPool:
+        """
+        Update pool and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
         response = self.update(
             pool_id=pool_id,
             project_id=project_id,
@@ -543,8 +549,8 @@ class PoolsResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -994,6 +1000,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """
+        Delete pool and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
         response = await self.delete(
             pool_id=pool_id,
             project_id=project_id,
@@ -1003,8 +1012,8 @@ class AsyncPoolsResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
@@ -1037,6 +1046,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerPool:
+        """
+        Update pool and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
         response = await self.update(
             pool_id=pool_id,
             project_id=project_id,
@@ -1058,8 +1070,8 @@ class AsyncPoolsResource(AsyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
         )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],
             extra_headers=extra_headers,
