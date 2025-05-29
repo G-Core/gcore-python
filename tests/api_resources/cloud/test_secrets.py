@@ -16,6 +16,8 @@ from gcore.types.cloud import (
     SecretListResponse,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -24,45 +26,50 @@ class TestSecrets:
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        secret = client.cloud.secrets.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-        )
+        with pytest.warns(DeprecationWarning):
+            secret = client.cloud.secrets.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+            )
+
         assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
-        secret = client.cloud.secrets.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-            algorithm="aes",
-            bit_length=256,
-            expiration="2025-12-28T19:14:44.180394",
-            mode="cbc",
-        )
+        with pytest.warns(DeprecationWarning):
+            secret = client.cloud.secrets.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+                algorithm="aes",
+                bit_length=256,
+                expiration="2025-12-28T19:14:44.180394",
+                mode="cbc",
+            )
+
         assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.cloud.secrets.with_raw_response.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.secrets.with_raw_response.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,20 +78,21 @@ class TestSecrets:
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.cloud.secrets.with_streaming_response.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.secrets.with_streaming_response.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            secret = response.parse()
-            assert_matches_type(TaskIDList, secret, path=["response"])
+                secret = response.parse()
+                assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -287,45 +295,50 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        secret = await async_client.cloud.secrets.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-        )
+        with pytest.warns(DeprecationWarning):
+            secret = await async_client.cloud.secrets.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+            )
+
         assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
-        secret = await async_client.cloud.secrets.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-            algorithm="aes",
-            bit_length=256,
-            expiration="2025-12-28T19:14:44.180394",
-            mode="cbc",
-        )
+        with pytest.warns(DeprecationWarning):
+            secret = await async_client.cloud.secrets.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+                algorithm="aes",
+                bit_length=256,
+                expiration="2025-12-28T19:14:44.180394",
+                mode="cbc",
+            )
+
         assert_matches_type(TaskIDList, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.secrets.with_raw_response.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.secrets.with_raw_response.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -334,20 +347,21 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.secrets.with_streaming_response.create(
-            project_id=1,
-            region_id=1,
-            name="AES key",
-            payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
-            payload_content_encoding="base64",
-            payload_content_type="application/octet-stream",
-            secret_type="certificate",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.secrets.with_streaming_response.create(
+                project_id=1,
+                region_id=1,
+                name="AES key",
+                payload="aGVsbG8sIHRlc3Qgc3RyaW5nCg==",
+                payload_content_encoding="base64",
+                payload_content_type="application/octet-stream",
+                secret_type="certificate",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            secret = await response.parse()
-            assert_matches_type(TaskIDList, secret, path=["response"])
+                secret = await response.parse()
+                assert_matches_type(TaskIDList, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
