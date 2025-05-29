@@ -14,8 +14,10 @@ __all__ = ["HealthMonitorCreateParams"]
 
 class HealthMonitorCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     delay: Required[int]
     """The time, in seconds, between sending probes to members"""

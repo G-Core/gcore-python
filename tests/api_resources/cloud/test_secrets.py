@@ -105,6 +105,16 @@ class TestSecrets:
         assert_matches_type(SecretListResponse, secret, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        secret = client.cloud.secrets.list(
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(SecretListResponse, secret, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.secrets.with_raw_response.list(
             project_id=1,
@@ -370,6 +380,16 @@ class TestAsyncSecrets:
         secret = await async_client.cloud.secrets.list(
             project_id=1,
             region_id=1,
+        )
+        assert_matches_type(SecretListResponse, secret, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.cloud.secrets.list(
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(SecretListResponse, secret, path=["response"])
 

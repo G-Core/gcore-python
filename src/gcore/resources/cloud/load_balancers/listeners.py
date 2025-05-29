@@ -26,8 +26,8 @@ from ....types.cloud.load_balancers import (
     listener_update_params,
 )
 from ....types.cloud.lb_listener_protocol import LbListenerProtocol
-from ....types.cloud.load_balancer_listener_list import LoadBalancerListenerList
 from ....types.cloud.load_balancer_listener_detail import LoadBalancerListenerDetail
+from ....types.cloud.load_balancers.listener_list_response import ListenerListResponse
 
 __all__ = ["ListenersResource", "AsyncListenersResource"]
 
@@ -81,6 +81,10 @@ class ListenersResource(SyncAPIResource):
         Create load balancer listener
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           loadbalancer_id: Load balancer ID
 
           name: Load balancer listener name
@@ -174,6 +178,12 @@ class ListenersResource(SyncAPIResource):
         Update listener
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          listener_id: Listener ID
+
           allowed_cidrs: Network CIDRs from which service will be accessible
 
           connection_limit: Limit of simultaneous connections
@@ -243,14 +253,18 @@ class ListenersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerListenerList:
+    ) -> ListenerListResponse:
         """
         List load balancer listeners
 
         Args:
-          loadbalancer_id: Load balancer ID
+          project_id: Project ID
 
-          show_stats: Show statistics
+          region_id: Region ID
+
+          loadbalancer_id: Load Balancer ID
+
+          show_stats: Show stats
 
           extra_headers: Send extra headers
 
@@ -279,7 +293,7 @@ class ListenersResource(SyncAPIResource):
                     listener_list_params.ListenerListParams,
                 ),
             ),
-            cast_to=LoadBalancerListenerList,
+            cast_to=ListenerListResponse,
         )
 
     def delete(
@@ -299,6 +313,12 @@ class ListenersResource(SyncAPIResource):
         Delete load balancer listener
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          listener_id: Listener ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -339,7 +359,13 @@ class ListenersResource(SyncAPIResource):
         Get listener
 
         Args:
-          show_stats: Show statistics
+          project_id: Project ID
+
+          region_id: Region ID
+
+          listener_id: Listener ID
+
+          show_stats: Show stats
 
           extra_headers: Send extra headers
 
@@ -417,6 +443,10 @@ class AsyncListenersResource(AsyncAPIResource):
         Create load balancer listener
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           loadbalancer_id: Load balancer ID
 
           name: Load balancer listener name
@@ -510,6 +540,12 @@ class AsyncListenersResource(AsyncAPIResource):
         Update listener
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          listener_id: Listener ID
+
           allowed_cidrs: Network CIDRs from which service will be accessible
 
           connection_limit: Limit of simultaneous connections
@@ -579,14 +615,18 @@ class AsyncListenersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerListenerList:
+    ) -> ListenerListResponse:
         """
         List load balancer listeners
 
         Args:
-          loadbalancer_id: Load balancer ID
+          project_id: Project ID
 
-          show_stats: Show statistics
+          region_id: Region ID
+
+          loadbalancer_id: Load Balancer ID
+
+          show_stats: Show stats
 
           extra_headers: Send extra headers
 
@@ -615,7 +655,7 @@ class AsyncListenersResource(AsyncAPIResource):
                     listener_list_params.ListenerListParams,
                 ),
             ),
-            cast_to=LoadBalancerListenerList,
+            cast_to=ListenerListResponse,
         )
 
     async def delete(
@@ -635,6 +675,12 @@ class AsyncListenersResource(AsyncAPIResource):
         Delete load balancer listener
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          listener_id: Listener ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -675,7 +721,13 @@ class AsyncListenersResource(AsyncAPIResource):
         Get listener
 
         Args:
-          show_stats: Show statistics
+          project_id: Project ID
+
+          region_id: Region ID
+
+          listener_id: Listener ID
+
+          show_stats: Show stats
 
           extra_headers: Send extra headers
 

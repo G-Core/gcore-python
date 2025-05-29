@@ -71,6 +71,12 @@ class HealthMonitorsResource(SyncAPIResource):
         Create Load Balancer Pool Health Monitor
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           delay: The time, in seconds, between sending probes to members
 
           max_retries: Number of successes before the member is switched to ONLINE state
@@ -141,6 +147,12 @@ class HealthMonitorsResource(SyncAPIResource):
         Delete load balancer pool health monitor
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -210,6 +222,12 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         Create Load Balancer Pool Health Monitor
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           delay: The time, in seconds, between sending probes to members
 
           max_retries: Number of successes before the member is switched to ONLINE state
@@ -280,6 +298,12 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         Delete load balancer pool health monitor
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

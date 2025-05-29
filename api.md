@@ -140,7 +140,7 @@ from gcore.types.cloud import Secret, SecretListResponse
 Methods:
 
 - <code title="post /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret_list_response.py">SecretListResponse</a></code>
+- <code title="get /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/secret_list_response.py">SecretListResponse</a></code>
 - <code title="delete /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">delete</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">get</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret.py">Secret</a></code>
 - <code title="post /cloud/v2/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">upload_tls_certificate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_upload_tls_certificate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
@@ -194,11 +194,8 @@ from gcore.types.cloud import (
     LoadBalancerL7Rule,
     LoadBalancerL7RuleList,
     LoadBalancerListenerDetail,
-    LoadBalancerListenerList,
     LoadBalancerMetrics,
     LoadBalancerMetricsList,
-    LoadBalancerPool,
-    LoadBalancerPoolList,
     LoadBalancerStatus,
     LoadBalancerStatusList,
     Member,
@@ -246,23 +243,35 @@ Methods:
 
 ### Listeners
 
+Types:
+
+```python
+from gcore.types.cloud.load_balancers import ListenerListResponse
+```
+
 Methods:
 
 - <code title="post /cloud/v1/lblisteners/{project_id}/{region_id}">client.cloud.load_balancers.listeners.<a href="./src/gcore/resources/cloud/load_balancers/listeners.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/listener_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="patch /cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}">client.cloud.load_balancers.listeners.<a href="./src/gcore/resources/cloud/load_balancers/listeners.py">update</a>(listener_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/listener_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/lblisteners/{project_id}/{region_id}">client.cloud.load_balancers.listeners.<a href="./src/gcore/resources/cloud/load_balancers/listeners.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/listener_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_listener_list.py">LoadBalancerListenerList</a></code>
+- <code title="get /cloud/v1/lblisteners/{project_id}/{region_id}">client.cloud.load_balancers.listeners.<a href="./src/gcore/resources/cloud/load_balancers/listeners.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/listener_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancers/listener_list_response.py">ListenerListResponse</a></code>
 - <code title="delete /cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}">client.cloud.load_balancers.listeners.<a href="./src/gcore/resources/cloud/load_balancers/listeners.py">delete</a>(listener_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}">client.cloud.load_balancers.listeners.<a href="./src/gcore/resources/cloud/load_balancers/listeners.py">get</a>(listener_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/listener_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_listener_detail.py">LoadBalancerListenerDetail</a></code>
 
 ### Pools
 
+Types:
+
+```python
+from gcore.types.cloud.load_balancers import PoolListResponse, PoolGetResponse
+```
+
 Methods:
 
 - <code title="post /cloud/v1/lbpools/{project_id}/{region_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="patch /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">update</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/lbpools/{project_id}/{region_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_pool_list.py">LoadBalancerPoolList</a></code>
+- <code title="get /cloud/v1/lbpools/{project_id}/{region_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancers/pool_list_response.py">PoolListResponse</a></code>
 - <code title="delete /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">delete</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">get</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_pool.py">LoadBalancerPool</a></code>
+- <code title="get /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">get</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancers/pool_get_response.py">PoolGetResponse</a></code>
 
 #### HealthMonitors
 
