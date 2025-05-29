@@ -16,8 +16,10 @@ __all__ = ["PoolUpdateParams", "Healthmonitor", "Member", "SessionPersistence"]
 
 class PoolUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     ca_secret_id: Optional[str]
     """Secret ID of CA certificate bundle"""

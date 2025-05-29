@@ -12,8 +12,10 @@ __all__ = ["ListenerCreateParams", "UserList"]
 
 class ListenerCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     loadbalancer_id: Required[str]
     """Load balancer ID"""

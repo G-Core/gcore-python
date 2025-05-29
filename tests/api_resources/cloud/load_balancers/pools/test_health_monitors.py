@@ -20,9 +20,9 @@ class TestHealthMonitors:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         health_monitor = client.cloud.load_balancers.pools.health_monitors.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -33,9 +33,9 @@ class TestHealthMonitors:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         health_monitor = client.cloud.load_balancers.pools.health_monitors.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -50,9 +50,9 @@ class TestHealthMonitors:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.pools.health_monitors.with_raw_response.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -67,9 +67,9 @@ class TestHealthMonitors:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.load_balancers.pools.health_monitors.with_streaming_response.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -88,8 +88,8 @@ class TestHealthMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.cloud.load_balancers.pools.health_monitors.with_raw_response.create(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 delay=10,
                 max_retries=2,
                 api_timeout=5,
@@ -99,18 +99,18 @@ class TestHealthMonitors:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         health_monitor = client.cloud.load_balancers.pools.health_monitors.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
         assert health_monitor is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.pools.health_monitors.with_raw_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -121,9 +121,9 @@ class TestHealthMonitors:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.load_balancers.pools.health_monitors.with_streaming_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -138,8 +138,8 @@ class TestHealthMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.cloud.load_balancers.pools.health_monitors.with_raw_response.delete(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
 
@@ -149,9 +149,9 @@ class TestAsyncHealthMonitors:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         health_monitor = await async_client.cloud.load_balancers.pools.health_monitors.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -162,9 +162,9 @@ class TestAsyncHealthMonitors:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         health_monitor = await async_client.cloud.load_balancers.pools.health_monitors.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -179,9 +179,9 @@ class TestAsyncHealthMonitors:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -196,9 +196,9 @@ class TestAsyncHealthMonitors:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.pools.health_monitors.with_streaming_response.create(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             delay=10,
             max_retries=2,
             api_timeout=5,
@@ -217,8 +217,8 @@ class TestAsyncHealthMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.create(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 delay=10,
                 max_retries=2,
                 api_timeout=5,
@@ -228,18 +228,18 @@ class TestAsyncHealthMonitors:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         health_monitor = await async_client.cloud.load_balancers.pools.health_monitors.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
         assert health_monitor is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -250,9 +250,9 @@ class TestAsyncHealthMonitors:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.pools.health_monitors.with_streaming_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -267,6 +267,6 @@ class TestAsyncHealthMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.delete(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )

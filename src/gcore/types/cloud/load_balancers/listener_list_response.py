@@ -2,13 +2,13 @@
 
 from typing import List
 
-from ..._models import BaseModel
-from .load_balancer_listener_detail import LoadBalancerListenerDetail
+from ...._models import BaseModel
+from ..load_balancer_listener_detail import LoadBalancerListenerDetail
 
-__all__ = ["LoadBalancerListenerList"]
+__all__ = ["ListenerListResponse"]
 
 
-class LoadBalancerListenerList(BaseModel):
+class ListenerListResponse(BaseModel):
     count: int
     """Number of objects"""
 

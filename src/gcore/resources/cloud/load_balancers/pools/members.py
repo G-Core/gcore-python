@@ -68,6 +68,12 @@ class MembersResource(SyncAPIResource):
         Create load balancer pool member
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           address: Member IP address
 
           protocol_port: Member IP port
@@ -139,6 +145,14 @@ class MembersResource(SyncAPIResource):
         Delete load balancer pool member
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          member_id: Member ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,6 +223,12 @@ class AsyncMembersResource(AsyncAPIResource):
         Create load balancer pool member
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           address: Member IP address
 
           protocol_port: Member IP port
@@ -280,6 +300,14 @@ class AsyncMembersResource(AsyncAPIResource):
         Delete load balancer pool member
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          member_id: Member ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

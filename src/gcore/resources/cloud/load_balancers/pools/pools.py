@@ -38,8 +38,8 @@ from .....types.cloud.lb_algorithm import LbAlgorithm
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancers import pool_list_params, pool_create_params, pool_update_params
 from .....types.cloud.lb_pool_protocol import LbPoolProtocol
-from .....types.cloud.load_balancer_pool import LoadBalancerPool
-from .....types.cloud.load_balancer_pool_list import LoadBalancerPoolList
+from .....types.cloud.load_balancers.pool_get_response import PoolGetResponse
+from .....types.cloud.load_balancers.pool_list_response import PoolListResponse
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
@@ -102,6 +102,10 @@ class PoolsResource(SyncAPIResource):
         Create load balancer pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           lb_algorithm: Load balancer algorithm
 
           name: Pool name
@@ -200,6 +204,12 @@ class PoolsResource(SyncAPIResource):
         they will be overwritten.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           ca_secret_id: Secret ID of CA certificate bundle
 
           crl_secret_id: Secret ID of CA revocation list file
@@ -278,17 +288,20 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerPoolList:
+    ) -> PoolListResponse:
         """
         List load balancer pools
 
         Args:
-          details: If true, show member and healthmonitor details of each pool (increases request
-              time)
+          project_id: Project ID
 
-          listener_id: Load balancer listener ID
+          region_id: Region ID
 
-          loadbalancer_id: Load balancer ID
+          details: Show members and Health Monitor details
+
+          listener_id: Listener ID
+
+          loadbalancer_id: Load Balancer ID
 
           extra_headers: Send extra headers
 
@@ -318,7 +331,7 @@ class PoolsResource(SyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=LoadBalancerPoolList,
+            cast_to=PoolListResponse,
         )
 
     def delete(
@@ -338,6 +351,12 @@ class PoolsResource(SyncAPIResource):
         Delete load balancer pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -372,11 +391,17 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerPool:
+    ) -> PoolGetResponse:
         """
         Get load balancer pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -396,7 +421,7 @@ class PoolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerPool,
+            cast_to=PoolGetResponse,
         )
 
     def create_and_poll(
@@ -623,6 +648,10 @@ class AsyncPoolsResource(AsyncAPIResource):
         Create load balancer pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           lb_algorithm: Load balancer algorithm
 
           name: Pool name
@@ -721,6 +750,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         they will be overwritten.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           ca_secret_id: Secret ID of CA certificate bundle
 
           crl_secret_id: Secret ID of CA revocation list file
@@ -799,17 +834,20 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerPoolList:
+    ) -> PoolListResponse:
         """
         List load balancer pools
 
         Args:
-          details: If true, show member and healthmonitor details of each pool (increases request
-              time)
+          project_id: Project ID
 
-          listener_id: Load balancer listener ID
+          region_id: Region ID
 
-          loadbalancer_id: Load balancer ID
+          details: Show members and Health Monitor details
+
+          listener_id: Listener ID
+
+          loadbalancer_id: Load Balancer ID
 
           extra_headers: Send extra headers
 
@@ -839,7 +877,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=LoadBalancerPoolList,
+            cast_to=PoolListResponse,
         )
 
     async def delete(
@@ -859,6 +897,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         Delete load balancer pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -893,11 +937,17 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerPool:
+    ) -> PoolGetResponse:
         """
         Get load balancer pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -917,7 +967,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerPool,
+            cast_to=PoolGetResponse,
         )
 
     async def create_and_poll(

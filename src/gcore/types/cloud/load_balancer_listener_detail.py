@@ -23,8 +23,14 @@ class LoadBalancerListenerDetail(BaseModel):
     id: str
     """Load balancer listener ID"""
 
+    allowed_cidrs: Optional[List[str]] = None
+    """Network CIDRs from which service will be accessible"""
+
     connection_limit: int
     """Limit of simultaneous connections"""
+
+    creator_task_id: Optional[str] = None
+    """Task that created this entity"""
 
     insert_headers: object
     """Dictionary of additional header insertion into HTTP headers.
@@ -32,11 +38,17 @@ class LoadBalancerListenerDetail(BaseModel):
     Only used with HTTP and TERMINATED_HTTPS protocols.
     """
 
+    loadbalancer_id: Optional[str] = None
+    """Load balancer ID"""
+
     name: str
     """Load balancer listener name"""
 
     operating_status: LoadBalancerOperatingStatus
     """Listener operating status"""
+
+    pool_count: Optional[int] = None
+    """Number of pools (for UI)"""
 
     protocol: LbListenerProtocol
     """Load balancer protocol"""
@@ -46,18 +58,6 @@ class LoadBalancerListenerDetail(BaseModel):
 
     provisioning_status: ProvisioningStatus
     """Listener lifecycle status"""
-
-    allowed_cidrs: Optional[List[str]] = None
-    """Network CIDRs from which service will be accessible"""
-
-    creator_task_id: Optional[str] = None
-    """Task that created this entity"""
-
-    loadbalancer_id: Optional[str] = None
-    """Load balancer ID"""
-
-    pool_count: Optional[int] = None
-    """Number of pools (for UI)"""
 
     secret_id: Optional[str] = None
     """
@@ -93,5 +93,5 @@ class LoadBalancerListenerDetail(BaseModel):
     timeout_member_data: Optional[int] = None
     """Backend member inactivity timeout in milliseconds"""
 
-    user_list: Optional[List[UserList]] = None
+    user_list: List[UserList]
     """Load balancer listener users list"""

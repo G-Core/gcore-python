@@ -16,8 +16,10 @@ __all__ = ["PoolCreateParams", "Healthmonitor", "Member", "SessionPersistence"]
 
 class PoolCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     lb_algorithm: Required[LbAlgorithm]
     """Load balancer algorithm"""
