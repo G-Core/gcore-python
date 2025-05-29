@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -47,6 +48,7 @@ class SecretsResource(SyncAPIResource):
         """
         return SecretsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -390,6 +392,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         """
         return AsyncSecretsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -717,8 +720,10 @@ class SecretsResourceWithRawResponse:
     def __init__(self, secrets: SecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = to_raw_response_wrapper(
-            secrets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                secrets.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             secrets.list,
@@ -738,8 +743,10 @@ class AsyncSecretsResourceWithRawResponse:
     def __init__(self, secrets: AsyncSecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = async_to_raw_response_wrapper(
-            secrets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                secrets.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             secrets.list,
@@ -759,8 +766,10 @@ class SecretsResourceWithStreamingResponse:
     def __init__(self, secrets: SecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = to_streamed_response_wrapper(
-            secrets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                secrets.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             secrets.list,
@@ -780,8 +789,10 @@ class AsyncSecretsResourceWithStreamingResponse:
     def __init__(self, secrets: AsyncSecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = async_to_streamed_response_wrapper(
-            secrets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                secrets.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             secrets.list,
