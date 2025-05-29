@@ -9,7 +9,11 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList, LoadBalancerPool, LoadBalancerPoolList
+from gcore.types.cloud import TaskIDList
+from gcore.types.cloud.load_balancers import (
+    PoolGetResponse,
+    PoolListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,8 +24,8 @@ class TestPools:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -31,8 +35,8 @@ class TestPools:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -88,8 +92,8 @@ class TestPools:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.pools.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -103,8 +107,8 @@ class TestPools:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.load_balancers.pools.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -120,18 +124,18 @@ class TestPools:
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             ca_secret_id="ca_secret_id",
             crl_secret_id="crl_secret_id",
             healthmonitor={
@@ -175,9 +179,9 @@ class TestPools:
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.pools.with_raw_response.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -188,9 +192,9 @@ class TestPools:
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.cloud.load_balancers.pools.with_streaming_response.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -205,70 +209,70 @@ class TestPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.cloud.load_balancers.pools.with_raw_response.update(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
-        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+        assert_matches_type(PoolListResponse, pool, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             details=True,
-            listener_id="listener_id",
-            loadbalancer_id="loadbalancer_id",
+            listener_id="00000000-0000-4000-8000-000000000000",
+            loadbalancer_id="00000000-0000-4000-8000-000000000000",
         )
-        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+        assert_matches_type(PoolListResponse, pool, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.pools.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+        assert_matches_type(PoolListResponse, pool, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.load_balancers.pools.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+            assert_matches_type(PoolListResponse, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.pools.with_raw_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -279,9 +283,9 @@ class TestPools:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.load_balancers.pools.with_streaming_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -296,44 +300,44 @@ class TestPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.cloud.load_balancers.pools.with_raw_response.delete(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         pool = client.cloud.load_balancers.pools.get(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
-        assert_matches_type(LoadBalancerPool, pool, path=["response"])
+        assert_matches_type(PoolGetResponse, pool, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.pools.with_raw_response.get(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(LoadBalancerPool, pool, path=["response"])
+        assert_matches_type(PoolGetResponse, pool, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.load_balancers.pools.with_streaming_response.get(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(LoadBalancerPool, pool, path=["response"])
+            assert_matches_type(PoolGetResponse, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,8 +346,8 @@ class TestPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.cloud.load_balancers.pools.with_raw_response.get(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
 
@@ -353,8 +357,8 @@ class TestAsyncPools:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -364,8 +368,8 @@ class TestAsyncPools:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -421,8 +425,8 @@ class TestAsyncPools:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.pools.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -436,8 +440,8 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.pools.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             lb_algorithm="LEAST_CONNECTIONS",
             name="pool_name",
             protocol="HTTP",
@@ -453,18 +457,18 @@ class TestAsyncPools:
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
             ca_secret_id="ca_secret_id",
             crl_secret_id="crl_secret_id",
             healthmonitor={
@@ -508,9 +512,9 @@ class TestAsyncPools:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.pools.with_raw_response.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -521,9 +525,9 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.pools.with_streaming_response.update(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -538,70 +542,70 @@ class TestAsyncPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.cloud.load_balancers.pools.with_raw_response.update(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
-        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+        assert_matches_type(PoolListResponse, pool, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             details=True,
-            listener_id="listener_id",
-            loadbalancer_id="loadbalancer_id",
+            listener_id="00000000-0000-4000-8000-000000000000",
+            loadbalancer_id="00000000-0000-4000-8000-000000000000",
         )
-        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+        assert_matches_type(PoolListResponse, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.pools.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+        assert_matches_type(PoolListResponse, pool, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.pools.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
+            assert_matches_type(PoolListResponse, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.pools.with_raw_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -612,9 +616,9 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.pools.with_streaming_response.delete(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -629,44 +633,44 @@ class TestAsyncPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.cloud.load_balancers.pools.with_raw_response.delete(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.load_balancers.pools.get(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
-        assert_matches_type(LoadBalancerPool, pool, path=["response"])
+        assert_matches_type(PoolGetResponse, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.pools.with_raw_response.get(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(LoadBalancerPool, pool, path=["response"])
+        assert_matches_type(PoolGetResponse, pool, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.pools.with_streaming_response.get(
-            pool_id="pool_id",
-            project_id=0,
-            region_id=0,
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(LoadBalancerPool, pool, path=["response"])
+            assert_matches_type(PoolGetResponse, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -675,6 +679,6 @@ class TestAsyncPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.cloud.load_balancers.pools.with_raw_response.get(
                 pool_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )

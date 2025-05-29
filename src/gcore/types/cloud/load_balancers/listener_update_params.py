@@ -10,8 +10,10 @@ __all__ = ["ListenerUpdateParams", "UserList"]
 
 class ListenerUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     allowed_cidrs: Optional[List[str]]
     """Network CIDRs from which service will be accessible"""

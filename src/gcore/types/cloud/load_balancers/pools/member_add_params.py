@@ -10,8 +10,10 @@ __all__ = ["MemberAddParams"]
 
 class MemberAddParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     address: Required[str]
     """Member IP address"""

@@ -65,8 +65,8 @@ from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .ingress_opts_param import IngressOptsParam as IngressOptsParam
 from .instance_interface import InstanceInterface as InstanceInterface
 from .instance_isolation import InstanceIsolation as InstanceIsolation
-from .load_balancer_pool import LoadBalancerPool as LoadBalancerPool
 from .region_list_params import RegionListParams as RegionListParams
+from .secret_list_params import SecretListParams as SecretListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
 from .billing_reservation import BillingReservation as BillingReservation
 from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
@@ -120,7 +120,6 @@ from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
 from .load_balancer_l7_policy import LoadBalancerL7Policy as LoadBalancerL7Policy
-from .load_balancer_pool_list import LoadBalancerPoolList as LoadBalancerPoolList
 from .container_probe_http_get import ContainerProbeHTTPGet as ContainerProbeHTTPGet
 from .container_scale_triggers import ContainerScaleTriggers as ContainerScaleTriggers
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
@@ -152,7 +151,6 @@ from .lb_session_persistence_type import LbSessionPersistenceType as LbSessionPe
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
 from .load_balancer_flavor_detail import LoadBalancerFlavorDetail as LoadBalancerFlavorDetail
 from .load_balancer_instance_role import LoadBalancerInstanceRole as LoadBalancerInstanceRole
-from .load_balancer_listener_list import LoadBalancerListenerList as LoadBalancerListenerList
 from .load_balancer_resize_params import LoadBalancerResizeParams as LoadBalancerResizeParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams

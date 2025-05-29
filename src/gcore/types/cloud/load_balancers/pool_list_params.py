@@ -9,17 +9,16 @@ __all__ = ["PoolListParams"]
 
 class PoolListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     details: bool
-    """
-    If true, show member and healthmonitor details of each pool (increases request
-    time)
-    """
+    """Show members and Health Monitor details"""
 
     listener_id: str
-    """Load balancer listener ID"""
+    """Listener ID"""
 
     loadbalancer_id: str
-    """Load balancer ID"""
+    """Load Balancer ID"""

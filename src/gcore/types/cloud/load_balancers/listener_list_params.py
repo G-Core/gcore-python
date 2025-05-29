@@ -9,11 +9,13 @@ __all__ = ["ListenerListParams"]
 
 class ListenerListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     loadbalancer_id: str
-    """Load balancer ID"""
+    """Load Balancer ID"""
 
     show_stats: bool
-    """Show statistics"""
+    """Show stats"""
