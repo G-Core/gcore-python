@@ -70,7 +70,7 @@ class Inference(BaseModel):
     project_id: int
     """Project ID. If not provided, your default project ID will be used."""
 
-    status: Literal["ACTIVE", "DELETING", "DEPLOYING", "DISABLED", "PARTIALLYDEPLOYED"]
+    status: Literal["ACTIVE", "DELETING", "DEPLOYING", "DISABLED", "PARTIALLYDEPLOYED", "PENDING"]
     """Inference instance status.
 
     Value can be one of the following:
@@ -83,6 +83,8 @@ class Inference(BaseModel):
       explains the failure reason.
     - `ACTIVE` - The instance is running and ready to accept requests.
     - `DISABLED` - The instance is disabled and not accepting any requests.
+    - `PENDING` - The instance is running but scaled to zero. It will be
+      automatically scaled up when a request is made.
     - `DELETING` - The instance is being deleted.
     """
 
