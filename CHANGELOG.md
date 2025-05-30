@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.2.0 (2025-05-30)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/G-Core/gcore-python/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** aggregated API specs update ([8396748](https://github.com/G-Core/gcore-python/commit/83967485975f181b79166c5ab6ae6533a77ff414))
+* **api:** aggregated API specs update ([f3e527b](https://github.com/G-Core/gcore-python/commit/f3e527bba66b98a5e3d58b604bff1a7d772fd504))
+* **api:** aggregated API specs update ([8f63298](https://github.com/G-Core/gcore-python/commit/8f63298756d8de3df98788b640c33dbf9cbd4c0c))
+* **api:** aggregated API specs update ([ec4a6bd](https://github.com/G-Core/gcore-python/commit/ec4a6bdd8cce948d0b3bb279b42a020d20b3fceb))
+* **api:** aggregated API specs update ([e270005](https://github.com/G-Core/gcore-python/commit/e27000533d742531397c34435a60a9f816c5d559))
+
+
+### Bug Fixes
+
+* **ci:** do not always skip breaking change detection ([018e357](https://github.com/G-Core/gcore-python/commit/018e357a11cfd863973fbd29f1f1867d3851b342))
+* **inference:** make poll method consistent with latest api changes ([0ea64f9](https://github.com/G-Core/gcore-python/commit/0ea64f92b47e914d980ba0fd2208dd44e1119903))
+* **instances,baremetal,loadbalancers,inference,gpu_cloud:** don't fail if nr tasks gt 1 ([760226e](https://github.com/G-Core/gcore-python/commit/760226eddee2cf1c66ab5dfcca86ea7130de382b))
+
+
+### Chores
+
+* **api:** mark some methods as deprecated ([726ef80](https://github.com/G-Core/gcore-python/commit/726ef8008d1bc67aea4884dcc48718fd94d738c3))
+* **docs:** grammar improvements ([cd7a162](https://github.com/G-Core/gcore-python/commit/cd7a16205cad089539ab3d7f6871d564691e3f40))
+* **internal:** codegen related update ([fb451ad](https://github.com/G-Core/gcore-python/commit/fb451ada041dce34bd134274969b29c474c6d094))
+* **internal:** version bump ([69cc570](https://github.com/G-Core/gcore-python/commit/69cc570d3cd366763c4506990ae886abe3a3d734))
+
+
+### Refactors
+
+* **loadbalancers:** change oas schema names ([422d5c2](https://github.com/G-Core/gcore-python/commit/422d5c2c03155b9d136f15ddd087e175a4af00aa))
+* **loadbalancers:** use correct schema for loadbalancer pool ([6a285dd](https://github.com/G-Core/gcore-python/commit/6a285dd1683f30f8aee24ddd20ec5b1684ace304))
+
 ## 0.1.0 (2025-05-20)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0](https://github.com/G-Core/gcore-python/compare/v0.1.0-alpha.2...v0.1.0)
