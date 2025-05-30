@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from .pool_list_params import PoolListParams as PoolListParams
-from .pool_get_response import PoolGetResponse as PoolGetResponse
 from .flavor_list_params import FlavorListParams as FlavorListParams
 from .metric_list_params import MetricListParams as MetricListParams
 from .pool_create_params import PoolCreateParams as PoolCreateParams
