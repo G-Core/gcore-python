@@ -1,9 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
-from . import member
+from .member import Member
 from ..._models import BaseModel
 from .lb_algorithm import LbAlgorithm
 from .health_monitor import HealthMonitor
@@ -12,7 +11,7 @@ from .provisioning_status import ProvisioningStatus
 from .session_persistence import SessionPersistence
 from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["LoadBalancerPool", "Listener", "Loadbalancer", "Member", "MemberLbPoolMemberSerializer"]
+__all__ = ["LoadBalancerPool", "Listener", "Loadbalancer"]
 
 
 class Listener(BaseModel):
@@ -23,14 +22,6 @@ class Listener(BaseModel):
 class Loadbalancer(BaseModel):
     id: str
     """Resource ID"""
-
-
-class MemberLbPoolMemberSerializer(BaseModel):
-    id: str
-    """Member ID must be provided if an existing member is being updated"""
-
-
-Member: TypeAlias = Union[MemberLbPoolMemberSerializer, member.Member]
 
 
 class LoadBalancerPool(BaseModel):

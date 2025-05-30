@@ -38,8 +38,8 @@ from .....types.cloud.lb_algorithm import LbAlgorithm
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancers import pool_list_params, pool_create_params, pool_update_params
 from .....types.cloud.lb_pool_protocol import LbPoolProtocol
+from .....types.cloud.load_balancer_pool import LoadBalancerPool
 from .....types.cloud.load_balancer_pool_list import LoadBalancerPoolList
-from .....types.cloud.load_balancers.pool_get_response import PoolGetResponse
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
@@ -391,7 +391,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PoolGetResponse:
+    ) -> LoadBalancerPool:
         """
         Get load balancer pool
 
@@ -421,7 +421,7 @@ class PoolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PoolGetResponse,
+            cast_to=LoadBalancerPool,
         )
 
     def create_and_poll(
@@ -937,7 +937,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PoolGetResponse:
+    ) -> LoadBalancerPool:
         """
         Get load balancer pool
 
@@ -967,7 +967,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PoolGetResponse,
+            cast_to=LoadBalancerPool,
         )
 
     async def create_and_poll(
