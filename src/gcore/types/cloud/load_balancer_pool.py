@@ -3,44 +3,37 @@
 from typing import List, Union, Optional
 from typing_extensions import TypeAlias
 
-from ..member import Member
-from ...._models import BaseModel
-from ..lb_algorithm import LbAlgorithm
-from ..health_monitor import HealthMonitor
-from ..lb_pool_protocol import LbPoolProtocol
-from ..provisioning_status import ProvisioningStatus
-from ..session_persistence import SessionPersistence
-from ..load_balancer_operating_status import LoadBalancerOperatingStatus
+from . import member
+from ..._models import BaseModel
+from .lb_algorithm import LbAlgorithm
+from .health_monitor import HealthMonitor
+from .lb_pool_protocol import LbPoolProtocol
+from .provisioning_status import ProvisioningStatus
+from .session_persistence import SessionPersistence
+from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = [
-    "PoolListResponse",
-    "Result",
-    "ResultListener",
-    "ResultLoadbalancer",
-    "ResultMember",
-    "ResultMemberLbPoolMemberSerializer",
-]
+__all__ = ["LoadBalancerPool", "Listener", "Loadbalancer", "Member", "MemberLbPoolMemberSerializer"]
 
 
-class ResultListener(BaseModel):
+class Listener(BaseModel):
     id: str
     """Resource ID"""
 
 
-class ResultLoadbalancer(BaseModel):
+class Loadbalancer(BaseModel):
     id: str
     """Resource ID"""
 
 
-class ResultMemberLbPoolMemberSerializer(BaseModel):
+class MemberLbPoolMemberSerializer(BaseModel):
     id: str
     """Member ID must be provided if an existing member is being updated"""
 
 
-ResultMember: TypeAlias = Union[ResultMemberLbPoolMemberSerializer, Member]
+Member: TypeAlias = Union[MemberLbPoolMemberSerializer, member.Member]
 
 
-class Result(BaseModel):
+class LoadBalancerPool(BaseModel):
     id: str
     """Pool ID"""
 
@@ -59,13 +52,13 @@ class Result(BaseModel):
     lb_algorithm: LbAlgorithm
     """Load balancer algorithm"""
 
-    listeners: List[ResultListener]
+    listeners: List[Listener]
     """Listeners IDs"""
 
-    loadbalancers: List[ResultLoadbalancer]
+    loadbalancers: List[Loadbalancer]
     """Load balancers IDs"""
 
-    members: List[ResultMember]
+    members: List[Member]
     """Pool members"""
 
     name: str
@@ -101,11 +94,3 @@ class Result(BaseModel):
 
     timeout_member_data: Optional[int] = None
     """Backend member inactivity timeout in milliseconds"""
-
-
-class PoolListResponse(BaseModel):
-    count: int
-    """Number of objects"""
-
-    results: List[Result]
-    """Objects"""

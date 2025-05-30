@@ -26,8 +26,8 @@ from ....types.cloud.load_balancers import (
     listener_update_params,
 )
 from ....types.cloud.lb_listener_protocol import LbListenerProtocol
+from ....types.cloud.load_balancer_listener_list import LoadBalancerListenerList
 from ....types.cloud.load_balancer_listener_detail import LoadBalancerListenerDetail
-from ....types.cloud.load_balancers.listener_list_response import ListenerListResponse
 
 __all__ = ["ListenersResource", "AsyncListenersResource"]
 
@@ -253,7 +253,7 @@ class ListenersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListenerListResponse:
+    ) -> LoadBalancerListenerList:
         """
         List load balancer listeners
 
@@ -293,7 +293,7 @@ class ListenersResource(SyncAPIResource):
                     listener_list_params.ListenerListParams,
                 ),
             ),
-            cast_to=ListenerListResponse,
+            cast_to=LoadBalancerListenerList,
         )
 
     def delete(
@@ -772,7 +772,7 @@ class AsyncListenersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListenerListResponse:
+    ) -> LoadBalancerListenerList:
         """
         List load balancer listeners
 
@@ -812,7 +812,7 @@ class AsyncListenersResource(AsyncAPIResource):
                     listener_list_params.ListenerListParams,
                 ),
             ),
-            cast_to=ListenerListResponse,
+            cast_to=LoadBalancerListenerList,
         )
 
     async def delete(
