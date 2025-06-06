@@ -579,7 +579,7 @@ class InstancesResource(SyncAPIResource):
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
-        Suspend and resume are not available for baremetal instances.
+        Suspend and resume are not available for bare metal instances.
 
         Args:
           action: Instance action name
@@ -613,7 +613,7 @@ class InstancesResource(SyncAPIResource):
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
-        Suspend and resume are not available for baremetal instances.
+        Suspend and resume are not available for bare metal instances.
 
         Args:
           action: Instance action name
@@ -1589,7 +1589,7 @@ class AsyncInstancesResource(AsyncAPIResource):
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
-        Suspend and resume are not available for baremetal instances.
+        Suspend and resume are not available for bare metal instances.
 
         Args:
           action: Instance action name
@@ -1623,7 +1623,7 @@ class AsyncInstancesResource(AsyncAPIResource):
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
-        Suspend and resume are not available for baremetal instances.
+        Suspend and resume are not available for bare metal instances.
 
         Args:
           action: Instance action name
