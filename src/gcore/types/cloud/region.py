@@ -67,6 +67,9 @@ class Region(BaseModel):
     has_basic_vm: bool
     """Region has basic vm capability"""
 
+    has_dbaas: bool
+    """Region has DBAAS service"""
+
     has_k8s: bool
     """Region has managed kubernetes capability"""
 
@@ -96,6 +99,3 @@ class Region(BaseModel):
 
     zone: Optional[Literal["AMERICAS", "APAC", "EMEA", "RUSSIA_AND_CIS"]] = None
     """Geographical zone"""
-
-    has_dbaas: Optional[bool] = None
-    """Region has DBAAS service"""
