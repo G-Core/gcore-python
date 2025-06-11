@@ -17,13 +17,13 @@ class ContainerScaleTriggers(BaseModel):
     gpu_memory: Optional[ContainerScaleTriggerThreshold] = None
     """GPU memory trigger configuration.
 
-    Calculated by DCGM_FI_DEV_MEM_COPY_UTIL metric
+    Calculated by `DCGM_FI_DEV_MEM_COPY_UTIL` metric
     """
 
     gpu_utilization: Optional[ContainerScaleTriggerThreshold] = None
     """GPU utilization trigger configuration.
 
-    Calculated by DCGM_FI_DEV_GPU_UTIL metric
+    Calculated by `DCGM_FI_DEV_GPU_UTIL` metric
     """
 
     http: Optional[ContainerScaleTriggerRate] = None

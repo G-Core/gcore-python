@@ -68,11 +68,8 @@ class UsersResource(SyncAPIResource):
         Args:
           duration: User account operating time, days
 
-          name: A name for the registry user.
-
-              Should be in lowercase, consisting only of numbers and letters,
-
-              with maximum length of 16 characters
+          name: A name for the registry user. Should be in lowercase, consisting only of numbers
+              and letters, with maximum length of 16 characters
 
           read_only: Read-only user
 
@@ -358,11 +355,8 @@ class AsyncUsersResource(AsyncAPIResource):
         Args:
           duration: User account operating time, days
 
-          name: A name for the registry user.
-
-              Should be in lowercase, consisting only of numbers and letters,
-
-              with maximum length of 16 characters
+          name: A name for the registry user. Should be in lowercase, consisting only of numbers
+              and letters, with maximum length of 16 characters
 
           read_only: Read-only user
 

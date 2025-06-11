@@ -35,7 +35,7 @@ class LoadBalancerListenerDetail(BaseModel):
     insert_headers: object
     """Dictionary of additional header insertion into HTTP headers.
 
-    Only used with HTTP and TERMINATED_HTTPS protocols.
+    Only used with HTTP and `TERMINATED_HTTPS` protocols.
     """
 
     loadbalancer_id: Optional[str] = None
@@ -61,14 +61,14 @@ class LoadBalancerListenerDetail(BaseModel):
 
     secret_id: Optional[str] = None
     """
-    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-    load balancer
+    ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+    PROMETHEUS load balancer
     """
 
     sni_secret_id: Optional[List[str]] = None
     """
     List of secret's ID containing PKCS12 format certificate/key bundles for
-    TERMINATED_HTTPS or PROMETHEUS listeners
+    `TERMINATED_HTTPS` or PROMETHEUS listeners
     """
 
     stats: Optional[LoadBalancerStatistics] = None

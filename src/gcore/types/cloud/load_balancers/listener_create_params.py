@@ -38,19 +38,19 @@ class ListenerCreateParams(TypedDict, total=False):
     insert_x_forwarded: bool
     """Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
 
-    Only used with HTTP or TERMINATED_HTTPS protocols.
+    Only used with HTTP or `TERMINATED_HTTPS` protocols.
     """
 
     secret_id: str
     """
-    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-    listener
+    ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+    PROMETHEUS listener
     """
 
     sni_secret_id: List[str]
     """
     List of secrets IDs containing PKCS12 format certificate/key bundles for
-    TERMINATED_HTTPS or PROMETHEUS listeners
+    `TERMINATED_HTTPS` or PROMETHEUS listeners
     """
 
     timeout_client_data: Optional[int]

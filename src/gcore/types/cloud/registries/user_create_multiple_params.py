@@ -22,11 +22,9 @@ class User(TypedDict, total=False):
     """User account operating time, days"""
 
     name: Required[str]
-    """A name for the registry user.
-
-    Should be in lowercase, consisting only of numbers and letters,
-
-    with maximum length of 16 characters
+    """
+    A name for the registry user. Should be in lowercase, consisting only of numbers
+    and letters, with maximum length of 16 characters
     """
 
     read_only: bool

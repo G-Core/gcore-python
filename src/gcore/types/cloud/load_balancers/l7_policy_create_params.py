@@ -28,26 +28,26 @@ class L7PolicyCreateParams(TypedDict, total=False):
     redirect_http_code: int
     """
     Requests matching this policy will be redirected to the specified URL or Prefix
-    URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
-    REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
+    URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
+    `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
     """
 
     redirect_pool_id: str
     """Requests matching this policy will be redirected to the pool withthis ID.
 
-    Only valid if action is REDIRECT_TO_POOL.
+    Only valid if action is `REDIRECT_TO_POOL`.
     """
 
     redirect_prefix: str
     """Requests matching this policy will be redirected to this Prefix URL.
 
-    Only valid if action is REDIRECT_PREFIX.
+    Only valid if action is `REDIRECT_PREFIX`.
     """
 
     redirect_url: str
     """Requests matching this policy will be redirected to this URL.
 
-    Only valid if action is REDIRECT_TO_URL.
+    Only valid if action is `REDIRECT_TO_URL`.
     """
 
     tags: List[str]

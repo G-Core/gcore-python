@@ -13,4 +13,4 @@ class ContainerProbeConfig(BaseModel):
     """Whether the probe is enabled or not."""
 
     probe: Optional[ContainerProbe] = None
-    """Probe configuration (exec, http_get or tcp_socket)"""
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""

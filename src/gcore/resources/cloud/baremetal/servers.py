@@ -77,18 +77,15 @@ class ServersResource(SyncAPIResource):
         For Linux,
 
         - Use the `user_data` field to provide a
-          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
-          script</a> in base64 to apply configurations to the instance.
+          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
+          in base64 to apply configurations to the instance.
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified.
-
-        For Windows,
-
+        - The `user_data` is ignored when the `password` is specified. For Windows,
         - Use the `user_data` field to provide a
-          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
-          script</a> in base64 to create new users on Windows.
+          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
+          in base64 to create new users on Windows.
         - Use the `password` field to set the password for the 'Admin' user on Windows.
         - The password of the Admin user cannot be updated via `user_data`.
         - The `username` cannot be specified in the request.
@@ -117,18 +114,18 @@ class ServersResource(SyncAPIResource):
           name_template: If you want server names to be automatically generated based on IP addresses,
               you can provide a name template instead of specifying the name manually. The
               template should include a placeholder that will be replaced during provisioning.
-              Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
-              `{two_ip_octets}`, and `{one_ip_octet}`.
+              Supported placeholders are: `{`ip_octets`}` (last 3 octets of the IP),
+              `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              'user_data' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via 'user_data'.
+              '`user_data`' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via '`user_data`'.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -136,10 +133,10 @@ class ServersResource(SyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via 'user_data'. Examples of the
-              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.
               For Windows instances, 'username' cannot be specified. Use 'password' field to
@@ -233,9 +230,9 @@ class ServersResource(SyncAPIResource):
           changes_since: Filters the instances by a date and time stamp when the instances last changed
               status.
 
-          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
+          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
 
-          flavor_prefix: Filter out instances by flavor_prefix.
+          flavor_prefix: Filter out instances by `flavor_prefix`.
 
           include_k8s: Include managed k8s worker nodes
 
@@ -258,22 +255,22 @@ class ServersResource(SyncAPIResource):
 
           order_by: Order by field and direction.
 
-          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
-              to true.
+          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
+              set to true.
 
-          protection_status: Filter result by DDoS protection_status. Effective only with with_ddos set to
-              true. (Active, Queued or Error)
+          protection_status: Filter result by DDoS `protection_status`. Effective only with `with_ddos` set
+              to true. (Active, Queued or Error)
 
           status: Filters instances by a server status, as a string.
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
+          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
           type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
-              Effective only with with_ddos set to true. (advanced or basic)
+              Effective only with `with_ddos` set to true. (advanced or basic)
 
           uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
@@ -355,7 +352,7 @@ class ServersResource(SyncAPIResource):
           image_id: Image ID
 
           user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the user_data:
+              'password'. Examples of the `user_data`:
               https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers
@@ -437,18 +434,15 @@ class AsyncServersResource(AsyncAPIResource):
         For Linux,
 
         - Use the `user_data` field to provide a
-          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
-          script</a> in base64 to apply configurations to the instance.
+          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
+          in base64 to apply configurations to the instance.
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified.
-
-        For Windows,
-
+        - The `user_data` is ignored when the `password` is specified. For Windows,
         - Use the `user_data` field to provide a
-          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
-          script</a> in base64 to create new users on Windows.
+          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
+          in base64 to create new users on Windows.
         - Use the `password` field to set the password for the 'Admin' user on Windows.
         - The password of the Admin user cannot be updated via `user_data`.
         - The `username` cannot be specified in the request.
@@ -477,18 +471,18 @@ class AsyncServersResource(AsyncAPIResource):
           name_template: If you want server names to be automatically generated based on IP addresses,
               you can provide a name template instead of specifying the name manually. The
               template should include a placeholder that will be replaced during provisioning.
-              Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
-              `{two_ip_octets}`, and `{one_ip_octet}`.
+              Supported placeholders are: `{`ip_octets`}` (last 3 octets of the IP),
+              `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              'user_data' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via 'user_data'.
+              '`user_data`' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via '`user_data`'.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -496,10 +490,10 @@ class AsyncServersResource(AsyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via 'user_data'. Examples of the
-              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.
               For Windows instances, 'username' cannot be specified. Use 'password' field to
@@ -593,9 +587,9 @@ class AsyncServersResource(AsyncAPIResource):
           changes_since: Filters the instances by a date and time stamp when the instances last changed
               status.
 
-          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
+          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
 
-          flavor_prefix: Filter out instances by flavor_prefix.
+          flavor_prefix: Filter out instances by `flavor_prefix`.
 
           include_k8s: Include managed k8s worker nodes
 
@@ -618,22 +612,22 @@ class AsyncServersResource(AsyncAPIResource):
 
           order_by: Order by field and direction.
 
-          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
-              to true.
+          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
+              set to true.
 
-          protection_status: Filter result by DDoS protection_status. Effective only with with_ddos set to
-              true. (Active, Queued or Error)
+          protection_status: Filter result by DDoS `protection_status`. Effective only with `with_ddos` set
+              to true. (Active, Queued or Error)
 
           status: Filters instances by a server status, as a string.
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
+          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
           type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
-              Effective only with with_ddos set to true. (advanced or basic)
+              Effective only with `with_ddos` set to true. (advanced or basic)
 
           uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
@@ -715,7 +709,7 @@ class AsyncServersResource(AsyncAPIResource):
           image_id: Image ID
 
           user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the user_data:
+              'password'. Examples of the `user_data`:
               https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers

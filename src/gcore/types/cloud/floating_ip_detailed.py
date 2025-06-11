@@ -56,7 +56,7 @@ class Instance(BaseModel):
     """Instance ID"""
 
     addresses: Dict[str, List[InstanceAddress]]
-    """Map of network_name to list of addresses in that network"""
+    """Map of `network_name` to list of addresses in that network"""
 
     created_at: datetime
     """Datetime when instance was created"""

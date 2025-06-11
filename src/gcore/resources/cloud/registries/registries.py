@@ -104,15 +104,13 @@ class RegistriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
-        """
-        Create a registry
+        """Create a registry
 
         Args:
           name: A name for the container registry.
 
-              Should be in lowercase, consisting only of numbers, letters and -,
-
-              with maximum length of 24 characters
+        Should be in lowercase, consisting only of
+              numbers, letters and -, with maximum length of 24 characters
 
           storage_limit: Registry storage limit, GiB
 
@@ -346,15 +344,13 @@ class AsyncRegistriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
-        """
-        Create a registry
+        """Create a registry
 
         Args:
           name: A name for the container registry.
 
-              Should be in lowercase, consisting only of numbers, letters and -,
-
-              with maximum length of 24 characters
+        Should be in lowercase, consisting only of
+              numbers, letters and -, with maximum length of 24 characters
 
           storage_limit: Registry storage limit, GiB
 

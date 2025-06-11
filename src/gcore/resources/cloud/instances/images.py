@@ -159,7 +159,7 @@ class ImagesResource(SyncAPIResource):
           tag_key: Filter by tag keys.
 
           tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode 'tag_key_value={"key": "value"}' --url
+              --data-urlencode '`tag_key_value`={"key": "value"}' --url
               'http://localhost:1111/v1/images/1/1'"
 
           visibility: Image visibility. Globally visible images are public
@@ -588,7 +588,7 @@ class AsyncImagesResource(AsyncAPIResource):
           tag_key: Filter by tag keys.
 
           tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode 'tag_key_value={"key": "value"}' --url
+              --data-urlencode '`tag_key_value`={"key": "value"}' --url
               'http://localhost:1111/v1/images/1/1'"
 
           visibility: Image visibility. Globally visible images are public

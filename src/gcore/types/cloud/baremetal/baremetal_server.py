@@ -76,7 +76,7 @@ class BaremetalServer(BaseModel):
     """Bare metal server ID"""
 
     addresses: Dict[str, List[Address]]
-    """Map of network_name to list of addresses in that network"""
+    """Map of `network_name` to list of addresses in that network"""
 
     blackhole_ports: List[BlackholePort]
     """IP addresses of the instances that are blackholed by DDoS mitigation system"""

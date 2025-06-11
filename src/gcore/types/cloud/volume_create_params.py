@@ -37,11 +37,11 @@ class CreateVolumeFromImageSerializer(TypedDict, total=False):
     attachment_tag: str
     """Block device attachment tag (not exposed in the user tags).
 
-    Only used in conjunction with instance_id_to_attach_to
+    Only used in conjunction with `instance_id_to_attach_to`
     """
 
     instance_id_to_attach_to: str
-    """instance_id to attach newly-created volume to"""
+    """`instance_id` to attach newly-created volume to"""
 
     lifecycle_policy_ids: Iterable[int]
     """
@@ -86,11 +86,11 @@ class CreateVolumeFromSnapshotSerializer(TypedDict, total=False):
     attachment_tag: str
     """Block device attachment tag (not exposed in the user tags).
 
-    Only used in conjunction with instance_id_to_attach_to
+    Only used in conjunction with `instance_id_to_attach_to`
     """
 
     instance_id_to_attach_to: str
-    """instance_id to attach newly-created volume to"""
+    """`instance_id` to attach newly-created volume to"""
 
     lifecycle_policy_ids: Iterable[int]
     """
@@ -141,11 +141,11 @@ class CreateNewVolumeSerializer(TypedDict, total=False):
     attachment_tag: str
     """Block device attachment tag (not exposed in the user tags).
 
-    Only used in conjunction with instance_id_to_attach_to
+    Only used in conjunction with `instance_id_to_attach_to`
     """
 
     instance_id_to_attach_to: str
-    """instance_id to attach newly-created volume to"""
+    """`instance_id` to attach newly-created volume to"""
 
     lifecycle_policy_ids: Iterable[int]
     """

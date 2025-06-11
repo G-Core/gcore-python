@@ -24,7 +24,7 @@ class ImageUploadParams(TypedDict, total=False):
     """Image URL"""
 
     architecture: Optional[Literal["aarch64", "x86_64"]]
-    """Image architecture type: aarch64, x86_64"""
+    """Image architecture type: aarch64, `x86_64`"""
 
     cow_format: bool
     """

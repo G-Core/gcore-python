@@ -28,10 +28,10 @@ class ServerListParams(TypedDict, total=False):
     """
 
     flavor_id: str
-    """Filter out instances by flavor_id. Flavor id must match exactly."""
+    """Filter out instances by `flavor_id`. Flavor id must match exactly."""
 
     flavor_prefix: str
-    """Filter out instances by flavor_prefix."""
+    """Filter out instances by `flavor_prefix`."""
 
     include_k8s: bool
     """Include managed k8s worker nodes"""
@@ -72,13 +72,13 @@ class ServerListParams(TypedDict, total=False):
     profile_name: str
     """Filter result by ddos protection profile name.
 
-    Effective only with with_ddos set to true.
+    Effective only with `with_ddos` set to true.
     """
 
     protection_status: Literal["Active", "Queued", "Error"]
-    """Filter result by DDoS protection_status.
+    """Filter result by DDoS `protection_status`.
 
-    Effective only with with_ddos set to true. (Active, Queued or Error)
+    Effective only with `with_ddos` set to true. (Active, Queued or Error)
     """
 
     status: Literal["ACTIVE", "BUILD", "ERROR", "HARD_REBOOT", "REBOOT", "REBUILD", "RESCUE", "SHUTOFF", "SUSPENDED"]
@@ -87,17 +87,17 @@ class ServerListParams(TypedDict, total=False):
     tag_key_value: str
     """Optional.
 
-    Filter by tag key-value pairs. curl -G --data-urlencode "tag_key_value={"key":
+    Filter by tag key-value pairs. curl -G --data-urlencode "`tag_key_value`={"key":
     "value"}" --url "https://example.com/cloud/v1/resource/1/1"
     """
 
     tag_value: List[str]
-    """Optional. Filter by tag values. ?tag_value=value1&tag_value=value2"""
+    """Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2"""
 
     type_ddos_profile: Literal["basic", "advanced"]
     """Return bare metals either only with advanced or only basic DDoS protection.
 
-    Effective only with with_ddos set to true. (advanced or basic)
+    Effective only with `with_ddos` set to true. (advanced or basic)
     """
 
     uuid: str

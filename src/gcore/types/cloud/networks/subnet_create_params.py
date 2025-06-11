@@ -30,7 +30,7 @@ class SubnetCreateParams(TypedDict, total=False):
     connect_to_network_router: bool
     """True if the network's router should get a gateway in this subnet.
 
-    Must be explicitly 'false' when gateway_ip is null.
+    Must be explicitly 'false' when `gateway_ip` is null.
     """
 
     dns_nameservers: Optional[List[str]]

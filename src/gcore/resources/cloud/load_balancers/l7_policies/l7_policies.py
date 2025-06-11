@@ -92,17 +92,17 @@ class L7PoliciesResource(SyncAPIResource):
           position: The position of this policy on the listener. Positions start at 1.
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
-              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
-              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
+              URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
+              `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
           redirect_pool_id: Requests matching this policy will be redirected to the pool withthis ID. Only
-              valid if action is REDIRECT_TO_POOL.
+              valid if action is `REDIRECT_TO_POOL`.
 
           redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is REDIRECT_PREFIX.
+              if action is `REDIRECT_PREFIX`.
 
           redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is REDIRECT_TO_URL.
+              action is `REDIRECT_TO_URL`.
 
           tags: A list of simple strings assigned to the resource.
 
@@ -286,17 +286,17 @@ class L7PoliciesResource(SyncAPIResource):
           position: The position of this policy on the listener. Positions start at 1.
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
-              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
-              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
+              URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
+              `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
           redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID. Only
-              valid if action is REDIRECT_TO_POOL.
+              valid if action is `REDIRECT_TO_POOL`.
 
           redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is REDIRECT_PREFIX.
+              if action is `REDIRECT_PREFIX`.
 
           redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is REDIRECT_TO_URL.
+              action is `REDIRECT_TO_URL`.
 
           tags: A list of simple strings assigned to the resource.
 
@@ -394,17 +394,17 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
           position: The position of this policy on the listener. Positions start at 1.
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
-              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
-              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
+              URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
+              `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
           redirect_pool_id: Requests matching this policy will be redirected to the pool withthis ID. Only
-              valid if action is REDIRECT_TO_POOL.
+              valid if action is `REDIRECT_TO_POOL`.
 
           redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is REDIRECT_PREFIX.
+              if action is `REDIRECT_PREFIX`.
 
           redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is REDIRECT_TO_URL.
+              action is `REDIRECT_TO_URL`.
 
           tags: A list of simple strings assigned to the resource.
 
@@ -588,17 +588,17 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
           position: The position of this policy on the listener. Positions start at 1.
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
-              URL with the HTTP response code. Valid if action is REDIRECT_TO_URL or
-              REDIRECT_PREFIX. Valid options are 301, 302, 303, 307, or 308. Default is 302.
+              URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
+              `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
 
           redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID. Only
-              valid if action is REDIRECT_TO_POOL.
+              valid if action is `REDIRECT_TO_POOL`.
 
           redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is REDIRECT_PREFIX.
+              if action is `REDIRECT_PREFIX`.
 
           redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is REDIRECT_TO_URL.
+              action is `REDIRECT_TO_URL`.
 
           tags: A list of simple strings assigned to the resource.
 

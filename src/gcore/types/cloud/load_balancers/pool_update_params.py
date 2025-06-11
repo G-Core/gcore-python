@@ -106,7 +106,7 @@ class Member(TypedDict, total=False):
     """true if enabled. Defaults to true"""
 
     instance_id: Optional[str]
-    """Either subnet_id or instance_id should be provided"""
+    """Either `subnet_id` or `instance_id` should be provided"""
 
     monitor_address: Optional[str]
     """An alternate IP address used for health monitoring of a backend member.
@@ -117,11 +117,11 @@ class Member(TypedDict, total=False):
     monitor_port: Optional[int]
     """An alternate protocol port used for health monitoring of a backend member.
 
-    Default is null which monitors the member protocol_port.
+    Default is null which monitors the member `protocol_port`.
     """
 
     subnet_id: Optional[str]
-    """Either subnet_id or instance_id should be provided"""
+    """Either `subnet_id` or `instance_id` should be provided"""
 
     weight: Optional[int]
     """Member weight. Valid values: 0 to 256, defaults to 1"""
@@ -135,7 +135,7 @@ class SessionPersistence(TypedDict, total=False):
     """Should be set if app cookie or http cookie is used"""
 
     persistence_granularity: Optional[str]
-    """Subnet mask if source_ip is used. For UDP ports only"""
+    """Subnet mask if `source_ip` is used. For UDP ports only"""
 
     persistence_timeout: Optional[int]
     """Session persistence timeout. For UDP ports only"""

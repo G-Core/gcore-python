@@ -61,7 +61,7 @@ class FlavorsResource(SyncAPIResource):
     ) -> BaremetalFlavorList:
         """Retrieve a list of flavors.
 
-        When the include_prices query parameter is
+        When the `include_prices` query parameter is
         specified, the list shows prices. A client in trial mode gets all price values
         as 0. If you get Pricing Error contact the support
 
@@ -212,7 +212,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
     ) -> BaremetalFlavorList:
         """Retrieve a list of flavors.
 
-        When the include_prices query parameter is
+        When the `include_prices` query parameter is
         specified, the list shows prices. A client in trial mode gets all price values
         as 0. If you get Pricing Error contact the support
 

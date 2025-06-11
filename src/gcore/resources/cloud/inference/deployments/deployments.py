@@ -104,8 +104,8 @@ class DeploymentsResource(SyncAPIResource):
           name: Inference instance name.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
-              for the requests to the instance if enabled
+              `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
+              required for the requests to the instance if enabled
 
           command: Command to be executed when running a container from an image.
 
@@ -120,7 +120,7 @@ class DeploymentsResource(SyncAPIResource):
           logging: Logging configuration for the inference instance
 
           probes: Probes configured for all containers of the inference instance. If probes are
-              not provided, and the image_name is from a the Model Catalog registry, the
+              not provided, and the `image_name` is from a the Model Catalog registry, the
               default probes will be used.
 
           api_timeout: Specifies the duration in seconds without any requests after which the
@@ -200,8 +200,8 @@ class DeploymentsResource(SyncAPIResource):
           deployment_name: Inference instance name.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
-              for the requests to the instance if enabled
+              `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
+              required for the requests to the instance if enabled
 
           command: Command to be executed when running a container from an image.
 
@@ -461,10 +461,10 @@ class DeploymentsResource(SyncAPIResource):
         """
         This operation initializes an inference deployment after it was stopped, making
         it available to handle inference requests again. The instance will launch with
-        the **minimum** number of replicas defined in the scaling settings.
+        the \\**\\**minimum\\**\\** number of replicas defined in the scaling settings.
 
-        - If the minimum replicas are set to **0**, the instance will initially start
-          with **0** replicas.
+        - If the minimum replicas are set to \\**\\**0\\**\\**, the instance will initially
+          start with \\**\\**0\\**\\** replicas.
         - It will automatically scale up when it receives requests or SQS messages,
           according to the configured scaling rules.
 
@@ -508,13 +508,13 @@ class DeploymentsResource(SyncAPIResource):
     ) -> None:
         """
         This operation shuts down an inference deployment, making it unavailable for
-        handling requests. The deployment will scale down to **0** replicas, overriding
-        any minimum replica settings.
+        handling requests. The deployment will scale down to \\**\\**0\\**\\** replicas,
+        overriding any minimum replica settings.
 
-        - Once stopped, the deployment will **not** process any inference requests or
-          SQS messages.
-        - It will **not** restart automatically and must be started manually.
-        - While stopped, the deployment will **not** incur any charges.
+        - Once stopped, the deployment will \\**\\**not\\**\\** process any inference requests
+          or SQS messages.
+        - It will \\**\\**not\\**\\** restart automatically and must be started manually.
+        - While stopped, the deployment will \\**\\**not\\**\\** incur any charges.
 
         Args:
           project_id: Project ID
@@ -612,8 +612,8 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           name: Inference instance name.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
-              for the requests to the instance if enabled
+              `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
+              required for the requests to the instance if enabled
 
           command: Command to be executed when running a container from an image.
 
@@ -628,7 +628,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           logging: Logging configuration for the inference instance
 
           probes: Probes configured for all containers of the inference instance. If probes are
-              not provided, and the image_name is from a the Model Catalog registry, the
+              not provided, and the `image_name` is from a the Model Catalog registry, the
               default probes will be used.
 
           api_timeout: Specifies the duration in seconds without any requests after which the
@@ -708,8 +708,8 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           deployment_name: Inference instance name.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
-              for the requests to the instance if enabled
+              `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
+              required for the requests to the instance if enabled
 
           command: Command to be executed when running a container from an image.
 
@@ -969,10 +969,10 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         """
         This operation initializes an inference deployment after it was stopped, making
         it available to handle inference requests again. The instance will launch with
-        the **minimum** number of replicas defined in the scaling settings.
+        the \\**\\**minimum\\**\\** number of replicas defined in the scaling settings.
 
-        - If the minimum replicas are set to **0**, the instance will initially start
-          with **0** replicas.
+        - If the minimum replicas are set to \\**\\**0\\**\\**, the instance will initially
+          start with \\**\\**0\\**\\** replicas.
         - It will automatically scale up when it receives requests or SQS messages,
           according to the configured scaling rules.
 
@@ -1016,13 +1016,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
     ) -> None:
         """
         This operation shuts down an inference deployment, making it unavailable for
-        handling requests. The deployment will scale down to **0** replicas, overriding
-        any minimum replica settings.
+        handling requests. The deployment will scale down to \\**\\**0\\**\\** replicas,
+        overriding any minimum replica settings.
 
-        - Once stopped, the deployment will **not** process any inference requests or
-          SQS messages.
-        - It will **not** restart automatically and must be started manually.
-        - While stopped, the deployment will **not** incur any charges.
+        - Once stopped, the deployment will \\**\\**not\\**\\** process any inference requests
+          or SQS messages.
+        - It will \\**\\**not\\**\\** restart automatically and must be started manually.
+        - While stopped, the deployment will \\**\\**not\\**\\** incur any charges.
 
         Args:
           project_id: Project ID

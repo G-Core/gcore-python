@@ -98,13 +98,13 @@ class ListenersResource(SyncAPIResource):
           connection_limit: Limit of the simultaneous connections
 
           insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
-              Only used with HTTP or TERMINATED_HTTPS protocols.
+              Only used with HTTP or `TERMINATED_HTTPS` protocols.
 
-          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-              listener
+          secret_id: ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+              PROMETHEUS listener
 
           sni_secret_id: List of secrets IDs containing PKCS12 format certificate/key bundles for
-              TERMINATED_HTTPS or PROMETHEUS listeners
+              `TERMINATED_HTTPS` or PROMETHEUS listeners
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 
@@ -190,11 +190,11 @@ class ListenersResource(SyncAPIResource):
 
           name: Load balancer listener name
 
-          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-              load balancer
+          secret_id: ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+              PROMETHEUS load balancer
 
           sni_secret_id: List of secret's ID containing PKCS12 format certificate/key bundfles for
-              TERMINATED_HTTPS or PROMETHEUS listeners
+              `TERMINATED_HTTPS` or PROMETHEUS listeners
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 
@@ -460,13 +460,13 @@ class AsyncListenersResource(AsyncAPIResource):
           connection_limit: Limit of the simultaneous connections
 
           insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
-              Only used with HTTP or TERMINATED_HTTPS protocols.
+              Only used with HTTP or `TERMINATED_HTTPS` protocols.
 
-          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-              listener
+          secret_id: ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+              PROMETHEUS listener
 
           sni_secret_id: List of secrets IDs containing PKCS12 format certificate/key bundles for
-              TERMINATED_HTTPS or PROMETHEUS listeners
+              `TERMINATED_HTTPS` or PROMETHEUS listeners
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 
@@ -552,11 +552,11 @@ class AsyncListenersResource(AsyncAPIResource):
 
           name: Load balancer listener name
 
-          secret_id: ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-              load balancer
+          secret_id: ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+              PROMETHEUS load balancer
 
           sni_secret_id: List of secret's ID containing PKCS12 format certificate/key bundfles for
-              TERMINATED_HTTPS or PROMETHEUS listeners
+              `TERMINATED_HTTPS` or PROMETHEUS listeners
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 

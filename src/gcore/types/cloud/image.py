@@ -70,7 +70,7 @@ class Image(BaseModel):
     """Image visibility. Globally visible images are public"""
 
     architecture: Optional[Literal["aarch64", "x86_64"]] = None
-    """An image architecture type: aarch64, x86_64"""
+    """An image architecture type: aarch64, `x86_64`"""
 
     creator_task_id: Optional[str] = None
     """Task that created this entity"""

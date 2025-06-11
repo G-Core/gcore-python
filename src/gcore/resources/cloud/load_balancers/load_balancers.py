@@ -172,8 +172,9 @@ class LoadBalancersResource(SyncAPIResource):
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members. L2 provides best performance, L3 provides less IPs usage. It is taking
-              effect only if instance_id + ip_address is provided, not subnet_id + ip_address,
-              because we're considering this as intentional subnet_id specification.
+              effect only if `instance_id` + `ip_address` is provided, not `subnet_id` +
+              `ip_address`, because we're considering this as intentional `subnet_id`
+              specification.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -181,16 +182,17 @@ class LoadBalancersResource(SyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          vip_ip_family: IP family for load balancer subnet auto-selection if vip_network_id is specified
+          vip_ip_family: IP family for load balancer subnet auto-selection if `vip_network_id` is
+              specified
 
           vip_network_id: Network ID for load balancer. If not specified, default external network will be
-              used. Mutually exclusive with vip_port_id
+              used. Mutually exclusive with `vip_port_id`
 
           vip_port_id: Existing Reserved Fixed IP port ID for load balancer. Mutually exclusive with
-              vip_network_id
+              `vip_network_id`
 
-          vip_subnet_id: Subnet ID for load balancer. If not specified, any subnet from vip_network_id
-              will be selected. Ignored when vip_network_id is not specified.
+          vip_subnet_id: Subnet ID for load balancer. If not specified, any subnet from `vip_network_id`
+              will be selected. Ignored when `vip_network_id` is not specified.
 
           extra_headers: Send extra headers
 
@@ -323,17 +325,17 @@ class LoadBalancersResource(SyncAPIResource):
 
           offset: Offset value is used to exclude the first set of records from the result.
 
-          order_by: Ordering Load Balancer list result by name, created_at, updated_at,
-              operating_status, provisioning_status, vip_address, vip_ip_family and flavor
-              fields of the load balancer and directions (name.asc), default is
-              "created_at.asc"
+          order_by: Ordering Load Balancer list result by name, `created_at`, `updated_at`,
+              `operating_status`, `provisioning_status`, `vip_address`, `vip_ip_family` and
+              flavor fields of the load balancer and directions (name.asc), default is
+              "`created_at`.asc"
 
           show_stats: Show statistics
 
           tag_key: Filter by tag keys.
 
           tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "tag_key_value={"key": "value"}" --url
+              --data-urlencode "`tag_key_value`={"key": "value"}" --url
               "http://localhost:1111/v1/loadbalancers/1/1"
 
           with_ddos: Show Advanced DDoS protection profile, if exists
@@ -645,8 +647,9 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members. L2 provides best performance, L3 provides less IPs usage. It is taking
-              effect only if instance_id + ip_address is provided, not subnet_id + ip_address,
-              because we're considering this as intentional subnet_id specification.
+              effect only if `instance_id` + `ip_address` is provided, not `subnet_id` +
+              `ip_address`, because we're considering this as intentional `subnet_id`
+              specification.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -654,16 +657,17 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          vip_ip_family: IP family for load balancer subnet auto-selection if vip_network_id is specified
+          vip_ip_family: IP family for load balancer subnet auto-selection if `vip_network_id` is
+              specified
 
           vip_network_id: Network ID for load balancer. If not specified, default external network will be
-              used. Mutually exclusive with vip_port_id
+              used. Mutually exclusive with `vip_port_id`
 
           vip_port_id: Existing Reserved Fixed IP port ID for load balancer. Mutually exclusive with
-              vip_network_id
+              `vip_network_id`
 
-          vip_subnet_id: Subnet ID for load balancer. If not specified, any subnet from vip_network_id
-              will be selected. Ignored when vip_network_id is not specified.
+          vip_subnet_id: Subnet ID for load balancer. If not specified, any subnet from `vip_network_id`
+              will be selected. Ignored when `vip_network_id` is not specified.
 
           extra_headers: Send extra headers
 
@@ -796,17 +800,17 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           offset: Offset value is used to exclude the first set of records from the result.
 
-          order_by: Ordering Load Balancer list result by name, created_at, updated_at,
-              operating_status, provisioning_status, vip_address, vip_ip_family and flavor
-              fields of the load balancer and directions (name.asc), default is
-              "created_at.asc"
+          order_by: Ordering Load Balancer list result by name, `created_at`, `updated_at`,
+              `operating_status`, `provisioning_status`, `vip_address`, `vip_ip_family` and
+              flavor fields of the load balancer and directions (name.asc), default is
+              "`created_at`.asc"
 
           show_stats: Show statistics
 
           tag_key: Filter by tag keys.
 
           tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "tag_key_value={"key": "value"}" --url
+              --data-urlencode "`tag_key_value`={"key": "value"}" --url
               "http://localhost:1111/v1/loadbalancers/1/1"
 
           with_ddos: Show Advanced DDoS protection profile, if exists

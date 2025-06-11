@@ -30,10 +30,10 @@ class LoadBalancerListParams(TypedDict, total=False):
 
     order_by: str
     """
-    Ordering Load Balancer list result by name, created_at, updated_at,
-    operating_status, provisioning_status, vip_address, vip_ip_family and flavor
-    fields of the load balancer and directions (name.asc), default is
-    "created_at.asc"
+    Ordering Load Balancer list result by name, `created_at`, `updated_at`,
+    `operating_status`, `provisioning_status`, `vip_address`, `vip_ip_family` and
+    flavor fields of the load balancer and directions (name.asc), default is
+    "`created_at`.asc"
     """
 
     show_stats: bool
@@ -45,7 +45,7 @@ class LoadBalancerListParams(TypedDict, total=False):
     tag_key_value: str
     """Filter by tag key-value pairs.
 
-    Must be a valid JSON string. curl -G --data-urlencode "tag_key_value={"key":
+    Must be a valid JSON string. curl -G --data-urlencode "`tag_key_value`={"key":
     "value"}" --url "http://localhost:1111/v1/loadbalancers/1/1"
     """
 
