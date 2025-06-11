@@ -189,7 +189,7 @@ class SecurityGroupsResource(SyncAPIResource):
           tag_key: Filter by tag keys.
 
           tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "tag_key_value={"key": "value"}" --url
+              --data-urlencode "`tag_key_value`={"key": "value"}" --url
               "http://localhost:1111/v1/securitygroups/1/1"
 
           extra_headers: Send extra headers
@@ -540,7 +540,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
           tag_key: Filter by tag keys.
 
           tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "tag_key_value={"key": "value"}" --url
+              --data-urlencode "`tag_key_value`={"key": "value"}" --url
               "http://localhost:1111/v1/securitygroups/1/1"
 
           extra_headers: Send extra headers

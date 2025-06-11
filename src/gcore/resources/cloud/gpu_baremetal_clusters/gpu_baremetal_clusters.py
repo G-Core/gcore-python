@@ -143,7 +143,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
               instance
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -152,7 +152,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
               data to be filtered based on tag keys or values.
 
           user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the user_data:
+              'password'. Examples of the `user_data`:
               https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: A name of a new user in the Linux instance. It may be passed with a 'password'
@@ -270,7 +270,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
               used with floatings.
 
           floatings: Comma separated list of floating ids that should be deleted. Can't be used with
-              delete_floatings.
+              `delete_floatings`.
 
           reserved_fixed_ips: Comma separated list of port IDs to be deleted with the servers
 
@@ -449,7 +449,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
           image_id: AI GPU image ID
 
           user_data:
-              String in base64 format.Examples of the user_data:
+              String in base64 format.Examples of the `user_data`:
               https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers
@@ -765,7 +765,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
               instance
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -774,7 +774,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
               data to be filtered based on tag keys or values.
 
           user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the user_data:
+              'password'. Examples of the `user_data`:
               https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: A name of a new user in the Linux instance. It may be passed with a 'password'
@@ -892,7 +892,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
               used with floatings.
 
           floatings: Comma separated list of floating ids that should be deleted. Can't be used with
-              delete_floatings.
+              `delete_floatings`.
 
           reserved_fixed_ips: Comma separated list of port IDs to be deleted with the servers
 
@@ -1071,7 +1071,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
           image_id: AI GPU image ID
 
           user_data:
-              String in base64 format.Examples of the user_data:
+              String in base64 format.Examples of the `user_data`:
               https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           extra_headers: Send extra headers

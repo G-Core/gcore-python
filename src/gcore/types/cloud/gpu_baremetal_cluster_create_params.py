@@ -52,7 +52,7 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     ssh_key_name: str
     """
     Specifies the name of the SSH keypair, created via the
-    <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+    [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
     """
 
     tags: TagUpdateMapParam
@@ -69,7 +69,7 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     """String in base64 format.
 
     Must not be passed together with 'username' or 'password'. Examples of the
-    user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+    `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """
 
     username: str

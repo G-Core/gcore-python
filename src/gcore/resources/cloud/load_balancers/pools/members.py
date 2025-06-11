@@ -80,15 +80,15 @@ class MembersResource(SyncAPIResource):
 
           admin_state_up: true if enabled. Defaults to true
 
-          instance_id: Either subnet_id or instance_id should be provided
+          instance_id: Either `subnet_id` or `instance_id` should be provided
 
           monitor_address: An alternate IP address used for health monitoring of a backend member. Default
               is null which monitors the member address.
 
           monitor_port: An alternate protocol port used for health monitoring of a backend member.
-              Default is null which monitors the member protocol_port.
+              Default is null which monitors the member `protocol_port`.
 
-          subnet_id: Either subnet_id or instance_id should be provided
+          subnet_id: Either `subnet_id` or `instance_id` should be provided
 
           weight: Member weight. Valid values: 0 to 256, defaults to 1
 
@@ -235,15 +235,15 @@ class AsyncMembersResource(AsyncAPIResource):
 
           admin_state_up: true if enabled. Defaults to true
 
-          instance_id: Either subnet_id or instance_id should be provided
+          instance_id: Either `subnet_id` or `instance_id` should be provided
 
           monitor_address: An alternate IP address used for health monitoring of a backend member. Default
               is null which monitors the member address.
 
           monitor_port: An alternate protocol port used for health monitoring of a backend member.
-              Default is null which monitors the member protocol_port.
+              Default is null which monitors the member `protocol_port`.
 
-          subnet_id: Either subnet_id or instance_id should be provided
+          subnet_id: Either `subnet_id` or `instance_id` should be provided
 
           weight: Member weight. Valid values: 0 to 256, defaults to 1
 

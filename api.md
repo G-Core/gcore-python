@@ -856,7 +856,6 @@ Types:
 
 ```python
 from gcore.types.waap import (
-    WaapAPIURLs,
     WaapDetailedDomain,
     WaapDomainDDOSSettings,
     WaapDomainSettings,

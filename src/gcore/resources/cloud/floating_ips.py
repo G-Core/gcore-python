@@ -139,10 +139,10 @@ class FloatingIPsResource(SyncAPIResource):
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
-          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
@@ -460,10 +460,10 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
-          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers

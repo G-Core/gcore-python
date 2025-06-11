@@ -58,10 +58,10 @@ class NewInterfaceExternalExtendSchemaWithDdosddosProfileField(TypedDict, total=
     """Name of DDoS profile field"""
 
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value. Only one of 'value' or '`field_value`' must be specified."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value. Only one of 'value' or '`field_value`' must be specified."""
 
 
 class NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile(TypedDict, total=False):
@@ -112,10 +112,10 @@ class NewInterfaceSpecificSubnetSchemaDDOSProfileField(TypedDict, total=False):
     """Name of DDoS profile field"""
 
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value. Only one of 'value' or '`field_value`' must be specified."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value. Only one of 'value' or '`field_value`' must be specified."""
 
 
 class NewInterfaceSpecificSubnetSchemaDDOSProfile(TypedDict, total=False):
@@ -158,7 +158,7 @@ class NewInterfaceAnySubnetSchema(TypedDict, total=False):
     """List of security group IDs"""
 
     type: str
-    """Must be 'any_subnet'"""
+    """Must be '`any_subnet`'"""
 
 
 class NewInterfaceAnySubnetSchemaDDOSProfileField(TypedDict, total=False):
@@ -169,10 +169,10 @@ class NewInterfaceAnySubnetSchemaDDOSProfileField(TypedDict, total=False):
     """Name of DDoS profile field"""
 
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value. Only one of 'value' or '`field_value`' must be specified."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value. Only one of 'value' or '`field_value`' must be specified."""
 
 
 class NewInterfaceAnySubnetSchemaDDOSProfile(TypedDict, total=False):
@@ -212,7 +212,7 @@ class NewInterfaceReservedFixedIPSchema(TypedDict, total=False):
     """List of security group IDs"""
 
     type: str
-    """Must be 'reserved_fixed_ip'. Union tag"""
+    """Must be '`reserved_fixed_ip`'. Union tag"""
 
 
 class NewInterfaceReservedFixedIPSchemaDDOSProfileField(TypedDict, total=False):
@@ -223,10 +223,10 @@ class NewInterfaceReservedFixedIPSchemaDDOSProfileField(TypedDict, total=False):
     """Name of DDoS profile field"""
 
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value. Only one of 'value' or '`field_value`' must be specified."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value. Only one of 'value' or '`field_value`' must be specified."""
 
 
 class NewInterfaceReservedFixedIPSchemaDDOSProfile(TypedDict, total=False):

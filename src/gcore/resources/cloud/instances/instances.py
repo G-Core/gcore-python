@@ -139,18 +139,15 @@ class InstancesResource(SyncAPIResource):
         For Linux,
 
         - Use the `user_data` field to provide a
-          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
-          script</a> in base64 to apply configurations to the instance.
+          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
+          in base64 to apply configurations to the instance.
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified.
-
-        For Windows,
-
+        - The `user_data` is ignored when the `password` is specified. For Windows,
         - Use the `user_data` field to provide a
-          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
-          script</a> in base64 to create new users on Windows.
+          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
+          in base64 to create new users on Windows.
         - Use the `password` field to set the password for the 'Admin' user on Windows.
         - The password of the Admin user cannot be updated via `user_data`.
         - The `username` cannot be specified in the request.
@@ -179,21 +176,20 @@ class InstancesResource(SyncAPIResource):
           name_template: If you want the instance name to be automatically generated based on IP
               addresses, you can provide a name template instead of specifying the name
               manually. The template should include a placeholder that will be replaced during
-              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
-              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+              provisioning. Supported placeholders are: `{`ip_octets`}` (last 3 octets of the
+              IP), `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              'user_data' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via 'user_data'.
+              '`user_data`' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via '`user_data`'.
 
           security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id: Placement group ID for instance placement policy.
-
-              Supported group types:
+          servergroup_id:
+              Placement group ID for instance placement policy. Supported group types:
 
               - `anti-affinity`: Ensures instances are placed on different hosts for high
                 availability.
@@ -202,7 +198,7 @@ class InstancesResource(SyncAPIResource):
                 sharing if needed.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -210,10 +206,10 @@ class InstancesResource(SyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via 'user_data'. Examples of the
-              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.
               For Windows instances, 'username' cannot be specified. Use 'password' field to
@@ -452,9 +448,9 @@ class InstancesResource(SyncAPIResource):
 
           exclude_secgroup: Exclude instances with specified security group name
 
-          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
+          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
 
-          flavor_prefix: Filter out instances by flavor_prefix.
+          flavor_prefix: Filter out instances by `flavor_prefix`.
 
           include_ai: Include GPU clusters' servers
 
@@ -481,22 +477,22 @@ class InstancesResource(SyncAPIResource):
 
           order_by: Order by field and direction.
 
-          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
-              to true.
+          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
+              set to true.
 
-          protection_status: Filter result by DDoS protection_status. if parameter is provided. Effective
-              only with with_ddos set to true. (Active, Queued or Error)
+          protection_status: Filter result by DDoS `protection_status`. if parameter is provided. Effective
+              only with `with_ddos` set to true. (Active, Queued or Error)
 
           status: Filters instances by status.
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
+          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
           type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
-              Effective only with with_ddos set to true. (advanced or basic)
+              Effective only with `with_ddos` set to true. (advanced or basic)
 
           uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
@@ -884,7 +880,7 @@ class InstancesResource(SyncAPIResource):
         """Assign the security group to the server.
 
         To assign multiple security groups to
-        all ports, use the NULL value for the port_id field
+        all ports, use the NULL value for the `port_id` field
 
         Args:
           name: Security group name, applies to all ports
@@ -1013,13 +1009,13 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        **Cookie Parameters**:
+        \\**\\**Cookie Parameters\\**\\**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
-          - `'en'` (default)
-          - `'de'`
-          - `'ru'`
+        - `'en'` (default)
+        - `'de'`
+        - `'ru'`
 
         Args:
           project_id: Project ID
@@ -1281,7 +1277,7 @@ class InstancesResource(SyncAPIResource):
         """Un-assign the security group to the server.
 
         To un-assign multiple security
-        groups to all ports, use the NULL value for the port_id field
+        groups to all ports, use the NULL value for the `port_id` field
 
         Args:
           name: Security group name, applies to all ports
@@ -1385,18 +1381,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         For Linux,
 
         - Use the `user_data` field to provide a
-          <a href=https://cloudinit.readthedocs.io/en/latest/reference/examples.html>cloud-init
-          script</a> in base64 to apply configurations to the instance.
+          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
+          in base64 to apply configurations to the instance.
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified.
-
-        For Windows,
-
+        - The `user_data` is ignored when the `password` is specified. For Windows,
         - Use the `user_data` field to provide a
-          <a href=https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config>cloudbase-init
-          script</a> in base64 to create new users on Windows.
+          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
+          in base64 to create new users on Windows.
         - Use the `password` field to set the password for the 'Admin' user on Windows.
         - The password of the Admin user cannot be updated via `user_data`.
         - The `username` cannot be specified in the request.
@@ -1425,21 +1418,20 @@ class AsyncInstancesResource(AsyncAPIResource):
           name_template: If you want the instance name to be automatically generated based on IP
               addresses, you can provide a name template instead of specifying the name
               manually. The template should include a placeholder that will be replaced during
-              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
-              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+              provisioning. Supported placeholders are: `{`ip_octets`}` (last 3 octets of the
+              IP), `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              'user_data' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via 'user_data'.
+              '`user_data`' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via '`user_data`'.
 
           security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id: Placement group ID for instance placement policy.
-
-              Supported group types:
+          servergroup_id:
+              Placement group ID for instance placement policy. Supported group types:
 
               - `anti-affinity`: Ensures instances are placed on different hosts for high
                 availability.
@@ -1448,7 +1440,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                 sharing if needed.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -1456,10 +1448,10 @@ class AsyncInstancesResource(AsyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via 'user_data'. Examples of the
-              user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.
               For Windows instances, 'username' cannot be specified. Use 'password' field to
@@ -1698,9 +1690,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           exclude_secgroup: Exclude instances with specified security group name
 
-          flavor_id: Filter out instances by flavor_id. Flavor id must match exactly.
+          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
 
-          flavor_prefix: Filter out instances by flavor_prefix.
+          flavor_prefix: Filter out instances by `flavor_prefix`.
 
           include_ai: Include GPU clusters' servers
 
@@ -1727,22 +1719,22 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           order_by: Order by field and direction.
 
-          profile_name: Filter result by ddos protection profile name. Effective only with with_ddos set
-              to true.
+          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
+              set to true.
 
-          protection_status: Filter result by DDoS protection_status. if parameter is provided. Effective
-              only with with_ddos set to true. (Active, Queued or Error)
+          protection_status: Filter result by DDoS `protection_status`. if parameter is provided. Effective
+              only with `with_ddos` set to true. (Active, Queued or Error)
 
           status: Filters instances by status.
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
-          tag_value: Optional. Filter by tag values. ?tag_value=value1&tag_value=value2
+          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
           type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
-              Effective only with with_ddos set to true. (advanced or basic)
+              Effective only with `with_ddos` set to true. (advanced or basic)
 
           uuid: Filter the server list result by the UUID of the server. Allowed UUID part
 
@@ -2130,7 +2122,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         """Assign the security group to the server.
 
         To assign multiple security groups to
-        all ports, use the NULL value for the port_id field
+        all ports, use the NULL value for the `port_id` field
 
         Args:
           name: Security group name, applies to all ports
@@ -2259,13 +2251,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        **Cookie Parameters**:
+        \\**\\**Cookie Parameters\\**\\**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
-          - `'en'` (default)
-          - `'de'`
-          - `'ru'`
+        - `'en'` (default)
+        - `'de'`
+        - `'ru'`
 
         Args:
           project_id: Project ID
@@ -2527,7 +2519,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         """Un-assign the security group to the server.
 
         To un-assign multiple security
-        groups to all ports, use the NULL value for the port_id field
+        groups to all ports, use the NULL value for the `port_id` field
 
         Args:
           name: Security group name, applies to all ports

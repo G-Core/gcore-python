@@ -96,9 +96,9 @@ class VolumesResource(SyncAPIResource):
           source: Volume source type
 
           attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
-              conjunction with instance_id_to_attach_to
+              conjunction with `instance_id_to_attach_to`
 
-          instance_id_to_attach_to: instance_id to attach newly-created volume to
+          instance_id_to_attach_to: `instance_id` to attach newly-created volume to
 
           lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
               volume
@@ -160,9 +160,9 @@ class VolumesResource(SyncAPIResource):
           source: Volume source type
 
           attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
-              conjunction with instance_id_to_attach_to
+              conjunction with `instance_id_to_attach_to`
 
-          instance_id_to_attach_to: instance_id to attach newly-created volume to
+          instance_id_to_attach_to: `instance_id` to attach newly-created volume to
 
           lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
               volume
@@ -226,9 +226,9 @@ class VolumesResource(SyncAPIResource):
           source: Volume source type
 
           attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
-              conjunction with instance_id_to_attach_to
+              conjunction with `instance_id_to_attach_to`
 
-          instance_id_to_attach_to: instance_id to attach newly-created volume to
+          instance_id_to_attach_to: `instance_id` to attach newly-created volume to
 
           lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
               volume
@@ -396,16 +396,16 @@ class VolumesResource(SyncAPIResource):
 
           limit: Optional. Limit the number of returned items
 
-          name_part: Filter volumes by name_part inclusion in volume name.Any substring can be used
+          name_part: Filter volumes by `name_part` inclusion in volume name.Any substring can be used
               and volumes will be returned with names containing the substring.
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
-          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
@@ -860,9 +860,9 @@ class AsyncVolumesResource(AsyncAPIResource):
           source: Volume source type
 
           attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
-              conjunction with instance_id_to_attach_to
+              conjunction with `instance_id_to_attach_to`
 
-          instance_id_to_attach_to: instance_id to attach newly-created volume to
+          instance_id_to_attach_to: `instance_id` to attach newly-created volume to
 
           lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
               volume
@@ -924,9 +924,9 @@ class AsyncVolumesResource(AsyncAPIResource):
           source: Volume source type
 
           attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
-              conjunction with instance_id_to_attach_to
+              conjunction with `instance_id_to_attach_to`
 
-          instance_id_to_attach_to: instance_id to attach newly-created volume to
+          instance_id_to_attach_to: `instance_id` to attach newly-created volume to
 
           lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
               volume
@@ -990,9 +990,9 @@ class AsyncVolumesResource(AsyncAPIResource):
           source: Volume source type
 
           attachment_tag: Block device attachment tag (not exposed in the user tags). Only used in
-              conjunction with instance_id_to_attach_to
+              conjunction with `instance_id_to_attach_to`
 
-          instance_id_to_attach_to: instance_id to attach newly-created volume to
+          instance_id_to_attach_to: `instance_id` to attach newly-created volume to
 
           lifecycle_policy_ids: List of lifecycle policy IDs (snapshot creation schedules) to associate with the
               volume
@@ -1160,16 +1160,16 @@ class AsyncVolumesResource(AsyncAPIResource):
 
           limit: Optional. Limit the number of returned items
 
-          name_part: Filter volumes by name_part inclusion in volume name.Any substring can be used
+          name_part: Filter volumes by `name_part` inclusion in volume name.Any substring can be used
               and volumes will be returned with names containing the substring.
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
-          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers

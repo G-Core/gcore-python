@@ -50,7 +50,10 @@ class Volume(TypedDict, total=False):
     """Volume snapshot ID. Mandatory if volume is created from a snapshot"""
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-    """One of 'standard', 'ssd_hiiops', 'ssd_local', 'ssd_lowlatency', 'cold', 'ultra'"""
+    """
+    One of 'standard', '`ssd_hiiops`', '`ssd_local`', '`ssd_lowlatency`', 'cold',
+    'ultra'
+    """
 
     volume_id: str
     """Volume ID. Mandatory if volume is pre-existing volume"""

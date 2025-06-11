@@ -38,9 +38,9 @@ class ReservedFixedIPListParams(TypedDict, total=False):
 
     order_by: str
     """
-    Ordering reserved fixed IP list result by name, status, updated_at, created_at
-    or fixed_ip_address fields of the reserved fixed IP and directions (status.asc),
-    default is "fixed_ip_address.asc"
+    Ordering reserved fixed IP list result by name, status, `updated_at`,
+    `created_at` or `fixed_ip_address` fields of the reserved fixed IP and
+    directions (status.asc), default is "`fixed_ip_address`.asc"
     """
 
     vip_only: bool

@@ -71,7 +71,7 @@ class RoleAssignmentsResource(SyncAPIResource):
 
           user_id: User ID
 
-          client_id: Client ID. Required if project_id is specified
+          client_id: Client ID. Required if `project_id` is specified
 
           project_id: Project ID
 
@@ -125,7 +125,7 @@ class RoleAssignmentsResource(SyncAPIResource):
 
           user_id: User ID
 
-          client_id: Client ID. Required if project_id is specified
+          client_id: Client ID. Required if `project_id` is specified
 
           project_id: Project ID
 
@@ -287,7 +287,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
 
           user_id: User ID
 
-          client_id: Client ID. Required if project_id is specified
+          client_id: Client ID. Required if `project_id` is specified
 
           project_id: Project ID
 
@@ -341,7 +341,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
 
           user_id: User ID
 
-          client_id: Client ID. Required if project_id is specified
+          client_id: Client ID. Required if `project_id` is specified
 
           project_id: Project ID
 

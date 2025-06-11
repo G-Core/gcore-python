@@ -35,7 +35,7 @@ class VolumeListParams(TypedDict, total=False):
 
     name_part: str
     """
-    Filter volumes by name_part inclusion in volume name.Any substring can be used
+    Filter volumes by `name_part` inclusion in volume name.Any substring can be used
     and volumes will be returned with names containing the substring.
     """
 
@@ -46,11 +46,11 @@ class VolumeListParams(TypedDict, total=False):
     """
 
     tag_key: List[str]
-    """Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2"""
+    """Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2"""
 
     tag_key_value: str
     """Optional.
 
-    Filter by tag key-value pairs. curl -G --data-urlencode "tag_key_value={"key":
+    Filter by tag key-value pairs. curl -G --data-urlencode "`tag_key_value`={"key":
     "value"}" --url "https://example.com/cloud/v1/resource/1/1"
     """

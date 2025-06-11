@@ -16,7 +16,7 @@ class RoleAssignmentCreateParams(TypedDict, total=False):
     """User ID"""
 
     client_id: Optional[int]
-    """Client ID. Required if project_id is specified"""
+    """Client ID. Required if `project_id` is specified"""
 
     project_id: Optional[int]
     """Project ID"""

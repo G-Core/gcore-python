@@ -53,8 +53,8 @@ class DeploymentCreateParams(TypedDict, total=False):
     auth_enabled: bool
     """Set to `true` to enable API key authentication for the inference instance.
 
-    `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
-    for the requests to the instance if enabled
+    `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
+    required for the requests to the instance if enabled
     """
 
     command: Optional[List[str]]
@@ -78,7 +78,7 @@ class DeploymentCreateParams(TypedDict, total=False):
     probes: Optional[Probes]
     """Probes configured for all containers of the inference instance.
 
-    If probes are not provided, and the image_name is from a the Model Catalog
+    If probes are not provided, and the `image_name` is from a the Model Catalog
     registry, the default probes will be used.
     """
 
@@ -153,13 +153,13 @@ class ContainerScaleTriggers(TypedDict, total=False):
     gpu_memory: Optional[ContainerScaleTriggersGPUMemory]
     """GPU memory trigger configuration.
 
-    Calculated by DCGM_FI_DEV_MEM_COPY_UTIL metric
+    Calculated by `DCGM_FI_DEV_MEM_COPY_UTIL` metric
     """
 
     gpu_utilization: Optional[ContainerScaleTriggersGPUUtilization]
     """GPU utilization trigger configuration.
 
-    Calculated by DCGM_FI_DEV_GPU_UTIL metric
+    Calculated by `DCGM_FI_DEV_GPU_UTIL` metric
     """
 
     http: Optional[ContainerScaleTriggersHTTP]

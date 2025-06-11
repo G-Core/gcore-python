@@ -28,7 +28,10 @@ class TestSettings:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         setting = client.waap.domains.settings.update(
             domain_id=0,
-            api={"api_urls": ["api/v1/.*", "v2/.*"]},
+            api={
+                "api_urls": ["api/v1/.*", "v2/.*"],
+                "is_api": True,
+            },
             ddos={
                 "burst_threshold": 30,
                 "global_threshold": 250,
@@ -106,7 +109,10 @@ class TestAsyncSettings:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         setting = await async_client.waap.domains.settings.update(
             domain_id=0,
-            api={"api_urls": ["api/v1/.*", "v2/.*"]},
+            api={
+                "api_urls": ["api/v1/.*", "v2/.*"],
+                "is_api": True,
+            },
             ddos={
                 "burst_threshold": 30,
                 "global_threshold": 250,
