@@ -856,6 +856,10 @@ Types:
 
 ```python
 from gcore.types.waap import (
+    ClientInfo,
+    CustomerRuleState,
+    QuotaItem,
+    RuleActionType,
     WaapDetailedDomain,
     WaapDomainDDOSSettings,
     WaapDomainSettings,
@@ -863,6 +867,22 @@ from gcore.types.waap import (
     WaapSummaryDomain,
 )
 ```
+
+Methods:
+
+- <code title="get /waap/v1/clients/me">client.waap.<a href="./src/gcore/resources/waap/waap.py">get_account_overview</a>() -> <a href="./src/gcore/types/waap/client_info.py">ClientInfo</a></code>
+
+## Statistics
+
+Types:
+
+```python
+from gcore.types.waap import StatisticItem, StatisticsSeries
+```
+
+Methods:
+
+- <code title="get /waap/v1/statistics/series">client.waap.statistics.<a href="./src/gcore/resources/waap/statistics.py">get_usage_series</a>(\*\*<a href="src/gcore/types/waap/statistic_get_usage_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/statistics_series.py">StatisticsSeries</a></code>
 
 ## Domains
 
@@ -879,3 +899,118 @@ Methods:
 
 - <code title="patch /waap/v1/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/setting_update_params.py">params</a>) -> None</code>
 - <code title="get /waap/v1/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_domain_settings.py">WaapDomainSettings</a></code>
+
+### CustomRules
+
+Types:
+
+```python
+from gcore.types.waap.domains import CustomRule
+```
+
+Methods:
+
+- <code title="post /waap/v1/domains/{domain_id}/custom-rules">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/custom_rule.py">CustomRule</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_update_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/custom-rules">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/custom_rule.py">SyncOffsetPage[CustomRule]</a></code>
+- <code title="delete /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
+- <code title="post /waap/v1/domains/{domain_id}/custom-rules/bulk_delete">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_delete_multiple_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/custom_rule.py">CustomRule</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/custom-rules/{rule_id}/{action}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> None</code>
+
+### FirewallRules
+
+Types:
+
+```python
+from gcore.types.waap.domains import FirewallRule
+```
+
+Methods:
+
+- <code title="post /waap/v1/domains/{domain_id}/firewall-rules">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/firewall_rule.py">FirewallRule</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_update_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/firewall-rules">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/firewall_rule.py">SyncOffsetPage[FirewallRule]</a></code>
+- <code title="delete /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
+- <code title="post /waap/v1/domains/{domain_id}/firewall-rules/bulk_delete">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_delete_multiple_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/firewall_rule.py">FirewallRule</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> None</code>
+
+### AdvancedRules
+
+Types:
+
+```python
+from gcore.types.waap.domains import AdvancedRule
+```
+
+Methods:
+
+- <code title="post /waap/v1/domains/{domain_id}/advanced-rules">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/advanced_rule.py">AdvancedRule</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_update_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/advanced-rules">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/advanced_rule.py">SyncOffsetPage[AdvancedRule]</a></code>
+- <code title="delete /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/advanced_rule.py">AdvancedRule</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> None</code>
+
+## CustomPageSets
+
+Types:
+
+```python
+from gcore.types.waap import (
+    BlockCsrfPageData,
+    BlockPageData,
+    CaptchaPageData,
+    CookieDisabledPageData,
+    CustomPageSet,
+    HandshakePageData,
+    JavascriptDisabledPageData,
+    PreviewCustomPage,
+)
+```
+
+Methods:
+
+- <code title="post /waap/v1/custom-page-sets">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">create</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/custom_page_set.py">CustomPageSet</a></code>
+- <code title="patch /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">update</a>(set_id, \*\*<a href="src/gcore/types/waap/custom_page_set_update_params.py">params</a>) -> None</code>
+- <code title="get /waap/v1/custom-page-sets">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">list</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/custom_page_set.py">SyncOffsetPage[CustomPageSet]</a></code>
+- <code title="delete /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">delete</a>(set_id) -> None</code>
+- <code title="get /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">get</a>(set_id) -> <a href="./src/gcore/types/waap/custom_page_set.py">CustomPageSet</a></code>
+- <code title="post /waap/v1/preview-custom-page">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">preview</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_preview_params.py">params</a>) -> <a href="./src/gcore/types/waap/preview_custom_page.py">PreviewCustomPage</a></code>
+
+## AdvancedRules
+
+Types:
+
+```python
+from gcore.types.waap import AdvancedRuleDescriptor, AdvancedRuleDescriptorList
+```
+
+Methods:
+
+- <code title="get /waap/v1/advanced-rules/descriptor">client.waap.advanced_rules.<a href="./src/gcore/resources/waap/advanced_rules.py">list</a>() -> <a href="./src/gcore/types/waap/advanced_rule_descriptor_list.py">AdvancedRuleDescriptorList</a></code>
+
+## Tags
+
+Types:
+
+```python
+from gcore.types.waap import Tag
+```
+
+Methods:
+
+- <code title="get /waap/v1/tags">client.waap.tags.<a href="./src/gcore/resources/waap/tags.py">list</a>(\*\*<a href="src/gcore/types/waap/tag_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/tag.py">SyncOffsetPage[Tag]</a></code>
+
+## Organizations
+
+Types:
+
+```python
+from gcore.types.waap import Organization
+```
+
+Methods:
+
+- <code title="get /waap/v1/organizations">client.waap.organizations.<a href="./src/gcore/resources/waap/organizations.py">list</a>(\*\*<a href="src/gcore/types/waap/organization_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/organization.py">SyncOffsetPage[Organization]</a></code>
