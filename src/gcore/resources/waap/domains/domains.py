@@ -25,8 +25,32 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .custom_rules import (
+    CustomRulesResource,
+    AsyncCustomRulesResource,
+    CustomRulesResourceWithRawResponse,
+    AsyncCustomRulesResourceWithRawResponse,
+    CustomRulesResourceWithStreamingResponse,
+    AsyncCustomRulesResourceWithStreamingResponse,
+)
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.waap import WaapDomainStatus, domain_list_params, domain_update_params
+from .advanced_rules import (
+    AdvancedRulesResource,
+    AsyncAdvancedRulesResource,
+    AdvancedRulesResourceWithRawResponse,
+    AsyncAdvancedRulesResourceWithRawResponse,
+    AdvancedRulesResourceWithStreamingResponse,
+    AsyncAdvancedRulesResourceWithStreamingResponse,
+)
+from .firewall_rules import (
+    FirewallRulesResource,
+    AsyncFirewallRulesResource,
+    FirewallRulesResourceWithRawResponse,
+    AsyncFirewallRulesResourceWithRawResponse,
+    FirewallRulesResourceWithStreamingResponse,
+    AsyncFirewallRulesResourceWithStreamingResponse,
+)
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.waap_domain_status import WaapDomainStatus
 from ....types.waap.waap_summary_domain import WaapSummaryDomain
@@ -39,6 +63,18 @@ class DomainsResource(SyncAPIResource):
     @cached_property
     def settings(self) -> SettingsResource:
         return SettingsResource(self._client)
+
+    @cached_property
+    def custom_rules(self) -> CustomRulesResource:
+        return CustomRulesResource(self._client)
+
+    @cached_property
+    def firewall_rules(self) -> FirewallRulesResource:
+        return FirewallRulesResource(self._client)
+
+    @cached_property
+    def advanced_rules(self) -> AdvancedRulesResource:
+        return AdvancedRulesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DomainsResourceWithRawResponse:
@@ -235,6 +271,18 @@ class AsyncDomainsResource(AsyncAPIResource):
     @cached_property
     def settings(self) -> AsyncSettingsResource:
         return AsyncSettingsResource(self._client)
+
+    @cached_property
+    def custom_rules(self) -> AsyncCustomRulesResource:
+        return AsyncCustomRulesResource(self._client)
+
+    @cached_property
+    def firewall_rules(self) -> AsyncFirewallRulesResource:
+        return AsyncFirewallRulesResource(self._client)
+
+    @cached_property
+    def advanced_rules(self) -> AsyncAdvancedRulesResource:
+        return AsyncAdvancedRulesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDomainsResourceWithRawResponse:
@@ -448,6 +496,18 @@ class DomainsResourceWithRawResponse:
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._domains.settings)
 
+    @cached_property
+    def custom_rules(self) -> CustomRulesResourceWithRawResponse:
+        return CustomRulesResourceWithRawResponse(self._domains.custom_rules)
+
+    @cached_property
+    def firewall_rules(self) -> FirewallRulesResourceWithRawResponse:
+        return FirewallRulesResourceWithRawResponse(self._domains.firewall_rules)
+
+    @cached_property
+    def advanced_rules(self) -> AdvancedRulesResourceWithRawResponse:
+        return AdvancedRulesResourceWithRawResponse(self._domains.advanced_rules)
+
 
 class AsyncDomainsResourceWithRawResponse:
     def __init__(self, domains: AsyncDomainsResource) -> None:
@@ -469,6 +529,18 @@ class AsyncDomainsResourceWithRawResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
         return AsyncSettingsResourceWithRawResponse(self._domains.settings)
+
+    @cached_property
+    def custom_rules(self) -> AsyncCustomRulesResourceWithRawResponse:
+        return AsyncCustomRulesResourceWithRawResponse(self._domains.custom_rules)
+
+    @cached_property
+    def firewall_rules(self) -> AsyncFirewallRulesResourceWithRawResponse:
+        return AsyncFirewallRulesResourceWithRawResponse(self._domains.firewall_rules)
+
+    @cached_property
+    def advanced_rules(self) -> AsyncAdvancedRulesResourceWithRawResponse:
+        return AsyncAdvancedRulesResourceWithRawResponse(self._domains.advanced_rules)
 
 
 class DomainsResourceWithStreamingResponse:
@@ -492,6 +564,18 @@ class DomainsResourceWithStreamingResponse:
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._domains.settings)
 
+    @cached_property
+    def custom_rules(self) -> CustomRulesResourceWithStreamingResponse:
+        return CustomRulesResourceWithStreamingResponse(self._domains.custom_rules)
+
+    @cached_property
+    def firewall_rules(self) -> FirewallRulesResourceWithStreamingResponse:
+        return FirewallRulesResourceWithStreamingResponse(self._domains.firewall_rules)
+
+    @cached_property
+    def advanced_rules(self) -> AdvancedRulesResourceWithStreamingResponse:
+        return AdvancedRulesResourceWithStreamingResponse(self._domains.advanced_rules)
+
 
 class AsyncDomainsResourceWithStreamingResponse:
     def __init__(self, domains: AsyncDomainsResource) -> None:
@@ -513,3 +597,15 @@ class AsyncDomainsResourceWithStreamingResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self._domains.settings)
+
+    @cached_property
+    def custom_rules(self) -> AsyncCustomRulesResourceWithStreamingResponse:
+        return AsyncCustomRulesResourceWithStreamingResponse(self._domains.custom_rules)
+
+    @cached_property
+    def firewall_rules(self) -> AsyncFirewallRulesResourceWithStreamingResponse:
+        return AsyncFirewallRulesResourceWithStreamingResponse(self._domains.firewall_rules)
+
+    @cached_property
+    def advanced_rules(self) -> AsyncAdvancedRulesResourceWithStreamingResponse:
+        return AsyncAdvancedRulesResourceWithStreamingResponse(self._domains.advanced_rules)
