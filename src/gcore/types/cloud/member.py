@@ -40,8 +40,8 @@ class Member(BaseModel):
     monitor_port: Optional[int] = None
     """An alternate protocol port used for health monitoring of a backend member.
 
-    Default is null which monitors the member protocol_port.
+    Default is null which monitors the member `protocol_port`.
     """
 
     subnet_id: Optional[str] = None
-    """Either subnet_id or instance_id should be provided"""
+    """Either `subnet_id` or `instance_id` should be provided"""

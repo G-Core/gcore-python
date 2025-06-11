@@ -154,7 +154,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Args:
           network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          type: Must be 'any_subnet'.
+          type: Must be '`any_subnet`'.
 
           ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
@@ -195,7 +195,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
 
           network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          type: Must be 'ip_address'.
+          type: Must be '`ip_address`'.
 
           is_vip: If reserved fixed IP is a VIP
 
@@ -333,9 +333,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
 
           offset: Offset value is used to exclude the first set of records from the result
 
-          order_by: Ordering reserved fixed IP list result by name, status, updated_at, created_at
-              or fixed_ip_address fields of the reserved fixed IP and directions (status.asc),
-              default is "fixed_ip_address.asc"
+          order_by: Ordering reserved fixed IP list result by name, status, `updated_at`,
+              `created_at` or `fixed_ip_address` fields of the reserved fixed IP and
+              directions (status.asc), default is "`fixed_ip_address`.asc"
 
           vip_only: Set to true if the response should only list VIPs
 
@@ -575,7 +575,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Args:
           network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          type: Must be 'any_subnet'.
+          type: Must be '`any_subnet`'.
 
           ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
 
@@ -616,7 +616,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
 
           network_id: Reserved fixed IP will be allocated in a subnet of this network
 
-          type: Must be 'ip_address'.
+          type: Must be '`ip_address`'.
 
           is_vip: If reserved fixed IP is a VIP
 
@@ -754,9 +754,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
 
           offset: Offset value is used to exclude the first set of records from the result
 
-          order_by: Ordering reserved fixed IP list result by name, status, updated_at, created_at
-              or fixed_ip_address fields of the reserved fixed IP and directions (status.asc),
-              default is "fixed_ip_address.asc"
+          order_by: Ordering reserved fixed IP list result by name, status, `updated_at`,
+              `created_at` or `fixed_ip_address` fields of the reserved fixed IP and
+              directions (status.asc), default is "`fixed_ip_address`.asc"
 
           vip_only: Set to true if the response should only list VIPs
 

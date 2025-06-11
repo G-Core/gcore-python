@@ -61,8 +61,9 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     """
     Preferred option to establish connectivity between load balancer and its pools
     members. L2 provides best performance, L3 provides less IPs usage. It is taking
-    effect only if instance_id + ip_address is provided, not subnet_id + ip_address,
-    because we're considering this as intentional subnet_id specification.
+    effect only if `instance_id` + `ip_address` is provided, not `subnet_id` +
+    `ip_address`, because we're considering this as intentional `subnet_id`
+    specification.
     """
 
     tags: TagUpdateMapParam
@@ -77,27 +78,28 @@ class LoadBalancerCreateParams(TypedDict, total=False):
 
     vip_ip_family: InterfaceIPFamily
     """
-    IP family for load balancer subnet auto-selection if vip_network_id is specified
+    IP family for load balancer subnet auto-selection if `vip_network_id` is
+    specified
     """
 
     vip_network_id: str
     """Network ID for load balancer.
 
     If not specified, default external network will be used. Mutually exclusive with
-    vip_port_id
+    `vip_port_id`
     """
 
     vip_port_id: str
     """Existing Reserved Fixed IP port ID for load balancer.
 
-    Mutually exclusive with vip_network_id
+    Mutually exclusive with `vip_network_id`
     """
 
     vip_subnet_id: str
     """Subnet ID for load balancer.
 
-    If not specified, any subnet from vip_network_id will be selected. Ignored when
-    vip_network_id is not specified.
+    If not specified, any subnet from `vip_network_id` will be selected. Ignored
+    when `vip_network_id` is not specified.
     """
 
 
@@ -176,7 +178,7 @@ class ListenerPoolMember(TypedDict, total=False):
     """true if enabled. Defaults to true"""
 
     instance_id: Optional[str]
-    """Either subnet_id or instance_id should be provided"""
+    """Either `subnet_id` or `instance_id` should be provided"""
 
     monitor_address: Optional[str]
     """An alternate IP address used for health monitoring of a backend member.
@@ -187,11 +189,11 @@ class ListenerPoolMember(TypedDict, total=False):
     monitor_port: Optional[int]
     """An alternate protocol port used for health monitoring of a backend member.
 
-    Default is null which monitors the member protocol_port.
+    Default is null which monitors the member `protocol_port`.
     """
 
     subnet_id: Optional[str]
-    """Either subnet_id or instance_id should be provided"""
+    """Either `subnet_id` or `instance_id` should be provided"""
 
     weight: Optional[int]
     """Member weight. Valid values: 0 to 256, defaults to 1"""
@@ -205,7 +207,7 @@ class ListenerPoolSessionPersistence(TypedDict, total=False):
     """Should be set if app cookie or http cookie is used"""
 
     persistence_granularity: Optional[str]
-    """Subnet mask if source_ip is used. For UDP ports only"""
+    """Subnet mask if `source_ip` is used. For UDP ports only"""
 
     persistence_timeout: Optional[int]
     """Session persistence timeout. For UDP ports only"""
@@ -282,7 +284,7 @@ class Listener(TypedDict, total=False):
     insert_x_forwarded: bool
     """Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
 
-    Only used with HTTP or TERMINATED_HTTPS protocols.
+    Only used with HTTP or `TERMINATED_HTTPS` protocols.
     """
 
     pools: Iterable[ListenerPool]
@@ -290,14 +292,14 @@ class Listener(TypedDict, total=False):
 
     secret_id: str
     """
-    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-    listener
+    ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+    PROMETHEUS listener
     """
 
     sni_secret_id: List[str]
     """
     List of secrets IDs containing PKCS12 format certificate/key bundles for
-    TERMINATED_HTTPS or PROMETHEUS listeners
+    `TERMINATED_HTTPS` or PROMETHEUS listeners
     """
 
     timeout_client_data: Optional[int]

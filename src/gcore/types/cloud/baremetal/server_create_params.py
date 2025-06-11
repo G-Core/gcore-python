@@ -68,8 +68,8 @@ class ServerCreateParams(TypedDict, total=False):
     If you want server names to be automatically generated based on IP addresses,
     you can provide a name template instead of specifying the name manually. The
     template should include a placeholder that will be replaced during provisioning.
-    Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
-    `{two_ip_octets}`, and `{one_ip_octet}`.
+    Supported placeholders are: `{`ip_octets`}` (last 3 octets of the IP),
+    `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
     """
 
     password: str
@@ -78,14 +78,14 @@ class ServerCreateParams(TypedDict, total=False):
     When only 'password' is provided, it is set as the password for the default user
     of the image. For Windows instances, 'username' cannot be specified. Use the
     'password' field to set the password for the 'Admin' user on Windows. Use the
-    'user_data' field to provide a script to create new users on Windows. The
-    password of the Admin user cannot be updated via 'user_data'.
+    '`user_data`' field to provide a script to create new users on Windows. The
+    password of the Admin user cannot be updated via '`user_data`'.
     """
 
     ssh_key_name: Optional[str]
     """
     Specifies the name of the SSH keypair, created via the
-    <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+    [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
     """
 
     tags: TagUpdateMapParam
@@ -101,9 +101,9 @@ class ServerCreateParams(TypedDict, total=False):
     user_data: str
     """String in base64 format.
 
-    For Linux instances, 'user_data' is ignored when 'password' field is provided.
+    For Linux instances, '`user_data`' is ignored when 'password' field is provided.
     For Windows instances, Admin user password is set by 'password' field and cannot
-    be updated via 'user_data'. Examples of the user_data:
+    be updated via '`user_data`'. Examples of the `user_data`:
     https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """
 
@@ -353,10 +353,10 @@ class DDOSProfileField(TypedDict, total=False):
     """Name of DDoS profile field"""
 
     field_value: Union[Iterable[object], int, str, None]
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value. Only one of 'value' or '`field_value`' must be specified."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value. Only one of 'value' or '`field_value`' must be specified."""
 
 
 class DDOSProfile(TypedDict, total=False):

@@ -106,7 +106,7 @@ class GPUBaremetalCluster(BaseModel):
     """String in base64 format.
 
     Must not be passed together with 'username' or 'password'. Examples of the
-    user_data: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+    `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """
 
     username: Optional[str] = None

@@ -56,7 +56,7 @@ class FlavorsResource(SyncAPIResource):
     ) -> LoadBalancerFlavorList:
         """Retrieve a list of load balancer flavors.
 
-        When the include_prices query
+        When the `include_prices` query
         parameter is specified, the list shows prices. A client in trial mode gets all
         price values as 0. If you get Pricing Error contact the support
 
@@ -123,7 +123,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
     ) -> LoadBalancerFlavorList:
         """Retrieve a list of load balancer flavors.
 
-        When the include_prices query
+        When the `include_prices` query
         parameter is specified, the list shows prices. A client in trial mode gets all
         price values as 0. If you get Pricing Error contact the support
 

@@ -47,8 +47,8 @@ class DeploymentUpdateParams(TypedDict, total=False):
     auth_enabled: bool
     """Set to `true` to enable API key authentication for the inference instance.
 
-    `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
-    for the requests to the instance if enabled
+    `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
+    required for the requests to the instance if enabled
     """
 
     command: Optional[List[str]]
@@ -160,13 +160,13 @@ class ContainerScaleTriggers(TypedDict, total=False):
     gpu_memory: Optional[ContainerScaleTriggersGPUMemory]
     """GPU memory trigger configuration.
 
-    Calculated by DCGM_FI_DEV_MEM_COPY_UTIL metric
+    Calculated by `DCGM_FI_DEV_MEM_COPY_UTIL` metric
     """
 
     gpu_utilization: Optional[ContainerScaleTriggersGPUUtilization]
     """GPU utilization trigger configuration.
 
-    Calculated by DCGM_FI_DEV_GPU_UTIL metric
+    Calculated by `DCGM_FI_DEV_GPU_UTIL` metric
     """
 
     http: Optional[ContainerScaleTriggersHTTP]
@@ -276,7 +276,7 @@ class ProbesLivenessProbe(TypedDict, total=False):
     """Whether the probe is enabled or not."""
 
     probe: ProbesLivenessProbeProbe
-    """Probe configuration (exec, http_get or tcp_socket)"""
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""
 
 
 class ProbesReadinessProbeProbeExec(TypedDict, total=False):
@@ -337,7 +337,7 @@ class ProbesReadinessProbe(TypedDict, total=False):
     """Whether the probe is enabled or not."""
 
     probe: ProbesReadinessProbeProbe
-    """Probe configuration (exec, http_get or tcp_socket)"""
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""
 
 
 class ProbesStartupProbeProbeExec(TypedDict, total=False):
@@ -398,7 +398,7 @@ class ProbesStartupProbe(TypedDict, total=False):
     """Whether the probe is enabled or not."""
 
     probe: ProbesStartupProbeProbe
-    """Probe configuration (exec, http_get or tcp_socket)"""
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""
 
 
 class Probes(TypedDict, total=False):

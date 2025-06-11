@@ -78,8 +78,8 @@ class InstanceCreateParams(TypedDict, total=False):
     If you want the instance name to be automatically generated based on IP
     addresses, you can provide a name template instead of specifying the name
     manually. The template should include a placeholder that will be replaced during
-    provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
-    IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+    provisioning. Supported placeholders are: `{`ip_octets`}` (last 3 octets of the
+    IP), `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
     """
 
     password: str
@@ -88,8 +88,8 @@ class InstanceCreateParams(TypedDict, total=False):
     When only 'password' is provided, it is set as the password for the default user
     of the image. For Windows instances, 'username' cannot be specified. Use the
     'password' field to set the password for the 'Admin' user on Windows. Use the
-    'user_data' field to provide a script to create new users on Windows. The
-    password of the Admin user cannot be updated via 'user_data'.
+    '`user_data`' field to provide a script to create new users on Windows. The
+    password of the Admin user cannot be updated via '`user_data`'.
     """
 
     security_groups: Iterable[SecurityGroup]
@@ -98,9 +98,7 @@ class InstanceCreateParams(TypedDict, total=False):
     """
 
     servergroup_id: str
-    """Placement group ID for instance placement policy.
-
-    Supported group types:
+    """Placement group ID for instance placement policy. Supported group types:
 
     - `anti-affinity`: Ensures instances are placed on different hosts for high
       availability.
@@ -112,7 +110,7 @@ class InstanceCreateParams(TypedDict, total=False):
     ssh_key_name: Optional[str]
     """
     Specifies the name of the SSH keypair, created via the
-    <a href="#operation/SSHKeyCollectionViewSet.post">/v1/ssh_keys endpoint</a>.
+    [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
     """
 
     tags: TagUpdateMapParam
@@ -128,9 +126,9 @@ class InstanceCreateParams(TypedDict, total=False):
     user_data: str
     """String in base64 format.
 
-    For Linux instances, 'user_data' is ignored when 'password' field is provided.
+    For Linux instances, '`user_data`' is ignored when 'password' field is provided.
     For Windows instances, Admin user password is set by 'password' field and cannot
-    be updated via 'user_data'. Examples of the user_data:
+    be updated via '`user_data`'. Examples of the `user_data`:
     https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """
 
@@ -412,7 +410,7 @@ class VolumeCreateInstanceCreateNewVolumeSerializer(TypedDict, total=False):
       IOPS: 9000. Max bandwidth: 500 MB/s.
     - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
       processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
-      resizing are **not** supported for `ssd_lowlatency`.
+      resizing are \\**\\**not\\**\\** supported for `ssd_lowlatency`.
     """
 
 
@@ -448,7 +446,7 @@ class VolumeCreateInstanceCreateVolumeFromImageSerializer(TypedDict, total=False
     size: int
     """Volume size in GiB.
 
-    - For instances: **specify the desired volume size explicitly**.
+    - For instances: \\**\\**specify the desired volume size explicitly\\**\\**.
     - For basic VMs: the size is set automatically based on the flavor.
     """
 
@@ -473,7 +471,7 @@ class VolumeCreateInstanceCreateVolumeFromImageSerializer(TypedDict, total=False
       IOPS: 9000. Max bandwidth: 500 MB/s.
     - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
       processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
-      resizing are **not** supported for `ssd_lowlatency`.
+      resizing are \\**\\**not\\**\\** supported for `ssd_lowlatency`.
     """
 
 
@@ -573,7 +571,7 @@ class VolumeCreateInstanceCreateVolumeFromApptemplateSerializer(TypedDict, total
       IOPS: 9000. Max bandwidth: 500 MB/s.
     - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
       processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
-      resizing are **not** supported for `ssd_lowlatency`.
+      resizing are \\**\\**not\\**\\** supported for `ssd_lowlatency`.
     """
 
 

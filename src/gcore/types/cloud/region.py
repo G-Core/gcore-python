@@ -26,7 +26,7 @@ class Region(BaseModel):
     """AI service API endpoint ID"""
 
     available_volume_types: Optional[List[str]] = None
-    """List of available volume types, 'standard', 'ssd_hiiops', 'cold']."""
+    """List of available volume types, 'standard', '`ssd_hiiops`', 'cold']."""
 
     coordinates: Optional[Coordinates] = None
     """Coordinates of the region"""

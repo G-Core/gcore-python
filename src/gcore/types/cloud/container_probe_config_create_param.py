@@ -14,4 +14,4 @@ class ContainerProbeConfigCreateParam(TypedDict, total=False):
     """Whether the probe is enabled or not."""
 
     probe: ContainerProbeCreateParam
-    """Probe configuration (exec, http_get or tcp_socket)"""
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""

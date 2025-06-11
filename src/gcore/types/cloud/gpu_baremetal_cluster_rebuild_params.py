@@ -21,6 +21,6 @@ class GPUBaremetalClusterRebuildParams(TypedDict, total=False):
 
     user_data: Optional[str]
     """
-    String in base64 format.Examples of the user_data:
+    String in base64 format.Examples of the `user_data`:
     https://cloudinit.readthedocs.io/en/latest/topics/examples.html
     """

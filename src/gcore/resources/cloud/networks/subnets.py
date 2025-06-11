@@ -87,7 +87,7 @@ class SubnetsResource(SyncAPIResource):
           network_id: Network ID
 
           connect_to_network_router: True if the network's router should get a gateway in this subnet. Must be
-              explicitly 'false' when gateway_ip is null.
+              explicitly 'false' when `gateway_ip` is null.
 
           dns_nameservers: List IP addresses of DNS servers to advertise via DHCP.
 
@@ -272,10 +272,10 @@ class SubnetsResource(SyncAPIResource):
               `available_ips`, `total_ips`, and `cidr` (default) fields of the subnet and
               directions (`name.asc`).
 
-          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers
@@ -463,7 +463,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
           network_id: Network ID
 
           connect_to_network_router: True if the network's router should get a gateway in this subnet. Must be
-              explicitly 'false' when gateway_ip is null.
+              explicitly 'false' when `gateway_ip` is null.
 
           dns_nameservers: List IP addresses of DNS servers to advertise via DHCP.
 
@@ -648,10 +648,10 @@ class AsyncSubnetsResource(AsyncAPIResource):
               `available_ips`, `total_ips`, and `cidr` (default) fields of the subnet and
               directions (`name.asc`).
 
-          tag_key: Optional. Filter by tag keys. ?tag_key=key1&tag_key=key2
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
           tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "tag_key_value={"key": "value"}" --url
+              "`tag_key_value`={"key": "value"}" --url
               "https://example.com/cloud/v1/resource/1/1"
 
           extra_headers: Send extra headers

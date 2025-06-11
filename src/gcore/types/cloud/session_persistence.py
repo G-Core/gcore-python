@@ -16,7 +16,7 @@ class SessionPersistence(BaseModel):
     """Should be set if app cookie or http cookie is used"""
 
     persistence_granularity: Optional[str] = None
-    """Subnet mask if source_ip is used. For UDP ports only"""
+    """Subnet mask if `source_ip` is used. For UDP ports only"""
 
     persistence_timeout: Optional[int] = None
     """Session persistence timeout. For UDP ports only"""

@@ -25,7 +25,7 @@ class ImageListParams(TypedDict, total=False):
     tag_key_value: str
     """Filter by tag key-value pairs.
 
-    Must be a valid JSON string. 'curl -G --data-urlencode 'tag_key_value={"key":
+    Must be a valid JSON string. 'curl -G --data-urlencode '`tag_key_value`={"key":
     "value"}' --url 'http://localhost:1111/v1/images/1/1'"
     """
 

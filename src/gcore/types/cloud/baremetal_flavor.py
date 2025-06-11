@@ -37,16 +37,16 @@ class BaremetalFlavor(BaseModel):
     """Number of available instances of given configuration"""
 
     currency_code: Optional[str] = None
-    """Currency code. Shown if the include_prices query parameter if set to true"""
+    """Currency code. Shown if the `include_prices` query parameter if set to true"""
 
     hardware_description: Optional[Dict[str, str]] = None
     """Additional hardware description"""
 
     price_per_hour: Optional[float] = None
-    """Price per hour. Shown if the include_prices query parameter if set to true"""
+    """Price per hour. Shown if the `include_prices` query parameter if set to true"""
 
     price_per_month: Optional[float] = None
-    """Price per month. Shown if the include_prices query parameter if set to true"""
+    """Price per month. Shown if the `include_prices` query parameter if set to true"""
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
     """Price status for the UI"""

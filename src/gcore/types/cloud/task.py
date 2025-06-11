@@ -129,7 +129,7 @@ class Task(BaseModel):
     """If task was acknowledged, this field stores acknowledge timestamp"""
 
     acknowledged_by: Optional[int] = None
-    """If task was acknowledged, this field stores user_id of the person"""
+    """If task was acknowledged, this field stores `user_id` of the person"""
 
     client_id: Optional[int] = None
     """The client ID"""

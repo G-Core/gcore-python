@@ -247,7 +247,7 @@ class ImagesResource(SyncAPIResource):
 
           url: Image URL
 
-          architecture: Image architecture type: aarch64, x86_64
+          architecture: Image architecture type: aarch64, `x86_64`
 
           cow_format: When True, image cannot be deleted unless all volumes, created from it, are
               deleted.
@@ -590,7 +590,7 @@ class AsyncImagesResource(AsyncAPIResource):
 
           url: Image URL
 
-          architecture: Image architecture type: aarch64, x86_64
+          architecture: Image architecture type: aarch64, `x86_64`
 
           cow_format: When True, image cannot be deleted unless all volumes, created from it, are
               deleted.

@@ -26,14 +26,14 @@ class ListenerUpdateParams(TypedDict, total=False):
 
     secret_id: Optional[str]
     """
-    ID of the secret where PKCS12 file is stored for TERMINATED_HTTPS or PROMETHEUS
-    load balancer
+    ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
+    PROMETHEUS load balancer
     """
 
     sni_secret_id: Optional[List[str]]
     """
     List of secret's ID containing PKCS12 format certificate/key bundfles for
-    TERMINATED_HTTPS or PROMETHEUS listeners
+    `TERMINATED_HTTPS` or PROMETHEUS listeners
     """
 
     timeout_client_data: Optional[int]

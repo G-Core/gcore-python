@@ -19,8 +19,8 @@ class Inference(BaseModel):
     auth_enabled: bool
     """`true` if instance uses API key authentication.
 
-    `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
-    for the requests to the instance if enabled.
+    `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
+    required for the requests to the instance if enabled.
     """
 
     command: Optional[str] = None
@@ -71,9 +71,7 @@ class Inference(BaseModel):
     """Project ID. If not provided, your default project ID will be used."""
 
     status: Literal["ACTIVE", "DELETING", "DEPLOYING", "DISABLED", "PARTIALLYDEPLOYED", "PENDING"]
-    """Inference instance status.
-
-    Value can be one of the following:
+    """Inference instance status. Value can be one of the following:
 
     - `DEPLOYING` - The instance is being deployed. Containers are not yet created.
     - `PARTIALLYDEPLOYED` - All containers have been created, but some may not be

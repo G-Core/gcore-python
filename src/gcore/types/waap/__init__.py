@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .waap_api_urls import WaapAPIURLs as WaapAPIURLs
 from .domain_list_params import DomainListParams as DomainListParams
 from .waap_domain_status import WaapDomainStatus as WaapDomainStatus
 from .waap_summary_domain import WaapSummaryDomain as WaapSummaryDomain

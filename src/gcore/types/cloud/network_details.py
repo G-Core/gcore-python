@@ -21,7 +21,7 @@ class NetworkDetails(BaseModel):
     """Task that created this entity"""
 
     default: Optional[bool] = None
-    """True if network has is_default attribute"""
+    """True if network has `is_default` attribute"""
 
     external: bool
     """True if the network `router:external` attribute"""
@@ -34,7 +34,7 @@ class NetworkDetails(BaseModel):
 
     port_security_enabled: bool
     """
-    Indicates port_security_enabled status of all newly created in the network
+    Indicates `port_security_enabled` status of all newly created in the network
     ports.
     """
 

@@ -21,7 +21,7 @@ class GPUBaremetalClusterDeleteParams(TypedDict, total=False):
     floatings: str
     """Comma separated list of floating ids that should be deleted.
 
-    Can't be used with delete_floatings.
+    Can't be used with `delete_floatings`.
     """
 
     reserved_fixed_ips: str
