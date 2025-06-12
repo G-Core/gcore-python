@@ -74,8 +74,8 @@ class SSHKeysResource(SyncAPIResource):
               - If you’re uploading your own key, provide the public part here (usually found
                 in a file like `id_ed25519.pub`).
               - If you want the platform to generate an Ed25519 key pair for you, leave this
-                field empty — the system will return the private key in the response \\**\\**once
-                only\\**\\**.
+                field empty — the system will return the private key in the response **once
+                only**.
 
           shared_in_project: SSH key is shared with all users in the project
 
@@ -336,8 +336,8 @@ class AsyncSSHKeysResource(AsyncAPIResource):
               - If you’re uploading your own key, provide the public part here (usually found
                 in a file like `id_ed25519.pub`).
               - If you want the platform to generate an Ed25519 key pair for you, leave this
-                field empty — the system will return the private key in the response \\**\\**once
-                only\\**\\**.
+                field empty — the system will return the private key in the response **once
+                only**.
 
           shared_in_project: SSH key is shared with all users in the project
 

@@ -85,7 +85,7 @@ class ServerCreateParams(TypedDict, total=False):
     ssh_key_name: Optional[str]
     """
     Specifies the name of the SSH keypair, created via the
-    [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
+    [/v1/`ssh_keys` endpoint](/api-reference/ssh-keys/add-or-generate-ssh-key).
     """
 
     tags: TagUpdateMapParam

@@ -19,8 +19,8 @@ class Inference(BaseModel):
     auth_enabled: bool
     """`true` if instance uses API key authentication.
 
-    `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
-    required for the requests to the instance if enabled.
+    `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
+    for the requests to the instance if enabled.
     """
 
     command: Optional[str] = None
