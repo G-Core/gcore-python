@@ -198,7 +198,7 @@ class InstancesResource(SyncAPIResource):
                 sharing if needed.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
+              [/v1/`ssh_keys` endpoint](/api-reference/ssh-keys/add-or-generate-ssh-key).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -855,7 +855,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        \\**\\**Cookie Parameters\\**\\**:
+        **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
@@ -1204,7 +1204,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                 sharing if needed.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
+              [/v1/`ssh_keys` endpoint](/api-reference/ssh-keys/add-or-generate-ssh-key).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -1861,7 +1861,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
         """
-        \\**\\**Cookie Parameters\\**\\**:
+        **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
