@@ -110,7 +110,7 @@ class InstanceCreateParams(TypedDict, total=False):
     ssh_key_name: Optional[str]
     """
     Specifies the name of the SSH keypair, created via the
-    [/v1/`ssh_keys` endpoint](#operation/SSHKeyCollectionViewSet.post).
+    [/v1/`ssh_keys` endpoint](/api-reference/ssh-keys/add-or-generate-ssh-key).
     """
 
     tags: TagUpdateMapParam
@@ -410,7 +410,7 @@ class VolumeCreateInstanceCreateNewVolumeSerializer(TypedDict, total=False):
       IOPS: 9000. Max bandwidth: 500 MB/s.
     - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
       processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
-      resizing are \\**\\**not\\**\\** supported for `ssd_lowlatency`.
+      resizing are **not** supported for `ssd_lowlatency`.
     """
 
 
@@ -446,7 +446,7 @@ class VolumeCreateInstanceCreateVolumeFromImageSerializer(TypedDict, total=False
     size: int
     """Volume size in GiB.
 
-    - For instances: \\**\\**specify the desired volume size explicitly\\**\\**.
+    - For instances: **specify the desired volume size explicitly**.
     - For basic VMs: the size is set automatically based on the flavor.
     """
 
@@ -471,7 +471,7 @@ class VolumeCreateInstanceCreateVolumeFromImageSerializer(TypedDict, total=False
       IOPS: 9000. Max bandwidth: 500 MB/s.
     - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
       processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
-      resizing are \\**\\**not\\**\\** supported for `ssd_lowlatency`.
+      resizing are **not** supported for `ssd_lowlatency`.
     """
 
 
@@ -571,7 +571,7 @@ class VolumeCreateInstanceCreateVolumeFromApptemplateSerializer(TypedDict, total
       IOPS: 9000. Max bandwidth: 500 MB/s.
     - `ssd_lowlatency` - SSD storage optimized for low-latency and real-time
       processing. Max IOPS: 5000. Average latency: 300 µs. Snapshots and volume
-      resizing are \\**\\**not\\**\\** supported for `ssd_lowlatency`.
+      resizing are **not** supported for `ssd_lowlatency`.
     """
 
 

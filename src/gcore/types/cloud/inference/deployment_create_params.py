@@ -53,8 +53,8 @@ class DeploymentCreateParams(TypedDict, total=False):
     auth_enabled: bool
     """Set to `true` to enable API key authentication for the inference instance.
 
-    `"Authorization": "Bearer \\**\\**\\**\\**\\**"` or `"X-Api-Key": "\\**\\**\\**\\**\\**"` header is
-    required for the requests to the instance if enabled
+    `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
+    for the requests to the instance if enabled
     """
 
     command: Optional[List[str]]
