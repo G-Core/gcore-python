@@ -15,7 +15,9 @@ async def create_file_share(client: AsyncGcore, *, network_id: str) -> str:
         size=1,
     )
     task = await client.cloud.tasks.poll(task_id=response.tasks[0])
-    file_share_id = task.created_resources.file_shares[0]
+    if task.created_resources is None or task.created_resources.file_shares is None:
+        raise RuntimeError("Task completed but created_resources or file_shares is missing")
+    file_share_id: str = task.created_resources.file_shares[0]
     print(f"Created file share: ID={file_share_id}")
     print("========================")
     return file_share_id
@@ -118,7 +120,6 @@ async def main() -> None:
     await delete_file_share_access_rule(client=gcore, file_share_id=fs_id, access_rule_id=access_rule_id)
 
     await delete_file_share(client=gcore, file_share_id=fs_id)
-    print("Example file share lifecycle complete.")
 
 
 if __name__ == "__main__":
