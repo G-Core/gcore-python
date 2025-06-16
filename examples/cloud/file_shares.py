@@ -13,7 +13,9 @@ def create_file_share(*, client: Gcore, network_id: str) -> str:
         size=1,
     )
     task = client.cloud.tasks.poll(task_id=response.tasks[0])
-    file_share_id = task.created_resources.file_shares[0]
+    if task.created_resources is None or task.created_resources.file_shares is None:
+        raise RuntimeError("Task completed but created_resources or file_shares is missing")
+    file_share_id: str = task.created_resources.file_shares[0]
     print(f"Created file share: ID={file_share_id}")
     print("========================")
     return file_share_id
