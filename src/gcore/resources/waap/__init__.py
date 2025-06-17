@@ -16,14 +16,6 @@ from .waap import (
     WaapResourceWithStreamingResponse,
     AsyncWaapResourceWithStreamingResponse,
 )
-from .clients import (
-    ClientsResource,
-    AsyncClientsResource,
-    ClientsResourceWithRawResponse,
-    AsyncClientsResourceWithRawResponse,
-    ClientsResourceWithStreamingResponse,
-    AsyncClientsResourceWithStreamingResponse,
-)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -74,12 +66,6 @@ from .custom_page_sets import (
 )
 
 __all__ = [
-    "ClientsResource",
-    "AsyncClientsResource",
-    "ClientsResourceWithRawResponse",
-    "AsyncClientsResourceWithRawResponse",
-    "ClientsResourceWithStreamingResponse",
-    "AsyncClientsResourceWithStreamingResponse",
     "StatisticsResource",
     "AsyncStatisticsResource",
     "StatisticsResourceWithRawResponse",

@@ -928,18 +928,6 @@ Methods:
 
 - <code title="get /waap/v1/clients/me">client.waap.<a href="./src/gcore/resources/waap/waap.py">get_account_overview</a>() -> <a href="./src/gcore/types/waap/waap_get_account_overview_response.py">WaapGetAccountOverviewResponse</a></code>
 
-## Clients
-
-Types:
-
-```python
-from gcore.types.waap import ClientMeResponse
-```
-
-Methods:
-
-- <code title="get /waap/v1/clients/me">client.waap.clients.<a href="./src/gcore/resources/waap/clients.py">me</a>() -> <a href="./src/gcore/types/waap/client_me_response.py">ClientMeResponse</a></code>
-
 ## Statistics
 
 Methods:
