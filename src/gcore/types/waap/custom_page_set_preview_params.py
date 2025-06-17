@@ -3,22 +3,15 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .waap_page_type import WaapPageType
 
 __all__ = ["CustomPageSetPreviewParams"]
 
 
 class CustomPageSetPreviewParams(TypedDict, total=False):
-    page_type: Required[
-        Literal[
-            "block.html",
-            "block_csrf.html",
-            "captcha.html",
-            "cookieDisabled.html",
-            "handshake.html",
-            "javascriptDisabled.html",
-        ]
-    ]
+    page_type: Required[WaapPageType]
     """The type of the custom page"""
 
     error: Optional[str]

@@ -10,9 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.waap.domains import (
-    CustomRule,
-)
+from gcore.types.waap import WaapCustomRule
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +27,7 @@ class TestCustomRules:
             enabled=True,
             name="name",
         )
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -137,7 +135,7 @@ class TestCustomRules:
             name="name",
             description="description",
         )
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -152,7 +150,7 @@ class TestCustomRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_rule = response.parse()
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -167,7 +165,7 @@ class TestCustomRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_rule = response.parse()
-            assert_matches_type(CustomRule, custom_rule, path=["response"])
+            assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -319,7 +317,7 @@ class TestCustomRules:
         custom_rule = client.waap.domains.custom_rules.list(
             domain_id=0,
         )
-        assert_matches_type(SyncOffsetPage[CustomRule], custom_rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -333,7 +331,7 @@ class TestCustomRules:
             offset=0,
             ordering="-id",
         )
-        assert_matches_type(SyncOffsetPage[CustomRule], custom_rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -344,7 +342,7 @@ class TestCustomRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_rule = response.parse()
-        assert_matches_type(SyncOffsetPage[CustomRule], custom_rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -355,7 +353,7 @@ class TestCustomRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_rule = response.parse()
-            assert_matches_type(SyncOffsetPage[CustomRule], custom_rule, path=["response"])
+            assert_matches_type(SyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -433,7 +431,7 @@ class TestCustomRules:
             rule_id=0,
             domain_id=0,
         )
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -445,7 +443,7 @@ class TestCustomRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_rule = response.parse()
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -457,7 +455,7 @@ class TestCustomRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_rule = response.parse()
-            assert_matches_type(CustomRule, custom_rule, path=["response"])
+            assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -511,7 +509,7 @@ class TestAsyncCustomRules:
             enabled=True,
             name="name",
         )
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -619,7 +617,7 @@ class TestAsyncCustomRules:
             name="name",
             description="description",
         )
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -634,7 +632,7 @@ class TestAsyncCustomRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_rule = await response.parse()
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -649,7 +647,7 @@ class TestAsyncCustomRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_rule = await response.parse()
-            assert_matches_type(CustomRule, custom_rule, path=["response"])
+            assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -801,7 +799,7 @@ class TestAsyncCustomRules:
         custom_rule = await async_client.waap.domains.custom_rules.list(
             domain_id=0,
         )
-        assert_matches_type(AsyncOffsetPage[CustomRule], custom_rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -815,7 +813,7 @@ class TestAsyncCustomRules:
             offset=0,
             ordering="-id",
         )
-        assert_matches_type(AsyncOffsetPage[CustomRule], custom_rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -826,7 +824,7 @@ class TestAsyncCustomRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_rule = await response.parse()
-        assert_matches_type(AsyncOffsetPage[CustomRule], custom_rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -837,7 +835,7 @@ class TestAsyncCustomRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_rule = await response.parse()
-            assert_matches_type(AsyncOffsetPage[CustomRule], custom_rule, path=["response"])
+            assert_matches_type(AsyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -915,7 +913,7 @@ class TestAsyncCustomRules:
             rule_id=0,
             domain_id=0,
         )
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -927,7 +925,7 @@ class TestAsyncCustomRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_rule = await response.parse()
-        assert_matches_type(CustomRule, custom_rule, path=["response"])
+        assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -939,7 +937,7 @@ class TestAsyncCustomRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_rule = await response.parse()
-            assert_matches_type(CustomRule, custom_rule, path=["response"])
+            assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-from .block_page_data_param import BlockPageDataParam
-from .captcha_page_data_param import CaptchaPageDataParam
-from .handshake_page_data_param import HandshakePageDataParam
-from .block_csrf_page_data_param import BlockCsrfPageDataParam
-from .cookie_disabled_page_data_param import CookieDisabledPageDataParam
-from .javascript_disabled_page_data_param import JavascriptDisabledPageDataParam
+from .waap_block_page_data_param import WaapBlockPageDataParam
+from .waap_captcha_page_data_param import WaapCaptchaPageDataParam
+from .waap_handshake_page_data_param import WaapHandshakePageDataParam
+from .waap_block_csrf_page_data_param import WaapBlockCsrfPageDataParam
+from .waap_cookie_disabled_page_data_param import WaapCookieDisabledPageDataParam
+from .waap_javascript_disabled_page_data_param import WaapJavascriptDisabledPageDataParam
 
 __all__ = ["CustomPageSetCreateParams"]
 
@@ -19,17 +19,17 @@ class CustomPageSetCreateParams(TypedDict, total=False):
     name: Required[str]
     """Name of the custom page set"""
 
-    block: Optional[BlockPageDataParam]
+    block: Optional[WaapBlockPageDataParam]
 
-    block_csrf: Optional[BlockCsrfPageDataParam]
+    block_csrf: Optional[WaapBlockCsrfPageDataParam]
 
-    captcha: Optional[CaptchaPageDataParam]
+    captcha: Optional[WaapCaptchaPageDataParam]
 
-    cookie_disabled: Optional[CookieDisabledPageDataParam]
+    cookie_disabled: Optional[WaapCookieDisabledPageDataParam]
 
     domains: Optional[Iterable[int]]
     """List of domain IDs that are associated with this page set"""
 
-    handshake: Optional[HandshakePageDataParam]
+    handshake: Optional[WaapHandshakePageDataParam]
 
-    javascript_disabled: Optional[JavascriptDisabledPageDataParam]
+    javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam]

@@ -12,6 +12,22 @@ from .tags import (
     TagsResourceWithStreamingResponse,
     AsyncTagsResourceWithStreamingResponse,
 )
+from .clients import (
+    ClientsResource,
+    AsyncClientsResource,
+    ClientsResourceWithRawResponse,
+    AsyncClientsResourceWithRawResponse,
+    ClientsResourceWithStreamingResponse,
+    AsyncClientsResourceWithStreamingResponse,
+)
+from .ip_info import (
+    IPInfoResource,
+    AsyncIPInfoResource,
+    IPInfoResourceWithRawResponse,
+    AsyncIPInfoResourceWithRawResponse,
+    IPInfoResourceWithStreamingResponse,
+    AsyncIPInfoResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
 from .statistics import (
@@ -62,12 +78,16 @@ from .custom_page_sets import (
     CustomPageSetsResourceWithStreamingResponse,
     AsyncCustomPageSetsResourceWithStreamingResponse,
 )
-from ...types.waap.client_info import ClientInfo
+from ...types.waap.waap_get_account_overview_response import WaapGetAccountOverviewResponse
 
 __all__ = ["WaapResource", "AsyncWaapResource"]
 
 
 class WaapResource(SyncAPIResource):
+    @cached_property
+    def clients(self) -> ClientsResource:
+        return ClientsResource(self._client)
+
     @cached_property
     def statistics(self) -> StatisticsResource:
         return StatisticsResource(self._client)
@@ -91,6 +111,10 @@ class WaapResource(SyncAPIResource):
     @cached_property
     def organizations(self) -> OrganizationsResource:
         return OrganizationsResource(self._client)
+
+    @cached_property
+    def ip_info(self) -> IPInfoResource:
+        return IPInfoResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> WaapResourceWithRawResponse:
@@ -120,18 +144,22 @@ class WaapResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientInfo:
+    ) -> WaapGetAccountOverviewResponse:
         """Get information about WAAP service for the client"""
         return self._get(
             "/waap/v1/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ClientInfo,
+            cast_to=WaapGetAccountOverviewResponse,
         )
 
 
 class AsyncWaapResource(AsyncAPIResource):
+    @cached_property
+    def clients(self) -> AsyncClientsResource:
+        return AsyncClientsResource(self._client)
+
     @cached_property
     def statistics(self) -> AsyncStatisticsResource:
         return AsyncStatisticsResource(self._client)
@@ -155,6 +183,10 @@ class AsyncWaapResource(AsyncAPIResource):
     @cached_property
     def organizations(self) -> AsyncOrganizationsResource:
         return AsyncOrganizationsResource(self._client)
+
+    @cached_property
+    def ip_info(self) -> AsyncIPInfoResource:
+        return AsyncIPInfoResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWaapResourceWithRawResponse:
@@ -184,14 +216,14 @@ class AsyncWaapResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientInfo:
+    ) -> WaapGetAccountOverviewResponse:
         """Get information about WAAP service for the client"""
         return await self._get(
             "/waap/v1/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ClientInfo,
+            cast_to=WaapGetAccountOverviewResponse,
         )
 
 
@@ -202,6 +234,10 @@ class WaapResourceWithRawResponse:
         self.get_account_overview = to_raw_response_wrapper(
             waap.get_account_overview,
         )
+
+    @cached_property
+    def clients(self) -> ClientsResourceWithRawResponse:
+        return ClientsResourceWithRawResponse(self._waap.clients)
 
     @cached_property
     def statistics(self) -> StatisticsResourceWithRawResponse:
@@ -227,6 +263,10 @@ class WaapResourceWithRawResponse:
     def organizations(self) -> OrganizationsResourceWithRawResponse:
         return OrganizationsResourceWithRawResponse(self._waap.organizations)
 
+    @cached_property
+    def ip_info(self) -> IPInfoResourceWithRawResponse:
+        return IPInfoResourceWithRawResponse(self._waap.ip_info)
+
 
 class AsyncWaapResourceWithRawResponse:
     def __init__(self, waap: AsyncWaapResource) -> None:
@@ -235,6 +275,10 @@ class AsyncWaapResourceWithRawResponse:
         self.get_account_overview = async_to_raw_response_wrapper(
             waap.get_account_overview,
         )
+
+    @cached_property
+    def clients(self) -> AsyncClientsResourceWithRawResponse:
+        return AsyncClientsResourceWithRawResponse(self._waap.clients)
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithRawResponse:
@@ -260,6 +304,10 @@ class AsyncWaapResourceWithRawResponse:
     def organizations(self) -> AsyncOrganizationsResourceWithRawResponse:
         return AsyncOrganizationsResourceWithRawResponse(self._waap.organizations)
 
+    @cached_property
+    def ip_info(self) -> AsyncIPInfoResourceWithRawResponse:
+        return AsyncIPInfoResourceWithRawResponse(self._waap.ip_info)
+
 
 class WaapResourceWithStreamingResponse:
     def __init__(self, waap: WaapResource) -> None:
@@ -268,6 +316,10 @@ class WaapResourceWithStreamingResponse:
         self.get_account_overview = to_streamed_response_wrapper(
             waap.get_account_overview,
         )
+
+    @cached_property
+    def clients(self) -> ClientsResourceWithStreamingResponse:
+        return ClientsResourceWithStreamingResponse(self._waap.clients)
 
     @cached_property
     def statistics(self) -> StatisticsResourceWithStreamingResponse:
@@ -293,6 +345,10 @@ class WaapResourceWithStreamingResponse:
     def organizations(self) -> OrganizationsResourceWithStreamingResponse:
         return OrganizationsResourceWithStreamingResponse(self._waap.organizations)
 
+    @cached_property
+    def ip_info(self) -> IPInfoResourceWithStreamingResponse:
+        return IPInfoResourceWithStreamingResponse(self._waap.ip_info)
+
 
 class AsyncWaapResourceWithStreamingResponse:
     def __init__(self, waap: AsyncWaapResource) -> None:
@@ -301,6 +357,10 @@ class AsyncWaapResourceWithStreamingResponse:
         self.get_account_overview = async_to_streamed_response_wrapper(
             waap.get_account_overview,
         )
+
+    @cached_property
+    def clients(self) -> AsyncClientsResourceWithStreamingResponse:
+        return AsyncClientsResourceWithStreamingResponse(self._waap.clients)
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithStreamingResponse:
@@ -325,3 +385,7 @@ class AsyncWaapResourceWithStreamingResponse:
     @cached_property
     def organizations(self) -> AsyncOrganizationsResourceWithStreamingResponse:
         return AsyncOrganizationsResourceWithStreamingResponse(self._waap.organizations)
+
+    @cached_property
+    def ip_info(self) -> AsyncIPInfoResourceWithStreamingResponse:
+        return AsyncIPInfoResourceWithStreamingResponse(self._waap.ip_info)

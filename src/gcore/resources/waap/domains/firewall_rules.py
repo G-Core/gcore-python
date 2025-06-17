@@ -18,7 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import CustomerRuleState
+from ....types.waap import WaapCustomerRuleState
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import (
     firewall_rule_list_params,
@@ -26,8 +26,8 @@ from ....types.waap.domains import (
     firewall_rule_update_params,
     firewall_rule_delete_multiple_params,
 )
-from ....types.waap.customer_rule_state import CustomerRuleState
-from ....types.waap.domains.firewall_rule import FirewallRule
+from ....types.waap.waap_firewall_rule import WaapFirewallRule
+from ....types.waap.waap_customer_rule_state import WaapCustomerRuleState
 
 __all__ = ["FirewallRulesResource", "AsyncFirewallRulesResource"]
 
@@ -67,7 +67,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallRule:
+    ) -> WaapFirewallRule:
         """
         Create a firewall rule
 
@@ -107,7 +107,7 @@ class FirewallRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRule,
+            cast_to=WaapFirewallRule,
         )
 
     def update(
@@ -194,7 +194,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[FirewallRule]:
+    ) -> SyncOffsetPage[WaapFirewallRule]:
         """
         Extracts a list of firewall rules assigned to a domain, offering filter,
         ordering, and pagination capabilities
@@ -226,7 +226,7 @@ class FirewallRulesResource(SyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/firewall-rules",
-            page=SyncOffsetPage[FirewallRule],
+            page=SyncOffsetPage[WaapFirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,7 +245,7 @@ class FirewallRulesResource(SyncAPIResource):
                     firewall_rule_list_params.FirewallRuleListParams,
                 ),
             ),
-            model=FirewallRule,
+            model=WaapFirewallRule,
         )
 
     def delete(
@@ -336,7 +336,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallRule:
+    ) -> WaapFirewallRule:
         """
         Extracts a specific firewall rule assigned to a domain
 
@@ -358,12 +358,12 @@ class FirewallRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRule,
+            cast_to=WaapFirewallRule,
         )
 
     def toggle(
         self,
-        action: CustomerRuleState,
+        action: WaapCustomerRuleState,
         *,
         domain_id: int,
         rule_id: int,
@@ -439,7 +439,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallRule:
+    ) -> WaapFirewallRule:
         """
         Create a firewall rule
 
@@ -479,7 +479,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRule,
+            cast_to=WaapFirewallRule,
         )
 
     async def update(
@@ -566,7 +566,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[FirewallRule, AsyncOffsetPage[FirewallRule]]:
+    ) -> AsyncPaginator[WaapFirewallRule, AsyncOffsetPage[WaapFirewallRule]]:
         """
         Extracts a list of firewall rules assigned to a domain, offering filter,
         ordering, and pagination capabilities
@@ -598,7 +598,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/firewall-rules",
-            page=AsyncOffsetPage[FirewallRule],
+            page=AsyncOffsetPage[WaapFirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -617,7 +617,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
                     firewall_rule_list_params.FirewallRuleListParams,
                 ),
             ),
-            model=FirewallRule,
+            model=WaapFirewallRule,
         )
 
     async def delete(
@@ -708,7 +708,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallRule:
+    ) -> WaapFirewallRule:
         """
         Extracts a specific firewall rule assigned to a domain
 
@@ -730,12 +730,12 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRule,
+            cast_to=WaapFirewallRule,
         )
 
     async def toggle(
         self,
-        action: CustomerRuleState,
+        action: WaapCustomerRuleState,
         *,
         domain_id: int,
         rule_id: int,

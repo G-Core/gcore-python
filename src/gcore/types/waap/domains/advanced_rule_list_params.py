@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-from ..rule_action_type import RuleActionType
+from ..waap_rule_action_type import WaapRuleActionType
 
 __all__ = ["AdvancedRuleListParams"]
 
 
 class AdvancedRuleListParams(TypedDict, total=False):
-    action: RuleActionType
+    action: WaapRuleActionType
     """Filter to refine results by specific actions"""
 
     description: str
