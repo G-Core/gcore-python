@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.3.0 (2025-06-17)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/G-Core/gcore-python/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** aggregated API specs update ([cc09f05](https://github.com/G-Core/gcore-python/commit/cc09f0514d7fdaf4be53bc0a9c6c83bc51d15c8e))
+* **api:** aggregated API specs update ([bb1cd39](https://github.com/G-Core/gcore-python/commit/bb1cd39ca5b0fe5fdcaa27cc7c4010652ec63bd7))
+* **api:** manual upload of aggregated API specs ([5cc5748](https://github.com/G-Core/gcore-python/commit/5cc5748cd293cf9fc82b869300942ebc185acba4))
+* **api:** manual upload of aggregated API specs ([bcb9528](https://github.com/G-Core/gcore-python/commit/bcb9528ac00d87793c1482fbae29ccad530d98d1))
+* **client:** add follow_redirects request option ([5e174cd](https://github.com/G-Core/gcore-python/commit/5e174cd6d8b9ff289e41470876e6fa606b577d9d))
+* **cloud:** add file shares examples ([861ee72](https://github.com/G-Core/gcore-python/commit/861ee72d59ab0a6b5ce30fb3d3d1c1e8827c3dc8))
+* **cloud:** add quotas examples ([353fe46](https://github.com/G-Core/gcore-python/commit/353fe4673252ae21c30d35217b2a8431ff23f1dc))
+* **waap:** add domain analytics, api_paths, insights and insight_silences; and ip_info ([5bf944d](https://github.com/G-Core/gcore-python/commit/5bf944dcb78eb969dc6d0cca2fcec60cf8ad29d4))
+* **waap:** add domain custom, firewall and advanced rules; custom page sets, advanced rules and tags ([c87c991](https://github.com/G-Core/gcore-python/commit/c87c99120593ce8fbc4ad6c17cdafee26980261b))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([4266555](https://github.com/G-Core/gcore-python/commit/42665557859017c7978aa9bae5e0e9f4f86369f9))
+
+
+### Chores
+
+* **change-detection:** filter newly generated files ([6afae28](https://github.com/G-Core/gcore-python/commit/6afae286af9d73e8c709761bcdb204aecf0b1fd8))
+* **ci:** enable for pull requests ([dc1b8d6](https://github.com/G-Core/gcore-python/commit/dc1b8d60856032734dbd4fc398de8dacdc0d1005))
+* **cloud:** fix lint ([47beba7](https://github.com/G-Core/gcore-python/commit/47beba75971064ab94d8741f4d1c676850700021))
+* **docs:** remove reference to rye shell ([46c6ddf](https://github.com/G-Core/gcore-python/commit/46c6ddf669a7e9ee58e6629455c3d83029bee626))
+* **internal:** update conftest.py ([dc9134b](https://github.com/G-Core/gcore-python/commit/dc9134b3ea02980aea2cdcde0775c0ad19101ef5))
+* **tests:** add tests for httpx client instantiation & proxies ([d5913dd](https://github.com/G-Core/gcore-python/commit/d5913dde70db8a76542e48af5bcc62a14c2c52a4))
+* **tests:** run tests in parallel ([b73e6f9](https://github.com/G-Core/gcore-python/commit/b73e6f906e21e58993645e7060dead8edaf2b6cd))
+
 ## 0.2.0 (2025-05-30)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/G-Core/gcore-python/compare/v0.1.0...v0.2.0)
