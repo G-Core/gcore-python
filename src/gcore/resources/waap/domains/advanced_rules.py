@@ -18,12 +18,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import RuleActionType, CustomerRuleState
+from ....types.waap import WaapRuleActionType, WaapCustomerRuleState
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import advanced_rule_list_params, advanced_rule_create_params, advanced_rule_update_params
-from ....types.waap.rule_action_type import RuleActionType
-from ....types.waap.customer_rule_state import CustomerRuleState
-from ....types.waap.domains.advanced_rule import AdvancedRule
+from ....types.waap.waap_advanced_rule import WaapAdvancedRule
+from ....types.waap.waap_rule_action_type import WaapRuleActionType
+from ....types.waap.waap_customer_rule_state import WaapCustomerRuleState
 
 __all__ = ["AdvancedRulesResource", "AsyncAdvancedRulesResource"]
 
@@ -64,7 +64,7 @@ class AdvancedRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AdvancedRule:
+    ) -> WaapAdvancedRule:
         """
         Create an advanced rule
 
@@ -115,7 +115,7 @@ class AdvancedRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRule,
+            cast_to=WaapAdvancedRule,
         )
 
     def update(
@@ -196,7 +196,7 @@ class AdvancedRulesResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: RuleActionType | NotGiven = NOT_GIVEN,
+        action: WaapRuleActionType | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -226,7 +226,7 @@ class AdvancedRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[AdvancedRule]:
+    ) -> SyncOffsetPage[WaapAdvancedRule]:
         """
         Retrieve a list of advanced rules assigned to a domain, offering filter,
         ordering, and pagination capabilities
@@ -265,7 +265,7 @@ class AdvancedRulesResource(SyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/advanced-rules",
-            page=SyncOffsetPage[AdvancedRule],
+            page=SyncOffsetPage[WaapAdvancedRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -285,7 +285,7 @@ class AdvancedRulesResource(SyncAPIResource):
                     advanced_rule_list_params.AdvancedRuleListParams,
                 ),
             ),
-            model=AdvancedRule,
+            model=WaapAdvancedRule,
         )
 
     def delete(
@@ -336,7 +336,7 @@ class AdvancedRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AdvancedRule:
+    ) -> WaapAdvancedRule:
         """
         Retrieve a specific advanced rule assigned to a domain
 
@@ -358,12 +358,12 @@ class AdvancedRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRule,
+            cast_to=WaapAdvancedRule,
         )
 
     def toggle(
         self,
-        action: CustomerRuleState,
+        action: WaapCustomerRuleState,
         *,
         domain_id: int,
         rule_id: int,
@@ -440,7 +440,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AdvancedRule:
+    ) -> WaapAdvancedRule:
         """
         Create an advanced rule
 
@@ -491,7 +491,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRule,
+            cast_to=WaapAdvancedRule,
         )
 
     async def update(
@@ -572,7 +572,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: RuleActionType | NotGiven = NOT_GIVEN,
+        action: WaapRuleActionType | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -602,7 +602,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AdvancedRule, AsyncOffsetPage[AdvancedRule]]:
+    ) -> AsyncPaginator[WaapAdvancedRule, AsyncOffsetPage[WaapAdvancedRule]]:
         """
         Retrieve a list of advanced rules assigned to a domain, offering filter,
         ordering, and pagination capabilities
@@ -641,7 +641,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/advanced-rules",
-            page=AsyncOffsetPage[AdvancedRule],
+            page=AsyncOffsetPage[WaapAdvancedRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -661,7 +661,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
                     advanced_rule_list_params.AdvancedRuleListParams,
                 ),
             ),
-            model=AdvancedRule,
+            model=WaapAdvancedRule,
         )
 
     async def delete(
@@ -712,7 +712,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AdvancedRule:
+    ) -> WaapAdvancedRule:
         """
         Retrieve a specific advanced rule assigned to a domain
 
@@ -734,12 +734,12 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRule,
+            cast_to=WaapAdvancedRule,
         )
 
     async def toggle(
         self,
-        action: CustomerRuleState,
+        action: WaapCustomerRuleState,
         *,
         domain_id: int,
         rule_id: int,

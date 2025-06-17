@@ -20,7 +20,7 @@ from ..._response import (
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.waap import organization_list_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.waap.organization import Organization
+from ...types.waap.waap_organization import WaapOrganization
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
@@ -58,7 +58,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[Organization]:
+    ) -> SyncOffsetPage[WaapOrganization]:
         """
         This endpoint retrieves a list of network organizations that own IP ranges as
         identified by the Whois service.It supports pagination, filtering based on
@@ -83,7 +83,7 @@ class OrganizationsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/waap/v1/organizations",
-            page=SyncOffsetPage[Organization],
+            page=SyncOffsetPage[WaapOrganization],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -99,7 +99,7 @@ class OrganizationsResource(SyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            model=Organization,
+            model=WaapOrganization,
         )
 
 
@@ -136,7 +136,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Organization, AsyncOffsetPage[Organization]]:
+    ) -> AsyncPaginator[WaapOrganization, AsyncOffsetPage[WaapOrganization]]:
         """
         This endpoint retrieves a list of network organizations that own IP ranges as
         identified by the Whois service.It supports pagination, filtering based on
@@ -161,7 +161,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/waap/v1/organizations",
-            page=AsyncOffsetPage[Organization],
+            page=AsyncOffsetPage[WaapOrganization],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -177,7 +177,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            model=Organization,
+            model=WaapOrganization,
         )
 
 

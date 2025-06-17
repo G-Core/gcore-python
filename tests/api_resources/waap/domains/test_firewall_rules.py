@@ -10,9 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.waap.domains import (
-    FirewallRule,
-)
+from gcore.types.waap import WaapFirewallRule
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +27,7 @@ class TestFirewallRules:
             enabled=True,
             name="name",
         )
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -59,7 +57,7 @@ class TestFirewallRules:
             name="name",
             description="description",
         )
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -74,7 +72,7 @@ class TestFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = response.parse()
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -89,7 +87,7 @@ class TestFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = response.parse()
-            assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+            assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -163,7 +161,7 @@ class TestFirewallRules:
         firewall_rule = client.waap.domains.firewall_rules.list(
             domain_id=0,
         )
-        assert_matches_type(SyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -177,7 +175,7 @@ class TestFirewallRules:
             offset=0,
             ordering="-id",
         )
-        assert_matches_type(SyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -188,7 +186,7 @@ class TestFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = response.parse()
-        assert_matches_type(SyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -199,7 +197,7 @@ class TestFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = response.parse()
-            assert_matches_type(SyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+            assert_matches_type(SyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -277,7 +275,7 @@ class TestFirewallRules:
             rule_id=0,
             domain_id=0,
         )
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -289,7 +287,7 @@ class TestFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = response.parse()
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -301,7 +299,7 @@ class TestFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = response.parse()
-            assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+            assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -355,7 +353,7 @@ class TestAsyncFirewallRules:
             enabled=True,
             name="name",
         )
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -385,7 +383,7 @@ class TestAsyncFirewallRules:
             name="name",
             description="description",
         )
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -400,7 +398,7 @@ class TestAsyncFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = await response.parse()
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -415,7 +413,7 @@ class TestAsyncFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = await response.parse()
-            assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+            assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -489,7 +487,7 @@ class TestAsyncFirewallRules:
         firewall_rule = await async_client.waap.domains.firewall_rules.list(
             domain_id=0,
         )
-        assert_matches_type(AsyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -503,7 +501,7 @@ class TestAsyncFirewallRules:
             offset=0,
             ordering="-id",
         )
-        assert_matches_type(AsyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -514,7 +512,7 @@ class TestAsyncFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = await response.parse()
-        assert_matches_type(AsyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -525,7 +523,7 @@ class TestAsyncFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = await response.parse()
-            assert_matches_type(AsyncOffsetPage[FirewallRule], firewall_rule, path=["response"])
+            assert_matches_type(AsyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -603,7 +601,7 @@ class TestAsyncFirewallRules:
             rule_id=0,
             domain_id=0,
         )
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -615,7 +613,7 @@ class TestAsyncFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = await response.parse()
-        assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+        assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -627,7 +625,7 @@ class TestAsyncFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = await response.parse()
-            assert_matches_type(FirewallRule, firewall_rule, path=["response"])
+            assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

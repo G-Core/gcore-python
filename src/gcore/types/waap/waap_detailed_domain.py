@@ -4,10 +4,17 @@ from typing import Dict, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .quota_item import QuotaItem
 from .waap_domain_status import WaapDomainStatus
 
-__all__ = ["WaapDetailedDomain"]
+__all__ = ["WaapDetailedDomain", "Quotas"]
+
+
+class Quotas(BaseModel):
+    allowed: int
+    """The maximum allowed number of this resource"""
+
+    current: int
+    """The current number of this resource"""
 
 
 class WaapDetailedDomain(BaseModel):
@@ -26,5 +33,5 @@ class WaapDetailedDomain(BaseModel):
     status: WaapDomainStatus
     """The different statuses a domain can have"""
 
-    quotas: Optional[Dict[str, QuotaItem]] = None
+    quotas: Optional[Dict[str, Quotas]] = None
     """Domain level quotas"""

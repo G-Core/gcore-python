@@ -20,7 +20,7 @@ from ..._response import (
 )
 from ...types.waap import statistic_get_usage_series_params
 from ..._base_client import make_request_options
-from ...types.waap.statistics_series import StatisticsSeries
+from ...types.waap.waap_statistics_series import WaapStatisticsSeries
 
 __all__ = ["StatisticsResource", "AsyncStatisticsResource"]
 
@@ -58,7 +58,7 @@ class StatisticsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatisticsSeries:
+    ) -> WaapStatisticsSeries:
         """Retrieve statistics data as a time series.
 
         The `from` and `to` parameters are
@@ -103,7 +103,7 @@ class StatisticsResource(SyncAPIResource):
                     statistic_get_usage_series_params.StatisticGetUsageSeriesParams,
                 ),
             ),
-            cast_to=StatisticsSeries,
+            cast_to=WaapStatisticsSeries,
         )
 
 
@@ -140,7 +140,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatisticsSeries:
+    ) -> WaapStatisticsSeries:
         """Retrieve statistics data as a time series.
 
         The `from` and `to` parameters are
@@ -185,7 +185,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     statistic_get_usage_series_params.StatisticGetUsageSeriesParams,
                 ),
             ),
-            cast_to=StatisticsSeries,
+            cast_to=WaapStatisticsSeries,
         )
 
 

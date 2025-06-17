@@ -20,7 +20,7 @@ from ..._response import (
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.waap import tag_list_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.waap.tag import Tag
+from ...types.waap.waap_tag import WaapTag
 
 __all__ = ["TagsResource", "AsyncTagsResource"]
 
@@ -61,7 +61,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[Tag]:
+    ) -> SyncOffsetPage[WaapTag]:
         """
         Tags are shortcuts for the rules used in WAAP policies for the creation of more
         complex WAAP rules
@@ -89,7 +89,7 @@ class TagsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/waap/v1/tags",
-            page=SyncOffsetPage[Tag],
+            page=SyncOffsetPage[WaapTag],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -107,7 +107,7 @@ class TagsResource(SyncAPIResource):
                     tag_list_params.TagListParams,
                 ),
             ),
-            model=Tag,
+            model=WaapTag,
         )
 
 
@@ -147,7 +147,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Tag, AsyncOffsetPage[Tag]]:
+    ) -> AsyncPaginator[WaapTag, AsyncOffsetPage[WaapTag]]:
         """
         Tags are shortcuts for the rules used in WAAP policies for the creation of more
         complex WAAP rules
@@ -175,7 +175,7 @@ class AsyncTagsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/waap/v1/tags",
-            page=AsyncOffsetPage[Tag],
+            page=AsyncOffsetPage[WaapTag],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +193,7 @@ class AsyncTagsResource(AsyncAPIResource):
                     tag_list_params.TagListParams,
                 ),
             ),
-            model=Tag,
+            model=WaapTag,
         )
 
 
