@@ -4,6 +4,10 @@ from gcore import Gcore
 from gcore.types.cloud import IPRanges
 
 
+def main() -> None:
+    list_all_ip_ranges()
+
+
 def list_all_ip_ranges() -> IPRanges:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
@@ -17,4 +21,4 @@ def list_all_ip_ranges() -> IPRanges:
 
 
 if __name__ == "__main__":
-    list_all_ip_ranges()
+    main()

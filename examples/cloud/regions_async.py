@@ -6,6 +6,12 @@ from gcore.pagination import AsyncOffsetPage
 from gcore.types.cloud import Region
 
 
+async def main() -> None:
+    await get_region_by_id()
+    await list_all_regions()
+    await list_regions_with_filters()
+
+
 async def get_region_by_id() -> Region:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"))
@@ -42,12 +48,6 @@ async def list_regions_with_filters() -> AsyncOffsetPage[Region]:
         count += 1
     print("=================================")
     return filtered_regions
-
-
-async def main() -> None:
-    await get_region_by_id()
-    await list_all_regions()
-    await list_regions_with_filters()
 
 
 if __name__ == "__main__":

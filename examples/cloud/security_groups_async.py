@@ -22,9 +22,7 @@ async def main() -> None:
 
 async def create_security_group(client: AsyncGcore) -> str:
     print("\n=== CREATE SECURITY GROUP ===")
-    security_group = await client.cloud.security_groups.create(
-        security_group=SecurityGroup(name="gcore-go-example")
-    )
+    security_group = await client.cloud.security_groups.create(security_group=SecurityGroup(name="gcore-go-example"))
     print(f"Created security group: ID={security_group.id}, name={security_group.name}")
     print("========================")
     return security_group.id
@@ -59,13 +57,11 @@ async def update_security_group(*, client: AsyncGcore, security_group_id: str) -
     print("========================")
 
 
-
 async def delete_security_group(*, client: AsyncGcore, security_group_id: str) -> None:
     print("\n=== DELETE SECURITY GROUP ===")
     await client.cloud.security_groups.delete(group_id=security_group_id)
     print(f"Deleted security group: ID={security_group_id}")
     print("========================")
-# Security Group Rules functions
 
 
 async def create_security_group_rule(*, client: AsyncGcore, security_group_id: str) -> str:

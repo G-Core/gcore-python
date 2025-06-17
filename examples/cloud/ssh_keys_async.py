@@ -6,6 +6,15 @@ from gcore.pagination import AsyncOffsetPage
 from gcore.types.cloud import SSHKey, SSHKeyCreated
 
 
+async def main() -> None:
+    # Follow the order: create, list, get, update, delete
+    new_ssh_key = await create_new_ssh_key()
+    await list_all_ssh_keys()
+    await get_ssh_key_by_id(new_ssh_key.id)
+    await update_ssh_key(ssh_key_id=new_ssh_key.id)
+    await delete_ssh_key(ssh_key_id=new_ssh_key.id)
+
+
 async def get_ssh_key_by_id(ssh_key_id: str) -> SSHKey:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
@@ -60,15 +69,6 @@ async def delete_ssh_key(ssh_key_id: str) -> None:
     print("\n=== DELETE SSH KEY ===")
     print(f"SSH Key ID: {ssh_key_id} has been deleted")
     print("=======================")
-
-
-async def main() -> None:
-    # Follow the order: create, list, get, update, delete
-    new_ssh_key = await create_new_ssh_key()
-    await list_all_ssh_keys()
-    await get_ssh_key_by_id(new_ssh_key.id)
-    await update_ssh_key(ssh_key_id=new_ssh_key.id)
-    await delete_ssh_key(ssh_key_id=new_ssh_key.id)
 
 
 if __name__ == "__main__":

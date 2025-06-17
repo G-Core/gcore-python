@@ -4,6 +4,22 @@ import asyncio
 from gcore import AsyncGcore
 
 
+async def main() -> None:
+    instance_id = os.environ["GCORE_CLOUD_INSTANCE_ID"]
+
+    gcore = AsyncGcore()
+
+    volume_id = await create_volume(client=gcore)
+    await list_volumes(client=gcore)
+    await get_volume(client=gcore, volume_id=volume_id)
+    await update_volume(client=gcore, volume_id=volume_id)
+    await attach_to_instance(client=gcore, volume_id=volume_id, instance_id=instance_id)
+    await detach_from_instance(client=gcore, volume_id=volume_id, instance_id=instance_id)
+    await change_type(client=gcore, volume_id=volume_id)
+    await resize(client=gcore, volume_id=volume_id)
+    await delete_volume(client=gcore, volume_id=volume_id)
+
+
 async def create_volume(*, client: AsyncGcore) -> str:
     print("\n=== CREATE VOLUME ===")
     response = await client.cloud.volumes.create(
@@ -87,22 +103,6 @@ async def delete_volume(*, client: AsyncGcore, volume_id: str) -> None:
     await client.cloud.tasks.poll(task_id=task_id)
     print(f"Deleted volume: ID={volume_id}")
     print("========================")
-
-
-async def main() -> None:
-    instance_id = os.environ["GCORE_CLOUD_INSTANCE_ID"]
-
-    gcore = AsyncGcore()
-
-    volume_id = await create_volume(client=gcore)
-    await list_volumes(client=gcore)
-    await get_volume(client=gcore, volume_id=volume_id)
-    await update_volume(client=gcore, volume_id=volume_id)
-    await attach_to_instance(client=gcore, volume_id=volume_id, instance_id=instance_id)
-    await detach_from_instance(client=gcore, volume_id=volume_id, instance_id=instance_id)
-    await change_type(client=gcore, volume_id=volume_id)
-    await resize(client=gcore, volume_id=volume_id)
-    await delete_volume(client=gcore, volume_id=volume_id)
 
 
 if __name__ == "__main__":

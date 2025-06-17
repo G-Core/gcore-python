@@ -5,6 +5,10 @@ from gcore import AsyncGcore
 from gcore.types.cloud import IPRanges
 
 
+async def main() -> None:
+    await list_all_ip_ranges()
+
+
 async def list_all_ip_ranges() -> IPRanges:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
@@ -17,10 +21,6 @@ async def list_all_ip_ranges() -> IPRanges:
         count += 1
     print("===========================")
     return all_ip_ranges
-
-
-async def main() -> None:
-    await list_all_ip_ranges()
 
 
 if __name__ == "__main__":

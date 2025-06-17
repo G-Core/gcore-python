@@ -5,6 +5,12 @@ from gcore.pagination import SyncOffsetPage
 from gcore.types.cloud import Region
 
 
+def main() -> None:
+    get_region_by_id()
+    list_all_regions()
+    list_regions_with_filters()
+
+
 def get_region_by_id() -> Region:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"))
@@ -40,6 +46,4 @@ def list_regions_with_filters() -> SyncOffsetPage[Region]:
 
 
 if __name__ == "__main__":
-    get_region_by_id()
-    list_all_regions()
-    list_regions_with_filters()
+    main()

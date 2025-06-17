@@ -9,6 +9,13 @@ from gcore.types.cloud import (
 from gcore.types.cloud.secret_upload_tls_certificate_params import Payload
 
 
+async def main() -> None:
+    cert = await upload_tls_cert()
+    await get_secret_by_id(cert.id)
+    await list_all_secrets()
+    await delete_secret(cert.id)
+
+
 async def upload_tls_cert() -> Secret:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"))
@@ -71,13 +78,6 @@ async def delete_secret(secret_id: str) -> None:
     print("\n=== DELETE SECRET ===")
     print(f"Secret deleted successfully: {secret_id}")
     print("=====================")
-
-
-async def main() -> None:
-    cert = await upload_tls_cert()
-    await get_secret_by_id(cert.id)
-    await list_all_secrets()
-    await delete_secret(cert.id)
 
 
 if __name__ == "__main__":

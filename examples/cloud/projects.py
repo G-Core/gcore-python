@@ -5,6 +5,14 @@ from gcore.pagination import SyncOffsetPage
 from gcore.types.cloud import Project
 
 
+def main() -> None:
+    new_project = create_new_project()
+    list_all_projects()
+    get_project_by_id()
+    update_project(project_id=new_project.id)
+    delete_project(project_id=new_project.id)
+
+
 def get_project_by_id() -> Project:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
@@ -63,9 +71,4 @@ def delete_project(project_id: int) -> None:
 
 
 if __name__ == "__main__":
-    # Follow the order: create, list, get, delete
-    new_project = create_new_project()
-    list_all_projects()
-    get_project_by_id()
-    update_project(project_id=new_project.id)
-    delete_project(project_id=new_project.id)
+    main()

@@ -4,6 +4,26 @@ from gcore import Gcore
 from gcore.types.cloud.file_share_create_params import CreateStandardFileShareSerializerNetwork
 
 
+def main() -> None:
+    # TODO set cloud network ID before running
+    cloud_network_id = os.environ["GCORE_CLOUD_NETWORK_ID"]
+
+    gcore = Gcore(timeout=180.0)
+
+    fs_id = create_file_share(client=gcore, network_id=cloud_network_id)
+    list_file_shares(client=gcore)
+    get_file_share(client=gcore, file_share_id=fs_id)
+    update_file_share(client=gcore, file_share_id=fs_id)
+    resize_file_share(client=gcore, file_share_id=fs_id)
+
+    # Access rules
+    access_rule_id = create_file_share_access_rule(client=gcore, file_share_id=fs_id)
+    list_file_share_access_rules(client=gcore, file_share_id=fs_id)
+    delete_file_share_access_rule(client=gcore, file_share_id=fs_id, access_rule_id=access_rule_id)
+
+    delete_file_share(client=gcore, file_share_id=fs_id)
+
+
 def create_file_share(*, client: Gcore, network_id: str) -> str:
     print("\n=== CREATE FILE SHARE ===")
     response = client.cloud.file_shares.create(
@@ -99,20 +119,4 @@ def delete_file_share_access_rule(*, client: Gcore, file_share_id: str, access_r
 
 
 if __name__ == "__main__":
-    # TODO set cloud network ID before running
-    cloud_network_id = os.environ["GCORE_CLOUD_NETWORK_ID"]
-
-    gcore = Gcore(timeout=180.0)
-
-    fs_id = create_file_share(client=gcore, network_id=cloud_network_id)
-    list_file_shares(client=gcore)
-    get_file_share(client=gcore, file_share_id=fs_id)
-    update_file_share(client=gcore, file_share_id=fs_id)
-    resize_file_share(client=gcore, file_share_id=fs_id)
-
-    # Access rules
-    access_rule_id = create_file_share_access_rule(client=gcore, file_share_id=fs_id)
-    list_file_share_access_rules(client=gcore, file_share_id=fs_id)
-    delete_file_share_access_rule(client=gcore, file_share_id=fs_id, access_rule_id=access_rule_id)
-
-    delete_file_share(client=gcore, file_share_id=fs_id)
+    main()

@@ -70,7 +70,7 @@ def delete_reserved_fixed_ip(*, client: Gcore, port_id: str) -> None:
     print("========================")
 
 
-if __name__ == "__main__":
+def main() -> None:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     # api_key = os.environ.get("GCORE_API_KEY")
     # Will use Production API URL if omitted
@@ -93,3 +93,7 @@ if __name__ == "__main__":
     toggle_reserved_fixed_ip_vip(client=gcore, port_id=fixed_ip.port_id, is_vip=False)
 
     delete_reserved_fixed_ip(client=gcore, port_id=fixed_ip.port_id)
+
+
+if __name__ == "__main__":
+    main()

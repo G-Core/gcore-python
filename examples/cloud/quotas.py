@@ -7,6 +7,16 @@ from gcore.types.cloud.quota_get_global_response import QuotaGetGlobalResponse
 from gcore.types.cloud.quota_get_by_region_response import QuotaGetByRegionResponse
 
 
+def main() -> None:
+    gcore_client_id = int(os.environ["GCORE_CLIENT_ID"])
+
+    gcore = Gcore()
+
+    get_all_quotas(client=gcore)
+    get_regional_quotas(client=gcore, client_id=gcore_client_id)
+    get_global_quotas(client=gcore, client_id=gcore_client_id)
+
+
 def get_all_quotas(*, client: Gcore) -> None:
     print("\n=== GET ALL QUOTAS ===")
     all_quotas = client.cloud.quotas.get_all()
@@ -74,10 +84,4 @@ def _print_truncated_fields(fields: "list[tuple[str, Any]]", *, display_limit: i
 
 
 if __name__ == "__main__":
-    gcore_client_id = int(os.environ["GCORE_CLIENT_ID"])
-
-    gcore = Gcore()
-
-    get_all_quotas(client=gcore)
-    get_regional_quotas(client=gcore, client_id=gcore_client_id)
-    get_global_quotas(client=gcore, client_id=gcore_client_id)
+    main()

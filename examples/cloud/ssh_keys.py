@@ -5,6 +5,15 @@ from gcore.pagination import SyncOffsetPage
 from gcore.types.cloud import SSHKey, SSHKeyCreated
 
 
+def main() -> None:
+    # Follow the order: create, list, get, update, delete
+    new_ssh_key = create_new_ssh_key()
+    list_all_ssh_keys()
+    get_ssh_key_by_id(new_ssh_key.id)
+    update_ssh_key(ssh_key_id=new_ssh_key.id)
+    delete_ssh_key(ssh_key_id=new_ssh_key.id)
+
+
 def get_ssh_key_by_id(ssh_key_id: str) -> SSHKey:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
@@ -59,9 +68,4 @@ def delete_ssh_key(ssh_key_id: str) -> None:
 
 
 if __name__ == "__main__":
-    # Follow the order: create, list, get, update, delete
-    new_ssh_key = create_new_ssh_key()
-    list_all_ssh_keys()
-    get_ssh_key_by_id(new_ssh_key.id)
-    update_ssh_key(ssh_key_id=new_ssh_key.id)
-    delete_ssh_key(ssh_key_id=new_ssh_key.id)
+    main()

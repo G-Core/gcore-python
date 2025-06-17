@@ -8,6 +8,16 @@ from gcore.types.cloud.quota_get_global_response import QuotaGetGlobalResponse
 from gcore.types.cloud.quota_get_by_region_response import QuotaGetByRegionResponse
 
 
+async def main() -> None:
+    gcore_client_id = int(os.environ["GCORE_CLIENT_ID"])
+
+    gcore = AsyncGcore()
+
+    await get_all_quotas(client=gcore)
+    await get_regional_quotas(client=gcore, client_id=gcore_client_id)
+    await get_global_quotas(client=gcore, client_id=gcore_client_id)
+
+
 async def get_all_quotas(*, client: AsyncGcore) -> None:
     print("\n=== GET ALL QUOTAS ===")
     all_quotas = await client.cloud.quotas.get_all()
@@ -72,16 +82,6 @@ def _print_truncated_fields(fields: "list[tuple[str, Any]]", *, display_limit: i
 
     if len(fields) > display_count:
         print(f"{indent}... and {len(fields) - display_count} more quota fields")
-
-
-async def main() -> None:
-    gcore_client_id = int(os.environ["GCORE_CLIENT_ID"])
-
-    gcore = AsyncGcore()
-
-    await get_all_quotas(client=gcore)
-    await get_regional_quotas(client=gcore, client_id=gcore_client_id)
-    await get_global_quotas(client=gcore, client_id=gcore_client_id)
 
 
 if __name__ == "__main__":

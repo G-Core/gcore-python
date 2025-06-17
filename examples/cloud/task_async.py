@@ -9,6 +9,11 @@ from gcore.pagination import AsyncOffsetPage
 from gcore.types.cloud import Task
 
 
+async def main() -> None:
+    await get_task_by_id()
+    await list_tasks()
+
+
 async def list_tasks() -> Optional[AsyncOffsetPage[Task]]:
     """Demonstrates listing all tasks for a project and region asynchronously."""
     # The API key is read automatically from the GCORE_API_KEY environment variable if omitted
@@ -80,11 +85,6 @@ async def get_task_by_id() -> Optional[Task]:
 
     print("=======================================")
     return task
-
-
-async def main() -> None:
-    await get_task_by_id()
-    await list_tasks()
 
 
 if __name__ == "__main__":

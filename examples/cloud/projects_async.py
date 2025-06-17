@@ -6,6 +6,14 @@ from gcore.pagination import AsyncOffsetPage
 from gcore.types.cloud import Project
 
 
+async def main() -> None:
+    new_project = await create_new_project()
+    await list_all_projects()
+    await get_project_by_id()
+    await update_project(project_id=new_project.id)
+    await delete_project(project_id=new_project.id)
+
+
 async def get_project_by_id() -> Project:
     # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
     gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
@@ -63,15 +71,6 @@ async def delete_project(project_id: int) -> None:
     print("\n=== DELETE PROJECT ===")
     print(f"Project ID: {project_id} has been deleted")
     print("=======================")
-
-
-async def main() -> None:
-    # Follow the order: create, list, get, update, delete
-    new_project = await create_new_project()
-    await list_all_projects()
-    await get_project_by_id()
-    await update_project(project_id=new_project.id)
-    await delete_project(project_id=new_project.id)
 
 
 if __name__ == "__main__":

@@ -8,6 +8,11 @@ from gcore.pagination import SyncOffsetPage
 from gcore.types.cloud import Task
 
 
+def main() -> None:
+    get_task_by_id()
+    list_tasks()
+
+
 def list_tasks() -> Optional[SyncOffsetPage[Task]]:
     """Demonstrates listing all tasks for a project and region."""
     # The API key is read automatically from the GCORE_API_KEY environment variable if omitted
@@ -82,5 +87,4 @@ def get_task_by_id() -> Optional[Task]:
 
 
 if __name__ == "__main__":
-    get_task_by_id()
-    list_tasks()
+    main()
