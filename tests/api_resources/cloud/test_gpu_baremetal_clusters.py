@@ -60,7 +60,7 @@ class TestGPUBaremetalClusters:
             instances_count=1,
             password="password",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )
@@ -506,7 +506,7 @@ class TestAsyncGPUBaremetalClusters:
             instances_count=1,
             password="password",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )

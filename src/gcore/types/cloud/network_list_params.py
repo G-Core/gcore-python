@@ -18,6 +18,9 @@ class NetworkListParams(TypedDict, total=False):
     limit: int
     """Optional. Limit the number of returned items"""
 
+    name: str
+    """Filter networks by name"""
+
     offset: int
     """Optional.
 

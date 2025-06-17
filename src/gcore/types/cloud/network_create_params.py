@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Literal, Required, TypedDict
-
-from .tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["NetworkCreateParams"]
 
@@ -22,7 +21,7 @@ class NetworkCreateParams(TypedDict, total=False):
     create_router: bool
     """Defaults to True"""
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

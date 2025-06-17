@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import List, Iterable, Optional
 
 import httpx
 
@@ -33,6 +33,7 @@ from ....types.cloud import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.security_group import SecurityGroup
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["SecurityGroupsResource", "AsyncSecurityGroupsResource"]
 
@@ -118,6 +119,7 @@ class SecurityGroupsResource(SyncAPIResource):
         region_id: int | None = None,
         changed_rules: Iterable[security_group_update_params.ChangedRule] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,12 +128,29 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Change security group
+        Update security group
 
         Args:
           changed_rules: List of rules to create or delete
 
           name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -153,6 +172,7 @@ class SecurityGroupsResource(SyncAPIResource):
                 {
                     "changed_rules": changed_rules,
                     "name": name,
+                    "tags": tags,
                 },
                 security_group_update_params.SecurityGroupUpdateParams,
             ),
@@ -469,6 +489,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         region_id: int | None = None,
         changed_rules: Iterable[security_group_update_params.ChangedRule] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -477,12 +498,29 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Change security group
+        Update security group
 
         Args:
           changed_rules: List of rules to create or delete
 
           name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -504,6 +542,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
                 {
                     "changed_rules": changed_rules,
                     "name": name,
+                    "tags": tags,
                 },
                 security_group_update_params.SecurityGroupUpdateParams,
             ),

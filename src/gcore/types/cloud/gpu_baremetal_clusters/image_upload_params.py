@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
-
-from ..tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["ImageUploadParams"]
 
@@ -47,7 +45,7 @@ class ImageUploadParams(TypedDict, total=False):
     ssh_key: Literal["allow", "deny", "required"]
     """Permission to use a ssh key in instances"""
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

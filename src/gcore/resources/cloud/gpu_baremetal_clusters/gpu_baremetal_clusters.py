@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Dict, List, Iterable, Optional
 
 import httpx
 
@@ -58,7 +58,6 @@ from ....types.cloud import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.gpu_baremetal_cluster import GPUBaremetalCluster
 from ....types.cloud.gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList
 
@@ -113,7 +112,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         instances_count: int | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -735,7 +734,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         instances_count: int | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

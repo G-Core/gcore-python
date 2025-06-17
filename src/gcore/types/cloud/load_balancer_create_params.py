@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .http_method import HTTPMethod
@@ -10,7 +10,6 @@ from .lb_algorithm import LbAlgorithm
 from .lb_pool_protocol import LbPoolProtocol
 from .interface_ip_family import InterfaceIPFamily
 from .lb_listener_protocol import LbListenerProtocol
-from .tag_update_map_param import TagUpdateMapParam
 from .lb_health_monitor_type import LbHealthMonitorType
 from .lb_session_persistence_type import LbSessionPersistenceType
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
@@ -66,7 +65,7 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     specification.
     """
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

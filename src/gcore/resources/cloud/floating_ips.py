@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 import httpx
 
@@ -22,7 +22,6 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.floating_ip import FloatingIP
 from ...types.cloud.task_id_list import TaskIDList
 from ...types.cloud.floating_ip_detailed import FloatingIPDetailed
-from ...types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["FloatingIPsResource", "AsyncFloatingIPsResource"]
 
@@ -54,7 +53,7 @@ class FloatingIPsResource(SyncAPIResource):
         region_id: int | None = None,
         fixed_ip_address: Optional[str] | NotGiven = NOT_GIVEN,
         port_id: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -375,7 +374,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         region_id: int | None = None,
         fixed_ip_address: Optional[str] | NotGiven = NOT_GIVEN,
         port_id: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
