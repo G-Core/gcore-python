@@ -514,7 +514,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
-            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")            
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=maybe_transform(
@@ -1136,7 +1136,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
-            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")            
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=await async_maybe_transform(

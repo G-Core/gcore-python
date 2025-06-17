@@ -482,7 +482,7 @@ class ServersResource(SyncAPIResource):
             extra_body=extra_body,
         )
         if not response.tasks:
-            raise ValueError("Expected at least one task to be created")        
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
@@ -500,7 +500,7 @@ class ServersResource(SyncAPIResource):
             raise ValueError(f"Server {server_id} not found")
         return servers.results[0]
 
-    
+
 class AsyncServersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncServersResourceWithRawResponse:
@@ -906,8 +906,8 @@ class AsyncServersResource(AsyncAPIResource):
             extra_body=extra_body,
         )
         if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")        
-        task =await self._client.cloud.tasks.poll(
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
@@ -956,7 +956,7 @@ class AsyncServersResource(AsyncAPIResource):
             extra_body=extra_body,
         )
         if not response.tasks:
-            raise ValueError("Expected at least one task to be created")        
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
@@ -972,7 +972,7 @@ class AsyncServersResource(AsyncAPIResource):
         )
         if len(servers.results) != 1:
             raise ValueError(f"Server {server_id} not found")
-        return servers.results[0]    
+        return servers.results[0]
 
 
 class ServersResourceWithRawResponse:

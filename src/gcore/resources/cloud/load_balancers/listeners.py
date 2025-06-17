@@ -447,7 +447,11 @@ class ListenersResource(SyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.listeners or len(task.created_resources.listeners) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.listeners
+            or len(task.created_resources.listeners) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return self.get(
             listener_id=task.created_resources.listeners[0],
@@ -966,7 +970,11 @@ class AsyncListenersResource(AsyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.listeners or len(task.created_resources.listeners) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.listeners
+            or len(task.created_resources.listeners) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return await self.get(
             listener_id=task.created_resources.listeners[0],
@@ -975,7 +983,7 @@ class AsyncListenersResource(AsyncAPIResource):
             extra_headers=extra_headers,
             timeout=timeout,
         )
-    
+
     async def delete_and_poll(
         self,
         listener_id: str,
@@ -1008,7 +1016,7 @@ class AsyncListenersResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
-        )    
+        )
 
     async def update_and_poll(
         self,
@@ -1068,6 +1076,7 @@ class AsyncListenersResource(AsyncAPIResource):
             extra_headers=extra_headers,
             timeout=timeout,
         )
+
 
 class ListenersResourceWithRawResponse:
     def __init__(self, listeners: ListenersResource) -> None:

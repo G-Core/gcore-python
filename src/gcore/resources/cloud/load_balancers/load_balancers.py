@@ -632,7 +632,11 @@ class LoadBalancersResource(SyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.loadbalancers or len(task.created_resources.loadbalancers) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.loadbalancers
+            or len(task.created_resources.loadbalancers) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return self.get(
             loadbalancer_id=task.created_resources.loadbalancers[0],
@@ -1312,7 +1316,11 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.loadbalancers or len(task.created_resources.loadbalancers) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.loadbalancers
+            or len(task.created_resources.loadbalancers) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return await self.get(
             loadbalancer_id=task.created_resources.loadbalancers[0],
