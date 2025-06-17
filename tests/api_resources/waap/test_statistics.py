@@ -10,7 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore._utils import parse_datetime
-from gcore.types.waap import StatisticsSeries
+from gcore.types.waap import WaapStatisticsSeries
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +26,7 @@ class TestStatistics:
             metrics=["total_bytes"],
             to=parse_datetime("2024-12-14T12:00:00Z"),
         )
-        assert_matches_type(StatisticsSeries, statistic, path=["response"])
+        assert_matches_type(WaapStatisticsSeries, statistic, path=["response"])
 
     @parametrize
     def test_raw_response_get_usage_series(self, client: Gcore) -> None:
@@ -40,7 +40,7 @@ class TestStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = response.parse()
-        assert_matches_type(StatisticsSeries, statistic, path=["response"])
+        assert_matches_type(WaapStatisticsSeries, statistic, path=["response"])
 
     @parametrize
     def test_streaming_response_get_usage_series(self, client: Gcore) -> None:
@@ -54,7 +54,7 @@ class TestStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = response.parse()
-            assert_matches_type(StatisticsSeries, statistic, path=["response"])
+            assert_matches_type(WaapStatisticsSeries, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +70,7 @@ class TestAsyncStatistics:
             metrics=["total_bytes"],
             to=parse_datetime("2024-12-14T12:00:00Z"),
         )
-        assert_matches_type(StatisticsSeries, statistic, path=["response"])
+        assert_matches_type(WaapStatisticsSeries, statistic, path=["response"])
 
     @parametrize
     async def test_raw_response_get_usage_series(self, async_client: AsyncGcore) -> None:
@@ -84,7 +84,7 @@ class TestAsyncStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = await response.parse()
-        assert_matches_type(StatisticsSeries, statistic, path=["response"])
+        assert_matches_type(WaapStatisticsSeries, statistic, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_usage_series(self, async_client: AsyncGcore) -> None:
@@ -98,6 +98,6 @@ class TestAsyncStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = await response.parse()
-            assert_matches_type(StatisticsSeries, statistic, path=["response"])
+            assert_matches_type(WaapStatisticsSeries, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True

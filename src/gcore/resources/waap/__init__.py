@@ -16,6 +16,14 @@ from .waap import (
     WaapResourceWithStreamingResponse,
     AsyncWaapResourceWithStreamingResponse,
 )
+from .clients import (
+    ClientsResource,
+    AsyncClientsResource,
+    ClientsResourceWithRawResponse,
+    AsyncClientsResourceWithRawResponse,
+    ClientsResourceWithStreamingResponse,
+    AsyncClientsResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -23,6 +31,14 @@ from .domains import (
     AsyncDomainsResourceWithRawResponse,
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
+)
+from .ip_info import (
+    IPInfoResource,
+    AsyncIPInfoResource,
+    IPInfoResourceWithRawResponse,
+    AsyncIPInfoResourceWithRawResponse,
+    IPInfoResourceWithStreamingResponse,
+    AsyncIPInfoResourceWithStreamingResponse,
 )
 from .statistics import (
     StatisticsResource,
@@ -58,6 +74,12 @@ from .custom_page_sets import (
 )
 
 __all__ = [
+    "ClientsResource",
+    "AsyncClientsResource",
+    "ClientsResourceWithRawResponse",
+    "AsyncClientsResourceWithRawResponse",
+    "ClientsResourceWithStreamingResponse",
+    "AsyncClientsResourceWithStreamingResponse",
     "StatisticsResource",
     "AsyncStatisticsResource",
     "StatisticsResourceWithRawResponse",
@@ -94,6 +116,12 @@ __all__ = [
     "AsyncOrganizationsResourceWithRawResponse",
     "OrganizationsResourceWithStreamingResponse",
     "AsyncOrganizationsResourceWithStreamingResponse",
+    "IPInfoResource",
+    "AsyncIPInfoResource",
+    "IPInfoResourceWithRawResponse",
+    "AsyncIPInfoResourceWithRawResponse",
+    "IPInfoResourceWithStreamingResponse",
+    "AsyncIPInfoResourceWithStreamingResponse",
     "WaapResource",
     "AsyncWaapResource",
     "WaapResourceWithRawResponse",

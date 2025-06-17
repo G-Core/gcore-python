@@ -19,20 +19,22 @@ from ..._response import (
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.waap import (
+    WaapPageType,
     custom_page_set_list_params,
     custom_page_set_create_params,
     custom_page_set_update_params,
     custom_page_set_preview_params,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.waap.custom_page_set import CustomPageSet
-from ...types.waap.preview_custom_page import PreviewCustomPage
-from ...types.waap.block_page_data_param import BlockPageDataParam
-from ...types.waap.captcha_page_data_param import CaptchaPageDataParam
-from ...types.waap.handshake_page_data_param import HandshakePageDataParam
-from ...types.waap.block_csrf_page_data_param import BlockCsrfPageDataParam
-from ...types.waap.cookie_disabled_page_data_param import CookieDisabledPageDataParam
-from ...types.waap.javascript_disabled_page_data_param import JavascriptDisabledPageDataParam
+from ...types.waap.waap_page_type import WaapPageType
+from ...types.waap.waap_custom_page_set import WaapCustomPageSet
+from ...types.waap.waap_custom_page_preview import WaapCustomPagePreview
+from ...types.waap.waap_block_page_data_param import WaapBlockPageDataParam
+from ...types.waap.waap_captcha_page_data_param import WaapCaptchaPageDataParam
+from ...types.waap.waap_handshake_page_data_param import WaapHandshakePageDataParam
+from ...types.waap.waap_block_csrf_page_data_param import WaapBlockCsrfPageDataParam
+from ...types.waap.waap_cookie_disabled_page_data_param import WaapCookieDisabledPageDataParam
+from ...types.waap.waap_javascript_disabled_page_data_param import WaapJavascriptDisabledPageDataParam
 
 __all__ = ["CustomPageSetsResource", "AsyncCustomPageSetsResource"]
 
@@ -61,20 +63,20 @@ class CustomPageSetsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        block: Optional[BlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[BlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[CaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[CookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
+        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[HandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[JavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageSet:
+    ) -> WaapCustomPageSet:
         """Create a custom page set based on the provided data.
 
         For any custom page type
@@ -111,20 +113,20 @@ class CustomPageSetsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomPageSet,
+            cast_to=WaapCustomPageSet,
         )
 
     def update(
         self,
         set_id: int,
         *,
-        block: Optional[BlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[BlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[CaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[CookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
+        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[HandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[JavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -192,7 +194,7 @@ class CustomPageSetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[CustomPageSet]:
+    ) -> SyncOffsetPage[WaapCustomPageSet]:
         """
         Retrieve a list of custom page sets available for use
 
@@ -217,7 +219,7 @@ class CustomPageSetsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/waap/v1/custom-page-sets",
-            page=SyncOffsetPage[CustomPageSet],
+            page=SyncOffsetPage[WaapCustomPageSet],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -234,7 +236,7 @@ class CustomPageSetsResource(SyncAPIResource):
                     custom_page_set_list_params.CustomPageSetListParams,
                 ),
             ),
-            model=CustomPageSet,
+            model=WaapCustomPageSet,
         )
 
     def delete(
@@ -281,7 +283,7 @@ class CustomPageSetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageSet:
+    ) -> WaapCustomPageSet:
         """
         Retrieve a custom page set based on the provided ID
 
@@ -301,20 +303,13 @@ class CustomPageSetsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomPageSet,
+            cast_to=WaapCustomPageSet,
         )
 
     def preview(
         self,
         *,
-        page_type: Literal[
-            "block.html",
-            "block_csrf.html",
-            "captcha.html",
-            "cookieDisabled.html",
-            "handshake.html",
-            "javascriptDisabled.html",
-        ],
+        page_type: WaapPageType,
         error: Optional[str] | NotGiven = NOT_GIVEN,
         header: Optional[str] | NotGiven = NOT_GIVEN,
         logo: Optional[str] | NotGiven = NOT_GIVEN,
@@ -326,7 +321,7 @@ class CustomPageSetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewCustomPage:
+    ) -> WaapCustomPagePreview:
         """
         Allows to preview a custom page without creating it based on the provided type
         and data
@@ -375,7 +370,7 @@ class CustomPageSetsResource(SyncAPIResource):
                     {"page_type": page_type}, custom_page_set_preview_params.CustomPageSetPreviewParams
                 ),
             ),
-            cast_to=PreviewCustomPage,
+            cast_to=WaapCustomPagePreview,
         )
 
 
@@ -403,20 +398,20 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        block: Optional[BlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[BlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[CaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[CookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
+        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[HandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[JavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageSet:
+    ) -> WaapCustomPageSet:
         """Create a custom page set based on the provided data.
 
         For any custom page type
@@ -453,20 +448,20 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomPageSet,
+            cast_to=WaapCustomPageSet,
         )
 
     async def update(
         self,
         set_id: int,
         *,
-        block: Optional[BlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[BlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[CaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[CookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
+        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[HandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[JavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -534,7 +529,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[CustomPageSet, AsyncOffsetPage[CustomPageSet]]:
+    ) -> AsyncPaginator[WaapCustomPageSet, AsyncOffsetPage[WaapCustomPageSet]]:
         """
         Retrieve a list of custom page sets available for use
 
@@ -559,7 +554,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/waap/v1/custom-page-sets",
-            page=AsyncOffsetPage[CustomPageSet],
+            page=AsyncOffsetPage[WaapCustomPageSet],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -576,7 +571,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
                     custom_page_set_list_params.CustomPageSetListParams,
                 ),
             ),
-            model=CustomPageSet,
+            model=WaapCustomPageSet,
         )
 
     async def delete(
@@ -623,7 +618,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageSet:
+    ) -> WaapCustomPageSet:
         """
         Retrieve a custom page set based on the provided ID
 
@@ -643,20 +638,13 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomPageSet,
+            cast_to=WaapCustomPageSet,
         )
 
     async def preview(
         self,
         *,
-        page_type: Literal[
-            "block.html",
-            "block_csrf.html",
-            "captcha.html",
-            "cookieDisabled.html",
-            "handshake.html",
-            "javascriptDisabled.html",
-        ],
+        page_type: WaapPageType,
         error: Optional[str] | NotGiven = NOT_GIVEN,
         header: Optional[str] | NotGiven = NOT_GIVEN,
         logo: Optional[str] | NotGiven = NOT_GIVEN,
@@ -668,7 +656,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewCustomPage:
+    ) -> WaapCustomPagePreview:
         """
         Allows to preview a custom page without creating it based on the provided type
         and data
@@ -717,7 +705,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
                     {"page_type": page_type}, custom_page_set_preview_params.CustomPageSetPreviewParams
                 ),
             ),
-            cast_to=PreviewCustomPage,
+            cast_to=WaapCustomPagePreview,
         )
 
 

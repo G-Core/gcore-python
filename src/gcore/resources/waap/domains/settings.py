@@ -16,7 +16,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.waap.domains import setting_update_params
-from ....types.waap.waap_domain_settings import WaapDomainSettings
+from ....types.waap.waap_domain_settings_model import WaapDomainSettingsModel
 
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
 
@@ -98,7 +98,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaapDomainSettings:
+    ) -> WaapDomainSettingsModel:
         """
         Retrieve settings for a specific domain
 
@@ -118,7 +118,7 @@ class SettingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WaapDomainSettings,
+            cast_to=WaapDomainSettingsModel,
         )
 
 
@@ -199,7 +199,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaapDomainSettings:
+    ) -> WaapDomainSettingsModel:
         """
         Retrieve settings for a specific domain
 
@@ -219,7 +219,7 @@ class AsyncSettingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WaapDomainSettings,
+            cast_to=WaapDomainSettingsModel,
         )
 
 

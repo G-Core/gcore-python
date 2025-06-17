@@ -18,7 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import RuleActionType, CustomerRuleState
+from ....types.waap import WaapRuleActionType, WaapCustomerRuleState
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import (
     custom_rule_list_params,
@@ -26,9 +26,9 @@ from ....types.waap.domains import (
     custom_rule_update_params,
     custom_rule_delete_multiple_params,
 )
-from ....types.waap.rule_action_type import RuleActionType
-from ....types.waap.customer_rule_state import CustomerRuleState
-from ....types.waap.domains.custom_rule import CustomRule
+from ....types.waap.waap_custom_rule import WaapCustomRule
+from ....types.waap.waap_rule_action_type import WaapRuleActionType
+from ....types.waap.waap_customer_rule_state import WaapCustomerRuleState
 
 __all__ = ["CustomRulesResource", "AsyncCustomRulesResource"]
 
@@ -68,7 +68,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomRule:
+    ) -> WaapCustomRule:
         """
         Create a custom rule
 
@@ -109,7 +109,7 @@ class CustomRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRule,
+            cast_to=WaapCustomRule,
         )
 
     def update(
@@ -179,7 +179,7 @@ class CustomRulesResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: RuleActionType | NotGiven = NOT_GIVEN,
+        action: WaapRuleActionType | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -197,7 +197,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[CustomRule]:
+    ) -> SyncOffsetPage[WaapCustomRule]:
         """
         Extracts a list of custom rules assigned to a domain, offering filter, ordering,
         and pagination capabilities
@@ -229,7 +229,7 @@ class CustomRulesResource(SyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/custom-rules",
-            page=SyncOffsetPage[CustomRule],
+            page=SyncOffsetPage[WaapCustomRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -248,7 +248,7 @@ class CustomRulesResource(SyncAPIResource):
                     custom_rule_list_params.CustomRuleListParams,
                 ),
             ),
-            model=CustomRule,
+            model=WaapCustomRule,
         )
 
     def delete(
@@ -339,7 +339,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomRule:
+    ) -> WaapCustomRule:
         """
         Extracts a specific custom rule assigned to a domain
 
@@ -361,12 +361,12 @@ class CustomRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRule,
+            cast_to=WaapCustomRule,
         )
 
     def toggle(
         self,
-        action: CustomerRuleState,
+        action: WaapCustomerRuleState,
         *,
         domain_id: int,
         rule_id: int,
@@ -442,7 +442,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomRule:
+    ) -> WaapCustomRule:
         """
         Create a custom rule
 
@@ -483,7 +483,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRule,
+            cast_to=WaapCustomRule,
         )
 
     async def update(
@@ -553,7 +553,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: RuleActionType | NotGiven = NOT_GIVEN,
+        action: WaapRuleActionType | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -571,7 +571,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[CustomRule, AsyncOffsetPage[CustomRule]]:
+    ) -> AsyncPaginator[WaapCustomRule, AsyncOffsetPage[WaapCustomRule]]:
         """
         Extracts a list of custom rules assigned to a domain, offering filter, ordering,
         and pagination capabilities
@@ -603,7 +603,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/custom-rules",
-            page=AsyncOffsetPage[CustomRule],
+            page=AsyncOffsetPage[WaapCustomRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -622,7 +622,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
                     custom_rule_list_params.CustomRuleListParams,
                 ),
             ),
-            model=CustomRule,
+            model=WaapCustomRule,
         )
 
     async def delete(
@@ -713,7 +713,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomRule:
+    ) -> WaapCustomRule:
         """
         Extracts a specific custom rule assigned to a domain
 
@@ -735,12 +735,12 @@ class AsyncCustomRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRule,
+            cast_to=WaapCustomRule,
         )
 
     async def toggle(
         self,
-        action: CustomerRuleState,
+        action: WaapCustomerRuleState,
         *,
         domain_id: int,
         rule_id: int,

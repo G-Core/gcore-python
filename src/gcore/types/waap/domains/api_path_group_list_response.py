@@ -1,0 +1,12 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import List
+
+from ...._models import BaseModel
+
+__all__ = ["APIPathGroupListResponse"]
+
+
+class APIPathGroupListResponse(BaseModel):
+    api_path_groups: List[str]
+    """An array of api groups associated with the API path"""

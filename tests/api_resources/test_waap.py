@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.waap import ClientInfo
+from gcore.types.waap import WaapGetAccountOverviewResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestWaap:
     @parametrize
     def test_method_get_account_overview(self, client: Gcore) -> None:
         waap = client.waap.get_account_overview()
-        assert_matches_type(ClientInfo, waap, path=["response"])
+        assert_matches_type(WaapGetAccountOverviewResponse, waap, path=["response"])
 
     @parametrize
     def test_raw_response_get_account_overview(self, client: Gcore) -> None:
@@ -29,7 +29,7 @@ class TestWaap:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waap = response.parse()
-        assert_matches_type(ClientInfo, waap, path=["response"])
+        assert_matches_type(WaapGetAccountOverviewResponse, waap, path=["response"])
 
     @parametrize
     def test_streaming_response_get_account_overview(self, client: Gcore) -> None:
@@ -38,7 +38,7 @@ class TestWaap:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waap = response.parse()
-            assert_matches_type(ClientInfo, waap, path=["response"])
+            assert_matches_type(WaapGetAccountOverviewResponse, waap, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -49,7 +49,7 @@ class TestAsyncWaap:
     @parametrize
     async def test_method_get_account_overview(self, async_client: AsyncGcore) -> None:
         waap = await async_client.waap.get_account_overview()
-        assert_matches_type(ClientInfo, waap, path=["response"])
+        assert_matches_type(WaapGetAccountOverviewResponse, waap, path=["response"])
 
     @parametrize
     async def test_raw_response_get_account_overview(self, async_client: AsyncGcore) -> None:
@@ -58,7 +58,7 @@ class TestAsyncWaap:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waap = await response.parse()
-        assert_matches_type(ClientInfo, waap, path=["response"])
+        assert_matches_type(WaapGetAccountOverviewResponse, waap, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_account_overview(self, async_client: AsyncGcore) -> None:
@@ -67,6 +67,6 @@ class TestAsyncWaap:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waap = await response.parse()
-            assert_matches_type(ClientInfo, waap, path=["response"])
+            assert_matches_type(WaapGetAccountOverviewResponse, waap, path=["response"])
 
         assert cast(Any, response.is_closed) is True

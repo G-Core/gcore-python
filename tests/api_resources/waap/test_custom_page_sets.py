@@ -11,8 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.waap import (
-    CustomPageSet,
-    PreviewCustomPage,
+    WaapCustomPageSet,
+    WaapCustomPagePreview,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -26,7 +26,7 @@ class TestCustomPageSets:
         custom_page_set = client.waap.custom_page_sets.create(
             name="x",
         )
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -72,7 +72,7 @@ class TestCustomPageSets:
                 "text": "xxxxxxxxxxxxxxxxxxxx",
             },
         )
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -83,7 +83,7 @@ class TestCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = response.parse()
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -94,7 +94,7 @@ class TestCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = response.parse()
-            assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+            assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,7 +179,7 @@ class TestCustomPageSets:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         custom_page_set = client.waap.custom_page_sets.list()
-        assert_matches_type(SyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -190,7 +190,7 @@ class TestCustomPageSets:
             offset=0,
             ordering="name",
         )
-        assert_matches_type(SyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -199,7 +199,7 @@ class TestCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = response.parse()
-        assert_matches_type(SyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -208,7 +208,7 @@ class TestCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = response.parse()
-            assert_matches_type(SyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+            assert_matches_type(SyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -248,7 +248,7 @@ class TestCustomPageSets:
         custom_page_set = client.waap.custom_page_sets.get(
             0,
         )
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -259,7 +259,7 @@ class TestCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = response.parse()
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -270,7 +270,7 @@ class TestCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = response.parse()
-            assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+            assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -279,7 +279,7 @@ class TestCustomPageSets:
         custom_page_set = client.waap.custom_page_sets.preview(
             page_type="block.html",
         )
-        assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
     @parametrize
     def test_method_preview_with_all_params(self, client: Gcore) -> None:
@@ -291,7 +291,7 @@ class TestCustomPageSets:
             text="xxxxxxxxxxxxxxxxxxxx",
             title="xxx",
         )
-        assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
     @parametrize
     def test_raw_response_preview(self, client: Gcore) -> None:
@@ -302,7 +302,7 @@ class TestCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = response.parse()
-        assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
     @parametrize
     def test_streaming_response_preview(self, client: Gcore) -> None:
@@ -313,7 +313,7 @@ class TestCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = response.parse()
-            assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+            assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -326,7 +326,7 @@ class TestAsyncCustomPageSets:
         custom_page_set = await async_client.waap.custom_page_sets.create(
             name="x",
         )
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -372,7 +372,7 @@ class TestAsyncCustomPageSets:
                 "text": "xxxxxxxxxxxxxxxxxxxx",
             },
         )
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -383,7 +383,7 @@ class TestAsyncCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = await response.parse()
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -394,7 +394,7 @@ class TestAsyncCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = await response.parse()
-            assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+            assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -479,7 +479,7 @@ class TestAsyncCustomPageSets:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         custom_page_set = await async_client.waap.custom_page_sets.list()
-        assert_matches_type(AsyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -490,7 +490,7 @@ class TestAsyncCustomPageSets:
             offset=0,
             ordering="name",
         )
-        assert_matches_type(AsyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -499,7 +499,7 @@ class TestAsyncCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = await response.parse()
-        assert_matches_type(AsyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -508,7 +508,7 @@ class TestAsyncCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = await response.parse()
-            assert_matches_type(AsyncOffsetPage[CustomPageSet], custom_page_set, path=["response"])
+            assert_matches_type(AsyncOffsetPage[WaapCustomPageSet], custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -548,7 +548,7 @@ class TestAsyncCustomPageSets:
         custom_page_set = await async_client.waap.custom_page_sets.get(
             0,
         )
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -559,7 +559,7 @@ class TestAsyncCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = await response.parse()
-        assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -570,7 +570,7 @@ class TestAsyncCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = await response.parse()
-            assert_matches_type(CustomPageSet, custom_page_set, path=["response"])
+            assert_matches_type(WaapCustomPageSet, custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -579,7 +579,7 @@ class TestAsyncCustomPageSets:
         custom_page_set = await async_client.waap.custom_page_sets.preview(
             page_type="block.html",
         )
-        assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
     @parametrize
     async def test_method_preview_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -591,7 +591,7 @@ class TestAsyncCustomPageSets:
             text="xxxxxxxxxxxxxxxxxxxx",
             title="xxx",
         )
-        assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
     @parametrize
     async def test_raw_response_preview(self, async_client: AsyncGcore) -> None:
@@ -602,7 +602,7 @@ class TestAsyncCustomPageSets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page_set = await response.parse()
-        assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+        assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
     @parametrize
     async def test_streaming_response_preview(self, async_client: AsyncGcore) -> None:
@@ -613,6 +613,6 @@ class TestAsyncCustomPageSets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page_set = await response.parse()
-            assert_matches_type(PreviewCustomPage, custom_page_set, path=["response"])
+            assert_matches_type(WaapCustomPagePreview, custom_page_set, path=["response"])
 
         assert cast(Any, response.is_closed) is True

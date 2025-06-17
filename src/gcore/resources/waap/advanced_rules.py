@@ -14,7 +14,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.waap.advanced_rule_descriptor_list import AdvancedRuleDescriptorList
+from ...types.waap.waap_advanced_rule_descriptor_list import WaapAdvancedRuleDescriptorList
 
 __all__ = ["AdvancedRulesResource", "AsyncAdvancedRulesResource"]
 
@@ -48,14 +48,14 @@ class AdvancedRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AdvancedRuleDescriptorList:
+    ) -> WaapAdvancedRuleDescriptorList:
         """Retrieve an advanced rules descriptor"""
         return self._get(
             "/waap/v1/advanced-rules/descriptor",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRuleDescriptorList,
+            cast_to=WaapAdvancedRuleDescriptorList,
         )
 
 
@@ -88,14 +88,14 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AdvancedRuleDescriptorList:
+    ) -> WaapAdvancedRuleDescriptorList:
         """Retrieve an advanced rules descriptor"""
         return await self._get(
             "/waap/v1/advanced-rules/descriptor",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRuleDescriptorList,
+            cast_to=WaapAdvancedRuleDescriptorList,
         )
 
 

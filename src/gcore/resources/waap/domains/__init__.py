@@ -8,6 +8,22 @@ from .domains import (
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
 )
+from .insights import (
+    InsightsResource,
+    AsyncInsightsResource,
+    InsightsResourceWithRawResponse,
+    AsyncInsightsResourceWithRawResponse,
+    InsightsResourceWithStreamingResponse,
+    AsyncInsightsResourceWithStreamingResponse,
+)
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -16,6 +32,22 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
+from .analytics import (
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
+)
+from .api_paths import (
+    APIPathsResource,
+    AsyncAPIPathsResource,
+    APIPathsResourceWithRawResponse,
+    AsyncAPIPathsResourceWithRawResponse,
+    APIPathsResourceWithStreamingResponse,
+    AsyncAPIPathsResourceWithStreamingResponse,
+)
 from .custom_rules import (
     CustomRulesResource,
     AsyncCustomRulesResource,
@@ -23,6 +55,14 @@ from .custom_rules import (
     AsyncCustomRulesResourceWithRawResponse,
     CustomRulesResourceWithStreamingResponse,
     AsyncCustomRulesResourceWithStreamingResponse,
+)
+from .api_discovery import (
+    APIDiscoveryResource,
+    AsyncAPIDiscoveryResource,
+    APIDiscoveryResourceWithRawResponse,
+    AsyncAPIDiscoveryResourceWithRawResponse,
+    APIDiscoveryResourceWithStreamingResponse,
+    AsyncAPIDiscoveryResourceWithStreamingResponse,
 )
 from .advanced_rules import (
     AdvancedRulesResource,
@@ -40,6 +80,22 @@ from .firewall_rules import (
     FirewallRulesResourceWithStreamingResponse,
     AsyncFirewallRulesResourceWithStreamingResponse,
 )
+from .api_path_groups import (
+    APIPathGroupsResource,
+    AsyncAPIPathGroupsResource,
+    APIPathGroupsResourceWithRawResponse,
+    AsyncAPIPathGroupsResourceWithRawResponse,
+    APIPathGroupsResourceWithStreamingResponse,
+    AsyncAPIPathGroupsResourceWithStreamingResponse,
+)
+from .insight_silences import (
+    InsightSilencesResource,
+    AsyncInsightSilencesResource,
+    InsightSilencesResourceWithRawResponse,
+    AsyncInsightSilencesResourceWithRawResponse,
+    InsightSilencesResourceWithStreamingResponse,
+    AsyncInsightSilencesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "SettingsResource",
@@ -48,6 +104,48 @@ __all__ = [
     "AsyncSettingsResourceWithRawResponse",
     "SettingsResourceWithStreamingResponse",
     "AsyncSettingsResourceWithStreamingResponse",
+    "APIPathsResource",
+    "AsyncAPIPathsResource",
+    "APIPathsResourceWithRawResponse",
+    "AsyncAPIPathsResourceWithRawResponse",
+    "APIPathsResourceWithStreamingResponse",
+    "AsyncAPIPathsResourceWithStreamingResponse",
+    "APIPathGroupsResource",
+    "AsyncAPIPathGroupsResource",
+    "APIPathGroupsResourceWithRawResponse",
+    "AsyncAPIPathGroupsResourceWithRawResponse",
+    "APIPathGroupsResourceWithStreamingResponse",
+    "AsyncAPIPathGroupsResourceWithStreamingResponse",
+    "APIDiscoveryResource",
+    "AsyncAPIDiscoveryResource",
+    "APIDiscoveryResourceWithRawResponse",
+    "AsyncAPIDiscoveryResourceWithRawResponse",
+    "APIDiscoveryResourceWithStreamingResponse",
+    "AsyncAPIDiscoveryResourceWithStreamingResponse",
+    "InsightsResource",
+    "AsyncInsightsResource",
+    "InsightsResourceWithRawResponse",
+    "AsyncInsightsResourceWithRawResponse",
+    "InsightsResourceWithStreamingResponse",
+    "AsyncInsightsResourceWithStreamingResponse",
+    "InsightSilencesResource",
+    "AsyncInsightSilencesResource",
+    "InsightSilencesResourceWithRawResponse",
+    "AsyncInsightSilencesResourceWithRawResponse",
+    "InsightSilencesResourceWithStreamingResponse",
+    "AsyncInsightSilencesResourceWithStreamingResponse",
+    "PoliciesResource",
+    "AsyncPoliciesResource",
+    "PoliciesResourceWithRawResponse",
+    "AsyncPoliciesResourceWithRawResponse",
+    "PoliciesResourceWithStreamingResponse",
+    "AsyncPoliciesResourceWithStreamingResponse",
+    "AnalyticsResource",
+    "AsyncAnalyticsResource",
+    "AnalyticsResourceWithRawResponse",
+    "AsyncAnalyticsResourceWithRawResponse",
+    "AnalyticsResourceWithStreamingResponse",
+    "AsyncAnalyticsResourceWithStreamingResponse",
     "CustomRulesResource",
     "AsyncCustomRulesResource",
     "CustomRulesResourceWithRawResponse",
