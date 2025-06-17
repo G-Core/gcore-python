@@ -12,14 +12,6 @@ from .tags import (
     TagsResourceWithStreamingResponse,
     AsyncTagsResourceWithStreamingResponse,
 )
-from .clients import (
-    ClientsResource,
-    AsyncClientsResource,
-    ClientsResourceWithRawResponse,
-    AsyncClientsResourceWithRawResponse,
-    ClientsResourceWithStreamingResponse,
-    AsyncClientsResourceWithStreamingResponse,
-)
 from .ip_info import (
     IPInfoResource,
     AsyncIPInfoResource,
@@ -84,10 +76,6 @@ __all__ = ["WaapResource", "AsyncWaapResource"]
 
 
 class WaapResource(SyncAPIResource):
-    @cached_property
-    def clients(self) -> ClientsResource:
-        return ClientsResource(self._client)
-
     @cached_property
     def statistics(self) -> StatisticsResource:
         return StatisticsResource(self._client)
@@ -156,10 +144,6 @@ class WaapResource(SyncAPIResource):
 
 
 class AsyncWaapResource(AsyncAPIResource):
-    @cached_property
-    def clients(self) -> AsyncClientsResource:
-        return AsyncClientsResource(self._client)
-
     @cached_property
     def statistics(self) -> AsyncStatisticsResource:
         return AsyncStatisticsResource(self._client)
@@ -236,10 +220,6 @@ class WaapResourceWithRawResponse:
         )
 
     @cached_property
-    def clients(self) -> ClientsResourceWithRawResponse:
-        return ClientsResourceWithRawResponse(self._waap.clients)
-
-    @cached_property
     def statistics(self) -> StatisticsResourceWithRawResponse:
         return StatisticsResourceWithRawResponse(self._waap.statistics)
 
@@ -275,10 +255,6 @@ class AsyncWaapResourceWithRawResponse:
         self.get_account_overview = async_to_raw_response_wrapper(
             waap.get_account_overview,
         )
-
-    @cached_property
-    def clients(self) -> AsyncClientsResourceWithRawResponse:
-        return AsyncClientsResourceWithRawResponse(self._waap.clients)
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithRawResponse:
@@ -318,10 +294,6 @@ class WaapResourceWithStreamingResponse:
         )
 
     @cached_property
-    def clients(self) -> ClientsResourceWithStreamingResponse:
-        return ClientsResourceWithStreamingResponse(self._waap.clients)
-
-    @cached_property
     def statistics(self) -> StatisticsResourceWithStreamingResponse:
         return StatisticsResourceWithStreamingResponse(self._waap.statistics)
 
@@ -357,10 +329,6 @@ class AsyncWaapResourceWithStreamingResponse:
         self.get_account_overview = async_to_streamed_response_wrapper(
             waap.get_account_overview,
         )
-
-    @cached_property
-    def clients(self) -> AsyncClientsResourceWithStreamingResponse:
-        return AsyncClientsResourceWithStreamingResponse(self._waap.clients)
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithStreamingResponse:
