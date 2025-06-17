@@ -61,7 +61,7 @@ class TestInstances:
                     "attachment_tag": "boot",
                     "delete_on_termination": False,
                     "name": "boot-volume",
-                    "tags": {"foo": "my-tag-value"},
+                    "tags": {"my-tag": "my-tag-value"},
                     "type_name": "ssd_hiiops",
                 }
             ],
@@ -73,7 +73,7 @@ class TestInstances:
             security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             servergroup_id="servergroup_id",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )
@@ -922,7 +922,7 @@ class TestAsyncInstances:
                     "attachment_tag": "boot",
                     "delete_on_termination": False,
                     "name": "boot-volume",
-                    "tags": {"foo": "my-tag-value"},
+                    "tags": {"my-tag": "my-tag-value"},
                     "type_name": "ssd_hiiops",
                 }
             ],
@@ -934,7 +934,7 @@ class TestAsyncInstances:
             security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             servergroup_id="servergroup_id",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )

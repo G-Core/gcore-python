@@ -196,7 +196,7 @@ class TestImages:
             os_type="linux",
             source="volume",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -312,7 +312,7 @@ class TestImages:
             os_type="linux",
             os_version="22.04",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -529,7 +529,7 @@ class TestAsyncImages:
             os_type="linux",
             source="volume",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -645,7 +645,7 @@ class TestAsyncImages:
             os_type="linux",
             os_version="22.04",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 

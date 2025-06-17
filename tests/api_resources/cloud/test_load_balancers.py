@@ -122,7 +122,7 @@ class TestLoadBalancers:
             name="new_load_balancer",
             name_template="lb_name_template",
             preferred_connectivity="L2",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             vip_ip_family="dual",
             vip_network_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
             vip_port_id="ff83e13a-b256-4be2-ba5d-028d3f0ab450",
@@ -179,6 +179,7 @@ class TestLoadBalancers:
             },
             name="some_name",
             preferred_connectivity="L2",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
@@ -585,7 +586,7 @@ class TestAsyncLoadBalancers:
             name="new_load_balancer",
             name_template="lb_name_template",
             preferred_connectivity="L2",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             vip_ip_family="dual",
             vip_network_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
             vip_port_id="ff83e13a-b256-4be2-ba5d-028d3f0ab450",
@@ -642,6 +643,7 @@ class TestAsyncLoadBalancers:
             },
             name="some_name",
             preferred_connectivity="L2",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 

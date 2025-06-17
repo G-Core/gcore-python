@@ -47,7 +47,7 @@ class TestServers:
             app_config={},
             apptemplate_id="apptemplate_id",
             ddos_profile={
-                "profile_template": 1,
+                "profile_template": 123,
                 "fields": [
                     {
                         "base_field": 10,
@@ -56,14 +56,13 @@ class TestServers:
                         "value": "value",
                     }
                 ],
-                "profile_template_name": "profile_template_name",
             },
             image_id="image_id",
             name="my-bare-metal",
             name_template="name_template",
             password="password",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )
@@ -250,7 +249,7 @@ class TestAsyncServers:
             app_config={},
             apptemplate_id="apptemplate_id",
             ddos_profile={
-                "profile_template": 1,
+                "profile_template": 123,
                 "fields": [
                     {
                         "base_field": 10,
@@ -259,14 +258,13 @@ class TestAsyncServers:
                         "value": "value",
                     }
                 ],
-                "profile_template_name": "profile_template_name",
             },
             image_id="image_id",
             name="my-bare-metal",
             name_template="name_template",
             password="password",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )

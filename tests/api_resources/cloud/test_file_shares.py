@@ -51,7 +51,7 @@ class TestFileShares:
                     "ip_address": "10.0.0.1",
                 }
             ],
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             volume_type="default_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
@@ -111,7 +111,7 @@ class TestFileShares:
             protocol="NFS",
             size=5,
             volume_type="vast_share_type",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
@@ -421,7 +421,7 @@ class TestAsyncFileShares:
                     "ip_address": "10.0.0.1",
                 }
             ],
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             volume_type="default_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
@@ -481,7 +481,7 @@ class TestAsyncFileShares:
             protocol="NFS",
             size=5,
             volume_type="vast_share_type",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 

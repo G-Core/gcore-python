@@ -113,6 +113,7 @@ class TestSecurityGroups:
                 }
             ],
             name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(SecurityGroup, security_group, path=["response"])
 
@@ -484,6 +485,7 @@ class TestAsyncSecurityGroups:
                 }
             ],
             name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(SecurityGroup, security_group, path=["response"])
 

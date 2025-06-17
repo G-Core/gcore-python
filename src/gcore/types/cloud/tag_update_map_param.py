@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import TypeAlias
 
 __all__ = ["TagUpdateMapParam"]
 
-TagUpdateMapParam: TypeAlias = Dict[str, str]
+TagUpdateMapParam: TypeAlias = Dict[str, Optional[str]]
