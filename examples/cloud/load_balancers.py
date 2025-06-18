@@ -47,7 +47,7 @@ def list_load_balancers(*, client: Gcore) -> None:
 def get_load_balancer(*, client: Gcore, loadbalancer_id: str) -> None:
     print("\n=== GET LOAD BALANCER ===")
     lb = client.cloud.load_balancers.get(loadbalancer_id=loadbalancer_id)
-    flavor_name = lb.flavor.flavor_name
+    flavor_name = lb.flavor.flavor_name if lb.flavor else "Unknown"
     print(f"Load balancer: ID={lb.id}, name={lb.name}, status={lb.provisioning_status}, flavor={flavor_name}")
     print("========================")
 
