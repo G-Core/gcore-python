@@ -79,8 +79,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -145,8 +148,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -211,8 +217,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -320,7 +329,7 @@ class VolumesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Rename volume
+        Rename a volume.
 
         Args:
           project_id: Project ID
@@ -376,8 +385,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Volume]:
-        """
-        List volumes
+        """Retrieve a list of volumes in the project and region.
+
+        The list can be filtered
+        by various parameters like bootable status, metadata/tags, attachments, instance
+        ID, name, and ID.
 
         Args:
           project_id: Project ID
@@ -404,9 +416,7 @@ class VolumesResource(SyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -461,8 +471,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete volume
+        """Delete a volume and all its snapshots.
+
+        The volume must be in an available state
+        to be deleted.
 
         Args:
           project_id: Project ID
@@ -573,8 +585,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
-        """
-        Change volume type
+        """Change the type of a volume.
+
+        The volume must not have any snapshots to change
+        its type.
 
         Args:
           project_id: Project ID
@@ -673,7 +687,7 @@ class VolumesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Get volume
+        Retrieve detailed information about a specific volume.
 
         Args:
           project_id: Project ID
@@ -718,8 +732,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Extend volume
+        """Increase the size of a volume.
+
+        The new size must be greater than the current
+        size.
 
         Args:
           project_id: Project ID
@@ -766,8 +782,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """
-        Revert volume to it's last snapshot
+        """Revert a volume to its last snapshot.
+
+        The volume must be in an available state
+        to be reverted.
 
         Args:
           project_id: Project ID
@@ -843,8 +861,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -909,8 +930,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -975,8 +999,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -1084,7 +1111,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Rename volume
+        Rename a volume.
 
         Args:
           project_id: Project ID
@@ -1140,8 +1167,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Volume, AsyncOffsetPage[Volume]]:
-        """
-        List volumes
+        """Retrieve a list of volumes in the project and region.
+
+        The list can be filtered
+        by various parameters like bootable status, metadata/tags, attachments, instance
+        ID, name, and ID.
 
         Args:
           project_id: Project ID
@@ -1168,9 +1198,7 @@ class AsyncVolumesResource(AsyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -1225,8 +1253,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete volume
+        """Delete a volume and all its snapshots.
+
+        The volume must be in an available state
+        to be deleted.
 
         Args:
           project_id: Project ID
@@ -1337,8 +1367,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
-        """
-        Change volume type
+        """Change the type of a volume.
+
+        The volume must not have any snapshots to change
+        its type.
 
         Args:
           project_id: Project ID
@@ -1439,7 +1471,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Get volume
+        Retrieve detailed information about a specific volume.
 
         Args:
           project_id: Project ID
@@ -1484,8 +1516,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Extend volume
+        """Increase the size of a volume.
+
+        The new size must be greater than the current
+        size.
 
         Args:
           project_id: Project ID
@@ -1532,8 +1566,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """
-        Revert volume to it's last snapshot
+        """Revert a volume to its last snapshot.
+
+        The volume must be in an available state
+        to be reverted.
 
         Args:
           project_id: Project ID

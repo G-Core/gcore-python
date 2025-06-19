@@ -253,7 +253,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Update inference registry credential
+        Replace inference registry credential
 
         Args:
           project_id: Project ID
@@ -522,7 +522,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Update inference registry credential
+        Replace inference registry credential
 
         Args:
           project_id: Project ID

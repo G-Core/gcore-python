@@ -12,3 +12,4 @@ from .registry_user_created import RegistryUserCreated as RegistryUserCreated
 from .registry_artifact_list import RegistryArtifactList as RegistryArtifactList
 from .registry_repository_list import RegistryRepositoryList as RegistryRepositoryList
 from .user_create_multiple_params import UserCreateMultipleParams as UserCreateMultipleParams
+from .user_refresh_secret_response import UserRefreshSecretResponse as UserRefreshSecretResponse

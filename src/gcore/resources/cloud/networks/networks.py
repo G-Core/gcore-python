@@ -168,12 +168,15 @@ class NetworksResource(SyncAPIResource):
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. **Examples:**
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
 
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
               - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
               - **Mixed operations:**
@@ -250,9 +253,7 @@ class NetworksResource(SyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -505,12 +506,15 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. **Examples:**
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
 
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
               - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
               - **Mixed operations:**
@@ -587,9 +591,7 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 

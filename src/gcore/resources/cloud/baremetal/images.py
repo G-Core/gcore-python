@@ -61,10 +61,11 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ImageList:
-        """Retrieve the available images list for bare metal servers.
+        """Retrieve a list of available images for bare metal servers.
 
-        Returned entities may
-        or may not be owned by the project
+        The list can be
+        filtered by visibility, tags, and other parameters. Returned entities may or may
+        not be owned by the project.
 
         Args:
           include_prices: Show price
@@ -73,9 +74,7 @@ class ImagesResource(SyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode '`tag_key_value`={"key": "value"}' --url
-              'http://localhost:1111/v1/images/1/1'"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -150,10 +149,11 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ImageList:
-        """Retrieve the available images list for bare metal servers.
+        """Retrieve a list of available images for bare metal servers.
 
-        Returned entities may
-        or may not be owned by the project
+        The list can be
+        filtered by visibility, tags, and other parameters. Returned entities may or may
+        not be owned by the project.
 
         Args:
           include_prices: Show price
@@ -162,9 +162,7 @@ class AsyncImagesResource(AsyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode '`tag_key_value`={"key": "value"}' --url
-              'http://localhost:1111/v1/images/1/1'"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           visibility: Image visibility. Globally visible images are public
 

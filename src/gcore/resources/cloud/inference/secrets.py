@@ -58,7 +58,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InferenceSecret:
         """
-        Create Inference Secret
+        Create inference secret
 
         Args:
           project_id: Project ID
@@ -108,7 +108,7 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[InferenceSecret]:
-        """List Secrets for Inference
+        """List inference secrets
 
         Args:
           project_id: Project ID
@@ -203,7 +203,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InferenceSecret:
         """
-        Get Inference Secret
+        Get inference secret
 
         Args:
           project_id: Project ID
@@ -245,7 +245,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InferenceSecret:
         """
-        Update Inference Secret
+        Replace inference secret
 
         Args:
           project_id: Project ID
@@ -319,7 +319,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InferenceSecret:
         """
-        Create Inference Secret
+        Create inference secret
 
         Args:
           project_id: Project ID
@@ -369,7 +369,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[InferenceSecret, AsyncOffsetPage[InferenceSecret]]:
-        """List Secrets for Inference
+        """List inference secrets
 
         Args:
           project_id: Project ID
@@ -464,7 +464,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InferenceSecret:
         """
-        Get Inference Secret
+        Get inference secret
 
         Args:
           project_id: Project ID
@@ -506,7 +506,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InferenceSecret:
         """
-        Update Inference Secret
+        Replace inference secret
 
         Args:
           project_id: Project ID

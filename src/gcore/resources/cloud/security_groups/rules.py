@@ -92,7 +92,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroupRule:
         """
-        Add new rule to security group
+        Add a new rule to an existing security group.
 
         Args:
           description: Rule description
@@ -160,7 +160,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete security group rule
+        Delete a specific rule from a security group.
 
         Args:
           extra_headers: Send extra headers
@@ -235,7 +235,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroupRule:
         """
-        Edit the security group rule: delete old and create new rule
+        Update the configuration of an existing security group rule.
 
         Args:
           direction: Ingress or egress, which is the direction in which the security group rule is
@@ -363,7 +363,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroupRule:
         """
-        Add new rule to security group
+        Add a new rule to an existing security group.
 
         Args:
           description: Rule description
@@ -431,7 +431,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete security group rule
+        Delete a specific rule from a security group.
 
         Args:
           extra_headers: Send extra headers
@@ -506,7 +506,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroupRule:
         """
-        Edit the security group rule: delete old and create new rule
+        Update the configuration of an existing security group rule.
 
         Args:
           direction: Ingress or egress, which is the direction in which the security group rule is

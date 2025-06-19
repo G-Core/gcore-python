@@ -25,12 +25,15 @@ class SecurityGroupUpdateParams(TypedDict, total=False):
     """Update key-value tags using JSON Merge Patch semantics (RFC 7386).
 
     Provide key-value pairs to add or update tags. Set tag values to `null` to
-    remove tags. Unspecified tags remain unchanged. **Examples:**
+    remove tags. Unspecified tags remain unchanged. Read-only tags are always
+    preserved and cannot be modified. **Examples:**
 
     - **Add/update tags:**
       `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
       updates existing ones.
     - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+    - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+      tags are preserved).
     - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
       specified tags.
     - **Mixed operations:**

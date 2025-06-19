@@ -104,12 +104,11 @@ class RegistriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
-        """Create a registry
+        """
+        Create a new container registry with the specified configuration.
 
         Args:
-          name: A name for the container registry.
-
-        Should be in lowercase, consisting only of
+          name: A name for the container registry. Should be in lowercase, consisting only of
               numbers, letters and -, with maximum length of 24 characters
 
           storage_limit: Registry storage limit, GiB
@@ -154,7 +153,7 @@ class RegistriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryList:
         """
-        Get registry list
+        List all container registries in the specified project and region.
 
         Args:
           extra_headers: Send extra headers
@@ -191,7 +190,7 @@ class RegistriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a registry
+        Delete a specific container registry and all its associated resources.
 
         Args:
           extra_headers: Send extra headers
@@ -229,7 +228,7 @@ class RegistriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
         """
-        Get a registry
+        Get detailed information about a specific container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -267,7 +266,7 @@ class RegistriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
         """
-        Resize a registry
+        Update the size of a container registry.
 
         Args:
           storage_limit: Registry storage limit, GiB
@@ -344,12 +343,11 @@ class AsyncRegistriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
-        """Create a registry
+        """
+        Create a new container registry with the specified configuration.
 
         Args:
-          name: A name for the container registry.
-
-        Should be in lowercase, consisting only of
+          name: A name for the container registry. Should be in lowercase, consisting only of
               numbers, letters and -, with maximum length of 24 characters
 
           storage_limit: Registry storage limit, GiB
@@ -394,7 +392,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryList:
         """
-        Get registry list
+        List all container registries in the specified project and region.
 
         Args:
           extra_headers: Send extra headers
@@ -431,7 +429,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a registry
+        Delete a specific container registry and all its associated resources.
 
         Args:
           extra_headers: Send extra headers
@@ -469,7 +467,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
         """
-        Get a registry
+        Get detailed information about a specific container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -507,7 +505,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Registry:
         """
-        Resize a registry
+        Update the size of a container registry.
 
         Args:
           storage_limit: Registry storage limit, GiB

@@ -59,11 +59,12 @@ class FlavorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BaremetalFlavorList:
-        """Retrieve a list of flavors.
+        """List all available bare metal flavors in the specified project and region.
 
-        When the `include_prices` query parameter is
-        specified, the list shows prices. A client in trial mode gets all price values
-        as 0. If you get Pricing Error contact the support
+        When
+        `include_prices` is specified, the list includes pricing information. A client
+        in trial mode gets all price values as 0. If you get Pricing Error contact the
+        support.
 
         Args:
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
@@ -129,7 +130,8 @@ class FlavorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BaremetalFlavorList:
         """
-        List suitalbe flavors for bare metal server creation
+        List all flavors that are suitable for creating a bare metal server with the
+        specified image.
 
         Args:
           include_prices: Set to true if flavor listing should include flavor prices
@@ -210,11 +212,12 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BaremetalFlavorList:
-        """Retrieve a list of flavors.
+        """List all available bare metal flavors in the specified project and region.
 
-        When the `include_prices` query parameter is
-        specified, the list shows prices. A client in trial mode gets all price values
-        as 0. If you get Pricing Error contact the support
+        When
+        `include_prices` is specified, the list includes pricing information. A client
+        in trial mode gets all price values as 0. If you get Pricing Error contact the
+        support.
 
         Args:
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
@@ -280,7 +283,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BaremetalFlavorList:
         """
-        List suitalbe flavors for bare metal server creation
+        List all flavors that are suitable for creating a bare metal server with the
+        specified image.
 
         Args:
           include_prices: Set to true if flavor listing should include flavor prices

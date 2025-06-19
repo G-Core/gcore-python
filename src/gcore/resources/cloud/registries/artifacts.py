@@ -54,7 +54,7 @@ class ArtifactsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryArtifactList:
         """
-        List artifacts
+        List all artifacts in a specific repository.
 
         Args:
           extra_headers: Send extra headers
@@ -95,7 +95,7 @@ class ArtifactsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete an artifact
+        Delete a specific artifact from a repository.
 
         Args:
           extra_headers: Send extra headers
@@ -159,7 +159,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryArtifactList:
         """
-        List artifacts
+        List all artifacts in a specific repository.
 
         Args:
           extra_headers: Send extra headers
@@ -200,7 +200,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete an artifact
+        Delete a specific artifact from a repository.
 
         Args:
           extra_headers: Send extra headers

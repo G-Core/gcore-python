@@ -140,9 +140,7 @@ class FloatingIPsResource(SyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -321,7 +319,7 @@ class FloatingIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FloatingIP:
         """
-        Unassign floating IP from the instance
+        Unassign floating IP
 
         Args:
           extra_headers: Send extra headers
@@ -461,9 +459,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -642,7 +638,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FloatingIP:
         """
-        Unassign floating IP from the instance
+        Unassign floating IP
 
         Args:
           extra_headers: Send extra headers

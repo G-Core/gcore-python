@@ -53,7 +53,7 @@ class RepositoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryRepositoryList:
         """
-        List repositories
+        List all repositories in the container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -91,7 +91,7 @@ class RepositoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a repository
+        Delete a specific repository from the container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -152,7 +152,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryRepositoryList:
         """
-        List repositories
+        List all repositories in the container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -190,7 +190,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a repository
+        Delete a specific repository from the container registry.
 
         Args:
           extra_headers: Send extra headers

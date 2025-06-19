@@ -63,7 +63,7 @@ class VipResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CandidatePortList:
         """
-        List instance ports that are available for connecting to VIP
+        List all instance ports that are available for connecting to a VIP.
 
         Args:
           extra_headers: Send extra headers
@@ -102,7 +102,7 @@ class VipResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectedPortList:
         """
-        List instance ports that share VIP
+        List all instance ports that share a VIP.
 
         Args:
           extra_headers: Send extra headers
@@ -142,7 +142,7 @@ class VipResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectedPortList:
         """
-        Replace ports that share VIP
+        Replace the list of instance ports that share a VIP.
 
         Args:
           port_ids: List of port IDs that will share one VIP
@@ -187,7 +187,7 @@ class VipResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ReservedFixedIP:
         """
-        Switch VIP status of reserved fixed IP
+        Update the VIP status of a reserved fixed IP.
 
         Args:
           is_vip: If reserved fixed IP should be a VIP
@@ -230,7 +230,7 @@ class VipResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectedPortList:
         """
-        Add ports that share VIP
+        Add instance ports to share a VIP.
 
         Args:
           port_ids: List of port IDs that will share one VIP
@@ -295,7 +295,7 @@ class AsyncVipResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CandidatePortList:
         """
-        List instance ports that are available for connecting to VIP
+        List all instance ports that are available for connecting to a VIP.
 
         Args:
           extra_headers: Send extra headers
@@ -334,7 +334,7 @@ class AsyncVipResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectedPortList:
         """
-        List instance ports that share VIP
+        List all instance ports that share a VIP.
 
         Args:
           extra_headers: Send extra headers
@@ -374,7 +374,7 @@ class AsyncVipResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectedPortList:
         """
-        Replace ports that share VIP
+        Replace the list of instance ports that share a VIP.
 
         Args:
           port_ids: List of port IDs that will share one VIP
@@ -419,7 +419,7 @@ class AsyncVipResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ReservedFixedIP:
         """
-        Switch VIP status of reserved fixed IP
+        Update the VIP status of a reserved fixed IP.
 
         Args:
           is_vip: If reserved fixed IP should be a VIP
@@ -462,7 +462,7 @@ class AsyncVipResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectedPortList:
         """
-        Add ports that share VIP
+        Add instance ports to share a VIP.
 
         Args:
           port_ids: List of port IDs that will share one VIP

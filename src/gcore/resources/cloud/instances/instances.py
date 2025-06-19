@@ -134,8 +134,9 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create an instance with specified configuration.
+
+        How to get access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -358,8 +359,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Instance]:
-        """
-        List instances
+        """List all instances in the specified project and region.
+
+        Results can be filtered
+        by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -414,9 +417,7 @@ class InstancesResource(SyncAPIResource):
 
           status: Filters instances by status.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -674,8 +675,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Put instance into the server group
+        """Add an instance to a server group.
+
+        The instance must not already be in a server
+        group. Bare metal servers do not support server groups.
 
         Args:
           servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
@@ -853,8 +856,11 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
-        """
-        **Cookie Parameters**:
+        """Retrieve detailed information about a specific instance.
+
+        The response content
+        language for `ddos_profile` can be controlled via the 'language' cookie
+        parameter. **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
@@ -952,8 +958,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Remove instance from the server group
+        """Remove an instance from its current server group.
+
+        The instance must be in a
+        server group to be removed. Bare metal servers do not support server groups.
 
         Args:
           extra_headers: Send extra headers
@@ -1140,8 +1148,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create an instance with specified configuration.
+
+        How to get access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -1364,8 +1373,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Instance, AsyncOffsetPage[Instance]]:
-        """
-        List instances
+        """List all instances in the specified project and region.
+
+        Results can be filtered
+        by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -1420,9 +1431,7 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           status: Filters instances by status.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -1680,8 +1689,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Put instance into the server group
+        """Add an instance to a server group.
+
+        The instance must not already be in a server
+        group. Bare metal servers do not support server groups.
 
         Args:
           servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
@@ -1859,8 +1870,11 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
-        """
-        **Cookie Parameters**:
+        """Retrieve detailed information about a specific instance.
+
+        The response content
+        language for `ddos_profile` can be controlled via the 'language' cookie
+        parameter. **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
@@ -1958,8 +1972,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Remove instance from the server group
+        """Remove an instance from its current server group.
+
+        The instance must be in a
+        server group to be removed. Bare metal servers do not support server groups.
 
         Args:
           extra_headers: Send extra headers

@@ -122,8 +122,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create bare metal GPU cluster
+        """Create a new GPU cluster with specified configuration.
+
+        The cluster can be
+        created with one or more nodes.
 
         Args:
           flavor: Flavor name
@@ -439,8 +441,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        All cluster nodes must be specified to update the cluster image.
+        """Rebuild one or more nodes in a GPU cluster.
+
+        All cluster nodes must be specified
+        to update the cluster image.
 
         Args:
           nodes: List of nodes uuids to be rebuild
@@ -495,8 +499,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Resize bare metal GPU cluster
+        """Change the number of nodes in a GPU cluster.
+
+        The cluster can be scaled up or
+        down.
 
         Args:
           instances_count: Resized (total) number of instances
@@ -586,8 +592,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create bare metal GPU cluster
+        """Create a new GPU cluster with specified configuration.
+
+        The cluster can be
+        created with one or more nodes.
 
         Args:
           flavor: Flavor name
@@ -903,8 +911,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        All cluster nodes must be specified to update the cluster image.
+        """Rebuild one or more nodes in a GPU cluster.
+
+        All cluster nodes must be specified
+        to update the cluster image.
 
         Args:
           nodes: List of nodes uuids to be rebuild
@@ -959,8 +969,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Resize bare metal GPU cluster
+        """Change the number of nodes in a GPU cluster.
+
+        The cluster can be scaled up or
+        down.
 
         Args:
           instances_count: Resized (total) number of instances

@@ -72,8 +72,10 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create a new bare metal server with the specified configuration.
+
+        How to get
+        access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -216,8 +218,10 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[BaremetalServer]:
-        """
-        List bare metal servers
+        """List all bare metal servers in the specified project and region.
+
+        Results can be
+        filtered by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -262,9 +266,7 @@ class ServersResource(SyncAPIResource):
 
           status: Filters instances by a server status, as a string.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -345,7 +347,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Rebuild bare metal server
+        Rebuild a bare metal server with a new image while preserving its configuration.
 
         Args:
           image_id: Image ID
@@ -429,8 +431,10 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create a new bare metal server with the specified configuration.
+
+        How to get
+        access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -573,8 +577,10 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[BaremetalServer, AsyncOffsetPage[BaremetalServer]]:
-        """
-        List bare metal servers
+        """List all bare metal servers in the specified project and region.
+
+        Results can be
+        filtered by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -619,9 +625,7 @@ class AsyncServersResource(AsyncAPIResource):
 
           status: Filters instances by a server status, as a string.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -702,7 +706,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Rebuild bare metal server
+        Rebuild a bare metal server with a new image while preserving its configuration.
 
         Args:
           image_id: Image ID

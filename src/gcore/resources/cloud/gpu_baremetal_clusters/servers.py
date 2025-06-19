@@ -65,8 +65,10 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete bare metal GPU server from cluster
+        """Delete a specific node from a GPU cluster.
+
+        The node must be in a state that
+        allows deletion.
 
         Args:
           delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's
@@ -550,8 +552,10 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete bare metal GPU server from cluster
+        """Delete a specific node from a GPU cluster.
+
+        The node must be in a state that
+        allows deletion.
 
         Args:
           delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's

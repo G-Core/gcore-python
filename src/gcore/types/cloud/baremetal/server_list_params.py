@@ -85,11 +85,7 @@ class ServerListParams(TypedDict, total=False):
     """Filters instances by a server status, as a string."""
 
     tag_key_value: str
-    """Optional.
-
-    Filter by tag key-value pairs. curl -G --data-urlencode "`tag_key_value`={"key":
-    "value"}" --url "https://example.com/cloud/v1/resource/1/1"
-    """
+    """Optional. Filter by tag key-value pairs."""
 
     tag_value: List[str]
     """Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2"""

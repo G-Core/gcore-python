@@ -68,7 +68,7 @@ class HealthMonitorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create Load Balancer Pool Health Monitor
+        Create load balancer pool health monitor
 
         Args:
           project_id: Project ID
@@ -219,7 +219,7 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create Load Balancer Pool Health Monitor
+        Create load balancer pool health monitor
 
         Args:
           project_id: Project ID
