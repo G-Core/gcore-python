@@ -233,7 +233,7 @@ class TasksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Acknowledge all client tasks in project or region
+        Acknowledge all tasks
 
         Args:
           project_id: Project ID
@@ -279,7 +279,7 @@ class TasksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Task:
         """
-        Acknowledge one task on project scope
+        Acknowledge one task
 
         Args:
           task_id: Task ID
@@ -541,7 +541,7 @@ class AsyncTasksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Acknowledge all client tasks in project or region
+        Acknowledge all tasks
 
         Args:
           project_id: Project ID
@@ -587,7 +587,7 @@ class AsyncTasksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Task:
         """
-        Acknowledge one task on project scope
+        Acknowledge one task
 
         Args:
           task_id: Task ID

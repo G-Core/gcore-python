@@ -160,7 +160,7 @@ class BillingReservationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BillingReservation:
         """
-        Get specific reservation
+        Get reservation
 
         Args:
           reservation_id: ID of the reservation
@@ -316,7 +316,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BillingReservation:
         """
-        Get specific reservation
+        Get reservation
 
         Args:
           reservation_id: ID of the reservation

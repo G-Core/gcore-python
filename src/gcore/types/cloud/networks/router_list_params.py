@@ -13,7 +13,7 @@ class RouterListParams(TypedDict, total=False):
     region_id: int
 
     limit: int
-    """Limit the number of returned limit request entities."""
+    """Limit the number of returned routers"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result."""
+    """Offset value is used to exclude the first set of records from the result"""

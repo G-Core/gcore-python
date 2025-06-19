@@ -63,7 +63,7 @@ class QuotasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> QuotaGetAllResponse:
-        """Get combined client quotas, regional and global."""
+        """Get combined client quotas, including both regional and global quotas."""
         return self._get(
             "/cloud/v2/client_quotas",
             options=make_request_options(
@@ -85,7 +85,7 @@ class QuotasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> QuotaGetByRegionResponse:
         """
-        Get a quota by region
+        Get quotas for a specific region and client.
 
         Args:
           client_id: Client ID
@@ -122,7 +122,7 @@ class QuotasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> QuotaGetGlobalResponse:
         """
-        Get global quota
+        Get global quotas for a specific client.
 
         Args:
           client_id: Client ID
@@ -178,7 +178,7 @@ class AsyncQuotasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> QuotaGetAllResponse:
-        """Get combined client quotas, regional and global."""
+        """Get combined client quotas, including both regional and global quotas."""
         return await self._get(
             "/cloud/v2/client_quotas",
             options=make_request_options(
@@ -200,7 +200,7 @@ class AsyncQuotasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> QuotaGetByRegionResponse:
         """
-        Get a quota by region
+        Get quotas for a specific region and client.
 
         Args:
           client_id: Client ID
@@ -237,7 +237,7 @@ class AsyncQuotasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> QuotaGetGlobalResponse:
         """
-        Get global quota
+        Get global quotas for a specific client.
 
         Args:
           client_id: Client ID

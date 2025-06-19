@@ -175,7 +175,7 @@ class ListenersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Update listener
+        Update load balancer listener
 
         Args:
           project_id: Project ID
@@ -356,7 +356,7 @@ class ListenersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LoadBalancerListenerDetail:
         """
-        Get listener
+        Get load balancer listener
 
         Args:
           project_id: Project ID
@@ -698,7 +698,7 @@ class AsyncListenersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Update listener
+        Update load balancer listener
 
         Args:
           project_id: Project ID
@@ -879,7 +879,7 @@ class AsyncListenersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LoadBalancerListenerDetail:
         """
-        Get listener
+        Get load balancer listener
 
         Args:
           project_id: Project ID

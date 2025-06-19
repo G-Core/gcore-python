@@ -55,7 +55,7 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a tag
+        Delete a specific tag from an artifact.
 
         Args:
           extra_headers: Send extra headers
@@ -123,7 +123,7 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a tag
+        Delete a specific tag from an artifact.
 
         Args:
           extra_headers: Send extra headers

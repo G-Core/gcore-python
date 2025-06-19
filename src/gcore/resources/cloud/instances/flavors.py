@@ -59,11 +59,11 @@ class FlavorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InstanceFlavorList:
-        """Retrieve a list of flavors.
+        """Retrieve a list of available instance flavors in the project and region.
 
-        When the `include_prices` query parameter is
-        specified, the list shows prices. A client in trial mode gets all price values
-        as 0. If you get Pricing Error contact the support
+        When
+        `include_prices` is specified, the list includes pricing information. Trial mode
+        clients see all prices as 0. Contact support for pricing errors.
 
         Args:
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
@@ -168,12 +168,12 @@ class FlavorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InstanceFlavorList:
-        """List suitable flavors for instance creation
+        """
+        List all flavors that are suitable for instance creation based on volume
+        requirements.
 
         Args:
-          volumes: Volumes details.
-
-        Non-important info such as names may be omitted.
+          volumes: Volumes details. Non-important info such as names may be omitted.
 
           include_prices: Set to true if flavor listing should include flavor prices
 
@@ -241,11 +241,11 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InstanceFlavorList:
-        """Retrieve a list of flavors.
+        """Retrieve a list of available instance flavors in the project and region.
 
-        When the `include_prices` query parameter is
-        specified, the list shows prices. A client in trial mode gets all price values
-        as 0. If you get Pricing Error contact the support
+        When
+        `include_prices` is specified, the list includes pricing information. Trial mode
+        clients see all prices as 0. Contact support for pricing errors.
 
         Args:
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
@@ -350,12 +350,12 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InstanceFlavorList:
-        """List suitable flavors for instance creation
+        """
+        List all flavors that are suitable for instance creation based on volume
+        requirements.
 
         Args:
-          volumes: Volumes details.
-
-        Non-important info such as names may be omitted.
+          volumes: Volumes details. Non-important info such as names may be omitted.
 
           include_prices: Set to true if flavor listing should include flavor prices
 

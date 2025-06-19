@@ -100,7 +100,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete bare metal GPU image by ID
+        Delete bare metal GPU image
 
         Args:
           project_id: Project ID
@@ -181,7 +181,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUImage:
         """
-        Get bare metal GPU image by ID
+        Get bare metal GPU image
 
         Args:
           project_id: Project ID
@@ -443,7 +443,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete bare metal GPU image by ID
+        Delete bare metal GPU image
 
         Args:
           project_id: Project ID
@@ -524,7 +524,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUImage:
         """
-        Get bare metal GPU image by ID
+        Get bare metal GPU image
 
         Args:
           project_id: Project ID

@@ -59,7 +59,7 @@ class MetricsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LoadBalancerMetricsList:
         """
-        Get loadbalancer metrics, including cpu, memory and network
+        Get load balancer metrics, including cpu, memory and network
 
         Args:
           time_interval: Time interval
@@ -132,7 +132,7 @@ class AsyncMetricsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LoadBalancerMetricsList:
         """
-        Get loadbalancer metrics, including cpu, memory and network
+        Get load balancer metrics, including cpu, memory and network
 
         Args:
           time_interval: Time interval

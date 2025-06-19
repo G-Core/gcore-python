@@ -254,7 +254,7 @@ class TestSecurityGroups:
             region_id=0,
             name="some_name",
         )
-        assert security_group is None
+        assert_matches_type(SecurityGroup, security_group, path=["response"])
 
     @parametrize
     def test_raw_response_copy(self, client: Gcore) -> None:
@@ -268,7 +268,7 @@ class TestSecurityGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_group = response.parse()
-        assert security_group is None
+        assert_matches_type(SecurityGroup, security_group, path=["response"])
 
     @parametrize
     def test_streaming_response_copy(self, client: Gcore) -> None:
@@ -282,7 +282,7 @@ class TestSecurityGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             security_group = response.parse()
-            assert security_group is None
+            assert_matches_type(SecurityGroup, security_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -626,7 +626,7 @@ class TestAsyncSecurityGroups:
             region_id=0,
             name="some_name",
         )
-        assert security_group is None
+        assert_matches_type(SecurityGroup, security_group, path=["response"])
 
     @parametrize
     async def test_raw_response_copy(self, async_client: AsyncGcore) -> None:
@@ -640,7 +640,7 @@ class TestAsyncSecurityGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_group = await response.parse()
-        assert security_group is None
+        assert_matches_type(SecurityGroup, security_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_copy(self, async_client: AsyncGcore) -> None:
@@ -654,7 +654,7 @@ class TestAsyncSecurityGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             security_group = await response.parse()
-            assert security_group is None
+            assert_matches_type(SecurityGroup, security_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

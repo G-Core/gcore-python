@@ -74,7 +74,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Update image fields
+        Update image properties and tags.
 
         Args:
           hw_firmware_type: Specifies the type of firmware with which to boot the guest.
@@ -146,10 +146,11 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ImageList:
-        """Retrieve an available images list.
+        """Retrieve a list of available images in the project and region.
 
-        Returned entities owned by the project and
-        public OR shared with the client
+        The list can be
+        filtered by visibility, tags, and other parameters. Returned entities are owned
+        by the project or are public/shared with the client.
 
         Args:
           include_prices: Show price
@@ -158,9 +159,7 @@ class ImagesResource(SyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode '`tag_key_value`={"key": "value"}' --url
-              'http://localhost:1111/v1/images/1/1'"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -210,8 +209,10 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete the image
+        """Delete a specific image.
+
+        The image cannot be deleted if it is used by protected
+        snapshots.
 
         Args:
           extra_headers: Send extra headers
@@ -292,8 +293,10 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create image from volume
+        """Create a new image from a bootable volume.
+
+        The volume must be bootable to create
+        an image from it.
 
         Args:
           name: Image name
@@ -430,7 +433,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Get image
+        Retrieve detailed information about a specific image.
 
         Args:
           include_prices: Show price
@@ -485,8 +488,10 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Upload image
+        """Upload an image from a URL.
+
+        The image can be configured with various properties
+        like OS type, architecture, and tags.
 
         Args:
           name: Image name
@@ -661,7 +666,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Update image fields
+        Update image properties and tags.
 
         Args:
           hw_firmware_type: Specifies the type of firmware with which to boot the guest.
@@ -733,10 +738,11 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ImageList:
-        """Retrieve an available images list.
+        """Retrieve a list of available images in the project and region.
 
-        Returned entities owned by the project and
-        public OR shared with the client
+        The list can be
+        filtered by visibility, tags, and other parameters. Returned entities are owned
+        by the project or are public/shared with the client.
 
         Args:
           include_prices: Show price
@@ -745,9 +751,7 @@ class AsyncImagesResource(AsyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode '`tag_key_value`={"key": "value"}' --url
-              'http://localhost:1111/v1/images/1/1'"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -797,8 +801,10 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete the image
+        """Delete a specific image.
+
+        The image cannot be deleted if it is used by protected
+        snapshots.
 
         Args:
           extra_headers: Send extra headers
@@ -879,8 +885,10 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create image from volume
+        """Create a new image from a bootable volume.
+
+        The volume must be bootable to create
+        an image from it.
 
         Args:
           name: Image name
@@ -1017,7 +1025,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Get image
+        Retrieve detailed information about a specific image.
 
         Args:
           include_prices: Show price
@@ -1072,8 +1080,10 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Upload image
+        """Upload an image from a URL.
+
+        The image can be configured with various properties
+        like OS type, architecture, and tags.
 
         Args:
           name: Image name

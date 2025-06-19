@@ -418,7 +418,7 @@ Methods:
 - <code title="patch /cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}">client.cloud.security_groups.<a href="./src/gcore/resources/cloud/security_groups/security_groups.py">update</a>(group_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_group_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/security_group.py">SecurityGroup</a></code>
 - <code title="get /cloud/v1/securitygroups/{project_id}/{region_id}">client.cloud.security_groups.<a href="./src/gcore/resources/cloud/security_groups/security_groups.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_group_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/security_group.py">SyncOffsetPage[SecurityGroup]</a></code>
 - <code title="delete /cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}">client.cloud.security_groups.<a href="./src/gcore/resources/cloud/security_groups/security_groups.py">delete</a>(group_id, \*, project_id, region_id) -> None</code>
-- <code title="post /cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy">client.cloud.security_groups.<a href="./src/gcore/resources/cloud/security_groups/security_groups.py">copy</a>(group_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_group_copy_params.py">params</a>) -> None</code>
+- <code title="post /cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy">client.cloud.security_groups.<a href="./src/gcore/resources/cloud/security_groups/security_groups.py">copy</a>(group_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_group_copy_params.py">params</a>) -> <a href="./src/gcore/types/cloud/security_group.py">SecurityGroup</a></code>
 - <code title="get /cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}">client.cloud.security_groups.<a href="./src/gcore/resources/cloud/security_groups/security_groups.py">get</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/security_group.py">SecurityGroup</a></code>
 - <code title="post /cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert">client.cloud.security_groups.<a href="./src/gcore/resources/cloud/security_groups/security_groups.py">revert_to_default</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/security_group.py">SecurityGroup</a></code>
 
@@ -667,17 +667,22 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.registries import RegistryUser, RegistryUserCreated, RegistryUserList
+from gcore.types.cloud.registries import (
+    RegistryUser,
+    RegistryUserCreated,
+    RegistryUserList,
+    UserRefreshSecretResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user.py">RegistryUser</a></code>
+- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_created.py">RegistryUserCreated</a></code>
 - <code title="patch /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">update</a>(user_id, \*, project_id, region_id, registry_id, \*\*<a href="src/gcore/types/cloud/registries/user_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user.py">RegistryUser</a></code>
 - <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">list</a>(registry_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/registries/registry_user_list.py">RegistryUserList</a></code>
 - <code title="delete /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">delete</a>(user_id, \*, project_id, region_id, registry_id) -> None</code>
 - <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create_multiple</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_multiple_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_created.py">RegistryUserCreated</a></code>
-- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">refresh_secret</a>(user_id, \*, project_id, region_id, registry_id) -> None</code>
+- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">refresh_secret</a>(user_id, \*, project_id, region_id, registry_id) -> <a href="./src/gcore/types/cloud/registries/user_refresh_secret_response.py">UserRefreshSecretResponse</a></code>
 
 ## FileShares
 
