@@ -255,10 +255,14 @@ class ConditionTags(BaseModel):
 
 class ConditionURL(BaseModel):
     url: str
-    """The pattern to match against the request URL.
+    """
+    The pattern to match against the request URL. Constraints depend on
+    `match_type`:
 
-    If `match_type` is `Regex` the value must be a valid regular expression that
-    does not use lookahead or lookbehind constructs
+    - **Exact/Contains**: plain text matching (e.g., `/admin`).
+    - **Regex**: a valid regular expression (must comply with
+      `^[\\ww!\\$$~:#\\[[\\]]@\\((\\))\\*\\++,=\\//\\--\\..\\%%]+$`). Lookahead/lookbehind constructs are
+      forbidden.
     """
 
     match_type: Optional[Literal["Exact", "Contains", "Regex"]] = None
