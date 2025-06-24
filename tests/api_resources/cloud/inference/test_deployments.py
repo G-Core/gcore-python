@@ -233,14 +233,14 @@ class TestDeployments:
                         "cooldown_period": 60,
                         "polling_interval": 30,
                         "triggers": {
-                            "cpu": {"threshold": 80},
+                            "cpu": {"threshold": 75},
                             "gpu_memory": {"threshold": 80},
                             "gpu_utilization": {"threshold": 80},
                             "http": {
                                 "rate": 1,
                                 "window": 60,
                             },
-                            "memory": {"threshold": 70},
+                            "memory": {"threshold": 80},
                             "sqs": {
                                 "activation_queue_length": 1,
                                 "aws_region": "us-east-1",
@@ -835,14 +835,14 @@ class TestAsyncDeployments:
                         "cooldown_period": 60,
                         "polling_interval": 30,
                         "triggers": {
-                            "cpu": {"threshold": 80},
+                            "cpu": {"threshold": 75},
                             "gpu_memory": {"threshold": 80},
                             "gpu_utilization": {"threshold": 80},
                             "http": {
                                 "rate": 1,
                                 "window": 60,
                             },
-                            "memory": {"threshold": 70},
+                            "memory": {"threshold": 80},
                             "sqs": {
                                 "activation_queue_length": 1,
                                 "aws_region": "us-east-1",

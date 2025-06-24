@@ -162,14 +162,14 @@ class TestRequests:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         request = client.cloud.quotas.requests.delete(
-            "request_id",
+            "3",
         )
         assert request is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.quotas.requests.with_raw_response.delete(
-            "request_id",
+            "3",
         )
 
         assert response.is_closed is True
@@ -180,7 +180,7 @@ class TestRequests:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.quotas.requests.with_streaming_response.delete(
-            "request_id",
+            "3",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -200,14 +200,14 @@ class TestRequests:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         request = client.cloud.quotas.requests.get(
-            "request_id",
+            "3",
         )
         assert_matches_type(RequestGetResponse, request, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.quotas.requests.with_raw_response.get(
-            "request_id",
+            "3",
         )
 
         assert response.is_closed is True
@@ -218,7 +218,7 @@ class TestRequests:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.quotas.requests.with_streaming_response.get(
-            "request_id",
+            "3",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -385,14 +385,14 @@ class TestAsyncRequests:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         request = await async_client.cloud.quotas.requests.delete(
-            "request_id",
+            "3",
         )
         assert request is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.quotas.requests.with_raw_response.delete(
-            "request_id",
+            "3",
         )
 
         assert response.is_closed is True
@@ -403,7 +403,7 @@ class TestAsyncRequests:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.quotas.requests.with_streaming_response.delete(
-            "request_id",
+            "3",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -423,14 +423,14 @@ class TestAsyncRequests:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         request = await async_client.cloud.quotas.requests.get(
-            "request_id",
+            "3",
         )
         assert_matches_type(RequestGetResponse, request, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.quotas.requests.with_raw_response.get(
-            "request_id",
+            "3",
         )
 
         assert response.is_closed is True
@@ -441,7 +441,7 @@ class TestAsyncRequests:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.quotas.requests.with_streaming_response.get(
-            "request_id",
+            "3",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
