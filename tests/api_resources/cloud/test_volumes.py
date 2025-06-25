@@ -209,7 +209,17 @@ class TestVolumes:
             volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             project_id=1,
             region_id=1,
-            name="my-resource",
+        )
+        assert_matches_type(Volume, volume, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gcore) -> None:
+        volume = client.cloud.volumes.update(
+            volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
+            project_id=1,
+            region_id=1,
+            name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Volume, volume, path=["response"])
 
@@ -219,7 +229,6 @@ class TestVolumes:
             volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             project_id=1,
             region_id=1,
-            name="my-resource",
         )
 
         assert response.is_closed is True
@@ -233,7 +242,6 @@ class TestVolumes:
             volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             project_id=1,
             region_id=1,
-            name="my-resource",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,7 +258,6 @@ class TestVolumes:
                 volume_id="",
                 project_id=1,
                 region_id=1,
-                name="my-resource",
             )
 
     @parametrize
@@ -858,7 +865,17 @@ class TestAsyncVolumes:
             volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             project_id=1,
             region_id=1,
-            name="my-resource",
+        )
+        assert_matches_type(Volume, volume, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
+        volume = await async_client.cloud.volumes.update(
+            volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
+            project_id=1,
+            region_id=1,
+            name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Volume, volume, path=["response"])
 
@@ -868,7 +885,6 @@ class TestAsyncVolumes:
             volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             project_id=1,
             region_id=1,
-            name="my-resource",
         )
 
         assert response.is_closed is True
@@ -882,7 +898,6 @@ class TestAsyncVolumes:
             volume_id="726ecfcc-7fd0-4e30-a86e-7892524aa483",
             project_id=1,
             region_id=1,
-            name="my-resource",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -899,7 +914,6 @@ class TestAsyncVolumes:
                 volume_id="",
                 project_id=1,
                 region_id=1,
-                name="my-resource",
             )
 
     @parametrize
