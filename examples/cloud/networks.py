@@ -19,8 +19,17 @@ def main() -> None:
     list_subnets(client=gcore, network_id=network_id)
     get_subnet(client=gcore, subnet_id=subnet_id)
     update_subnet(client=gcore, subnet_id=subnet_id)
-    delete_subnet(client=gcore, subnet_id=subnet_id)
 
+    # Routers
+    router_id = create_router(client=gcore)
+    list_routers(client=gcore)
+    get_router(client=gcore, router_id=router_id)
+    update_router(client=gcore, router_id=router_id)
+    attach_subnet_to_router(client=gcore, router_id=router_id, subnet_id=subnet_id)
+    detach_subnet_from_router(client=gcore, router_id=router_id, subnet_id=subnet_id)
+
+    delete_router(client=gcore, router_id=router_id)
+    delete_subnet(client=gcore, subnet_id=subnet_id)
     delete_network(client=gcore, network_id=network_id)
 
 
@@ -100,6 +109,64 @@ def update_subnet(*, client: Gcore, subnet_id: str) -> None:
     print("========================")
 
 
+def create_router(*, client: Gcore) -> str:
+    print("\n=== CREATE ROUTER ===")
+    response = client.cloud.networks.routers.create(name="gcore-go-example")
+    task_id = response.tasks[0]
+    task = client.cloud.tasks.poll(task_id=task_id)
+    if task.created_resources is None or task.created_resources.routers is None:
+        raise RuntimeError("Task completed but created_resources or routers is missing")
+    router_id: str = task.created_resources.routers[0]
+    print(f"Created router: ID={router_id}")
+    print("========================")
+    return router_id
+
+
+def list_routers(*, client: Gcore) -> None:
+    print("\n=== LIST ROUTERS ===")
+    routers = client.cloud.networks.routers.list()
+    for count, router in enumerate(routers, 1):
+        print(f"{count}. Router: ID={router.id}, name={router.name}, status={router.status}")
+    print("========================")
+
+
+def get_router(*, client: Gcore, router_id: str) -> None:
+    print("\n=== GET ROUTER ===")
+    router = client.cloud.networks.routers.get(router_id=router_id)
+    print(f"Router: ID={router.id}, name={router.name}, status={router.status}")
+    print("========================")
+
+
+def update_router(*, client: Gcore, router_id: str) -> None:
+    print("\n=== UPDATE ROUTER ===")
+    router = client.cloud.networks.routers.update(router_id=router_id, name="gcore-go-example-updated")
+    print(f"Updated router: ID={router.id}, name={router.name}")
+    print("========================")
+
+
+def attach_subnet_to_router(*, client: Gcore, router_id: str, subnet_id: str) -> None:
+    print("\n=== ATTACH SUBNET TO ROUTER ===")
+    router = client.cloud.networks.routers.attach_subnet(router_id=router_id, subnet_id=subnet_id)
+    print(f"Attached subnet {subnet_id} to router: ID={router.id}")
+    print("========================")
+
+
+def detach_subnet_from_router(*, client: Gcore, router_id: str, subnet_id: str) -> None:
+    print("\n=== DETACH SUBNET FROM ROUTER ===")
+    router = client.cloud.networks.routers.detach_subnet(router_id=router_id, subnet_id=subnet_id)
+    print(f"Detached subnet {subnet_id} from router: ID={router.id}")
+    print("========================")
+
+
+def delete_router(*, client: Gcore, router_id: str) -> None:
+    print("\n=== DELETE ROUTER ===")
+    response = client.cloud.networks.routers.delete(router_id=router_id)
+    task_id = response.tasks[0]
+    client.cloud.tasks.poll(task_id=task_id)
+    print(f"Deleted router: ID={router_id}")
+    print("========================")
+
+
 def delete_subnet(*, client: Gcore, subnet_id: str) -> None:
     print("\n=== DELETE SUBNET ===")
     client.cloud.networks.subnets.delete(subnet_id=subnet_id)
@@ -110,9 +177,8 @@ def delete_subnet(*, client: Gcore, subnet_id: str) -> None:
 def delete_network(*, client: Gcore, network_id: str) -> None:
     print("\n=== DELETE NETWORK ===")
     response = client.cloud.networks.delete(network_id=network_id)
-    if response.tasks:
-        task_id = response.tasks[0]
-        client.cloud.tasks.poll(task_id=task_id)
+    task_id = response.tasks[0]
+    client.cloud.tasks.poll(task_id=task_id)
     print(f"Deleted network: ID={network_id}")
     print("========================")
 

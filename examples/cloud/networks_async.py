@@ -21,8 +21,17 @@ async def main() -> None:
     await list_subnets(client=gcore, network_id=network_id)
     await get_subnet(client=gcore, subnet_id=subnet_id)
     await update_subnet(client=gcore, subnet_id=subnet_id)
-    await delete_subnet(client=gcore, subnet_id=subnet_id)
 
+    # Routers
+    router_id = await create_router(client=gcore)
+    await list_routers(client=gcore)
+    await get_router(client=gcore, router_id=router_id)
+    await update_router(client=gcore, router_id=router_id)
+    await attach_subnet_to_router(client=gcore, router_id=router_id, subnet_id=subnet_id)
+    await detach_subnet_from_router(client=gcore, router_id=router_id, subnet_id=subnet_id)
+
+    await delete_router(client=gcore, router_id=router_id)
+    await delete_subnet(client=gcore, subnet_id=subnet_id)
     await delete_network(client=gcore, network_id=network_id)
 
 
@@ -106,6 +115,66 @@ async def update_subnet(*, client: AsyncGcore, subnet_id: str) -> None:
     print("========================")
 
 
+async def create_router(*, client: AsyncGcore) -> str:
+    print("\n=== CREATE ROUTER ===")
+    response = await client.cloud.networks.routers.create(name="gcore-go-example")
+    task_id = response.tasks[0]
+    task = await client.cloud.tasks.poll(task_id=task_id)
+    if task.created_resources is None or task.created_resources.routers is None:
+        raise RuntimeError("Task completed but created_resources or routers is missing")
+    router_id: str = task.created_resources.routers[0]
+    print(f"Created router: ID={router_id}")
+    print("========================")
+    return router_id
+
+
+async def list_routers(*, client: AsyncGcore) -> None:
+    print("\n=== LIST ROUTERS ===")
+    routers = await client.cloud.networks.routers.list()
+    count = 0
+    async for router in routers:
+        count += 1
+        print(f"{count}. Router: ID={router.id}, name={router.name}, status={router.status}")
+    print("========================")
+
+
+async def get_router(*, client: AsyncGcore, router_id: str) -> None:
+    print("\n=== GET ROUTER ===")
+    router = await client.cloud.networks.routers.get(router_id=router_id)
+    print(f"Router: ID={router.id}, name={router.name}, status={router.status}")
+    print("========================")
+
+
+async def update_router(*, client: AsyncGcore, router_id: str) -> None:
+    print("\n=== UPDATE ROUTER ===")
+    router = await client.cloud.networks.routers.update(router_id=router_id, name="gcore-go-example-updated")
+    print(f"Updated router: ID={router.id}, name={router.name}")
+    print("========================")
+
+
+async def attach_subnet_to_router(*, client: AsyncGcore, router_id: str, subnet_id: str) -> None:
+    print("\n=== ATTACH SUBNET TO ROUTER ===")
+    router = await client.cloud.networks.routers.attach_subnet(router_id=router_id, subnet_id=subnet_id)
+    print(f"Attached subnet {subnet_id} to router: ID={router.id}")
+    print("========================")
+
+
+async def detach_subnet_from_router(*, client: AsyncGcore, router_id: str, subnet_id: str) -> None:
+    print("\n=== DETACH SUBNET FROM ROUTER ===")
+    router = await client.cloud.networks.routers.detach_subnet(router_id=router_id, subnet_id=subnet_id)
+    print(f"Detached subnet {subnet_id} from router: ID={router.id}")
+    print("========================")
+
+
+async def delete_router(*, client: AsyncGcore, router_id: str) -> None:
+    print("\n=== DELETE ROUTER ===")
+    response = await client.cloud.networks.routers.delete(router_id=router_id)
+    task_id = response.tasks[0]
+    await client.cloud.tasks.poll(task_id=task_id)
+    print(f"Deleted router: ID={router_id}")
+    print("========================")
+
+
 async def delete_subnet(*, client: AsyncGcore, subnet_id: str) -> None:
     print("\n=== DELETE SUBNET ===")
     await client.cloud.networks.subnets.delete(subnet_id=subnet_id)
@@ -116,9 +185,8 @@ async def delete_subnet(*, client: AsyncGcore, subnet_id: str) -> None:
 async def delete_network(*, client: AsyncGcore, network_id: str) -> None:
     print("\n=== DELETE NETWORK ===")
     response = await client.cloud.networks.delete(network_id=network_id)
-    if response.tasks:
-        task_id = response.tasks[0]
-        await client.cloud.tasks.poll(task_id=task_id)
+    task_id = response.tasks[0]
+    await client.cloud.tasks.poll(task_id=task_id)
     print(f"Deleted network: ID={network_id}")
     print("========================")
 
