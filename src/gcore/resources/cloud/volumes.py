@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import List, Iterable, Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -320,7 +320,8 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -329,7 +330,7 @@ class VolumesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Rename a volume.
+        Rename a volume or update tags
 
         Args:
           project_id: Project ID
@@ -338,7 +339,27 @@ class VolumesResource(SyncAPIResource):
 
           volume_id: Volume ID
 
-          name: Name.
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -356,7 +377,13 @@ class VolumesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._patch(
             f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
-            body=maybe_transform({"name": name}, volume_update_params.VolumeUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                volume_update_params.VolumeUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1102,7 +1129,8 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1111,7 +1139,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Rename a volume.
+        Rename a volume or update tags
 
         Args:
           project_id: Project ID
@@ -1120,7 +1148,27 @@ class AsyncVolumesResource(AsyncAPIResource):
 
           volume_id: Volume ID
 
-          name: Name.
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -1138,7 +1186,13 @@ class AsyncVolumesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._patch(
             f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
-            body=await async_maybe_transform({"name": name}, volume_update_params.VolumeUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                volume_update_params.VolumeUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
