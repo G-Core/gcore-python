@@ -18,7 +18,9 @@ async def main() -> None:
 
     gcore = AsyncGcore(timeout=180.0)
 
-    instance_id = await create_instance(client=gcore)
+    uploaded_image_id = await upload_image(client=gcore)
+
+    instance_id = await create_instance(client=gcore, image_id=uploaded_image_id)
     instance = await get_instance(client=gcore, instance_id=instance_id)
     await get_console(client=gcore, instance_id=instance_id)
     await list_instances(client=gcore)
@@ -28,6 +30,14 @@ async def main() -> None:
 
     # Flavors
     await list_flavors(client=gcore)
+
+    # Images
+    await list_images(client=gcore)
+    await get_image(client=gcore, image_id=uploaded_image_id)
+    await update_image(client=gcore, image_id=uploaded_image_id)
+    await delete_image(client=gcore, image_id=uploaded_image_id)
+    # volume_image_id = await create_image_from_volume(client=gcore, volume_id=instance.volumes[0].id)
+    # await delete_image(client=gcore, image_id=volume_image_id)
 
     # Interfaces
     interfaces = await list_interfaces(client=gcore, instance_id=instance_id)
@@ -53,25 +63,27 @@ async def main() -> None:
     await delete_instance(client=gcore, instance_id=instance_id, volumes=instance.volumes)
 
 
-async def create_instance(*, client: AsyncGcore) -> str:
+async def create_instance(*, client: AsyncGcore, image_id: str) -> str:
     print("\n=== CREATE INSTANCE ===")
-    image_id, vsize = await _find_image(client=client)
 
     instance = await client.cloud.instances.create_and_poll(
-        name_template="gcore-go-example-{ip_octets}",
+        name="gcore-go-example-instance",
         flavor="g1-standard-1-2",
         interfaces=[
             InterfaceNewInterfaceExternalSerializerPydantic(type="external"),
         ],
         volumes=[
             VolumeCreateInstanceCreateVolumeFromImageSerializer(
+                name="gcore-go-example-volume",
+                size=10,
+                type_name="standard",
                 source="image",
                 image_id=image_id,
-                size=int(vsize),
                 boot_index=0,
             ),
         ],
         password="Gcore123!",
+        tags={"name": "gcore-go-example"},
     )
     print(f"Created instance: ID={instance.id}, name={instance.name}, status={instance.status}")
     print("========================")
@@ -231,6 +243,84 @@ async def delete_instance(*, client: AsyncGcore, instance_id: str, volumes: List
     print("========================")
 
 
+async def upload_image(*, client: AsyncGcore) -> str:
+    print("\n=== UPLOAD IMAGE ===")
+
+    image = await client.cloud.instances.images.upload_and_poll(
+        name="gcore-go-example-uploaded",
+        url="https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img",
+        os_type="linux",
+        architecture="x86_64",
+        ssh_key="allow",
+        os_distro="Ubuntu",
+        os_version="24.04",
+    )
+
+    print(
+        f"Uploaded image: ID={image.id}, name={image.name}, OS type={image.os_type}, arch={image.architecture}, status={image.status}, size={image.size}"
+    )
+    print("========================")
+    return image.id
+
+
+async def create_image_from_volume(*, client: AsyncGcore, volume_id: str) -> str:
+    print("\n=== CREATE IMAGE FROM VOLUME ===")
+
+    image = await client.cloud.instances.images.create_from_volume_and_poll(
+        volume_id=volume_id, name="gcore-go-example", os_type="linux"
+    )
+
+    print(f"Created image ID: {image.id}")
+    print("========================")
+    return image.id
+
+
+async def list_images(*, client: AsyncGcore) -> None:
+    print("\n=== LIST ALL IMAGES ===")
+
+    images = await client.cloud.instances.images.list()
+
+    display_count = 3
+    if len(images.results) < display_count:
+        display_count = len(images.results)
+
+    for i in range(display_count):
+        img = images.results[i]
+        print(f"  {i + 1}. Image ID: {img.id}, name: {img.name}, OS type: {img.os_type}, status: {img.status}")
+
+    if len(images.results) > display_count:
+        print(f"  ... and {len(images.results) - display_count} more images")
+
+    print("========================")
+
+
+async def get_image(*, client: AsyncGcore, image_id: str) -> None:
+    print("\n=== GET IMAGE BY ID ===")
+
+    image = await client.cloud.instances.images.get(image_id=image_id)
+
+    print(f"Image ID: {image.id}, name: {image.name}, OS type: {image.os_type}, status: {image.status}")
+    print("========================")
+
+
+async def update_image(*, client: AsyncGcore, image_id: str) -> None:
+    print("\n=== UPDATE IMAGE ===")
+
+    updated_image = await client.cloud.instances.images.update(image_id=image_id, name="gcore-go-example-updated")
+
+    print(f"Updated image ID: {updated_image.id}, name: {updated_image.name}")
+    print("========================")
+
+
+async def delete_image(*, client: AsyncGcore, image_id: str) -> None:
+    print("\n=== DELETE IMAGE ===")
+
+    await client.cloud.instances.images.delete_and_poll(image_id=image_id)
+
+    print(f"Image with ID {image_id} successfully deleted")
+    print("========================")
+
+
 async def _print_flavor_details(flavors: List[InstanceFlavor]) -> None:
     display_count = 3
     if len(flavors) < display_count:
@@ -248,15 +338,6 @@ async def _print_flavor_details(flavors: List[InstanceFlavor]) -> None:
 
     if len(flavors) > display_count:
         print(f"  ... and {len(flavors) - display_count} more flavors")
-
-
-async def _find_image(*, client: AsyncGcore) -> "tuple[str, int]":
-    images = await client.cloud.instances.images.list()
-    if not images.results:
-        raise RuntimeError("No available images")
-    image = images.results[0]
-    vsize = getattr(image, "min_disk", 40) or 40
-    return image.id, vsize
 
 
 if __name__ == "__main__":

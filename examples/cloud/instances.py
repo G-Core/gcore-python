@@ -17,7 +17,9 @@ def main() -> None:
 
     gcore = Gcore(timeout=180.0)
 
-    instance_id = create_instance(client=gcore)
+    uploaded_image_id = upload_image(client=gcore)
+
+    instance_id = create_instance(client=gcore, image_id=uploaded_image_id)
     instance = get_instance(client=gcore, instance_id=instance_id)
     get_console(client=gcore, instance_id=instance_id)
     list_instances(client=gcore)
@@ -27,6 +29,14 @@ def main() -> None:
 
     # Flavors
     list_flavors(client=gcore)
+
+    # Images
+    list_images(client=gcore)
+    get_image(client=gcore, image_id=uploaded_image_id)
+    update_image(client=gcore, image_id=uploaded_image_id)
+    delete_image(client=gcore, image_id=uploaded_image_id)
+    # volume_image_id = create_image_from_volume(client=gcore, volume_id=instance.volumes[0].id)
+    # delete_image(client=gcore, image_id=volume_image_id)
 
     # Interfaces
     interfaces = list_interfaces(client=gcore, instance_id=instance_id)
@@ -49,28 +59,30 @@ def main() -> None:
     unassign_security_group(client=gcore, instance_id=instance_id)
     assign_security_group(client=gcore, instance_id=instance_id)
 
-    delete_instance(client=gcore, instance_id=instance_id, volumes=instance.volumes if instance else [])
+    delete_instance(client=gcore, instance_id=instance_id, volumes=instance.volumes)
 
 
-def create_instance(*, client: Gcore) -> str:
+def create_instance(*, client: Gcore, image_id: str) -> str:
     print("\n=== CREATE INSTANCE ===")
-    image_id, vsize = _find_image(client=client)
 
     instance = client.cloud.instances.create_and_poll(
-        name_template="gcore-go-example-{ip_octets}",
+        name="gcore-go-example-instance",
         flavor="g1-standard-1-2",
         interfaces=[
             InterfaceNewInterfaceExternalSerializerPydantic(type="external"),
         ],
         volumes=[
             VolumeCreateInstanceCreateVolumeFromImageSerializer(
+                name="gcore-go-example-volume",
+                size=10,
+                type_name="standard",
                 source="image",
                 image_id=image_id,
-                size=vsize,
                 boot_index=0,
             ),
         ],
         password="Gcore123!",
+        tags={"name": "gcore-go-example"},
     )
     print(f"Created instance: ID={instance.id}, name={instance.name}, status={instance.status}")
     print("========================")
@@ -224,6 +236,84 @@ def delete_instance(*, client: Gcore, instance_id: str, volumes: List[Volume]) -
     print("========================")
 
 
+def upload_image(*, client: Gcore) -> str:
+    print("\n=== UPLOAD IMAGE ===")
+
+    image = client.cloud.instances.images.upload_and_poll(
+        name="gcore-go-example-uploaded",
+        url="https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img",
+        os_type="linux",
+        architecture="x86_64",
+        ssh_key="allow",
+        os_distro="Ubuntu",
+        os_version="24.04",
+    )
+
+    print(
+        f"Uploaded image: ID={image.id}, name={image.name}, OS type={image.os_type}, arch={image.architecture}, status={image.status}, size={image.size}"
+    )
+    print("========================")
+    return image.id
+
+
+def create_image_from_volume(*, client: Gcore, volume_id: str) -> str:
+    print("\n=== CREATE IMAGE FROM VOLUME ===")
+
+    image = client.cloud.instances.images.create_from_volume_and_poll(
+        volume_id=volume_id, name="gcore-go-example", os_type="linux"
+    )
+
+    print(f"Created image ID: {image.id}")
+    print("========================")
+    return image.id
+
+
+def list_images(*, client: Gcore) -> None:
+    print("\n=== LIST ALL IMAGES ===")
+
+    images = client.cloud.instances.images.list()
+
+    display_count = 3
+    if len(images.results) < display_count:
+        display_count = len(images.results)
+
+    for i in range(display_count):
+        img = images.results[i]
+        print(f"  {i + 1}. Image ID: {img.id}, name: {img.name}, OS type: {img.os_type}, status: {img.status}")
+
+    if len(images.results) > display_count:
+        print(f"  ... and {len(images.results) - display_count} more images")
+
+    print("========================")
+
+
+def get_image(*, client: Gcore, image_id: str) -> None:
+    print("\n=== GET IMAGE BY ID ===")
+
+    image = client.cloud.instances.images.get(image_id=image_id)
+
+    print(f"Image ID: {image.id}, name: {image.name}, OS type: {image.os_type}, status: {image.status}")
+    print("========================")
+
+
+def update_image(*, client: Gcore, image_id: str) -> None:
+    print("\n=== UPDATE IMAGE ===")
+
+    updated_image = client.cloud.instances.images.update(image_id=image_id, name="gcore-go-example-updated")
+
+    print(f"Updated image ID: {updated_image.id}, name: {updated_image.name}")
+    print("========================")
+
+
+def delete_image(*, client: Gcore, image_id: str) -> None:
+    print("\n=== DELETE IMAGE ===")
+
+    client.cloud.instances.images.delete_and_poll(image_id=image_id)
+
+    print(f"Image with ID {image_id} successfully deleted")
+    print("========================")
+
+
 def _print_flavor_details(flavors: List[InstanceFlavor]) -> None:
     display_count = 3
     if len(flavors) < display_count:
@@ -241,15 +331,6 @@ def _print_flavor_details(flavors: List[InstanceFlavor]) -> None:
 
     if len(flavors) > display_count:
         print(f"  ... and {len(flavors) - display_count} more flavors")
-
-
-def _find_image(*, client: Gcore) -> "tuple[str, int]":
-    images = client.cloud.instances.images.list()
-    if not images.results:
-        raise RuntimeError("No available images")
-    image = images.results[0]
-    vsize = getattr(image, "min_disk", 40) or 40
-    return image.id, vsize
 
 
 if __name__ == "__main__":
