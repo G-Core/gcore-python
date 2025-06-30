@@ -1,8 +1,3 @@
-"""
-Example demonstrating full lifecycle of Reserved Fixed IPs resource using async client.
-Includes create, get, list, update (i.e. toggle VIP), and delete operations.
-"""
-
 import asyncio
 
 from gcore import AsyncGcore

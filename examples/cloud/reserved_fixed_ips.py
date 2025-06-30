@@ -3,6 +3,31 @@ from gcore.pagination import SyncOffsetPage
 from gcore.types.cloud import ReservedFixedIP
 
 
+def main() -> None:
+    # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
+    # api_key = os.environ.get("GCORE_API_KEY")
+    # Will use Production API URL if omitted
+    # base_url = os.environ.get("GCORE_BASE_URL")
+
+    gcore = Gcore(
+        # api_key=api_key,
+        # base_url=base_url,
+    )
+
+    fixed_ip = create_reserved_fixed_ip(client=gcore)
+    list_reserved_fixed_ips(client=gcore)
+    get_reserved_fixed_ip(client=gcore, port_id=fixed_ip.port_id)
+
+    # VIP
+    toggle_reserved_fixed_ip_vip(client=gcore, port_id=fixed_ip.port_id, is_vip=True)
+    list_candidate_ports(client=gcore, port_id=fixed_ip.port_id)
+    list_connected_ports(client=gcore, port_id=fixed_ip.port_id)
+    # is_vip needs to be false to delete the reserved fixed IP
+    toggle_reserved_fixed_ip_vip(client=gcore, port_id=fixed_ip.port_id, is_vip=False)
+
+    delete_reserved_fixed_ip(client=gcore, port_id=fixed_ip.port_id)
+
+
 def create_reserved_fixed_ip(*, client: Gcore) -> ReservedFixedIP:
     print("\n=== CREATE RESERVED FIXED IP ===")
     task_list = client.cloud.reserved_fixed_ips.create(
@@ -68,31 +93,6 @@ def delete_reserved_fixed_ip(*, client: Gcore, port_id: str) -> None:
     client.cloud.tasks.poll(task_list.tasks[0])
     print(f"Deleted reserved fixed IP: ID={port_id}")
     print("========================")
-
-
-def main() -> None:
-    # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
-    # api_key = os.environ.get("GCORE_API_KEY")
-    # Will use Production API URL if omitted
-    # base_url = os.environ.get("GCORE_BASE_URL")
-
-    gcore = Gcore(
-        # api_key=api_key,
-        # base_url=base_url,
-    )
-
-    fixed_ip = create_reserved_fixed_ip(client=gcore)
-    list_reserved_fixed_ips(client=gcore)
-    get_reserved_fixed_ip(client=gcore, port_id=fixed_ip.port_id)
-
-    # VIP
-    toggle_reserved_fixed_ip_vip(client=gcore, port_id=fixed_ip.port_id, is_vip=True)
-    list_candidate_ports(client=gcore, port_id=fixed_ip.port_id)
-    list_connected_ports(client=gcore, port_id=fixed_ip.port_id)
-    # is_vip needs to be false to delete the reserved fixed IP
-    toggle_reserved_fixed_ip_vip(client=gcore, port_id=fixed_ip.port_id, is_vip=False)
-
-    delete_reserved_fixed_ip(client=gcore, port_id=fixed_ip.port_id)
 
 
 if __name__ == "__main__":
