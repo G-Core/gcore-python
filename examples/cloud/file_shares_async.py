@@ -6,10 +6,23 @@ from gcore.types.cloud.file_share_create_params import CreateStandardFileShareSe
 
 
 async def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+
     # TODO set cloud network ID before running
     cloud_network_id = os.environ["GCORE_CLOUD_NETWORK_ID"]
 
-    gcore = AsyncGcore(timeout=180.0)
+    gcore = AsyncGcore(
+        timeout=180.0,
+        # No need to explicitly pass to AsyncGcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
 
     fs_id = await create_file_share(client=gcore, network_id=cloud_network_id)
     await list_file_shares(client=gcore)

@@ -7,6 +7,11 @@ from gcore.types.cloud import Project
 
 
 async def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+
     new_project = await create_new_project()
     await list_all_projects()
     await get_project_by_id()

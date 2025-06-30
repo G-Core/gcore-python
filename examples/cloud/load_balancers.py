@@ -2,12 +2,20 @@ from gcore import Gcore
 
 
 def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
     # TODO set cloud project ID before running
     # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
     # TODO set cloud region ID before running
     # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
-    gcore = Gcore(timeout=180.0)
+    gcore = Gcore(
+        timeout=180.0,
+        # No need to explicitly pass to Gcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
 
     lb_id = create_load_balancer(client=gcore)
     list_load_balancers(client=gcore)
@@ -39,8 +47,6 @@ def list_load_balancers(*, client: Gcore) -> None:
     load_balancers = client.cloud.load_balancers.list()
     for count, lb in enumerate(load_balancers, 1):
         print(f"{count}. Load balancer: ID={lb.id}, name={lb.name}, status={lb.provisioning_status}")
-    if not load_balancers.results:
-        print("No load balancers found.")
     print("========================")
 
 

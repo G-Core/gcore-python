@@ -4,14 +4,18 @@ from gcore.types.cloud import ReservedFixedIP
 
 
 def main() -> None:
-    # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
-    # api_key = os.environ.get("GCORE_API_KEY")
-    # Will use Production API URL if omitted
-    # base_url = os.environ.get("GCORE_BASE_URL")
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
     gcore = Gcore(
+        # No need to explicitly pass to Gcore constructor if using environment variables
         # api_key=api_key,
-        # base_url=base_url,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
     )
 
     fixed_ip = create_reserved_fixed_ip(client=gcore)

@@ -10,6 +10,13 @@ from gcore.types.cloud.secret_upload_tls_certificate_params import Payload
 
 
 async def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+
     cert = await upload_tls_cert()
     await get_secret_by_id(cert.id)
     await list_all_secrets()

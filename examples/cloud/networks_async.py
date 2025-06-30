@@ -4,12 +4,19 @@ from gcore import AsyncGcore
 
 
 async def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
     # TODO set cloud project ID before running
     # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
     # TODO set cloud region ID before running
     # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
-    gcore = AsyncGcore()
+    gcore = AsyncGcore(
+        # No need to explicitly pass to AsyncGcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
 
     network_id = await create_network(client=gcore)
     await list_networks(client=gcore)

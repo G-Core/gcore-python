@@ -3,7 +3,19 @@ from gcore.types.cloud.security_group_create_params import SecurityGroup
 
 
 def main() -> None:
-    gcore = Gcore()
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+
+    gcore = Gcore(
+        # No need to explicitly pass to Gcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
 
     security_group_id = create_security_group(client=gcore)
     list_security_groups(client=gcore)

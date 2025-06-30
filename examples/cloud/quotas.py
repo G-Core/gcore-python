@@ -8,9 +8,21 @@ from gcore.types.cloud.quota_get_by_region_response import QuotaGetByRegionRespo
 
 
 def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+
     gcore_client_id = int(os.environ["GCORE_CLIENT_ID"])
 
-    gcore = Gcore()
+    gcore = Gcore(
+        # No need to explicitly pass to Gcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
 
     get_all_quotas(client=gcore)
     get_regional_quotas(client=gcore, client_id=gcore_client_id)

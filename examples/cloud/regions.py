@@ -6,6 +6,9 @@ from gcore.types.cloud import Region
 
 
 def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+
     get_region_by_id()
     list_all_regions()
     list_regions_with_filters()

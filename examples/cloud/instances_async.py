@@ -13,10 +13,23 @@ from gcore.types.cloud.instances.instance_flavor import InstanceFlavor
 
 
 async def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+
     # TODO set placement group ID before running
     placement_group_id = os.environ.get("GCORE_CLOUD_PLACEMENT_GROUP_ID")
 
-    gcore = AsyncGcore(timeout=180.0)
+    gcore = AsyncGcore(
+        timeout=180.0,
+        # No need to explicitly pass to AsyncGcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
 
     uploaded_image_id = await upload_image(client=gcore)
 

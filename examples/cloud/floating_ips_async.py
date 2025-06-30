@@ -7,10 +7,22 @@ from gcore import AsyncGcore
 
 
 async def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+
     # TODO set cloud port ID before running
     cloud_port_id = os.environ["GCORE_CLOUD_PORT_ID"]
 
-    gcore = AsyncGcore()
+    gcore = AsyncGcore(
+        # No need to explicitly pass to AsyncGcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
 
     floating_ip_id = await create_floating_ip(client=gcore)
     await list_floating_ips(client=gcore)
