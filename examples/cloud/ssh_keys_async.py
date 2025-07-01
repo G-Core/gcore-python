@@ -1,4 +1,3 @@
-import os
 import asyncio
 
 from gcore import AsyncGcore
@@ -14,68 +13,60 @@ async def main() -> None:
     # TODO set cloud region ID before running
     # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
-    # Follow the order: create, list, get, update, delete
-    new_ssh_key = await create_new_ssh_key()
-    await list_all_ssh_keys()
-    await get_ssh_key_by_id(new_ssh_key.id)
-    await update_ssh_key(ssh_key_id=new_ssh_key.id)
-    await delete_ssh_key(ssh_key_id=new_ssh_key.id)
+    gcore = AsyncGcore(
+        # No need to explicitly pass to AsyncGcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
+
+    ssh_key = await create_ssh_key(client=gcore)
+    await list_ssh_keys(client=gcore)
+    await get_ssh_key(client=gcore, ssh_key_id=ssh_key.id)
+    await update_ssh_key(client=gcore, ssh_key_id=ssh_key.id)
+    await delete_ssh_key(client=gcore, ssh_key_id=ssh_key.id)
 
 
-async def get_ssh_key_by_id(ssh_key_id: str) -> SSHKey:
-    # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
-    gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
-    ssh_key = await gcore.cloud.ssh_keys.get(ssh_key_id=ssh_key_id)
-
-    print("\n=== GET SSH KEY BY ID ===")
-    print(f"SSH Key ID: {ssh_key.id}, Name: {ssh_key.name}, Fingerprint: {ssh_key.fingerprint}")
-    print("==========================")
+async def create_ssh_key(*, client: AsyncGcore) -> SSHKeyCreated:
+    print("\n=== CREATE SSH KEY ===")
+    ssh_key = await client.cloud.ssh_keys.create(name="gcore-go-example")
+    print(f"Created SSH key: ID={ssh_key.id}, name={ssh_key.name}")
+    print("========================")
     return ssh_key
 
 
-async def list_all_ssh_keys() -> AsyncOffsetPage[SSHKey]:
-    gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
-    all_ssh_keys = await gcore.cloud.ssh_keys.list()
-
-    print("\n=== LIST ALL SSH KEYS ===")
+async def list_ssh_keys(*, client: AsyncGcore) -> AsyncOffsetPage[SSHKey]:
+    print("\n=== LIST SSH KEYS ===")
+    ssh_keys = await client.cloud.ssh_keys.list()
     count = 1
-    async for ssh_key in all_ssh_keys:
-        print(f"  {count}. SSH Key ID: {ssh_key.id}, Name: {ssh_key.name}")
+    async for ssh_key in ssh_keys:
+        print(f"  {count}. SSH key: ID={ssh_key.id}, name={ssh_key.name}")
         count += 1
-    print("==========================")
-    return all_ssh_keys
+    print("========================")
+    return ssh_keys
 
 
-async def create_new_ssh_key() -> SSHKeyCreated:
-    gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
-    # Sample SSH key values
-    ssh_key_name = "Example SSH Key"
-
-    new_ssh_key = await gcore.cloud.ssh_keys.create(name=ssh_key_name)
-
-    print("\n=== CREATE NEW SSH KEY ===")
-    print(f"SSH Key ID: {new_ssh_key.id}, Name: {new_ssh_key.name}")
-    print("===========================")
-    return new_ssh_key
+async def get_ssh_key(*, client: AsyncGcore, ssh_key_id: str) -> SSHKey:
+    print("\n=== GET SSH KEY ===")
+    ssh_key = await client.cloud.ssh_keys.get(ssh_key_id=ssh_key_id)
+    print(f"SSH key: ID={ssh_key.id}, name={ssh_key.name}, fingerprint={ssh_key.fingerprint}")
+    print("========================")
+    return ssh_key
 
 
-async def update_ssh_key(ssh_key_id: str) -> SSHKey:
-    gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
-    updated_ssh_key = await gcore.cloud.ssh_keys.update(ssh_key_id=ssh_key_id, shared_in_project=True)
-
+async def update_ssh_key(*, client: AsyncGcore, ssh_key_id: str) -> SSHKey:
     print("\n=== UPDATE SSH KEY ===")
-    print(f"SSH Key ID: {updated_ssh_key.id}, SharedInProject: {updated_ssh_key.shared_in_project}")
-    print("=======================")
+    updated_ssh_key = await client.cloud.ssh_keys.update(ssh_key_id=ssh_key_id, shared_in_project=True)
+    print(f"Updated SSH key: ID={updated_ssh_key.id}, name={updated_ssh_key.name}")
+    print("========================")
     return updated_ssh_key
 
 
-async def delete_ssh_key(ssh_key_id: str) -> None:
-    gcore = AsyncGcore(api_key=os.environ.get("GCORE_API_KEY"), base_url=os.environ.get("GCORE_API_URL"))
-    await gcore.cloud.ssh_keys.delete(ssh_key_id=ssh_key_id)
-
+async def delete_ssh_key(*, client: AsyncGcore, ssh_key_id: str) -> None:
     print("\n=== DELETE SSH KEY ===")
-    print(f"SSH Key ID: {ssh_key_id} has been deleted")
-    print("=======================")
+    await client.cloud.ssh_keys.delete(ssh_key_id=ssh_key_id)
+    print(f"Deleted SSH key: ID={ssh_key_id}")
+    print("========================")
 
 
 if __name__ == "__main__":
