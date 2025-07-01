@@ -14,6 +14,4 @@ from .image_upload_params import ImageUploadParams as ImageUploadParams
 from .instance_flavor_list import InstanceFlavorList as InstanceFlavorList
 from .interface_attach_params import InterfaceAttachParams as InterfaceAttachParams
 from .interface_detach_params import InterfaceDetachParams as InterfaceDetachParams
-from .flavor_list_suitable_params import FlavorListSuitableParams as FlavorListSuitableParams
-from .flavor_list_for_resize_params import FlavorListForResizeParams as FlavorListForResizeParams
 from .image_create_from_volume_params import ImageCreateFromVolumeParams as ImageCreateFromVolumeParams

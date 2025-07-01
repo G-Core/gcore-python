@@ -821,8 +821,6 @@ from gcore.types.cloud.instances import InstanceFlavor, InstanceFlavorList
 Methods:
 
 - <code title="get /cloud/v1/flavors/{project_id}/{region_id}">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_list.py">InstanceFlavorList</a></code>
-- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/available_flavors">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list_for_resize</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_for_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_list.py">InstanceFlavorList</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/available_flavors">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list_suitable</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_suitable_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_list.py">InstanceFlavorList</a></code>
 
 ### Interfaces
 
