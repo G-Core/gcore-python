@@ -174,7 +174,12 @@ class ListenerPoolMember(TypedDict, total=False):
     """Member IP port"""
 
     admin_state_up: Optional[bool]
-    """true if enabled. Defaults to true"""
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. When null is passed, the
+    value is skipped and defaults to true.
+    """
 
     instance_id: Optional[str]
     """Either `subnet_id` or `instance_id` should be provided"""

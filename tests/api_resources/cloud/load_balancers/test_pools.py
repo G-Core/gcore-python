@@ -54,7 +54,7 @@ class TestPools:
                 {
                     "address": "192.168.1.101",
                     "protocol_port": 8000,
-                    "admin_state_up": False,
+                    "admin_state_up": True,
                     "instance_id": "a7e7e8d6-0bf7-4ac9-8170-831b47ee2ba9",
                     "monitor_address": "monitor_address",
                     "monitor_port": 0,
@@ -64,7 +64,7 @@ class TestPools:
                 {
                     "address": "192.168.1.102",
                     "protocol_port": 8000,
-                    "admin_state_up": False,
+                    "admin_state_up": True,
                     "instance_id": "169942e0-9b53-42df-95ef-1a8b6525c2bd",
                     "monitor_address": "monitor_address",
                     "monitor_port": 0,
@@ -149,7 +149,7 @@ class TestPools:
                 {
                     "address": "192.168.40.33",
                     "protocol_port": 80,
-                    "admin_state_up": False,
+                    "admin_state_up": True,
                     "instance_id": "a7e7e8d6-0bf7-4ac9-8170-831b47ee2ba9",
                     "monitor_address": "monitor_address",
                     "monitor_port": 0,
@@ -389,7 +389,7 @@ class TestAsyncPools:
                 {
                     "address": "192.168.1.101",
                     "protocol_port": 8000,
-                    "admin_state_up": False,
+                    "admin_state_up": True,
                     "instance_id": "a7e7e8d6-0bf7-4ac9-8170-831b47ee2ba9",
                     "monitor_address": "monitor_address",
                     "monitor_port": 0,
@@ -399,7 +399,7 @@ class TestAsyncPools:
                 {
                     "address": "192.168.1.102",
                     "protocol_port": 8000,
-                    "admin_state_up": False,
+                    "admin_state_up": True,
                     "instance_id": "169942e0-9b53-42df-95ef-1a8b6525c2bd",
                     "monitor_address": "monitor_address",
                     "monitor_port": 0,
@@ -484,7 +484,7 @@ class TestAsyncPools:
                 {
                     "address": "192.168.40.33",
                     "protocol_port": 80,
-                    "admin_state_up": False,
+                    "admin_state_up": True,
                     "instance_id": "a7e7e8d6-0bf7-4ac9-8170-831b47ee2ba9",
                     "monitor_address": "monitor_address",
                     "monitor_port": 0,
