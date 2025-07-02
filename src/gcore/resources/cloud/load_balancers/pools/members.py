@@ -78,7 +78,9 @@ class MembersResource(SyncAPIResource):
 
           protocol_port: Member IP port
 
-          admin_state_up: true if enabled. Defaults to true
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. When null is passed, the value is skipped and defaults to true.
 
           instance_id: Either `subnet_id` or `instance_id` should be provided
 
@@ -233,7 +235,9 @@ class AsyncMembersResource(AsyncAPIResource):
 
           protocol_port: Member IP port
 
-          admin_state_up: true if enabled. Defaults to true
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. When null is passed, the value is skipped and defaults to true.
 
           instance_id: Either `subnet_id` or `instance_id` should be provided
 

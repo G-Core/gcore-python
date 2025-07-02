@@ -16,7 +16,12 @@ class HealthMonitor(BaseModel):
     """Health monitor ID"""
 
     admin_state_up: bool
-    """true if enabled. Defaults to true"""
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. When null is passed, the
+    value is skipped and defaults to true.
+    """
 
     delay: int
     """The time, in seconds, between sending probes to members"""
