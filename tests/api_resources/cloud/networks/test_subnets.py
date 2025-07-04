@@ -49,7 +49,7 @@ class TestSubnets:
             ],
             ip_version=4,
             router_id_to_connect="00000000-0000-4000-8000-000000000000",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, subnet, path=["response"])
 
@@ -110,6 +110,7 @@ class TestSubnets:
                 }
             ],
             name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Subnet, subnet, path=["response"])
 
@@ -292,7 +293,9 @@ class TestSubnets:
 
 
 class TestAsyncSubnets:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
@@ -325,7 +328,7 @@ class TestAsyncSubnets:
             ],
             ip_version=4,
             router_id_to_connect="00000000-0000-4000-8000-000000000000",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, subnet, path=["response"])
 
@@ -386,6 +389,7 @@ class TestAsyncSubnets:
                 }
             ],
             name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Subnet, subnet, path=["response"])
 

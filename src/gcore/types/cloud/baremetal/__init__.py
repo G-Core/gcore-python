@@ -10,4 +10,3 @@ from .server_create_params import ServerCreateParams as ServerCreateParams
 from .server_rebuild_params import ServerRebuildParams as ServerRebuildParams
 from .baremetal_fixed_address import BaremetalFixedAddress as BaremetalFixedAddress
 from .baremetal_floating_address import BaremetalFloatingAddress as BaremetalFloatingAddress
-from .flavor_list_suitable_params import FlavorListSuitableParams as FlavorListSuitableParams

@@ -5,6 +5,39 @@ from gcore import AsyncGcore
 from gcore.types.cloud.file_share_create_params import CreateStandardFileShareSerializerNetwork
 
 
+async def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud project ID before running
+    # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
+    # TODO set cloud region ID before running
+    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+
+    # TODO set cloud network ID before running
+    cloud_network_id = os.environ["GCORE_CLOUD_NETWORK_ID"]
+
+    gcore = AsyncGcore(
+        timeout=180.0,
+        # No need to explicitly pass to AsyncGcore constructor if using environment variables
+        # api_key=api_key,
+        # cloud_project_id=cloud_project_id,
+        # cloud_region_id=cloud_region_id,
+    )
+
+    fs_id = await create_file_share(client=gcore, network_id=cloud_network_id)
+    await list_file_shares(client=gcore)
+    await get_file_share(client=gcore, file_share_id=fs_id)
+    await update_file_share(client=gcore, file_share_id=fs_id)
+    await resize_file_share(client=gcore, file_share_id=fs_id)
+
+    # Access rules
+    access_rule_id = await create_file_share_access_rule(client=gcore, file_share_id=fs_id)
+    await list_file_share_access_rules(client=gcore, file_share_id=fs_id)
+    await delete_file_share_access_rule(client=gcore, file_share_id=fs_id, access_rule_id=access_rule_id)
+
+    await delete_file_share(client=gcore, file_share_id=fs_id)
+
+
 async def create_file_share(client: AsyncGcore, *, network_id: str) -> str:
     print("\n=== CREATE FILE SHARE ===")
     network = CreateStandardFileShareSerializerNetwork(network_id=network_id)
@@ -100,26 +133,6 @@ async def delete_file_share(*, client: AsyncGcore, file_share_id: str) -> None:
     await client.cloud.tasks.poll(task_id=task_id)
     print(f"Deleted file share: ID={file_share_id}")
     print("========================")
-
-
-async def main() -> None:
-    # TODO set cloud network ID before running
-    cloud_network_id = os.environ["GCORE_CLOUD_NETWORK_ID"]
-
-    gcore = AsyncGcore(timeout=180.0)
-
-    fs_id = await create_file_share(client=gcore, network_id=cloud_network_id)
-    await list_file_shares(client=gcore)
-    await get_file_share(client=gcore, file_share_id=fs_id)
-    await update_file_share(client=gcore, file_share_id=fs_id)
-    await resize_file_share(client=gcore, file_share_id=fs_id)
-
-    # Access rules
-    access_rule_id = await create_file_share_access_rule(client=gcore, file_share_id=fs_id)
-    await list_file_share_access_rules(client=gcore, file_share_id=fs_id)
-    await delete_file_share_access_rule(client=gcore, file_share_id=fs_id, access_rule_id=access_rule_id)
-
-    await delete_file_share(client=gcore, file_share_id=fs_id)
 
 
 if __name__ == "__main__":

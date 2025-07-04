@@ -196,7 +196,7 @@ class TestImages:
             os_type="linux",
             source="volume",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -312,7 +312,7 @@ class TestImages:
             os_type="linux",
             os_version="22.04",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -348,7 +348,9 @@ class TestImages:
 
 
 class TestAsyncImages:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
@@ -529,7 +531,7 @@ class TestAsyncImages:
             os_type="linux",
             source="volume",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 
@@ -645,7 +647,7 @@ class TestAsyncImages:
             os_type="linux",
             os_version="22.04",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, image, path=["response"])
 

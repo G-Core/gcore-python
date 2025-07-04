@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import List, Iterable, Optional
 
 import httpx
 
@@ -33,6 +33,7 @@ from ....types.cloud import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.security_group import SecurityGroup
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["SecurityGroupsResource", "AsyncSecurityGroupsResource"]
 
@@ -76,7 +77,7 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Create security group
+        Create a new security group with the specified configuration.
 
         Args:
           security_group: Security group
@@ -118,6 +119,7 @@ class SecurityGroupsResource(SyncAPIResource):
         region_id: int | None = None,
         changed_rules: Iterable[security_group_update_params.ChangedRule] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,12 +128,32 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Change security group
+        Update the configuration of an existing security group.
 
         Args:
           changed_rules: List of rules to create or delete
 
           name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -153,6 +175,7 @@ class SecurityGroupsResource(SyncAPIResource):
                 {
                     "changed_rules": changed_rules,
                     "name": name,
+                    "tags": tags,
                 },
                 security_group_update_params.SecurityGroupUpdateParams,
             ),
@@ -179,18 +202,16 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[SecurityGroup]:
         """
-        Get security groups
+        List all security groups in the specified project and region.
 
         Args:
-          limit: Limit the number of returned limit request entities.
+          limit: Limit the number of returned security groups
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          offset: Offset value is used to exclude the first set of records from the result
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "`tag_key_value`={"key": "value"}" --url
-              "http://localhost:1111/v1/securitygroups/1/1"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           extra_headers: Send extra headers
 
@@ -239,7 +260,7 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete security group
+        Delete a specific security group and all its associated rules.
 
         Args:
           extra_headers: Send extra headers
@@ -278,9 +299,9 @@ class SecurityGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> SecurityGroup:
         """
-        Create a deep copy of security group
+        Create a deep copy of an existing security group.
 
         Args:
           name: Name.
@@ -299,14 +320,13 @@ class SecurityGroupsResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
             body=maybe_transform({"name": name}, security_group_copy_params.SecurityGroupCopyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SecurityGroup,
         )
 
     def get(
@@ -323,7 +343,7 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Get security group
+        Get detailed information about a specific security group.
 
         Args:
           extra_headers: Send extra headers
@@ -362,7 +382,7 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Revert security group
+        Revert a security group to its previous state.
 
         Args:
           extra_headers: Send extra headers
@@ -427,7 +447,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Create security group
+        Create a new security group with the specified configuration.
 
         Args:
           security_group: Security group
@@ -469,6 +489,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         region_id: int | None = None,
         changed_rules: Iterable[security_group_update_params.ChangedRule] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -477,12 +498,32 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Change security group
+        Update the configuration of an existing security group.
 
         Args:
           changed_rules: List of rules to create or delete
 
           name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -504,6 +545,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
                 {
                     "changed_rules": changed_rules,
                     "name": name,
+                    "tags": tags,
                 },
                 security_group_update_params.SecurityGroupUpdateParams,
             ),
@@ -530,18 +572,16 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[SecurityGroup, AsyncOffsetPage[SecurityGroup]]:
         """
-        Get security groups
+        List all security groups in the specified project and region.
 
         Args:
-          limit: Limit the number of returned limit request entities.
+          limit: Limit the number of returned security groups
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          offset: Offset value is used to exclude the first set of records from the result
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "`tag_key_value`={"key": "value"}" --url
-              "http://localhost:1111/v1/securitygroups/1/1"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           extra_headers: Send extra headers
 
@@ -590,7 +630,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete security group
+        Delete a specific security group and all its associated rules.
 
         Args:
           extra_headers: Send extra headers
@@ -629,9 +669,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> SecurityGroup:
         """
-        Create a deep copy of security group
+        Create a deep copy of an existing security group.
 
         Args:
           name: Name.
@@ -650,14 +690,13 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
             body=await async_maybe_transform({"name": name}, security_group_copy_params.SecurityGroupCopyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SecurityGroup,
         )
 
     async def get(
@@ -674,7 +713,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Get security group
+        Get detailed information about a specific security group.
 
         Args:
           extra_headers: Send extra headers
@@ -713,7 +752,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SecurityGroup:
         """
-        Revert security group
+        Revert a security group to its previous state.
 
         Args:
           extra_headers: Send extra headers

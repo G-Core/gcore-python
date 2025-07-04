@@ -43,11 +43,7 @@ class LoadBalancerListParams(TypedDict, total=False):
     """Filter by tag keys."""
 
     tag_key_value: str
-    """Filter by tag key-value pairs.
-
-    Must be a valid JSON string. curl -G --data-urlencode "`tag_key_value`={"key":
-    "value"}" --url "http://localhost:1111/v1/loadbalancers/1/1"
-    """
+    """Filter by tag key-value pairs. Must be a valid JSON string."""
 
     with_ddos: bool
     """Show Advanced DDoS protection profile, if exists"""

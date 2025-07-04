@@ -18,7 +18,6 @@ from .waap_policy_mode import WaapPolicyMode as WaapPolicyMode
 from .waap_top_session import WaapTopSession as WaapTopSession
 from .waap_organization import WaapOrganization as WaapOrganization
 from .waap_traffic_type import WaapTrafficType as WaapTrafficType
-from .client_me_response import ClientMeResponse as ClientMeResponse
 from .domain_list_params import DomainListParams as DomainListParams
 from .ip_info_get_params import IPInfoGetParams as IPInfoGetParams
 from .waap_advanced_rule import WaapAdvancedRule as WaapAdvancedRule

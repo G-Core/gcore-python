@@ -68,7 +68,7 @@ class RoutersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create router
+        Create a new router with the specified configuration.
 
         Args:
           name: name of router
@@ -125,7 +125,7 @@ class RoutersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Update router
+        Update the configuration of an existing router.
 
         Args:
           external_gateway_info: New external gateway.
@@ -179,12 +179,12 @@ class RoutersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Router]:
         """
-        List routers
+        List all routers in the specified project and region.
 
         Args:
-          limit: Limit the number of returned limit request entities.
+          limit: Limit the number of returned routers
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          offset: Offset value is used to exclude the first set of records from the result
 
           extra_headers: Send extra headers
 
@@ -231,7 +231,7 @@ class RoutersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete router
+        Delete a specific router and all its associated resources.
 
         Args:
           extra_headers: Send extra headers
@@ -272,7 +272,7 @@ class RoutersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Attach subnet to router
+        Attach a subnet to an existing router.
 
         Args:
           project_id: Project ID
@@ -330,7 +330,7 @@ class RoutersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Detach subnet from router
+        Detach a subnet from an existing router.
 
         Args:
           subnet_id: Target IP is identified by it's subnet
@@ -372,7 +372,7 @@ class RoutersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Get specific router
+        Get detailed information about a specific router.
 
         Args:
           extra_headers: Send extra headers
@@ -435,7 +435,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create router
+        Create a new router with the specified configuration.
 
         Args:
           name: name of router
@@ -492,7 +492,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Update router
+        Update the configuration of an existing router.
 
         Args:
           external_gateway_info: New external gateway.
@@ -546,12 +546,12 @@ class AsyncRoutersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Router, AsyncOffsetPage[Router]]:
         """
-        List routers
+        List all routers in the specified project and region.
 
         Args:
-          limit: Limit the number of returned limit request entities.
+          limit: Limit the number of returned routers
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          offset: Offset value is used to exclude the first set of records from the result
 
           extra_headers: Send extra headers
 
@@ -598,7 +598,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete router
+        Delete a specific router and all its associated resources.
 
         Args:
           extra_headers: Send extra headers
@@ -639,7 +639,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Attach subnet to router
+        Attach a subnet to an existing router.
 
         Args:
           project_id: Project ID
@@ -697,7 +697,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Detach subnet from router
+        Detach a subnet from an existing router.
 
         Args:
           subnet_id: Target IP is identified by it's subnet
@@ -741,7 +741,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Router:
         """
-        Get specific router
+        Get detailed information about a specific router.
 
         Args:
           extra_headers: Send extra headers

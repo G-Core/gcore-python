@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import List, Iterable, Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -79,8 +79,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -145,8 +148,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -211,8 +217,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -311,7 +320,8 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,7 +330,7 @@ class VolumesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Rename volume
+        Rename a volume or update tags
 
         Args:
           project_id: Project ID
@@ -329,7 +339,27 @@ class VolumesResource(SyncAPIResource):
 
           volume_id: Volume ID
 
-          name: Name.
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -347,7 +377,13 @@ class VolumesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._patch(
             f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
-            body=maybe_transform({"name": name}, volume_update_params.VolumeUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                volume_update_params.VolumeUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -376,8 +412,11 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Volume]:
-        """
-        List volumes
+        """Retrieve a list of volumes in the project and region.
+
+        The list can be filtered
+        by various parameters like bootable status, metadata/tags, attachments, instance
+        ID, name, and ID.
 
         Args:
           project_id: Project ID
@@ -404,9 +443,7 @@ class VolumesResource(SyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -461,8 +498,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete volume
+        """Delete a volume and all its snapshots.
+
+        The volume must be in an available state
+        to be deleted.
 
         Args:
           project_id: Project ID
@@ -573,8 +612,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
-        """
-        Change volume type
+        """Change the type of a volume.
+
+        The volume must not have any snapshots to change
+        its type.
 
         Args:
           project_id: Project ID
@@ -673,7 +714,7 @@ class VolumesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Get volume
+        Retrieve detailed information about a specific volume.
 
         Args:
           project_id: Project ID
@@ -718,8 +759,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Extend volume
+        """Increase the size of a volume.
+
+        The new size must be greater than the current
+        size.
 
         Args:
           project_id: Project ID
@@ -766,8 +809,10 @@ class VolumesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """
-        Revert volume to it's last snapshot
+        """Revert a volume to its last snapshot.
+
+        The volume must be in an available state
+        to be reverted.
 
         Args:
           project_id: Project ID
@@ -843,8 +888,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -909,8 +957,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -975,8 +1026,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create volume
+        """Create a new volume in the project and region.
+
+        The volume can be created from
+        scratch, from an image, or from a snapshot. Optionally attach the volume to an
+        instance during creation.
 
         Args:
           project_id: Project ID
@@ -1075,7 +1129,8 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1084,7 +1139,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Rename volume
+        Rename a volume or update tags
 
         Args:
           project_id: Project ID
@@ -1093,7 +1148,27 @@ class AsyncVolumesResource(AsyncAPIResource):
 
           volume_id: Volume ID
 
-          name: Name.
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -1111,7 +1186,13 @@ class AsyncVolumesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._patch(
             f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
-            body=await async_maybe_transform({"name": name}, volume_update_params.VolumeUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                volume_update_params.VolumeUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1140,8 +1221,11 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Volume, AsyncOffsetPage[Volume]]:
-        """
-        List volumes
+        """Retrieve a list of volumes in the project and region.
+
+        The list can be filtered
+        by various parameters like bootable status, metadata/tags, attachments, instance
+        ID, name, and ID.
 
         Args:
           project_id: Project ID
@@ -1168,9 +1252,7 @@ class AsyncVolumesResource(AsyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -1225,8 +1307,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete volume
+        """Delete a volume and all its snapshots.
+
+        The volume must be in an available state
+        to be deleted.
 
         Args:
           project_id: Project ID
@@ -1337,8 +1421,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
-        """
-        Change volume type
+        """Change the type of a volume.
+
+        The volume must not have any snapshots to change
+        its type.
 
         Args:
           project_id: Project ID
@@ -1439,7 +1525,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Volume:
         """
-        Get volume
+        Retrieve detailed information about a specific volume.
 
         Args:
           project_id: Project ID
@@ -1484,8 +1570,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Extend volume
+        """Increase the size of a volume.
+
+        The new size must be greater than the current
+        size.
 
         Args:
           project_id: Project ID
@@ -1532,8 +1620,10 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """
-        Revert volume to it's last snapshot
+        """Revert a volume to its last snapshot.
+
+        The volume must be in an available state
+        to be reverted.
 
         Args:
           project_id: Project ID

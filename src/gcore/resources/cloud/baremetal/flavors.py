@@ -15,7 +15,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloud.baremetal import flavor_list_params, flavor_list_suitable_params
+from ....types.cloud.baremetal import flavor_list_params
 from ....types.cloud.baremetal_flavor_list import BaremetalFlavorList
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
@@ -59,11 +59,12 @@ class FlavorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BaremetalFlavorList:
-        """Retrieve a list of flavors.
+        """List all available bare metal flavors in the specified project and region.
 
-        When the `include_prices` query parameter is
-        specified, the list shows prices. A client in trial mode gets all price values
-        as 0. If you get Pricing Error contact the support
+        When
+        `include_prices` is specified, the list includes pricing information. A client
+        in trial mode gets all price values as 0. If you get Pricing Error contact the
+        support.
 
         Args:
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
@@ -113,64 +114,6 @@ class FlavorsResource(SyncAPIResource):
             cast_to=BaremetalFlavorList,
         )
 
-    def list_suitable(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        include_prices: bool | NotGiven = NOT_GIVEN,
-        apptemplate_id: str | NotGiven = NOT_GIVEN,
-        image_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BaremetalFlavorList:
-        """
-        List suitalbe flavors for bare metal server creation
-
-        Args:
-          include_prices: Set to true if flavor listing should include flavor prices
-
-          apptemplate_id: Apptemplate ID
-
-          image_id: Image ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        return self._post(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors",
-            body=maybe_transform(
-                {
-                    "apptemplate_id": apptemplate_id,
-                    "image_id": image_id,
-                },
-                flavor_list_suitable_params.FlavorListSuitableParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"include_prices": include_prices}, flavor_list_suitable_params.FlavorListSuitableParams
-                ),
-            ),
-            cast_to=BaremetalFlavorList,
-        )
-
 
 class AsyncFlavorsResource(AsyncAPIResource):
     @cached_property
@@ -210,11 +153,12 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BaremetalFlavorList:
-        """Retrieve a list of flavors.
+        """List all available bare metal flavors in the specified project and region.
 
-        When the `include_prices` query parameter is
-        specified, the list shows prices. A client in trial mode gets all price values
-        as 0. If you get Pricing Error contact the support
+        When
+        `include_prices` is specified, the list includes pricing information. A client
+        in trial mode gets all price values as 0. If you get Pricing Error contact the
+        support.
 
         Args:
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
@@ -264,64 +208,6 @@ class AsyncFlavorsResource(AsyncAPIResource):
             cast_to=BaremetalFlavorList,
         )
 
-    async def list_suitable(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        include_prices: bool | NotGiven = NOT_GIVEN,
-        apptemplate_id: str | NotGiven = NOT_GIVEN,
-        image_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BaremetalFlavorList:
-        """
-        List suitalbe flavors for bare metal server creation
-
-        Args:
-          include_prices: Set to true if flavor listing should include flavor prices
-
-          apptemplate_id: Apptemplate ID
-
-          image_id: Image ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        return await self._post(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}/available_flavors",
-            body=await async_maybe_transform(
-                {
-                    "apptemplate_id": apptemplate_id,
-                    "image_id": image_id,
-                },
-                flavor_list_suitable_params.FlavorListSuitableParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"include_prices": include_prices}, flavor_list_suitable_params.FlavorListSuitableParams
-                ),
-            ),
-            cast_to=BaremetalFlavorList,
-        )
-
 
 class FlavorsResourceWithRawResponse:
     def __init__(self, flavors: FlavorsResource) -> None:
@@ -329,9 +215,6 @@ class FlavorsResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             flavors.list,
-        )
-        self.list_suitable = to_raw_response_wrapper(
-            flavors.list_suitable,
         )
 
 
@@ -342,9 +225,6 @@ class AsyncFlavorsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             flavors.list,
         )
-        self.list_suitable = async_to_raw_response_wrapper(
-            flavors.list_suitable,
-        )
 
 
 class FlavorsResourceWithStreamingResponse:
@@ -354,9 +234,6 @@ class FlavorsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             flavors.list,
         )
-        self.list_suitable = to_streamed_response_wrapper(
-            flavors.list_suitable,
-        )
 
 
 class AsyncFlavorsResourceWithStreamingResponse:
@@ -365,7 +242,4 @@ class AsyncFlavorsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             flavors.list,
-        )
-        self.list_suitable = async_to_streamed_response_wrapper(
-            flavors.list_suitable,
         )

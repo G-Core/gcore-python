@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -64,7 +64,7 @@ class SubnetsResource(SyncAPIResource):
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,6 +159,7 @@ class SubnetsResource(SyncAPIResource):
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,7 +168,7 @@ class SubnetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Subnet:
         """
-        Change subnet properties
+        Update subnet
 
         Args:
           project_id: Project ID
@@ -188,6 +189,26 @@ class SubnetsResource(SyncAPIResource):
           host_routes: List of custom static routes to advertise via DHCP.
 
           name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -212,6 +233,7 @@ class SubnetsResource(SyncAPIResource):
                     "gateway_ip": gateway_ip,
                     "host_routes": host_routes,
                     "name": name,
+                    "tags": tags,
                 },
                 subnet_update_params.SubnetUpdateParams,
             ),
@@ -274,9 +296,7 @@ class SubnetsResource(SyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -440,7 +460,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
         ip_version: IPVersion | NotGiven = NOT_GIVEN,
         router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -535,6 +555,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -543,7 +564,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Subnet:
         """
-        Change subnet properties
+        Update subnet
 
         Args:
           project_id: Project ID
@@ -564,6 +585,26 @@ class AsyncSubnetsResource(AsyncAPIResource):
           host_routes: List of custom static routes to advertise via DHCP.
 
           name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -588,6 +629,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
                     "gateway_ip": gateway_ip,
                     "host_routes": host_routes,
                     "name": name,
+                    "tags": tags,
                 },
                 subnet_update_params.SubnetUpdateParams,
             ),
@@ -650,9 +692,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 

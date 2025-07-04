@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -35,7 +35,6 @@ from ....types.cloud import (
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.file_share import FileShare
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["FileSharesResource", "AsyncFileSharesResource"]
 
@@ -75,7 +74,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -130,7 +129,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         volume_type: Literal["vast_share_type"],
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,7 +180,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -504,7 +503,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -559,7 +558,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         volume_type: Literal["vast_share_type"],
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -610,7 +609,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

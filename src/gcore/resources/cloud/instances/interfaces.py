@@ -59,7 +59,7 @@ class InterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> NetworkInterfaceList:
         """
-        List network interfaces attached to the instance
+        List all network interfaces attached to the specified instance.
 
         Args:
           extra_headers: Send extra headers
@@ -415,7 +415,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> NetworkInterfaceList:
         """
-        List network interfaces attached to the instance
+        List all network interfaces attached to the specified instance.
 
         Args:
           extra_headers: Send extra headers

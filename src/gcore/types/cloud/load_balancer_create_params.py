@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .http_method import HTTPMethod
@@ -10,7 +10,6 @@ from .lb_algorithm import LbAlgorithm
 from .lb_pool_protocol import LbPoolProtocol
 from .interface_ip_family import InterfaceIPFamily
 from .lb_listener_protocol import LbListenerProtocol
-from .tag_update_map_param import TagUpdateMapParam
 from .lb_health_monitor_type import LbHealthMonitorType
 from .lb_session_persistence_type import LbSessionPersistenceType
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
@@ -66,7 +65,7 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     specification.
     """
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -175,7 +174,12 @@ class ListenerPoolMember(TypedDict, total=False):
     """Member IP port"""
 
     admin_state_up: Optional[bool]
-    """true if enabled. Defaults to true"""
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. When null is passed, the
+    value is skipped and defaults to true.
+    """
 
     instance_id: Optional[str]
     """Either `subnet_id` or `instance_id` should be provided"""

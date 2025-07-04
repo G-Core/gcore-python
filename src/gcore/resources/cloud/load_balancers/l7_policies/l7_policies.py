@@ -381,7 +381,11 @@ class L7PoliciesResource(SyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.l7polices or len(task.created_resources.l7polices) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.l7polices
+            or len(task.created_resources.l7polices) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return self.get(
             l7policy_id=task.created_resources.l7polices[0],
@@ -824,7 +828,11 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.l7polices or len(task.created_resources.l7polices) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.l7polices
+            or len(task.created_resources.l7polices) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return await self.get(
             l7policy_id=task.created_resources.l7polices[0],

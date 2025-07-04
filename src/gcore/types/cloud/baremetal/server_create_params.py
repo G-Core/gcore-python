@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..interface_ip_family import InterfaceIPFamily
-from ..tag_update_map_param import TagUpdateMapParam
 
 __all__ = [
     "ServerCreateParams",
@@ -88,7 +87,7 @@ class ServerCreateParams(TypedDict, total=False):
     [/v1/`ssh_keys` endpoint](/docs/api-reference/ssh-keys/add-or-generate-ssh-key).
     """
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -361,10 +360,7 @@ class DDOSProfileField(TypedDict, total=False):
 
 class DDOSProfile(TypedDict, total=False):
     profile_template: Required[int]
-    """DDoS profile template ID"""
+    """Advanced DDoS template ID"""
 
-    fields: Optional[Iterable[DDOSProfileField]]
+    fields: Iterable[DDOSProfileField]
     """DDoS profile parameters"""
-
-    profile_template_name: Optional[str]
-    """DDoS profile template name"""

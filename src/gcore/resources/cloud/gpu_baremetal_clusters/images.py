@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -21,7 +21,6 @@ from ...._base_client import make_request_options
 from ....types.cloud.gpu_image import GPUImage
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.gpu_image_list import GPUImageList
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.gpu_baremetal_clusters import image_upload_params
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
@@ -101,7 +100,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete bare metal GPU image by ID
+        Delete bare metal GPU image
 
         Args:
           project_id: Project ID
@@ -182,7 +181,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUImage:
         """
-        Get bare metal GPU image by ID
+        Get bare metal GPU image
 
         Args:
           project_id: Project ID
@@ -227,7 +226,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,7 +316,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -444,7 +443,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete bare metal GPU image by ID
+        Delete bare metal GPU image
 
         Args:
           project_id: Project ID
@@ -525,7 +524,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUImage:
         """
-        Get bare metal GPU image by ID
+        Get bare metal GPU image
 
         Args:
           project_id: Project ID
@@ -570,7 +569,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -660,7 +659,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

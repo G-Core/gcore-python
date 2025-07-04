@@ -60,12 +60,13 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
-        """Create project
+        """Create a new project for a client.
+
+        Project management must be enabled to perform
+        this operation.
 
         Args:
-          name: Unique project name for a client.
-
-        Each client always has one "default" project.
+          name: Unique project name for a client. Each client always has one "default" project.
 
           client_id: ID associated with the client.
 
@@ -114,8 +115,10 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Project]:
-        """
-        List projects
+        """Retrieve a list of projects for a client.
+
+        Results can be filtered by name and
+        ordered by various fields.
 
         Args:
           client_id: Client ID filter for administrators.
@@ -172,9 +175,11 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        All cloud resources in all regions that belong to the project will be deleted
-        and will not be recoverable
+        """Delete a project and all its associated cloud resources across all regions.
+
+        This
+        operation is irreversible and cannot be undone. Default projects cannot be
+        deleted.
 
         Args:
           extra_headers: Send extra headers
@@ -207,7 +212,7 @@ class ProjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
         """
-        Get Project
+        Retrieve detailed information about a specific project.
 
         Args:
           extra_headers: Send extra headers
@@ -241,8 +246,10 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
-        """
-        Update Project
+        """Update project name and description.
+
+        Project management must be enabled to
+        perform this operation.
 
         Args:
           name: Name of the entity, following a specific format.
@@ -309,12 +316,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
-        """Create project
+        """Create a new project for a client.
+
+        Project management must be enabled to perform
+        this operation.
 
         Args:
-          name: Unique project name for a client.
-
-        Each client always has one "default" project.
+          name: Unique project name for a client. Each client always has one "default" project.
 
           client_id: ID associated with the client.
 
@@ -363,8 +371,10 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Project, AsyncOffsetPage[Project]]:
-        """
-        List projects
+        """Retrieve a list of projects for a client.
+
+        Results can be filtered by name and
+        ordered by various fields.
 
         Args:
           client_id: Client ID filter for administrators.
@@ -421,9 +431,11 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        All cloud resources in all regions that belong to the project will be deleted
-        and will not be recoverable
+        """Delete a project and all its associated cloud resources across all regions.
+
+        This
+        operation is irreversible and cannot be undone. Default projects cannot be
+        deleted.
 
         Args:
           extra_headers: Send extra headers
@@ -456,7 +468,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
         """
-        Get Project
+        Retrieve detailed information about a specific project.
 
         Args:
           extra_headers: Send extra headers
@@ -490,8 +502,10 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
-        """
-        Update Project
+        """Update project name and description.
+
+        Project management must be enabled to
+        perform this operation.
 
         Args:
           name: Name of the entity, following a specific format.

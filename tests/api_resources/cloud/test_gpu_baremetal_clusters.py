@@ -60,7 +60,7 @@ class TestGPUBaremetalClusters:
             instances_count=1,
             password="password",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )
@@ -466,7 +466,9 @@ class TestGPUBaremetalClusters:
 
 
 class TestAsyncGPUBaremetalClusters:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
@@ -506,7 +508,7 @@ class TestAsyncGPUBaremetalClusters:
             instances_count=1,
             password="password",
             ssh_key_name="my-ssh-key",
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             user_data="user_data",
             username="username",
         )

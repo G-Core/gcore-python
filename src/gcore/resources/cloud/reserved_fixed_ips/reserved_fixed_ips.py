@@ -76,7 +76,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           type: Must be 'external'
@@ -112,7 +112,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           subnet_id: Reserved fixed IP will be allocated in this subnet
@@ -149,7 +149,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           network_id: Reserved fixed IP will be allocated in a subnet of this network
@@ -188,7 +188,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           ip_address: Reserved fixed IP will be allocated the given IP address
@@ -225,7 +225,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           port_id: Port ID to make a reserved fixed IP (for example, `vip_port_id` of the Load
@@ -315,7 +315,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[ReservedFixedIP]:
         """
-        List reserved fixed IPs
+        List all reserved fixed IPs in the specified project and region.
 
         Args:
           available_only: Set to true if the response should only list IP addresses that are not attached
@@ -334,8 +334,8 @@ class ReservedFixedIPsResource(SyncAPIResource):
           offset: Offset value is used to exclude the first set of records from the result
 
           order_by: Ordering reserved fixed IP list result by name, status, `updated_at`,
-              `created_at` or `fixed_ip_address` fields of the reserved fixed IP and
-              directions (status.asc), default is "`fixed_ip_address`.asc"
+              `created_at` or `fixed_ip_address` fields and directions (status.asc), default
+              is "`fixed_ip_address`.asc"
 
           vip_only: Set to true if the response should only list VIPs
 
@@ -391,7 +391,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete reserved fixed ip
+        Delete a specific reserved fixed IP and all its associated resources.
 
         Args:
           extra_headers: Send extra headers
@@ -430,7 +430,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ReservedFixedIP:
         """
-        Get reserved fixed IP
+        Get detailed information about a specific reserved fixed IP.
 
         Args:
           extra_headers: Send extra headers
@@ -497,7 +497,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           type: Must be 'external'
@@ -533,7 +533,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           subnet_id: Reserved fixed IP will be allocated in this subnet
@@ -570,7 +570,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           network_id: Reserved fixed IP will be allocated in a subnet of this network
@@ -609,7 +609,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           ip_address: Reserved fixed IP will be allocated the given IP address
@@ -646,7 +646,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create reserved fixed IP
+        Create a new reserved fixed IP with the specified configuration.
 
         Args:
           port_id: Port ID to make a reserved fixed IP (for example, `vip_port_id` of the Load
@@ -736,7 +736,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[ReservedFixedIP, AsyncOffsetPage[ReservedFixedIP]]:
         """
-        List reserved fixed IPs
+        List all reserved fixed IPs in the specified project and region.
 
         Args:
           available_only: Set to true if the response should only list IP addresses that are not attached
@@ -755,8 +755,8 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
           offset: Offset value is used to exclude the first set of records from the result
 
           order_by: Ordering reserved fixed IP list result by name, status, `updated_at`,
-              `created_at` or `fixed_ip_address` fields of the reserved fixed IP and
-              directions (status.asc), default is "`fixed_ip_address`.asc"
+              `created_at` or `fixed_ip_address` fields and directions (status.asc), default
+              is "`fixed_ip_address`.asc"
 
           vip_only: Set to true if the response should only list VIPs
 
@@ -812,7 +812,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Delete reserved fixed ip
+        Delete a specific reserved fixed IP and all its associated resources.
 
         Args:
           extra_headers: Send extra headers
@@ -851,7 +851,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ReservedFixedIP:
         """
-        Get reserved fixed IP
+        Get detailed information about a specific reserved fixed IP.
 
         Args:
           extra_headers: Send extra headers

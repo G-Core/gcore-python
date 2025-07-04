@@ -5,41 +5,47 @@ from gcore.pagination import SyncOffsetPage
 from gcore.types.cloud import Region
 
 
-def get_region_by_id() -> Region:
-    # No need to pass the API key explicitly — it will automatically be read from the GCORE_API_KEY environment variable if omitted
-    gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"))
-    # Region ID can also be omitted — it defaults to the GCORE_CLOUD_REGION_ID environment variable
-    region = gcore.cloud.regions.get(region_id=int(os.environ.get("GCORE_CLOUD_REGION_ID", "76")))
+def main() -> None:
+    # TODO set API key before running
+    # api_key = os.environ["GCORE_API_KEY"]
+    # TODO set cloud region ID before running
+    cloud_region_id = int(os.environ.get("GCORE_CLOUD_REGION_ID", 76))
 
+    gcore = Gcore(
+        # No need to explicitly pass to Gcore constructor if using environment variables
+        # api_key=api_key,
+    )
+
+    get_region_by_id(client=gcore, region_id=cloud_region_id)
+    list_all_regions(client=gcore)
+    list_regions_with_filters(client=gcore)
+
+
+def get_region_by_id(*, client: Gcore, region_id: int) -> Region:
     print("\n=== GET REGION BY ID ===")
-    print(f"Region ID: {region.id}, Display Name: {region.display_name}")
+    region = client.cloud.regions.get(region_id=region_id)
+    print(f"Region ID: {region.id}, display name: {region.display_name}")
     print("========================")
     return region
 
 
-def list_all_regions() -> SyncOffsetPage[Region]:
-    gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"))
-    all_regions = gcore.cloud.regions.list()
-
+def list_all_regions(*, client: Gcore) -> SyncOffsetPage[Region]:
     print("\n=== LIST ALL REGIONS ===")
+    all_regions = client.cloud.regions.list()
     for count, region in enumerate(all_regions, 1):
-        print(f"  {count}. Region ID: {region.id}, Display Name: {region.display_name}")
+        print(f"  {count}. Region ID: {region.id}, display name: {region.display_name}")
     print("========================")
     return all_regions
 
 
-def list_regions_with_filters() -> SyncOffsetPage[Region]:
-    gcore = Gcore(api_key=os.environ.get("GCORE_API_KEY"))
-    filtered_regions = gcore.cloud.regions.list(product="containers")
-
+def list_regions_with_filters(*, client: Gcore) -> SyncOffsetPage[Region]:
     print("\n=== LIST REGIONS WITH FILTERS ===")
+    filtered_regions = client.cloud.regions.list(product="inference")
     for count, region in enumerate(filtered_regions, 1):
-        print(f"  {count}. Region ID: {region.id}, Display Name: {region.display_name}")
+        print(f"  {count}. Region ID: {region.id}, display name: {region.display_name}")
     print("=================================")
     return filtered_regions
 
 
 if __name__ == "__main__":
-    get_region_by_id()
-    list_all_regions()
-    list_regions_with_filters()
+    main()

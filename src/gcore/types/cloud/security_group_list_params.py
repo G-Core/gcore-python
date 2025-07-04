@@ -14,17 +14,13 @@ class SecurityGroupListParams(TypedDict, total=False):
     region_id: int
 
     limit: int
-    """Limit the number of returned limit request entities."""
+    """Limit the number of returned security groups"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result."""
+    """Offset value is used to exclude the first set of records from the result"""
 
     tag_key: List[str]
     """Filter by tag keys."""
 
     tag_key_value: str
-    """Filter by tag key-value pairs.
-
-    Must be a valid JSON string. curl -G --data-urlencode "`tag_key_value`={"key":
-    "value"}" --url "http://localhost:1111/v1/securitygroups/1/1"
-    """
+    """Filter by tag key-value pairs. Must be a valid JSON string."""

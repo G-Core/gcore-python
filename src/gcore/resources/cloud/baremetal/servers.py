@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -22,7 +22,6 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.baremetal import server_list_params, server_create_params, server_rebuild_params
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.baremetal.baremetal_server import BaremetalServer
 
 __all__ = ["ServersResource", "AsyncServersResource"]
@@ -63,7 +62,7 @@ class ServersResource(SyncAPIResource):
         name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -73,8 +72,10 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create a new bare metal server with the specified configuration.
+
+        How to get
+        access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -217,8 +218,10 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[BaremetalServer]:
-        """
-        List bare metal servers
+        """List all bare metal servers in the specified project and region.
+
+        Results can be
+        filtered by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -263,9 +266,7 @@ class ServersResource(SyncAPIResource):
 
           status: Filters instances by a server status, as a string.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -346,7 +347,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Rebuild bare metal server
+        Rebuild a bare metal server with a new image while preserving its configuration.
 
         Args:
           image_id: Image ID
@@ -399,7 +400,7 @@ class ServersResource(SyncAPIResource):
         name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
@@ -483,7 +484,7 @@ class ServersResource(SyncAPIResource):
             extra_body=extra_body,
         )
         if not response.tasks:
-            raise ValueError("Expected at least one task to be created")        
+            raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
@@ -501,7 +502,7 @@ class ServersResource(SyncAPIResource):
             raise ValueError(f"Server {server_id} not found")
         return servers.results[0]
 
-    
+
 class AsyncServersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncServersResourceWithRawResponse:
@@ -537,7 +538,7 @@ class AsyncServersResource(AsyncAPIResource):
         name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -547,8 +548,10 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create a new bare metal server with the specified configuration.
+
+        How to get
+        access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -691,8 +694,10 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[BaremetalServer, AsyncOffsetPage[BaremetalServer]]:
-        """
-        List bare metal servers
+        """List all bare metal servers in the specified project and region.
+
+        Results can be
+        filtered by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -737,9 +742,7 @@ class AsyncServersResource(AsyncAPIResource):
 
           status: Filters instances by a server status, as a string.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -820,7 +823,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Rebuild bare metal server
+        Rebuild a bare metal server with a new image while preserving its configuration.
 
         Args:
           image_id: Image ID
@@ -873,7 +876,7 @@ class AsyncServersResource(AsyncAPIResource):
         name_template: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
@@ -907,8 +910,8 @@ class AsyncServersResource(AsyncAPIResource):
             extra_body=extra_body,
         )
         if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")        
-        task =await self._client.cloud.tasks.poll(
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
@@ -957,7 +960,7 @@ class AsyncServersResource(AsyncAPIResource):
             extra_body=extra_body,
         )
         if not response.tasks:
-            raise ValueError("Expected at least one task to be created")        
+            raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
             response.tasks[0],
             extra_headers=extra_headers,
@@ -973,7 +976,7 @@ class AsyncServersResource(AsyncAPIResource):
         )
         if len(servers.results) != 1:
             raise ValueError(f"Server {server_id} not found")
-        return servers.results[0]    
+        return servers.results[0]
 
 
 class ServersResourceWithRawResponse:

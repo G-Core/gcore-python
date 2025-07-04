@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Dict, List, Iterable, Optional
 
 import httpx
 
@@ -141,7 +141,7 @@ class LoadBalancersResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,
@@ -240,6 +240,7 @@ class LoadBalancersResource(SyncAPIResource):
         logging: load_balancer_update_params.Logging | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -248,8 +249,10 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LoadBalancer:
         """
-        Rename load balancer, activate/deactivate logs or update preferred connectivity
-        for load balancer
+        Rename load balancer, activate/deactivate logging, update preferred connectivity
+        type and/or modify load balancer tags. The request will only process the fields
+        that are provided in the request body. Any fields that are not included will
+        remain unchanged.
 
         Args:
           logging: Logging configuration
@@ -258,6 +261,26 @@ class LoadBalancersResource(SyncAPIResource):
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -280,6 +303,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "logging": logging,
                     "name": name,
                     "preferred_connectivity": preferred_connectivity,
+                    "tags": tags,
                 },
                 load_balancer_update_params.LoadBalancerUpdateParams,
             ),
@@ -334,9 +358,7 @@ class LoadBalancersResource(SyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "`tag_key_value`={"key": "value"}" --url
-              "http://localhost:1111/v1/loadbalancers/1/1"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           with_ddos: Show Advanced DDoS protection profile, if exists
 
@@ -433,7 +455,7 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Failover loadbalancer
+        Failover load balancer
 
         Args:
           force: Validate current load balancer status before failover or not.
@@ -531,7 +553,7 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Resize loadbalancer
+        Resize load balancer
 
         Args:
           flavor: Name of the desired flavor to resize to.
@@ -571,7 +593,7 @@ class LoadBalancersResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,
@@ -611,7 +633,11 @@ class LoadBalancersResource(SyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.loadbalancers or len(task.created_resources.loadbalancers) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.loadbalancers
+            or len(task.created_resources.loadbalancers) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return self.get(
             loadbalancer_id=task.created_resources.loadbalancers[0],
@@ -798,7 +824,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,
@@ -897,6 +923,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         logging: load_balancer_update_params.Logging | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -905,8 +932,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LoadBalancer:
         """
-        Rename load balancer, activate/deactivate logs or update preferred connectivity
-        for load balancer
+        Rename load balancer, activate/deactivate logging, update preferred connectivity
+        type and/or modify load balancer tags. The request will only process the fields
+        that are provided in the request body. Any fields that are not included will
+        remain unchanged.
 
         Args:
           logging: Logging configuration
@@ -915,6 +944,26 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -937,6 +986,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "logging": logging,
                     "name": name,
                     "preferred_connectivity": preferred_connectivity,
+                    "tags": tags,
                 },
                 load_balancer_update_params.LoadBalancerUpdateParams,
             ),
@@ -991,9 +1041,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. curl -G
-              --data-urlencode "`tag_key_value`={"key": "value"}" --url
-              "http://localhost:1111/v1/loadbalancers/1/1"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           with_ddos: Show Advanced DDoS protection profile, if exists
 
@@ -1090,7 +1138,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Failover loadbalancer
+        Failover load balancer
 
         Args:
           force: Validate current load balancer status before failover or not.
@@ -1190,7 +1238,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Resize loadbalancer
+        Resize load balancer
 
         Args:
           flavor: Name of the desired flavor to resize to.
@@ -1230,7 +1278,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         name_template: str | NotGiven = NOT_GIVEN,
         preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
         vip_network_id: str | NotGiven = NOT_GIVEN,
         vip_port_id: str | NotGiven = NOT_GIVEN,
@@ -1270,7 +1318,11 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.loadbalancers or len(task.created_resources.loadbalancers) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.loadbalancers
+            or len(task.created_resources.loadbalancers) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return await self.get(
             loadbalancer_id=task.created_resources.loadbalancers[0],

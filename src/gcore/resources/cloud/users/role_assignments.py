@@ -64,7 +64,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoleAssignment:
         """
-        Assign role to existing user
+        Assign a role to an existing user in the specified scope.
 
         Args:
           role: User role
@@ -116,7 +116,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoleAssignmentUpdateDelete:
         """
-        Modify role assignment to existing user
+        Modify an existing role assignment for a user.
 
         Args:
           assignment_id: Assignment ID
@@ -168,12 +168,11 @@ class RoleAssignmentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[RoleAssignment]:
-        """List assignments
+        """
+        List all role assignments in the specified scope.
 
         Args:
-          limit: Limit the number of returned items.
-
-        Falls back to default of 1000 if not
+          limit: Limit the number of returned items. Falls back to default of 1000 if not
               specified. Limited by max limit value of 1000
 
           offset: Offset value is used to exclude the first set of records from the result
@@ -223,7 +222,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoleAssignmentUpdateDelete:
         """
-        Delete role assignment
+        Delete an existing role assignment.
 
         Args:
           assignment_id: Assignment ID
@@ -280,7 +279,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoleAssignment:
         """
-        Assign role to existing user
+        Assign a role to an existing user in the specified scope.
 
         Args:
           role: User role
@@ -332,7 +331,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoleAssignmentUpdateDelete:
         """
-        Modify role assignment to existing user
+        Modify an existing role assignment for a user.
 
         Args:
           assignment_id: Assignment ID
@@ -384,12 +383,11 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[RoleAssignment, AsyncOffsetPage[RoleAssignment]]:
-        """List assignments
+        """
+        List all role assignments in the specified scope.
 
         Args:
-          limit: Limit the number of returned items.
-
-        Falls back to default of 1000 if not
+          limit: Limit the number of returned items. Falls back to default of 1000 if not
               specified. Limited by max limit value of 1000
 
           offset: Offset value is used to exclude the first set of records from the result
@@ -439,7 +437,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoleAssignmentUpdateDelete:
         """
-        Delete role assignment
+        Delete an existing role assignment.
 
         Args:
           assignment_id: Assignment ID

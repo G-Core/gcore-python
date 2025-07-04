@@ -596,7 +596,11 @@ class DeploymentsResource(SyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.inference_instances or len(task.created_resources.inference_instances) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.inference_instances
+            or len(task.created_resources.inference_instances) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return self.get(
             deployment_name=task.created_resources.inference_instances[0],
@@ -1263,7 +1267,11 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
         )
-        if not task.created_resources or not task.created_resources.inference_instances or len(task.created_resources.inference_instances) != 1:
+        if (
+            not task.created_resources
+            or not task.created_resources.inference_instances
+            or len(task.created_resources.inference_instances) != 1
+        ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return await self.get(
             deployment_name=task.created_resources.inference_instances[0],

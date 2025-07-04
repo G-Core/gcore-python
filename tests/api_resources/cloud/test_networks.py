@@ -37,7 +37,7 @@ class TestNetworks:
             region_id=1,
             name="my network",
             create_router=True,
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type="vxlan",
         )
         assert_matches_type(TaskIDList, network, path=["response"])
@@ -76,7 +76,17 @@ class TestNetworks:
             network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
             project_id=1,
             region_id=1,
+        )
+        assert_matches_type(Network, network, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gcore) -> None:
+        network = client.cloud.networks.update(
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Network, network, path=["response"])
 
@@ -86,7 +96,6 @@ class TestNetworks:
             network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
             project_id=1,
             region_id=1,
-            name="some_name",
         )
 
         assert response.is_closed is True
@@ -100,7 +109,6 @@ class TestNetworks:
             network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
             project_id=1,
             region_id=1,
-            name="some_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -117,7 +125,6 @@ class TestNetworks:
                 network_id="",
                 project_id=1,
                 region_id=1,
-                name="some_name",
             )
 
     @parametrize
@@ -134,6 +141,7 @@ class TestNetworks:
             project_id=1,
             region_id=1,
             limit=1000,
+            name="my-network",
             offset=0,
             order_by="created_at.desc",
             tag_key=["key1", "key2"],
@@ -261,7 +269,9 @@ class TestNetworks:
 
 
 class TestAsyncNetworks:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
@@ -279,7 +289,7 @@ class TestAsyncNetworks:
             region_id=1,
             name="my network",
             create_router=True,
-            tags={"foo": "my-tag-value"},
+            tags={"my-tag": "my-tag-value"},
             type="vxlan",
         )
         assert_matches_type(TaskIDList, network, path=["response"])
@@ -318,7 +328,17 @@ class TestAsyncNetworks:
             network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
             project_id=1,
             region_id=1,
+        )
+        assert_matches_type(Network, network, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
+        network = await async_client.cloud.networks.update(
+            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+            project_id=1,
+            region_id=1,
             name="some_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Network, network, path=["response"])
 
@@ -328,7 +348,6 @@ class TestAsyncNetworks:
             network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
             project_id=1,
             region_id=1,
-            name="some_name",
         )
 
         assert response.is_closed is True
@@ -342,7 +361,6 @@ class TestAsyncNetworks:
             network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
             project_id=1,
             region_id=1,
-            name="some_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,7 +377,6 @@ class TestAsyncNetworks:
                 network_id="",
                 project_id=1,
                 region_id=1,
-                name="some_name",
             )
 
     @parametrize
@@ -376,6 +393,7 @@ class TestAsyncNetworks:
             project_id=1,
             region_id=1,
             limit=1000,
+            name="my-network",
             offset=0,
             order_by="created_at.desc",
             tag_key=["key1", "key2"],

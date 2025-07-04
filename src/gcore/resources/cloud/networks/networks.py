@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -78,7 +78,7 @@ class NetworksResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         create_router: bool | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type: Literal["vlan", "vxlan"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -142,7 +142,8 @@ class NetworksResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -150,8 +151,11 @@ class NetworksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Network:
-        """
-        Change network name
+        """Rename network and/or update network tags.
+
+        The request will only process the
+        fields that are provided in the request body. Any fields that are not included
+        will remain unchanged.
 
         Args:
           project_id: Project ID
@@ -161,6 +165,26 @@ class NetworksResource(SyncAPIResource):
           network_id: Network ID
 
           name: Name.
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -178,7 +202,13 @@ class NetworksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._patch(
             f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
-            body=maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                network_update_params.NetworkUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -191,6 +221,7 @@ class NetworksResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         tag_key: List[str] | NotGiven = NOT_GIVEN,
@@ -212,6 +243,8 @@ class NetworksResource(SyncAPIResource):
 
           limit: Optional. Limit the number of returned items
 
+          name: Filter networks by name
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
@@ -220,9 +253,7 @@ class NetworksResource(SyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -247,6 +278,7 @@ class NetworksResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                         "order_by": order_by,
                         "tag_key": tag_key,
@@ -384,7 +416,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         create_router: bool | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         type: Literal["vlan", "vxlan"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -448,7 +480,8 @@ class AsyncNetworksResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | NotGiven = NOT_GIVEN,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -456,8 +489,11 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Network:
-        """
-        Change network name
+        """Rename network and/or update network tags.
+
+        The request will only process the
+        fields that are provided in the request body. Any fields that are not included
+        will remain unchanged.
 
         Args:
           project_id: Project ID
@@ -467,6 +503,26 @@ class AsyncNetworksResource(AsyncAPIResource):
           network_id: Network ID
 
           name: Name.
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -484,7 +540,13 @@ class AsyncNetworksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._patch(
             f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
-            body=await async_maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                network_update_params.NetworkUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -497,6 +559,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         tag_key: List[str] | NotGiven = NOT_GIVEN,
@@ -518,6 +581,8 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           limit: Optional. Limit the number of returned items
 
+          name: Filter networks by name
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
@@ -526,9 +591,7 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -553,6 +616,7 @@ class AsyncNetworksResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                         "order_by": order_by,
                         "tag_key": tag_key,

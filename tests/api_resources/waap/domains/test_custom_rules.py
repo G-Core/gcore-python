@@ -47,7 +47,7 @@ class TestCustomRules:
             conditions=[
                 {
                     "content_type": {
-                        "content_type": ["string"],
+                        "content_type": ["application/xml"],
                         "negation": True,
                     },
                     "country": {
@@ -55,17 +55,17 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "file_extension": {
-                        "file_extension": ["string"],
+                        "file_extension": ["pdf"],
                         "negation": True,
                     },
                     "header": {
-                        "header": "header",
+                        "header": "Origin",
                         "value": "value",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "header_exists": {
-                        "header": "header",
+                        "header": "Origin",
                         "negation": True,
                     },
                     "http_method": {
@@ -82,7 +82,7 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "organization": {
-                        "organization": "organization",
+                        "organization": "UptimeRobot s.r.o",
                         "negation": True,
                     },
                     "owner_types": {
@@ -116,17 +116,17 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "url": {
-                        "url": "x",
+                        "url": "/wp-admin/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_agent": {
-                        "user_agent": "user_agent",
+                        "user_agent": "curl/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_defined_tags": {
-                        "tags": ["string"],
+                        "tags": ["SQfNklznVLBBpr"],
                         "negation": True,
                     },
                 }
@@ -196,7 +196,7 @@ class TestCustomRules:
             conditions=[
                 {
                     "content_type": {
-                        "content_type": ["string"],
+                        "content_type": ["application/xml"],
                         "negation": True,
                     },
                     "country": {
@@ -204,17 +204,17 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "file_extension": {
-                        "file_extension": ["string"],
+                        "file_extension": ["pdf"],
                         "negation": True,
                     },
                     "header": {
-                        "header": "header",
+                        "header": "Origin",
                         "value": "value",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "header_exists": {
-                        "header": "header",
+                        "header": "Origin",
                         "negation": True,
                     },
                     "http_method": {
@@ -231,7 +231,7 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "organization": {
-                        "organization": "organization",
+                        "organization": "UptimeRobot s.r.o",
                         "negation": True,
                     },
                     "owner_types": {
@@ -265,17 +265,17 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "url": {
-                        "url": "x",
+                        "url": "/wp-admin/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_agent": {
-                        "user_agent": "user_agent",
+                        "user_agent": "curl/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_defined_tags": {
-                        "tags": ["string"],
+                        "tags": ["SQfNklznVLBBpr"],
                         "negation": True,
                     },
                 }
@@ -498,7 +498,9 @@ class TestCustomRules:
 
 
 class TestAsyncCustomRules:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
@@ -529,7 +531,7 @@ class TestAsyncCustomRules:
             conditions=[
                 {
                     "content_type": {
-                        "content_type": ["string"],
+                        "content_type": ["application/xml"],
                         "negation": True,
                     },
                     "country": {
@@ -537,17 +539,17 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "file_extension": {
-                        "file_extension": ["string"],
+                        "file_extension": ["pdf"],
                         "negation": True,
                     },
                     "header": {
-                        "header": "header",
+                        "header": "Origin",
                         "value": "value",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "header_exists": {
-                        "header": "header",
+                        "header": "Origin",
                         "negation": True,
                     },
                     "http_method": {
@@ -564,7 +566,7 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "organization": {
-                        "organization": "organization",
+                        "organization": "UptimeRobot s.r.o",
                         "negation": True,
                     },
                     "owner_types": {
@@ -598,17 +600,17 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "url": {
-                        "url": "x",
+                        "url": "/wp-admin/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_agent": {
-                        "user_agent": "user_agent",
+                        "user_agent": "curl/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_defined_tags": {
-                        "tags": ["string"],
+                        "tags": ["SQfNklznVLBBpr"],
                         "negation": True,
                     },
                 }
@@ -678,7 +680,7 @@ class TestAsyncCustomRules:
             conditions=[
                 {
                     "content_type": {
-                        "content_type": ["string"],
+                        "content_type": ["application/xml"],
                         "negation": True,
                     },
                     "country": {
@@ -686,17 +688,17 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "file_extension": {
-                        "file_extension": ["string"],
+                        "file_extension": ["pdf"],
                         "negation": True,
                     },
                     "header": {
-                        "header": "header",
+                        "header": "Origin",
                         "value": "value",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "header_exists": {
-                        "header": "header",
+                        "header": "Origin",
                         "negation": True,
                     },
                     "http_method": {
@@ -713,7 +715,7 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "organization": {
-                        "organization": "organization",
+                        "organization": "UptimeRobot s.r.o",
                         "negation": True,
                     },
                     "owner_types": {
@@ -747,17 +749,17 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "url": {
-                        "url": "x",
+                        "url": "/wp-admin/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_agent": {
-                        "user_agent": "user_agent",
+                        "user_agent": "curl/",
                         "match_type": "Exact",
                         "negation": True,
                     },
                     "user_defined_tags": {
-                        "tags": ["string"],
+                        "tags": ["SQfNklznVLBBpr"],
                         "negation": True,
                     },
                 }

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, overload
 
@@ -68,7 +68,6 @@ from ....types.cloud.console import Console
 from ....types.cloud.instance import Instance
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.instance_interface import InstanceInterface
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["InstancesResource", "AsyncInstancesResource"]
 
@@ -125,7 +124,7 @@ class InstancesResource(SyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -135,8 +134,9 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create an instance with specified configuration.
+
+        How to get access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -270,7 +270,7 @@ class InstancesResource(SyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
@@ -429,8 +429,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[Instance]:
-        """
-        List instances
+        """List all instances in the specified project and region.
+
+        Results can be filtered
+        by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -485,9 +487,7 @@ class InstancesResource(SyncAPIResource):
 
           status: Filters instances by status.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -787,8 +787,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Put instance into the server group
+        """Add an instance to a server group.
+
+        The instance must not already be in a server
+        group. Bare metal servers do not support server groups.
 
         Args:
           servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
@@ -1008,8 +1010,11 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
-        """
-        **Cookie Parameters**:
+        """Retrieve detailed information about a specific instance.
+
+        The response content
+        language for `ddos_profile` can be controlled via the 'language' cookie
+        parameter. **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
@@ -1107,8 +1112,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Remove instance from the server group
+        """Remove an instance from its current server group.
+
+        The instance must be in a
+        server group to be removed. Bare metal servers do not support server groups.
 
         Args:
           extra_headers: Send extra headers
@@ -1367,7 +1374,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1377,8 +1384,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        For Linux,
+        """Create an instance with specified configuration.
+
+        How to get access: For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -1512,7 +1520,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         servergroup_id: str | NotGiven = NOT_GIVEN,
         ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
@@ -1671,8 +1679,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Instance, AsyncOffsetPage[Instance]]:
-        """
-        List instances
+        """List all instances in the specified project and region.
+
+        Results can be filtered
+        by various parameters like name, status, and IP address.
 
         Args:
           project_id: Project ID
@@ -1727,9 +1737,7 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           status: Filters instances by status.
 
-          tag_key_value: Optional. Filter by tag key-value pairs. curl -G --data-urlencode
-              "`tag_key_value`={"key": "value"}" --url
-              "https://example.com/cloud/v1/resource/1/1"
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
 
@@ -2029,8 +2037,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Put instance into the server group
+        """Add an instance to a server group.
+
+        The instance must not already be in a server
+        group. Bare metal servers do not support server groups.
 
         Args:
           servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
@@ -2250,8 +2260,11 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Instance:
-        """
-        **Cookie Parameters**:
+        """Retrieve detailed information about a specific instance.
+
+        The response content
+        language for `ddos_profile` can be controlled via the 'language' cookie
+        parameter. **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
@@ -2349,8 +2362,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Remove instance from the server group
+        """Remove an instance from its current server group.
+
+        The instance must be in a
+        server group to be removed. Bare metal servers do not support server groups.
 
         Args:
           extra_headers: Send extra headers

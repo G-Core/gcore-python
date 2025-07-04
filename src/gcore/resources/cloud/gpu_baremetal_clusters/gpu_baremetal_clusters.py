@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Dict, List, Iterable, Optional
 
 import httpx
 
@@ -58,7 +58,6 @@ from ....types.cloud import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.gpu_baremetal_cluster import GPUBaremetalCluster
 from ....types.cloud.gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList
 
@@ -113,7 +112,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         instances_count: int | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -123,8 +122,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create bare metal GPU cluster
+        """Create a new GPU cluster with specified configuration.
+
+        The cluster can be
+        created with one or more nodes.
 
         Args:
           flavor: Flavor name
@@ -440,8 +441,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        All cluster nodes must be specified to update the cluster image.
+        """Rebuild one or more nodes in a GPU cluster.
+
+        All cluster nodes must be specified
+        to update the cluster image.
 
         Args:
           nodes: List of nodes uuids to be rebuild
@@ -496,8 +499,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Resize bare metal GPU cluster
+        """Change the number of nodes in a GPU cluster.
+
+        The cluster can be scaled up or
+        down.
 
         Args:
           instances_count: Resized (total) number of instances
@@ -515,7 +520,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
-            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")            
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=maybe_transform(
@@ -539,7 +544,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -735,7 +740,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         instances_count: int | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -745,8 +750,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create bare metal GPU cluster
+        """Create a new GPU cluster with specified configuration.
+
+        The cluster can be
+        created with one or more nodes.
 
         Args:
           flavor: Flavor name
@@ -1062,8 +1069,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        All cluster nodes must be specified to update the cluster image.
+        """Rebuild one or more nodes in a GPU cluster.
+
+        All cluster nodes must be specified
+        to update the cluster image.
 
         Args:
           nodes: List of nodes uuids to be rebuild
@@ -1118,8 +1127,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Resize bare metal GPU cluster
+        """Change the number of nodes in a GPU cluster.
+
+        The cluster can be scaled up or
+        down.
 
         Args:
           instances_count: Resized (total) number of instances
@@ -1137,7 +1148,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
-            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")            
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=await async_maybe_transform(
@@ -1161,7 +1172,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -74,7 +74,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Update image fields
+        Update image properties and tags.
 
         Args:
           hw_firmware_type: Specifies the type of firmware with which to boot the guest.
@@ -146,10 +146,11 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ImageList:
-        """Retrieve an available images list.
+        """Retrieve a list of available images in the project and region.
 
-        Returned entities owned by the project and
-        public OR shared with the client
+        The list can be
+        filtered by visibility, tags, and other parameters. Returned entities are owned
+        by the project or are public/shared with the client.
 
         Args:
           include_prices: Show price
@@ -158,9 +159,7 @@ class ImagesResource(SyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode '`tag_key_value`={"key": "value"}' --url
-              'http://localhost:1111/v1/images/1/1'"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -210,8 +209,10 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete the image
+        """Delete a specific image.
+
+        The image cannot be deleted if it is used by protected
+        snapshots.
 
         Args:
           extra_headers: Send extra headers
@@ -284,7 +285,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -292,8 +293,10 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create image from volume
+        """Create a new image from a bootable volume.
+
+        The volume must be bootable to create
+        an image from it.
 
         Args:
           name: Image name
@@ -369,7 +372,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -430,7 +433,7 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Get image
+        Retrieve detailed information about a specific image.
 
         Args:
           include_prices: Show price
@@ -477,7 +480,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -485,8 +488,10 @@ class ImagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Upload image
+        """Upload an image from a URL.
+
+        The image can be configured with various properties
+        like OS type, architecture, and tags.
 
         Args:
           name: Image name
@@ -571,7 +576,7 @@ class ImagesResource(SyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -661,7 +666,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Update image fields
+        Update image properties and tags.
 
         Args:
           hw_firmware_type: Specifies the type of firmware with which to boot the guest.
@@ -733,10 +738,11 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ImageList:
-        """Retrieve an available images list.
+        """Retrieve a list of available images in the project and region.
 
-        Returned entities owned by the project and
-        public OR shared with the client
+        The list can be
+        filtered by visibility, tags, and other parameters. Returned entities are owned
+        by the project or are public/shared with the client.
 
         Args:
           include_prices: Show price
@@ -745,9 +751,7 @@ class AsyncImagesResource(AsyncAPIResource):
 
           tag_key: Filter by tag keys.
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string. 'curl -G
-              --data-urlencode '`tag_key_value`={"key": "value"}' --url
-              'http://localhost:1111/v1/images/1/1'"
+          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -797,8 +801,10 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete the image
+        """Delete a specific image.
+
+        The image cannot be deleted if it is used by protected
+        snapshots.
 
         Args:
           extra_headers: Send extra headers
@@ -871,7 +877,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -879,8 +885,10 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Create image from volume
+        """Create a new image from a bootable volume.
+
+        The volume must be bootable to create
+        an image from it.
 
         Args:
           name: Image name
@@ -956,7 +964,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         source: Literal["volume"] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1017,7 +1025,7 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
         """
-        Get image
+        Retrieve detailed information about a specific image.
 
         Args:
           include_prices: Show price
@@ -1064,7 +1072,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1072,8 +1080,10 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Upload image
+        """Upload an image from a URL.
+
+        The image can be configured with various properties
+        like OS type, architecture, and tags.
 
         Args:
           name: Image name
@@ -1158,7 +1168,7 @@ class AsyncImagesResource(AsyncAPIResource):
         os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
         os_version: Optional[str] | NotGiven = NOT_GIVEN,
         ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

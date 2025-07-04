@@ -21,6 +21,7 @@ from ....types.cloud.registries import user_create_params, user_update_params, u
 from ....types.cloud.registries.registry_user import RegistryUser
 from ....types.cloud.registries.registry_user_list import RegistryUserList
 from ....types.cloud.registries.registry_user_created import RegistryUserCreated
+from ....types.cloud.registries.user_refresh_secret_response import UserRefreshSecretResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -61,9 +62,9 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegistryUser:
+    ) -> RegistryUserCreated:
         """
-        Create a user
+        Create a new user for accessing the container registry.
 
         Args:
           duration: User account operating time, days
@@ -101,7 +102,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUser,
+            cast_to=RegistryUserCreated,
         )
 
     def update(
@@ -121,7 +122,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryUser:
         """
-        Update a user
+        Update the configuration of a specific registry user.
 
         Args:
           duration: User account operating time, days
@@ -169,7 +170,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryUserList:
         """
-        Get user list
+        List all users with access to the container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -207,7 +208,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a user
+        Delete a specific user from the container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -246,7 +247,7 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryUserCreated:
         """
-        Batch create users
+        Create multiple users for accessing the container registry in a single request.
 
         Args:
           users: Set of users
@@ -285,9 +286,9 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> UserRefreshSecretResponse:
         """
-        Refresh a secret
+        Generate a new secret for a specific registry user.
 
         Args:
           extra_headers: Send extra headers
@@ -302,13 +303,12 @@ class UsersResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=UserRefreshSecretResponse,
         )
 
 
@@ -348,9 +348,9 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegistryUser:
+    ) -> RegistryUserCreated:
         """
-        Create a user
+        Create a new user for accessing the container registry.
 
         Args:
           duration: User account operating time, days
@@ -388,7 +388,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUser,
+            cast_to=RegistryUserCreated,
         )
 
     async def update(
@@ -408,7 +408,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryUser:
         """
-        Update a user
+        Update the configuration of a specific registry user.
 
         Args:
           duration: User account operating time, days
@@ -456,7 +456,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryUserList:
         """
-        Get user list
+        List all users with access to the container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -494,7 +494,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a user
+        Delete a specific user from the container registry.
 
         Args:
           extra_headers: Send extra headers
@@ -533,7 +533,7 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegistryUserCreated:
         """
-        Batch create users
+        Create multiple users for accessing the container registry in a single request.
 
         Args:
           users: Set of users
@@ -572,9 +572,9 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> UserRefreshSecretResponse:
         """
-        Refresh a secret
+        Generate a new secret for a specific registry user.
 
         Args:
           extra_headers: Send extra headers
@@ -589,13 +589,12 @@ class AsyncUsersResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=UserRefreshSecretResponse,
         )
 
 

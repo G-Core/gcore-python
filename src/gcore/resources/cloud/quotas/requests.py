@@ -60,7 +60,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Create request to change quotas
+        Create a request to change current quotas.
 
         Args:
           description: Describe the reason, in general terms.
@@ -108,7 +108,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[RequestListResponse]:
         """
-        Returns a list of sent requests to change current quotas and their statuses
+        Get a list of sent requests to change current quotas and their statuses.
 
         Args:
           limit: Optional. Limit the number of returned items
@@ -158,7 +158,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete request to change quotas
+        Delete a specific quota limit request.
 
         Args:
           request_id: LimitRequest ID
@@ -194,7 +194,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RequestGetResponse:
         """
-        Get request to change quota limits.
+        Get detailed information about a specific quota limit request.
 
         Args:
           request_id: LimitRequest ID
@@ -252,7 +252,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Create request to change quotas
+        Create a request to change current quotas.
 
         Args:
           description: Describe the reason, in general terms.
@@ -300,7 +300,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[RequestListResponse, AsyncOffsetPage[RequestListResponse]]:
         """
-        Returns a list of sent requests to change current quotas and their statuses
+        Get a list of sent requests to change current quotas and their statuses.
 
         Args:
           limit: Optional. Limit the number of returned items
@@ -350,7 +350,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete request to change quotas
+        Delete a specific quota limit request.
 
         Args:
           request_id: LimitRequest ID
@@ -386,7 +386,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RequestGetResponse:
         """
-        Get request to change quota limits.
+        Get detailed information about a specific quota limit request.
 
         Args:
           request_id: LimitRequest ID

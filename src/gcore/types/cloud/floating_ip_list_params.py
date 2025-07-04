@@ -28,8 +28,4 @@ class FloatingIPListParams(TypedDict, total=False):
     """Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2"""
 
     tag_key_value: str
-    """Optional.
-
-    Filter by tag key-value pairs. curl -G --data-urlencode "`tag_key_value`={"key":
-    "value"}" --url "https://example.com/cloud/v1/resource/1/1"
-    """
+    """Optional. Filter by tag key-value pairs."""
