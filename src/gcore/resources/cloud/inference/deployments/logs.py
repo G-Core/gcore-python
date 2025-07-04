@@ -20,7 +20,7 @@ from ....._response import (
 from .....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.inference.deployments import log_list_params
-from .....types.cloud.inference.inference_log import InferenceLog
+from .....types.cloud.inference.deployments.inference_deployment_log import InferenceDeploymentLog
 
 __all__ = ["LogsResource", "AsyncLogsResource"]
 
@@ -60,7 +60,7 @@ class LogsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[InferenceLog]:
+    ) -> SyncOffsetPage[InferenceDeploymentLog]:
         """
         Get inference deployment logs
 
@@ -92,7 +92,7 @@ class LogsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._get_api_list(
             f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs",
-            page=SyncOffsetPage[InferenceLog],
+            page=SyncOffsetPage[InferenceDeploymentLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -108,7 +108,7 @@ class LogsResource(SyncAPIResource):
                     log_list_params.LogListParams,
                 ),
             ),
-            model=InferenceLog,
+            model=InferenceDeploymentLog,
         )
 
 
@@ -147,7 +147,7 @@ class AsyncLogsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[InferenceLog, AsyncOffsetPage[InferenceLog]]:
+    ) -> AsyncPaginator[InferenceDeploymentLog, AsyncOffsetPage[InferenceDeploymentLog]]:
         """
         Get inference deployment logs
 
@@ -179,7 +179,7 @@ class AsyncLogsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._get_api_list(
             f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs",
-            page=AsyncOffsetPage[InferenceLog],
+            page=AsyncOffsetPage[InferenceDeploymentLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -195,7 +195,7 @@ class AsyncLogsResource(AsyncAPIResource):
                     log_list_params.LogListParams,
                 ),
             ),
-            model=InferenceLog,
+            model=InferenceDeploymentLog,
         )
 
 

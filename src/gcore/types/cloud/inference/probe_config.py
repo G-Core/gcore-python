@@ -2,15 +2,15 @@
 
 from typing import Optional
 
-from ..._models import BaseModel
-from .container_probe import ContainerProbe
+from .probe import Probe
+from ...._models import BaseModel
 
-__all__ = ["ContainerProbeConfig"]
+__all__ = ["ProbeConfig"]
 
 
-class ContainerProbeConfig(BaseModel):
+class ProbeConfig(BaseModel):
     enabled: bool
     """Whether the probe is enabled or not."""
 
-    probe: Optional[ContainerProbe] = None
+    probe: Optional[Probe] = None
     """Probe configuration (exec, `http_get` or `tcp_socket`)"""

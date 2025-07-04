@@ -54,7 +54,7 @@ from .deployments.deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
-from ....types.cloud.region_capacity_list import RegionCapacityList
+from ....types.cloud.inference_region_capacity_list import InferenceRegionCapacityList
 
 __all__ = ["InferenceResource", "AsyncInferenceResource"]
 
@@ -108,14 +108,14 @@ class InferenceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegionCapacityList:
+    ) -> InferenceRegionCapacityList:
         """Get inference capacity by region"""
         return self._get(
             "/cloud/v3/inference/capacity",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegionCapacityList,
+            cast_to=InferenceRegionCapacityList,
         )
 
 
@@ -168,14 +168,14 @@ class AsyncInferenceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegionCapacityList:
+    ) -> InferenceRegionCapacityList:
         """Get inference capacity by region"""
         return await self._get(
             "/cloud/v3/inference/capacity",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegionCapacityList,
+            cast_to=InferenceRegionCapacityList,
         )
 
 

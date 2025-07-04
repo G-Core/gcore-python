@@ -4,10 +4,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["InferenceApikeySecret"]
+__all__ = ["InferenceDeploymentAPIKey"]
 
 
-class InferenceApikeySecret(BaseModel):
+class InferenceDeploymentAPIKey(BaseModel):
     secret: str
     """API key secret"""
 

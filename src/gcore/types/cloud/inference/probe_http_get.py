@@ -1,25 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import Dict, Optional
-from typing_extensions import Required, TypedDict
 
-__all__ = ["ContainerProbeHTTPGetCreateParam"]
+from pydantic import Field as FieldInfo
+
+from ...._models import BaseModel
+
+__all__ = ["ProbeHTTPGet"]
 
 
-class ContainerProbeHTTPGetCreateParam(TypedDict, total=False):
-    port: Required[int]
-    """Port number the probe should connect to."""
-
+class ProbeHTTPGet(BaseModel):
     headers: Dict[str, str]
     """HTTP headers to be sent with the request."""
 
-    host: Optional[str]
+    host: Optional[str] = None
     """Host name to send HTTP request to."""
 
     path: str
     """The endpoint to send the HTTP request to."""
 
-    schema: str
+    port: int
+    """Port number the probe should connect to."""
+
+    schema_: str = FieldInfo(alias="schema")
     """Schema to use for the HTTP request."""
