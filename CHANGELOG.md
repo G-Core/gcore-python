@@ -1,5 +1,75 @@
 # Changelog
 
+## 0.4.0 (2025-07-04)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/G-Core/gcore-python/compare/v0.3.0...v0.4.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** remove list suitable from bm flavors
+* remove list suitable and list for resize from instance flavors
+
+### Features
+
+* **api:** aggregated API specs update ([7395880](https://github.com/G-Core/gcore-python/commit/7395880c1291632db977714b43de1ab7061c23ed))
+* **api:** aggregated API specs update ([dd87a63](https://github.com/G-Core/gcore-python/commit/dd87a630497b9dd478330bb190920da41fc6b6da))
+* **api:** aggregated API specs update ([d4b4f22](https://github.com/G-Core/gcore-python/commit/d4b4f221489c1047b8e92752a1da014f1af59af9))
+* **api:** aggregated API specs update ([a942886](https://github.com/G-Core/gcore-python/commit/a9428867b76afd4e3e0adb5892c007c3b8922fca))
+* **api:** aggregated API specs update ([8b5d094](https://github.com/G-Core/gcore-python/commit/8b5d094f732e0c5f236f8bfc32fe069a6fd412ed))
+* **api:** aggregated API specs update ([c86820e](https://github.com/G-Core/gcore-python/commit/c86820e1ca68185902d8e5e3cb911fca6d4dc10b))
+* **api:** aggregated API specs update ([26b81bd](https://github.com/G-Core/gcore-python/commit/26b81bdeb1d84c2bc72a34e046db8fb1b1e5fcd1))
+* **api:** update via SDK Studio ([96a27dd](https://github.com/G-Core/gcore-python/commit/96a27dd845f5fe9128b111171feb6c065f0c2916))
+* **api:** update via SDK Studio ([1da4aa3](https://github.com/G-Core/gcore-python/commit/1da4aa370b1e633b002e1be99b7c5f3cf785ebc7))
+* **client:** add support for aiohttp ([a983aee](https://github.com/G-Core/gcore-python/commit/a983aee8dd4ddf7d111f4798c89cfd3f341568d4))
+* **cloud:** add floating IPs examples ([9010134](https://github.com/G-Core/gcore-python/commit/90101344d7fdf1ba0c8f55bc290ffe7839cb6af0))
+* **cloud:** add instances examples ([a38f100](https://github.com/G-Core/gcore-python/commit/a38f10024534ab8c65ff72e96f49100bfaeb17a1))
+* **cloud:** add load balancers examples ([#50](https://github.com/G-Core/gcore-python/issues/50)) ([c73f5d1](https://github.com/G-Core/gcore-python/commit/c73f5d1b84dbd2c96c9383100a93c89c8cf5e498))
+* **cloud:** add networks examples ([5f32d6f](https://github.com/G-Core/gcore-python/commit/5f32d6f75aec5a7ff33729c65984f8b171910f8b))
+* **cloud:** add reserved fixed ips examples ([a42b974](https://github.com/G-Core/gcore-python/commit/a42b974dde0d61edd9efa8f5929c0cbd967eebf8))
+* **cloud:** add routers examples ([aba1f63](https://github.com/G-Core/gcore-python/commit/aba1f6343d40a6c6181929923b80a31d0bae332c))
+* **cloud:** add security groups examples ([5c4f2a5](https://github.com/G-Core/gcore-python/commit/5c4f2a57603a5940c13220770e363c1e597ec48d))
+* **cloud:** add volumes examples ([57ddcba](https://github.com/G-Core/gcore-python/commit/57ddcba83e1664b765c1c16e9ee314f6af74c38b))
+* **iam:** add IAM ([1507ac3](https://github.com/G-Core/gcore-python/commit/1507ac37f5d588a999880cf5f51c94293f65b039))
+* **images:** add instance images examples ([ecc8d91](https://github.com/G-Core/gcore-python/commit/ecc8d91c94df8c09ab4aeb5f89c966f03924caed))
+
+
+### Bug Fixes
+
+* **ci:** correct conditional ([b8d8b92](https://github.com/G-Core/gcore-python/commit/b8d8b9275a3c0d0864cfbd0d396a68cfd07c0b7b))
+* **ci:** release-doctor — report correct token name ([0bf3b18](https://github.com/G-Core/gcore-python/commit/0bf3b1850e85aa8d9b635dcee9aeaf416f35df6c))
+* **cloud:** linting on load balancer examples ([3534bea](https://github.com/G-Core/gcore-python/commit/3534beaed71a9fb5fe61df6a8b9aa76b9c3913c8))
+* **cloud:** update tags type for gpu baremetal clusters and images, instances, load balancers ([6634a74](https://github.com/G-Core/gcore-python/commit/6634a74d3106f25476bd6bce98d12249f07dd8a6))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([3d88ae5](https://github.com/G-Core/gcore-python/commit/3d88ae5a7df41b7e9e88d0520a9586c1240da54c))
+* **waap:** remove duplicate method for acct overview ([85766ca](https://github.com/G-Core/gcore-python/commit/85766ca7a1a3848cf6e252a55d7cc7ef384a4f94))
+
+
+### Chores
+
+* **ci:** change upload type ([960a44b](https://github.com/G-Core/gcore-python/commit/960a44ba2f255ad2bf8f571de381b06e5f1fffbd))
+* **ci:** only run for pushes and fork pull requests ([7df32ec](https://github.com/G-Core/gcore-python/commit/7df32eca9f58a777487a2d00e2bfd41ccdd6a518))
+* **cloud:** reorder ([0441c52](https://github.com/G-Core/gcore-python/commit/0441c52c6407e2ae427b70fdd22881bde8ea8191))
+* **cloud:** reorder example functions ([7c3a568](https://github.com/G-Core/gcore-python/commit/7c3a5683c8482ca7398e6863c77fdae350b3e711))
+* **cloud:** skip load balancer test statuses ([8dd7ccb](https://github.com/G-Core/gcore-python/commit/8dd7ccb677a41455d0c3ee6407e21271485669aa))
+* **cloud:** streamline envs in examples ([e26746f](https://github.com/G-Core/gcore-python/commit/e26746fd50a2fee2157c88244b737352f07dd55c))
+* **cloud:** unify examples format ([32446c4](https://github.com/G-Core/gcore-python/commit/32446c4e9bb385f68b0a24637f731ff93ee0eb5a))
+* format ([fbe3508](https://github.com/G-Core/gcore-python/commit/fbe3508482950455f4ccd02b6941bb0273b2fdf6))
+* **internal:** updates ([2377589](https://github.com/G-Core/gcore-python/commit/237758929ed119a1780c5a0cf9d60c72f6c70b8a))
+* **internal:** updates ([054c374](https://github.com/G-Core/gcore-python/commit/054c374d0b02ec85d6702ecfded1362e827cf655))
+* **readme:** update badges ([6ba343d](https://github.com/G-Core/gcore-python/commit/6ba343d802d353c4df42e4e7f6cc4f693fe9734a))
+* **tests:** skip some failing tests on the latest python versions ([4b45142](https://github.com/G-Core/gcore-python/commit/4b45142d7fe138a5f0a030bdd27f9de26df533b9))
+* **tests:** skip some failing tests on the latest python versions ([272ce51](https://github.com/G-Core/gcore-python/commit/272ce51ed26d568e181dee26205448d35184e015))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([1f4c28f](https://github.com/G-Core/gcore-python/commit/1f4c28f252df42a703a60ed2901391167296ecc7))
+
+
+### Refactors
+
+* **cloud:** remove list suitable from bm flavors ([2626938](https://github.com/G-Core/gcore-python/commit/262693876592601fa5a07dd088033037c7eae9b6))
+* remove list suitable and list for resize from instance flavors ([24b00fe](https://github.com/G-Core/gcore-python/commit/24b00fec390f141457c98334b302dab5a8b1d480))
+
 ## 0.3.0 (2025-06-17)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/G-Core/gcore-python/compare/v0.2.0...v0.3.0)
