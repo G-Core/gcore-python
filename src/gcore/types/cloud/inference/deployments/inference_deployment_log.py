@@ -2,12 +2,12 @@
 
 from datetime import datetime
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
-__all__ = ["InferenceLog"]
+__all__ = ["InferenceDeploymentLog"]
 
 
-class InferenceLog(BaseModel):
+class InferenceDeploymentLog(BaseModel):
     message: str
     """Log message."""
 

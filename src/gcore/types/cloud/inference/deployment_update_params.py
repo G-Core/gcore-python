@@ -6,7 +6,6 @@ from typing import Dict, List, Iterable, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from ..ingress_opts_param import IngressOptsParam
 from ..laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 
 __all__ = [
@@ -20,6 +19,7 @@ __all__ = [
     "ContainerScaleTriggersHTTP",
     "ContainerScaleTriggersMemory",
     "ContainerScaleTriggersSqs",
+    "IngressOpts",
     "Logging",
     "Probes",
     "ProbesLivenessProbe",
@@ -77,7 +77,7 @@ class DeploymentUpdateParams(TypedDict, total=False):
     accessible Docker image URL can be specified.
     """
 
-    ingress_opts: Optional[IngressOptsParam]
+    ingress_opts: Optional[IngressOpts]
     """Ingress options for the inference instance"""
 
     listening_port: Optional[int]
@@ -202,6 +202,17 @@ class Container(TypedDict, total=False):
 
     scale: Required[Optional[ContainerScale]]
     """Scale for the container"""
+
+
+class IngressOpts(TypedDict, total=False):
+    disable_response_buffering: bool
+    """Disable response buffering if true.
+
+    A client usually has a much slower connection and can not consume the response
+    data as fast as it is produced by an upstream application. Ingress tries to
+    buffer the whole response in order to release the upstream application as soon
+    as possible.By default, the response buffering is enabled.
+    """
 
 
 class Logging(TypedDict, total=False):

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -16,9 +18,8 @@ from ...._response import (
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloud.inference import MlcatalogOrderByChoices, model_list_params
-from ....types.cloud.inference.mlcatalog_model_card import MlcatalogModelCard
-from ....types.cloud.inference.mlcatalog_order_by_choices import MlcatalogOrderByChoices
+from ....types.cloud.inference import model_list_params
+from ....types.cloud.inference.inference_model import InferenceModel
 
 __all__ = ["ModelsResource", "AsyncModelsResource"]
 
@@ -48,14 +49,14 @@ class ModelsResource(SyncAPIResource):
         *,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        order_by: MlcatalogOrderByChoices | NotGiven = NOT_GIVEN,
+        order_by: Literal["name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[MlcatalogModelCard]:
+    ) -> SyncOffsetPage[InferenceModel]:
         """List models from catalog
 
         Args:
@@ -78,7 +79,7 @@ class ModelsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/cloud/v3/inference/models",
-            page=SyncOffsetPage[MlcatalogModelCard],
+            page=SyncOffsetPage[InferenceModel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -93,7 +94,7 @@ class ModelsResource(SyncAPIResource):
                     model_list_params.ModelListParams,
                 ),
             ),
-            model=MlcatalogModelCard,
+            model=InferenceModel,
         )
 
     def get(
@@ -106,7 +107,7 @@ class ModelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MlcatalogModelCard:
+    ) -> InferenceModel:
         """
         Get model from catalog
 
@@ -128,7 +129,7 @@ class ModelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MlcatalogModelCard,
+            cast_to=InferenceModel,
         )
 
 
@@ -157,14 +158,14 @@ class AsyncModelsResource(AsyncAPIResource):
         *,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        order_by: MlcatalogOrderByChoices | NotGiven = NOT_GIVEN,
+        order_by: Literal["name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MlcatalogModelCard, AsyncOffsetPage[MlcatalogModelCard]]:
+    ) -> AsyncPaginator[InferenceModel, AsyncOffsetPage[InferenceModel]]:
         """List models from catalog
 
         Args:
@@ -187,7 +188,7 @@ class AsyncModelsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/cloud/v3/inference/models",
-            page=AsyncOffsetPage[MlcatalogModelCard],
+            page=AsyncOffsetPage[InferenceModel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -202,7 +203,7 @@ class AsyncModelsResource(AsyncAPIResource):
                     model_list_params.ModelListParams,
                 ),
             ),
-            model=MlcatalogModelCard,
+            model=InferenceModel,
         )
 
     async def get(
@@ -215,7 +216,7 @@ class AsyncModelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MlcatalogModelCard:
+    ) -> InferenceModel:
         """
         Get model from catalog
 
@@ -237,7 +238,7 @@ class AsyncModelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MlcatalogModelCard,
+            cast_to=InferenceModel,
         )
 
 

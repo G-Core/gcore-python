@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
-from .mlcatalog_order_by_choices import MlcatalogOrderByChoices
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ModelListParams"]
 
@@ -19,5 +17,5 @@ class ModelListParams(TypedDict, total=False):
     Offset value is used to exclude the first set of records from the result
     """
 
-    order_by: MlcatalogOrderByChoices
+    order_by: Literal["name.asc", "name.desc"]
     """Order instances by transmitted fields and directions"""

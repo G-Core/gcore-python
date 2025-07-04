@@ -1,25 +1,23 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import Optional
-from typing_extensions import TypedDict
 
-from .container_probe_exec_create_param import ContainerProbeExecCreateParam
-from .container_probe_http_get_create_param import ContainerProbeHTTPGetCreateParam
-from .container_probe_tcp_socket_create_param import ContainerProbeTcpSocketCreateParam
+from ...._models import BaseModel
+from .probe_exec import ProbeExec
+from .probe_http_get import ProbeHTTPGet
+from .probe_tcp_socket import ProbeTcpSocket
 
-__all__ = ["ContainerProbeCreateParam"]
+__all__ = ["Probe"]
 
 
-class ContainerProbeCreateParam(TypedDict, total=False):
-    exec: Optional[ContainerProbeExecCreateParam]
+class Probe(BaseModel):
+    exec: Optional[ProbeExec] = None
     """Exec probe configuration"""
 
     failure_threshold: int
     """The number of consecutive probe failures that mark the container as unhealthy."""
 
-    http_get: Optional[ContainerProbeHTTPGetCreateParam]
+    http_get: Optional[ProbeHTTPGet] = None
     """HTTP GET probe configuration"""
 
     initial_delay_seconds: int
@@ -31,7 +29,7 @@ class ContainerProbeCreateParam(TypedDict, total=False):
     success_threshold: int
     """The number of consecutive successful probes that mark the container as healthy."""
 
-    tcp_socket: Optional[ContainerProbeTcpSocketCreateParam]
+    tcp_socket: Optional[ProbeTcpSocket] = None
     """TCP socket probe configuration"""
 
     timeout_seconds: int

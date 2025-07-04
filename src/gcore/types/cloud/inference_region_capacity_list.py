@@ -3,14 +3,14 @@
 from typing import List
 
 from ..._models import BaseModel
-from .region_capacity import RegionCapacity
+from .inference_region_capacity import InferenceRegionCapacity
 
-__all__ = ["RegionCapacityList"]
+__all__ = ["InferenceRegionCapacityList"]
 
 
-class RegionCapacityList(BaseModel):
+class InferenceRegionCapacityList(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[RegionCapacity]
+    results: List[InferenceRegionCapacity]
     """Objects"""

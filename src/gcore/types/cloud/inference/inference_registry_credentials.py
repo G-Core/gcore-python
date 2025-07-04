@@ -2,15 +2,12 @@
 
 from ...._models import BaseModel
 
-__all__ = ["InferenceRegistryCredentialFull"]
+__all__ = ["InferenceRegistryCredentials"]
 
 
-class InferenceRegistryCredentialFull(BaseModel):
+class InferenceRegistryCredentials(BaseModel):
     name: str
     """Registry credential name."""
-
-    password: str
-    """Registry password."""
 
     project_id: int
     """Project ID to which the inference registry credentials belongs."""

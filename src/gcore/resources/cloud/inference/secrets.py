@@ -17,7 +17,6 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.inference import secret_list_params, secret_create_params, secret_replace_params
-from ....types.cloud.aws_iam_data_param import AwsIamDataParam
 from ....types.cloud.inference.inference_secret import InferenceSecret
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
@@ -47,7 +46,7 @@ class SecretsResource(SyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        data: AwsIamDataParam,
+        data: secret_create_params.Data,
         name: str,
         type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -235,7 +234,7 @@ class SecretsResource(SyncAPIResource):
         secret_name: str,
         *,
         project_id: int | None = None,
-        data: AwsIamDataParam,
+        data: secret_replace_params.Data,
         type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -308,7 +307,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        data: AwsIamDataParam,
+        data: secret_create_params.Data,
         name: str,
         type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -496,7 +495,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         secret_name: str,
         *,
         project_id: int | None = None,
-        data: AwsIamDataParam,
+        data: secret_replace_params.Data,
         type: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

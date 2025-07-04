@@ -2,11 +2,11 @@
 
 from typing import List
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["ContainerProbeExec"]
+__all__ = ["ProbeExec"]
 
 
-class ContainerProbeExec(BaseModel):
+class ProbeExec(BaseModel):
     command: List[str]
     """Command to be executed inside the running container."""

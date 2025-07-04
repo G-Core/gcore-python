@@ -21,8 +21,8 @@ from ....types.cloud.inference import (
     registry_credential_create_params,
     registry_credential_replace_params,
 )
-from ....types.cloud.inference.inference_registry_credential import InferenceRegistryCredential
-from ....types.cloud.inference.inference_registry_credential_full import InferenceRegistryCredentialFull
+from ....types.cloud.inference.inference_registry_credentials import InferenceRegistryCredentials
+from ....types.cloud.inference.inference_registry_credentials_create import InferenceRegistryCredentialsCreate
 
 __all__ = ["RegistryCredentialsResource", "AsyncRegistryCredentialsResource"]
 
@@ -61,7 +61,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentialFull:
+    ) -> InferenceRegistryCredentialsCreate:
         """
         Create inference registry credential
 
@@ -100,7 +100,7 @@ class RegistryCredentialsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentialFull,
+            cast_to=InferenceRegistryCredentialsCreate,
         )
 
     def list(
@@ -115,7 +115,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[InferenceRegistryCredential]:
+    ) -> SyncOffsetPage[InferenceRegistryCredentials]:
         """
         List inference registry credentials
 
@@ -139,7 +139,7 @@ class RegistryCredentialsResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
             f"/cloud/v3/inference/{project_id}/registry_credentials",
-            page=SyncOffsetPage[InferenceRegistryCredential],
+            page=SyncOffsetPage[InferenceRegistryCredentials],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -153,7 +153,7 @@ class RegistryCredentialsResource(SyncAPIResource):
                     registry_credential_list_params.RegistryCredentialListParams,
                 ),
             ),
-            model=InferenceRegistryCredential,
+            model=InferenceRegistryCredentials,
         )
 
     def delete(
@@ -208,7 +208,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredential:
+    ) -> InferenceRegistryCredentials:
         """
         Get inference registry credential
 
@@ -234,7 +234,7 @@ class RegistryCredentialsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredential,
+            cast_to=InferenceRegistryCredentials,
         )
 
     def replace(
@@ -330,7 +330,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentialFull:
+    ) -> InferenceRegistryCredentialsCreate:
         """
         Create inference registry credential
 
@@ -369,7 +369,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentialFull,
+            cast_to=InferenceRegistryCredentialsCreate,
         )
 
     def list(
@@ -384,7 +384,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[InferenceRegistryCredential, AsyncOffsetPage[InferenceRegistryCredential]]:
+    ) -> AsyncPaginator[InferenceRegistryCredentials, AsyncOffsetPage[InferenceRegistryCredentials]]:
         """
         List inference registry credentials
 
@@ -408,7 +408,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
             f"/cloud/v3/inference/{project_id}/registry_credentials",
-            page=AsyncOffsetPage[InferenceRegistryCredential],
+            page=AsyncOffsetPage[InferenceRegistryCredentials],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -422,7 +422,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
                     registry_credential_list_params.RegistryCredentialListParams,
                 ),
             ),
-            model=InferenceRegistryCredential,
+            model=InferenceRegistryCredentials,
         )
 
     async def delete(
@@ -477,7 +477,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredential:
+    ) -> InferenceRegistryCredentials:
         """
         Get inference registry credential
 
@@ -503,7 +503,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredential,
+            cast_to=InferenceRegistryCredentials,
         )
 
     async def replace(

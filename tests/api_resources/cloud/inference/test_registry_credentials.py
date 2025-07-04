@@ -11,8 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud.inference import (
-    InferenceRegistryCredential,
-    InferenceRegistryCredentialFull,
+    InferenceRegistryCredentials,
+    InferenceRegistryCredentialsCreate,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +30,7 @@ class TestRegistryCredentials:
             registry_url="registry.example.com",
             username="username",
         )
-        assert_matches_type(InferenceRegistryCredentialFull, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -45,7 +45,7 @@ class TestRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = response.parse()
-        assert_matches_type(InferenceRegistryCredentialFull, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -60,7 +60,7 @@ class TestRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = response.parse()
-            assert_matches_type(InferenceRegistryCredentialFull, registry_credential, path=["response"])
+            assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestRegistryCredentials:
         registry_credential = client.cloud.inference.registry_credentials.list(
             project_id=1,
         )
-        assert_matches_type(SyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+        assert_matches_type(SyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -78,7 +78,7 @@ class TestRegistryCredentials:
             limit=1000,
             offset=0,
         )
-        assert_matches_type(SyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+        assert_matches_type(SyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -89,7 +89,7 @@ class TestRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = response.parse()
-        assert_matches_type(SyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+        assert_matches_type(SyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -100,7 +100,7 @@ class TestRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = response.parse()
-            assert_matches_type(SyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+            assert_matches_type(SyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +152,7 @@ class TestRegistryCredentials:
             credential_name="docker-io",
             project_id=1,
         )
-        assert_matches_type(InferenceRegistryCredential, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentials, registry_credential, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -164,7 +164,7 @@ class TestRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = response.parse()
-        assert_matches_type(InferenceRegistryCredential, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentials, registry_credential, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -176,7 +176,7 @@ class TestRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = response.parse()
-            assert_matches_type(InferenceRegistryCredential, registry_credential, path=["response"])
+            assert_matches_type(InferenceRegistryCredentials, registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -257,7 +257,7 @@ class TestAsyncRegistryCredentials:
             registry_url="registry.example.com",
             username="username",
         )
-        assert_matches_type(InferenceRegistryCredentialFull, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -272,7 +272,7 @@ class TestAsyncRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = await response.parse()
-        assert_matches_type(InferenceRegistryCredentialFull, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -287,7 +287,7 @@ class TestAsyncRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = await response.parse()
-            assert_matches_type(InferenceRegistryCredentialFull, registry_credential, path=["response"])
+            assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -296,7 +296,7 @@ class TestAsyncRegistryCredentials:
         registry_credential = await async_client.cloud.inference.registry_credentials.list(
             project_id=1,
         )
-        assert_matches_type(AsyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -305,7 +305,7 @@ class TestAsyncRegistryCredentials:
             limit=1000,
             offset=0,
         )
-        assert_matches_type(AsyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -316,7 +316,7 @@ class TestAsyncRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = await response.parse()
-        assert_matches_type(AsyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -327,7 +327,7 @@ class TestAsyncRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = await response.parse()
-            assert_matches_type(AsyncOffsetPage[InferenceRegistryCredential], registry_credential, path=["response"])
+            assert_matches_type(AsyncOffsetPage[InferenceRegistryCredentials], registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -379,7 +379,7 @@ class TestAsyncRegistryCredentials:
             credential_name="docker-io",
             project_id=1,
         )
-        assert_matches_type(InferenceRegistryCredential, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentials, registry_credential, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -391,7 +391,7 @@ class TestAsyncRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = await response.parse()
-        assert_matches_type(InferenceRegistryCredential, registry_credential, path=["response"])
+        assert_matches_type(InferenceRegistryCredentials, registry_credential, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -403,7 +403,7 @@ class TestAsyncRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = await response.parse()
-            assert_matches_type(InferenceRegistryCredential, registry_credential, path=["response"])
+            assert_matches_type(InferenceRegistryCredentials, registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
