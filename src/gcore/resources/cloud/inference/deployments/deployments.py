@@ -67,6 +67,7 @@ class DeploymentsResource(SyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -102,9 +103,15 @@ class DeploymentsResource(SyncAPIResource):
 
           name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -147,6 +154,7 @@ class DeploymentsResource(SyncAPIResource):
                     "image": image,
                     "listening_port": listening_port,
                     "name": name,
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "credentials_name": credentials_name,
@@ -170,6 +178,7 @@ class DeploymentsResource(SyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
+        api_keys: Optional[List[str]] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
@@ -198,9 +207,16 @@ class DeploymentsResource(SyncAPIResource):
 
           deployment_name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.If `[]` is provided, the API keys will be removed
+              and auth will be disabled on the deployment.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -249,6 +265,7 @@ class DeploymentsResource(SyncAPIResource):
             f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}",
             body=maybe_transform(
                 {
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "containers": containers,
@@ -575,6 +592,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -610,9 +628,15 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -655,6 +679,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     "image": image,
                     "listening_port": listening_port,
                     "name": name,
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "credentials_name": credentials_name,
@@ -678,6 +703,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
+        api_keys: Optional[List[str]] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
@@ -706,9 +732,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           deployment_name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.If `[]` is provided, the API keys will be removed
+              and auth will be disabled on the deployment.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -757,6 +790,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}",
             body=await async_maybe_transform(
                 {
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "containers": containers,

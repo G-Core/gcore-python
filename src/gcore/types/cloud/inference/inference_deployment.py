@@ -249,3 +249,6 @@ class InferenceDeployment(BaseModel):
     `scale.min`. If set, this helps in optimizing resource usage by reducing the
     number of container instances during periods of inactivity.
     """
+
+    api_keys: Optional[List[str]] = None
+    """List of API keys for the inference instance"""
