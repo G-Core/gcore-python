@@ -81,6 +81,7 @@ class TestDeployments:
             image="nginx:latest",
             listening_port=80,
             name="my-instance",
+            api_keys=["key1", "key2"],
             auth_enabled=False,
             command=["nginx", "-g", "daemon off;"],
             credentials_name="dockerhub",
@@ -222,6 +223,7 @@ class TestDeployments:
         deployment = client.cloud.inference.deployments.update(
             deployment_name="my-instance",
             project_id=1,
+            api_keys=["key1", "key2"],
             auth_enabled=False,
             command=["nginx", "-g", "daemon off;"],
             containers=[
@@ -683,6 +685,7 @@ class TestAsyncDeployments:
             image="nginx:latest",
             listening_port=80,
             name="my-instance",
+            api_keys=["key1", "key2"],
             auth_enabled=False,
             command=["nginx", "-g", "daemon off;"],
             credentials_name="dockerhub",
@@ -824,6 +827,7 @@ class TestAsyncDeployments:
         deployment = await async_client.cloud.inference.deployments.update(
             deployment_name="my-instance",
             project_id=1,
+            api_keys=["key1", "key2"],
             auth_enabled=False,
             command=["nginx", "-g", "daemon off;"],
             containers=[

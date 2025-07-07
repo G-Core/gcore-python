@@ -44,11 +44,21 @@ class DeploymentUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
+    api_keys: Optional[List[str]]
+    """List of API keys for the inference instance.
+
+    Multiple keys can be attached to one deployment.If `auth_enabled` and `api_keys`
+    are both specified, a ValidationError will be raised.If `[]` is provided, the
+    API keys will be removed and auth will be disabled on the deployment.
+    """
+
     auth_enabled: bool
     """Set to `true` to enable API key authentication for the inference instance.
 
     `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-    for the requests to the instance if enabled
+    for the requests to the instance if enabled. This field is deprecated and will
+    be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+    `api_keys` are both specified, a ValidationError will be raised.
     """
 
     command: Optional[List[str]]
