@@ -555,7 +555,7 @@ class DeploymentsResource(SyncAPIResource):
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
         api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
@@ -566,7 +566,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         response = self.create(
             project_id=project_id,
             containers=containers,
@@ -621,7 +621,7 @@ class DeploymentsResource(SyncAPIResource):
         envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         flavor_name: str | NotGiven = NOT_GIVEN,
         image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
         listening_port: Optional[int] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
@@ -633,7 +633,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         """
         Update inference deployment and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
@@ -1226,7 +1226,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
         api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
@@ -1237,7 +1237,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         response = await self.create(
             project_id=project_id,
             containers=containers,
@@ -1292,7 +1292,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         flavor_name: str | NotGiven = NOT_GIVEN,
         image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
         listening_port: Optional[int] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
@@ -1304,7 +1304,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         """
         Update inference deployment and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
