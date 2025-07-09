@@ -84,7 +84,7 @@ class ServerCreateParams(TypedDict, total=False):
     ssh_key_name: Optional[str]
     """
     Specifies the name of the SSH keypair, created via the
-    [/v1/`ssh_keys` endpoint](/docs/api-reference/ssh-keys/add-or-generate-ssh-key).
+    [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
     """
 
     tags: Dict[str, str]
