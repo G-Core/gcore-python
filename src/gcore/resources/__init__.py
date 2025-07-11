@@ -24,6 +24,14 @@ from .cloud import (
     CloudResourceWithStreamingResponse,
     AsyncCloudResourceWithStreamingResponse,
 )
+from .fastedge import (
+    FastedgeResource,
+    AsyncFastedgeResource,
+    FastedgeResourceWithRawResponse,
+    AsyncFastedgeResourceWithRawResponse,
+    FastedgeResourceWithStreamingResponse,
+    AsyncFastedgeResourceWithStreamingResponse,
+)
 
 __all__ = [
     "CloudResource",
@@ -44,4 +52,10 @@ __all__ = [
     "AsyncIamResourceWithRawResponse",
     "IamResourceWithStreamingResponse",
     "AsyncIamResourceWithStreamingResponse",
+    "FastedgeResource",
+    "AsyncFastedgeResource",
+    "FastedgeResourceWithRawResponse",
+    "AsyncFastedgeResourceWithRawResponse",
+    "FastedgeResourceWithStreamingResponse",
+    "AsyncFastedgeResourceWithStreamingResponse",
 ]
