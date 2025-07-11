@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-import typing_extensions
-from typing import Union, Optional
+from typing import Union
 from datetime import datetime
-from typing_extensions import Literal
 
 import httpx
 
@@ -19,11 +17,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.cloud import secret_list_params, secret_create_params, secret_upload_tls_certificate_params
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ...types.cloud import secret_list_params, secret_upload_tls_certificate_params
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.secret import Secret
 from ...types.cloud.task_id_list import TaskIDList
-from ...types.cloud.secret_list_response import SecretListResponse
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
@@ -48,101 +46,6 @@ class SecretsResource(SyncAPIResource):
         """
         return SecretsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
-    def create(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        payload: str,
-        payload_content_encoding: Literal["base64"],
-        payload_content_type: str,
-        secret_type: Literal["certificate", "opaque", "passphrase", "private", "public", "symmetric"],
-        algorithm: Optional[str] | NotGiven = NOT_GIVEN,
-        bit_length: Optional[int] | NotGiven = NOT_GIVEN,
-        expiration: Optional[str] | NotGiven = NOT_GIVEN,
-        mode: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TaskIDList:
-        """
-        Create secret
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          name: Secret name
-
-          payload: Secret payload. For HTTPS-terminated load balancing, provide base64 encoded
-              conents of a PKCS12 file. The PKCS12 file is the combined TLS certificate, key,
-              and intermediate certificate chain obtained from an external certificate
-              authority. The file can be created via openssl, e.g.'openssl pkcs12 -export
-              -inkey server.key -in server.crt -certfile ca-chain.crt -passout pass: -out
-              server.p12'The key and certificate should be PEM-encoded, and the intermediate
-              certificate chain should be multiple PEM-encoded certs concatenated together
-
-          payload_content_encoding: The encoding used for the payload to be able to include it in the JSON request.
-              Currently only base64 is supported
-
-          payload_content_type: The media type for the content of the payload
-
-          secret_type: Secret type. symmetric - Used for storing byte arrays such as keys suitable for
-              symmetric encryption; public - Used for storing the public key of an asymmetric
-              keypair; private - Used for storing the private key of an asymmetric keypair;
-              passphrase - Used for storing plain text passphrases; certificate - Used for
-              storing cryptographic certificates such as X.509 certificates; opaque - Used for
-              backwards compatibility with previous versions of the API
-
-          algorithm: Metadata provided by a user or system for informational purposes.
-
-          bit_length: Metadata provided by a user or system for informational purposes. Value must be
-              greater than zero.
-
-          expiration: Datetime when the secret will expire.
-
-          mode: Metadata provided by a user or system for informational purposes.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        return self._post(
-            f"/cloud/v1/secrets/{project_id}/{region_id}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "payload": payload,
-                    "payload_content_encoding": payload_content_encoding,
-                    "payload_content_type": payload_content_type,
-                    "secret_type": secret_type,
-                    "algorithm": algorithm,
-                    "bit_length": bit_length,
-                    "expiration": expiration,
-                    "mode": mode,
-                },
-                secret_create_params.SecretCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
     def list(
         self,
         *,
@@ -156,7 +59,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretListResponse:
+    ) -> SyncOffsetPage[Secret]:
         """
         List secrets
 
@@ -182,8 +85,9 @@ class SecretsResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             f"/cloud/v1/secrets/{project_id}/{region_id}",
+            page=SyncOffsetPage[Secret],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -197,7 +101,7 @@ class SecretsResource(SyncAPIResource):
                     secret_list_params.SecretListParams,
                 ),
             ),
-            cast_to=SecretListResponse,
+            model=Secret,
         )
 
     def delete(
@@ -368,102 +272,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         """
         return AsyncSecretsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
-    async def create(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        payload: str,
-        payload_content_encoding: Literal["base64"],
-        payload_content_type: str,
-        secret_type: Literal["certificate", "opaque", "passphrase", "private", "public", "symmetric"],
-        algorithm: Optional[str] | NotGiven = NOT_GIVEN,
-        bit_length: Optional[int] | NotGiven = NOT_GIVEN,
-        expiration: Optional[str] | NotGiven = NOT_GIVEN,
-        mode: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TaskIDList:
-        """
-        Create secret
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          name: Secret name
-
-          payload: Secret payload. For HTTPS-terminated load balancing, provide base64 encoded
-              conents of a PKCS12 file. The PKCS12 file is the combined TLS certificate, key,
-              and intermediate certificate chain obtained from an external certificate
-              authority. The file can be created via openssl, e.g.'openssl pkcs12 -export
-              -inkey server.key -in server.crt -certfile ca-chain.crt -passout pass: -out
-              server.p12'The key and certificate should be PEM-encoded, and the intermediate
-              certificate chain should be multiple PEM-encoded certs concatenated together
-
-          payload_content_encoding: The encoding used for the payload to be able to include it in the JSON request.
-              Currently only base64 is supported
-
-          payload_content_type: The media type for the content of the payload
-
-          secret_type: Secret type. symmetric - Used for storing byte arrays such as keys suitable for
-              symmetric encryption; public - Used for storing the public key of an asymmetric
-              keypair; private - Used for storing the private key of an asymmetric keypair;
-              passphrase - Used for storing plain text passphrases; certificate - Used for
-              storing cryptographic certificates such as X.509 certificates; opaque - Used for
-              backwards compatibility with previous versions of the API
-
-          algorithm: Metadata provided by a user or system for informational purposes.
-
-          bit_length: Metadata provided by a user or system for informational purposes. Value must be
-              greater than zero.
-
-          expiration: Datetime when the secret will expire.
-
-          mode: Metadata provided by a user or system for informational purposes.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        return await self._post(
-            f"/cloud/v1/secrets/{project_id}/{region_id}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "payload": payload,
-                    "payload_content_encoding": payload_content_encoding,
-                    "payload_content_type": payload_content_type,
-                    "secret_type": secret_type,
-                    "algorithm": algorithm,
-                    "bit_length": bit_length,
-                    "expiration": expiration,
-                    "mode": mode,
-                },
-                secret_create_params.SecretCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -476,7 +285,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretListResponse:
+    ) -> AsyncPaginator[Secret, AsyncOffsetPage[Secret]]:
         """
         List secrets
 
@@ -502,14 +311,15 @@ class AsyncSecretsResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             f"/cloud/v1/secrets/{project_id}/{region_id}",
+            page=AsyncOffsetPage[Secret],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -517,7 +327,7 @@ class AsyncSecretsResource(AsyncAPIResource):
                     secret_list_params.SecretListParams,
                 ),
             ),
-            cast_to=SecretListResponse,
+            model=Secret,
         )
 
     async def delete(
@@ -672,11 +482,6 @@ class SecretsResourceWithRawResponse:
     def __init__(self, secrets: SecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                secrets.create  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.list = to_raw_response_wrapper(
             secrets.list,
         )
@@ -695,11 +500,6 @@ class AsyncSecretsResourceWithRawResponse:
     def __init__(self, secrets: AsyncSecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                secrets.create  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.list = async_to_raw_response_wrapper(
             secrets.list,
         )
@@ -718,11 +518,6 @@ class SecretsResourceWithStreamingResponse:
     def __init__(self, secrets: SecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                secrets.create  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.list = to_streamed_response_wrapper(
             secrets.list,
         )
@@ -741,11 +536,6 @@ class AsyncSecretsResourceWithStreamingResponse:
     def __init__(self, secrets: AsyncSecretsResource) -> None:
         self._secrets = secrets
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                secrets.create  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.list = async_to_streamed_response_wrapper(
             secrets.list,
         )

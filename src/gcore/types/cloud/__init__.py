@@ -75,8 +75,6 @@ from .instance_list_params import InstanceListParams as InstanceListParams
 from .lb_listener_protocol import LbListenerProtocol as LbListenerProtocol
 from .load_balancer_status import LoadBalancerStatus as LoadBalancerStatus
 from .placement_group_list import PlacementGroupList as PlacementGroupList
-from .secret_create_params import SecretCreateParams as SecretCreateParams
-from .secret_list_response import SecretListResponse as SecretListResponse
 from .tag_update_map_param import TagUpdateMapParam as TagUpdateMapParam
 from .volume_create_params import VolumeCreateParams as VolumeCreateParams
 from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
