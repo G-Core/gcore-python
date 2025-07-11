@@ -50,8 +50,7 @@ def get_secret_by_id(*, client: Gcore, secret_id: str) -> Secret:
 def list_all_secrets(*, client: Gcore) -> List[Secret]:
     print("\n=== LIST ALL SECRETS ===")
     all_secrets = client.cloud.secrets.list()
-    # TODO remove .results after pagination
-    for count, secret in enumerate(all_secrets.results, 1):
+    for count, secret in enumerate(all_secrets, 1):
         print(f"  {count}. Secret ID: {secret.id}, name: {secret.name}")
     print("========================")
     return all_secrets.results
