@@ -1,6 +1,7 @@
 # Gcore Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/gcore.svg?label=pypi%20(stable)>)](https://pypi.org/project/gcore/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/gcore.svg?label=pypi%20(stable))](https://pypi.org/project/gcore/)
 
 The Gcore Python library provides convenient access to the Gcore REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
