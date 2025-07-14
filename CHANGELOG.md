@@ -1,5 +1,43 @@
 # Changelog
 
+## 0.5.0 (2025-07-14)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/G-Core/gcore-python/compare/v0.4.0...v0.5.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** refactor cloud inference models
+
+### Features
+
+* **api:** aggregated API specs update ([d1ae8cd](https://github.com/G-Core/gcore-python/commit/d1ae8cd01bc978e9afc8cefaae2799178a3c1e35))
+* **api:** aggregated API specs update ([a182213](https://github.com/G-Core/gcore-python/commit/a182213096bdf7338261105c95c8b1e399d0f408))
+* **api:** manual updates ([3ba0065](https://github.com/G-Core/gcore-python/commit/3ba0065f84e200ad4ae981e4189ae68a9cf3fff6))
+* **api:** manual upload of aggregated API specs ([354a103](https://github.com/G-Core/gcore-python/commit/354a103447e5a3e9c69b11b871e9dec0e9ee7dc8))
+* **cloud:** add inference examples ([2fe1536](https://github.com/G-Core/gcore-python/commit/2fe153665d086ee5c80ae99935b4d222065525a1))
+* **cloud:** update secrets examples with pagination ([2909ae2](https://github.com/G-Core/gcore-python/commit/2909ae2e9d352fa07c70fdf64346db76d379f10e))
+* **fastedge:** add api ([bec64b0](https://github.com/G-Core/gcore-python/commit/bec64b0db3ac113a875908ab5cb5041f4b1ed4aa))
+
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([1640b0b](https://github.com/G-Core/gcore-python/commit/1640b0b861aaf560c09b1cc651e3e1ffbb9b0095))
+* **cloud:** update polling signatures after refactor ([1ee9ef9](https://github.com/G-Core/gcore-python/commit/1ee9ef98c604959f724c5c72317893089674debc))
+* **parsing:** correctly handle nested discriminated unions ([3d16223](https://github.com/G-Core/gcore-python/commit/3d16223c06ee81a46657f37fb43621d095d4d9e5))
+
+
+### Chores
+
+* **client:** set default timeout to be 2 mins ([17159a0](https://github.com/G-Core/gcore-python/commit/17159a03ed71b64f03fde8cbf85d92ec0db29b31))
+* **internal:** bump pinned h11 dep ([d0da186](https://github.com/G-Core/gcore-python/commit/d0da186d6203a09c7aec841287c02455b9c3b6df))
+* **package:** mark python 3.13 as supported ([1440f43](https://github.com/G-Core/gcore-python/commit/1440f43464c3f5cbfb68df908792ab503656c63b))
+* **readme:** fix version rendering on pypi ([8a8281c](https://github.com/G-Core/gcore-python/commit/8a8281c749792394c73b4d38f89d43fd0b6b1573))
+
+
+### Refactors
+
+* **cloud:** refactor cloud inference models ([3886c6d](https://github.com/G-Core/gcore-python/commit/3886c6d8244c58424cf09eb4514441e7e0afa7a1))
+
 ## 0.4.0 (2025-07-04)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/G-Core/gcore-python/compare/v0.3.0...v0.4.0)
