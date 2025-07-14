@@ -6,7 +6,6 @@ from typing import Dict, List, Iterable, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from ..ingress_opts_param import IngressOptsParam
 from ..laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 
 __all__ = [
@@ -20,6 +19,7 @@ __all__ = [
     "ContainerScaleTriggersHTTP",
     "ContainerScaleTriggersMemory",
     "ContainerScaleTriggersSqs",
+    "IngressOpts",
     "Logging",
     "Probes",
     "ProbesLivenessProbe",
@@ -44,11 +44,21 @@ class DeploymentUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
+    api_keys: Optional[List[str]]
+    """List of API keys for the inference instance.
+
+    Multiple keys can be attached to one deployment.If `auth_enabled` and `api_keys`
+    are both specified, a ValidationError will be raised.If `[]` is provided, the
+    API keys will be removed and auth will be disabled on the deployment.
+    """
+
     auth_enabled: bool
     """Set to `true` to enable API key authentication for the inference instance.
 
     `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-    for the requests to the instance if enabled
+    for the requests to the instance if enabled. This field is deprecated and will
+    be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+    `api_keys` are both specified, a ValidationError will be raised.
     """
 
     command: Optional[List[str]]
@@ -77,7 +87,7 @@ class DeploymentUpdateParams(TypedDict, total=False):
     accessible Docker image URL can be specified.
     """
 
-    ingress_opts: Optional[IngressOptsParam]
+    ingress_opts: Optional[IngressOpts]
     """Ingress options for the inference instance"""
 
     listening_port: Optional[int]
@@ -202,6 +212,17 @@ class Container(TypedDict, total=False):
 
     scale: Required[Optional[ContainerScale]]
     """Scale for the container"""
+
+
+class IngressOpts(TypedDict, total=False):
+    disable_response_buffering: bool
+    """Disable response buffering if true.
+
+    A client usually has a much slower connection and can not consume the response
+    data as fast as it is produced by an upstream application. Ingress tries to
+    buffer the whole response in order to release the upstream application as soon
+    as possible.By default, the response buffering is enabled.
+    """
 
 
 class Logging(TypedDict, total=False):

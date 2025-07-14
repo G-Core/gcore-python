@@ -144,7 +144,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
               instance
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](/docs/api-reference/ssh-keys/add-or-generate-ssh-key).
+              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -772,7 +772,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
               instance
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](/docs/api-reference/ssh-keys/add-or-generate-ssh-key).
+              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for

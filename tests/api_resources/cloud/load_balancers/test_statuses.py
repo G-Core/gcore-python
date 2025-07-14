@@ -13,6 +13,7 @@ from gcore.types.cloud import LoadBalancerStatus, LoadBalancerStatusList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
+
 @pytest.mark.skip(reason="Skipping tests due to Prism routing request to the wrong path")
 class TestStatuses:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])

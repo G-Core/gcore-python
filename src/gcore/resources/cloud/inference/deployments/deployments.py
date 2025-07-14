@@ -28,9 +28,8 @@ from .....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.inference import deployment_list_params, deployment_create_params, deployment_update_params
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.ingress_opts_param import IngressOptsParam
-from .....types.cloud.inference.inference import Inference
-from .....types.cloud.inference.inference_apikey_secret import InferenceApikeySecret
+from .....types.cloud.inference.inference_deployment import InferenceDeployment
+from .....types.cloud.inference.inference_deployment_api_key import InferenceDeploymentAPIKey
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
@@ -68,12 +67,13 @@ class DeploymentsResource(SyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
         api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
@@ -103,9 +103,15 @@ class DeploymentsResource(SyncAPIResource):
 
           name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -148,6 +154,7 @@ class DeploymentsResource(SyncAPIResource):
                     "image": image,
                     "listening_port": listening_port,
                     "name": name,
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "credentials_name": credentials_name,
@@ -171,6 +178,7 @@ class DeploymentsResource(SyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
+        api_keys: Optional[List[str]] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
@@ -179,7 +187,7 @@ class DeploymentsResource(SyncAPIResource):
         envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         flavor_name: str | NotGiven = NOT_GIVEN,
         image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
         listening_port: Optional[int] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
@@ -199,9 +207,16 @@ class DeploymentsResource(SyncAPIResource):
 
           deployment_name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.If `[]` is provided, the API keys will be removed
+              and auth will be disabled on the deployment.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -250,6 +265,7 @@ class DeploymentsResource(SyncAPIResource):
             f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}",
             body=maybe_transform(
                 {
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "containers": containers,
@@ -284,7 +300,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[Inference]:
+    ) -> SyncOffsetPage[InferenceDeployment]:
         """List inference deployments
 
         Args:
@@ -309,7 +325,7 @@ class DeploymentsResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
             f"/cloud/v3/inference/{project_id}/deployments",
-            page=SyncOffsetPage[Inference],
+            page=SyncOffsetPage[InferenceDeployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,7 +339,7 @@ class DeploymentsResource(SyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=Inference,
+            model=InferenceDeployment,
         )
 
     def delete(
@@ -377,7 +393,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         """
         Get inference deployment
 
@@ -403,7 +419,7 @@ class DeploymentsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Inference,
+            cast_to=InferenceDeployment,
         )
 
     def get_api_key(
@@ -417,7 +433,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceApikeySecret:
+    ) -> InferenceDeploymentAPIKey:
         """
         Get inference deployment API key
 
@@ -443,7 +459,7 @@ class DeploymentsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceApikeySecret,
+            cast_to=InferenceDeploymentAPIKey,
         )
 
     def start(
@@ -556,7 +572,7 @@ class DeploymentsResource(SyncAPIResource):
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
         api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
@@ -567,7 +583,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         response = self.create(
             project_id=project_id,
             containers=containers,
@@ -622,7 +638,7 @@ class DeploymentsResource(SyncAPIResource):
         envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         flavor_name: str | NotGiven = NOT_GIVEN,
         image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
         listening_port: Optional[int] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
@@ -634,7 +650,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         """
         Update inference deployment and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
@@ -739,12 +755,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
         api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
@@ -774,9 +791,15 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -819,6 +842,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     "image": image,
                     "listening_port": listening_port,
                     "name": name,
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "credentials_name": credentials_name,
@@ -842,6 +866,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
+        api_keys: Optional[List[str]] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
         command: Optional[List[str]] | NotGiven = NOT_GIVEN,
         containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
@@ -850,7 +875,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         flavor_name: str | NotGiven = NOT_GIVEN,
         image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
         listening_port: Optional[int] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
@@ -870,9 +895,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           deployment_name: Inference instance name.
 
+          api_keys: List of API keys for the inference instance. Multiple keys can be attached to
+              one deployment.If `auth_enabled` and `api_keys` are both specified, a
+              ValidationError will be raised.If `[]` is provided, the API keys will be removed
+              and auth will be disabled on the deployment.
+
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
               `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
-              for the requests to the instance if enabled
+              for the requests to the instance if enabled. This field is deprecated and will
+              be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
+              `api_keys` are both specified, a ValidationError will be raised.
 
           command: Command to be executed when running a container from an image.
 
@@ -921,6 +953,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}",
             body=await async_maybe_transform(
                 {
+                    "api_keys": api_keys,
                     "auth_enabled": auth_enabled,
                     "command": command,
                     "containers": containers,
@@ -955,7 +988,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Inference, AsyncOffsetPage[Inference]]:
+    ) -> AsyncPaginator[InferenceDeployment, AsyncOffsetPage[InferenceDeployment]]:
         """List inference deployments
 
         Args:
@@ -980,7 +1013,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
             f"/cloud/v3/inference/{project_id}/deployments",
-            page=AsyncOffsetPage[Inference],
+            page=AsyncOffsetPage[InferenceDeployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -994,7 +1027,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=Inference,
+            model=InferenceDeployment,
         )
 
     async def delete(
@@ -1048,7 +1081,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         """
         Get inference deployment
 
@@ -1074,7 +1107,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Inference,
+            cast_to=InferenceDeployment,
         )
 
     async def get_api_key(
@@ -1088,7 +1121,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceApikeySecret:
+    ) -> InferenceDeploymentAPIKey:
         """
         Get inference deployment API key
 
@@ -1114,7 +1147,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceApikeySecret,
+            cast_to=InferenceDeploymentAPIKey,
         )
 
     async def start(
@@ -1227,7 +1260,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
         api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
@@ -1238,7 +1271,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         response = await self.create(
             project_id=project_id,
             containers=containers,
@@ -1293,7 +1326,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         flavor_name: str | NotGiven = NOT_GIVEN,
         image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[IngressOptsParam] | NotGiven = NOT_GIVEN,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
         listening_port: Optional[int] | NotGiven = NOT_GIVEN,
         logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
         probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
@@ -1305,7 +1338,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Inference:
+    ) -> InferenceDeployment:
         """
         Update inference deployment and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """

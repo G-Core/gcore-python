@@ -10,7 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.cloud.inference import MlcatalogModelCard
+from gcore.types.cloud.inference import InferenceModel
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,16 +21,16 @@ class TestModels:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         model = client.cloud.inference.models.list()
-        assert_matches_type(SyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+        assert_matches_type(SyncOffsetPage[InferenceModel], model, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         model = client.cloud.inference.models.list(
             limit=1000,
             offset=0,
-            order_by="name.asc",
+            order_by="name.desc",
         )
-        assert_matches_type(SyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+        assert_matches_type(SyncOffsetPage[InferenceModel], model, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -39,7 +39,7 @@ class TestModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = response.parse()
-        assert_matches_type(SyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+        assert_matches_type(SyncOffsetPage[InferenceModel], model, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -48,7 +48,7 @@ class TestModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = response.parse()
-            assert_matches_type(SyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+            assert_matches_type(SyncOffsetPage[InferenceModel], model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -57,7 +57,7 @@ class TestModels:
         model = client.cloud.inference.models.get(
             "model_id",
         )
-        assert_matches_type(MlcatalogModelCard, model, path=["response"])
+        assert_matches_type(InferenceModel, model, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -68,7 +68,7 @@ class TestModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = response.parse()
-        assert_matches_type(MlcatalogModelCard, model, path=["response"])
+        assert_matches_type(InferenceModel, model, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -79,7 +79,7 @@ class TestModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = response.parse()
-            assert_matches_type(MlcatalogModelCard, model, path=["response"])
+            assert_matches_type(InferenceModel, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -99,16 +99,16 @@ class TestAsyncModels:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         model = await async_client.cloud.inference.models.list()
-        assert_matches_type(AsyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InferenceModel], model, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         model = await async_client.cloud.inference.models.list(
             limit=1000,
             offset=0,
-            order_by="name.asc",
+            order_by="name.desc",
         )
-        assert_matches_type(AsyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InferenceModel], model, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -117,7 +117,7 @@ class TestAsyncModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = await response.parse()
-        assert_matches_type(AsyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InferenceModel], model, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -126,7 +126,7 @@ class TestAsyncModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = await response.parse()
-            assert_matches_type(AsyncOffsetPage[MlcatalogModelCard], model, path=["response"])
+            assert_matches_type(AsyncOffsetPage[InferenceModel], model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,7 +135,7 @@ class TestAsyncModels:
         model = await async_client.cloud.inference.models.get(
             "model_id",
         )
-        assert_matches_type(MlcatalogModelCard, model, path=["response"])
+        assert_matches_type(InferenceModel, model, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -146,7 +146,7 @@ class TestAsyncModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = await response.parse()
-        assert_matches_type(MlcatalogModelCard, model, path=["response"])
+        assert_matches_type(InferenceModel, model, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -157,7 +157,7 @@ class TestAsyncModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = await response.parse()
-            assert_matches_type(MlcatalogModelCard, model, path=["response"])
+            assert_matches_type(InferenceModel, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

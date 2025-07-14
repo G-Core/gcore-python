@@ -16,7 +16,6 @@ from .logging import Logging as Logging
 from .network import Network as Network
 from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
-from .capacity import Capacity as Capacity
 from .instance import Instance as Instance
 from .registry import Registry as Registry
 from .gpu_image import GPUImage as GPUImage
@@ -27,12 +26,10 @@ from .ip_version import IPVersion as IPVersion
 from .floating_ip import FloatingIP as FloatingIP
 from .http_method import HTTPMethod as HTTPMethod
 from .pool_status import PoolStatus as PoolStatus
-from .aws_iam_data import AwsIamData as AwsIamData
 from .ddos_profile import DDOSProfile as DDOSProfile
 from .lb_algorithm import LbAlgorithm as LbAlgorithm
 from .registry_tag import RegistryTag as RegistryTag
 from .task_id_list import TaskIDList as TaskIDList
-from .deploy_status import DeployStatus as DeployStatus
 from .fixed_address import FixedAddress as FixedAddress
 from .instance_list import InstanceList as InstanceList
 from .ip_assignment import IPAssignment as IPAssignment
@@ -43,26 +40,19 @@ from .blackhole_port import BlackholePort as BlackholePort
 from .gpu_image_list import GPUImageList as GPUImageList
 from .health_monitor import HealthMonitor as HealthMonitor
 from .security_group import SecurityGroup as SecurityGroup
-from .container_probe import ContainerProbe as ContainerProbe
-from .container_scale import ContainerScale as ContainerScale
 from .listener_status import ListenerStatus as ListenerStatus
 from .network_details import NetworkDetails as NetworkDetails
 from .placement_group import PlacementGroup as PlacementGroup
-from .region_capacity import RegionCapacity as RegionCapacity
 from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
 from .baremetal_flavor import BaremetalFlavor as BaremetalFlavor
 from .floating_address import FloatingAddress as FloatingAddress
-from .inference_probes import InferenceProbes as InferenceProbes
-from .ingress_opts_out import IngressOptsOut as IngressOptsOut
 from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol
 from .task_list_params import TaskListParams as TaskListParams
 from .network_interface import NetworkInterface as NetworkInterface
 from .region_get_params import RegionGetParams as RegionGetParams
 from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
-from .aws_iam_data_param import AwsIamDataParam as AwsIamDataParam
 from .ddos_profile_field import DDOSProfileField as DDOSProfileField
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
-from .ingress_opts_param import IngressOptsParam as IngressOptsParam
 from .instance_interface import InstanceInterface as InstanceInterface
 from .instance_isolation import InstanceIsolation as InstanceIsolation
 from .load_balancer_pool import LoadBalancerPool as LoadBalancerPool
@@ -79,16 +69,12 @@ from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .security_group_rule import SecurityGroupRule as SecurityGroupRule
 from .session_persistence import SessionPersistence as SessionPersistence
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
-from .container_probe_exec import ContainerProbeExec as ContainerProbeExec
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
 from .gpu_baremetal_flavor import GPUBaremetalFlavor as GPUBaremetalFlavor
 from .instance_list_params import InstanceListParams as InstanceListParams
 from .lb_listener_protocol import LbListenerProtocol as LbListenerProtocol
 from .load_balancer_status import LoadBalancerStatus as LoadBalancerStatus
 from .placement_group_list import PlacementGroupList as PlacementGroupList
-from .region_capacity_list import RegionCapacityList as RegionCapacityList
-from .secret_create_params import SecretCreateParams as SecretCreateParams
-from .secret_list_response import SecretListResponse as SecretListResponse
 from .tag_update_map_param import TagUpdateMapParam as TagUpdateMapParam
 from .volume_create_params import VolumeCreateParams as VolumeCreateParams
 from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
@@ -106,7 +92,6 @@ from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
-from .container_probe_config import ContainerProbeConfig as ContainerProbeConfig
 from .file_share_list_params import FileShareListParams as FileShareListParams
 from .instance_action_params import InstanceActionParams as InstanceActionParams
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
@@ -122,8 +107,6 @@ from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
 from .load_balancer_l7_policy import LoadBalancerL7Policy as LoadBalancerL7Policy
 from .load_balancer_pool_list import LoadBalancerPoolList as LoadBalancerPoolList
-from .container_probe_http_get import ContainerProbeHTTPGet as ContainerProbeHTTPGet
-from .container_scale_triggers import ContainerScaleTriggers as ContainerScaleTriggers
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
 from .file_share_create_params import FileShareCreateParams as FileShareCreateParams
 from .file_share_resize_params import FileShareResizeParams as FileShareResizeParams
@@ -133,18 +116,17 @@ from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStat
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams
 from .gpu_baremetal_flavor_list import GPUBaremetalFlavorList as GPUBaremetalFlavorList
+from .inference_region_capacity import InferenceRegionCapacity as InferenceRegionCapacity
 from .load_balancer_flavor_list import LoadBalancerFlavorList as LoadBalancerFlavorList
 from .load_balancer_list_params import LoadBalancerListParams as LoadBalancerListParams
 from .load_balancer_status_list import LoadBalancerStatusList as LoadBalancerStatusList
 from .quota_get_global_response import QuotaGetGlobalResponse as QuotaGetGlobalResponse
 from .volume_change_type_params import VolumeChangeTypeParams as VolumeChangeTypeParams
-from .container_probe_tcp_socket import ContainerProbeTcpSocket as ContainerProbeTcpSocket
 from .instance_metrics_time_unit import InstanceMetricsTimeUnit as InstanceMetricsTimeUnit
 from .load_balancer_l7_rule_list import LoadBalancerL7RuleList as LoadBalancerL7RuleList
 from .load_balancer_metrics_list import LoadBalancerMetricsList as LoadBalancerMetricsList
 from .security_group_copy_params import SecurityGroupCopyParams as SecurityGroupCopyParams
 from .security_group_list_params import SecurityGroupListParams as SecurityGroupListParams
-from .container_scale_trigger_sqs import ContainerScaleTriggerSqs as ContainerScaleTriggerSqs
 from .ddos_profile_template_field import DDOSProfileTemplateField as DDOSProfileTemplateField
 from .flavor_hardware_description import FlavorHardwareDescription as FlavorHardwareDescription
 from .instance_get_console_params import InstanceGetConsoleParams as InstanceGetConsoleParams
@@ -157,8 +139,6 @@ from .load_balancer_listener_list import LoadBalancerListenerList as LoadBalance
 from .load_balancer_resize_params import LoadBalancerResizeParams as LoadBalancerResizeParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
-from .container_probe_create_param import ContainerProbeCreateParam as ContainerProbeCreateParam
-from .container_scale_trigger_rate import ContainerScaleTriggerRate as ContainerScaleTriggerRate
 from .gpu_baremetal_cluster_server import GPUBaremetalClusterServer as GPUBaremetalClusterServer
 from .load_balancer_l7_policy_list import LoadBalancerL7PolicyList as LoadBalancerL7PolicyList
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
@@ -168,32 +148,26 @@ from .load_balancer_failover_params import LoadBalancerFailoverParams as LoadBal
 from .load_balancer_listener_detail import LoadBalancerListenerDetail as LoadBalancerListenerDetail
 from .placement_group_create_params import PlacementGroupCreateParams as PlacementGroupCreateParams
 from .reserved_fixed_ip_list_params import ReservedFixedIPListParams as ReservedFixedIPListParams
+from .inference_region_capacity_list import InferenceRegionCapacityList as InferenceRegionCapacityList
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
 from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams
 from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
-from .container_probe_exec_create_param import ContainerProbeExecCreateParam as ContainerProbeExecCreateParam
-from .container_scale_trigger_threshold import ContainerScaleTriggerThreshold as ContainerScaleTriggerThreshold
 from .gpu_baremetal_cluster_list_params import GPUBaremetalClusterListParams as GPUBaremetalClusterListParams
 from .gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList as GPUBaremetalClusterServerList
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams
-from .container_probe_config_create_param import ContainerProbeConfigCreateParam as ContainerProbeConfigCreateParam
 from .gpu_baremetal_cluster_create_params import GPUBaremetalClusterCreateParams as GPUBaremetalClusterCreateParams
 from .gpu_baremetal_cluster_delete_params import GPUBaremetalClusterDeleteParams as GPUBaremetalClusterDeleteParams
 from .gpu_baremetal_cluster_resize_params import GPUBaremetalClusterResizeParams as GPUBaremetalClusterResizeParams
 from .gpu_baremetal_cluster_rebuild_params import GPUBaremetalClusterRebuildParams as GPUBaremetalClusterRebuildParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
-from .container_probe_http_get_create_param import ContainerProbeHTTPGetCreateParam as ContainerProbeHTTPGetCreateParam
 from .instance_assign_security_group_params import (
     InstanceAssignSecurityGroupParams as InstanceAssignSecurityGroupParams,
 )
 from .instance_add_to_placement_group_params import (
     InstanceAddToPlacementGroupParams as InstanceAddToPlacementGroupParams,
-)
-from .container_probe_tcp_socket_create_param import (
-    ContainerProbeTcpSocketCreateParam as ContainerProbeTcpSocketCreateParam,
 )
 from .instance_unassign_security_group_params import (
     InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,

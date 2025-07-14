@@ -4,17 +4,23 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ..aws_iam_data_param import AwsIamDataParam
-
-__all__ = ["SecretReplaceParams"]
+__all__ = ["SecretReplaceParams", "Data"]
 
 
 class SecretReplaceParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
-    data: Required[AwsIamDataParam]
+    data: Required[Data]
     """Secret data."""
 
     type: Required[str]
     """Secret type."""
+
+
+class Data(TypedDict, total=False):
+    aws_access_key_id: Required[str]
+    """AWS IAM key ID."""
+
+    aws_secret_access_key: Required[str]
+    """AWS IAM secret key."""

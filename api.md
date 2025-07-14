@@ -134,13 +134,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import Secret, SecretListResponse
+from gcore.types.cloud import Secret
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/secret_list_response.py">SecretListResponse</a></code>
+- <code title="get /cloud/v1/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/secret.py">SyncOffsetPage[Secret]</a></code>
 - <code title="delete /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">delete</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/secrets/{project_id}/{region_id}/{secret_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">get</a>(secret_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/secret.py">Secret</a></code>
 - <code title="post /cloud/v2/secrets/{project_id}/{region_id}">client.cloud.secrets.<a href="./src/gcore/resources/cloud/secrets.py">upload_tls_certificate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/secret_upload_tls_certificate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
@@ -452,36 +451,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import (
-    AwsIamData,
-    Capacity,
-    ContainerProbe,
-    ContainerProbeConfig,
-    ContainerProbeConfigCreate,
-    ContainerProbeCreate,
-    ContainerProbeExec,
-    ContainerProbeExecCreate,
-    ContainerProbeHTTPGet,
-    ContainerProbeHTTPGetCreate,
-    ContainerProbeTcpSocket,
-    ContainerProbeTcpSocketCreate,
-    ContainerScale,
-    ContainerScaleTriggerRate,
-    ContainerScaleTriggerSqs,
-    ContainerScaleTriggerThreshold,
-    ContainerScaleTriggers,
-    DeployStatus,
-    InferenceProbes,
-    IngressOpts,
-    IngressOptsOut,
-    RegionCapacity,
-    RegionCapacityList,
-)
+from gcore.types.cloud import InferenceRegionCapacity, InferenceRegionCapacityList
 ```
 
 Methods:
 
-- <code title="get /cloud/v3/inference/capacity">client.cloud.inference.<a href="./src/gcore/resources/cloud/inference/inference.py">get_capacity_by_region</a>() -> <a href="./src/gcore/types/cloud/region_capacity_list.py">RegionCapacityList</a></code>
+- <code title="get /cloud/v3/inference/capacity">client.cloud.inference.<a href="./src/gcore/resources/cloud/inference/inference.py">get_capacity_by_region</a>() -> <a href="./src/gcore/types/cloud/inference_region_capacity_list.py">InferenceRegionCapacityList</a></code>
 
 ### Flavors
 
@@ -501,53 +476,70 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.inference import MlcatalogModelCard, MlcatalogOrderByChoices
+from gcore.types.cloud.inference import InferenceModel
 ```
 
 Methods:
 
-- <code title="get /cloud/v3/inference/models">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">list</a>(\*\*<a href="src/gcore/types/cloud/inference/model_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/mlcatalog_model_card.py">SyncOffsetPage[MlcatalogModelCard]</a></code>
-- <code title="get /cloud/v3/inference/models/{model_id}">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">get</a>(model_id) -> <a href="./src/gcore/types/cloud/inference/mlcatalog_model_card.py">MlcatalogModelCard</a></code>
+- <code title="get /cloud/v3/inference/models">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">list</a>(\*\*<a href="src/gcore/types/cloud/inference/model_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_model.py">SyncOffsetPage[InferenceModel]</a></code>
+- <code title="get /cloud/v3/inference/models/{model_id}">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">get</a>(model_id) -> <a href="./src/gcore/types/cloud/inference/inference_model.py">InferenceModel</a></code>
 
 ### Deployments
 
 Types:
 
 ```python
-from gcore.types.cloud.inference import Container, Inference, InferenceApikeySecret, InferenceLog
+from gcore.types.cloud.inference import (
+    InferenceDeployment,
+    InferenceDeploymentAPIKey,
+    Probe,
+    ProbeConfig,
+    ProbeExec,
+    ProbeHTTPGet,
+    ProbeTcpSocket,
+)
 ```
 
 Methods:
 
 - <code title="post /cloud/v3/inference/{project_id}/deployments">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/deployment_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="patch /cloud/v3/inference/{project_id}/deployments/{deployment_name}">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">update</a>(deployment_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/deployment_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v3/inference/{project_id}/deployments">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/deployment_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference.py">SyncOffsetPage[Inference]</a></code>
+- <code title="get /cloud/v3/inference/{project_id}/deployments">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/deployment_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_deployment.py">SyncOffsetPage[InferenceDeployment]</a></code>
 - <code title="delete /cloud/v3/inference/{project_id}/deployments/{deployment_name}">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">delete</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v3/inference/{project_id}/deployments/{deployment_name}">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">get</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference.py">Inference</a></code>
-- <code title="get /cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">get_api_key</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_apikey_secret.py">InferenceApikeySecret</a></code>
+- <code title="get /cloud/v3/inference/{project_id}/deployments/{deployment_name}">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">get</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_deployment.py">InferenceDeployment</a></code>
+- <code title="get /cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">get_api_key</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_deployment_api_key.py">InferenceDeploymentAPIKey</a></code>
 - <code title="post /cloud/v3/inference/{project_id}/deployments/{deployment_name}/start">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">start</a>(deployment_name, \*, project_id) -> None</code>
 - <code title="post /cloud/v3/inference/{project_id}/deployments/{deployment_name}/stop">client.cloud.inference.deployments.<a href="./src/gcore/resources/cloud/inference/deployments/deployments.py">stop</a>(deployment_name, \*, project_id) -> None</code>
 
 #### Logs
 
+Types:
+
+```python
+from gcore.types.cloud.inference.deployments import InferenceDeploymentLog
+```
+
 Methods:
 
-- <code title="get /cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs">client.cloud.inference.deployments.logs.<a href="./src/gcore/resources/cloud/inference/deployments/logs.py">list</a>(deployment_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/deployments/log_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_log.py">SyncOffsetPage[InferenceLog]</a></code>
+- <code title="get /cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs">client.cloud.inference.deployments.logs.<a href="./src/gcore/resources/cloud/inference/deployments/logs.py">list</a>(deployment_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/deployments/log_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/deployments/inference_deployment_log.py">SyncOffsetPage[InferenceDeploymentLog]</a></code>
 
 ### RegistryCredentials
 
 Types:
 
 ```python
-from gcore.types.cloud.inference import InferenceRegistryCredential, InferenceRegistryCredentialFull
+from gcore.types.cloud.inference import (
+    InferenceRegistryCredentials,
+    InferenceRegistryCredentialsCreate,
+)
 ```
 
 Methods:
 
-- <code title="post /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credential_full.py">InferenceRegistryCredentialFull</a></code>
-- <code title="get /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credential.py">SyncOffsetPage[InferenceRegistryCredential]</a></code>
+- <code title="post /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials_create.py">InferenceRegistryCredentialsCreate</a></code>
+- <code title="get /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">SyncOffsetPage[InferenceRegistryCredentials]</a></code>
 - <code title="delete /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">delete</a>(credential_name, \*, project_id) -> None</code>
-- <code title="get /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">get</a>(credential_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credential.py">InferenceRegistryCredential</a></code>
+- <code title="get /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">get</a>(credential_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">InferenceRegistryCredentials</a></code>
 - <code title="put /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">replace</a>(credential_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_replace_params.py">params</a>) -> None</code>
 
 ### Secrets
@@ -1199,3 +1191,131 @@ Methods:
 - <code title="delete /iam/clients/{clientId}/client-users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">delete</a>(user_id, \*, client_id) -> None</code>
 - <code title="get /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">get</a>(user_id) -> <a href="./src/gcore/types/iam/user_detailed.py">UserDetailed</a></code>
 - <code title="post /iam/clients/invite_user">client.iam.users.<a href="./src/gcore/resources/iam/users.py">invite</a>(\*\*<a href="src/gcore/types/iam/user_invite_params.py">params</a>) -> <a href="./src/gcore/types/iam/user_invite.py">UserInvite</a></code>
+
+# Fastedge
+
+Types:
+
+```python
+from gcore.types.fastedge import Client
+```
+
+Methods:
+
+- <code title="get /fastedge/v1/me">client.fastedge.<a href="./src/gcore/resources/fastedge/fastedge.py">get_account_overview</a>() -> <a href="./src/gcore/types/fastedge/client.py">Client</a></code>
+
+## Templates
+
+Types:
+
+```python
+from gcore.types.fastedge import Template, TemplateParameter, TemplateShort
+```
+
+Methods:
+
+- <code title="post /fastedge/v1/template">client.fastedge.templates.<a href="./src/gcore/resources/fastedge/templates.py">create</a>(\*\*<a href="src/gcore/types/fastedge/template_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/template_short.py">TemplateShort</a></code>
+- <code title="get /fastedge/v1/template">client.fastedge.templates.<a href="./src/gcore/resources/fastedge/templates.py">list</a>(\*\*<a href="src/gcore/types/fastedge/template_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/template_short.py">SyncOffsetPageFastedgeTemplates[TemplateShort]</a></code>
+- <code title="delete /fastedge/v1/template/{id}">client.fastedge.templates.<a href="./src/gcore/resources/fastedge/templates.py">delete</a>(id, \*\*<a href="src/gcore/types/fastedge/template_delete_params.py">params</a>) -> None</code>
+- <code title="get /fastedge/v1/template/{id}">client.fastedge.templates.<a href="./src/gcore/resources/fastedge/templates.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/template.py">Template</a></code>
+- <code title="put /fastedge/v1/template/{id}">client.fastedge.templates.<a href="./src/gcore/resources/fastedge/templates.py">replace</a>(id, \*\*<a href="src/gcore/types/fastedge/template_replace_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/template_short.py">TemplateShort</a></code>
+
+## Secrets
+
+Types:
+
+```python
+from gcore.types.fastedge import Secret, SecretShort, SecretCreateResponse, SecretListResponse
+```
+
+Methods:
+
+- <code title="post /fastedge/v1/secrets">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">create</a>(\*\*<a href="src/gcore/types/fastedge/secret_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret_create_response.py">SecretCreateResponse</a></code>
+- <code title="patch /fastedge/v1/secrets/{id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">update</a>(id, \*\*<a href="src/gcore/types/fastedge/secret_update_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret.py">Secret</a></code>
+- <code title="get /fastedge/v1/secrets">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">list</a>(\*\*<a href="src/gcore/types/fastedge/secret_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret_list_response.py">SecretListResponse</a></code>
+- <code title="delete /fastedge/v1/secrets/{id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">delete</a>(id, \*\*<a href="src/gcore/types/fastedge/secret_delete_params.py">params</a>) -> None</code>
+- <code title="get /fastedge/v1/secrets/{id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/secret.py">Secret</a></code>
+- <code title="put /fastedge/v1/secrets/{id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">replace</a>(id, \*\*<a href="src/gcore/types/fastedge/secret_replace_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret.py">Secret</a></code>
+
+## Binaries
+
+Types:
+
+```python
+from gcore.types.fastedge import Binary, BinaryShort, BinaryListResponse
+```
+
+Methods:
+
+- <code title="get /fastedge/v1/binaries">client.fastedge.binaries.<a href="./src/gcore/resources/fastedge/binaries.py">list</a>() -> <a href="./src/gcore/types/fastedge/binary_list_response.py">BinaryListResponse</a></code>
+- <code title="delete /fastedge/v1/binaries/{id}">client.fastedge.binaries.<a href="./src/gcore/resources/fastedge/binaries.py">delete</a>(id) -> None</code>
+- <code title="get /fastedge/v1/binaries/{id}">client.fastedge.binaries.<a href="./src/gcore/resources/fastedge/binaries.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/binary.py">Binary</a></code>
+
+## Statistics
+
+Types:
+
+```python
+from gcore.types.fastedge import (
+    CallStatus,
+    DurationStats,
+    StatisticGetCallSeriesResponse,
+    StatisticGetDurationSeriesResponse,
+)
+```
+
+Methods:
+
+- <code title="get /fastedge/v1/stats/calls">client.fastedge.statistics.<a href="./src/gcore/resources/fastedge/statistics.py">get_call_series</a>(\*\*<a href="src/gcore/types/fastedge/statistic_get_call_series_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/statistic_get_call_series_response.py">StatisticGetCallSeriesResponse</a></code>
+- <code title="get /fastedge/v1/stats/app_duration">client.fastedge.statistics.<a href="./src/gcore/resources/fastedge/statistics.py">get_duration_series</a>(\*\*<a href="src/gcore/types/fastedge/statistic_get_duration_series_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/statistic_get_duration_series_response.py">StatisticGetDurationSeriesResponse</a></code>
+
+## Apps
+
+Types:
+
+```python
+from gcore.types.fastedge import App, AppShort
+```
+
+Methods:
+
+- <code title="post /fastedge/v1/apps">client.fastedge.apps.<a href="./src/gcore/resources/fastedge/apps/apps.py">create</a>(\*\*<a href="src/gcore/types/fastedge/app_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/app_short.py">AppShort</a></code>
+- <code title="patch /fastedge/v1/apps/{id}">client.fastedge.apps.<a href="./src/gcore/resources/fastedge/apps/apps.py">update</a>(id, \*\*<a href="src/gcore/types/fastedge/app_update_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/app_short.py">AppShort</a></code>
+- <code title="get /fastedge/v1/apps">client.fastedge.apps.<a href="./src/gcore/resources/fastedge/apps/apps.py">list</a>(\*\*<a href="src/gcore/types/fastedge/app_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/app_short.py">SyncOffsetPageFastedgeApps[AppShort]</a></code>
+- <code title="delete /fastedge/v1/apps/{id}">client.fastedge.apps.<a href="./src/gcore/resources/fastedge/apps/apps.py">delete</a>(id) -> None</code>
+- <code title="get /fastedge/v1/apps/{id}">client.fastedge.apps.<a href="./src/gcore/resources/fastedge/apps/apps.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/app.py">App</a></code>
+- <code title="put /fastedge/v1/apps/{id}">client.fastedge.apps.<a href="./src/gcore/resources/fastedge/apps/apps.py">replace</a>(id, \*\*<a href="src/gcore/types/fastedge/app_replace_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/app_short.py">AppShort</a></code>
+
+### Logs
+
+Types:
+
+```python
+from gcore.types.fastedge.apps import Log
+```
+
+Methods:
+
+- <code title="get /fastedge/v1/apps/{id}/logs">client.fastedge.apps.logs.<a href="./src/gcore/resources/fastedge/apps/logs.py">list</a>(id, \*\*<a href="src/gcore/types/fastedge/apps/log_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/apps/log.py">SyncOffsetPageFastedgeAppLogs[Log]</a></code>
+
+## KvStores
+
+Types:
+
+```python
+from gcore.types.fastedge import (
+    KvStore,
+    KvStoreShort,
+    KvStoreStats,
+    KvStoreListResponse,
+    KvStoreGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /fastedge/v1/kv">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">create</a>(\*\*<a href="src/gcore/types/fastedge/kv_store_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/kv_store.py">KvStore</a></code>
+- <code title="get /fastedge/v1/kv">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">list</a>(\*\*<a href="src/gcore/types/fastedge/kv_store_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/kv_store_list_response.py">KvStoreListResponse</a></code>
+- <code title="delete /fastedge/v1/kv/{id}">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">delete</a>(id) -> None</code>
+- <code title="get /fastedge/v1/kv/{id}">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/kv_store_get_response.py">KvStoreGetResponse</a></code>
+- <code title="put /fastedge/v1/kv/{id}">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">replace</a>(id, \*\*<a href="src/gcore/types/fastedge/kv_store_replace_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/kv_store.py">KvStore</a></code>

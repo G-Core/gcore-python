@@ -51,8 +51,10 @@ async def get_secret_by_id(*, client: AsyncGcore, secret_id: str) -> Secret:
 async def list_all_secrets(*, client: AsyncGcore) -> List[Secret]:
     print("\n=== LIST ALL SECRETS ===")
     all_secrets = await client.cloud.secrets.list()
-    for count, secret in enumerate(all_secrets.results, 1):
+    count = 1
+    async for secret in all_secrets:
         print(f"  {count}. Secret ID: {secret.id}, name: {secret.name}")
+        count += 1
     print("========================")
     return all_secrets.results
 
