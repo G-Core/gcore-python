@@ -20,6 +20,7 @@ __all__ = [
     "ContainerScaleTriggersMemory",
     "ContainerScaleTriggersSqs",
     "IngressOpts",
+    "ObjectReference",
     "Probes",
 ]
 
@@ -157,6 +158,14 @@ class IngressOpts(BaseModel):
     """
 
 
+class ObjectReference(BaseModel):
+    kind: Literal["AppDeployment"]
+    """Kind of the inference object to be referenced"""
+
+    name: str
+    """Name of the inference object to be referenced"""
+
+
 class Probes(BaseModel):
     liveness_probe: Optional[ProbeConfig] = None
     """Liveness probe configuration"""
@@ -219,6 +228,9 @@ class InferenceDeployment(BaseModel):
 
     name: str
     """Inference instance name."""
+
+    object_references: List[ObjectReference]
+    """Indicates to which parent object this inference belongs to."""
 
     probes: Optional[Probes] = None
     """Probes configured for all containers of the inference instance."""
