@@ -40,6 +40,7 @@ from .blackhole_port import BlackholePort as BlackholePort
 from .gpu_image_list import GPUImageList as GPUImageList
 from .health_monitor import HealthMonitor as HealthMonitor
 from .security_group import SecurityGroup as SecurityGroup
+from .audit_log_entry import AuditLogEntry as AuditLogEntry
 from .listener_status import ListenerStatus as ListenerStatus
 from .network_details import NetworkDetails as NetworkDetails
 from .placement_group import PlacementGroup as PlacementGroup
@@ -81,6 +82,7 @@ from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
 from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
 from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
 from .allowed_address_pairs import AllowedAddressPairs as AllowedAddressPairs
+from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .baremetal_flavor_list import BaremetalFlavorList as BaremetalFlavorList
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .gpu_baremetal_cluster import GPUBaremetalCluster as GPUBaremetalCluster
