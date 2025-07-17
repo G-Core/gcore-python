@@ -112,6 +112,14 @@ from .ip_ranges import (
     IPRangesResourceWithStreamingResponse,
     AsyncIPRangesResourceWithStreamingResponse,
 )
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
+)
 from .registries import (
     RegistriesResource,
     AsyncRegistriesResource,
@@ -318,6 +326,12 @@ __all__ = [
     "AsyncInstancesResourceWithRawResponse",
     "InstancesResourceWithStreamingResponse",
     "AsyncInstancesResourceWithStreamingResponse",
+    "AuditLogsResource",
+    "AsyncAuditLogsResource",
+    "AuditLogsResourceWithRawResponse",
+    "AsyncAuditLogsResourceWithRawResponse",
+    "AuditLogsResourceWithStreamingResponse",
+    "AsyncAuditLogsResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",
