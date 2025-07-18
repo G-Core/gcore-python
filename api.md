@@ -558,6 +558,22 @@ Methods:
 - <code title="get /cloud/v3/inference/{project_id}/secrets/{secret_name}">client.cloud.inference.secrets.<a href="./src/gcore/resources/cloud/inference/secrets.py">get</a>(secret_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_secret.py">InferenceSecret</a></code>
 - <code title="put /cloud/v3/inference/{project_id}/secrets/{secret_name}">client.cloud.inference.secrets.<a href="./src/gcore/resources/cloud/inference/secrets.py">replace</a>(secret_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/secret_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_secret.py">InferenceSecret</a></code>
 
+### APIKeys
+
+Types:
+
+```python
+from gcore.types.cloud.inference import InferenceAPIKey, InferenceAPIKeyCreate
+```
+
+Methods:
+
+- <code title="post /cloud/v3/inference/{project_id}/api_keys">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/api_key_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_api_key_create.py">InferenceAPIKeyCreate</a></code>
+- <code title="patch /cloud/v3/inference/{project_id}/api_keys/{api_key_name}">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">update</a>(api_key_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/api_key_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_api_key.py">InferenceAPIKey</a></code>
+- <code title="get /cloud/v3/inference/{project_id}/api_keys">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/api_key_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_api_key.py">SyncOffsetPage[InferenceAPIKey]</a></code>
+- <code title="delete /cloud/v3/inference/{project_id}/api_keys/{api_key_name}">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">delete</a>(api_key_name, \*, project_id) -> None</code>
+- <code title="get /cloud/v3/inference/{project_id}/api_keys/{api_key_name}">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">get</a>(api_key_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_api_key.py">InferenceAPIKey</a></code>
+
 ## PlacementGroups
 
 Types:
