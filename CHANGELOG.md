@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.0 (2025-07-18)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/G-Core/gcore-python/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** aggregated API specs update ([ce31169](https://github.com/G-Core/gcore-python/commit/ce311695bbea628175adc51f9f1a2545eb213d01))
+* clean up environment call outs ([2842d39](https://github.com/G-Core/gcore-python/commit/2842d3970f535d9095065ca681eaad809ea792e1))
+* **cloud:** add audit logs ([2b0fe4c](https://github.com/G-Core/gcore-python/commit/2b0fe4cd8e7e125958c2784fb1a8f26209457e2d))
+* **cloud:** add baremetal examples ([1193361](https://github.com/G-Core/gcore-python/commit/1193361f59f54de3ba454c4d23bb16c9ea87ac4b))
+* **cloud:** add inference api_keys subresource ([4857d4e](https://github.com/G-Core/gcore-python/commit/4857d4eae79e51969c80e28309a4b452e4a8a597))
+
 ## 0.5.0 (2025-07-14)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/G-Core/gcore-python/compare/v0.4.0...v0.5.0)
