@@ -83,7 +83,6 @@ pip install gcore[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from gcore import DefaultAioHttpClient
 from gcore import AsyncGcore
@@ -91,7 +90,7 @@ from gcore import AsyncGcore
 
 async def main() -> None:
     async with AsyncGcore(
-        api_key=os.environ.get("GCORE_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         project = await client.cloud.projects.create(

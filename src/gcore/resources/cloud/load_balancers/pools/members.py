@@ -51,7 +51,8 @@ class MembersResource(SyncAPIResource):
         region_id: int | None = None,
         address: str,
         protocol_port: int,
-        admin_state_up: Optional[bool] | NotGiven = NOT_GIVEN,
+        admin_state_up: bool | NotGiven = NOT_GIVEN,
+        backup: bool | NotGiven = NOT_GIVEN,
         instance_id: Optional[str] | NotGiven = NOT_GIVEN,
         monitor_address: Optional[str] | NotGiven = NOT_GIVEN,
         monitor_port: Optional[int] | NotGiven = NOT_GIVEN,
@@ -82,6 +83,11 @@ class MembersResource(SyncAPIResource):
               and operational. When set to false, the resource is disabled and will not
               process traffic. When null is passed, the value is skipped and defaults to true.
 
+          backup: Set to true if the member is a backup member, to which traffic will be sent
+              exclusively when all non-backup members will be unreachable. It allows to
+              realize ACTIVE-BACKUP load balancing without thinking about VRRP and VIP
+              configuration. Default is false.
+
           instance_id: Either `subnet_id` or `instance_id` should be provided
 
           monitor_address: An alternate IP address used for health monitoring of a backend member. Default
@@ -90,9 +96,10 @@ class MembersResource(SyncAPIResource):
           monitor_port: An alternate protocol port used for health monitoring of a backend member.
               Default is null which monitors the member `protocol_port`.
 
-          subnet_id: Either `subnet_id` or `instance_id` should be provided
+          subnet_id: `subnet_id` in which `address` is present. Either `subnet_id` or `instance_id`
+              should be provided
 
-          weight: Member weight. Valid values: 0 to 256, defaults to 1
+          weight: Member weight. Valid values are 0 < `weight` <= 256, defaults to 1.
 
           extra_headers: Send extra headers
 
@@ -115,6 +122,7 @@ class MembersResource(SyncAPIResource):
                     "address": address,
                     "protocol_port": protocol_port,
                     "admin_state_up": admin_state_up,
+                    "backup": backup,
                     "instance_id": instance_id,
                     "monitor_address": monitor_address,
                     "monitor_port": monitor_port,
@@ -208,7 +216,8 @@ class AsyncMembersResource(AsyncAPIResource):
         region_id: int | None = None,
         address: str,
         protocol_port: int,
-        admin_state_up: Optional[bool] | NotGiven = NOT_GIVEN,
+        admin_state_up: bool | NotGiven = NOT_GIVEN,
+        backup: bool | NotGiven = NOT_GIVEN,
         instance_id: Optional[str] | NotGiven = NOT_GIVEN,
         monitor_address: Optional[str] | NotGiven = NOT_GIVEN,
         monitor_port: Optional[int] | NotGiven = NOT_GIVEN,
@@ -239,6 +248,11 @@ class AsyncMembersResource(AsyncAPIResource):
               and operational. When set to false, the resource is disabled and will not
               process traffic. When null is passed, the value is skipped and defaults to true.
 
+          backup: Set to true if the member is a backup member, to which traffic will be sent
+              exclusively when all non-backup members will be unreachable. It allows to
+              realize ACTIVE-BACKUP load balancing without thinking about VRRP and VIP
+              configuration. Default is false.
+
           instance_id: Either `subnet_id` or `instance_id` should be provided
 
           monitor_address: An alternate IP address used for health monitoring of a backend member. Default
@@ -247,9 +261,10 @@ class AsyncMembersResource(AsyncAPIResource):
           monitor_port: An alternate protocol port used for health monitoring of a backend member.
               Default is null which monitors the member `protocol_port`.
 
-          subnet_id: Either `subnet_id` or `instance_id` should be provided
+          subnet_id: `subnet_id` in which `address` is present. Either `subnet_id` or `instance_id`
+              should be provided
 
-          weight: Member weight. Valid values: 0 to 256, defaults to 1
+          weight: Member weight. Valid values are 0 < `weight` <= 256, defaults to 1.
 
           extra_headers: Send extra headers
 
@@ -272,6 +287,7 @@ class AsyncMembersResource(AsyncAPIResource):
                     "address": address,
                     "protocol_port": protocol_port,
                     "admin_state_up": admin_state_up,
+                    "backup": backup,
                     "instance_id": instance_id,
                     "monitor_address": monitor_address,
                     "monitor_port": monitor_port,

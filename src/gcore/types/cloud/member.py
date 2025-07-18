@@ -24,6 +24,14 @@ class Member(BaseModel):
     value is skipped and defaults to true.
     """
 
+    backup: bool
+    """
+    Set to true if the member is a backup member, to which traffic will be sent
+    exclusively when all non-backup members will be unreachable. It allows to
+    realize ACTIVE-BACKUP load balancing without thinking about VRRP and VIP
+    configuration. Default is false
+    """
+
     operating_status: LoadBalancerOperatingStatus
     """Member operating status of the entity"""
 
@@ -33,8 +41,11 @@ class Member(BaseModel):
     provisioning_status: ProvisioningStatus
     """Pool member lifecycle status"""
 
+    subnet_id: Optional[str] = None
+    """`subnet_id` in which `address` is present."""
+
     weight: int
-    """Member weight. Valid values: 0 to 256, defaults to 1"""
+    """Member weight. Valid values are 0 < `weight` <= 256."""
 
     monitor_address: Optional[str] = None
     """An alternate IP address used for health monitoring of a backend member.
@@ -47,6 +58,3 @@ class Member(BaseModel):
 
     Default is null which monitors the member `protocol_port`.
     """
-
-    subnet_id: Optional[str] = None
-    """Either `subnet_id` or `instance_id` should be provided"""

@@ -59,6 +59,14 @@ from .ip_ranges import (
     IPRangesResourceWithStreamingResponse,
     AsyncIPRangesResourceWithStreamingResponse,
 )
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .users.users import (
     UsersResource,
@@ -274,6 +282,10 @@ class CloudResource(SyncAPIResource):
         return InstancesResource(self._client)
 
     @cached_property
+    def audit_logs(self) -> AuditLogsResource:
+        return AuditLogsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -381,6 +393,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def instances(self) -> AsyncInstancesResource:
         return AsyncInstancesResource(self._client)
+
+    @cached_property
+    def audit_logs(self) -> AsyncAuditLogsResource:
+        return AsyncAuditLogsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -494,6 +510,10 @@ class CloudResourceWithRawResponse:
     def instances(self) -> InstancesResourceWithRawResponse:
         return InstancesResourceWithRawResponse(self._cloud.instances)
 
+    @cached_property
+    def audit_logs(self) -> AuditLogsResourceWithRawResponse:
+        return AuditLogsResourceWithRawResponse(self._cloud.audit_logs)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -586,6 +606,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
         return AsyncInstancesResourceWithRawResponse(self._cloud.instances)
+
+    @cached_property
+    def audit_logs(self) -> AsyncAuditLogsResourceWithRawResponse:
+        return AsyncAuditLogsResourceWithRawResponse(self._cloud.audit_logs)
 
 
 class CloudResourceWithStreamingResponse:
@@ -680,6 +704,10 @@ class CloudResourceWithStreamingResponse:
     def instances(self) -> InstancesResourceWithStreamingResponse:
         return InstancesResourceWithStreamingResponse(self._cloud.instances)
 
+    @cached_property
+    def audit_logs(self) -> AuditLogsResourceWithStreamingResponse:
+        return AuditLogsResourceWithStreamingResponse(self._cloud.audit_logs)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -772,3 +800,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
         return AsyncInstancesResourceWithStreamingResponse(self._cloud.instances)
+
+    @cached_property
+    def audit_logs(self) -> AsyncAuditLogsResourceWithStreamingResponse:
+        return AsyncAuditLogsResourceWithStreamingResponse(self._cloud.audit_logs)

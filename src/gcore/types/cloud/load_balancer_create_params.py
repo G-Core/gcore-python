@@ -173,12 +173,20 @@ class ListenerPoolMember(TypedDict, total=False):
     protocol_port: Required[int]
     """Member IP port"""
 
-    admin_state_up: Optional[bool]
+    admin_state_up: bool
     """Administrative state of the resource.
 
     When set to true, the resource is enabled and operational. When set to false,
     the resource is disabled and will not process traffic. When null is passed, the
     value is skipped and defaults to true.
+    """
+
+    backup: bool
+    """
+    Set to true if the member is a backup member, to which traffic will be sent
+    exclusively when all non-backup members will be unreachable. It allows to
+    realize ACTIVE-BACKUP load balancing without thinking about VRRP and VIP
+    configuration. Default is false.
     """
 
     instance_id: Optional[str]
@@ -197,10 +205,13 @@ class ListenerPoolMember(TypedDict, total=False):
     """
 
     subnet_id: Optional[str]
-    """Either `subnet_id` or `instance_id` should be provided"""
+    """`subnet_id` in which `address` is present.
+
+    Either `subnet_id` or `instance_id` should be provided
+    """
 
     weight: Optional[int]
-    """Member weight. Valid values: 0 to 256, defaults to 1"""
+    """Member weight. Valid values are 0 < `weight` <= 256, defaults to 1."""
 
 
 class ListenerPoolSessionPersistence(TypedDict, total=False):
