@@ -28,6 +28,14 @@ from .secrets import (
     SecretsResourceWithStreamingResponse,
     AsyncSecretsResourceWithStreamingResponse,
 )
+from .api_keys import (
+    APIKeysResource,
+    AsyncAPIKeysResource,
+    APIKeysResourceWithRawResponse,
+    AsyncAPIKeysResourceWithRawResponse,
+    APIKeysResourceWithStreamingResponse,
+    AsyncAPIKeysResourceWithStreamingResponse,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -79,6 +87,10 @@ class InferenceResource(SyncAPIResource):
     @cached_property
     def secrets(self) -> SecretsResource:
         return SecretsResource(self._client)
+
+    @cached_property
+    def api_keys(self) -> APIKeysResource:
+        return APIKeysResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> InferenceResourceWithRawResponse:
@@ -139,6 +151,10 @@ class AsyncInferenceResource(AsyncAPIResource):
     @cached_property
     def secrets(self) -> AsyncSecretsResource:
         return AsyncSecretsResource(self._client)
+
+    @cached_property
+    def api_keys(self) -> AsyncAPIKeysResource:
+        return AsyncAPIKeysResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncInferenceResourceWithRawResponse:
@@ -207,6 +223,10 @@ class InferenceResourceWithRawResponse:
     def secrets(self) -> SecretsResourceWithRawResponse:
         return SecretsResourceWithRawResponse(self._inference.secrets)
 
+    @cached_property
+    def api_keys(self) -> APIKeysResourceWithRawResponse:
+        return APIKeysResourceWithRawResponse(self._inference.api_keys)
+
 
 class AsyncInferenceResourceWithRawResponse:
     def __init__(self, inference: AsyncInferenceResource) -> None:
@@ -235,6 +255,10 @@ class AsyncInferenceResourceWithRawResponse:
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
         return AsyncSecretsResourceWithRawResponse(self._inference.secrets)
+
+    @cached_property
+    def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
+        return AsyncAPIKeysResourceWithRawResponse(self._inference.api_keys)
 
 
 class InferenceResourceWithStreamingResponse:
@@ -265,6 +289,10 @@ class InferenceResourceWithStreamingResponse:
     def secrets(self) -> SecretsResourceWithStreamingResponse:
         return SecretsResourceWithStreamingResponse(self._inference.secrets)
 
+    @cached_property
+    def api_keys(self) -> APIKeysResourceWithStreamingResponse:
+        return APIKeysResourceWithStreamingResponse(self._inference.api_keys)
+
 
 class AsyncInferenceResourceWithStreamingResponse:
     def __init__(self, inference: AsyncInferenceResource) -> None:
@@ -293,3 +321,7 @@ class AsyncInferenceResourceWithStreamingResponse:
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
         return AsyncSecretsResourceWithStreamingResponse(self._inference.secrets)
+
+    @cached_property
+    def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
+        return AsyncAPIKeysResourceWithStreamingResponse(self._inference.api_keys)
