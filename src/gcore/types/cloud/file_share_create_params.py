@@ -11,6 +11,7 @@ __all__ = [
     "CreateStandardFileShareSerializerNetwork",
     "CreateStandardFileShareSerializerAccess",
     "CreateVastFileShareSerializer",
+    "CreateVastFileShareSerializerShareSettings",
 ]
 
 
@@ -88,6 +89,9 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     volume_type: Required[Literal["vast_share_type"]]
     """File share volume type"""
 
+    share_settings: CreateVastFileShareSerializerShareSettings
+    """Configuration settings for the share"""
+
     tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
@@ -96,6 +100,18 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     tags are read-only and cannot be modified by the user. Tags are also integrated
     with cost reports, allowing cost data to be filtered based on tag keys or
     values.
+    """
+
+
+class CreateVastFileShareSerializerShareSettings(TypedDict, total=False):
+    root_squash: bool
+    """Enables or disables root squash for NFS clients.
+
+    - If `true` (default), root squash is enabled: the root user is mapped to nobody
+      for all file and folder management operations on the export.
+    - If `false`, root squash is disabled: the NFS client `root` user retains root
+      privileges. Use this option if you trust the root user not to perform
+      operations that will corrupt data.
     """
 
 
