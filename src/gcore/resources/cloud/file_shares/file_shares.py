@@ -130,6 +130,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         volume_type: Literal["vast_share_type"],
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -153,6 +154,8 @@ class FileSharesResource(SyncAPIResource):
           size: File share size
 
           volume_type: File share volume type
+
+          share_settings: Configuration settings for the share
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -183,6 +186,7 @@ class FileSharesResource(SyncAPIResource):
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,6 +209,7 @@ class FileSharesResource(SyncAPIResource):
                     "access": access,
                     "tags": tags,
                     "volume_type": volume_type,
+                    "share_settings": share_settings,
                 },
                 file_share_create_params.FileShareCreateParams,
             ),
@@ -586,6 +591,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         volume_type: Literal["vast_share_type"],
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -609,6 +615,8 @@ class AsyncFileSharesResource(AsyncAPIResource):
           size: File share size
 
           volume_type: File share volume type
+
+          share_settings: Configuration settings for the share
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -639,6 +647,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -661,6 +670,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
                     "access": access,
                     "tags": tags,
                     "volume_type": volume_type,
+                    "share_settings": share_settings,
                 },
                 file_share_create_params.FileShareCreateParams,
             ),

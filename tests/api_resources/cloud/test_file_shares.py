@@ -111,6 +111,7 @@ class TestFileShares:
             protocol="NFS",
             size=5,
             volume_type="vast_share_type",
+            share_settings={"root_squash": True},
             tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
@@ -490,6 +491,7 @@ class TestAsyncFileShares:
             protocol="NFS",
             size=5,
             volume_type="vast_share_type",
+            share_settings={"root_squash": True},
             tags={"my-tag": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
