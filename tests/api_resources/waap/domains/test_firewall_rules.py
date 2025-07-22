@@ -21,7 +21,7 @@ class TestFirewallRules:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -32,7 +32,7 @@ class TestFirewallRules:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -62,7 +62,7 @@ class TestFirewallRules:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.waap.domains.firewall_rules.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -77,7 +77,7 @@ class TestFirewallRules:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.waap.domains.firewall_rules.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -95,7 +95,7 @@ class TestFirewallRules:
     def test_method_update(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert firewall_rule is None
 
@@ -103,7 +103,7 @@ class TestFirewallRules:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -134,7 +134,7 @@ class TestFirewallRules:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.waap.domains.firewall_rules.with_raw_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -146,7 +146,7 @@ class TestFirewallRules:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.waap.domains.firewall_rules.with_streaming_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -159,14 +159,14 @@ class TestFirewallRules:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(SyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.list(
-            domain_id=0,
+            domain_id=1,
             action="allow",
             description="description",
             enabled=True,
@@ -180,7 +180,7 @@ class TestFirewallRules:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.waap.domains.firewall_rules.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -191,7 +191,7 @@ class TestFirewallRules:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.waap.domains.firewall_rules.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -205,7 +205,7 @@ class TestFirewallRules:
     def test_method_delete(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert firewall_rule is None
 
@@ -213,7 +213,7 @@ class TestFirewallRules:
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.waap.domains.firewall_rules.with_raw_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -225,7 +225,7 @@ class TestFirewallRules:
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.waap.domains.firewall_rules.with_streaming_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -238,7 +238,7 @@ class TestFirewallRules:
     @parametrize
     def test_method_delete_multiple(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
         assert firewall_rule is None
@@ -246,7 +246,7 @@ class TestFirewallRules:
     @parametrize
     def test_raw_response_delete_multiple(self, client: Gcore) -> None:
         response = client.waap.domains.firewall_rules.with_raw_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
 
@@ -258,7 +258,7 @@ class TestFirewallRules:
     @parametrize
     def test_streaming_response_delete_multiple(self, client: Gcore) -> None:
         with client.waap.domains.firewall_rules.with_streaming_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         ) as response:
             assert not response.is_closed
@@ -273,7 +273,7 @@ class TestFirewallRules:
     def test_method_get(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
@@ -281,7 +281,7 @@ class TestFirewallRules:
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.waap.domains.firewall_rules.with_raw_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -293,7 +293,7 @@ class TestFirewallRules:
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.waap.domains.firewall_rules.with_streaming_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -307,7 +307,7 @@ class TestFirewallRules:
     def test_method_toggle(self, client: Gcore) -> None:
         firewall_rule = client.waap.domains.firewall_rules.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
         assert firewall_rule is None
@@ -316,7 +316,7 @@ class TestFirewallRules:
     def test_raw_response_toggle(self, client: Gcore) -> None:
         response = client.waap.domains.firewall_rules.with_raw_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
 
@@ -329,7 +329,7 @@ class TestFirewallRules:
     def test_streaming_response_toggle(self, client: Gcore) -> None:
         with client.waap.domains.firewall_rules.with_streaming_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         ) as response:
             assert not response.is_closed
@@ -349,7 +349,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -360,7 +360,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -390,7 +390,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.firewall_rules.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -405,7 +405,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.firewall_rules.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -423,7 +423,7 @@ class TestAsyncFirewallRules:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert firewall_rule is None
 
@@ -431,7 +431,7 @@ class TestAsyncFirewallRules:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -462,7 +462,7 @@ class TestAsyncFirewallRules:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.firewall_rules.with_raw_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -474,7 +474,7 @@ class TestAsyncFirewallRules:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.firewall_rules.with_streaming_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -487,14 +487,14 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(AsyncOffsetPage[WaapFirewallRule], firewall_rule, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.list(
-            domain_id=0,
+            domain_id=1,
             action="allow",
             description="description",
             enabled=True,
@@ -508,7 +508,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.firewall_rules.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -519,7 +519,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.firewall_rules.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -533,7 +533,7 @@ class TestAsyncFirewallRules:
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert firewall_rule is None
 
@@ -541,7 +541,7 @@ class TestAsyncFirewallRules:
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.firewall_rules.with_raw_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -553,7 +553,7 @@ class TestAsyncFirewallRules:
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.firewall_rules.with_streaming_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -566,7 +566,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_method_delete_multiple(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
         assert firewall_rule is None
@@ -574,7 +574,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_raw_response_delete_multiple(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.firewall_rules.with_raw_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
 
@@ -586,7 +586,7 @@ class TestAsyncFirewallRules:
     @parametrize
     async def test_streaming_response_delete_multiple(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.firewall_rules.with_streaming_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         ) as response:
             assert not response.is_closed
@@ -601,7 +601,7 @@ class TestAsyncFirewallRules:
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
@@ -609,7 +609,7 @@ class TestAsyncFirewallRules:
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.firewall_rules.with_raw_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -621,7 +621,7 @@ class TestAsyncFirewallRules:
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.firewall_rules.with_streaming_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -635,7 +635,7 @@ class TestAsyncFirewallRules:
     async def test_method_toggle(self, async_client: AsyncGcore) -> None:
         firewall_rule = await async_client.waap.domains.firewall_rules.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
         assert firewall_rule is None
@@ -644,7 +644,7 @@ class TestAsyncFirewallRules:
     async def test_raw_response_toggle(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.firewall_rules.with_raw_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
 
@@ -657,7 +657,7 @@ class TestAsyncFirewallRules:
     async def test_streaming_response_toggle(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.firewall_rules.with_streaming_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         ) as response:
             assert not response.is_closed

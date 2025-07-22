@@ -22,7 +22,7 @@ class TestRequests:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         request = client.waap.domains.analytics.requests.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(SyncOffsetPage[WaapRequestSummary], request, path=["response"])
@@ -30,7 +30,7 @@ class TestRequests:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         request = client.waap.domains.analytics.requests.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             actions=["allow"],
             countries=["Mv"],
@@ -49,7 +49,7 @@ class TestRequests:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.waap.domains.analytics.requests.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
@@ -61,7 +61,7 @@ class TestRequests:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.waap.domains.analytics.requests.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed
@@ -76,7 +76,7 @@ class TestRequests:
     def test_method_get(self, client: Gcore) -> None:
         request = client.waap.domains.analytics.requests.get(
             request_id="request_id",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapRequestDetails, request, path=["response"])
 
@@ -84,7 +84,7 @@ class TestRequests:
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.waap.domains.analytics.requests.with_raw_response.get(
             request_id="request_id",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -96,7 +96,7 @@ class TestRequests:
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.waap.domains.analytics.requests.with_streaming_response.get(
             request_id="request_id",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -111,7 +111,7 @@ class TestRequests:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_id` but received ''"):
             client.waap.domains.analytics.requests.with_raw_response.get(
                 request_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
 
@@ -123,7 +123,7 @@ class TestAsyncRequests:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         request = await async_client.waap.domains.analytics.requests.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(AsyncOffsetPage[WaapRequestSummary], request, path=["response"])
@@ -131,7 +131,7 @@ class TestAsyncRequests:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         request = await async_client.waap.domains.analytics.requests.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             actions=["allow"],
             countries=["Mv"],
@@ -150,7 +150,7 @@ class TestAsyncRequests:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.analytics.requests.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
@@ -162,7 +162,7 @@ class TestAsyncRequests:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.analytics.requests.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed
@@ -177,7 +177,7 @@ class TestAsyncRequests:
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         request = await async_client.waap.domains.analytics.requests.get(
             request_id="request_id",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapRequestDetails, request, path=["response"])
 
@@ -185,7 +185,7 @@ class TestAsyncRequests:
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.analytics.requests.with_raw_response.get(
             request_id="request_id",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -197,7 +197,7 @@ class TestAsyncRequests:
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.analytics.requests.with_streaming_response.get(
             request_id="request_id",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -212,5 +212,5 @@ class TestAsyncRequests:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_id` but received ''"):
             await async_client.waap.domains.analytics.requests.with_raw_response.get(
                 request_id="",
-                domain_id=0,
+                domain_id=1,
             )
