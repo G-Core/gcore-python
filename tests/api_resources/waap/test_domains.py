@@ -25,14 +25,14 @@ class TestDomains:
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         domain = client.waap.domains.update(
-            domain_id=0,
+            domain_id=1,
         )
         assert domain is None
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         domain = client.waap.domains.update(
-            domain_id=0,
+            domain_id=1,
             status="active",
         )
         assert domain is None
@@ -40,7 +40,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.waap.domains.with_raw_response.update(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -51,7 +51,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.waap.domains.with_streaming_response.update(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,7 +69,7 @@ class TestDomains:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         domain = client.waap.domains.list(
-            ids=[0],
+            ids=[1],
             limit=0,
             name="name",
             offset=0,
@@ -101,14 +101,14 @@ class TestDomains:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         domain = client.waap.domains.delete(
-            0,
+            1,
         )
         assert domain is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.waap.domains.with_raw_response.delete(
-            0,
+            1,
         )
 
         assert response.is_closed is True
@@ -119,7 +119,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.waap.domains.with_streaming_response.delete(
-            0,
+            1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,14 +132,14 @@ class TestDomains:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         domain = client.waap.domains.get(
-            0,
+            1,
         )
         assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.waap.domains.with_raw_response.get(
-            0,
+            1,
         )
 
         assert response.is_closed is True
@@ -150,7 +150,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.waap.domains.with_streaming_response.get(
-            0,
+            1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -163,14 +163,14 @@ class TestDomains:
     @parametrize
     def test_method_list_rule_sets(self, client: Gcore) -> None:
         domain = client.waap.domains.list_rule_sets(
-            0,
+            1,
         )
         assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
 
     @parametrize
     def test_raw_response_list_rule_sets(self, client: Gcore) -> None:
         response = client.waap.domains.with_raw_response.list_rule_sets(
-            0,
+            1,
         )
 
         assert response.is_closed is True
@@ -181,7 +181,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_list_rule_sets(self, client: Gcore) -> None:
         with client.waap.domains.with_streaming_response.list_rule_sets(
-            0,
+            1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -200,14 +200,14 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         domain = await async_client.waap.domains.update(
-            domain_id=0,
+            domain_id=1,
         )
         assert domain is None
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         domain = await async_client.waap.domains.update(
-            domain_id=0,
+            domain_id=1,
             status="active",
         )
         assert domain is None
@@ -215,7 +215,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.with_raw_response.update(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -226,7 +226,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.with_streaming_response.update(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,7 +244,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         domain = await async_client.waap.domains.list(
-            ids=[0],
+            ids=[1],
             limit=0,
             name="name",
             offset=0,
@@ -276,14 +276,14 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         domain = await async_client.waap.domains.delete(
-            0,
+            1,
         )
         assert domain is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.with_raw_response.delete(
-            0,
+            1,
         )
 
         assert response.is_closed is True
@@ -294,7 +294,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.with_streaming_response.delete(
-            0,
+            1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -307,14 +307,14 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         domain = await async_client.waap.domains.get(
-            0,
+            1,
         )
         assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.with_raw_response.get(
-            0,
+            1,
         )
 
         assert response.is_closed is True
@@ -325,7 +325,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.with_streaming_response.get(
-            0,
+            1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -338,14 +338,14 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_list_rule_sets(self, async_client: AsyncGcore) -> None:
         domain = await async_client.waap.domains.list_rule_sets(
-            0,
+            1,
         )
         assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
 
     @parametrize
     async def test_raw_response_list_rule_sets(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.with_raw_response.list_rule_sets(
-            0,
+            1,
         )
 
         assert response.is_closed is True
@@ -356,7 +356,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_list_rule_sets(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.with_streaming_response.list_rule_sets(
-            0,
+            1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

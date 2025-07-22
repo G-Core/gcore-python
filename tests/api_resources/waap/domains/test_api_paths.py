@@ -25,7 +25,7 @@ class TestAPIPaths:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -35,7 +35,7 @@ class TestAPIPaths:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -48,7 +48,7 @@ class TestAPIPaths:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.waap.domains.api_paths.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -62,7 +62,7 @@ class TestAPIPaths:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.waap.domains.api_paths.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -79,7 +79,7 @@ class TestAPIPaths:
     def test_method_update(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert api_path is None
 
@@ -87,7 +87,7 @@ class TestAPIPaths:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             api_groups=["accounts", "internal"],
             path="/api/v1/paths/{path_id}",
             status="CONFIRMED_API",
@@ -99,7 +99,7 @@ class TestAPIPaths:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.waap.domains.api_paths.with_raw_response.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -111,7 +111,7 @@ class TestAPIPaths:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.waap.domains.api_paths.with_streaming_response.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,20 +126,20 @@ class TestAPIPaths:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             client.waap.domains.api_paths.with_raw_response.update(
                 path_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(SyncOffsetPage[APIPathListResponse], api_path, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.list(
-            domain_id=0,
+            domain_id=1,
             api_group="api_group",
             api_version="api_version",
             http_scheme="HTTP",
@@ -157,7 +157,7 @@ class TestAPIPaths:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.waap.domains.api_paths.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -168,7 +168,7 @@ class TestAPIPaths:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.waap.domains.api_paths.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -182,7 +182,7 @@ class TestAPIPaths:
     def test_method_delete(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.delete(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert api_path is None
 
@@ -190,7 +190,7 @@ class TestAPIPaths:
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.waap.domains.api_paths.with_raw_response.delete(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -202,7 +202,7 @@ class TestAPIPaths:
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.waap.domains.api_paths.with_streaming_response.delete(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -217,14 +217,14 @@ class TestAPIPaths:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             client.waap.domains.api_paths.with_raw_response.delete(
                 path_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         api_path = client.waap.domains.api_paths.get(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(APIPathGetResponse, api_path, path=["response"])
 
@@ -232,7 +232,7 @@ class TestAPIPaths:
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.waap.domains.api_paths.with_raw_response.get(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -244,7 +244,7 @@ class TestAPIPaths:
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.waap.domains.api_paths.with_streaming_response.get(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -259,7 +259,7 @@ class TestAPIPaths:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             client.waap.domains.api_paths.with_raw_response.get(
                 path_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
 
@@ -271,7 +271,7 @@ class TestAsyncAPIPaths:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -281,7 +281,7 @@ class TestAsyncAPIPaths:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -294,7 +294,7 @@ class TestAsyncAPIPaths:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.api_paths.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -308,7 +308,7 @@ class TestAsyncAPIPaths:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.api_paths.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             http_scheme="HTTP",
             method="GET",
             path="/api/v1/paths/{path_id}",
@@ -325,7 +325,7 @@ class TestAsyncAPIPaths:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert api_path is None
 
@@ -333,7 +333,7 @@ class TestAsyncAPIPaths:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             api_groups=["accounts", "internal"],
             path="/api/v1/paths/{path_id}",
             status="CONFIRMED_API",
@@ -345,7 +345,7 @@ class TestAsyncAPIPaths:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.api_paths.with_raw_response.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -357,7 +357,7 @@ class TestAsyncAPIPaths:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.api_paths.with_streaming_response.update(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -372,20 +372,20 @@ class TestAsyncAPIPaths:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             await async_client.waap.domains.api_paths.with_raw_response.update(
                 path_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(AsyncOffsetPage[APIPathListResponse], api_path, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.list(
-            domain_id=0,
+            domain_id=1,
             api_group="api_group",
             api_version="api_version",
             http_scheme="HTTP",
@@ -403,7 +403,7 @@ class TestAsyncAPIPaths:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.api_paths.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -414,7 +414,7 @@ class TestAsyncAPIPaths:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.api_paths.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -428,7 +428,7 @@ class TestAsyncAPIPaths:
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.delete(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert api_path is None
 
@@ -436,7 +436,7 @@ class TestAsyncAPIPaths:
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.api_paths.with_raw_response.delete(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -448,7 +448,7 @@ class TestAsyncAPIPaths:
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.api_paths.with_streaming_response.delete(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -463,14 +463,14 @@ class TestAsyncAPIPaths:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             await async_client.waap.domains.api_paths.with_raw_response.delete(
                 path_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         api_path = await async_client.waap.domains.api_paths.get(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(APIPathGetResponse, api_path, path=["response"])
 
@@ -478,7 +478,7 @@ class TestAsyncAPIPaths:
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.api_paths.with_raw_response.get(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -490,7 +490,7 @@ class TestAsyncAPIPaths:
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.api_paths.with_streaming_response.get(
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -505,5 +505,5 @@ class TestAsyncAPIPaths:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             await async_client.waap.domains.api_paths.with_raw_response.get(
                 path_id="",
-                domain_id=0,
+                domain_id=1,
             )

@@ -259,10 +259,10 @@ class ConditionURL(BaseModel):
     The pattern to match against the request URL. Constraints depend on
     `match_type`:
 
-    - **Exact/Contains**: plain text matching (e.g., `/admin`).
-    - **Regex**: a valid regular expression (must comply with
-      `^[\\ww!\\$$~:#\\[[\\]]@\\((\\))\\*\\++,=\\//\\--\\..\\%%]+$`). Lookahead/lookbehind constructs are
-      forbidden.
+    - **Exact/Contains**: plain text matching (e.g., `/admin`, must comply with
+      `^[\\ww!\\$$~:#\\[[\\]]@\\((\\))\\*\\++,=\\//\\--\\..\\%%]+$`).
+    - **Regex**: a valid regular expression (e.g., `^/upload(/\\dd+)?/\\ww+`).
+      Lookahead/lookbehind constructs are forbidden.
     """
 
     match_type: Optional[Literal["Exact", "Contains", "Regex"]] = None
