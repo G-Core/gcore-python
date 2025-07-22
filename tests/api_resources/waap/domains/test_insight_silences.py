@@ -22,7 +22,7 @@ class TestInsightSilences:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -33,7 +33,7 @@ class TestInsightSilences:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -45,7 +45,7 @@ class TestInsightSilences:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.waap.domains.insight_silences.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -60,7 +60,7 @@ class TestInsightSilences:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.waap.domains.insight_silences.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -78,7 +78,7 @@ class TestInsightSilences:
     def test_method_update(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -89,7 +89,7 @@ class TestInsightSilences:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -101,7 +101,7 @@ class TestInsightSilences:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.waap.domains.insight_silences.with_raw_response.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -116,7 +116,7 @@ class TestInsightSilences:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.waap.domains.insight_silences.with_streaming_response.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -134,7 +134,7 @@ class TestInsightSilences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `silence_id` but received ''"):
             client.waap.domains.insight_silences.with_raw_response.update(
                 silence_id="",
-                domain_id=0,
+                domain_id=1,
                 author="author",
                 comment="comment",
                 expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -143,14 +143,14 @@ class TestInsightSilences:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(SyncOffsetPage[WaapInsightSilence], insight_silence, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.list(
-            domain_id=0,
+            domain_id=1,
             id=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             author="author",
             comment="comment",
@@ -164,7 +164,7 @@ class TestInsightSilences:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.waap.domains.insight_silences.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -175,7 +175,7 @@ class TestInsightSilences:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.waap.domains.insight_silences.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -189,7 +189,7 @@ class TestInsightSilences:
     def test_method_delete(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.delete(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert insight_silence is None
 
@@ -197,7 +197,7 @@ class TestInsightSilences:
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.waap.domains.insight_silences.with_raw_response.delete(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -209,7 +209,7 @@ class TestInsightSilences:
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.waap.domains.insight_silences.with_streaming_response.delete(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -224,14 +224,14 @@ class TestInsightSilences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `silence_id` but received ''"):
             client.waap.domains.insight_silences.with_raw_response.delete(
                 silence_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         insight_silence = client.waap.domains.insight_silences.get(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapInsightSilence, insight_silence, path=["response"])
 
@@ -239,7 +239,7 @@ class TestInsightSilences:
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.waap.domains.insight_silences.with_raw_response.get(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -251,7 +251,7 @@ class TestInsightSilences:
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.waap.domains.insight_silences.with_streaming_response.get(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -266,7 +266,7 @@ class TestInsightSilences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `silence_id` but received ''"):
             client.waap.domains.insight_silences.with_raw_response.get(
                 silence_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
 
@@ -278,7 +278,7 @@ class TestAsyncInsightSilences:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -289,7 +289,7 @@ class TestAsyncInsightSilences:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -301,7 +301,7 @@ class TestAsyncInsightSilences:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.insight_silences.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -316,7 +316,7 @@ class TestAsyncInsightSilences:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.insight_silences.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             insight_type="insight_type",
@@ -334,7 +334,7 @@ class TestAsyncInsightSilences:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -345,7 +345,7 @@ class TestAsyncInsightSilences:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -357,7 +357,7 @@ class TestAsyncInsightSilences:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.insight_silences.with_raw_response.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -372,7 +372,7 @@ class TestAsyncInsightSilences:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.insight_silences.with_streaming_response.update(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
             author="author",
             comment="comment",
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -390,7 +390,7 @@ class TestAsyncInsightSilences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `silence_id` but received ''"):
             await async_client.waap.domains.insight_silences.with_raw_response.update(
                 silence_id="",
-                domain_id=0,
+                domain_id=1,
                 author="author",
                 comment="comment",
                 expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -399,14 +399,14 @@ class TestAsyncInsightSilences:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(AsyncOffsetPage[WaapInsightSilence], insight_silence, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.list(
-            domain_id=0,
+            domain_id=1,
             id=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             author="author",
             comment="comment",
@@ -420,7 +420,7 @@ class TestAsyncInsightSilences:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.insight_silences.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -431,7 +431,7 @@ class TestAsyncInsightSilences:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.insight_silences.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -445,7 +445,7 @@ class TestAsyncInsightSilences:
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.delete(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert insight_silence is None
 
@@ -453,7 +453,7 @@ class TestAsyncInsightSilences:
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.insight_silences.with_raw_response.delete(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -465,7 +465,7 @@ class TestAsyncInsightSilences:
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.insight_silences.with_streaming_response.delete(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -480,14 +480,14 @@ class TestAsyncInsightSilences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `silence_id` but received ''"):
             await async_client.waap.domains.insight_silences.with_raw_response.delete(
                 silence_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         insight_silence = await async_client.waap.domains.insight_silences.get(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapInsightSilence, insight_silence, path=["response"])
 
@@ -495,7 +495,7 @@ class TestAsyncInsightSilences:
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.insight_silences.with_raw_response.get(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -507,7 +507,7 @@ class TestAsyncInsightSilences:
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.insight_silences.with_streaming_response.get(
             silence_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -522,5 +522,5 @@ class TestAsyncInsightSilences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `silence_id` but received ''"):
             await async_client.waap.domains.insight_silences.with_raw_response.get(
                 silence_id="",
-                domain_id=0,
+                domain_id=1,
             )

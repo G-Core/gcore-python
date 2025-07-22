@@ -24,14 +24,14 @@ class TestScanResults:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         scan_result = client.waap.domains.api_discovery.scan_results.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(SyncOffsetPage[ScanResultListResponse], scan_result, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         scan_result = client.waap.domains.api_discovery.scan_results.list(
-            domain_id=0,
+            domain_id=1,
             limit=0,
             message="message",
             offset=0,
@@ -44,7 +44,7 @@ class TestScanResults:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.waap.domains.api_discovery.scan_results.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -55,7 +55,7 @@ class TestScanResults:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.waap.domains.api_discovery.scan_results.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,7 +69,7 @@ class TestScanResults:
     def test_method_get(self, client: Gcore) -> None:
         scan_result = client.waap.domains.api_discovery.scan_results.get(
             scan_id="scan_id",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(ScanResultGetResponse, scan_result, path=["response"])
 
@@ -77,7 +77,7 @@ class TestScanResults:
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.waap.domains.api_discovery.scan_results.with_raw_response.get(
             scan_id="scan_id",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -89,7 +89,7 @@ class TestScanResults:
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.waap.domains.api_discovery.scan_results.with_streaming_response.get(
             scan_id="scan_id",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -104,7 +104,7 @@ class TestScanResults:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `scan_id` but received ''"):
             client.waap.domains.api_discovery.scan_results.with_raw_response.get(
                 scan_id="",
-                domain_id=0,
+                domain_id=1,
             )
 
 
@@ -116,14 +116,14 @@ class TestAsyncScanResults:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         scan_result = await async_client.waap.domains.api_discovery.scan_results.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(AsyncOffsetPage[ScanResultListResponse], scan_result, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         scan_result = await async_client.waap.domains.api_discovery.scan_results.list(
-            domain_id=0,
+            domain_id=1,
             limit=0,
             message="message",
             offset=0,
@@ -136,7 +136,7 @@ class TestAsyncScanResults:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.api_discovery.scan_results.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -147,7 +147,7 @@ class TestAsyncScanResults:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.api_discovery.scan_results.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -161,7 +161,7 @@ class TestAsyncScanResults:
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         scan_result = await async_client.waap.domains.api_discovery.scan_results.get(
             scan_id="scan_id",
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(ScanResultGetResponse, scan_result, path=["response"])
 
@@ -169,7 +169,7 @@ class TestAsyncScanResults:
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.api_discovery.scan_results.with_raw_response.get(
             scan_id="scan_id",
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -181,7 +181,7 @@ class TestAsyncScanResults:
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.api_discovery.scan_results.with_streaming_response.get(
             scan_id="scan_id",
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,5 +196,5 @@ class TestAsyncScanResults:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `scan_id` but received ''"):
             await async_client.waap.domains.api_discovery.scan_results.with_raw_response.get(
                 scan_id="",
-                domain_id=0,
+                domain_id=1,
             )

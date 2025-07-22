@@ -59,7 +59,7 @@ class TestCustomPageSets:
                 "header": "xxx",
                 "text": "xxxxxxxxxxxxxxxxxxxx",
             },
-            domains=[0],
+            domains=[1],
             handshake={
                 "enabled": True,
                 "header": "xxx",
@@ -136,7 +136,7 @@ class TestCustomPageSets:
                 "header": "xxx",
                 "text": "xxxxxxxxxxxxxxxxxxxx",
             },
-            domains=[0],
+            domains=[1],
             handshake={
                 "enabled": True,
                 "header": "xxx",
@@ -361,7 +361,7 @@ class TestAsyncCustomPageSets:
                 "header": "xxx",
                 "text": "xxxxxxxxxxxxxxxxxxxx",
             },
-            domains=[0],
+            domains=[1],
             handshake={
                 "enabled": True,
                 "header": "xxx",
@@ -438,7 +438,7 @@ class TestAsyncCustomPageSets:
                 "header": "xxx",
                 "text": "xxxxxxxxxxxxxxxxxxxx",
             },
-            domains=[0],
+            domains=[1],
             handshake={
                 "enabled": True,
                 "header": "xxx",
