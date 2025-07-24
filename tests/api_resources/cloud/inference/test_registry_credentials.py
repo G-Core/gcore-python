@@ -197,7 +197,7 @@ class TestRegistryCredentials:
             registry_url="registry.example.com",
             username="username",
         )
-        assert registry_credential is None
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     def test_raw_response_replace(self, client: Gcore) -> None:
@@ -212,7 +212,7 @@ class TestRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = response.parse()
-        assert registry_credential is None
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     def test_streaming_response_replace(self, client: Gcore) -> None:
@@ -227,7 +227,7 @@ class TestRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = response.parse()
-            assert registry_credential is None
+            assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -424,7 +424,7 @@ class TestAsyncRegistryCredentials:
             registry_url="registry.example.com",
             username="username",
         )
-        assert registry_credential is None
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
@@ -439,7 +439,7 @@ class TestAsyncRegistryCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         registry_credential = await response.parse()
-        assert registry_credential is None
+        assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
     @parametrize
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
@@ -454,7 +454,7 @@ class TestAsyncRegistryCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             registry_credential = await response.parse()
-            assert registry_credential is None
+            assert_matches_type(InferenceRegistryCredentialsCreate, registry_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

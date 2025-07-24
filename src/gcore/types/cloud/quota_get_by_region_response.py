@@ -21,16 +21,32 @@ class QuotaGetByRegionResponse(BaseModel):
     """Baremetal A100 GPU card count usage"""
 
     baremetal_gpu_count_limit: Optional[int] = None
-    """AI GPU bare metal servers count limit"""
+    """Total number of AI GPU bare metal servers.
+
+    This field is deprecated and is now always calculated automatically as the sum
+    of `baremetal_gpu_a100_count_limit`, `baremetal_gpu_h100_count_limit`,
+    `baremetal_gpu_h200_count_limit`, and `baremetal_gpu_l40s_count_limit`.
+    """
 
     baremetal_gpu_count_usage: Optional[int] = None
-    """AI GPU bare metal servers count usage"""
+    """Baremetal Gpu Count Usage.
+
+    This field is deprecated and is now always calculated automatically as the sum
+    of `baremetal_gpu_a100_count_usage`, `baremetal_gpu_h100_count_usage`,
+    `baremetal_gpu_h200_count_usage`, and `baremetal_gpu_l40s_count_usage`.
+    """
 
     baremetal_gpu_h100_count_limit: Optional[int] = None
     """Baremetal H100 GPU card count limit"""
 
     baremetal_gpu_h100_count_usage: Optional[int] = None
     """Baremetal H100 GPU card count usage"""
+
+    baremetal_gpu_h200_count_limit: Optional[int] = None
+    """Baremetal H200 GPU card count limit"""
+
+    baremetal_gpu_h200_count_usage: Optional[int] = None
+    """Baremetal H200 GPU card count usage"""
 
     baremetal_gpu_l40s_count_limit: Optional[int] = None
     """Baremetal L40S GPU card count limit"""
@@ -163,6 +179,12 @@ class QuotaGetByRegionResponse(BaseModel):
 
     gpu_virtual_h100_count_usage: Optional[int] = None
     """Virtual H100 GPU card count usage"""
+
+    gpu_virtual_h200_count_limit: Optional[int] = None
+    """Virtual H200 GPU card count limit"""
+
+    gpu_virtual_h200_count_usage: Optional[int] = None
+    """Virtual H200 GPU card count usage"""
 
     gpu_virtual_l40s_count_limit: Optional[int] = None
     """Virtual L40S GPU card count limit"""

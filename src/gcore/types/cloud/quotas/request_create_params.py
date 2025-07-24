@@ -50,10 +50,18 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     """Baremetal A100 GPU card count limit"""
 
     baremetal_gpu_count_limit: int
-    """AI GPU bare metal servers count limit"""
+    """Total number of AI GPU bare metal servers.
+
+    This field is deprecated and is now always calculated automatically as the sum
+    of `baremetal_gpu_a100_count_limit`, `baremetal_gpu_h100_count_limit`,
+    `baremetal_gpu_h200_count_limit`, and `baremetal_gpu_l40s_count_limit`.
+    """
 
     baremetal_gpu_h100_count_limit: int
     """Baremetal H100 GPU card count limit"""
+
+    baremetal_gpu_h200_count_limit: int
+    """Baremetal H200 GPU card count limit"""
 
     baremetal_gpu_l40s_count_limit: int
     """Baremetal L40S GPU card count limit"""
@@ -120,6 +128,9 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
 
     gpu_virtual_h100_count_limit: int
     """Virtual H100 GPU card count limit"""
+
+    gpu_virtual_h200_count_limit: int
+    """Virtual H200 GPU card count limit"""
 
     gpu_virtual_l40s_count_limit: int
     """Virtual L40S GPU card count limit"""
