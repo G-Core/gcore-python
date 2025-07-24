@@ -136,6 +136,14 @@ from .file_shares import (
     FileSharesResourceWithStreamingResponse,
     AsyncFileSharesResourceWithStreamingResponse,
 )
+from .cost_reports import (
+    CostReportsResource,
+    AsyncCostReportsResource,
+    CostReportsResourceWithRawResponse,
+    AsyncCostReportsResourceWithRawResponse,
+    CostReportsResourceWithStreamingResponse,
+    AsyncCostReportsResourceWithStreamingResponse,
+)
 from .floating_ips import (
     FloatingIPsResource,
     AsyncFloatingIPsResource,
@@ -143,6 +151,14 @@ from .floating_ips import (
     AsyncFloatingIPsResourceWithRawResponse,
     FloatingIPsResourceWithStreamingResponse,
     AsyncFloatingIPsResourceWithStreamingResponse,
+)
+from .usage_reports import (
+    UsageReportsResource,
+    AsyncUsageReportsResource,
+    UsageReportsResourceWithRawResponse,
+    AsyncUsageReportsResourceWithRawResponse,
+    UsageReportsResourceWithStreamingResponse,
+    AsyncUsageReportsResourceWithStreamingResponse,
 )
 from .load_balancers import (
     LoadBalancersResource,
@@ -332,6 +348,18 @@ __all__ = [
     "AsyncAuditLogsResourceWithRawResponse",
     "AuditLogsResourceWithStreamingResponse",
     "AsyncAuditLogsResourceWithStreamingResponse",
+    "CostReportsResource",
+    "AsyncCostReportsResource",
+    "CostReportsResourceWithRawResponse",
+    "AsyncCostReportsResourceWithRawResponse",
+    "CostReportsResourceWithStreamingResponse",
+    "AsyncCostReportsResourceWithStreamingResponse",
+    "UsageReportsResource",
+    "AsyncUsageReportsResource",
+    "UsageReportsResourceWithRawResponse",
+    "AsyncUsageReportsResourceWithRawResponse",
+    "UsageReportsResourceWithStreamingResponse",
+    "AsyncUsageReportsResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",
