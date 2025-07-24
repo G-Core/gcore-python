@@ -32,6 +32,7 @@ from .resources.iam import iam
 from .resources.waap import waap
 from .resources.cloud import cloud
 from .resources.fastedge import fastedge
+from .resources.streaming import streaming
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Gcore", "AsyncGcore", "Client", "AsyncClient"]
 
@@ -41,6 +42,7 @@ class Gcore(SyncAPIClient):
     waap: waap.WaapResource
     iam: iam.IamResource
     fastedge: fastedge.FastedgeResource
+    streaming: streaming.StreamingResource
     with_raw_response: GcoreWithRawResponse
     with_streaming_response: GcoreWithStreamedResponse
 
@@ -123,6 +125,7 @@ class Gcore(SyncAPIClient):
         self.waap = waap.WaapResource(self)
         self.iam = iam.IamResource(self)
         self.fastedge = fastedge.FastedgeResource(self)
+        self.streaming = streaming.StreamingResource(self)
         self.with_raw_response = GcoreWithRawResponse(self)
         self.with_streaming_response = GcoreWithStreamedResponse(self)
 
@@ -260,6 +263,7 @@ class AsyncGcore(AsyncAPIClient):
     waap: waap.AsyncWaapResource
     iam: iam.AsyncIamResource
     fastedge: fastedge.AsyncFastedgeResource
+    streaming: streaming.AsyncStreamingResource
     with_raw_response: AsyncGcoreWithRawResponse
     with_streaming_response: AsyncGcoreWithStreamedResponse
 
@@ -342,6 +346,7 @@ class AsyncGcore(AsyncAPIClient):
         self.waap = waap.AsyncWaapResource(self)
         self.iam = iam.AsyncIamResource(self)
         self.fastedge = fastedge.AsyncFastedgeResource(self)
+        self.streaming = streaming.AsyncStreamingResource(self)
         self.with_raw_response = AsyncGcoreWithRawResponse(self)
         self.with_streaming_response = AsyncGcoreWithStreamedResponse(self)
 
@@ -480,6 +485,7 @@ class GcoreWithRawResponse:
         self.waap = waap.WaapResourceWithRawResponse(client.waap)
         self.iam = iam.IamResourceWithRawResponse(client.iam)
         self.fastedge = fastedge.FastedgeResourceWithRawResponse(client.fastedge)
+        self.streaming = streaming.StreamingResourceWithRawResponse(client.streaming)
 
 
 class AsyncGcoreWithRawResponse:
@@ -488,6 +494,7 @@ class AsyncGcoreWithRawResponse:
         self.waap = waap.AsyncWaapResourceWithRawResponse(client.waap)
         self.iam = iam.AsyncIamResourceWithRawResponse(client.iam)
         self.fastedge = fastedge.AsyncFastedgeResourceWithRawResponse(client.fastedge)
+        self.streaming = streaming.AsyncStreamingResourceWithRawResponse(client.streaming)
 
 
 class GcoreWithStreamedResponse:
@@ -496,6 +503,7 @@ class GcoreWithStreamedResponse:
         self.waap = waap.WaapResourceWithStreamingResponse(client.waap)
         self.iam = iam.IamResourceWithStreamingResponse(client.iam)
         self.fastedge = fastedge.FastedgeResourceWithStreamingResponse(client.fastedge)
+        self.streaming = streaming.StreamingResourceWithStreamingResponse(client.streaming)
 
 
 class AsyncGcoreWithStreamedResponse:
@@ -504,6 +512,7 @@ class AsyncGcoreWithStreamedResponse:
         self.waap = waap.AsyncWaapResourceWithStreamingResponse(client.waap)
         self.iam = iam.AsyncIamResourceWithStreamingResponse(client.iam)
         self.fastedge = fastedge.AsyncFastedgeResourceWithStreamingResponse(client.fastedge)
+        self.streaming = streaming.AsyncStreamingResourceWithStreamingResponse(client.streaming)
 
 
 Client = Gcore
