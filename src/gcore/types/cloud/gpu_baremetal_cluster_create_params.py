@@ -15,6 +15,7 @@ __all__ = [
     "InterfaceCreateGPUClusterSubnetInterfaceSerializerFloatingIP",
     "InterfaceCreateGPUClusterAnySubnetInterfaceSerializer",
     "InterfaceCreateGPUClusterAnySubnetInterfaceSerializerFloatingIP",
+    "SecurityGroup",
 ]
 
 
@@ -47,6 +48,9 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     This parameter is used to set a password for the "Admin" user on a Windows
     instance, a default user or a new user on a Linux instance
     """
+
+    security_groups: Iterable[SecurityGroup]
+    """Security group UUIDs"""
 
     ssh_key_name: str
     """
@@ -152,3 +156,8 @@ Interface: TypeAlias = Union[
     InterfaceCreateGPUClusterSubnetInterfaceSerializer,
     InterfaceCreateGPUClusterAnySubnetInterfaceSerializer,
 ]
+
+
+class SecurityGroup(TypedDict, total=False):
+    id: Required[str]
+    """Resource ID"""
