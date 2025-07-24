@@ -112,6 +112,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[gpu_baremetal_cluster_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
@@ -143,6 +144,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
           password: A password for a bare metal server. This parameter is used to set a password for
               the "Admin" user on a Windows instance, a default user or a new user on a Linux
               instance
+
+          security_groups: Security group UUIDs
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
@@ -182,6 +185,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "name": name,
                     "instances_count": instances_count,
                     "password": password,
+                    "security_groups": security_groups,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
@@ -745,6 +749,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         name: str,
         instances_count: int | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[gpu_baremetal_cluster_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
         ssh_key_name: str | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
@@ -776,6 +781,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
           password: A password for a bare metal server. This parameter is used to set a password for
               the "Admin" user on a Windows instance, a default user or a new user on a Linux
               instance
+
+          security_groups: Security group UUIDs
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
@@ -815,6 +822,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "name": name,
                     "instances_count": instances_count,
                     "password": password,
+                    "security_groups": security_groups,
                     "ssh_key_name": ssh_key_name,
                     "tags": tags,
                     "user_data": user_data,
