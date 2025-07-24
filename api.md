@@ -872,6 +872,32 @@ Methods:
 
 - <code title="get /cloud/v1/user_actions">client.cloud.audit_logs.<a href="./src/gcore/resources/cloud/audit_logs.py">list</a>(\*\*<a href="src/gcore/types/cloud/audit_log_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/audit_log_entry.py">SyncOffsetPage[AuditLogEntry]</a></code>
 
+## CostReports
+
+Types:
+
+```python
+from gcore.types.cloud import CostReportAggregated, CostReportAggregatedMonthly, CostReportDetailed
+```
+
+Methods:
+
+- <code title="post /cloud/v1/cost_report/totals">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_aggregated</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_aggregated.py">CostReportAggregated</a></code>
+- <code title="post /cloud/v1/reservation_cost_report/totals">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_aggregated_monthly</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_aggregated_monthly_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_aggregated_monthly.py">CostReportAggregatedMonthly</a></code>
+- <code title="post /cloud/v1/cost_report/resources">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_detailed</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_detailed_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_detailed.py">CostReportDetailed</a></code>
+
+## UsageReports
+
+Types:
+
+```python
+from gcore.types.cloud import UsageReport
+```
+
+Methods:
+
+- <code title="post /cloud/v1/usage_report">client.cloud.usage_reports.<a href="./src/gcore/resources/cloud/usage_reports.py">get</a>(\*\*<a href="src/gcore/types/cloud/usage_report_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/usage_report.py">UsageReport</a></code>
+
 # Waap
 
 Types:
