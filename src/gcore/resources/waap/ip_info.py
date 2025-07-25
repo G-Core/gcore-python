@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -155,7 +157,9 @@ class IPInfoResource(SyncAPIResource):
         corresponding action that was executed.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 
@@ -189,7 +193,7 @@ class IPInfoResource(SyncAPIResource):
         self,
         *,
         ip: str,
-        domain_id: int | NotGiven = NOT_GIVEN,
+        domain_id: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -296,7 +300,9 @@ class IPInfoResource(SyncAPIResource):
         by IP.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 
@@ -345,7 +351,9 @@ class IPInfoResource(SyncAPIResource):
         security monitoring based on URL popularity.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 
@@ -392,7 +400,9 @@ class IPInfoResource(SyncAPIResource):
         IP.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 
@@ -578,7 +588,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
         corresponding action that was executed.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 
@@ -612,7 +624,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         self,
         *,
         ip: str,
-        domain_id: int | NotGiven = NOT_GIVEN,
+        domain_id: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -719,7 +731,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
         by IP.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 
@@ -768,7 +782,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
         security monitoring based on URL popularity.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 
@@ -815,7 +831,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
         IP.
 
         Args:
-          domain_id: The domain ID
+          domain_id: The identifier for a domain. When specified, the response will exclusively
+              contain data pertinent to the indicated domain, filtering out information from
+              other domains.
 
           ip: The IP address to check
 

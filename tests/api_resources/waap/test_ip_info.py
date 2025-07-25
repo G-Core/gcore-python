@@ -92,7 +92,7 @@ class TestIPInfo:
     @parametrize
     def test_method_get_blocked_requests(self, client: Gcore) -> None:
         ip_info = client.waap.ip_info.get_blocked_requests(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetBlockedRequestsResponse, ip_info, path=["response"])
@@ -100,7 +100,7 @@ class TestIPInfo:
     @parametrize
     def test_raw_response_get_blocked_requests(self, client: Gcore) -> None:
         response = client.waap.ip_info.with_raw_response.get_blocked_requests(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -112,7 +112,7 @@ class TestIPInfo:
     @parametrize
     def test_streaming_response_get_blocked_requests(self, client: Gcore) -> None:
         with client.waap.ip_info.with_streaming_response.get_blocked_requests(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
@@ -196,7 +196,7 @@ class TestIPInfo:
     @parametrize
     def test_method_get_top_sessions(self, client: Gcore) -> None:
         ip_info = client.waap.ip_info.get_top_sessions(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
@@ -204,7 +204,7 @@ class TestIPInfo:
     @parametrize
     def test_raw_response_get_top_sessions(self, client: Gcore) -> None:
         response = client.waap.ip_info.with_raw_response.get_top_sessions(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -216,7 +216,7 @@ class TestIPInfo:
     @parametrize
     def test_streaming_response_get_top_sessions(self, client: Gcore) -> None:
         with client.waap.ip_info.with_streaming_response.get_top_sessions(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
@@ -230,7 +230,7 @@ class TestIPInfo:
     @parametrize
     def test_method_get_top_urls(self, client: Gcore) -> None:
         ip_info = client.waap.ip_info.get_top_urls(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetTopURLsResponse, ip_info, path=["response"])
@@ -238,7 +238,7 @@ class TestIPInfo:
     @parametrize
     def test_raw_response_get_top_urls(self, client: Gcore) -> None:
         response = client.waap.ip_info.with_raw_response.get_top_urls(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -250,7 +250,7 @@ class TestIPInfo:
     @parametrize
     def test_streaming_response_get_top_urls(self, client: Gcore) -> None:
         with client.waap.ip_info.with_streaming_response.get_top_urls(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
@@ -264,7 +264,7 @@ class TestIPInfo:
     @parametrize
     def test_method_get_top_user_agents(self, client: Gcore) -> None:
         ip_info = client.waap.ip_info.get_top_user_agents(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetTopUserAgentsResponse, ip_info, path=["response"])
@@ -272,7 +272,7 @@ class TestIPInfo:
     @parametrize
     def test_raw_response_get_top_user_agents(self, client: Gcore) -> None:
         response = client.waap.ip_info.with_raw_response.get_top_user_agents(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -284,7 +284,7 @@ class TestIPInfo:
     @parametrize
     def test_streaming_response_get_top_user_agents(self, client: Gcore) -> None:
         with client.waap.ip_info.with_streaming_response.get_top_user_agents(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
@@ -397,7 +397,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_method_get_blocked_requests(self, async_client: AsyncGcore) -> None:
         ip_info = await async_client.waap.ip_info.get_blocked_requests(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetBlockedRequestsResponse, ip_info, path=["response"])
@@ -405,7 +405,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_raw_response_get_blocked_requests(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.ip_info.with_raw_response.get_blocked_requests(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -417,7 +417,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_streaming_response_get_blocked_requests(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.ip_info.with_streaming_response.get_blocked_requests(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
@@ -501,7 +501,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_method_get_top_sessions(self, async_client: AsyncGcore) -> None:
         ip_info = await async_client.waap.ip_info.get_top_sessions(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
@@ -509,7 +509,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_raw_response_get_top_sessions(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.ip_info.with_raw_response.get_top_sessions(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -521,7 +521,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_streaming_response_get_top_sessions(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.ip_info.with_streaming_response.get_top_sessions(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
@@ -535,7 +535,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_method_get_top_urls(self, async_client: AsyncGcore) -> None:
         ip_info = await async_client.waap.ip_info.get_top_urls(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetTopURLsResponse, ip_info, path=["response"])
@@ -543,7 +543,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_raw_response_get_top_urls(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.ip_info.with_raw_response.get_top_urls(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -555,7 +555,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_streaming_response_get_top_urls(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.ip_info.with_streaming_response.get_top_urls(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
@@ -569,7 +569,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_method_get_top_user_agents(self, async_client: AsyncGcore) -> None:
         ip_info = await async_client.waap.ip_info.get_top_user_agents(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
         assert_matches_type(IPInfoGetTopUserAgentsResponse, ip_info, path=["response"])
@@ -577,7 +577,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_raw_response_get_top_user_agents(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.ip_info.with_raw_response.get_top_user_agents(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         )
 
@@ -589,7 +589,7 @@ class TestAsyncIPInfo:
     @parametrize
     async def test_streaming_response_get_top_user_agents(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.ip_info.with_streaming_response.get_top_user_agents(
-            domain_id=0,
+            domain_id=1,
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed

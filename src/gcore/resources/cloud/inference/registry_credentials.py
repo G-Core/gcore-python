@@ -251,7 +251,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> InferenceRegistryCredentialsCreate:
         """
         Replace inference registry credential
 
@@ -278,7 +278,6 @@ class RegistryCredentialsResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if not credential_name:
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             body=maybe_transform(
@@ -292,7 +291,7 @@ class RegistryCredentialsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=InferenceRegistryCredentialsCreate,
         )
 
 
@@ -520,7 +519,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> InferenceRegistryCredentialsCreate:
         """
         Replace inference registry credential
 
@@ -547,7 +546,6 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if not credential_name:
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             body=await async_maybe_transform(
@@ -561,7 +559,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=InferenceRegistryCredentialsCreate,
         )
 
 

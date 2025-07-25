@@ -30,6 +30,7 @@ from .ddos_profile import DDOSProfile as DDOSProfile
 from .lb_algorithm import LbAlgorithm as LbAlgorithm
 from .registry_tag import RegistryTag as RegistryTag
 from .task_id_list import TaskIDList as TaskIDList
+from .usage_report import UsageReport as UsageReport
 from .fixed_address import FixedAddress as FixedAddress
 from .instance_list import InstanceList as InstanceList
 from .ip_assignment import IPAssignment as IPAssignment
@@ -70,6 +71,7 @@ from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .security_group_rule import SecurityGroupRule as SecurityGroupRule
 from .session_persistence import SessionPersistence as SessionPersistence
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
+from .cost_report_detailed import CostReportDetailed as CostReportDetailed
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
 from .gpu_baremetal_flavor import GPUBaremetalFlavor as GPUBaremetalFlavor
 from .instance_list_params import InstanceListParams as InstanceListParams
@@ -94,6 +96,7 @@ from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
+from .cost_report_aggregated import CostReportAggregated as CostReportAggregated
 from .file_share_list_params import FileShareListParams as FileShareListParams
 from .instance_action_params import InstanceActionParams as InstanceActionParams
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
@@ -109,6 +112,7 @@ from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
 from .load_balancer_l7_policy import LoadBalancerL7Policy as LoadBalancerL7Policy
 from .load_balancer_pool_list import LoadBalancerPoolList as LoadBalancerPoolList
+from .usage_report_get_params import UsageReportGetParams as UsageReportGetParams
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
 from .file_share_create_params import FileShareCreateParams as FileShareCreateParams
 from .file_share_resize_params import FileShareResizeParams as FileShareResizeParams
@@ -150,11 +154,14 @@ from .load_balancer_failover_params import LoadBalancerFailoverParams as LoadBal
 from .load_balancer_listener_detail import LoadBalancerListenerDetail as LoadBalancerListenerDetail
 from .placement_group_create_params import PlacementGroupCreateParams as PlacementGroupCreateParams
 from .reserved_fixed_ip_list_params import ReservedFixedIPListParams as ReservedFixedIPListParams
+from .cost_report_aggregated_monthly import CostReportAggregatedMonthly as CostReportAggregatedMonthly
 from .inference_region_capacity_list import InferenceRegionCapacityList as InferenceRegionCapacityList
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
 from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams
+from .cost_report_get_detailed_params import CostReportGetDetailedParams as CostReportGetDetailedParams
 from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
+from .cost_report_get_aggregated_params import CostReportGetAggregatedParams as CostReportGetAggregatedParams
 from .gpu_baremetal_cluster_list_params import GPUBaremetalClusterListParams as GPUBaremetalClusterListParams
 from .gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList as GPUBaremetalClusterServerList
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
@@ -173,4 +180,7 @@ from .instance_add_to_placement_group_params import (
 )
 from .instance_unassign_security_group_params import (
     InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,
+)
+from .cost_report_get_aggregated_monthly_params import (
+    CostReportGetAggregatedMonthlyParams as CostReportGetAggregatedMonthlyParams,
 )

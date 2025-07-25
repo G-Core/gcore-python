@@ -1,12 +1,43 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
+from typing import List, Union, Optional
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from .tag import Tag
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
-__all__ = ["FileShare"]
+__all__ = [
+    "FileShare",
+    "ShareSettings",
+    "ShareSettingsStandardShareSettingsOutputSerializer",
+    "ShareSettingsVastShareSettingsOutputSerializer",
+]
+
+
+class ShareSettingsStandardShareSettingsOutputSerializer(BaseModel):
+    type_name: Literal["standard"]
+    """Standard file share type"""
+
+
+class ShareSettingsVastShareSettingsOutputSerializer(BaseModel):
+    root_squash: bool
+    """Enables or disables root squash for NFS clients.
+
+    - If `true`, root squash is enabled: the root user is mapped to nobody for all
+      file and folder management operations on the export.
+    - If `false`, root squash is disabled: the NFS client `root` user retains root
+      privileges.
+    """
+
+    type_name: Literal["vast"]
+    """Vast file share type"""
+
+
+ShareSettings: TypeAlias = Annotated[
+    Union[ShareSettingsStandardShareSettingsOutputSerializer, ShareSettingsVastShareSettingsOutputSerializer],
+    PropertyInfo(discriminator="type_name"),
+]
 
 
 class FileShare(BaseModel):
@@ -48,6 +79,9 @@ class FileShare(BaseModel):
 
     May be null if the file share was created with volume type VAST
     """
+
+    share_settings: ShareSettings
+    """Share settings specific to the file share type"""
 
     size: int
     """File share size, GiB"""

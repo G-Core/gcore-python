@@ -21,7 +21,7 @@ class TestCustomRules:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -32,7 +32,7 @@ class TestCustomRules:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -140,7 +140,7 @@ class TestCustomRules:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.waap.domains.custom_rules.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -155,7 +155,7 @@ class TestCustomRules:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.waap.domains.custom_rules.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -173,7 +173,7 @@ class TestCustomRules:
     def test_method_update(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert custom_rule is None
 
@@ -181,7 +181,7 @@ class TestCustomRules:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -290,7 +290,7 @@ class TestCustomRules:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.waap.domains.custom_rules.with_raw_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -302,7 +302,7 @@ class TestCustomRules:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.waap.domains.custom_rules.with_streaming_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -315,19 +315,19 @@ class TestCustomRules:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(SyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.list(
-            domain_id=0,
+            domain_id=1,
             action="allow",
-            description="description",
-            enabled=True,
+            description="This rule blocks all the requests coming form a specific IP address.",
+            enabled=False,
             limit=0,
-            name="name",
+            name="Block by specific IP rule.",
             offset=0,
             ordering="-id",
         )
@@ -336,7 +336,7 @@ class TestCustomRules:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.waap.domains.custom_rules.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -347,7 +347,7 @@ class TestCustomRules:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.waap.domains.custom_rules.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -361,7 +361,7 @@ class TestCustomRules:
     def test_method_delete(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert custom_rule is None
 
@@ -369,7 +369,7 @@ class TestCustomRules:
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.waap.domains.custom_rules.with_raw_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -381,7 +381,7 @@ class TestCustomRules:
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.waap.domains.custom_rules.with_streaming_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -394,7 +394,7 @@ class TestCustomRules:
     @parametrize
     def test_method_delete_multiple(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
         assert custom_rule is None
@@ -402,7 +402,7 @@ class TestCustomRules:
     @parametrize
     def test_raw_response_delete_multiple(self, client: Gcore) -> None:
         response = client.waap.domains.custom_rules.with_raw_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
 
@@ -414,7 +414,7 @@ class TestCustomRules:
     @parametrize
     def test_streaming_response_delete_multiple(self, client: Gcore) -> None:
         with client.waap.domains.custom_rules.with_streaming_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         ) as response:
             assert not response.is_closed
@@ -429,7 +429,7 @@ class TestCustomRules:
     def test_method_get(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
@@ -437,7 +437,7 @@ class TestCustomRules:
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.waap.domains.custom_rules.with_raw_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -449,7 +449,7 @@ class TestCustomRules:
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.waap.domains.custom_rules.with_streaming_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -463,7 +463,7 @@ class TestCustomRules:
     def test_method_toggle(self, client: Gcore) -> None:
         custom_rule = client.waap.domains.custom_rules.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
         assert custom_rule is None
@@ -472,7 +472,7 @@ class TestCustomRules:
     def test_raw_response_toggle(self, client: Gcore) -> None:
         response = client.waap.domains.custom_rules.with_raw_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
 
@@ -485,7 +485,7 @@ class TestCustomRules:
     def test_streaming_response_toggle(self, client: Gcore) -> None:
         with client.waap.domains.custom_rules.with_streaming_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         ) as response:
             assert not response.is_closed
@@ -505,7 +505,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -516,7 +516,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.create(
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -624,7 +624,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.custom_rules.with_raw_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -639,7 +639,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.custom_rules.with_streaming_response.create(
-            domain_id=0,
+            domain_id=1,
             action={},
             conditions=[{}],
             enabled=True,
@@ -657,7 +657,7 @@ class TestAsyncCustomRules:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert custom_rule is None
 
@@ -665,7 +665,7 @@ class TestAsyncCustomRules:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
             action={
                 "allow": {},
                 "block": {
@@ -774,7 +774,7 @@ class TestAsyncCustomRules:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.custom_rules.with_raw_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -786,7 +786,7 @@ class TestAsyncCustomRules:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.custom_rules.with_streaming_response.update(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -799,19 +799,19 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.list(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(AsyncOffsetPage[WaapCustomRule], custom_rule, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.list(
-            domain_id=0,
+            domain_id=1,
             action="allow",
-            description="description",
-            enabled=True,
+            description="This rule blocks all the requests coming form a specific IP address.",
+            enabled=False,
             limit=0,
-            name="name",
+            name="Block by specific IP rule.",
             offset=0,
             ordering="-id",
         )
@@ -820,7 +820,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.custom_rules.with_raw_response.list(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -831,7 +831,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.custom_rules.with_streaming_response.list(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -845,7 +845,7 @@ class TestAsyncCustomRules:
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert custom_rule is None
 
@@ -853,7 +853,7 @@ class TestAsyncCustomRules:
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.custom_rules.with_raw_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -865,7 +865,7 @@ class TestAsyncCustomRules:
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.custom_rules.with_streaming_response.delete(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -878,7 +878,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_method_delete_multiple(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
         assert custom_rule is None
@@ -886,7 +886,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_raw_response_delete_multiple(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.custom_rules.with_raw_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         )
 
@@ -898,7 +898,7 @@ class TestAsyncCustomRules:
     @parametrize
     async def test_streaming_response_delete_multiple(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.custom_rules.with_streaming_response.delete_multiple(
-            domain_id=0,
+            domain_id=1,
             rule_ids=[0],
         ) as response:
             assert not response.is_closed
@@ -913,7 +913,7 @@ class TestAsyncCustomRules:
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
@@ -921,7 +921,7 @@ class TestAsyncCustomRules:
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.custom_rules.with_raw_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -933,7 +933,7 @@ class TestAsyncCustomRules:
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.custom_rules.with_streaming_response.get(
             rule_id=0,
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -947,7 +947,7 @@ class TestAsyncCustomRules:
     async def test_method_toggle(self, async_client: AsyncGcore) -> None:
         custom_rule = await async_client.waap.domains.custom_rules.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
         assert custom_rule is None
@@ -956,7 +956,7 @@ class TestAsyncCustomRules:
     async def test_raw_response_toggle(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.custom_rules.with_raw_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         )
 
@@ -969,7 +969,7 @@ class TestAsyncCustomRules:
     async def test_streaming_response_toggle(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.custom_rules.with_streaming_response.toggle(
             action="enable",
-            domain_id=0,
+            domain_id=1,
             rule_id=0,
         ) as response:
             assert not response.is_closed

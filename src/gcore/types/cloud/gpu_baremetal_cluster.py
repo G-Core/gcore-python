@@ -37,7 +37,7 @@ class GPUBaremetalCluster(BaseModel):
     created_at: Optional[str] = None
     """Datetime when the cluster was created"""
 
-    creator_task_id: str
+    creator_task_id: Optional[str] = None
     """Task that created this entity"""
 
     flavor: str
@@ -46,7 +46,7 @@ class GPUBaremetalCluster(BaseModel):
     image_id: str
     """Image ID"""
 
-    image_name: str
+    image_name: Optional[str] = None
     """Image name"""
 
     interfaces: Optional[List[Interface]] = None

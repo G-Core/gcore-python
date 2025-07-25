@@ -76,6 +76,14 @@ from .users.users import (
     UsersResourceWithStreamingResponse,
     AsyncUsersResourceWithStreamingResponse,
 )
+from .cost_reports import (
+    CostReportsResource,
+    AsyncCostReportsResource,
+    CostReportsResourceWithRawResponse,
+    AsyncCostReportsResourceWithRawResponse,
+    CostReportsResourceWithStreamingResponse,
+    AsyncCostReportsResourceWithStreamingResponse,
+)
 from .floating_ips import (
     FloatingIPsResource,
     AsyncFloatingIPsResource,
@@ -91,6 +99,14 @@ from .quotas.quotas import (
     AsyncQuotasResourceWithRawResponse,
     QuotasResourceWithStreamingResponse,
     AsyncQuotasResourceWithStreamingResponse,
+)
+from .usage_reports import (
+    UsageReportsResource,
+    AsyncUsageReportsResource,
+    UsageReportsResourceWithRawResponse,
+    AsyncUsageReportsResourceWithRawResponse,
+    UsageReportsResourceWithStreamingResponse,
+    AsyncUsageReportsResourceWithStreamingResponse,
 )
 from .placement_groups import (
     PlacementGroupsResource,
@@ -286,6 +302,14 @@ class CloudResource(SyncAPIResource):
         return AuditLogsResource(self._client)
 
     @cached_property
+    def cost_reports(self) -> CostReportsResource:
+        return CostReportsResource(self._client)
+
+    @cached_property
+    def usage_reports(self) -> UsageReportsResource:
+        return UsageReportsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -397,6 +421,14 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResource:
         return AsyncAuditLogsResource(self._client)
+
+    @cached_property
+    def cost_reports(self) -> AsyncCostReportsResource:
+        return AsyncCostReportsResource(self._client)
+
+    @cached_property
+    def usage_reports(self) -> AsyncUsageReportsResource:
+        return AsyncUsageReportsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -514,6 +546,14 @@ class CloudResourceWithRawResponse:
     def audit_logs(self) -> AuditLogsResourceWithRawResponse:
         return AuditLogsResourceWithRawResponse(self._cloud.audit_logs)
 
+    @cached_property
+    def cost_reports(self) -> CostReportsResourceWithRawResponse:
+        return CostReportsResourceWithRawResponse(self._cloud.cost_reports)
+
+    @cached_property
+    def usage_reports(self) -> UsageReportsResourceWithRawResponse:
+        return UsageReportsResourceWithRawResponse(self._cloud.usage_reports)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -610,6 +650,14 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResourceWithRawResponse:
         return AsyncAuditLogsResourceWithRawResponse(self._cloud.audit_logs)
+
+    @cached_property
+    def cost_reports(self) -> AsyncCostReportsResourceWithRawResponse:
+        return AsyncCostReportsResourceWithRawResponse(self._cloud.cost_reports)
+
+    @cached_property
+    def usage_reports(self) -> AsyncUsageReportsResourceWithRawResponse:
+        return AsyncUsageReportsResourceWithRawResponse(self._cloud.usage_reports)
 
 
 class CloudResourceWithStreamingResponse:
@@ -708,6 +756,14 @@ class CloudResourceWithStreamingResponse:
     def audit_logs(self) -> AuditLogsResourceWithStreamingResponse:
         return AuditLogsResourceWithStreamingResponse(self._cloud.audit_logs)
 
+    @cached_property
+    def cost_reports(self) -> CostReportsResourceWithStreamingResponse:
+        return CostReportsResourceWithStreamingResponse(self._cloud.cost_reports)
+
+    @cached_property
+    def usage_reports(self) -> UsageReportsResourceWithStreamingResponse:
+        return UsageReportsResourceWithStreamingResponse(self._cloud.usage_reports)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -804,3 +860,11 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResourceWithStreamingResponse:
         return AsyncAuditLogsResourceWithStreamingResponse(self._cloud.audit_logs)
+
+    @cached_property
+    def cost_reports(self) -> AsyncCostReportsResourceWithStreamingResponse:
+        return AsyncCostReportsResourceWithStreamingResponse(self._cloud.cost_reports)
+
+    @cached_property
+    def usage_reports(self) -> AsyncUsageReportsResourceWithStreamingResponse:
+        return AsyncUsageReportsResourceWithStreamingResponse(self._cloud.usage_reports)

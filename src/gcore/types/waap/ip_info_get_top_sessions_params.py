@@ -9,7 +9,11 @@ __all__ = ["IPInfoGetTopSessionsParams"]
 
 class IPInfoGetTopSessionsParams(TypedDict, total=False):
     domain_id: Required[int]
-    """The domain ID"""
+    """The identifier for a domain.
+
+    When specified, the response will exclusively contain data pertinent to the
+    indicated domain, filtering out information from other domains.
+    """
 
     ip: Required[str]
     """The IP address to check"""

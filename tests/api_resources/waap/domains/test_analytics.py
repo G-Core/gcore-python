@@ -25,7 +25,7 @@ class TestAnalytics:
     @parametrize
     def test_method_get_event_statistics(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(WaapEventStatistics, analytics, path=["response"])
@@ -33,7 +33,7 @@ class TestAnalytics:
     @parametrize
     def test_method_get_event_statistics_with_all_params(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             action=["block", "captcha"],
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -46,7 +46,7 @@ class TestAnalytics:
     @parametrize
     def test_raw_response_get_event_statistics(self, client: Gcore) -> None:
         response = client.waap.domains.analytics.with_raw_response.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
@@ -58,7 +58,7 @@ class TestAnalytics:
     @parametrize
     def test_streaming_response_get_event_statistics(self, client: Gcore) -> None:
         with client.waap.domains.analytics.with_streaming_response.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed
@@ -72,14 +72,14 @@ class TestAnalytics:
     @parametrize
     def test_method_list_ddos_attacks(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(SyncOffsetPage[WaapDDOSAttack], analytics, path=["response"])
 
     @parametrize
     def test_method_list_ddos_attacks_with_all_params(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
             end_time=parse_datetime("2019-12-27T18:11:19.117Z"),
             limit=0,
             offset=0,
@@ -91,7 +91,7 @@ class TestAnalytics:
     @parametrize
     def test_raw_response_list_ddos_attacks(self, client: Gcore) -> None:
         response = client.waap.domains.analytics.with_raw_response.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -102,7 +102,7 @@ class TestAnalytics:
     @parametrize
     def test_streaming_response_list_ddos_attacks(self, client: Gcore) -> None:
         with client.waap.domains.analytics.with_streaming_response.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,7 +115,7 @@ class TestAnalytics:
     @parametrize
     def test_method_list_ddos_info(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -124,7 +124,7 @@ class TestAnalytics:
     @parametrize
     def test_method_list_ddos_info_with_all_params(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -136,7 +136,7 @@ class TestAnalytics:
     @parametrize
     def test_raw_response_list_ddos_info(self, client: Gcore) -> None:
         response = client.waap.domains.analytics.with_raw_response.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -149,7 +149,7 @@ class TestAnalytics:
     @parametrize
     def test_streaming_response_list_ddos_info(self, client: Gcore) -> None:
         with client.waap.domains.analytics.with_streaming_response.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
@@ -164,7 +164,7 @@ class TestAnalytics:
     @parametrize
     def test_method_list_event_traffic(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -173,7 +173,7 @@ class TestAnalytics:
     @parametrize
     def test_method_list_event_traffic_with_all_params(self, client: Gcore) -> None:
         analytics = client.waap.domains.analytics.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -183,7 +183,7 @@ class TestAnalytics:
     @parametrize
     def test_raw_response_list_event_traffic(self, client: Gcore) -> None:
         response = client.waap.domains.analytics.with_raw_response.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -196,7 +196,7 @@ class TestAnalytics:
     @parametrize
     def test_streaming_response_list_event_traffic(self, client: Gcore) -> None:
         with client.waap.domains.analytics.with_streaming_response.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
@@ -217,7 +217,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_get_event_statistics(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(WaapEventStatistics, analytics, path=["response"])
@@ -225,7 +225,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_get_event_statistics_with_all_params(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             action=["block", "captcha"],
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -238,7 +238,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_raw_response_get_event_statistics(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.analytics.with_raw_response.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
@@ -250,7 +250,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_streaming_response_get_event_statistics(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.analytics.with_streaming_response.get_event_statistics(
-            domain_id=0,
+            domain_id=1,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed
@@ -264,14 +264,14 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_list_ddos_attacks(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
         )
         assert_matches_type(AsyncOffsetPage[WaapDDOSAttack], analytics, path=["response"])
 
     @parametrize
     async def test_method_list_ddos_attacks_with_all_params(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
             end_time=parse_datetime("2019-12-27T18:11:19.117Z"),
             limit=0,
             offset=0,
@@ -283,7 +283,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_raw_response_list_ddos_attacks(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.analytics.with_raw_response.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
         )
 
         assert response.is_closed is True
@@ -294,7 +294,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_streaming_response_list_ddos_attacks(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.analytics.with_streaming_response.list_ddos_attacks(
-            domain_id=0,
+            domain_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -307,7 +307,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_list_ddos_info(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -316,7 +316,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_list_ddos_info_with_all_params(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -328,7 +328,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_raw_response_list_ddos_info(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.analytics.with_raw_response.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -341,7 +341,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_streaming_response_list_ddos_info(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.analytics.with_streaming_response.list_ddos_info(
-            domain_id=0,
+            domain_id=1,
             group_by="URL",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
@@ -356,7 +356,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_list_event_traffic(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -365,7 +365,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_list_event_traffic_with_all_params(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.domains.analytics.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -375,7 +375,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_raw_response_list_event_traffic(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.analytics.with_raw_response.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -388,7 +388,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_streaming_response_list_event_traffic(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.analytics.with_streaming_response.list_event_traffic(
-            domain_id=0,
+            domain_id=1,
             resolution="daily",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
