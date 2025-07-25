@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.7.0 (2025-07-25)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/G-Core/gcore-python/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** aggregated API specs update ([56f5995](https://github.com/G-Core/gcore-python/commit/56f5995eafb29076d88fc586a2a05954399b6a30))
+* **api:** aggregated API specs update ([7c593d2](https://github.com/G-Core/gcore-python/commit/7c593d2e5a95b1b67182535dc7510c602f5d2108))
+* **api:** aggregated API specs update ([fdc5efd](https://github.com/G-Core/gcore-python/commit/fdc5efd0654c53fdfd29aba3a22072f001b0296e))
+* **cloud:** add cost and usage reports ([bd8f648](https://github.com/G-Core/gcore-python/commit/bd8f648c6f97121eede374cdd4aea754317f718b))
+* **streaming:** add streaming api ([025ee94](https://github.com/G-Core/gcore-python/commit/025ee94a20aed69abac1ffd608950f88dd6b4cda))
+
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([b64a2b6](https://github.com/G-Core/gcore-python/commit/b64a2b6bef89b3ec2075fa4f0ed3545a52cec0c9))
+* **parsing:** parse extra field types ([fc9c2a6](https://github.com/G-Core/gcore-python/commit/fc9c2a6795202626e23f5303d0d2617b41ed9557))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([e1a685b](https://github.com/G-Core/gcore-python/commit/e1a685b1719cb6d856fb088e56d7a384e7eca795))
+
+
+### Refactors
+
+* **cloud:** ignore deprecation warn in gpu baremetal polling methods ([6d8ae98](https://github.com/G-Core/gcore-python/commit/6d8ae9830f788b0b9fa49d9ef41ab9e06cd8485d))
+
 ## 0.6.0 (2025-07-18)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/G-Core/gcore-python/compare/v0.5.0...v0.6.0)
