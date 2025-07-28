@@ -20,12 +20,6 @@ class FloatingIP(BaseModel):
     creator_task_id: Optional[str] = None
     """Task that created this entity"""
 
-    dns_domain: Optional[str] = None
-    """This field is deprecated and can be ignored"""
-
-    dns_name: Optional[str] = None
-    """This field is deprecated and can be ignored"""
-
     fixed_ip_address: Optional[str] = None
     """IP address of the port the floating IP is attached to"""
 
@@ -52,9 +46,6 @@ class FloatingIP(BaseModel):
 
     status: Optional[FloatingIPStatus] = None
     """Floating IP status"""
-
-    subnet_id: Optional[str] = None
-    """This field is deprecated and can be ignored"""
 
     tags: List[Tag]
     """List of key-value tags associated with the resource.
