@@ -71,7 +71,7 @@ class Subnet(BaseModel):
     """
 
     has_router: Optional[bool] = None
-    """Subnet has router attached to it"""
+    """Deprecated. Always returns `false`."""
 
     host_routes: Optional[List[Route]] = None
     """List of custom static routes to advertise via DHCP."""
