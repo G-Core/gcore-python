@@ -12,8 +12,6 @@ from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 __all__ = [
     "SyncOffsetPage",
     "AsyncOffsetPage",
-    "SyncOffsetPageIam",
-    "AsyncOffsetPageIam",
     "SyncOffsetPageFastedgeApps",
     "AsyncOffsetPageFastedgeApps",
     "SyncOffsetPageFastedgeTemplates",
@@ -71,66 +69,6 @@ class AsyncOffsetPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         if not results:
             return []
         return results
-
-    @override
-    def next_page_info(self) -> Optional[PageInfo]:
-        offset = self._options.params.get("offset") or 0
-        if not isinstance(offset, int):
-            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
-
-        length = len(self._get_page_items())
-        current_count = offset + length
-
-        count = self.count
-        if count is None:
-            return None
-
-        if current_count < count:
-            return PageInfo(params={"offset": current_count})
-
-        return None
-
-
-class SyncOffsetPageIam(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    result: List[_T]
-    count: Optional[int] = None
-
-    @override
-    def _get_page_items(self) -> List[_T]:
-        result = self.result
-        if not result:
-            return []
-        return result
-
-    @override
-    def next_page_info(self) -> Optional[PageInfo]:
-        offset = self._options.params.get("offset") or 0
-        if not isinstance(offset, int):
-            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
-
-        length = len(self._get_page_items())
-        current_count = offset + length
-
-        count = self.count
-        if count is None:
-            return None
-
-        if current_count < count:
-            return PageInfo(params={"offset": current_count})
-
-        return None
-
-
-class AsyncOffsetPageIam(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    result: List[_T]
-    count: Optional[int] = None
-
-    @override
-    def _get_page_items(self) -> List[_T]:
-        result = self.result
-        if not result:
-            return []
-        return result
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
