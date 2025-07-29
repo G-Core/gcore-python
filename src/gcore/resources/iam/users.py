@@ -18,12 +18,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.iam import user_list_params, user_invite_params, user_update_params
-from ...pagination import SyncOffsetPageIam, AsyncOffsetPageIam
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.iam.user import User
 from ...types.iam.user_invite import UserInvite
 from ...types.iam.user_update import UserUpdate
 from ...types.iam.user_detailed import UserDetailed
+from ...types.iam.user_list_response import UserListResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -131,7 +131,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPageIam[User]:
+    ) -> SyncOffsetPage[UserListResponse]:
         """Get a list of users.
 
         Pass a value for the `limit` parameter in your request if
@@ -153,7 +153,7 @@ class UsersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/iam/users",
-            page=SyncOffsetPageIam[User],
+            page=SyncOffsetPage[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,7 +167,7 @@ class UsersResource(SyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            model=User,
+            model=UserListResponse,
         )
 
     def delete(
@@ -396,7 +396,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[User, AsyncOffsetPageIam[User]]:
+    ) -> AsyncPaginator[UserListResponse, AsyncOffsetPage[UserListResponse]]:
         """Get a list of users.
 
         Pass a value for the `limit` parameter in your request if
@@ -418,7 +418,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/iam/users",
-            page=AsyncOffsetPageIam[User],
+            page=AsyncOffsetPage[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -432,7 +432,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            model=User,
+            model=UserListResponse,
         )
 
     async def delete(
