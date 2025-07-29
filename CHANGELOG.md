@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.8.0 (2025-07-29)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/G-Core/gcore-python/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* **api:** aggregated API specs update ([7296a44](https://github.com/G-Core/gcore-python/commit/7296a445ea8d692bcc212a91f1e6f2ea7c100789))
+* **api:** aggregated API specs update ([bdd85b5](https://github.com/G-Core/gcore-python/commit/bdd85b5413ad87e01c6fca896c7160f6ee854491))
+
+
+### Bug Fixes
+
+* **iam:** remove obsolete pagination scheme ([85723b3](https://github.com/G-Core/gcore-python/commit/85723b333ed196f3501fdf84d7a7155bf0f700b7))
+* **iam:** user model path ([e5429bb](https://github.com/G-Core/gcore-python/commit/e5429bb95df2710c7937e1125af25a268e8428e0))
+
 ## 0.7.0 (2025-07-25)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/G-Core/gcore-python/compare/v0.6.0...v0.7.0)
