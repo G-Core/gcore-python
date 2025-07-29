@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["UserListResponse", "Group"]
+__all__ = ["User", "Group"]
 
 
 class Group(BaseModel):
@@ -24,7 +24,7 @@ class Group(BaseModel):
     """Group's name."""
 
 
-class UserListResponse(BaseModel):
+class User(BaseModel):
     id: Optional[int] = None
     """User's ID."""
 

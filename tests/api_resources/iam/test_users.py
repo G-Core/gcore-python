@@ -10,10 +10,10 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.iam import (
+    User,
     UserInvite,
     UserUpdate,
     UserDetailed,
-    UserListResponse,
 )
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
@@ -76,7 +76,7 @@ class TestUsers:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         user = client.iam.users.list()
-        assert_matches_type(SyncOffsetPage[UserListResponse], user, path=["response"])
+        assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -84,7 +84,7 @@ class TestUsers:
             limit=0,
             offset=0,
         )
-        assert_matches_type(SyncOffsetPage[UserListResponse], user, path=["response"])
+        assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -93,7 +93,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(SyncOffsetPage[UserListResponse], user, path=["response"])
+        assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -102,7 +102,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(SyncOffsetPage[UserListResponse], user, path=["response"])
+            assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -281,7 +281,7 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         user = await async_client.iam.users.list()
-        assert_matches_type(AsyncOffsetPage[UserListResponse], user, path=["response"])
+        assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -289,7 +289,7 @@ class TestAsyncUsers:
             limit=0,
             offset=0,
         )
-        assert_matches_type(AsyncOffsetPage[UserListResponse], user, path=["response"])
+        assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -298,7 +298,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(AsyncOffsetPage[UserListResponse], user, path=["response"])
+        assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -307,7 +307,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(AsyncOffsetPage[UserListResponse], user, path=["response"])
+            assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
