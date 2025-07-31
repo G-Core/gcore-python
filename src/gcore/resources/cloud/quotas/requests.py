@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import Literal
 
 import httpx
@@ -99,7 +99,7 @@ class RequestsResource(SyncAPIResource):
         *,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        status: Optional[List[Literal["done", "in progress", "rejected"]]] | NotGiven = NOT_GIVEN,
+        status: List[Literal["done", "in progress", "rejected"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -148,7 +148,7 @@ class RequestsResource(SyncAPIResource):
 
     def delete(
         self,
-        request_id: str,
+        request_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -171,8 +171,6 @@ class RequestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/cloud/v2/limits_request/{request_id}",
@@ -184,7 +182,7 @@ class RequestsResource(SyncAPIResource):
 
     def get(
         self,
-        request_id: str,
+        request_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -207,8 +205,6 @@ class RequestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get(
             f"/cloud/v2/limits_request/{request_id}",
             options=make_request_options(
@@ -291,7 +287,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         *,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        status: Optional[List[Literal["done", "in progress", "rejected"]]] | NotGiven = NOT_GIVEN,
+        status: List[Literal["done", "in progress", "rejected"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,7 +336,7 @@ class AsyncRequestsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        request_id: str,
+        request_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -363,8 +359,6 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/cloud/v2/limits_request/{request_id}",
@@ -376,7 +370,7 @@ class AsyncRequestsResource(AsyncAPIResource):
 
     async def get(
         self,
-        request_id: str,
+        request_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -399,8 +393,6 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._get(
             f"/cloud/v2/limits_request/{request_id}",
             options=make_request_options(
