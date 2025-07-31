@@ -23,6 +23,7 @@ from .app_update_params import AppUpdateParams as AppUpdateParams
 from .app_replace_params import AppReplaceParams as AppReplaceParams
 from .secret_list_params import SecretListParams as SecretListParams
 from .template_parameter import TemplateParameter as TemplateParameter
+from .binary_create_params import BinaryCreateParams as BinaryCreateParams
 from .binary_list_response import BinaryListResponse as BinaryListResponse
 from .kv_store_list_params import KvStoreListParams as KvStoreListParams
 from .secret_create_params import SecretCreateParams as SecretCreateParams

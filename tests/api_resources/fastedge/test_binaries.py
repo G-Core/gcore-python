@@ -9,13 +9,44 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.fastedge import Binary, BinaryListResponse
+from gcore.types.fastedge import Binary, BinaryShort, BinaryListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestBinaries:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_create(self, client: Gcore) -> None:
+        binary = client.fastedge.binaries.create(
+            b"raw file contents",
+        )
+        assert_matches_type(BinaryShort, binary, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Gcore) -> None:
+        response = client.fastedge.binaries.with_raw_response.create(
+            b"raw file contents",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        binary = response.parse()
+        assert_matches_type(BinaryShort, binary, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Gcore) -> None:
+        with client.fastedge.binaries.with_streaming_response.create(
+            b"raw file contents",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            binary = response.parse()
+            assert_matches_type(BinaryShort, binary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
@@ -109,6 +140,37 @@ class TestAsyncBinaries:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @parametrize
+    async def test_method_create(self, async_client: AsyncGcore) -> None:
+        binary = await async_client.fastedge.binaries.create(
+            b"raw file contents",
+        )
+        assert_matches_type(BinaryShort, binary, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
+        response = await async_client.fastedge.binaries.with_raw_response.create(
+            b"raw file contents",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        binary = await response.parse()
+        assert_matches_type(BinaryShort, binary, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
+        async with async_client.fastedge.binaries.with_streaming_response.create(
+            b"raw file contents",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            binary = await response.parse()
+            assert_matches_type(BinaryShort, binary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:

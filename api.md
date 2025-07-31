@@ -1301,6 +1301,7 @@ from gcore.types.fastedge import Binary, BinaryShort, BinaryListResponse
 
 Methods:
 
+- <code title="post /fastedge/v1/binaries/raw">client.fastedge.binaries.<a href="./src/gcore/resources/fastedge/binaries.py">create</a>(body, \*\*<a href="src/gcore/types/fastedge/binary_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/binary_short.py">BinaryShort</a></code>
 - <code title="get /fastedge/v1/binaries">client.fastedge.binaries.<a href="./src/gcore/resources/fastedge/binaries.py">list</a>() -> <a href="./src/gcore/types/fastedge/binary_list_response.py">BinaryListResponse</a></code>
 - <code title="delete /fastedge/v1/binaries/{id}">client.fastedge.binaries.<a href="./src/gcore/resources/fastedge/binaries.py">delete</a>(id) -> None</code>
 - <code title="get /fastedge/v1/binaries/{id}">client.fastedge.binaries.<a href="./src/gcore/resources/fastedge/binaries.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/binary.py">Binary</a></code>
