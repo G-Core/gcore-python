@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.9.0 (2025-07-31)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/G-Core/gcore-python/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** aggregated API specs update ([bf2d683](https://github.com/G-Core/gcore-python/commit/bf2d683bf679eb9412ebd278f9ca4eceb2f4ba6e))
+* **api:** aggregated API specs update ([95d8011](https://github.com/G-Core/gcore-python/commit/95d8011132b86e8bf5311c14d43aea7a416d778c))
+* **client:** support file upload requests ([980b86d](https://github.com/G-Core/gcore-python/commit/980b86dfcc7697fcc2e856bf030c971c54a509f1))
+* **fastedge:** add binaries create method ([04bd754](https://github.com/G-Core/gcore-python/commit/04bd754a175b1d3e3bfcef2abdd1c96081c535df))
+* **security:** add security api ([7e85df3](https://github.com/G-Core/gcore-python/commit/7e85df337055265317c988f67f6b0a4831dbdf73))
+
 ## 0.8.0 (2025-07-29)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/G-Core/gcore-python/compare/v0.7.0...v0.8.0)
