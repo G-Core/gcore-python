@@ -10,10 +10,12 @@ __all__ = [
     "GPUBaremetalFlavorSerializerWithoutPrice",
     "GPUBaremetalFlavorSerializerWithoutPriceHardwareDescription",
     "GPUBaremetalFlavorSerializerWithoutPriceHardwareProperties",
+    "GPUBaremetalFlavorSerializerWithoutPriceSupportedFeatures",
     "GPUBaremetalFlavorSerializerWithPrices",
     "GPUBaremetalFlavorSerializerWithPricesHardwareDescription",
     "GPUBaremetalFlavorSerializerWithPricesHardwareProperties",
     "GPUBaremetalFlavorSerializerWithPricesPrice",
+    "GPUBaremetalFlavorSerializerWithPricesSupportedFeatures",
 ]
 
 
@@ -45,6 +47,10 @@ class GPUBaremetalFlavorSerializerWithoutPriceHardwareProperties(BaseModel):
     """GPU model"""
 
 
+class GPUBaremetalFlavorSerializerWithoutPriceSupportedFeatures(BaseModel):
+    security_groups: bool
+
+
 class GPUBaremetalFlavorSerializerWithoutPrice(BaseModel):
     architecture: Optional[str] = None
     """Flavor architecture type"""
@@ -63,6 +69,9 @@ class GPUBaremetalFlavorSerializerWithoutPrice(BaseModel):
 
     name: str
     """Flavor name"""
+
+    supported_features: GPUBaremetalFlavorSerializerWithoutPriceSupportedFeatures
+    """Set of enabled features based on the flavor's type and configuration"""
 
 
 class GPUBaremetalFlavorSerializerWithPricesHardwareDescription(BaseModel):
@@ -107,6 +116,10 @@ class GPUBaremetalFlavorSerializerWithPricesPrice(BaseModel):
     """Price status for the UI"""
 
 
+class GPUBaremetalFlavorSerializerWithPricesSupportedFeatures(BaseModel):
+    security_groups: bool
+
+
 class GPUBaremetalFlavorSerializerWithPrices(BaseModel):
     architecture: Optional[str] = None
     """Flavor architecture type"""
@@ -128,6 +141,9 @@ class GPUBaremetalFlavorSerializerWithPrices(BaseModel):
 
     price: GPUBaremetalFlavorSerializerWithPricesPrice
     """Flavor price"""
+
+    supported_features: GPUBaremetalFlavorSerializerWithPricesSupportedFeatures
+    """Set of enabled features based on the flavor's type and configuration"""
 
 
 GPUBaremetalFlavor: TypeAlias = Union[GPUBaremetalFlavorSerializerWithoutPrice, GPUBaremetalFlavorSerializerWithPrices]

@@ -40,9 +40,6 @@ class Region(BaseModel):
     created_on: datetime
     """This field is deprecated. Use `created_at` instead."""
 
-    ddos_endpoint_id: Optional[int] = None
-    """DDoS endpoint ID"""
-
     display_name: str
     """Human-readable region name"""
 
@@ -69,6 +66,9 @@ class Region(BaseModel):
 
     has_dbaas: bool
     """Region has DBAAS service"""
+
+    has_ddos: bool
+    """Region has Advanced DDoS Protection capability"""
 
     has_k8s: bool
     """Region has managed kubernetes capability"""
@@ -99,3 +99,6 @@ class Region(BaseModel):
 
     zone: Optional[Literal["AMERICAS", "APAC", "EMEA", "RUSSIA_AND_CIS"]] = None
     """Geographical zone"""
+
+    ddos_endpoint_id: Optional[int] = None
+    """DDoS endpoint ID"""
