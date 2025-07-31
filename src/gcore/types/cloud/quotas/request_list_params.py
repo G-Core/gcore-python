@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["RequestListParams"]
@@ -18,5 +18,5 @@ class RequestListParams(TypedDict, total=False):
     Offset value is used to exclude the first set of records from the result
     """
 
-    status: Optional[List[Literal["done", "in progress", "rejected"]]]
+    status: List[Literal["done", "in progress", "rejected"]]
     """List of limit requests statuses for filtering"""

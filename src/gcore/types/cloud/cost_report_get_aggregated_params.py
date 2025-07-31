@@ -69,6 +69,9 @@ class CostReportGetAggregatedParams(TypedDict, total=False):
     response_format: Literal["csv_totals", "json"]
     """Format of the response (csv or json)."""
 
+    rounding: bool
+    """Round cost values to 5 decimal places. When false, returns full precision."""
+
     schema_filter: SchemaFilter
     """Extended filter for field filtering."""
 

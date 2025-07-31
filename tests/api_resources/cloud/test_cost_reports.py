@@ -39,6 +39,7 @@ class TestCostReports:
             projects=[16, 17, 18, 19, 20],
             regions=[1, 2, 3],
             response_format="csv_totals",
+            rounding=True,
             schema_filter={
                 "field": "flavor",
                 "type": "instance",
@@ -104,6 +105,7 @@ class TestCostReports:
             time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             regions=[1, 2, 3],
             response_format="csv_totals",
+            rounding=True,
             schema_filter={
                 "field": "flavor",
                 "type": "instance",
@@ -173,6 +175,7 @@ class TestCostReports:
             projects=[16, 17, 18, 19, 20],
             regions=[1, 2, 3],
             response_format="csv_records",
+            rounding=True,
             schema_filter={
                 "field": "flavor",
                 "type": "instance",
@@ -257,6 +260,7 @@ class TestAsyncCostReports:
             projects=[16, 17, 18, 19, 20],
             regions=[1, 2, 3],
             response_format="csv_totals",
+            rounding=True,
             schema_filter={
                 "field": "flavor",
                 "type": "instance",
@@ -322,6 +326,7 @@ class TestAsyncCostReports:
             time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             regions=[1, 2, 3],
             response_format="csv_totals",
+            rounding=True,
             schema_filter={
                 "field": "flavor",
                 "type": "instance",
@@ -391,6 +396,7 @@ class TestAsyncCostReports:
             projects=[16, 17, 18, 19, 20],
             regions=[1, 2, 3],
             response_format="csv_records",
+            rounding=True,
             schema_filter={
                 "field": "flavor",
                 "type": "instance",
