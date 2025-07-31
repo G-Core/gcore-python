@@ -60,6 +60,7 @@ class CostReportsResource(SyncAPIResource):
         projects: Iterable[int] | NotGiven = NOT_GIVEN,
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
+        rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_aggregated_params.SchemaFilter | NotGiven = NOT_GIVEN,
         tags: cost_report_get_aggregated_params.Tags | NotGiven = NOT_GIVEN,
         types: List[
@@ -128,6 +129,8 @@ class CostReportsResource(SyncAPIResource):
 
           response_format: Format of the response (csv or json).
 
+          rounding: Round cost values to 5 decimal places. When false, returns full precision.
+
           schema_filter: Extended filter for field filtering.
 
           tags: Filter by tags
@@ -152,6 +155,7 @@ class CostReportsResource(SyncAPIResource):
                     "projects": projects,
                     "regions": regions,
                     "response_format": response_format,
+                    "rounding": rounding,
                     "schema_filter": schema_filter,
                     "tags": tags,
                     "types": types,
@@ -171,6 +175,7 @@ class CostReportsResource(SyncAPIResource):
         time_to: Union[str, datetime],
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
+        rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | NotGiven = NOT_GIVEN,
         tags: cost_report_get_aggregated_monthly_params.Tags | NotGiven = NOT_GIVEN,
         types: List[
@@ -230,6 +235,8 @@ class CostReportsResource(SyncAPIResource):
 
           response_format: Format of the response (`csv_totals` or json).
 
+          rounding: Round cost values to 5 decimal places. When false, returns full precision.
+
           schema_filter: Extended filter for field filtering.
 
           tags: Filter by tags
@@ -252,6 +259,7 @@ class CostReportsResource(SyncAPIResource):
                     "time_to": time_to,
                     "regions": regions,
                     "response_format": response_format,
+                    "rounding": rounding,
                     "schema_filter": schema_filter,
                     "tags": tags,
                     "types": types,
@@ -275,6 +283,7 @@ class CostReportsResource(SyncAPIResource):
         projects: Iterable[int] | NotGiven = NOT_GIVEN,
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_records", "json"] | NotGiven = NOT_GIVEN,
+        rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_detailed_params.SchemaFilter | NotGiven = NOT_GIVEN,
         sorting: Iterable[cost_report_get_detailed_params.Sorting] | NotGiven = NOT_GIVEN,
         tags: cost_report_get_detailed_params.Tags | NotGiven = NOT_GIVEN,
@@ -349,6 +358,8 @@ class CostReportsResource(SyncAPIResource):
 
           response_format: Format of the response (csv or json).
 
+          rounding: Round cost values to 5 decimal places. When false, returns full precision.
+
           schema_filter: Extended filter for field filtering.
 
           sorting: List of sorting filters (JSON objects) fields: project. directions: asc, desc.
@@ -377,6 +388,7 @@ class CostReportsResource(SyncAPIResource):
                     "projects": projects,
                     "regions": regions,
                     "response_format": response_format,
+                    "rounding": rounding,
                     "schema_filter": schema_filter,
                     "sorting": sorting,
                     "tags": tags,
@@ -420,6 +432,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
         projects: Iterable[int] | NotGiven = NOT_GIVEN,
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
+        rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_aggregated_params.SchemaFilter | NotGiven = NOT_GIVEN,
         tags: cost_report_get_aggregated_params.Tags | NotGiven = NOT_GIVEN,
         types: List[
@@ -488,6 +501,8 @@ class AsyncCostReportsResource(AsyncAPIResource):
 
           response_format: Format of the response (csv or json).
 
+          rounding: Round cost values to 5 decimal places. When false, returns full precision.
+
           schema_filter: Extended filter for field filtering.
 
           tags: Filter by tags
@@ -512,6 +527,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
                     "projects": projects,
                     "regions": regions,
                     "response_format": response_format,
+                    "rounding": rounding,
                     "schema_filter": schema_filter,
                     "tags": tags,
                     "types": types,
@@ -531,6 +547,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
         time_to: Union[str, datetime],
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
+        rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | NotGiven = NOT_GIVEN,
         tags: cost_report_get_aggregated_monthly_params.Tags | NotGiven = NOT_GIVEN,
         types: List[
@@ -590,6 +607,8 @@ class AsyncCostReportsResource(AsyncAPIResource):
 
           response_format: Format of the response (`csv_totals` or json).
 
+          rounding: Round cost values to 5 decimal places. When false, returns full precision.
+
           schema_filter: Extended filter for field filtering.
 
           tags: Filter by tags
@@ -612,6 +631,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
                     "time_to": time_to,
                     "regions": regions,
                     "response_format": response_format,
+                    "rounding": rounding,
                     "schema_filter": schema_filter,
                     "tags": tags,
                     "types": types,
@@ -635,6 +655,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
         projects: Iterable[int] | NotGiven = NOT_GIVEN,
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_records", "json"] | NotGiven = NOT_GIVEN,
+        rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_detailed_params.SchemaFilter | NotGiven = NOT_GIVEN,
         sorting: Iterable[cost_report_get_detailed_params.Sorting] | NotGiven = NOT_GIVEN,
         tags: cost_report_get_detailed_params.Tags | NotGiven = NOT_GIVEN,
@@ -709,6 +730,8 @@ class AsyncCostReportsResource(AsyncAPIResource):
 
           response_format: Format of the response (csv or json).
 
+          rounding: Round cost values to 5 decimal places. When false, returns full precision.
+
           schema_filter: Extended filter for field filtering.
 
           sorting: List of sorting filters (JSON objects) fields: project. directions: asc, desc.
@@ -737,6 +760,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
                     "projects": projects,
                     "regions": regions,
                     "response_format": response_format,
+                    "rounding": rounding,
                     "schema_filter": schema_filter,
                     "sorting": sorting,
                     "tags": tags,
