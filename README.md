@@ -1,7 +1,8 @@
 # Gcore Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/gcore.svg?label=pypi%20(stable))](https://pypi.org/project/gcore/)
+[![PyPI version](https://img.shields.io/pypi/v/gcore.svg?label=pypi%20(stable))[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FG-Core%2Fgcore-python.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FG-Core%2Fgcore-python?ref=badge_shield)
+](https://pypi.org/project/gcore/)
 
 The Gcore Python library provides convenient access to the Gcore REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -483,3 +484,7 @@ Python 3.8 or higher.
 ## Contributing
 
 See [the contributing documentation](./CONTRIBUTING.md).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FG-Core%2Fgcore-python.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FG-Core%2Fgcore-python?ref=badge_large)
