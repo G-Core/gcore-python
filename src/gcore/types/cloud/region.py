@@ -22,9 +22,6 @@ class Region(BaseModel):
     access_level: Literal["core", "edge"]
     """The access level of the region."""
 
-    ai_service_endpoint_id: Optional[int] = None
-    """AI service API endpoint ID"""
-
     available_volume_types: Optional[List[str]] = None
     """List of available volume types, 'standard', '`ssd_hiiops`', 'cold']."""
 
