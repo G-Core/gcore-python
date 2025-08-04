@@ -45,6 +45,12 @@ class HealthMonitor(BaseModel):
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str] = None
+    """Expected HTTP response codes.
+
+    Can be a single code or a range of codes. Can only be used together with `HTTP`
+    or `HTTPS` health monitor type. For example,
+    200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
+    """
 
     http_method: Optional[HTTPMethod] = None
     """HTTP method"""

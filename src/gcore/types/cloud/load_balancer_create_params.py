@@ -147,7 +147,12 @@ class ListenerPoolHealthmonitor(TypedDict, total=False):
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
     expected_codes: Optional[str]
-    """Can only be used together with `HTTP` or `HTTPS` health monitor type."""
+    """Expected HTTP response codes.
+
+    Can be a single code or a range of codes. Can only be used together with `HTTP`
+    or `HTTPS` health monitor type. For example,
+    200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
+    """
 
     http_method: Optional[HTTPMethod]
     """HTTP method.
@@ -155,7 +160,7 @@ class ListenerPoolHealthmonitor(TypedDict, total=False):
     Can only be used together with `HTTP` or `HTTPS` health monitor type.
     """
 
-    max_retries_down: Optional[int]
+    max_retries_down: int
     """Number of failures before the member is switched to ERROR state."""
 
     url_path: Optional[str]
@@ -210,7 +215,7 @@ class ListenerPoolMember(TypedDict, total=False):
     Either `subnet_id` or `instance_id` should be provided
     """
 
-    weight: Optional[int]
+    weight: int
     """Member weight. Valid values are 0 < `weight` <= 256, defaults to 1."""
 
 
