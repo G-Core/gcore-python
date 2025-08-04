@@ -58,7 +58,7 @@ class HealthMonitorsResource(SyncAPIResource):
         type: LbHealthMonitorType,
         expected_codes: Optional[str] | NotGiven = NOT_GIVEN,
         http_method: Optional[HTTPMethod] | NotGiven = NOT_GIVEN,
-        max_retries_down: Optional[int] | NotGiven = NOT_GIVEN,
+        max_retries_down: int | NotGiven = NOT_GIVEN,
         url_path: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -85,7 +85,9 @@ class HealthMonitorsResource(SyncAPIResource):
 
           type: Health monitor type. Once health monitor is created, cannot be changed.
 
-          expected_codes: Can only be used together with `HTTP` or `HTTPS` health monitor type.
+          expected_codes: Expected HTTP response codes. Can be a single code or a range of codes. Can only
+              be used together with `HTTP` or `HTTPS` health monitor type. For example,
+              200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
 
           http_method: HTTP method. Can only be used together with `HTTP` or `HTTPS` health monitor
               type.
@@ -209,7 +211,7 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         type: LbHealthMonitorType,
         expected_codes: Optional[str] | NotGiven = NOT_GIVEN,
         http_method: Optional[HTTPMethod] | NotGiven = NOT_GIVEN,
-        max_retries_down: Optional[int] | NotGiven = NOT_GIVEN,
+        max_retries_down: int | NotGiven = NOT_GIVEN,
         url_path: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -236,7 +238,9 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
 
           type: Health monitor type. Once health monitor is created, cannot be changed.
 
-          expected_codes: Can only be used together with `HTTP` or `HTTPS` health monitor type.
+          expected_codes: Expected HTTP response codes. Can be a single code or a range of codes. Can only
+              be used together with `HTTP` or `HTTPS` health monitor type. For example,
+              200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
 
           http_method: HTTP method. Can only be used together with `HTTP` or `HTTPS` health monitor
               type.

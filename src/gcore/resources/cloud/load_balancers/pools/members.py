@@ -57,7 +57,7 @@ class MembersResource(SyncAPIResource):
         monitor_address: Optional[str] | NotGiven = NOT_GIVEN,
         monitor_port: Optional[int] | NotGiven = NOT_GIVEN,
         subnet_id: Optional[str] | NotGiven = NOT_GIVEN,
-        weight: Optional[int] | NotGiven = NOT_GIVEN,
+        weight: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,7 +222,7 @@ class AsyncMembersResource(AsyncAPIResource):
         monitor_address: Optional[str] | NotGiven = NOT_GIVEN,
         monitor_port: Optional[int] | NotGiven = NOT_GIVEN,
         subnet_id: Optional[str] | NotGiven = NOT_GIVEN,
-        weight: Optional[int] | NotGiven = NOT_GIVEN,
+        weight: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -58,5 +58,5 @@ class MemberAddParams(TypedDict, total=False):
     Either `subnet_id` or `instance_id` should be provided
     """
 
-    weight: Optional[int]
+    weight: int
     """Member weight. Valid values are 0 < `weight` <= 256, defaults to 1."""
