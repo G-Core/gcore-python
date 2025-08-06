@@ -20,9 +20,7 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import api_path_list_params, api_path_create_params, api_path_update_params
-from ....types.waap.domains.api_path_get_response import APIPathGetResponse
-from ....types.waap.domains.api_path_list_response import APIPathListResponse
-from ....types.waap.domains.api_path_create_response import APIPathCreateResponse
+from ....types.waap.domains.waap_api_path import WaapAPIPath
 
 __all__ = ["APIPathsResource", "AsyncAPIPathsResource"]
 
@@ -63,7 +61,7 @@ class APIPathsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIPathCreateResponse:
+    ) -> WaapAPIPath:
         """
         Create an API path for a domain
 
@@ -107,7 +105,7 @@ class APIPathsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIPathCreateResponse,
+            cast_to=WaapAPIPath,
         )
 
     def update(
@@ -214,7 +212,7 @@ class APIPathsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[APIPathListResponse]:
+    ) -> SyncOffsetPage[WaapAPIPath]:
         """
         Retrieve a list of API paths for a specific domain
 
@@ -253,7 +251,7 @@ class APIPathsResource(SyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/api-paths",
-            page=SyncOffsetPage[APIPathListResponse],
+            page=SyncOffsetPage[WaapAPIPath],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,7 +274,7 @@ class APIPathsResource(SyncAPIResource):
                     api_path_list_params.APIPathListParams,
                 ),
             ),
-            model=APIPathListResponse,
+            model=WaapAPIPath,
         )
 
     def delete(
@@ -329,7 +327,7 @@ class APIPathsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIPathGetResponse:
+    ) -> WaapAPIPath:
         """
         Retrieve a specific API path for a domain
 
@@ -353,7 +351,7 @@ class APIPathsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIPathGetResponse,
+            cast_to=WaapAPIPath,
         )
 
 
@@ -393,7 +391,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIPathCreateResponse:
+    ) -> WaapAPIPath:
         """
         Create an API path for a domain
 
@@ -437,7 +435,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIPathCreateResponse,
+            cast_to=WaapAPIPath,
         )
 
     async def update(
@@ -544,7 +542,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[APIPathListResponse, AsyncOffsetPage[APIPathListResponse]]:
+    ) -> AsyncPaginator[WaapAPIPath, AsyncOffsetPage[WaapAPIPath]]:
         """
         Retrieve a list of API paths for a specific domain
 
@@ -583,7 +581,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/waap/v1/domains/{domain_id}/api-paths",
-            page=AsyncOffsetPage[APIPathListResponse],
+            page=AsyncOffsetPage[WaapAPIPath],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -606,7 +604,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
                     api_path_list_params.APIPathListParams,
                 ),
             ),
-            model=APIPathListResponse,
+            model=WaapAPIPath,
         )
 
     async def delete(
@@ -659,7 +657,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIPathGetResponse:
+    ) -> WaapAPIPath:
         """
         Retrieve a specific API path for a domain
 
@@ -683,7 +681,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIPathGetResponse,
+            cast_to=WaapAPIPath,
         )
 
 

@@ -2,16 +2,30 @@
 
 from __future__ import annotations
 
+from .waap_insight import WaapInsight as WaapInsight
+from .waap_task_id import WaapTaskID as WaapTaskID
+from .waap_api_path import WaapAPIPath as WaapAPIPath
+from .waap_ddos_info import WaapDDOSInfo as WaapDDOSInfo
+from .waap_custom_rule import WaapCustomRule as WaapCustomRule
+from .waap_ddos_attack import WaapDDOSAttack as WaapDDOSAttack
+from .waap_advanced_rule import WaapAdvancedRule as WaapAdvancedRule
+from .waap_firewall_rule import WaapFirewallRule as WaapFirewallRule
+from .api_path_group_list import APIPathGroupList as APIPathGroupList
 from .insight_list_params import InsightListParams as InsightListParams
 from .api_path_list_params import APIPathListParams as APIPathListParams
-from .api_path_get_response import APIPathGetResponse as APIPathGetResponse
+from .waap_api_scan_result import WaapAPIScanResult as WaapAPIScanResult
+from .waap_insight_silence import WaapInsightSilence as WaapInsightSilence
+from .waap_request_details import WaapRequestDetails as WaapRequestDetails
+from .waap_request_summary import WaapRequestSummary as WaapRequestSummary
+from .waap_traffic_metrics import WaapTrafficMetrics as WaapTrafficMetrics
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
+from .waap_count_statistics import WaapCountStatistics as WaapCountStatistics
+from .waap_event_statistics import WaapEventStatistics as WaapEventStatistics
 from .api_path_create_params import APIPathCreateParams as APIPathCreateParams
-from .api_path_list_response import APIPathListResponse as APIPathListResponse
 from .api_path_update_params import APIPathUpdateParams as APIPathUpdateParams
 from .insight_replace_params import InsightReplaceParams as InsightReplaceParams
 from .custom_rule_list_params import CustomRuleListParams as CustomRuleListParams
-from .api_path_create_response import APIPathCreateResponse as APIPathCreateResponse
+from .waap_blocked_statistics import WaapBlockedStatistics as WaapBlockedStatistics
 from .advanced_rule_list_params import AdvancedRuleListParams as AdvancedRuleListParams
 from .custom_rule_create_params import CustomRuleCreateParams as CustomRuleCreateParams
 from .custom_rule_update_params import CustomRuleUpdateParams as CustomRuleUpdateParams
@@ -21,27 +35,23 @@ from .advanced_rule_update_params import AdvancedRuleUpdateParams as AdvancedRul
 from .firewall_rule_create_params import FirewallRuleCreateParams as FirewallRuleCreateParams
 from .firewall_rule_update_params import FirewallRuleUpdateParams as FirewallRuleUpdateParams
 from .insight_silence_list_params import InsightSilenceListParams as InsightSilenceListParams
-from .api_path_group_list_response import APIPathGroupListResponse as APIPathGroupListResponse
+from .waap_api_discovery_settings import WaapAPIDiscoverySettings as WaapAPIDiscoverySettings
 from .insight_silence_create_params import InsightSilenceCreateParams as InsightSilenceCreateParams
 from .insight_silence_update_params import InsightSilenceUpdateParams as InsightSilenceUpdateParams
-from .analytics_list_ddos_info_params import AnalyticsListDDOSInfoParams as AnalyticsListDDOSInfoParams
-from .analytics_list_ddos_attacks_params import AnalyticsListDDOSAttacksParams as AnalyticsListDDOSAttacksParams
+from .statistic_get_ddos_info_params import StatisticGetDDOSInfoParams as StatisticGetDDOSInfoParams
+from .statistic_get_ddos_attacks_params import StatisticGetDDOSAttacksParams as StatisticGetDDOSAttacksParams
 from .custom_rule_delete_multiple_params import CustomRuleDeleteMultipleParams as CustomRuleDeleteMultipleParams
-from .analytics_list_event_traffic_params import AnalyticsListEventTrafficParams as AnalyticsListEventTrafficParams
-from .api_discovery_get_settings_response import APIDiscoveryGetSettingsResponse as APIDiscoveryGetSettingsResponse
-from .api_discovery_scan_openapi_response import APIDiscoveryScanOpenAPIResponse as APIDiscoveryScanOpenAPIResponse
 from .api_discovery_upload_openapi_params import APIDiscoveryUploadOpenAPIParams as APIDiscoveryUploadOpenAPIParams
+from .statistic_get_traffic_series_params import StatisticGetTrafficSeriesParams as StatisticGetTrafficSeriesParams
 from .api_discovery_update_settings_params import APIDiscoveryUpdateSettingsParams as APIDiscoveryUpdateSettingsParams
 from .firewall_rule_delete_multiple_params import FirewallRuleDeleteMultipleParams as FirewallRuleDeleteMultipleParams
-from .analytics_get_event_statistics_params import (
-    AnalyticsGetEventStatisticsParams as AnalyticsGetEventStatisticsParams,
+from .statistic_get_requests_series_params import StatisticGetRequestsSeriesParams as StatisticGetRequestsSeriesParams
+from .statistic_get_traffic_series_response import (
+    StatisticGetTrafficSeriesResponse as StatisticGetTrafficSeriesResponse,
 )
-from .analytics_list_event_traffic_response import (
-    AnalyticsListEventTrafficResponse as AnalyticsListEventTrafficResponse,
+from .api_discovery_list_scan_results_params import (
+    APIDiscoveryListScanResultsParams as APIDiscoveryListScanResultsParams,
 )
-from .api_discovery_upload_openapi_response import (
-    APIDiscoveryUploadOpenAPIResponse as APIDiscoveryUploadOpenAPIResponse,
-)
-from .api_discovery_update_settings_response import (
-    APIDiscoveryUpdateSettingsResponse as APIDiscoveryUpdateSettingsResponse,
+from .statistic_get_events_aggregated_params import (
+    StatisticGetEventsAggregatedParams as StatisticGetEventsAggregatedParams,
 )

@@ -3,33 +3,140 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
-from .waap_block_page_data_param import WaapBlockPageDataParam
-from .waap_captcha_page_data_param import WaapCaptchaPageDataParam
-from .waap_handshake_page_data_param import WaapHandshakePageDataParam
-from .waap_block_csrf_page_data_param import WaapBlockCsrfPageDataParam
-from .waap_cookie_disabled_page_data_param import WaapCookieDisabledPageDataParam
-from .waap_javascript_disabled_page_data_param import WaapJavascriptDisabledPageDataParam
-
-__all__ = ["CustomPageSetUpdateParams"]
+__all__ = [
+    "CustomPageSetUpdateParams",
+    "Block",
+    "BlockCsrf",
+    "Captcha",
+    "CookieDisabled",
+    "Handshake",
+    "JavascriptDisabled",
+]
 
 
 class CustomPageSetUpdateParams(TypedDict, total=False):
-    block: Optional[WaapBlockPageDataParam]
+    block: Optional[Block]
 
-    block_csrf: Optional[WaapBlockCsrfPageDataParam]
+    block_csrf: Optional[BlockCsrf]
 
-    captcha: Optional[WaapCaptchaPageDataParam]
+    captcha: Optional[Captcha]
 
-    cookie_disabled: Optional[WaapCookieDisabledPageDataParam]
+    cookie_disabled: Optional[CookieDisabled]
 
     domains: Optional[Iterable[int]]
     """List of domain IDs that are associated with this page set"""
 
-    handshake: Optional[WaapHandshakePageDataParam]
+    handshake: Optional[Handshake]
 
-    javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam]
+    javascript_disabled: Optional[JavascriptDisabled]
 
     name: Optional[str]
     """Name of the custom page set"""
+
+
+class Block(TypedDict, total=False):
+    enabled: Required[bool]
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: str
+    """The text to display in the header of the custom page"""
+
+    logo: str
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    text: str
+    """The text to display in the body of the custom page"""
+
+    title: str
+    """The text to display in the title of the custom page"""
+
+
+class BlockCsrf(TypedDict, total=False):
+    enabled: Required[bool]
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: str
+    """The text to display in the header of the custom page"""
+
+    logo: str
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    text: str
+    """The text to display in the body of the custom page"""
+
+    title: str
+    """The text to display in the title of the custom page"""
+
+
+class Captcha(TypedDict, total=False):
+    enabled: Required[bool]
+    """Indicates whether the custom custom page is active or inactive"""
+
+    error: str
+    """Error message"""
+
+    header: str
+    """The text to display in the header of the custom page"""
+
+    logo: str
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    text: str
+    """The text to display in the body of the custom page"""
+
+    title: str
+    """The text to display in the title of the custom page"""
+
+
+class CookieDisabled(TypedDict, total=False):
+    enabled: Required[bool]
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: str
+    """The text to display in the header of the custom page"""
+
+    text: str
+    """The text to display in the body of the custom page"""
+
+
+class Handshake(TypedDict, total=False):
+    enabled: Required[bool]
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: str
+    """The text to display in the header of the custom page"""
+
+    logo: str
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    title: str
+    """The text to display in the title of the custom page"""
+
+
+class JavascriptDisabled(TypedDict, total=False):
+    enabled: Required[bool]
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: str
+    """The text to display in the header of the custom page"""
+
+    text: str
+    """The text to display in the body of the custom page"""

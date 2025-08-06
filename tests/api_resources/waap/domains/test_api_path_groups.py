@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.waap.domains import APIPathGroupListResponse
+from gcore.types.waap.domains import APIPathGroupList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestAPIPathGroups:
         api_path_group = client.waap.domains.api_path_groups.list(
             1,
         )
-        assert_matches_type(APIPathGroupListResponse, api_path_group, path=["response"])
+        assert_matches_type(APIPathGroupList, api_path_group, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -33,7 +33,7 @@ class TestAPIPathGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path_group = response.parse()
-        assert_matches_type(APIPathGroupListResponse, api_path_group, path=["response"])
+        assert_matches_type(APIPathGroupList, api_path_group, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -44,7 +44,7 @@ class TestAPIPathGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path_group = response.parse()
-            assert_matches_type(APIPathGroupListResponse, api_path_group, path=["response"])
+            assert_matches_type(APIPathGroupList, api_path_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -59,7 +59,7 @@ class TestAsyncAPIPathGroups:
         api_path_group = await async_client.waap.domains.api_path_groups.list(
             1,
         )
-        assert_matches_type(APIPathGroupListResponse, api_path_group, path=["response"])
+        assert_matches_type(APIPathGroupList, api_path_group, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -70,7 +70,7 @@ class TestAsyncAPIPathGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path_group = await response.parse()
-        assert_matches_type(APIPathGroupListResponse, api_path_group, path=["response"])
+        assert_matches_type(APIPathGroupList, api_path_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -81,6 +81,6 @@ class TestAsyncAPIPathGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path_group = await response.parse()
-            assert_matches_type(APIPathGroupListResponse, api_path_group, path=["response"])
+            assert_matches_type(APIPathGroupList, api_path_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True

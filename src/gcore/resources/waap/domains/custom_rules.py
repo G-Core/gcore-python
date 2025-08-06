@@ -18,7 +18,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import WaapRuleActionType, WaapCustomerRuleState
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import (
     custom_rule_list_params,
@@ -26,9 +25,7 @@ from ....types.waap.domains import (
     custom_rule_update_params,
     custom_rule_delete_multiple_params,
 )
-from ....types.waap.waap_custom_rule import WaapCustomRule
-from ....types.waap.waap_rule_action_type import WaapRuleActionType
-from ....types.waap.waap_customer_rule_state import WaapCustomerRuleState
+from ....types.waap.domains.waap_custom_rule import WaapCustomRule
 
 __all__ = ["CustomRulesResource", "AsyncCustomRulesResource"]
 
@@ -179,7 +176,7 @@ class CustomRulesResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: WaapRuleActionType | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "block", "captcha", "handshake", "monitor", "tag"] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -366,7 +363,7 @@ class CustomRulesResource(SyncAPIResource):
 
     def toggle(
         self,
-        action: WaapCustomerRuleState,
+        action: Literal["enable", "disable"],
         *,
         domain_id: int,
         rule_id: int,
@@ -553,7 +550,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: WaapRuleActionType | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "block", "captcha", "handshake", "monitor", "tag"] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -740,7 +737,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
 
     async def toggle(
         self,
-        action: WaapCustomerRuleState,
+        action: Literal["enable", "disable"],
         *,
         domain_id: int,
         rule_id: int,

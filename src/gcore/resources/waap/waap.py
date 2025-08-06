@@ -12,15 +12,15 @@ from .tags import (
     TagsResourceWithStreamingResponse,
     AsyncTagsResourceWithStreamingResponse,
 )
-from .ip_info import (
-    IPInfoResource,
-    AsyncIPInfoResource,
-    IPInfoResourceWithRawResponse,
-    AsyncIPInfoResourceWithRawResponse,
-    IPInfoResourceWithStreamingResponse,
-    AsyncIPInfoResourceWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .insights import (
+    InsightsResource,
+    AsyncInsightsResource,
+    InsightsResourceWithRawResponse,
+    AsyncInsightsResourceWithRawResponse,
+    InsightsResourceWithStreamingResponse,
+    AsyncInsightsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from .statistics import (
     StatisticsResource,
@@ -62,6 +62,14 @@ from .domains.domains import (
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
 )
+from .ip_info.ip_info import (
+    IPInfoResource,
+    AsyncIPInfoResource,
+    IPInfoResourceWithRawResponse,
+    AsyncIPInfoResourceWithRawResponse,
+    IPInfoResourceWithStreamingResponse,
+    AsyncIPInfoResourceWithStreamingResponse,
+)
 from .custom_page_sets import (
     CustomPageSetsResource,
     AsyncCustomPageSetsResource,
@@ -99,6 +107,10 @@ class WaapResource(SyncAPIResource):
     @cached_property
     def organizations(self) -> OrganizationsResource:
         return OrganizationsResource(self._client)
+
+    @cached_property
+    def insights(self) -> InsightsResource:
+        return InsightsResource(self._client)
 
     @cached_property
     def ip_info(self) -> IPInfoResource:
@@ -167,6 +179,10 @@ class AsyncWaapResource(AsyncAPIResource):
     @cached_property
     def organizations(self) -> AsyncOrganizationsResource:
         return AsyncOrganizationsResource(self._client)
+
+    @cached_property
+    def insights(self) -> AsyncInsightsResource:
+        return AsyncInsightsResource(self._client)
 
     @cached_property
     def ip_info(self) -> AsyncIPInfoResource:
@@ -244,6 +260,10 @@ class WaapResourceWithRawResponse:
         return OrganizationsResourceWithRawResponse(self._waap.organizations)
 
     @cached_property
+    def insights(self) -> InsightsResourceWithRawResponse:
+        return InsightsResourceWithRawResponse(self._waap.insights)
+
+    @cached_property
     def ip_info(self) -> IPInfoResourceWithRawResponse:
         return IPInfoResourceWithRawResponse(self._waap.ip_info)
 
@@ -279,6 +299,10 @@ class AsyncWaapResourceWithRawResponse:
     @cached_property
     def organizations(self) -> AsyncOrganizationsResourceWithRawResponse:
         return AsyncOrganizationsResourceWithRawResponse(self._waap.organizations)
+
+    @cached_property
+    def insights(self) -> AsyncInsightsResourceWithRawResponse:
+        return AsyncInsightsResourceWithRawResponse(self._waap.insights)
 
     @cached_property
     def ip_info(self) -> AsyncIPInfoResourceWithRawResponse:
@@ -318,6 +342,10 @@ class WaapResourceWithStreamingResponse:
         return OrganizationsResourceWithStreamingResponse(self._waap.organizations)
 
     @cached_property
+    def insights(self) -> InsightsResourceWithStreamingResponse:
+        return InsightsResourceWithStreamingResponse(self._waap.insights)
+
+    @cached_property
     def ip_info(self) -> IPInfoResourceWithStreamingResponse:
         return IPInfoResourceWithStreamingResponse(self._waap.ip_info)
 
@@ -353,6 +381,10 @@ class AsyncWaapResourceWithStreamingResponse:
     @cached_property
     def organizations(self) -> AsyncOrganizationsResourceWithStreamingResponse:
         return AsyncOrganizationsResourceWithStreamingResponse(self._waap.organizations)
+
+    @cached_property
+    def insights(self) -> AsyncInsightsResourceWithStreamingResponse:
+        return AsyncInsightsResourceWithStreamingResponse(self._waap.insights)
 
     @cached_property
     def ip_info(self) -> AsyncIPInfoResourceWithStreamingResponse:

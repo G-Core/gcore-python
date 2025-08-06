@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import TypedDict
-
-from ..waap_insight_silence_sort_by import WaapInsightSilenceSortBy
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["InsightSilenceListParams"]
 
@@ -29,5 +27,16 @@ class InsightSilenceListParams(TypedDict, total=False):
     offset: int
     """Number of items to skip"""
 
-    ordering: WaapInsightSilenceSortBy
+    ordering: Literal[
+        "id",
+        "-id",
+        "insight_type",
+        "-insight_type",
+        "comment",
+        "-comment",
+        "author",
+        "-author",
+        "expire_at",
+        "-expire_at",
+    ]
     """Sort the response by given field."""

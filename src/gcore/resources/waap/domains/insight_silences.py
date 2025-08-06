@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -18,15 +19,13 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import WaapInsightSilenceSortBy
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import (
     insight_silence_list_params,
     insight_silence_create_params,
     insight_silence_update_params,
 )
-from ....types.waap.waap_insight_silence import WaapInsightSilence
-from ....types.waap.waap_insight_silence_sort_by import WaapInsightSilenceSortBy
+from ....types.waap.domains.waap_insight_silence import WaapInsightSilence
 
 __all__ = ["InsightSilencesResource", "AsyncInsightSilencesResource"]
 
@@ -180,7 +179,19 @@ class InsightSilencesResource(SyncAPIResource):
         insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        ordering: WaapInsightSilenceSortBy | NotGiven = NOT_GIVEN,
+        ordering: Literal[
+            "id",
+            "-id",
+            "insight_type",
+            "-insight_type",
+            "comment",
+            "-comment",
+            "author",
+            "-author",
+            "expire_at",
+            "-expire_at",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -467,7 +478,19 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        ordering: WaapInsightSilenceSortBy | NotGiven = NOT_GIVEN,
+        ordering: Literal[
+            "id",
+            "-id",
+            "insight_type",
+            "-insight_type",
+            "comment",
+            "-comment",
+            "author",
+            "-author",
+            "expire_at",
+            "-expire_at",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

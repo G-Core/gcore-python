@@ -18,7 +18,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import WaapCustomerRuleState
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import (
     firewall_rule_list_params,
@@ -26,8 +25,7 @@ from ....types.waap.domains import (
     firewall_rule_update_params,
     firewall_rule_delete_multiple_params,
 )
-from ....types.waap.waap_firewall_rule import WaapFirewallRule
-from ....types.waap.waap_customer_rule_state import WaapCustomerRuleState
+from ....types.waap.domains.waap_firewall_rule import WaapFirewallRule
 
 __all__ = ["FirewallRulesResource", "AsyncFirewallRulesResource"]
 
@@ -363,7 +361,7 @@ class FirewallRulesResource(SyncAPIResource):
 
     def toggle(
         self,
-        action: WaapCustomerRuleState,
+        action: Literal["enable", "disable"],
         *,
         domain_id: int,
         rule_id: int,
@@ -735,7 +733,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
 
     async def toggle(
         self,
-        action: WaapCustomerRuleState,
+        action: Literal["enable", "disable"],
         *,
         domain_id: int,
         rule_id: int,

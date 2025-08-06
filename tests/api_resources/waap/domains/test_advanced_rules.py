@@ -10,7 +10,9 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.waap import WaapAdvancedRule
+from gcore.types.waap.domains import (
+    WaapAdvancedRule,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -153,7 +155,7 @@ class TestAdvancedRules:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         advanced_rule = client.waap.domains.advanced_rules.list(
             domain_id=1,
-            action="allow",
+            action="block",
             description="This rule blocks all the requests coming form a specific IP address",
             enabled=False,
             limit=0,
@@ -434,7 +436,7 @@ class TestAsyncAdvancedRules:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         advanced_rule = await async_client.waap.domains.advanced_rules.list(
             domain_id=1,
-            action="allow",
+            action="block",
             description="This rule blocks all the requests coming form a specific IP address",
             enabled=False,
             limit=0,
