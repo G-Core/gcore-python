@@ -1,11 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .waap_domain_policy import WaapDomainPolicy
 
-__all__ = ["WaapRuleSet", "Tag"]
+__all__ = ["WaapRuleSet", "Tag", "Rule"]
 
 
 class Tag(BaseModel):
@@ -17,6 +17,29 @@ class Tag(BaseModel):
 
     name: str
     """Name of the tag."""
+
+
+class Rule(BaseModel):
+    id: str
+    """Unique identifier for the security rule"""
+
+    action: Literal["Allow", "Block", "Captcha", "Gateway", "Handshake", "Monitor", "Composite"]
+    """The action taken by the WAAP upon rule activation."""
+
+    description: str
+    """Detailed description of the security rule"""
+
+    group: str
+    """The rule set group name to which the rule belongs"""
+
+    mode: bool
+    """Indicates if the security rule is active"""
+
+    name: str
+    """Name of the security rule"""
+
+    rule_set_id: int
+    """Identifier of the rule set to which the rule belongs"""
 
 
 class WaapRuleSet(BaseModel):
@@ -38,4 +61,4 @@ class WaapRuleSet(BaseModel):
     resource_slug: Optional[str] = None
     """The resource slug associated with the rule set."""
 
-    rules: Optional[List[WaapDomainPolicy]] = None
+    rules: Optional[List[Rule]] = None

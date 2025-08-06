@@ -3,14 +3,114 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from .waap_block_page_data import WaapBlockPageData
-from .waap_captcha_page_data import WaapCaptchaPageData
-from .waap_handshake_page_data import WaapHandshakePageData
-from .waap_block_csrf_page_data import WaapBlockCsrfPageData
-from .waap_cookie_disabled_page_data import WaapCookieDisabledPageData
-from .waap_javascript_disabled_page_data import WaapJavascriptDisabledPageData
 
-__all__ = ["WaapCustomPageSet"]
+__all__ = ["WaapCustomPageSet", "Block", "BlockCsrf", "Captcha", "CookieDisabled", "Handshake", "JavascriptDisabled"]
+
+
+class Block(BaseModel):
+    enabled: bool
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: Optional[str] = None
+    """The text to display in the header of the custom page"""
+
+    logo: Optional[str] = None
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    text: Optional[str] = None
+    """The text to display in the body of the custom page"""
+
+    title: Optional[str] = None
+    """The text to display in the title of the custom page"""
+
+
+class BlockCsrf(BaseModel):
+    enabled: bool
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: Optional[str] = None
+    """The text to display in the header of the custom page"""
+
+    logo: Optional[str] = None
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    text: Optional[str] = None
+    """The text to display in the body of the custom page"""
+
+    title: Optional[str] = None
+    """The text to display in the title of the custom page"""
+
+
+class Captcha(BaseModel):
+    enabled: bool
+    """Indicates whether the custom custom page is active or inactive"""
+
+    error: Optional[str] = None
+    """Error message"""
+
+    header: Optional[str] = None
+    """The text to display in the header of the custom page"""
+
+    logo: Optional[str] = None
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    text: Optional[str] = None
+    """The text to display in the body of the custom page"""
+
+    title: Optional[str] = None
+    """The text to display in the title of the custom page"""
+
+
+class CookieDisabled(BaseModel):
+    enabled: bool
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: Optional[str] = None
+    """The text to display in the header of the custom page"""
+
+    text: Optional[str] = None
+    """The text to display in the body of the custom page"""
+
+
+class Handshake(BaseModel):
+    enabled: bool
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: Optional[str] = None
+    """The text to display in the header of the custom page"""
+
+    logo: Optional[str] = None
+    """
+    Supported image types are JPEG, PNG and JPG, size is limited to width 450px,
+    height 130px. This should be a base 64 encoding of the full HTML img tag
+    compatible image, with the header included.
+    """
+
+    title: Optional[str] = None
+    """The text to display in the title of the custom page"""
+
+
+class JavascriptDisabled(BaseModel):
+    enabled: bool
+    """Indicates whether the custom custom page is active or inactive"""
+
+    header: Optional[str] = None
+    """The text to display in the header of the custom page"""
+
+    text: Optional[str] = None
+    """The text to display in the body of the custom page"""
 
 
 class WaapCustomPageSet(BaseModel):
@@ -20,17 +120,17 @@ class WaapCustomPageSet(BaseModel):
     name: str
     """Name of the custom page set"""
 
-    block: Optional[WaapBlockPageData] = None
+    block: Optional[Block] = None
 
-    block_csrf: Optional[WaapBlockCsrfPageData] = None
+    block_csrf: Optional[BlockCsrf] = None
 
-    captcha: Optional[WaapCaptchaPageData] = None
+    captcha: Optional[Captcha] = None
 
-    cookie_disabled: Optional[WaapCookieDisabledPageData] = None
+    cookie_disabled: Optional[CookieDisabled] = None
 
     domains: Optional[List[int]] = None
     """List of domain IDs that are associated with this page set"""
 
-    handshake: Optional[WaapHandshakePageData] = None
+    handshake: Optional[Handshake] = None
 
-    javascript_disabled: Optional[WaapJavascriptDisabledPageData] = None
+    javascript_disabled: Optional[JavascriptDisabled] = None

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -17,12 +18,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import WaapInsightSortBy, WaapInsightStatus
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import insight_list_params, insight_replace_params
-from ....types.waap.waap_insight import WaapInsight
-from ....types.waap.waap_insight_status import WaapInsightStatus
-from ....types.waap.waap_insight_sort_by import WaapInsightSortBy
+from ....types.waap.domains.waap_insight import WaapInsight
 
 __all__ = ["InsightsResource", "AsyncInsightsResource"]
 
@@ -56,8 +54,22 @@ class InsightsResource(SyncAPIResource):
         insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        ordering: WaapInsightSortBy | NotGiven = NOT_GIVEN,
-        status: Optional[List[WaapInsightStatus]] | NotGiven = NOT_GIVEN,
+        ordering: Literal[
+            "id",
+            "-id",
+            "insight_type",
+            "-insight_type",
+            "first_seen",
+            "-first_seen",
+            "last_seen",
+            "-last_seen",
+            "last_status_change",
+            "-last_status_change",
+            "status",
+            "-status",
+        ]
+        | NotGiven = NOT_GIVEN,
+        status: Optional[List[Literal["OPEN", "ACKED", "CLOSED"]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,7 +170,7 @@ class InsightsResource(SyncAPIResource):
         insight_id: str,
         *,
         domain_id: int,
-        status: WaapInsightStatus,
+        status: Literal["OPEN", "ACKED", "CLOSED"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -225,8 +237,22 @@ class AsyncInsightsResource(AsyncAPIResource):
         insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
-        ordering: WaapInsightSortBy | NotGiven = NOT_GIVEN,
-        status: Optional[List[WaapInsightStatus]] | NotGiven = NOT_GIVEN,
+        ordering: Literal[
+            "id",
+            "-id",
+            "insight_type",
+            "-insight_type",
+            "first_seen",
+            "-first_seen",
+            "last_seen",
+            "-last_seen",
+            "last_status_change",
+            "-last_status_change",
+            "status",
+            "-status",
+        ]
+        | NotGiven = NOT_GIVEN,
+        status: Optional[List[Literal["OPEN", "ACKED", "CLOSED"]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -327,7 +353,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         insight_id: str,
         *,
         domain_id: int,
-        status: WaapInsightStatus,
+        status: Literal["OPEN", "ACKED", "CLOSED"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -3,10 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import TypedDict
-
-from ..waap_insight_status import WaapInsightStatus
-from ..waap_insight_sort_by import WaapInsightSortBy
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["InsightListParams"]
 
@@ -27,8 +24,21 @@ class InsightListParams(TypedDict, total=False):
     offset: int
     """Number of items to skip"""
 
-    ordering: WaapInsightSortBy
+    ordering: Literal[
+        "id",
+        "-id",
+        "insight_type",
+        "-insight_type",
+        "first_seen",
+        "-first_seen",
+        "last_seen",
+        "-last_seen",
+        "last_status_change",
+        "-last_status_change",
+        "status",
+        "-status",
+    ]
     """Sort the response by given field."""
 
-    status: Optional[List[WaapInsightStatus]]
+    status: Optional[List[Literal["OPEN", "ACKED", "CLOSED"]]]
     """The status of the insight"""

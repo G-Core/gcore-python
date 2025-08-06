@@ -10,7 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.waap import WaapInsight
+from gcore.types.waap.domains import WaapInsight
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -32,6 +32,14 @@ from .ip_info import (
     IPInfoResourceWithStreamingResponse,
     AsyncIPInfoResourceWithStreamingResponse,
 )
+from .insights import (
+    InsightsResource,
+    AsyncInsightsResource,
+    InsightsResourceWithRawResponse,
+    AsyncInsightsResourceWithRawResponse,
+    InsightsResourceWithStreamingResponse,
+    AsyncInsightsResourceWithStreamingResponse,
+)
 from .statistics import (
     StatisticsResource,
     AsyncStatisticsResource,
@@ -102,6 +110,12 @@ __all__ = [
     "AsyncOrganizationsResourceWithRawResponse",
     "OrganizationsResourceWithStreamingResponse",
     "AsyncOrganizationsResourceWithStreamingResponse",
+    "InsightsResource",
+    "AsyncInsightsResource",
+    "InsightsResourceWithRawResponse",
+    "AsyncInsightsResourceWithRawResponse",
+    "InsightsResourceWithStreamingResponse",
+    "AsyncInsightsResourceWithStreamingResponse",
     "IPInfoResource",
     "AsyncIPInfoResource",
     "IPInfoResourceWithRawResponse",
