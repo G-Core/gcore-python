@@ -14,7 +14,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.waap.domains.api_path_group_list_response import APIPathGroupListResponse
+from ....types.waap.domains.api_path_group_list import APIPathGroupList
 
 __all__ = ["APIPathGroupsResource", "AsyncAPIPathGroupsResource"]
 
@@ -49,7 +49,7 @@ class APIPathGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIPathGroupListResponse:
+    ) -> APIPathGroupList:
         """
         Retrieve a list of API path groups for a specific domain
 
@@ -69,7 +69,7 @@ class APIPathGroupsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIPathGroupListResponse,
+            cast_to=APIPathGroupList,
         )
 
 
@@ -103,7 +103,7 @@ class AsyncAPIPathGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIPathGroupListResponse:
+    ) -> APIPathGroupList:
         """
         Retrieve a list of API path groups for a specific domain
 
@@ -123,7 +123,7 @@ class AsyncAPIPathGroupsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIPathGroupListResponse,
+            cast_to=APIPathGroupList,
         )
 
 

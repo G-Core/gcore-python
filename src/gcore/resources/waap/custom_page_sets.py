@@ -19,22 +19,14 @@ from ..._response import (
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.waap import (
-    WaapPageType,
     custom_page_set_list_params,
     custom_page_set_create_params,
     custom_page_set_update_params,
     custom_page_set_preview_params,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.waap.waap_page_type import WaapPageType
 from ...types.waap.waap_custom_page_set import WaapCustomPageSet
 from ...types.waap.waap_custom_page_preview import WaapCustomPagePreview
-from ...types.waap.waap_block_page_data_param import WaapBlockPageDataParam
-from ...types.waap.waap_captcha_page_data_param import WaapCaptchaPageDataParam
-from ...types.waap.waap_handshake_page_data_param import WaapHandshakePageDataParam
-from ...types.waap.waap_block_csrf_page_data_param import WaapBlockCsrfPageDataParam
-from ...types.waap.waap_cookie_disabled_page_data_param import WaapCookieDisabledPageDataParam
-from ...types.waap.waap_javascript_disabled_page_data_param import WaapJavascriptDisabledPageDataParam
 
 __all__ = ["CustomPageSetsResource", "AsyncCustomPageSetsResource"]
 
@@ -63,13 +55,13 @@ class CustomPageSetsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_create_params.Block] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[custom_page_set_create_params.BlockCsrf] | NotGiven = NOT_GIVEN,
+        captcha: Optional[custom_page_set_create_params.Captcha] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[custom_page_set_create_params.CookieDisabled] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[custom_page_set_create_params.Handshake] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[custom_page_set_create_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,13 +112,13 @@ class CustomPageSetsResource(SyncAPIResource):
         self,
         set_id: int,
         *,
-        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_update_params.Block] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[custom_page_set_update_params.BlockCsrf] | NotGiven = NOT_GIVEN,
+        captcha: Optional[custom_page_set_update_params.Captcha] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[custom_page_set_update_params.CookieDisabled] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[custom_page_set_update_params.Handshake] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[custom_page_set_update_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -309,7 +301,14 @@ class CustomPageSetsResource(SyncAPIResource):
     def preview(
         self,
         *,
-        page_type: WaapPageType,
+        page_type: Literal[
+            "block.html",
+            "block_csrf.html",
+            "captcha.html",
+            "cookieDisabled.html",
+            "handshake.html",
+            "javascriptDisabled.html",
+        ],
         error: Optional[str] | NotGiven = NOT_GIVEN,
         header: Optional[str] | NotGiven = NOT_GIVEN,
         logo: Optional[str] | NotGiven = NOT_GIVEN,
@@ -398,13 +397,13 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_create_params.Block] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[custom_page_set_create_params.BlockCsrf] | NotGiven = NOT_GIVEN,
+        captcha: Optional[custom_page_set_create_params.Captcha] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[custom_page_set_create_params.CookieDisabled] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[custom_page_set_create_params.Handshake] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[custom_page_set_create_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -455,13 +454,13 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         self,
         set_id: int,
         *,
-        block: Optional[WaapBlockPageDataParam] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[WaapBlockCsrfPageDataParam] | NotGiven = NOT_GIVEN,
-        captcha: Optional[WaapCaptchaPageDataParam] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[WaapCookieDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_update_params.Block] | NotGiven = NOT_GIVEN,
+        block_csrf: Optional[custom_page_set_update_params.BlockCsrf] | NotGiven = NOT_GIVEN,
+        captcha: Optional[custom_page_set_update_params.Captcha] | NotGiven = NOT_GIVEN,
+        cookie_disabled: Optional[custom_page_set_update_params.CookieDisabled] | NotGiven = NOT_GIVEN,
         domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[WaapHandshakePageDataParam] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[WaapJavascriptDisabledPageDataParam] | NotGiven = NOT_GIVEN,
+        handshake: Optional[custom_page_set_update_params.Handshake] | NotGiven = NOT_GIVEN,
+        javascript_disabled: Optional[custom_page_set_update_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -644,7 +643,14 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
     async def preview(
         self,
         *,
-        page_type: WaapPageType,
+        page_type: Literal[
+            "block.html",
+            "block_csrf.html",
+            "captcha.html",
+            "cookieDisabled.html",
+            "handshake.html",
+            "javascriptDisabled.html",
+        ],
         error: Optional[str] | NotGiven = NOT_GIVEN,
         header: Optional[str] | NotGiven = NOT_GIVEN,
         logo: Optional[str] | NotGiven = NOT_GIVEN,

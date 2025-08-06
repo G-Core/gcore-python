@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
-
-from ..waap_insight_status import WaapInsightStatus
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["InsightReplaceParams"]
 
@@ -13,5 +11,5 @@ class InsightReplaceParams(TypedDict, total=False):
     domain_id: Required[int]
     """The domain ID"""
 
-    status: Required[WaapInsightStatus]
+    status: Required[Literal["OPEN", "ACKED", "CLOSED"]]
     """The different statuses an insight can have"""

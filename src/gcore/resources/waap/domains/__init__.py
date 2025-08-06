@@ -16,14 +16,6 @@ from .insights import (
     InsightsResourceWithStreamingResponse,
     AsyncInsightsResourceWithStreamingResponse,
 )
-from .policies import (
-    PoliciesResource,
-    AsyncPoliciesResource,
-    PoliciesResourceWithRawResponse,
-    AsyncPoliciesResourceWithRawResponse,
-    PoliciesResourceWithStreamingResponse,
-    AsyncPoliciesResourceWithStreamingResponse,
-)
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -32,14 +24,6 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
-)
 from .api_paths import (
     APIPathsResource,
     AsyncAPIPathsResource,
@@ -47,6 +31,14 @@ from .api_paths import (
     AsyncAPIPathsResourceWithRawResponse,
     APIPathsResourceWithStreamingResponse,
     AsyncAPIPathsResourceWithStreamingResponse,
+)
+from .statistics import (
+    StatisticsResource,
+    AsyncStatisticsResource,
+    StatisticsResourceWithRawResponse,
+    AsyncStatisticsResourceWithRawResponse,
+    StatisticsResourceWithStreamingResponse,
+    AsyncStatisticsResourceWithStreamingResponse,
 )
 from .custom_rules import (
     CustomRulesResource,
@@ -134,18 +126,12 @@ __all__ = [
     "AsyncInsightSilencesResourceWithRawResponse",
     "InsightSilencesResourceWithStreamingResponse",
     "AsyncInsightSilencesResourceWithStreamingResponse",
-    "PoliciesResource",
-    "AsyncPoliciesResource",
-    "PoliciesResourceWithRawResponse",
-    "AsyncPoliciesResourceWithRawResponse",
-    "PoliciesResourceWithStreamingResponse",
-    "AsyncPoliciesResourceWithStreamingResponse",
-    "AnalyticsResource",
-    "AsyncAnalyticsResource",
-    "AnalyticsResourceWithRawResponse",
-    "AsyncAnalyticsResourceWithRawResponse",
-    "AnalyticsResourceWithStreamingResponse",
-    "AsyncAnalyticsResourceWithStreamingResponse",
+    "StatisticsResource",
+    "AsyncStatisticsResource",
+    "StatisticsResourceWithRawResponse",
+    "AsyncStatisticsResourceWithRawResponse",
+    "StatisticsResourceWithStreamingResponse",
+    "AsyncStatisticsResourceWithStreamingResponse",
     "CustomRulesResource",
     "AsyncCustomRulesResource",
     "CustomRulesResourceWithRawResponse",

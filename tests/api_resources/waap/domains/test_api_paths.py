@@ -10,11 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.waap.domains import (
-    APIPathGetResponse,
-    APIPathListResponse,
-    APIPathCreateResponse,
-)
+from gcore.types.waap.domains import WaapAPIPath
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +26,7 @@ class TestAPIPaths:
             method="GET",
             path="/api/v1/paths/{path_id}",
         )
-        assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -43,7 +39,7 @@ class TestAPIPaths:
             api_version="v1",
             tags=["sensitivedataurl", "highriskurl"],
         )
-        assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -57,7 +53,7 @@ class TestAPIPaths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path = response.parse()
-        assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -71,7 +67,7 @@ class TestAPIPaths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path = response.parse()
-            assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+            assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -134,7 +130,7 @@ class TestAPIPaths:
         api_path = client.waap.domains.api_paths.list(
             domain_id=1,
         )
-        assert_matches_type(SyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -152,7 +148,7 @@ class TestAPIPaths:
             source="API_DESCRIPTION_FILE",
             status=["CONFIRMED_API", "POTENTIAL_API"],
         )
-        assert_matches_type(SyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -163,7 +159,7 @@ class TestAPIPaths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path = response.parse()
-        assert_matches_type(SyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -174,7 +170,7 @@ class TestAPIPaths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path = response.parse()
-            assert_matches_type(SyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+            assert_matches_type(SyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -226,7 +222,7 @@ class TestAPIPaths:
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             domain_id=1,
         )
-        assert_matches_type(APIPathGetResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -238,7 +234,7 @@ class TestAPIPaths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path = response.parse()
-        assert_matches_type(APIPathGetResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -250,7 +246,7 @@ class TestAPIPaths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path = response.parse()
-            assert_matches_type(APIPathGetResponse, api_path, path=["response"])
+            assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -276,7 +272,7 @@ class TestAsyncAPIPaths:
             method="GET",
             path="/api/v1/paths/{path_id}",
         )
-        assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -289,7 +285,7 @@ class TestAsyncAPIPaths:
             api_version="v1",
             tags=["sensitivedataurl", "highriskurl"],
         )
-        assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -303,7 +299,7 @@ class TestAsyncAPIPaths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path = await response.parse()
-        assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -317,7 +313,7 @@ class TestAsyncAPIPaths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path = await response.parse()
-            assert_matches_type(APIPathCreateResponse, api_path, path=["response"])
+            assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -380,7 +376,7 @@ class TestAsyncAPIPaths:
         api_path = await async_client.waap.domains.api_paths.list(
             domain_id=1,
         )
-        assert_matches_type(AsyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -398,7 +394,7 @@ class TestAsyncAPIPaths:
             source="API_DESCRIPTION_FILE",
             status=["CONFIRMED_API", "POTENTIAL_API"],
         )
-        assert_matches_type(AsyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -409,7 +405,7 @@ class TestAsyncAPIPaths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path = await response.parse()
-        assert_matches_type(AsyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -420,7 +416,7 @@ class TestAsyncAPIPaths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path = await response.parse()
-            assert_matches_type(AsyncOffsetPage[APIPathListResponse], api_path, path=["response"])
+            assert_matches_type(AsyncOffsetPage[WaapAPIPath], api_path, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -472,7 +468,7 @@ class TestAsyncAPIPaths:
             path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             domain_id=1,
         )
-        assert_matches_type(APIPathGetResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -484,7 +480,7 @@ class TestAsyncAPIPaths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_path = await response.parse()
-        assert_matches_type(APIPathGetResponse, api_path, path=["response"])
+        assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -496,7 +492,7 @@ class TestAsyncAPIPaths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_path = await response.parse()
-            assert_matches_type(APIPathGetResponse, api_path, path=["response"])
+            assert_matches_type(WaapAPIPath, api_path, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

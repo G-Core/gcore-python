@@ -2,9 +2,9 @@
 
 from typing import Dict, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .waap_domain_status import WaapDomainStatus
 
 __all__ = ["WaapDetailedDomain", "Quotas"]
 
@@ -30,7 +30,7 @@ class WaapDetailedDomain(BaseModel):
     name: str
     """The domain name"""
 
-    status: WaapDomainStatus
+    status: Literal["active", "bypass", "monitor", "locked"]
     """The different statuses a domain can have"""
 
     quotas: Optional[Dict[str, Quotas]] = None

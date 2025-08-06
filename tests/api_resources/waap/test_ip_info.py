@@ -10,13 +10,12 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.waap import (
-    WaapIPInfo,
-    WaapIPInfoCounts,
     WaapIPDDOSInfoModel,
+    IPInfoGetIPInfoResponse,
     IPInfoGetTopURLsResponse,
-    IPInfoGetTopSessionsResponse,
     IPInfoGetTopUserAgentsResponse,
     IPInfoGetBlockedRequestsResponse,
+    IPInfoGetTopUserSessionsResponse,
     IPInfoGetAttackTimeSeriesResponse,
     IPInfoListAttackedCountriesResponse,
 )
@@ -26,37 +25,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestIPInfo:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
-
-    @parametrize
-    def test_method_get(self, client: Gcore) -> None:
-        ip_info = client.waap.ip_info.get(
-            ip="192.168.1.1",
-        )
-        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
-
-    @parametrize
-    def test_raw_response_get(self, client: Gcore) -> None:
-        response = client.waap.ip_info.with_raw_response.get(
-            ip="192.168.1.1",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ip_info = response.parse()
-        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
-
-    @parametrize
-    def test_streaming_response_get(self, client: Gcore) -> None:
-        with client.waap.ip_info.with_streaming_response.get(
-            ip="192.168.1.1",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ip_info = response.parse()
-            assert_matches_type(WaapIPInfo, ip_info, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_get_attack_time_series(self, client: Gcore) -> None:
@@ -124,45 +92,6 @@ class TestIPInfo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_get_counts(self, client: Gcore) -> None:
-        ip_info = client.waap.ip_info.get_counts(
-            ip="192.168.1.1",
-        )
-        assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-    @parametrize
-    def test_method_get_counts_with_all_params(self, client: Gcore) -> None:
-        ip_info = client.waap.ip_info.get_counts(
-            ip="192.168.1.1",
-            domain_id=1,
-        )
-        assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-    @parametrize
-    def test_raw_response_get_counts(self, client: Gcore) -> None:
-        response = client.waap.ip_info.with_raw_response.get_counts(
-            ip="192.168.1.1",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ip_info = response.parse()
-        assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-    @parametrize
-    def test_streaming_response_get_counts(self, client: Gcore) -> None:
-        with client.waap.ip_info.with_streaming_response.get_counts(
-            ip="192.168.1.1",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ip_info = response.parse()
-            assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
     def test_method_get_ddos_attack_series(self, client: Gcore) -> None:
         ip_info = client.waap.ip_info.get_ddos_attack_series(
             ip="192.168.1.1",
@@ -194,36 +123,33 @@ class TestIPInfo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_get_top_sessions(self, client: Gcore) -> None:
-        ip_info = client.waap.ip_info.get_top_sessions(
-            domain_id=1,
+    def test_method_get_ip_info(self, client: Gcore) -> None:
+        ip_info = client.waap.ip_info.get_ip_info(
             ip="192.168.1.1",
         )
-        assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
+        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
 
     @parametrize
-    def test_raw_response_get_top_sessions(self, client: Gcore) -> None:
-        response = client.waap.ip_info.with_raw_response.get_top_sessions(
-            domain_id=1,
+    def test_raw_response_get_ip_info(self, client: Gcore) -> None:
+        response = client.waap.ip_info.with_raw_response.get_ip_info(
             ip="192.168.1.1",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip_info = response.parse()
-        assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
+        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
 
     @parametrize
-    def test_streaming_response_get_top_sessions(self, client: Gcore) -> None:
-        with client.waap.ip_info.with_streaming_response.get_top_sessions(
-            domain_id=1,
+    def test_streaming_response_get_ip_info(self, client: Gcore) -> None:
+        with client.waap.ip_info.with_streaming_response.get_ip_info(
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip_info = response.parse()
-            assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
+            assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -296,6 +222,40 @@ class TestIPInfo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_get_top_user_sessions(self, client: Gcore) -> None:
+        ip_info = client.waap.ip_info.get_top_user_sessions(
+            domain_id=1,
+            ip="192.168.1.1",
+        )
+        assert_matches_type(IPInfoGetTopUserSessionsResponse, ip_info, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_top_user_sessions(self, client: Gcore) -> None:
+        response = client.waap.ip_info.with_raw_response.get_top_user_sessions(
+            domain_id=1,
+            ip="192.168.1.1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ip_info = response.parse()
+        assert_matches_type(IPInfoGetTopUserSessionsResponse, ip_info, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_top_user_sessions(self, client: Gcore) -> None:
+        with client.waap.ip_info.with_streaming_response.get_top_user_sessions(
+            domain_id=1,
+            ip="192.168.1.1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ip_info = response.parse()
+            assert_matches_type(IPInfoGetTopUserSessionsResponse, ip_info, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_list_attacked_countries(self, client: Gcore) -> None:
         ip_info = client.waap.ip_info.list_attacked_countries(
             ip="192.168.1.1",
@@ -331,37 +291,6 @@ class TestAsyncIPInfo:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
-
-    @parametrize
-    async def test_method_get(self, async_client: AsyncGcore) -> None:
-        ip_info = await async_client.waap.ip_info.get(
-            ip="192.168.1.1",
-        )
-        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
-
-    @parametrize
-    async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
-        response = await async_client.waap.ip_info.with_raw_response.get(
-            ip="192.168.1.1",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ip_info = await response.parse()
-        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
-        async with async_client.waap.ip_info.with_streaming_response.get(
-            ip="192.168.1.1",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ip_info = await response.parse()
-            assert_matches_type(WaapIPInfo, ip_info, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_get_attack_time_series(self, async_client: AsyncGcore) -> None:
@@ -429,45 +358,6 @@ class TestAsyncIPInfo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_get_counts(self, async_client: AsyncGcore) -> None:
-        ip_info = await async_client.waap.ip_info.get_counts(
-            ip="192.168.1.1",
-        )
-        assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-    @parametrize
-    async def test_method_get_counts_with_all_params(self, async_client: AsyncGcore) -> None:
-        ip_info = await async_client.waap.ip_info.get_counts(
-            ip="192.168.1.1",
-            domain_id=1,
-        )
-        assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-    @parametrize
-    async def test_raw_response_get_counts(self, async_client: AsyncGcore) -> None:
-        response = await async_client.waap.ip_info.with_raw_response.get_counts(
-            ip="192.168.1.1",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ip_info = await response.parse()
-        assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_get_counts(self, async_client: AsyncGcore) -> None:
-        async with async_client.waap.ip_info.with_streaming_response.get_counts(
-            ip="192.168.1.1",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ip_info = await response.parse()
-            assert_matches_type(WaapIPInfoCounts, ip_info, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
     async def test_method_get_ddos_attack_series(self, async_client: AsyncGcore) -> None:
         ip_info = await async_client.waap.ip_info.get_ddos_attack_series(
             ip="192.168.1.1",
@@ -499,36 +389,33 @@ class TestAsyncIPInfo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_get_top_sessions(self, async_client: AsyncGcore) -> None:
-        ip_info = await async_client.waap.ip_info.get_top_sessions(
-            domain_id=1,
+    async def test_method_get_ip_info(self, async_client: AsyncGcore) -> None:
+        ip_info = await async_client.waap.ip_info.get_ip_info(
             ip="192.168.1.1",
         )
-        assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
+        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
 
     @parametrize
-    async def test_raw_response_get_top_sessions(self, async_client: AsyncGcore) -> None:
-        response = await async_client.waap.ip_info.with_raw_response.get_top_sessions(
-            domain_id=1,
+    async def test_raw_response_get_ip_info(self, async_client: AsyncGcore) -> None:
+        response = await async_client.waap.ip_info.with_raw_response.get_ip_info(
             ip="192.168.1.1",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip_info = await response.parse()
-        assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
+        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
 
     @parametrize
-    async def test_streaming_response_get_top_sessions(self, async_client: AsyncGcore) -> None:
-        async with async_client.waap.ip_info.with_streaming_response.get_top_sessions(
-            domain_id=1,
+    async def test_streaming_response_get_ip_info(self, async_client: AsyncGcore) -> None:
+        async with async_client.waap.ip_info.with_streaming_response.get_ip_info(
             ip="192.168.1.1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip_info = await response.parse()
-            assert_matches_type(IPInfoGetTopSessionsResponse, ip_info, path=["response"])
+            assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -597,6 +484,40 @@ class TestAsyncIPInfo:
 
             ip_info = await response.parse()
             assert_matches_type(IPInfoGetTopUserAgentsResponse, ip_info, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get_top_user_sessions(self, async_client: AsyncGcore) -> None:
+        ip_info = await async_client.waap.ip_info.get_top_user_sessions(
+            domain_id=1,
+            ip="192.168.1.1",
+        )
+        assert_matches_type(IPInfoGetTopUserSessionsResponse, ip_info, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_top_user_sessions(self, async_client: AsyncGcore) -> None:
+        response = await async_client.waap.ip_info.with_raw_response.get_top_user_sessions(
+            domain_id=1,
+            ip="192.168.1.1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ip_info = await response.parse()
+        assert_matches_type(IPInfoGetTopUserSessionsResponse, ip_info, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_top_user_sessions(self, async_client: AsyncGcore) -> None:
+        async with async_client.waap.ip_info.with_streaming_response.get_top_user_sessions(
+            domain_id=1,
+            ip="192.168.1.1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ip_info = await response.parse()
+            assert_matches_type(IPInfoGetTopUserSessionsResponse, ip_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
