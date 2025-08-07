@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.10.0 (2025-08-07)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/G-Core/gcore-python/compare/v0.9.0...v0.10.0)
+
+### ⚠ BREAKING CHANGES
+
+* **security:** rename bgp_announces change() to toggle()
+* **waap:** refactor WAAP models
+
+### Features
+
+* add example snippet to invite user and assign cloud role ([4baccef](https://github.com/G-Core/gcore-python/commit/4baccef0422ea20f5abbfc9808f447cc0df02e30))
+* **api:** aggregated API specs update ([70ea19b](https://github.com/G-Core/gcore-python/commit/70ea19b8c9cd53810565c71dba1fc62e03a81090))
+* **api:** aggregated API specs update ([163edcb](https://github.com/G-Core/gcore-python/commit/163edcb6b3ed69edf0e7c6711217433a73564e10))
+
+
+### Bug Fixes
+
+* **security:** rename bgp_announces change() to toggle() ([070f06a](https://github.com/G-Core/gcore-python/commit/070f06ad558afb0d608c4de45e4ce8e7d118dccd))
+
+
+### Chores
+
+* **internal:** fix ruff target version ([c91b1b3](https://github.com/G-Core/gcore-python/commit/c91b1b38e01a3a65b3b82e01bf6babd6a73ac233))
+
+
+### Refactors
+
+* **waap:** refactor WAAP models ([fb20add](https://github.com/G-Core/gcore-python/commit/fb20add86c0b2d8e122afe9216d5b84bcd59fb11))
+
 ## 0.9.0 (2025-07-31)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/G-Core/gcore-python/compare/v0.8.0...v0.9.0)
