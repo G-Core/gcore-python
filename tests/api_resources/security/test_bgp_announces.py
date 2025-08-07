@@ -53,16 +53,16 @@ class TestBgpAnnounces:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_change(self, client: Gcore) -> None:
-        bgp_announce = client.security.bgp_announces.change(
+    def test_method_toggle(self, client: Gcore) -> None:
+        bgp_announce = client.security.bgp_announces.toggle(
             announce="192.9.9.1/32",
             enabled=True,
         )
         assert_matches_type(object, bgp_announce, path=["response"])
 
     @parametrize
-    def test_method_change_with_all_params(self, client: Gcore) -> None:
-        bgp_announce = client.security.bgp_announces.change(
+    def test_method_toggle_with_all_params(self, client: Gcore) -> None:
+        bgp_announce = client.security.bgp_announces.toggle(
             announce="192.9.9.1/32",
             enabled=True,
             client_id=0,
@@ -70,8 +70,8 @@ class TestBgpAnnounces:
         assert_matches_type(object, bgp_announce, path=["response"])
 
     @parametrize
-    def test_raw_response_change(self, client: Gcore) -> None:
-        response = client.security.bgp_announces.with_raw_response.change(
+    def test_raw_response_toggle(self, client: Gcore) -> None:
+        response = client.security.bgp_announces.with_raw_response.toggle(
             announce="192.9.9.1/32",
             enabled=True,
         )
@@ -82,8 +82,8 @@ class TestBgpAnnounces:
         assert_matches_type(object, bgp_announce, path=["response"])
 
     @parametrize
-    def test_streaming_response_change(self, client: Gcore) -> None:
-        with client.security.bgp_announces.with_streaming_response.change(
+    def test_streaming_response_toggle(self, client: Gcore) -> None:
+        with client.security.bgp_announces.with_streaming_response.toggle(
             announce="192.9.9.1/32",
             enabled=True,
         ) as response:
@@ -137,16 +137,16 @@ class TestAsyncBgpAnnounces:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_change(self, async_client: AsyncGcore) -> None:
-        bgp_announce = await async_client.security.bgp_announces.change(
+    async def test_method_toggle(self, async_client: AsyncGcore) -> None:
+        bgp_announce = await async_client.security.bgp_announces.toggle(
             announce="192.9.9.1/32",
             enabled=True,
         )
         assert_matches_type(object, bgp_announce, path=["response"])
 
     @parametrize
-    async def test_method_change_with_all_params(self, async_client: AsyncGcore) -> None:
-        bgp_announce = await async_client.security.bgp_announces.change(
+    async def test_method_toggle_with_all_params(self, async_client: AsyncGcore) -> None:
+        bgp_announce = await async_client.security.bgp_announces.toggle(
             announce="192.9.9.1/32",
             enabled=True,
             client_id=0,
@@ -154,8 +154,8 @@ class TestAsyncBgpAnnounces:
         assert_matches_type(object, bgp_announce, path=["response"])
 
     @parametrize
-    async def test_raw_response_change(self, async_client: AsyncGcore) -> None:
-        response = await async_client.security.bgp_announces.with_raw_response.change(
+    async def test_raw_response_toggle(self, async_client: AsyncGcore) -> None:
+        response = await async_client.security.bgp_announces.with_raw_response.toggle(
             announce="192.9.9.1/32",
             enabled=True,
         )
@@ -166,8 +166,8 @@ class TestAsyncBgpAnnounces:
         assert_matches_type(object, bgp_announce, path=["response"])
 
     @parametrize
-    async def test_streaming_response_change(self, async_client: AsyncGcore) -> None:
-        async with async_client.security.bgp_announces.with_streaming_response.change(
+    async def test_streaming_response_toggle(self, async_client: AsyncGcore) -> None:
+        async with async_client.security.bgp_announces.with_streaming_response.toggle(
             announce="192.9.9.1/32",
             enabled=True,
         ) as response:

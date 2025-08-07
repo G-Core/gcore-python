@@ -1707,7 +1707,7 @@ from gcore.types.security import ClientAnnounce, BgpAnnounceListResponse
 Methods:
 
 - <code title="get /security/sifter/v2/protected_addresses/announces">client.security.bgp_announces.<a href="./src/gcore/resources/security/bgp_announces.py">list</a>(\*\*<a href="src/gcore/types/security/bgp_announce_list_params.py">params</a>) -> <a href="./src/gcore/types/security/bgp_announce_list_response.py">BgpAnnounceListResponse</a></code>
-- <code title="post /security/sifter/v2/protected_addresses/announces">client.security.bgp_announces.<a href="./src/gcore/resources/security/bgp_announces.py">change</a>(\*\*<a href="src/gcore/types/security/bgp_announce_change_params.py">params</a>) -> object</code>
+- <code title="post /security/sifter/v2/protected_addresses/announces">client.security.bgp_announces.<a href="./src/gcore/resources/security/bgp_announces.py">toggle</a>(\*\*<a href="src/gcore/types/security/bgp_announce_toggle_params.py">params</a>) -> object</code>
 
 ## ProfileTemplates
 
