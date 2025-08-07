@@ -18,7 +18,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.security import bgp_announce_list_params, bgp_announce_change_params
+from ...types.security import bgp_announce_list_params, bgp_announce_toggle_params
 from ...types.security.bgp_announce_list_response import BgpAnnounceListResponse
 
 __all__ = ["BgpAnnouncesResource", "AsyncBgpAnnouncesResource"]
@@ -93,7 +93,7 @@ class BgpAnnouncesResource(SyncAPIResource):
             cast_to=BgpAnnounceListResponse,
         )
 
-    def change(
+    def toggle(
         self,
         *,
         announce: str,
@@ -128,14 +128,14 @@ class BgpAnnouncesResource(SyncAPIResource):
                     "announce": announce,
                     "enabled": enabled,
                 },
-                bgp_announce_change_params.BgpAnnounceChangeParams,
+                bgp_announce_toggle_params.BgpAnnounceToggleParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"client_id": client_id}, bgp_announce_change_params.BgpAnnounceChangeParams),
+                query=maybe_transform({"client_id": client_id}, bgp_announce_toggle_params.BgpAnnounceToggleParams),
             ),
             cast_to=object,
         )
@@ -210,7 +210,7 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
             cast_to=BgpAnnounceListResponse,
         )
 
-    async def change(
+    async def toggle(
         self,
         *,
         announce: str,
@@ -245,7 +245,7 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
                     "announce": announce,
                     "enabled": enabled,
                 },
-                bgp_announce_change_params.BgpAnnounceChangeParams,
+                bgp_announce_toggle_params.BgpAnnounceToggleParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -253,7 +253,7 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"client_id": client_id}, bgp_announce_change_params.BgpAnnounceChangeParams
+                    {"client_id": client_id}, bgp_announce_toggle_params.BgpAnnounceToggleParams
                 ),
             ),
             cast_to=object,
@@ -267,8 +267,8 @@ class BgpAnnouncesResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             bgp_announces.list,
         )
-        self.change = to_raw_response_wrapper(
-            bgp_announces.change,
+        self.toggle = to_raw_response_wrapper(
+            bgp_announces.toggle,
         )
 
 
@@ -279,8 +279,8 @@ class AsyncBgpAnnouncesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             bgp_announces.list,
         )
-        self.change = async_to_raw_response_wrapper(
-            bgp_announces.change,
+        self.toggle = async_to_raw_response_wrapper(
+            bgp_announces.toggle,
         )
 
 
@@ -291,8 +291,8 @@ class BgpAnnouncesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             bgp_announces.list,
         )
-        self.change = to_streamed_response_wrapper(
-            bgp_announces.change,
+        self.toggle = to_streamed_response_wrapper(
+            bgp_announces.toggle,
         )
 
 
@@ -303,6 +303,6 @@ class AsyncBgpAnnouncesResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             bgp_announces.list,
         )
-        self.change = async_to_streamed_response_wrapper(
-            bgp_announces.change,
+        self.toggle = async_to_streamed_response_wrapper(
+            bgp_announces.toggle,
         )
