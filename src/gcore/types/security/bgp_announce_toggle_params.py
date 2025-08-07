@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["BgpAnnounceChangeParams"]
+__all__ = ["BgpAnnounceToggleParams"]
 
 
-class BgpAnnounceChangeParams(TypedDict, total=False):
+class BgpAnnounceToggleParams(TypedDict, total=False):
     announce: Required[str]
 
     enabled: Required[bool]
