@@ -593,7 +593,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not task.created_resources or not task.created_resources.ai_clusters:
             raise ValueError("No cluster was created")
         cluster_id = task.created_resources.ai_clusters[0]
-        return self.get( # pyright: ignore[reportDeprecated]
+        return self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
@@ -644,7 +644,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
         )
-        return self.get( # pyright: ignore[reportDeprecated]
+        return self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
@@ -691,7 +691,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
         )
-        return self.get( # pyright: ignore[reportDeprecated]
+        return self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
@@ -1230,7 +1230,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not task.created_resources or not task.created_resources.ai_clusters:
             raise ValueError("No cluster was created")
         cluster_id = task.created_resources.ai_clusters[0]
-        return await self.get( # pyright: ignore[reportDeprecated]
+        return await self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
@@ -1281,7 +1281,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
         )
-        return await self.get( # pyright: ignore[reportDeprecated]
+        return await self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
@@ -1328,7 +1328,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
         )
-        return await self.get( # pyright: ignore[reportDeprecated]
+        return await self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,

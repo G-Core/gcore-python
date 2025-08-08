@@ -17,11 +17,13 @@ from gcore.types.streaming import (
 
 try:
     import pydantic
-    pydantic_v2 = hasattr(pydantic, '__version__') and pydantic.__version__.startswith('2.')
+
+    pydantic_v2 = hasattr(pydantic, "__version__") and pydantic.__version__.startswith("2.")
 except ImportError:
     pydantic_v2 = False
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+
 
 @pytest.mark.skipif(not pydantic_v2, reason="Requires Pydantic v2")
 class TestDirectories:

@@ -25,7 +25,8 @@ class TestAITasks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         ai_task = client.streaming.ai_tasks.create(
@@ -35,7 +36,8 @@ class TestAITasks:
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         ai_task = client.streaming.ai_tasks.create(
@@ -49,7 +51,9 @@ class TestAITasks:
         )
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
-    @pytest.mark.skip(reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+    @pytest.mark.skip(
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.streaming.ai_tasks.with_raw_response.create(
@@ -63,7 +67,8 @@ class TestAITasks:
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.streaming.ai_tasks.with_streaming_response.create(
@@ -240,7 +245,8 @@ class TestAsyncAITasks:
     )
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         ai_task = await async_client.streaming.ai_tasks.create(
@@ -250,7 +256,8 @@ class TestAsyncAITasks:
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         ai_task = await async_client.streaming.ai_tasks.create(
@@ -265,7 +272,8 @@ class TestAsyncAITasks:
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.ai_tasks.with_raw_response.create(
@@ -279,7 +287,8 @@ class TestAsyncAITasks:
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Feature is disabled. Contact support to enable.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
+    )
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.streaming.ai_tasks.with_streaming_response.create(
