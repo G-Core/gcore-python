@@ -19,7 +19,8 @@ class TestSubtitles:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Language code is not recognized.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Language code is not recognized."}'
+    )
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         subtitle = client.streaming.videos.subtitles.create(
@@ -41,7 +42,8 @@ class TestSubtitles:
         assert_matches_type(Subtitle, subtitle, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Language code is not recognized.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Language code is not recognized."}'
+    )
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.streaming.videos.subtitles.with_raw_response.create(
@@ -55,7 +57,8 @@ class TestSubtitles:
         assert_matches_type(Subtitle, subtitle, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Language code is not recognized.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Language code is not recognized."}'
+    )
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.streaming.videos.subtitles.with_streaming_response.create(
@@ -221,7 +224,8 @@ class TestAsyncSubtitles:
     )
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Language code is not recognized.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Language code is not recognized."}'
+    )
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         subtitle = await async_client.streaming.videos.subtitles.create(
@@ -243,7 +247,8 @@ class TestAsyncSubtitles:
         assert_matches_type(Subtitle, subtitle, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Language code is not recognized.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Language code is not recognized."}'
+    )
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.videos.subtitles.with_raw_response.create(
@@ -257,7 +262,8 @@ class TestAsyncSubtitles:
         assert_matches_type(Subtitle, subtitle, path=["response"])
 
     @pytest.mark.skip(
-        reason="Skipping test due to 422 Unprocessable Entity {\"error\":\"Language code is not recognized.\"}")
+        reason='Skipping test due to 422 Unprocessable Entity {"error":"Language code is not recognized."}'
+    )
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.streaming.videos.subtitles.with_streaming_response.create(
