@@ -199,9 +199,21 @@ class PoolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Changes provided here will overwrite existing load balancer pool settings.
-        Undefined fields will be kept as is. Complex objects need to be specified fully,
-        they will be overwritten.
+        Updates the specified load balancer pool with the provided changes.
+        **Behavior:**
+
+        - Simple fields (strings, numbers, booleans) will be updated if provided
+        - Complex objects (nested structures like members, health monitors, etc.) must
+          be specified completely - partial updates are not supported for these objects
+        - Undefined fields will remain unchanged
+        - If no change is detected for a specific field compared to the current pool
+          state, that field will be skipped
+        - If no changes are detected at all across all fields, no task will be created
+          and an empty task list will be returned **Examples of complex objects that
+          require full specification:**
+        - Pool members: All member properties must be provided when updating members
+        - Health monitors: Complete health monitor configuration must be specified
+        - Session persistence: Full session persistence settings must be included
 
         Args:
           project_id: Project ID
@@ -250,7 +262,7 @@ class PoolsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._patch(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
             body=maybe_transform(
                 {
                     "ca_secret_id": ca_secret_id,
@@ -580,9 +592,21 @@ class AsyncPoolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Changes provided here will overwrite existing load balancer pool settings.
-        Undefined fields will be kept as is. Complex objects need to be specified fully,
-        they will be overwritten.
+        Updates the specified load balancer pool with the provided changes.
+        **Behavior:**
+
+        - Simple fields (strings, numbers, booleans) will be updated if provided
+        - Complex objects (nested structures like members, health monitors, etc.) must
+          be specified completely - partial updates are not supported for these objects
+        - Undefined fields will remain unchanged
+        - If no change is detected for a specific field compared to the current pool
+          state, that field will be skipped
+        - If no changes are detected at all across all fields, no task will be created
+          and an empty task list will be returned **Examples of complex objects that
+          require full specification:**
+        - Pool members: All member properties must be provided when updating members
+        - Health monitors: Complete health monitor configuration must be specified
+        - Session persistence: Full session persistence settings must be included
 
         Args:
           project_id: Project ID
@@ -631,7 +655,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._patch(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
             body=await async_maybe_transform(
                 {
                     "ca_secret_id": ca_secret_id,
