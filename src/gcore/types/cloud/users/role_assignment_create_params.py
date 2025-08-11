@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["RoleAssignmentCreateParams"]
 
 
 class RoleAssignmentCreateParams(TypedDict, total=False):
-    role: Required[str]
+    role: Required[
+        Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"]
+    ]
     """User role"""
 
     user_id: Required[int]

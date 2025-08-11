@@ -346,10 +346,10 @@ Interface: TypeAlias = Union[
 
 class DDOSProfileField(TypedDict, total=False):
     base_field: Optional[int]
-    """ID of DDoS profile field"""
+    """Unique identifier of the DDoS protection field being configured"""
 
     field_name: Optional[str]
-    """Name of DDoS profile field"""
+    """Human-readable name of the DDoS protection field being configured"""
 
     field_value: Union[Iterable[object], int, str, None]
     """Complex value. Only one of 'value' or '`field_value`' must be specified."""
@@ -360,7 +360,10 @@ class DDOSProfileField(TypedDict, total=False):
 
 class DDOSProfile(TypedDict, total=False):
     profile_template: Required[int]
-    """Advanced DDoS template ID"""
+    """Unique identifier of the DDoS protection template to use for this profile"""
 
     fields: Iterable[DDOSProfileField]
-    """DDoS profile parameters"""
+    """
+    List of field configurations that customize the protection parameters for this
+    profile
+    """

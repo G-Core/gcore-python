@@ -92,17 +92,12 @@ class TestCostReports:
 
     @parametrize
     def test_method_get_aggregated_monthly(self, client: Gcore) -> None:
-        cost_report = client.cloud.cost_reports.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
-        )
+        cost_report = client.cloud.cost_reports.get_aggregated_monthly()
         assert_matches_type(CostReportAggregatedMonthly, cost_report, path=["response"])
 
     @parametrize
     def test_method_get_aggregated_monthly_with_all_params(self, client: Gcore) -> None:
         cost_report = client.cloud.cost_reports.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             regions=[1, 2, 3],
             response_format="csv_totals",
             rounding=True,
@@ -126,16 +121,16 @@ class TestCostReports:
                 ],
                 "condition_type": "OR",
             },
+            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
+            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             types=["egress_traffic", "instance"],
+            year_month="2024-08",
         )
         assert_matches_type(CostReportAggregatedMonthly, cost_report, path=["response"])
 
     @parametrize
     def test_raw_response_get_aggregated_monthly(self, client: Gcore) -> None:
-        response = client.cloud.cost_reports.with_raw_response.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
-        )
+        response = client.cloud.cost_reports.with_raw_response.get_aggregated_monthly()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,10 +139,7 @@ class TestCostReports:
 
     @parametrize
     def test_streaming_response_get_aggregated_monthly(self, client: Gcore) -> None:
-        with client.cloud.cost_reports.with_streaming_response.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
-        ) as response:
+        with client.cloud.cost_reports.with_streaming_response.get_aggregated_monthly() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -313,17 +305,12 @@ class TestAsyncCostReports:
 
     @parametrize
     async def test_method_get_aggregated_monthly(self, async_client: AsyncGcore) -> None:
-        cost_report = await async_client.cloud.cost_reports.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
-        )
+        cost_report = await async_client.cloud.cost_reports.get_aggregated_monthly()
         assert_matches_type(CostReportAggregatedMonthly, cost_report, path=["response"])
 
     @parametrize
     async def test_method_get_aggregated_monthly_with_all_params(self, async_client: AsyncGcore) -> None:
         cost_report = await async_client.cloud.cost_reports.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             regions=[1, 2, 3],
             response_format="csv_totals",
             rounding=True,
@@ -347,16 +334,16 @@ class TestAsyncCostReports:
                 ],
                 "condition_type": "OR",
             },
+            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
+            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             types=["egress_traffic", "instance"],
+            year_month="2024-08",
         )
         assert_matches_type(CostReportAggregatedMonthly, cost_report, path=["response"])
 
     @parametrize
     async def test_raw_response_get_aggregated_monthly(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.cost_reports.with_raw_response.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
-        )
+        response = await async_client.cloud.cost_reports.with_raw_response.get_aggregated_monthly()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -365,10 +352,7 @@ class TestAsyncCostReports:
 
     @parametrize
     async def test_streaming_response_get_aggregated_monthly(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.cost_reports.with_streaming_response.get_aggregated_monthly(
-            time_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            time_to=parse_datetime("2019-12-27T18:11:19.117Z"),
-        ) as response:
+        async with async_client.cloud.cost_reports.with_streaming_response.get_aggregated_monthly() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

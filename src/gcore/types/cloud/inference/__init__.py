@@ -29,6 +29,3 @@ from .inference_registry_credentials import InferenceRegistryCredentials as Infe
 from .registry_credential_list_params import RegistryCredentialListParams as RegistryCredentialListParams
 from .registry_credential_create_params import RegistryCredentialCreateParams as RegistryCredentialCreateParams
 from .registry_credential_replace_params import RegistryCredentialReplaceParams as RegistryCredentialReplaceParams
-from .inference_registry_credentials_create import (
-    InferenceRegistryCredentialsCreate as InferenceRegistryCredentialsCreate,
-)
