@@ -42,12 +42,6 @@ __all__ = [
 
 
 class CostReportGetAggregatedMonthlyParams(TypedDict, total=False):
-    time_from: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """Beginning of the period: YYYY-mm"""
-
-    time_to: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """End of the period: YYYY-mm"""
-
     regions: Iterable[int]
     """List of region IDs."""
 
@@ -62,6 +56,12 @@ class CostReportGetAggregatedMonthlyParams(TypedDict, total=False):
 
     tags: Tags
     """Filter by tags"""
+
+    time_from: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Deprecated. Use `year_month` instead. Beginning of the period: YYYY-mm"""
+
+    time_to: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Deprecated. Use `year_month` instead. End of the period: YYYY-mm"""
 
     types: List[
         Literal[
@@ -93,6 +93,9 @@ class CostReportGetAggregatedMonthlyParams(TypedDict, total=False):
         ]
     ]
     """List of resource types to be filtered in the report."""
+
+    year_month: str
+    """Year and month in the format YYYY-MM"""
 
 
 class SchemaFilterSchemaFilterSnapshotSerializer(TypedDict, total=False):

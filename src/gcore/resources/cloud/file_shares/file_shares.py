@@ -76,6 +76,7 @@ class FileSharesResource(SyncAPIResource):
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        type_name: Literal["standard"] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -108,7 +109,9 @@ class FileSharesResource(SyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          volume_type: File share volume type
+          type_name: Standard file share type
+
+          volume_type: Deprecated. Use `type_name` instead.
 
           extra_headers: Send extra headers
 
@@ -129,9 +132,10 @@ class FileSharesResource(SyncAPIResource):
         name: str,
         protocol: Literal["NFS"],
         size: int,
-        volume_type: Literal["vast_share_type"],
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        type_name: Literal["vast"] | NotGiven = NOT_GIVEN,
+        volume_type: Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -153,8 +157,6 @@ class FileSharesResource(SyncAPIResource):
 
           size: File share size
 
-          volume_type: File share volume type
-
           share_settings: Configuration settings for the share
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
@@ -162,6 +164,10 @@ class FileSharesResource(SyncAPIResource):
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
+
+          type_name: Vast file share type
+
+          volume_type: Deprecated. Use `type_name` instead.
 
           extra_headers: Send extra headers
 
@@ -173,7 +179,7 @@ class FileSharesResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["name", "network", "protocol", "size"], ["name", "protocol", "size", "volume_type"])
+    @required_args(["name", "network", "protocol", "size"], ["name", "protocol", "size"])
     def create(
         self,
         *,
@@ -185,6 +191,7 @@ class FileSharesResource(SyncAPIResource):
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        type_name: Literal["standard"] | Literal["vast"] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -208,6 +215,7 @@ class FileSharesResource(SyncAPIResource):
                     "size": size,
                     "access": access,
                     "tags": tags,
+                    "type_name": type_name,
                     "volume_type": volume_type,
                     "share_settings": share_settings,
                 },
@@ -537,6 +545,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        type_name: Literal["standard"] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -569,7 +578,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
 
-          volume_type: File share volume type
+          type_name: Standard file share type
+
+          volume_type: Deprecated. Use `type_name` instead.
 
           extra_headers: Send extra headers
 
@@ -590,9 +601,10 @@ class AsyncFileSharesResource(AsyncAPIResource):
         name: str,
         protocol: Literal["NFS"],
         size: int,
-        volume_type: Literal["vast_share_type"],
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        type_name: Literal["vast"] | NotGiven = NOT_GIVEN,
+        volume_type: Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -614,8 +626,6 @@ class AsyncFileSharesResource(AsyncAPIResource):
 
           size: File share size
 
-          volume_type: File share volume type
-
           share_settings: Configuration settings for the share
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
@@ -623,6 +633,10 @@ class AsyncFileSharesResource(AsyncAPIResource):
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
+
+          type_name: Vast file share type
+
+          volume_type: Deprecated. Use `type_name` instead.
 
           extra_headers: Send extra headers
 
@@ -634,7 +648,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["name", "network", "protocol", "size"], ["name", "protocol", "size", "volume_type"])
+    @required_args(["name", "network", "protocol", "size"], ["name", "protocol", "size"])
     async def create(
         self,
         *,
@@ -646,6 +660,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        type_name: Literal["standard"] | Literal["vast"] | NotGiven = NOT_GIVEN,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -669,6 +684,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
                     "size": size,
                     "access": access,
                     "tags": tags,
+                    "type_name": type_name,
                     "volume_type": volume_type,
                     "share_settings": share_settings,
                 },

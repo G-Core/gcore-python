@@ -171,13 +171,13 @@ class CostReportsResource(SyncAPIResource):
     def get_aggregated_monthly(
         self,
         *,
-        time_from: Union[str, datetime],
-        time_to: Union[str, datetime],
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
         rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | NotGiven = NOT_GIVEN,
         tags: cost_report_get_aggregated_monthly_params.Tags | NotGiven = NOT_GIVEN,
+        time_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        time_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
         types: List[
             Literal[
                 "ai_cluster",
@@ -208,6 +208,7 @@ class CostReportsResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        year_month: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,10 +228,6 @@ class CostReportsResource(SyncAPIResource):
         hours until the servers are back online and the missing data is filled in.
 
         Args:
-          time_from: Beginning of the period: YYYY-mm
-
-          time_to: End of the period: YYYY-mm
-
           regions: List of region IDs.
 
           response_format: Format of the response (`csv_totals` or json).
@@ -241,7 +238,13 @@ class CostReportsResource(SyncAPIResource):
 
           tags: Filter by tags
 
+          time_from: Deprecated. Use `year_month` instead. Beginning of the period: YYYY-mm
+
+          time_to: Deprecated. Use `year_month` instead. End of the period: YYYY-mm
+
           types: List of resource types to be filtered in the report.
+
+          year_month: Year and month in the format YYYY-MM
 
           extra_headers: Send extra headers
 
@@ -255,14 +258,15 @@ class CostReportsResource(SyncAPIResource):
             "/cloud/v1/reservation_cost_report/totals",
             body=maybe_transform(
                 {
-                    "time_from": time_from,
-                    "time_to": time_to,
                     "regions": regions,
                     "response_format": response_format,
                     "rounding": rounding,
                     "schema_filter": schema_filter,
                     "tags": tags,
+                    "time_from": time_from,
+                    "time_to": time_to,
                     "types": types,
+                    "year_month": year_month,
                 },
                 cost_report_get_aggregated_monthly_params.CostReportGetAggregatedMonthlyParams,
             ),
@@ -543,13 +547,13 @@ class AsyncCostReportsResource(AsyncAPIResource):
     async def get_aggregated_monthly(
         self,
         *,
-        time_from: Union[str, datetime],
-        time_to: Union[str, datetime],
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
         response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
         rounding: bool | NotGiven = NOT_GIVEN,
         schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | NotGiven = NOT_GIVEN,
         tags: cost_report_get_aggregated_monthly_params.Tags | NotGiven = NOT_GIVEN,
+        time_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        time_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
         types: List[
             Literal[
                 "ai_cluster",
@@ -580,6 +584,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        year_month: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -599,10 +604,6 @@ class AsyncCostReportsResource(AsyncAPIResource):
         hours until the servers are back online and the missing data is filled in.
 
         Args:
-          time_from: Beginning of the period: YYYY-mm
-
-          time_to: End of the period: YYYY-mm
-
           regions: List of region IDs.
 
           response_format: Format of the response (`csv_totals` or json).
@@ -613,7 +614,13 @@ class AsyncCostReportsResource(AsyncAPIResource):
 
           tags: Filter by tags
 
+          time_from: Deprecated. Use `year_month` instead. Beginning of the period: YYYY-mm
+
+          time_to: Deprecated. Use `year_month` instead. End of the period: YYYY-mm
+
           types: List of resource types to be filtered in the report.
+
+          year_month: Year and month in the format YYYY-MM
 
           extra_headers: Send extra headers
 
@@ -627,14 +634,15 @@ class AsyncCostReportsResource(AsyncAPIResource):
             "/cloud/v1/reservation_cost_report/totals",
             body=await async_maybe_transform(
                 {
-                    "time_from": time_from,
-                    "time_to": time_to,
                     "regions": regions,
                     "response_format": response_format,
                     "rounding": rounding,
                     "schema_filter": schema_filter,
                     "tags": tags,
+                    "time_from": time_from,
+                    "time_to": time_to,
                     "types": types,
+                    "year_month": year_month,
                 },
                 cost_report_get_aggregated_monthly_params.CostReportGetAggregatedMonthlyParams,
             ),
