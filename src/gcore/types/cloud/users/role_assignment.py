@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
@@ -23,7 +24,7 @@ class RoleAssignment(BaseModel):
     project_id: Optional[int] = None
     """Project ID"""
 
-    role: str
+    role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"]
     """User role"""
 
     updated_at: Optional[datetime] = None
