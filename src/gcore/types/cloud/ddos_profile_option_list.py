@@ -1,15 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ..._models import BaseModel
 
 __all__ = ["DDOSProfileOptionList"]
 
 
 class DDOSProfileOptionList(BaseModel):
-    active: Optional[bool] = None
-    """Activate profile."""
+    active: bool
+    """
+    Controls whether the DDoS protection profile is enabled and actively protecting
+    the resource
+    """
 
-    bgp: Optional[bool] = None
-    """Activate BGP protocol."""
+    bgp: bool
+    """Enables Border Gateway Protocol (BGP) routing for DDoS protection traffic"""
