@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, List, Iterable, Optional
 
 import httpx
@@ -422,6 +423,7 @@ class DeploymentsResource(SyncAPIResource):
             cast_to=InferenceDeployment,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get_api_key(
         self,
         deployment_name: str,
@@ -947,6 +949,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             cast_to=InferenceDeployment,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get_api_key(
         self,
         deployment_name: str,
@@ -1103,8 +1106,10 @@ class DeploymentsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             deployments.get,
         )
-        self.get_api_key = to_raw_response_wrapper(
-            deployments.get_api_key,
+        self.get_api_key = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+            )
         )
         self.start = to_raw_response_wrapper(
             deployments.start,
@@ -1137,8 +1142,10 @@ class AsyncDeploymentsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             deployments.get,
         )
-        self.get_api_key = async_to_raw_response_wrapper(
-            deployments.get_api_key,
+        self.get_api_key = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+            )
         )
         self.start = async_to_raw_response_wrapper(
             deployments.start,
@@ -1171,8 +1178,10 @@ class DeploymentsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             deployments.get,
         )
-        self.get_api_key = to_streamed_response_wrapper(
-            deployments.get_api_key,
+        self.get_api_key = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+            )
         )
         self.start = to_streamed_response_wrapper(
             deployments.start,
@@ -1205,8 +1214,10 @@ class AsyncDeploymentsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             deployments.get,
         )
-        self.get_api_key = async_to_streamed_response_wrapper(
-            deployments.get_api_key,
+        self.get_api_key = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+            )
         )
         self.start = async_to_streamed_response_wrapper(
             deployments.start,
