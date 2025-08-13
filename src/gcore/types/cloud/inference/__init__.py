@@ -6,12 +6,10 @@ from .probe import Probe as Probe
 from .probe_exec import ProbeExec as ProbeExec
 from .probe_config import ProbeConfig as ProbeConfig
 from .probe_http_get import ProbeHTTPGet as ProbeHTTPGet
-from .inference_model import InferenceModel as InferenceModel
 from .inference_flavor import InferenceFlavor as InferenceFlavor
 from .inference_secret import InferenceSecret as InferenceSecret
 from .probe_tcp_socket import ProbeTcpSocket as ProbeTcpSocket
 from .inference_api_key import InferenceAPIKey as InferenceAPIKey
-from .model_list_params import ModelListParams as ModelListParams
 from .flavor_list_params import FlavorListParams as FlavorListParams
 from .secret_list_params import SecretListParams as SecretListParams
 from .api_key_list_params import APIKeyListParams as APIKeyListParams
