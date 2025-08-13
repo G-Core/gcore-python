@@ -47,8 +47,11 @@ class CreateStandardFileShareSerializer(TypedDict, total=False):
     values.
     """
 
+    type_name: Literal["standard"]
+    """Standard file share type"""
+
     volume_type: Literal["default_share_type"]
-    """File share volume type"""
+    """Deprecated. Use `type_name` instead."""
 
 
 class CreateStandardFileShareSerializerNetwork(TypedDict, total=False):
@@ -86,9 +89,6 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     size: Required[int]
     """File share size"""
 
-    volume_type: Required[Literal["vast_share_type"]]
-    """File share volume type"""
-
     share_settings: CreateVastFileShareSerializerShareSettings
     """Configuration settings for the share"""
 
@@ -101,6 +101,12 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     with cost reports, allowing cost data to be filtered based on tag keys or
     values.
     """
+
+    type_name: Literal["vast"]
+    """Vast file share type"""
+
+    volume_type: Literal["vast_share_type"]
+    """Deprecated. Use `type_name` instead."""
 
 
 class CreateVastFileShareSerializerShareSettings(TypedDict, total=False):

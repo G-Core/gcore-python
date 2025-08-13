@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.11.0 (2025-08-13)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/G-Core/gcore-python/compare/v0.10.0...v0.11.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** support inference applications
+
+### Features
+
+* **api:** aggregated API specs update ([0be4bae](https://github.com/G-Core/gcore-python/commit/0be4bae144750b52f2d75b7f7b07797774460578))
+* **api:** aggregated API specs update ([f3aefda](https://github.com/G-Core/gcore-python/commit/f3aefda2551ddffd363ddba9bfa1625ced9fff4b))
+* **cloud:** support inference applications ([18c778c](https://github.com/G-Core/gcore-python/commit/18c778caafd0ae43defdd7720dac45548b9df095))
+* **cloud:** use PATCH /v2/lbpools ([cba170c](https://github.com/G-Core/gcore-python/commit/cba170ca25b80f2e99bb27b5b33ea09a7828dcd1))
+
+
+### Chores
+
+* formatting ([c6bbac7](https://github.com/G-Core/gcore-python/commit/c6bbac79b0bac38adeac8502f0e7b06813d77748))
+* **internal:** detect breaking changes when removing endpoints ([6884b67](https://github.com/G-Core/gcore-python/commit/6884b672f2542fbb1e2e928b59849220e20fdb04))
+* **internal:** update comment in script ([067e9ff](https://github.com/G-Core/gcore-python/commit/067e9ff502e501460baa814d19603e4cb2a91e9c))
+* **tests:** unskip tests failing due to wrong Prism routing ([dd89184](https://github.com/G-Core/gcore-python/commit/dd89184f5d048c7e1489c70c58861bf7b4652862))
+* update @stainless-api/prism-cli to v5.15.0 ([ff1d205](https://github.com/G-Core/gcore-python/commit/ff1d20586704f23bd9d427e11a488f20ccf29420))
+
 ## 0.10.0 (2025-08-07)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/G-Core/gcore-python/compare/v0.9.0...v0.10.0)

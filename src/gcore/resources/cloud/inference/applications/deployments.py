@@ -2,78 +2,85 @@
 
 from __future__ import annotations
 
+from typing import Dict, List, Iterable, Optional
+
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloud.inference import (
-    registry_credential_list_params,
-    registry_credential_create_params,
-    registry_credential_replace_params,
+from ....._base_client import make_request_options
+from .....types.cloud.task_id_list import TaskIDList
+from .....types.cloud.inference.applications import deployment_patch_params, deployment_create_params
+from .....types.cloud.inference.applications.inference_application_deployment import InferenceApplicationDeployment
+from .....types.cloud.inference.applications.inference_application_deployment_list import (
+    InferenceApplicationDeploymentList,
 )
-from ....types.cloud.inference.inference_registry_credentials import InferenceRegistryCredentials
 
-__all__ = ["RegistryCredentialsResource", "AsyncRegistryCredentialsResource"]
+__all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
 
-class RegistryCredentialsResource(SyncAPIResource):
+class DeploymentsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RegistryCredentialsResourceWithRawResponse:
+    def with_raw_response(self) -> DeploymentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return RegistryCredentialsResourceWithRawResponse(self)
+        return DeploymentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RegistryCredentialsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> DeploymentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return RegistryCredentialsResourceWithStreamingResponse(self)
+        return DeploymentsResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
         project_id: int | None = None,
+        application_name: str,
+        components_configuration: Dict[str, deployment_create_params.ComponentsConfiguration],
         name: str,
-        password: str,
-        registry_url: str,
-        username: str,
+        regions: Iterable[int],
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentials:
+    ) -> TaskIDList:
         """
-        Create inference registry credential
+        Creates a new application deployment based on a selected catalog application.
+        Specify the desired deployment name, target regions, and configuration for each
+        component. The platform will provision the necessary resources and initialize
+        the application accordingly.
 
         Args:
           project_id: Project ID
 
-          name: Registry credential name.
+          application_name: Identifier of the application from the catalog
 
-          password: Registry password.
+          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
 
-          registry_url: Registry URL.
+          name: Desired name for the new deployment
 
-          username: Registry username.
+          regions: Geographical regions where the deployment should be created
+
+          api_keys: List of API keys for the application
 
           extra_headers: Send extra headers
 
@@ -86,45 +93,41 @@ class RegistryCredentialsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._post(
-            f"/cloud/v3/inference/{project_id}/registry_credentials",
+            f"/cloud/v3/inference/applications/{project_id}/deployments",
             body=maybe_transform(
                 {
+                    "application_name": application_name,
+                    "components_configuration": components_configuration,
                     "name": name,
-                    "password": password,
-                    "registry_url": registry_url,
-                    "username": username,
+                    "regions": regions,
+                    "api_keys": api_keys,
                 },
-                registry_credential_create_params.RegistryCredentialCreateParams,
+                deployment_create_params.DeploymentCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentials,
+            cast_to=TaskIDList,
         )
 
     def list(
         self,
         *,
         project_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[InferenceRegistryCredentials]:
+    ) -> InferenceApplicationDeploymentList:
         """
-        List inference registry credentials
+        Returns a list of your application deployments, including deployment names,
+        associated catalog applications, regions, component configurations, and current
+        status. Useful for monitoring and managing all active AI application instances.
 
         Args:
           project_id: Project ID
-
-          limit: Optional. Limit the number of returned items
-
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
 
           extra_headers: Send extra headers
 
@@ -136,28 +139,17 @@ class RegistryCredentialsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/registry_credentials",
-            page=SyncOffsetPage[InferenceRegistryCredentials],
+        return self._get(
+            f"/cloud/v3/inference/applications/{project_id}/deployments",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    registry_credential_list_params.RegistryCredentialListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=InferenceRegistryCredentials,
+            cast_to=InferenceApplicationDeploymentList,
         )
 
     def delete(
         self,
-        credential_name: str,
+        deployment_name: str,
         *,
         project_id: int | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -166,14 +158,16 @@ class RegistryCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> TaskIDList:
         """
-        Delete inference registry credential
+        Deletes an existing application deployment along with all associated resources.
+        This action will permanently remove the deployment and **terminate all related
+        inference instances** that are part of the application.
 
         Args:
           project_id: Project ID
 
-          credential_name: Registry credential name.
+          deployment_name: Name of deployment
 
           extra_headers: Send extra headers
 
@@ -185,20 +179,19 @@ class RegistryCredentialsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not credential_name:
-            raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._delete(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=TaskIDList,
         )
 
     def get(
         self,
-        credential_name: str,
+        deployment_name: str,
         *,
         project_id: int | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -207,14 +200,18 @@ class RegistryCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentials:
-        """
-        Get inference registry credential
+    ) -> InferenceApplicationDeployment:
+        """Retrieves detailed information about a specific application deployment.
+
+        The
+        response includes the catalog application it was created from, deployment name,
+        active regions, configuration of each component, and the current status of the
+        deployment.
 
         Args:
           project_id: Project ID
 
-          credential_name: Registry credential name.
+          deployment_name: Name of deployment
 
           extra_headers: Send extra headers
 
@@ -226,44 +223,49 @@ class RegistryCredentialsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not credential_name:
-            raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._get(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentials,
+            cast_to=InferenceApplicationDeployment,
         )
 
-    def replace(
+    def patch(
         self,
-        credential_name: str,
+        deployment_name: str,
         *,
         project_id: int | None = None,
-        password: str,
-        registry_url: str,
-        username: str,
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]]
+        | NotGiven = NOT_GIVEN,
+        regions: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentials:
-        """
-        Replace inference registry credential
+    ) -> TaskIDList:
+        """Updates an existing application deployment.
+
+        You can modify the target regions
+        and update configurations for individual components. To disable a component, set
+        its value to null. Only the provided fields will be updated; all others remain
+        unchanged.
 
         Args:
           project_id: Project ID
 
-          credential_name: Registry credential name.
+          deployment_name: Name of deployment
 
-          password: Registry password.
+          api_keys: List of API keys for the application
 
-          registry_url: Registry URL.
+          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
 
-          username: Registry username.
+          regions: Geographical regions to be updated for the deployment
 
           extra_headers: Send extra headers
 
@@ -275,73 +277,79 @@ class RegistryCredentialsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not credential_name:
-            raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
-        return self._put(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
+        return self._patch(
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             body=maybe_transform(
                 {
-                    "password": password,
-                    "registry_url": registry_url,
-                    "username": username,
+                    "api_keys": api_keys,
+                    "components_configuration": components_configuration,
+                    "regions": regions,
                 },
-                registry_credential_replace_params.RegistryCredentialReplaceParams,
+                deployment_patch_params.DeploymentPatchParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentials,
+            cast_to=TaskIDList,
         )
 
 
-class AsyncRegistryCredentialsResource(AsyncAPIResource):
+class AsyncDeploymentsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRegistryCredentialsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncDeploymentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncRegistryCredentialsResourceWithRawResponse(self)
+        return AsyncDeploymentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRegistryCredentialsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncDeploymentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncRegistryCredentialsResourceWithStreamingResponse(self)
+        return AsyncDeploymentsResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
         project_id: int | None = None,
+        application_name: str,
+        components_configuration: Dict[str, deployment_create_params.ComponentsConfiguration],
         name: str,
-        password: str,
-        registry_url: str,
-        username: str,
+        regions: Iterable[int],
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentials:
+    ) -> TaskIDList:
         """
-        Create inference registry credential
+        Creates a new application deployment based on a selected catalog application.
+        Specify the desired deployment name, target regions, and configuration for each
+        component. The platform will provision the necessary resources and initialize
+        the application accordingly.
 
         Args:
           project_id: Project ID
 
-          name: Registry credential name.
+          application_name: Identifier of the application from the catalog
 
-          password: Registry password.
+          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
 
-          registry_url: Registry URL.
+          name: Desired name for the new deployment
 
-          username: Registry username.
+          regions: Geographical regions where the deployment should be created
+
+          api_keys: List of API keys for the application
 
           extra_headers: Send extra headers
 
@@ -354,45 +362,41 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._post(
-            f"/cloud/v3/inference/{project_id}/registry_credentials",
+            f"/cloud/v3/inference/applications/{project_id}/deployments",
             body=await async_maybe_transform(
                 {
+                    "application_name": application_name,
+                    "components_configuration": components_configuration,
                     "name": name,
-                    "password": password,
-                    "registry_url": registry_url,
-                    "username": username,
+                    "regions": regions,
+                    "api_keys": api_keys,
                 },
-                registry_credential_create_params.RegistryCredentialCreateParams,
+                deployment_create_params.DeploymentCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentials,
+            cast_to=TaskIDList,
         )
 
-    def list(
+    async def list(
         self,
         *,
         project_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[InferenceRegistryCredentials, AsyncOffsetPage[InferenceRegistryCredentials]]:
+    ) -> InferenceApplicationDeploymentList:
         """
-        List inference registry credentials
+        Returns a list of your application deployments, including deployment names,
+        associated catalog applications, regions, component configurations, and current
+        status. Useful for monitoring and managing all active AI application instances.
 
         Args:
           project_id: Project ID
-
-          limit: Optional. Limit the number of returned items
-
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
 
           extra_headers: Send extra headers
 
@@ -404,28 +408,17 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/registry_credentials",
-            page=AsyncOffsetPage[InferenceRegistryCredentials],
+        return await self._get(
+            f"/cloud/v3/inference/applications/{project_id}/deployments",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    registry_credential_list_params.RegistryCredentialListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=InferenceRegistryCredentials,
+            cast_to=InferenceApplicationDeploymentList,
         )
 
     async def delete(
         self,
-        credential_name: str,
+        deployment_name: str,
         *,
         project_id: int | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -434,14 +427,16 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> TaskIDList:
         """
-        Delete inference registry credential
+        Deletes an existing application deployment along with all associated resources.
+        This action will permanently remove the deployment and **terminate all related
+        inference instances** that are part of the application.
 
         Args:
           project_id: Project ID
 
-          credential_name: Registry credential name.
+          deployment_name: Name of deployment
 
           extra_headers: Send extra headers
 
@@ -453,20 +448,19 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not credential_name:
-            raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return await self._delete(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=TaskIDList,
         )
 
     async def get(
         self,
-        credential_name: str,
+        deployment_name: str,
         *,
         project_id: int | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -475,14 +469,18 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentials:
-        """
-        Get inference registry credential
+    ) -> InferenceApplicationDeployment:
+        """Retrieves detailed information about a specific application deployment.
+
+        The
+        response includes the catalog application it was created from, deployment name,
+        active regions, configuration of each component, and the current status of the
+        deployment.
 
         Args:
           project_id: Project ID
 
-          credential_name: Registry credential name.
+          deployment_name: Name of deployment
 
           extra_headers: Send extra headers
 
@@ -494,44 +492,49 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not credential_name:
-            raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentials,
+            cast_to=InferenceApplicationDeployment,
         )
 
-    async def replace(
+    async def patch(
         self,
-        credential_name: str,
+        deployment_name: str,
         *,
         project_id: int | None = None,
-        password: str,
-        registry_url: str,
-        username: str,
+        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]]
+        | NotGiven = NOT_GIVEN,
+        regions: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InferenceRegistryCredentials:
-        """
-        Replace inference registry credential
+    ) -> TaskIDList:
+        """Updates an existing application deployment.
+
+        You can modify the target regions
+        and update configurations for individual components. To disable a component, set
+        its value to null. Only the provided fields will be updated; all others remain
+        unchanged.
 
         Args:
           project_id: Project ID
 
-          credential_name: Registry credential name.
+          deployment_name: Name of deployment
 
-          password: Registry password.
+          api_keys: List of API keys for the application
 
-          registry_url: Registry URL.
+          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
 
-          username: Registry username.
+          regions: Geographical regions to be updated for the deployment
 
           extra_headers: Send extra headers
 
@@ -543,104 +546,104 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if not credential_name:
-            raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
-        return await self._put(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
+        return await self._patch(
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             body=await async_maybe_transform(
                 {
-                    "password": password,
-                    "registry_url": registry_url,
-                    "username": username,
+                    "api_keys": api_keys,
+                    "components_configuration": components_configuration,
+                    "regions": regions,
                 },
-                registry_credential_replace_params.RegistryCredentialReplaceParams,
+                deployment_patch_params.DeploymentPatchParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceRegistryCredentials,
+            cast_to=TaskIDList,
         )
 
 
-class RegistryCredentialsResourceWithRawResponse:
-    def __init__(self, registry_credentials: RegistryCredentialsResource) -> None:
-        self._registry_credentials = registry_credentials
+class DeploymentsResourceWithRawResponse:
+    def __init__(self, deployments: DeploymentsResource) -> None:
+        self._deployments = deployments
 
         self.create = to_raw_response_wrapper(
-            registry_credentials.create,
+            deployments.create,
         )
         self.list = to_raw_response_wrapper(
-            registry_credentials.list,
+            deployments.list,
         )
         self.delete = to_raw_response_wrapper(
-            registry_credentials.delete,
+            deployments.delete,
         )
         self.get = to_raw_response_wrapper(
-            registry_credentials.get,
+            deployments.get,
         )
-        self.replace = to_raw_response_wrapper(
-            registry_credentials.replace,
+        self.patch = to_raw_response_wrapper(
+            deployments.patch,
         )
 
 
-class AsyncRegistryCredentialsResourceWithRawResponse:
-    def __init__(self, registry_credentials: AsyncRegistryCredentialsResource) -> None:
-        self._registry_credentials = registry_credentials
+class AsyncDeploymentsResourceWithRawResponse:
+    def __init__(self, deployments: AsyncDeploymentsResource) -> None:
+        self._deployments = deployments
 
         self.create = async_to_raw_response_wrapper(
-            registry_credentials.create,
+            deployments.create,
         )
         self.list = async_to_raw_response_wrapper(
-            registry_credentials.list,
+            deployments.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            registry_credentials.delete,
+            deployments.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            registry_credentials.get,
+            deployments.get,
         )
-        self.replace = async_to_raw_response_wrapper(
-            registry_credentials.replace,
+        self.patch = async_to_raw_response_wrapper(
+            deployments.patch,
         )
 
 
-class RegistryCredentialsResourceWithStreamingResponse:
-    def __init__(self, registry_credentials: RegistryCredentialsResource) -> None:
-        self._registry_credentials = registry_credentials
+class DeploymentsResourceWithStreamingResponse:
+    def __init__(self, deployments: DeploymentsResource) -> None:
+        self._deployments = deployments
 
         self.create = to_streamed_response_wrapper(
-            registry_credentials.create,
+            deployments.create,
         )
         self.list = to_streamed_response_wrapper(
-            registry_credentials.list,
+            deployments.list,
         )
         self.delete = to_streamed_response_wrapper(
-            registry_credentials.delete,
+            deployments.delete,
         )
         self.get = to_streamed_response_wrapper(
-            registry_credentials.get,
+            deployments.get,
         )
-        self.replace = to_streamed_response_wrapper(
-            registry_credentials.replace,
+        self.patch = to_streamed_response_wrapper(
+            deployments.patch,
         )
 
 
-class AsyncRegistryCredentialsResourceWithStreamingResponse:
-    def __init__(self, registry_credentials: AsyncRegistryCredentialsResource) -> None:
-        self._registry_credentials = registry_credentials
+class AsyncDeploymentsResourceWithStreamingResponse:
+    def __init__(self, deployments: AsyncDeploymentsResource) -> None:
+        self._deployments = deployments
 
         self.create = async_to_streamed_response_wrapper(
-            registry_credentials.create,
+            deployments.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            registry_credentials.list,
+            deployments.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            registry_credentials.delete,
+            deployments.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            registry_credentials.get,
+            deployments.get,
         )
-        self.replace = async_to_streamed_response_wrapper(
-            registry_credentials.replace,
+        self.patch = async_to_streamed_response_wrapper(
+            deployments.patch,
         )

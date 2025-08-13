@@ -258,7 +258,7 @@ Methods:
 Methods:
 
 - <code title="post /cloud/v1/lbpools/{project_id}/{region_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="patch /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">update</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">update</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/lbpools/{project_id}/{region_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_pool_list.py">LoadBalancerPoolList</a></code>
 - <code title="delete /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">delete</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">get</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_pool.py">LoadBalancerPool</a></code>
@@ -471,19 +471,6 @@ Methods:
 - <code title="get /cloud/v3/inference/flavors">client.cloud.inference.flavors.<a href="./src/gcore/resources/cloud/inference/flavors.py">list</a>(\*\*<a href="src/gcore/types/cloud/inference/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_flavor.py">SyncOffsetPage[InferenceFlavor]</a></code>
 - <code title="get /cloud/v3/inference/flavors/{flavor_name}">client.cloud.inference.flavors.<a href="./src/gcore/resources/cloud/inference/flavors.py">get</a>(flavor_name) -> <a href="./src/gcore/types/cloud/inference/inference_flavor.py">InferenceFlavor</a></code>
 
-### Models
-
-Types:
-
-```python
-from gcore.types.cloud.inference import InferenceModel
-```
-
-Methods:
-
-- <code title="get /cloud/v3/inference/models">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">list</a>(\*\*<a href="src/gcore/types/cloud/inference/model_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_model.py">SyncOffsetPage[InferenceModel]</a></code>
-- <code title="get /cloud/v3/inference/models/{model_id}">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">get</a>(model_id) -> <a href="./src/gcore/types/cloud/inference/inference_model.py">InferenceModel</a></code>
-
 ### Deployments
 
 Types:
@@ -528,19 +515,16 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.inference import (
-    InferenceRegistryCredentials,
-    InferenceRegistryCredentialsCreate,
-)
+from gcore.types.cloud.inference import InferenceRegistryCredentials
 ```
 
 Methods:
 
-- <code title="post /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials_create.py">InferenceRegistryCredentialsCreate</a></code>
+- <code title="post /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">InferenceRegistryCredentials</a></code>
 - <code title="get /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">SyncOffsetPage[InferenceRegistryCredentials]</a></code>
 - <code title="delete /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">delete</a>(credential_name, \*, project_id) -> None</code>
 - <code title="get /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">get</a>(credential_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">InferenceRegistryCredentials</a></code>
-- <code title="put /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">replace</a>(credential_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials_create.py">InferenceRegistryCredentialsCreate</a></code>
+- <code title="put /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">replace</a>(credential_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">InferenceRegistryCredentials</a></code>
 
 ### Secrets
 
@@ -573,6 +557,43 @@ Methods:
 - <code title="get /cloud/v3/inference/{project_id}/api_keys">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/api_key_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_api_key.py">SyncOffsetPage[InferenceAPIKey]</a></code>
 - <code title="delete /cloud/v3/inference/{project_id}/api_keys/{api_key_name}">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">delete</a>(api_key_name, \*, project_id) -> None</code>
 - <code title="get /cloud/v3/inference/{project_id}/api_keys/{api_key_name}">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">get</a>(api_key_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_api_key.py">InferenceAPIKey</a></code>
+
+### Applications
+
+#### Deployments
+
+Types:
+
+```python
+from gcore.types.cloud.inference.applications import (
+    InferenceApplicationDeployment,
+    InferenceApplicationDeploymentList,
+)
+```
+
+Methods:
+
+- <code title="post /cloud/v3/inference/applications/{project_id}/deployments">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/applications/deployment_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/inference/applications/{project_id}/deployments">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">list</a>(\*, project_id) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_deployment_list.py">InferenceApplicationDeploymentList</a></code>
+- <code title="delete /cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">delete</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">get</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_deployment.py">InferenceApplicationDeployment</a></code>
+- <code title="patch /cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">patch</a>(deployment_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/applications/deployment_patch_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+#### Templates
+
+Types:
+
+```python
+from gcore.types.cloud.inference.applications import (
+    InferenceApplicationTemplate,
+    InferenceApplicationTemplateList,
+)
+```
+
+Methods:
+
+- <code title="get /cloud/v3/inference/applications/catalog">client.cloud.inference.applications.templates.<a href="./src/gcore/resources/cloud/inference/applications/templates.py">list</a>() -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_template_list.py">InferenceApplicationTemplateList</a></code>
+- <code title="get /cloud/v3/inference/applications/catalog/{application_name}">client.cloud.inference.applications.templates.<a href="./src/gcore/resources/cloud/inference/applications/templates.py">get</a>(application_name) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_template.py">InferenceApplicationTemplate</a></code>
 
 ## PlacementGroups
 
