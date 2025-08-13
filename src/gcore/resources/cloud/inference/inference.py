@@ -4,14 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .models import (
-    ModelsResource,
-    AsyncModelsResource,
-    ModelsResourceWithRawResponse,
-    AsyncModelsResourceWithRawResponse,
-    ModelsResourceWithStreamingResponse,
-    AsyncModelsResourceWithStreamingResponse,
-)
 from .flavors import (
     FlavorsResource,
     AsyncFlavorsResource,
@@ -62,6 +54,14 @@ from .deployments.deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
+from .applications.applications import (
+    ApplicationsResource,
+    AsyncApplicationsResource,
+    ApplicationsResourceWithRawResponse,
+    AsyncApplicationsResourceWithRawResponse,
+    ApplicationsResourceWithStreamingResponse,
+    AsyncApplicationsResourceWithStreamingResponse,
+)
 from ....types.cloud.inference_region_capacity_list import InferenceRegionCapacityList
 
 __all__ = ["InferenceResource", "AsyncInferenceResource"]
@@ -71,10 +71,6 @@ class InferenceResource(SyncAPIResource):
     @cached_property
     def flavors(self) -> FlavorsResource:
         return FlavorsResource(self._client)
-
-    @cached_property
-    def models(self) -> ModelsResource:
-        return ModelsResource(self._client)
 
     @cached_property
     def deployments(self) -> DeploymentsResource:
@@ -91,6 +87,10 @@ class InferenceResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
         return APIKeysResource(self._client)
+
+    @cached_property
+    def applications(self) -> ApplicationsResource:
+        return ApplicationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> InferenceResourceWithRawResponse:
@@ -137,10 +137,6 @@ class AsyncInferenceResource(AsyncAPIResource):
         return AsyncFlavorsResource(self._client)
 
     @cached_property
-    def models(self) -> AsyncModelsResource:
-        return AsyncModelsResource(self._client)
-
-    @cached_property
     def deployments(self) -> AsyncDeploymentsResource:
         return AsyncDeploymentsResource(self._client)
 
@@ -155,6 +151,10 @@ class AsyncInferenceResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
         return AsyncAPIKeysResource(self._client)
+
+    @cached_property
+    def applications(self) -> AsyncApplicationsResource:
+        return AsyncApplicationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncInferenceResourceWithRawResponse:
@@ -208,10 +208,6 @@ class InferenceResourceWithRawResponse:
         return FlavorsResourceWithRawResponse(self._inference.flavors)
 
     @cached_property
-    def models(self) -> ModelsResourceWithRawResponse:
-        return ModelsResourceWithRawResponse(self._inference.models)
-
-    @cached_property
     def deployments(self) -> DeploymentsResourceWithRawResponse:
         return DeploymentsResourceWithRawResponse(self._inference.deployments)
 
@@ -227,6 +223,10 @@ class InferenceResourceWithRawResponse:
     def api_keys(self) -> APIKeysResourceWithRawResponse:
         return APIKeysResourceWithRawResponse(self._inference.api_keys)
 
+    @cached_property
+    def applications(self) -> ApplicationsResourceWithRawResponse:
+        return ApplicationsResourceWithRawResponse(self._inference.applications)
+
 
 class AsyncInferenceResourceWithRawResponse:
     def __init__(self, inference: AsyncInferenceResource) -> None:
@@ -239,10 +239,6 @@ class AsyncInferenceResourceWithRawResponse:
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
         return AsyncFlavorsResourceWithRawResponse(self._inference.flavors)
-
-    @cached_property
-    def models(self) -> AsyncModelsResourceWithRawResponse:
-        return AsyncModelsResourceWithRawResponse(self._inference.models)
 
     @cached_property
     def deployments(self) -> AsyncDeploymentsResourceWithRawResponse:
@@ -260,6 +256,10 @@ class AsyncInferenceResourceWithRawResponse:
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
         return AsyncAPIKeysResourceWithRawResponse(self._inference.api_keys)
 
+    @cached_property
+    def applications(self) -> AsyncApplicationsResourceWithRawResponse:
+        return AsyncApplicationsResourceWithRawResponse(self._inference.applications)
+
 
 class InferenceResourceWithStreamingResponse:
     def __init__(self, inference: InferenceResource) -> None:
@@ -272,10 +272,6 @@ class InferenceResourceWithStreamingResponse:
     @cached_property
     def flavors(self) -> FlavorsResourceWithStreamingResponse:
         return FlavorsResourceWithStreamingResponse(self._inference.flavors)
-
-    @cached_property
-    def models(self) -> ModelsResourceWithStreamingResponse:
-        return ModelsResourceWithStreamingResponse(self._inference.models)
 
     @cached_property
     def deployments(self) -> DeploymentsResourceWithStreamingResponse:
@@ -293,6 +289,10 @@ class InferenceResourceWithStreamingResponse:
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
         return APIKeysResourceWithStreamingResponse(self._inference.api_keys)
 
+    @cached_property
+    def applications(self) -> ApplicationsResourceWithStreamingResponse:
+        return ApplicationsResourceWithStreamingResponse(self._inference.applications)
+
 
 class AsyncInferenceResourceWithStreamingResponse:
     def __init__(self, inference: AsyncInferenceResource) -> None:
@@ -305,10 +305,6 @@ class AsyncInferenceResourceWithStreamingResponse:
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
         return AsyncFlavorsResourceWithStreamingResponse(self._inference.flavors)
-
-    @cached_property
-    def models(self) -> AsyncModelsResourceWithStreamingResponse:
-        return AsyncModelsResourceWithStreamingResponse(self._inference.models)
 
     @cached_property
     def deployments(self) -> AsyncDeploymentsResourceWithStreamingResponse:
@@ -325,3 +321,7 @@ class AsyncInferenceResourceWithStreamingResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
         return AsyncAPIKeysResourceWithStreamingResponse(self._inference.api_keys)
+
+    @cached_property
+    def applications(self) -> AsyncApplicationsResourceWithStreamingResponse:
+        return AsyncApplicationsResourceWithStreamingResponse(self._inference.applications)
