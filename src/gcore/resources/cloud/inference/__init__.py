@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .models import (
-    ModelsResource,
-    AsyncModelsResource,
-    ModelsResourceWithRawResponse,
-    AsyncModelsResourceWithRawResponse,
-    ModelsResourceWithStreamingResponse,
-    AsyncModelsResourceWithStreamingResponse,
-)
 from .flavors import (
     FlavorsResource,
     AsyncFlavorsResource,
@@ -48,6 +40,14 @@ from .deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
+from .applications import (
+    ApplicationsResource,
+    AsyncApplicationsResource,
+    ApplicationsResourceWithRawResponse,
+    AsyncApplicationsResourceWithRawResponse,
+    ApplicationsResourceWithStreamingResponse,
+    AsyncApplicationsResourceWithStreamingResponse,
+)
 from .registry_credentials import (
     RegistryCredentialsResource,
     AsyncRegistryCredentialsResource,
@@ -64,12 +64,6 @@ __all__ = [
     "AsyncFlavorsResourceWithRawResponse",
     "FlavorsResourceWithStreamingResponse",
     "AsyncFlavorsResourceWithStreamingResponse",
-    "ModelsResource",
-    "AsyncModelsResource",
-    "ModelsResourceWithRawResponse",
-    "AsyncModelsResourceWithRawResponse",
-    "ModelsResourceWithStreamingResponse",
-    "AsyncModelsResourceWithStreamingResponse",
     "DeploymentsResource",
     "AsyncDeploymentsResource",
     "DeploymentsResourceWithRawResponse",
@@ -94,6 +88,12 @@ __all__ = [
     "AsyncAPIKeysResourceWithRawResponse",
     "APIKeysResourceWithStreamingResponse",
     "AsyncAPIKeysResourceWithStreamingResponse",
+    "ApplicationsResource",
+    "AsyncApplicationsResource",
+    "ApplicationsResourceWithRawResponse",
+    "AsyncApplicationsResourceWithRawResponse",
+    "ApplicationsResourceWithStreamingResponse",
+    "AsyncApplicationsResourceWithStreamingResponse",
     "InferenceResource",
     "AsyncInferenceResource",
     "InferenceResourceWithRawResponse",
