@@ -16,6 +16,8 @@ from gcore.types.cloud.inference import (
     InferenceDeploymentAPIKey,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -496,18 +498,21 @@ class TestDeployments:
 
     @parametrize
     def test_method_get_api_key(self, client: Gcore) -> None:
-        deployment = client.cloud.inference.deployments.get_api_key(
-            deployment_name="my-instance",
-            project_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            deployment = client.cloud.inference.deployments.get_api_key(
+                deployment_name="my-instance",
+                project_id=1,
+            )
+
         assert_matches_type(InferenceDeploymentAPIKey, deployment, path=["response"])
 
     @parametrize
     def test_raw_response_get_api_key(self, client: Gcore) -> None:
-        response = client.cloud.inference.deployments.with_raw_response.get_api_key(
-            deployment_name="my-instance",
-            project_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.inference.deployments.with_raw_response.get_api_key(
+                deployment_name="my-instance",
+                project_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -516,25 +521,27 @@ class TestDeployments:
 
     @parametrize
     def test_streaming_response_get_api_key(self, client: Gcore) -> None:
-        with client.cloud.inference.deployments.with_streaming_response.get_api_key(
-            deployment_name="my-instance",
-            project_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.inference.deployments.with_streaming_response.get_api_key(
+                deployment_name="my-instance",
+                project_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            deployment = response.parse()
-            assert_matches_type(InferenceDeploymentAPIKey, deployment, path=["response"])
+                deployment = response.parse()
+                assert_matches_type(InferenceDeploymentAPIKey, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get_api_key(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_name` but received ''"):
-            client.cloud.inference.deployments.with_raw_response.get_api_key(
-                deployment_name="",
-                project_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_name` but received ''"):
+                client.cloud.inference.deployments.with_raw_response.get_api_key(
+                    deployment_name="",
+                    project_id=1,
+                )
 
     @parametrize
     def test_method_start(self, client: Gcore) -> None:
@@ -1100,18 +1107,21 @@ class TestAsyncDeployments:
 
     @parametrize
     async def test_method_get_api_key(self, async_client: AsyncGcore) -> None:
-        deployment = await async_client.cloud.inference.deployments.get_api_key(
-            deployment_name="my-instance",
-            project_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            deployment = await async_client.cloud.inference.deployments.get_api_key(
+                deployment_name="my-instance",
+                project_id=1,
+            )
+
         assert_matches_type(InferenceDeploymentAPIKey, deployment, path=["response"])
 
     @parametrize
     async def test_raw_response_get_api_key(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.inference.deployments.with_raw_response.get_api_key(
-            deployment_name="my-instance",
-            project_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.inference.deployments.with_raw_response.get_api_key(
+                deployment_name="my-instance",
+                project_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1120,25 +1130,27 @@ class TestAsyncDeployments:
 
     @parametrize
     async def test_streaming_response_get_api_key(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.inference.deployments.with_streaming_response.get_api_key(
-            deployment_name="my-instance",
-            project_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.inference.deployments.with_streaming_response.get_api_key(
+                deployment_name="my-instance",
+                project_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            deployment = await response.parse()
-            assert_matches_type(InferenceDeploymentAPIKey, deployment, path=["response"])
+                deployment = await response.parse()
+                assert_matches_type(InferenceDeploymentAPIKey, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get_api_key(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_name` but received ''"):
-            await async_client.cloud.inference.deployments.with_raw_response.get_api_key(
-                deployment_name="",
-                project_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_name` but received ''"):
+                await async_client.cloud.inference.deployments.with_raw_response.get_api_key(
+                    deployment_name="",
+                    project_id=1,
+                )
 
     @parametrize
     async def test_method_start(self, async_client: AsyncGcore) -> None:
