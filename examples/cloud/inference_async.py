@@ -19,8 +19,6 @@ async def main() -> None:
     cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
     # TODO set flavor name before running
     cloud_inference_flavor_name = os.environ["GCORE_CLOUD_INFERENCE_FLAVOR_NAME"]
-    # TODO set model ID before running
-    cloud_inference_model_id = os.environ["GCORE_CLOUD_INFERENCE_MODEL_ID"]
 
     gcore = AsyncGcore(
         timeout=180.0,
@@ -35,10 +33,6 @@ async def main() -> None:
     # Flavors
     await list_flavors(client=gcore)
     await get_flavor(client=gcore, flavor_name=cloud_inference_flavor_name)
-
-    # Models
-    await list_models(client=gcore)
-    await get_model(client=gcore, model_id=cloud_inference_model_id)
 
     # Registry Credentials
     credential_name = await create_registry_credential(client=gcore)
@@ -114,30 +108,6 @@ async def get_flavor(*, client: AsyncGcore, flavor_name: str) -> None:
     print("\n=== GET FLAVOR ===")
     flavor = await client.cloud.inference.flavors.get(flavor_name=flavor_name)
     print(f"Flavor: {flavor.name}, CPU: {flavor.cpu}, Memory: {flavor.memory} Gi")
-    print("========================")
-
-
-async def list_models(*, client: AsyncGcore) -> None:
-    print("\n=== LIST MODELS ===")
-    models = await client.cloud.inference.models.list()
-
-    # Display first few models
-    count = 0
-    async for model in models:
-        count += 1
-        print(f"{count}. Model: {model.name}, ID: {model.id}")
-        if count >= 3:
-            break
-
-    # Note: We can't easily determine the total count with async iteration
-    # without consuming the entire iterator
-    print("========================")
-
-
-async def get_model(*, client: AsyncGcore, model_id: str) -> None:
-    print("\n=== GET MODEL ===")
-    model = await client.cloud.inference.models.get(model_id=model_id)
-    print(f"Model: {model.name}, ID: {model.id}")
     print("========================")
 
 
