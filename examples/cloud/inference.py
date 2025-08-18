@@ -18,8 +18,6 @@ def main() -> None:
     cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
     # TODO set flavor name before running
     cloud_inference_flavor_name = os.environ["GCORE_CLOUD_INFERENCE_FLAVOR_NAME"]
-    # TODO set model ID before running
-    cloud_inference_model_id = os.environ["GCORE_CLOUD_INFERENCE_MODEL_ID"]
 
     gcore = Gcore(
         timeout=180.0,
@@ -34,10 +32,6 @@ def main() -> None:
     # Flavors
     list_flavors(client=gcore)
     get_flavor(client=gcore, flavor_name=cloud_inference_flavor_name)
-
-    # Models
-    list_models(client=gcore)
-    get_model(client=gcore, model_id=cloud_inference_model_id)
 
     # Registry Credentials
     credential_name = create_registry_credential(client=gcore)
@@ -116,33 +110,6 @@ def get_flavor(*, client: Gcore, flavor_name: str) -> None:
     print("\n=== GET FLAVOR ===")
     flavor = client.cloud.inference.flavors.get(flavor_name=flavor_name)
     print(f"Flavor: {flavor.name}, CPU: {flavor.cpu}, Memory: {flavor.memory} Gi")
-    print("========================")
-
-
-def list_models(*, client: Gcore) -> None:
-    print("\n=== LIST MODELS ===")
-    models = client.cloud.inference.models.list()
-
-    # Convert to list to get all models
-    model_list = list(models)
-
-    # Display first few models
-    display_count = min(3, len(model_list))
-
-    for i in range(display_count):
-        model = model_list[i]
-        print(f"{i + 1}. Model: {model.name}, ID: {model.id}")
-
-    if len(model_list) > display_count:
-        print(f"... and {len(model_list) - display_count} more models")
-
-    print("========================")
-
-
-def get_model(*, client: Gcore, model_id: str) -> None:
-    print("\n=== GET MODEL ===")
-    model = client.cloud.inference.models.get(model_id=model_id)
-    print(f"Model: {model.name}, ID: {model.id}")
     print("========================")
 
 
