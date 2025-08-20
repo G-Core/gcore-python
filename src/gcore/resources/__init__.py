@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .dns import (
+    DNSResource,
+    AsyncDNSResource,
+    DNSResourceWithRawResponse,
+    AsyncDNSResourceWithRawResponse,
+    DNSResourceWithStreamingResponse,
+    AsyncDNSResourceWithStreamingResponse,
+)
 from .iam import (
     IamResource,
     AsyncIamResource,
@@ -86,4 +94,10 @@ __all__ = [
     "AsyncSecurityResourceWithRawResponse",
     "SecurityResourceWithStreamingResponse",
     "AsyncSecurityResourceWithStreamingResponse",
+    "DNSResource",
+    "AsyncDNSResource",
+    "DNSResourceWithRawResponse",
+    "AsyncDNSResourceWithRawResponse",
+    "DNSResourceWithStreamingResponse",
+    "AsyncDNSResourceWithStreamingResponse",
 ]
