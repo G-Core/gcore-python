@@ -28,6 +28,7 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.dns import dns
 from .resources.iam import iam
 from .resources.waap import waap
 from .resources.cloud import cloud
@@ -45,6 +46,7 @@ class Gcore(SyncAPIClient):
     fastedge: fastedge.FastedgeResource
     streaming: streaming.StreamingResource
     security: security.SecurityResource
+    dns: dns.DNSResource
     with_raw_response: GcoreWithRawResponse
     with_streaming_response: GcoreWithStreamedResponse
 
@@ -129,6 +131,7 @@ class Gcore(SyncAPIClient):
         self.fastedge = fastedge.FastedgeResource(self)
         self.streaming = streaming.StreamingResource(self)
         self.security = security.SecurityResource(self)
+        self.dns = dns.DNSResource(self)
         self.with_raw_response = GcoreWithRawResponse(self)
         self.with_streaming_response = GcoreWithStreamedResponse(self)
 
@@ -268,6 +271,7 @@ class AsyncGcore(AsyncAPIClient):
     fastedge: fastedge.AsyncFastedgeResource
     streaming: streaming.AsyncStreamingResource
     security: security.AsyncSecurityResource
+    dns: dns.AsyncDNSResource
     with_raw_response: AsyncGcoreWithRawResponse
     with_streaming_response: AsyncGcoreWithStreamedResponse
 
@@ -352,6 +356,7 @@ class AsyncGcore(AsyncAPIClient):
         self.fastedge = fastedge.AsyncFastedgeResource(self)
         self.streaming = streaming.AsyncStreamingResource(self)
         self.security = security.AsyncSecurityResource(self)
+        self.dns = dns.AsyncDNSResource(self)
         self.with_raw_response = AsyncGcoreWithRawResponse(self)
         self.with_streaming_response = AsyncGcoreWithStreamedResponse(self)
 
@@ -492,6 +497,7 @@ class GcoreWithRawResponse:
         self.fastedge = fastedge.FastedgeResourceWithRawResponse(client.fastedge)
         self.streaming = streaming.StreamingResourceWithRawResponse(client.streaming)
         self.security = security.SecurityResourceWithRawResponse(client.security)
+        self.dns = dns.DNSResourceWithRawResponse(client.dns)
 
 
 class AsyncGcoreWithRawResponse:
@@ -502,6 +508,7 @@ class AsyncGcoreWithRawResponse:
         self.fastedge = fastedge.AsyncFastedgeResourceWithRawResponse(client.fastedge)
         self.streaming = streaming.AsyncStreamingResourceWithRawResponse(client.streaming)
         self.security = security.AsyncSecurityResourceWithRawResponse(client.security)
+        self.dns = dns.AsyncDNSResourceWithRawResponse(client.dns)
 
 
 class GcoreWithStreamedResponse:
@@ -512,6 +519,7 @@ class GcoreWithStreamedResponse:
         self.fastedge = fastedge.FastedgeResourceWithStreamingResponse(client.fastedge)
         self.streaming = streaming.StreamingResourceWithStreamingResponse(client.streaming)
         self.security = security.SecurityResourceWithStreamingResponse(client.security)
+        self.dns = dns.DNSResourceWithStreamingResponse(client.dns)
 
 
 class AsyncGcoreWithStreamedResponse:
@@ -522,6 +530,7 @@ class AsyncGcoreWithStreamedResponse:
         self.fastedge = fastedge.AsyncFastedgeResourceWithStreamingResponse(client.fastedge)
         self.streaming = streaming.AsyncStreamingResourceWithStreamingResponse(client.streaming)
         self.security = security.AsyncSecurityResourceWithStreamingResponse(client.security)
+        self.dns = dns.AsyncDNSResourceWithStreamingResponse(client.dns)
 
 
 Client = Gcore
