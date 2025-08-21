@@ -168,7 +168,7 @@ class StatisticsResource(SyncAPIResource):
         allows you to break down data with the specified granularity: minutes, hours,
         days. Based on this method, a graph of unique views in the Customer Portal is
         built.
-        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/`cdn_unique_viewers`.png)
+        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
           from_: Start of time frame. Format is date time in ISO 8601
@@ -1321,7 +1321,7 @@ class StatisticsResource(SyncAPIResource):
         made with. Works similar to the method `/statistics/cdn/uniqs`. But this allows
         you to break down data with the specified granularity: minutes, hours, days.
         Based on this method, a graph of unique views in the Customer Portal is built.
-        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/`cdn_unique_viewers`.png)
+        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
           from_: Start of time frame. Format is date time in ISO 8601
@@ -1590,7 +1590,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         allows you to break down data with the specified granularity: minutes, hours,
         days. Based on this method, a graph of unique views in the Customer Portal is
         built.
-        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/`cdn_unique_viewers`.png)
+        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
           from_: Start of time frame. Format is date time in ISO 8601
@@ -2743,7 +2743,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         made with. Works similar to the method `/statistics/cdn/uniqs`. But this allows
         you to break down data with the specified granularity: minutes, hours, days.
         Based on this method, a graph of unique views in the Customer Portal is built.
-        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/`cdn_unique_viewers`.png)
+        ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
           from_: Start of time frame. Format is date time in ISO 8601
