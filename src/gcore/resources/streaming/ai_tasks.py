@@ -564,7 +564,7 @@ class AITasksResource(SyncAPIResource):
         determination. Example:
 
         ```
-        curl -L 'https://api.gcore.com/streaming/ai/info?type=`language_support`&`audio_language`=eng&`subtitles_language`=fre'
+        curl -L 'https://api.gcore.com/streaming/ai/info?type=language_support&audio_language=eng&subtitles_language=fre'
         { "supported": true }
         ```
 
@@ -1152,7 +1152,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         determination. Example:
 
         ```
-        curl -L 'https://api.gcore.com/streaming/ai/info?type=`language_support`&`audio_language`=eng&`subtitles_language`=fre'
+        curl -L 'https://api.gcore.com/streaming/ai/info?type=language_support&audio_language=eng&subtitles_language=fre'
         { "supported": true }
         ```
 

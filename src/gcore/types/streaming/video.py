@@ -92,11 +92,11 @@ class ConvertedVideo(BaseModel):
     **Examples**
 
     - Audio-only:
-      `` https://demo-public.gvideo.io/videos/`2675_JNnccG5l97XPxsov`/`qid3585v1_aac_128_audio`.mp4 ``
+      `https://demo-public.gvideo.io/videos/2675_JNnccG5l97XPxsov/qid3585v1_aac_128_audio.mp4`
     - Video:
-      `` https://demo-public.gvideo.io/videos/`2675_3MlggU4xDb1Ssa5Y`/`qid3567v1_h264_4050_1080`.mp4/download ``
+      `https://demo-public.gvideo.io/videos/2675_3MlggU4xDb1Ssa5Y/qid3567v1_h264_4050_1080.mp4/download`
     - Video with custom download filename:
-      `` https://demo-public.gvideo.io/videos/`2675_XtMKxzJM6Xt7SBUV`/1080.mp4/download=`highlights_v1`.`1_2025`-05-30 ``
+      `https://demo-public.gvideo.io/videos/2675_XtMKxzJM6Xt7SBUV/1080.mp4/download=highlights_v1.1_2025-05-30`
     """
 
     name: Optional[str] = None
@@ -270,7 +270,7 @@ class Video(BaseModel):
     direct link. Also the video player can be integrated into your web pages using
     the Iframe tag. Example of usage on a web page:
 
-    <iframe width="100%" height="100%" src="https://player.gvideo.co/videos/`2675_FnlHXwA16ZMxmUr`" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe width="100%" height="100%" src="https://player.gvideo.co/videos/2675_FnlHXwA16ZMxmUr" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
     There are some link modificators you can specify and add manually:
     - ?`no_low_latency` – player is forced to use non-low-latency streams HLS MPEG TS, instead of MPEG-DASH CMAF or HLS/LL-HLS CMAF.

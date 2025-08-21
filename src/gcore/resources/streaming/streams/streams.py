@@ -462,7 +462,7 @@ class StreamsResource(SyncAPIResource):
         - HLS .m3u8,
         - MP4,
         - VOD in video hosting with a permanent link to watch video.
-          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/`clip_recording_mp4_hls`.gif)
+          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
 
         **Clip lifetime:** Instant clips are a copy of the stream, created from a live
         stream. They are stored in memory for a limited time, after which the clip
@@ -606,13 +606,13 @@ class StreamsResource(SyncAPIResource):
         renditions list in order to get exact bitrate/quality from the set. Example:
 
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.m3u8`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.mp4`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.mp4`
 
         Args:
           extra_headers: Send extra headers
@@ -1157,7 +1157,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         - HLS .m3u8,
         - MP4,
         - VOD in video hosting with a permanent link to watch video.
-          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/`clip_recording_mp4_hls`.gif)
+          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
 
         **Clip lifetime:** Instant clips are a copy of the stream, created from a live
         stream. They are stored in memory for a limited time, after which the clip
@@ -1301,13 +1301,13 @@ class AsyncStreamsResource(AsyncAPIResource):
         renditions list in order to get exact bitrate/quality from the set. Example:
 
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.m3u8`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.mp4`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.mp4`
 
         Args:
           extra_headers: Send extra headers

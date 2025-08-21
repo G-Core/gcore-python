@@ -66,9 +66,9 @@ class QualitySetsResource(SyncAPIResource):
         These values are the default for everyone. There is no need to configure
         anything additional. Read more about qiality in our blog
         [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality/).
-        ![Quality ladder](https://demo-files.gvideo.io/apidocs/`encoding_ladder`.png)
-        Only for those cases when, in addition to the main parameters, it is necessary
-        to use your own, then it is necessary to use custom quality sets. How to use:
+        ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
+        for those cases when, in addition to the main parameters, it is necessary to use
+        your own, then it is necessary to use custom quality sets. How to use:
 
         1. By default custom quality set is empty – `{ "live":[],"vod":[] }`
         2. Request the use of custom quality sets from your manager or the Support Team.
@@ -197,9 +197,9 @@ class AsyncQualitySetsResource(AsyncAPIResource):
         These values are the default for everyone. There is no need to configure
         anything additional. Read more about qiality in our blog
         [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality/).
-        ![Quality ladder](https://demo-files.gvideo.io/apidocs/`encoding_ladder`.png)
-        Only for those cases when, in addition to the main parameters, it is necessary
-        to use your own, then it is necessary to use custom quality sets. How to use:
+        ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
+        for those cases when, in addition to the main parameters, it is necessary to use
+        your own, then it is necessary to use custom quality sets. How to use:
 
         1. By default custom quality set is empty – `{ "live":[],"vod":[] }`
         2. Request the use of custom quality sets from your manager or the Support Team.

@@ -62,12 +62,12 @@ class SubtitlesResource(SyncAPIResource):
         formats:
 
         - SRT – SubRip Text is described on
-          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#`SubRip_file_format`).
-          Must start from integer for sequence number. Use calidators to check the
-          subtitles, like
+          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#SubRip_file_format). Must
+          start from integer for sequence number. Use calidators to check the subtitles,
+          like
           [srt-validator](https://taoning2014.github.io/srt-validator-website/index.html).
         - WebVTT – Web Video Text Tracks Format is described on
-          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/`WebVTT_API`).
+          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API).
           Must start from "WEBVTT" header. Use validators to check the subtitles, like
           [W3C](https://w3c.github.io/webvtt.js/parser.html). Language is 3-letter
           language code according to ISO-639-2 (bibliographic code). Specify language
@@ -320,12 +320,12 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         formats:
 
         - SRT – SubRip Text is described on
-          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#`SubRip_file_format`).
-          Must start from integer for sequence number. Use calidators to check the
-          subtitles, like
+          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#SubRip_file_format). Must
+          start from integer for sequence number. Use calidators to check the subtitles,
+          like
           [srt-validator](https://taoning2014.github.io/srt-validator-website/index.html).
         - WebVTT – Web Video Text Tracks Format is described on
-          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/`WebVTT_API`).
+          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API).
           Must start from "WEBVTT" header. Use validators to check the subtitles, like
           [W3C](https://w3c.github.io/webvtt.js/parser.html). Language is 3-letter
           language code according to ISO-639-2 (bibliographic code). Specify language
