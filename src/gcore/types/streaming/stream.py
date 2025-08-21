@@ -203,7 +203,7 @@ class Stream(BaseModel):
       requests and compare it with file size (so to use it in your analytics). Such
       modifier attributes are applied manually and added to the link obtained from
       this field. I.e. `` ?`get_duration_sec`=true `` Example:
-      `https://demo.gvideo.io/mpegts/`2675_19146`/`master_mpegts`.m3u8?`get_duration_sec`=true`
+      `https://demo.gvideo.io/mpegts/2675_19146/master_mpegts.m3u8?get_duration_sec=true`
 
     ```
     #EXTM3U
@@ -239,7 +239,7 @@ class Stream(BaseModel):
     with limits. That's why you may need to use this HTML web player. Please, look
     Knowledge Base for details. Example of usage on a web page:
 
-    <iframe width="560" height="315" src="https://player.gvideo.co/streams/`2675_201693`" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://player.gvideo.co/streams/2675_201693" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     """
 
     live: Optional[bool] = None
