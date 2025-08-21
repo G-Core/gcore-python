@@ -32,9 +32,9 @@ class VideoUpdateParams(TypedDict, total=False):
     More details:
 
     - List of AI tasks – API
-      [GET /streaming/ai/tasks](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/get-ai-task-result)
+      [GET /streaming/ai/tasks](https://api.gcore.com/docs/streaming#tag/AI/operation/get_ai_results)
     - Add subtitles to an exist video – API
-      [POST /streaming/videos/{`video_id`}/subtitles](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/subtitles/add-subtitle).
+      [POST /streaming/videos/{`video_id`}/subtitles](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
     """
 
     auto_translate_subtitles_language: Literal["disable", "default", "<language_codes,>"]
