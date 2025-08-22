@@ -162,7 +162,7 @@ class StreamsResource(SyncAPIResource):
               entity: video source, video id, parameters, etc. We do not use this field in any
               way when processing the stream. You can store any data in any format (string,
               json, etc), saved as a text string. Example:
-              `` client_entity_data = '{ "`seq_id`": "1234567890", "name": "John Doe", "iat": 1516239022 }' ``
+              `client_entity_data = '{ "seq_id": "1234567890", "name": "John Doe", "iat": 1516239022 }'`
 
           client_user_id: Custom meta field for storing the Identifier in your system. We do not use this
               field in any way when processing the stream. Example: `client_user_id = 1001`
@@ -379,8 +379,8 @@ class StreamsResource(SyncAPIResource):
         Perhaps, instead of deleting, you may use the stream deactivation:
 
         ```
-        PATCH /videos/{`stream_id`}
-        { "active": false }
+        PATCH / videos / {stream_id}
+        {"active": false}
         ```
 
         For details, see the Product Documentation.
@@ -857,7 +857,7 @@ class AsyncStreamsResource(AsyncAPIResource):
               entity: video source, video id, parameters, etc. We do not use this field in any
               way when processing the stream. You can store any data in any format (string,
               json, etc), saved as a text string. Example:
-              `` client_entity_data = '{ "`seq_id`": "1234567890", "name": "John Doe", "iat": 1516239022 }' ``
+              `client_entity_data = '{ "seq_id": "1234567890", "name": "John Doe", "iat": 1516239022 }'`
 
           client_user_id: Custom meta field for storing the Identifier in your system. We do not use this
               field in any way when processing the stream. Example: `client_user_id = 1001`
@@ -1074,8 +1074,8 @@ class AsyncStreamsResource(AsyncAPIResource):
         Perhaps, instead of deleting, you may use the stream deactivation:
 
         ```
-        PATCH /videos/{`stream_id`}
-        { "active": false }
+        PATCH / videos / {stream_id}
+        {"active": false}
         ```
 
         For details, see the Product Documentation.
