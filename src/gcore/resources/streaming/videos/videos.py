@@ -194,9 +194,9 @@ class VideosResource(SyncAPIResource):
         "duration", "`hls_url`", etc. Examples of changing:
 
         - Name: `{ "name": "new name of the video" }`
-        - Move the video to a new directory: `` { "`directory_id`": 200 }`` Please note
-          that some parameters are used on initial step (before transcoding) only, so
-          after transcoding there is no use in changing their values. For example,
+        - Move the video to a new directory: ` { "directory_id": 200 }` Please note that
+          some parameters are used on initial step (before transcoding) only, so after
+          transcoding there is no use in changing their values. For example,
           "`origin_url`" parameter is used for downloading an original file from a
           source and never used after transcoding; or "priority" parameter is used to
           set priority of processing and never used after transcoding.
@@ -218,8 +218,8 @@ class VideosResource(SyncAPIResource):
                 attribute of API POST /streaming/ai/transcribe . Example:
 
               ```
-              `auto_transcribe_audio_language`: "auto"
-              `auto_transcribe_audio_language`: "ger"
+              auto_transcribe_audio_language: "auto"
+              auto_transcribe_audio_language: "ger"
               ```
 
               More details:
@@ -242,8 +242,8 @@ class VideosResource(SyncAPIResource):
                 subtitle will be generated for each language. Example:
 
               ```
-              `auto_translate_subtitles_language`: default
-              `auto_translate_subtitles_language`: eng,fre,ger
+              auto_translate_subtitles_language: default
+              auto_translate_subtitles_language: eng,fre,ger
               ```
 
               Please note that subtitle translation is done separately and after
@@ -279,8 +279,8 @@ class VideosResource(SyncAPIResource):
               POST https://api.gcore.com/streaming/videos
               "video": {
               "name": "IBC 2024 intro.mp4",
-              "`origin_url`": "https://www.googleapis.com/drive/v3/files/...?alt=media",
-              "`origin_http_headers`": "Authorization: Bearer ABC"
+              "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
+              "origin_http_headers": "Authorization: Bearer ABC"
               }
               ```
 
@@ -662,8 +662,8 @@ class VideosResource(SyncAPIResource):
         metadata: {
         filename: data.video.name,
         token: data.token,
-        `video_id`: data.video.id,
-        `client_id`: data.video.`client_id`
+        video_id: data.video.id,
+        client_id: data.video.client_id
         },
         onSuccess: function() {
         ...
@@ -879,9 +879,9 @@ class AsyncVideosResource(AsyncAPIResource):
         "duration", "`hls_url`", etc. Examples of changing:
 
         - Name: `{ "name": "new name of the video" }`
-        - Move the video to a new directory: `` { "`directory_id`": 200 }`` Please note
-          that some parameters are used on initial step (before transcoding) only, so
-          after transcoding there is no use in changing their values. For example,
+        - Move the video to a new directory: ` { "directory_id": 200 }` Please note that
+          some parameters are used on initial step (before transcoding) only, so after
+          transcoding there is no use in changing their values. For example,
           "`origin_url`" parameter is used for downloading an original file from a
           source and never used after transcoding; or "priority" parameter is used to
           set priority of processing and never used after transcoding.
@@ -903,8 +903,8 @@ class AsyncVideosResource(AsyncAPIResource):
                 attribute of API POST /streaming/ai/transcribe . Example:
 
               ```
-              `auto_transcribe_audio_language`: "auto"
-              `auto_transcribe_audio_language`: "ger"
+              auto_transcribe_audio_language: "auto"
+              auto_transcribe_audio_language: "ger"
               ```
 
               More details:
@@ -927,8 +927,8 @@ class AsyncVideosResource(AsyncAPIResource):
                 subtitle will be generated for each language. Example:
 
               ```
-              `auto_translate_subtitles_language`: default
-              `auto_translate_subtitles_language`: eng,fre,ger
+              auto_translate_subtitles_language: default
+              auto_translate_subtitles_language: eng,fre,ger
               ```
 
               Please note that subtitle translation is done separately and after
@@ -964,8 +964,8 @@ class AsyncVideosResource(AsyncAPIResource):
               POST https://api.gcore.com/streaming/videos
               "video": {
               "name": "IBC 2024 intro.mp4",
-              "`origin_url`": "https://www.googleapis.com/drive/v3/files/...?alt=media",
-              "`origin_http_headers`": "Authorization: Bearer ABC"
+              "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
+              "origin_http_headers": "Authorization: Bearer ABC"
               }
               ```
 
@@ -1351,8 +1351,8 @@ class AsyncVideosResource(AsyncAPIResource):
         metadata: {
         filename: data.video.name,
         token: data.token,
-        `video_id`: data.video.id,
-        `client_id`: data.video.`client_id`
+        video_id: data.video.id,
+        client_id: data.video.client_id
         },
         onSuccess: function() {
         ...

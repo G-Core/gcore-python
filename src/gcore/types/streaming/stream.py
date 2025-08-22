@@ -89,7 +89,7 @@ class Stream(BaseModel):
     entity: video source, video id, parameters, etc. We do not use this field in any
     way when processing the stream. You can store any data in any format (string,
     json, etc), saved as a text string. Example:
-    `` client_entity_data = '{ "`seq_id`": "1234567890", "name": "John Doe", "iat": 1516239022 }' ``
+    `client_entity_data = '{ "seq_id": "1234567890", "name": "John Doe", "iat": 1516239022 }'`
     """
 
     client_user_id: Optional[int] = None
@@ -202,7 +202,7 @@ class Stream(BaseModel):
       determine duration in seconds at the level of analyzing the logs of CDN
       requests and compare it with file size (so to use it in your analytics). Such
       modifier attributes are applied manually and added to the link obtained from
-      this field. I.e. `` ?`get_duration_sec`=true `` Example:
+      this field. I.e. `?get_duration_sec=true` Example:
       `https://demo.gvideo.io/mpegts/2675_19146/master_mpegts.m3u8?get_duration_sec=true`
 
     ```
@@ -212,7 +212,7 @@ class Stream(BaseModel):
     ...
     #EXTINF:2.000000,
     #EXT-X-PROGRAM-DATE-TIME:2025-08-14T08:15:00
-    seg1.ts?`duration_sec`=2
+    seg1.ts?duration_sec=2
     ...
     ```
     """

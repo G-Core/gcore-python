@@ -26,8 +26,8 @@ class PlaylistVideo(BaseModel):
       attribute of API POST /streaming/ai/transcribe . Example:
 
     ```
-    `auto_transcribe_audio_language`: "auto"
-    `auto_transcribe_audio_language`: "ger"
+    auto_transcribe_audio_language: "auto"
+    auto_transcribe_audio_language: "ger"
     ```
 
     More details:
@@ -54,8 +54,8 @@ class PlaylistVideo(BaseModel):
       subtitle will be generated for each language. Example:
 
     ```
-    `auto_translate_subtitles_language`: default
-    `auto_translate_subtitles_language`: eng,fre,ger
+    auto_translate_subtitles_language: default
+    auto_translate_subtitles_language: eng,fre,ger
     ```
 
     Please note that subtitle translation is done separately and after
@@ -107,8 +107,8 @@ class PlaylistVideo(BaseModel):
     POST https://api.gcore.com/streaming/videos
     "video": {
     "name": "IBC 2024 intro.mp4",
-    "`origin_url`": "https://www.googleapis.com/drive/v3/files/...?alt=media",
-    "`origin_http_headers`": "Authorization: Bearer ABC"
+    "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
+    "origin_http_headers": "Authorization: Bearer ABC"
     }
     ```
     """
