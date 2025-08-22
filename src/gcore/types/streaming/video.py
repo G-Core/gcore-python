@@ -64,7 +64,7 @@ class ConvertedVideo(BaseModel):
       ```
     - ````– Video height, or word "audio" if it is an audio-only file.
       Note that this link format has been applied since 14.08.2024. If the video entity was uploaded earlier, links may have old simplified format.
-      Example: ``` /videos/{`client_id`}_{slug}/`qid3567v1_h264_4050_1080`.mp4 ```
+      Example: ``` /videos/{client_id}_{slug}/qid3567v1_h264_4050_1080.mp4 ```
 
       ````
 
@@ -171,8 +171,8 @@ class Video(BaseModel):
 
     This URL is a link to the main manifest. But you can also manually specify
     suffix-options that will allow you to change the manifest to your request:
-    `` /videos/{`client_id`}_{slug}/master[-min-N][-max-N][-(h264|hevc|av1)].mpd ``
-    List of suffix-options:
+    `/videos/{client_id}_{slug}/master[-min-N][-max-N][-(h264|hevc|av1)].mpd` List
+    of suffix-options:
 
     - [-min-N] – ABR soft limitation of qualities from below.
     - [-max-N] – ABR soft limitation of qualities from above.
@@ -231,7 +231,7 @@ class Video(BaseModel):
 
     You can also manually specify suffix-options that will allow you to change the
     manifest to your request:
-    `` /videos/{`client_id`}_{`video_slug`}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8 ``
+    `/videos/{client_id}_{video_slug}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
     List of suffix-options:
 
     - [-cmaf] – getting HLS CMAF version of the manifest. Look at the `hls_cmaf_url`
@@ -312,7 +312,7 @@ class Video(BaseModel):
       like viewing an MP4 rendition. The MP4 file becomes available for downloading
       when the video entity "status" changes from "new" to "pending". The file is
       stored for 7 days, after which it will be automatically deleted. Format of URL
-      is `` /videos/_/`origin__`.mp4 `` Where:
+      is `/videos/_/origin__.mp4` Where:
     - ```– Encoding bitrate in Kbps.
 
       ```
