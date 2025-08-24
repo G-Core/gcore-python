@@ -5,17 +5,17 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["VodStatisticsSeries", "VodStatisticsSeryItem", "VodStatisticsSeryItemMetrics"]
+__all__ = ["VodStatisticsSeries", "VodStatisticsSeriesItem", "VodStatisticsSeriesItemMetrics"]
 
 
-class VodStatisticsSeryItemMetrics(BaseModel):
+class VodStatisticsSeriesItemMetrics(BaseModel):
     vod: List[int]
 
 
-class VodStatisticsSeryItem(BaseModel):
+class VodStatisticsSeriesItem(BaseModel):
     client: int
 
-    metrics: VodStatisticsSeryItemMetrics
+    metrics: VodStatisticsSeriesItemMetrics
 
 
-VodStatisticsSeries: TypeAlias = List[VodStatisticsSeryItem]
+VodStatisticsSeries: TypeAlias = List[VodStatisticsSeriesItem]
