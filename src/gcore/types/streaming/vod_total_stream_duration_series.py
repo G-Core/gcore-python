@@ -5,10 +5,10 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["VodTotalStreamDurationSeries", "VodTotalStreamDurationSeryItem"]
+__all__ = ["VodTotalStreamDurationSeries", "VodTotalStreamDurationSeriesItem"]
 
 
-class VodTotalStreamDurationSeryItem(BaseModel):
+class VodTotalStreamDurationSeriesItem(BaseModel):
     client: int
 
     duration: int
@@ -19,4 +19,4 @@ class VodTotalStreamDurationSeryItem(BaseModel):
     stream_id: Optional[str] = None
 
 
-VodTotalStreamDurationSeries: TypeAlias = List[VodTotalStreamDurationSeryItem]
+VodTotalStreamDurationSeries: TypeAlias = List[VodTotalStreamDurationSeriesItem]

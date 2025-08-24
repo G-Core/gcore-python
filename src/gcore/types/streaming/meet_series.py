@@ -5,19 +5,19 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["MeetSeries", "MeetSeryItem", "MeetSeryItemMetrics"]
+__all__ = ["MeetSeries", "MeetSeriesItem", "MeetSeriesItemMetrics"]
 
 
-class MeetSeryItemMetrics(BaseModel):
+class MeetSeriesItemMetrics(BaseModel):
     max_meet_usage: Optional[List[int]] = None
 
     meet: Optional[List[List[int]]] = None
 
 
-class MeetSeryItem(BaseModel):
+class MeetSeriesItem(BaseModel):
     client: int
 
-    metrics: MeetSeryItemMetrics
+    metrics: MeetSeriesItemMetrics
 
 
-MeetSeries: TypeAlias = List[MeetSeryItem]
+MeetSeries: TypeAlias = List[MeetSeriesItem]
