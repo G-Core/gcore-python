@@ -5,17 +5,17 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["MaxStreamSeries", "MaxStreamSeryItem", "MaxStreamSeryItemMetrics"]
+__all__ = ["MaxStreamSeries", "MaxStreamSeriesItem", "MaxStreamSeriesItemMetrics"]
 
 
-class MaxStreamSeryItemMetrics(BaseModel):
+class MaxStreamSeriesItemMetrics(BaseModel):
     streams: List[int]
 
 
-class MaxStreamSeryItem(BaseModel):
+class MaxStreamSeriesItem(BaseModel):
     client: int
 
-    metrics: MaxStreamSeryItemMetrics
+    metrics: MaxStreamSeriesItemMetrics
 
 
-MaxStreamSeries: TypeAlias = List[MaxStreamSeryItem]
+MaxStreamSeries: TypeAlias = List[MaxStreamSeriesItem]

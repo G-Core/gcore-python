@@ -5,19 +5,19 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["StorageSeries", "StorageSeryItem", "StorageSeryItemMetrics"]
+__all__ = ["StorageSeries", "StorageSeriesItem", "StorageSeriesItemMetrics"]
 
 
-class StorageSeryItemMetrics(BaseModel):
+class StorageSeriesItemMetrics(BaseModel):
     max_volume_usage: List[int]
 
     storage: List[List[int]]
 
 
-class StorageSeryItem(BaseModel):
+class StorageSeriesItem(BaseModel):
     client: int
 
-    metrics: StorageSeryItemMetrics
+    metrics: StorageSeriesItemMetrics
 
 
-StorageSeries: TypeAlias = List[StorageSeryItem]
+StorageSeries: TypeAlias = List[StorageSeriesItem]
