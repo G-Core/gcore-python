@@ -4,10 +4,10 @@ from typing import List
 
 from ..._models import BaseModel
 
-__all__ = ["WaapIPDDOSInfoModel", "TimeSery"]
+__all__ = ["WaapIPDDOSInfoModel", "TimeSeries"]
 
 
-class TimeSery(BaseModel):
+class TimeSeries(BaseModel):
     count: int
     """The number of attacks"""
 
@@ -19,5 +19,5 @@ class WaapIPDDOSInfoModel(BaseModel):
     botnet_client: bool
     """Indicates if the IP is tagged as a botnet client"""
 
-    time_series: List[TimeSery]
+    time_series: List[TimeSeries]
     """The time series data for the DDoS attacks from the IP address"""
