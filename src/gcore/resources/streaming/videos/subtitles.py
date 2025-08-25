@@ -85,17 +85,18 @@ class SubtitlesResource(SyncAPIResource):
 
         - What is
           ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
-        - If the option is enabled via `auto_transcribe_audio_language: auto|`, then
-          immediately after successful transcoding, an AI task will be automatically
-          created for transcription.
+        - If the option is enabled via
+          `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
+          successful transcoding, an AI task will be automatically created for
+          transcription.
         - If you need to translate subtitles from original language to any other, then
           AI-task of subtitles translation can be applied. Use
-          `auto_translate_subtitles_language: default|` parameter for that. Also you can
-          point several languages to translate to, then a separate subtitle will be
-          generated for each specified language. The created AI-task(s) will be
-          automatically executed, and result will also be automatically attached to this
-          video as subtitle(s). If AI is disabled in your account, you will receive code
-          422 in response.
+          `auto_translate_subtitles_language: default|<language_codes,>` parameter for
+          that. Also you can point several languages to translate to, then a separate
+          subtitle will be generated for each specified language. The created AI-task(s)
+          will be automatically executed, and result will also be automatically attached
+          to this video as subtitle(s). If AI is disabled in your account, you will
+          receive code 422 in response.
 
         **Where and how subtitles are displayed?** Subtitles are became available in the
         API response and in playback manifests. All added subtitles are automatically
@@ -343,17 +344,18 @@ class AsyncSubtitlesResource(AsyncAPIResource):
 
         - What is
           ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
-        - If the option is enabled via `auto_transcribe_audio_language: auto|`, then
-          immediately after successful transcoding, an AI task will be automatically
-          created for transcription.
+        - If the option is enabled via
+          `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
+          successful transcoding, an AI task will be automatically created for
+          transcription.
         - If you need to translate subtitles from original language to any other, then
           AI-task of subtitles translation can be applied. Use
-          `auto_translate_subtitles_language: default|` parameter for that. Also you can
-          point several languages to translate to, then a separate subtitle will be
-          generated for each specified language. The created AI-task(s) will be
-          automatically executed, and result will also be automatically attached to this
-          video as subtitle(s). If AI is disabled in your account, you will receive code
-          422 in response.
+          `auto_translate_subtitles_language: default|<language_codes,>` parameter for
+          that. Also you can point several languages to translate to, then a separate
+          subtitle will be generated for each specified language. The created AI-task(s)
+          will be automatically executed, and result will also be automatically attached
+          to this video as subtitle(s). If AI is disabled in your account, you will
+          receive code 422 in response.
 
         **Where and how subtitles are displayed?** Subtitles are became available in the
         API response and in playback manifests. All added subtitles are automatically

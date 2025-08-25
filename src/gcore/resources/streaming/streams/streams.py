@@ -516,7 +516,8 @@ class StreamsResource(SyncAPIResource):
               deleted from memory and is no longer available via the link. You need to create
               a new segment, or use `vod_required: true` attribute. If value is omitted, then
               expiration is counted as +3600 seconds (1 hour) to the end of the clip (i.e.
-              `unix timestamp = + + 3600`). Allowed range: 1m <= expiration <= 4h. Example:
+              `unix timestamp = <start> + <duration> + 3600`). Allowed range: 1m <= expiration
+              <= 4h. Example:
               `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
 
           start: Starting point of the segment to cut. Unix timestamp in seconds, absolute value.
@@ -1211,7 +1212,8 @@ class AsyncStreamsResource(AsyncAPIResource):
               deleted from memory and is no longer available via the link. You need to create
               a new segment, or use `vod_required: true` attribute. If value is omitted, then
               expiration is counted as +3600 seconds (1 hour) to the end of the clip (i.e.
-              `unix timestamp = + + 3600`). Allowed range: 1m <= expiration <= 4h. Example:
+              `unix timestamp = <start> + <duration> + 3600`). Allowed range: 1m <= expiration
+              <= 4h. Example:
               `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
 
           start: Starting point of the segment to cut. Unix timestamp in seconds, absolute value.

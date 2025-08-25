@@ -108,14 +108,15 @@ class VideosResource(SyncAPIResource):
 
         - What is
           ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
-        - If the option is enabled via `auto_transcribe_audio_language: auto|`, then
-          immediately after successful transcoding, an AI task will be automatically
-          created for transcription.
+        - If the option is enabled via
+          `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
+          successful transcoding, an AI task will be automatically created for
+          transcription.
         - If you need to translate subtitles from original language to any other, then
           AI-task of subtitles translation can be applied. Use
-          `auto_translate_subtitles_language: default|` parameter for that. Also you can
-          point several languages to translate to, then a separate subtitle will be
-          generated for each specified language.
+          `auto_translate_subtitles_language: default|<language_codes,>` parameter for
+          that. Also you can point several languages to translate to, then a separate
+          subtitle will be generated for each specified language.
         - How to
           ["add AI-generated subtitles to an exist video"](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
           The created AI-task(s) will be automatically executed, and result will also be
@@ -268,7 +269,8 @@ class VideosResource(SyncAPIResource):
 
           origin_http_headers: Authorization HTTP request header. Will be used as credentials to authenticate a
               request to download a file (specified in "`origin_url`" parameter) on an
-              external server. Syntax: `Authorization: ` Examples:
+              external server. Syntax:
+              `Authorization: <auth-scheme> <authorization-parameters>` Examples:
 
               - "`origin_http_headers`": "Authorization: Basic ..."
               - "`origin_http_headers`": "Authorization: Bearer ..."
@@ -277,10 +279,11 @@ class VideosResource(SyncAPIResource):
 
               ```
               POST https://api.gcore.com/streaming/videos
+
               "video": {
-              "name": "IBC 2024 intro.mp4",
-              "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
-              "origin_http_headers": "Authorization: Bearer ABC"
+                "name": "IBC 2024 intro.mp4",
+                "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
+                "origin_http_headers": "Authorization: Bearer ABC"
               }
               ```
 
@@ -295,8 +298,8 @@ class VideosResource(SyncAPIResource):
               image. Also use attribute "`screenshot_id`" to select poster as a default
               screnshot. Attribute accepts single image as base64-encoded string
               [(RFC 2397 – The "data" URL scheme)](https://www.rfc-editor.org/rfc/rfc2397). In
-              format: `data:[];base64,` MIME-types are image/jpeg, image/webp, and image/png
-              and file sizes up to 1Mb. Examples:
+              format: `data:[<mediatype>];base64,<data>` MIME-types are image/jpeg,
+              image/webp, and image/png and file sizes up to 1Mb. Examples:
 
               - `data:image/jpeg;base64,/9j/4AA...qf/2Q==`
               - `data:image/png;base64,iVBORw0KGg...ggg==`
@@ -657,19 +660,19 @@ class VideosResource(SyncAPIResource):
           version only of tus-js-client.
 
         ```
-        uploads[data.video.id] = new tus.Upload(file, {
-        endpoint: `https://${data.servers[0].hostname}/upload/`,
-        metadata: {
-        filename: data.video.name,
-        token: data.token,
-        video_id: data.video.id,
-        client_id: data.video.client_id
-        },
-        onSuccess: function() {
-        ...
-        }
-        }
-        uploads[data.video.id].start();
+            uploads[data.video.id] = new tus.Upload(file, {
+              endpoint: `https://${data.servers[0].hostname}/upload/`,
+              metadata: {
+                filename: data.video.name,
+                token: data.token,
+                video_id: data.video.id,
+                client_id: data.video.client_id
+              },
+              onSuccess: function() {
+                ...
+              }
+            }
+            uploads[data.video.id].start();
         ```
 
         Args:
@@ -793,14 +796,15 @@ class AsyncVideosResource(AsyncAPIResource):
 
         - What is
           ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
-        - If the option is enabled via `auto_transcribe_audio_language: auto|`, then
-          immediately after successful transcoding, an AI task will be automatically
-          created for transcription.
+        - If the option is enabled via
+          `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
+          successful transcoding, an AI task will be automatically created for
+          transcription.
         - If you need to translate subtitles from original language to any other, then
           AI-task of subtitles translation can be applied. Use
-          `auto_translate_subtitles_language: default|` parameter for that. Also you can
-          point several languages to translate to, then a separate subtitle will be
-          generated for each specified language.
+          `auto_translate_subtitles_language: default|<language_codes,>` parameter for
+          that. Also you can point several languages to translate to, then a separate
+          subtitle will be generated for each specified language.
         - How to
           ["add AI-generated subtitles to an exist video"](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
           The created AI-task(s) will be automatically executed, and result will also be
@@ -953,7 +957,8 @@ class AsyncVideosResource(AsyncAPIResource):
 
           origin_http_headers: Authorization HTTP request header. Will be used as credentials to authenticate a
               request to download a file (specified in "`origin_url`" parameter) on an
-              external server. Syntax: `Authorization: ` Examples:
+              external server. Syntax:
+              `Authorization: <auth-scheme> <authorization-parameters>` Examples:
 
               - "`origin_http_headers`": "Authorization: Basic ..."
               - "`origin_http_headers`": "Authorization: Bearer ..."
@@ -962,10 +967,11 @@ class AsyncVideosResource(AsyncAPIResource):
 
               ```
               POST https://api.gcore.com/streaming/videos
+
               "video": {
-              "name": "IBC 2024 intro.mp4",
-              "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
-              "origin_http_headers": "Authorization: Bearer ABC"
+                "name": "IBC 2024 intro.mp4",
+                "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
+                "origin_http_headers": "Authorization: Bearer ABC"
               }
               ```
 
@@ -980,8 +986,8 @@ class AsyncVideosResource(AsyncAPIResource):
               image. Also use attribute "`screenshot_id`" to select poster as a default
               screnshot. Attribute accepts single image as base64-encoded string
               [(RFC 2397 – The "data" URL scheme)](https://www.rfc-editor.org/rfc/rfc2397). In
-              format: `data:[];base64,` MIME-types are image/jpeg, image/webp, and image/png
-              and file sizes up to 1Mb. Examples:
+              format: `data:[<mediatype>];base64,<data>` MIME-types are image/jpeg,
+              image/webp, and image/png and file sizes up to 1Mb. Examples:
 
               - `data:image/jpeg;base64,/9j/4AA...qf/2Q==`
               - `data:image/png;base64,iVBORw0KGg...ggg==`
@@ -1346,19 +1352,19 @@ class AsyncVideosResource(AsyncAPIResource):
           version only of tus-js-client.
 
         ```
-        uploads[data.video.id] = new tus.Upload(file, {
-        endpoint: `https://${data.servers[0].hostname}/upload/`,
-        metadata: {
-        filename: data.video.name,
-        token: data.token,
-        video_id: data.video.id,
-        client_id: data.video.client_id
-        },
-        onSuccess: function() {
-        ...
-        }
-        }
-        uploads[data.video.id].start();
+            uploads[data.video.id] = new tus.Upload(file, {
+              endpoint: `https://${data.servers[0].hostname}/upload/`,
+              metadata: {
+                filename: data.video.name,
+                token: data.token,
+                video_id: data.video.id,
+                client_id: data.video.client_id
+              },
+              onSuccess: function() {
+                ...
+              }
+            }
+            uploads[data.video.id].start();
         ```
 
         Args:
