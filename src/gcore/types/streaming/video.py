@@ -37,7 +37,7 @@ class ConvertedVideo(BaseModel):
       in the browser.
 
     ```
-    Content-Disposition: attachment
+      Content-Disposition: attachment
     ```
 
     The third option allows you to set a custom name for the file being downloaded.
@@ -51,22 +51,18 @@ class ConvertedVideo(BaseModel):
       `_backup.final`, `clip-v1.2`
 
     **Default MP4 file name structure** Link to the file {filename} contains
-    information about the encoding method using format: `___.mp4`
+    information about the encoding method using format:
+    `<quality_version>_<codec>_<bitrate>_<height>.mp4`
 
-    - ```– Internal quality identifier and file version. Please do not use it, can be changed at any time without any notice.
-
-      ```
-    - ```– Codec name that was used to encode the video, or audio codec if it is an audio-only file.
-
-      ```
-    - ```– Encoding bitrate in Kbps.
-
-      ```
-    - ````– Video height, or word "audio" if it is an audio-only file.
-      Note that this link format has been applied since 14.08.2024. If the video entity was uploaded earlier, links may have old simplified format.
-      Example: ``` /videos/{`client_id`}_{slug}/`qid3567v1_h264_4050_1080`.mp4 ```
-
-      ````
+    - `<quality_version>` – Internal quality identifier and file version. Please do
+      not use it, can be changed at any time without any notice.
+    - `<codec>` – Codec name that was used to encode the video, or audio codec if it
+      is an audio-only file.
+    - `<bitrate>` – Encoding bitrate in Kbps.
+    - `<height>` – Video height, or word "audio" if it is an audio-only file. Note
+      that this link format has been applied since 14.08.2024. If the video entity
+      was uploaded earlier, links may have old simplified format. Example:
+      `/videos/{client_id}_{slug}/qid3567v1_h264_4050_1080.mp4`
 
     **Dynamic speed limiting** This mode sets different limits for different users
     or for different types of content. The speed is adjusted based on requests with
@@ -92,11 +88,11 @@ class ConvertedVideo(BaseModel):
     **Examples**
 
     - Audio-only:
-      `` https://demo-public.gvideo.io/videos/`2675_JNnccG5l97XPxsov`/`qid3585v1_aac_128_audio`.mp4 ``
+      `https://demo-public.gvideo.io/videos/2675_JNnccG5l97XPxsov/qid3585v1_aac_128_audio.mp4`
     - Video:
-      `` https://demo-public.gvideo.io/videos/`2675_3MlggU4xDb1Ssa5Y`/`qid3567v1_h264_4050_1080`.mp4/download ``
+      `https://demo-public.gvideo.io/videos/2675_3MlggU4xDb1Ssa5Y/qid3567v1_h264_4050_1080.mp4/download`
     - Video with custom download filename:
-      `` https://demo-public.gvideo.io/videos/`2675_XtMKxzJM6Xt7SBUV`/1080.mp4/download=`highlights_v1`.`1_2025`-05-30 ``
+      `https://demo-public.gvideo.io/videos/2675_XtMKxzJM6Xt7SBUV/1080.mp4/download=highlights_v1.1_2025-05-30`
     """
 
     name: Optional[str] = None
@@ -171,8 +167,8 @@ class Video(BaseModel):
 
     This URL is a link to the main manifest. But you can also manually specify
     suffix-options that will allow you to change the manifest to your request:
-    `` /videos/{`client_id`}_{slug}/master[-min-N][-max-N][-(h264|hevc|av1)].mpd ``
-    List of suffix-options:
+    `/videos/{client_id}_{slug}/master[-min-N][-max-N][-(h264|hevc|av1)].mpd` List
+    of suffix-options:
 
     - [-min-N] – ABR soft limitation of qualities from below.
     - [-max-N] – ABR soft limitation of qualities from above.
@@ -231,7 +227,7 @@ class Video(BaseModel):
 
     You can also manually specify suffix-options that will allow you to change the
     manifest to your request:
-    `` /videos/{`client_id`}_{`video_slug`}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8 ``
+    `/videos/{client_id}_{video_slug}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
     List of suffix-options:
 
     - [-cmaf] – getting HLS CMAF version of the manifest. Look at the `hls_cmaf_url`
@@ -270,7 +266,7 @@ class Video(BaseModel):
     direct link. Also the video player can be integrated into your web pages using
     the Iframe tag. Example of usage on a web page:
 
-    <iframe width="100%" height="100%" src="https://player.gvideo.co/videos/`2675_FnlHXwA16ZMxmUr`" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe width="100%" height="100%" src="https://player.gvideo.co/videos/2675_FnlHXwA16ZMxmUr" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
     There are some link modificators you can specify and add manually:
     - ?`no_low_latency` – player is forced to use non-low-latency streams HLS MPEG TS, instead of MPEG-DASH CMAF or HLS/LL-HLS CMAF.
@@ -312,13 +308,10 @@ class Video(BaseModel):
       like viewing an MP4 rendition. The MP4 file becomes available for downloading
       when the video entity "status" changes from "new" to "pending". The file is
       stored for 7 days, after which it will be automatically deleted. Format of URL
-      is `` /videos/_/`origin__`.mp4 `` Where:
-    - ```– Encoding bitrate in Kbps.
-
-      ```
-    - ```– Video height.
-      This is a premium feature, available only upon request through your manager or support team.
-      ```
+      is `/videos/<cid>_<slug>/origin_<bitrate>_<height>.mp4` Where:
+    - `<bitrate>` – Encoding bitrate in Kbps.
+    - `<height>` – Video height. This is a premium feature, available only upon
+      request through your manager or support team.
     """
 
     origin_video_duration: Optional[int] = None

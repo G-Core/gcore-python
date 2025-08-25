@@ -104,9 +104,9 @@ class PlaylistsResource(SyncAPIResource):
           once it finishes to maintain a continuous stream. Example:
 
         ```
-        active: true
-        loop: true
-        name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
+          active: true
+          loop: true
+          name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
         ```
 
         **Scheduled playback** It can be used to simulate live events such as virtual
@@ -122,10 +122,10 @@ class PlaylistsResource(SyncAPIResource):
           traditional live broadcasts.
 
         ```
-        active: true
-        loop: false
-        name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
-        `start_time`: "2024-07-01T11:00:00Z"
+          active: true
+          loop: false
+          name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
+          start_time: "2024-07-01T11:00:00Z"
         ```
 
         Args:
@@ -160,7 +160,7 @@ class PlaylistsResource(SyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
-              `` /playlists/{`client_id`}_{`playlist_id`}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8 ``
+              `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented
@@ -291,7 +291,7 @@ class PlaylistsResource(SyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
-              `` /playlists/{`client_id`}_{`playlist_id`}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8 ``
+              `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented
@@ -572,9 +572,9 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           once it finishes to maintain a continuous stream. Example:
 
         ```
-        active: true
-        loop: true
-        name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
+          active: true
+          loop: true
+          name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
         ```
 
         **Scheduled playback** It can be used to simulate live events such as virtual
@@ -590,10 +590,10 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           traditional live broadcasts.
 
         ```
-        active: true
-        loop: false
-        name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
-        `start_time`: "2024-07-01T11:00:00Z"
+          active: true
+          loop: false
+          name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
+          start_time: "2024-07-01T11:00:00Z"
         ```
 
         Args:
@@ -628,7 +628,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
-              `` /playlists/{`client_id`}_{`playlist_id`}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8 ``
+              `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented
@@ -759,7 +759,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
-              `` /playlists/{`client_id`}_{`playlist_id`}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8 ``
+              `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented

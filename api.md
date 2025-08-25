@@ -258,7 +258,7 @@ Methods:
 Methods:
 
 - <code title="post /cloud/v1/lbpools/{project_id}/{region_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="patch /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">update</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">update</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/lbpools/{project_id}/{region_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_pool_list.py">LoadBalancerPoolList</a></code>
 - <code title="delete /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">delete</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}">client.cloud.load_balancers.pools.<a href="./src/gcore/resources/cloud/load_balancers/pools/pools.py">get</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_pool.py">LoadBalancerPool</a></code>
@@ -471,19 +471,6 @@ Methods:
 - <code title="get /cloud/v3/inference/flavors">client.cloud.inference.flavors.<a href="./src/gcore/resources/cloud/inference/flavors.py">list</a>(\*\*<a href="src/gcore/types/cloud/inference/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_flavor.py">SyncOffsetPage[InferenceFlavor]</a></code>
 - <code title="get /cloud/v3/inference/flavors/{flavor_name}">client.cloud.inference.flavors.<a href="./src/gcore/resources/cloud/inference/flavors.py">get</a>(flavor_name) -> <a href="./src/gcore/types/cloud/inference/inference_flavor.py">InferenceFlavor</a></code>
 
-### Models
-
-Types:
-
-```python
-from gcore.types.cloud.inference import InferenceModel
-```
-
-Methods:
-
-- <code title="get /cloud/v3/inference/models">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">list</a>(\*\*<a href="src/gcore/types/cloud/inference/model_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_model.py">SyncOffsetPage[InferenceModel]</a></code>
-- <code title="get /cloud/v3/inference/models/{model_id}">client.cloud.inference.models.<a href="./src/gcore/resources/cloud/inference/models.py">get</a>(model_id) -> <a href="./src/gcore/types/cloud/inference/inference_model.py">InferenceModel</a></code>
-
 ### Deployments
 
 Types:
@@ -528,19 +515,16 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.inference import (
-    InferenceRegistryCredentials,
-    InferenceRegistryCredentialsCreate,
-)
+from gcore.types.cloud.inference import InferenceRegistryCredentials
 ```
 
 Methods:
 
-- <code title="post /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials_create.py">InferenceRegistryCredentialsCreate</a></code>
+- <code title="post /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">InferenceRegistryCredentials</a></code>
 - <code title="get /cloud/v3/inference/{project_id}/registry_credentials">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">SyncOffsetPage[InferenceRegistryCredentials]</a></code>
 - <code title="delete /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">delete</a>(credential_name, \*, project_id) -> None</code>
 - <code title="get /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">get</a>(credential_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">InferenceRegistryCredentials</a></code>
-- <code title="put /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">replace</a>(credential_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials_create.py">InferenceRegistryCredentialsCreate</a></code>
+- <code title="put /cloud/v3/inference/{project_id}/registry_credentials/{credential_name}">client.cloud.inference.registry_credentials.<a href="./src/gcore/resources/cloud/inference/registry_credentials.py">replace</a>(credential_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/registry_credential_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_registry_credentials.py">InferenceRegistryCredentials</a></code>
 
 ### Secrets
 
@@ -573,6 +557,43 @@ Methods:
 - <code title="get /cloud/v3/inference/{project_id}/api_keys">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/api_key_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/inference_api_key.py">SyncOffsetPage[InferenceAPIKey]</a></code>
 - <code title="delete /cloud/v3/inference/{project_id}/api_keys/{api_key_name}">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">delete</a>(api_key_name, \*, project_id) -> None</code>
 - <code title="get /cloud/v3/inference/{project_id}/api_keys/{api_key_name}">client.cloud.inference.api_keys.<a href="./src/gcore/resources/cloud/inference/api_keys.py">get</a>(api_key_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/inference_api_key.py">InferenceAPIKey</a></code>
+
+### Applications
+
+#### Deployments
+
+Types:
+
+```python
+from gcore.types.cloud.inference.applications import (
+    InferenceApplicationDeployment,
+    InferenceApplicationDeploymentList,
+)
+```
+
+Methods:
+
+- <code title="post /cloud/v3/inference/applications/{project_id}/deployments">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/inference/applications/deployment_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/inference/applications/{project_id}/deployments">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">list</a>(\*, project_id) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_deployment_list.py">InferenceApplicationDeploymentList</a></code>
+- <code title="delete /cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">delete</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">get</a>(deployment_name, \*, project_id) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_deployment.py">InferenceApplicationDeployment</a></code>
+- <code title="patch /cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}">client.cloud.inference.applications.deployments.<a href="./src/gcore/resources/cloud/inference/applications/deployments.py">patch</a>(deployment_name, \*, project_id, \*\*<a href="src/gcore/types/cloud/inference/applications/deployment_patch_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+#### Templates
+
+Types:
+
+```python
+from gcore.types.cloud.inference.applications import (
+    InferenceApplicationTemplate,
+    InferenceApplicationTemplateList,
+)
+```
+
+Methods:
+
+- <code title="get /cloud/v3/inference/applications/catalog">client.cloud.inference.applications.templates.<a href="./src/gcore/resources/cloud/inference/applications/templates.py">list</a>() -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_template_list.py">InferenceApplicationTemplateList</a></code>
+- <code title="get /cloud/v3/inference/applications/catalog/{application_name}">client.cloud.inference.applications.templates.<a href="./src/gcore/resources/cloud/inference/applications/templates.py">get</a>(application_name) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_template.py">InferenceApplicationTemplate</a></code>
 
 ## PlacementGroups
 
@@ -1037,7 +1058,6 @@ Types:
 ```python
 from gcore.types.waap.domains import (
     WaapBlockedStatistics,
-    WaapCountStatistics,
     WaapDDOSAttack,
     WaapDDOSInfo,
     WaapEventStatistics,
@@ -1737,3 +1757,139 @@ Methods:
 - <code title="get /security/iaas/v2/profiles/{id}">client.security.profiles.<a href="./src/gcore/resources/security/profiles.py">get</a>(id) -> <a href="./src/gcore/types/security/client_profile.py">ClientProfile</a></code>
 - <code title="put /security/iaas/v2/profiles/{id}/recreate">client.security.profiles.<a href="./src/gcore/resources/security/profiles.py">recreate</a>(id, \*\*<a href="src/gcore/types/security/profile_recreate_params.py">params</a>) -> <a href="./src/gcore/types/security/client_profile.py">ClientProfile</a></code>
 - <code title="put /security/iaas/v2/profiles/{id}">client.security.profiles.<a href="./src/gcore/resources/security/profiles.py">replace</a>(id, \*\*<a href="src/gcore/types/security/profile_replace_params.py">params</a>) -> <a href="./src/gcore/types/security/client_profile.py">ClientProfile</a></code>
+
+# DNS
+
+Types:
+
+```python
+from gcore.types.dns import DNSGetAccountOverviewResponse, DNSLookupResponse
+```
+
+Methods:
+
+- <code title="get /dns/v2/platform/info">client.dns.<a href="./src/gcore/resources/dns/dns.py">get_account_overview</a>() -> <a href="./src/gcore/types/dns/dns_get_account_overview_response.py">DNSGetAccountOverviewResponse</a></code>
+- <code title="get /dns/v2/lookup">client.dns.<a href="./src/gcore/resources/dns/dns.py">lookup</a>(\*\*<a href="src/gcore/types/dns/dns_lookup_params.py">params</a>) -> <a href="./src/gcore/types/dns/dns_lookup_response.py">DNSLookupResponse</a></code>
+
+## Locations
+
+Types:
+
+```python
+from gcore.types.dns import (
+    DNSLocationTranslations,
+    LocationListResponse,
+    LocationListContinentsResponse,
+    LocationListCountriesResponse,
+    LocationListRegionsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /dns/v2/locations">client.dns.locations.<a href="./src/gcore/resources/dns/locations.py">list</a>() -> <a href="./src/gcore/types/dns/location_list_response.py">LocationListResponse</a></code>
+- <code title="get /dns/v2/locations/continents">client.dns.locations.<a href="./src/gcore/resources/dns/locations.py">list_continents</a>() -> <a href="./src/gcore/types/dns/location_list_continents_response.py">LocationListContinentsResponse</a></code>
+- <code title="get /dns/v2/locations/countries">client.dns.locations.<a href="./src/gcore/resources/dns/locations.py">list_countries</a>() -> <a href="./src/gcore/types/dns/location_list_countries_response.py">LocationListCountriesResponse</a></code>
+- <code title="get /dns/v2/locations/regions">client.dns.locations.<a href="./src/gcore/resources/dns/locations.py">list_regions</a>() -> <a href="./src/gcore/types/dns/location_list_regions_response.py">LocationListRegionsResponse</a></code>
+
+## Metrics
+
+Types:
+
+```python
+from gcore.types.dns import MetricListResponse
+```
+
+Methods:
+
+- <code title="get /dns/v2/monitor/metrics">client.dns.metrics.<a href="./src/gcore/resources/dns/metrics.py">list</a>(\*\*<a href="src/gcore/types/dns/metric_list_params.py">params</a>) -> str</code>
+
+## Pickers
+
+Types:
+
+```python
+from gcore.types.dns import DNSLabelName, PickerListResponse
+```
+
+Methods:
+
+- <code title="get /dns/v2/pickers">client.dns.pickers.<a href="./src/gcore/resources/dns/pickers/pickers.py">list</a>() -> <a href="./src/gcore/types/dns/picker_list_response.py">PickerListResponse</a></code>
+
+### Presets
+
+Types:
+
+```python
+from gcore.types.dns.pickers import PresetListResponse
+```
+
+Methods:
+
+- <code title="get /dns/v2/pickers/presets">client.dns.pickers.presets.<a href="./src/gcore/resources/dns/pickers/presets.py">list</a>() -> <a href="./src/gcore/types/dns/pickers/preset_list_response.py">PresetListResponse</a></code>
+
+## Zones
+
+Types:
+
+```python
+from gcore.types.dns import (
+    DNSNameServer,
+    ZoneCreateResponse,
+    ZoneListResponse,
+    ZoneCheckDelegationStatusResponse,
+    ZoneExportResponse,
+    ZoneGetResponse,
+    ZoneGetStatisticsResponse,
+    ZoneImportResponse,
+)
+```
+
+Methods:
+
+- <code title="post /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">create</a>(\*\*<a href="src/gcore/types/dns/zone_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_create_response.py">ZoneCreateResponse</a></code>
+- <code title="put /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">update</a>(path_name, \*\*<a href="src/gcore/types/dns/zone_update_params.py">params</a>) -> object</code>
+- <code title="get /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">list</a>(\*\*<a href="src/gcore/types/dns/zone_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_list_response.py">ZoneListResponse</a></code>
+- <code title="delete /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">delete</a>(name) -> object</code>
+- <code title="post /dns/v2/analyze/{name}/delegation-status">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">check_delegation_status</a>(name) -> <a href="./src/gcore/types/dns/zone_check_delegation_status_response.py">ZoneCheckDelegationStatusResponse</a></code>
+- <code title="patch /dns/v2/zones/{name}/disable">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">disable</a>(name) -> object</code>
+- <code title="patch /dns/v2/zones/{name}/enable">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">enable</a>(name) -> object</code>
+- <code title="get /dns/v2/zones/{zoneName}/export">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">export</a>(zone_name) -> <a href="./src/gcore/types/dns/zone_export_response.py">ZoneExportResponse</a></code>
+- <code title="get /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">get</a>(name) -> <a href="./src/gcore/types/dns/zone_get_response.py">ZoneGetResponse</a></code>
+- <code title="get /dns/v2/zones/{name}/statistics">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">get_statistics</a>(name, \*\*<a href="src/gcore/types/dns/zone_get_statistics_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_get_statistics_response.py">ZoneGetStatisticsResponse</a></code>
+- <code title="post /dns/v2/zones/{zoneName}/import">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">import\_</a>(zone_name, \*\*<a href="src/gcore/types/dns/zone_import_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_import_response.py">ZoneImportResponse</a></code>
+
+### Dnssec
+
+Types:
+
+```python
+from gcore.types.dns.zones import DnssecUpdateResponse, DnssecGetResponse
+```
+
+Methods:
+
+- <code title="patch /dns/v2/zones/{name}/dnssec">client.dns.zones.dnssec.<a href="./src/gcore/resources/dns/zones/dnssec.py">update</a>(name, \*\*<a href="src/gcore/types/dns/zones/dnssec_update_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dnssec_update_response.py">DnssecUpdateResponse</a></code>
+- <code title="get /dns/v2/zones/{name}/dnssec">client.dns.zones.dnssec.<a href="./src/gcore/resources/dns/zones/dnssec.py">get</a>(name) -> <a href="./src/gcore/types/dns/zones/dnssec_get_response.py">DnssecGetResponse</a></code>
+
+### Rrsets
+
+Types:
+
+```python
+from gcore.types.dns.zones import (
+    DNSFailoverLog,
+    DNSOutputRrset,
+    RrsetListResponse,
+    RrsetGetFailoverLogsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">create</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
+- <code title="put /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">update</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_update_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
+- <code title="get /dns/v2/zones/{zoneName}/rrsets">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">list</a>(zone_name, \*\*<a href="src/gcore/types/dns/zones/rrset_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/rrset_list_response.py">RrsetListResponse</a></code>
+- <code title="delete /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">delete</a>(rrset_type, \*, zone_name, rrset_name) -> object</code>
+- <code title="get /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">get</a>(rrset_type, \*, zone_name, rrset_name) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
+- <code title="get /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}/failover/log">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">get_failover_logs</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_get_failover_logs_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/rrset_get_failover_logs_response.py">RrsetGetFailoverLogsResponse</a></code>

@@ -65,7 +65,7 @@ class OverlaysResource(SyncAPIResource):
         There are can be more that 1 overlay over a stream, which are small or stretched
         over full frame. Overlays can have transparent areas. Frequency of update is 1
         FPS. Automatic size scaling for Adaptative Bitrate qualities is applied.
-        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/`coffee_run_overlays`.gif)
+        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/coffee_run_overlays.gif)
 
         How to activate and use in simple steps:
 
@@ -362,7 +362,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         There are can be more that 1 overlay over a stream, which are small or stretched
         over full frame. Overlays can have transparent areas. Frequency of update is 1
         FPS. Automatic size scaling for Adaptative Bitrate qualities is applied.
-        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/`coffee_run_overlays`.gif)
+        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/coffee_run_overlays.gif)
 
         How to activate and use in simple steps:
 

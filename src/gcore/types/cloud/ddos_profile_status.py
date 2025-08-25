@@ -7,7 +7,7 @@ __all__ = ["DDOSProfileStatus"]
 
 class DDOSProfileStatus(BaseModel):
     error_description: str
-    """Description of the error, if it exists"""
+    """Detailed error message describing any issues with the profile operation"""
 
     status: str
-    """Profile status"""
+    """Current operational status of the DDoS protection profile"""

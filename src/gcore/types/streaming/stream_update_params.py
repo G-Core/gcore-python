@@ -61,7 +61,7 @@ class Stream(TypedDict, total=False):
     entity: video source, video id, parameters, etc. We do not use this field in any
     way when processing the stream. You can store any data in any format (string,
     json, etc), saved as a text string. Example:
-    `` client_entity_data = '{ "`seq_id`": "1234567890", "name": "John Doe", "iat": 1516239022 }' ``
+    `client_entity_data = '{ "seq_id": "1234567890", "name": "John Doe", "iat": 1516239022 }'`
     """
 
     client_user_id: int

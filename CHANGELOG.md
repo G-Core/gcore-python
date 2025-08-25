@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.11.0 (2025-08-25)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/G-Core/gcore-python/compare/v0.10.0...v0.11.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** support inference applications
+
+### Features
+
+* **api:** aggregated API specs update ([141b831](https://github.com/G-Core/gcore-python/commit/141b8311c1afaadc753ca1d039c98fe1134d8bf6))
+* **api:** aggregated API specs update ([83dd581](https://github.com/G-Core/gcore-python/commit/83dd5819ad4dc95f1388c421aa402d5bffa4685b))
+* **api:** aggregated API specs update ([f71c3d1](https://github.com/G-Core/gcore-python/commit/f71c3d179b41c04f58fbad456a99e5f80562be33))
+* **api:** aggregated API specs update ([9cbe8fd](https://github.com/G-Core/gcore-python/commit/9cbe8fd8d84fac7a1581e5e083d74b95de3b5462))
+* **api:** aggregated API specs update ([0be4bae](https://github.com/G-Core/gcore-python/commit/0be4bae144750b52f2d75b7f7b07797774460578))
+* **api:** aggregated API specs update ([f3aefda](https://github.com/G-Core/gcore-python/commit/f3aefda2551ddffd363ddba9bfa1625ced9fff4b))
+* **api:** api update ([3014412](https://github.com/G-Core/gcore-python/commit/3014412935d7ad49ec1f72a91860255179f2dba5))
+* **cloud:** remove inference model examples ([8783511](https://github.com/G-Core/gcore-python/commit/87835112d2d67c032be83ba39c8cc0b970a4a844))
+* **cloud:** support inference applications ([18c778c](https://github.com/G-Core/gcore-python/commit/18c778caafd0ae43defdd7720dac45548b9df095))
+* **cloud:** use PATCH /v2/lbpools ([cba170c](https://github.com/G-Core/gcore-python/commit/cba170ca25b80f2e99bb27b5b33ea09a7828dcd1))
+
+
+### Chores
+
+* formatting ([c6bbac7](https://github.com/G-Core/gcore-python/commit/c6bbac79b0bac38adeac8502f0e7b06813d77748))
+* **internal:** codegen related update ([a52e178](https://github.com/G-Core/gcore-python/commit/a52e178a59d25f64c801acbc865eee5dbe50919d))
+* **internal:** detect breaking changes when removing endpoints ([6884b67](https://github.com/G-Core/gcore-python/commit/6884b672f2542fbb1e2e928b59849220e20fdb04))
+* **internal:** improve breaking change detection ([7633fd5](https://github.com/G-Core/gcore-python/commit/7633fd5d7197443b223d07a212322faa7ad2d807))
+* **internal:** update comment in script ([067e9ff](https://github.com/G-Core/gcore-python/commit/067e9ff502e501460baa814d19603e4cb2a91e9c))
+* **tests:** unskip tests failing due to wrong Prism routing ([dd89184](https://github.com/G-Core/gcore-python/commit/dd89184f5d048c7e1489c70c58861bf7b4652862))
+* update @stainless-api/prism-cli to v5.15.0 ([ff1d205](https://github.com/G-Core/gcore-python/commit/ff1d20586704f23bd9d427e11a488f20ccf29420))
+* update github action ([90d0d40](https://github.com/G-Core/gcore-python/commit/90d0d40744d5ce00b4a99aab77919de29ef2f4ae))
+
 ## 0.10.0 (2025-08-07)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/G-Core/gcore-python/compare/v0.9.0...v0.10.0)

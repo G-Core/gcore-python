@@ -62,12 +62,12 @@ class SubtitlesResource(SyncAPIResource):
         formats:
 
         - SRT – SubRip Text is described on
-          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#`SubRip_file_format`).
-          Must start from integer for sequence number. Use calidators to check the
-          subtitles, like
+          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#SubRip_file_format). Must
+          start from integer for sequence number. Use calidators to check the subtitles,
+          like
           [srt-validator](https://taoning2014.github.io/srt-validator-website/index.html).
         - WebVTT – Web Video Text Tracks Format is described on
-          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/`WebVTT_API`).
+          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API).
           Must start from "WEBVTT" header. Use validators to check the subtitles, like
           [W3C](https://w3c.github.io/webvtt.js/parser.html). Language is 3-letter
           language code according to ISO-639-2 (bibliographic code). Specify language
@@ -85,17 +85,18 @@ class SubtitlesResource(SyncAPIResource):
 
         - What is
           ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
-        - If the option is enabled via `auto_transcribe_audio_language: auto|`, then
-          immediately after successful transcoding, an AI task will be automatically
-          created for transcription.
+        - If the option is enabled via
+          `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
+          successful transcoding, an AI task will be automatically created for
+          transcription.
         - If you need to translate subtitles from original language to any other, then
           AI-task of subtitles translation can be applied. Use
-          `auto_translate_subtitles_language: default|` parameter for that. Also you can
-          point several languages to translate to, then a separate subtitle will be
-          generated for each specified language. The created AI-task(s) will be
-          automatically executed, and result will also be automatically attached to this
-          video as subtitle(s). If AI is disabled in your account, you will receive code
-          422 in response.
+          `auto_translate_subtitles_language: default|<language_codes,>` parameter for
+          that. Also you can point several languages to translate to, then a separate
+          subtitle will be generated for each specified language. The created AI-task(s)
+          will be automatically executed, and result will also be automatically attached
+          to this video as subtitle(s). If AI is disabled in your account, you will
+          receive code 422 in response.
 
         **Where and how subtitles are displayed?** Subtitles are became available in the
         API response and in playback manifests. All added subtitles are automatically
@@ -320,12 +321,12 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         formats:
 
         - SRT – SubRip Text is described on
-          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#`SubRip_file_format`).
-          Must start from integer for sequence number. Use calidators to check the
-          subtitles, like
+          [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#SubRip_file_format). Must
+          start from integer for sequence number. Use calidators to check the subtitles,
+          like
           [srt-validator](https://taoning2014.github.io/srt-validator-website/index.html).
         - WebVTT – Web Video Text Tracks Format is described on
-          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/`WebVTT_API`).
+          [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API).
           Must start from "WEBVTT" header. Use validators to check the subtitles, like
           [W3C](https://w3c.github.io/webvtt.js/parser.html). Language is 3-letter
           language code according to ISO-639-2 (bibliographic code). Specify language
@@ -343,17 +344,18 @@ class AsyncSubtitlesResource(AsyncAPIResource):
 
         - What is
           ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
-        - If the option is enabled via `auto_transcribe_audio_language: auto|`, then
-          immediately after successful transcoding, an AI task will be automatically
-          created for transcription.
+        - If the option is enabled via
+          `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
+          successful transcoding, an AI task will be automatically created for
+          transcription.
         - If you need to translate subtitles from original language to any other, then
           AI-task of subtitles translation can be applied. Use
-          `auto_translate_subtitles_language: default|` parameter for that. Also you can
-          point several languages to translate to, then a separate subtitle will be
-          generated for each specified language. The created AI-task(s) will be
-          automatically executed, and result will also be automatically attached to this
-          video as subtitle(s). If AI is disabled in your account, you will receive code
-          422 in response.
+          `auto_translate_subtitles_language: default|<language_codes,>` parameter for
+          that. Also you can point several languages to translate to, then a separate
+          subtitle will be generated for each specified language. The created AI-task(s)
+          will be automatically executed, and result will also be automatically attached
+          to this video as subtitle(s). If AI is disabled in your account, you will
+          receive code 422 in response.
 
         **Where and how subtitles are displayed?** Subtitles are became available in the
         API response and in playback manifests. All added subtitles are automatically

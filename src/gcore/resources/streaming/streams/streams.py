@@ -162,7 +162,7 @@ class StreamsResource(SyncAPIResource):
               entity: video source, video id, parameters, etc. We do not use this field in any
               way when processing the stream. You can store any data in any format (string,
               json, etc), saved as a text string. Example:
-              `` client_entity_data = '{ "`seq_id`": "1234567890", "name": "John Doe", "iat": 1516239022 }' ``
+              `client_entity_data = '{ "seq_id": "1234567890", "name": "John Doe", "iat": 1516239022 }'`
 
           client_user_id: Custom meta field for storing the Identifier in your system. We do not use this
               field in any way when processing the stream. Example: `client_user_id = 1001`
@@ -379,8 +379,8 @@ class StreamsResource(SyncAPIResource):
         Perhaps, instead of deleting, you may use the stream deactivation:
 
         ```
-        PATCH /videos/{`stream_id`}
-        { "active": false }
+        PATCH / videos / {stream_id}
+        {"active": false}
         ```
 
         For details, see the Product Documentation.
@@ -462,7 +462,7 @@ class StreamsResource(SyncAPIResource):
         - HLS .m3u8,
         - MP4,
         - VOD in video hosting with a permanent link to watch video.
-          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/`clip_recording_mp4_hls`.gif)
+          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
 
         **Clip lifetime:** Instant clips are a copy of the stream, created from a live
         stream. They are stored in memory for a limited time, after which the clip
@@ -516,7 +516,8 @@ class StreamsResource(SyncAPIResource):
               deleted from memory and is no longer available via the link. You need to create
               a new segment, or use `vod_required: true` attribute. If value is omitted, then
               expiration is counted as +3600 seconds (1 hour) to the end of the clip (i.e.
-              `unix timestamp = + + 3600`). Allowed range: 1m <= expiration <= 4h. Example:
+              `unix timestamp = <start> + <duration> + 3600`). Allowed range: 1m <= expiration
+              <= 4h. Example:
               `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
 
           start: Starting point of the segment to cut. Unix timestamp in seconds, absolute value.
@@ -606,13 +607,13 @@ class StreamsResource(SyncAPIResource):
         renditions list in order to get exact bitrate/quality from the set. Example:
 
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.m3u8`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.mp4`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.mp4`
 
         Args:
           extra_headers: Send extra headers
@@ -857,7 +858,7 @@ class AsyncStreamsResource(AsyncAPIResource):
               entity: video source, video id, parameters, etc. We do not use this field in any
               way when processing the stream. You can store any data in any format (string,
               json, etc), saved as a text string. Example:
-              `` client_entity_data = '{ "`seq_id`": "1234567890", "name": "John Doe", "iat": 1516239022 }' ``
+              `client_entity_data = '{ "seq_id": "1234567890", "name": "John Doe", "iat": 1516239022 }'`
 
           client_user_id: Custom meta field for storing the Identifier in your system. We do not use this
               field in any way when processing the stream. Example: `client_user_id = 1001`
@@ -1074,8 +1075,8 @@ class AsyncStreamsResource(AsyncAPIResource):
         Perhaps, instead of deleting, you may use the stream deactivation:
 
         ```
-        PATCH /videos/{`stream_id`}
-        { "active": false }
+        PATCH / videos / {stream_id}
+        {"active": false}
         ```
 
         For details, see the Product Documentation.
@@ -1157,7 +1158,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         - HLS .m3u8,
         - MP4,
         - VOD in video hosting with a permanent link to watch video.
-          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/`clip_recording_mp4_hls`.gif)
+          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
 
         **Clip lifetime:** Instant clips are a copy of the stream, created from a live
         stream. They are stored in memory for a limited time, after which the clip
@@ -1211,7 +1212,8 @@ class AsyncStreamsResource(AsyncAPIResource):
               deleted from memory and is no longer available via the link. You need to create
               a new segment, or use `vod_required: true` attribute. If value is omitted, then
               expiration is counted as +3600 seconds (1 hour) to the end of the clip (i.e.
-              `unix timestamp = + + 3600`). Allowed range: 1m <= expiration <= 4h. Example:
+              `unix timestamp = <start> + <duration> + 3600`). Allowed range: 1m <= expiration
+              <= 4h. Example:
               `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
 
           start: Starting point of the segment to cut. Unix timestamp in seconds, absolute value.
@@ -1301,13 +1303,13 @@ class AsyncStreamsResource(AsyncAPIResource):
         renditions list in order to get exact bitrate/quality from the set. Example:
 
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
         - HLS 720p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.m3u8 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.m3u8`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_master`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.mp4`
         - MP4 360p:
-          `` https://CID.domain.com/rec/`111_1000`/`rec_d7bsli54p8n4_qsid42_media_1_360`.mp4 ``
+          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.mp4`
 
         Args:
           extra_headers: Send extra headers

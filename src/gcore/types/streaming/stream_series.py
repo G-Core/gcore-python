@@ -5,17 +5,17 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["StreamSeries", "StreamSeryItem", "StreamSeryItemMetrics"]
+__all__ = ["StreamSeries", "StreamSeriesItem", "StreamSeriesItemMetrics"]
 
 
-class StreamSeryItemMetrics(BaseModel):
+class StreamSeriesItemMetrics(BaseModel):
     streams: List[int]
 
 
-class StreamSeryItem(BaseModel):
+class StreamSeriesItem(BaseModel):
     client: int
 
-    metrics: StreamSeryItemMetrics
+    metrics: StreamSeriesItemMetrics
 
 
-StreamSeries: TypeAlias = List[StreamSeryItem]
+StreamSeries: TypeAlias = List[StreamSeriesItem]

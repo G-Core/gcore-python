@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -52,7 +53,7 @@ class RoleAssignmentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        role: str,
+        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | NotGiven = NOT_GIVEN,
         project_id: Optional[int] | NotGiven = NOT_GIVEN,
@@ -104,7 +105,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         self,
         assignment_id: int,
         *,
-        role: str,
+        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | NotGiven = NOT_GIVEN,
         project_id: Optional[int] | NotGiven = NOT_GIVEN,
@@ -267,7 +268,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        role: str,
+        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | NotGiven = NOT_GIVEN,
         project_id: Optional[int] | NotGiven = NOT_GIVEN,
@@ -319,7 +320,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         self,
         assignment_id: int,
         *,
-        role: str,
+        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | NotGiven = NOT_GIVEN,
         project_id: Optional[int] | NotGiven = NOT_GIVEN,

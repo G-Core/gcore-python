@@ -52,6 +52,7 @@ class TestFileShares:
                 }
             ],
             tags={"my-tag": "my-tag-value"},
+            type_name="standard",
             volume_type="default_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
@@ -98,7 +99,6 @@ class TestFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
@@ -110,9 +110,10 @@ class TestFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
             share_settings={"root_squash": True},
             tags={"my-tag": "my-tag-value"},
+            type_name="vast",
+            volume_type="vast_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
@@ -124,7 +125,6 @@ class TestFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
         )
 
         assert response.is_closed is True
@@ -140,7 +140,6 @@ class TestFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -432,6 +431,7 @@ class TestAsyncFileShares:
                 }
             ],
             tags={"my-tag": "my-tag-value"},
+            type_name="standard",
             volume_type="default_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
@@ -478,7 +478,6 @@ class TestAsyncFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
@@ -490,9 +489,10 @@ class TestAsyncFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
             share_settings={"root_squash": True},
             tags={"my-tag": "my-tag-value"},
+            type_name="vast",
+            volume_type="vast_share_type",
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
@@ -504,7 +504,6 @@ class TestAsyncFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
         )
 
         assert response.is_closed is True
@@ -520,7 +519,6 @@ class TestAsyncFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            volume_type="vast_share_type",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
