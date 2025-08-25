@@ -104,9 +104,9 @@ class PlaylistsResource(SyncAPIResource):
           once it finishes to maintain a continuous stream. Example:
 
         ```
-        active: true
-        loop: true
-        name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
+          active: true
+          loop: true
+          name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
         ```
 
         **Scheduled playback** It can be used to simulate live events such as virtual
@@ -122,10 +122,10 @@ class PlaylistsResource(SyncAPIResource):
           traditional live broadcasts.
 
         ```
-        active: true
-        loop: false
-        name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
-        start_time: "2024-07-01T11:00:00Z"
+          active: true
+          loop: false
+          name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
+          start_time: "2024-07-01T11:00:00Z"
         ```
 
         Args:
@@ -572,9 +572,9 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           once it finishes to maintain a continuous stream. Example:
 
         ```
-        active: true
-        loop: true
-        name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
+          active: true
+          loop: true
+          name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
         ```
 
         **Scheduled playback** It can be used to simulate live events such as virtual
@@ -590,10 +590,10 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           traditional live broadcasts.
 
         ```
-        active: true
-        loop: false
-        name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
-        start_time: "2024-07-01T11:00:00Z"
+          active: true
+          loop: false
+          name: "Playlist: Webinar 'Onboarding for new employees on working with the corporate portal'"
+          start_time: "2024-07-01T11:00:00Z"
         ```
 
         Args:
