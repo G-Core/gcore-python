@@ -105,21 +105,21 @@ class AITasksResource(SyncAPIResource):
 
         ```
         {
-        "status": "SUCCESS",
-        "result": {
-        "subtitles": [
-        {
-        "start_time": "00:00:00.031",
-        "end_time": "00:00:03.831",
-        "text": "Come on team, ..."
-        }, ...
-        ]
-        "vttContent": "WEBVTT\n\n1\n00:00:00.031 --> 00:00:03.831\nCome on team, ...",
-        "concatenated_text": "Come on team, ...",
-        "languages": [ "eng" ],
-        "speech_detected": true
-        }
-        }, ...
+          "status": "SUCCESS",
+          "result": {
+            "subtitles": [
+              {
+                  "start_time": "00:00:00.031",
+                  "end_time": "00:00:03.831",
+                  "text": "Come on team, ..."
+              }, ...
+            ]
+            "vttContent": "WEBVTT\n\n1\n00:00:00.031 --> 00:00:03.831\nCome on team, ...",
+            "concatenated_text": "Come on team, ...",
+            "languages": [ "eng" ],
+            "speech_detected": true
+            }
+          }, ...
         }
         ```
 
@@ -565,6 +565,7 @@ class AITasksResource(SyncAPIResource):
 
         ```
         curl -L 'https://api.gcore.com/streaming/ai/info?type=language_support&audio_language=eng&subtitles_language=fre'
+
         { "supported": true }
         ```
 
@@ -693,21 +694,21 @@ class AsyncAITasksResource(AsyncAPIResource):
 
         ```
         {
-        "status": "SUCCESS",
-        "result": {
-        "subtitles": [
-        {
-        "start_time": "00:00:00.031",
-        "end_time": "00:00:03.831",
-        "text": "Come on team, ..."
-        }, ...
-        ]
-        "vttContent": "WEBVTT\n\n1\n00:00:00.031 --> 00:00:03.831\nCome on team, ...",
-        "concatenated_text": "Come on team, ...",
-        "languages": [ "eng" ],
-        "speech_detected": true
-        }
-        }, ...
+          "status": "SUCCESS",
+          "result": {
+            "subtitles": [
+              {
+                  "start_time": "00:00:00.031",
+                  "end_time": "00:00:03.831",
+                  "text": "Come on team, ..."
+              }, ...
+            ]
+            "vttContent": "WEBVTT\n\n1\n00:00:00.031 --> 00:00:03.831\nCome on team, ...",
+            "concatenated_text": "Come on team, ...",
+            "languages": [ "eng" ],
+            "speech_detected": true
+            }
+          }, ...
         }
         ```
 
@@ -1153,6 +1154,7 @@ class AsyncAITasksResource(AsyncAPIResource):
 
         ```
         curl -L 'https://api.gcore.com/streaming/ai/info?type=language_support&audio_language=eng&subtitles_language=fre'
+
         { "supported": true }
         ```
 

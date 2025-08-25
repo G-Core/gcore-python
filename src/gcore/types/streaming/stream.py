@@ -202,7 +202,7 @@ class Stream(BaseModel):
       determine duration in seconds at the level of analyzing the logs of CDN
       requests and compare it with file size (so to use it in your analytics). Such
       modifier attributes are applied manually and added to the link obtained from
-      this field. I.e. `?get_duration_sec=true` Example:
+      this field. I.e. `<hls_url>?get_duration_sec=true` Example:
       `https://demo.gvideo.io/mpegts/2675_19146/master_mpegts.m3u8?get_duration_sec=true`
 
     ```
