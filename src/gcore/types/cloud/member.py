@@ -45,7 +45,25 @@ class Member(BaseModel):
     """`subnet_id` in which `address` is present."""
 
     weight: int
-    """Member weight. Valid values are 0 < `weight` <= 256."""
+    """Member weight.
+
+    Valid values are 0 < `weight` <= 256, defaults to 1. Controls traffic
+    distribution based on the pool's load balancing algorithm:
+
+    - `ROUND_ROBIN`: Distributes connections to each member in turn according to
+      weights. Higher weight = more turns in the cycle. Example: weights 3 vs 1 =
+      ~75% vs ~25% of requests.
+    - `LEAST_CONNECTIONS`: Sends new connections to the member with fewest active
+      connections, performing round-robin within groups of the same normalized load.
+      Higher weight = allowed to hold more simultaneous connections before being
+      considered 'more loaded'. Example: weights 2 vs 1 means 20 vs 10 active
+      connections is treated as balanced.
+    - `SOURCE_IP`: Routes clients consistently to the same member by hashing client
+      source IP; hash result is modulo total weight of running members. Higher
+      weight = more hash buckets, so more client IPs map to that member. Example:
+      weights 2 vs 1 = roughly two-thirds of distinct client IPs map to the
+      higher-weight member.
+    """
 
     monitor_address: Optional[str] = None
     """An alternate IP address used for health monitoring of a backend member.

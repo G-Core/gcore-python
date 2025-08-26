@@ -68,7 +68,10 @@ class HealthMonitorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create load balancer pool health monitor
+        Creates a health monitor for a load balancer pool to automatically check the
+        health status of pool members. The health monitor performs periodic checks on
+        pool members and removes unhealthy members from rotation, ensuring only healthy
+        servers receive traffic.
 
         Args:
           project_id: Project ID
@@ -145,8 +148,11 @@ class HealthMonitorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """
-        Delete load balancer pool health monitor
+        """Removes the health monitor from a load balancer pool.
+
+        After deletion, the pool
+        will no longer perform automatic health checks on its members, and all members
+        will remain in rotation regardless of their actual health status.
 
         Args:
           project_id: Project ID
@@ -221,7 +227,10 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Create load balancer pool health monitor
+        Creates a health monitor for a load balancer pool to automatically check the
+        health status of pool members. The health monitor performs periodic checks on
+        pool members and removes unhealthy members from rotation, ensuring only healthy
+        servers receive traffic.
 
         Args:
           project_id: Project ID
@@ -298,8 +307,11 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """
-        Delete load balancer pool health monitor
+        """Removes the health monitor from a load balancer pool.
+
+        After deletion, the pool
+        will no longer perform automatic health checks on its members, and all members
+        will remain in rotation regardless of their actual health status.
 
         Args:
           project_id: Project ID
