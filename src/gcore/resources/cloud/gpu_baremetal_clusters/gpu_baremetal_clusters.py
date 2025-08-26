@@ -101,6 +101,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         """
         return GPUBaremetalClustersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -127,7 +128,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         """Create a new GPU cluster with specified configuration.
 
         The cluster can be
-        created with one or more nodes.
+        created with one or more nodes. Please use the
+        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters` endpoint instead.
 
         Args:
           flavor: Flavor name
@@ -254,6 +256,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             model=GPUBaremetalCluster,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         cluster_id: str,
@@ -270,8 +273,11 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete bare metal GPU cluster
+        """Deletes given bare metal GPU cluster.
+
+        Please use the
+        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}`
+        instead.
 
         Args:
           delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
@@ -580,6 +586,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         """
         return AsyncGPUBaremetalClustersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -606,7 +613,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         """Create a new GPU cluster with specified configuration.
 
         The cluster can be
-        created with one or more nodes.
+        created with one or more nodes. Please use the
+        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters` endpoint instead.
 
         Args:
           flavor: Flavor name
@@ -733,6 +741,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             model=GPUBaremetalCluster,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         cluster_id: str,
@@ -749,8 +758,11 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """
-        Delete bare metal GPU cluster
+        """Deletes given bare metal GPU cluster.
+
+        Please use the
+        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}`
+        instead.
 
         Args:
           delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
@@ -1027,16 +1039,20 @@ class GPUBaremetalClustersResourceWithRawResponse:
     def __init__(self, gpu_baremetal_clusters: GPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = to_raw_response_wrapper(
-            gpu_baremetal_clusters.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
             )
         )
-        self.delete = to_raw_response_wrapper(
-            gpu_baremetal_clusters.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -1077,16 +1093,20 @@ class AsyncGPUBaremetalClustersResourceWithRawResponse:
     def __init__(self, gpu_baremetal_clusters: AsyncGPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
             )
         )
-        self.delete = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -1127,16 +1147,20 @@ class GPUBaremetalClustersResourceWithStreamingResponse:
     def __init__(self, gpu_baremetal_clusters: GPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
             )
         )
-        self.delete = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -1177,16 +1201,20 @@ class AsyncGPUBaremetalClustersResourceWithStreamingResponse:
     def __init__(self, gpu_baremetal_clusters: AsyncGPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
             )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
