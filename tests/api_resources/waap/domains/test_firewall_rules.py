@@ -27,7 +27,7 @@ class TestFirewallRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
@@ -56,7 +56,7 @@ class TestFirewallRules:
                 }
             ],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             description="description",
         )
         assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
@@ -68,7 +68,7 @@ class TestFirewallRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
 
         assert response.is_closed is True
@@ -83,7 +83,7 @@ class TestFirewallRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -128,7 +128,7 @@ class TestFirewallRules:
             ],
             description="description",
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert firewall_rule is None
 
@@ -170,10 +170,10 @@ class TestFirewallRules:
         firewall_rule = client.waap.domains.firewall_rules.list(
             domain_id=1,
             action="allow",
-            description="description",
-            enabled=True,
+            description="This rule blocks all the requests coming form a specific IP address.",
+            enabled=False,
             limit=0,
-            name="name",
+            name="Block by specific IP rule.",
             offset=0,
             ordering="-id",
         )
@@ -355,7 +355,7 @@ class TestAsyncFirewallRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
 
@@ -384,7 +384,7 @@ class TestAsyncFirewallRules:
                 }
             ],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             description="description",
         )
         assert_matches_type(WaapFirewallRule, firewall_rule, path=["response"])
@@ -396,7 +396,7 @@ class TestAsyncFirewallRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
 
         assert response.is_closed is True
@@ -411,7 +411,7 @@ class TestAsyncFirewallRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -456,7 +456,7 @@ class TestAsyncFirewallRules:
             ],
             description="description",
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert firewall_rule is None
 
@@ -498,10 +498,10 @@ class TestAsyncFirewallRules:
         firewall_rule = await async_client.waap.domains.firewall_rules.list(
             domain_id=1,
             action="allow",
-            description="description",
-            enabled=True,
+            description="This rule blocks all the requests coming form a specific IP address.",
+            enabled=False,
             limit=0,
-            name="name",
+            name="Block by specific IP rule.",
             offset=0,
             ordering="-id",
         )

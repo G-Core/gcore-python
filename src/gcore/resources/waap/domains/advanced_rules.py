@@ -68,7 +68,7 @@ class AdvancedRulesResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that the rule takes when triggered
 
           enabled: Whether or not the rule is enabled
 
@@ -444,7 +444,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that the rule takes when triggered
 
           enabled: Whether or not the rule is enabled
 

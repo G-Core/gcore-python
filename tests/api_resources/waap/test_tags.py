@@ -27,10 +27,10 @@ class TestTags:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         tag = client.waap.tags.list(
             limit=0,
-            name="name",
+            name="xss",
             offset=0,
             ordering="name",
-            readable_name="readable_name",
+            readable_name="Cross-Site Scripting",
             reserved=True,
         )
         assert_matches_type(SyncOffsetPage[WaapTag], tag, path=["response"])
@@ -70,10 +70,10 @@ class TestAsyncTags:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         tag = await async_client.waap.tags.list(
             limit=0,
-            name="name",
+            name="xss",
             offset=0,
             ordering="name",
-            readable_name="readable_name",
+            readable_name="Cross-Site Scripting",
             reserved=True,
         )
         assert_matches_type(AsyncOffsetPage[WaapTag], tag, path=["response"])

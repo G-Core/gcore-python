@@ -27,7 +27,7 @@ class TestOrganizations:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         organization = client.waap.organizations.list(
             limit=0,
-            name="name",
+            name="Comcast",
             offset=0,
             ordering="name",
         )
@@ -68,7 +68,7 @@ class TestAsyncOrganizations:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         organization = await async_client.waap.organizations.list(
             limit=0,
-            name="name",
+            name="Comcast",
             offset=0,
             ordering="name",
         )

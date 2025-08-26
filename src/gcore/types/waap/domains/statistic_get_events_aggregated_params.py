@@ -2,24 +2,21 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing import List, Optional
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["StatisticGetEventsAggregatedParams"]
 
 
 class StatisticGetEventsAggregatedParams(TypedDict, total=False):
-    start: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """Filter traffic starting from a specified date in ISO 8601 format"""
+    start: Required[str]
+    """Filter data items starting from a specified date in ISO 8601 format"""
 
     action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]]
     """A list of action names to filter on."""
 
-    end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filter traffic up to a specified end date in ISO 8601 format.
+    end: Optional[str]
+    """Filter data items up to a specified end date in ISO 8601 format.
 
     If not provided, defaults to the current date and time.
     """

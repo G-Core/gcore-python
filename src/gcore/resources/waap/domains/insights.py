@@ -186,7 +186,7 @@ class InsightsResource(SyncAPIResource):
 
           insight_id: The ID of the insight
 
-          status: The different statuses an insight can have
+          status: The status of the insight
 
           extra_headers: Send extra headers
 
@@ -369,7 +369,7 @@ class AsyncInsightsResource(AsyncAPIResource):
 
           insight_id: The ID of the insight
 
-          status: The different statuses an insight can have
+          status: The status of the insight
 
           extra_headers: Send extra headers
 

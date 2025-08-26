@@ -33,7 +33,8 @@ class ActionBlock(TypedDict, total=False):
     """How long a rule's block action will apply to subsequent requests.
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
-    'd' to represent time format (seconds, minutes, hours, or days)
+    'd' to represent time format (seconds, minutes, hours, or days). Empty time
+    intervals are not allowed.
     """
 
     status_code: Optional[Literal[403, 405, 418, 429]]

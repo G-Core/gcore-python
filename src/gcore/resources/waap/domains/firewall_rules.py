@@ -72,7 +72,7 @@ class FirewallRulesResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that a firewall rule takes when triggered
+          action: The action that the rule takes when triggered
 
           conditions: The condition required for the WAAP engine to trigger the rule.
 
@@ -444,7 +444,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that a firewall rule takes when triggered
+          action: The action that the rule takes when triggered
 
           conditions: The condition required for the WAAP engine to trigger the rule.
 

@@ -13,7 +13,8 @@ class ActionBlock(BaseModel):
     """How long a rule's block action will apply to subsequent requests.
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
-    'd' to represent time format (seconds, minutes, hours, or days)
+    'd' to represent time format (seconds, minutes, hours, or days). Empty time
+    intervals are not allowed.
     """
 
     status_code: Optional[Literal[403, 405, 418, 429]] = None
@@ -53,7 +54,7 @@ class WaapAdvancedRule(BaseModel):
     """The unique identifier for the rule"""
 
     action: Action
-    """The action that a WAAP rule takes when triggered"""
+    """The action that the rule takes when triggered"""
 
     enabled: bool
     """Whether or not the rule is enabled"""
