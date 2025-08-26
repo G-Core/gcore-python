@@ -124,8 +124,8 @@ class StatisticsResource(SyncAPIResource):
         domain_id: int,
         *,
         group_by: Literal["URL", "User-Agent", "IP"],
-        start: Union[str, datetime],
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        start: str,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -143,10 +143,10 @@ class StatisticsResource(SyncAPIResource):
 
           group_by: The identity of the requests to group by
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           limit: Number of items to return
 
@@ -186,9 +186,9 @@ class StatisticsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        start: Union[str, datetime],
+        start: str,
         action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         ip: Optional[List[str]] | NotGiven = NOT_GIVEN,
         reference_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
         result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | NotGiven = NOT_GIVEN,
@@ -205,12 +205,12 @@ class StatisticsResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
           action: A list of action names to filter on.
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           ip: A list of IPs to filter event statistics.
 
@@ -291,10 +291,10 @@ class StatisticsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        start: Union[str, datetime],
+        start: str,
         actions: List[Literal["allow", "block", "captcha", "handshake"]] | NotGiven = NOT_GIVEN,
         countries: List[str] | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
@@ -340,14 +340,14 @@ class StatisticsResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
           actions: Filter the response by actions.
 
           countries: Filter the response by country codes in ISO 3166-1 alpha-2 format.
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           ip: Filter the response by IP.
 
@@ -407,8 +407,8 @@ class StatisticsResource(SyncAPIResource):
         domain_id: int,
         *,
         resolution: Literal["daily", "hourly", "minutely"],
-        start: Union[str, datetime],
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        start: str,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -426,10 +426,10 @@ class StatisticsResource(SyncAPIResource):
 
           resolution: Specifies the granularity of the result data.
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           extra_headers: Send extra headers
 
@@ -546,8 +546,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
         domain_id: int,
         *,
         group_by: Literal["URL", "User-Agent", "IP"],
-        start: Union[str, datetime],
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        start: str,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -565,10 +565,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           group_by: The identity of the requests to group by
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           limit: Number of items to return
 
@@ -608,9 +608,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        start: Union[str, datetime],
+        start: str,
         action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         ip: Optional[List[str]] | NotGiven = NOT_GIVEN,
         reference_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
         result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | NotGiven = NOT_GIVEN,
@@ -627,12 +627,12 @@ class AsyncStatisticsResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
           action: A list of action names to filter on.
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           ip: A list of IPs to filter event statistics.
 
@@ -713,10 +713,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        start: Union[str, datetime],
+        start: str,
         actions: List[Literal["allow", "block", "captcha", "handshake"]] | NotGiven = NOT_GIVEN,
         countries: List[str] | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
@@ -762,14 +762,14 @@ class AsyncStatisticsResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
           actions: Filter the response by actions.
 
           countries: Filter the response by country codes in ISO 3166-1 alpha-2 format.
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           ip: Filter the response by IP.
 
@@ -829,8 +829,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
         domain_id: int,
         *,
         resolution: Literal["daily", "hourly", "minutely"],
-        start: Union[str, datetime],
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        start: str,
+        end: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -848,10 +848,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           resolution: Specifies the granularity of the result data.
 
-          start: Filter traffic starting from a specified date in ISO 8601 format
+          start: Filter data items starting from a specified date in ISO 8601 format
 
-          end: Filter traffic up to a specified end date in ISO 8601 format. If not provided,
-              defaults to the current date and time.
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
 
           extra_headers: Send extra headers
 

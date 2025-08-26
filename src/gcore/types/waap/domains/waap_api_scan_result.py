@@ -23,7 +23,7 @@ class WaapAPIScanResult(BaseModel):
     """The date and time the scan started"""
 
     status: Literal["SUCCESS", "FAILURE", "IN_PROGRESS"]
-    """The different statuses a task result can have"""
+    """The status of the scan"""
 
     type: Literal["TRAFFIC_SCAN", "API_DESCRIPTION_FILE_SCAN"]
-    """The different types of scans that can be performed"""
+    """The type of scan"""

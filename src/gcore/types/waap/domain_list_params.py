@@ -25,4 +25,4 @@ class DomainListParams(TypedDict, total=False):
     """Sort the response by given field."""
 
     status: Literal["active", "bypass", "monitor", "locked"]
-    """The different statuses a domain can have"""
+    """Filter domains based on the domain status"""

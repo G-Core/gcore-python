@@ -26,7 +26,7 @@ class TestAdvancedRules:
             domain_id=1,
             action={},
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
         )
         assert_matches_type(WaapAdvancedRule, advanced_rule, path=["response"])
@@ -47,7 +47,7 @@ class TestAdvancedRules:
                 "tag": {"tags": ["string"]},
             },
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
             description="description",
             phase="access",
@@ -60,7 +60,7 @@ class TestAdvancedRules:
             domain_id=1,
             action={},
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
         )
 
@@ -75,7 +75,7 @@ class TestAdvancedRules:
             domain_id=1,
             action={},
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
         ) as response:
             assert not response.is_closed
@@ -112,7 +112,7 @@ class TestAdvancedRules:
             },
             description="description",
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             phase="access",
             source="x",
         )
@@ -161,7 +161,7 @@ class TestAdvancedRules:
             limit=0,
             name="Block by specific IP rule",
             offset=0,
-            ordering="id",
+            ordering="-id",
             phase="access",
         )
         assert_matches_type(SyncOffsetPage[WaapAdvancedRule], advanced_rule, path=["response"])
@@ -307,7 +307,7 @@ class TestAsyncAdvancedRules:
             domain_id=1,
             action={},
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
         )
         assert_matches_type(WaapAdvancedRule, advanced_rule, path=["response"])
@@ -328,7 +328,7 @@ class TestAsyncAdvancedRules:
                 "tag": {"tags": ["string"]},
             },
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
             description="description",
             phase="access",
@@ -341,7 +341,7 @@ class TestAsyncAdvancedRules:
             domain_id=1,
             action={},
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
         )
 
@@ -356,7 +356,7 @@ class TestAsyncAdvancedRules:
             domain_id=1,
             action={},
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             source="request.rate_limit([], '.*events', 5, 200, [], [], '', 'ip') and not ('mb-web-ui' in request.headers['Cookie'] or 'mb-mobile-ios' in request.headers['Cookie'] or 'session-token' in request.headers['Cookie']) and not request.headers['session']",
         ) as response:
             assert not response.is_closed
@@ -393,7 +393,7 @@ class TestAsyncAdvancedRules:
             },
             description="description",
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             phase="access",
             source="x",
         )
@@ -442,7 +442,7 @@ class TestAsyncAdvancedRules:
             limit=0,
             name="Block by specific IP rule",
             offset=0,
-            ordering="id",
+            ordering="-id",
             phase="access",
         )
         assert_matches_type(AsyncOffsetPage[WaapAdvancedRule], advanced_rule, path=["response"])

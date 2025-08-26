@@ -24,7 +24,7 @@ class Rule(BaseModel):
     """Unique identifier for the security rule"""
 
     action: Literal["Allow", "Block", "Captcha", "Gateway", "Handshake", "Monitor", "Composite"]
-    """The action taken by the WAAP upon rule activation."""
+    """Specifies the action taken by the WAAP upon rule activation"""
 
     description: str
     """Detailed description of the security rule"""

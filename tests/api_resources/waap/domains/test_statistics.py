@@ -37,11 +37,11 @@ class TestStatistics:
     def test_method_get_ddos_attacks_with_all_params(self, client: Gcore) -> None:
         statistic = client.waap.domains.statistics.get_ddos_attacks(
             domain_id=1,
-            end_time=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end_time=parse_datetime("2024-04-27T13:00:00Z"),
             limit=0,
             offset=0,
             ordering="start_time",
-            start_time=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_time=parse_datetime("2024-04-26T13:32:49Z"),
         )
         assert_matches_type(SyncOffsetPage[WaapDDOSAttack], statistic, path=["response"])
 
@@ -74,7 +74,7 @@ class TestStatistics:
         statistic = client.waap.domains.statistics.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(SyncOffsetPage[WaapDDOSInfo], statistic, path=["response"])
 
@@ -83,8 +83,8 @@ class TestStatistics:
         statistic = client.waap.domains.statistics.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
+            end="2024-04-14T12:00:00Z",
             limit=0,
             offset=0,
         )
@@ -95,7 +95,7 @@ class TestStatistics:
         response = client.waap.domains.statistics.with_raw_response.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestStatistics:
         with client.waap.domains.statistics.with_streaming_response.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,7 +122,7 @@ class TestStatistics:
     def test_method_get_events_aggregated(self, client: Gcore) -> None:
         statistic = client.waap.domains.statistics.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(WaapEventStatistics, statistic, path=["response"])
 
@@ -130,9 +130,9 @@ class TestStatistics:
     def test_method_get_events_aggregated_with_all_params(self, client: Gcore) -> None:
         statistic = client.waap.domains.statistics.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
             action=["block", "captcha"],
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end="2024-04-14T12:00:00Z",
             ip=["string", "string"],
             reference_id=["string", "string"],
             result=["passed", "blocked"],
@@ -143,7 +143,7 @@ class TestStatistics:
     def test_raw_response_get_events_aggregated(self, client: Gcore) -> None:
         response = client.waap.domains.statistics.with_raw_response.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -155,7 +155,7 @@ class TestStatistics:
     def test_streaming_response_get_events_aggregated(self, client: Gcore) -> None:
         with client.waap.domains.statistics.with_streaming_response.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -211,7 +211,7 @@ class TestStatistics:
     def test_method_get_requests_series(self, client: Gcore) -> None:
         statistic = client.waap.domains.statistics.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(SyncOffsetPage[WaapRequestSummary], statistic, path=["response"])
 
@@ -219,15 +219,15 @@ class TestStatistics:
     def test_method_get_requests_series_with_all_params(self, client: Gcore) -> None:
         statistic = client.waap.domains.statistics.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
             actions=["allow"],
             countries=["Mv"],
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end="2024-04-14T12:00:00Z",
             ip=".:",
             limit=0,
             offset=0,
             ordering="ordering",
-            reference_id="2c02efDd09B3BA1AEaDd3dCAa7aC7A37",
+            reference_id="ad07c06f19054e484974fa22e9fb6bb1",
             security_rule_name="security_rule_name",
             status_code=100,
             traffic_types=["policy_allowed"],
@@ -238,7 +238,7 @@ class TestStatistics:
     def test_raw_response_get_requests_series(self, client: Gcore) -> None:
         response = client.waap.domains.statistics.with_raw_response.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -250,7 +250,7 @@ class TestStatistics:
     def test_streaming_response_get_requests_series(self, client: Gcore) -> None:
         with client.waap.domains.statistics.with_streaming_response.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -265,7 +265,7 @@ class TestStatistics:
         statistic = client.waap.domains.statistics.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
@@ -274,8 +274,8 @@ class TestStatistics:
         statistic = client.waap.domains.statistics.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
+            end="2024-04-14T12:00:00Z",
         )
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
@@ -284,7 +284,7 @@ class TestStatistics:
         response = client.waap.domains.statistics.with_raw_response.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -297,7 +297,7 @@ class TestStatistics:
         with client.waap.domains.statistics.with_streaming_response.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -324,11 +324,11 @@ class TestAsyncStatistics:
     async def test_method_get_ddos_attacks_with_all_params(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.waap.domains.statistics.get_ddos_attacks(
             domain_id=1,
-            end_time=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end_time=parse_datetime("2024-04-27T13:00:00Z"),
             limit=0,
             offset=0,
             ordering="start_time",
-            start_time=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_time=parse_datetime("2024-04-26T13:32:49Z"),
         )
         assert_matches_type(AsyncOffsetPage[WaapDDOSAttack], statistic, path=["response"])
 
@@ -361,7 +361,7 @@ class TestAsyncStatistics:
         statistic = await async_client.waap.domains.statistics.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(AsyncOffsetPage[WaapDDOSInfo], statistic, path=["response"])
 
@@ -370,8 +370,8 @@ class TestAsyncStatistics:
         statistic = await async_client.waap.domains.statistics.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
+            end="2024-04-14T12:00:00Z",
             limit=0,
             offset=0,
         )
@@ -382,7 +382,7 @@ class TestAsyncStatistics:
         response = await async_client.waap.domains.statistics.with_raw_response.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -395,7 +395,7 @@ class TestAsyncStatistics:
         async with async_client.waap.domains.statistics.with_streaming_response.get_ddos_info(
             domain_id=1,
             group_by="URL",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -409,7 +409,7 @@ class TestAsyncStatistics:
     async def test_method_get_events_aggregated(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.waap.domains.statistics.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(WaapEventStatistics, statistic, path=["response"])
 
@@ -417,9 +417,9 @@ class TestAsyncStatistics:
     async def test_method_get_events_aggregated_with_all_params(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.waap.domains.statistics.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
             action=["block", "captcha"],
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end="2024-04-14T12:00:00Z",
             ip=["string", "string"],
             reference_id=["string", "string"],
             result=["passed", "blocked"],
@@ -430,7 +430,7 @@ class TestAsyncStatistics:
     async def test_raw_response_get_events_aggregated(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.statistics.with_raw_response.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -442,7 +442,7 @@ class TestAsyncStatistics:
     async def test_streaming_response_get_events_aggregated(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.statistics.with_streaming_response.get_events_aggregated(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -498,7 +498,7 @@ class TestAsyncStatistics:
     async def test_method_get_requests_series(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.waap.domains.statistics.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(AsyncOffsetPage[WaapRequestSummary], statistic, path=["response"])
 
@@ -506,15 +506,15 @@ class TestAsyncStatistics:
     async def test_method_get_requests_series_with_all_params(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.waap.domains.statistics.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
             actions=["allow"],
             countries=["Mv"],
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end="2024-04-14T12:00:00Z",
             ip=".:",
             limit=0,
             offset=0,
             ordering="ordering",
-            reference_id="2c02efDd09B3BA1AEaDd3dCAa7aC7A37",
+            reference_id="ad07c06f19054e484974fa22e9fb6bb1",
             security_rule_name="security_rule_name",
             status_code=100,
             traffic_types=["policy_allowed"],
@@ -525,7 +525,7 @@ class TestAsyncStatistics:
     async def test_raw_response_get_requests_series(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.statistics.with_raw_response.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -537,7 +537,7 @@ class TestAsyncStatistics:
     async def test_streaming_response_get_requests_series(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.statistics.with_streaming_response.get_requests_series(
             domain_id=1,
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -552,7 +552,7 @@ class TestAsyncStatistics:
         statistic = await async_client.waap.domains.statistics.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
@@ -561,8 +561,8 @@ class TestAsyncStatistics:
         statistic = await async_client.waap.domains.statistics.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
+            end="2024-04-14T12:00:00Z",
         )
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
@@ -571,7 +571,7 @@ class TestAsyncStatistics:
         response = await async_client.waap.domains.statistics.with_raw_response.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         )
 
         assert response.is_closed is True
@@ -584,7 +584,7 @@ class TestAsyncStatistics:
         async with async_client.waap.domains.statistics.with_streaming_response.get_traffic_series(
             domain_id=1,
             resolution="daily",
-            start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start="2024-04-13T00:00:00+01:00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

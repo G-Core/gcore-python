@@ -37,7 +37,8 @@ class ActionBlock(BaseModel):
     """How long a rule's block action will apply to subsequent requests.
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
-    'd' to represent time format (seconds, minutes, hours, or days)
+    'd' to represent time format (seconds, minutes, hours, or days). Empty time
+    intervals are not allowed.
     """
 
     status_code: Optional[Literal[403, 405, 418, 429]] = None
@@ -123,11 +124,7 @@ class ConditionHeaderExists(BaseModel):
 
 class ConditionHTTPMethod(BaseModel):
     http_method: Literal["CONNECT", "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]
-    """HTTP methods and descriptions Methods from the following RFCs are all observed:
-
-    - RFC 7231: Hypertext Transfer Protocol (HTTP/1.1), obsoletes 2616
-    - RFC 5789: PATCH Method for HTTP
-    """
+    """HTTP methods of a request"""
 
     negation: Optional[bool] = None
     """Whether or not to apply a boolean NOT operation to the rule's condition"""
@@ -358,7 +355,7 @@ class WaapCustomRule(BaseModel):
     """The unique identifier for the rule"""
 
     action: Action
-    """The action that a WAAP rule takes when triggered"""
+    """The action that the rule takes when triggered"""
 
     conditions: List[Condition]
     """The conditions required for the WAAP engine to trigger the rule.

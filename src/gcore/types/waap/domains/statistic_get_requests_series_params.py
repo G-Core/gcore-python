@@ -2,18 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing import List, Optional
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["StatisticGetRequestsSeriesParams"]
 
 
 class StatisticGetRequestsSeriesParams(TypedDict, total=False):
-    start: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """Filter traffic starting from a specified date in ISO 8601 format"""
+    start: Required[str]
+    """Filter data items starting from a specified date in ISO 8601 format"""
 
     actions: List[Literal["allow", "block", "captcha", "handshake"]]
     """Filter the response by actions."""
@@ -21,8 +18,8 @@ class StatisticGetRequestsSeriesParams(TypedDict, total=False):
     countries: List[str]
     """Filter the response by country codes in ISO 3166-1 alpha-2 format."""
 
-    end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filter traffic up to a specified end date in ISO 8601 format.
+    end: Optional[str]
+    """Filter data items up to a specified end date in ISO 8601 format.
 
     If not provided, defaults to the current date and time.
     """

@@ -137,7 +137,7 @@ class APIPathsResource(SyncAPIResource):
           path: The updated API path. When updating the path, variables can be renamed, path
               parts can be converted to variables and vice versa.
 
-          status: The different statuses an API path can have
+          status: The status of the discovered API path
 
           tags: An array of tags associated with the API path
 
@@ -467,7 +467,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
           path: The updated API path. When updating the path, variables can be renamed, path
               parts can be converted to variables and vice versa.
 
-          status: The different statuses an API path can have
+          status: The status of the discovered API path
 
           tags: An array of tags associated with the API path
 

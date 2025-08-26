@@ -186,7 +186,7 @@ class TestCustomPageSets:
         custom_page_set = client.waap.custom_page_sets.list(
             ids=[0],
             limit=0,
-            name="name",
+            name="*example",
             offset=0,
             ordering="name",
         )
@@ -488,7 +488,7 @@ class TestAsyncCustomPageSets:
         custom_page_set = await async_client.waap.custom_page_sets.list(
             ids=[0],
             limit=0,
-            name="name",
+            name="*example",
             offset=0,
             ordering="name",
         )
