@@ -35,4 +35,4 @@ class WaapInsight(BaseModel):
     """The recommended action to perform to resolve the insight"""
 
     status: Literal["OPEN", "ACKED", "CLOSED"]
-    """The different statuses an insight can have"""
+    """The status of the insight"""

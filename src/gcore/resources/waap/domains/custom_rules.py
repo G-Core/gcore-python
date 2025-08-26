@@ -72,7 +72,7 @@ class CustomRulesResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that the rule takes when triggered
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger
@@ -446,7 +446,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that the rule takes when triggered
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger

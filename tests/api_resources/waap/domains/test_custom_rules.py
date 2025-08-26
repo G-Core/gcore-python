@@ -27,7 +27,7 @@ class TestCustomRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
@@ -134,7 +134,7 @@ class TestCustomRules:
                 }
             ],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             description="description",
         )
         assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
@@ -146,7 +146,7 @@ class TestCustomRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
 
         assert response.is_closed is True
@@ -161,7 +161,7 @@ class TestCustomRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -284,7 +284,7 @@ class TestCustomRules:
             ],
             description="description",
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert custom_rule is None
 
@@ -511,7 +511,7 @@ class TestAsyncCustomRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
 
@@ -618,7 +618,7 @@ class TestAsyncCustomRules:
                 }
             ],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
             description="description",
         )
         assert_matches_type(WaapCustomRule, custom_rule, path=["response"])
@@ -630,7 +630,7 @@ class TestAsyncCustomRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
 
         assert response.is_closed is True
@@ -645,7 +645,7 @@ class TestAsyncCustomRules:
             action={},
             conditions=[{}],
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -768,7 +768,7 @@ class TestAsyncCustomRules:
             ],
             description="description",
             enabled=True,
-            name="name",
+            name="Block foobar bot",
         )
         assert custom_rule is None
 

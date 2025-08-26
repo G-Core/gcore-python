@@ -12,4 +12,4 @@ class InsightReplaceParams(TypedDict, total=False):
     """The domain ID"""
 
     status: Required[Literal["OPEN", "ACKED", "CLOSED"]]
-    """The different statuses an insight can have"""
+    """The status of the insight"""

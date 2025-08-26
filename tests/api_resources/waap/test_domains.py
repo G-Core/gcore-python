@@ -72,7 +72,7 @@ class TestDomains:
         domain = client.waap.domains.list(
             ids=[1],
             limit=0,
-            name="name",
+            name="*example.com",
             offset=0,
             ordering="id",
             status="active",
@@ -289,7 +289,7 @@ class TestAsyncDomains:
         domain = await async_client.waap.domains.list(
             ids=[1],
             limit=0,
-            name="name",
+            name="*example.com",
             offset=0,
             ordering="id",
             status="active",

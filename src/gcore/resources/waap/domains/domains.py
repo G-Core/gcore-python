@@ -186,7 +186,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          status: Domain statuses that can be used when updating a domain
+          status: The current status of the domain
 
           extra_headers: Send extra headers
 
@@ -237,7 +237,7 @@ class DomainsResource(SyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          status: The different statuses a domain can have
+          status: Filter domains based on the domain status
 
           extra_headers: Send extra headers
 
@@ -489,7 +489,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          status: Domain statuses that can be used when updating a domain
+          status: The current status of the domain
 
           extra_headers: Send extra headers
 
@@ -540,7 +540,7 @@ class AsyncDomainsResource(AsyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          status: The different statuses a domain can have
+          status: Filter domains based on the domain status
 
           extra_headers: Send extra headers
 

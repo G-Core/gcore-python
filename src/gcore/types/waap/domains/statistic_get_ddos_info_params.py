@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing import Optional
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["StatisticGetDDOSInfoParams"]
 
@@ -15,11 +12,11 @@ class StatisticGetDDOSInfoParams(TypedDict, total=False):
     group_by: Required[Literal["URL", "User-Agent", "IP"]]
     """The identity of the requests to group by"""
 
-    start: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """Filter traffic starting from a specified date in ISO 8601 format"""
+    start: Required[str]
+    """Filter data items starting from a specified date in ISO 8601 format"""
 
-    end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filter traffic up to a specified end date in ISO 8601 format.
+    end: Optional[str]
+    """Filter data items up to a specified end date in ISO 8601 format.
 
     If not provided, defaults to the current date and time.
     """

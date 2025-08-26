@@ -23,7 +23,7 @@ class APIPathUpdateParams(TypedDict, total=False):
     """
 
     status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]
-    """The different statuses an API path can have"""
+    """The status of the discovered API path"""
 
     tags: List[str]
     """An array of tags associated with the API path"""

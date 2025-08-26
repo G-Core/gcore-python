@@ -23,13 +23,13 @@ class WaapAPIPath(BaseModel):
     """The date and time in ISO 8601 format the API path was first detected."""
 
     http_scheme: Literal["HTTP", "HTTPS"]
-    """The different HTTP schemes an API path can have"""
+    """The HTTP version of the API path"""
 
     last_detected: datetime
     """The date and time in ISO 8601 format the API path was last detected."""
 
     method: Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]
-    """The different methods an API path can have"""
+    """The API RESTful method"""
 
     path: str
     """
@@ -41,10 +41,10 @@ class WaapAPIPath(BaseModel):
     """The number of requests for this path in the last 24 hours"""
 
     source: Literal["API_DESCRIPTION_FILE", "TRAFFIC_SCAN", "USER_DEFINED"]
-    """The different sources an API path can have"""
+    """The source of the discovered API"""
 
     status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]
-    """The different statuses an API path can have"""
+    """The status of the discovered API path"""
 
     tags: List[str]
     """An array of tags associated with the API path"""
