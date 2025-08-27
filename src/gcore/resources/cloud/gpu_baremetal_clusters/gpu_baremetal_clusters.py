@@ -1357,22 +1357,22 @@ class GPUBaremetalClustersResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                gpu_baremetal_clusters.get  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
             )
         )
         self.powercycle_all_servers = to_raw_response_wrapper(
@@ -1411,22 +1411,22 @@ class AsyncGPUBaremetalClustersResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.get  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
             )
         )
         self.powercycle_all_servers = async_to_raw_response_wrapper(
@@ -1465,22 +1465,22 @@ class GPUBaremetalClustersResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                gpu_baremetal_clusters.get  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
             )
         )
         self.powercycle_all_servers = to_streamed_response_wrapper(
@@ -1519,22 +1519,22 @@ class AsyncGPUBaremetalClustersResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.create  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.list  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.delete  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.get  # pyright: ignore[reportDeprecated],
+                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
             )
         )
         self.powercycle_all_servers = async_to_streamed_response_wrapper(
