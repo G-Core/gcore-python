@@ -1108,7 +1108,7 @@ class DeploymentsResourceWithRawResponse:
         )
         self.get_api_key = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
             )
         )
         self.start = to_raw_response_wrapper(
@@ -1144,7 +1144,7 @@ class AsyncDeploymentsResourceWithRawResponse:
         )
         self.get_api_key = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
             )
         )
         self.start = async_to_raw_response_wrapper(
@@ -1180,7 +1180,7 @@ class DeploymentsResourceWithStreamingResponse:
         )
         self.get_api_key = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
             )
         )
         self.start = to_streamed_response_wrapper(
@@ -1216,7 +1216,7 @@ class AsyncDeploymentsResourceWithStreamingResponse:
         )
         self.get_api_key = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                deployments.get_api_key  # pyright: ignore[reportDeprecated],
+                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
             )
         )
         self.start = async_to_streamed_response_wrapper(
