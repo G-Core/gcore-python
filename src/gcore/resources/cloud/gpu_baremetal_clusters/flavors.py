@@ -16,7 +16,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.gpu_baremetal_clusters import flavor_list_params
-from ....types.cloud.gpu_baremetal_flavor_list import GPUBaremetalFlavorList
+from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_flavor_list import GPUBaremetalFlavorList
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 

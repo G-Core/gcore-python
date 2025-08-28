@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import TypedDict
 
 __all__ = ["GPUBaremetalClusterDeleteParams"]
@@ -9,20 +10,19 @@ __all__ = ["GPUBaremetalClusterDeleteParams"]
 
 class GPUBaremetalClusterDeleteParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
-    delete_floatings: bool
-    """True if it is required to delete floating IPs assigned to the servers.
-
-    Can't be used with floatings.
+    all_floating_ips: bool
+    """
+    Flag indicating whether the floating ips associated with server / cluster are
+    deleted
     """
 
-    floatings: str
-    """Comma separated list of floating ids that should be deleted.
+    floating_ip_ids: List[str]
+    """Optional list of floating ips to be deleted"""
 
-    Can't be used with `delete_floatings`.
-    """
-
-    reserved_fixed_ips: str
-    """Comma separated list of port IDs to be deleted with the servers"""
+    reserved_fixed_ip_ids: List[str]
+    """Optional list of reserved fixed ips to be deleted"""
