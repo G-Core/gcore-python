@@ -54,8 +54,7 @@ class AITasksResource(SyncAPIResource):
         task_name: Literal["transcription", "content-moderation"],
         url: str,
         audio_language: str | NotGiven = NOT_GIVEN,
-        category: Literal["sport", "weapon", "nsfw", "hard_nudity", "soft_nudity", "child_pornography"]
-        | NotGiven = NOT_GIVEN,
+        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | NotGiven = NOT_GIVEN,
         client_entity_data: str | NotGiven = NOT_GIVEN,
         client_user_id: str | NotGiven = NOT_GIVEN,
         subtitles_language: str | NotGiven = NOT_GIVEN,
@@ -74,11 +73,9 @@ class AITasksResource(SyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
           ![Auto generated subtitles example](https://demo-files.gvideo.io/apidocs/captions.gif)
           How to use:
@@ -137,14 +134,11 @@ class AITasksResource(SyncAPIResource):
         - `soft_nudity`: Detailed video analysis that reveals both explicit and partial
           nudity, including the presence of male and female faces and other uncovered
           body parts.
-        - `child_pornography`: Detects child sexual abuse materials (CASM).
-        - `sport`: Recognizes various sporting activities.
-        - `weapon`: Identifies the presence of weapons in the video content. The AI
-          Content Moderation API is an invaluable tool for managing and controlling the
-          type of content being shared or streamed on your platform. By implementing
-          this API, you can ensure compliance with community guidelines and legal
-          requirements, as well as provide a safer environment for your users. Important
-          notes:
+        - `sport`: Recognizes various sporting activities. The AI Content Moderation API
+          is an invaluable tool for managing and controlling the type of content being
+          shared or streamed on your platform. By implementing this API, you can ensure
+          compliance with community guidelines and legal requirements, as well as
+          provide a safer environment for your users. Important notes:
         - It's allowed to analyse still images too (where applicable). Format of image:
           JPEG, PNG. In that case one image is the same as video of 1 second duration.
         - Not all frames in the video are used for analysis, but only key frames
@@ -312,7 +306,7 @@ class AITasksResource(SyncAPIResource):
               - transcription into the original language is a free procedure,
               - and translation from the original language into any other languages is a
                 "translation" procedure and is paid. More details in
-                [POST /ai/tasks#transcribe](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+                [POST /streaming/ai/tasks#transcribe](/docs/api-reference/streaming/ai/create-ai-asr-task).
                 Language is set by 3-letter language code according to ISO-639-2
                 (bibliographic code).
 
@@ -484,11 +478,9 @@ class AITasksResource(SyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
         - etc... (see other methods from /ai/ domain)
 
@@ -643,8 +635,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         task_name: Literal["transcription", "content-moderation"],
         url: str,
         audio_language: str | NotGiven = NOT_GIVEN,
-        category: Literal["sport", "weapon", "nsfw", "hard_nudity", "soft_nudity", "child_pornography"]
-        | NotGiven = NOT_GIVEN,
+        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | NotGiven = NOT_GIVEN,
         client_entity_data: str | NotGiven = NOT_GIVEN,
         client_user_id: str | NotGiven = NOT_GIVEN,
         subtitles_language: str | NotGiven = NOT_GIVEN,
@@ -663,11 +654,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
           ![Auto generated subtitles example](https://demo-files.gvideo.io/apidocs/captions.gif)
           How to use:
@@ -726,14 +715,11 @@ class AsyncAITasksResource(AsyncAPIResource):
         - `soft_nudity`: Detailed video analysis that reveals both explicit and partial
           nudity, including the presence of male and female faces and other uncovered
           body parts.
-        - `child_pornography`: Detects child sexual abuse materials (CASM).
-        - `sport`: Recognizes various sporting activities.
-        - `weapon`: Identifies the presence of weapons in the video content. The AI
-          Content Moderation API is an invaluable tool for managing and controlling the
-          type of content being shared or streamed on your platform. By implementing
-          this API, you can ensure compliance with community guidelines and legal
-          requirements, as well as provide a safer environment for your users. Important
-          notes:
+        - `sport`: Recognizes various sporting activities. The AI Content Moderation API
+          is an invaluable tool for managing and controlling the type of content being
+          shared or streamed on your platform. By implementing this API, you can ensure
+          compliance with community guidelines and legal requirements, as well as
+          provide a safer environment for your users. Important notes:
         - It's allowed to analyse still images too (where applicable). Format of image:
           JPEG, PNG. In that case one image is the same as video of 1 second duration.
         - Not all frames in the video are used for analysis, but only key frames
@@ -901,7 +887,7 @@ class AsyncAITasksResource(AsyncAPIResource):
               - transcription into the original language is a free procedure,
               - and translation from the original language into any other languages is a
                 "translation" procedure and is paid. More details in
-                [POST /ai/tasks#transcribe](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+                [POST /streaming/ai/tasks#transcribe](/docs/api-reference/streaming/ai/create-ai-asr-task).
                 Language is set by 3-letter language code according to ISO-639-2
                 (bibliographic code).
 
@@ -1073,11 +1059,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
         - etc... (see other methods from /ai/ domain)
 

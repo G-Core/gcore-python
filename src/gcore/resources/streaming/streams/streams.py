@@ -113,7 +113,7 @@ class StreamsResource(SyncAPIResource):
         for video streams by utilizing Common Media Application Format (CMAF)
         technology. So you obtain latency from the traditional 30-50 seconds to ±4
         seconds only by default. If you need legacy non-low-latency HLS, then look at
-        HLS MPEGTS delivery below.
+        HLS MPEG-TS delivery below.
 
         You have access to additional functions such as:
 
@@ -318,7 +318,7 @@ class StreamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPageStreaming[Stream]:
-        """Returns a list of streams.
+        """Returns a list of streams
 
         Args:
           page: Query parameter.
@@ -809,7 +809,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         for video streams by utilizing Common Media Application Format (CMAF)
         technology. So you obtain latency from the traditional 30-50 seconds to ±4
         seconds only by default. If you need legacy non-low-latency HLS, then look at
-        HLS MPEGTS delivery below.
+        HLS MPEG-TS delivery below.
 
         You have access to additional functions such as:
 
@@ -1014,7 +1014,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Stream, AsyncPageStreaming[Stream]]:
-        """Returns a list of streams.
+        """Returns a list of streams
 
         Args:
           page: Query parameter.

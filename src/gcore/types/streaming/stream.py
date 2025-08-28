@@ -168,7 +168,7 @@ class Stream(BaseModel):
     - and its possible to enable ±3 sec for LL-HLS, just ask our Support Team.
 
     It is also possible to use modifier-attributes, which are described in the
-    "`hls_mpegts_url`" field above. If you need to get MPEGTS (.ts) chunks, look at
+    "`hls_mpegts_url`" field above. If you need to get MPEG-TS (.ts) chunks, look at
     the attribute "`hls_mpegts_url`".
 
     Read more information in the article "How Low Latency streaming works" in the
@@ -184,13 +184,13 @@ class Stream(BaseModel):
     hls_mpegts_url: Optional[str] = None
     """HLS output for legacy devices.
 
-    URL for transcoded result of stream in HLS MPEGTS (.ts) format, with .m3u8 link.
-    Low Latency support: NO. Some legacy devices or software may require MPEGTS
-    (.ts) segments as a format for streaming, so we provide this options keeping
-    backward compatibility with any of your existing workflows. For other cases it's
-    better to use "`hls_cmaf_url`" instead. You can use this legacy HLSv6 format
-    based on MPEGTS segmenter in parallel with main HLS CMAF. Both formats are
-    sharing same segments size, manifest length (DVR), etc.
+    URL for transcoded result of stream in HLS MPEG-TS (.ts) format, with .m3u8
+    link. Low Latency support: NO. Some legacy devices or software may require
+    MPEG-TS (.ts) segments as a format for streaming, so we provide this options
+    keeping backward compatibility with any of your existing workflows. For other
+    cases it's better to use "`hls_cmaf_url`" instead. You can use this legacy HLSv6
+    format based on MPEG-TS segmenter in parallel with main HLS CMAF. Both formats
+    are sharing same segments size, manifest length (DVR), etc.
 
     It is also possible to use additional modifier-attributes:
 
@@ -288,6 +288,9 @@ class Stream(BaseModel):
     """
     URL to PUSH master stream to our main server using RTMP and RTMPS protocols. To
     use RTMPS just manually change the protocol name from "rtmp://" to "rtmps://".
+    Use only 1 protocol of sending a master stream: eitheronly RTMP/S (`push_url`),
+    or only SRT (`push_url_srt`).
+
     If you see an error like "invalid SSL certificate" try the following:
 
     - Make sure the push URL is correct, and it contains "rtmps://".
@@ -307,8 +310,27 @@ class Stream(BaseModel):
     push_url_srt: Optional[str] = None
     """
     URL to PUSH master stream to our main server using SRT protocol. Use only 1
-    protocol of sending a master stream: either only SRT (`push_url_srt`), or only
-    RTMP (`push_url`).
+    protocol of sending a master stream: eitheronly RTMP/S (`push_url`), or only SRT
+    (`push_url_srt`).
+
+    **Setup SRT latency on your sender side** SRT is designed as a low-latency
+    transport protocol, but real networks are not always stable and in some cases
+    the end-to-end path from the venue to the ingest point can be long. For this
+    reason, it is important to configure the latency parameter carefully to match
+    the actual network conditions. Small latency values may lead to packet loss when
+    jitter or retransmissions occur, while very large values introduce unnecessary
+    end-to-end delay. \\**Incorrect or low default value is one of the most common
+    reasons for packet loss, frames loss, and bad picture.\\**
+
+    We therefore recommend setting latency manually rather than relying on the
+    default, to ensure the buffer is correctly sized for your environment. A
+    practical range is 400–2000 ms, with the exact value chosen based on RTT,
+    jitter, and expected packet loss. Be sure to check and test SRT settings on your
+    sender side. The default values do not take into account your specific scenarios
+    and do not work well. If necessary, ask us and we will help you.
+
+    See more information and best practices about SRT protocol in the Product
+    Documentation.
     """
 
     push_url_whip: Optional[str] = None
