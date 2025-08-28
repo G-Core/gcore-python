@@ -2,18 +2,29 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import List
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["GPUBaremetalClusterListParams"]
 
 
 class GPUBaremetalClusterListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     limit: int
-    """Limit the number of returned clusters"""
+    """Limit of items on a single page"""
+
+    managed_by: List[Literal["k8s", "user"]]
+    """Specifies the entity responsible for managing the resource.
+
+    - `user`: The resource (cluster) is created and maintained directly by the user.
+    - `k8s`: The resource is created and maintained automatically by Managed
+      Kubernetes service
+    """
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result"""
+    """Offset in results list"""

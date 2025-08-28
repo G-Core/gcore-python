@@ -4,17 +4,17 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
-from .tag import Tag
-from ..._models import BaseModel
-from .ddos_profile import DDOSProfile
-from .fixed_address import FixedAddress
-from .blackhole_port import BlackholePort
-from .floating_address import FloatingAddress
-from .instance_isolation import InstanceIsolation
-from .fixed_address_short import FixedAddressShort
+from ..tag import Tag
+from ...._models import BaseModel
+from ..ddos_profile import DDOSProfile
+from ..fixed_address import FixedAddress
+from ..blackhole_port import BlackholePort
+from ..floating_address import FloatingAddress
+from ..instance_isolation import InstanceIsolation
+from ..fixed_address_short import FixedAddressShort
 
 __all__ = [
-    "GPUBaremetalClusterServer",
+    "GPUBaremetalClusterServerV1",
     "Address",
     "FixedIPAssignment",
     "Flavor",
@@ -87,7 +87,7 @@ class SecurityGroup(BaseModel):
     """Name."""
 
 
-class GPUBaremetalClusterServer(BaseModel):
+class GPUBaremetalClusterServerV1(BaseModel):
     id: str
     """GPU server ID"""
 

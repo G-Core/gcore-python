@@ -73,7 +73,6 @@ from .session_persistence import SessionPersistence as SessionPersistence
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .cost_report_detailed import CostReportDetailed as CostReportDetailed
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
-from .gpu_baremetal_flavor import GPUBaremetalFlavor as GPUBaremetalFlavor
 from .instance_list_params import InstanceListParams as InstanceListParams
 from .lb_listener_protocol import LbListenerProtocol as LbListenerProtocol
 from .load_balancer_status import LoadBalancerStatus as LoadBalancerStatus
@@ -121,7 +120,6 @@ from .load_balancer_get_params import LoadBalancerGetParams as LoadBalancerGetPa
 from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStatistics
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams
-from .gpu_baremetal_flavor_list import GPUBaremetalFlavorList as GPUBaremetalFlavorList
 from .inference_region_capacity import InferenceRegionCapacity as InferenceRegionCapacity
 from .load_balancer_flavor_list import LoadBalancerFlavorList as LoadBalancerFlavorList
 from .load_balancer_list_params import LoadBalancerListParams as LoadBalancerListParams
@@ -145,7 +143,6 @@ from .load_balancer_listener_list import LoadBalancerListenerList as LoadBalance
 from .load_balancer_resize_params import LoadBalancerResizeParams as LoadBalancerResizeParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
-from .gpu_baremetal_cluster_server import GPUBaremetalClusterServer as GPUBaremetalClusterServer
 from .load_balancer_l7_policy_list import LoadBalancerL7PolicyList as LoadBalancerL7PolicyList
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
 from .security_group_create_params import SecurityGroupCreateParams as SecurityGroupCreateParams
@@ -163,7 +160,6 @@ from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as Rese
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
 from .cost_report_get_aggregated_params import CostReportGetAggregatedParams as CostReportGetAggregatedParams
 from .gpu_baremetal_cluster_list_params import GPUBaremetalClusterListParams as GPUBaremetalClusterListParams
-from .gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList as GPUBaremetalClusterServerList
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams

@@ -2,61 +2,44 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
-
-from .interface_ip_family import InterfaceIPFamily
 
 __all__ = [
     "GPUBaremetalClusterCreateParams",
-    "Interface",
-    "InterfaceCreateGPUClusterExternalInterfaceSerializer",
-    "InterfaceCreateGPUClusterSubnetInterfaceSerializer",
-    "InterfaceCreateGPUClusterSubnetInterfaceSerializerFloatingIP",
-    "InterfaceCreateGPUClusterAnySubnetInterfaceSerializer",
-    "InterfaceCreateGPUClusterAnySubnetInterfaceSerializerFloatingIP",
-    "SecurityGroup",
+    "ServersSettings",
+    "ServersSettingsInterface",
+    "ServersSettingsInterfaceExternalInterfaceInputSerializer",
+    "ServersSettingsInterfaceSubnetInterfaceInputSerializer",
+    "ServersSettingsInterfaceSubnetInterfaceInputSerializerFloatingIP",
+    "ServersSettingsInterfaceAnySubnetInterfaceInputSerializer",
+    "ServersSettingsInterfaceAnySubnetInterfaceInputSerializerFloatingIP",
+    "ServersSettingsCredentials",
+    "ServersSettingsSecurityGroup",
 ]
 
 
 class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     flavor: Required[str]
-    """Flavor name"""
+    """Cluster flavor ID"""
 
     image_id: Required[str]
-    """Image ID"""
-
-    interfaces: Required[Iterable[Interface]]
-    """A list of network interfaces for the server.
-
-    You can create one or more interfaces - private, public, or both.
-    """
+    """System image ID"""
 
     name: Required[str]
-    """GPU Cluster name"""
+    """Cluster name"""
 
-    instances_count: int
-    """Number of servers to create"""
+    servers_count: Required[int]
+    """Number of servers in the cluster"""
 
-    password: str
-    """A password for a bare metal server.
-
-    This parameter is used to set a password for the "Admin" user on a Windows
-    instance, a default user or a new user on a Linux instance
-    """
-
-    security_groups: Iterable[SecurityGroup]
-    """Security group UUIDs"""
-
-    ssh_key_name: str
-    """
-    Specifies the name of the SSH keypair, created via the
-    [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
-    """
+    servers_settings: Required[ServersSettings]
+    """Configuration settings for the servers in the cluster"""
 
     tags: Dict[str, str]
     """Key-value tags to associate with the resource.
@@ -68,96 +51,96 @@ class GPUBaremetalClusterCreateParams(TypedDict, total=False):
     values.
     """
 
-    user_data: str
-    """String in base64 format.
 
-    Must not be passed together with 'username' or 'password'. Examples of the
-    `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-    """
-
-    username: str
-    """A name of a new user in the Linux instance.
-
-    It may be passed with a 'password' parameter
-    """
-
-
-class InterfaceCreateGPUClusterExternalInterfaceSerializer(TypedDict, total=False):
+class ServersSettingsInterfaceExternalInterfaceInputSerializer(TypedDict, total=False):
     type: Required[Literal["external"]]
-    """A public IP address will be assigned to the server."""
 
-    interface_name: str
-    """Interface name.
+    ip_family: Literal["dual", "ipv4", "ipv6"]
+    """Which subnets should be selected: IPv4, IPv6, or use dual stack."""
 
-    Defaults to `null` and is returned as `null` in the API response if not set.
-    """
-
-    ip_family: Optional[InterfaceIPFamily]
-    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
+    name: str
+    """Interface name"""
 
 
-class InterfaceCreateGPUClusterSubnetInterfaceSerializerFloatingIP(TypedDict, total=False):
+class ServersSettingsInterfaceSubnetInterfaceInputSerializerFloatingIP(TypedDict, total=False):
     source: Required[Literal["new"]]
 
 
-class InterfaceCreateGPUClusterSubnetInterfaceSerializer(TypedDict, total=False):
+class ServersSettingsInterfaceSubnetInterfaceInputSerializer(TypedDict, total=False):
     network_id: Required[str]
-    """The network where the server will be connected."""
+    """Network ID the subnet belongs to. Port will be plugged in this network"""
 
     subnet_id: Required[str]
-    """The server will get an IP address from this subnet."""
+    """Port is assigned an IP address from this subnet"""
 
     type: Required[Literal["subnet"]]
-    """The instance will get an IP address from the selected network.
 
-    If you choose to add a floating IP, the instance will be reachable from the
-    internet. Otherwise, it will only have a private IP within the network.
-    """
-
-    floating_ip: InterfaceCreateGPUClusterSubnetInterfaceSerializerFloatingIP
+    floating_ip: ServersSettingsInterfaceSubnetInterfaceInputSerializerFloatingIP
     """Floating IP config for this subnet attachment"""
 
-    interface_name: str
-    """Interface name.
-
-    Defaults to `null` and is returned as `null` in the API response if not set.
-    """
+    name: str
+    """Interface name"""
 
 
-class InterfaceCreateGPUClusterAnySubnetInterfaceSerializerFloatingIP(TypedDict, total=False):
+class ServersSettingsInterfaceAnySubnetInterfaceInputSerializerFloatingIP(TypedDict, total=False):
     source: Required[Literal["new"]]
 
 
-class InterfaceCreateGPUClusterAnySubnetInterfaceSerializer(TypedDict, total=False):
+class ServersSettingsInterfaceAnySubnetInterfaceInputSerializer(TypedDict, total=False):
     network_id: Required[str]
-    """The network where the server will be connected."""
+    """Network ID the subnet belongs to. Port will be plugged in this network"""
 
     type: Required[Literal["any_subnet"]]
-    """Server will be attached to a subnet with the largest count of free IPs."""
 
-    floating_ip: InterfaceCreateGPUClusterAnySubnetInterfaceSerializerFloatingIP
-    """Allows the server to have a public IP that can be reached from the internet."""
+    floating_ip: ServersSettingsInterfaceAnySubnetInterfaceInputSerializerFloatingIP
+    """Floating IP config for this subnet attachment"""
 
-    interface_name: str
-    """Interface name.
+    ip_family: Literal["dual", "ipv4", "ipv6"]
+    """Which subnets should be selected: IPv4, IPv6, or use dual stack"""
 
-    Defaults to `null` and is returned as `null` in the API response if not set.
-    """
-
-    ip_address: str
-    """You can specify a specific IP address from your subnet."""
-
-    ip_family: InterfaceIPFamily
-    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
+    name: str
+    """Interface name"""
 
 
-Interface: TypeAlias = Union[
-    InterfaceCreateGPUClusterExternalInterfaceSerializer,
-    InterfaceCreateGPUClusterSubnetInterfaceSerializer,
-    InterfaceCreateGPUClusterAnySubnetInterfaceSerializer,
+ServersSettingsInterface: TypeAlias = Union[
+    ServersSettingsInterfaceExternalInterfaceInputSerializer,
+    ServersSettingsInterfaceSubnetInterfaceInputSerializer,
+    ServersSettingsInterfaceAnySubnetInterfaceInputSerializer,
 ]
 
 
-class SecurityGroup(TypedDict, total=False):
+class ServersSettingsCredentials(TypedDict, total=False):
+    password: str
+    """Used to set the password for the specified 'username' on Linux instances.
+
+    If 'username' is not provided, the password is applied to the default user of
+    the image. Mutually exclusive with '`user_data`' - only one can be specified.
+    """
+
+    ssh_key_name: str
+    """
+    Specifies the name of the SSH keypair, created via the
+    [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+    """
+
+    username: str
+    """The 'username' and 'password' fields create a new user on the system"""
+
+
+class ServersSettingsSecurityGroup(TypedDict, total=False):
     id: Required[str]
     """Resource ID"""
+
+
+class ServersSettings(TypedDict, total=False):
+    interfaces: Required[Iterable[ServersSettingsInterface]]
+    """Subnet IPs and floating IPs"""
+
+    credentials: ServersSettingsCredentials
+    """Optional server access credentials"""
+
+    security_groups: Iterable[ServersSettingsSecurityGroup]
+    """List of security groups UUIDs"""
+
+    user_data: str
+    """Optional custom user data (Base64-encoded)"""

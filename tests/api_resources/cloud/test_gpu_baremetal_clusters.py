@@ -13,10 +13,8 @@ from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import (
     TaskIDList,
     GPUBaremetalCluster,
-    GPUBaremetalClusterServerList,
 )
-
-# pyright: reportDeprecated=false
+from gcore.types.cloud.gpu_baremetal_clusters import GPUBaremetalClusterServerV1List
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,70 +24,57 @@ class TestGPUBaremetalClusters:
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
-
+        gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={"interfaces": [{"type": "external"}]},
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
+        gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={
+                "interfaces": [
                     {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                        "floating_ip": {"source": "new"},
-                        "interface_name": "interface_name",
+                        "type": "external",
+                        "ip_family": "ipv4",
+                        "name": "eth0",
                     }
                 ],
-                name="my-gpu-cluster",
-                instances_count=1,
-                password="password",
-                security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
-                ssh_key_name="my-ssh-key",
-                tags={"my-tag": "my-tag-value"},
-                user_data="user_data",
-                username="username",
-            )
-
+                "credentials": {
+                    "password": "securepassword",
+                    "ssh_key_name": "my-ssh-key",
+                    "username": "admin",
+                },
+                "security_groups": [{"id": "b4849ffa-89f2-45a1-951f-0ae5b7809d98"}],
+                "user_data": "eyJ0ZXN0IjogImRhdGEifQ==",
+            },
+            tags={"my-tag": "my-tag-value"},
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
+        response = client.cloud.gpu_baremetal_clusters.with_raw_response.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={"interfaces": [{"type": "external"}]},
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -98,58 +83,48 @@ class TestGPUBaremetalClusters:
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.gpu_baremetal_clusters.with_streaming_response.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.gpu_baremetal_clusters.with_streaming_response.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={"interfaces": [{"type": "external"}]},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = response.parse()
-                assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = response.parse()
+            assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.list(
-                project_id=0,
-                region_id=0,
-            )
-
+        gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.list(
+            project_id=1,
+            region_id=7,
+        )
         assert_matches_type(SyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.list(
-                project_id=0,
-                region_id=0,
-                limit=0,
-                offset=0,
-            )
-
+        gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.list(
+            project_id=1,
+            region_id=7,
+            limit=10,
+            managed_by=["k8s"],
+            offset=0,
+        )
         assert_matches_type(SyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.gpu_baremetal_clusters.with_raw_response.list(
-                project_id=0,
-                region_id=0,
-            )
+        response = client.cloud.gpu_baremetal_clusters.with_raw_response.list(
+            project_id=1,
+            region_id=7,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -158,52 +133,46 @@ class TestGPUBaremetalClusters:
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.gpu_baremetal_clusters.with_streaming_response.list(
-                project_id=0,
-                region_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.gpu_baremetal_clusters.with_streaming_response.list(
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = response.parse()
-                assert_matches_type(SyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = response.parse()
+            assert_matches_type(SyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
-
+        gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-                delete_floatings=True,
-                floatings="floatings",
-                reserved_fixed_ips="reserved_fixed_ips",
-            )
-
+        gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            all_floating_ips=True,
+            floating_ip_ids=["e4a01208-d6ac-4304-bf86-3028154b070a"],
+            reserved_fixed_ip_ids=["a29b8e1e-08d3-4cec-91fb-06e81e5f46d5"],
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
+        response = client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -212,49 +181,44 @@ class TestGPUBaremetalClusters:
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.gpu_baremetal_clusters.with_streaming_response.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.gpu_baremetal_clusters.with_streaming_response.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = response.parse()
-                assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = response.parse()
+            assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-                client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
-                    cluster_id="",
-                    project_id=0,
-                    region_id=0,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+            )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.get(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
-
+        gpu_baremetal_cluster = client.cloud.gpu_baremetal_clusters.get(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
         assert_matches_type(GPUBaremetalCluster, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.gpu_baremetal_clusters.with_raw_response.get(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
+        response = client.cloud.gpu_baremetal_clusters.with_raw_response.get(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -263,29 +227,27 @@ class TestGPUBaremetalClusters:
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.gpu_baremetal_clusters.with_streaming_response.get(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.gpu_baremetal_clusters.with_streaming_response.get(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = response.parse()
-                assert_matches_type(GPUBaremetalCluster, gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = response.parse()
+            assert_matches_type(GPUBaremetalCluster, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-                client.cloud.gpu_baremetal_clusters.with_raw_response.get(
-                    cluster_id="",
-                    project_id=0,
-                    region_id=0,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            client.cloud.gpu_baremetal_clusters.with_raw_response.get(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+            )
 
     @parametrize
     def test_method_powercycle_all_servers(self, client: Gcore) -> None:
@@ -294,7 +256,7 @@ class TestGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_powercycle_all_servers(self, client: Gcore) -> None:
@@ -307,7 +269,7 @@ class TestGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = response.parse()
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_streaming_response_powercycle_all_servers(self, client: Gcore) -> None:
@@ -320,7 +282,7 @@ class TestGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = response.parse()
-            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -340,7 +302,7 @@ class TestGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_raw_response_reboot_all_servers(self, client: Gcore) -> None:
@@ -353,7 +315,7 @@ class TestGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = response.parse()
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     def test_streaming_response_reboot_all_servers(self, client: Gcore) -> None:
@@ -366,7 +328,7 @@ class TestGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = response.parse()
-            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -499,70 +461,57 @@ class TestAsyncGPUBaremetalClusters:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
-
+        gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={"interfaces": [{"type": "external"}]},
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
+        gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={
+                "interfaces": [
                     {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                        "floating_ip": {"source": "new"},
-                        "interface_name": "interface_name",
+                        "type": "external",
+                        "ip_family": "ipv4",
+                        "name": "eth0",
                     }
                 ],
-                name="my-gpu-cluster",
-                instances_count=1,
-                password="password",
-                security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
-                ssh_key_name="my-ssh-key",
-                tags={"my-tag": "my-tag-value"},
-                user_data="user_data",
-                username="username",
-            )
-
+                "credentials": {
+                    "password": "securepassword",
+                    "ssh_key_name": "my-ssh-key",
+                    "username": "admin",
+                },
+                "security_groups": [{"id": "b4849ffa-89f2-45a1-951f-0ae5b7809d98"}],
+                "user_data": "eyJ0ZXN0IjogImRhdGEifQ==",
+            },
+            tags={"my-tag": "my-tag-value"},
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            )
+        response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={"interfaces": [{"type": "external"}]},
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -571,58 +520,48 @@ class TestAsyncGPUBaremetalClusters:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.create(
-                project_id=0,
-                region_id=0,
-                flavor="bm3-ai-1xlarge-h100-80-8",
-                image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
-                interfaces=[
-                    {
-                        "network_id": "024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                        "subnet_id": "91200a6c-07e0-42aa-98da-32d1f6545ae7",
-                        "type": "subnet",
-                    }
-                ],
-                name="my-gpu-cluster",
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.create(
+            project_id=1,
+            region_id=7,
+            flavor="g3-ai-32-192-1500-l40s-48-1",
+            image_id="3793c250-0b3b-4678-bab3-e11afbc29657",
+            name="gpu-cluster-1",
+            servers_count=3,
+            servers_settings={"interfaces": [{"type": "external"}]},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = await response.parse()
-                assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = await response.parse()
+            assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.list(
-                project_id=0,
-                region_id=0,
-            )
-
+        gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.list(
+            project_id=1,
+            region_id=7,
+        )
         assert_matches_type(AsyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.list(
-                project_id=0,
-                region_id=0,
-                limit=0,
-                offset=0,
-            )
-
+        gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.list(
+            project_id=1,
+            region_id=7,
+            limit=10,
+            managed_by=["k8s"],
+            offset=0,
+        )
         assert_matches_type(AsyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.list(
-                project_id=0,
-                region_id=0,
-            )
+        response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.list(
+            project_id=1,
+            region_id=7,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -631,52 +570,46 @@ class TestAsyncGPUBaremetalClusters:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.list(
-                project_id=0,
-                region_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.list(
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = await response.parse()
-                assert_matches_type(AsyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = await response.parse()
+            assert_matches_type(AsyncOffsetPage[GPUBaremetalCluster], gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
-
+        gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-                delete_floatings=True,
-                floatings="floatings",
-                reserved_fixed_ips="reserved_fixed_ips",
-            )
-
+        gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            all_floating_ips=True,
+            floating_ip_ids=["e4a01208-d6ac-4304-bf86-3028154b070a"],
+            reserved_fixed_ip_ids=["a29b8e1e-08d3-4cec-91fb-06e81e5f46d5"],
+        )
         assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
+        response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -685,49 +618,44 @@ class TestAsyncGPUBaremetalClusters:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.delete(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.delete(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = await response.parse()
-                assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = await response.parse()
+            assert_matches_type(TaskIDList, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-                await async_client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
-                    cluster_id="",
-                    project_id=0,
-                    region_id=0,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            await async_client.cloud.gpu_baremetal_clusters.with_raw_response.delete(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+            )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.get(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
-
+        gpu_baremetal_cluster = await async_client.cloud.gpu_baremetal_clusters.get(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
         assert_matches_type(GPUBaremetalCluster, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.get(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            )
+        response = await async_client.cloud.gpu_baremetal_clusters.with_raw_response.get(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -736,29 +664,27 @@ class TestAsyncGPUBaremetalClusters:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.get(
-                cluster_id="cluster_id",
-                project_id=0,
-                region_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.gpu_baremetal_clusters.with_streaming_response.get(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                gpu_baremetal_cluster = await response.parse()
-                assert_matches_type(GPUBaremetalCluster, gpu_baremetal_cluster, path=["response"])
+            gpu_baremetal_cluster = await response.parse()
+            assert_matches_type(GPUBaremetalCluster, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-                await async_client.cloud.gpu_baremetal_clusters.with_raw_response.get(
-                    cluster_id="",
-                    project_id=0,
-                    region_id=0,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            await async_client.cloud.gpu_baremetal_clusters.with_raw_response.get(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+            )
 
     @parametrize
     async def test_method_powercycle_all_servers(self, async_client: AsyncGcore) -> None:
@@ -767,7 +693,7 @@ class TestAsyncGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_powercycle_all_servers(self, async_client: AsyncGcore) -> None:
@@ -780,7 +706,7 @@ class TestAsyncGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = await response.parse()
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_streaming_response_powercycle_all_servers(self, async_client: AsyncGcore) -> None:
@@ -793,7 +719,7 @@ class TestAsyncGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = await response.parse()
-            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -813,7 +739,7 @@ class TestAsyncGPUBaremetalClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_reboot_all_servers(self, async_client: AsyncGcore) -> None:
@@ -826,7 +752,7 @@ class TestAsyncGPUBaremetalClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gpu_baremetal_cluster = await response.parse()
-        assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+        assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
     @parametrize
     async def test_streaming_response_reboot_all_servers(self, async_client: AsyncGcore) -> None:
@@ -839,7 +765,7 @@ class TestAsyncGPUBaremetalClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gpu_baremetal_cluster = await response.parse()
-            assert_matches_type(GPUBaremetalClusterServerList, gpu_baremetal_cluster, path=["response"])
+            assert_matches_type(GPUBaremetalClusterServerV1List, gpu_baremetal_cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

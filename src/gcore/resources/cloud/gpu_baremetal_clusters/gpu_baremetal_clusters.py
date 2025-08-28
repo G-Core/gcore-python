@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import typing_extensions
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, List, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -60,7 +60,7 @@ from ....types.cloud import (
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.gpu_baremetal_cluster import GPUBaremetalCluster
-from ....types.cloud.gpu_baremetal_cluster_server_list import GPUBaremetalClusterServerList
+from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server_v1_list import GPUBaremetalClusterServerV1List
 
 __all__ = ["GPUBaremetalClustersResource", "AsyncGPUBaremetalClustersResource"]
 
@@ -101,7 +101,6 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         """
         return GPUBaremetalClustersResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -109,15 +108,10 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         region_id: int | None = None,
         flavor: str,
         image_id: str,
-        interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
-        instances_count: int | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[gpu_baremetal_cluster_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
-        ssh_key_name: str | NotGiven = NOT_GIVEN,
+        servers_count: int,
+        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,45 +119,29 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Create a new GPU cluster with specified configuration.
-
-        The cluster can be
-        created with one or more nodes. Please use the
-        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters` endpoint instead.
+        """
+        Create a new bare metal GPU cluster with the specified configuration.
 
         Args:
-          flavor: Flavor name
+          project_id: Project ID
 
-          image_id: Image ID
+          region_id: Region ID
 
-          interfaces: A list of network interfaces for the server. You can create one or more
-              interfaces - private, public, or both.
+          flavor: Cluster flavor ID
 
-          name: GPU Cluster name
+          image_id: System image ID
 
-          instances_count: Number of servers to create
+          name: Cluster name
 
-          password: A password for a bare metal server. This parameter is used to set a password for
-              the "Admin" user on a Windows instance, a default user or a new user on a Linux
-              instance
+          servers_count: Number of servers in the cluster
 
-          security_groups: Security group UUIDs
-
-          ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+          servers_settings: Configuration settings for the servers in the cluster
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
-
-          user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the `user_data`:
-              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          username: A name of a new user in the Linux instance. It may be passed with a 'password'
-              parameter
 
           extra_headers: Send extra headers
 
@@ -178,20 +156,15 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             body=maybe_transform(
                 {
                     "flavor": flavor,
                     "image_id": image_id,
-                    "interfaces": interfaces,
                     "name": name,
-                    "instances_count": instances_count,
-                    "password": password,
-                    "security_groups": security_groups,
-                    "ssh_key_name": ssh_key_name,
+                    "servers_count": servers_count,
+                    "servers_settings": servers_settings,
                     "tags": tags,
-                    "user_data": user_data,
-                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),
@@ -201,13 +174,13 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
+        managed_by: List[Literal["k8s", "user"]] | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -217,13 +190,22 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncOffsetPage[GPUBaremetalCluster]:
         """
-        Please use the `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters`
-        instead.
+        List all bare metal GPU clusters in the specified project and region.
 
         Args:
-          limit: Limit the number of returned clusters
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Limit of items on a single page
+
+          managed_by: Specifies the entity responsible for managing the resource.
+
+              - `user`: The resource (cluster) is created and maintained directly by the user.
+              - `k8s`: The resource is created and maintained automatically by Managed
+                Kubernetes service
+
+          offset: Offset in results list
 
           extra_headers: Send extra headers
 
@@ -238,7 +220,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             page=SyncOffsetPage[GPUBaremetalCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -248,6 +230,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "managed_by": managed_by,
                         "offset": offset,
                     },
                     gpu_baremetal_cluster_list_params.GPUBaremetalClusterListParams,
@@ -256,16 +239,15 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             model=GPUBaremetalCluster,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         cluster_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
-        floatings: str | NotGiven = NOT_GIVEN,
-        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
+        all_floating_ips: bool | NotGiven = NOT_GIVEN,
+        floating_ip_ids: List[str] | NotGiven = NOT_GIVEN,
+        reserved_fixed_ip_ids: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -273,20 +255,22 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Deletes given bare metal GPU cluster.
-
-        Please use the
-        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}`
-        instead.
+        """
+        Delete a bare metal GPU cluster and all its associated resources.
 
         Args:
-          delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
-              used with floatings.
+          project_id: Project ID
 
-          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
-              `delete_floatings`.
+          region_id: Region ID
 
-          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the servers
+          cluster_id: Cluster unique identifier
+
+          all_floating_ips: Flag indicating whether the floating ips associated with server / cluster are
+              deleted
+
+          floating_ip_ids: Optional list of floating ips to be deleted
+
+          reserved_fixed_ip_ids: Optional list of reserved fixed ips to be deleted
 
           extra_headers: Send extra headers
 
@@ -303,7 +287,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._delete(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -311,9 +295,9 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "delete_floatings": delete_floatings,
-                        "floatings": floatings,
-                        "reserved_fixed_ips": reserved_fixed_ips,
+                        "all_floating_ips": all_floating_ips,
+                        "floating_ip_ids": floating_ip_ids,
+                        "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
                     gpu_baremetal_cluster_delete_params.GPUBaremetalClusterDeleteParams,
                 ),
@@ -321,7 +305,6 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         cluster_id: str,
@@ -336,11 +319,15 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUBaremetalCluster:
         """
-        Please use the
-        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}`
-        instead.
+        Get detailed information about a specific bare metal GPU cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -356,7 +343,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -375,7 +362,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServerList:
+    ) -> GPUBaremetalClusterServerV1List:
         """
         Stops and then starts all cluster servers, effectively performing a hard reboot.
 
@@ -399,7 +386,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServerList,
+            cast_to=GPUBaremetalClusterServerV1List,
         )
 
     def reboot_all_servers(
@@ -414,7 +401,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServerList:
+    ) -> GPUBaremetalClusterServerV1List:
         """
         Reboot all bare metal GPU cluster servers
 
@@ -438,7 +425,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServerList,
+            cast_to=GPUBaremetalClusterServerV1List,
         )
 
     def rebuild(
@@ -556,10 +543,9 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         region_id: int | None = None,
         flavor: str,
         image_id: str,
-        interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
-        instances_count: int | NotGiven = NOT_GIVEN,
-        ssh_key_name: str | NotGiven = NOT_GIVEN,
+        servers_count: int,
+        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -577,10 +563,9 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             region_id=region_id,
             flavor=flavor,
             image_id=image_id,
-            interfaces=interfaces,
             name=name,
-            instances_count=instances_count,
-            ssh_key_name=ssh_key_name,
+            servers_count=servers_count,
+            servers_settings=servers_settings,
             tags=tags,
             extra_headers=extra_headers,
             extra_query=extra_query,
@@ -744,7 +729,6 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         """
         return AsyncGPUBaremetalClustersResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -752,15 +736,10 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         region_id: int | None = None,
         flavor: str,
         image_id: str,
-        interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
-        instances_count: int | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[gpu_baremetal_cluster_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
-        ssh_key_name: str | NotGiven = NOT_GIVEN,
+        servers_count: int,
+        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -768,45 +747,29 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Create a new GPU cluster with specified configuration.
-
-        The cluster can be
-        created with one or more nodes. Please use the
-        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters` endpoint instead.
+        """
+        Create a new bare metal GPU cluster with the specified configuration.
 
         Args:
-          flavor: Flavor name
+          project_id: Project ID
 
-          image_id: Image ID
+          region_id: Region ID
 
-          interfaces: A list of network interfaces for the server. You can create one or more
-              interfaces - private, public, or both.
+          flavor: Cluster flavor ID
 
-          name: GPU Cluster name
+          image_id: System image ID
 
-          instances_count: Number of servers to create
+          name: Cluster name
 
-          password: A password for a bare metal server. This parameter is used to set a password for
-              the "Admin" user on a Windows instance, a default user or a new user on a Linux
-              instance
+          servers_count: Number of servers in the cluster
 
-          security_groups: Security group UUIDs
-
-          ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+          servers_settings: Configuration settings for the servers in the cluster
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
               better organization and management. Some tags are read-only and cannot be
               modified by the user. Tags are also integrated with cost reports, allowing cost
               data to be filtered based on tag keys or values.
-
-          user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the `user_data`:
-              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          username: A name of a new user in the Linux instance. It may be passed with a 'password'
-              parameter
 
           extra_headers: Send extra headers
 
@@ -821,20 +784,15 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
                     "image_id": image_id,
-                    "interfaces": interfaces,
                     "name": name,
-                    "instances_count": instances_count,
-                    "password": password,
-                    "security_groups": security_groups,
-                    "ssh_key_name": ssh_key_name,
+                    "servers_count": servers_count,
+                    "servers_settings": servers_settings,
                     "tags": tags,
-                    "user_data": user_data,
-                    "username": username,
                 },
                 gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
             ),
@@ -844,13 +802,13 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | NotGiven = NOT_GIVEN,
+        managed_by: List[Literal["k8s", "user"]] | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -860,13 +818,22 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[GPUBaremetalCluster, AsyncOffsetPage[GPUBaremetalCluster]]:
         """
-        Please use the `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters`
-        instead.
+        List all bare metal GPU clusters in the specified project and region.
 
         Args:
-          limit: Limit the number of returned clusters
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Limit of items on a single page
+
+          managed_by: Specifies the entity responsible for managing the resource.
+
+              - `user`: The resource (cluster) is created and maintained directly by the user.
+              - `k8s`: The resource is created and maintained automatically by Managed
+                Kubernetes service
+
+          offset: Offset in results list
 
           extra_headers: Send extra headers
 
@@ -881,7 +848,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             page=AsyncOffsetPage[GPUBaremetalCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -891,6 +858,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "managed_by": managed_by,
                         "offset": offset,
                     },
                     gpu_baremetal_cluster_list_params.GPUBaremetalClusterListParams,
@@ -899,16 +867,15 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             model=GPUBaremetalCluster,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         cluster_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
-        floatings: str | NotGiven = NOT_GIVEN,
-        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
+        all_floating_ips: bool | NotGiven = NOT_GIVEN,
+        floating_ip_ids: List[str] | NotGiven = NOT_GIVEN,
+        reserved_fixed_ip_ids: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -916,20 +883,22 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
-        """Deletes given bare metal GPU cluster.
-
-        Please use the
-        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}`
-        instead.
+        """
+        Delete a bare metal GPU cluster and all its associated resources.
 
         Args:
-          delete_floatings: True if it is required to delete floating IPs assigned to the servers. Can't be
-              used with floatings.
+          project_id: Project ID
 
-          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
-              `delete_floatings`.
+          region_id: Region ID
 
-          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the servers
+          cluster_id: Cluster unique identifier
+
+          all_floating_ips: Flag indicating whether the floating ips associated with server / cluster are
+              deleted
+
+          floating_ip_ids: Optional list of floating ips to be deleted
+
+          reserved_fixed_ip_ids: Optional list of reserved fixed ips to be deleted
 
           extra_headers: Send extra headers
 
@@ -946,7 +915,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._delete(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -954,9 +923,9 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "delete_floatings": delete_floatings,
-                        "floatings": floatings,
-                        "reserved_fixed_ips": reserved_fixed_ips,
+                        "all_floating_ips": all_floating_ips,
+                        "floating_ip_ids": floating_ip_ids,
+                        "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
                     gpu_baremetal_cluster_delete_params.GPUBaremetalClusterDeleteParams,
                 ),
@@ -964,7 +933,6 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         cluster_id: str,
@@ -979,11 +947,15 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GPUBaremetalCluster:
         """
-        Please use the
-        `/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}`
-        instead.
+        Get detailed information about a specific bare metal GPU cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -999,7 +971,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._get(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1018,7 +990,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServerList:
+    ) -> GPUBaremetalClusterServerV1List:
         """
         Stops and then starts all cluster servers, effectively performing a hard reboot.
 
@@ -1042,7 +1014,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServerList,
+            cast_to=GPUBaremetalClusterServerV1List,
         )
 
     async def reboot_all_servers(
@@ -1057,7 +1029,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServerList:
+    ) -> GPUBaremetalClusterServerV1List:
         """
         Reboot all bare metal GPU cluster servers
 
@@ -1081,7 +1053,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServerList,
+            cast_to=GPUBaremetalClusterServerV1List,
         )
 
     async def rebuild(
@@ -1199,10 +1171,9 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         region_id: int | None = None,
         flavor: str,
         image_id: str,
-        interfaces: Iterable[gpu_baremetal_cluster_create_params.Interface],
         name: str,
-        instances_count: int | NotGiven = NOT_GIVEN,
-        ssh_key_name: str | NotGiven = NOT_GIVEN,
+        servers_count: int,
+        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
         tags: Dict[str, str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1220,10 +1191,9 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             region_id=region_id,
             flavor=flavor,
             image_id=image_id,
-            interfaces=interfaces,
             name=name,
-            instances_count=instances_count,
-            ssh_key_name=ssh_key_name,
+            servers_count=servers_count,
+            servers_settings=servers_settings,
             tags=tags,
             extra_headers=extra_headers,
             extra_query=extra_query,
@@ -1355,25 +1325,17 @@ class GPUBaremetalClustersResourceWithRawResponse:
     def __init__(self, gpu_baremetal_clusters: GPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_raw_response_wrapper(
+            gpu_baremetal_clusters.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_raw_response_wrapper(
+            gpu_baremetal_clusters.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = to_raw_response_wrapper(
+            gpu_baremetal_clusters.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_raw_response_wrapper(
+            gpu_baremetal_clusters.get,
         )
         self.powercycle_all_servers = to_raw_response_wrapper(
             gpu_baremetal_clusters.powercycle_all_servers,
@@ -1409,25 +1371,17 @@ class AsyncGPUBaremetalClustersResourceWithRawResponse:
     def __init__(self, gpu_baremetal_clusters: AsyncGPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.get,
         )
         self.powercycle_all_servers = async_to_raw_response_wrapper(
             gpu_baremetal_clusters.powercycle_all_servers,
@@ -1463,25 +1417,17 @@ class GPUBaremetalClustersResourceWithStreamingResponse:
     def __init__(self, gpu_baremetal_clusters: GPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.get,
         )
         self.powercycle_all_servers = to_streamed_response_wrapper(
             gpu_baremetal_clusters.powercycle_all_servers,
@@ -1517,25 +1463,17 @@ class AsyncGPUBaremetalClustersResourceWithStreamingResponse:
     def __init__(self, gpu_baremetal_clusters: AsyncGPUBaremetalClustersResource) -> None:
         self._gpu_baremetal_clusters = gpu_baremetal_clusters
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                gpu_baremetal_clusters.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.get,
         )
         self.powercycle_all_servers = async_to_streamed_response_wrapper(
             gpu_baremetal_clusters.powercycle_all_servers,
