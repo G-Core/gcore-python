@@ -1437,12 +1437,10 @@ Types:
 
 ```python
 from gcore.types.streaming import (
-    AIContentmoderationCasm,
     AIContentmoderationHardnudity,
     AIContentmoderationNsfw,
     AIContentmoderationSoftnudity,
     AIContentmoderationSport,
-    AIContentmoderationWeapon,
     AITask,
     AITaskCreateResponse,
     AITaskCancelResponse,
@@ -1665,7 +1663,6 @@ Types:
 from gcore.types.streaming import (
     Ffprobes,
     MaxStreamSeries,
-    MeetSeries,
     PopularVideos,
     StorageSeries,
     StreamSeries,
@@ -1693,7 +1690,6 @@ Methods:
 - <code title="get /streaming/statistics/stream/watching_duration">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_live_watch_time_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_live_watch_time_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/stream_series.py">StreamSeries</a></code>
 - <code title="get /streaming/statistics/stream/watching_duration/total">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_live_watch_time_total_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_live_watch_time_total_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/vod_total_stream_duration_series.py">VodTotalStreamDurationSeries</a></code>
 - <code title="get /streaming/statistics/max_stream">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_max_streams_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_max_streams_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/max_stream_series.py">MaxStreamSeries</a></code>
-- <code title="get /streaming/statistics/meet">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_meet_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_meet_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/meet_series.py">MeetSeries</a></code>
 - <code title="get /streaming/statistics/popular">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_popular_videos</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_popular_videos_params.py">params</a>) -> <a href="./src/gcore/types/streaming/popular_videos.py">PopularVideos</a></code>
 - <code title="get /streaming/statistics/storage">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_storage_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_storage_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/storage_series.py">StorageSeries</a></code>
 - <code title="get /streaming/statistics/stream">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_stream_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_stream_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/stream_series.py">StreamSeries</a></code>

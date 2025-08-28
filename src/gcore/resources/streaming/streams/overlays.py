@@ -150,7 +150,7 @@ class OverlaysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Overlay:
         """
-        Updates overlay's settings
+        Updates overlay settings
 
         Args:
           height: Height of the widget
@@ -270,7 +270,7 @@ class OverlaysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Overlay:
         """
-        Returns overlay details
+        Get overlay details
 
         Args:
           extra_headers: Send extra headers
@@ -447,7 +447,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Overlay:
         """
-        Updates overlay's settings
+        Updates overlay settings
 
         Args:
           height: Height of the widget
@@ -567,7 +567,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Overlay:
         """
-        Returns overlay details
+        Get overlay details
 
         Args:
           extra_headers: Send extra headers
