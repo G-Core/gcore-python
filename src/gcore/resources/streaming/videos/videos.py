@@ -107,7 +107,7 @@ class VideosResource(SyncAPIResource):
         subtitles based on AI. Read more:
 
         - What is
-          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -118,7 +118,7 @@ class VideosResource(SyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language.
         - How to
-          ["add AI-generated subtitles to an exist video"](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
+          ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
           The created AI-task(s) will be automatically executed, and result will also be
           automatically attached to this video as subtitle(s). Please note that
           transcription is done automatically for all videos uploaded to our video
@@ -226,9 +226,9 @@ class VideosResource(SyncAPIResource):
               More details:
 
               - List of AI tasks – API
-                [GET /streaming/ai/tasks](https://api.gcore.com/docs/streaming#tag/AI/operation/get_ai_results)
+                [GET /streaming/ai/tasks](/docs/api-reference/streaming/ai/get-list-of-ai-tasks)
               - Add subtitles to an exist video – API
-                [POST /streaming/videos/{`video_id`}/subtitles](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
+                [POST /streaming/videos/{`video_id`}/subtitles](/docs/api-reference/streaming/subtitles/add-subtitle).
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
@@ -795,7 +795,7 @@ class AsyncVideosResource(AsyncAPIResource):
         subtitles based on AI. Read more:
 
         - What is
-          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -806,7 +806,7 @@ class AsyncVideosResource(AsyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language.
         - How to
-          ["add AI-generated subtitles to an exist video"](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
+          ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
           The created AI-task(s) will be automatically executed, and result will also be
           automatically attached to this video as subtitle(s). Please note that
           transcription is done automatically for all videos uploaded to our video
@@ -914,9 +914,9 @@ class AsyncVideosResource(AsyncAPIResource):
               More details:
 
               - List of AI tasks – API
-                [GET /streaming/ai/tasks](https://api.gcore.com/docs/streaming#tag/AI/operation/get_ai_results)
+                [GET /streaming/ai/tasks](/docs/api-reference/streaming/ai/get-list-of-ai-tasks)
               - Add subtitles to an exist video – API
-                [POST /streaming/videos/{`video_id`}/subtitles](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
+                [POST /streaming/videos/{`video_id`}/subtitles](/docs/api-reference/streaming/subtitles/add-subtitle).
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
