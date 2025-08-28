@@ -17,15 +17,18 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.console import Console
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.gpu_baremetal_clusters import (
+    server_list_params,
     server_delete_params,
     server_attach_interface_params,
     server_detach_interface_params,
 )
-from ....types.cloud.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
+from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
+from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1
 
 __all__ = ["ServersResource", "AsyncServersResource"]
 
@@ -49,6 +52,70 @@ class ServersResource(SyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return ServersResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncOffsetPage[GPUBaremetalClusterServer]:
+        """List all servers in a bare metal GPU cluster.
+
+        Results can be filtered and
+        paginated.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          limit: Limit of items on a single page
+
+          offset: Offset in results list
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return self._get_api_list(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+            page=SyncOffsetPage[GPUBaremetalClusterServer],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    server_list_params.ServerListParams,
+                ),
+            ),
+            model=GPUBaremetalClusterServer,
+        )
 
     def delete(
         self,
@@ -450,7 +517,7 @@ class ServersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServer:
+    ) -> GPUBaremetalClusterServerV1:
         """
         Stops and then starts the server, effectively performing a hard reboot.
 
@@ -474,7 +541,7 @@ class ServersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServer,
+            cast_to=GPUBaremetalClusterServerV1,
         )
 
     def reboot(
@@ -489,7 +556,7 @@ class ServersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServer:
+    ) -> GPUBaremetalClusterServerV1:
         """
         Reboot one bare metal GPU cluster server
 
@@ -513,7 +580,7 @@ class ServersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServer,
+            cast_to=GPUBaremetalClusterServerV1,
         )
 
 
@@ -536,6 +603,70 @@ class AsyncServersResource(AsyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return AsyncServersResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[GPUBaremetalClusterServer, AsyncOffsetPage[GPUBaremetalClusterServer]]:
+        """List all servers in a bare metal GPU cluster.
+
+        Results can be filtered and
+        paginated.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          limit: Limit of items on a single page
+
+          offset: Offset in results list
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return self._get_api_list(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+            page=AsyncOffsetPage[GPUBaremetalClusterServer],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    server_list_params.ServerListParams,
+                ),
+            ),
+            model=GPUBaremetalClusterServer,
+        )
 
     async def delete(
         self,
@@ -939,7 +1070,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServer:
+    ) -> GPUBaremetalClusterServerV1:
         """
         Stops and then starts the server, effectively performing a hard reboot.
 
@@ -963,7 +1094,7 @@ class AsyncServersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServer,
+            cast_to=GPUBaremetalClusterServerV1,
         )
 
     async def reboot(
@@ -978,7 +1109,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GPUBaremetalClusterServer:
+    ) -> GPUBaremetalClusterServerV1:
         """
         Reboot one bare metal GPU cluster server
 
@@ -1002,7 +1133,7 @@ class AsyncServersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GPUBaremetalClusterServer,
+            cast_to=GPUBaremetalClusterServerV1,
         )
 
 
@@ -1010,6 +1141,9 @@ class ServersResourceWithRawResponse:
     def __init__(self, servers: ServersResource) -> None:
         self._servers = servers
 
+        self.list = to_raw_response_wrapper(
+            servers.list,
+        )
         self.delete = to_raw_response_wrapper(
             servers.delete,
         )
@@ -1034,6 +1168,9 @@ class AsyncServersResourceWithRawResponse:
     def __init__(self, servers: AsyncServersResource) -> None:
         self._servers = servers
 
+        self.list = async_to_raw_response_wrapper(
+            servers.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             servers.delete,
         )
@@ -1058,6 +1195,9 @@ class ServersResourceWithStreamingResponse:
     def __init__(self, servers: ServersResource) -> None:
         self._servers = servers
 
+        self.list = to_streamed_response_wrapper(
+            servers.list,
+        )
         self.delete = to_streamed_response_wrapper(
             servers.delete,
         )
@@ -1082,6 +1222,9 @@ class AsyncServersResourceWithStreamingResponse:
     def __init__(self, servers: AsyncServersResource) -> None:
         self._servers = servers
 
+        self.list = async_to_streamed_response_wrapper(
+            servers.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             servers.delete,
         )

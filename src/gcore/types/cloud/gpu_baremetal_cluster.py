@@ -1,78 +1,133 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
+from typing import List, Union, Optional
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from .tag import Tag
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
-from .gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 
-__all__ = ["GPUBaremetalCluster", "Interface"]
+__all__ = [
+    "GPUBaremetalCluster",
+    "ServersSettings",
+    "ServersSettingsInterface",
+    "ServersSettingsInterfaceExternalInterfaceOutputSerializer",
+    "ServersSettingsInterfaceSubnetInterfaceOutputSerializer",
+    "ServersSettingsInterfaceSubnetInterfaceOutputSerializerFloatingIP",
+    "ServersSettingsInterfaceAnySubnetInterfaceOutputSerializer",
+    "ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerFloatingIP",
+    "ServersSettingsSecurityGroup",
+]
 
 
-class Interface(BaseModel):
+class ServersSettingsInterfaceExternalInterfaceOutputSerializer(BaseModel):
+    ip_family: Literal["dual", "ipv4", "ipv6"]
+    """Which subnets should be selected: IPv4, IPv6, or use dual stack."""
+
+    name: Optional[str] = None
+    """Interface name"""
+
+    type: Literal["external"]
+
+
+class ServersSettingsInterfaceSubnetInterfaceOutputSerializerFloatingIP(BaseModel):
+    source: Literal["new"]
+
+
+class ServersSettingsInterfaceSubnetInterfaceOutputSerializer(BaseModel):
+    floating_ip: Optional[ServersSettingsInterfaceSubnetInterfaceOutputSerializerFloatingIP] = None
+    """Floating IP config for this subnet attachment"""
+
+    name: Optional[str] = None
+    """Interface name"""
+
     network_id: str
-    """Network ID"""
-
-    port_id: str
     """Network ID the subnet belongs to. Port will be plugged in this network"""
 
     subnet_id: str
-    """Port is assigned to IP address from the subnet"""
+    """Port is assigned an IP address from this subnet"""
 
-    type: str
-    """Network type"""
+    type: Literal["subnet"]
+
+
+class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerFloatingIP(BaseModel):
+    source: Literal["new"]
+
+
+class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializer(BaseModel):
+    floating_ip: Optional[ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerFloatingIP] = None
+    """Floating IP config for this subnet attachment"""
+
+    ip_address: Optional[str] = None
+    """Fixed IP address"""
+
+    ip_family: Literal["dual", "ipv4", "ipv6"]
+    """Which subnets should be selected: IPv4, IPv6, or use dual stack"""
+
+    name: Optional[str] = None
+    """Interface name"""
+
+    network_id: str
+    """Network ID the subnet belongs to. Port will be plugged in this network"""
+
+    type: Literal["any_subnet"]
+
+
+ServersSettingsInterface: TypeAlias = Annotated[
+    Union[
+        ServersSettingsInterfaceExternalInterfaceOutputSerializer,
+        ServersSettingsInterfaceSubnetInterfaceOutputSerializer,
+        ServersSettingsInterfaceAnySubnetInterfaceOutputSerializer,
+    ],
+    PropertyInfo(discriminator="type"),
+]
+
+
+class ServersSettingsSecurityGroup(BaseModel):
+    name: str
+    """Name."""
+
+
+class ServersSettings(BaseModel):
+    interfaces: List[ServersSettingsInterface]
+
+    security_groups: List[ServersSettingsSecurityGroup]
+    """Security groups names"""
+
+    ssh_key_name: Optional[str] = None
+    """SSH key name"""
+
+    user_data: Optional[str] = None
+    """Optional custom user data (Base64-encoded) Mutually exclusive with 'password'."""
 
 
 class GPUBaremetalCluster(BaseModel):
-    cluster_id: str
-    """GPU Cluster ID"""
+    id: str
+    """Cluster unique identifier"""
 
-    cluster_name: str
-    """GPU Cluster Name"""
-
-    cluster_status: Literal["ACTIVE", "ERROR", "PENDING", "SUSPENDED"]
-    """GPU Cluster status"""
-
-    created_at: Optional[str] = None
-    """Datetime when the cluster was created"""
-
-    creator_task_id: Optional[str] = None
-    """Task that created this entity"""
+    created_at: datetime
+    """Cluster creation date time"""
 
     flavor: str
-    """Flavor ID is the same as the name"""
+    """Cluster flavor name"""
 
-    image_id: str
-    """Image ID"""
+    managed_by: Literal["k8s", "user"]
+    """User type managing the resource"""
 
-    image_name: Optional[str] = None
-    """Image name"""
+    name: str
+    """Cluster name"""
 
-    interfaces: Optional[List[Interface]] = None
-    """Networks managed by user and associated with the cluster"""
+    servers_count: int
+    """Cluster servers count"""
 
-    password: Optional[str] = None
-    """A password for a bare metal server.
+    servers_ids: List[str]
+    """List of cluster nodes"""
 
-    This parameter is used to set a password for the "Admin" user on a Windows
-    instance, a default user or a new user on a Linux instance
-    """
+    servers_settings: ServersSettings
 
-    project_id: int
-    """Project ID"""
-
-    region: str
-    """Region name"""
-
-    region_id: int
-    """Region ID"""
-
-    servers: List[GPUBaremetalClusterServer]
-    """GPU cluster servers"""
-
-    ssh_key_name: Optional[str] = None
-    """Keypair name to inject into new cluster(s)"""
+    status: Literal["active", "deleting", "error", "new", "resizing"]
+    """Cluster status"""
 
     tags: List[Tag]
     """List of key-value tags associated with the resource.
@@ -84,33 +139,5 @@ class GPUBaremetalCluster(BaseModel):
     values.
     """
 
-    task_id: Optional[str] = None
-    """Task ID associated with the cluster"""
-
-    task_status: Literal[
-        "CLUSTER_CLEAN_UP",
-        "CLUSTER_RESIZE",
-        "CLUSTER_RESUME",
-        "CLUSTER_SUSPEND",
-        "ERROR",
-        "FINISHED",
-        "IPU_SERVERS",
-        "NETWORK",
-        "POPLAR_SERVERS",
-        "POST_DEPLOY_SETUP",
-        "VIPU_CONTROLLER",
-    ]
-    """Task status"""
-
-    user_data: Optional[str] = None
-    """String in base64 format.
-
-    Must not be passed together with 'username' or 'password'. Examples of the
-    `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-    """
-
-    username: Optional[str] = None
-    """A name of a new user in the Linux instance.
-
-    It may be passed with a 'password' parameter
-    """
+    updated_at: Optional[datetime] = None
+    """Cluster update date time"""
