@@ -892,6 +892,80 @@ Methods:
 
 - <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics">client.cloud.instances.metrics.<a href="./src/gcore/resources/cloud/instances/metrics.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/metrics_list.py">MetricsList</a></code>
 
+## K8s
+
+Types:
+
+```python
+from gcore.types.cloud import K8sClusterVersion, K8sClusterVersionList
+```
+
+Methods:
+
+- <code title="get /cloud/v2/k8s/{project_id}/{region_id}/create_versions">client.cloud.k8s.<a href="./src/gcore/resources/cloud/k8s/k8s.py">list_versions</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8sClusterVersionList</a></code>
+
+### Flavors
+
+Methods:
+
+- <code title="get /cloud/v1/k8s/{project_id}/{region_id}/flavors">client.cloud.k8s.flavors.<a href="./src/gcore/resources/cloud/k8s/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_flavor_list.py">BaremetalFlavorList</a></code>
+
+### Clusters
+
+Types:
+
+```python
+from gcore.types.cloud.k8s import (
+    K8sCluster,
+    K8sClusterCertificate,
+    K8sClusterKubeconfig,
+    K8sClusterList,
+)
+```
+
+Methods:
+
+- <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">update</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_list.py">K8sClusterList</a></code>
+- <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">delete</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster.py">K8sCluster</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get_certificate</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_certificate.py">K8sClusterCertificate</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get_kubeconfig</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_kubeconfig.py">K8sClusterKubeconfig</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list_versions_for_upgrade</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8sClusterVersionList</a></code>
+- <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">upgrade</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_upgrade_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+#### Nodes
+
+Methods:
+
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances">client.cloud.k8s.clusters.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/nodes.py">list</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/node_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance_list.py">InstanceList</a></code>
+- <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}">client.cloud.k8s.clusters.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/nodes.py">delete</a>(instance_id, \*, project_id, region_id, cluster_name) -> None</code>
+
+#### Pools
+
+Types:
+
+```python
+from gcore.types.cloud.k8s.clusters import K8sClusterPool, K8sClusterPoolList
+```
+
+Methods:
+
+- <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">create</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">update</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8sClusterPool</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">list</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_list.py">K8sClusterPoolList</a></code>
+- <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">delete</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">get</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8sClusterPool</a></code>
+- <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">resize</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+##### Nodes
+
+Methods:
+
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/instances">client.cloud.k8s.clusters.pools.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/nodes.py">list</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pools/node_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance_list.py">InstanceList</a></code>
+- <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/instances/{instance_id}">client.cloud.k8s.clusters.pools.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/nodes.py">delete</a>(instance_id, \*, project_id, region_id, cluster_name, pool_name) -> None</code>
+
 ## AuditLogs
 
 Types:
