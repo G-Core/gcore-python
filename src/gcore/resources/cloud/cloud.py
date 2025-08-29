@@ -10,6 +10,14 @@ from .tasks import (
     TasksResourceWithStreamingResponse,
     AsyncTasksResourceWithStreamingResponse,
 )
+from .k8s.k8s import (
+    K8sResource,
+    AsyncK8sResource,
+    K8sResourceWithRawResponse,
+    AsyncK8sResourceWithRawResponse,
+    K8sResourceWithStreamingResponse,
+    AsyncK8sResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -298,6 +306,10 @@ class CloudResource(SyncAPIResource):
         return InstancesResource(self._client)
 
     @cached_property
+    def k8s(self) -> K8sResource:
+        return K8sResource(self._client)
+
+    @cached_property
     def audit_logs(self) -> AuditLogsResource:
         return AuditLogsResource(self._client)
 
@@ -417,6 +429,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def instances(self) -> AsyncInstancesResource:
         return AsyncInstancesResource(self._client)
+
+    @cached_property
+    def k8s(self) -> AsyncK8sResource:
+        return AsyncK8sResource(self._client)
 
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResource:
@@ -543,6 +559,10 @@ class CloudResourceWithRawResponse:
         return InstancesResourceWithRawResponse(self._cloud.instances)
 
     @cached_property
+    def k8s(self) -> K8sResourceWithRawResponse:
+        return K8sResourceWithRawResponse(self._cloud.k8s)
+
+    @cached_property
     def audit_logs(self) -> AuditLogsResourceWithRawResponse:
         return AuditLogsResourceWithRawResponse(self._cloud.audit_logs)
 
@@ -646,6 +666,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
         return AsyncInstancesResourceWithRawResponse(self._cloud.instances)
+
+    @cached_property
+    def k8s(self) -> AsyncK8sResourceWithRawResponse:
+        return AsyncK8sResourceWithRawResponse(self._cloud.k8s)
 
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResourceWithRawResponse:
@@ -753,6 +777,10 @@ class CloudResourceWithStreamingResponse:
         return InstancesResourceWithStreamingResponse(self._cloud.instances)
 
     @cached_property
+    def k8s(self) -> K8sResourceWithStreamingResponse:
+        return K8sResourceWithStreamingResponse(self._cloud.k8s)
+
+    @cached_property
     def audit_logs(self) -> AuditLogsResourceWithStreamingResponse:
         return AuditLogsResourceWithStreamingResponse(self._cloud.audit_logs)
 
@@ -856,6 +884,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
         return AsyncInstancesResourceWithStreamingResponse(self._cloud.instances)
+
+    @cached_property
+    def k8s(self) -> AsyncK8sResourceWithStreamingResponse:
+        return AsyncK8sResourceWithStreamingResponse(self._cloud.k8s)
 
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResourceWithStreamingResponse:
