@@ -7,10 +7,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["RrsetUpdateParams", "ResourceRecord", "Picker"]
+__all__ = ["RrsetReplaceParams", "ResourceRecord", "Picker"]
 
 
-class RrsetUpdateParams(TypedDict, total=False):
+class RrsetReplaceParams(TypedDict, total=False):
     zone_name: Required[Annotated[str, PropertyInfo(alias="zoneName")]]
 
     rrset_name: Required[Annotated[str, PropertyInfo(alias="rrsetName")]]
