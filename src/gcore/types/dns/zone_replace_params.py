@@ -7,10 +7,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["ZoneUpdateParams"]
+__all__ = ["ZoneReplaceParams"]
 
 
-class ZoneUpdateParams(TypedDict, total=False):
+class ZoneReplaceParams(TypedDict, total=False):
     body_name: Required[Annotated[str, PropertyInfo(alias="name")]]
     """name of DNS zone"""
 

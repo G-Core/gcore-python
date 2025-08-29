@@ -38,7 +38,7 @@ from ....types.dns import (
     zone_list_params,
     zone_create_params,
     zone_import_params,
-    zone_update_params,
+    zone_replace_params,
     zone_get_statistics_params,
 )
 from ...._base_client import make_request_options
@@ -163,95 +163,6 @@ class ZonesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ZoneCreateResponse,
-        )
-
-    def update(
-        self,
-        path_name: str,
-        *,
-        body_name: str,
-        contact: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiry: int | NotGiven = NOT_GIVEN,
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        nx_ttl: int | NotGiven = NOT_GIVEN,
-        primary_server: str | NotGiven = NOT_GIVEN,
-        refresh: int | NotGiven = NOT_GIVEN,
-        retry: int | NotGiven = NOT_GIVEN,
-        serial: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Update DNS zone and SOA record.
-
-        Args:
-          body_name: name of DNS zone
-
-          contact: email address of the administrator responsible for this zone
-
-          enabled: If a zone is disabled, then its records will not be resolved on dns servers
-
-          expiry: number of seconds after which secondary name servers should stop answering
-              request for this zone
-
-          meta: arbitrarily data of zone in json format you can specify `webhook` url and
-              `webhook_method` here webhook will get a map with three arrays: for created,
-              updated and deleted rrsets `webhook_method` can be omitted, POST will be used by
-              default
-
-          nx_ttl: Time To Live of cache
-
-          primary_server: primary master name server for zone
-
-          refresh: number of seconds after which secondary name servers should query the master for
-              the SOA record, to detect zone changes.
-
-          retry: number of seconds after which secondary name servers should retry to request the
-              serial number
-
-          serial: Serial number for this zone or Timestamp of zone modification moment. If a
-              secondary name server slaved to this one observes an increase in this number,
-              the slave will assume that the zone has been updated and initiate a zone
-              transfer.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not path_name:
-            raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
-        return self._put(
-            f"/dns/v2/zones/{path_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{path_name}",
-            body=maybe_transform(
-                {
-                    "body_name": body_name,
-                    "contact": contact,
-                    "enabled": enabled,
-                    "expiry": expiry,
-                    "meta": meta,
-                    "nx_ttl": nx_ttl,
-                    "primary_server": primary_server,
-                    "refresh": refresh,
-                    "retry": retry,
-                    "serial": serial,
-                },
-                zone_update_params.ZoneUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
         )
 
     def list(
@@ -696,6 +607,95 @@ class ZonesResource(SyncAPIResource):
             cast_to=ZoneImportResponse,
         )
 
+    def replace(
+        self,
+        path_name: str,
+        *,
+        body_name: str,
+        contact: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expiry: int | NotGiven = NOT_GIVEN,
+        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
+        nx_ttl: int | NotGiven = NOT_GIVEN,
+        primary_server: str | NotGiven = NOT_GIVEN,
+        refresh: int | NotGiven = NOT_GIVEN,
+        retry: int | NotGiven = NOT_GIVEN,
+        serial: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Update DNS zone and SOA record.
+
+        Args:
+          body_name: name of DNS zone
+
+          contact: email address of the administrator responsible for this zone
+
+          enabled: If a zone is disabled, then its records will not be resolved on dns servers
+
+          expiry: number of seconds after which secondary name servers should stop answering
+              request for this zone
+
+          meta: arbitrarily data of zone in json format you can specify `webhook` url and
+              `webhook_method` here webhook will get a map with three arrays: for created,
+              updated and deleted rrsets `webhook_method` can be omitted, POST will be used by
+              default
+
+          nx_ttl: Time To Live of cache
+
+          primary_server: primary master name server for zone
+
+          refresh: number of seconds after which secondary name servers should query the master for
+              the SOA record, to detect zone changes.
+
+          retry: number of seconds after which secondary name servers should retry to request the
+              serial number
+
+          serial: Serial number for this zone or Timestamp of zone modification moment. If a
+              secondary name server slaved to this one observes an increase in this number,
+              the slave will assume that the zone has been updated and initiate a zone
+              transfer.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not path_name:
+            raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
+        return self._put(
+            f"/dns/v2/zones/{path_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{path_name}",
+            body=maybe_transform(
+                {
+                    "body_name": body_name,
+                    "contact": contact,
+                    "enabled": enabled,
+                    "expiry": expiry,
+                    "meta": meta,
+                    "nx_ttl": nx_ttl,
+                    "primary_server": primary_server,
+                    "refresh": refresh,
+                    "retry": retry,
+                    "serial": serial,
+                },
+                zone_replace_params.ZoneReplaceParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class AsyncZonesResource(AsyncAPIResource):
     @cached_property
@@ -807,95 +807,6 @@ class AsyncZonesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ZoneCreateResponse,
-        )
-
-    async def update(
-        self,
-        path_name: str,
-        *,
-        body_name: str,
-        contact: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiry: int | NotGiven = NOT_GIVEN,
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        nx_ttl: int | NotGiven = NOT_GIVEN,
-        primary_server: str | NotGiven = NOT_GIVEN,
-        refresh: int | NotGiven = NOT_GIVEN,
-        retry: int | NotGiven = NOT_GIVEN,
-        serial: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Update DNS zone and SOA record.
-
-        Args:
-          body_name: name of DNS zone
-
-          contact: email address of the administrator responsible for this zone
-
-          enabled: If a zone is disabled, then its records will not be resolved on dns servers
-
-          expiry: number of seconds after which secondary name servers should stop answering
-              request for this zone
-
-          meta: arbitrarily data of zone in json format you can specify `webhook` url and
-              `webhook_method` here webhook will get a map with three arrays: for created,
-              updated and deleted rrsets `webhook_method` can be omitted, POST will be used by
-              default
-
-          nx_ttl: Time To Live of cache
-
-          primary_server: primary master name server for zone
-
-          refresh: number of seconds after which secondary name servers should query the master for
-              the SOA record, to detect zone changes.
-
-          retry: number of seconds after which secondary name servers should retry to request the
-              serial number
-
-          serial: Serial number for this zone or Timestamp of zone modification moment. If a
-              secondary name server slaved to this one observes an increase in this number,
-              the slave will assume that the zone has been updated and initiate a zone
-              transfer.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not path_name:
-            raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
-        return await self._put(
-            f"/dns/v2/zones/{path_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{path_name}",
-            body=await async_maybe_transform(
-                {
-                    "body_name": body_name,
-                    "contact": contact,
-                    "enabled": enabled,
-                    "expiry": expiry,
-                    "meta": meta,
-                    "nx_ttl": nx_ttl,
-                    "primary_server": primary_server,
-                    "refresh": refresh,
-                    "retry": retry,
-                    "serial": serial,
-                },
-                zone_update_params.ZoneUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
         )
 
     async def list(
@@ -1340,6 +1251,95 @@ class AsyncZonesResource(AsyncAPIResource):
             cast_to=ZoneImportResponse,
         )
 
+    async def replace(
+        self,
+        path_name: str,
+        *,
+        body_name: str,
+        contact: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expiry: int | NotGiven = NOT_GIVEN,
+        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
+        nx_ttl: int | NotGiven = NOT_GIVEN,
+        primary_server: str | NotGiven = NOT_GIVEN,
+        refresh: int | NotGiven = NOT_GIVEN,
+        retry: int | NotGiven = NOT_GIVEN,
+        serial: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Update DNS zone and SOA record.
+
+        Args:
+          body_name: name of DNS zone
+
+          contact: email address of the administrator responsible for this zone
+
+          enabled: If a zone is disabled, then its records will not be resolved on dns servers
+
+          expiry: number of seconds after which secondary name servers should stop answering
+              request for this zone
+
+          meta: arbitrarily data of zone in json format you can specify `webhook` url and
+              `webhook_method` here webhook will get a map with three arrays: for created,
+              updated and deleted rrsets `webhook_method` can be omitted, POST will be used by
+              default
+
+          nx_ttl: Time To Live of cache
+
+          primary_server: primary master name server for zone
+
+          refresh: number of seconds after which secondary name servers should query the master for
+              the SOA record, to detect zone changes.
+
+          retry: number of seconds after which secondary name servers should retry to request the
+              serial number
+
+          serial: Serial number for this zone or Timestamp of zone modification moment. If a
+              secondary name server slaved to this one observes an increase in this number,
+              the slave will assume that the zone has been updated and initiate a zone
+              transfer.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not path_name:
+            raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
+        return await self._put(
+            f"/dns/v2/zones/{path_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{path_name}",
+            body=await async_maybe_transform(
+                {
+                    "body_name": body_name,
+                    "contact": contact,
+                    "enabled": enabled,
+                    "expiry": expiry,
+                    "meta": meta,
+                    "nx_ttl": nx_ttl,
+                    "primary_server": primary_server,
+                    "refresh": refresh,
+                    "retry": retry,
+                    "serial": serial,
+                },
+                zone_replace_params.ZoneReplaceParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class ZonesResourceWithRawResponse:
     def __init__(self, zones: ZonesResource) -> None:
@@ -1347,9 +1347,6 @@ class ZonesResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             zones.create,
-        )
-        self.update = to_raw_response_wrapper(
-            zones.update,
         )
         self.list = to_raw_response_wrapper(
             zones.list,
@@ -1378,6 +1375,9 @@ class ZonesResourceWithRawResponse:
         self.import_ = to_raw_response_wrapper(
             zones.import_,
         )
+        self.replace = to_raw_response_wrapper(
+            zones.replace,
+        )
 
     @cached_property
     def dnssec(self) -> DnssecResourceWithRawResponse:
@@ -1394,9 +1394,6 @@ class AsyncZonesResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             zones.create,
-        )
-        self.update = async_to_raw_response_wrapper(
-            zones.update,
         )
         self.list = async_to_raw_response_wrapper(
             zones.list,
@@ -1425,6 +1422,9 @@ class AsyncZonesResourceWithRawResponse:
         self.import_ = async_to_raw_response_wrapper(
             zones.import_,
         )
+        self.replace = async_to_raw_response_wrapper(
+            zones.replace,
+        )
 
     @cached_property
     def dnssec(self) -> AsyncDnssecResourceWithRawResponse:
@@ -1441,9 +1441,6 @@ class ZonesResourceWithStreamingResponse:
 
         self.create = to_streamed_response_wrapper(
             zones.create,
-        )
-        self.update = to_streamed_response_wrapper(
-            zones.update,
         )
         self.list = to_streamed_response_wrapper(
             zones.list,
@@ -1472,6 +1469,9 @@ class ZonesResourceWithStreamingResponse:
         self.import_ = to_streamed_response_wrapper(
             zones.import_,
         )
+        self.replace = to_streamed_response_wrapper(
+            zones.replace,
+        )
 
     @cached_property
     def dnssec(self) -> DnssecResourceWithStreamingResponse:
@@ -1488,9 +1488,6 @@ class AsyncZonesResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             zones.create,
-        )
-        self.update = async_to_streamed_response_wrapper(
-            zones.update,
         )
         self.list = async_to_streamed_response_wrapper(
             zones.list,
@@ -1518,6 +1515,9 @@ class AsyncZonesResourceWithStreamingResponse:
         )
         self.import_ = async_to_streamed_response_wrapper(
             zones.import_,
+        )
+        self.replace = async_to_streamed_response_wrapper(
+            zones.replace,
         )
 
     @cached_property

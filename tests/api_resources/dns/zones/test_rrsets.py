@@ -113,97 +113,6 @@ class TestRrsets:
             )
 
     @parametrize
-    def test_method_update(self, client: Gcore) -> None:
-        rrset = client.dns.zones.rrsets.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[{"content": [{}]}],
-        )
-        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-    @parametrize
-    def test_method_update_with_all_params(self, client: Gcore) -> None:
-        rrset = client.dns.zones.rrsets.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[
-                {
-                    "content": [{}],
-                    "enabled": True,
-                    "meta": {"foo": {}},
-                }
-            ],
-            meta={},
-            pickers=[
-                {
-                    "type": "geodns",
-                    "limit": 0,
-                    "strict": True,
-                }
-            ],
-            ttl=0,
-        )
-        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-    @parametrize
-    def test_raw_response_update(self, client: Gcore) -> None:
-        response = client.dns.zones.rrsets.with_raw_response.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[{"content": [{}]}],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        rrset = response.parse()
-        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-    @parametrize
-    def test_streaming_response_update(self, client: Gcore) -> None:
-        with client.dns.zones.rrsets.with_streaming_response.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[{"content": [{}]}],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            rrset = response.parse()
-            assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_update(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_name` but received ''"):
-            client.dns.zones.rrsets.with_raw_response.update(
-                rrset_type="rrsetType",
-                zone_name="",
-                rrset_name="rrsetName",
-                resource_records=[{"content": [{}]}],
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_name` but received ''"):
-            client.dns.zones.rrsets.with_raw_response.update(
-                rrset_type="rrsetType",
-                zone_name="zoneName",
-                rrset_name="",
-                resource_records=[{"content": [{}]}],
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_type` but received ''"):
-            client.dns.zones.rrsets.with_raw_response.update(
-                rrset_type="",
-                zone_name="zoneName",
-                rrset_name="rrsetName",
-                resource_records=[{"content": [{}]}],
-            )
-
-    @parametrize
     def test_method_list(self, client: Gcore) -> None:
         rrset = client.dns.zones.rrsets.list(
             zone_name="zoneName",
@@ -443,6 +352,97 @@ class TestRrsets:
                 rrset_name="rrsetName",
             )
 
+    @parametrize
+    def test_method_replace(self, client: Gcore) -> None:
+        rrset = client.dns.zones.rrsets.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[{"content": [{}]}],
+        )
+        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params(self, client: Gcore) -> None:
+        rrset = client.dns.zones.rrsets.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[
+                {
+                    "content": [{}],
+                    "enabled": True,
+                    "meta": {"foo": {}},
+                }
+            ],
+            meta={},
+            pickers=[
+                {
+                    "type": "geodns",
+                    "limit": 0,
+                    "strict": True,
+                }
+            ],
+            ttl=0,
+        )
+        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace(self, client: Gcore) -> None:
+        response = client.dns.zones.rrsets.with_raw_response.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[{"content": [{}]}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rrset = response.parse()
+        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace(self, client: Gcore) -> None:
+        with client.dns.zones.rrsets.with_streaming_response.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[{"content": [{}]}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rrset = response.parse()
+            assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_replace(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_name` but received ''"):
+            client.dns.zones.rrsets.with_raw_response.replace(
+                rrset_type="rrsetType",
+                zone_name="",
+                rrset_name="rrsetName",
+                resource_records=[{"content": [{}]}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_name` but received ''"):
+            client.dns.zones.rrsets.with_raw_response.replace(
+                rrset_type="rrsetType",
+                zone_name="zoneName",
+                rrset_name="",
+                resource_records=[{"content": [{}]}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_type` but received ''"):
+            client.dns.zones.rrsets.with_raw_response.replace(
+                rrset_type="",
+                zone_name="zoneName",
+                rrset_name="rrsetName",
+                resource_records=[{"content": [{}]}],
+            )
+
 
 class TestAsyncRrsets:
     parametrize = pytest.mark.parametrize(
@@ -534,97 +534,6 @@ class TestAsyncRrsets:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_type` but received ''"):
             await async_client.dns.zones.rrsets.with_raw_response.create(
-                rrset_type="",
-                zone_name="zoneName",
-                rrset_name="rrsetName",
-                resource_records=[{"content": [{}]}],
-            )
-
-    @parametrize
-    async def test_method_update(self, async_client: AsyncGcore) -> None:
-        rrset = await async_client.dns.zones.rrsets.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[{"content": [{}]}],
-        )
-        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        rrset = await async_client.dns.zones.rrsets.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[
-                {
-                    "content": [{}],
-                    "enabled": True,
-                    "meta": {"foo": {}},
-                }
-            ],
-            meta={},
-            pickers=[
-                {
-                    "type": "geodns",
-                    "limit": 0,
-                    "strict": True,
-                }
-            ],
-            ttl=0,
-        )
-        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        response = await async_client.dns.zones.rrsets.with_raw_response.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[{"content": [{}]}],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        rrset = await response.parse()
-        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        async with async_client.dns.zones.rrsets.with_streaming_response.update(
-            rrset_type="rrsetType",
-            zone_name="zoneName",
-            rrset_name="rrsetName",
-            resource_records=[{"content": [{}]}],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            rrset = await response.parse()
-            assert_matches_type(DNSOutputRrset, rrset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_update(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_name` but received ''"):
-            await async_client.dns.zones.rrsets.with_raw_response.update(
-                rrset_type="rrsetType",
-                zone_name="",
-                rrset_name="rrsetName",
-                resource_records=[{"content": [{}]}],
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_name` but received ''"):
-            await async_client.dns.zones.rrsets.with_raw_response.update(
-                rrset_type="rrsetType",
-                zone_name="zoneName",
-                rrset_name="",
-                resource_records=[{"content": [{}]}],
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_type` but received ''"):
-            await async_client.dns.zones.rrsets.with_raw_response.update(
                 rrset_type="",
                 zone_name="zoneName",
                 rrset_name="rrsetName",
@@ -869,4 +778,95 @@ class TestAsyncRrsets:
                 rrset_type="",
                 zone_name="zoneName",
                 rrset_name="rrsetName",
+            )
+
+    @parametrize
+    async def test_method_replace(self, async_client: AsyncGcore) -> None:
+        rrset = await async_client.dns.zones.rrsets.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[{"content": [{}]}],
+        )
+        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
+        rrset = await async_client.dns.zones.rrsets.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[
+                {
+                    "content": [{}],
+                    "enabled": True,
+                    "meta": {"foo": {}},
+                }
+            ],
+            meta={},
+            pickers=[
+                {
+                    "type": "geodns",
+                    "limit": 0,
+                    "strict": True,
+                }
+            ],
+            ttl=0,
+        )
+        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
+        response = await async_client.dns.zones.rrsets.with_raw_response.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[{"content": [{}]}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rrset = await response.parse()
+        assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
+        async with async_client.dns.zones.rrsets.with_streaming_response.replace(
+            rrset_type="rrsetType",
+            zone_name="zoneName",
+            rrset_name="rrsetName",
+            resource_records=[{"content": [{}]}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rrset = await response.parse()
+            assert_matches_type(DNSOutputRrset, rrset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_replace(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_name` but received ''"):
+            await async_client.dns.zones.rrsets.with_raw_response.replace(
+                rrset_type="rrsetType",
+                zone_name="",
+                rrset_name="rrsetName",
+                resource_records=[{"content": [{}]}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_name` but received ''"):
+            await async_client.dns.zones.rrsets.with_raw_response.replace(
+                rrset_type="rrsetType",
+                zone_name="zoneName",
+                rrset_name="",
+                resource_records=[{"content": [{}]}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rrset_type` but received ''"):
+            await async_client.dns.zones.rrsets.with_raw_response.replace(
+                rrset_type="",
+                zone_name="zoneName",
+                rrset_name="rrsetName",
+                resource_records=[{"content": [{}]}],
             )

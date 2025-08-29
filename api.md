@@ -1930,7 +1930,6 @@ from gcore.types.dns import (
 Methods:
 
 - <code title="post /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">create</a>(\*\*<a href="src/gcore/types/dns/zone_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_create_response.py">ZoneCreateResponse</a></code>
-- <code title="put /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">update</a>(path_name, \*\*<a href="src/gcore/types/dns/zone_update_params.py">params</a>) -> object</code>
 - <code title="get /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">list</a>(\*\*<a href="src/gcore/types/dns/zone_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_list_response.py">ZoneListResponse</a></code>
 - <code title="delete /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">delete</a>(name) -> object</code>
 - <code title="post /dns/v2/analyze/{name}/delegation-status">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">check_delegation_status</a>(name) -> <a href="./src/gcore/types/dns/zone_check_delegation_status_response.py">ZoneCheckDelegationStatusResponse</a></code>
@@ -1940,6 +1939,7 @@ Methods:
 - <code title="get /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">get</a>(name) -> <a href="./src/gcore/types/dns/zone_get_response.py">ZoneGetResponse</a></code>
 - <code title="get /dns/v2/zones/{name}/statistics">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">get_statistics</a>(name, \*\*<a href="src/gcore/types/dns/zone_get_statistics_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_get_statistics_response.py">ZoneGetStatisticsResponse</a></code>
 - <code title="post /dns/v2/zones/{zoneName}/import">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">import\_</a>(zone_name, \*\*<a href="src/gcore/types/dns/zone_import_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_import_response.py">ZoneImportResponse</a></code>
+- <code title="put /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">replace</a>(path_name, \*\*<a href="src/gcore/types/dns/zone_replace_params.py">params</a>) -> object</code>
 
 ### Dnssec
 
@@ -1970,8 +1970,8 @@ from gcore.types.dns.zones import (
 Methods:
 
 - <code title="post /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">create</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
-- <code title="put /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">update</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_update_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
 - <code title="get /dns/v2/zones/{zoneName}/rrsets">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">list</a>(zone_name, \*\*<a href="src/gcore/types/dns/zones/rrset_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/rrset_list_response.py">RrsetListResponse</a></code>
 - <code title="delete /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">delete</a>(rrset_type, \*, zone_name, rrset_name) -> object</code>
 - <code title="get /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">get</a>(rrset_type, \*, zone_name, rrset_name) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
 - <code title="get /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}/failover/log">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">get_failover_logs</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_get_failover_logs_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/rrset_get_failover_logs_response.py">RrsetGetFailoverLogsResponse</a></code>
+- <code title="put /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">replace</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_replace_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
