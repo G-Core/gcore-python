@@ -319,7 +319,7 @@ class AITasksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             body=maybe_transform(
                 {
                     "task_name": task_name,
@@ -400,7 +400,7 @@ class AITasksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             page=SyncPageStreamingAI[AITask],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -451,7 +451,9 @@ class AITasksResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._post(
-            f"/streaming/ai/tasks/{task_id}/cancel",
+            f"/streaming/ai/tasks/{task_id}/cancel"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}/cancel",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -518,7 +520,9 @@ class AITasksResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._get(
-            f"/streaming/ai/tasks/{task_id}",
+            f"/streaming/ai/tasks/{task_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -590,7 +594,7 @@ class AITasksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/ai/info",
+            "/streaming/ai/info" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/info",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -900,7 +904,7 @@ class AsyncAITasksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             body=await async_maybe_transform(
                 {
                     "task_name": task_name,
@@ -981,7 +985,7 @@ class AsyncAITasksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             page=AsyncPageStreamingAI[AITask],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1032,7 +1036,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._post(
-            f"/streaming/ai/tasks/{task_id}/cancel",
+            f"/streaming/ai/tasks/{task_id}/cancel"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}/cancel",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1099,7 +1105,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._get(
-            f"/streaming/ai/tasks/{task_id}",
+            f"/streaming/ai/tasks/{task_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1171,7 +1179,7 @@ class AsyncAITasksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/ai/info",
+            "/streaming/ai/info" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/info",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

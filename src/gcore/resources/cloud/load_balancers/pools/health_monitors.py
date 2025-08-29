@@ -115,7 +115,9 @@ class HealthMonitorsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
             body=maybe_transform(
                 {
                     "delay": delay,
@@ -177,7 +179,9 @@ class HealthMonitorsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -274,7 +278,9 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
             body=await async_maybe_transform(
                 {
                     "delay": delay,
@@ -336,7 +342,9 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

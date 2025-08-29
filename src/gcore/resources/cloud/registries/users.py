@@ -89,7 +89,9 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
             body=maybe_transform(
                 {
                     "duration": duration,
@@ -142,7 +144,9 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._patch(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
             body=maybe_transform(
                 {
                     "duration": duration,
@@ -186,7 +190,9 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -225,7 +231,9 @@ class UsersResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -265,7 +273,9 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
             body=maybe_transform({"users": users}, user_create_multiple_params.UserCreateMultipleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -304,7 +314,9 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -375,7 +387,9 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
             body=await async_maybe_transform(
                 {
                     "duration": duration,
@@ -428,7 +442,9 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._patch(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
             body=await async_maybe_transform(
                 {
                     "duration": duration,
@@ -472,7 +488,9 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -511,7 +529,9 @@ class AsyncUsersResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -551,7 +571,9 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
             body=await async_maybe_transform({"users": users}, user_create_multiple_params.UserCreateMultipleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -590,7 +612,9 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
