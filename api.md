@@ -1143,6 +1143,7 @@ Types:
 ```python
 from gcore.types.waap.domains import (
     WaapBlockedStatistics,
+    WaapCountStatistics,
     WaapDDOSAttack,
     WaapDDOSInfo,
     WaapEventStatistics,
