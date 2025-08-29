@@ -19,6 +19,7 @@ from .waap_request_details import WaapRequestDetails as WaapRequestDetails
 from .waap_request_summary import WaapRequestSummary as WaapRequestSummary
 from .waap_traffic_metrics import WaapTrafficMetrics as WaapTrafficMetrics
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
+from .waap_count_statistics import WaapCountStatistics as WaapCountStatistics
 from .waap_event_statistics import WaapEventStatistics as WaapEventStatistics
 from .api_path_create_params import APIPathCreateParams as APIPathCreateParams
 from .api_path_update_params import APIPathUpdateParams as APIPathUpdateParams
