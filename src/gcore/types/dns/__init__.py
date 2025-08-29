@@ -11,8 +11,8 @@ from .metric_list_params import MetricListParams as MetricListParams
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
 from .zone_import_params import ZoneImportParams as ZoneImportParams
 from .zone_list_response import ZoneListResponse as ZoneListResponse
-from .zone_update_params import ZoneUpdateParams as ZoneUpdateParams
 from .dns_lookup_response import DNSLookupResponse as DNSLookupResponse
+from .zone_replace_params import ZoneReplaceParams as ZoneReplaceParams
 from .metric_list_response import MetricListResponse as MetricListResponse
 from .picker_list_response import PickerListResponse as PickerListResponse
 from .zone_create_response import ZoneCreateResponse as ZoneCreateResponse

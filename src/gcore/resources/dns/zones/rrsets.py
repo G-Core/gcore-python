@@ -21,7 +21,7 @@ from ...._base_client import make_request_options
 from ....types.dns.zones import (
     rrset_list_params,
     rrset_create_params,
-    rrset_update_params,
+    rrset_replace_params,
     rrset_get_failover_logs_params,
 )
 from ....types.dns.zones.dns_output_rrset import DNSOutputRrset
@@ -216,66 +216,6 @@ class RrsetsResource(SyncAPIResource):
                     "ttl": ttl,
                 },
                 rrset_create_params.RrsetCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DNSOutputRrset,
-        )
-
-    def update(
-        self,
-        rrset_type: str,
-        *,
-        zone_name: str,
-        rrset_name: str,
-        resource_records: Iterable[rrset_update_params.ResourceRecord],
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        pickers: Iterable[rrset_update_params.Picker] | NotGiven = NOT_GIVEN,
-        ttl: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSOutputRrset:
-        """
-        Create/update RRset.
-
-        Args:
-          resource_records: List of resource record from rrset
-
-          meta: Meta information for rrset
-
-          pickers: Set of pickers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_name:
-            raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
-        if not rrset_name:
-            raise ValueError(f"Expected a non-empty value for `rrset_name` but received {rrset_name!r}")
-        if not rrset_type:
-            raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
-        return self._put(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
-            body=maybe_transform(
-                {
-                    "resource_records": resource_records,
-                    "meta": meta,
-                    "pickers": pickers,
-                    "ttl": ttl,
-                },
-                rrset_update_params.RrsetUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -481,6 +421,66 @@ class RrsetsResource(SyncAPIResource):
             cast_to=RrsetGetFailoverLogsResponse,
         )
 
+    def replace(
+        self,
+        rrset_type: str,
+        *,
+        zone_name: str,
+        rrset_name: str,
+        resource_records: Iterable[rrset_replace_params.ResourceRecord],
+        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
+        pickers: Iterable[rrset_replace_params.Picker] | NotGiven = NOT_GIVEN,
+        ttl: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DNSOutputRrset:
+        """
+        Create/update RRset.
+
+        Args:
+          resource_records: List of resource record from rrset
+
+          meta: Meta information for rrset
+
+          pickers: Set of pickers
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_name:
+            raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
+        if not rrset_name:
+            raise ValueError(f"Expected a non-empty value for `rrset_name` but received {rrset_name!r}")
+        if not rrset_type:
+            raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
+        return self._put(
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            body=maybe_transform(
+                {
+                    "resource_records": resource_records,
+                    "meta": meta,
+                    "pickers": pickers,
+                    "ttl": ttl,
+                },
+                rrset_replace_params.RrsetReplaceParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DNSOutputRrset,
+        )
+
 
 class AsyncRrsetsResource(AsyncAPIResource):
     @cached_property
@@ -667,66 +667,6 @@ class AsyncRrsetsResource(AsyncAPIResource):
                     "ttl": ttl,
                 },
                 rrset_create_params.RrsetCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DNSOutputRrset,
-        )
-
-    async def update(
-        self,
-        rrset_type: str,
-        *,
-        zone_name: str,
-        rrset_name: str,
-        resource_records: Iterable[rrset_update_params.ResourceRecord],
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        pickers: Iterable[rrset_update_params.Picker] | NotGiven = NOT_GIVEN,
-        ttl: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSOutputRrset:
-        """
-        Create/update RRset.
-
-        Args:
-          resource_records: List of resource record from rrset
-
-          meta: Meta information for rrset
-
-          pickers: Set of pickers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_name:
-            raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
-        if not rrset_name:
-            raise ValueError(f"Expected a non-empty value for `rrset_name` but received {rrset_name!r}")
-        if not rrset_type:
-            raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
-        return await self._put(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
-            body=await async_maybe_transform(
-                {
-                    "resource_records": resource_records,
-                    "meta": meta,
-                    "pickers": pickers,
-                    "ttl": ttl,
-                },
-                rrset_update_params.RrsetUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -932,6 +872,66 @@ class AsyncRrsetsResource(AsyncAPIResource):
             cast_to=RrsetGetFailoverLogsResponse,
         )
 
+    async def replace(
+        self,
+        rrset_type: str,
+        *,
+        zone_name: str,
+        rrset_name: str,
+        resource_records: Iterable[rrset_replace_params.ResourceRecord],
+        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
+        pickers: Iterable[rrset_replace_params.Picker] | NotGiven = NOT_GIVEN,
+        ttl: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DNSOutputRrset:
+        """
+        Create/update RRset.
+
+        Args:
+          resource_records: List of resource record from rrset
+
+          meta: Meta information for rrset
+
+          pickers: Set of pickers
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_name:
+            raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
+        if not rrset_name:
+            raise ValueError(f"Expected a non-empty value for `rrset_name` but received {rrset_name!r}")
+        if not rrset_type:
+            raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
+        return await self._put(
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            body=await async_maybe_transform(
+                {
+                    "resource_records": resource_records,
+                    "meta": meta,
+                    "pickers": pickers,
+                    "ttl": ttl,
+                },
+                rrset_replace_params.RrsetReplaceParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DNSOutputRrset,
+        )
+
 
 class RrsetsResourceWithRawResponse:
     def __init__(self, rrsets: RrsetsResource) -> None:
@@ -939,9 +939,6 @@ class RrsetsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             rrsets.create,
-        )
-        self.update = to_raw_response_wrapper(
-            rrsets.update,
         )
         self.list = to_raw_response_wrapper(
             rrsets.list,
@@ -955,6 +952,9 @@ class RrsetsResourceWithRawResponse:
         self.get_failover_logs = to_raw_response_wrapper(
             rrsets.get_failover_logs,
         )
+        self.replace = to_raw_response_wrapper(
+            rrsets.replace,
+        )
 
 
 class AsyncRrsetsResourceWithRawResponse:
@@ -963,9 +963,6 @@ class AsyncRrsetsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             rrsets.create,
-        )
-        self.update = async_to_raw_response_wrapper(
-            rrsets.update,
         )
         self.list = async_to_raw_response_wrapper(
             rrsets.list,
@@ -979,6 +976,9 @@ class AsyncRrsetsResourceWithRawResponse:
         self.get_failover_logs = async_to_raw_response_wrapper(
             rrsets.get_failover_logs,
         )
+        self.replace = async_to_raw_response_wrapper(
+            rrsets.replace,
+        )
 
 
 class RrsetsResourceWithStreamingResponse:
@@ -987,9 +987,6 @@ class RrsetsResourceWithStreamingResponse:
 
         self.create = to_streamed_response_wrapper(
             rrsets.create,
-        )
-        self.update = to_streamed_response_wrapper(
-            rrsets.update,
         )
         self.list = to_streamed_response_wrapper(
             rrsets.list,
@@ -1003,6 +1000,9 @@ class RrsetsResourceWithStreamingResponse:
         self.get_failover_logs = to_streamed_response_wrapper(
             rrsets.get_failover_logs,
         )
+        self.replace = to_streamed_response_wrapper(
+            rrsets.replace,
+        )
 
 
 class AsyncRrsetsResourceWithStreamingResponse:
@@ -1011,9 +1011,6 @@ class AsyncRrsetsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             rrsets.create,
-        )
-        self.update = async_to_streamed_response_wrapper(
-            rrsets.update,
         )
         self.list = async_to_streamed_response_wrapper(
             rrsets.list,
@@ -1026,4 +1023,7 @@ class AsyncRrsetsResourceWithStreamingResponse:
         )
         self.get_failover_logs = async_to_streamed_response_wrapper(
             rrsets.get_failover_logs,
+        )
+        self.replace = async_to_streamed_response_wrapper(
+            rrsets.replace,
         )
