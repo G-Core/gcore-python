@@ -88,7 +88,9 @@ class AccessRulesResource(SyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._post(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
             body=maybe_transform(
                 {
                     "access_mode": access_mode,
@@ -140,7 +142,9 @@ class AccessRulesResource(SyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._get(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -191,7 +195,9 @@ class AccessRulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `access_rule_id` but received {access_rule_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -263,7 +269,9 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._post(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
             body=await async_maybe_transform(
                 {
                     "access_mode": access_mode,
@@ -315,7 +323,9 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._get(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -366,7 +376,9 @@ class AsyncAccessRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `access_rule_id` but received {access_rule_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

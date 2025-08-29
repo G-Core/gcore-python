@@ -206,7 +206,9 @@ class FileSharesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -289,7 +291,9 @@ class FileSharesResource(SyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._patch(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -349,7 +353,9 @@ class FileSharesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}",
             page=SyncOffsetPage[FileShare],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -407,7 +413,9 @@ class FileSharesResource(SyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._delete(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -452,7 +460,9 @@ class FileSharesResource(SyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._get(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -500,7 +510,9 @@ class FileSharesResource(SyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._post(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend",
             body=maybe_transform({"size": size}, file_share_resize_params.FileShareResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -675,7 +687,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -758,7 +772,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._patch(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -818,7 +834,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}",
             page=AsyncOffsetPage[FileShare],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -876,7 +894,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._delete(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -921,7 +941,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._get(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -969,7 +991,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._post(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend",
+            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/extend",
             body=await async_maybe_transform({"size": size}, file_share_resize_params.FileShareResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

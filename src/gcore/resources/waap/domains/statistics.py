@@ -98,7 +98,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-attacks",
+            f"/waap/v1/domains/{domain_id}/ddos-attacks"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/ddos-attacks",
             page=SyncOffsetPage[WaapDDOSAttack],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -161,7 +163,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-info",
+            f"/waap/v1/domains/{domain_id}/ddos-info"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/ddos-info",
             page=SyncOffsetPage[WaapDDOSInfo],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -227,7 +231,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/stats",
+            f"/waap/v1/domains/{domain_id}/stats"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/stats",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -280,7 +286,9 @@ class StatisticsResource(SyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get(
-            f"/waap/v1/domains/{domain_id}/requests/{request_id}/details",
+            f"/waap/v1/domains/{domain_id}/requests/{request_id}/details"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/requests/{request_id}/details",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -374,7 +382,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/requests",
+            f"/waap/v1/domains/{domain_id}/requests"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/requests",
             page=SyncOffsetPage[WaapRequestSummary],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -440,7 +450,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/traffic",
+            f"/waap/v1/domains/{domain_id}/traffic"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/traffic",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -520,7 +532,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-attacks",
+            f"/waap/v1/domains/{domain_id}/ddos-attacks"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/ddos-attacks",
             page=AsyncOffsetPage[WaapDDOSAttack],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -583,7 +597,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-info",
+            f"/waap/v1/domains/{domain_id}/ddos-info"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/ddos-info",
             page=AsyncOffsetPage[WaapDDOSInfo],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -649,7 +665,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/stats",
+            f"/waap/v1/domains/{domain_id}/stats"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/stats",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -702,7 +720,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/requests/{request_id}/details",
+            f"/waap/v1/domains/{domain_id}/requests/{request_id}/details"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/requests/{request_id}/details",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -796,7 +816,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/requests",
+            f"/waap/v1/domains/{domain_id}/requests"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/requests",
             page=AsyncOffsetPage[WaapRequestSummary],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -862,7 +884,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/traffic",
+            f"/waap/v1/domains/{domain_id}/traffic"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/traffic",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -55,7 +55,9 @@ class ProfileTemplatesResource(SyncAPIResource):
         profile. Client receives only common and created for him profile templates.
         """
         return self._get(
-            "/security/iaas/profile-templates",
+            "/security/iaas/profile-templates"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//security/iaas/profile-templates",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -99,7 +101,9 @@ class AsyncProfileTemplatesResource(AsyncAPIResource):
         profile. Client receives only common and created for him profile templates.
         """
         return await self._get(
-            "/security/iaas/profile-templates",
+            "/security/iaas/profile-templates"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//security/iaas/profile-templates",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
