@@ -1,4 +1,3 @@
-import os
 import asyncio
 from typing import Any, Union, Sequence
 
@@ -16,14 +15,18 @@ async def main() -> None:
     # TODO set cloud region ID before running
     # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
-    gcore_client_id = int(os.environ["GCORE_CLIENT_ID"])
-
     gcore = AsyncGcore(
         # No need to explicitly pass to AsyncGcore constructor if using environment variables
         # api_key=api_key,
         # cloud_project_id=cloud_project_id,
         # cloud_region_id=cloud_region_id,
     )
+
+    # Get client ID from IAM account overview
+    account_overview = await gcore.iam.get_account_overview()
+    gcore_client_id = account_overview.id
+    if gcore_client_id is None:
+        raise ValueError("Client ID is None for this account")
 
     await get_all_quotas(client=gcore)
     await get_regional_quotas(client=gcore, client_id=gcore_client_id)

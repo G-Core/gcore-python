@@ -1,4 +1,3 @@
-import os
 from typing import Any, Union, Sequence
 
 from gcore import Gcore
@@ -15,14 +14,17 @@ def main() -> None:
     # TODO set cloud region ID before running
     # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
-    gcore_client_id = int(os.environ["GCORE_CLIENT_ID"])
-
     gcore = Gcore(
         # No need to explicitly pass to Gcore constructor if using environment variables
         # api_key=api_key,
         # cloud_project_id=cloud_project_id,
         # cloud_region_id=cloud_region_id,
     )
+
+    # Get client ID from IAM account overview
+    gcore_client_id = gcore.iam.get_account_overview().id
+    if gcore_client_id is None:
+        raise ValueError("Client ID is None for this account")
 
     get_all_quotas(client=gcore)
     get_regional_quotas(client=gcore, client_id=gcore_client_id)
