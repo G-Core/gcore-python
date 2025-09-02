@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["GPUBaremetalClusterDeleteParams"]
 
@@ -21,8 +22,8 @@ class GPUBaremetalClusterDeleteParams(TypedDict, total=False):
     deleted
     """
 
-    floating_ip_ids: List[str]
+    floating_ip_ids: SequenceNotStr[str]
     """Optional list of floating ips to be deleted"""
 
-    reserved_fixed_ip_ids: List[str]
+    reserved_fixed_ip_ids: SequenceNotStr[str]
     """Optional list of reserved fixed ips to be deleted"""

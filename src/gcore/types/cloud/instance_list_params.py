@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["InstanceListParams"]
@@ -120,7 +121,7 @@ class InstanceListParams(TypedDict, total=False):
     tag_key_value: str
     """Optional. Filter by tag key-value pairs."""
 
-    tag_value: List[str]
+    tag_value: SequenceNotStr[str]
     """Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2"""
 
     type_ddos_profile: Literal["basic", "advanced"]

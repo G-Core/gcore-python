@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["VipUpdateConnectedPortsParams"]
 
@@ -13,5 +14,5 @@ class VipUpdateConnectedPortsParams(TypedDict, total=False):
 
     region_id: int
 
-    port_ids: List[str]
+    port_ids: SequenceNotStr[str]
     """List of port IDs that will share one VIP"""

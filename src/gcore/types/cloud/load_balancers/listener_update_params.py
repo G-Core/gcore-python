@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["ListenerUpdateParams", "UserList"]
 
@@ -15,7 +17,7 @@ class ListenerUpdateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
-    allowed_cidrs: Optional[List[str]]
+    allowed_cidrs: Optional[SequenceNotStr[str]]
     """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
@@ -30,7 +32,7 @@ class ListenerUpdateParams(TypedDict, total=False):
     PROMETHEUS load balancer
     """
 
-    sni_secret_id: Optional[List[str]]
+    sni_secret_id: Optional[SequenceNotStr[str]]
     """
     List of secret's ID containing PKCS12 format certificate/key bundfles for
     `TERMINATED_HTTPS` or PROMETHEUS listeners

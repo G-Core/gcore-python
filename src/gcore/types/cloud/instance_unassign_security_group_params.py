@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["InstanceUnassignSecurityGroupParams", "PortsSecurityGroupName"]
 
@@ -24,5 +26,5 @@ class PortsSecurityGroupName(TypedDict, total=False):
     port_id: Required[Optional[str]]
     """Port ID. If None, security groups will be applied to all ports"""
 
-    security_group_names: Required[List[str]]
+    security_group_names: Required[SequenceNotStr[str]]
     """List of security group names"""

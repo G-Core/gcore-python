@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["SubnetListParams"]
 
@@ -47,7 +48,7 @@ class SubnetListParams(TypedDict, total=False):
     directions (`name.asc`).
     """
 
-    tag_key: List[str]
+    tag_key: SequenceNotStr[str]
     """Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2"""
 
     tag_key_value: str

@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ...._types import SequenceNotStr
+
 __all__ = ["StatisticGetEventsAggregatedParams"]
 
 
@@ -21,10 +23,10 @@ class StatisticGetEventsAggregatedParams(TypedDict, total=False):
     If not provided, defaults to the current date and time.
     """
 
-    ip: Optional[List[str]]
+    ip: Optional[SequenceNotStr[str]]
     """A list of IPs to filter event statistics."""
 
-    reference_id: Optional[List[str]]
+    reference_id: Optional[SequenceNotStr[str]]
     """A list of reference IDs to filter event statistics."""
 
     result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]]

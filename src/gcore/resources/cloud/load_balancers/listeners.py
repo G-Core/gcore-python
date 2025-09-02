@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,11 +61,11 @@ class ListenersResource(SyncAPIResource):
         name: str,
         protocol: LbListenerProtocol,
         protocol_port: int,
-        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         connection_limit: int | NotGiven = NOT_GIVEN,
         insert_x_forwarded: bool | NotGiven = NOT_GIVEN,
         secret_id: str | NotGiven = NOT_GIVEN,
-        sni_secret_id: List[str] | NotGiven = NOT_GIVEN,
+        sni_secret_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
@@ -160,11 +160,11 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         connection_limit: int | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sni_secret_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        sni_secret_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
@@ -594,11 +594,11 @@ class AsyncListenersResource(AsyncAPIResource):
         name: str,
         protocol: LbListenerProtocol,
         protocol_port: int,
-        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         connection_limit: int | NotGiven = NOT_GIVEN,
         insert_x_forwarded: bool | NotGiven = NOT_GIVEN,
         secret_id: str | NotGiven = NOT_GIVEN,
-        sni_secret_id: List[str] | NotGiven = NOT_GIVEN,
+        sni_secret_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
@@ -693,11 +693,11 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        allowed_cidrs: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         connection_limit: int | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sni_secret_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        sni_secret_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
         timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
