@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["SettingUpdateParams", "API", "DDOS"]
 
@@ -17,7 +18,7 @@ class SettingUpdateParams(TypedDict, total=False):
 
 
 class API(TypedDict, total=False):
-    api_urls: List[str]
+    api_urls: SequenceNotStr[str]
     """The API URLs for a domain.
 
     If your domain has a common base URL for all API paths, it can be set here

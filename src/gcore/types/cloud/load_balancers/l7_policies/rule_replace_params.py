@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ....._types import SequenceNotStr
 
 __all__ = ["RuleReplaceParams"]
 
@@ -31,7 +32,7 @@ class RuleReplaceParams(TypedDict, total=False):
     For example, the name of the cookie to evaluate.
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """A list of simple strings assigned to the l7 rule"""
 
     type: Literal[

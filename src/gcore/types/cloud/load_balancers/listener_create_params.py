@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from ..lb_listener_protocol import LbListenerProtocol
 
 __all__ = ["ListenerCreateParams", "UserList"]
@@ -29,7 +30,7 @@ class ListenerCreateParams(TypedDict, total=False):
     protocol_port: Required[int]
     """Protocol port"""
 
-    allowed_cidrs: Optional[List[str]]
+    allowed_cidrs: Optional[SequenceNotStr[str]]
     """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
@@ -47,7 +48,7 @@ class ListenerCreateParams(TypedDict, total=False):
     PROMETHEUS listener
     """
 
-    sni_secret_id: List[str]
+    sni_secret_id: SequenceNotStr[str]
     """
     List of secrets IDs containing PKCS12 format certificate/key bundles for
     `TERMINATED_HTTPS` or PROMETHEUS listeners

@@ -31,7 +31,7 @@ from .servers import (
     ServersResourceWithStreamingResponse,
     AsyncServersResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .interfaces import (
@@ -250,8 +250,8 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         all_floating_ips: bool | NotGiven = NOT_GIVEN,
-        floating_ip_ids: List[str] | NotGiven = NOT_GIVEN,
-        reserved_fixed_ip_ids: List[str] | NotGiven = NOT_GIVEN,
+        floating_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        reserved_fixed_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -446,7 +446,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        nodes: List[str],
+        nodes: SequenceNotStr[str],
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         user_data: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -738,8 +738,8 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         all_floating_ips: bool | NotGiven = NOT_GIVEN,
-        floating_ip_ids: List[str] | NotGiven = NOT_GIVEN,
-        reserved_fixed_ip_ids: List[str] | NotGiven = NOT_GIVEN,
+        floating_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        reserved_fixed_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -934,7 +934,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        nodes: List[str],
+        nodes: SequenceNotStr[str],
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         user_data: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

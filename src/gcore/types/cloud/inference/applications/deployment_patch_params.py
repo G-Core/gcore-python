@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, TypedDict
+
+from ....._types import SequenceNotStr
 
 __all__ = [
     "DeploymentPatchParams",
@@ -17,7 +19,7 @@ class DeploymentPatchParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
-    api_keys: List[str]
+    api_keys: SequenceNotStr[str]
     """List of API keys for the application"""
 
     components_configuration: Dict[str, Optional[ComponentsConfiguration]]

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["L7PolicyCreateParams"]
 
@@ -50,5 +51,5 @@ class L7PolicyCreateParams(TypedDict, total=False):
     Only valid if action is `REDIRECT_TO_URL`.
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """A list of simple strings assigned to the resource."""

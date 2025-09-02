@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from ..ip_version import IPVersion
 
 __all__ = ["SubnetCreateParams", "HostRoute"]
@@ -32,7 +33,7 @@ class SubnetCreateParams(TypedDict, total=False):
     Must be explicitly 'false' when `gateway_ip` is null.
     """
 
-    dns_nameservers: Optional[List[str]]
+    dns_nameservers: Optional[SequenceNotStr[str]]
     """List IP addresses of DNS servers to advertise via DHCP."""
 
     enable_dhcp: bool

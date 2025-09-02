@@ -6,6 +6,7 @@ from typing import List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["AuditLogListParams"]
@@ -136,7 +137,7 @@ class AuditLogListParams(TypedDict, total=False):
     region_id: Iterable[int]
     """Region ID. Several options can be specified."""
 
-    resource_id: List[str]
+    resource_id: SequenceNotStr[str]
     """Resource ID. Several options can be specified."""
 
     search_field: str

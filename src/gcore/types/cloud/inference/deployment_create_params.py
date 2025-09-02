@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 from ..laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 
@@ -64,7 +65,7 @@ class DeploymentCreateParams(TypedDict, total=False):
     name: Required[str]
     """Inference instance name."""
 
-    api_keys: List[str]
+    api_keys: SequenceNotStr[str]
     """List of API keys for the inference instance.
 
     Multiple keys can be attached to one deployment.If `auth_enabled` and `api_keys`
@@ -80,7 +81,7 @@ class DeploymentCreateParams(TypedDict, total=False):
     `api_keys` are both specified, a ValidationError will be raised.
     """
 
-    command: Optional[List[str]]
+    command: Optional[SequenceNotStr[str]]
     """Command to be executed when running a container from an image."""
 
     credentials_name: Optional[str]
@@ -246,7 +247,7 @@ class Logging(TypedDict, total=False):
 
 
 class ProbesLivenessProbeProbeExec(TypedDict, total=False):
-    command: Required[List[str]]
+    command: Required[SequenceNotStr[str]]
     """Command to be executed inside the running container."""
 
 
@@ -307,7 +308,7 @@ class ProbesLivenessProbe(TypedDict, total=False):
 
 
 class ProbesReadinessProbeProbeExec(TypedDict, total=False):
-    command: Required[List[str]]
+    command: Required[SequenceNotStr[str]]
     """Command to be executed inside the running container."""
 
 
@@ -368,7 +369,7 @@ class ProbesReadinessProbe(TypedDict, total=False):
 
 
 class ProbesStartupProbeProbeExec(TypedDict, total=False):
-    command: Required[List[str]]
+    command: Required[SequenceNotStr[str]]
     """Command to be executed inside the running container."""
 
 

@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -177,10 +177,10 @@ class InsightSilencesResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         author: Optional[str] | NotGiven = NOT_GIVEN,
         comment: Optional[str] | NotGiven = NOT_GIVEN,
-        insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        insight_type: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         ordering: Literal[
@@ -486,10 +486,10 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         author: Optional[str] | NotGiven = NOT_GIVEN,
         comment: Optional[str] | NotGiven = NOT_GIVEN,
-        insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        insight_type: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         ordering: Literal[

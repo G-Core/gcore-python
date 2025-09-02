@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ...._types import SequenceNotStr
+
 __all__ = [
     "CustomRuleUpdateParams",
     "Action",
@@ -70,7 +72,7 @@ class ActionBlock(TypedDict, total=False):
 
 
 class ActionTag(TypedDict, total=False):
-    tags: Required[List[str]]
+    tags: Required[SequenceNotStr[str]]
     """The list of user defined tags to tag the request with"""
 
 
@@ -98,7 +100,7 @@ class Action(TypedDict, total=False):
 
 
 class ConditionContentType(TypedDict, total=False):
-    content_type: Required[List[str]]
+    content_type: Required[SequenceNotStr[str]]
     """The list of content types to match against"""
 
     negation: bool
@@ -106,7 +108,7 @@ class ConditionContentType(TypedDict, total=False):
 
 
 class ConditionCountry(TypedDict, total=False):
-    country_code: Required[List[str]]
+    country_code: Required[SequenceNotStr[str]]
     """
     A list of ISO 3166-1 alpha-2 formatted strings representing the countries to
     match against
@@ -117,7 +119,7 @@ class ConditionCountry(TypedDict, total=False):
 
 
 class ConditionFileExtension(TypedDict, total=False):
-    file_extension: Required[List[str]]
+    file_extension: Required[SequenceNotStr[str]]
     """The list of file extensions to match against"""
 
     negation: bool
@@ -224,7 +226,7 @@ class ConditionRequestRate(TypedDict, total=False):
     ]
     """Possible HTTP request methods that can trigger a request rate condition"""
 
-    ips: Optional[List[str]]
+    ips: Optional[SequenceNotStr[str]]
     """A list of source IPs that can trigger a request rate condition"""
 
     user_defined_tag: Optional[str]
@@ -265,7 +267,7 @@ class ConditionSessionRequestCount(TypedDict, total=False):
 
 
 class ConditionTags(TypedDict, total=False):
-    tags: Required[List[str]]
+    tags: Required[SequenceNotStr[str]]
     """A list of tags to match against the request tags"""
 
     negation: bool
@@ -303,7 +305,7 @@ class ConditionUserAgent(TypedDict, total=False):
 
 
 class ConditionUserDefinedTags(TypedDict, total=False):
-    tags: Required[List[str]]
+    tags: Required[SequenceNotStr[str]]
     """A list of user-defined tags to match against the request tags"""
 
     negation: bool

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["MetricListParams"]
 
@@ -15,7 +17,7 @@ class MetricListParams(TypedDict, total=False):
     client. Ignored for client
     """
 
-    zone_names: List[str]
+    zone_names: SequenceNotStr[str]
     """
     Admin and technical user can specify `monitor_id` to get metrics for particular
     zone. Ignored for client

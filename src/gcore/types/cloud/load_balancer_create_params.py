@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .http_method import HTTPMethod
 from .lb_algorithm import LbAlgorithm
 from .lb_pool_protocol import LbPoolProtocol
@@ -313,7 +314,7 @@ class Listener(TypedDict, total=False):
     protocol_port: Required[int]
     """Protocol port"""
 
-    allowed_cidrs: Optional[List[str]]
+    allowed_cidrs: Optional[SequenceNotStr[str]]
     """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
@@ -334,7 +335,7 @@ class Listener(TypedDict, total=False):
     PROMETHEUS listener
     """
 
-    sni_secret_id: List[str]
+    sni_secret_id: SequenceNotStr[str]
     """
     List of secrets IDs containing PKCS12 format certificate/key bundles for
     `TERMINATED_HTTPS` or PROMETHEUS listeners

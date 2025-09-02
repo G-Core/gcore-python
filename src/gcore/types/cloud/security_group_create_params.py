@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["SecurityGroupCreateParams", "SecurityGroup", "SecurityGroupSecurityGroupRule"]
 
@@ -16,7 +18,7 @@ class SecurityGroupCreateParams(TypedDict, total=False):
     security_group: Required[SecurityGroup]
     """Security group"""
 
-    instances: List[str]
+    instances: SequenceNotStr[str]
     """List of instances"""
 
 

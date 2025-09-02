@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 
 import httpx
 
@@ -15,7 +15,7 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -68,9 +68,9 @@ class DeploymentsResource(SyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
-        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -181,9 +181,9 @@ class DeploymentsResource(SyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        api_keys: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -610,9 +610,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
-        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         envs: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -723,9 +723,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        api_keys: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
         credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,

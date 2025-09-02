@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from ..tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["SubnetUpdateParams", "HostRoute"]
@@ -17,7 +18,7 @@ class SubnetUpdateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
-    dns_nameservers: Optional[List[str]]
+    dns_nameservers: Optional[SequenceNotStr[str]]
     """List IP addresses of DNS servers to advertise via DHCP."""
 
     enable_dhcp: Optional[bool]

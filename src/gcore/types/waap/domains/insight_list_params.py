@@ -5,17 +5,19 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal, TypedDict
 
+from ...._types import SequenceNotStr
+
 __all__ = ["InsightListParams"]
 
 
 class InsightListParams(TypedDict, total=False):
-    id: Optional[List[str]]
+    id: Optional[SequenceNotStr[str]]
     """The ID of the insight"""
 
     description: Optional[str]
     """The description of the insight. Supports '\\**' as a wildcard."""
 
-    insight_type: Optional[List[str]]
+    insight_type: Optional[SequenceNotStr[str]]
     """The type of the insight"""
 
     limit: int

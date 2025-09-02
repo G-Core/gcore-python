@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,9 +52,9 @@ class APIPathsResource(SyncAPIResource):
         http_scheme: Literal["HTTP", "HTTPS"],
         method: Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"],
         path: str,
-        api_groups: List[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         api_version: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -115,10 +115,10 @@ class APIPathsResource(SyncAPIResource):
         path_id: str,
         *,
         domain_id: int,
-        api_groups: List[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"] | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,7 +180,7 @@ class APIPathsResource(SyncAPIResource):
         api_group: Optional[str] | NotGiven = NOT_GIVEN,
         api_version: Optional[str] | NotGiven = NOT_GIVEN,
         http_scheme: Optional[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         method: Optional[Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]]
         | NotGiven = NOT_GIVEN,
@@ -392,9 +392,9 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         http_scheme: Literal["HTTP", "HTTPS"],
         method: Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"],
         path: str,
-        api_groups: List[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         api_version: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -455,10 +455,10 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         path_id: str,
         *,
         domain_id: int,
-        api_groups: List[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"] | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -520,7 +520,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         api_group: Optional[str] | NotGiven = NOT_GIVEN,
         api_version: Optional[str] | NotGiven = NOT_GIVEN,
         http_scheme: Optional[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         method: Optional[Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]]
         | NotGiven = NOT_GIVEN,
