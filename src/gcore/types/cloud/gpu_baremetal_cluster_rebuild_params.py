@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["GPUBaremetalClusterRebuildParams"]
 
@@ -13,7 +15,7 @@ class GPUBaremetalClusterRebuildParams(TypedDict, total=False):
 
     region_id: int
 
-    nodes: Required[List[str]]
+    nodes: Required[SequenceNotStr[str]]
     """List of nodes uuids to be rebuild"""
 
     image_id: Optional[str]

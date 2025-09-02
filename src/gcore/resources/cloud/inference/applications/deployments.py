@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class DeploymentsResource(SyncAPIResource):
         components_configuration: Dict[str, deployment_create_params.ComponentsConfiguration],
         name: str,
         regions: Iterable[int],
-        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,7 +246,7 @@ class DeploymentsResource(SyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]]
         | NotGiven = NOT_GIVEN,
         regions: Iterable[int] | NotGiven = NOT_GIVEN,
@@ -334,7 +334,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         components_configuration: Dict[str, deployment_create_params.ComponentsConfiguration],
         name: str,
         regions: Iterable[int],
-        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -525,7 +525,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: List[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]]
         | NotGiven = NOT_GIVEN,
         regions: Iterable[int] | NotGiven = NOT_GIVEN,

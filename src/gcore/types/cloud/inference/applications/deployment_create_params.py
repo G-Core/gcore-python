@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Required, TypedDict
+
+from ....._types import SequenceNotStr
 
 __all__ = [
     "DeploymentCreateParams",
@@ -29,7 +31,7 @@ class DeploymentCreateParams(TypedDict, total=False):
     regions: Required[Iterable[int]]
     """Geographical regions where the deployment should be created"""
 
-    api_keys: List[str]
+    api_keys: SequenceNotStr[str]
     """List of API keys for the application"""
 
 

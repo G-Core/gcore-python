@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["AdvancedRuleCreateParams", "Action", "ActionBlock", "ActionTag"]
 
@@ -54,7 +56,7 @@ class ActionBlock(TypedDict, total=False):
 
 
 class ActionTag(TypedDict, total=False):
-    tags: Required[List[str]]
+    tags: Required[SequenceNotStr[str]]
     """The list of user defined tags to tag the request with"""
 
 

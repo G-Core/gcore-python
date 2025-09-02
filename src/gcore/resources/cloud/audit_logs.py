@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -153,7 +153,7 @@ class AuditLogsResource(SyncAPIResource):
         order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         project_id: Iterable[int] | NotGiven = NOT_GIVEN,
         region_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        resource_id: List[str] | NotGiven = NOT_GIVEN,
+        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         search_field: str | NotGiven = NOT_GIVEN,
         sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         to_timestamp: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -364,7 +364,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         project_id: Iterable[int] | NotGiven = NOT_GIVEN,
         region_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        resource_id: List[str] | NotGiven = NOT_GIVEN,
+        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         search_field: str | NotGiven = NOT_GIVEN,
         sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         to_timestamp: Union[str, datetime] | NotGiven = NOT_GIVEN,

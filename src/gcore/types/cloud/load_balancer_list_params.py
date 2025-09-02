@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["LoadBalancerListParams"]
 
@@ -39,7 +40,7 @@ class LoadBalancerListParams(TypedDict, total=False):
     show_stats: bool
     """Show statistics"""
 
-    tag_key: List[str]
+    tag_key: SequenceNotStr[str]
     """Filter by tag keys."""
 
     tag_key_value: str

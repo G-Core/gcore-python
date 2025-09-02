@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["InsightSilenceListParams"]
 
 
 class InsightSilenceListParams(TypedDict, total=False):
-    id: Optional[List[str]]
+    id: Optional[SequenceNotStr[str]]
     """The ID of the insight silence"""
 
     author: Optional[str]
@@ -18,7 +20,7 @@ class InsightSilenceListParams(TypedDict, total=False):
     comment: Optional[str]
     """The comment of the insight silence"""
 
-    insight_type: Optional[List[str]]
+    insight_type: Optional[SequenceNotStr[str]]
     """The type of the insight silence"""
 
     limit: int

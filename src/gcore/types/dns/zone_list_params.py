@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["ZoneListParams"]
@@ -35,7 +36,7 @@ class ZoneListParams(TypedDict, total=False):
     limit: int
     """Max number of records in response"""
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """to pass several names `name=first&name=second...`"""
 
     offset: int

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["APIPathCreateParams"]
 
@@ -21,11 +22,11 @@ class APIPathCreateParams(TypedDict, total=False):
     brackets
     """
 
-    api_groups: List[str]
+    api_groups: SequenceNotStr[str]
     """An array of api groups associated with the API path"""
 
     api_version: str
     """The API version"""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """An array of tags associated with the API path"""

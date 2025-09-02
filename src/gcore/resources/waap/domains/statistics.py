@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -193,8 +193,8 @@ class StatisticsResource(SyncAPIResource):
         start: str,
         action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | NotGiven = NOT_GIVEN,
         end: Optional[str] | NotGiven = NOT_GIVEN,
-        ip: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        reference_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ip: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        reference_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,7 +301,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         start: str,
         actions: List[Literal["allow", "block", "captcha", "handshake"]] | NotGiven = NOT_GIVEN,
-        countries: List[str] | NotGiven = NOT_GIVEN,
+        countries: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         end: Optional[str] | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -627,8 +627,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
         start: str,
         action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | NotGiven = NOT_GIVEN,
         end: Optional[str] | NotGiven = NOT_GIVEN,
-        ip: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        reference_id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ip: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        reference_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -735,7 +735,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         start: str,
         actions: List[Literal["allow", "block", "captcha", "handshake"]] | NotGiven = NOT_GIVEN,
-        countries: List[str] | NotGiven = NOT_GIVEN,
+        countries: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         end: Optional[str] | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,

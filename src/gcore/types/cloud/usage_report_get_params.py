@@ -6,6 +6,7 @@ from typing import List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = [
@@ -120,7 +121,7 @@ class SchemaFilterSchemaFilterSnapshotSerializer(TypedDict, total=False):
 
     type: Required[Literal["snapshot"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -130,7 +131,7 @@ class SchemaFilterSchemaFilterInstanceSerializer(TypedDict, total=False):
 
     type: Required[Literal["instance"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -140,7 +141,7 @@ class SchemaFilterSchemaFilterAIClusterSerializer(TypedDict, total=False):
 
     type: Required[Literal["ai_cluster"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -150,7 +151,7 @@ class SchemaFilterSchemaFilterAIVirtualClusterSerializer(TypedDict, total=False)
 
     type: Required[Literal["ai_virtual_cluster"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -160,7 +161,7 @@ class SchemaFilterSchemaFilterBasicVmSerializer(TypedDict, total=False):
 
     type: Required[Literal["basic_vm"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -170,7 +171,7 @@ class SchemaFilterSchemaFilterBaremetalSerializer(TypedDict, total=False):
 
     type: Required[Literal["baremetal"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -180,7 +181,7 @@ class SchemaFilterSchemaFilterVolumeSerializer(TypedDict, total=False):
 
     type: Required[Literal["volume"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -190,7 +191,7 @@ class SchemaFilterSchemaFilterFileShareSerializer(TypedDict, total=False):
 
     type: Required[Literal["file_share"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -200,7 +201,7 @@ class SchemaFilterSchemaFilterImageSerializer(TypedDict, total=False):
 
     type: Required[Literal["image"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -210,7 +211,7 @@ class SchemaFilterSchemaFilterFloatingIPSerializer(TypedDict, total=False):
 
     type: Required[Literal["floatingip"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -220,7 +221,7 @@ class SchemaFilterSchemaFilterEgressTrafficSerializer(TypedDict, total=False):
 
     type: Required[Literal["egress_traffic"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -230,7 +231,7 @@ class SchemaFilterSchemaFilterLoadBalancerSerializer(TypedDict, total=False):
 
     type: Required[Literal["load_balancer"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -240,7 +241,7 @@ class SchemaFilterSchemaFilterExternalIPSerializer(TypedDict, total=False):
 
     type: Required[Literal["external_ip"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -250,7 +251,7 @@ class SchemaFilterSchemaFilterBackupSerializer(TypedDict, total=False):
 
     type: Required[Literal["backup"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -260,7 +261,7 @@ class SchemaFilterSchemaFilterLogIndexSerializer(TypedDict, total=False):
 
     type: Required[Literal["log_index"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -270,7 +271,7 @@ class SchemaFilterSchemaFilterFunctionsSerializer(TypedDict, total=False):
 
     type: Required[Literal["functions"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -280,7 +281,7 @@ class SchemaFilterSchemaFilterFunctionsCallsSerializer(TypedDict, total=False):
 
     type: Required[Literal["functions_calls"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -290,7 +291,7 @@ class SchemaFilterSchemaFilterFunctionsTrafficSerializer(TypedDict, total=False)
 
     type: Required[Literal["functions_traffic"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -300,7 +301,7 @@ class SchemaFilterSchemaFilterContainersSerializer(TypedDict, total=False):
 
     type: Required[Literal["containers"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -310,7 +311,7 @@ class SchemaFilterSchemaFilterInferenceSerializer(TypedDict, total=False):
 
     type: Required[Literal["inference"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -320,7 +321,7 @@ class SchemaFilterSchemaFilterDbaasPostgreSQLVolumeSerializer(TypedDict, total=F
 
     type: Required[Literal["dbaas_postgresql_volume"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -330,7 +331,7 @@ class SchemaFilterSchemaFilterDbaasPostgreSQLPublicNetworkSerializer(TypedDict, 
 
     type: Required[Literal["dbaas_postgresql_public_network"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -340,7 +341,7 @@ class SchemaFilterSchemaFilterDbaasPostgreSqlcpuSerializer(TypedDict, total=Fals
 
     type: Required[Literal["dbaas_postgresql_cpu"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -350,7 +351,7 @@ class SchemaFilterSchemaFilterDbaasPostgreSQLMemorySerializer(TypedDict, total=F
 
     type: Required[Literal["dbaas_postgresql_memory"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 
@@ -360,7 +361,7 @@ class SchemaFilterSchemaFilterDbaasPostgreSQLPoolerSerializer(TypedDict, total=F
 
     type: Required[Literal["dbaas_postgresql_connection_pooler"]]
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """List of field values to filter"""
 
 

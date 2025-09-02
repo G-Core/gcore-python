@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["APIPathUpdateParams"]
 
@@ -12,7 +13,7 @@ class APIPathUpdateParams(TypedDict, total=False):
     domain_id: Required[int]
     """The domain ID"""
 
-    api_groups: List[str]
+    api_groups: SequenceNotStr[str]
     """An array of api groups associated with the API path"""
 
     path: str
@@ -25,5 +26,5 @@ class APIPathUpdateParams(TypedDict, total=False):
     status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]
     """The status of the discovered API path"""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """An array of tags associated with the API path"""

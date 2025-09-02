@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -49,9 +49,9 @@ class InsightsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        insight_type: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         ordering: Literal[
@@ -238,9 +238,9 @@ class AsyncInsightsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        id: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        insight_type: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        insight_type: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         ordering: Literal[

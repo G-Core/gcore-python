@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["SecurityGroupListParams"]
 
@@ -19,7 +20,7 @@ class SecurityGroupListParams(TypedDict, total=False):
     offset: int
     """Offset value is used to exclude the first set of records from the result"""
 
-    tag_key: List[str]
+    tag_key: SequenceNotStr[str]
     """Filter by tag keys."""
 
     tag_key_value: str

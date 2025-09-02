@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class SubnetsResource(SyncAPIResource):
         name: str,
         network_id: str,
         connect_to_network_router: bool | NotGiven = NOT_GIVEN,
-        dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: bool | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
@@ -156,7 +156,7 @@ class SubnetsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: Optional[bool] | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
@@ -270,7 +270,7 @@ class SubnetsResource(SyncAPIResource):
             "updated_at.desc",
         ]
         | NotGiven = NOT_GIVEN,
-        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -464,7 +464,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         name: str,
         network_id: str,
         connect_to_network_router: bool | NotGiven = NOT_GIVEN,
-        dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: bool | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
@@ -562,7 +562,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        dns_nameservers: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         enable_dhcp: Optional[bool] | NotGiven = NOT_GIVEN,
         gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
         host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
@@ -676,7 +676,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
             "updated_at.desc",
         ]
         | NotGiven = NOT_GIVEN,
-        tag_key: List[str] | NotGiven = NOT_GIVEN,
+        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tag_key_value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

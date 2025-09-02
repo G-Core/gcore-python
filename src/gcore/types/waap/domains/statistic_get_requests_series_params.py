@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ...._types import SequenceNotStr
+
 __all__ = ["StatisticGetRequestsSeriesParams"]
 
 
@@ -15,7 +17,7 @@ class StatisticGetRequestsSeriesParams(TypedDict, total=False):
     actions: List[Literal["allow", "block", "captcha", "handshake"]]
     """Filter the response by actions."""
 
-    countries: List[str]
+    countries: SequenceNotStr[str]
     """Filter the response by country codes in ISO 3166-1 alpha-2 format."""
 
     end: Optional[str]

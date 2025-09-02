@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -24,7 +24,7 @@ from .rrsets import (
     RrsetsResourceWithStreamingResponse,
     AsyncRrsetsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -177,7 +177,7 @@ class ZonesResource(SyncAPIResource):
         healthcheck: bool | NotGiven = NOT_GIVEN,
         iam_reseller_id: Iterable[int] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -821,7 +821,7 @@ class AsyncZonesResource(AsyncAPIResource):
         healthcheck: bool | NotGiven = NOT_GIVEN,
         iam_reseller_id: Iterable[int] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,

@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal, TypedDict
 
+from ...._types import SequenceNotStr
+
 __all__ = ["APIPathListParams"]
 
 
@@ -18,7 +20,7 @@ class APIPathListParams(TypedDict, total=False):
     http_scheme: Optional[Literal["HTTP", "HTTPS"]]
     """The different HTTP schemes an API path can have"""
 
-    ids: Optional[List[str]]
+    ids: Optional[SequenceNotStr[str]]
     """Filter by the path ID"""
 
     limit: int
