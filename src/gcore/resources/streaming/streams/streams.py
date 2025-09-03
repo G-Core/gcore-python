@@ -80,7 +80,6 @@ class StreamsResource(SyncAPIResource):
         dvr_enabled: bool | NotGiven = NOT_GIVEN,
         hls_mpegts_endlist_tag: bool | NotGiven = NOT_GIVEN,
         html_overlay: bool | NotGiven = NOT_GIVEN,
-        low_latency_enabled: bool | NotGiven = NOT_GIVEN,
         projection: Literal["regular", "vr360", "vr180", "vr360tb"] | NotGiven = NOT_GIVEN,
         pull: bool | NotGiven = NOT_GIVEN,
         quality_set_id: int | NotGiven = NOT_GIVEN,
@@ -184,19 +183,6 @@ class StreamsResource(SyncAPIResource):
           html_overlay: Switch on mode to insert and display real-time HTML overlay widgets on top of
               live streams
 
-          low_latency_enabled: Deprecated, always returns "true". The only exception is that the attribute can
-              only be used by clients that have previously used the old stream format. This
-              method is outdated since we've made it easier to manage streams. For your
-              convenience, you no longer need to set this parameter at the stage of creating a
-              stream. Now all streams are prepared in 2 formats simultaniously: Low Latency
-              and Legacy. You can get the desired output format in the attributes
-              "`dash_url`", "`hls_cmaf_url`", "`hls_mpegts_url`". Or use them all at once.
-
-              ---
-
-              Note: Links /streams/{id}/playlist.m3u8 are depricated too. Use value of the
-              "`hls_mpegts_url`" attribute instead.
-
           projection: Visualization mode for 360° streams, how the stream is rendered in our web
               player ONLY. If you would like to show video 360° in an external video player,
               then use parameters of that video player. Modes:
@@ -210,9 +196,10 @@ class StreamsResource(SyncAPIResource):
               values:
 
               - true – stream is received by PULL method. Use this when need to get stream
-                from external server by srt, rtmp\\ss, hls, dash, etc protocols.
+                from external server.
               - false – stream is received by PUSH method. Use this when need to send stream
-                from end-device to our Streaming Platform, i.e. from mobile app or OBS Studio.
+                from end-device to our Streaming Platform, i.e. from your encoder, mobile app
+                or OBS Studio.
 
           quality_set_id: Custom quality set ID for transcoding, if transcoding is required according to
               your conditions. Look at GET /`quality_sets` method
@@ -230,10 +217,11 @@ class StreamsResource(SyncAPIResource):
               round robin scheduling. If the first address does not respond, then the next one
               in the list will be automatically requested, returning to the first and so on in
               a circle. Also, if the sucessfully working stream stops sending data, then the
-              next one will be selected according to the same scheme. After 24 hours of
-              inactivity of your streams we will stop PULL-ing, and will switch "active" field
-              to "false". Please, note that this field is for PULL only, so is not suitable
-              for PUSH. Look at fields "`push_url`" and "`push_url_srt`" from GET method.
+              next one will be selected according to the same scheme. After 2 hours of
+              inactivity of your original stream, the system stops PULL requests and the
+              stream is deactivated (the "active" field switches to "false"). Please, note
+              that this field is for PULL only, so is not suitable for PUSH. Look at fields
+              "`push_url`" and "`push_url_srt`" from GET method.
 
           extra_headers: Send extra headers
 
@@ -258,7 +246,6 @@ class StreamsResource(SyncAPIResource):
                     "dvr_enabled": dvr_enabled,
                     "hls_mpegts_endlist_tag": hls_mpegts_endlist_tag,
                     "html_overlay": html_overlay,
-                    "low_latency_enabled": low_latency_enabled,
                     "projection": projection,
                     "pull": pull,
                     "quality_set_id": quality_set_id,
@@ -792,7 +779,6 @@ class AsyncStreamsResource(AsyncAPIResource):
         dvr_enabled: bool | NotGiven = NOT_GIVEN,
         hls_mpegts_endlist_tag: bool | NotGiven = NOT_GIVEN,
         html_overlay: bool | NotGiven = NOT_GIVEN,
-        low_latency_enabled: bool | NotGiven = NOT_GIVEN,
         projection: Literal["regular", "vr360", "vr180", "vr360tb"] | NotGiven = NOT_GIVEN,
         pull: bool | NotGiven = NOT_GIVEN,
         quality_set_id: int | NotGiven = NOT_GIVEN,
@@ -896,19 +882,6 @@ class AsyncStreamsResource(AsyncAPIResource):
           html_overlay: Switch on mode to insert and display real-time HTML overlay widgets on top of
               live streams
 
-          low_latency_enabled: Deprecated, always returns "true". The only exception is that the attribute can
-              only be used by clients that have previously used the old stream format. This
-              method is outdated since we've made it easier to manage streams. For your
-              convenience, you no longer need to set this parameter at the stage of creating a
-              stream. Now all streams are prepared in 2 formats simultaniously: Low Latency
-              and Legacy. You can get the desired output format in the attributes
-              "`dash_url`", "`hls_cmaf_url`", "`hls_mpegts_url`". Or use them all at once.
-
-              ---
-
-              Note: Links /streams/{id}/playlist.m3u8 are depricated too. Use value of the
-              "`hls_mpegts_url`" attribute instead.
-
           projection: Visualization mode for 360° streams, how the stream is rendered in our web
               player ONLY. If you would like to show video 360° in an external video player,
               then use parameters of that video player. Modes:
@@ -922,9 +895,10 @@ class AsyncStreamsResource(AsyncAPIResource):
               values:
 
               - true – stream is received by PULL method. Use this when need to get stream
-                from external server by srt, rtmp\\ss, hls, dash, etc protocols.
+                from external server.
               - false – stream is received by PUSH method. Use this when need to send stream
-                from end-device to our Streaming Platform, i.e. from mobile app or OBS Studio.
+                from end-device to our Streaming Platform, i.e. from your encoder, mobile app
+                or OBS Studio.
 
           quality_set_id: Custom quality set ID for transcoding, if transcoding is required according to
               your conditions. Look at GET /`quality_sets` method
@@ -942,10 +916,11 @@ class AsyncStreamsResource(AsyncAPIResource):
               round robin scheduling. If the first address does not respond, then the next one
               in the list will be automatically requested, returning to the first and so on in
               a circle. Also, if the sucessfully working stream stops sending data, then the
-              next one will be selected according to the same scheme. After 24 hours of
-              inactivity of your streams we will stop PULL-ing, and will switch "active" field
-              to "false". Please, note that this field is for PULL only, so is not suitable
-              for PUSH. Look at fields "`push_url`" and "`push_url_srt`" from GET method.
+              next one will be selected according to the same scheme. After 2 hours of
+              inactivity of your original stream, the system stops PULL requests and the
+              stream is deactivated (the "active" field switches to "false"). Please, note
+              that this field is for PULL only, so is not suitable for PUSH. Look at fields
+              "`push_url`" and "`push_url_srt`" from GET method.
 
           extra_headers: Send extra headers
 
@@ -970,7 +945,6 @@ class AsyncStreamsResource(AsyncAPIResource):
                     "dvr_enabled": dvr_enabled,
                     "hls_mpegts_endlist_tag": hls_mpegts_endlist_tag,
                     "html_overlay": html_overlay,
-                    "low_latency_enabled": low_latency_enabled,
                     "projection": projection,
                     "pull": pull,
                     "quality_set_id": quality_set_id,
