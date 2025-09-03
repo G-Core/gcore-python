@@ -65,7 +65,7 @@ class QualitySetsResource(SyncAPIResource):
         [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
         These values are the default for everyone. There is no need to configure
         anything additional. Read more about qiality in our blog
-        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality/).
+        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality).
         ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
         for those cases when, in addition to the main parameters, it is necessary to use
         your own, then it is necessary to use custom quality sets. How to use:
@@ -200,7 +200,7 @@ class AsyncQualitySetsResource(AsyncAPIResource):
         [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
         These values are the default for everyone. There is no need to configure
         anything additional. Read more about qiality in our blog
-        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality/).
+        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality).
         ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
         for those cases when, in addition to the main parameters, it is necessary to use
         your own, then it is necessary to use custom quality sets. How to use:
