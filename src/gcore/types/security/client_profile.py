@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 
 from ..._models import BaseModel
 from .client_profile_template import ClientProfileTemplate
@@ -25,7 +25,7 @@ class Field(BaseModel):
 
     validation_schema: Dict[str, object]
 
-    field_value: Optional[object] = None
+    field_value: Union[object, object, object, object, object, object, None] = None
 
 
 class Options(BaseModel):
