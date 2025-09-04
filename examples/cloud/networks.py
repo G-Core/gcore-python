@@ -42,15 +42,10 @@ def main() -> None:
 
 def create_network(*, client: Gcore) -> str:
     print("\n=== CREATE NETWORK ===")
-    response = client.cloud.networks.create(name="gcore-go-example", create_router=True, type="vxlan")
-    task_id = response.tasks[0]
-    task = client.cloud.tasks.poll(task_id=task_id)
-    if task.created_resources is None or task.created_resources.networks is None:
-        raise RuntimeError("Task completed but created_resources or networks is missing")
-    network_id: str = task.created_resources.networks[0]
-    print(f"Created network: ID={network_id}")
+    network = client.cloud.networks.create_and_poll(name="gcore-go-example", create_router=True, type="vxlan")
+    print(f"Created network: ID={network.id}, name={network.name}, type={network.type}")
     print("========================")
-    return network_id
+    return network.id
 
 
 def list_networks(*, client: Gcore) -> None:
@@ -183,9 +178,7 @@ def delete_subnet(*, client: Gcore, subnet_id: str) -> None:
 
 def delete_network(*, client: Gcore, network_id: str) -> None:
     print("\n=== DELETE NETWORK ===")
-    response = client.cloud.networks.delete(network_id=network_id)
-    task_id = response.tasks[0]
-    client.cloud.tasks.poll(task_id=task_id)
+    client.cloud.networks.delete_and_poll(network_id=network_id)
     print(f"Deleted network: ID={network_id}")
     print("========================")
 

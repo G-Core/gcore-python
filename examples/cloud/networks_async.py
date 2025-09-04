@@ -44,15 +44,10 @@ async def main() -> None:
 
 async def create_network(*, client: AsyncGcore) -> str:
     print("\n=== CREATE NETWORK ===")
-    response = await client.cloud.networks.create(name="gcore-go-example", create_router=True, type="vxlan")
-    task_id = response.tasks[0]
-    task = await client.cloud.tasks.poll(task_id=task_id)
-    if task.created_resources is None or task.created_resources.networks is None:
-        raise RuntimeError("Task completed but created_resources or networks is missing")
-    network_id: str = task.created_resources.networks[0]
-    print(f"Created network: ID={network_id}")
+    network = await client.cloud.networks.create_and_poll(name="gcore-go-example", create_router=True, type="vxlan")
+    print(f"Created network: ID={network.id}, name={network.name}, type={network.type}")
     print("========================")
-    return network_id
+    return network.id
 
 
 async def list_networks(*, client: AsyncGcore) -> None:
@@ -191,9 +186,7 @@ async def delete_subnet(*, client: AsyncGcore, subnet_id: str) -> None:
 
 async def delete_network(*, client: AsyncGcore, network_id: str) -> None:
     print("\n=== DELETE NETWORK ===")
-    response = await client.cloud.networks.delete(network_id=network_id)
-    task_id = response.tasks[0]
-    await client.cloud.tasks.poll(task_id=task_id)
+    await client.cloud.networks.delete_and_poll(network_id=network_id)
     print(f"Deleted network: ID={network_id}")
     print("========================")
 
