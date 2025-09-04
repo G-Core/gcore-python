@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["ProfileCreateParams", "Field"]
@@ -21,4 +21,4 @@ class ProfileCreateParams(TypedDict, total=False):
 class Field(TypedDict, total=False):
     base_field: Required[int]
 
-    field_value: Optional[Dict[str, object]]
+    field_value: Optional[object]
