@@ -25,7 +25,7 @@ class Field(BaseModel):
 
     validation_schema: Dict[str, object]
 
-    field_value: Optional[Dict[str, object]] = None
+    field_value: Optional[object] = None
 
 
 class Options(BaseModel):
