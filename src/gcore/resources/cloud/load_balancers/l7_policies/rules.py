@@ -360,7 +360,7 @@ class RulesResource(SyncAPIResource):
         value: str,
         invert: bool | NotGiven = NOT_GIVEN,
         key: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -459,7 +459,7 @@ class RulesResource(SyncAPIResource):
         value: str,
         invert: bool | NotGiven = NOT_GIVEN,
         key: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -839,7 +839,7 @@ class AsyncRulesResource(AsyncAPIResource):
         value: str,
         invert: bool | NotGiven = NOT_GIVEN,
         key: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -938,7 +938,7 @@ class AsyncRulesResource(AsyncAPIResource):
         value: str,
         invert: bool | NotGiven = NOT_GIVEN,
         key: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

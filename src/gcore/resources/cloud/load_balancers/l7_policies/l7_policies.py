@@ -357,7 +357,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_pool_id: str | NotGiven = NOT_GIVEN,
         redirect_prefix: str | NotGiven = NOT_GIVEN,
         redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -448,7 +448,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_pool_id: str | NotGiven = NOT_GIVEN,
         redirect_prefix: str | NotGiven = NOT_GIVEN,
         redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -814,7 +814,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_pool_id: str | NotGiven = NOT_GIVEN,
         redirect_prefix: str | NotGiven = NOT_GIVEN,
         redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -905,7 +905,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_pool_id: str | NotGiven = NOT_GIVEN,
         redirect_prefix: str | NotGiven = NOT_GIVEN,
         redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         polling_interval_seconds: int | NotGiven = NOT_GIVEN,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
