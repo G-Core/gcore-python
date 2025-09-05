@@ -328,6 +328,299 @@ class InterfacesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
+    def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
+        | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance
+
+        Args:
+          ddos_profile: Advanced DDoS protection.
+
+          interface_name: Interface name
+
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+
+          port_group: Each group will be added to the separate trunk.
+
+          security_groups: List of security group IDs
+
+          type: Must be 'external'. Union tag
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        subnet_id: str,
+        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance
+
+        Args:
+          subnet_id: Port will get an IP address from this subnet
+
+          ddos_profile: Advanced DDoS protection.
+
+          interface_name: Interface name
+
+          port_group: Each group will be added to the separate trunk.
+
+          security_groups: List of security group IDs
+
+          type: Must be 'subnet'
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        network_id: str,
+        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance
+
+        Args:
+          network_id: Port will get an IP address in this network subnet
+
+          ddos_profile: Advanced DDoS protection.
+
+          interface_name: Interface name
+
+          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+
+          port_group: Each group will be added to the separate trunk.
+
+          security_groups: List of security group IDs
+
+          type: Must be '`any_subnet`'
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        port_id: str,
+        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance
+
+        Args:
+          port_id: Port ID
+
+          ddos_profile: Advanced DDoS protection.
+
+          interface_name: Interface name
+
+          port_group: Each group will be added to the separate trunk.
+
+          security_groups: List of security group IDs
+
+          type: Must be '`reserved_fixed_ip`'. Union tag
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
+        | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        subnet_id: str | NotGiven = NOT_GIVEN,
+        network_id: str | NotGiven = NOT_GIVEN,
+        port_id: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        response = self._post(
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface",
+            body=maybe_transform(
+                {
+                    "ddos_profile": ddos_profile,
+                    "interface_name": interface_name,
+                    "ip_family": ip_family,
+                    "port_group": port_group,
+                    "security_groups": security_groups,
+                    "type": type,
+                    "subnet_id": subnet_id,
+                    "network_id": network_id,
+                    "port_id": port_id,
+                },
+                interface_attach_params.InterfaceAttachParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
+
+    def detach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ip_address: str,
+        port_id: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Detach interface from instance and poll for completion. Only the first task will be polled.
+        If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = self.detach(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            ip_address=ip_address,
+            port_id=port_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
+
     def detach(
         self,
         instance_id: str,
@@ -684,6 +977,221 @@ class AsyncInterfacesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
+    async def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
+        | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance using external extend and poll for completion. Only the first task will be polled.
+        If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        ...
+
+    @overload
+    async def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        subnet_id: str,
+        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance using specific subnet and poll for completion. Only the first task will be polled.
+        If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        ...
+
+    @overload
+    async def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        network_id: str,
+        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance using any subnet and poll for completion. Only the first task will be polled.
+        If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        ...
+
+    @overload
+    async def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        port_id: str,
+        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Attach interface to instance using reserved fixed IP and poll for completion. Only the first task will be polled.
+        If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        ...
+
+    async def attach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
+        | NotGiven = NOT_GIVEN,
+        interface_name: str | NotGiven = NOT_GIVEN,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
+        port_group: int | NotGiven = NOT_GIVEN,
+        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        subnet_id: str | NotGiven = NOT_GIVEN,
+        network_id: str | NotGiven = NOT_GIVEN,
+        port_id: str | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        response = await self._post(
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface",
+            body=await async_maybe_transform(
+                {
+                    "ddos_profile": ddos_profile,
+                    "interface_name": interface_name,
+                    "ip_family": ip_family,
+                    "port_group": port_group,
+                    "security_groups": security_groups,
+                    "type": type,
+                    "subnet_id": subnet_id,
+                    "network_id": network_id,
+                    "port_id": port_id,
+                },
+                interface_attach_params.InterfaceAttachParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
+
+    async def detach_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        ip_address: str,
+        port_id: str,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkInterfaceList:
+        """
+        Detach interface from instance and poll for completion. Only the first task will be polled.
+        If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = await self.detach(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            ip_address=ip_address,
+            port_id=port_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
+
     async def detach(
         self,
         instance_id: str,
@@ -747,8 +1255,14 @@ class InterfacesResourceWithRawResponse:
         self.attach = to_raw_response_wrapper(
             interfaces.attach,
         )
+        self.attach_and_poll = to_raw_response_wrapper(
+            interfaces.attach_and_poll,
+        )
         self.detach = to_raw_response_wrapper(
             interfaces.detach,
+        )
+        self.detach_and_poll = to_raw_response_wrapper(
+            interfaces.detach_and_poll,
         )
 
 
@@ -762,8 +1276,14 @@ class AsyncInterfacesResourceWithRawResponse:
         self.attach = async_to_raw_response_wrapper(
             interfaces.attach,
         )
+        self.attach_and_poll = async_to_raw_response_wrapper(
+            interfaces.attach_and_poll,
+        )
         self.detach = async_to_raw_response_wrapper(
             interfaces.detach,
+        )
+        self.detach_and_poll = async_to_raw_response_wrapper(
+            interfaces.detach_and_poll,
         )
 
 
@@ -777,8 +1297,14 @@ class InterfacesResourceWithStreamingResponse:
         self.attach = to_streamed_response_wrapper(
             interfaces.attach,
         )
+        self.attach_and_poll = to_streamed_response_wrapper(
+            interfaces.attach_and_poll,
+        )
         self.detach = to_streamed_response_wrapper(
             interfaces.detach,
+        )
+        self.detach_and_poll = to_streamed_response_wrapper(
+            interfaces.detach_and_poll,
         )
 
 
@@ -792,6 +1318,12 @@ class AsyncInterfacesResourceWithStreamingResponse:
         self.attach = async_to_streamed_response_wrapper(
             interfaces.attach,
         )
+        self.attach_and_poll = async_to_streamed_response_wrapper(
+            interfaces.attach_and_poll,
+        )
         self.detach = async_to_streamed_response_wrapper(
             interfaces.detach,
+        )
+        self.detach_and_poll = async_to_streamed_response_wrapper(
+            interfaces.detach_and_poll,
         )
