@@ -773,6 +773,125 @@ class InstancesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
+    def action_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          action: Instance action name
+
+          activate_profile: Used on start instance to activate Advanced DDoS profile
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def action_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          action: Instance action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    def action_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start", "reboot", "reboot_hard", "resume", "stop", "suspend"],
+        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Perform the action on the instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        response = self._post(
+            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "activate_profile": activate_profile,
+                },
+                instance_action_params.InstanceActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+        )
+        return self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+        )
+
     def add_to_placement_group(
         self,
         instance_id: str,
@@ -2023,6 +2142,125 @@ class AsyncInstancesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
+    async def action_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          action: Instance action name
+
+          activate_profile: Used on start instance to activate Advanced DDoS profile
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def action_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          action: Instance action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    async def action_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start", "reboot", "reboot_hard", "resume", "stop", "suspend"],
+        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Perform the action on the instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        response = await self._post(
+            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "activate_profile": activate_profile,
+                },
+                instance_action_params.InstanceActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+        )
+        return await self.get(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+        )
+
     async def add_to_placement_group(
         self,
         instance_id: str,
@@ -2591,6 +2829,9 @@ class InstancesResourceWithRawResponse:
         self.action = to_raw_response_wrapper(
             instances.action,
         )
+        self.action_and_poll = to_raw_response_wrapper(
+            instances.action_and_poll,
+        )
         self.add_to_placement_group = to_raw_response_wrapper(
             instances.add_to_placement_group,
         )
@@ -2654,6 +2895,9 @@ class AsyncInstancesResourceWithRawResponse:
         )
         self.action = async_to_raw_response_wrapper(
             instances.action,
+        )
+        self.action_and_poll = async_to_raw_response_wrapper(
+            instances.action_and_poll,
         )
         self.add_to_placement_group = async_to_raw_response_wrapper(
             instances.add_to_placement_group,
@@ -2719,6 +2963,9 @@ class InstancesResourceWithStreamingResponse:
         self.action = to_streamed_response_wrapper(
             instances.action,
         )
+        self.action_and_poll = to_streamed_response_wrapper(
+            instances.action_and_poll,
+        )
         self.add_to_placement_group = to_streamed_response_wrapper(
             instances.add_to_placement_group,
         )
@@ -2782,6 +3029,9 @@ class AsyncInstancesResourceWithStreamingResponse:
         )
         self.action = async_to_streamed_response_wrapper(
             instances.action,
+        )
+        self.action_and_poll = async_to_streamed_response_wrapper(
+            instances.action_and_poll,
         )
         self.add_to_placement_group = async_to_streamed_response_wrapper(
             instances.add_to_placement_group,
