@@ -148,6 +148,66 @@ class SubnetsResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cidr: str,
+        name: str,
+        network_id: str,
+        connect_to_network_router: bool | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        enable_dhcp: bool | NotGiven = NOT_GIVEN,
+        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
+        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
+        ip_version: IPVersion | NotGiven = NOT_GIVEN,
+        router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Subnet:
+        """Create subnet and poll for the result."""
+        response = self.create(
+            project_id=project_id,
+            region_id=region_id,
+            cidr=cidr,
+            name=name,
+            network_id=network_id,
+            connect_to_network_router=connect_to_network_router,
+            dns_nameservers=dns_nameservers,
+            enable_dhcp=enable_dhcp,
+            gateway_ip=gateway_ip,
+            host_routes=host_routes,
+            ip_version=ip_version,
+            router_id_to_connect=router_id_to_connect,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.subnets or len(task.created_resources.subnets) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return self.get(
+            subnet_id=task.created_resources.subnets[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+        )
+
     def update(
         self,
         subnet_id: str,
@@ -544,6 +604,66 @@ class AsyncSubnetsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cidr: str,
+        name: str,
+        network_id: str,
+        connect_to_network_router: bool | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        enable_dhcp: bool | NotGiven = NOT_GIVEN,
+        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
+        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
+        ip_version: IPVersion | NotGiven = NOT_GIVEN,
+        router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Subnet:
+        """Create subnet and poll for the result."""
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            cidr=cidr,
+            name=name,
+            network_id=network_id,
+            connect_to_network_router=connect_to_network_router,
+            dns_nameservers=dns_nameservers,
+            enable_dhcp=enable_dhcp,
+            gateway_ip=gateway_ip,
+            host_routes=host_routes,
+            ip_version=ip_version,
+            router_id_to_connect=router_id_to_connect,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        if not task.created_resources or not task.created_resources.subnets or len(task.created_resources.subnets) != 1:
+            raise ValueError(f"Expected exactly one resource to be created in a task")
+        return await self.get(
+            subnet_id=task.created_resources.subnets[0],
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+        )
+
     async def update(
         self,
         subnet_id: str,
@@ -828,6 +948,9 @@ class SubnetsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             subnets.create,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            subnets.create_and_poll,
+        )
         self.update = to_raw_response_wrapper(
             subnets.update,
         )
@@ -848,6 +971,9 @@ class AsyncSubnetsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             subnets.create,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            subnets.create_and_poll,
         )
         self.update = async_to_raw_response_wrapper(
             subnets.update,
@@ -870,6 +996,9 @@ class SubnetsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             subnets.create,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            subnets.create_and_poll,
+        )
         self.update = to_streamed_response_wrapper(
             subnets.update,
         )
@@ -890,6 +1019,9 @@ class AsyncSubnetsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             subnets.create,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            subnets.create_and_poll,
         )
         self.update = async_to_streamed_response_wrapper(
             subnets.update,

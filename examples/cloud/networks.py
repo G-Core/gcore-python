@@ -72,21 +72,16 @@ def update_network(*, client: Gcore, network_id: str) -> None:
 
 def create_subnet(*, client: Gcore, network_id: str) -> str:
     print("\n=== CREATE SUBNET ===")
-    response = client.cloud.networks.subnets.create(
+    subnet = client.cloud.networks.subnets.create_and_poll(
         network_id=network_id,
         cidr="192.168.1.0/24",
         name="gcore-go-example",
         enable_dhcp=True,
         ip_version=4,
     )
-    task_id = response.tasks[0]
-    task = client.cloud.tasks.poll(task_id=task_id)
-    if task.created_resources is None or task.created_resources.subnets is None:
-        raise RuntimeError("Task completed but created_resources or subnets is missing")
-    subnet_id: str = task.created_resources.subnets[0]
-    print(f"Created subnet: ID={subnet_id}")
+    print(f"Created subnet: ID={subnet.id}, CIDR={subnet.cidr}, name={subnet.name}")
     print("========================")
-    return subnet_id
+    return subnet.id or ""
 
 
 def list_subnets(*, client: Gcore, network_id: str) -> None:
