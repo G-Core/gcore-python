@@ -30,7 +30,7 @@ class TestCors:
         cor = client.storage.buckets.cors.create(
             bucket_name="bucket_name",
             storage_id=0,
-            allowed_origins=["string"],
+            allowed_origins=["https://example.com", "https://app.example.com", "*"],
         )
         assert cor is None
 
@@ -129,7 +129,7 @@ class TestAsyncCors:
         cor = await async_client.storage.buckets.cors.create(
             bucket_name="bucket_name",
             storage_id=0,
-            allowed_origins=["string"],
+            allowed_origins=["https://example.com", "https://app.example.com", "*"],
         )
         assert cor is None
 

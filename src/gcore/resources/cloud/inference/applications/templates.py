@@ -58,7 +58,9 @@ class TemplatesResource(SyncAPIResource):
         required to create a fully functional application deployment.
         """
         return self._get(
-            "/cloud/v3/inference/applications/catalog",
+            "/cloud/v3/inference/applications/catalog"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v3/inference/applications/catalog",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -97,7 +99,9 @@ class TemplatesResource(SyncAPIResource):
         if not application_name:
             raise ValueError(f"Expected a non-empty value for `application_name` but received {application_name!r}")
         return self._get(
-            f"/cloud/v3/inference/applications/catalog/{application_name}",
+            f"/cloud/v3/inference/applications/catalog/{application_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/catalog/{application_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -143,7 +147,9 @@ class AsyncTemplatesResource(AsyncAPIResource):
         required to create a fully functional application deployment.
         """
         return await self._get(
-            "/cloud/v3/inference/applications/catalog",
+            "/cloud/v3/inference/applications/catalog"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v3/inference/applications/catalog",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -182,7 +188,9 @@ class AsyncTemplatesResource(AsyncAPIResource):
         if not application_name:
             raise ValueError(f"Expected a non-empty value for `application_name` but received {application_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/applications/catalog/{application_name}",
+            f"/cloud/v3/inference/applications/catalog/{application_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/catalog/{application_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

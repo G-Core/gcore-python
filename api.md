@@ -1512,12 +1512,10 @@ Types:
 
 ```python
 from gcore.types.streaming import (
-    AIContentmoderationCasm,
     AIContentmoderationHardnudity,
     AIContentmoderationNsfw,
     AIContentmoderationSoftnudity,
     AIContentmoderationSport,
-    AIContentmoderationWeapon,
     AITask,
     AITaskCreateResponse,
     AITaskCancelResponse,
@@ -1740,7 +1738,6 @@ Types:
 from gcore.types.streaming import (
     Ffprobes,
     MaxStreamSeries,
-    MeetSeries,
     PopularVideos,
     StorageSeries,
     StreamSeries,
@@ -1768,7 +1765,6 @@ Methods:
 - <code title="get /streaming/statistics/stream/watching_duration">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_live_watch_time_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_live_watch_time_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/stream_series.py">StreamSeries</a></code>
 - <code title="get /streaming/statistics/stream/watching_duration/total">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_live_watch_time_total_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_live_watch_time_total_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/vod_total_stream_duration_series.py">VodTotalStreamDurationSeries</a></code>
 - <code title="get /streaming/statistics/max_stream">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_max_streams_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_max_streams_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/max_stream_series.py">MaxStreamSeries</a></code>
-- <code title="get /streaming/statistics/meet">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_meet_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_meet_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/meet_series.py">MeetSeries</a></code>
 - <code title="get /streaming/statistics/popular">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_popular_videos</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_popular_videos_params.py">params</a>) -> <a href="./src/gcore/types/streaming/popular_videos.py">PopularVideos</a></code>
 - <code title="get /streaming/statistics/storage">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_storage_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_storage_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/storage_series.py">StorageSeries</a></code>
 - <code title="get /streaming/statistics/stream">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_stream_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_stream_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/stream_series.py">StreamSeries</a></code>
@@ -1990,7 +1986,9 @@ from gcore.types.storage import Storage
 
 Methods:
 
+- <code title="post /storage/provisioning/v2/storage">client.storage.<a href="./src/gcore/resources/storage/storage.py">create</a>() -> <a href="./src/gcore/types/storage/storage.py">Storage</a></code>
 - <code title="post /storage/provisioning/v1/storage/{storage_id}">client.storage.<a href="./src/gcore/resources/storage/storage.py">update</a>(storage_id, \*\*<a href="src/gcore/types/storage/storage_update_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage.py">Storage</a></code>
+- <code title="get /storage/provisioning/v3/storage">client.storage.<a href="./src/gcore/resources/storage/storage.py">list</a>(\*\*<a href="src/gcore/types/storage/storage_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage.py">SyncOffsetPage[Storage]</a></code>
 - <code title="delete /storage/provisioning/v1/storage/{storage_id}">client.storage.<a href="./src/gcore/resources/storage/storage.py">delete</a>(storage_id) -> None</code>
 - <code title="get /storage/provisioning/v1/storage/{storage_id}">client.storage.<a href="./src/gcore/resources/storage/storage.py">get</a>(storage_id) -> <a href="./src/gcore/types/storage/storage.py">Storage</a></code>
 - <code title="post /storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link">client.storage.<a href="./src/gcore/resources/storage/storage.py">link_ssh_key</a>(key_id, \*, storage_id) -> None</code>
@@ -2034,9 +2032,16 @@ Methods:
 
 ## Buckets
 
+Types:
+
+```python
+from gcore.types.storage import StorageBucket
+```
+
 Methods:
 
 - <code title="post /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}">client.storage.buckets.<a href="./src/gcore/resources/storage/buckets/buckets.py">create</a>(bucket_name, \*, storage_id) -> None</code>
+- <code title="get /storage/provisioning/v2/storage/{storage_id}/s3/buckets">client.storage.buckets.<a href="./src/gcore/resources/storage/buckets/buckets.py">list</a>(storage_id, \*\*<a href="src/gcore/types/storage/bucket_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage_bucket.py">SyncOffsetPage[StorageBucket]</a></code>
 - <code title="delete /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}">client.storage.buckets.<a href="./src/gcore/resources/storage/buckets/buckets.py">delete</a>(bucket_name, \*, storage_id) -> None</code>
 
 ### Cors
@@ -2064,11 +2069,11 @@ Methods:
 Types:
 
 ```python
-from gcore.types.storage.buckets import StorageBucketPolicy
+from gcore.types.storage.buckets import StorageBucketPolicy, PolicyGetResponse
 ```
 
 Methods:
 
 - <code title="post /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy">client.storage.buckets.policy.<a href="./src/gcore/resources/storage/buckets/policy.py">create</a>(bucket_name, \*, storage_id) -> None</code>
 - <code title="delete /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy">client.storage.buckets.policy.<a href="./src/gcore/resources/storage/buckets/policy.py">delete</a>(bucket_name, \*, storage_id) -> None</code>
-- <code title="get /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy">client.storage.buckets.policy.<a href="./src/gcore/resources/storage/buckets/policy.py">get</a>(bucket_name, \*, storage_id) -> <a href="./src/gcore/types/storage/buckets/storage_bucket_policy.py">StorageBucketPolicy</a></code>
+- <code title="get /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy">client.storage.buckets.policy.<a href="./src/gcore/resources/storage/buckets/policy.py">get</a>(bucket_name, \*, storage_id) -> <a href="./src/gcore/types/storage/buckets/policy_get_response.py">PolicyGetResponse</a></code>

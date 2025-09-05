@@ -130,7 +130,7 @@ class AITaskCreateParams(TypedDict, total=False):
     - 'yor': Yoruba
     """
 
-    category: Literal["sport", "weapon", "nsfw", "hard_nudity", "soft_nudity", "child_pornography"]
+    category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"]
     """Model for analysis (content-moderation only).
 
     Determines what exactly needs to be found in the video.
@@ -162,7 +162,7 @@ class AITaskCreateParams(TypedDict, total=False):
     - transcription into the original language is a free procedure,
     - and translation from the original language into any other languages is a
       "translation" procedure and is paid. More details in
-      [POST /ai/tasks#transcribe](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+      [POST /streaming/ai/tasks#transcribe](/docs/api-reference/streaming/ai/create-ai-asr-task).
       Language is set by 3-letter language code according to ISO-639-2
       (bibliographic code).
     """

@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -9,16 +8,17 @@ __all__ = ["StorageLocation"]
 
 
 class StorageLocation(BaseModel):
-    id: Optional[int] = None
+    id: int
 
-    address: Optional[str] = None
+    address: str
+    """Full hostname/address for accessing the storage endpoint"""
 
-    allow_for_new_storage: Optional[Literal["deny", "allow"]] = None
+    allow_for_new_storage: Literal["deny", "allow"]
     """
     Indicates whether new storage can be created in this location: `allow` enables
     storage creation, `deny` prevents it
     """
 
-    name: Optional[Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"]] = None
+    name: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"]
 
-    type: Optional[Literal["s3", "sftp"]] = None
+    type: Literal["s3", "sftp"]

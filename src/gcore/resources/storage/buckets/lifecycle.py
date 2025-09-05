@@ -53,13 +53,19 @@ class LifecycleResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """Configures automatic object expiration rules for an S3 bucket.
+        """Sets up automatic object expiration for an S3 bucket.
 
-        Objects older
-        than the specified number of days will be automatically deleted to manage
-        storage costs and compliance.
+        All objects in the bucket
+        will be automatically deleted after the specified number of days to help manage
+        storage costs and meet compliance requirements. This applies a global lifecycle
+        rule to the entire bucket - all existing and future objects will be subject to
+        the expiration policy.
 
         Args:
+          expiration_days: Number of days after which objects will be automatically deleted from the
+              bucket. Must be a positive integer. Common values: 30 for monthly cleanup, 365
+              for yearly retention.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -72,7 +78,9 @@ class LifecycleResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             body=maybe_transform({"expiration_days": expiration_days}, lifecycle_create_params.LifecycleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -109,7 +117,9 @@ class LifecycleResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -150,13 +160,19 @@ class AsyncLifecycleResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """Configures automatic object expiration rules for an S3 bucket.
+        """Sets up automatic object expiration for an S3 bucket.
 
-        Objects older
-        than the specified number of days will be automatically deleted to manage
-        storage costs and compliance.
+        All objects in the bucket
+        will be automatically deleted after the specified number of days to help manage
+        storage costs and meet compliance requirements. This applies a global lifecycle
+        rule to the entire bucket - all existing and future objects will be subject to
+        the expiration policy.
 
         Args:
+          expiration_days: Number of days after which objects will be automatically deleted from the
+              bucket. Must be a positive integer. Common values: 30 for monthly cleanup, 365
+              for yearly retention.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -169,7 +185,9 @@ class AsyncLifecycleResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             body=await async_maybe_transform(
                 {"expiration_days": expiration_days}, lifecycle_create_params.LifecycleCreateParams
             ),
@@ -208,7 +226,9 @@ class AsyncLifecycleResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

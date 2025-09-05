@@ -168,7 +168,7 @@ class Stream(BaseModel):
     - and its possible to enable ±3 sec for LL-HLS, just ask our Support Team.
 
     It is also possible to use modifier-attributes, which are described in the
-    "`hls_mpegts_url`" field above. If you need to get MPEGTS (.ts) chunks, look at
+    "`hls_mpegts_url`" field above. If you need to get MPEG-TS (.ts) chunks, look at
     the attribute "`hls_mpegts_url`".
 
     Read more information in the article "How Low Latency streaming works" in the
@@ -184,13 +184,13 @@ class Stream(BaseModel):
     hls_mpegts_url: Optional[str] = None
     """HLS output for legacy devices.
 
-    URL for transcoded result of stream in HLS MPEGTS (.ts) format, with .m3u8 link.
-    Low Latency support: NO. Some legacy devices or software may require MPEGTS
-    (.ts) segments as a format for streaming, so we provide this options keeping
-    backward compatibility with any of your existing workflows. For other cases it's
-    better to use "`hls_cmaf_url`" instead. You can use this legacy HLSv6 format
-    based on MPEGTS segmenter in parallel with main HLS CMAF. Both formats are
-    sharing same segments size, manifest length (DVR), etc.
+    URL for transcoded result of stream in HLS MPEG-TS (.ts) format, with .m3u8
+    link. Low Latency support: NO. Some legacy devices or software may require
+    MPEG-TS (.ts) segments as a format for streaming, so we provide this options
+    keeping backward compatibility with any of your existing workflows. For other
+    cases it's better to use "`hls_cmaf_url`" instead. You can use this legacy HLSv6
+    format based on MPEG-TS segmenter in parallel with main HLS CMAF. Both formats
+    are sharing same segments size, manifest length (DVR), etc.
 
     It is also possible to use additional modifier-attributes:
 
@@ -245,22 +245,6 @@ class Stream(BaseModel):
     live: Optional[bool] = None
     """State of receiving and transcoding master stream from source by main server"""
 
-    low_latency_enabled: Optional[bool] = None
-    """
-    Deprecated, always returns "true". The only exception is that the attribute can
-    only be used by clients that have previously used the old stream format. This
-    method is outdated since we've made it easier to manage streams. For your
-    convenience, you no longer need to set this parameter at the stage of creating a
-    stream. Now all streams are prepared in 2 formats simultaniously: Low Latency
-    and Legacy. You can get the desired output format in the attributes
-    "`dash_url`", "`hls_cmaf_url`", "`hls_mpegts_url`". Or use them all at once.
-
-    ---
-
-    Note: Links /streams/{id}/playlist.m3u8 are depricated too. Use value of the
-    "`hls_mpegts_url`" attribute instead.
-    """
-
     projection: Optional[Literal["regular", "vr360", "vr180", "vr360tb"]] = None
     """
     Visualization mode for 360° streams, how the stream is rendered in our web
@@ -279,15 +263,19 @@ class Stream(BaseModel):
     Has two possible values:
 
     - true – stream is received by PULL method. Use this when need to get stream
-      from external server by srt, rtmp\\ss, hls, dash, etc protocols.
+      from external server.
     - false – stream is received by PUSH method. Use this when need to send stream
-      from end-device to our Streaming Platform, i.e. from mobile app or OBS Studio.
+      from end-device to our Streaming Platform, i.e. from your encoder, mobile app
+      or OBS Studio.
     """
 
     push_url: Optional[str] = None
     """
     URL to PUSH master stream to our main server using RTMP and RTMPS protocols. To
     use RTMPS just manually change the protocol name from "rtmp://" to "rtmps://".
+    Use only 1 protocol of sending a master stream: eitheronly RTMP/S (`push_url`),
+    or only SRT (`push_url_srt`).
+
     If you see an error like "invalid SSL certificate" try the following:
 
     - Make sure the push URL is correct, and it contains "rtmps://".
@@ -295,20 +283,58 @@ class Stream(BaseModel):
       port 443 in the URL. Here’s an example:
       rtmps://vp-push.domain.com:443/in/stream?key.
     - If you're still having trouble, then your encoder may not support RTMPS.
-      Double-check the documentation for your encoder. For advanced customers only:
-      For your complexly distributed broadcast systems, it is also possible to
-      additionally output an array of multi-regional ingestion points for manual
-      selection from them. To activate this mode, contact your manager or the
-      Support Team to activate the "`multi_region_push_urls`" attibute. But if you
-      clearly don’t understand why you need this, then it’s best to use the default
-      single URL in the "`push_url`" attribute.
+      Double-check the documentation for your encoder.
+
+    Please note that 1 connection and 1 protocol can be used at a single moment in
+    time per unique stream key input. Trying to send 2+ connection requests into
+    `push_url` to once, or 2+ protocols at once will not lead to a result. For
+    example, transcoding process will fail if:
+
+    - you are pushing primary and backup RTMP to the same single `push_url`
+      simultaneously
+    - you are pushing RTMP to `push_url` and SRT to `push_url_srt` simultaneously
+
+    For advanced customers only: For your complexly distributed broadcast systems,
+    it is also possible to additionally output an array of multi-regional ingestion
+    points for manual selection from them. To activate this mode, contact your
+    manager or the Support Team to activate the "`multi_region_push_urls`" attibute.
+    But if you clearly don’t understand why you need this, then it’s best to use the
+    default single URL in the "`push_url`" attribute.
     """
 
     push_url_srt: Optional[str] = None
     """
     URL to PUSH master stream to our main server using SRT protocol. Use only 1
-    protocol of sending a master stream: either only SRT (`push_url_srt`), or only
-    RTMP (`push_url`).
+    protocol of sending a master stream: eitheronly RTMP/S (`push_url`), or only SRT
+    (`push_url_srt`).
+
+    **Setup SRT latency on your sender side** SRT is designed as a low-latency
+    transport protocol, but real networks are not always stable and in some cases
+    the end-to-end path from the venue to the ingest point can be long. For this
+    reason, it is important to configure the latency parameter carefully to match
+    the actual network conditions. Small latency values may lead to packet loss when
+    jitter or retransmissions occur, while very large values introduce unnecessary
+    end-to-end delay. \\**Incorrect or low default value is one of the most common
+    reasons for packet loss, frames loss, and bad picture.\\**
+
+    We therefore recommend setting latency manually rather than relying on the
+    default, to ensure the buffer is correctly sized for your environment. A
+    practical range is 400–2000 ms, with the exact value chosen based on RTT,
+    jitter, and expected packet loss. Be sure to check and test SRT settings on your
+    sender side. The default values do not take into account your specific scenarios
+    and do not work well. If necessary, ask us and we will help you.
+
+    Please note that 1 connection and 1 protocol can be used at a single moment in
+    time per unique stream key input. Trying to send 2+ connection requests into
+    `push_url_srt` to once, or 2+ protocols at once will not lead to a result. For
+    example, transcoding process will fail if:
+
+    - you are pushing primary and backup SRT to the same single `push_url_srt`
+      simultaneously
+    - you are pushing RTMP to `push_url` and SRT to `push_url_srt` simultaneously
+
+    See more information and best practices about SRT protocol in the Product
+    Documentation.
     """
 
     push_url_whip: Optional[str] = None
@@ -321,9 +347,9 @@ class Stream(BaseModel):
     receives video data. Signaling is a term to describe communication between
     WebRTC endpoints, needed to initiate and maintain a session. WHIP is an open
     specification for a simple signaling protocol for starting WebRTC sessions in an
-    outgoing direction, (i.e., streaming from your device). **WebRTC stream encoding
-    parameters** At least one video and audio track both must be present in the
-    stream:
+    outgoing direction, (i.e., streaming from your device). There is the primary
+    link only for WHIP, so no backup link. **WebRTC stream encoding parameters** At
+    least one video and audio track both must be present in the stream:
 
     - Video must be encoded with H.264.
     - Audio must be encoded with OPUS. Note. Specifically for WebRTC mode a method
@@ -339,8 +365,18 @@ class Stream(BaseModel):
       https://stackblitz.com/edit/stackblitz-starters-j2r9ar?file=index.html Also
       try to use the feature in UI of the Customer Portal. In the Streaming section
       inside the settings of a specific live stream, a new section "Quick start in
-      browser" has been added. More information in the Product Documentation on the
-      website.
+      browser" has been added.
+
+    Please note that 1 connection and 1 protocol can be used at a single moment in
+    time per unique stream key input. Trying to send 2+ connection requests into
+    `push_url_whip` to once, or 2+ protocols at once will not lead to a result. For
+    example, transcoding process will fail if:
+
+    - you are pushing primary and backup WHIP to the same single `push_url_whip`
+      simultaneously
+    - you are pushing WHIP to `push_url_whip` and RTMP to `push_url` simultaneously
+
+    More information in the Product Documentation on the website.
     """
 
     quality_set_id: Optional[int] = None
@@ -407,10 +443,11 @@ class Stream(BaseModel):
     round robin scheduling. If the first address does not respond, then the next one
     in the list will be automatically requested, returning to the first and so on in
     a circle. Also, if the sucessfully working stream stops sending data, then the
-    next one will be selected according to the same scheme. After 24 hours of
-    inactivity of your streams we will stop PULL-ing, and will switch "active" field
-    to "false". Please, note that this field is for PULL only, so is not suitable
-    for PUSH. Look at fields "`push_url`" and "`push_url_srt`" from GET method.
+    next one will be selected according to the same scheme. After 2 hours of
+    inactivity of your original stream, the system stops PULL requests and the
+    stream is deactivated (the "active" field switches to "false"). Please, note
+    that this field is for PULL only, so is not suitable for PUSH. Look at fields
+    "`push_url`" and "`push_url_srt`" from GET method.
     """
 
     video_height: Optional[float] = None

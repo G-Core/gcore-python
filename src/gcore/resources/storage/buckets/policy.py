@@ -14,7 +14,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.storage.buckets.storage_bucket_policy import StorageBucketPolicy
+from ....types.storage.buckets.policy_get_response import PolicyGetResponse
 
 __all__ = ["PolicyResource", "AsyncPolicyResource"]
 
@@ -52,8 +52,11 @@ class PolicyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Creates or updates access policy for an S3 bucket, controlling permissions for
-        bucket operations.
+        Applies a public read policy to the S3 bucket, allowing anonymous users to
+        download/access all objects in the bucket via HTTP GET requests. This makes the
+        bucket suitable for static website hosting, public file sharing, or CDN
+        integration. Only grants read access - users cannot upload, modify, or delete
+        objects without proper authentication.
 
         Args:
           extra_headers: Send extra headers
@@ -68,7 +71,9 @@ class PolicyResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -88,7 +93,10 @@ class PolicyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Removes the access policy from an S3 bucket, reverting to default permissions.
+        Removes the public read policy from an S3 bucket, making all objects private and
+        accessible only with proper authentication credentials. After this operation,
+        anonymous users will no longer be able to access bucket contents via HTTP
+        requests.
 
         Args:
           extra_headers: Send extra headers
@@ -103,7 +111,9 @@ class PolicyResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -121,9 +131,10 @@ class PolicyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StorageBucketPolicy:
+    ) -> PolicyGetResponse:
         """
-        Retrieves the current access policy configuration for an S3 bucket.
+        Returns whether the S3 bucket is currently configured for public read access.
+        Shows if anonymous users can download objects from the bucket via HTTP requests.
 
         Args:
           extra_headers: Send extra headers
@@ -137,11 +148,13 @@ class PolicyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=StorageBucketPolicy,
+            cast_to=PolicyGetResponse,
         )
 
 
@@ -178,8 +191,11 @@ class AsyncPolicyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Creates or updates access policy for an S3 bucket, controlling permissions for
-        bucket operations.
+        Applies a public read policy to the S3 bucket, allowing anonymous users to
+        download/access all objects in the bucket via HTTP GET requests. This makes the
+        bucket suitable for static website hosting, public file sharing, or CDN
+        integration. Only grants read access - users cannot upload, modify, or delete
+        objects without proper authentication.
 
         Args:
           extra_headers: Send extra headers
@@ -194,7 +210,9 @@ class AsyncPolicyResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -214,7 +232,10 @@ class AsyncPolicyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Removes the access policy from an S3 bucket, reverting to default permissions.
+        Removes the public read policy from an S3 bucket, making all objects private and
+        accessible only with proper authentication credentials. After this operation,
+        anonymous users will no longer be able to access bucket contents via HTTP
+        requests.
 
         Args:
           extra_headers: Send extra headers
@@ -229,7 +250,9 @@ class AsyncPolicyResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -247,9 +270,10 @@ class AsyncPolicyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StorageBucketPolicy:
+    ) -> PolicyGetResponse:
         """
-        Retrieves the current access policy configuration for an S3 bucket.
+        Returns whether the S3 bucket is currently configured for public read access.
+        Shows if anonymous users can download objects from the bucket via HTTP requests.
 
         Args:
           extra_headers: Send extra headers
@@ -263,11 +287,13 @@ class AsyncPolicyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=StorageBucketPolicy,
+            cast_to=PolicyGetResponse,
         )
 
 

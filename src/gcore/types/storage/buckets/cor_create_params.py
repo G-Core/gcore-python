@@ -14,3 +14,4 @@ class CorCreateParams(TypedDict, total=False):
     storage_id: Required[int]
 
     allowed_origins: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowedOrigins")]
+    """List of allowed origins for CORS requests"""

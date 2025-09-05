@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -39,6 +41,7 @@ class LocationsResource(SyncAPIResource):
         """
         return LocationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -55,7 +58,9 @@ class LocationsResource(SyncAPIResource):
         represents a geographic region with specific data center facilities.
         """
         return self._get(
-            "/storage/provisioning/v1/location",
+            "/storage/provisioning/v1/location"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v1/location",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -83,6 +88,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         """
         return AsyncLocationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def list(
         self,
         *,
@@ -99,7 +105,9 @@ class AsyncLocationsResource(AsyncAPIResource):
         represents a geographic region with specific data center facilities.
         """
         return await self._get(
-            "/storage/provisioning/v1/location",
+            "/storage/provisioning/v1/location"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v1/location",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -111,8 +119,10 @@ class LocationsResourceWithRawResponse:
     def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
-        self.list = to_raw_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -120,8 +130,10 @@ class AsyncLocationsResourceWithRawResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
-        self.list = async_to_raw_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -129,8 +141,10 @@ class LocationsResourceWithStreamingResponse:
     def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
-        self.list = to_streamed_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -138,6 +152,8 @@ class AsyncLocationsResourceWithStreamingResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
-        self.list = async_to_streamed_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
