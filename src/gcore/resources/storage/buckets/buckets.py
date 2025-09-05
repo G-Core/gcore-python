@@ -21,6 +21,7 @@ from .policy import (
     AsyncPolicyResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._utils import maybe_transform
 from .lifecycle import (
     LifecycleResource,
     AsyncLifecycleResource,
@@ -37,7 +38,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.storage import bucket_list_params
+from ....types.storage.storage_bucket import StorageBucket
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
@@ -104,11 +108,66 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def list(
+        self,
+        storage_id: int,
+        *,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncOffsetPage[StorageBucket]:
+        """Returns the list of buckets for the storage in a wrapped response.
+
+        Response
+        format: count: total number of buckets (independent of pagination) results:
+        current page of buckets according to limit/offset
+
+        Args:
+          limit: Max number of records in response
+
+          offset: Number of records to skip before beginning to write in response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}/s3/buckets",
+            page=SyncOffsetPage[StorageBucket],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    bucket_list_params.BucketListParams,
+                ),
+            ),
+            model=StorageBucket,
         )
 
     def delete(
@@ -125,7 +184,8 @@ class BucketsResource(SyncAPIResource):
     ) -> None:
         """Removes a bucket from an S3 storage.
 
-        The bucket must be empty before deletion.
+        All objects in the bucket will be
+        automatically deleted before the bucket is removed.
 
         Args:
           extra_headers: Send extra headers
@@ -140,7 +200,9 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -210,11 +272,66 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def list(
+        self,
+        storage_id: int,
+        *,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[StorageBucket, AsyncOffsetPage[StorageBucket]]:
+        """Returns the list of buckets for the storage in a wrapped response.
+
+        Response
+        format: count: total number of buckets (independent of pagination) results:
+        current page of buckets according to limit/offset
+
+        Args:
+          limit: Max number of records in response
+
+          offset: Number of records to skip before beginning to write in response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}/s3/buckets",
+            page=AsyncOffsetPage[StorageBucket],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    bucket_list_params.BucketListParams,
+                ),
+            ),
+            model=StorageBucket,
         )
 
     async def delete(
@@ -231,7 +348,8 @@ class AsyncBucketsResource(AsyncAPIResource):
     ) -> None:
         """Removes a bucket from an S3 storage.
 
-        The bucket must be empty before deletion.
+        All objects in the bucket will be
+        automatically deleted before the bucket is removed.
 
         Args:
           extra_headers: Send extra headers
@@ -246,7 +364,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -260,6 +380,9 @@ class BucketsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             buckets.create,
+        )
+        self.list = to_raw_response_wrapper(
+            buckets.list,
         )
         self.delete = to_raw_response_wrapper(
             buckets.delete,
@@ -285,6 +408,9 @@ class AsyncBucketsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             buckets.create,
         )
+        self.list = async_to_raw_response_wrapper(
+            buckets.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             buckets.delete,
         )
@@ -309,6 +435,9 @@ class BucketsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             buckets.create,
         )
+        self.list = to_streamed_response_wrapper(
+            buckets.list,
+        )
         self.delete = to_streamed_response_wrapper(
             buckets.delete,
         )
@@ -332,6 +461,9 @@ class AsyncBucketsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             buckets.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            buckets.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             buckets.delete,

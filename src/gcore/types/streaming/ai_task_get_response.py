@@ -16,16 +16,12 @@ __all__ = [
     "AITaskGetResponseResultAIResultsTranscribeSubtitle",
     "AITaskGetResponseResultAIResultsContentmoderationSport",
     "AITaskGetResponseResultAIResultsContentmoderationSportFrame",
-    "AITaskGetResponseResultAIResultsContentmoderationWeapon",
-    "AITaskGetResponseResultAIResultsContentmoderationWeaponFrame",
     "AITaskGetResponseResultAIResultsContentmoderationNsfw",
     "AITaskGetResponseResultAIResultsContentmoderationNsfwFrame",
     "AITaskGetResponseResultAIResultsContentmoderationHardnudity",
     "AITaskGetResponseResultAIResultsContentmoderationHardnudityFrame",
     "AITaskGetResponseResultAIResultsContentmoderationSoftnudity",
     "AITaskGetResponseResultAIResultsContentmoderationSoftnudityFrame",
-    "AITaskGetResponseResultAIResultsContentmoderationCasm",
-    "AITaskGetResponseResultAIResultsContentmoderationCasmFrame",
     "AITaskGetResponseResultAIResultsFailure",
 ]
 
@@ -157,26 +153,6 @@ class AITaskGetResponseResultAIResultsContentmoderationSport(BaseModel):
     """A boolean value whether any sports were detected"""
 
 
-class AITaskGetResponseResultAIResultsContentmoderationWeaponFrame(BaseModel):
-    confidence: Optional[float] = None
-    """Percentage of probability of identifying the object"""
-
-    frame_number: Optional[int] = FieldInfo(alias="frame-number", default=None)
-    """Video frame number where object was found"""
-
-    label: Optional[str] = None
-    """Type of detected object"""
-
-
-class AITaskGetResponseResultAIResultsContentmoderationWeapon(BaseModel):
-    detection_results: Optional[List[Literal["gun", "heavy weapon", "knife"]]] = None
-
-    frames: Optional[List[AITaskGetResponseResultAIResultsContentmoderationWeaponFrame]] = None
-
-    weapon_detected: Optional[bool] = None
-    """A boolean value whether any weapon was detected"""
-
-
 class AITaskGetResponseResultAIResultsContentmoderationNsfwFrame(BaseModel):
     confidence: Optional[float] = None
     """Percentage of probability of identifying the object"""
@@ -271,26 +247,6 @@ class AITaskGetResponseResultAIResultsContentmoderationSoftnudity(BaseModel):
     """A boolean value whether any nudity and other body part was detected"""
 
 
-class AITaskGetResponseResultAIResultsContentmoderationCasmFrame(BaseModel):
-    confidence: Optional[float] = None
-    """Percentage of probability of identifying the object"""
-
-    frame_number: Optional[int] = FieldInfo(alias="frame-number", default=None)
-    """Video frame number where object was found"""
-
-    label: Optional[str] = None
-    """Type of detected object"""
-
-
-class AITaskGetResponseResultAIResultsContentmoderationCasm(BaseModel):
-    child_pornography_detected: Optional[bool] = None
-    """A boolean value whether child pornography was detected"""
-
-    detection_results: Optional[List[Literal["0-2", "3-9", "10-19"]]] = None
-
-    frames: Optional[List[AITaskGetResponseResultAIResultsContentmoderationCasmFrame]] = None
-
-
 class AITaskGetResponseResultAIResultsFailure(BaseModel):
     error: str
 
@@ -298,11 +254,9 @@ class AITaskGetResponseResultAIResultsFailure(BaseModel):
 AITaskGetResponseResult: TypeAlias = Union[
     AITaskGetResponseResultAIResultsTranscribe,
     AITaskGetResponseResultAIResultsContentmoderationSport,
-    AITaskGetResponseResultAIResultsContentmoderationWeapon,
     AITaskGetResponseResultAIResultsContentmoderationNsfw,
     AITaskGetResponseResultAIResultsContentmoderationHardnudity,
     AITaskGetResponseResultAIResultsContentmoderationSoftnudity,
-    AITaskGetResponseResultAIResultsContentmoderationCasm,
     AITaskGetResponseResultAIResultsFailure,
 ]
 

@@ -54,8 +54,7 @@ class AITasksResource(SyncAPIResource):
         task_name: Literal["transcription", "content-moderation"],
         url: str,
         audio_language: str | NotGiven = NOT_GIVEN,
-        category: Literal["sport", "weapon", "nsfw", "hard_nudity", "soft_nudity", "child_pornography"]
-        | NotGiven = NOT_GIVEN,
+        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | NotGiven = NOT_GIVEN,
         client_entity_data: str | NotGiven = NOT_GIVEN,
         client_user_id: str | NotGiven = NOT_GIVEN,
         subtitles_language: str | NotGiven = NOT_GIVEN,
@@ -74,11 +73,9 @@ class AITasksResource(SyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
           ![Auto generated subtitles example](https://demo-files.gvideo.io/apidocs/captions.gif)
           How to use:
@@ -137,14 +134,11 @@ class AITasksResource(SyncAPIResource):
         - `soft_nudity`: Detailed video analysis that reveals both explicit and partial
           nudity, including the presence of male and female faces and other uncovered
           body parts.
-        - `child_pornography`: Detects child sexual abuse materials (CASM).
-        - `sport`: Recognizes various sporting activities.
-        - `weapon`: Identifies the presence of weapons in the video content. The AI
-          Content Moderation API is an invaluable tool for managing and controlling the
-          type of content being shared or streamed on your platform. By implementing
-          this API, you can ensure compliance with community guidelines and legal
-          requirements, as well as provide a safer environment for your users. Important
-          notes:
+        - `sport`: Recognizes various sporting activities. The AI Content Moderation API
+          is an invaluable tool for managing and controlling the type of content being
+          shared or streamed on your platform. By implementing this API, you can ensure
+          compliance with community guidelines and legal requirements, as well as
+          provide a safer environment for your users. Important notes:
         - It's allowed to analyse still images too (where applicable). Format of image:
           JPEG, PNG. In that case one image is the same as video of 1 second duration.
         - Not all frames in the video are used for analysis, but only key frames
@@ -312,7 +306,7 @@ class AITasksResource(SyncAPIResource):
               - transcription into the original language is a free procedure,
               - and translation from the original language into any other languages is a
                 "translation" procedure and is paid. More details in
-                [POST /ai/tasks#transcribe](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+                [POST /streaming/ai/tasks#transcribe](/docs/api-reference/streaming/ai/create-ai-asr-task).
                 Language is set by 3-letter language code according to ISO-639-2
                 (bibliographic code).
 
@@ -325,7 +319,7 @@ class AITasksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             body=maybe_transform(
                 {
                     "task_name": task_name,
@@ -406,7 +400,7 @@ class AITasksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             page=SyncPageStreamingAI[AITask],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -457,7 +451,9 @@ class AITasksResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._post(
-            f"/streaming/ai/tasks/{task_id}/cancel",
+            f"/streaming/ai/tasks/{task_id}/cancel"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}/cancel",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -484,11 +480,9 @@ class AITasksResource(SyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
         - etc... (see other methods from /ai/ domain)
 
@@ -526,7 +520,9 @@ class AITasksResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._get(
-            f"/streaming/ai/tasks/{task_id}",
+            f"/streaming/ai/tasks/{task_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -598,7 +594,7 @@ class AITasksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/ai/info",
+            "/streaming/ai/info" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/info",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -643,8 +639,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         task_name: Literal["transcription", "content-moderation"],
         url: str,
         audio_language: str | NotGiven = NOT_GIVEN,
-        category: Literal["sport", "weapon", "nsfw", "hard_nudity", "soft_nudity", "child_pornography"]
-        | NotGiven = NOT_GIVEN,
+        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | NotGiven = NOT_GIVEN,
         client_entity_data: str | NotGiven = NOT_GIVEN,
         client_user_id: str | NotGiven = NOT_GIVEN,
         subtitles_language: str | NotGiven = NOT_GIVEN,
@@ -663,11 +658,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
           ![Auto generated subtitles example](https://demo-files.gvideo.io/apidocs/captions.gif)
           How to use:
@@ -726,14 +719,11 @@ class AsyncAITasksResource(AsyncAPIResource):
         - `soft_nudity`: Detailed video analysis that reveals both explicit and partial
           nudity, including the presence of male and female faces and other uncovered
           body parts.
-        - `child_pornography`: Detects child sexual abuse materials (CASM).
-        - `sport`: Recognizes various sporting activities.
-        - `weapon`: Identifies the presence of weapons in the video content. The AI
-          Content Moderation API is an invaluable tool for managing and controlling the
-          type of content being shared or streamed on your platform. By implementing
-          this API, you can ensure compliance with community guidelines and legal
-          requirements, as well as provide a safer environment for your users. Important
-          notes:
+        - `sport`: Recognizes various sporting activities. The AI Content Moderation API
+          is an invaluable tool for managing and controlling the type of content being
+          shared or streamed on your platform. By implementing this API, you can ensure
+          compliance with community guidelines and legal requirements, as well as
+          provide a safer environment for your users. Important notes:
         - It's allowed to analyse still images too (where applicable). Format of image:
           JPEG, PNG. In that case one image is the same as video of 1 second duration.
         - Not all frames in the video are used for analysis, but only key frames
@@ -901,7 +891,7 @@ class AsyncAITasksResource(AsyncAPIResource):
               - transcription into the original language is a free procedure,
               - and translation from the original language into any other languages is a
                 "translation" procedure and is paid. More details in
-                [POST /ai/tasks#transcribe](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+                [POST /streaming/ai/tasks#transcribe](/docs/api-reference/streaming/ai/create-ai-asr-task).
                 Language is set by 3-letter language code according to ISO-639-2
                 (bibliographic code).
 
@@ -914,7 +904,7 @@ class AsyncAITasksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             body=await async_maybe_transform(
                 {
                     "task_name": task_name,
@@ -995,7 +985,7 @@ class AsyncAITasksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/ai/tasks",
+            "/streaming/ai/tasks" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/tasks",
             page=AsyncPageStreamingAI[AITask],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1046,7 +1036,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._post(
-            f"/streaming/ai/tasks/{task_id}/cancel",
+            f"/streaming/ai/tasks/{task_id}/cancel"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}/cancel",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1073,11 +1065,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         - ASR: Transcribe video
         - ASR: Translate subtitles
         - CM: Sports detection
-        - CM: Weapon detection
         - CM: Not Safe For Work (NSFW) content detection
         - CM: Soft nudity detection
         - CM: Hard nudity detection
-        - CM: Child Sexual Abuse Material (CSAM) detection
         - CM: Objects recognition (soon)
         - etc... (see other methods from /ai/ domain)
 
@@ -1115,7 +1105,9 @@ class AsyncAITasksResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._get(
-            f"/streaming/ai/tasks/{task_id}",
+            f"/streaming/ai/tasks/{task_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/ai/tasks/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1187,7 +1179,7 @@ class AsyncAITasksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/ai/info",
+            "/streaming/ai/info" if self._client._base_url_overridden else "https://api.gcore.com//streaming/ai/info",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

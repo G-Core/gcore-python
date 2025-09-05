@@ -28,7 +28,7 @@ class TestLifecycle:
         lifecycle = client.storage.buckets.lifecycle.create(
             bucket_name="bucket_name",
             storage_id=0,
-            expiration_days=0,
+            expiration_days=30,
         )
         assert lifecycle is None
 
@@ -127,7 +127,7 @@ class TestAsyncLifecycle:
         lifecycle = await async_client.storage.buckets.lifecycle.create(
             bucket_name="bucket_name",
             storage_id=0,
-            expiration_days=0,
+            expiration_days=30,
         )
         assert lifecycle is None
 

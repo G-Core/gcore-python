@@ -73,7 +73,7 @@ class SubtitlesResource(SyncAPIResource):
           language code according to ISO-639-2 (bibliographic code). Specify language
           you need, or just look at our list in the attribute "`audio_language`" of
           section
-          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
           You can add multiple subtitles in the same language, language uniqueness is
           not required. Size must be up to 5Mb.
 
@@ -84,7 +84,7 @@ class SubtitlesResource(SyncAPIResource):
         subtitles based on AI. Read more:
 
         - What is
-          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -120,7 +120,9 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
             body=maybe_transform(body, subtitle_create_params.SubtitleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -170,7 +172,9 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
             body=maybe_transform(
                 {
                     "language": language,
@@ -209,7 +213,9 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -242,7 +248,9 @@ class SubtitlesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -274,7 +282,9 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -332,7 +342,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           language code according to ISO-639-2 (bibliographic code). Specify language
           you need, or just look at our list in the attribute "`audio_language`" of
           section
-          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
           You can add multiple subtitles in the same language, language uniqueness is
           not required. Size must be up to 5Mb.
 
@@ -343,7 +353,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         subtitles based on AI. Read more:
 
         - What is
-          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -379,7 +389,9 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
             body=await async_maybe_transform(body, subtitle_create_params.SubtitleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -429,7 +441,9 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
             body=await async_maybe_transform(
                 {
                     "language": language,
@@ -468,7 +482,9 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -501,7 +517,9 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -533,7 +551,9 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

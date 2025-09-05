@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
@@ -38,8 +40,9 @@ from .credentials import (
     CredentialsResourceWithStreamingResponse,
     AsyncCredentialsResourceWithStreamingResponse,
 )
-from ..._base_client import make_request_options
-from ...types.storage import storage_update_params, storage_restore_params
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.storage import storage_list_params, storage_update_params, storage_restore_params
 from .buckets.buckets import (
     BucketsResource,
     AsyncBucketsResource,
@@ -89,6 +92,30 @@ class StorageResource(SyncAPIResource):
         """
         return StorageResourceWithStreamingResponse(self)
 
+    def create(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Storage:
+        """
+        Creates a new storage instance (S3 or SFTP) in the specified location and
+        returns the storage details including credentials.
+        """
+        return self._post(
+            "/storage/provisioning/v2/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v2/storage",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Storage,
+        )
+
     def update(
         self,
         storage_id: int,
@@ -106,6 +133,11 @@ class StorageResource(SyncAPIResource):
         Updates storage configuration such as expiration date and server alias.
 
         Args:
+          expires: ISO 8601 timestamp when the storage should expire. Leave empty to remove
+              expiration.
+
+          server_alias: Custom domain alias for accessing the storage. Leave empty to remove alias.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -115,7 +147,9 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             body=maybe_transform(
                 {
                     "expires": expires,
@@ -127,6 +161,90 @@ class StorageResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Storage,
+        )
+
+    def list(
+        self,
+        *,
+        id: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        order_by: str | NotGiven = NOT_GIVEN,
+        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        show_deleted: bool | NotGiven = NOT_GIVEN,
+        status: Literal["active", "suspended", "deleted", "pending"] | NotGiven = NOT_GIVEN,
+        type: Literal["s3", "sftp"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncOffsetPage[Storage]:
+        """
+        Returns storages with the same filtering and pagination as v2, but in a
+        simplified response shape for easier client consumption. Response format: count:
+        total number of storages matching the filter (independent of pagination)
+        results: the current page of storages according to limit/offset
+
+        Args:
+          id: Filter by storage ID
+
+          limit: Max number of records in response
+
+          location: Filter by storage location/region
+
+          name: Filter by storage name (exact match)
+
+          offset: Number of records to skip before beginning to write in response.
+
+          order_by: Field name to sort by
+
+          order_direction: Ascending or descending order
+
+          show_deleted: Include deleted storages in the response
+
+          status: Filter by storage status
+
+          type: Filter by storage type
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/storage/provisioning/v3/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v3/storage",
+            page=SyncOffsetPage[Storage],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "id": id,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "offset": offset,
+                        "order_by": order_by,
+                        "order_direction": order_direction,
+                        "show_deleted": show_deleted,
+                        "status": status,
+                        "type": type,
+                    },
+                    storage_list_params.StorageListParams,
+                ),
+            ),
+            model=Storage,
         )
 
     def delete(
@@ -155,7 +273,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -187,7 +307,9 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -222,7 +344,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -256,7 +380,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/restore",
+            f"/storage/provisioning/v1/storage/{storage_id}/restore"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/restore",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -295,7 +421,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -339,6 +467,30 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         return AsyncStorageResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Storage:
+        """
+        Creates a new storage instance (S3 or SFTP) in the specified location and
+        returns the storage details including credentials.
+        """
+        return await self._post(
+            "/storage/provisioning/v2/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v2/storage",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Storage,
+        )
+
     async def update(
         self,
         storage_id: int,
@@ -356,6 +508,11 @@ class AsyncStorageResource(AsyncAPIResource):
         Updates storage configuration such as expiration date and server alias.
 
         Args:
+          expires: ISO 8601 timestamp when the storage should expire. Leave empty to remove
+              expiration.
+
+          server_alias: Custom domain alias for accessing the storage. Leave empty to remove alias.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -365,7 +522,9 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             body=await async_maybe_transform(
                 {
                     "expires": expires,
@@ -377,6 +536,90 @@ class AsyncStorageResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Storage,
+        )
+
+    def list(
+        self,
+        *,
+        id: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        order_by: str | NotGiven = NOT_GIVEN,
+        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        show_deleted: bool | NotGiven = NOT_GIVEN,
+        status: Literal["active", "suspended", "deleted", "pending"] | NotGiven = NOT_GIVEN,
+        type: Literal["s3", "sftp"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Storage, AsyncOffsetPage[Storage]]:
+        """
+        Returns storages with the same filtering and pagination as v2, but in a
+        simplified response shape for easier client consumption. Response format: count:
+        total number of storages matching the filter (independent of pagination)
+        results: the current page of storages according to limit/offset
+
+        Args:
+          id: Filter by storage ID
+
+          limit: Max number of records in response
+
+          location: Filter by storage location/region
+
+          name: Filter by storage name (exact match)
+
+          offset: Number of records to skip before beginning to write in response.
+
+          order_by: Field name to sort by
+
+          order_direction: Ascending or descending order
+
+          show_deleted: Include deleted storages in the response
+
+          status: Filter by storage status
+
+          type: Filter by storage type
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/storage/provisioning/v3/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v3/storage",
+            page=AsyncOffsetPage[Storage],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "id": id,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "offset": offset,
+                        "order_by": order_by,
+                        "order_direction": order_direction,
+                        "show_deleted": show_deleted,
+                        "status": status,
+                        "type": type,
+                    },
+                    storage_list_params.StorageListParams,
+                ),
+            ),
+            model=Storage,
         )
 
     async def delete(
@@ -405,7 +648,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -437,7 +682,9 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -472,7 +719,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -506,7 +755,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/restore",
+            f"/storage/provisioning/v1/storage/{storage_id}/restore"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/restore",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -547,7 +798,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -559,8 +812,14 @@ class StorageResourceWithRawResponse:
     def __init__(self, storage: StorageResource) -> None:
         self._storage = storage
 
+        self.create = to_raw_response_wrapper(
+            storage.create,
+        )
         self.update = to_raw_response_wrapper(
             storage.update,
+        )
+        self.list = to_raw_response_wrapper(
+            storage.list,
         )
         self.delete = to_raw_response_wrapper(
             storage.delete,
@@ -599,8 +858,14 @@ class AsyncStorageResourceWithRawResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
         self._storage = storage
 
+        self.create = async_to_raw_response_wrapper(
+            storage.create,
+        )
         self.update = async_to_raw_response_wrapper(
             storage.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            storage.list,
         )
         self.delete = async_to_raw_response_wrapper(
             storage.delete,
@@ -639,8 +904,14 @@ class StorageResourceWithStreamingResponse:
     def __init__(self, storage: StorageResource) -> None:
         self._storage = storage
 
+        self.create = to_streamed_response_wrapper(
+            storage.create,
+        )
         self.update = to_streamed_response_wrapper(
             storage.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            storage.list,
         )
         self.delete = to_streamed_response_wrapper(
             storage.delete,
@@ -679,8 +950,14 @@ class AsyncStorageResourceWithStreamingResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
         self._storage = storage
 
+        self.create = async_to_streamed_response_wrapper(
+            storage.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             storage.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            storage.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             storage.delete,

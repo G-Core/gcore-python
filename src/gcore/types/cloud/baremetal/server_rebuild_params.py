@@ -9,8 +9,10 @@ __all__ = ["ServerRebuildParams"]
 
 class ServerRebuildParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     image_id: str
     """Image ID"""

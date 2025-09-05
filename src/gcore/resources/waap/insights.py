@@ -88,7 +88,9 @@ class InsightsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/security-insights/types",
+            "/waap/v1/security-insights/types"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/security-insights/types",
             page=SyncOffsetPage[WaapInsightType],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -174,7 +176,9 @@ class AsyncInsightsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/security-insights/types",
+            "/waap/v1/security-insights/types"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/security-insights/types",
             page=AsyncOffsetPage[WaapInsightType],
             options=make_request_options(
                 extra_headers=extra_headers,

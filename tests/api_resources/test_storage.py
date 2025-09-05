@@ -9,6 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.storage import Storage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -16,6 +17,31 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestStorage:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_create(self, client: Gcore) -> None:
+        storage = client.storage.create()
+        assert_matches_type(Storage, storage, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Gcore) -> None:
+        response = client.storage.with_raw_response.create()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        storage = response.parse()
+        assert_matches_type(Storage, storage, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Gcore) -> None:
+        with client.storage.with_streaming_response.create() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            storage = response.parse()
+            assert_matches_type(Storage, storage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
@@ -28,8 +54,8 @@ class TestStorage:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         storage = client.storage.update(
             storage_id=0,
-            expires="expires",
-            server_alias="server_alias",
+            expires="2026-12-31 23:59:59+00:00",
+            server_alias="my-storage.company.com",
         )
         assert_matches_type(Storage, storage, path=["response"])
 
@@ -54,6 +80,47 @@ class TestStorage:
 
             storage = response.parse()
             assert_matches_type(Storage, storage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_list(self, client: Gcore) -> None:
+        storage = client.storage.list()
+        assert_matches_type(SyncOffsetPage[Storage], storage, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        storage = client.storage.list(
+            id="id",
+            limit=1,
+            location="location",
+            name="name",
+            offset=0,
+            order_by="order_by",
+            order_direction="asc",
+            show_deleted=True,
+            status="active",
+            type="s3",
+        )
+        assert_matches_type(SyncOffsetPage[Storage], storage, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: Gcore) -> None:
+        response = client.storage.with_raw_response.list()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        storage = response.parse()
+        assert_matches_type(SyncOffsetPage[Storage], storage, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: Gcore) -> None:
+        with client.storage.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            storage = response.parse()
+            assert_matches_type(SyncOffsetPage[Storage], storage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -233,6 +300,31 @@ class TestAsyncStorage:
     )
 
     @parametrize
+    async def test_method_create(self, async_client: AsyncGcore) -> None:
+        storage = await async_client.storage.create()
+        assert_matches_type(Storage, storage, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
+        response = await async_client.storage.with_raw_response.create()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        storage = await response.parse()
+        assert_matches_type(Storage, storage, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
+        async with async_client.storage.with_streaming_response.create() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            storage = await response.parse()
+            assert_matches_type(Storage, storage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         storage = await async_client.storage.update(
             storage_id=0,
@@ -243,8 +335,8 @@ class TestAsyncStorage:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         storage = await async_client.storage.update(
             storage_id=0,
-            expires="expires",
-            server_alias="server_alias",
+            expires="2026-12-31 23:59:59+00:00",
+            server_alias="my-storage.company.com",
         )
         assert_matches_type(Storage, storage, path=["response"])
 
@@ -269,6 +361,47 @@ class TestAsyncStorage:
 
             storage = await response.parse()
             assert_matches_type(Storage, storage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_list(self, async_client: AsyncGcore) -> None:
+        storage = await async_client.storage.list()
+        assert_matches_type(AsyncOffsetPage[Storage], storage, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        storage = await async_client.storage.list(
+            id="id",
+            limit=1,
+            location="location",
+            name="name",
+            offset=0,
+            order_by="order_by",
+            order_direction="asc",
+            show_deleted=True,
+            status="active",
+            type="s3",
+        )
+        assert_matches_type(AsyncOffsetPage[Storage], storage, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
+        response = await async_client.storage.with_raw_response.list()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        storage = await response.parse()
+        assert_matches_type(AsyncOffsetPage[Storage], storage, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
+        async with async_client.storage.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            storage = await response.parse()
+            assert_matches_type(AsyncOffsetPage[Storage], storage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

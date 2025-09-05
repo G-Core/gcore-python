@@ -83,7 +83,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cloud/v1/projects",
+            "/cloud/v1/projects" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/projects",
             body=maybe_transform(
                 {
                     "name": name,
@@ -142,7 +142,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/projects",
+            "/cloud/v1/projects" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/projects",
             page=SyncOffsetPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -193,7 +193,9 @@ class ProjectsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._delete(
-            f"/cloud/v1/projects/{project_id}",
+            f"/cloud/v1/projects/{project_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -226,7 +228,9 @@ class ProjectsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get(
-            f"/cloud/v1/projects/{project_id}",
+            f"/cloud/v1/projects/{project_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -267,7 +271,9 @@ class ProjectsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._put(
-            f"/cloud/v1/projects/{project_id}",
+            f"/cloud/v1/projects/{project_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/projects/{project_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -339,7 +345,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cloud/v1/projects",
+            "/cloud/v1/projects" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/projects",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -398,7 +404,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/projects",
+            "/cloud/v1/projects" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/projects",
             page=AsyncOffsetPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -449,7 +455,9 @@ class AsyncProjectsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._delete(
-            f"/cloud/v1/projects/{project_id}",
+            f"/cloud/v1/projects/{project_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -482,7 +490,9 @@ class AsyncProjectsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._get(
-            f"/cloud/v1/projects/{project_id}",
+            f"/cloud/v1/projects/{project_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -523,7 +533,9 @@ class AsyncProjectsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._put(
-            f"/cloud/v1/projects/{project_id}",
+            f"/cloud/v1/projects/{project_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/projects/{project_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
