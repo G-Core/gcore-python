@@ -95,7 +95,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/attack-time-series",
+            "/waap/v1/ip-info/attack-time-series"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/attack-time-series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -142,7 +144,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/blocked-requests",
+            "/waap/v1/ip-info/blocked-requests"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/blocked-requests",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -189,7 +193,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/ddos",
+            "/waap/v1/ip-info/ddos"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/ddos",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -229,7 +235,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/ip-info",
+            "/waap/v1/ip-info/ip-info"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/ip-info",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,7 +282,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/top-urls",
+            "/waap/v1/ip-info/top-urls"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/top-urls",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,7 +333,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/top-user-agents",
+            "/waap/v1/ip-info/top-user-agents"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/top-user-agents",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -372,7 +384,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/top-sessions",
+            "/waap/v1/ip-info/top-sessions"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/top-sessions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -415,7 +429,9 @@ class IPInfoResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/ip-info/attack-map",
+            "/waap/v1/ip-info/attack-map"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/attack-map",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -479,7 +495,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/attack-time-series",
+            "/waap/v1/ip-info/attack-time-series"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/attack-time-series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -526,7 +544,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/blocked-requests",
+            "/waap/v1/ip-info/blocked-requests"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/blocked-requests",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -573,7 +593,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/ddos",
+            "/waap/v1/ip-info/ddos"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/ddos",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -613,7 +635,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/ip-info",
+            "/waap/v1/ip-info/ip-info"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/ip-info",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -658,7 +682,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/top-urls",
+            "/waap/v1/ip-info/top-urls"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/top-urls",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -707,7 +733,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/top-user-agents",
+            "/waap/v1/ip-info/top-user-agents"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/top-user-agents",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -756,7 +784,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/top-sessions",
+            "/waap/v1/ip-info/top-sessions"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/top-sessions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -799,7 +829,9 @@ class AsyncIPInfoResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/ip-info/attack-map",
+            "/waap/v1/ip-info/attack-map"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/ip-info/attack-map",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

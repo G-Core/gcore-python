@@ -164,18 +164,18 @@ class TestServers:
     @parametrize
     def test_method_rebuild(self, client: Gcore) -> None:
         server = client.cloud.baremetal.servers.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, server, path=["response"])
 
     @parametrize
     def test_method_rebuild_with_all_params(self, client: Gcore) -> None:
         server = client.cloud.baremetal.servers.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
             image_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
             user_data="aGVsbG9fd29ybGQ=",
         )
@@ -184,9 +184,9 @@ class TestServers:
     @parametrize
     def test_raw_response_rebuild(self, client: Gcore) -> None:
         response = client.cloud.baremetal.servers.with_raw_response.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -197,9 +197,9 @@ class TestServers:
     @parametrize
     def test_streaming_response_rebuild(self, client: Gcore) -> None:
         with client.cloud.baremetal.servers.with_streaming_response.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -214,8 +214,8 @@ class TestServers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `server_id` but received ''"):
             client.cloud.baremetal.servers.with_raw_response.rebuild(
                 server_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
 
@@ -368,18 +368,18 @@ class TestAsyncServers:
     @parametrize
     async def test_method_rebuild(self, async_client: AsyncGcore) -> None:
         server = await async_client.cloud.baremetal.servers.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, server, path=["response"])
 
     @parametrize
     async def test_method_rebuild_with_all_params(self, async_client: AsyncGcore) -> None:
         server = await async_client.cloud.baremetal.servers.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
             image_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
             user_data="aGVsbG9fd29ybGQ=",
         )
@@ -388,9 +388,9 @@ class TestAsyncServers:
     @parametrize
     async def test_raw_response_rebuild(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.baremetal.servers.with_raw_response.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -401,9 +401,9 @@ class TestAsyncServers:
     @parametrize
     async def test_streaming_response_rebuild(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.baremetal.servers.with_streaming_response.rebuild(
-            server_id="server_id",
-            project_id=0,
-            region_id=0,
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -418,6 +418,6 @@ class TestAsyncServers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `server_id` but received ''"):
             await async_client.cloud.baremetal.servers.with_raw_response.rebuild(
                 server_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )

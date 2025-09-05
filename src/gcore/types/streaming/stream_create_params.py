@@ -94,22 +94,6 @@ class StreamCreateParams(TypedDict, total=False):
     live streams
     """
 
-    low_latency_enabled: bool
-    """
-    Deprecated, always returns "true". The only exception is that the attribute can
-    only be used by clients that have previously used the old stream format. This
-    method is outdated since we've made it easier to manage streams. For your
-    convenience, you no longer need to set this parameter at the stage of creating a
-    stream. Now all streams are prepared in 2 formats simultaniously: Low Latency
-    and Legacy. You can get the desired output format in the attributes
-    "`dash_url`", "`hls_cmaf_url`", "`hls_mpegts_url`". Or use them all at once.
-
-    ---
-
-    Note: Links /streams/{id}/playlist.m3u8 are depricated too. Use value of the
-    "`hls_mpegts_url`" attribute instead.
-    """
-
     projection: Literal["regular", "vr360", "vr180", "vr360tb"]
     """
     Visualization mode for 360° streams, how the stream is rendered in our web
@@ -128,9 +112,10 @@ class StreamCreateParams(TypedDict, total=False):
     Has two possible values:
 
     - true – stream is received by PULL method. Use this when need to get stream
-      from external server by srt, rtmp\\ss, hls, dash, etc protocols.
+      from external server.
     - false – stream is received by PUSH method. Use this when need to send stream
-      from end-device to our Streaming Platform, i.e. from mobile app or OBS Studio.
+      from end-device to our Streaming Platform, i.e. from your encoder, mobile app
+      or OBS Studio.
     """
 
     quality_set_id: int
@@ -158,8 +143,9 @@ class StreamCreateParams(TypedDict, total=False):
     round robin scheduling. If the first address does not respond, then the next one
     in the list will be automatically requested, returning to the first and so on in
     a circle. Also, if the sucessfully working stream stops sending data, then the
-    next one will be selected according to the same scheme. After 24 hours of
-    inactivity of your streams we will stop PULL-ing, and will switch "active" field
-    to "false". Please, note that this field is for PULL only, so is not suitable
-    for PUSH. Look at fields "`push_url`" and "`push_url_srt`" from GET method.
+    next one will be selected according to the same scheme. After 2 hours of
+    inactivity of your original stream, the system stops PULL requests and the
+    stream is deactivated (the "active" field switches to "false"). Please, note
+    that this field is for PULL only, so is not suitable for PUSH. Look at fields
+    "`push_url`" and "`push_url_srt`" from GET method.
     """

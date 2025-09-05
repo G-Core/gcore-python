@@ -76,7 +76,9 @@ class NodesResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,7 +126,9 @@ class NodesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -187,7 +191,9 @@ class AsyncNodesResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,7 +241,9 @@ class AsyncNodesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

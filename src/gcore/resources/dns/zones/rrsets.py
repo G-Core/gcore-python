@@ -205,7 +205,9 @@ class RrsetsResource(SyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return self._post(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             body=maybe_transform(
                 {
                     "resource_records": resource_records,
@@ -259,7 +261,9 @@ class RrsetsResource(SyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return self._get(
-            f"/dns/v2/zones/{zone_name}/rrsets",
+            f"/dns/v2/zones/{zone_name}/rrsets"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/rrsets",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -310,7 +314,9 @@ class RrsetsResource(SyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return self._delete(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -349,7 +355,9 @@ class RrsetsResource(SyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return self._get(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -394,7 +402,9 @@ class RrsetsResource(SyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return self._get(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}/failover/log",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}/failover/log"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}/failover/log",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -453,7 +463,9 @@ class RrsetsResource(SyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return self._put(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             body=maybe_transform(
                 {
                     "resource_records": resource_records,
@@ -644,7 +656,9 @@ class AsyncRrsetsResource(AsyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return await self._post(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             body=await async_maybe_transform(
                 {
                     "resource_records": resource_records,
@@ -698,7 +712,9 @@ class AsyncRrsetsResource(AsyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return await self._get(
-            f"/dns/v2/zones/{zone_name}/rrsets",
+            f"/dns/v2/zones/{zone_name}/rrsets"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/rrsets",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -749,7 +765,9 @@ class AsyncRrsetsResource(AsyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return await self._delete(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -788,7 +806,9 @@ class AsyncRrsetsResource(AsyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return await self._get(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -833,7 +853,9 @@ class AsyncRrsetsResource(AsyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return await self._get(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}/failover/log",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}/failover/log"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}/failover/log",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -892,7 +914,9 @@ class AsyncRrsetsResource(AsyncAPIResource):
         if not rrset_type:
             raise ValueError(f"Expected a non-empty value for `rrset_type` but received {rrset_type!r}")
         return await self._put(
-            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
+            f"/dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/{rrset_name}/{rrset_type}",
             body=await async_maybe_transform(
                 {
                     "resource_records": resource_records,

@@ -82,7 +82,9 @@ class OrganizationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/organizations",
+            "/waap/v1/organizations"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/organizations",
             page=SyncOffsetPage[WaapOrganization],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -160,7 +162,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/organizations",
+            "/waap/v1/organizations"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/organizations",
             page=AsyncOffsetPage[WaapOrganization],
             options=make_request_options(
                 extra_headers=extra_headers,
