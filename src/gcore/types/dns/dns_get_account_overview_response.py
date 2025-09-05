@@ -6,10 +6,25 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["DNSGetAccountOverviewResponse", "Info"]
+__all__ = ["DNSGetAccountOverviewResponse", "Client", "Settings"]
 
 
-class Info(BaseModel):
+class Client(BaseModel):
+    client_id: Optional[int] = None
+
+    enabled: Optional[bool] = None
+
+    reseller: Optional[int] = None
+
+    status: Optional[str] = None
+
+    tariff_id: Optional[int] = None
+
+    tariff_name: Optional[str] = None
+    """TariffName"""
+
+
+class Settings(BaseModel):
     contact: Optional[str] = None
 
     name_server_1: Optional[str] = None
@@ -18,4 +33,7 @@ class Info(BaseModel):
 
 
 class DNSGetAccountOverviewResponse(BaseModel):
-    info: Optional[Info] = FieldInfo(alias="Info", default=None)
+    client: Optional[Client] = FieldInfo(alias="Client", default=None)
+    """Client"""
+
+    settings: Optional[Settings] = None

@@ -80,6 +80,7 @@ class StreamsResource(SyncAPIResource):
         dvr_enabled: bool | NotGiven = NOT_GIVEN,
         hls_mpegts_endlist_tag: bool | NotGiven = NOT_GIVEN,
         html_overlay: bool | NotGiven = NOT_GIVEN,
+        low_latency_enabled: bool | NotGiven = NOT_GIVEN,
         projection: Literal["regular", "vr360", "vr180", "vr360tb"] | NotGiven = NOT_GIVEN,
         pull: bool | NotGiven = NOT_GIVEN,
         quality_set_id: int | NotGiven = NOT_GIVEN,
@@ -112,7 +113,7 @@ class StreamsResource(SyncAPIResource):
         for video streams by utilizing Common Media Application Format (CMAF)
         technology. So you obtain latency from the traditional 30-50 seconds to ±4
         seconds only by default. If you need legacy non-low-latency HLS, then look at
-        HLS MPEG-TS delivery below.
+        HLS MPEGTS delivery below.
 
         You have access to additional functions such as:
 
@@ -183,6 +184,19 @@ class StreamsResource(SyncAPIResource):
           html_overlay: Switch on mode to insert and display real-time HTML overlay widgets on top of
               live streams
 
+          low_latency_enabled: Deprecated, always returns "true". The only exception is that the attribute can
+              only be used by clients that have previously used the old stream format. This
+              method is outdated since we've made it easier to manage streams. For your
+              convenience, you no longer need to set this parameter at the stage of creating a
+              stream. Now all streams are prepared in 2 formats simultaniously: Low Latency
+              and Legacy. You can get the desired output format in the attributes
+              "`dash_url`", "`hls_cmaf_url`", "`hls_mpegts_url`". Or use them all at once.
+
+              ---
+
+              Note: Links /streams/{id}/playlist.m3u8 are depricated too. Use value of the
+              "`hls_mpegts_url`" attribute instead.
+
           projection: Visualization mode for 360° streams, how the stream is rendered in our web
               player ONLY. If you would like to show video 360° in an external video player,
               then use parameters of that video player. Modes:
@@ -196,10 +210,9 @@ class StreamsResource(SyncAPIResource):
               values:
 
               - true – stream is received by PULL method. Use this when need to get stream
-                from external server.
+                from external server by srt, rtmp\\ss, hls, dash, etc protocols.
               - false – stream is received by PUSH method. Use this when need to send stream
-                from end-device to our Streaming Platform, i.e. from your encoder, mobile app
-                or OBS Studio.
+                from end-device to our Streaming Platform, i.e. from mobile app or OBS Studio.
 
           quality_set_id: Custom quality set ID for transcoding, if transcoding is required according to
               your conditions. Look at GET /`quality_sets` method
@@ -217,11 +230,10 @@ class StreamsResource(SyncAPIResource):
               round robin scheduling. If the first address does not respond, then the next one
               in the list will be automatically requested, returning to the first and so on in
               a circle. Also, if the sucessfully working stream stops sending data, then the
-              next one will be selected according to the same scheme. After 2 hours of
-              inactivity of your original stream, the system stops PULL requests and the
-              stream is deactivated (the "active" field switches to "false"). Please, note
-              that this field is for PULL only, so is not suitable for PUSH. Look at fields
-              "`push_url`" and "`push_url_srt`" from GET method.
+              next one will be selected according to the same scheme. After 24 hours of
+              inactivity of your streams we will stop PULL-ing, and will switch "active" field
+              to "false". Please, note that this field is for PULL only, so is not suitable
+              for PUSH. Look at fields "`push_url`" and "`push_url_srt`" from GET method.
 
           extra_headers: Send extra headers
 
@@ -232,7 +244,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/streams" if self._client._base_url_overridden else "https://api.gcore.com//streaming/streams",
+            "/streaming/streams",
             body=maybe_transform(
                 {
                     "name": name,
@@ -246,6 +258,7 @@ class StreamsResource(SyncAPIResource):
                     "dvr_enabled": dvr_enabled,
                     "hls_mpegts_endlist_tag": hls_mpegts_endlist_tag,
                     "html_overlay": html_overlay,
+                    "low_latency_enabled": low_latency_enabled,
                     "projection": projection,
                     "pull": pull,
                     "quality_set_id": quality_set_id,
@@ -285,9 +298,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/streams/{stream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}",
+            f"/streaming/streams/{stream_id}",
             body=maybe_transform({"stream": stream}, stream_update_params.StreamUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -307,7 +318,7 @@ class StreamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPageStreaming[Stream]:
-        """Returns a list of streams
+        """Returns a list of streams.
 
         Args:
           page: Query parameter.
@@ -326,7 +337,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/streams" if self._client._base_url_overridden else "https://api.gcore.com//streaming/streams",
+            "/streaming/streams",
             page=SyncPageStreaming[Stream],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -385,9 +396,7 @@ class StreamsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/streams/{stream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}",
+            f"/streaming/streams/{stream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -419,9 +428,7 @@ class StreamsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/streaming/streams/{stream_id}/dvr_cleanup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/dvr_cleanup",
+            f"/streaming/streams/{stream_id}/dvr_cleanup",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -529,9 +536,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/streaming/streams/{stream_id}/clip_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/clip_recording",
+            f"/streaming/streams/{stream_id}/clip_recording",
             body=maybe_transform(
                 {
                     "duration": duration,
@@ -571,9 +576,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/streams/{stream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}",
+            f"/streaming/streams/{stream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -622,9 +625,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/streams/{stream_id}/clip_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/clip_recording",
+            f"/streaming/streams/{stream_id}/clip_recording",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -692,9 +693,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/streaming/streams/{stream_id}/start_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/start_recording",
+            f"/streaming/streams/{stream_id}/start_recording",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -731,9 +730,7 @@ class StreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/streaming/streams/{stream_id}/stop_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/stop_recording",
+            f"/streaming/streams/{stream_id}/stop_recording",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -779,6 +776,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         dvr_enabled: bool | NotGiven = NOT_GIVEN,
         hls_mpegts_endlist_tag: bool | NotGiven = NOT_GIVEN,
         html_overlay: bool | NotGiven = NOT_GIVEN,
+        low_latency_enabled: bool | NotGiven = NOT_GIVEN,
         projection: Literal["regular", "vr360", "vr180", "vr360tb"] | NotGiven = NOT_GIVEN,
         pull: bool | NotGiven = NOT_GIVEN,
         quality_set_id: int | NotGiven = NOT_GIVEN,
@@ -811,7 +809,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         for video streams by utilizing Common Media Application Format (CMAF)
         technology. So you obtain latency from the traditional 30-50 seconds to ±4
         seconds only by default. If you need legacy non-low-latency HLS, then look at
-        HLS MPEG-TS delivery below.
+        HLS MPEGTS delivery below.
 
         You have access to additional functions such as:
 
@@ -882,6 +880,19 @@ class AsyncStreamsResource(AsyncAPIResource):
           html_overlay: Switch on mode to insert and display real-time HTML overlay widgets on top of
               live streams
 
+          low_latency_enabled: Deprecated, always returns "true". The only exception is that the attribute can
+              only be used by clients that have previously used the old stream format. This
+              method is outdated since we've made it easier to manage streams. For your
+              convenience, you no longer need to set this parameter at the stage of creating a
+              stream. Now all streams are prepared in 2 formats simultaniously: Low Latency
+              and Legacy. You can get the desired output format in the attributes
+              "`dash_url`", "`hls_cmaf_url`", "`hls_mpegts_url`". Or use them all at once.
+
+              ---
+
+              Note: Links /streams/{id}/playlist.m3u8 are depricated too. Use value of the
+              "`hls_mpegts_url`" attribute instead.
+
           projection: Visualization mode for 360° streams, how the stream is rendered in our web
               player ONLY. If you would like to show video 360° in an external video player,
               then use parameters of that video player. Modes:
@@ -895,10 +906,9 @@ class AsyncStreamsResource(AsyncAPIResource):
               values:
 
               - true – stream is received by PULL method. Use this when need to get stream
-                from external server.
+                from external server by srt, rtmp\\ss, hls, dash, etc protocols.
               - false – stream is received by PUSH method. Use this when need to send stream
-                from end-device to our Streaming Platform, i.e. from your encoder, mobile app
-                or OBS Studio.
+                from end-device to our Streaming Platform, i.e. from mobile app or OBS Studio.
 
           quality_set_id: Custom quality set ID for transcoding, if transcoding is required according to
               your conditions. Look at GET /`quality_sets` method
@@ -916,11 +926,10 @@ class AsyncStreamsResource(AsyncAPIResource):
               round robin scheduling. If the first address does not respond, then the next one
               in the list will be automatically requested, returning to the first and so on in
               a circle. Also, if the sucessfully working stream stops sending data, then the
-              next one will be selected according to the same scheme. After 2 hours of
-              inactivity of your original stream, the system stops PULL requests and the
-              stream is deactivated (the "active" field switches to "false"). Please, note
-              that this field is for PULL only, so is not suitable for PUSH. Look at fields
-              "`push_url`" and "`push_url_srt`" from GET method.
+              next one will be selected according to the same scheme. After 24 hours of
+              inactivity of your streams we will stop PULL-ing, and will switch "active" field
+              to "false". Please, note that this field is for PULL only, so is not suitable
+              for PUSH. Look at fields "`push_url`" and "`push_url_srt`" from GET method.
 
           extra_headers: Send extra headers
 
@@ -931,7 +940,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/streams" if self._client._base_url_overridden else "https://api.gcore.com//streaming/streams",
+            "/streaming/streams",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -945,6 +954,7 @@ class AsyncStreamsResource(AsyncAPIResource):
                     "dvr_enabled": dvr_enabled,
                     "hls_mpegts_endlist_tag": hls_mpegts_endlist_tag,
                     "html_overlay": html_overlay,
+                    "low_latency_enabled": low_latency_enabled,
                     "projection": projection,
                     "pull": pull,
                     "quality_set_id": quality_set_id,
@@ -984,9 +994,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/streams/{stream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}",
+            f"/streaming/streams/{stream_id}",
             body=await async_maybe_transform({"stream": stream}, stream_update_params.StreamUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1006,7 +1014,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Stream, AsyncPageStreaming[Stream]]:
-        """Returns a list of streams
+        """Returns a list of streams.
 
         Args:
           page: Query parameter.
@@ -1025,7 +1033,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/streams" if self._client._base_url_overridden else "https://api.gcore.com//streaming/streams",
+            "/streaming/streams",
             page=AsyncPageStreaming[Stream],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1084,9 +1092,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/streams/{stream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}",
+            f"/streaming/streams/{stream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1118,9 +1124,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/streaming/streams/{stream_id}/dvr_cleanup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/dvr_cleanup",
+            f"/streaming/streams/{stream_id}/dvr_cleanup",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1228,9 +1232,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/streaming/streams/{stream_id}/clip_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/clip_recording",
+            f"/streaming/streams/{stream_id}/clip_recording",
             body=await async_maybe_transform(
                 {
                     "duration": duration,
@@ -1270,9 +1272,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/streams/{stream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}",
+            f"/streaming/streams/{stream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1321,9 +1321,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/streams/{stream_id}/clip_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/clip_recording",
+            f"/streaming/streams/{stream_id}/clip_recording",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1391,9 +1389,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/streaming/streams/{stream_id}/start_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/start_recording",
+            f"/streaming/streams/{stream_id}/start_recording",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1430,9 +1426,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/streaming/streams/{stream_id}/stop_recording"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/streams/{stream_id}/stop_recording",
+            f"/streaming/streams/{stream_id}/stop_recording",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

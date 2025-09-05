@@ -207,9 +207,7 @@ class LoadBalancersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -299,9 +297,7 @@ class LoadBalancersResource(SyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return self._patch(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
             body=maybe_transform(
                 {
                     "logging": logging,
@@ -379,9 +375,7 @@ class LoadBalancersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
             page=SyncOffsetPage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -439,9 +433,7 @@ class LoadBalancersResource(SyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return self._delete(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -483,9 +475,7 @@ class LoadBalancersResource(SyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover",
             body=maybe_transform({"force": force}, load_balancer_failover_params.LoadBalancerFailoverParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -531,9 +521,7 @@ class LoadBalancersResource(SyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -585,9 +573,7 @@ class LoadBalancersResource(SyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize",
             body=maybe_transform({"flavor": flavor}, load_balancer_resize_params.LoadBalancerResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -904,9 +890,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -996,9 +980,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return await self._patch(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
             body=await async_maybe_transform(
                 {
                     "logging": logging,
@@ -1076,9 +1058,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
             page=AsyncOffsetPage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1136,9 +1116,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return await self._delete(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1180,9 +1158,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/failover",
             body=await async_maybe_transform(
                 {"force": force}, load_balancer_failover_params.LoadBalancerFailoverParams
             ),
@@ -1230,9 +1206,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return await self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1284,9 +1258,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/resize",
             body=await async_maybe_transform({"flavor": flavor}, load_balancer_resize_params.LoadBalancerResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

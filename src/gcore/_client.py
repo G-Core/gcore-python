@@ -32,6 +32,7 @@ from .resources.dns import dns
 from .resources.iam import iam
 from .resources.waap import waap
 from .resources.cloud import cloud
+from .resources.storage import storage
 from .resources.fastedge import fastedge
 from .resources.security import security
 from .resources.streaming import streaming
@@ -47,6 +48,7 @@ class Gcore(SyncAPIClient):
     streaming: streaming.StreamingResource
     security: security.SecurityResource
     dns: dns.DNSResource
+    storage: storage.StorageResource
     with_raw_response: GcoreWithRawResponse
     with_streaming_response: GcoreWithStreamedResponse
 
@@ -111,7 +113,6 @@ class Gcore(SyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
-        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.gcore.com"
 
@@ -133,6 +134,7 @@ class Gcore(SyncAPIClient):
         self.streaming = streaming.StreamingResource(self)
         self.security = security.SecurityResource(self)
         self.dns = dns.DNSResource(self)
+        self.storage = storage.StorageResource(self)
         self.with_raw_response = GcoreWithRawResponse(self)
         self.with_streaming_response = GcoreWithStreamedResponse(self)
 
@@ -195,7 +197,7 @@ class Gcore(SyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        client = self.__class__(
+        return self.__class__(
             api_key=api_key or self.api_key,
             cloud_project_id=cloud_project_id or self.cloud_project_id,
             cloud_region_id=cloud_region_id or self.cloud_region_id,
@@ -208,8 +210,6 @@ class Gcore(SyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
-        client._base_url_overridden = self._base_url_overridden or base_url is not None
-        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -275,6 +275,7 @@ class AsyncGcore(AsyncAPIClient):
     streaming: streaming.AsyncStreamingResource
     security: security.AsyncSecurityResource
     dns: dns.AsyncDNSResource
+    storage: storage.AsyncStorageResource
     with_raw_response: AsyncGcoreWithRawResponse
     with_streaming_response: AsyncGcoreWithStreamedResponse
 
@@ -339,7 +340,6 @@ class AsyncGcore(AsyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
-        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.gcore.com"
 
@@ -361,6 +361,7 @@ class AsyncGcore(AsyncAPIClient):
         self.streaming = streaming.AsyncStreamingResource(self)
         self.security = security.AsyncSecurityResource(self)
         self.dns = dns.AsyncDNSResource(self)
+        self.storage = storage.AsyncStorageResource(self)
         self.with_raw_response = AsyncGcoreWithRawResponse(self)
         self.with_streaming_response = AsyncGcoreWithStreamedResponse(self)
 
@@ -423,7 +424,7 @@ class AsyncGcore(AsyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        client = self.__class__(
+        return self.__class__(
             api_key=api_key or self.api_key,
             cloud_project_id=cloud_project_id or self.cloud_project_id,
             cloud_region_id=cloud_region_id or self.cloud_region_id,
@@ -436,8 +437,6 @@ class AsyncGcore(AsyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
-        client._base_url_overridden = self._base_url_overridden or base_url is not None
-        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -504,6 +503,7 @@ class GcoreWithRawResponse:
         self.streaming = streaming.StreamingResourceWithRawResponse(client.streaming)
         self.security = security.SecurityResourceWithRawResponse(client.security)
         self.dns = dns.DNSResourceWithRawResponse(client.dns)
+        self.storage = storage.StorageResourceWithRawResponse(client.storage)
 
 
 class AsyncGcoreWithRawResponse:
@@ -515,6 +515,7 @@ class AsyncGcoreWithRawResponse:
         self.streaming = streaming.AsyncStreamingResourceWithRawResponse(client.streaming)
         self.security = security.AsyncSecurityResourceWithRawResponse(client.security)
         self.dns = dns.AsyncDNSResourceWithRawResponse(client.dns)
+        self.storage = storage.AsyncStorageResourceWithRawResponse(client.storage)
 
 
 class GcoreWithStreamedResponse:
@@ -526,6 +527,7 @@ class GcoreWithStreamedResponse:
         self.streaming = streaming.StreamingResourceWithStreamingResponse(client.streaming)
         self.security = security.SecurityResourceWithStreamingResponse(client.security)
         self.dns = dns.DNSResourceWithStreamingResponse(client.dns)
+        self.storage = storage.StorageResourceWithStreamingResponse(client.storage)
 
 
 class AsyncGcoreWithStreamedResponse:
@@ -537,6 +539,7 @@ class AsyncGcoreWithStreamedResponse:
         self.streaming = streaming.AsyncStreamingResourceWithStreamingResponse(client.streaming)
         self.security = security.AsyncSecurityResourceWithStreamingResponse(client.security)
         self.dns = dns.AsyncDNSResourceWithStreamingResponse(client.dns)
+        self.storage = storage.AsyncStorageResourceWithStreamingResponse(client.storage)
 
 
 Client = Gcore

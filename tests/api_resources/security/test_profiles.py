@@ -34,7 +34,7 @@ class TestProfiles:
             fields=[
                 {
                     "base_field": 1,
-                    "field_value": {},
+                    "field_value": {"key": "bar"},
                 }
             ],
             profile_template=1,
@@ -182,7 +182,7 @@ class TestProfiles:
             fields=[
                 {
                     "base_field": 1,
-                    "field_value": {},
+                    "field_value": {"key": "bar"},
                 }
             ],
             profile_template=1,
@@ -235,7 +235,7 @@ class TestProfiles:
             fields=[
                 {
                     "base_field": 1,
-                    "field_value": {},
+                    "field_value": {"key": "bar"},
                 }
             ],
             profile_template=1,
@@ -292,7 +292,7 @@ class TestAsyncProfiles:
             fields=[
                 {
                     "base_field": 1,
-                    "field_value": {},
+                    "field_value": {"key": "bar"},
                 }
             ],
             profile_template=1,
@@ -440,7 +440,7 @@ class TestAsyncProfiles:
             fields=[
                 {
                     "base_field": 1,
-                    "field_value": {},
+                    "field_value": {"key": "bar"},
                 }
             ],
             profile_template=1,
@@ -493,7 +493,7 @@ class TestAsyncProfiles:
             fields=[
                 {
                     "base_field": 1,
-                    "field_value": {},
+                    "field_value": {"key": "bar"},
                 }
             ],
             profile_template=1,

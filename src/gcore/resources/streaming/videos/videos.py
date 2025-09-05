@@ -107,7 +107,7 @@ class VideosResource(SyncAPIResource):
         subtitles based on AI. Read more:
 
         - What is
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -118,7 +118,7 @@ class VideosResource(SyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language.
         - How to
-          ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
+          ["add AI-generated subtitles to an exist video"](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
           The created AI-task(s) will be automatically executed, and result will also be
           automatically attached to this video as subtitle(s). Please note that
           transcription is done automatically for all videos uploaded to our video
@@ -148,7 +148,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             body=maybe_transform({"video": video}, video_create_params.VideoCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -226,9 +226,9 @@ class VideosResource(SyncAPIResource):
               More details:
 
               - List of AI tasks – API
-                [GET /streaming/ai/tasks](/docs/api-reference/streaming/ai/get-list-of-ai-tasks)
+                [GET /streaming/ai/tasks](https://api.gcore.com/docs/streaming#tag/AI/operation/get_ai_results)
               - Add subtitles to an exist video – API
-                [POST /streaming/videos/{`video_id`}/subtitles](/docs/api-reference/streaming/subtitles/add-subtitle).
+                [POST /streaming/videos/{`video_id`}/subtitles](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
@@ -371,9 +371,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -469,7 +467,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             page=SyncPageStreaming[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -526,9 +524,7 @@ class VideosResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -579,9 +575,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/videos/batch"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/batch",
+            "/streaming/videos/batch",
             body=maybe_transform({"videos": videos}, video_create_multiple_params.VideoCreateMultipleParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -631,9 +625,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -693,9 +685,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/upload"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/upload",
+            f"/streaming/videos/{video_id}/upload",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -729,9 +719,7 @@ class VideosResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            "/streaming/videos/names"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/names",
+            "/streaming/videos/names",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -807,7 +795,7 @@ class AsyncVideosResource(AsyncAPIResource):
         subtitles based on AI. Read more:
 
         - What is
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Transcribe"](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -818,7 +806,7 @@ class AsyncVideosResource(AsyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language.
         - How to
-          ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
+          ["add AI-generated subtitles to an exist video"](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
           The created AI-task(s) will be automatically executed, and result will also be
           automatically attached to this video as subtitle(s). Please note that
           transcription is done automatically for all videos uploaded to our video
@@ -848,7 +836,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             body=await async_maybe_transform({"video": video}, video_create_params.VideoCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -926,9 +914,9 @@ class AsyncVideosResource(AsyncAPIResource):
               More details:
 
               - List of AI tasks – API
-                [GET /streaming/ai/tasks](/docs/api-reference/streaming/ai/get-list-of-ai-tasks)
+                [GET /streaming/ai/tasks](https://api.gcore.com/docs/streaming#tag/AI/operation/get_ai_results)
               - Add subtitles to an exist video – API
-                [POST /streaming/videos/{`video_id`}/subtitles](/docs/api-reference/streaming/subtitles/add-subtitle).
+                [POST /streaming/videos/{`video_id`}/subtitles](https://api.gcore.com/docs/streaming#tag/Subtitles/operation/post_api_videos_video_id_subtitles).
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
@@ -1071,9 +1059,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -1169,7 +1155,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             page=AsyncPageStreaming[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1226,9 +1212,7 @@ class AsyncVideosResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1279,9 +1263,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/videos/batch"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/batch",
+            "/streaming/videos/batch",
             body=await async_maybe_transform(
                 {"videos": videos}, video_create_multiple_params.VideoCreateMultipleParams
             ),
@@ -1335,9 +1317,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1397,9 +1377,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/upload"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/upload",
+            f"/streaming/videos/{video_id}/upload",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1433,9 +1411,7 @@ class AsyncVideosResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            "/streaming/videos/names"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/names",
+            "/streaming/videos/names",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

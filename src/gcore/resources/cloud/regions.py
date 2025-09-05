@@ -86,7 +86,7 @@ class RegionsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/regions" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/regions",
+            "/cloud/v1/regions",
             page=SyncOffsetPage[Region],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -139,9 +139,7 @@ class RegionsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/regions/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/regions/{region_id}",
+            f"/cloud/v1/regions/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -215,7 +213,7 @@ class AsyncRegionsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/regions" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/regions",
+            "/cloud/v1/regions",
             page=AsyncOffsetPage[Region],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -268,9 +266,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/regions/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/regions/{region_id}",
+            f"/cloud/v1/regions/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
