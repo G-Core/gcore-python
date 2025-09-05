@@ -51,9 +51,7 @@ class PresetsResource(SyncAPIResource):
     ) -> PresetListResponse:
         """Returns list of picker preset"""
         return self._get(
-            "/dns/v2/pickers/presets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/pickers/presets",
+            "/dns/v2/pickers/presets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -93,9 +91,7 @@ class AsyncPresetsResource(AsyncAPIResource):
     ) -> PresetListResponse:
         """Returns list of picker preset"""
         return await self._get(
-            "/dns/v2/pickers/presets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/pickers/presets",
+            "/dns/v2/pickers/presets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

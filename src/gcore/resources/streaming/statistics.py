@@ -21,6 +21,7 @@ from ..._base_client import make_request_options
 from ...types.streaming import (
     statistic_get_views_params,
     statistic_get_ffprobes_params,
+    statistic_get_meet_series_params,
     statistic_get_stream_series_params,
     statistic_get_views_heatmap_params,
     statistic_get_popular_videos_params,
@@ -45,6 +46,7 @@ from ...types.streaming import (
 )
 from ...types.streaming.views import Views
 from ...types.streaming.ffprobes import Ffprobes
+from ...types.streaming.meet_series import MeetSeries
 from ...types.streaming.stream_series import StreamSeries
 from ...types.streaming.views_heatmap import ViewsHeatmap
 from ...types.streaming.popular_videos import PopularVideos
@@ -123,9 +125,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/ffprobe"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/ffprobe",
+            "/streaming/statistics/ffprobe",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -190,9 +190,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/stream/viewers"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream/viewers",
+            "/streaming/statistics/stream/viewers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -258,9 +256,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/stream/watching_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream/watching_duration",
+            "/streaming/statistics/stream/watching_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -321,9 +317,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/stream/watching_duration/total"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream/watching_duration/total",
+            "/streaming/statistics/stream/watching_duration/total",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -376,9 +370,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/max_stream"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/max_stream",
+            "/streaming/statistics/max_stream",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -394,6 +386,58 @@ class StatisticsResource(SyncAPIResource):
                 ),
             ),
             cast_to=MaxStreamSeries,
+        )
+
+    def get_meet_series(
+        self,
+        *,
+        from_: str,
+        to: str,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MeetSeries:
+        """Calculates time series of the transcoding minutes of all streams.
+
+        The data is
+        updated near realtime.
+
+        Args:
+          from_: Start of time frame. Datetime in ISO 8601 format.
+
+          to: End of time frame. Datetime in ISO 8601 format.
+
+          granularity: specifies the time interval for grouping data
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/streaming/statistics/meet",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "granularity": granularity,
+                    },
+                    statistic_get_meet_series_params.StatisticGetMeetSeriesParams,
+                ),
+            ),
+            cast_to=MeetSeries,
         )
 
     def get_popular_videos(
@@ -431,9 +475,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/popular"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/popular",
+            "/streaming/statistics/popular",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,9 +526,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/storage"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/storage",
+            "/streaming/statistics/storage",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -538,9 +578,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/stream"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream",
+            "/streaming/statistics/stream",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -613,9 +651,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/uniqs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/uniqs",
+            "/streaming/statistics/uniqs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -702,9 +738,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/cdn/uniqs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/cdn/uniqs",
+            "/streaming/statistics/cdn/uniqs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -778,9 +812,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/views"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/views",
+            "/streaming/statistics/views",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -837,9 +869,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/browsers"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/browsers",
+            "/streaming/statistics/browsers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -890,9 +920,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/countries"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/countries",
+            "/streaming/statistics/countries",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -943,9 +971,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/hosts"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/hosts",
+            "/streaming/statistics/hosts",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -996,9 +1022,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/systems"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/systems",
+            "/streaming/statistics/systems",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1049,9 +1073,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/embeds"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/embeds",
+            "/streaming/statistics/embeds",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1102,9 +1124,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/regions"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/regions",
+            "/streaming/statistics/regions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1164,9 +1184,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/heatmap"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/heatmap",
+            "/streaming/statistics/heatmap",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1216,9 +1234,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/vod/storage_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/storage_duration",
+            "/streaming/statistics/vod/storage_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1266,9 +1282,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/vod/transcoding_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/transcoding_duration",
+            "/streaming/statistics/vod/transcoding_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1329,9 +1343,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/vod/viewers"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/viewers",
+            "/streaming/statistics/vod/viewers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1397,9 +1409,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/vod/watching_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/watching_duration",
+            "/streaming/statistics/vod/watching_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1460,9 +1470,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/streaming/statistics/vod/watching_duration/total"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/watching_duration/total",
+            "/streaming/statistics/vod/watching_duration/total",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1539,9 +1547,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/ffprobe"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/ffprobe",
+            "/streaming/statistics/ffprobe",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1606,9 +1612,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/stream/viewers"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream/viewers",
+            "/streaming/statistics/stream/viewers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1674,9 +1678,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/stream/watching_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream/watching_duration",
+            "/streaming/statistics/stream/watching_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1737,9 +1739,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/stream/watching_duration/total"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream/watching_duration/total",
+            "/streaming/statistics/stream/watching_duration/total",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1792,9 +1792,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/max_stream"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/max_stream",
+            "/streaming/statistics/max_stream",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1810,6 +1808,58 @@ class AsyncStatisticsResource(AsyncAPIResource):
                 ),
             ),
             cast_to=MaxStreamSeries,
+        )
+
+    async def get_meet_series(
+        self,
+        *,
+        from_: str,
+        to: str,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MeetSeries:
+        """Calculates time series of the transcoding minutes of all streams.
+
+        The data is
+        updated near realtime.
+
+        Args:
+          from_: Start of time frame. Datetime in ISO 8601 format.
+
+          to: End of time frame. Datetime in ISO 8601 format.
+
+          granularity: specifies the time interval for grouping data
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/streaming/statistics/meet",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "granularity": granularity,
+                    },
+                    statistic_get_meet_series_params.StatisticGetMeetSeriesParams,
+                ),
+            ),
+            cast_to=MeetSeries,
         )
 
     async def get_popular_videos(
@@ -1847,9 +1897,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/popular"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/popular",
+            "/streaming/statistics/popular",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1900,9 +1948,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/storage"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/storage",
+            "/streaming/statistics/storage",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1954,9 +2000,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/stream"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/stream",
+            "/streaming/statistics/stream",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2029,9 +2073,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/uniqs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/uniqs",
+            "/streaming/statistics/uniqs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2118,9 +2160,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/cdn/uniqs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/cdn/uniqs",
+            "/streaming/statistics/cdn/uniqs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2194,9 +2234,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/views"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/views",
+            "/streaming/statistics/views",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2253,9 +2291,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/browsers"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/browsers",
+            "/streaming/statistics/browsers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2306,9 +2342,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/countries"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/countries",
+            "/streaming/statistics/countries",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2359,9 +2393,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/hosts"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/hosts",
+            "/streaming/statistics/hosts",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2412,9 +2444,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/systems"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/systems",
+            "/streaming/statistics/systems",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2465,9 +2495,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/embeds"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/embeds",
+            "/streaming/statistics/embeds",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2518,9 +2546,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/regions"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/regions",
+            "/streaming/statistics/regions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2580,9 +2606,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/heatmap"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/heatmap",
+            "/streaming/statistics/heatmap",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2632,9 +2656,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/vod/storage_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/storage_duration",
+            "/streaming/statistics/vod/storage_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2682,9 +2704,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/vod/transcoding_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/transcoding_duration",
+            "/streaming/statistics/vod/transcoding_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2745,9 +2765,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/vod/viewers"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/viewers",
+            "/streaming/statistics/vod/viewers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2813,9 +2831,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/vod/watching_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/watching_duration",
+            "/streaming/statistics/vod/watching_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2876,9 +2892,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/streaming/statistics/vod/watching_duration/total"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/statistics/vod/watching_duration/total",
+            "/streaming/statistics/vod/watching_duration/total",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2916,6 +2930,9 @@ class StatisticsResourceWithRawResponse:
         )
         self.get_max_streams_series = to_raw_response_wrapper(
             statistics.get_max_streams_series,
+        )
+        self.get_meet_series = to_raw_response_wrapper(
+            statistics.get_meet_series,
         )
         self.get_popular_videos = to_raw_response_wrapper(
             statistics.get_popular_videos,
@@ -2992,6 +3009,9 @@ class AsyncStatisticsResourceWithRawResponse:
         self.get_max_streams_series = async_to_raw_response_wrapper(
             statistics.get_max_streams_series,
         )
+        self.get_meet_series = async_to_raw_response_wrapper(
+            statistics.get_meet_series,
+        )
         self.get_popular_videos = async_to_raw_response_wrapper(
             statistics.get_popular_videos,
         )
@@ -3067,6 +3087,9 @@ class StatisticsResourceWithStreamingResponse:
         self.get_max_streams_series = to_streamed_response_wrapper(
             statistics.get_max_streams_series,
         )
+        self.get_meet_series = to_streamed_response_wrapper(
+            statistics.get_meet_series,
+        )
         self.get_popular_videos = to_streamed_response_wrapper(
             statistics.get_popular_videos,
         )
@@ -3141,6 +3164,9 @@ class AsyncStatisticsResourceWithStreamingResponse:
         )
         self.get_max_streams_series = async_to_streamed_response_wrapper(
             statistics.get_max_streams_series,
+        )
+        self.get_meet_series = async_to_streamed_response_wrapper(
+            statistics.get_meet_series,
         )
         self.get_popular_videos = async_to_streamed_response_wrapper(
             statistics.get_popular_videos,

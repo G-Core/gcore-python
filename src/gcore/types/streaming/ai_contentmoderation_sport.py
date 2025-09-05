@@ -9,7 +9,7 @@ __all__ = ["AIContentmoderationSport"]
 
 
 class AIContentmoderationSport(BaseModel):
-    category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"]
+    category: Literal["sport", "weapon", "nsfw", "hard_nudity", "soft_nudity", "child_pornography"]
     """AI content moderation with types of sports activity detection"""
 
     task_name: Literal["content-moderation"]

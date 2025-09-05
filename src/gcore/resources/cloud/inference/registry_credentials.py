@@ -86,9 +86,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._post(
-            f"/cloud/v3/inference/{project_id}/registry_credentials"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials",
+            f"/cloud/v3/inference/{project_id}/registry_credentials",
             body=maybe_transform(
                 {
                     "name": name,
@@ -139,9 +137,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/registry_credentials"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials",
+            f"/cloud/v3/inference/{project_id}/registry_credentials",
             page=SyncOffsetPage[InferenceRegistryCredentials],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -193,9 +189,7 @@ class RegistryCredentialsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -235,9 +229,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         if not credential_name:
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
         return self._get(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -286,9 +278,7 @@ class RegistryCredentialsResource(SyncAPIResource):
         if not credential_name:
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
         return self._put(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             body=maybe_transform(
                 {
                     "password": password,
@@ -364,9 +354,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._post(
-            f"/cloud/v3/inference/{project_id}/registry_credentials"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials",
+            f"/cloud/v3/inference/{project_id}/registry_credentials",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -417,9 +405,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/registry_credentials"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials",
+            f"/cloud/v3/inference/{project_id}/registry_credentials",
             page=AsyncOffsetPage[InferenceRegistryCredentials],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -471,9 +457,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -513,9 +497,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         if not credential_name:
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -564,9 +546,7 @@ class AsyncRegistryCredentialsResource(AsyncAPIResource):
         if not credential_name:
             raise ValueError(f"Expected a non-empty value for `credential_name` but received {credential_name!r}")
         return await self._put(
-            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
+            f"/cloud/v3/inference/{project_id}/registry_credentials/{credential_name}",
             body=await async_maybe_transform(
                 {
                     "password": password,

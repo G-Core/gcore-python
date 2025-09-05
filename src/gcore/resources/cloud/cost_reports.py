@@ -146,9 +146,7 @@ class CostReportsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cloud/v1/cost_report/totals"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/cost_report/totals",
+            "/cloud/v1/cost_report/totals",
             body=maybe_transform(
                 {
                     "time_from": time_from,
@@ -257,9 +255,7 @@ class CostReportsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cloud/v1/reservation_cost_report/totals"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/reservation_cost_report/totals",
+            "/cloud/v1/reservation_cost_report/totals",
             body=maybe_transform(
                 {
                     "regions": regions,
@@ -385,9 +381,7 @@ class CostReportsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cloud/v1/cost_report/resources"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/cost_report/resources",
+            "/cloud/v1/cost_report/resources",
             body=maybe_transform(
                 {
                     "time_from": time_from,
@@ -528,9 +522,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cloud/v1/cost_report/totals"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/cost_report/totals",
+            "/cloud/v1/cost_report/totals",
             body=await async_maybe_transform(
                 {
                     "time_from": time_from,
@@ -639,9 +631,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cloud/v1/reservation_cost_report/totals"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/reservation_cost_report/totals",
+            "/cloud/v1/reservation_cost_report/totals",
             body=await async_maybe_transform(
                 {
                     "regions": regions,
@@ -767,9 +757,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cloud/v1/cost_report/resources"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/cost_report/resources",
+            "/cloud/v1/cost_report/resources",
             body=await async_maybe_transform(
                 {
                     "time_from": time_from,
