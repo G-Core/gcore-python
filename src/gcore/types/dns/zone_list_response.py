@@ -43,8 +43,6 @@ class Zone(BaseModel):
     of getting deleted zones by admin.
     """
 
-    client_id: Optional[int] = None
-
     contact: Optional[str] = None
     """email address of the administrator responsible for this zone"""
 

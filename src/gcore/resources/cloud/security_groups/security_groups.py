@@ -97,9 +97,7 @@ class SecurityGroupsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "security_group": security_group,
@@ -172,9 +170,7 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._patch(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
             body=maybe_transform(
                 {
                     "changed_rules": changed_rules,
@@ -230,9 +226,7 @@ class SecurityGroupsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
             page=SyncOffsetPage[SecurityGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -285,9 +279,7 @@ class SecurityGroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -329,9 +321,7 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
             body=maybe_transform({"name": name}, security_group_copy_params.SecurityGroupCopyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -371,9 +361,7 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._get(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -412,9 +400,7 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -481,9 +467,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "security_group": security_group,
@@ -556,9 +540,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._patch(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
             body=await async_maybe_transform(
                 {
                     "changed_rules": changed_rules,
@@ -614,9 +596,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
             page=AsyncOffsetPage[SecurityGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -669,9 +649,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -713,9 +691,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
             body=await async_maybe_transform({"name": name}, security_group_copy_params.SecurityGroupCopyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -755,9 +731,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._get(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -796,9 +770,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

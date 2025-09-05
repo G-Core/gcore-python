@@ -80,9 +80,7 @@ class APITokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/iam/clients/{client_id}/tokens"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens",
+            f"/iam/clients/{client_id}/tokens",
             body=maybe_transform(
                 {
                     "client_user": client_user,
@@ -149,9 +147,7 @@ class APITokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/iam/clients/{client_id}/tokens"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens",
+            f"/iam/clients/{client_id}/tokens",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -200,9 +196,7 @@ class APITokensResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/iam/clients/{client_id}/tokens/{token_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens/{token_id}",
+            f"/iam/clients/{client_id}/tokens/{token_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -234,9 +228,7 @@ class APITokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/iam/clients/{client_id}/tokens/{token_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens/{token_id}",
+            f"/iam/clients/{client_id}/tokens/{token_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -301,9 +293,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/iam/clients/{client_id}/tokens"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens",
+            f"/iam/clients/{client_id}/tokens",
             body=await async_maybe_transform(
                 {
                     "client_user": client_user,
@@ -370,9 +360,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/iam/clients/{client_id}/tokens"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens",
+            f"/iam/clients/{client_id}/tokens",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -421,9 +409,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/iam/clients/{client_id}/tokens/{token_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens/{token_id}",
+            f"/iam/clients/{client_id}/tokens/{token_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -455,9 +441,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/iam/clients/{client_id}/tokens/{token_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//iam/clients/{client_id}/tokens/{token_id}",
+            f"/iam/clients/{client_id}/tokens/{token_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

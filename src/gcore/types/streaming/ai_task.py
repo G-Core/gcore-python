@@ -4,8 +4,10 @@ from typing import Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
+from .ai_contentmoderation_casm import AIContentmoderationCasm
 from .ai_contentmoderation_nsfw import AIContentmoderationNsfw
 from .ai_contentmoderation_sport import AIContentmoderationSport
+from .ai_contentmoderation_weapon import AIContentmoderationWeapon
 from .ai_contentmoderation_hardnudity import AIContentmoderationHardnudity
 from .ai_contentmoderation_softnudity import AIContentmoderationSoftnudity
 
@@ -161,7 +163,7 @@ class TaskDataAITranscribe(BaseModel):
     - transcription into the original language is a free procedure,
     - and translation from the original language into any other languages is a
       "translation" procedure and is paid. More details in
-      [POST /streaming/ai/tasks#transcribe](/docs/api-reference/streaming/ai/create-ai-asr-task).
+      [POST /ai/tasks#transcribe](https://api.gcore.com/docs/streaming/docs/api-reference/streaming/ai/create-ai-asr-task).
       Language is set by 3-letter language code according to ISO-639-2
       (bibliographic code).
     """
@@ -172,7 +174,9 @@ TaskData: TypeAlias = Union[
     AIContentmoderationNsfw,
     AIContentmoderationHardnudity,
     AIContentmoderationSoftnudity,
+    AIContentmoderationCasm,
     AIContentmoderationSport,
+    AIContentmoderationWeapon,
 ]
 
 

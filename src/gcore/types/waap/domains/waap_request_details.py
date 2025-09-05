@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List
-from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -152,7 +151,7 @@ class WaapRequestDetails(BaseModel):
     request_headers: Dict[str, object]
     """HTTP request headers"""
 
-    request_time: datetime
+    request_time: str
     """The time of the request"""
 
     request_type: str

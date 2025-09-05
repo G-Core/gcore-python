@@ -65,7 +65,7 @@ class QualitySetsResource(SyncAPIResource):
         [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
         These values are the default for everyone. There is no need to configure
         anything additional. Read more about qiality in our blog
-        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality).
+        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality/).
         ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
         for those cases when, in addition to the main parameters, it is necessary to use
         your own, then it is necessary to use custom quality sets. How to use:
@@ -91,9 +91,7 @@ class QualitySetsResource(SyncAPIResource):
           is a paid feature.
         """
         return self._get(
-            "/streaming/quality_sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets",
+            "/streaming/quality_sets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -139,9 +137,7 @@ class QualitySetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            "/streaming/quality_sets/default"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets/default",
+            "/streaming/quality_sets/default",
             body=maybe_transform(
                 {
                     "live": live,
@@ -200,7 +196,7 @@ class AsyncQualitySetsResource(AsyncAPIResource):
         [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
         These values are the default for everyone. There is no need to configure
         anything additional. Read more about qiality in our blog
-        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality).
+        [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality/).
         ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
         for those cases when, in addition to the main parameters, it is necessary to use
         your own, then it is necessary to use custom quality sets. How to use:
@@ -226,9 +222,7 @@ class AsyncQualitySetsResource(AsyncAPIResource):
           is a paid feature.
         """
         return await self._get(
-            "/streaming/quality_sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets",
+            "/streaming/quality_sets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -274,9 +268,7 @@ class AsyncQualitySetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            "/streaming/quality_sets/default"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets/default",
+            "/streaming/quality_sets/default",
             body=await async_maybe_transform(
                 {
                     "live": live,

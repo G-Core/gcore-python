@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from gcore.types.streaming import (
     Views,
     Ffprobes,
+    MeetSeries,
     StreamSeries,
     ViewsHeatmap,
     PopularVideos,
@@ -247,6 +248,49 @@ class TestStatistics:
 
             statistic = response.parse()
             assert_matches_type(MaxStreamSeries, statistic, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_get_meet_series(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_meet_series(
+            from_="from",
+            to="to",
+        )
+        assert_matches_type(MeetSeries, statistic, path=["response"])
+
+    @parametrize
+    def test_method_get_meet_series_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_meet_series(
+            from_="from",
+            to="to",
+            granularity="1m",
+        )
+        assert_matches_type(MeetSeries, statistic, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_meet_series(self, client: Gcore) -> None:
+        response = client.streaming.statistics.with_raw_response.get_meet_series(
+            from_="from",
+            to="to",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        statistic = response.parse()
+        assert_matches_type(MeetSeries, statistic, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_meet_series(self, client: Gcore) -> None:
+        with client.streaming.statistics.with_streaming_response.get_meet_series(
+            from_="from",
+            to="to",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            statistic = response.parse()
+            assert_matches_type(MeetSeries, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1162,6 +1206,49 @@ class TestAsyncStatistics:
 
             statistic = await response.parse()
             assert_matches_type(MaxStreamSeries, statistic, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get_meet_series(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_meet_series(
+            from_="from",
+            to="to",
+        )
+        assert_matches_type(MeetSeries, statistic, path=["response"])
+
+    @parametrize
+    async def test_method_get_meet_series_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_meet_series(
+            from_="from",
+            to="to",
+            granularity="1m",
+        )
+        assert_matches_type(MeetSeries, statistic, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_meet_series(self, async_client: AsyncGcore) -> None:
+        response = await async_client.streaming.statistics.with_raw_response.get_meet_series(
+            from_="from",
+            to="to",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        statistic = await response.parse()
+        assert_matches_type(MeetSeries, statistic, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_meet_series(self, async_client: AsyncGcore) -> None:
+        async with async_client.streaming.statistics.with_streaming_response.get_meet_series(
+            from_="from",
+            to="to",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            statistic = await response.parse()
+            assert_matches_type(MeetSeries, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

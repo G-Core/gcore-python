@@ -120,9 +120,7 @@ class NetworksResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/networks/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -253,9 +251,7 @@ class NetworksResource(SyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._patch(
-            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -322,9 +318,7 @@ class NetworksResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/networks/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}",
             page=SyncOffsetPage[Network],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -384,9 +378,7 @@ class NetworksResource(SyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._delete(
-            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -463,9 +455,7 @@ class NetworksResource(SyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._get(
-            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -550,9 +540,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/networks/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -683,9 +671,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._patch(
-            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -752,9 +738,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/networks/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}",
             page=AsyncOffsetPage[Network],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -814,9 +798,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._delete(
-            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -893,9 +875,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._get(
-            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+            f"/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
