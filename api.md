@@ -2000,28 +2000,24 @@ Methods:
 Types:
 
 ```python
-from gcore.types.storage import StorageLocation, LocationListResponse
+from gcore.types.storage import Location
 ```
 
 Methods:
 
-- <code title="get /storage/provisioning/v1/location">client.storage.locations.<a href="./src/gcore/resources/storage/locations.py">list</a>() -> <a href="./src/gcore/types/storage/location_list_response.py">LocationListResponse</a></code>
+- <code title="get /storage/provisioning/v2/locations">client.storage.locations.<a href="./src/gcore/resources/storage/locations.py">list</a>(\*\*<a href="src/gcore/types/storage/location_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/location.py">SyncOffsetPage[Location]</a></code>
 
 ## Statistics
 
 Types:
 
 ```python
-from gcore.types.storage import (
-    StorageUsageSeries,
-    StorageUsageTotal,
-    StatisticGetUsageSeriesResponse,
-)
+from gcore.types.storage import UsageSeries, UsageTotal, StatisticGetUsageSeriesResponse
 ```
 
 Methods:
 
-- <code title="post /storage/stats/v1/storage/usage/total">client.storage.statistics.<a href="./src/gcore/resources/storage/statistics.py">get_usage_aggregated</a>(\*\*<a href="src/gcore/types/storage/statistic_get_usage_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage_usage_total.py">StorageUsageTotal</a></code>
+- <code title="post /storage/stats/v1/storage/usage/total">client.storage.statistics.<a href="./src/gcore/resources/storage/statistics.py">get_usage_aggregated</a>(\*\*<a href="src/gcore/types/storage/statistic_get_usage_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/storage/usage_total.py">UsageTotal</a></code>
 - <code title="post /storage/stats/v1/storage/usage/series">client.storage.statistics.<a href="./src/gcore/resources/storage/statistics.py">get_usage_series</a>(\*\*<a href="src/gcore/types/storage/statistic_get_usage_series_params.py">params</a>) -> <a href="./src/gcore/types/storage/statistic_get_usage_series_response.py">StatisticGetUsageSeriesResponse</a></code>
 
 ## Credentials
@@ -2035,13 +2031,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.storage import StorageBucket
+from gcore.types.storage import Bucket
 ```
 
 Methods:
 
 - <code title="post /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}">client.storage.buckets.<a href="./src/gcore/resources/storage/buckets/buckets.py">create</a>(bucket_name, \*, storage_id) -> None</code>
-- <code title="get /storage/provisioning/v2/storage/{storage_id}/s3/buckets">client.storage.buckets.<a href="./src/gcore/resources/storage/buckets/buckets.py">list</a>(storage_id, \*\*<a href="src/gcore/types/storage/bucket_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage_bucket.py">SyncOffsetPage[StorageBucket]</a></code>
+- <code title="get /storage/provisioning/v2/storage/{storage_id}/s3/buckets">client.storage.buckets.<a href="./src/gcore/resources/storage/buckets/buckets.py">list</a>(storage_id, \*\*<a href="src/gcore/types/storage/bucket_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/bucket.py">SyncOffsetPage[Bucket]</a></code>
 - <code title="delete /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}">client.storage.buckets.<a href="./src/gcore/resources/storage/buckets/buckets.py">delete</a>(bucket_name, \*, storage_id) -> None</code>
 
 ### Cors
@@ -2049,13 +2045,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.storage.buckets import StorageBucketCors
+from gcore.types.storage.buckets import BucketCors
 ```
 
 Methods:
 
 - <code title="post /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors">client.storage.buckets.cors.<a href="./src/gcore/resources/storage/buckets/cors.py">create</a>(bucket_name, \*, storage_id, \*\*<a href="src/gcore/types/storage/buckets/cor_create_params.py">params</a>) -> None</code>
-- <code title="get /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors">client.storage.buckets.cors.<a href="./src/gcore/resources/storage/buckets/cors.py">get</a>(bucket_name, \*, storage_id) -> <a href="./src/gcore/types/storage/buckets/storage_bucket_cors.py">StorageBucketCors</a></code>
+- <code title="get /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors">client.storage.buckets.cors.<a href="./src/gcore/resources/storage/buckets/cors.py">get</a>(bucket_name, \*, storage_id) -> <a href="./src/gcore/types/storage/buckets/bucket_cors.py">BucketCors</a></code>
 
 ### Lifecycle
 
@@ -2069,7 +2065,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.storage.buckets import StorageBucketPolicy, PolicyGetResponse
+from gcore.types.storage.buckets import BucketPolicy, PolicyGetResponse
 ```
 
 Methods:

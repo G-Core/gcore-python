@@ -10,7 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.storage import (
-    StorageUsageTotal,
+    UsageTotal,
     StatisticGetUsageSeriesResponse,
 )
 
@@ -23,7 +23,7 @@ class TestStatistics:
     @parametrize
     def test_method_get_usage_aggregated(self, client: Gcore) -> None:
         statistic = client.storage.statistics.get_usage_aggregated()
-        assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+        assert_matches_type(UsageTotal, statistic, path=["response"])
 
     @parametrize
     def test_method_get_usage_aggregated_with_all_params(self, client: Gcore) -> None:
@@ -33,7 +33,7 @@ class TestStatistics:
             storages=["123-myStorage"],
             to="2006-01-02",
         )
-        assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+        assert_matches_type(UsageTotal, statistic, path=["response"])
 
     @parametrize
     def test_raw_response_get_usage_aggregated(self, client: Gcore) -> None:
@@ -42,7 +42,7 @@ class TestStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = response.parse()
-        assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+        assert_matches_type(UsageTotal, statistic, path=["response"])
 
     @parametrize
     def test_streaming_response_get_usage_aggregated(self, client: Gcore) -> None:
@@ -51,7 +51,7 @@ class TestStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = response.parse()
-            assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+            assert_matches_type(UsageTotal, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -102,7 +102,7 @@ class TestAsyncStatistics:
     @parametrize
     async def test_method_get_usage_aggregated(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.storage.statistics.get_usage_aggregated()
-        assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+        assert_matches_type(UsageTotal, statistic, path=["response"])
 
     @parametrize
     async def test_method_get_usage_aggregated_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -112,7 +112,7 @@ class TestAsyncStatistics:
             storages=["123-myStorage"],
             to="2006-01-02",
         )
-        assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+        assert_matches_type(UsageTotal, statistic, path=["response"])
 
     @parametrize
     async def test_raw_response_get_usage_aggregated(self, async_client: AsyncGcore) -> None:
@@ -121,7 +121,7 @@ class TestAsyncStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = await response.parse()
-        assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+        assert_matches_type(UsageTotal, statistic, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_usage_aggregated(self, async_client: AsyncGcore) -> None:
@@ -130,7 +130,7 @@ class TestAsyncStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = await response.parse()
-            assert_matches_type(StorageUsageTotal, statistic, path=["response"])
+            assert_matches_type(UsageTotal, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

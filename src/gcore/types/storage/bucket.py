@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["StorageBucket"]
+__all__ = ["Bucket"]
 
 
-class StorageBucket(BaseModel):
+class Bucket(BaseModel):
     name: str
     """Name of the S3 bucket"""
 

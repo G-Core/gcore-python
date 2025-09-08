@@ -16,7 +16,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.storage.buckets import cor_create_params
-from ....types.storage.buckets.storage_bucket_cors import StorageBucketCors
+from ....types.storage.buckets.bucket_cors import BucketCors
 
 __all__ = ["CorsResource", "AsyncCorsResource"]
 
@@ -95,7 +95,7 @@ class CorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StorageBucketCors:
+    ) -> BucketCors:
         """
         Retrieves the current Cross-Origin Resource Sharing (CORS) configuration for an
         S3 bucket, showing which domains are allowed to access the bucket from web
@@ -119,7 +119,7 @@ class CorsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=StorageBucketCors,
+            cast_to=BucketCors,
         )
 
 
@@ -197,7 +197,7 @@ class AsyncCorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StorageBucketCors:
+    ) -> BucketCors:
         """
         Retrieves the current Cross-Origin Resource Sharing (CORS) configuration for an
         S3 bucket, showing which domains are allowed to access the bucket from web
@@ -221,7 +221,7 @@ class AsyncCorsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=StorageBucketCors,
+            cast_to=BucketCors,
         )
 
 
