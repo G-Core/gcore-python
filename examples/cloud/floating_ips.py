@@ -33,14 +33,12 @@ def main() -> None:
 
 def create_floating_ip(*, client: Gcore) -> str:
     print("\n=== CREATE FLOATING IP ===")
-    response = client.cloud.floating_ips.create(tags={"name": "gcore-go-example"})
-    task = client.cloud.tasks.poll(task_id=response.tasks[0])
-    if task.created_resources is None or task.created_resources.floatingips is None:
-        raise RuntimeError("Task completed but created_resources or floatingips is missing")
-    floating_ip_id: str = task.created_resources.floatingips[0]
-    print(f"Created Floating IP: ID={floating_ip_id}")
+    floating_ip = client.cloud.floating_ips.create_and_poll(tags={"name": "gcore-go-example"})
+    if floating_ip.id is None:
+        raise RuntimeError("Failed to create floating IP")
+    print(f"Created Floating IP: ID={floating_ip.id}")
     print("========================")
-    return floating_ip_id
+    return floating_ip.id
 
 
 def list_floating_ips(*, client: Gcore) -> None:
@@ -81,9 +79,7 @@ def unassign_floating_ip(*, client: Gcore, floating_ip_id: str) -> None:
 
 def delete_floating_ip(*, client: Gcore, floating_ip_id: str) -> None:
     print("\n=== DELETE FLOATING IP ===")
-    response = client.cloud.floating_ips.delete(floating_ip_id=floating_ip_id)
-    task_id = response.tasks[0]
-    client.cloud.tasks.poll(task_id=task_id)
+    client.cloud.floating_ips.delete_and_poll(floating_ip_id=floating_ip_id)
     print(f"Deleted floating IP: ID={floating_ip_id}")
     print("========================")
 
