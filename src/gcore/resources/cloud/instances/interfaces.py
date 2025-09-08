@@ -285,11 +285,17 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
+        | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
+        | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
+        | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
         | NotGiven = NOT_GIVEN,
         interface_name: str | NotGiven = NOT_GIVEN,
         ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
         port_group: int | NotGiven = NOT_GIVEN,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
+        | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
+        | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
         | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         subnet_id: str | NotGiven = NOT_GIVEN,
@@ -940,11 +946,17 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
+        | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
+        | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
+        | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
         | NotGiven = NOT_GIVEN,
         interface_name: str | NotGiven = NOT_GIVEN,
         ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
         port_group: int | NotGiven = NOT_GIVEN,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
+        | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
+        | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
         | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         subnet_id: str | NotGiven = NOT_GIVEN,
