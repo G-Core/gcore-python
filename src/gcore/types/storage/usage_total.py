@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["StorageUsageTotal", "Data", "DataMetrics"]
+__all__ = ["UsageTotal", "Data", "DataMetrics"]
 
 
 class DataMetrics(BaseModel):
@@ -49,6 +49,6 @@ class Data(BaseModel):
     metrics: Optional[DataMetrics] = None
 
 
-class StorageUsageTotal(BaseModel):
+class UsageTotal(BaseModel):
     data: Optional[List[Data]] = None
     """StorageUsageTotalRes for response"""

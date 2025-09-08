@@ -41,7 +41,7 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.storage import bucket_list_params
-from ....types.storage.storage_bucket import StorageBucket
+from ....types.storage.bucket import Bucket
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
@@ -129,7 +129,7 @@ class BucketsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncOffsetPage[StorageBucket]:
+    ) -> SyncOffsetPage[Bucket]:
         """Returns the list of buckets for the storage in a wrapped response.
 
         Response
@@ -153,7 +153,7 @@ class BucketsResource(SyncAPIResource):
             f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets"
             if self._client._base_url_overridden
             else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}/s3/buckets",
-            page=SyncOffsetPage[StorageBucket],
+            page=SyncOffsetPage[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,7 +167,7 @@ class BucketsResource(SyncAPIResource):
                     bucket_list_params.BucketListParams,
                 ),
             ),
-            model=StorageBucket,
+            model=Bucket,
         )
 
     def delete(
@@ -293,7 +293,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[StorageBucket, AsyncOffsetPage[StorageBucket]]:
+    ) -> AsyncPaginator[Bucket, AsyncOffsetPage[Bucket]]:
         """Returns the list of buckets for the storage in a wrapped response.
 
         Response
@@ -317,7 +317,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets"
             if self._client._base_url_overridden
             else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}/s3/buckets",
-            page=AsyncOffsetPage[StorageBucket],
+            page=AsyncOffsetPage[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -331,7 +331,7 @@ class AsyncBucketsResource(AsyncAPIResource):
                     bucket_list_params.BucketListParams,
                 ),
             ),
-            model=StorageBucket,
+            model=Bucket,
         )
 
     async def delete(
