@@ -42,7 +42,7 @@ from .credentials import (
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.storage import storage_list_params, storage_update_params, storage_restore_params
+from ...types.storage import storage_list_params, storage_create_params, storage_update_params, storage_restore_params
 from .buckets.buckets import (
     BucketsResource,
     AsyncBucketsResource,
@@ -95,6 +95,11 @@ class StorageResource(SyncAPIResource):
     def create(
         self,
         *,
+        location: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"],
+        name: str,
+        type: Literal["sftp", "s3"],
+        generate_sftp_password: bool | NotGiven = NOT_GIVEN,
+        sftp_password: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,11 +110,47 @@ class StorageResource(SyncAPIResource):
         """
         Creates a new storage instance (S3 or SFTP) in the specified location and
         returns the storage details including credentials.
+
+        Args:
+          location: Geographic location where the storage will be provisioned. Each location
+              represents a specific data center region.
+
+          name: Unique storage name identifier. Must contain only letters, numbers, dashes, and
+              underscores. Cannot be empty and must be less than 256 characters.
+
+          type: Storage protocol type. Choose 's3' for S3-compatible object storage with API
+              access, or `sftp` for SFTP file transfer protocol.
+
+          generate_sftp_password: Automatically generate a secure password for SFTP storage access. Only
+              applicable when type is `sftp`. When `true`, a random password will be generated
+              and returned in the response.
+
+          sftp_password: Custom password for SFTP storage access. Only applicable when type is `sftp`. If
+              not provided and `generate_sftp_password` is `false`, no password authentication
+              will be available.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
             "/storage/provisioning/v2/storage"
             if self._client._base_url_overridden
             else "https://api.gcore.com//storage/provisioning/v2/storage",
+            body=maybe_transform(
+                {
+                    "location": location,
+                    "name": name,
+                    "type": type,
+                    "generate_sftp_password": generate_sftp_password,
+                    "sftp_password": sftp_password,
+                },
+                storage_create_params.StorageCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -470,6 +511,11 @@ class AsyncStorageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        location: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"],
+        name: str,
+        type: Literal["sftp", "s3"],
+        generate_sftp_password: bool | NotGiven = NOT_GIVEN,
+        sftp_password: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -480,11 +526,47 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         Creates a new storage instance (S3 or SFTP) in the specified location and
         returns the storage details including credentials.
+
+        Args:
+          location: Geographic location where the storage will be provisioned. Each location
+              represents a specific data center region.
+
+          name: Unique storage name identifier. Must contain only letters, numbers, dashes, and
+              underscores. Cannot be empty and must be less than 256 characters.
+
+          type: Storage protocol type. Choose 's3' for S3-compatible object storage with API
+              access, or `sftp` for SFTP file transfer protocol.
+
+          generate_sftp_password: Automatically generate a secure password for SFTP storage access. Only
+              applicable when type is `sftp`. When `true`, a random password will be generated
+              and returned in the response.
+
+          sftp_password: Custom password for SFTP storage access. Only applicable when type is `sftp`. If
+              not provided and `generate_sftp_password` is `false`, no password authentication
+              will be available.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
             "/storage/provisioning/v2/storage"
             if self._client._base_url_overridden
             else "https://api.gcore.com//storage/provisioning/v2/storage",
+            body=await async_maybe_transform(
+                {
+                    "location": location,
+                    "name": name,
+                    "type": type,
+                    "generate_sftp_password": generate_sftp_password,
+                    "sftp_password": sftp_password,
+                },
+                storage_create_params.StorageCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

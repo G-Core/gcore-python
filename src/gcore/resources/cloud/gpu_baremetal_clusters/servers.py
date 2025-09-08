@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Union, Iterable
+from datetime import datetime
 from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -59,8 +60,33 @@ class ServersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        changed_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        changed_since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        ip_address: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at.asc", "created_at.desc", "status.asc", "status.desc"] | NotGiven = NOT_GIVEN,
+        status: Literal[
+            "ACTIVE",
+            "BUILD",
+            "ERROR",
+            "HARD_REBOOT",
+            "MIGRATING",
+            "PAUSED",
+            "REBOOT",
+            "REBUILD",
+            "RESIZE",
+            "REVERT_RESIZE",
+            "SHELVED",
+            "SHELVED_OFFLOADED",
+            "SHUTOFF",
+            "SOFT_DELETED",
+            "SUSPENDED",
+            "VERIFY_RESIZE",
+        ]
+        | NotGiven = NOT_GIVEN,
+        uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -80,9 +106,27 @@ class ServersResource(SyncAPIResource):
 
           cluster_id: Cluster unique identifier
 
+          changed_before: Filters the results to include only servers whose last change timestamp is less
+              than the specified datetime. Format: ISO 8601.
+
+          changed_since: Filters the results to include only servers whose last change timestamp is
+              greater than or equal to the specified datetime. Format: ISO 8601.
+
+          ip_address: Filter servers by ip address.
+
           limit: Limit of items on a single page
 
+          name: Filter servers by name. You can provide a full or partial name, servers with
+              matching names will be returned. For example, entering 'test' will return all
+              servers that contain 'test' in their name.
+
           offset: Offset in results list
+
+          order_by: Order field
+
+          status: Filters servers by status.
+
+          uuids: Filter servers by uuid.
 
           extra_headers: Send extra headers
 
@@ -110,8 +154,15 @@ class ServersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "changed_before": changed_before,
+                        "changed_since": changed_since,
+                        "ip_address": ip_address,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
+                        "status": status,
+                        "uuids": uuids,
                     },
                     server_list_params.ServerListParams,
                 ),
@@ -664,8 +715,33 @@ class AsyncServersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        changed_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        changed_since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        ip_address: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at.asc", "created_at.desc", "status.asc", "status.desc"] | NotGiven = NOT_GIVEN,
+        status: Literal[
+            "ACTIVE",
+            "BUILD",
+            "ERROR",
+            "HARD_REBOOT",
+            "MIGRATING",
+            "PAUSED",
+            "REBOOT",
+            "REBUILD",
+            "RESIZE",
+            "REVERT_RESIZE",
+            "SHELVED",
+            "SHELVED_OFFLOADED",
+            "SHUTOFF",
+            "SOFT_DELETED",
+            "SUSPENDED",
+            "VERIFY_RESIZE",
+        ]
+        | NotGiven = NOT_GIVEN,
+        uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -685,9 +761,27 @@ class AsyncServersResource(AsyncAPIResource):
 
           cluster_id: Cluster unique identifier
 
+          changed_before: Filters the results to include only servers whose last change timestamp is less
+              than the specified datetime. Format: ISO 8601.
+
+          changed_since: Filters the results to include only servers whose last change timestamp is
+              greater than or equal to the specified datetime. Format: ISO 8601.
+
+          ip_address: Filter servers by ip address.
+
           limit: Limit of items on a single page
 
+          name: Filter servers by name. You can provide a full or partial name, servers with
+              matching names will be returned. For example, entering 'test' will return all
+              servers that contain 'test' in their name.
+
           offset: Offset in results list
+
+          order_by: Order field
+
+          status: Filters servers by status.
+
+          uuids: Filter servers by uuid.
 
           extra_headers: Send extra headers
 
@@ -715,8 +809,15 @@ class AsyncServersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "changed_before": changed_before,
+                        "changed_since": changed_since,
+                        "ip_address": ip_address,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
+                        "status": status,
+                        "uuids": uuids,
                     },
                     server_list_params.ServerListParams,
                 ),
