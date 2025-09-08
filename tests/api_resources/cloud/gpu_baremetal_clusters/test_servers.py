@@ -9,6 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore._utils import parse_datetime
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import Console, TaskIDList
 from gcore.types.cloud.gpu_baremetal_clusters import (
@@ -37,8 +38,15 @@ class TestServers:
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
+            changed_before=parse_datetime("2025-10-01T12:00:00Z"),
+            changed_since=parse_datetime("2025-10-01T12:00:00Z"),
+            ip_address="237.84.2.178",
             limit=10,
+            name="name",
             offset=0,
+            order_by="created_at.asc",
+            status="ACTIVE",
+            uuids=["string"],
         )
         assert_matches_type(SyncOffsetPage[GPUBaremetalClusterServer], server, path=["response"])
 
@@ -674,8 +682,15 @@ class TestAsyncServers:
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
+            changed_before=parse_datetime("2025-10-01T12:00:00Z"),
+            changed_since=parse_datetime("2025-10-01T12:00:00Z"),
+            ip_address="237.84.2.178",
             limit=10,
+            name="name",
             offset=0,
+            order_by="created_at.asc",
+            status="ACTIVE",
+            uuids=["string"],
         )
         assert_matches_type(AsyncOffsetPage[GPUBaremetalClusterServer], server, path=["response"])
 

@@ -10,7 +10,9 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.storage import Storage
+from gcore.types.storage import (
+    Storage,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,12 +22,31 @@ class TestStorage:
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        storage = client.storage.create()
+        storage = client.storage.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+        )
+        assert_matches_type(Storage, storage, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Gcore) -> None:
+        storage = client.storage.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+            generate_sftp_password=True,
+            sftp_password="sftp_password",
+        )
         assert_matches_type(Storage, storage, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.storage.with_raw_response.create()
+        response = client.storage.with_raw_response.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -34,7 +55,11 @@ class TestStorage:
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.storage.with_streaming_response.create() as response:
+        with client.storage.with_streaming_response.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -301,12 +326,31 @@ class TestAsyncStorage:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        storage = await async_client.storage.create()
+        storage = await async_client.storage.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+        )
+        assert_matches_type(Storage, storage, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
+        storage = await async_client.storage.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+            generate_sftp_password=True,
+            sftp_password="sftp_password",
+        )
         assert_matches_type(Storage, storage, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.storage.with_raw_response.create()
+        response = await async_client.storage.with_raw_response.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -315,7 +359,11 @@ class TestAsyncStorage:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.storage.with_streaming_response.create() as response:
+        async with async_client.storage.with_streaming_response.create(
+            location="s-ed1",
+            name="my-storage-prod",
+            type="s3",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
