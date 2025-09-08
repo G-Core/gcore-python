@@ -351,8 +351,7 @@ class DDOSProfileField(TypedDict, total=False):
     field_name: Optional[str]
     """Human-readable name of the DDoS protection field being configured"""
 
-    field_value: Union[Iterable[object], int, str, None]
-    """Complex value. Only one of 'value' or '`field_value`' must be specified."""
+    field_value: object
 
     value: Optional[str]
     """Basic type value. Only one of 'value' or '`field_value`' must be specified."""
