@@ -22,6 +22,12 @@ class GPUBaremetalClusterDeleteParams(TypedDict, total=False):
     deleted
     """
 
+    all_reserved_fixed_ips: bool
+    """
+    Flag indicating whether the reserved fixed ips associated with server / cluster
+    are deleted
+    """
+
     floating_ip_ids: SequenceNotStr[str]
     """Optional list of floating ips to be deleted"""
 

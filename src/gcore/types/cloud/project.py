@@ -18,6 +18,15 @@ class Project(BaseModel):
     created_at: datetime
     """Datetime of creation, which is automatically generated."""
 
+    deleted_at: Optional[datetime] = None
+    """
+    Datetime of deletion, which is automatically generated if the project is
+    deleted.
+    """
+
+    description: Optional[str] = None
+    """Description of the project."""
+
     is_default: bool
     """Indicates if the project is the default one.
 
@@ -29,15 +38,6 @@ class Project(BaseModel):
 
     state: str
     """The state of the project."""
-
-    deleted_at: Optional[datetime] = None
-    """
-    Datetime of deletion, which is automatically generated if the project is
-    deleted.
-    """
-
-    description: Optional[str] = None
-    """Description of the project."""
 
     task_id: Optional[str] = None
     """The UUID of the active task that currently holds a lock on the resource.

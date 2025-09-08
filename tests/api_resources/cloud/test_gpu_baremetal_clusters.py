@@ -161,6 +161,7 @@ class TestGPUBaremetalClusters:
             project_id=1,
             region_id=7,
             all_floating_ips=True,
+            all_reserved_fixed_ips=True,
             floating_ip_ids=["e4a01208-d6ac-4304-bf86-3028154b070a"],
             reserved_fixed_ip_ids=["a29b8e1e-08d3-4cec-91fb-06e81e5f46d5"],
         )
@@ -598,6 +599,7 @@ class TestAsyncGPUBaremetalClusters:
             project_id=1,
             region_id=7,
             all_floating_ips=True,
+            all_reserved_fixed_ips=True,
             floating_ip_ids=["e4a01208-d6ac-4304-bf86-3028154b070a"],
             reserved_fixed_ip_ids=["a29b8e1e-08d3-4cec-91fb-06e81e5f46d5"],
         )
