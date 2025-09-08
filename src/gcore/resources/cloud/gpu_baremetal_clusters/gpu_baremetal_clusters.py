@@ -250,6 +250,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         all_floating_ips: bool | NotGiven = NOT_GIVEN,
+        all_reserved_fixed_ips: bool | NotGiven = NOT_GIVEN,
         floating_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         reserved_fixed_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -271,6 +272,9 @@ class GPUBaremetalClustersResource(SyncAPIResource):
 
           all_floating_ips: Flag indicating whether the floating ips associated with server / cluster are
               deleted
+
+          all_reserved_fixed_ips: Flag indicating whether the reserved fixed ips associated with server / cluster
+              are deleted
 
           floating_ip_ids: Optional list of floating ips to be deleted
 
@@ -302,6 +306,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "all_floating_ips": all_floating_ips,
+                        "all_reserved_fixed_ips": all_reserved_fixed_ips,
                         "floating_ip_ids": floating_ip_ids,
                         "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
@@ -894,6 +899,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         all_floating_ips: bool | NotGiven = NOT_GIVEN,
+        all_reserved_fixed_ips: bool | NotGiven = NOT_GIVEN,
         floating_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         reserved_fixed_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -915,6 +921,9 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
 
           all_floating_ips: Flag indicating whether the floating ips associated with server / cluster are
               deleted
+
+          all_reserved_fixed_ips: Flag indicating whether the reserved fixed ips associated with server / cluster
+              are deleted
 
           floating_ip_ids: Optional list of floating ips to be deleted
 
@@ -946,6 +955,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "all_floating_ips": all_floating_ips,
+                        "all_reserved_fixed_ips": all_reserved_fixed_ips,
                         "floating_ip_ids": floating_ip_ids,
                         "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
