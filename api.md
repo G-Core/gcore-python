@@ -1986,7 +1986,7 @@ from gcore.types.storage import Storage
 
 Methods:
 
-- <code title="post /storage/provisioning/v2/storage">client.storage.<a href="./src/gcore/resources/storage/storage.py">create</a>() -> <a href="./src/gcore/types/storage/storage.py">Storage</a></code>
+- <code title="post /storage/provisioning/v2/storage">client.storage.<a href="./src/gcore/resources/storage/storage.py">create</a>(\*\*<a href="src/gcore/types/storage/storage_create_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage.py">Storage</a></code>
 - <code title="post /storage/provisioning/v1/storage/{storage_id}">client.storage.<a href="./src/gcore/resources/storage/storage.py">update</a>(storage_id, \*\*<a href="src/gcore/types/storage/storage_update_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage.py">Storage</a></code>
 - <code title="get /storage/provisioning/v3/storage">client.storage.<a href="./src/gcore/resources/storage/storage.py">list</a>(\*\*<a href="src/gcore/types/storage/storage_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/storage.py">SyncOffsetPage[Storage]</a></code>
 - <code title="delete /storage/provisioning/v1/storage/{storage_id}">client.storage.<a href="./src/gcore/resources/storage/storage.py">delete</a>(storage_id) -> None</code>
