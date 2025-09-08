@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["StorageUsageSeries", "Clients", "ClientsLocations", "ClientsLocationsStorages"]
+__all__ = ["UsageSeries", "Clients", "ClientsLocations", "ClientsLocationsStorages"]
 
 
 class ClientsLocationsStorages(BaseModel):
@@ -196,6 +196,6 @@ class Clients(BaseModel):
     """a TrafficSum is sum of all traffic for grouped period"""
 
 
-class StorageUsageSeries(BaseModel):
+class UsageSeries(BaseModel):
     clients: Optional[Dict[str, Clients]] = None
     """a Clients grouped data"""

@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["StorageBucketPolicy"]
+__all__ = ["BucketPolicy"]
 
-StorageBucketPolicy: TypeAlias = bool
+BucketPolicy: TypeAlias = bool

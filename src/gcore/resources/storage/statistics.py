@@ -16,7 +16,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.storage import statistic_get_usage_series_params, statistic_get_usage_aggregated_params
-from ...types.storage.storage_usage_total import StorageUsageTotal
+from ...types.storage.usage_total import UsageTotal
 from ...types.storage.statistic_get_usage_series_response import StatisticGetUsageSeriesResponse
 
 __all__ = ["StatisticsResource", "AsyncStatisticsResource"]
@@ -55,7 +55,7 @@ class StatisticsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StorageUsageTotal:
+    ) -> UsageTotal:
         """
         Consumption statistics is updated in near real-time as a standard practice.
         However, the frequency of updates can vary, but they are typically available
@@ -97,7 +97,7 @@ class StatisticsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=StorageUsageTotal,
+            cast_to=UsageTotal,
         )
 
     def get_usage_series(
@@ -206,7 +206,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StorageUsageTotal:
+    ) -> UsageTotal:
         """
         Consumption statistics is updated in near real-time as a standard practice.
         However, the frequency of updates can vary, but they are typically available
@@ -248,7 +248,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=StorageUsageTotal,
+            cast_to=UsageTotal,
         )
 
     async def get_usage_series(

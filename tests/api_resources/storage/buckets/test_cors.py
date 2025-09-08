@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.storage.buckets import StorageBucketCors
+from gcore.types.storage.buckets import BucketCors
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -74,7 +74,7 @@ class TestCors:
             bucket_name="bucket_name",
             storage_id=0,
         )
-        assert_matches_type(StorageBucketCors, cor, path=["response"])
+        assert_matches_type(BucketCors, cor, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -86,7 +86,7 @@ class TestCors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cor = response.parse()
-        assert_matches_type(StorageBucketCors, cor, path=["response"])
+        assert_matches_type(BucketCors, cor, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -98,7 +98,7 @@ class TestCors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cor = response.parse()
-            assert_matches_type(StorageBucketCors, cor, path=["response"])
+            assert_matches_type(BucketCors, cor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -173,7 +173,7 @@ class TestAsyncCors:
             bucket_name="bucket_name",
             storage_id=0,
         )
-        assert_matches_type(StorageBucketCors, cor, path=["response"])
+        assert_matches_type(BucketCors, cor, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -185,7 +185,7 @@ class TestAsyncCors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cor = await response.parse()
-        assert_matches_type(StorageBucketCors, cor, path=["response"])
+        assert_matches_type(BucketCors, cor, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -197,7 +197,7 @@ class TestAsyncCors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cor = await response.parse()
-            assert_matches_type(StorageBucketCors, cor, path=["response"])
+            assert_matches_type(BucketCors, cor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

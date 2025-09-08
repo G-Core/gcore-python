@@ -3,10 +3,10 @@
 from typing import Optional
 
 from ..._models import BaseModel
-from .storage_usage_series import StorageUsageSeries
+from .usage_series import UsageSeries
 
 __all__ = ["StatisticGetUsageSeriesResponse"]
 
 
 class StatisticGetUsageSeriesResponse(BaseModel):
-    data: Optional[StorageUsageSeries] = None
+    data: Optional[UsageSeries] = None

@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["StorageBucketCors"]
+__all__ = ["BucketCors"]
 
 
-class StorageBucketCors(BaseModel):
+class BucketCors(BaseModel):
     allowed_origins: Optional[List[str]] = FieldInfo(alias="allowedOrigins", default=None)
     """
     List of allowed origins for Cross-Origin Resource Sharing (CORS) requests.
