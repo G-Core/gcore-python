@@ -283,7 +283,7 @@ class L7PoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Replace load balancer L7 policy properties
+        Replace load balancer L7 policy
 
         Args:
           action: Action
@@ -740,7 +740,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TaskIDList:
         """
-        Replace load balancer L7 policy properties
+        Replace load balancer L7 policy
 
         Args:
           action: Action
