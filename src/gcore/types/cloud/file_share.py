@@ -84,7 +84,7 @@ class FileShare(BaseModel):
     """Share settings specific to the file share type"""
 
     size: int
-    """File share size, GiB"""
+    """File share size in GiB"""
 
     status: Literal[
         "available",

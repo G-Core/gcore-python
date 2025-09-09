@@ -118,7 +118,7 @@ class AccessRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccessRuleList:
         """
-        Get file share access rules
+        List file share access rules
 
         Args:
           project_id: Project ID
@@ -299,7 +299,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccessRuleList:
         """
-        Get file share access rules
+        List file share access rules
 
         Args:
           project_id: Project ID
