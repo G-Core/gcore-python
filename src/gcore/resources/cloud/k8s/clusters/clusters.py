@@ -210,9 +210,7 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "keypair": keypair,
@@ -341,9 +339,7 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             body=maybe_transform(
                 {
                     "authentication": authentication,
@@ -389,9 +385,7 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -433,9 +427,7 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -478,9 +470,7 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -519,9 +509,7 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -560,9 +548,7 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -601,9 +587,7 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -645,9 +629,7 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
             body=maybe_transform({"version": version}, cluster_upgrade_params.ClusterUpgradeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -817,9 +799,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "keypair": keypair,
@@ -948,9 +928,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             body=await async_maybe_transform(
                 {
                     "authentication": authentication,
@@ -996,9 +974,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1040,9 +1016,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1085,9 +1059,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1126,9 +1098,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1167,9 +1137,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1208,9 +1176,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1252,9 +1218,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
             body=await async_maybe_transform({"version": version}, cluster_upgrade_params.ClusterUpgradeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -120,9 +120,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/streaming/videos/{video_id}/subtitles"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles",
             body=maybe_transform(body, subtitle_create_params.SubtitleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -172,9 +170,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/videos/{video_id}/subtitles/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}",
             body=maybe_transform(
                 {
                     "language": language,
@@ -213,9 +209,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/subtitles"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -248,9 +242,7 @@ class SubtitlesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/videos/{video_id}/subtitles/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -282,9 +274,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/subtitles/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -389,9 +379,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/streaming/videos/{video_id}/subtitles"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles",
             body=await async_maybe_transform(body, subtitle_create_params.SubtitleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -441,9 +429,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/videos/{video_id}/subtitles/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}",
             body=await async_maybe_transform(
                 {
                     "language": language,
@@ -482,9 +468,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/subtitles"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles",
+            f"/streaming/videos/{video_id}/subtitles",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -517,9 +501,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/videos/{video_id}/subtitles/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -551,9 +533,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/subtitles/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/subtitles/{id}",
+            f"/streaming/videos/{video_id}/subtitles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -74,9 +74,7 @@ class BgpAnnouncesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/security/sifter/v2/protected_addresses/announces"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//security/sifter/v2/protected_addresses/announces",
+            "/security/sifter/v2/protected_addresses/announces",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,9 +122,7 @@ class BgpAnnouncesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/security/sifter/v2/protected_addresses/announces"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//security/sifter/v2/protected_addresses/announces",
+            "/security/sifter/v2/protected_addresses/announces",
             body=maybe_transform(
                 {
                     "announce": announce,
@@ -195,9 +191,7 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/security/sifter/v2/protected_addresses/announces"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//security/sifter/v2/protected_addresses/announces",
+            "/security/sifter/v2/protected_addresses/announces",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,9 +239,7 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/security/sifter/v2/protected_addresses/announces"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//security/sifter/v2/protected_addresses/announces",
+            "/security/sifter/v2/protected_addresses/announces",
             body=await async_maybe_transform(
                 {
                     "announce": announce,

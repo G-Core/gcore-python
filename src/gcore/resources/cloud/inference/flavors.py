@@ -73,9 +73,7 @@ class FlavorsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v3/inference/flavors"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v3/inference/flavors",
+            "/cloud/v3/inference/flavors",
             page=SyncOffsetPage[InferenceFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -121,9 +119,7 @@ class FlavorsResource(SyncAPIResource):
         if not flavor_name:
             raise ValueError(f"Expected a non-empty value for `flavor_name` but received {flavor_name!r}")
         return self._get(
-            f"/cloud/v3/inference/flavors/{flavor_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/flavors/{flavor_name}",
+            f"/cloud/v3/inference/flavors/{flavor_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -182,9 +178,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v3/inference/flavors"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v3/inference/flavors",
+            "/cloud/v3/inference/flavors",
             page=AsyncOffsetPage[InferenceFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -230,9 +224,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         if not flavor_name:
             raise ValueError(f"Expected a non-empty value for `flavor_name` but received {flavor_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/flavors/{flavor_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/flavors/{flavor_name}",
+            f"/cloud/v3/inference/flavors/{flavor_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

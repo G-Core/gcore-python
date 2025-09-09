@@ -120,9 +120,7 @@ class BillingReservationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/reservations"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/reservations",
+            "/cloud/v1/reservations",
             page=SyncOffsetPage[BillingReservation],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -176,9 +174,7 @@ class BillingReservationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cloud/v1/reservations/{reservation_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reservations/{reservation_id}",
+            f"/cloud/v1/reservations/{reservation_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -280,9 +276,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/reservations"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/reservations",
+            "/cloud/v1/reservations",
             page=AsyncOffsetPage[BillingReservation],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -336,9 +330,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cloud/v1/reservations/{reservation_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reservations/{reservation_id}",
+            f"/cloud/v1/reservations/{reservation_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -198,9 +198,7 @@ class DomainsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}",
+            f"/waap/v1/domains/{domain_id}",
             body=maybe_transform({"status": status}, domain_update_params.DomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -250,7 +248,7 @@ class DomainsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/domains" if self._client._base_url_overridden else "https://api.gcore.com//waap/v1/domains",
+            "/waap/v1/domains",
             page=SyncOffsetPage[WaapSummaryDomain],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -301,9 +299,7 @@ class DomainsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}",
+            f"/waap/v1/domains/{domain_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -336,9 +332,7 @@ class DomainsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}",
+            f"/waap/v1/domains/{domain_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -371,9 +365,7 @@ class DomainsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/rule-sets"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/rule-sets",
+            f"/waap/v1/domains/{domain_id}/rule-sets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -411,9 +403,7 @@ class DomainsResource(SyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/policies/{policy_id}/toggle",
+            f"/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -511,9 +501,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}",
+            f"/waap/v1/domains/{domain_id}",
             body=await async_maybe_transform({"status": status}, domain_update_params.DomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -563,7 +551,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/domains" if self._client._base_url_overridden else "https://api.gcore.com//waap/v1/domains",
+            "/waap/v1/domains",
             page=AsyncOffsetPage[WaapSummaryDomain],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -614,9 +602,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}",
+            f"/waap/v1/domains/{domain_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -649,9 +635,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}",
+            f"/waap/v1/domains/{domain_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -684,9 +668,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/rule-sets"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/rule-sets",
+            f"/waap/v1/domains/{domain_id}/rule-sets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -724,9 +706,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/policies/{policy_id}/toggle",
+            f"/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

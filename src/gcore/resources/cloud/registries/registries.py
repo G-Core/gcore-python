@@ -126,9 +126,7 @@ class RegistriesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -171,9 +169,7 @@ class RegistriesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -211,9 +207,7 @@ class RegistriesResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,9 +244,7 @@ class RegistriesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -292,9 +284,7 @@ class RegistriesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._patch(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize",
             body=maybe_transform({"storage_limit": storage_limit}, registry_resize_params.RegistryResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -375,9 +365,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -420,9 +408,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -460,9 +446,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -499,9 +483,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -541,9 +523,7 @@ class AsyncRegistriesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._patch(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize",
             body=await async_maybe_transform(
                 {"storage_limit": storage_limit}, registry_resize_params.RegistryResizeParams
             ),

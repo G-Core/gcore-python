@@ -82,9 +82,7 @@ class MetricsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "plain/text", **(extra_headers or {})}
         return self._get(
-            "/dns/v2/monitor/metrics"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/monitor/metrics",
+            "/dns/v2/monitor/metrics",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -162,9 +160,7 @@ class AsyncMetricsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "plain/text", **(extra_headers or {})}
         return await self._get(
-            "/dns/v2/monitor/metrics"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/monitor/metrics",
+            "/dns/v2/monitor/metrics",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

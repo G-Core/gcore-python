@@ -51,9 +51,7 @@ class AdvancedRulesResource(SyncAPIResource):
     ) -> WaapAdvancedRuleDescriptorList:
         """Retrieve an advanced rules descriptor"""
         return self._get(
-            "/waap/v1/advanced-rules/descriptor"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/advanced-rules/descriptor",
+            "/waap/v1/advanced-rules/descriptor",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -93,9 +91,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
     ) -> WaapAdvancedRuleDescriptorList:
         """Retrieve an advanced rules descriptor"""
         return await self._get(
-            "/waap/v1/advanced-rules/descriptor"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/advanced-rules/descriptor",
+            "/waap/v1/advanced-rules/descriptor",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

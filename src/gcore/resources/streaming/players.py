@@ -72,7 +72,7 @@ class PlayersResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/streaming/players" if self._client._base_url_overridden else "https://api.gcore.com//streaming/players",
+            "/streaming/players",
             body=maybe_transform({"player": player}, player_create_params.PlayerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -109,9 +109,7 @@ class PlayersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/players/{player_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}",
+            f"/streaming/players/{player_id}",
             body=maybe_transform({"player": player}, player_update_params.PlayerUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -146,7 +144,7 @@ class PlayersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/players" if self._client._base_url_overridden else "https://api.gcore.com//streaming/players",
+            "/streaming/players",
             page=SyncPageStreaming[Player],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -183,9 +181,7 @@ class PlayersResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/players/{player_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}",
+            f"/streaming/players/{player_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -216,9 +212,7 @@ class PlayersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/players/{player_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}",
+            f"/streaming/players/{player_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,9 +244,7 @@ class PlayersResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            f"/streaming/players/{player_id}/preview"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}/preview",
+            f"/streaming/players/{player_id}/preview",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -309,7 +301,7 @@ class AsyncPlayersResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/streaming/players" if self._client._base_url_overridden else "https://api.gcore.com//streaming/players",
+            "/streaming/players",
             body=await async_maybe_transform({"player": player}, player_create_params.PlayerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -346,9 +338,7 @@ class AsyncPlayersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/players/{player_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}",
+            f"/streaming/players/{player_id}",
             body=await async_maybe_transform({"player": player}, player_update_params.PlayerUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -383,7 +373,7 @@ class AsyncPlayersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/players" if self._client._base_url_overridden else "https://api.gcore.com//streaming/players",
+            "/streaming/players",
             page=AsyncPageStreaming[Player],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -420,9 +410,7 @@ class AsyncPlayersResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/players/{player_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}",
+            f"/streaming/players/{player_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -453,9 +441,7 @@ class AsyncPlayersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/players/{player_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}",
+            f"/streaming/players/{player_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -487,9 +473,7 @@ class AsyncPlayersResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            f"/streaming/players/{player_id}/preview"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/players/{player_id}/preview",
+            f"/streaming/players/{player_id}/preview",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
