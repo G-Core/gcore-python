@@ -35,18 +35,16 @@ async def main() -> None:
 
 async def create_volume(*, client: AsyncGcore) -> str:
     print("\n=== CREATE VOLUME ===")
-    response = await client.cloud.volumes.create(
+    volume = await client.cloud.volumes.create_and_poll(
         name="gcore-go-example",
         size=1,
         source="new-volume",
     )
-    task = await client.cloud.tasks.poll(task_id=response.tasks[0])
-    if task.created_resources is None or task.created_resources.volumes is None:
-        raise RuntimeError("Task completed but created_resources or volumes is missing")
-    volume_id: str = task.created_resources.volumes[0]
-    print(f"Created volume: ID={volume_id}")
+    if not volume.id:
+        raise RuntimeError("Failed to create volume")
+    print(f"Created volume: ID={volume.id}")
     print("========================")
-    return volume_id
+    return volume.id
 
 
 async def list_volumes(*, client: AsyncGcore) -> None:
@@ -77,18 +75,14 @@ async def update_volume(*, client: AsyncGcore, volume_id: str) -> None:
 
 async def attach_to_instance(*, client: AsyncGcore, volume_id: str, instance_id: str) -> None:
     print("\n=== ATTACH TO INSTANCE ===")
-    response = await client.cloud.volumes.attach_to_instance(volume_id=volume_id, instance_id=instance_id)
-    task_id = response.tasks[0]
-    await client.cloud.tasks.poll(task_id=task_id)
+    await client.cloud.volumes.attach_to_instance_and_poll(volume_id=volume_id, instance_id=instance_id)
     print(f"Attached volume to instance: volume_id={volume_id}, instance_id={instance_id}")
     print("========================")
 
 
 async def detach_from_instance(*, client: AsyncGcore, volume_id: str, instance_id: str) -> None:
     print("\n=== DETACH FROM INSTANCE ===")
-    response = await client.cloud.volumes.detach_from_instance(volume_id=volume_id, instance_id=instance_id)
-    task_id = response.tasks[0]
-    await client.cloud.tasks.poll(task_id=task_id)
+    await client.cloud.volumes.detach_from_instance_and_poll(volume_id=volume_id, instance_id=instance_id)
     print(f"Detached volume from instance: volume_id={volume_id}, instance_id={instance_id}")
     print("========================")
 
@@ -102,18 +96,14 @@ async def change_type(*, client: AsyncGcore, volume_id: str) -> None:
 
 async def resize(*, client: AsyncGcore, volume_id: str) -> None:
     print("\n=== RESIZE ===")
-    response = await client.cloud.volumes.resize(volume_id=volume_id, size=2)
-    task_id = response.tasks[0]
-    await client.cloud.tasks.poll(task_id=task_id)
-    print(f"Resized volume: ID={volume_id}, size=2 GiB")
+    volume = await client.cloud.volumes.resize_and_poll(volume_id=volume_id, size=2)
+    print(f"Resized volume: ID={volume.id}, size={volume.size} GiB")
     print("========================")
 
 
 async def delete_volume(*, client: AsyncGcore, volume_id: str) -> None:
     print("\n=== DELETE VOLUME ===")
-    response = await client.cloud.volumes.delete(volume_id=volume_id)
-    task_id = response.tasks[0]
-    await client.cloud.tasks.poll(task_id=task_id)
+    await client.cloud.volumes.delete_and_poll(volume_id=volume_id)
     print(f"Deleted volume: ID={volume_id}")
     print("========================")
 
