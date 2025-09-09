@@ -1,5 +1,83 @@
 # Changelog
 
+## 0.11.0 (2025-09-09)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/G-Core/gcore-python/compare/v0.10.0...v0.11.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** update polling methods signatures
+* **cloud:** migrate baremetal gpu cluster from v1 to v3
+* **cloud:** support inference applications
+
+### Features
+
+* **api:** aggregated API specs update ([931c594](https://github.com/G-Core/gcore-python/commit/931c5941afceba9f8cc84e0bfccd727f5d40bd78))
+* **api:** aggregated API specs update ([f6d4e0b](https://github.com/G-Core/gcore-python/commit/f6d4e0b2f721b6dfa531e6246fb7f4ea270df75e))
+* **api:** aggregated API specs update ([86b63d4](https://github.com/G-Core/gcore-python/commit/86b63d43a1197c77ae6d6df4f92d32a78db5f211))
+* **api:** aggregated API specs update ([09eeb95](https://github.com/G-Core/gcore-python/commit/09eeb95a33f70d79cab833c0e1c599fa13599e69))
+* **api:** aggregated API specs update ([72414c5](https://github.com/G-Core/gcore-python/commit/72414c5f92c2af4a7fbc01871271900b5a69ac88))
+* **api:** aggregated API specs update ([ac889a3](https://github.com/G-Core/gcore-python/commit/ac889a31107fb2c9525a8a3e9c889bdf718b2b8b))
+* **api:** aggregated API specs update ([98f84bc](https://github.com/G-Core/gcore-python/commit/98f84bce3cba455432f94aa21de179c385dc2e19))
+* **api:** aggregated API specs update ([86d8c4f](https://github.com/G-Core/gcore-python/commit/86d8c4fdc885691c89c385f275c5fc389d81c349))
+* **api:** aggregated API specs update ([ba76405](https://github.com/G-Core/gcore-python/commit/ba76405912b3514cd9836c49d41b564ca911e8f5))
+* **api:** aggregated API specs update ([d14eac7](https://github.com/G-Core/gcore-python/commit/d14eac7b754be27c008f44462cc965292ab99e95))
+* **api:** aggregated API specs update ([6a790b7](https://github.com/G-Core/gcore-python/commit/6a790b71e6dbd81e33aba81612c305240624062d))
+* **api:** aggregated API specs update ([e7e2da7](https://github.com/G-Core/gcore-python/commit/e7e2da79cf39dc75aa4178267b7ee5a4c31189ae))
+* **api:** aggregated API specs update ([165290f](https://github.com/G-Core/gcore-python/commit/165290f51e1c0913b9b324e03472e4134f9c7a31))
+* **api:** aggregated API specs update ([a56f7d1](https://github.com/G-Core/gcore-python/commit/a56f7d17b74d5c4489024edf5f3eb26eef802ee1))
+* **api:** aggregated API specs update ([12bae5a](https://github.com/G-Core/gcore-python/commit/12bae5ae6cbdf0d73da465fd7b1382c36ff0d00a))
+* **api:** aggregated API specs update ([2576f9c](https://github.com/G-Core/gcore-python/commit/2576f9cc8143fae02367e94e693cafd8954209c4))
+* **api:** aggregated API specs update ([5de1f95](https://github.com/G-Core/gcore-python/commit/5de1f95503f39a215839a6d86d9f692904ee0267))
+* **api:** api update ([602ef7d](https://github.com/G-Core/gcore-python/commit/602ef7daaecd2c5af65a73adba4055e4a74c8c24))
+* **api:** manual updates ([fca7094](https://github.com/G-Core/gcore-python/commit/fca709450327ddeaaa6d9bc70a15f4ac3f46d30c))
+* **api:** manual upload of aggregated API specs ([45843a3](https://github.com/G-Core/gcore-python/commit/45843a39873202bec9e0874526379cce0beb5f4e))
+* **api:** manual upload of aggregated API specs ([aad5c71](https://github.com/G-Core/gcore-python/commit/aad5c71696d2940cd3f443208c02acc55d5224e3))
+* **api:** update field_value type ([2095ccc](https://github.com/G-Core/gcore-python/commit/2095ccc238b559e5e048bc86ddd8e93ba372f88c))
+* **cloud:** add create_and_poll() and delete_and_poll() for floating ips ([e645a83](https://github.com/G-Core/gcore-python/commit/e645a83cde29fe50dfed87d1a9210134ec4b8e7b))
+* **cloud:** add create_and_poll() for subnets ([d537d4e](https://github.com/G-Core/gcore-python/commit/d537d4ed2dfda9d051d327a9bf55726f04f35104))
+* **cloud:** add managed k8s ([9b88526](https://github.com/G-Core/gcore-python/commit/9b885262b12c18f0f7ac17accebbb7e8d4ad4d48))
+* **cloud:** add new_and_poll() and delete_and_poll() for networks ([fda3191](https://github.com/G-Core/gcore-python/commit/fda3191c4680f62d2eb089db258e6c9e084303ed))
+* **cloud:** add polling for instance action and interfaces attach/detach ([ee59347](https://github.com/G-Core/gcore-python/commit/ee593474fe8f788d09b40e46995af7f993a32dcd))
+* **cloud:** fetch client_id from iam in cloud quotas examples ([daaf5e1](https://github.com/G-Core/gcore-python/commit/daaf5e10afe359e74d93fb9ac96061a38be107e0))
+* **cloud:** migrate baremetal gpu cluster from v1 to v3 ([064b2a1](https://github.com/G-Core/gcore-python/commit/064b2a1b4d56ff3ab8a1ed34e2dca64c9713d0b6))
+* **cloud:** remove inference model examples ([958a08e](https://github.com/G-Core/gcore-python/commit/958a08e51577f6e5d95fee19500e8f96bd552c95))
+* **cloud:** support inference applications ([dcf34ac](https://github.com/G-Core/gcore-python/commit/dcf34acdce70518d2bf119d7ca5ae50bec1521bd))
+* **cloud:** use PATCH /v2/lbpools ([6da421d](https://github.com/G-Core/gcore-python/commit/6da421dc9d1d3206b5e2275a84432cd0ce1b9d3b))
+* improve future compat with pydantic v3 ([cc3a79f](https://github.com/G-Core/gcore-python/commit/cc3a79f2268c3ced2cd0c3634844d01f2657c69d))
+* **s3:** add object storage ([7e1ed77](https://github.com/G-Core/gcore-python/commit/7e1ed7740b7a41454bc2779a0937f0c5ca5d4349))
+* **storage:** make list storage locations paginated ([eeef646](https://github.com/G-Core/gcore-python/commit/eeef64689a62cb5cc0546a616097f35e85492803))
+* **types:** replace List[str] with SequenceNotStr in params ([be5d331](https://github.com/G-Core/gcore-python/commit/be5d331430334b7e779510f99a4b6a0cddbb1859))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([adc20b7](https://github.com/G-Core/gcore-python/commit/adc20b7bc65b75be4d105cf05a886f7db299b2c4))
+* **cloud:** update polling methods signatures ([a5ecf6a](https://github.com/G-Core/gcore-python/commit/a5ecf6ac3957532628de955bd12b9f8c688861c4))
+* **dns:** fix dns methods ([58f23c0](https://github.com/G-Core/gcore-python/commit/58f23c07ac519f9ba1c181bce131a140e2151001))
+* **types:** add missing types to method arguments ([bec1dff](https://github.com/G-Core/gcore-python/commit/bec1dff935fa6f933c7ac3118e0e4e5cb463da72))
+* **waap:** fix component name ([fabb616](https://github.com/G-Core/gcore-python/commit/fabb616f3fe3c61a262275d7e359c7eafc324c8c))
+
+
+### Chores
+
+* formatting ([d739b03](https://github.com/G-Core/gcore-python/commit/d739b037fdfdee9dd86a283434b4d8c2e2c9b53b))
+* **internal:** add Sequence related utils ([daed5dc](https://github.com/G-Core/gcore-python/commit/daed5dc7a9f6bd8472da9bcad00bf4521f13efe8))
+* **internal:** change ci workflow machines ([cf13b4e](https://github.com/G-Core/gcore-python/commit/cf13b4e5b16ce2f6921e65fd780d780e83e95ff5))
+* **internal:** codegen related update ([0c6db9d](https://github.com/G-Core/gcore-python/commit/0c6db9d80d32327c271a81355319dea0c01b3836))
+* **internal:** codegen related update ([835fc54](https://github.com/G-Core/gcore-python/commit/835fc543e274454f92ee81b2af8ff5a203a14571))
+* **internal:** codegen related update ([04ce18a](https://github.com/G-Core/gcore-python/commit/04ce18ae770a17fe93fdec4c594d8e1ff03b0b4a))
+* **internal:** detect breaking changes when removing endpoints ([1fdb544](https://github.com/G-Core/gcore-python/commit/1fdb544c80140e5133cc272d5b1c1f2de897ce0f))
+* **internal:** improve breaking change detection ([cf699e9](https://github.com/G-Core/gcore-python/commit/cf699e9bc204256be2984ed0d6bb42ec168d0f79))
+* **internal:** minor formatting change ([48573ba](https://github.com/G-Core/gcore-python/commit/48573ba1f69b104a005f35595b8f7829790c75bc))
+* **internal:** move mypy configurations to `pyproject.toml` file ([1961ffc](https://github.com/G-Core/gcore-python/commit/1961ffc1434500cf47ef776b947d5eff18307502))
+* **internal:** update comment in script ([e11594e](https://github.com/G-Core/gcore-python/commit/e11594e226edc21949a7e319434a6032271f7119))
+* **internal:** update pyright exclude list ([5b2e640](https://github.com/G-Core/gcore-python/commit/5b2e640a05b46321c6d0438a89a39b5f3e0f2678))
+* **tests:** simplify `get_platform` test ([ebdb1e8](https://github.com/G-Core/gcore-python/commit/ebdb1e8ed0ab19745e41cd354196368cff14ef20))
+* **tests:** unskip tests failing due to wrong Prism routing ([6d24ccb](https://github.com/G-Core/gcore-python/commit/6d24ccb1b2927f54e4ca795a484c9c924c2f50d4))
+* update @stainless-api/prism-cli to v5.15.0 ([bed3f36](https://github.com/G-Core/gcore-python/commit/bed3f36e6b0ec73ae01f595e45ffad0052721df2))
+* update github action ([13f7cfd](https://github.com/G-Core/gcore-python/commit/13f7cfdd9e914d9b65bd3758b812f08a8a6f24cb))
+
 ## 0.10.0 (2025-08-07)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/G-Core/gcore-python/compare/v0.9.0...v0.10.0)
