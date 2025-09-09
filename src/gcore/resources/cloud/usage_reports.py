@@ -139,9 +139,7 @@ class UsageReportsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cloud/v1/usage_report"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/usage_report",
+            "/cloud/v1/usage_report",
             body=maybe_transform(
                 {
                     "time_from": time_from,
@@ -279,9 +277,7 @@ class AsyncUsageReportsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cloud/v1/usage_report"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/usage_report",
+            "/cloud/v1/usage_report",
             body=await async_maybe_transform(
                 {
                     "time_from": time_from,

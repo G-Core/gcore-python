@@ -69,9 +69,7 @@ class RepositoriesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -112,9 +110,7 @@ class RepositoriesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -172,9 +168,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -215,9 +209,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

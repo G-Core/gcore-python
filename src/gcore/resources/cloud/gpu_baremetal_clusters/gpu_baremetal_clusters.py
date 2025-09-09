@@ -156,9 +156,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -222,9 +220,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             page=SyncOffsetPage[GPUBaremetalCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -295,9 +291,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._delete(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -354,9 +348,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -395,9 +387,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
+            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -436,9 +426,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
+            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -490,9 +478,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild",
+            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild",
             body=maybe_transform(
                 {
                     "nodes": nodes,
@@ -544,9 +530,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
+            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=maybe_transform(
                 {"instances_count": instances_count},
                 gpu_baremetal_cluster_resize_params.GPUBaremetalClusterResizeParams,
@@ -805,9 +789,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -871,9 +853,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
             page=AsyncOffsetPage[GPUBaremetalCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -944,9 +924,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._delete(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1003,9 +981,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1044,9 +1020,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
+            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1085,9 +1059,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
+            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1139,9 +1111,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild",
+            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild",
             body=await async_maybe_transform(
                 {
                     "nodes": nodes,
@@ -1193,9 +1163,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
+            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=await async_maybe_transform(
                 {"instances_count": instances_count},
                 gpu_baremetal_cluster_resize_params.GPUBaremetalClusterResizeParams,
