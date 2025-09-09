@@ -32,7 +32,7 @@ class CreateStandardFileShareSerializer(TypedDict, total=False):
     """File share protocol"""
 
     size: Required[int]
-    """File share size"""
+    """File share size in GiB"""
 
     access: Iterable[CreateStandardFileShareSerializerAccess]
     """Access Rules"""
@@ -87,7 +87,7 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     """File share protocol"""
 
     size: Required[int]
-    """File share size"""
+    """File share size in GiB"""
 
     share_settings: CreateVastFileShareSerializerShareSettings
     """Configuration settings for the share"""

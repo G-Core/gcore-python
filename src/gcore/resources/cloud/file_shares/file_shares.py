@@ -99,7 +99,7 @@ class FileSharesResource(SyncAPIResource):
 
           protocol: File share protocol
 
-          size: File share size
+          size: File share size in GiB
 
           access: Access Rules
 
@@ -155,7 +155,7 @@ class FileSharesResource(SyncAPIResource):
 
           protocol: File share protocol
 
-          size: File share size
+          size: File share size in GiB
 
           share_settings: Configuration settings for the share
 
@@ -580,7 +580,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
 
           protocol: File share protocol
 
-          size: File share size
+          size: File share size in GiB
 
           access: Access Rules
 
@@ -636,7 +636,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
 
           protocol: File share protocol
 
-          size: File share size
+          size: File share size in GiB
 
           share_settings: Configuration settings for the share
 
