@@ -90,9 +90,7 @@ class APIPathsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/api-paths"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths",
+            f"/waap/v1/domains/{domain_id}/api-paths",
             body=maybe_transform(
                 {
                     "http_scheme": http_scheme,
@@ -155,9 +153,7 @@ class APIPathsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
             body=maybe_transform(
                 {
                     "api_groups": api_groups,
@@ -254,9 +250,7 @@ class APIPathsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/api-paths"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths",
+            f"/waap/v1/domains/{domain_id}/api-paths",
             page=SyncOffsetPage[WaapAPIPath],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -315,9 +309,7 @@ class APIPathsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -355,9 +347,7 @@ class APIPathsResource(SyncAPIResource):
         if not path_id:
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         return self._get(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -430,9 +420,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/api-paths"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths",
+            f"/waap/v1/domains/{domain_id}/api-paths",
             body=await async_maybe_transform(
                 {
                     "http_scheme": http_scheme,
@@ -495,9 +483,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
             body=await async_maybe_transform(
                 {
                     "api_groups": api_groups,
@@ -594,9 +580,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/api-paths"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths",
+            f"/waap/v1/domains/{domain_id}/api-paths",
             page=AsyncOffsetPage[WaapAPIPath],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -655,9 +639,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -695,9 +677,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         if not path_id:
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
