@@ -34,15 +34,11 @@ def main() -> None:
 
 def create_reserved_fixed_ip(*, client: Gcore) -> ReservedFixedIP:
     print("\n=== CREATE RESERVED FIXED IP ===")
-    task_list = client.cloud.reserved_fixed_ips.create(
+    port = client.cloud.reserved_fixed_ips.create_and_poll(
         type="external",
         ip_family="ipv4",
         is_vip=False,
     )
-    task = client.cloud.tasks.poll(task_list.tasks[0])
-    if not task.created_resources or not task.created_resources.ports or len(task.created_resources.ports) != 1:
-        raise RuntimeError("Expected exactly one port created in the task result")
-    port = client.cloud.reserved_fixed_ips.get(task.created_resources.ports[0])
     print(f"Created reserved fixed IP: ID={port.port_id}, name={port.name}, IP={port.fixed_ip_address}")
     print("========================")
     return port
@@ -93,8 +89,7 @@ def list_connected_ports(*, client: Gcore, port_id: str) -> None:
 
 def delete_reserved_fixed_ip(*, client: Gcore, port_id: str) -> None:
     print("\n=== DELETE RESERVED FIXED IP ===")
-    task_list = client.cloud.reserved_fixed_ips.delete(port_id)
-    client.cloud.tasks.poll(task_list.tasks[0])
+    client.cloud.reserved_fixed_ips.delete_and_poll(port_id)
     print(f"Deleted reserved fixed IP: ID={port_id}")
     print("========================")
 
