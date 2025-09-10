@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing_extensions import Literal
 
 import httpx
@@ -156,7 +155,6 @@ class StorageResource(SyncAPIResource):
             cast_to=Storage,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         storage_id: int,
@@ -172,15 +170,14 @@ class StorageResource(SyncAPIResource):
     ) -> Storage:
         """Updates storage configuration such as expiration date and server alias.
 
-        Note:
-        Prefer PATCH /provisioning/v2/storage/{`storage_id`} that uses correct HTTP
-        method for updating the storage.
+        Used for
+        SFTP storages.
 
         Args:
-          expires: Duration when the storage should expire in format like "2 years 6 months 2 weeks
-              3 days 5 hours 10 minutes 15 seconds". Leave empty to remove expiration.
+          expires: Duration when the storage should expire in format like "1 years 6 months 2 weeks
+              3 days 5 hours 10 minutes 15 seconds". Set empty to remove expiration.
 
-          server_alias: Custom domain alias for accessing the storage. Leave empty to remove alias.
+          server_alias: Custom domain alias for accessing the storage. Set empty to remove alias.
 
           extra_headers: Send extra headers
 
@@ -190,8 +187,8 @@ class StorageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+        return self._patch(
+            f"/storage/provisioning/v2/storage/{storage_id}",
             body=maybe_transform(
                 {
                     "expires": expires,
@@ -560,7 +557,6 @@ class AsyncStorageResource(AsyncAPIResource):
             cast_to=Storage,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         storage_id: int,
@@ -576,15 +572,14 @@ class AsyncStorageResource(AsyncAPIResource):
     ) -> Storage:
         """Updates storage configuration such as expiration date and server alias.
 
-        Note:
-        Prefer PATCH /provisioning/v2/storage/{`storage_id`} that uses correct HTTP
-        method for updating the storage.
+        Used for
+        SFTP storages.
 
         Args:
-          expires: Duration when the storage should expire in format like "2 years 6 months 2 weeks
-              3 days 5 hours 10 minutes 15 seconds". Leave empty to remove expiration.
+          expires: Duration when the storage should expire in format like "1 years 6 months 2 weeks
+              3 days 5 hours 10 minutes 15 seconds". Set empty to remove expiration.
 
-          server_alias: Custom domain alias for accessing the storage. Leave empty to remove alias.
+          server_alias: Custom domain alias for accessing the storage. Set empty to remove alias.
 
           extra_headers: Send extra headers
 
@@ -594,8 +589,8 @@ class AsyncStorageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+        return await self._patch(
+            f"/storage/provisioning/v2/storage/{storage_id}",
             body=await async_maybe_transform(
                 {
                     "expires": expires,
@@ -874,10 +869,8 @@ class StorageResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             storage.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                storage.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            storage.update,
         )
         self.list = to_raw_response_wrapper(
             storage.list,
@@ -922,10 +915,8 @@ class AsyncStorageResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             storage.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                storage.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            storage.update,
         )
         self.list = async_to_raw_response_wrapper(
             storage.list,
@@ -970,10 +961,8 @@ class StorageResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             storage.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                storage.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            storage.update,
         )
         self.list = to_streamed_response_wrapper(
             storage.list,
@@ -1018,10 +1007,8 @@ class AsyncStorageResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             storage.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                storage.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            storage.update,
         )
         self.list = async_to_streamed_response_wrapper(
             storage.list,
