@@ -14,8 +14,6 @@ from gcore.types.storage import (
     Storage,
 )
 
-# pyright: reportDeprecated=false
-
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -72,30 +70,25 @@ class TestStorage:
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            storage = client.storage.update(
-                storage_id=0,
-            )
-
+        storage = client.storage.update(
+            storage_id=0,
+        )
         assert_matches_type(Storage, storage, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            storage = client.storage.update(
-                storage_id=0,
-                expires="2 years 6 months 2 weeks 3 days 5 hours 10 minutes 15 seconds",
-                server_alias="my-storage.company.com",
-            )
-
+        storage = client.storage.update(
+            storage_id=0,
+            expires="1 years 6 months",
+            server_alias="my-storage.company.com",
+        )
         assert_matches_type(Storage, storage, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.storage.with_raw_response.update(
-                storage_id=0,
-            )
+        response = client.storage.with_raw_response.update(
+            storage_id=0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -104,15 +97,14 @@ class TestStorage:
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.storage.with_streaming_response.update(
-                storage_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.storage.with_streaming_response.update(
+            storage_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                storage = response.parse()
-                assert_matches_type(Storage, storage, path=["response"])
+            storage = response.parse()
+            assert_matches_type(Storage, storage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -382,30 +374,25 @@ class TestAsyncStorage:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            storage = await async_client.storage.update(
-                storage_id=0,
-            )
-
+        storage = await async_client.storage.update(
+            storage_id=0,
+        )
         assert_matches_type(Storage, storage, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            storage = await async_client.storage.update(
-                storage_id=0,
-                expires="2 years 6 months 2 weeks 3 days 5 hours 10 minutes 15 seconds",
-                server_alias="my-storage.company.com",
-            )
-
+        storage = await async_client.storage.update(
+            storage_id=0,
+            expires="1 years 6 months",
+            server_alias="my-storage.company.com",
+        )
         assert_matches_type(Storage, storage, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.storage.with_raw_response.update(
-                storage_id=0,
-            )
+        response = await async_client.storage.with_raw_response.update(
+            storage_id=0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -414,15 +401,14 @@ class TestAsyncStorage:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.storage.with_streaming_response.update(
-                storage_id=0,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.storage.with_streaming_response.update(
+            storage_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                storage = await response.parse()
-                assert_matches_type(Storage, storage, path=["response"])
+            storage = await response.parse()
+            assert_matches_type(Storage, storage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
