@@ -36,15 +36,11 @@ async def main() -> None:
 
 async def create_reserved_fixed_ip(*, client: AsyncGcore) -> ReservedFixedIP:
     print("\n=== CREATE RESERVED FIXED IP ===")
-    task_list = await client.cloud.reserved_fixed_ips.create(
+    port = await client.cloud.reserved_fixed_ips.create_and_poll(
         type="external",
         ip_family="ipv4",
         is_vip=False,
     )
-    task = await client.cloud.tasks.poll(task_list.tasks[0])
-    if not task.created_resources or not task.created_resources.ports or len(task.created_resources.ports) != 1:
-        raise RuntimeError("Expected exactly one port created in the task result")
-    port = await client.cloud.reserved_fixed_ips.get(task.created_resources.ports[0])
     print(f"Created reserved fixed IP: ID={port.port_id}, name={port.name}, IP={port.fixed_ip_address}")
     print("========================")
     return port
@@ -97,8 +93,7 @@ async def list_connected_ports(*, client: AsyncGcore, port_id: str) -> None:
 
 async def delete_reserved_fixed_ip(*, client: AsyncGcore, port_id: str) -> None:
     print("\n=== DELETE RESERVED FIXED IP ===")
-    task_list = await client.cloud.reserved_fixed_ips.delete(port_id)
-    await client.cloud.tasks.poll(task_list.tasks[0])
+    await client.cloud.reserved_fixed_ips.delete_and_poll(port_id)
     print(f"Deleted reserved fixed IP: ID={port_id}")
     print("========================")
 
