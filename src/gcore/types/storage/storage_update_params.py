@@ -9,9 +9,9 @@ __all__ = ["StorageUpdateParams"]
 
 class StorageUpdateParams(TypedDict, total=False):
     expires: str
-    """ISO 8601 timestamp when the storage should expire.
-
-    Leave empty to remove expiration.
+    """
+    Duration when the storage should expire in format like "2 years 6 months 2 weeks
+    3 days 5 hours 10 minutes 15 seconds". Leave empty to remove expiration.
     """
 
     server_alias: str
