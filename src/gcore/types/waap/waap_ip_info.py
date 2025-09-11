@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["IPInfoGetIPInfoResponse", "Whois"]
+__all__ = ["WaapIPInfo", "Whois"]
 
 
 class Whois(BaseModel):
@@ -46,7 +46,7 @@ class Whois(BaseModel):
     """The state"""
 
 
-class IPInfoGetIPInfoResponse(BaseModel):
+class WaapIPInfo(BaseModel):
     risk_score: Literal["NO_RISK", "LOW", "MEDIUM", "HIGH", "EXTREME", "NOT_ENOUGH_DATA"]
     """The risk score of the IP address"""
 
