@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.12.0 (2025-09-11)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/G-Core/gcore-python/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* **api:** aggregated API specs update ([3fbc8f1](https://github.com/G-Core/gcore-python/commit/3fbc8f1a6126f4cb6d9e6a0aff7f35f67f77ec6f))
+* **cloud:** add create_and_poll() and delete_and_poll() to reserved fixed ips ([6e6efc0](https://github.com/G-Core/gcore-python/commit/6e6efc03de62b895199a043e0cf1b396aefb0d01))
+* **cloud:** add polling methods to volumes ([3537e8c](https://github.com/G-Core/gcore-python/commit/3537e8c5b6ebd0500868dfc2b14bfeba735fe1f5))
+
+
+### Refactors
+
+* **storage:** use v2 endpoint ([4a00499](https://github.com/G-Core/gcore-python/commit/4a00499c3bc80a6f06e476bd1c0d544bd1c46cef))
+
 ## 0.11.0 (2025-09-09)
 
 Full Changelog: [v0.10.0...v0.11.0](https://github.com/G-Core/gcore-python/compare/v0.10.0...v0.11.0)
