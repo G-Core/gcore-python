@@ -116,18 +116,18 @@ class TestFloatingIPs:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         floating_ip = client.cloud.floating_ips.delete(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.floating_ips.with_raw_response.delete(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -138,9 +138,9 @@ class TestFloatingIPs:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.floating_ips.with_streaming_response.delete(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -155,8 +155,8 @@ class TestFloatingIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
             client.cloud.floating_ips.with_raw_response.delete(
                 floating_ip_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -223,18 +223,18 @@ class TestFloatingIPs:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         floating_ip = client.cloud.floating_ips.get(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.floating_ips.with_raw_response.get(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -245,9 +245,9 @@ class TestFloatingIPs:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.floating_ips.with_streaming_response.get(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -262,8 +262,8 @@ class TestFloatingIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
             client.cloud.floating_ips.with_raw_response.get(
                 floating_ip_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -412,18 +412,18 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         floating_ip = await async_client.cloud.floating_ips.delete(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.floating_ips.with_raw_response.delete(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -434,9 +434,9 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.floating_ips.with_streaming_response.delete(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -451,8 +451,8 @@ class TestAsyncFloatingIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
             await async_client.cloud.floating_ips.with_raw_response.delete(
                 floating_ip_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -519,18 +519,18 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         floating_ip = await async_client.cloud.floating_ips.get(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.floating_ips.with_raw_response.get(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -541,9 +541,9 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.floating_ips.with_streaming_response.get(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
+            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -558,8 +558,8 @@ class TestAsyncFloatingIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
             await async_client.cloud.floating_ips.with_raw_response.get(
                 floating_ip_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
