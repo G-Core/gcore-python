@@ -10,8 +10,8 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.waap import (
+    WaapIPInfo,
     WaapIPDDOSInfoModel,
-    IPInfoGetIPInfoResponse,
     IPInfoGetTopURLsResponse,
     IPInfoGetTopUserAgentsResponse,
     IPInfoGetBlockedRequestsResponse,
@@ -127,7 +127,7 @@ class TestIPInfo:
         ip_info = client.waap.ip_info.get_ip_info(
             ip="192.168.1.1",
         )
-        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
+        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
 
     @parametrize
     def test_raw_response_get_ip_info(self, client: Gcore) -> None:
@@ -138,7 +138,7 @@ class TestIPInfo:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip_info = response.parse()
-        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
+        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
 
     @parametrize
     def test_streaming_response_get_ip_info(self, client: Gcore) -> None:
@@ -149,7 +149,7 @@ class TestIPInfo:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip_info = response.parse()
-            assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
+            assert_matches_type(WaapIPInfo, ip_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -393,7 +393,7 @@ class TestAsyncIPInfo:
         ip_info = await async_client.waap.ip_info.get_ip_info(
             ip="192.168.1.1",
         )
-        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
+        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
 
     @parametrize
     async def test_raw_response_get_ip_info(self, async_client: AsyncGcore) -> None:
@@ -404,7 +404,7 @@ class TestAsyncIPInfo:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip_info = await response.parse()
-        assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
+        assert_matches_type(WaapIPInfo, ip_info, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_ip_info(self, async_client: AsyncGcore) -> None:
@@ -415,7 +415,7 @@ class TestAsyncIPInfo:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip_info = await response.parse()
-            assert_matches_type(IPInfoGetIPInfoResponse, ip_info, path=["response"])
+            assert_matches_type(WaapIPInfo, ip_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

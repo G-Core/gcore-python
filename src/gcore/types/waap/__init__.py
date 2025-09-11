@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from .waap_tag import WaapTag as WaapTag
+from .waap_ip_info import WaapIPInfo as WaapIPInfo
+from .waap_top_url import WaapTopURL as WaapTopURL
 from .waap_rule_set import WaapRuleSet as WaapRuleSet
 from .tag_list_params import TagListParams as TagListParams
 from .waap_policy_mode import WaapPolicyMode as WaapPolicyMode
@@ -30,7 +32,6 @@ from .waap_domain_settings_model import WaapDomainSettingsModel as WaapDomainSet
 from .waap_rule_blocked_requests import WaapRuleBlockedRequests as WaapRuleBlockedRequests
 from .custom_page_set_list_params import CustomPageSetListParams as CustomPageSetListParams
 from .ip_info_get_top_urls_params import IPInfoGetTopURLsParams as IPInfoGetTopURLsParams
-from .ip_info_get_ip_info_response import IPInfoGetIPInfoResponse as IPInfoGetIPInfoResponse
 from .custom_page_set_create_params import CustomPageSetCreateParams as CustomPageSetCreateParams
 from .custom_page_set_update_params import CustomPageSetUpdateParams as CustomPageSetUpdateParams
 from .ip_info_get_top_urls_response import IPInfoGetTopURLsResponse as IPInfoGetTopURLsResponse

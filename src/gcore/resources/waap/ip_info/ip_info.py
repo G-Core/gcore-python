@@ -33,8 +33,8 @@ from ....types.waap import (
     ip_info_list_attacked_countries_params,
 )
 from ...._base_client import make_request_options
+from ....types.waap.waap_ip_info import WaapIPInfo
 from ....types.waap.waap_ip_ddos_info_model import WaapIPDDOSInfoModel
-from ....types.waap.ip_info_get_ip_info_response import IPInfoGetIPInfoResponse
 from ....types.waap.ip_info_get_top_urls_response import IPInfoGetTopURLsResponse
 from ....types.waap.ip_info_get_top_user_agents_response import IPInfoGetTopUserAgentsResponse
 from ....types.waap.ip_info_get_blocked_requests_response import IPInfoGetBlockedRequestsResponse
@@ -212,7 +212,7 @@ class IPInfoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPInfoGetIPInfoResponse:
+    ) -> WaapIPInfo:
         """
         Fetch details about a particular IP address, including WHOIS data, risk score,
         and additional tags.
@@ -237,7 +237,7 @@ class IPInfoResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"ip": ip}, ip_info_get_ip_info_params.IPInfoGetIPInfoParams),
             ),
-            cast_to=IPInfoGetIPInfoResponse,
+            cast_to=WaapIPInfo,
         )
 
     def get_top_urls(
@@ -596,7 +596,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPInfoGetIPInfoResponse:
+    ) -> WaapIPInfo:
         """
         Fetch details about a particular IP address, including WHOIS data, risk score,
         and additional tags.
@@ -621,7 +621,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"ip": ip}, ip_info_get_ip_info_params.IPInfoGetIPInfoParams),
             ),
-            cast_to=IPInfoGetIPInfoResponse,
+            cast_to=WaapIPInfo,
         )
 
     async def get_top_urls(

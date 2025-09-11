@@ -3,17 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ..._models import BaseModel
+from .waap_top_url import WaapTopURL
 
-__all__ = ["IPInfoGetTopURLsResponse", "IPInfoGetTopURLsResponseItem"]
+__all__ = ["IPInfoGetTopURLsResponse"]
 
-
-class IPInfoGetTopURLsResponseItem(BaseModel):
-    count: int
-    """The number of attacks to the URL"""
-
-    url: str
-    """The URL that was attacked"""
-
-
-IPInfoGetTopURLsResponse: TypeAlias = List[IPInfoGetTopURLsResponseItem]
+IPInfoGetTopURLsResponse: TypeAlias = List[WaapTopURL]
