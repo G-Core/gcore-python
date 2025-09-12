@@ -93,7 +93,9 @@ class DeploymentsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._post(
-            f"/cloud/v3/inference/applications/{project_id}/deployments",
+            f"/cloud/v3/inference/applications/{project_id}/deployments"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments",
             body=maybe_transform(
                 {
                     "application_name": application_name,
@@ -140,7 +142,9 @@ class DeploymentsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get(
-            f"/cloud/v3/inference/applications/{project_id}/deployments",
+            f"/cloud/v3/inference/applications/{project_id}/deployments"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -182,7 +186,9 @@ class DeploymentsResource(SyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._delete(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -226,7 +232,9 @@ class DeploymentsResource(SyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._get(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -280,7 +288,9 @@ class DeploymentsResource(SyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._patch(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             body=maybe_transform(
                 {
                     "api_keys": api_keys,
@@ -362,7 +372,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._post(
-            f"/cloud/v3/inference/applications/{project_id}/deployments",
+            f"/cloud/v3/inference/applications/{project_id}/deployments"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments",
             body=await async_maybe_transform(
                 {
                     "application_name": application_name,
@@ -409,7 +421,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._get(
-            f"/cloud/v3/inference/applications/{project_id}/deployments",
+            f"/cloud/v3/inference/applications/{project_id}/deployments"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -451,7 +465,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return await self._delete(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -495,7 +511,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -549,7 +567,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return await self._patch(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
             body=await async_maybe_transform(
                 {
                     "api_keys": api_keys,

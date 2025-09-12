@@ -113,6 +113,7 @@ class Gcore(SyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.gcore.com"
 
@@ -197,7 +198,7 @@ class Gcore(SyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             api_key=api_key or self.api_key,
             cloud_project_id=cloud_project_id or self.cloud_project_id,
             cloud_region_id=cloud_region_id or self.cloud_region_id,
@@ -210,6 +211,8 @@ class Gcore(SyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -340,6 +343,7 @@ class AsyncGcore(AsyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("GCORE_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.gcore.com"
 
@@ -424,7 +428,7 @@ class AsyncGcore(AsyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             api_key=api_key or self.api_key,
             cloud_project_id=cloud_project_id or self.cloud_project_id,
             cloud_region_id=cloud_region_id or self.cloud_region_id,
@@ -437,6 +441,8 @@ class AsyncGcore(AsyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)

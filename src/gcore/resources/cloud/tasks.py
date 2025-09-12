@@ -194,7 +194,7 @@ class TasksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/tasks",
+            "/cloud/v1/tasks" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/tasks",
             page=SyncOffsetPage[Task],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -251,7 +251,9 @@ class TasksResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/cloud/v1/tasks/acknowledge_all",
+            "/cloud/v1/tasks/acknowledge_all"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v1/tasks/acknowledge_all",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -296,7 +298,9 @@ class TasksResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._post(
-            f"/cloud/v1/tasks/{task_id}/acknowledge",
+            f"/cloud/v1/tasks/{task_id}/acknowledge"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/tasks/{task_id}/acknowledge",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -331,7 +335,9 @@ class TasksResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._get(
-            f"/cloud/v1/tasks/{task_id}",
+            f"/cloud/v1/tasks/{task_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/tasks/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -503,7 +509,7 @@ class AsyncTasksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/tasks",
+            "/cloud/v1/tasks" if self._client._base_url_overridden else "https://api.gcore.com//cloud/v1/tasks",
             page=AsyncOffsetPage[Task],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -560,7 +566,9 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/cloud/v1/tasks/acknowledge_all",
+            "/cloud/v1/tasks/acknowledge_all"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v1/tasks/acknowledge_all",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -605,7 +613,9 @@ class AsyncTasksResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._post(
-            f"/cloud/v1/tasks/{task_id}/acknowledge",
+            f"/cloud/v1/tasks/{task_id}/acknowledge"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/tasks/{task_id}/acknowledge",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -640,7 +650,9 @@ class AsyncTasksResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._get(
-            f"/cloud/v1/tasks/{task_id}",
+            f"/cloud/v1/tasks/{task_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/tasks/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
