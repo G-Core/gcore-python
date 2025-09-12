@@ -121,7 +121,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/fastedge/v1/apps" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/apps",
+            "/fastedge/v1/apps",
             body=maybe_transform(
                 {
                     "binary": binary,
@@ -208,9 +208,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             body=maybe_transform(
                 {
                     "binary": binary,
@@ -307,7 +305,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/fastedge/v1/apps" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/apps",
+            "/fastedge/v1/apps",
             page=SyncOffsetPageFastedgeApps[AppShort],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -357,9 +355,7 @@ class AppsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -390,9 +386,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -424,9 +418,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             body=maybe_transform(body, app_replace_params.AppReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -522,7 +514,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/fastedge/v1/apps" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/apps",
+            "/fastedge/v1/apps",
             body=await async_maybe_transform(
                 {
                     "binary": binary,
@@ -609,9 +601,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             body=await async_maybe_transform(
                 {
                     "binary": binary,
@@ -708,7 +698,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/fastedge/v1/apps" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/apps",
+            "/fastedge/v1/apps",
             page=AsyncOffsetPageFastedgeApps[AppShort],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -758,9 +748,7 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -791,9 +779,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -825,9 +811,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/fastedge/v1/apps/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{id}",
             body=await async_maybe_transform(body, app_replace_params.AppReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

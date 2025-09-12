@@ -72,9 +72,7 @@ class ArtifactsResource(SyncAPIResource):
         if not repository_name:
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -118,9 +116,7 @@ class ArtifactsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `digest` but received {digest!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -181,9 +177,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
         if not repository_name:
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -227,9 +221,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `digest` but received {digest!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
+            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

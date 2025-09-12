@@ -148,7 +148,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             body=maybe_transform({"video": video}, video_create_params.VideoCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -371,9 +371,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -469,7 +467,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             page=SyncPageStreaming[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -526,9 +524,7 @@ class VideosResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -579,9 +575,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/videos/batch"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/batch",
+            "/streaming/videos/batch",
             body=maybe_transform({"videos": videos}, video_create_multiple_params.VideoCreateMultipleParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -631,9 +625,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -693,9 +685,7 @@ class VideosResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/upload"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/upload",
+            f"/streaming/videos/{video_id}/upload",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -729,9 +719,7 @@ class VideosResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            "/streaming/videos/names"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/names",
+            "/streaming/videos/names",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -848,7 +836,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             body=await async_maybe_transform({"video": video}, video_create_params.VideoCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1071,9 +1059,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -1169,7 +1155,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/videos" if self._client._base_url_overridden else "https://api.gcore.com//streaming/videos",
+            "/streaming/videos",
             page=AsyncPageStreaming[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1226,9 +1212,7 @@ class AsyncVideosResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1279,9 +1263,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/videos/batch"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/batch",
+            "/streaming/videos/batch",
             body=await async_maybe_transform(
                 {"videos": videos}, video_create_multiple_params.VideoCreateMultipleParams
             ),
@@ -1335,9 +1317,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}",
+            f"/streaming/videos/{video_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1397,9 +1377,7 @@ class AsyncVideosResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/upload"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/videos/{video_id}/upload",
+            f"/streaming/videos/{video_id}/upload",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1433,9 +1411,7 @@ class AsyncVideosResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            "/streaming/videos/names"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/videos/names",
+            "/streaming/videos/names",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
