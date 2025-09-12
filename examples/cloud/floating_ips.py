@@ -34,8 +34,6 @@ def main() -> None:
 def create_floating_ip(*, client: Gcore) -> str:
     print("\n=== CREATE FLOATING IP ===")
     floating_ip = client.cloud.floating_ips.create_and_poll(tags={"name": "gcore-go-example"})
-    if floating_ip.id is None:
-        raise RuntimeError("Failed to create floating IP")
     print(f"Created Floating IP: ID={floating_ip.id}")
     print("========================")
     return floating_ip.id

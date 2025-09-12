@@ -1289,13 +1289,14 @@ Types:
 from gcore.types.waap import (
     WaapIPCountryAttack,
     WaapIPDDOSInfoModel,
+    WaapIPInfo,
     WaapRuleBlockedRequests,
     WaapTimeSeriesAttack,
     WaapTopSession,
+    WaapTopURL,
     WaapTopUserAgent,
     IPInfoGetAttackTimeSeriesResponse,
     IPInfoGetBlockedRequestsResponse,
-    IPInfoGetIPInfoResponse,
     IPInfoGetTopURLsResponse,
     IPInfoGetTopUserAgentsResponse,
     IPInfoGetTopUserSessionsResponse,
@@ -1308,7 +1309,7 @@ Methods:
 - <code title="get /waap/v1/ip-info/attack-time-series">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_attack_time_series</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_attack_time_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_attack_time_series_response.py">IPInfoGetAttackTimeSeriesResponse</a></code>
 - <code title="get /waap/v1/ip-info/blocked-requests">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_blocked_requests</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_blocked_requests_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_blocked_requests_response.py">IPInfoGetBlockedRequestsResponse</a></code>
 - <code title="get /waap/v1/ip-info/ddos">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_ddos_attack_series</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_ddos_attack_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_ip_ddos_info_model.py">WaapIPDDOSInfoModel</a></code>
-- <code title="get /waap/v1/ip-info/ip-info">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_ip_info</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_ip_info_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_ip_info_response.py">IPInfoGetIPInfoResponse</a></code>
+- <code title="get /waap/v1/ip-info/ip-info">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_ip_info</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_ip_info_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_ip_info.py">WaapIPInfo</a></code>
 - <code title="get /waap/v1/ip-info/top-urls">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_urls</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_urls_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_urls_response.py">IPInfoGetTopURLsResponse</a></code>
 - <code title="get /waap/v1/ip-info/top-user-agents">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_user_agents</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_user_agents_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_user_agents_response.py">IPInfoGetTopUserAgentsResponse</a></code>
 - <code title="get /waap/v1/ip-info/top-sessions">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_user_sessions</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_user_sessions_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_user_sessions_response.py">IPInfoGetTopUserSessionsResponse</a></code>

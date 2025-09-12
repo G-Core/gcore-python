@@ -35,8 +35,6 @@ async def main() -> None:
 async def create_floating_ip(*, client: AsyncGcore) -> str:
     print("\n=== CREATE FLOATING IP ===")
     floating_ip = await client.cloud.floating_ips.create_and_poll(tags={"name": "gcore-go-example"})
-    if floating_ip.id is None:
-        raise RuntimeError("Failed to create floating IP")
     print(f"Created floating IP: ID={floating_ip.id}")
     print("========================")
     return floating_ip.id

@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.13.0 (2025-09-12)
+
+Full Changelog: [v0.12.0...v0.13.0](https://github.com/G-Core/gcore-python/compare/v0.12.0...v0.13.0)
+
+### ⚠ BREAKING CHANGES
+
+* **waap:** model references
+
+### Features
+
+* **api:** aggregated API specs update ([09db4dd](https://github.com/G-Core/gcore-python/commit/09db4dde07cbec7bb8e94348c6ef78578c3022d3))
+* **api:** aggregated API specs update ([a2de60c](https://github.com/G-Core/gcore-python/commit/a2de60c773c01aeb6223001a0d8bff5463fa82ef))
+* **api:** aggregated API specs update ([ccf4739](https://github.com/G-Core/gcore-python/commit/ccf4739750f27e01ece2ff147458dd7fe9305437))
+* **api:** aggregated API specs update ([484ee11](https://github.com/G-Core/gcore-python/commit/484ee1144558b56f40d5bc41b9613370dc74c42e))
+
+
+### Bug Fixes
+
+* **cloud:** floating ips examples ([bf8a5dd](https://github.com/G-Core/gcore-python/commit/bf8a5ddff3e777441db47163dc03b73052d99ecd))
+* **waap:** model references ([4f69e7e](https://github.com/G-Core/gcore-python/commit/4f69e7e5aa778cf82357d7d097e874100bfa9e0d))
+
 ## 0.12.0 (2025-09-11)
 
 Full Changelog: [v0.11.0...v0.12.0](https://github.com/G-Core/gcore-python/compare/v0.11.0...v0.12.0)

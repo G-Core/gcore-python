@@ -192,6 +192,12 @@ class FloatingIPsResource(SyncAPIResource):
         Delete floating IP
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -283,6 +289,12 @@ class FloatingIPsResource(SyncAPIResource):
         Get floating IP
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -595,6 +607,12 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         Delete floating IP
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -686,6 +704,12 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         Get floating IP
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
