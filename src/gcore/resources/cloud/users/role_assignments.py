@@ -85,9 +85,7 @@ class RoleAssignmentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cloud/v1/users/assignments"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/users/assignments",
+            "/cloud/v1/users/assignments",
             body=maybe_transform(
                 {
                     "role": role,
@@ -141,9 +139,7 @@ class RoleAssignmentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cloud/v1/users/assignments/{assignment_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/users/assignments/{assignment_id}",
+            f"/cloud/v1/users/assignments/{assignment_id}",
             body=maybe_transform(
                 {
                     "role": role,
@@ -195,9 +191,7 @@ class RoleAssignmentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/users/assignments"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/users/assignments",
+            "/cloud/v1/users/assignments",
             page=SyncOffsetPage[RoleAssignment],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -243,9 +237,7 @@ class RoleAssignmentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._delete(
-            f"/cloud/v1/users/assignments/{assignment_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/users/assignments/{assignment_id}",
+            f"/cloud/v1/users/assignments/{assignment_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -308,9 +300,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cloud/v1/users/assignments"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/users/assignments",
+            "/cloud/v1/users/assignments",
             body=await async_maybe_transform(
                 {
                     "role": role,
@@ -364,9 +354,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cloud/v1/users/assignments/{assignment_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/users/assignments/{assignment_id}",
+            f"/cloud/v1/users/assignments/{assignment_id}",
             body=await async_maybe_transform(
                 {
                     "role": role,
@@ -418,9 +406,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/users/assignments"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/users/assignments",
+            "/cloud/v1/users/assignments",
             page=AsyncOffsetPage[RoleAssignment],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -466,9 +452,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._delete(
-            f"/cloud/v1/users/assignments/{assignment_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/users/assignments/{assignment_id}",
+            f"/cloud/v1/users/assignments/{assignment_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

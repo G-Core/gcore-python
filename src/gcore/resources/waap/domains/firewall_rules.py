@@ -91,9 +91,7 @@ class FirewallRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/firewall-rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules",
+            f"/waap/v1/domains/{domain_id}/firewall-rules",
             body=maybe_transform(
                 {
                     "action": action,
@@ -155,9 +153,7 @@ class FirewallRulesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
             body=maybe_transform(
                 {
                     "action": action,
@@ -227,9 +223,7 @@ class FirewallRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/firewall-rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules",
+            f"/waap/v1/domains/{domain_id}/firewall-rules",
             page=SyncOffsetPage[WaapFirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -282,9 +276,7 @@ class FirewallRulesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -321,9 +313,7 @@ class FirewallRulesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/bulk_delete"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/bulk_delete",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/bulk_delete",
             body=maybe_transform(
                 {"rule_ids": rule_ids}, firewall_rule_delete_multiple_params.FirewallRuleDeleteMultipleParams
             ),
@@ -362,9 +352,7 @@ class FirewallRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -406,9 +394,7 @@ class FirewallRulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -477,9 +463,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/firewall-rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules",
+            f"/waap/v1/domains/{domain_id}/firewall-rules",
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -541,9 +525,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -613,9 +595,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/firewall-rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules",
+            f"/waap/v1/domains/{domain_id}/firewall-rules",
             page=AsyncOffsetPage[WaapFirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -668,9 +648,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -707,9 +685,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/bulk_delete"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/bulk_delete",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/bulk_delete",
             body=await async_maybe_transform(
                 {"rule_ids": rule_ids}, firewall_rule_delete_multiple_params.FirewallRuleDeleteMultipleParams
             ),
@@ -748,9 +724,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -792,9 +766,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
+            f"/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
