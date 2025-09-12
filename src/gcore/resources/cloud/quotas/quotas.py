@@ -65,7 +65,9 @@ class QuotasResource(SyncAPIResource):
     ) -> QuotaGetAllResponse:
         """Get combined client quotas, including both regional and global quotas."""
         return self._get(
-            "/cloud/v2/client_quotas",
+            "/cloud/v2/client_quotas"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v2/client_quotas",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -103,7 +105,9 @@ class QuotasResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v2/regional_quotas/{client_id}/{region_id}",
+            f"/cloud/v2/regional_quotas/{client_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/regional_quotas/{client_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -136,7 +140,9 @@ class QuotasResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cloud/v2/global_quotas/{client_id}",
+            f"/cloud/v2/global_quotas/{client_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/global_quotas/{client_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -180,7 +186,9 @@ class AsyncQuotasResource(AsyncAPIResource):
     ) -> QuotaGetAllResponse:
         """Get combined client quotas, including both regional and global quotas."""
         return await self._get(
-            "/cloud/v2/client_quotas",
+            "/cloud/v2/client_quotas"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v2/client_quotas",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -218,7 +226,9 @@ class AsyncQuotasResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v2/regional_quotas/{client_id}/{region_id}",
+            f"/cloud/v2/regional_quotas/{client_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/regional_quotas/{client_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -251,7 +261,9 @@ class AsyncQuotasResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cloud/v2/global_quotas/{client_id}",
+            f"/cloud/v2/global_quotas/{client_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/global_quotas/{client_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

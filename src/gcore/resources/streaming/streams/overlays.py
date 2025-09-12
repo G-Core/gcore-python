@@ -123,7 +123,9 @@ class OverlaysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/streaming/streams/{stream_id}/overlays",
+            f"/streaming/streams/{stream_id}/overlays"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays",
             body=maybe_transform(body, Iterable[overlay_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -175,7 +177,9 @@ class OverlaysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/streams/{stream_id}/overlays/{overlay_id}",
+            f"/streaming/streams/{stream_id}/overlays/{overlay_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays/{overlay_id}",
             body=maybe_transform(
                 {
                     "height": height,
@@ -217,7 +221,9 @@ class OverlaysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/streams/{stream_id}/overlays",
+            f"/streaming/streams/{stream_id}/overlays"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,7 +256,9 @@ class OverlaysResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/streams/{stream_id}/overlays/{overlay_id}",
+            f"/streaming/streams/{stream_id}/overlays/{overlay_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays/{overlay_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -282,7 +290,9 @@ class OverlaysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/streams/{stream_id}/overlays/{overlay_id}",
+            f"/streaming/streams/{stream_id}/overlays/{overlay_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays/{overlay_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -314,7 +324,9 @@ class OverlaysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/streams/{stream_id}/overlays",
+            f"/streaming/streams/{stream_id}/overlays"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays",
             body=maybe_transform(body, Iterable[overlay_update_multiple_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -420,7 +432,9 @@ class AsyncOverlaysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/streaming/streams/{stream_id}/overlays",
+            f"/streaming/streams/{stream_id}/overlays"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays",
             body=await async_maybe_transform(body, Iterable[overlay_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -472,7 +486,9 @@ class AsyncOverlaysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/streams/{stream_id}/overlays/{overlay_id}",
+            f"/streaming/streams/{stream_id}/overlays/{overlay_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays/{overlay_id}",
             body=await async_maybe_transform(
                 {
                     "height": height,
@@ -514,7 +530,9 @@ class AsyncOverlaysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/streams/{stream_id}/overlays",
+            f"/streaming/streams/{stream_id}/overlays"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -547,7 +565,9 @@ class AsyncOverlaysResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/streams/{stream_id}/overlays/{overlay_id}",
+            f"/streaming/streams/{stream_id}/overlays/{overlay_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays/{overlay_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -579,7 +599,9 @@ class AsyncOverlaysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/streams/{stream_id}/overlays/{overlay_id}",
+            f"/streaming/streams/{stream_id}/overlays/{overlay_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays/{overlay_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -611,7 +633,9 @@ class AsyncOverlaysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/streams/{stream_id}/overlays",
+            f"/streaming/streams/{stream_id}/overlays"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/streams/{stream_id}/overlays",
             body=await async_maybe_transform(body, Iterable[overlay_update_multiple_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

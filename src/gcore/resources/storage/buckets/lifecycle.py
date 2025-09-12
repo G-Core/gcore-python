@@ -78,7 +78,9 @@ class LifecycleResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             body=maybe_transform({"expiration_days": expiration_days}, lifecycle_create_params.LifecycleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -115,7 +117,9 @@ class LifecycleResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -181,7 +185,9 @@ class AsyncLifecycleResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             body=await async_maybe_transform(
                 {"expiration_days": expiration_days}, lifecycle_create_params.LifecycleCreateParams
             ),
@@ -220,7 +226,9 @@ class AsyncLifecycleResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/lifecycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

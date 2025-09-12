@@ -143,7 +143,7 @@ class ZonesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/dns/v2/zones",
+            "/dns/v2/zones" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/zones",
             body=maybe_transform(
                 {
                     "name": name,
@@ -225,7 +225,7 @@ class ZonesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/dns/v2/zones",
+            "/dns/v2/zones" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/zones",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -283,7 +283,9 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._delete(
-            f"/dns/v2/zones/{name}",
+            f"/dns/v2/zones/{name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -318,7 +320,9 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._post(
-            f"/dns/v2/analyze/{name}/delegation-status",
+            f"/dns/v2/analyze/{name}/delegation-status"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/analyze/{name}/delegation-status",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -351,7 +355,9 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._patch(
-            f"/dns/v2/zones/{name}/disable",
+            f"/dns/v2/zones/{name}/disable"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}/disable",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -384,7 +390,9 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._patch(
-            f"/dns/v2/zones/{name}/enable",
+            f"/dns/v2/zones/{name}/enable"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}/enable",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -417,7 +425,9 @@ class ZonesResource(SyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return self._get(
-            f"/dns/v2/zones/{zone_name}/export",
+            f"/dns/v2/zones/{zone_name}/export"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/export",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -450,7 +460,9 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/zones/{name}",
+            f"/dns/v2/zones/{name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -517,7 +529,9 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/zones/{name}/statistics",
+            f"/dns/v2/zones/{name}/statistics"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}/statistics",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -583,7 +597,9 @@ class ZonesResource(SyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return self._post(
-            f"/dns/v2/zones/{zone_name}/import",
+            f"/dns/v2/zones/{zone_name}/import"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/import",
             body=maybe_transform(body, zone_import_params.ZoneImportParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -656,7 +672,9 @@ class ZonesResource(SyncAPIResource):
         if not path_name:
             raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
         return self._put(
-            f"/dns/v2/zones/{path_name}",
+            f"/dns/v2/zones/{path_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{path_name}",
             body=maybe_transform(
                 {
                     "body_name": body_name,
@@ -769,7 +787,7 @@ class AsyncZonesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/dns/v2/zones",
+            "/dns/v2/zones" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/zones",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -851,7 +869,7 @@ class AsyncZonesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/dns/v2/zones",
+            "/dns/v2/zones" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/zones",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -909,7 +927,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._delete(
-            f"/dns/v2/zones/{name}",
+            f"/dns/v2/zones/{name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -944,7 +964,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._post(
-            f"/dns/v2/analyze/{name}/delegation-status",
+            f"/dns/v2/analyze/{name}/delegation-status"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/analyze/{name}/delegation-status",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -977,7 +999,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._patch(
-            f"/dns/v2/zones/{name}/disable",
+            f"/dns/v2/zones/{name}/disable"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}/disable",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1010,7 +1034,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._patch(
-            f"/dns/v2/zones/{name}/enable",
+            f"/dns/v2/zones/{name}/enable"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}/enable",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1043,7 +1069,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return await self._get(
-            f"/dns/v2/zones/{zone_name}/export",
+            f"/dns/v2/zones/{zone_name}/export"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/export",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1076,7 +1104,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/zones/{name}",
+            f"/dns/v2/zones/{name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1143,7 +1173,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/zones/{name}/statistics",
+            f"/dns/v2/zones/{name}/statistics"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{name}/statistics",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1209,7 +1241,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return await self._post(
-            f"/dns/v2/zones/{zone_name}/import",
+            f"/dns/v2/zones/{zone_name}/import"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{zone_name}/import",
             body=await async_maybe_transform(body, zone_import_params.ZoneImportParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1282,7 +1316,9 @@ class AsyncZonesResource(AsyncAPIResource):
         if not path_name:
             raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
         return await self._put(
-            f"/dns/v2/zones/{path_name}",
+            f"/dns/v2/zones/{path_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//dns/v2/zones/{path_name}",
             body=await async_maybe_transform(
                 {
                     "body_name": body_name,

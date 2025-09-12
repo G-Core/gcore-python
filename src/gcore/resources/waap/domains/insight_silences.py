@@ -93,7 +93,9 @@ class InsightSilencesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/insight-silences",
+            f"/waap/v1/domains/{domain_id}/insight-silences"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences",
             body=maybe_transform(
                 {
                     "author": author,
@@ -153,7 +155,9 @@ class InsightSilencesResource(SyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
+            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
             body=maybe_transform(
                 {
                     "author": author,
@@ -228,7 +232,9 @@ class InsightSilencesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/insight-silences",
+            f"/waap/v1/domains/{domain_id}/insight-silences"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences",
             page=SyncOffsetPage[WaapInsightSilence],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -283,7 +289,9 @@ class InsightSilencesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
+            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -321,7 +329,9 @@ class InsightSilencesResource(SyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return self._get(
-            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
+            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -392,7 +402,9 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/insight-silences",
+            f"/waap/v1/domains/{domain_id}/insight-silences"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences",
             body=await async_maybe_transform(
                 {
                     "author": author,
@@ -452,7 +464,9 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
+            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
             body=await async_maybe_transform(
                 {
                     "author": author,
@@ -527,7 +541,9 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/insight-silences",
+            f"/waap/v1/domains/{domain_id}/insight-silences"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences",
             page=AsyncOffsetPage[WaapInsightSilence],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -582,7 +598,9 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
+            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -620,7 +638,9 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
+            f"/waap/v1/domains/{domain_id}/insight-silences/{silence_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/insight-silences/{silence_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
