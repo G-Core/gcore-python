@@ -11,7 +11,7 @@ __all__ = ["FloatingIP"]
 
 
 class FloatingIP(BaseModel):
-    id: Optional[str] = None
+    id: str
     """Floating IP ID"""
 
     created_at: datetime
