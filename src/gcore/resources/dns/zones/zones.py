@@ -317,7 +317,7 @@ class ZonesResource(SyncAPIResource):
         """
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        return self._post(
+        return self._get(
             f"/dns/v2/analyze/{name}/delegation-status",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
