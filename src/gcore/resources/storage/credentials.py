@@ -85,7 +85,9 @@ class CredentialsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/credentials",
+            f"/storage/provisioning/v1/storage/{storage_id}/credentials"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/credentials",
             body=maybe_transform(
                 {
                     "delete_sftp_password": delete_sftp_password,
@@ -167,7 +169,9 @@ class AsyncCredentialsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/credentials",
+            f"/storage/provisioning/v1/storage/{storage_id}/credentials"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/credentials",
             body=await async_maybe_transform(
                 {
                     "delete_sftp_password": delete_sftp_password,

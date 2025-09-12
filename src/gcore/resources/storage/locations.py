@@ -69,7 +69,9 @@ class LocationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/storage/provisioning/v2/locations",
+            "/storage/provisioning/v2/locations"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v2/locations",
             page=SyncOffsetPage[Location],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -135,7 +137,9 @@ class AsyncLocationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/storage/provisioning/v2/locations",
+            "/storage/provisioning/v2/locations"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v2/locations",
             page=AsyncOffsetPage[Location],
             options=make_request_options(
                 extra_headers=extra_headers,

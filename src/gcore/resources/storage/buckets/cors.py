@@ -74,7 +74,9 @@ class CorsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
             body=maybe_transform({"allowed_origins": allowed_origins}, cor_create_params.CorCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -111,7 +113,9 @@ class CorsResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -172,7 +176,9 @@ class AsyncCorsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
             body=await async_maybe_transform({"allowed_origins": allowed_origins}, cor_create_params.CorCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -209,7 +215,9 @@ class AsyncCorsResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
