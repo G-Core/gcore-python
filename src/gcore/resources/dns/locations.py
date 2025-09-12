@@ -54,7 +54,7 @@ class LocationsResource(SyncAPIResource):
     ) -> LocationListResponse:
         """List of All locations continents/countries/regions."""
         return self._get(
-            "/dns/v2/locations" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/locations",
+            "/dns/v2/locations",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -73,9 +73,7 @@ class LocationsResource(SyncAPIResource):
     ) -> LocationListContinentsResponse:
         """List of All locations continents."""
         return self._get(
-            "/dns/v2/locations/continents"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/locations/continents",
+            "/dns/v2/locations/continents",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -94,9 +92,7 @@ class LocationsResource(SyncAPIResource):
     ) -> LocationListCountriesResponse:
         """List of All locations countries."""
         return self._get(
-            "/dns/v2/locations/countries"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/locations/countries",
+            "/dns/v2/locations/countries",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -115,9 +111,7 @@ class LocationsResource(SyncAPIResource):
     ) -> LocationListRegionsResponse:
         """List of All locations regions."""
         return self._get(
-            "/dns/v2/locations/regions"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/locations/regions",
+            "/dns/v2/locations/regions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -157,7 +151,7 @@ class AsyncLocationsResource(AsyncAPIResource):
     ) -> LocationListResponse:
         """List of All locations continents/countries/regions."""
         return await self._get(
-            "/dns/v2/locations" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/locations",
+            "/dns/v2/locations",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -176,9 +170,7 @@ class AsyncLocationsResource(AsyncAPIResource):
     ) -> LocationListContinentsResponse:
         """List of All locations continents."""
         return await self._get(
-            "/dns/v2/locations/continents"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/locations/continents",
+            "/dns/v2/locations/continents",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -197,9 +189,7 @@ class AsyncLocationsResource(AsyncAPIResource):
     ) -> LocationListCountriesResponse:
         """List of All locations countries."""
         return await self._get(
-            "/dns/v2/locations/countries"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/locations/countries",
+            "/dns/v2/locations/countries",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -218,9 +208,7 @@ class AsyncLocationsResource(AsyncAPIResource):
     ) -> LocationListRegionsResponse:
         """List of All locations regions."""
         return await self._get(
-            "/dns/v2/locations/regions"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//dns/v2/locations/regions",
+            "/dns/v2/locations/regions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

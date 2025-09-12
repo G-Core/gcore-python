@@ -79,9 +79,7 @@ class SecretsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._post(
-            f"/cloud/v3/inference/{project_id}/secrets"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets",
+            f"/cloud/v3/inference/{project_id}/secrets",
             body=maybe_transform(
                 {
                     "data": data,
@@ -132,9 +130,7 @@ class SecretsResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/secrets"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets",
+            f"/cloud/v3/inference/{project_id}/secrets",
             page=SyncOffsetPage[InferenceSecret],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -186,9 +182,7 @@ class SecretsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets/{secret_name}",
+            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -228,9 +222,7 @@ class SecretsResource(SyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return self._get(
-            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets/{secret_name}",
+            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -276,9 +268,7 @@ class SecretsResource(SyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return self._put(
-            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets/{secret_name}",
+            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}",
             body=maybe_transform(
                 {
                     "data": data,
@@ -350,9 +340,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._post(
-            f"/cloud/v3/inference/{project_id}/secrets"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets",
+            f"/cloud/v3/inference/{project_id}/secrets",
             body=await async_maybe_transform(
                 {
                     "data": data,
@@ -403,9 +391,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/secrets"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets",
+            f"/cloud/v3/inference/{project_id}/secrets",
             page=AsyncOffsetPage[InferenceSecret],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -457,9 +443,7 @@ class AsyncSecretsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets/{secret_name}",
+            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -499,9 +483,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets/{secret_name}",
+            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -547,9 +529,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return await self._put(
-            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/secrets/{secret_name}",
+            f"/cloud/v3/inference/{project_id}/secrets/{secret_name}",
             body=await async_maybe_transform(
                 {
                     "data": data,

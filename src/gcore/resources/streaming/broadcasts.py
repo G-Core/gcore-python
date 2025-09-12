@@ -76,9 +76,7 @@ class BroadcastsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/streaming/broadcasts"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/broadcasts",
+            "/streaming/broadcasts",
             body=maybe_transform({"broadcast": broadcast}, broadcast_create_params.BroadcastCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -111,9 +109,7 @@ class BroadcastsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/broadcasts/{broadcast_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}",
+            f"/streaming/broadcasts/{broadcast_id}",
             body=maybe_transform({"broadcast": broadcast}, broadcast_update_params.BroadcastUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -150,9 +146,7 @@ class BroadcastsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/broadcasts"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/broadcasts",
+            "/streaming/broadcasts",
             page=SyncPageStreaming[Broadcast],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -189,9 +183,7 @@ class BroadcastsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/broadcasts/{broadcast_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}",
+            f"/streaming/broadcasts/{broadcast_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -222,9 +214,7 @@ class BroadcastsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/broadcasts/{broadcast_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}",
+            f"/streaming/broadcasts/{broadcast_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -255,9 +245,7 @@ class BroadcastsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/broadcasts/{broadcast_id}/spectators"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}/spectators",
+            f"/streaming/broadcasts/{broadcast_id}/spectators",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -318,9 +306,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/streaming/broadcasts"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/broadcasts",
+            "/streaming/broadcasts",
             body=await async_maybe_transform({"broadcast": broadcast}, broadcast_create_params.BroadcastCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -353,9 +339,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/broadcasts/{broadcast_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}",
+            f"/streaming/broadcasts/{broadcast_id}",
             body=await async_maybe_transform({"broadcast": broadcast}, broadcast_update_params.BroadcastUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -392,9 +376,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/broadcasts"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/broadcasts",
+            "/streaming/broadcasts",
             page=AsyncPageStreaming[Broadcast],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -431,9 +413,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/broadcasts/{broadcast_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}",
+            f"/streaming/broadcasts/{broadcast_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -464,9 +444,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/broadcasts/{broadcast_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}",
+            f"/streaming/broadcasts/{broadcast_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -497,9 +475,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/broadcasts/{broadcast_id}/spectators"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/broadcasts/{broadcast_id}/spectators",
+            f"/streaming/broadcasts/{broadcast_id}/spectators",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

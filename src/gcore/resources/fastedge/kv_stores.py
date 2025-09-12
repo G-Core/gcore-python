@@ -72,7 +72,7 @@ class KvStoresResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/fastedge/v1/kv" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/kv",
+            "/fastedge/v1/kv",
             body=maybe_transform(
                 {
                     "byod": byod,
@@ -112,7 +112,7 @@ class KvStoresResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/fastedge/v1/kv" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/kv",
+            "/fastedge/v1/kv",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -148,9 +148,7 @@ class KvStoresResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/kv/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -181,9 +179,7 @@ class KvStoresResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/kv/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -220,9 +216,7 @@ class KvStoresResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/fastedge/v1/kv/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{id}",
             body=maybe_transform(
                 {
                     "byod": byod,
@@ -286,7 +280,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/fastedge/v1/kv" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/kv",
+            "/fastedge/v1/kv",
             body=await async_maybe_transform(
                 {
                     "byod": byod,
@@ -326,7 +320,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/fastedge/v1/kv" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/kv",
+            "/fastedge/v1/kv",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,9 +356,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/kv/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -395,9 +387,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/kv/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -434,9 +424,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/fastedge/v1/kv/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{id}",
             body=await async_maybe_transform(
                 {
                     "byod": byod,
