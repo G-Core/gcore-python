@@ -17,7 +17,6 @@ from gcore.types.dns import (
     ZoneExportResponse,
     ZoneImportResponse,
     ZoneGetStatisticsResponse,
-    ZoneCheckDelegationStatusResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -156,44 +155,6 @@ class TestZones:
     def test_path_params_delete(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
             client.dns.zones.with_raw_response.delete(
-                "",
-            )
-
-    @parametrize
-    def test_method_check_delegation_status(self, client: Gcore) -> None:
-        zone = client.dns.zones.check_delegation_status(
-            "name",
-        )
-        assert_matches_type(ZoneCheckDelegationStatusResponse, zone, path=["response"])
-
-    @parametrize
-    def test_raw_response_check_delegation_status(self, client: Gcore) -> None:
-        response = client.dns.zones.with_raw_response.check_delegation_status(
-            "name",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        zone = response.parse()
-        assert_matches_type(ZoneCheckDelegationStatusResponse, zone, path=["response"])
-
-    @parametrize
-    def test_streaming_response_check_delegation_status(self, client: Gcore) -> None:
-        with client.dns.zones.with_streaming_response.check_delegation_status(
-            "name",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            zone = response.parse()
-            assert_matches_type(ZoneCheckDelegationStatusResponse, zone, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_check_delegation_status(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
-            client.dns.zones.with_raw_response.check_delegation_status(
                 "",
             )
 
@@ -639,44 +600,6 @@ class TestAsyncZones:
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
             await async_client.dns.zones.with_raw_response.delete(
-                "",
-            )
-
-    @parametrize
-    async def test_method_check_delegation_status(self, async_client: AsyncGcore) -> None:
-        zone = await async_client.dns.zones.check_delegation_status(
-            "name",
-        )
-        assert_matches_type(ZoneCheckDelegationStatusResponse, zone, path=["response"])
-
-    @parametrize
-    async def test_raw_response_check_delegation_status(self, async_client: AsyncGcore) -> None:
-        response = await async_client.dns.zones.with_raw_response.check_delegation_status(
-            "name",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        zone = await response.parse()
-        assert_matches_type(ZoneCheckDelegationStatusResponse, zone, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_check_delegation_status(self, async_client: AsyncGcore) -> None:
-        async with async_client.dns.zones.with_streaming_response.check_delegation_status(
-            "name",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            zone = await response.parse()
-            assert_matches_type(ZoneCheckDelegationStatusResponse, zone, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_check_delegation_status(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
-            await async_client.dns.zones.with_raw_response.check_delegation_status(
                 "",
             )
 
