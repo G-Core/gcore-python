@@ -122,6 +122,7 @@ from .load_balancer_get_params import LoadBalancerGetParams as LoadBalancerGetPa
 from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStatistics
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams
+from .floating_ip_update_params import FloatingIPUpdateParams as FloatingIPUpdateParams
 from .inference_region_capacity import InferenceRegionCapacity as InferenceRegionCapacity
 from .load_balancer_flavor_list import LoadBalancerFlavorList as LoadBalancerFlavorList
 from .load_balancer_list_params import LoadBalancerListParams as LoadBalancerListParams

@@ -17,11 +17,17 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ...types.cloud import floating_ip_list_params, floating_ip_assign_params, floating_ip_create_params
+from ...types.cloud import (
+    floating_ip_list_params,
+    floating_ip_assign_params,
+    floating_ip_create_params,
+    floating_ip_update_params,
+)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.floating_ip import FloatingIP
 from ...types.cloud.task_id_list import TaskIDList
 from ...types.cloud.floating_ip_detailed import FloatingIPDetailed
+from ...types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["FloatingIPsResource", "AsyncFloatingIPsResource"]
 
@@ -107,6 +113,73 @@ class FloatingIPsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    def update(
+        self,
+        floating_ip_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FloatingIP:
+        """
+        Update floating IP
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not floating_ip_id:
+            raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
+        return self._patch(
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            body=maybe_transform({"tags": tags}, floating_ip_update_params.FloatingIPUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FloatingIP,
         )
 
     def list(
@@ -524,6 +597,73 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def update(
+        self,
+        floating_ip_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FloatingIP:
+        """
+        Update floating IP
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified. **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not floating_ip_id:
+            raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
+        return await self._patch(
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            body=await async_maybe_transform({"tags": tags}, floating_ip_update_params.FloatingIPUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FloatingIP,
+        )
+
     def list(
         self,
         *,
@@ -863,6 +1003,9 @@ class FloatingIPsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             floating_ips.create,
         )
+        self.update = to_raw_response_wrapper(
+            floating_ips.update,
+        )
         self.list = to_raw_response_wrapper(
             floating_ips.list,
         )
@@ -892,6 +1035,9 @@ class AsyncFloatingIPsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             floating_ips.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            floating_ips.update,
         )
         self.list = async_to_raw_response_wrapper(
             floating_ips.list,
@@ -923,6 +1069,9 @@ class FloatingIPsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             floating_ips.create,
         )
+        self.update = to_streamed_response_wrapper(
+            floating_ips.update,
+        )
         self.list = to_streamed_response_wrapper(
             floating_ips.list,
         )
@@ -952,6 +1101,9 @@ class AsyncFloatingIPsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             floating_ips.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            floating_ips.update,
         )
         self.list = async_to_streamed_response_wrapper(
             floating_ips.list,
