@@ -1921,6 +1921,7 @@ from gcore.types.dns import (
     DNSNameServer,
     ZoneCreateResponse,
     ZoneListResponse,
+    ZoneCheckDelegationStatusResponse,
     ZoneExportResponse,
     ZoneGetResponse,
     ZoneGetStatisticsResponse,
@@ -1933,6 +1934,7 @@ Methods:
 - <code title="post /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">create</a>(\*\*<a href="src/gcore/types/dns/zone_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_create_response.py">ZoneCreateResponse</a></code>
 - <code title="get /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">list</a>(\*\*<a href="src/gcore/types/dns/zone_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_list_response.py">ZoneListResponse</a></code>
 - <code title="delete /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">delete</a>(name) -> object</code>
+- <code title="get /dns/v2/analyze/{name}/delegation-status">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">check_delegation_status</a>(name) -> <a href="./src/gcore/types/dns/zone_check_delegation_status_response.py">ZoneCheckDelegationStatusResponse</a></code>
 - <code title="patch /dns/v2/zones/{name}/disable">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">disable</a>(name) -> object</code>
 - <code title="patch /dns/v2/zones/{name}/enable">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">enable</a>(name) -> object</code>
 - <code title="get /dns/v2/zones/{zoneName}/export">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">export</a>(zone_name) -> <a href="./src/gcore/types/dns/zone_export_response.py">ZoneExportResponse</a></code>

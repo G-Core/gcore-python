@@ -48,6 +48,7 @@ from ....types.dns.zone_create_response import ZoneCreateResponse
 from ....types.dns.zone_export_response import ZoneExportResponse
 from ....types.dns.zone_import_response import ZoneImportResponse
 from ....types.dns.zone_get_statistics_response import ZoneGetStatisticsResponse
+from ....types.dns.zone_check_delegation_status_response import ZoneCheckDelegationStatusResponse
 
 __all__ = ["ZonesResource", "AsyncZonesResource"]
 
@@ -287,6 +288,41 @@ class ZonesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
+        )
+
+    def check_delegation_status(
+        self,
+        name: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ZoneCheckDelegationStatusResponse:
+        """Returns delegation status for specified domain name.
+
+        This endpoint has rate
+        limit.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not name:
+            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        return self._get(
+            f"/dns/v2/analyze/{name}/delegation-status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ZoneCheckDelegationStatusResponse,
         )
 
     def disable(
@@ -880,6 +916,41 @@ class AsyncZonesResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def check_delegation_status(
+        self,
+        name: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ZoneCheckDelegationStatusResponse:
+        """Returns delegation status for specified domain name.
+
+        This endpoint has rate
+        limit.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not name:
+            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        return await self._get(
+            f"/dns/v2/analyze/{name}/delegation-status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ZoneCheckDelegationStatusResponse,
+        )
+
     async def disable(
         self,
         name: str,
@@ -1247,6 +1318,9 @@ class ZonesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             zones.delete,
         )
+        self.check_delegation_status = to_raw_response_wrapper(
+            zones.check_delegation_status,
+        )
         self.disable = to_raw_response_wrapper(
             zones.disable,
         )
@@ -1290,6 +1364,9 @@ class AsyncZonesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             zones.delete,
+        )
+        self.check_delegation_status = async_to_raw_response_wrapper(
+            zones.check_delegation_status,
         )
         self.disable = async_to_raw_response_wrapper(
             zones.disable,
@@ -1335,6 +1412,9 @@ class ZonesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             zones.delete,
         )
+        self.check_delegation_status = to_streamed_response_wrapper(
+            zones.check_delegation_status,
+        )
         self.disable = to_streamed_response_wrapper(
             zones.disable,
         )
@@ -1378,6 +1458,9 @@ class AsyncZonesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             zones.delete,
+        )
+        self.check_delegation_status = async_to_streamed_response_wrapper(
+            zones.check_delegation_status,
         )
         self.disable = async_to_streamed_response_wrapper(
             zones.disable,
