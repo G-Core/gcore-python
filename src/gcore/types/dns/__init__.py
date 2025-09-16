@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .dns_label_name import DNSLabelName as DNSLabelName
+from .dns_name_server import DNSNameServer as DNSNameServer
 from .zone_list_params import ZoneListParams as ZoneListParams
 from .dns_lookup_params import DNSLookupParams as DNSLookupParams
 from .zone_get_response import ZoneGetResponse as ZoneGetResponse
@@ -25,3 +26,6 @@ from .location_list_regions_response import LocationListRegionsResponse as Locat
 from .location_list_countries_response import LocationListCountriesResponse as LocationListCountriesResponse
 from .dns_get_account_overview_response import DNSGetAccountOverviewResponse as DNSGetAccountOverviewResponse
 from .location_list_continents_response import LocationListContinentsResponse as LocationListContinentsResponse
+from .zone_check_delegation_status_response import (
+    ZoneCheckDelegationStatusResponse as ZoneCheckDelegationStatusResponse,
+)
