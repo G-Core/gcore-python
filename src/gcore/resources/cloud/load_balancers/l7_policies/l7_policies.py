@@ -14,7 +14,7 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -64,19 +64,19 @@ class L7PoliciesResource(SyncAPIResource):
         region_id: int | None = None,
         action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
         listener_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        position: int | NotGiven = NOT_GIVEN,
-        redirect_http_code: int | NotGiven = NOT_GIVEN,
-        redirect_pool_id: str | NotGiven = NOT_GIVEN,
-        redirect_prefix: str | NotGiven = NOT_GIVEN,
-        redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_url: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer L7 policy
@@ -149,7 +149,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7PolicyList:
         """
         List load balancer L7 policies
@@ -186,7 +186,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer L7 policy
@@ -225,7 +225,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7Policy:
         """
         Get load balancer L7 policy
@@ -260,19 +260,19 @@ class L7PoliciesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
-        name: str | NotGiven = NOT_GIVEN,
-        position: int | NotGiven = NOT_GIVEN,
-        redirect_http_code: int | NotGiven = NOT_GIVEN,
-        redirect_pool_id: str | NotGiven = NOT_GIVEN,
-        redirect_prefix: str | NotGiven = NOT_GIVEN,
-        redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_url: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Replace load balancer L7 policy
@@ -366,19 +366,19 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         region_id: int | None = None,
         action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
         listener_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        position: int | NotGiven = NOT_GIVEN,
-        redirect_http_code: int | NotGiven = NOT_GIVEN,
-        redirect_pool_id: str | NotGiven = NOT_GIVEN,
-        redirect_prefix: str | NotGiven = NOT_GIVEN,
-        redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_url: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer L7 policy
@@ -451,7 +451,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7PolicyList:
         """
         List load balancer L7 policies
@@ -488,7 +488,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer L7 policy
@@ -527,7 +527,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7Policy:
         """
         Get load balancer L7 policy
@@ -562,19 +562,19 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
-        name: str | NotGiven = NOT_GIVEN,
-        position: int | NotGiven = NOT_GIVEN,
-        redirect_http_code: int | NotGiven = NOT_GIVEN,
-        redirect_pool_id: str | NotGiven = NOT_GIVEN,
-        redirect_prefix: str | NotGiven = NOT_GIVEN,
-        redirect_url: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_url: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Replace load balancer L7 policy

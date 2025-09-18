@@ -23,7 +23,7 @@ from .subnets import (
     SubnetsResourceWithStreamingResponse,
     AsyncSubnetsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -77,15 +77,15 @@ class NetworksResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
-        create_router: bool | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type: Literal["vlan", "vxlan"] | NotGiven = NOT_GIVEN,
+        create_router: bool | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type: Literal["vlan", "vxlan"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create network
@@ -142,14 +142,14 @@ class NetworksResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Network:
         """Rename network and/or update network tags.
 
@@ -220,18 +220,18 @@ class NetworksResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Network]:
         """
         List networks
@@ -301,7 +301,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete network
@@ -346,7 +346,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Network:
         """
         Get network
@@ -415,15 +415,15 @@ class AsyncNetworksResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
-        create_router: bool | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type: Literal["vlan", "vxlan"] | NotGiven = NOT_GIVEN,
+        create_router: bool | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type: Literal["vlan", "vxlan"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create network
@@ -480,14 +480,14 @@ class AsyncNetworksResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Network:
         """Rename network and/or update network tags.
 
@@ -558,18 +558,18 @@ class AsyncNetworksResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Network, AsyncOffsetPage[Network]]:
         """
         List networks
@@ -639,7 +639,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete network
@@ -684,7 +684,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Network:
         """
         Get network

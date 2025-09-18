@@ -31,7 +31,7 @@ from .servers import (
     ServersResourceWithStreamingResponse,
     AsyncServersResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .interfaces import (
@@ -111,13 +111,13 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         name: str,
         servers_count: int,
         servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new bare metal GPU cluster with the specified configuration.
@@ -179,15 +179,15 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        managed_by: List[Literal["k8s", "user"]] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        managed_by: List[Literal["k8s", "user"]] | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[GPUBaremetalCluster]:
         """
         List all bare metal GPU clusters in the specified project and region.
@@ -245,16 +245,16 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        all_floating_ips: bool | NotGiven = NOT_GIVEN,
-        all_reserved_fixed_ips: bool | NotGiven = NOT_GIVEN,
-        floating_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        reserved_fixed_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        all_floating_ips: bool | Omit = omit,
+        all_reserved_fixed_ips: bool | Omit = omit,
+        floating_ip_ids: SequenceNotStr[str] | Omit = omit,
+        reserved_fixed_ip_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete a bare metal GPU cluster and all its associated resources.
@@ -321,7 +321,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
         Get detailed information about a specific bare metal GPU cluster.
@@ -366,7 +366,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
         Stops and then starts all cluster servers, effectively performing a hard reboot.
@@ -405,7 +405,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
         Reboot all bare metal GPU cluster servers
@@ -440,14 +440,14 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         nodes: SequenceNotStr[str],
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        user_data: Optional[str] | NotGiven = NOT_GIVEN,
+        image_id: Optional[str] | Omit = omit,
+        user_data: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Rebuild one or more nodes in a GPU cluster.
 
@@ -505,7 +505,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Change the number of nodes in a GPU cluster.
 
@@ -588,13 +588,13 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         name: str,
         servers_count: int,
         servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new bare metal GPU cluster with the specified configuration.
@@ -656,15 +656,15 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        managed_by: List[Literal["k8s", "user"]] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        managed_by: List[Literal["k8s", "user"]] | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GPUBaremetalCluster, AsyncOffsetPage[GPUBaremetalCluster]]:
         """
         List all bare metal GPU clusters in the specified project and region.
@@ -722,16 +722,16 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        all_floating_ips: bool | NotGiven = NOT_GIVEN,
-        all_reserved_fixed_ips: bool | NotGiven = NOT_GIVEN,
-        floating_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        reserved_fixed_ip_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        all_floating_ips: bool | Omit = omit,
+        all_reserved_fixed_ips: bool | Omit = omit,
+        floating_ip_ids: SequenceNotStr[str] | Omit = omit,
+        reserved_fixed_ip_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete a bare metal GPU cluster and all its associated resources.
@@ -798,7 +798,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
         Get detailed information about a specific bare metal GPU cluster.
@@ -843,7 +843,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
         Stops and then starts all cluster servers, effectively performing a hard reboot.
@@ -882,7 +882,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
         Reboot all bare metal GPU cluster servers
@@ -917,14 +917,14 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         nodes: SequenceNotStr[str],
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        user_data: Optional[str] | NotGiven = NOT_GIVEN,
+        image_id: Optional[str] | Omit = omit,
+        user_data: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Rebuild one or more nodes in a GPU cluster.
 
@@ -982,7 +982,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Change the number of nodes in a GPU cluster.
 

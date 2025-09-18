@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -55,14 +55,14 @@ class RoleAssignmentsResource(SyncAPIResource):
         *,
         role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
-        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        client_id: Optional[int] | Omit = omit,
+        project_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleAssignment:
         """
         Assign a role to an existing user in the specified scope.
@@ -107,14 +107,14 @@ class RoleAssignmentsResource(SyncAPIResource):
         *,
         role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
-        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        client_id: Optional[int] | Omit = omit,
+        project_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleAssignmentUpdateDelete:
         """
         Modify an existing role assignment for a user.
@@ -158,16 +158,16 @@ class RoleAssignmentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        project_id: int | NotGiven = NOT_GIVEN,
-        user_id: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        project_id: int | Omit = omit,
+        user_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[RoleAssignment]:
         """
         List all role assignments in the specified scope.
@@ -220,7 +220,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleAssignmentUpdateDelete:
         """
         Delete an existing role assignment.
@@ -270,14 +270,14 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         *,
         role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
-        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        client_id: Optional[int] | Omit = omit,
+        project_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleAssignment:
         """
         Assign a role to an existing user in the specified scope.
@@ -322,14 +322,14 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         *,
         role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
-        project_id: Optional[int] | NotGiven = NOT_GIVEN,
+        client_id: Optional[int] | Omit = omit,
+        project_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleAssignmentUpdateDelete:
         """
         Modify an existing role assignment for a user.
@@ -373,16 +373,16 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        project_id: int | NotGiven = NOT_GIVEN,
-        user_id: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        project_id: int | Omit = omit,
+        user_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RoleAssignment, AsyncOffsetPage[RoleAssignment]]:
         """
         List all role assignments in the specified scope.
@@ -435,7 +435,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleAssignmentUpdateDelete:
         """
         Delete an existing role assignment.

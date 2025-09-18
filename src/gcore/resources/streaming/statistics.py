@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -92,14 +92,14 @@ class StatisticsResource(SyncAPIResource):
         date_from: str,
         date_to: str,
         stream_id: str,
-        interval: int | NotGiven = NOT_GIVEN,
-        units: Literal["second", "minute", "hour", "day", "week", "month"] | NotGiven = NOT_GIVEN,
+        interval: int | Omit = omit,
+        units: Literal["second", "minute", "hour", "day", "week", "month"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Ffprobes:
         """
         Aggregates data for the specified video stream in the specified time interval.
@@ -148,15 +148,15 @@ class StatisticsResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
+        stream_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetLiveUniqueViewersResponse:
         """Calculates time series of unique viewers of Live streams via CDN.
 
@@ -212,16 +212,16 @@ class StatisticsResource(SyncAPIResource):
         self,
         *,
         from_: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | Omit = omit,
+        stream_id: int | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamSeries:
         """Calculates a time series of live streams watching duration in minutes.
 
@@ -277,16 +277,16 @@ class StatisticsResource(SyncAPIResource):
     def get_live_watch_time_total_cdn(
         self,
         *,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        from_: str | Omit = omit,
+        stream_id: int | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodTotalStreamDurationSeries:
         """Calculates the total duration of live streams watching in minutes.
 
@@ -339,13 +339,13 @@ class StatisticsResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MaxStreamSeries:
         """Calculates time series of the amount of simultaneous streams.
 
@@ -396,7 +396,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PopularVideos:
         """
         Aggregates the number of views for all client videos, grouping them by id and
@@ -443,13 +443,13 @@ class StatisticsResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StorageSeries:
         """
         Calculates time series of the size of disk space in bytes for all processed and
@@ -495,13 +495,13 @@ class StatisticsResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamSeries:
         """Calculates time series of the transcoding minutes of all streams.
 
@@ -547,19 +547,18 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
-        id: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        event: Literal["init", "start", "watch"] | NotGiven = NOT_GIVEN,
-        group: List[Literal["date", "host", "os", "browser", "platform", "ip", "country", "event", "id"]]
-        | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        type: Literal["live", "vod", "playlist"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        country: str | Omit = omit,
+        event: Literal["init", "start", "watch"] | Omit = omit,
+        group: List[Literal["date", "host", "os", "browser", "platform", "ip", "country", "event", "id"]] | Omit = omit,
+        host: str | Omit = omit,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewers:
         """Get the number of unique viewers in the built-in player.
 
@@ -625,14 +624,14 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
-        id: str | NotGiven = NOT_GIVEN,
-        type: Literal["live", "vod", "playlist"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewersCdn:
         """Сounts the number of unique viewers of a video entity over CDN.
 
@@ -708,19 +707,18 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
-        id: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        event: Literal["init", "start", "watch"] | NotGiven = NOT_GIVEN,
-        group: List[Literal["host", "os", "browser", "platform", "ip", "country", "event", "id"]]
-        | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        type: Literal["live", "vod", "playlist"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        country: str | Omit = omit,
+        event: Literal["init", "start", "watch"] | Omit = omit,
+        group: List[Literal["host", "os", "browser", "platform", "ip", "country", "event", "id"]] | Omit = omit,
+        host: str | Omit = omit,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Views:
         """Get the number of views in the built-in player.
 
@@ -791,7 +789,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByBrowser:
         """
         Aggregates the number of views for all client videos, grouping them by browsers
@@ -842,7 +840,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByCountry:
         """
         Aggregates the number of views grouping them by country in the built-in player.
@@ -893,7 +891,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByHostname:
         """
         Aggregates the number of views, grouping them by "host" domain name the built-in
@@ -944,7 +942,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByOperatingSystem:
         """
         Aggregates the number of views for all client videos, grouping them by device
@@ -995,7 +993,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByReferer:
         """
         Aggregates the number of views, grouping them by "referer" URL of pages the
@@ -1046,7 +1044,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByRegion:
         """
         Aggregates the number of views grouping them by regions of countries in the
@@ -1099,7 +1097,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsHeatmap:
         """
         Shows information about what part of the video your viewers watched in the
@@ -1159,7 +1157,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the duration in minutes for all processed and
@@ -1207,7 +1205,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the transcoding time in minutes for all processed
@@ -1250,15 +1248,15 @@ class StatisticsResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
-        slug: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
+        slug: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """Calculates time series of unique viewers of VOD via CDN.
 
@@ -1313,16 +1311,16 @@ class StatisticsResource(SyncAPIResource):
         self,
         *,
         from_: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | NotGiven = NOT_GIVEN,
-        slug: str | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | Omit = omit,
+        slug: str | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """Calculates a time series of video watching duration in minutes.
 
@@ -1378,16 +1376,16 @@ class StatisticsResource(SyncAPIResource):
     def get_vod_watch_time_total_cdn(
         self,
         *,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        slug: str | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        from_: str | Omit = omit,
+        slug: str | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetVodWatchTimeTotalCdnResponse:
         """Calculates the total duration of video watching in minutes.
 
@@ -1462,14 +1460,14 @@ class AsyncStatisticsResource(AsyncAPIResource):
         date_from: str,
         date_to: str,
         stream_id: str,
-        interval: int | NotGiven = NOT_GIVEN,
-        units: Literal["second", "minute", "hour", "day", "week", "month"] | NotGiven = NOT_GIVEN,
+        interval: int | Omit = omit,
+        units: Literal["second", "minute", "hour", "day", "week", "month"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Ffprobes:
         """
         Aggregates data for the specified video stream in the specified time interval.
@@ -1518,15 +1516,15 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
+        stream_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetLiveUniqueViewersResponse:
         """Calculates time series of unique viewers of Live streams via CDN.
 
@@ -1582,16 +1580,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
         self,
         *,
         from_: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | Omit = omit,
+        stream_id: int | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamSeries:
         """Calculates a time series of live streams watching duration in minutes.
 
@@ -1647,16 +1645,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
     async def get_live_watch_time_total_cdn(
         self,
         *,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        from_: str | Omit = omit,
+        stream_id: int | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodTotalStreamDurationSeries:
         """Calculates the total duration of live streams watching in minutes.
 
@@ -1709,13 +1707,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MaxStreamSeries:
         """Calculates time series of the amount of simultaneous streams.
 
@@ -1766,7 +1764,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PopularVideos:
         """
         Aggregates the number of views for all client videos, grouping them by id and
@@ -1813,13 +1811,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StorageSeries:
         """
         Calculates time series of the size of disk space in bytes for all processed and
@@ -1865,13 +1863,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamSeries:
         """Calculates time series of the transcoding minutes of all streams.
 
@@ -1917,19 +1915,18 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
-        id: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        event: Literal["init", "start", "watch"] | NotGiven = NOT_GIVEN,
-        group: List[Literal["date", "host", "os", "browser", "platform", "ip", "country", "event", "id"]]
-        | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        type: Literal["live", "vod", "playlist"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        country: str | Omit = omit,
+        event: Literal["init", "start", "watch"] | Omit = omit,
+        group: List[Literal["date", "host", "os", "browser", "platform", "ip", "country", "event", "id"]] | Omit = omit,
+        host: str | Omit = omit,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewers:
         """Get the number of unique viewers in the built-in player.
 
@@ -1995,14 +1992,14 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
-        id: str | NotGiven = NOT_GIVEN,
-        type: Literal["live", "vod", "playlist"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewersCdn:
         """Сounts the number of unique viewers of a video entity over CDN.
 
@@ -2078,19 +2075,18 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
-        id: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        event: Literal["init", "start", "watch"] | NotGiven = NOT_GIVEN,
-        group: List[Literal["host", "os", "browser", "platform", "ip", "country", "event", "id"]]
-        | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        type: Literal["live", "vod", "playlist"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        country: str | Omit = omit,
+        event: Literal["init", "start", "watch"] | Omit = omit,
+        group: List[Literal["host", "os", "browser", "platform", "ip", "country", "event", "id"]] | Omit = omit,
+        host: str | Omit = omit,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Views:
         """Get the number of views in the built-in player.
 
@@ -2161,7 +2157,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByBrowser:
         """
         Aggregates the number of views for all client videos, grouping them by browsers
@@ -2212,7 +2208,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByCountry:
         """
         Aggregates the number of views grouping them by country in the built-in player.
@@ -2263,7 +2259,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByHostname:
         """
         Aggregates the number of views, grouping them by "host" domain name the built-in
@@ -2314,7 +2310,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByOperatingSystem:
         """
         Aggregates the number of views for all client videos, grouping them by device
@@ -2365,7 +2361,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByReferer:
         """
         Aggregates the number of views, grouping them by "referer" URL of pages the
@@ -2416,7 +2412,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByRegion:
         """
         Aggregates the number of views grouping them by regions of countries in the
@@ -2469,7 +2465,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsHeatmap:
         """
         Shows information about what part of the video your viewers watched in the
@@ -2529,7 +2525,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the duration in minutes for all processed and
@@ -2577,7 +2573,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the transcoding time in minutes for all processed
@@ -2620,15 +2616,15 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | NotGiven = NOT_GIVEN,
-        slug: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d"] | Omit = omit,
+        slug: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """Calculates time series of unique viewers of VOD via CDN.
 
@@ -2683,16 +2679,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
         self,
         *,
         from_: str,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | NotGiven = NOT_GIVEN,
-        slug: str | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"] | Omit = omit,
+        slug: str | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
         """Calculates a time series of video watching duration in minutes.
 
@@ -2748,16 +2744,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
     async def get_vod_watch_time_total_cdn(
         self,
         *,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        slug: str | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        client_user_id: int | Omit = omit,
+        from_: str | Omit = omit,
+        slug: str | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetVodWatchTimeTotalCdnResponse:
         """Calculates the total duration of video watching in minutes.
 

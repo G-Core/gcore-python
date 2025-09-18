@@ -15,7 +15,7 @@ from .vip import (
     VipResourceWithStreamingResponse,
     AsyncVipResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -66,14 +66,14 @@ class ReservedFixedIPsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -103,13 +103,13 @@ class ReservedFixedIPsResource(SyncAPIResource):
         region_id: int | None = None,
         subnet_id: str,
         type: Literal["subnet"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -139,14 +139,14 @@ class ReservedFixedIPsResource(SyncAPIResource):
         region_id: int | None = None,
         network_id: str,
         type: Literal["any_subnet"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -179,13 +179,13 @@ class ReservedFixedIPsResource(SyncAPIResource):
         ip_address: str,
         network_id: str,
         type: Literal["ip_address"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -222,7 +222,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -256,18 +256,18 @@ class ReservedFixedIPsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"] | Literal["subnet"] | Literal["any_subnet"] | Literal["ip_address"] | Literal["port"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        ip_address: str | Omit = omit,
+        port_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -298,21 +298,21 @@ class ReservedFixedIPsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        available_only: bool | NotGiven = NOT_GIVEN,
-        device_id: str | NotGiven = NOT_GIVEN,
-        external_only: bool | NotGiven = NOT_GIVEN,
-        internal_only: bool | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        vip_only: bool | NotGiven = NOT_GIVEN,
+        available_only: bool | Omit = omit,
+        device_id: str | Omit = omit,
+        external_only: bool | Omit = omit,
+        internal_only: bool | Omit = omit,
+        ip_address: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        vip_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[ReservedFixedIP]:
         """
         List all reserved fixed IPs in the specified project and region.
@@ -388,7 +388,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete a specific reserved fixed IP and all its associated resources.
@@ -427,7 +427,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
         Get detailed information about a specific reserved fixed IP.
@@ -487,14 +487,14 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -524,13 +524,13 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         region_id: int | None = None,
         subnet_id: str,
         type: Literal["subnet"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -560,14 +560,14 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         region_id: int | None = None,
         network_id: str,
         type: Literal["any_subnet"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -600,13 +600,13 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         ip_address: str,
         network_id: str,
         type: Literal["ip_address"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -643,7 +643,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new reserved fixed IP with the specified configuration.
@@ -677,18 +677,18 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"] | Literal["subnet"] | Literal["any_subnet"] | Literal["ip_address"] | Literal["port"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        ip_address: str | Omit = omit,
+        port_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -719,21 +719,21 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        available_only: bool | NotGiven = NOT_GIVEN,
-        device_id: str | NotGiven = NOT_GIVEN,
-        external_only: bool | NotGiven = NOT_GIVEN,
-        internal_only: bool | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        vip_only: bool | NotGiven = NOT_GIVEN,
+        available_only: bool | Omit = omit,
+        device_id: str | Omit = omit,
+        external_only: bool | Omit = omit,
+        internal_only: bool | Omit = omit,
+        ip_address: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        vip_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReservedFixedIP, AsyncOffsetPage[ReservedFixedIP]]:
         """
         List all reserved fixed IPs in the specified project and region.
@@ -809,7 +809,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete a specific reserved fixed IP and all its associated resources.
@@ -848,7 +848,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
         Get detailed information about a specific reserved fixed IP.

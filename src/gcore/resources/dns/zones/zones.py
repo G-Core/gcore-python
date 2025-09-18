@@ -24,7 +24,7 @@ from .rrsets import (
     RrsetsResourceWithStreamingResponse,
     AsyncRrsetsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -85,21 +85,21 @@ class ZonesResource(SyncAPIResource):
         self,
         *,
         name: str,
-        contact: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiry: int | NotGiven = NOT_GIVEN,
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        nx_ttl: int | NotGiven = NOT_GIVEN,
-        primary_server: str | NotGiven = NOT_GIVEN,
-        refresh: int | NotGiven = NOT_GIVEN,
-        retry: int | NotGiven = NOT_GIVEN,
-        serial: int | NotGiven = NOT_GIVEN,
+        contact: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiry: int | Omit = omit,
+        meta: Dict[str, object] | Omit = omit,
+        nx_ttl: int | Omit = omit,
+        primary_server: str | Omit = omit,
+        refresh: int | Omit = omit,
+        retry: int | Omit = omit,
+        serial: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneCreateResponse:
         """
         Add DNS zone.
@@ -168,29 +168,29 @@ class ZonesResource(SyncAPIResource):
     def list(
         self,
         *,
-        id: Iterable[int] | NotGiven = NOT_GIVEN,
-        case_sensitive: bool | NotGiven = NOT_GIVEN,
-        client_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        dynamic: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exact_match: bool | NotGiven = NOT_GIVEN,
-        healthcheck: bool | NotGiven = NOT_GIVEN,
-        iam_reseller_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        reseller_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        updated_at_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        id: Iterable[int] | Omit = omit,
+        case_sensitive: bool | Omit = omit,
+        client_id: Iterable[int] | Omit = omit,
+        dynamic: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        exact_match: bool | Omit = omit,
+        healthcheck: bool | Omit = omit,
+        iam_reseller_id: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        reseller_id: Iterable[int] | Omit = omit,
+        status: str | Omit = omit,
+        updated_at_from: Union[str, datetime] | Omit = omit,
+        updated_at_to: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneListResponse:
         """Show created zones with pagination managed by limit and offset params.
 
@@ -266,7 +266,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete DNS zone and its records and raws.
@@ -299,7 +299,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneCheckDelegationStatusResponse:
         """Returns delegation status for specified domain name.
 
@@ -334,7 +334,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Disable DNS zone.
@@ -367,7 +367,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Enable DNS zone.
@@ -400,7 +400,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneExportResponse:
         """
         Export zone to bind9 format.
@@ -433,7 +433,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneGetResponse:
         """
         Zone info by zone name.
@@ -461,16 +461,16 @@ class ZonesResource(SyncAPIResource):
         self,
         name: str,
         *,
-        from_: int | NotGiven = NOT_GIVEN,
-        granularity: str | NotGiven = NOT_GIVEN,
-        record_type: str | NotGiven = NOT_GIVEN,
-        to: int | NotGiven = NOT_GIVEN,
+        from_: int | Omit = omit,
+        granularity: str | Omit = omit,
+        record_type: str | Omit = omit,
+        to: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneGetStatisticsResponse:
         """Statistics of DNS zone in common and by record types.
 
@@ -540,13 +540,13 @@ class ZonesResource(SyncAPIResource):
         self,
         zone_name: str,
         *,
-        body: object | NotGiven = NOT_GIVEN,
+        body: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneImportResponse:
         """Import zone in bind9 format.
 
@@ -596,21 +596,21 @@ class ZonesResource(SyncAPIResource):
         path_name: str,
         *,
         body_name: str,
-        contact: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiry: int | NotGiven = NOT_GIVEN,
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        nx_ttl: int | NotGiven = NOT_GIVEN,
-        primary_server: str | NotGiven = NOT_GIVEN,
-        refresh: int | NotGiven = NOT_GIVEN,
-        retry: int | NotGiven = NOT_GIVEN,
-        serial: int | NotGiven = NOT_GIVEN,
+        contact: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiry: int | Omit = omit,
+        meta: Dict[str, object] | Omit = omit,
+        nx_ttl: int | Omit = omit,
+        primary_server: str | Omit = omit,
+        refresh: int | Omit = omit,
+        retry: int | Omit = omit,
+        serial: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Update DNS zone and SOA record.
@@ -711,21 +711,21 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        contact: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiry: int | NotGiven = NOT_GIVEN,
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        nx_ttl: int | NotGiven = NOT_GIVEN,
-        primary_server: str | NotGiven = NOT_GIVEN,
-        refresh: int | NotGiven = NOT_GIVEN,
-        retry: int | NotGiven = NOT_GIVEN,
-        serial: int | NotGiven = NOT_GIVEN,
+        contact: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiry: int | Omit = omit,
+        meta: Dict[str, object] | Omit = omit,
+        nx_ttl: int | Omit = omit,
+        primary_server: str | Omit = omit,
+        refresh: int | Omit = omit,
+        retry: int | Omit = omit,
+        serial: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneCreateResponse:
         """
         Add DNS zone.
@@ -794,29 +794,29 @@ class AsyncZonesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        id: Iterable[int] | NotGiven = NOT_GIVEN,
-        case_sensitive: bool | NotGiven = NOT_GIVEN,
-        client_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        dynamic: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exact_match: bool | NotGiven = NOT_GIVEN,
-        healthcheck: bool | NotGiven = NOT_GIVEN,
-        iam_reseller_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        reseller_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        updated_at_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        id: Iterable[int] | Omit = omit,
+        case_sensitive: bool | Omit = omit,
+        client_id: Iterable[int] | Omit = omit,
+        dynamic: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        exact_match: bool | Omit = omit,
+        healthcheck: bool | Omit = omit,
+        iam_reseller_id: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        reseller_id: Iterable[int] | Omit = omit,
+        status: str | Omit = omit,
+        updated_at_from: Union[str, datetime] | Omit = omit,
+        updated_at_to: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneListResponse:
         """Show created zones with pagination managed by limit and offset params.
 
@@ -892,7 +892,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete DNS zone and its records and raws.
@@ -925,7 +925,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneCheckDelegationStatusResponse:
         """Returns delegation status for specified domain name.
 
@@ -960,7 +960,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Disable DNS zone.
@@ -993,7 +993,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Enable DNS zone.
@@ -1026,7 +1026,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneExportResponse:
         """
         Export zone to bind9 format.
@@ -1059,7 +1059,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneGetResponse:
         """
         Zone info by zone name.
@@ -1087,16 +1087,16 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         name: str,
         *,
-        from_: int | NotGiven = NOT_GIVEN,
-        granularity: str | NotGiven = NOT_GIVEN,
-        record_type: str | NotGiven = NOT_GIVEN,
-        to: int | NotGiven = NOT_GIVEN,
+        from_: int | Omit = omit,
+        granularity: str | Omit = omit,
+        record_type: str | Omit = omit,
+        to: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneGetStatisticsResponse:
         """Statistics of DNS zone in common and by record types.
 
@@ -1166,13 +1166,13 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         zone_name: str,
         *,
-        body: object | NotGiven = NOT_GIVEN,
+        body: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneImportResponse:
         """Import zone in bind9 format.
 
@@ -1222,21 +1222,21 @@ class AsyncZonesResource(AsyncAPIResource):
         path_name: str,
         *,
         body_name: str,
-        contact: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiry: int | NotGiven = NOT_GIVEN,
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        nx_ttl: int | NotGiven = NOT_GIVEN,
-        primary_server: str | NotGiven = NOT_GIVEN,
-        refresh: int | NotGiven = NOT_GIVEN,
-        retry: int | NotGiven = NOT_GIVEN,
-        serial: int | NotGiven = NOT_GIVEN,
+        contact: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiry: int | Omit = omit,
+        meta: Dict[str, object] | Omit = omit,
+        nx_ttl: int | Omit = omit,
+        primary_server: str | Omit = omit,
+        refresh: int | Omit = omit,
+        retry: int | Omit = omit,
+        serial: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Update DNS zone and SOA record.

@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -63,15 +63,15 @@ class RulesResource(SyncAPIResource):
             "SSL_VERIFY_RESULT",
         ],
         value: str,
-        invert: bool | NotGiven = NOT_GIVEN,
-        key: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        invert: bool | Omit = omit,
+        key: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer L7 rule
@@ -135,7 +135,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7RuleList:
         """
         List load balancer L7 policy rules
@@ -175,7 +175,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer L7 rule
@@ -217,7 +217,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7Rule:
         """
         Get load balancer L7 rule
@@ -254,10 +254,10 @@ class RulesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         l7policy_id: str,
-        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"] | NotGiven = NOT_GIVEN,
-        invert: bool | NotGiven = NOT_GIVEN,
-        key: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"] | Omit = omit,
+        invert: bool | Omit = omit,
+        key: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         type: Literal[
             "COOKIE",
             "FILE_TYPE",
@@ -268,14 +268,14 @@ class RulesResource(SyncAPIResource):
             "SSL_DN_FIELD",
             "SSL_VERIFY_RESULT",
         ]
-        | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Replace load balancer L7 rule properties
@@ -369,15 +369,15 @@ class AsyncRulesResource(AsyncAPIResource):
             "SSL_VERIFY_RESULT",
         ],
         value: str,
-        invert: bool | NotGiven = NOT_GIVEN,
-        key: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        invert: bool | Omit = omit,
+        key: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer L7 rule
@@ -441,7 +441,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7RuleList:
         """
         List load balancer L7 policy rules
@@ -481,7 +481,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer L7 rule
@@ -523,7 +523,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerL7Rule:
         """
         Get load balancer L7 rule
@@ -560,10 +560,10 @@ class AsyncRulesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         l7policy_id: str,
-        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"] | NotGiven = NOT_GIVEN,
-        invert: bool | NotGiven = NOT_GIVEN,
-        key: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"] | Omit = omit,
+        invert: bool | Omit = omit,
+        key: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         type: Literal[
             "COOKIE",
             "FILE_TYPE",
@@ -574,14 +574,14 @@ class AsyncRulesResource(AsyncAPIResource):
             "SSL_DN_FIELD",
             "SSL_VERIFY_RESULT",
         ]
-        | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Replace load balancer L7 rule properties

@@ -12,7 +12,7 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -78,7 +78,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetAttackTimeSeriesResponse:
         """
         Retrieve a time-series of attacks originating from a specified IP address.
@@ -118,7 +118,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetBlockedRequestsResponse:
         """
         Retrieve metrics, which enumerate blocked requests originating from a specific
@@ -168,7 +168,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapIPDDOSInfoModel:
         """
         Fetch and analyze DDoS (Distributed Denial of Service) attack metrics for a
@@ -211,7 +211,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapIPInfo:
         """
         Fetch details about a particular IP address, including WHOIS data, risk score,
@@ -250,7 +250,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetTopURLsResponse:
         """
         Returns a list of the top 10 URLs accessed by a specified IP address within a
@@ -301,7 +301,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetTopUserAgentsResponse:
         """
         Retrieve the top 10 user agents interacting with a specified domain, filtered by
@@ -350,7 +350,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetTopUserSessionsResponse:
         """
         Obtain the top 10 user sessions interfacing with a particular domain, identified
@@ -398,7 +398,7 @@ class IPInfoResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoListAttackedCountriesResponse:
         """
         Retrieve a list of countries attacked by the specified IP address
@@ -462,7 +462,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetAttackTimeSeriesResponse:
         """
         Retrieve a time-series of attacks originating from a specified IP address.
@@ -502,7 +502,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetBlockedRequestsResponse:
         """
         Retrieve metrics, which enumerate blocked requests originating from a specific
@@ -552,7 +552,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapIPDDOSInfoModel:
         """
         Fetch and analyze DDoS (Distributed Denial of Service) attack metrics for a
@@ -595,7 +595,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapIPInfo:
         """
         Fetch details about a particular IP address, including WHOIS data, risk score,
@@ -634,7 +634,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetTopURLsResponse:
         """
         Returns a list of the top 10 URLs accessed by a specified IP address within a
@@ -685,7 +685,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetTopUserAgentsResponse:
         """
         Retrieve the top 10 user agents interacting with a specified domain, filtered by
@@ -734,7 +734,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoGetTopUserSessionsResponse:
         """
         Obtain the top 10 user sessions interfacing with a particular domain, identified
@@ -782,7 +782,7 @@ class AsyncIPInfoResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPInfoListAttackedCountriesResponse:
         """
         Retrieve a list of countries attacked by the specified IP address

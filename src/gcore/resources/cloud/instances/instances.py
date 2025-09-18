@@ -32,7 +32,7 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .interfaces import (
@@ -116,23 +116,23 @@ class InstancesResource(SyncAPIResource):
         flavor: str,
         interfaces: Iterable[instance_create_params.Interface],
         volumes: Iterable[instance_create_params.Volume],
-        allow_app_ports: bool | NotGiven = NOT_GIVEN,
-        configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        name_template: str | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
-        servergroup_id: str | NotGiven = NOT_GIVEN,
-        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
+        allow_app_ports: bool | Omit = omit,
+        configuration: Optional[object] | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        password: str | Omit = omit,
+        security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
+        servergroup_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        user_data: str | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create an instance with specified configuration.
 
@@ -266,7 +266,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
         Rename instance
@@ -308,25 +308,25 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        available_floating: bool | NotGiven = NOT_GIVEN,
-        changes_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        changes_since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        exclude_flavor_prefix: str | NotGiven = NOT_GIVEN,
-        exclude_secgroup: str | NotGiven = NOT_GIVEN,
-        flavor_id: str | NotGiven = NOT_GIVEN,
-        flavor_prefix: str | NotGiven = NOT_GIVEN,
-        include_ai: bool | NotGiven = NOT_GIVEN,
-        include_baremetal: bool | NotGiven = NOT_GIVEN,
-        include_k8s: bool | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        only_isolated: bool | NotGiven = NOT_GIVEN,
-        only_with_fixed_external_ip: bool | NotGiven = NOT_GIVEN,
-        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
-        profile_name: str | NotGiven = NOT_GIVEN,
-        protection_status: Literal["Active", "Queued", "Error"] | NotGiven = NOT_GIVEN,
+        available_floating: bool | Omit = omit,
+        changes_before: Union[str, datetime] | Omit = omit,
+        changes_since: Union[str, datetime] | Omit = omit,
+        exclude_flavor_prefix: str | Omit = omit,
+        exclude_secgroup: str | Omit = omit,
+        flavor_id: str | Omit = omit,
+        flavor_prefix: str | Omit = omit,
+        include_ai: bool | Omit = omit,
+        include_baremetal: bool | Omit = omit,
+        include_k8s: bool | Omit = omit,
+        ip: str | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        only_isolated: bool | Omit = omit,
+        only_with_fixed_external_ip: bool | Omit = omit,
+        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"] | Omit = omit,
+        profile_name: str | Omit = omit,
+        protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
         status: Literal[
             "ACTIVE",
             "BUILD",
@@ -345,19 +345,19 @@ class InstancesResource(SyncAPIResource):
             "SUSPENDED",
             "VERIFY_RESIZE",
         ]
-        | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
-        tag_value: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        type_ddos_profile: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
-        with_ddos: bool | NotGiven = NOT_GIVEN,
-        with_interfaces_name: bool | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tag_key_value: str | Omit = omit,
+        tag_value: SequenceNotStr[str] | Omit = omit,
+        type_ddos_profile: Literal["basic", "advanced"] | Omit = omit,
+        uuid: str | Omit = omit,
+        with_ddos: bool | Omit = omit,
+        with_interfaces_name: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Instance]:
         """List all instances in the specified project and region.
 
@@ -492,16 +492,16 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
-        floatings: str | NotGiven = NOT_GIVEN,
-        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
-        volumes: str | NotGiven = NOT_GIVEN,
+        delete_floatings: bool | Omit = omit,
+        floatings: str | Omit = omit,
+        reserved_fixed_ips: str | Omit = omit,
+        volumes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete instance
@@ -565,13 +565,13 @@ class InstancesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
@@ -605,7 +605,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
@@ -632,13 +632,13 @@ class InstancesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start"] | Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -673,7 +673,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Add an instance to a server group.
 
@@ -715,15 +715,15 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         ports_security_group_names: Iterable[instance_assign_security_group_params.PortsSecurityGroupName]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Assign the security group to the server.
 
@@ -776,7 +776,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
         """
         Disable port security for instance interface
@@ -815,7 +815,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
         """
         Enable port security for instance interface
@@ -854,7 +854,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """Retrieve detailed information about a specific instance.
 
@@ -903,13 +903,13 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        console_type: str | NotGiven = NOT_GIVEN,
+        console_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
         """
         Get instance console URL
@@ -956,7 +956,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Remove an instance from its current server group.
 
@@ -998,7 +998,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Change flavor of the instance
@@ -1035,15 +1035,15 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         ports_security_group_names: Iterable[instance_unassign_security_group_params.PortsSecurityGroupName]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Un-assign the security group to the server.
 
@@ -1130,23 +1130,23 @@ class AsyncInstancesResource(AsyncAPIResource):
         flavor: str,
         interfaces: Iterable[instance_create_params.Interface],
         volumes: Iterable[instance_create_params.Volume],
-        allow_app_ports: bool | NotGiven = NOT_GIVEN,
-        configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        name_template: str | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
-        servergroup_id: str | NotGiven = NOT_GIVEN,
-        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
+        allow_app_ports: bool | Omit = omit,
+        configuration: Optional[object] | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        password: str | Omit = omit,
+        security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
+        servergroup_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        user_data: str | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create an instance with specified configuration.
 
@@ -1280,7 +1280,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
         Rename instance
@@ -1322,25 +1322,25 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        available_floating: bool | NotGiven = NOT_GIVEN,
-        changes_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        changes_since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        exclude_flavor_prefix: str | NotGiven = NOT_GIVEN,
-        exclude_secgroup: str | NotGiven = NOT_GIVEN,
-        flavor_id: str | NotGiven = NOT_GIVEN,
-        flavor_prefix: str | NotGiven = NOT_GIVEN,
-        include_ai: bool | NotGiven = NOT_GIVEN,
-        include_baremetal: bool | NotGiven = NOT_GIVEN,
-        include_k8s: bool | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        only_isolated: bool | NotGiven = NOT_GIVEN,
-        only_with_fixed_external_ip: bool | NotGiven = NOT_GIVEN,
-        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
-        profile_name: str | NotGiven = NOT_GIVEN,
-        protection_status: Literal["Active", "Queued", "Error"] | NotGiven = NOT_GIVEN,
+        available_floating: bool | Omit = omit,
+        changes_before: Union[str, datetime] | Omit = omit,
+        changes_since: Union[str, datetime] | Omit = omit,
+        exclude_flavor_prefix: str | Omit = omit,
+        exclude_secgroup: str | Omit = omit,
+        flavor_id: str | Omit = omit,
+        flavor_prefix: str | Omit = omit,
+        include_ai: bool | Omit = omit,
+        include_baremetal: bool | Omit = omit,
+        include_k8s: bool | Omit = omit,
+        ip: str | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        only_isolated: bool | Omit = omit,
+        only_with_fixed_external_ip: bool | Omit = omit,
+        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"] | Omit = omit,
+        profile_name: str | Omit = omit,
+        protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
         status: Literal[
             "ACTIVE",
             "BUILD",
@@ -1359,19 +1359,19 @@ class AsyncInstancesResource(AsyncAPIResource):
             "SUSPENDED",
             "VERIFY_RESIZE",
         ]
-        | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
-        tag_value: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        type_ddos_profile: Literal["basic", "advanced"] | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
-        with_ddos: bool | NotGiven = NOT_GIVEN,
-        with_interfaces_name: bool | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tag_key_value: str | Omit = omit,
+        tag_value: SequenceNotStr[str] | Omit = omit,
+        type_ddos_profile: Literal["basic", "advanced"] | Omit = omit,
+        uuid: str | Omit = omit,
+        with_ddos: bool | Omit = omit,
+        with_interfaces_name: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Instance, AsyncOffsetPage[Instance]]:
         """List all instances in the specified project and region.
 
@@ -1506,16 +1506,16 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
-        floatings: str | NotGiven = NOT_GIVEN,
-        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
-        volumes: str | NotGiven = NOT_GIVEN,
+        delete_floatings: bool | Omit = omit,
+        floatings: str | Omit = omit,
+        reserved_fixed_ips: str | Omit = omit,
+        volumes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete instance
@@ -1579,13 +1579,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
@@ -1619,7 +1619,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         The action can be one of: start, stop, reboot, powercycle, suspend or resume.
@@ -1646,13 +1646,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start"] | Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -1687,7 +1687,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Add an instance to a server group.
 
@@ -1729,15 +1729,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         ports_security_group_names: Iterable[instance_assign_security_group_params.PortsSecurityGroupName]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Assign the security group to the server.
 
@@ -1790,7 +1790,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
         """
         Disable port security for instance interface
@@ -1829,7 +1829,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
         """
         Enable port security for instance interface
@@ -1868,7 +1868,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """Retrieve detailed information about a specific instance.
 
@@ -1917,13 +1917,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        console_type: str | NotGiven = NOT_GIVEN,
+        console_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
         """
         Get instance console URL
@@ -1970,7 +1970,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Remove an instance from its current server group.
 
@@ -2012,7 +2012,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Change flavor of the instance
@@ -2049,15 +2049,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         ports_security_group_names: Iterable[instance_unassign_security_group_params.PortsSecurityGroupName]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Un-assign the security group to the server.
 

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUImageList:
         """
         List bare metal GPU images
@@ -97,7 +97,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete bare metal GPU image
@@ -142,7 +142,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUImage:
         """
         Get bare metal GPU image
@@ -183,20 +183,20 @@ class ImagesResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         url: str,
-        architecture: Optional[Literal["aarch64", "x86_64"]] | NotGiven = NOT_GIVEN,
-        cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
-        os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
-        os_version: Optional[str] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        architecture: Optional[Literal["aarch64", "x86_64"]] | Omit = omit,
+        cow_format: bool | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        os_distro: Optional[str] | Omit = omit,
+        os_type: Optional[Literal["linux", "windows"]] | Omit = omit,
+        os_version: Optional[str] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Upload new bare metal GPU image
@@ -297,7 +297,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUImageList:
         """
         List bare metal GPU images
@@ -338,7 +338,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete bare metal GPU image
@@ -383,7 +383,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUImage:
         """
         Get bare metal GPU image
@@ -424,20 +424,20 @@ class AsyncImagesResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         url: str,
-        architecture: Optional[Literal["aarch64", "x86_64"]] | NotGiven = NOT_GIVEN,
-        cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
-        os_type: Optional[Literal["linux", "windows"]] | NotGiven = NOT_GIVEN,
-        os_version: Optional[str] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        architecture: Optional[Literal["aarch64", "x86_64"]] | Omit = omit,
+        cow_format: bool | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        os_distro: Optional[str] | Omit = omit,
+        os_type: Optional[Literal["linux", "windows"]] | Omit = omit,
+        os_version: Optional[str] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Upload new bare metal GPU image

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,19 +52,19 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]] | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        groups: Iterable[user_update_params.Group] | NotGiven = NOT_GIVEN,
-        lang: Literal["de", "en", "ru", "zh", "az"] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        phone: Optional[str] | NotGiven = NOT_GIVEN,
+        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]] | Omit = omit,
+        company: str | Omit = omit,
+        email: str | Omit = omit,
+        groups: Iterable[user_update_params.Group] | Omit = omit,
+        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        phone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserUpdate:
         """This method updates user's details.
 
@@ -123,14 +123,14 @@ class UsersResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[User]:
         """Get a list of users.
 
@@ -180,7 +180,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Revokes user's access to the specified account.
 
@@ -214,7 +214,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDetailed:
         """
         Get user's details
@@ -242,14 +242,14 @@ class UsersResource(SyncAPIResource):
         client_id: int,
         email: str,
         user_role: user_invite_params.UserRole,
-        lang: Literal["de", "en", "ru", "zh", "az"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserInvite:
         """Invite a user to the account.
 
@@ -317,19 +317,19 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]] | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        groups: Iterable[user_update_params.Group] | NotGiven = NOT_GIVEN,
-        lang: Literal["de", "en", "ru", "zh", "az"] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        phone: Optional[str] | NotGiven = NOT_GIVEN,
+        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]] | Omit = omit,
+        company: str | Omit = omit,
+        email: str | Omit = omit,
+        groups: Iterable[user_update_params.Group] | Omit = omit,
+        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        phone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserUpdate:
         """This method updates user's details.
 
@@ -388,14 +388,14 @@ class AsyncUsersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[User, AsyncOffsetPage[User]]:
         """Get a list of users.
 
@@ -445,7 +445,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Revokes user's access to the specified account.
 
@@ -479,7 +479,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDetailed:
         """
         Get user's details
@@ -507,14 +507,14 @@ class AsyncUsersResource(AsyncAPIResource):
         client_id: int,
         email: str,
         user_role: user_invite_params.UserRole,
-        lang: Literal["de", "en", "ru", "zh", "az"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserInvite:
         """Invite a user to the account.
 

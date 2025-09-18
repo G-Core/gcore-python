@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -59,14 +59,14 @@ class TemplatesResource(SyncAPIResource):
         name: str,
         owned: bool,
         params: Iterable[TemplateParameterParam],
-        long_descr: str | NotGiven = NOT_GIVEN,
-        short_descr: str | NotGiven = NOT_GIVEN,
+        long_descr: str | Omit = omit,
+        short_descr: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateShort:
         """
         Add template
@@ -114,16 +114,16 @@ class TemplatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        api_type: Literal["wasi-http", "proxy-wasm"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        only_mine: bool | NotGiven = NOT_GIVEN,
+        api_type: Literal["wasi-http", "proxy-wasm"] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        only_mine: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPageFastedgeTemplates[TemplateShort]:
         """
         List app templates
@@ -173,13 +173,13 @@ class TemplatesResource(SyncAPIResource):
         self,
         id: int,
         *,
-        force: bool | NotGiven = NOT_GIVEN,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete template
@@ -217,7 +217,7 @@ class TemplatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Template:
         """
         Get template details
@@ -247,14 +247,14 @@ class TemplatesResource(SyncAPIResource):
         name: str,
         owned: bool,
         params: Iterable[TemplateParameterParam],
-        long_descr: str | NotGiven = NOT_GIVEN,
-        short_descr: str | NotGiven = NOT_GIVEN,
+        long_descr: str | Omit = omit,
+        short_descr: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateShort:
         """
         Update template
@@ -327,14 +327,14 @@ class AsyncTemplatesResource(AsyncAPIResource):
         name: str,
         owned: bool,
         params: Iterable[TemplateParameterParam],
-        long_descr: str | NotGiven = NOT_GIVEN,
-        short_descr: str | NotGiven = NOT_GIVEN,
+        long_descr: str | Omit = omit,
+        short_descr: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateShort:
         """
         Add template
@@ -382,16 +382,16 @@ class AsyncTemplatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        api_type: Literal["wasi-http", "proxy-wasm"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        only_mine: bool | NotGiven = NOT_GIVEN,
+        api_type: Literal["wasi-http", "proxy-wasm"] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        only_mine: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TemplateShort, AsyncOffsetPageFastedgeTemplates[TemplateShort]]:
         """
         List app templates
@@ -441,13 +441,13 @@ class AsyncTemplatesResource(AsyncAPIResource):
         self,
         id: int,
         *,
-        force: bool | NotGiven = NOT_GIVEN,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete template
@@ -485,7 +485,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Template:
         """
         Get template details
@@ -515,14 +515,14 @@ class AsyncTemplatesResource(AsyncAPIResource):
         name: str,
         owned: bool,
         params: Iterable[TemplateParameterParam],
-        long_descr: str | NotGiven = NOT_GIVEN,
-        short_descr: str | NotGiven = NOT_GIVEN,
+        long_descr: str | Omit = omit,
+        short_descr: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateShort:
         """
         Update template

@@ -15,7 +15,7 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -68,22 +68,22 @@ class DeploymentsResource(SyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
-        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
-        logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
-        probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
-        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | Omit = omit,
+        auth_enabled: bool | Omit = omit,
+        command: Optional[SequenceNotStr[str]] | Omit = omit,
+        credentials_name: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        envs: Dict[str, str] | Omit = omit,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | Omit = omit,
+        logging: Optional[deployment_create_params.Logging] | Omit = omit,
+        probes: Optional[deployment_create_params.Probes] | Omit = omit,
+        api_timeout: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create inference deployment
@@ -179,26 +179,26 @@ class DeploymentsResource(SyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
-        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        flavor_name: str | NotGiven = NOT_GIVEN,
-        image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
-        listening_port: Optional[int] | NotGiven = NOT_GIVEN,
-        logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
-        probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
-        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        api_keys: Optional[SequenceNotStr[str]] | Omit = omit,
+        auth_enabled: bool | Omit = omit,
+        command: Optional[SequenceNotStr[str]] | Omit = omit,
+        containers: Optional[Iterable[deployment_update_params.Container]] | Omit = omit,
+        credentials_name: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        envs: Optional[Dict[str, str]] | Omit = omit,
+        flavor_name: str | Omit = omit,
+        image: Optional[str] | Omit = omit,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | Omit = omit,
+        listening_port: Optional[int] | Omit = omit,
+        logging: Optional[deployment_update_params.Logging] | Omit = omit,
+        probes: Optional[deployment_update_params.Probes] | Omit = omit,
+        api_timeout: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Update inference deployment
@@ -293,14 +293,14 @@ class DeploymentsResource(SyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[InferenceDeployment]:
         """List inference deployments
 
@@ -353,7 +353,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete inference deployment
@@ -393,7 +393,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceDeployment:
         """
         Get inference deployment
@@ -434,7 +434,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceDeploymentAPIKey:
         """
         Get inference deployment API key
@@ -474,7 +474,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         This operation initializes an inference deployment after it was stopped, making
@@ -522,7 +522,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         This operation shuts down an inference deployment, making it unavailable for
@@ -594,22 +594,22 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         image: str,
         listening_port: int,
         name: str,
-        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        envs: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[deployment_create_params.IngressOpts] | NotGiven = NOT_GIVEN,
-        logging: Optional[deployment_create_params.Logging] | NotGiven = NOT_GIVEN,
-        probes: Optional[deployment_create_params.Probes] | NotGiven = NOT_GIVEN,
-        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | Omit = omit,
+        auth_enabled: bool | Omit = omit,
+        command: Optional[SequenceNotStr[str]] | Omit = omit,
+        credentials_name: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        envs: Dict[str, str] | Omit = omit,
+        ingress_opts: Optional[deployment_create_params.IngressOpts] | Omit = omit,
+        logging: Optional[deployment_create_params.Logging] | Omit = omit,
+        probes: Optional[deployment_create_params.Probes] | Omit = omit,
+        api_timeout: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create inference deployment
@@ -705,26 +705,26 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        auth_enabled: bool | NotGiven = NOT_GIVEN,
-        command: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        containers: Optional[Iterable[deployment_update_params.Container]] | NotGiven = NOT_GIVEN,
-        credentials_name: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        envs: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        flavor_name: str | NotGiven = NOT_GIVEN,
-        image: Optional[str] | NotGiven = NOT_GIVEN,
-        ingress_opts: Optional[deployment_update_params.IngressOpts] | NotGiven = NOT_GIVEN,
-        listening_port: Optional[int] | NotGiven = NOT_GIVEN,
-        logging: Optional[deployment_update_params.Logging] | NotGiven = NOT_GIVEN,
-        probes: Optional[deployment_update_params.Probes] | NotGiven = NOT_GIVEN,
-        api_timeout: Optional[int] | NotGiven = NOT_GIVEN,
+        api_keys: Optional[SequenceNotStr[str]] | Omit = omit,
+        auth_enabled: bool | Omit = omit,
+        command: Optional[SequenceNotStr[str]] | Omit = omit,
+        containers: Optional[Iterable[deployment_update_params.Container]] | Omit = omit,
+        credentials_name: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        envs: Optional[Dict[str, str]] | Omit = omit,
+        flavor_name: str | Omit = omit,
+        image: Optional[str] | Omit = omit,
+        ingress_opts: Optional[deployment_update_params.IngressOpts] | Omit = omit,
+        listening_port: Optional[int] | Omit = omit,
+        logging: Optional[deployment_update_params.Logging] | Omit = omit,
+        probes: Optional[deployment_update_params.Probes] | Omit = omit,
+        api_timeout: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Update inference deployment
@@ -819,14 +819,14 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InferenceDeployment, AsyncOffsetPage[InferenceDeployment]]:
         """List inference deployments
 
@@ -879,7 +879,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete inference deployment
@@ -919,7 +919,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceDeployment:
         """
         Get inference deployment
@@ -960,7 +960,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceDeploymentAPIKey:
         """
         Get inference deployment API key
@@ -1000,7 +1000,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         This operation initializes an inference deployment after it was stopped, making
@@ -1048,7 +1048,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         This operation shuts down an inference deployment, making it unavailable for

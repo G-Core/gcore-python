@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -60,13 +60,13 @@ class ServersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        changed_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        changed_since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "status.asc", "status.desc"] | NotGiven = NOT_GIVEN,
+        changed_before: Union[str, datetime] | Omit = omit,
+        changed_since: Union[str, datetime] | Omit = omit,
+        ip_address: str | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "status.asc", "status.desc"] | Omit = omit,
         status: Literal[
             "ACTIVE",
             "BUILD",
@@ -85,14 +85,14 @@ class ServersResource(SyncAPIResource):
             "SUSPENDED",
             "VERIFY_RESIZE",
         ]
-        | NotGiven = NOT_GIVEN,
-        uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        uuids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[GPUBaremetalClusterServer]:
         """List all servers in a bare metal GPU cluster.
 
@@ -175,13 +175,13 @@ class ServersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
+        delete_floatings: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a specific node from a GPU cluster.
 
@@ -227,20 +227,19 @@ class ServersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -276,18 +275,18 @@ class ServersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -323,19 +322,19 @@ class ServersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -373,19 +372,18 @@ class ServersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -423,25 +421,25 @@ class ServersResource(SyncAPIResource):
         | server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
         | server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile
         | server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
         | Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
         | Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
         | Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        port_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -484,7 +482,7 @@ class ServersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Detach interface from bare metal GPU cluster server
@@ -534,7 +532,7 @@ class ServersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
         """
         Get bare metal GPU cluster server console URL
@@ -573,7 +571,7 @@ class ServersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1:
         """
         Stops and then starts the server, effectively performing a hard reboot.
@@ -612,7 +610,7 @@ class ServersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1:
         """
         Reboot one bare metal GPU cluster server
@@ -667,13 +665,13 @@ class AsyncServersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        changed_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        changed_since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "status.asc", "status.desc"] | NotGiven = NOT_GIVEN,
+        changed_before: Union[str, datetime] | Omit = omit,
+        changed_since: Union[str, datetime] | Omit = omit,
+        ip_address: str | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "status.asc", "status.desc"] | Omit = omit,
         status: Literal[
             "ACTIVE",
             "BUILD",
@@ -692,14 +690,14 @@ class AsyncServersResource(AsyncAPIResource):
             "SUSPENDED",
             "VERIFY_RESIZE",
         ]
-        | NotGiven = NOT_GIVEN,
-        uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        uuids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GPUBaremetalClusterServer, AsyncOffsetPage[GPUBaremetalClusterServer]]:
         """List all servers in a bare metal GPU cluster.
 
@@ -782,13 +780,13 @@ class AsyncServersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
+        delete_floatings: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a specific node from a GPU cluster.
 
@@ -836,20 +834,19 @@ class AsyncServersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -885,18 +882,18 @@ class AsyncServersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -932,19 +929,19 @@ class AsyncServersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -982,19 +979,18 @@ class AsyncServersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to bare metal GPU cluster server
@@ -1032,25 +1028,25 @@ class AsyncServersResource(AsyncAPIResource):
         | server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
         | server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile
         | server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
         | Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
         | Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
         | Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        port_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -1093,7 +1089,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Detach interface from bare metal GPU cluster server
@@ -1143,7 +1139,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
         """
         Get bare metal GPU cluster server console URL
@@ -1182,7 +1178,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1:
         """
         Stops and then starts the server, effectively performing a hard reboot.
@@ -1221,7 +1217,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1:
         """
         Reboot one bare metal GPU cluster server

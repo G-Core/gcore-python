@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,15 +52,15 @@ class APIPathsResource(SyncAPIResource):
         http_scheme: Literal["HTTP", "HTTPS"],
         method: Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"],
         path: str,
-        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        api_version: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | Omit = omit,
+        api_version: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIPath:
         """
         Create an API path for a domain
@@ -113,16 +113,16 @@ class APIPathsResource(SyncAPIResource):
         path_id: str,
         *,
         domain_id: int,
-        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | Omit = omit,
+        path: str | Omit = omit,
+        status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update a specific API path for a domain
@@ -173,14 +173,13 @@ class APIPathsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        api_group: Optional[str] | NotGiven = NOT_GIVEN,
-        api_version: Optional[str] | NotGiven = NOT_GIVEN,
-        http_scheme: Optional[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        method: Optional[Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]]
-        | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        api_group: Optional[str] | Omit = omit,
+        api_version: Optional[str] | Omit = omit,
+        http_scheme: Optional[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        limit: int | Omit = omit,
+        method: Optional[Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]] | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "id",
             "path",
@@ -201,17 +200,16 @@ class APIPathsResource(SyncAPIResource):
             "-status",
             "-source",
         ]
-        | NotGiven = NOT_GIVEN,
-        path: Optional[str] | NotGiven = NOT_GIVEN,
-        source: Optional[Literal["API_DESCRIPTION_FILE", "TRAFFIC_SCAN", "USER_DEFINED"]] | NotGiven = NOT_GIVEN,
-        status: Optional[List[Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        path: Optional[str] | Omit = omit,
+        source: Optional[Literal["API_DESCRIPTION_FILE", "TRAFFIC_SCAN", "USER_DEFINED"]] | Omit = omit,
+        status: Optional[List[Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapAPIPath]:
         """
         Retrieve a list of API paths for a specific domain
@@ -287,7 +285,7 @@ class APIPathsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific API path for a domain
@@ -326,7 +324,7 @@ class APIPathsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIPath:
         """
         Retrieve a specific API path for a domain
@@ -382,15 +380,15 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         http_scheme: Literal["HTTP", "HTTPS"],
         method: Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"],
         path: str,
-        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        api_version: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | Omit = omit,
+        api_version: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIPath:
         """
         Create an API path for a domain
@@ -443,16 +441,16 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         path_id: str,
         *,
         domain_id: int,
-        api_groups: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        api_groups: SequenceNotStr[str] | Omit = omit,
+        path: str | Omit = omit,
+        status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update a specific API path for a domain
@@ -503,14 +501,13 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        api_group: Optional[str] | NotGiven = NOT_GIVEN,
-        api_version: Optional[str] | NotGiven = NOT_GIVEN,
-        http_scheme: Optional[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        method: Optional[Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]]
-        | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        api_group: Optional[str] | Omit = omit,
+        api_version: Optional[str] | Omit = omit,
+        http_scheme: Optional[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        limit: int | Omit = omit,
+        method: Optional[Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]] | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "id",
             "path",
@@ -531,17 +528,16 @@ class AsyncAPIPathsResource(AsyncAPIResource):
             "-status",
             "-source",
         ]
-        | NotGiven = NOT_GIVEN,
-        path: Optional[str] | NotGiven = NOT_GIVEN,
-        source: Optional[Literal["API_DESCRIPTION_FILE", "TRAFFIC_SCAN", "USER_DEFINED"]] | NotGiven = NOT_GIVEN,
-        status: Optional[List[Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        path: Optional[str] | Omit = omit,
+        source: Optional[Literal["API_DESCRIPTION_FILE", "TRAFFIC_SCAN", "USER_DEFINED"]] | Omit = omit,
+        status: Optional[List[Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapAPIPath, AsyncOffsetPage[WaapAPIPath]]:
         """
         Retrieve a list of API paths for a specific domain
@@ -617,7 +613,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific API path for a domain
@@ -656,7 +652,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIPath:
         """
         Retrieve a specific API path for a domain

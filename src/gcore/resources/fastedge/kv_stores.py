@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -46,14 +46,14 @@ class KvStoresResource(SyncAPIResource):
     def create(
         self,
         *,
-        byod: kv_store_create_params.Byod | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
+        byod: kv_store_create_params.Byod | Omit = omit,
+        comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
         Add a new KV store
@@ -89,13 +89,13 @@ class KvStoresResource(SyncAPIResource):
     def list(
         self,
         *,
-        app_id: int | NotGiven = NOT_GIVEN,
+        app_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreListResponse:
         """
         List available stores
@@ -132,7 +132,7 @@ class KvStoresResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a store
@@ -164,7 +164,7 @@ class KvStoresResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreGetResponse:
         """
         Get store by id
@@ -190,14 +190,14 @@ class KvStoresResource(SyncAPIResource):
         self,
         id: int,
         *,
-        byod: kv_store_replace_params.Byod | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
+        byod: kv_store_replace_params.Byod | Omit = omit,
+        comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
         Update a store
@@ -254,14 +254,14 @@ class AsyncKvStoresResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        byod: kv_store_create_params.Byod | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
+        byod: kv_store_create_params.Byod | Omit = omit,
+        comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
         Add a new KV store
@@ -297,13 +297,13 @@ class AsyncKvStoresResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        app_id: int | NotGiven = NOT_GIVEN,
+        app_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreListResponse:
         """
         List available stores
@@ -340,7 +340,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a store
@@ -372,7 +372,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreGetResponse:
         """
         Get store by id
@@ -398,14 +398,14 @@ class AsyncKvStoresResource(AsyncAPIResource):
         self,
         id: int,
         *,
-        byod: kv_store_replace_params.Byod | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
+        byod: kv_store_replace_params.Byod | Omit = omit,
+        comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
         Update a store

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,26 +50,26 @@ class PlaylistsResource(SyncAPIResource):
     def create(
         self,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        ad_id: int | NotGiven = NOT_GIVEN,
-        client_id: int | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        countdown: bool | NotGiven = NOT_GIVEN,
-        hls_cmaf_url: str | NotGiven = NOT_GIVEN,
-        hls_url: str | NotGiven = NOT_GIVEN,
-        iframe_url: str | NotGiven = NOT_GIVEN,
-        loop: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        player_id: int | NotGiven = NOT_GIVEN,
-        playlist_type: Literal["live", "vod"] | NotGiven = NOT_GIVEN,
-        start_time: str | NotGiven = NOT_GIVEN,
-        video_ids: Iterable[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        ad_id: int | Omit = omit,
+        client_id: int | Omit = omit,
+        client_user_id: int | Omit = omit,
+        countdown: bool | Omit = omit,
+        hls_cmaf_url: str | Omit = omit,
+        hls_url: str | Omit = omit,
+        iframe_url: str | Omit = omit,
+        loop: bool | Omit = omit,
+        name: str | Omit = omit,
+        player_id: int | Omit = omit,
+        playlist_type: Literal["live", "vod"] | Omit = omit,
+        start_time: str | Omit = omit,
+        video_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlaylistCreate:
         """
         Playlist is a curated collection of video content organized in a sequential
@@ -234,26 +234,26 @@ class PlaylistsResource(SyncAPIResource):
         self,
         playlist_id: int,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        ad_id: int | NotGiven = NOT_GIVEN,
-        client_id: int | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        countdown: bool | NotGiven = NOT_GIVEN,
-        hls_cmaf_url: str | NotGiven = NOT_GIVEN,
-        hls_url: str | NotGiven = NOT_GIVEN,
-        iframe_url: str | NotGiven = NOT_GIVEN,
-        loop: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        player_id: int | NotGiven = NOT_GIVEN,
-        playlist_type: Literal["live", "vod"] | NotGiven = NOT_GIVEN,
-        start_time: str | NotGiven = NOT_GIVEN,
-        video_ids: Iterable[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        ad_id: int | Omit = omit,
+        client_id: int | Omit = omit,
+        client_user_id: int | Omit = omit,
+        countdown: bool | Omit = omit,
+        hls_cmaf_url: str | Omit = omit,
+        hls_url: str | Omit = omit,
+        iframe_url: str | Omit = omit,
+        loop: bool | Omit = omit,
+        name: str | Omit = omit,
+        player_id: int | Omit = omit,
+        playlist_type: Literal["live", "vod"] | Omit = omit,
+        start_time: str | Omit = omit,
+        video_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Playlist:
         """Change playlist
 
@@ -364,13 +364,13 @@ class PlaylistsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageStreaming[Playlist]:
         """Returns a list of created playlists
 
@@ -409,7 +409,7 @@ class PlaylistsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete playlist
@@ -441,7 +441,7 @@ class PlaylistsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Playlist:
         """
         Returns a playlist details
@@ -472,7 +472,7 @@ class PlaylistsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlaylistListVideosResponse:
         """
         Shows ordered array of playlist videos
@@ -518,26 +518,26 @@ class AsyncPlaylistsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        ad_id: int | NotGiven = NOT_GIVEN,
-        client_id: int | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        countdown: bool | NotGiven = NOT_GIVEN,
-        hls_cmaf_url: str | NotGiven = NOT_GIVEN,
-        hls_url: str | NotGiven = NOT_GIVEN,
-        iframe_url: str | NotGiven = NOT_GIVEN,
-        loop: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        player_id: int | NotGiven = NOT_GIVEN,
-        playlist_type: Literal["live", "vod"] | NotGiven = NOT_GIVEN,
-        start_time: str | NotGiven = NOT_GIVEN,
-        video_ids: Iterable[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        ad_id: int | Omit = omit,
+        client_id: int | Omit = omit,
+        client_user_id: int | Omit = omit,
+        countdown: bool | Omit = omit,
+        hls_cmaf_url: str | Omit = omit,
+        hls_url: str | Omit = omit,
+        iframe_url: str | Omit = omit,
+        loop: bool | Omit = omit,
+        name: str | Omit = omit,
+        player_id: int | Omit = omit,
+        playlist_type: Literal["live", "vod"] | Omit = omit,
+        start_time: str | Omit = omit,
+        video_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlaylistCreate:
         """
         Playlist is a curated collection of video content organized in a sequential
@@ -702,26 +702,26 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         self,
         playlist_id: int,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        ad_id: int | NotGiven = NOT_GIVEN,
-        client_id: int | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        countdown: bool | NotGiven = NOT_GIVEN,
-        hls_cmaf_url: str | NotGiven = NOT_GIVEN,
-        hls_url: str | NotGiven = NOT_GIVEN,
-        iframe_url: str | NotGiven = NOT_GIVEN,
-        loop: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        player_id: int | NotGiven = NOT_GIVEN,
-        playlist_type: Literal["live", "vod"] | NotGiven = NOT_GIVEN,
-        start_time: str | NotGiven = NOT_GIVEN,
-        video_ids: Iterable[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        ad_id: int | Omit = omit,
+        client_id: int | Omit = omit,
+        client_user_id: int | Omit = omit,
+        countdown: bool | Omit = omit,
+        hls_cmaf_url: str | Omit = omit,
+        hls_url: str | Omit = omit,
+        iframe_url: str | Omit = omit,
+        loop: bool | Omit = omit,
+        name: str | Omit = omit,
+        player_id: int | Omit = omit,
+        playlist_type: Literal["live", "vod"] | Omit = omit,
+        start_time: str | Omit = omit,
+        video_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Playlist:
         """Change playlist
 
@@ -832,13 +832,13 @@ class AsyncPlaylistsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Playlist, AsyncPageStreaming[Playlist]]:
         """Returns a list of created playlists
 
@@ -877,7 +877,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete playlist
@@ -909,7 +909,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Playlist:
         """
         Returns a playlist details
@@ -940,7 +940,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlaylistListVideosResponse:
         """
         Shows ordered array of playlist videos

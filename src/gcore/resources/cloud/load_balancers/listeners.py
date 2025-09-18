@@ -6,7 +6,7 @@ from typing import Iterable, Optional
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,21 +61,21 @@ class ListenersResource(SyncAPIResource):
         name: str,
         protocol: LbListenerProtocol,
         protocol_port: int,
-        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        connection_limit: int | NotGiven = NOT_GIVEN,
-        insert_x_forwarded: bool | NotGiven = NOT_GIVEN,
-        secret_id: str | NotGiven = NOT_GIVEN,
-        sni_secret_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
-        user_list: Iterable[listener_create_params.UserList] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
+        connection_limit: int | Omit = omit,
+        insert_x_forwarded: bool | Omit = omit,
+        secret_id: str | Omit = omit,
+        sni_secret_id: SequenceNotStr[str] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
+        user_list: Iterable[listener_create_params.UserList] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer listener
@@ -158,21 +158,21 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        connection_limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sni_secret_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
-        user_list: Optional[Iterable[listener_update_params.UserList]] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
+        connection_limit: int | Omit = omit,
+        name: str | Omit = omit,
+        secret_id: Optional[str] | Omit = omit,
+        sni_secret_id: Optional[SequenceNotStr[str]] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
+        user_list: Optional[Iterable[listener_update_params.UserList]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Update load balancer listener
@@ -245,14 +245,14 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        loadbalancer_id: str | NotGiven = NOT_GIVEN,
-        show_stats: bool | NotGiven = NOT_GIVEN,
+        loadbalancer_id: str | Omit = omit,
+        show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerListenerList:
         """
         List load balancer listeners
@@ -307,7 +307,7 @@ class ListenersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer listener
@@ -347,13 +347,13 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        show_stats: bool | NotGiven = NOT_GIVEN,
+        show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerListenerDetail:
         """
         Get load balancer listener
@@ -423,21 +423,21 @@ class AsyncListenersResource(AsyncAPIResource):
         name: str,
         protocol: LbListenerProtocol,
         protocol_port: int,
-        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        connection_limit: int | NotGiven = NOT_GIVEN,
-        insert_x_forwarded: bool | NotGiven = NOT_GIVEN,
-        secret_id: str | NotGiven = NOT_GIVEN,
-        sni_secret_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
-        user_list: Iterable[listener_create_params.UserList] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
+        connection_limit: int | Omit = omit,
+        insert_x_forwarded: bool | Omit = omit,
+        secret_id: str | Omit = omit,
+        sni_secret_id: SequenceNotStr[str] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
+        user_list: Iterable[listener_create_params.UserList] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer listener
@@ -520,21 +520,21 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        allowed_cidrs: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        connection_limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sni_secret_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
-        user_list: Optional[Iterable[listener_update_params.UserList]] | NotGiven = NOT_GIVEN,
+        allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
+        connection_limit: int | Omit = omit,
+        name: str | Omit = omit,
+        secret_id: Optional[str] | Omit = omit,
+        sni_secret_id: Optional[SequenceNotStr[str]] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
+        user_list: Optional[Iterable[listener_update_params.UserList]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Update load balancer listener
@@ -607,14 +607,14 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        loadbalancer_id: str | NotGiven = NOT_GIVEN,
-        show_stats: bool | NotGiven = NOT_GIVEN,
+        loadbalancer_id: str | Omit = omit,
+        show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerListenerList:
         """
         List load balancer listeners
@@ -669,7 +669,7 @@ class AsyncListenersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer listener
@@ -709,13 +709,13 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        show_stats: bool | NotGiven = NOT_GIVEN,
+        show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerListenerDetail:
         """
         Get load balancer listener

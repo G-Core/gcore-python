@@ -14,7 +14,7 @@ from .members import (
     MembersResourceWithStreamingResponse,
     AsyncMembersResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -80,23 +80,23 @@ class PoolsResource(SyncAPIResource):
         lb_algorithm: LbAlgorithm,
         name: str,
         protocol: LbPoolProtocol,
-        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        healthmonitor: Optional[pool_create_params.Healthmonitor] | NotGiven = NOT_GIVEN,
-        listener_id: Optional[str] | NotGiven = NOT_GIVEN,
-        loadbalancer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        members: Optional[Iterable[pool_create_params.Member]] | NotGiven = NOT_GIVEN,
-        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        session_persistence: Optional[pool_create_params.SessionPersistence] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        ca_secret_id: Optional[str] | Omit = omit,
+        crl_secret_id: Optional[str] | Omit = omit,
+        healthmonitor: Optional[pool_create_params.Healthmonitor] | Omit = omit,
+        listener_id: Optional[str] | Omit = omit,
+        loadbalancer_id: Optional[str] | Omit = omit,
+        members: Optional[Iterable[pool_create_params.Member]] | Omit = omit,
+        secret_id: Optional[str] | Omit = omit,
+        session_persistence: Optional[pool_create_params.SessionPersistence] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer pool
@@ -179,24 +179,24 @@ class PoolsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        healthmonitor: Optional[pool_update_params.Healthmonitor] | NotGiven = NOT_GIVEN,
-        lb_algorithm: LbAlgorithm | NotGiven = NOT_GIVEN,
-        members: Optional[Iterable[pool_update_params.Member]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        protocol: LbPoolProtocol | NotGiven = NOT_GIVEN,
-        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        session_persistence: Optional[pool_update_params.SessionPersistence] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        ca_secret_id: Optional[str] | Omit = omit,
+        crl_secret_id: Optional[str] | Omit = omit,
+        healthmonitor: Optional[pool_update_params.Healthmonitor] | Omit = omit,
+        lb_algorithm: LbAlgorithm | Omit = omit,
+        members: Optional[Iterable[pool_update_params.Member]] | Omit = omit,
+        name: str | Omit = omit,
+        protocol: LbPoolProtocol | Omit = omit,
+        secret_id: Optional[str] | Omit = omit,
+        session_persistence: Optional[pool_update_params.SessionPersistence] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Updates the specified load balancer pool with the provided changes.
@@ -291,15 +291,15 @@ class PoolsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        details: bool | NotGiven = NOT_GIVEN,
-        listener_id: str | NotGiven = NOT_GIVEN,
-        loadbalancer_id: str | NotGiven = NOT_GIVEN,
+        details: bool | Omit = omit,
+        listener_id: str | Omit = omit,
+        loadbalancer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerPoolList:
         """
         List load balancer pools
@@ -357,7 +357,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer pool
@@ -402,7 +402,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerPool:
         """
         Get load balancer pool
@@ -473,23 +473,23 @@ class AsyncPoolsResource(AsyncAPIResource):
         lb_algorithm: LbAlgorithm,
         name: str,
         protocol: LbPoolProtocol,
-        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        healthmonitor: Optional[pool_create_params.Healthmonitor] | NotGiven = NOT_GIVEN,
-        listener_id: Optional[str] | NotGiven = NOT_GIVEN,
-        loadbalancer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        members: Optional[Iterable[pool_create_params.Member]] | NotGiven = NOT_GIVEN,
-        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        session_persistence: Optional[pool_create_params.SessionPersistence] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        ca_secret_id: Optional[str] | Omit = omit,
+        crl_secret_id: Optional[str] | Omit = omit,
+        healthmonitor: Optional[pool_create_params.Healthmonitor] | Omit = omit,
+        listener_id: Optional[str] | Omit = omit,
+        loadbalancer_id: Optional[str] | Omit = omit,
+        members: Optional[Iterable[pool_create_params.Member]] | Omit = omit,
+        secret_id: Optional[str] | Omit = omit,
+        session_persistence: Optional[pool_create_params.SessionPersistence] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer pool
@@ -572,24 +572,24 @@ class AsyncPoolsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ca_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        crl_secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        healthmonitor: Optional[pool_update_params.Healthmonitor] | NotGiven = NOT_GIVEN,
-        lb_algorithm: LbAlgorithm | NotGiven = NOT_GIVEN,
-        members: Optional[Iterable[pool_update_params.Member]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        protocol: LbPoolProtocol | NotGiven = NOT_GIVEN,
-        secret_id: Optional[str] | NotGiven = NOT_GIVEN,
-        session_persistence: Optional[pool_update_params.SessionPersistence] | NotGiven = NOT_GIVEN,
-        timeout_client_data: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_connect: Optional[int] | NotGiven = NOT_GIVEN,
-        timeout_member_data: Optional[int] | NotGiven = NOT_GIVEN,
+        ca_secret_id: Optional[str] | Omit = omit,
+        crl_secret_id: Optional[str] | Omit = omit,
+        healthmonitor: Optional[pool_update_params.Healthmonitor] | Omit = omit,
+        lb_algorithm: LbAlgorithm | Omit = omit,
+        members: Optional[Iterable[pool_update_params.Member]] | Omit = omit,
+        name: str | Omit = omit,
+        protocol: LbPoolProtocol | Omit = omit,
+        secret_id: Optional[str] | Omit = omit,
+        session_persistence: Optional[pool_update_params.SessionPersistence] | Omit = omit,
+        timeout_client_data: Optional[int] | Omit = omit,
+        timeout_member_connect: Optional[int] | Omit = omit,
+        timeout_member_data: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Updates the specified load balancer pool with the provided changes.
@@ -684,15 +684,15 @@ class AsyncPoolsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        details: bool | NotGiven = NOT_GIVEN,
-        listener_id: str | NotGiven = NOT_GIVEN,
-        loadbalancer_id: str | NotGiven = NOT_GIVEN,
+        details: bool | Omit = omit,
+        listener_id: str | Omit = omit,
+        loadbalancer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerPoolList:
         """
         List load balancer pools
@@ -750,7 +750,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer pool
@@ -795,7 +795,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerPool:
         """
         Get load balancer pool

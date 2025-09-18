@@ -12,7 +12,7 @@ from .requests import (
     RequestsResourceWithStreamingResponse,
     AsyncRequestsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -61,7 +61,7 @@ class QuotasResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QuotaGetAllResponse:
         """Get combined client quotas, including both regional and global quotas."""
         return self._get(
@@ -82,7 +82,7 @@ class QuotasResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QuotaGetByRegionResponse:
         """
         Get quotas for a specific region and client.
@@ -119,7 +119,7 @@ class QuotasResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QuotaGetGlobalResponse:
         """
         Get global quotas for a specific client.
@@ -176,7 +176,7 @@ class AsyncQuotasResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QuotaGetAllResponse:
         """Get combined client quotas, including both regional and global quotas."""
         return await self._get(
@@ -197,7 +197,7 @@ class AsyncQuotasResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QuotaGetByRegionResponse:
         """
         Get quotas for a specific region and client.
@@ -234,7 +234,7 @@ class AsyncQuotasResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QuotaGetGlobalResponse:
         """
         Get global quotas for a specific client.

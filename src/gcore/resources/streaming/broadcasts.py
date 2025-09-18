@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -46,13 +46,13 @@ class BroadcastsResource(SyncAPIResource):
     def create(
         self,
         *,
-        broadcast: broadcast_create_params.Broadcast | NotGiven = NOT_GIVEN,
+        broadcast: broadcast_create_params.Broadcast | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Broadcast entity is for setting up HTML video player, which serves to combine:
@@ -88,13 +88,13 @@ class BroadcastsResource(SyncAPIResource):
         self,
         broadcast_id: int,
         *,
-        broadcast: broadcast_update_params.Broadcast | NotGiven = NOT_GIVEN,
+        broadcast: broadcast_update_params.Broadcast | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Broadcast:
         """
         Updates broadcast settings
@@ -120,13 +120,13 @@ class BroadcastsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageStreaming[Broadcast]:
         """
         Note: Feature "Broadcast" is outdated, soon it will be replaced by
@@ -167,7 +167,7 @@ class BroadcastsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete broadcast
@@ -199,7 +199,7 @@ class BroadcastsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Broadcast:
         """
         Returns broadcast details
@@ -230,7 +230,7 @@ class BroadcastsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BroadcastSpectatorsCount:
         """
         Returns number of simultaneous broadcast viewers at the current moment
@@ -276,13 +276,13 @@ class AsyncBroadcastsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        broadcast: broadcast_create_params.Broadcast | NotGiven = NOT_GIVEN,
+        broadcast: broadcast_create_params.Broadcast | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Broadcast entity is for setting up HTML video player, which serves to combine:
@@ -318,13 +318,13 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         self,
         broadcast_id: int,
         *,
-        broadcast: broadcast_update_params.Broadcast | NotGiven = NOT_GIVEN,
+        broadcast: broadcast_update_params.Broadcast | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Broadcast:
         """
         Updates broadcast settings
@@ -350,13 +350,13 @@ class AsyncBroadcastsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Broadcast, AsyncPageStreaming[Broadcast]]:
         """
         Note: Feature "Broadcast" is outdated, soon it will be replaced by
@@ -397,7 +397,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete broadcast
@@ -429,7 +429,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Broadcast:
         """
         Returns broadcast details
@@ -460,7 +460,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BroadcastSpectatorsCount:
         """
         Returns number of simultaneous broadcast viewers at the current moment

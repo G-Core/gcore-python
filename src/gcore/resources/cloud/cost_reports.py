@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -56,13 +56,13 @@ class CostReportsResource(SyncAPIResource):
         *,
         time_from: Union[str, datetime],
         time_to: Union[str, datetime],
-        enable_last_day: bool | NotGiven = NOT_GIVEN,
-        projects: Iterable[int] | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
-        rounding: bool | NotGiven = NOT_GIVEN,
-        schema_filter: cost_report_get_aggregated_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        tags: cost_report_get_aggregated_params.Tags | NotGiven = NOT_GIVEN,
+        enable_last_day: bool | Omit = omit,
+        projects: Iterable[int] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_totals", "json"] | Omit = omit,
+        rounding: bool | Omit = omit,
+        schema_filter: cost_report_get_aggregated_params.SchemaFilter | Omit = omit,
+        tags: cost_report_get_aggregated_params.Tags | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -92,13 +92,13 @@ class CostReportsResource(SyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportAggregated:
         """Get cost report totals (aggregated costs) for a given period.
 
@@ -171,13 +171,13 @@ class CostReportsResource(SyncAPIResource):
     def get_aggregated_monthly(
         self,
         *,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
-        rounding: bool | NotGiven = NOT_GIVEN,
-        schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        tags: cost_report_get_aggregated_monthly_params.Tags | NotGiven = NOT_GIVEN,
-        time_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        time_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        regions: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_totals", "json"] | Omit = omit,
+        rounding: bool | Omit = omit,
+        schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | Omit = omit,
+        tags: cost_report_get_aggregated_monthly_params.Tags | Omit = omit,
+        time_from: Union[str, datetime] | Omit = omit,
+        time_to: Union[str, datetime] | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -207,14 +207,14 @@ class CostReportsResource(SyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        year_month: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        year_month: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportAggregatedMonthly:
         """
         Retrieve a detailed cost report totals for a specified month, which includes
@@ -281,16 +281,16 @@ class CostReportsResource(SyncAPIResource):
         *,
         time_from: Union[str, datetime],
         time_to: Union[str, datetime],
-        enable_last_day: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        projects: Iterable[int] | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        response_format: Literal["csv_records", "json"] | NotGiven = NOT_GIVEN,
-        rounding: bool | NotGiven = NOT_GIVEN,
-        schema_filter: cost_report_get_detailed_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        sorting: Iterable[cost_report_get_detailed_params.Sorting] | NotGiven = NOT_GIVEN,
-        tags: cost_report_get_detailed_params.Tags | NotGiven = NOT_GIVEN,
+        enable_last_day: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        projects: Iterable[int] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_records", "json"] | Omit = omit,
+        rounding: bool | Omit = omit,
+        schema_filter: cost_report_get_detailed_params.SchemaFilter | Omit = omit,
+        sorting: Iterable[cost_report_get_detailed_params.Sorting] | Omit = omit,
+        tags: cost_report_get_detailed_params.Tags | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -320,13 +320,13 @@ class CostReportsResource(SyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportDetailed:
         """Get a detailed cost report for a given period and specific resources.
 
@@ -432,13 +432,13 @@ class AsyncCostReportsResource(AsyncAPIResource):
         *,
         time_from: Union[str, datetime],
         time_to: Union[str, datetime],
-        enable_last_day: bool | NotGiven = NOT_GIVEN,
-        projects: Iterable[int] | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
-        rounding: bool | NotGiven = NOT_GIVEN,
-        schema_filter: cost_report_get_aggregated_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        tags: cost_report_get_aggregated_params.Tags | NotGiven = NOT_GIVEN,
+        enable_last_day: bool | Omit = omit,
+        projects: Iterable[int] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_totals", "json"] | Omit = omit,
+        rounding: bool | Omit = omit,
+        schema_filter: cost_report_get_aggregated_params.SchemaFilter | Omit = omit,
+        tags: cost_report_get_aggregated_params.Tags | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -468,13 +468,13 @@ class AsyncCostReportsResource(AsyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportAggregated:
         """Get cost report totals (aggregated costs) for a given period.
 
@@ -547,13 +547,13 @@ class AsyncCostReportsResource(AsyncAPIResource):
     async def get_aggregated_monthly(
         self,
         *,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        response_format: Literal["csv_totals", "json"] | NotGiven = NOT_GIVEN,
-        rounding: bool | NotGiven = NOT_GIVEN,
-        schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        tags: cost_report_get_aggregated_monthly_params.Tags | NotGiven = NOT_GIVEN,
-        time_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        time_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        regions: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_totals", "json"] | Omit = omit,
+        rounding: bool | Omit = omit,
+        schema_filter: cost_report_get_aggregated_monthly_params.SchemaFilter | Omit = omit,
+        tags: cost_report_get_aggregated_monthly_params.Tags | Omit = omit,
+        time_from: Union[str, datetime] | Omit = omit,
+        time_to: Union[str, datetime] | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -583,14 +583,14 @@ class AsyncCostReportsResource(AsyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        year_month: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        year_month: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportAggregatedMonthly:
         """
         Retrieve a detailed cost report totals for a specified month, which includes
@@ -657,16 +657,16 @@ class AsyncCostReportsResource(AsyncAPIResource):
         *,
         time_from: Union[str, datetime],
         time_to: Union[str, datetime],
-        enable_last_day: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        projects: Iterable[int] | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        response_format: Literal["csv_records", "json"] | NotGiven = NOT_GIVEN,
-        rounding: bool | NotGiven = NOT_GIVEN,
-        schema_filter: cost_report_get_detailed_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        sorting: Iterable[cost_report_get_detailed_params.Sorting] | NotGiven = NOT_GIVEN,
-        tags: cost_report_get_detailed_params.Tags | NotGiven = NOT_GIVEN,
+        enable_last_day: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        projects: Iterable[int] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_records", "json"] | Omit = omit,
+        rounding: bool | Omit = omit,
+        schema_filter: cost_report_get_detailed_params.SchemaFilter | Omit = omit,
+        sorting: Iterable[cost_report_get_detailed_params.Sorting] | Omit = omit,
+        tags: cost_report_get_detailed_params.Tags | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -696,13 +696,13 @@ class AsyncCostReportsResource(AsyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportDetailed:
         """Get a detailed cost report for a given period and specific resources.
 

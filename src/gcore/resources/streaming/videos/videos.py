@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from .subtitles import (
     SubtitlesResource,
@@ -70,13 +70,13 @@ class VideosResource(SyncAPIResource):
     def create(
         self,
         *,
-        video: CreateVideoParam | NotGiven = NOT_GIVEN,
+        video: CreateVideoParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VideoCreateResponse:
         """
         Use this method to create a new video entity.
@@ -161,31 +161,31 @@ class VideosResource(SyncAPIResource):
         video_id: int,
         *,
         name: str,
-        auto_transcribe_audio_language: Literal["disable", "auto", "<language_code>"] | NotGiven = NOT_GIVEN,
-        auto_translate_subtitles_language: Literal["disable", "default", "<language_codes,>"] | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        clip_duration_seconds: int | NotGiven = NOT_GIVEN,
-        clip_start_seconds: int | NotGiven = NOT_GIVEN,
-        custom_iframe_url: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        directory_id: int | NotGiven = NOT_GIVEN,
-        origin_http_headers: str | NotGiven = NOT_GIVEN,
-        origin_url: str | NotGiven = NOT_GIVEN,
-        poster: str | NotGiven = NOT_GIVEN,
-        priority: int | NotGiven = NOT_GIVEN,
-        projection: str | NotGiven = NOT_GIVEN,
-        quality_set_id: int | NotGiven = NOT_GIVEN,
-        remote_poster_url: str | NotGiven = NOT_GIVEN,
-        remove_poster: bool | NotGiven = NOT_GIVEN,
-        screenshot_id: int | NotGiven = NOT_GIVEN,
-        share_url: str | NotGiven = NOT_GIVEN,
-        source_bitrate_limit: bool | NotGiven = NOT_GIVEN,
+        auto_transcribe_audio_language: Literal["disable", "auto", "<language_code>"] | Omit = omit,
+        auto_translate_subtitles_language: Literal["disable", "default", "<language_codes,>"] | Omit = omit,
+        client_user_id: int | Omit = omit,
+        clip_duration_seconds: int | Omit = omit,
+        clip_start_seconds: int | Omit = omit,
+        custom_iframe_url: str | Omit = omit,
+        description: str | Omit = omit,
+        directory_id: int | Omit = omit,
+        origin_http_headers: str | Omit = omit,
+        origin_url: str | Omit = omit,
+        poster: str | Omit = omit,
+        priority: int | Omit = omit,
+        projection: str | Omit = omit,
+        quality_set_id: int | Omit = omit,
+        remote_poster_url: str | Omit = omit,
+        remove_poster: bool | Omit = omit,
+        screenshot_id: int | Omit = omit,
+        share_url: str | Omit = omit,
+        source_bitrate_limit: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
         """Changes parameters of the video to new values.
 
@@ -406,20 +406,20 @@ class VideosResource(SyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        fields: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        client_user_id: int | Omit = omit,
+        fields: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        status: str | Omit = omit,
+        stream_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageStreaming[Video]:
         """
         Returns a set of videos by the given criteria.
@@ -500,7 +500,7 @@ class VideosResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Operation to delete video entity.
@@ -534,14 +534,14 @@ class VideosResource(SyncAPIResource):
     def create_multiple(
         self,
         *,
-        fields: str | NotGiven = NOT_GIVEN,
-        videos: Iterable[video_create_multiple_params.Video] | NotGiven = NOT_GIVEN,
+        fields: str | Omit = omit,
+        videos: Iterable[video_create_multiple_params.Video] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VideoCreateMultipleResponse:
         """Mass upload of your videos.
 
@@ -596,7 +596,7 @@ class VideosResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
         """Information about a video entity.
 
@@ -641,7 +641,7 @@ class VideosResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectUploadParameters:
         """
         Use this method to get TUS' session parameters: hostname of the server to
@@ -695,13 +695,13 @@ class VideosResource(SyncAPIResource):
     def list_names(
         self,
         *,
-        ids: Iterable[int] | NotGiven = NOT_GIVEN,
+        ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Returns names for specified video IDs
@@ -758,13 +758,13 @@ class AsyncVideosResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        video: CreateVideoParam | NotGiven = NOT_GIVEN,
+        video: CreateVideoParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VideoCreateResponse:
         """
         Use this method to create a new video entity.
@@ -849,31 +849,31 @@ class AsyncVideosResource(AsyncAPIResource):
         video_id: int,
         *,
         name: str,
-        auto_transcribe_audio_language: Literal["disable", "auto", "<language_code>"] | NotGiven = NOT_GIVEN,
-        auto_translate_subtitles_language: Literal["disable", "default", "<language_codes,>"] | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        clip_duration_seconds: int | NotGiven = NOT_GIVEN,
-        clip_start_seconds: int | NotGiven = NOT_GIVEN,
-        custom_iframe_url: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        directory_id: int | NotGiven = NOT_GIVEN,
-        origin_http_headers: str | NotGiven = NOT_GIVEN,
-        origin_url: str | NotGiven = NOT_GIVEN,
-        poster: str | NotGiven = NOT_GIVEN,
-        priority: int | NotGiven = NOT_GIVEN,
-        projection: str | NotGiven = NOT_GIVEN,
-        quality_set_id: int | NotGiven = NOT_GIVEN,
-        remote_poster_url: str | NotGiven = NOT_GIVEN,
-        remove_poster: bool | NotGiven = NOT_GIVEN,
-        screenshot_id: int | NotGiven = NOT_GIVEN,
-        share_url: str | NotGiven = NOT_GIVEN,
-        source_bitrate_limit: bool | NotGiven = NOT_GIVEN,
+        auto_transcribe_audio_language: Literal["disable", "auto", "<language_code>"] | Omit = omit,
+        auto_translate_subtitles_language: Literal["disable", "default", "<language_codes,>"] | Omit = omit,
+        client_user_id: int | Omit = omit,
+        clip_duration_seconds: int | Omit = omit,
+        clip_start_seconds: int | Omit = omit,
+        custom_iframe_url: str | Omit = omit,
+        description: str | Omit = omit,
+        directory_id: int | Omit = omit,
+        origin_http_headers: str | Omit = omit,
+        origin_url: str | Omit = omit,
+        poster: str | Omit = omit,
+        priority: int | Omit = omit,
+        projection: str | Omit = omit,
+        quality_set_id: int | Omit = omit,
+        remote_poster_url: str | Omit = omit,
+        remove_poster: bool | Omit = omit,
+        screenshot_id: int | Omit = omit,
+        share_url: str | Omit = omit,
+        source_bitrate_limit: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
         """Changes parameters of the video to new values.
 
@@ -1094,20 +1094,20 @@ class AsyncVideosResource(AsyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        fields: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        stream_id: int | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        client_user_id: int | Omit = omit,
+        fields: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        status: str | Omit = omit,
+        stream_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Video, AsyncPageStreaming[Video]]:
         """
         Returns a set of videos by the given criteria.
@@ -1188,7 +1188,7 @@ class AsyncVideosResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Operation to delete video entity.
@@ -1222,14 +1222,14 @@ class AsyncVideosResource(AsyncAPIResource):
     async def create_multiple(
         self,
         *,
-        fields: str | NotGiven = NOT_GIVEN,
-        videos: Iterable[video_create_multiple_params.Video] | NotGiven = NOT_GIVEN,
+        fields: str | Omit = omit,
+        videos: Iterable[video_create_multiple_params.Video] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VideoCreateMultipleResponse:
         """Mass upload of your videos.
 
@@ -1288,7 +1288,7 @@ class AsyncVideosResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
         """Information about a video entity.
 
@@ -1333,7 +1333,7 @@ class AsyncVideosResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectUploadParameters:
         """
         Use this method to get TUS' session parameters: hostname of the server to
@@ -1387,13 +1387,13 @@ class AsyncVideosResource(AsyncAPIResource):
     async def list_names(
         self,
         *,
-        ids: Iterable[int] | NotGiven = NOT_GIVEN,
+        ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Returns names for specified video IDs

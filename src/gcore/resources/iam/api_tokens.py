@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,13 +50,13 @@ class APITokensResource(SyncAPIResource):
         client_user: api_token_create_params.ClientUser,
         exp_date: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenCreate:
         """
         Create an API token in the current account.
@@ -100,16 +100,16 @@ class APITokensResource(SyncAPIResource):
         self,
         client_id: int,
         *,
-        deleted: bool | NotGiven = NOT_GIVEN,
-        issued_by: int | NotGiven = NOT_GIVEN,
-        not_issued_by: int | NotGiven = NOT_GIVEN,
-        role: str | NotGiven = NOT_GIVEN,
+        deleted: bool | Omit = omit,
+        issued_by: int | Omit = omit,
+        not_issued_by: int | Omit = omit,
+        role: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenList:
         """Get information about your permanent API tokens in the account.
 
@@ -176,7 +176,7 @@ class APITokensResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Delete API token from current account.
 
@@ -213,7 +213,7 @@ class APITokensResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIToken:
         """
         Get API Token
@@ -263,13 +263,13 @@ class AsyncAPITokensResource(AsyncAPIResource):
         client_user: api_token_create_params.ClientUser,
         exp_date: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenCreate:
         """
         Create an API token in the current account.
@@ -313,16 +313,16 @@ class AsyncAPITokensResource(AsyncAPIResource):
         self,
         client_id: int,
         *,
-        deleted: bool | NotGiven = NOT_GIVEN,
-        issued_by: int | NotGiven = NOT_GIVEN,
-        not_issued_by: int | NotGiven = NOT_GIVEN,
-        role: str | NotGiven = NOT_GIVEN,
+        deleted: bool | Omit = omit,
+        issued_by: int | Omit = omit,
+        not_issued_by: int | Omit = omit,
+        role: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenList:
         """Get information about your permanent API tokens in the account.
 
@@ -389,7 +389,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Delete API token from current account.
 
@@ -426,7 +426,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIToken:
         """
         Get API Token

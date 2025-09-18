@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,13 +58,13 @@ class InsightSilencesResource(SyncAPIResource):
         comment: str,
         insight_type: str,
         labels: Dict[str, str],
-        expire_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        expire_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapInsightSilence:
         """Create a new insight silence for a specified domain.
 
@@ -118,13 +118,13 @@ class InsightSilencesResource(SyncAPIResource):
         author: str,
         comment: str,
         expire_at: Union[str, datetime, None],
-        labels: Dict[str, str] | NotGiven = NOT_GIVEN,
+        labels: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapInsightSilence:
         """
         Update an insight silence for a specific domain.
@@ -173,12 +173,12 @@ class InsightSilencesResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        author: Optional[str] | NotGiven = NOT_GIVEN,
-        comment: Optional[str] | NotGiven = NOT_GIVEN,
-        insight_type: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        id: Optional[SequenceNotStr[str]] | Omit = omit,
+        author: Optional[str] | Omit = omit,
+        comment: Optional[str] | Omit = omit,
+        insight_type: Optional[SequenceNotStr[str]] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "id",
             "-id",
@@ -191,13 +191,13 @@ class InsightSilencesResource(SyncAPIResource):
             "expire_at",
             "-expire_at",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapInsightSilence]:
         """
         Retrieve a list of insight silences for a specific domain
@@ -261,7 +261,7 @@ class InsightSilencesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an insight silence for a specific domain.
@@ -300,7 +300,7 @@ class InsightSilencesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapInsightSilence:
         """
         Retrieve a specific insight silence for a specific domain
@@ -357,13 +357,13 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         comment: str,
         insight_type: str,
         labels: Dict[str, str],
-        expire_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        expire_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapInsightSilence:
         """Create a new insight silence for a specified domain.
 
@@ -417,13 +417,13 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         author: str,
         comment: str,
         expire_at: Union[str, datetime, None],
-        labels: Dict[str, str] | NotGiven = NOT_GIVEN,
+        labels: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapInsightSilence:
         """
         Update an insight silence for a specific domain.
@@ -472,12 +472,12 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        author: Optional[str] | NotGiven = NOT_GIVEN,
-        comment: Optional[str] | NotGiven = NOT_GIVEN,
-        insight_type: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        id: Optional[SequenceNotStr[str]] | Omit = omit,
+        author: Optional[str] | Omit = omit,
+        comment: Optional[str] | Omit = omit,
+        insight_type: Optional[SequenceNotStr[str]] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "id",
             "-id",
@@ -490,13 +490,13 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
             "expire_at",
             "-expire_at",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapInsightSilence, AsyncOffsetPage[WaapInsightSilence]]:
         """
         Retrieve a list of insight silences for a specific domain
@@ -560,7 +560,7 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an insight silence for a specific domain.
@@ -599,7 +599,7 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapInsightSilence:
         """
         Retrieve a specific insight silence for a specific domain

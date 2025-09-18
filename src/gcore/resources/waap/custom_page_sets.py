@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,19 +55,19 @@ class CustomPageSetsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        block: Optional[custom_page_set_create_params.Block] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[custom_page_set_create_params.BlockCsrf] | NotGiven = NOT_GIVEN,
-        captcha: Optional[custom_page_set_create_params.Captcha] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[custom_page_set_create_params.CookieDisabled] | NotGiven = NOT_GIVEN,
-        domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[custom_page_set_create_params.Handshake] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[custom_page_set_create_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_create_params.Block] | Omit = omit,
+        block_csrf: Optional[custom_page_set_create_params.BlockCsrf] | Omit = omit,
+        captcha: Optional[custom_page_set_create_params.Captcha] | Omit = omit,
+        cookie_disabled: Optional[custom_page_set_create_params.CookieDisabled] | Omit = omit,
+        domains: Optional[Iterable[int]] | Omit = omit,
+        handshake: Optional[custom_page_set_create_params.Handshake] | Omit = omit,
+        javascript_disabled: Optional[custom_page_set_create_params.JavascriptDisabled] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPageSet:
         """Create a custom page set based on the provided data.
 
@@ -112,20 +112,20 @@ class CustomPageSetsResource(SyncAPIResource):
         self,
         set_id: int,
         *,
-        block: Optional[custom_page_set_update_params.Block] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[custom_page_set_update_params.BlockCsrf] | NotGiven = NOT_GIVEN,
-        captcha: Optional[custom_page_set_update_params.Captcha] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[custom_page_set_update_params.CookieDisabled] | NotGiven = NOT_GIVEN,
-        domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[custom_page_set_update_params.Handshake] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[custom_page_set_update_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_update_params.Block] | Omit = omit,
+        block_csrf: Optional[custom_page_set_update_params.BlockCsrf] | Omit = omit,
+        captcha: Optional[custom_page_set_update_params.Captcha] | Omit = omit,
+        cookie_disabled: Optional[custom_page_set_update_params.CookieDisabled] | Omit = omit,
+        domains: Optional[Iterable[int]] | Omit = omit,
+        handshake: Optional[custom_page_set_update_params.Handshake] | Omit = omit,
+        javascript_disabled: Optional[custom_page_set_update_params.JavascriptDisabled] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Update a custom page set based on the provided parameters.
 
@@ -175,17 +175,17 @@ class CustomPageSetsResource(SyncAPIResource):
     def list(
         self,
         *,
-        ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["name", "-name", "id", "-id"] | NotGiven = NOT_GIVEN,
+        ids: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["name", "-name", "id", "-id"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapCustomPageSet]:
         """
         Retrieve a list of custom page sets available for use
@@ -240,7 +240,7 @@ class CustomPageSetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a custom page set
@@ -274,7 +274,7 @@ class CustomPageSetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPageSet:
         """
         Retrieve a custom page set based on the provided ID
@@ -309,17 +309,17 @@ class CustomPageSetsResource(SyncAPIResource):
             "handshake.html",
             "javascriptDisabled.html",
         ],
-        error: Optional[str] | NotGiven = NOT_GIVEN,
-        header: Optional[str] | NotGiven = NOT_GIVEN,
-        logo: Optional[str] | NotGiven = NOT_GIVEN,
-        text: Optional[str] | NotGiven = NOT_GIVEN,
-        title: Optional[str] | NotGiven = NOT_GIVEN,
+        error: Optional[str] | Omit = omit,
+        header: Optional[str] | Omit = omit,
+        logo: Optional[str] | Omit = omit,
+        text: Optional[str] | Omit = omit,
+        title: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPagePreview:
         """
         Allows to preview a custom page without creating it based on the provided type
@@ -397,19 +397,19 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        block: Optional[custom_page_set_create_params.Block] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[custom_page_set_create_params.BlockCsrf] | NotGiven = NOT_GIVEN,
-        captcha: Optional[custom_page_set_create_params.Captcha] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[custom_page_set_create_params.CookieDisabled] | NotGiven = NOT_GIVEN,
-        domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[custom_page_set_create_params.Handshake] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[custom_page_set_create_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_create_params.Block] | Omit = omit,
+        block_csrf: Optional[custom_page_set_create_params.BlockCsrf] | Omit = omit,
+        captcha: Optional[custom_page_set_create_params.Captcha] | Omit = omit,
+        cookie_disabled: Optional[custom_page_set_create_params.CookieDisabled] | Omit = omit,
+        domains: Optional[Iterable[int]] | Omit = omit,
+        handshake: Optional[custom_page_set_create_params.Handshake] | Omit = omit,
+        javascript_disabled: Optional[custom_page_set_create_params.JavascriptDisabled] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPageSet:
         """Create a custom page set based on the provided data.
 
@@ -454,20 +454,20 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         self,
         set_id: int,
         *,
-        block: Optional[custom_page_set_update_params.Block] | NotGiven = NOT_GIVEN,
-        block_csrf: Optional[custom_page_set_update_params.BlockCsrf] | NotGiven = NOT_GIVEN,
-        captcha: Optional[custom_page_set_update_params.Captcha] | NotGiven = NOT_GIVEN,
-        cookie_disabled: Optional[custom_page_set_update_params.CookieDisabled] | NotGiven = NOT_GIVEN,
-        domains: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        handshake: Optional[custom_page_set_update_params.Handshake] | NotGiven = NOT_GIVEN,
-        javascript_disabled: Optional[custom_page_set_update_params.JavascriptDisabled] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        block: Optional[custom_page_set_update_params.Block] | Omit = omit,
+        block_csrf: Optional[custom_page_set_update_params.BlockCsrf] | Omit = omit,
+        captcha: Optional[custom_page_set_update_params.Captcha] | Omit = omit,
+        cookie_disabled: Optional[custom_page_set_update_params.CookieDisabled] | Omit = omit,
+        domains: Optional[Iterable[int]] | Omit = omit,
+        handshake: Optional[custom_page_set_update_params.Handshake] | Omit = omit,
+        javascript_disabled: Optional[custom_page_set_update_params.JavascriptDisabled] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Update a custom page set based on the provided parameters.
 
@@ -517,17 +517,17 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["name", "-name", "id", "-id"] | NotGiven = NOT_GIVEN,
+        ids: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["name", "-name", "id", "-id"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapCustomPageSet, AsyncOffsetPage[WaapCustomPageSet]]:
         """
         Retrieve a list of custom page sets available for use
@@ -582,7 +582,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a custom page set
@@ -616,7 +616,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPageSet:
         """
         Retrieve a custom page set based on the provided ID
@@ -651,17 +651,17 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
             "handshake.html",
             "javascriptDisabled.html",
         ],
-        error: Optional[str] | NotGiven = NOT_GIVEN,
-        header: Optional[str] | NotGiven = NOT_GIVEN,
-        logo: Optional[str] | NotGiven = NOT_GIVEN,
-        text: Optional[str] | NotGiven = NOT_GIVEN,
-        title: Optional[str] | NotGiven = NOT_GIVEN,
+        error: Optional[str] | Omit = omit,
+        header: Optional[str] | Omit = omit,
+        logo: Optional[str] | Omit = omit,
+        text: Optional[str] | Omit = omit,
+        title: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPagePreview:
         """
         Allows to preview a custom page without creating it based on the provided type

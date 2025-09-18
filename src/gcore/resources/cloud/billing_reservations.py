@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,15 +49,15 @@ class BillingReservationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        activated_from: Union[str, date] | NotGiven = NOT_GIVEN,
-        activated_to: Union[str, date] | NotGiven = NOT_GIVEN,
-        created_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        deactivated_from: Union[str, date] | NotGiven = NOT_GIVEN,
-        deactivated_to: Union[str, date] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        metric_name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        activated_from: Union[str, date] | Omit = omit,
+        activated_to: Union[str, date] | Omit = omit,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
+        deactivated_from: Union[str, date] | Omit = omit,
+        deactivated_to: Union[str, date] | Omit = omit,
+        limit: int | Omit = omit,
+        metric_name: str | Omit = omit,
+        offset: int | Omit = omit,
         order_by: Literal[
             "active_from.asc",
             "active_from.desc",
@@ -66,20 +66,20 @@ class BillingReservationsResource(SyncAPIResource):
             "created_at.asc",
             "created_at.desc",
         ]
-        | NotGiven = NOT_GIVEN,
-        region_id: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        region_id: int | Omit = omit,
         status: List[
             Literal[
                 "ACTIVATED", "APPROVED", "COPIED", "CREATED", "EXPIRED", "REJECTED", "RESERVED", "WAITING_FOR_PAYMENT"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[BillingReservation]:
         """
         List reservations
@@ -157,7 +157,7 @@ class BillingReservationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingReservation:
         """
         Get reservation
@@ -205,15 +205,15 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        activated_from: Union[str, date] | NotGiven = NOT_GIVEN,
-        activated_to: Union[str, date] | NotGiven = NOT_GIVEN,
-        created_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        deactivated_from: Union[str, date] | NotGiven = NOT_GIVEN,
-        deactivated_to: Union[str, date] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        metric_name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        activated_from: Union[str, date] | Omit = omit,
+        activated_to: Union[str, date] | Omit = omit,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
+        deactivated_from: Union[str, date] | Omit = omit,
+        deactivated_to: Union[str, date] | Omit = omit,
+        limit: int | Omit = omit,
+        metric_name: str | Omit = omit,
+        offset: int | Omit = omit,
         order_by: Literal[
             "active_from.asc",
             "active_from.desc",
@@ -222,20 +222,20 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
             "created_at.asc",
             "created_at.desc",
         ]
-        | NotGiven = NOT_GIVEN,
-        region_id: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        region_id: int | Omit = omit,
         status: List[
             Literal[
                 "ACTIVATED", "APPROVED", "COPIED", "CREATED", "EXPIRED", "REJECTED", "RESERVED", "WAITING_FOR_PAYMENT"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BillingReservation, AsyncOffsetPage[BillingReservation]]:
         """
         List reservations
@@ -313,7 +313,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingReservation:
         """
         Get reservation
