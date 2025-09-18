@@ -15,7 +15,7 @@ from .overlays import (
     OverlaysResourceWithStreamingResponse,
     AsyncOverlaysResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -70,27 +70,27 @@ class StreamsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        auto_record: bool | NotGiven = NOT_GIVEN,
-        broadcast_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        cdn_id: int | NotGiven = NOT_GIVEN,
-        client_entity_data: str | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        dvr_duration: int | NotGiven = NOT_GIVEN,
-        dvr_enabled: bool | NotGiven = NOT_GIVEN,
-        hls_mpegts_endlist_tag: bool | NotGiven = NOT_GIVEN,
-        html_overlay: bool | NotGiven = NOT_GIVEN,
-        projection: Literal["regular", "vr360", "vr180", "vr360tb"] | NotGiven = NOT_GIVEN,
-        pull: bool | NotGiven = NOT_GIVEN,
-        quality_set_id: int | NotGiven = NOT_GIVEN,
-        record_type: Literal["origin", "transcoded"] | NotGiven = NOT_GIVEN,
-        uri: str | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        auto_record: bool | Omit = omit,
+        broadcast_ids: Iterable[int] | Omit = omit,
+        cdn_id: int | Omit = omit,
+        client_entity_data: str | Omit = omit,
+        client_user_id: int | Omit = omit,
+        dvr_duration: int | Omit = omit,
+        dvr_enabled: bool | Omit = omit,
+        hls_mpegts_endlist_tag: bool | Omit = omit,
+        html_overlay: bool | Omit = omit,
+        projection: Literal["regular", "vr360", "vr180", "vr360tb"] | Omit = omit,
+        pull: bool | Omit = omit,
+        quality_set_id: int | Omit = omit,
+        record_type: Literal["origin", "transcoded"] | Omit = omit,
+        uri: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
         Use this method to create a new live stream entity for broadcasting.
@@ -264,13 +264,13 @@ class StreamsResource(SyncAPIResource):
         self,
         stream_id: int,
         *,
-        stream: stream_update_params.Stream | NotGiven = NOT_GIVEN,
+        stream: stream_update_params.Stream | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
         Updates stream settings
@@ -296,14 +296,14 @@ class StreamsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        with_broadcasts: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        with_broadcasts: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageStreaming[Stream]:
         """Returns a list of streams
 
@@ -351,7 +351,7 @@ class StreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a live stream.
@@ -399,7 +399,7 @@ class StreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Clear live stream DVR
@@ -427,15 +427,15 @@ class StreamsResource(SyncAPIResource):
         stream_id: int,
         *,
         duration: int,
-        expiration: int | NotGiven = NOT_GIVEN,
-        start: int | NotGiven = NOT_GIVEN,
-        vod_required: bool | NotGiven = NOT_GIVEN,
+        expiration: int | Omit = omit,
+        start: int | Omit = omit,
+        vod_required: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Clip:
         """Create an instant clip from on-going live stream.
 
@@ -548,7 +548,7 @@ class StreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
         Returns stream details
@@ -579,7 +579,7 @@ class StreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamListClipsResponse:
         """
         Get list of non expired instant clips for a stream.
@@ -628,7 +628,7 @@ class StreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamStartRecordingResponse:
         """
         Start recording a stream.
@@ -696,7 +696,7 @@ class StreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
         """
         Stop recording a stream.
@@ -753,27 +753,27 @@ class AsyncStreamsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        auto_record: bool | NotGiven = NOT_GIVEN,
-        broadcast_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        cdn_id: int | NotGiven = NOT_GIVEN,
-        client_entity_data: str | NotGiven = NOT_GIVEN,
-        client_user_id: int | NotGiven = NOT_GIVEN,
-        dvr_duration: int | NotGiven = NOT_GIVEN,
-        dvr_enabled: bool | NotGiven = NOT_GIVEN,
-        hls_mpegts_endlist_tag: bool | NotGiven = NOT_GIVEN,
-        html_overlay: bool | NotGiven = NOT_GIVEN,
-        projection: Literal["regular", "vr360", "vr180", "vr360tb"] | NotGiven = NOT_GIVEN,
-        pull: bool | NotGiven = NOT_GIVEN,
-        quality_set_id: int | NotGiven = NOT_GIVEN,
-        record_type: Literal["origin", "transcoded"] | NotGiven = NOT_GIVEN,
-        uri: str | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        auto_record: bool | Omit = omit,
+        broadcast_ids: Iterable[int] | Omit = omit,
+        cdn_id: int | Omit = omit,
+        client_entity_data: str | Omit = omit,
+        client_user_id: int | Omit = omit,
+        dvr_duration: int | Omit = omit,
+        dvr_enabled: bool | Omit = omit,
+        hls_mpegts_endlist_tag: bool | Omit = omit,
+        html_overlay: bool | Omit = omit,
+        projection: Literal["regular", "vr360", "vr180", "vr360tb"] | Omit = omit,
+        pull: bool | Omit = omit,
+        quality_set_id: int | Omit = omit,
+        record_type: Literal["origin", "transcoded"] | Omit = omit,
+        uri: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
         Use this method to create a new live stream entity for broadcasting.
@@ -947,13 +947,13 @@ class AsyncStreamsResource(AsyncAPIResource):
         self,
         stream_id: int,
         *,
-        stream: stream_update_params.Stream | NotGiven = NOT_GIVEN,
+        stream: stream_update_params.Stream | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
         Updates stream settings
@@ -979,14 +979,14 @@ class AsyncStreamsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        with_broadcasts: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        with_broadcasts: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Stream, AsyncPageStreaming[Stream]]:
         """Returns a list of streams
 
@@ -1034,7 +1034,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a live stream.
@@ -1082,7 +1082,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Clear live stream DVR
@@ -1110,15 +1110,15 @@ class AsyncStreamsResource(AsyncAPIResource):
         stream_id: int,
         *,
         duration: int,
-        expiration: int | NotGiven = NOT_GIVEN,
-        start: int | NotGiven = NOT_GIVEN,
-        vod_required: bool | NotGiven = NOT_GIVEN,
+        expiration: int | Omit = omit,
+        start: int | Omit = omit,
+        vod_required: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Clip:
         """Create an instant clip from on-going live stream.
 
@@ -1231,7 +1231,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
         Returns stream details
@@ -1262,7 +1262,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamListClipsResponse:
         """
         Get list of non expired instant clips for a stream.
@@ -1311,7 +1311,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StreamStartRecordingResponse:
         """
         Start recording a stream.
@@ -1379,7 +1379,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
         """
         Stop recording a stream.

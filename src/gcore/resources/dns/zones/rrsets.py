@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,15 +58,15 @@ class RrsetsResource(SyncAPIResource):
         zone_name: str,
         rrset_name: str,
         resource_records: Iterable[rrset_create_params.ResourceRecord],
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        pickers: Iterable[rrset_create_params.Picker] | NotGiven = NOT_GIVEN,
-        ttl: int | NotGiven = NOT_GIVEN,
+        meta: Dict[str, object] | Omit = omit,
+        pickers: Iterable[rrset_create_params.Picker] | Omit = omit,
+        ttl: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DNSOutputRrset:
         """
         Add the RRSet to the zone specified by zoneName, RRSets can be configured to be
@@ -225,16 +225,16 @@ class RrsetsResource(SyncAPIResource):
         self,
         zone_name: str,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RrsetListResponse:
         """
         List of RRset.
@@ -289,7 +289,7 @@ class RrsetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete RRset.
@@ -328,7 +328,7 @@ class RrsetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DNSOutputRrset:
         """
         Particular RRset item info
@@ -362,14 +362,14 @@ class RrsetsResource(SyncAPIResource):
         *,
         zone_name: str,
         rrset_name: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RrsetGetFailoverLogsResponse:
         """
         Get failover history for the RRset
@@ -418,15 +418,15 @@ class RrsetsResource(SyncAPIResource):
         zone_name: str,
         rrset_name: str,
         resource_records: Iterable[rrset_replace_params.ResourceRecord],
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        pickers: Iterable[rrset_replace_params.Picker] | NotGiven = NOT_GIVEN,
-        ttl: int | NotGiven = NOT_GIVEN,
+        meta: Dict[str, object] | Omit = omit,
+        pickers: Iterable[rrset_replace_params.Picker] | Omit = omit,
+        ttl: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DNSOutputRrset:
         """
         Create/update RRset.
@@ -497,15 +497,15 @@ class AsyncRrsetsResource(AsyncAPIResource):
         zone_name: str,
         rrset_name: str,
         resource_records: Iterable[rrset_create_params.ResourceRecord],
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        pickers: Iterable[rrset_create_params.Picker] | NotGiven = NOT_GIVEN,
-        ttl: int | NotGiven = NOT_GIVEN,
+        meta: Dict[str, object] | Omit = omit,
+        pickers: Iterable[rrset_create_params.Picker] | Omit = omit,
+        ttl: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DNSOutputRrset:
         """
         Add the RRSet to the zone specified by zoneName, RRSets can be configured to be
@@ -664,16 +664,16 @@ class AsyncRrsetsResource(AsyncAPIResource):
         self,
         zone_name: str,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RrsetListResponse:
         """
         List of RRset.
@@ -728,7 +728,7 @@ class AsyncRrsetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete RRset.
@@ -767,7 +767,7 @@ class AsyncRrsetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DNSOutputRrset:
         """
         Particular RRset item info
@@ -801,14 +801,14 @@ class AsyncRrsetsResource(AsyncAPIResource):
         *,
         zone_name: str,
         rrset_name: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RrsetGetFailoverLogsResponse:
         """
         Get failover history for the RRset
@@ -857,15 +857,15 @@ class AsyncRrsetsResource(AsyncAPIResource):
         zone_name: str,
         rrset_name: str,
         resource_records: Iterable[rrset_replace_params.ResourceRecord],
-        meta: Dict[str, object] | NotGiven = NOT_GIVEN,
-        pickers: Iterable[rrset_replace_params.Picker] | NotGiven = NOT_GIVEN,
-        ttl: int | NotGiven = NOT_GIVEN,
+        meta: Dict[str, object] | Omit = omit,
+        pickers: Iterable[rrset_replace_params.Picker] | Omit = omit,
+        ttl: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DNSOutputRrset:
         """
         Create/update RRset.

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -57,20 +57,20 @@ class SubnetsResource(SyncAPIResource):
         cidr: str,
         name: str,
         network_id: str,
-        connect_to_network_router: bool | NotGiven = NOT_GIVEN,
-        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        enable_dhcp: bool | NotGiven = NOT_GIVEN,
-        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
-        ip_version: IPVersion | NotGiven = NOT_GIVEN,
-        router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        connect_to_network_router: bool | Omit = omit,
+        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
+        enable_dhcp: bool | Omit = omit,
+        gateway_ip: Optional[str] | Omit = omit,
+        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
+        ip_version: IPVersion | Omit = omit,
+        router_id_to_connect: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create subnet
@@ -214,18 +214,18 @@ class SubnetsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        enable_dhcp: Optional[bool] | NotGiven = NOT_GIVEN,
-        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
+        enable_dhcp: Optional[bool] | Omit = omit,
+        gateway_ip: Optional[str] | Omit = omit,
+        host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
         Update subnet
@@ -308,9 +308,9 @@ class SubnetsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        network_id: str | Omit = omit,
+        offset: int | Omit = omit,
         order_by: Literal[
             "available_ips.asc",
             "available_ips.desc",
@@ -325,15 +325,15 @@ class SubnetsResource(SyncAPIResource):
             "updated_at.asc",
             "updated_at.desc",
         ]
-        | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Subnet]:
         """
         List subnets
@@ -404,7 +404,7 @@ class SubnetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete subnet
@@ -450,7 +450,7 @@ class SubnetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
         Get subnet
@@ -513,20 +513,20 @@ class AsyncSubnetsResource(AsyncAPIResource):
         cidr: str,
         name: str,
         network_id: str,
-        connect_to_network_router: bool | NotGiven = NOT_GIVEN,
-        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        enable_dhcp: bool | NotGiven = NOT_GIVEN,
-        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
-        ip_version: IPVersion | NotGiven = NOT_GIVEN,
-        router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        connect_to_network_router: bool | Omit = omit,
+        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
+        enable_dhcp: bool | Omit = omit,
+        gateway_ip: Optional[str] | Omit = omit,
+        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
+        ip_version: IPVersion | Omit = omit,
+        router_id_to_connect: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create subnet
@@ -670,18 +670,18 @@ class AsyncSubnetsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        enable_dhcp: Optional[bool] | NotGiven = NOT_GIVEN,
-        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
+        enable_dhcp: Optional[bool] | Omit = omit,
+        gateway_ip: Optional[str] | Omit = omit,
+        host_routes: Optional[Iterable[subnet_update_params.HostRoute]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
         Update subnet
@@ -764,9 +764,9 @@ class AsyncSubnetsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        network_id: str | Omit = omit,
+        offset: int | Omit = omit,
         order_by: Literal[
             "available_ips.asc",
             "available_ips.desc",
@@ -781,15 +781,15 @@ class AsyncSubnetsResource(AsyncAPIResource):
             "updated_at.asc",
             "updated_at.desc",
         ]
-        | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Subnet, AsyncOffsetPage[Subnet]]:
         """
         List subnets
@@ -860,7 +860,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete subnet
@@ -906,7 +906,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
         Get subnet

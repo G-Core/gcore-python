@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -56,16 +56,16 @@ class HealthMonitorsResource(SyncAPIResource):
         max_retries: int,
         api_timeout: int,
         type: LbHealthMonitorType,
-        expected_codes: Optional[str] | NotGiven = NOT_GIVEN,
-        http_method: Optional[HTTPMethod] | NotGiven = NOT_GIVEN,
-        max_retries_down: int | NotGiven = NOT_GIVEN,
-        url_path: Optional[str] | NotGiven = NOT_GIVEN,
+        expected_codes: Optional[str] | Omit = omit,
+        http_method: Optional[HTTPMethod] | Omit = omit,
+        max_retries_down: int | Omit = omit,
+        url_path: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Creates a health monitor for a load balancer pool to automatically check the
@@ -146,7 +146,7 @@ class HealthMonitorsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Removes the health monitor from a load balancer pool.
 
@@ -215,16 +215,16 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         max_retries: int,
         api_timeout: int,
         type: LbHealthMonitorType,
-        expected_codes: Optional[str] | NotGiven = NOT_GIVEN,
-        http_method: Optional[HTTPMethod] | NotGiven = NOT_GIVEN,
-        max_retries_down: int | NotGiven = NOT_GIVEN,
-        url_path: Optional[str] | NotGiven = NOT_GIVEN,
+        expected_codes: Optional[str] | Omit = omit,
+        http_method: Optional[HTTPMethod] | Omit = omit,
+        max_retries_down: int | Omit = omit,
+        url_path: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Creates a health monitor for a load balancer pool to automatically check the
@@ -305,7 +305,7 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Removes the health monitor from a load balancer pool.
 

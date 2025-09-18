@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -88,7 +88,7 @@ class AuditLogsResource(SyncAPIResource):
                 "upgrade",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         api_group: List[
             Literal[
                 "ai_cluster",
@@ -146,23 +146,23 @@ class AuditLogsResource(SyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        from_timestamp: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        project_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        region_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        search_field: str | NotGiven = NOT_GIVEN,
-        sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        to_timestamp: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        from_timestamp: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["asc", "desc"] | Omit = omit,
+        project_id: Iterable[int] | Omit = omit,
+        region_id: Iterable[int] | Omit = omit,
+        resource_id: SequenceNotStr[str] | Omit = omit,
+        search_field: str | Omit = omit,
+        sorting: Literal["asc", "desc"] | Omit = omit,
+        to_timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[AuditLogEntry]:
         """
         Retrieve user action log for one client or a set of projects
@@ -297,7 +297,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
                 "upgrade",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         api_group: List[
             Literal[
                 "ai_cluster",
@@ -355,23 +355,23 @@ class AsyncAuditLogsResource(AsyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        from_timestamp: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        project_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        region_id: Iterable[int] | NotGiven = NOT_GIVEN,
-        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        search_field: str | NotGiven = NOT_GIVEN,
-        sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        to_timestamp: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        from_timestamp: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["asc", "desc"] | Omit = omit,
+        project_id: Iterable[int] | Omit = omit,
+        region_id: Iterable[int] | Omit = omit,
+        resource_id: SequenceNotStr[str] | Omit = omit,
+        search_field: str | Omit = omit,
+        sorting: Literal["asc", "desc"] | Omit = omit,
+        to_timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AuditLogEntry, AsyncOffsetPage[AuditLogEntry]]:
         """
         Retrieve user action log for one client or a set of projects

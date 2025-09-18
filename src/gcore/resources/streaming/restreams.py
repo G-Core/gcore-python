@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -45,13 +45,13 @@ class RestreamsResource(SyncAPIResource):
     def create(
         self,
         *,
-        restream: restream_create_params.Restream | NotGiven = NOT_GIVEN,
+        restream: restream_create_params.Restream | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Create restream
@@ -79,13 +79,13 @@ class RestreamsResource(SyncAPIResource):
         self,
         restream_id: int,
         *,
-        restream: restream_update_params.Restream | NotGiven = NOT_GIVEN,
+        restream: restream_update_params.Restream | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
         Updates restream settings
@@ -111,13 +111,13 @@ class RestreamsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageStreaming[Restream]:
         """Returns a list of created restreams
 
@@ -156,7 +156,7 @@ class RestreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete restream
@@ -188,7 +188,7 @@ class RestreamsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
         Returns restream details
@@ -234,13 +234,13 @@ class AsyncRestreamsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        restream: restream_create_params.Restream | NotGiven = NOT_GIVEN,
+        restream: restream_create_params.Restream | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Create restream
@@ -268,13 +268,13 @@ class AsyncRestreamsResource(AsyncAPIResource):
         self,
         restream_id: int,
         *,
-        restream: restream_update_params.Restream | NotGiven = NOT_GIVEN,
+        restream: restream_update_params.Restream | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
         Updates restream settings
@@ -300,13 +300,13 @@ class AsyncRestreamsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Restream, AsyncPageStreaming[Restream]]:
         """Returns a list of created restreams
 
@@ -345,7 +345,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete restream
@@ -377,7 +377,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
         Returns restream details

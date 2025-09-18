@@ -15,7 +15,7 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,23 +61,23 @@ class AppsResource(SyncAPIResource):
     def create(
         self,
         *,
-        binary: int | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        debug: bool | NotGiven = NOT_GIVEN,
-        env: Dict[str, str] | NotGiven = NOT_GIVEN,
-        log: Optional[Literal["kafka", "none"]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        rsp_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        secrets: Dict[str, app_create_params.Secrets] | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
-        stores: Dict[str, int] | NotGiven = NOT_GIVEN,
-        template: int | NotGiven = NOT_GIVEN,
+        binary: int | Omit = omit,
+        comment: str | Omit = omit,
+        debug: bool | Omit = omit,
+        env: Dict[str, str] | Omit = omit,
+        log: Optional[Literal["kafka", "none"]] | Omit = omit,
+        name: str | Omit = omit,
+        rsp_headers: Dict[str, str] | Omit = omit,
+        secrets: Dict[str, app_create_params.Secrets] | Omit = omit,
+        status: int | Omit = omit,
+        stores: Dict[str, int] | Omit = omit,
+        template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
         """
         Add a new app
@@ -148,23 +148,23 @@ class AppsResource(SyncAPIResource):
         self,
         id: int,
         *,
-        binary: int | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        debug: bool | NotGiven = NOT_GIVEN,
-        env: Dict[str, str] | NotGiven = NOT_GIVEN,
-        log: Optional[Literal["kafka", "none"]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        rsp_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        secrets: Dict[str, app_update_params.Secrets] | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
-        stores: Dict[str, int] | NotGiven = NOT_GIVEN,
-        template: int | NotGiven = NOT_GIVEN,
+        binary: int | Omit = omit,
+        comment: str | Omit = omit,
+        debug: bool | Omit = omit,
+        env: Dict[str, str] | Omit = omit,
+        log: Optional[Literal["kafka", "none"]] | Omit = omit,
+        name: str | Omit = omit,
+        rsp_headers: Dict[str, str] | Omit = omit,
+        secrets: Dict[str, app_update_params.Secrets] | Omit = omit,
+        status: int | Omit = omit,
+        stores: Dict[str, int] | Omit = omit,
+        template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
         """
         Update app
@@ -234,11 +234,11 @@ class AppsResource(SyncAPIResource):
     def list(
         self,
         *,
-        api_type: Literal["wasi-http", "proxy-wasm"] | NotGiven = NOT_GIVEN,
-        binary: int | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        api_type: Literal["wasi-http", "proxy-wasm"] | Omit = omit,
+        binary: int | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "name",
             "-name",
@@ -253,16 +253,16 @@ class AppsResource(SyncAPIResource):
             "plan",
             "-plan",
         ]
-        | NotGiven = NOT_GIVEN,
-        plan: int | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
-        template: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        plan: int | Omit = omit,
+        status: int | Omit = omit,
+        template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPageFastedgeApps[AppShort]:
         """
         List client's apps
@@ -339,7 +339,7 @@ class AppsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete app
@@ -371,7 +371,7 @@ class AppsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> App:
         """
         Get app details
@@ -397,13 +397,13 @@ class AppsResource(SyncAPIResource):
         self,
         id: int,
         *,
-        body: app_replace_params.Body | NotGiven = NOT_GIVEN,
+        body: app_replace_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
         """
         Update an app
@@ -454,23 +454,23 @@ class AsyncAppsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        binary: int | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        debug: bool | NotGiven = NOT_GIVEN,
-        env: Dict[str, str] | NotGiven = NOT_GIVEN,
-        log: Optional[Literal["kafka", "none"]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        rsp_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        secrets: Dict[str, app_create_params.Secrets] | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
-        stores: Dict[str, int] | NotGiven = NOT_GIVEN,
-        template: int | NotGiven = NOT_GIVEN,
+        binary: int | Omit = omit,
+        comment: str | Omit = omit,
+        debug: bool | Omit = omit,
+        env: Dict[str, str] | Omit = omit,
+        log: Optional[Literal["kafka", "none"]] | Omit = omit,
+        name: str | Omit = omit,
+        rsp_headers: Dict[str, str] | Omit = omit,
+        secrets: Dict[str, app_create_params.Secrets] | Omit = omit,
+        status: int | Omit = omit,
+        stores: Dict[str, int] | Omit = omit,
+        template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
         """
         Add a new app
@@ -541,23 +541,23 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         id: int,
         *,
-        binary: int | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        debug: bool | NotGiven = NOT_GIVEN,
-        env: Dict[str, str] | NotGiven = NOT_GIVEN,
-        log: Optional[Literal["kafka", "none"]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        rsp_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        secrets: Dict[str, app_update_params.Secrets] | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
-        stores: Dict[str, int] | NotGiven = NOT_GIVEN,
-        template: int | NotGiven = NOT_GIVEN,
+        binary: int | Omit = omit,
+        comment: str | Omit = omit,
+        debug: bool | Omit = omit,
+        env: Dict[str, str] | Omit = omit,
+        log: Optional[Literal["kafka", "none"]] | Omit = omit,
+        name: str | Omit = omit,
+        rsp_headers: Dict[str, str] | Omit = omit,
+        secrets: Dict[str, app_update_params.Secrets] | Omit = omit,
+        status: int | Omit = omit,
+        stores: Dict[str, int] | Omit = omit,
+        template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
         """
         Update app
@@ -627,11 +627,11 @@ class AsyncAppsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        api_type: Literal["wasi-http", "proxy-wasm"] | NotGiven = NOT_GIVEN,
-        binary: int | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        api_type: Literal["wasi-http", "proxy-wasm"] | Omit = omit,
+        binary: int | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "name",
             "-name",
@@ -646,16 +646,16 @@ class AsyncAppsResource(AsyncAPIResource):
             "plan",
             "-plan",
         ]
-        | NotGiven = NOT_GIVEN,
-        plan: int | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
-        template: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        plan: int | Omit = omit,
+        status: int | Omit = omit,
+        template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AppShort, AsyncOffsetPageFastedgeApps[AppShort]]:
         """
         List client's apps
@@ -732,7 +732,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete app
@@ -764,7 +764,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> App:
         """
         Get app details
@@ -790,13 +790,13 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         id: int,
         *,
-        body: app_replace_params.Body | NotGiven = NOT_GIVEN,
+        body: app_replace_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
         """
         Update an app

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,14 +50,14 @@ class UsageReportsResource(SyncAPIResource):
         *,
         time_from: Union[str, datetime],
         time_to: Union[str, datetime],
-        enable_last_day: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        projects: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        schema_filter: usage_report_get_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        sorting: Iterable[usage_report_get_params.Sorting] | NotGiven = NOT_GIVEN,
-        tags: usage_report_get_params.Tags | NotGiven = NOT_GIVEN,
+        enable_last_day: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        projects: Optional[Iterable[int]] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        schema_filter: usage_report_get_params.SchemaFilter | Omit = omit,
+        sorting: Iterable[usage_report_get_params.Sorting] | Omit = omit,
+        tags: usage_report_get_params.Tags | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -87,13 +87,13 @@ class UsageReportsResource(SyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReport:
         """Receiving data from the past hour might lead to incomplete statistics.
 
@@ -188,14 +188,14 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         *,
         time_from: Union[str, datetime],
         time_to: Union[str, datetime],
-        enable_last_day: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        projects: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
-        schema_filter: usage_report_get_params.SchemaFilter | NotGiven = NOT_GIVEN,
-        sorting: Iterable[usage_report_get_params.Sorting] | NotGiven = NOT_GIVEN,
-        tags: usage_report_get_params.Tags | NotGiven = NOT_GIVEN,
+        enable_last_day: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        projects: Optional[Iterable[int]] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        schema_filter: usage_report_get_params.SchemaFilter | Omit = omit,
+        sorting: Iterable[usage_report_get_params.Sorting] | Omit = omit,
+        tags: usage_report_get_params.Tags | Omit = omit,
         types: List[
             Literal[
                 "ai_cluster",
@@ -225,13 +225,13 @@ class AsyncUsageReportsResource(AsyncAPIResource):
                 "volume",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReport:
         """Receiving data from the past hour might lead to incomplete statistics.
 

@@ -6,7 +6,7 @@ from typing import Dict, Iterable, Optional
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -55,13 +55,13 @@ class DeploymentsResource(SyncAPIResource):
         components_configuration: Dict[str, deployment_create_params.ComponentsConfiguration],
         name: str,
         regions: Iterable[int],
-        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Creates a new application deployment based on a selected catalog application.
@@ -119,7 +119,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceApplicationDeploymentList:
         """
         Returns a list of your application deployments, including deployment names,
@@ -157,7 +157,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Deletes an existing application deployment along with all associated resources.
@@ -199,7 +199,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceApplicationDeployment:
         """Retrieves detailed information about a specific application deployment.
 
@@ -238,16 +238,15 @@ class DeploymentsResource(SyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]]
-        | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | Omit = omit,
+        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Updates an existing application deployment.
 
@@ -324,13 +323,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         components_configuration: Dict[str, deployment_create_params.ComponentsConfiguration],
         name: str,
         regions: Iterable[int],
-        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Creates a new application deployment based on a selected catalog application.
@@ -388,7 +387,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceApplicationDeploymentList:
         """
         Returns a list of your application deployments, including deployment names,
@@ -426,7 +425,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Deletes an existing application deployment along with all associated resources.
@@ -468,7 +467,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceApplicationDeployment:
         """Retrieves detailed information about a specific application deployment.
 
@@ -507,16 +506,15 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         deployment_name: str,
         *,
         project_id: int | None = None,
-        api_keys: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]]
-        | NotGiven = NOT_GIVEN,
-        regions: Iterable[int] | NotGiven = NOT_GIVEN,
+        api_keys: SequenceNotStr[str] | Omit = omit,
+        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Updates an existing application deployment.
 

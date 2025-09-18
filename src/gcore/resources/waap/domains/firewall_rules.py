@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,13 +58,13 @@ class FirewallRulesResource(SyncAPIResource):
         conditions: Iterable[firewall_rule_create_params.Condition],
         enabled: bool,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapFirewallRule:
         """
         Create a firewall rule
@@ -113,17 +113,17 @@ class FirewallRulesResource(SyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[firewall_rule_update_params.Action] | NotGiven = NOT_GIVEN,
-        conditions: Optional[Iterable[firewall_rule_update_params.Condition]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        action: Optional[firewall_rule_update_params.Action] | Omit = omit,
+        conditions: Optional[Iterable[firewall_rule_update_params.Condition]] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Only properties present in the request will be updated
@@ -174,24 +174,24 @@ class FirewallRulesResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "block"] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Optional[
             Literal[
                 "id", "name", "description", "enabled", "action", "-id", "-name", "-description", "-enabled", "-action"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapFirewallRule]:
         """
         Extracts a list of firewall rules assigned to a domain, offering filter,
@@ -256,7 +256,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a firewall rule
@@ -293,7 +293,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete multiple WAAP rules
@@ -333,7 +333,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapFirewallRule:
         """
         Extracts a specific firewall rule assigned to a domain
@@ -370,7 +370,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Toggle a firewall rule
@@ -430,13 +430,13 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         conditions: Iterable[firewall_rule_create_params.Condition],
         enabled: bool,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapFirewallRule:
         """
         Create a firewall rule
@@ -485,17 +485,17 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[firewall_rule_update_params.Action] | NotGiven = NOT_GIVEN,
-        conditions: Optional[Iterable[firewall_rule_update_params.Condition]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        action: Optional[firewall_rule_update_params.Action] | Omit = omit,
+        conditions: Optional[Iterable[firewall_rule_update_params.Condition]] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Only properties present in the request will be updated
@@ -546,24 +546,24 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "block"] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Optional[
             Literal[
                 "id", "name", "description", "enabled", "action", "-id", "-name", "-description", "-enabled", "-action"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapFirewallRule, AsyncOffsetPage[WaapFirewallRule]]:
         """
         Extracts a list of firewall rules assigned to a domain, offering filter,
@@ -628,7 +628,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a firewall rule
@@ -665,7 +665,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete multiple WAAP rules
@@ -705,7 +705,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapFirewallRule:
         """
         Extracts a specific firewall rule assigned to a domain
@@ -742,7 +742,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Toggle a firewall rule

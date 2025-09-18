@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class VipResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CandidatePortList:
         """
         List all instance ports that are available for connecting to a VIP.
@@ -97,7 +97,7 @@ class VipResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
         List all instance ports that share a VIP.
@@ -131,13 +131,13 @@ class VipResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        port_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        port_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
         Replace the list of instance ports that share a VIP.
@@ -182,7 +182,7 @@ class VipResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
         Update the VIP status of a reserved fixed IP.
@@ -219,13 +219,13 @@ class VipResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        port_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        port_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
         Add instance ports to share a VIP.
@@ -290,7 +290,7 @@ class AsyncVipResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CandidatePortList:
         """
         List all instance ports that are available for connecting to a VIP.
@@ -329,7 +329,7 @@ class AsyncVipResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
         List all instance ports that share a VIP.
@@ -363,13 +363,13 @@ class AsyncVipResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        port_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        port_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
         Replace the list of instance ports that share a VIP.
@@ -414,7 +414,7 @@ class AsyncVipResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
         Update the VIP status of a reserved fixed IP.
@@ -451,13 +451,13 @@ class AsyncVipResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        port_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        port_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
         Add instance ports to share a VIP.

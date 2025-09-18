@@ -6,7 +6,7 @@ from typing import Iterable, Optional
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -57,15 +57,15 @@ class RoutersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
-        external_gateway_info: Optional[router_create_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
-        interfaces: Optional[Iterable[router_create_params.Interface]] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_create_params.Route]] | NotGiven = NOT_GIVEN,
+        external_gateway_info: Optional[router_create_params.ExternalGatewayInfo] | Omit = omit,
+        interfaces: Optional[Iterable[router_create_params.Interface]] | Omit = omit,
+        routes: Optional[Iterable[router_create_params.Route]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new router with the specified configuration.
@@ -114,15 +114,15 @@ class RoutersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_update_params.Route]] | NotGiven = NOT_GIVEN,
+        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        routes: Optional[Iterable[router_update_params.Route]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Update the configuration of an existing router.
@@ -169,14 +169,14 @@ class RoutersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Router]:
         """
         List all routers in the specified project and region.
@@ -228,7 +228,7 @@ class RoutersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete a specific router and all its associated resources.
@@ -263,13 +263,13 @@ class RoutersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ip_address: str | NotGiven = NOT_GIVEN,
+        ip_address: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Attach a subnet to an existing router.
@@ -327,7 +327,7 @@ class RoutersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Detach a subnet from an existing router.
@@ -369,7 +369,7 @@ class RoutersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Get detailed information about a specific router.
@@ -424,15 +424,15 @@ class AsyncRoutersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
-        external_gateway_info: Optional[router_create_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
-        interfaces: Optional[Iterable[router_create_params.Interface]] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_create_params.Route]] | NotGiven = NOT_GIVEN,
+        external_gateway_info: Optional[router_create_params.ExternalGatewayInfo] | Omit = omit,
+        interfaces: Optional[Iterable[router_create_params.Interface]] | Omit = omit,
+        routes: Optional[Iterable[router_create_params.Route]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create a new router with the specified configuration.
@@ -481,15 +481,15 @@ class AsyncRoutersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        routes: Optional[Iterable[router_update_params.Route]] | NotGiven = NOT_GIVEN,
+        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        routes: Optional[Iterable[router_update_params.Route]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Update the configuration of an existing router.
@@ -536,14 +536,14 @@ class AsyncRoutersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Router, AsyncOffsetPage[Router]]:
         """
         List all routers in the specified project and region.
@@ -595,7 +595,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete a specific router and all its associated resources.
@@ -630,13 +630,13 @@ class AsyncRoutersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ip_address: str | NotGiven = NOT_GIVEN,
+        ip_address: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Attach a subnet to an existing router.
@@ -694,7 +694,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Detach a subnet from an existing router.
@@ -738,7 +738,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
         """
         Get detailed information about a specific router.

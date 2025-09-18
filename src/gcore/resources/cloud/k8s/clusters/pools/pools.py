@@ -15,7 +15,7 @@ from .nodes import (
     NodesResourceWithStreamingResponse,
     AsyncNodesResourceWithStreamingResponse,
 )
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -67,23 +67,23 @@ class PoolsResource(SyncAPIResource):
         flavor_id: str,
         min_node_count: int,
         name: str,
-        auto_healing_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        boot_volume_size: Optional[int] | NotGiven = NOT_GIVEN,
+        auto_healing_enabled: Optional[bool] | Omit = omit,
+        boot_volume_size: Optional[int] | Omit = omit,
         boot_volume_type: Optional[Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]]
-        | NotGiven = NOT_GIVEN,
-        crio_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        is_public_ipv4: Optional[bool] | NotGiven = NOT_GIVEN,
-        kubelet_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        labels: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        max_node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | NotGiven = NOT_GIVEN,
-        taints: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        crio_config: Optional[Dict[str, str]] | Omit = omit,
+        is_public_ipv4: Optional[bool] | Omit = omit,
+        kubelet_config: Optional[Dict[str, str]] | Omit = omit,
+        labels: Optional[Dict[str, str]] | Omit = omit,
+        max_node_count: Optional[int] | Omit = omit,
+        servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
+        taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create k8s cluster pool
@@ -162,18 +162,18 @@ class PoolsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_name: str,
-        auto_healing_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        labels: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        max_node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        min_node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        taints: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        auto_healing_enabled: Optional[bool] | Omit = omit,
+        labels: Optional[Dict[str, str]] | Omit = omit,
+        max_node_count: Optional[int] | Omit = omit,
+        min_node_count: Optional[int] | Omit = omit,
+        node_count: Optional[int] | Omit = omit,
+        taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterPool:
         """
         Update k8s cluster pool
@@ -237,7 +237,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterPoolList:
         """
         List k8s cluster pools
@@ -277,7 +277,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete k8s cluster pool
@@ -319,7 +319,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterPool:
         """
         Get k8s cluster pool
@@ -362,7 +362,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Resize k8s cluster pool
@@ -429,23 +429,23 @@ class AsyncPoolsResource(AsyncAPIResource):
         flavor_id: str,
         min_node_count: int,
         name: str,
-        auto_healing_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        boot_volume_size: Optional[int] | NotGiven = NOT_GIVEN,
+        auto_healing_enabled: Optional[bool] | Omit = omit,
+        boot_volume_size: Optional[int] | Omit = omit,
         boot_volume_type: Optional[Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]]
-        | NotGiven = NOT_GIVEN,
-        crio_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        is_public_ipv4: Optional[bool] | NotGiven = NOT_GIVEN,
-        kubelet_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        labels: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        max_node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | NotGiven = NOT_GIVEN,
-        taints: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        crio_config: Optional[Dict[str, str]] | Omit = omit,
+        is_public_ipv4: Optional[bool] | Omit = omit,
+        kubelet_config: Optional[Dict[str, str]] | Omit = omit,
+        labels: Optional[Dict[str, str]] | Omit = omit,
+        max_node_count: Optional[int] | Omit = omit,
+        servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
+        taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create k8s cluster pool
@@ -524,18 +524,18 @@ class AsyncPoolsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_name: str,
-        auto_healing_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        labels: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        max_node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        min_node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        node_count: Optional[int] | NotGiven = NOT_GIVEN,
-        taints: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        auto_healing_enabled: Optional[bool] | Omit = omit,
+        labels: Optional[Dict[str, str]] | Omit = omit,
+        max_node_count: Optional[int] | Omit = omit,
+        min_node_count: Optional[int] | Omit = omit,
+        node_count: Optional[int] | Omit = omit,
+        taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterPool:
         """
         Update k8s cluster pool
@@ -599,7 +599,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterPoolList:
         """
         List k8s cluster pools
@@ -639,7 +639,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete k8s cluster pool
@@ -681,7 +681,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterPool:
         """
         Get k8s cluster pool
@@ -724,7 +724,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Resize k8s cluster pool

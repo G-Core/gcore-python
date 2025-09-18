@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,13 +50,13 @@ class OverlaysResource(SyncAPIResource):
         self,
         stream_id: int,
         *,
-        body: Iterable[overlay_create_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[overlay_create_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OverlayCreateResponse:
         """
         "Overlay" is a live HTML widget, which rendered and inserted over the live
@@ -136,18 +136,18 @@ class OverlaysResource(SyncAPIResource):
         overlay_id: int,
         *,
         stream_id: int,
-        height: int | NotGiven = NOT_GIVEN,
-        stretch: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
-        width: int | NotGiven = NOT_GIVEN,
-        x: int | NotGiven = NOT_GIVEN,
-        y: int | NotGiven = NOT_GIVEN,
+        height: int | Omit = omit,
+        stretch: bool | Omit = omit,
+        url: str | Omit = omit,
+        width: int | Omit = omit,
+        x: int | Omit = omit,
+        y: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Overlay:
         """
         Updates overlay settings
@@ -202,7 +202,7 @@ class OverlaysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OverlayListResponse:
         """
         Returns a list of HTML overlay widgets which are attached to a stream
@@ -234,7 +234,7 @@ class OverlaysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an overlay
@@ -267,7 +267,7 @@ class OverlaysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Overlay:
         """
         Get overlay details
@@ -293,13 +293,13 @@ class OverlaysResource(SyncAPIResource):
         self,
         stream_id: int,
         *,
-        body: Iterable[overlay_update_multiple_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[overlay_update_multiple_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OverlayUpdateMultipleResponse:
         """
         Updates settings for set of overlays
@@ -347,13 +347,13 @@ class AsyncOverlaysResource(AsyncAPIResource):
         self,
         stream_id: int,
         *,
-        body: Iterable[overlay_create_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[overlay_create_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OverlayCreateResponse:
         """
         "Overlay" is a live HTML widget, which rendered and inserted over the live
@@ -433,18 +433,18 @@ class AsyncOverlaysResource(AsyncAPIResource):
         overlay_id: int,
         *,
         stream_id: int,
-        height: int | NotGiven = NOT_GIVEN,
-        stretch: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
-        width: int | NotGiven = NOT_GIVEN,
-        x: int | NotGiven = NOT_GIVEN,
-        y: int | NotGiven = NOT_GIVEN,
+        height: int | Omit = omit,
+        stretch: bool | Omit = omit,
+        url: str | Omit = omit,
+        width: int | Omit = omit,
+        x: int | Omit = omit,
+        y: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Overlay:
         """
         Updates overlay settings
@@ -499,7 +499,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OverlayListResponse:
         """
         Returns a list of HTML overlay widgets which are attached to a stream
@@ -531,7 +531,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an overlay
@@ -564,7 +564,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Overlay:
         """
         Get overlay details
@@ -590,13 +590,13 @@ class AsyncOverlaysResource(AsyncAPIResource):
         self,
         stream_id: int,
         *,
-        body: Iterable[overlay_update_multiple_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[overlay_update_multiple_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OverlayUpdateMultipleResponse:
         """
         Updates settings for set of overlays

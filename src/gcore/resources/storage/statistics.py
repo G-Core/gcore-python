@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -45,16 +45,16 @@ class StatisticsResource(SyncAPIResource):
     def get_usage_aggregated(
         self,
         *,
-        from_: str | NotGiven = NOT_GIVEN,
-        locations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        storages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        from_: str | Omit = omit,
+        locations: SequenceNotStr[str] | Omit = omit,
+        storages: SequenceNotStr[str] | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageTotal:
         """
         Consumption statistics is updated in near real-time as a standard practice.
@@ -101,19 +101,19 @@ class StatisticsResource(SyncAPIResource):
     def get_usage_series(
         self,
         *,
-        from_: str | NotGiven = NOT_GIVEN,
-        granularity: str | NotGiven = NOT_GIVEN,
-        locations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        source: int | NotGiven = NOT_GIVEN,
-        storages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
-        ts_string: bool | NotGiven = NOT_GIVEN,
+        from_: str | Omit = omit,
+        granularity: str | Omit = omit,
+        locations: SequenceNotStr[str] | Omit = omit,
+        source: int | Omit = omit,
+        storages: SequenceNotStr[str] | Omit = omit,
+        to: str | Omit = omit,
+        ts_string: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetUsageSeriesResponse:
         """
         Consumption statistics is updated in near real-time as a standard practice.
@@ -192,16 +192,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
     async def get_usage_aggregated(
         self,
         *,
-        from_: str | NotGiven = NOT_GIVEN,
-        locations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        storages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        from_: str | Omit = omit,
+        locations: SequenceNotStr[str] | Omit = omit,
+        storages: SequenceNotStr[str] | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageTotal:
         """
         Consumption statistics is updated in near real-time as a standard practice.
@@ -248,19 +248,19 @@ class AsyncStatisticsResource(AsyncAPIResource):
     async def get_usage_series(
         self,
         *,
-        from_: str | NotGiven = NOT_GIVEN,
-        granularity: str | NotGiven = NOT_GIVEN,
-        locations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        source: int | NotGiven = NOT_GIVEN,
-        storages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
-        ts_string: bool | NotGiven = NOT_GIVEN,
+        from_: str | Omit = omit,
+        granularity: str | Omit = omit,
+        locations: SequenceNotStr[str] | Omit = omit,
+        source: int | Omit = omit,
+        storages: SequenceNotStr[str] | Omit = omit,
+        to: str | Omit = omit,
+        ts_string: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetUsageSeriesResponse:
         """
         Consumption statistics is updated in near real-time as a standard practice.

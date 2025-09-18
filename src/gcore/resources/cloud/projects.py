@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,15 +50,15 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        state: Optional[str] | NotGiven = NOT_GIVEN,
+        client_id: Optional[int] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        state: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """Create a new project for a client.
 
@@ -102,18 +102,18 @@ class ProjectsResource(SyncAPIResource):
     def list(
         self,
         *,
-        client_id: int | NotGiven = NOT_GIVEN,
-        include_deleted: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
+        client_id: int | Omit = omit,
+        include_deleted: bool | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Project]:
         """Retrieve a list of projects for a client.
 
@@ -173,7 +173,7 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a project and all its associated cloud resources across all regions.
 
@@ -209,7 +209,7 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
         Retrieve detailed information about a specific project.
@@ -238,13 +238,13 @@ class ProjectsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """Update project name and description.
 
@@ -306,15 +306,15 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        client_id: Optional[int] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        state: Optional[str] | NotGiven = NOT_GIVEN,
+        client_id: Optional[int] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        state: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """Create a new project for a client.
 
@@ -358,18 +358,18 @@ class AsyncProjectsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        client_id: int | NotGiven = NOT_GIVEN,
-        include_deleted: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | NotGiven = NOT_GIVEN,
+        client_id: int | Omit = omit,
+        include_deleted: bool | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Project, AsyncOffsetPage[Project]]:
         """Retrieve a list of projects for a client.
 
@@ -429,7 +429,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a project and all its associated cloud resources across all regions.
 
@@ -465,7 +465,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
         Retrieve detailed information about a specific project.
@@ -494,13 +494,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """Update project name and description.
 

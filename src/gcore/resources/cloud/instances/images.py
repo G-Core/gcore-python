@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -59,19 +59,19 @@ class ImagesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["pc", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Literal["bios", "uefi"] | Omit = omit,
+        hw_machine_type: Literal["pc", "q35"] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        name: str | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Update image properties and tags.
@@ -134,17 +134,17 @@ class ImagesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        include_prices: bool | NotGiven = NOT_GIVEN,
-        private: str | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
-        visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
+        include_prices: bool | Omit = omit,
+        private: str | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
+        visibility: Literal["private", "public", "shared"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageList:
         """Retrieve a list of available images in the project and region.
 
@@ -207,7 +207,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a specific image.
 
@@ -278,20 +278,20 @@ class ImagesResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         volume_id: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        source: Literal["volume"] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        source: Literal["volume"] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new image from a bootable volume.
 
@@ -424,13 +424,13 @@ class ImagesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        include_prices: bool | NotGiven = NOT_GIVEN,
+        include_prices: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Retrieve detailed information about a specific image.
@@ -471,22 +471,22 @@ class ImagesResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         url: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        os_version: Optional[str] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        cow_format: bool | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_distro: Optional[str] | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        os_version: Optional[str] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Upload an image from a URL.
 
@@ -651,19 +651,19 @@ class AsyncImagesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        hw_firmware_type: Literal["bios", "uefi"] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Literal["pc", "q35"] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        hw_firmware_type: Literal["bios", "uefi"] | Omit = omit,
+        hw_machine_type: Literal["pc", "q35"] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        name: str | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Update image properties and tags.
@@ -726,17 +726,17 @@ class AsyncImagesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        include_prices: bool | NotGiven = NOT_GIVEN,
-        private: str | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
-        visibility: Literal["private", "public", "shared"] | NotGiven = NOT_GIVEN,
+        include_prices: bool | Omit = omit,
+        private: str | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
+        visibility: Literal["private", "public", "shared"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageList:
         """Retrieve a list of available images in the project and region.
 
@@ -799,7 +799,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a specific image.
 
@@ -870,20 +870,20 @@ class AsyncImagesResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         volume_id: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        source: Literal["volume"] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        source: Literal["volume"] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new image from a bootable volume.
 
@@ -1016,13 +1016,13 @@ class AsyncImagesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        include_prices: bool | NotGiven = NOT_GIVEN,
+        include_prices: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Retrieve detailed information about a specific image.
@@ -1063,22 +1063,22 @@ class AsyncImagesResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         url: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        os_version: Optional[str] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        cow_format: bool | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_distro: Optional[str] | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        os_version: Optional[str] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Upload an image from a URL.
 
