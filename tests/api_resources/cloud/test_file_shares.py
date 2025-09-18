@@ -110,7 +110,11 @@ class TestFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            share_settings={"root_squash": True},
+            share_settings={
+                "allowed_characters": "LCD",
+                "path_length": "LCD",
+                "root_squash": True,
+            },
             tags={"my-tag": "my-tag-value"},
             type_name="vast",
             volume_type="vast_share_type",
@@ -165,6 +169,11 @@ class TestFileShares:
             project_id=1,
             region_id=1,
             name="some_name",
+            share_settings={
+                "allowed_characters": "LCD",
+                "path_length": "LCD",
+                "root_squash": True,
+            },
             tags={"foo": "my-tag-value"},
         )
         assert_matches_type(FileShare, file_share, path=["response"])
@@ -489,7 +498,11 @@ class TestAsyncFileShares:
             name="test-share-file-system",
             protocol="NFS",
             size=5,
-            share_settings={"root_squash": True},
+            share_settings={
+                "allowed_characters": "LCD",
+                "path_length": "LCD",
+                "root_squash": True,
+            },
             tags={"my-tag": "my-tag-value"},
             type_name="vast",
             volume_type="vast_share_type",
@@ -544,6 +557,11 @@ class TestAsyncFileShares:
             project_id=1,
             region_id=1,
             name="some_name",
+            share_settings={
+                "allowed_characters": "LCD",
+                "path_length": "LCD",
+                "root_squash": True,
+            },
             tags={"foo": "my-tag-value"},
         )
         assert_matches_type(FileShare, file_share, path=["response"])

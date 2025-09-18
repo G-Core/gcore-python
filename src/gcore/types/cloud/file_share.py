@@ -21,6 +21,10 @@ class ShareSettingsStandardShareSettingsOutputSerializer(BaseModel):
 
 
 class ShareSettingsVastShareSettingsOutputSerializer(BaseModel):
+    allowed_characters: Optional[Literal["LCD", "NPL"]] = None
+
+    path_length: Optional[Literal["LCD", "NPL"]] = None
+
     root_squash: bool
     """Enables or disables root squash for NFS clients.
 

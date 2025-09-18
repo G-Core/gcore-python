@@ -234,6 +234,7 @@ class FileSharesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str | NotGiven = NOT_GIVEN,
+        share_settings: file_share_update_params.ShareSettings | NotGiven = NOT_GIVEN,
         tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -253,6 +254,8 @@ class FileSharesResource(SyncAPIResource):
           file_share_id: File Share ID
 
           name: Name
+
+          share_settings: Configuration settings for the share
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -293,6 +296,7 @@ class FileSharesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "share_settings": share_settings,
                     "tags": tags,
                 },
                 file_share_update_params.FileShareUpdateParams,
@@ -703,6 +707,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str | NotGiven = NOT_GIVEN,
+        share_settings: file_share_update_params.ShareSettings | NotGiven = NOT_GIVEN,
         tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -722,6 +727,8 @@ class AsyncFileSharesResource(AsyncAPIResource):
           file_share_id: File Share ID
 
           name: Name
+
+          share_settings: Configuration settings for the share
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -762,6 +769,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "share_settings": share_settings,
                     "tags": tags,
                 },
                 file_share_update_params.FileShareUpdateParams,
