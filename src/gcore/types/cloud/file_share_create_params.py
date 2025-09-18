@@ -110,6 +110,26 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
 
 
 class CreateVastFileShareSerializerShareSettings(TypedDict, total=False):
+    allowed_characters: Literal["LCD", "NPL"]
+    """Determines which characters are allowed in file names. Choose between:
+
+    - Lowest Common Denominator (LCD), allows only characters allowed by all VAST
+      Cluster-supported protocols
+    - Native Protocol Limit (NPL), imposes no limitation beyond that of the client
+      protocol.
+    """
+
+    path_length: Literal["LCD", "NPL"]
+    """Affects the maximum limit of file path component name length. Choose between:
+
+    - Lowest Common Denominator (LCD), imposes the lowest common denominator file
+      length limit of all VAST Cluster-supported protocols. With this (default)
+      option, the limitation on the length of a single component of the path is 255
+      characters
+    - Native Protocol Limit (NPL), imposes no limitation beyond that of the client
+      protocol.
+    """
+
     root_squash: bool
     """Enables or disables root squash for NFS clients.
 
