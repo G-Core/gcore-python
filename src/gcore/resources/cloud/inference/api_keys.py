@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,14 +50,14 @@ class APIKeysResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        expires_at: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expires_at: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceAPIKeyCreate:
         """This endpoint creates a new API key for everywhere inference.
 
@@ -104,13 +104,13 @@ class APIKeysResource(SyncAPIResource):
         api_key_name: str,
         *,
         project_id: int | None = None,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceAPIKey:
         """
         This endpoint updates a specific API key for everywhere inference.
@@ -147,14 +147,14 @@ class APIKeysResource(SyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[InferenceAPIKey]:
         """
         This endpoint retrieves a list of API keys for everywhere inference.
@@ -206,7 +206,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """This endpoint deletes a specific API key for everywhere inference.
 
@@ -250,7 +250,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceAPIKey:
         """
         This endpoint retrieves a specific API key for everywhere inference.
@@ -306,14 +306,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        expires_at: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expires_at: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceAPIKeyCreate:
         """This endpoint creates a new API key for everywhere inference.
 
@@ -360,13 +360,13 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         api_key_name: str,
         *,
         project_id: int | None = None,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceAPIKey:
         """
         This endpoint updates a specific API key for everywhere inference.
@@ -403,14 +403,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InferenceAPIKey, AsyncOffsetPage[InferenceAPIKey]]:
         """
         This endpoint retrieves a list of API keys for everywhere inference.
@@ -462,7 +462,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """This endpoint deletes a specific API key for everywhere inference.
 
@@ -506,7 +506,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceAPIKey:
         """
         This endpoint retrieves a specific API key for everywhere inference.

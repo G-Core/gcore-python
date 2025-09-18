@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .locations import (
@@ -98,14 +98,14 @@ class StorageResource(SyncAPIResource):
         location: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"],
         name: str,
         type: Literal["sftp", "s3"],
-        generate_sftp_password: bool | NotGiven = NOT_GIVEN,
-        sftp_password: str | NotGiven = NOT_GIVEN,
+        generate_sftp_password: bool | Omit = omit,
+        sftp_password: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
         """
         Creates a new storage instance (S3 or SFTP) in the specified location and
@@ -159,14 +159,14 @@ class StorageResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
-        expires: str | NotGiven = NOT_GIVEN,
-        server_alias: str | NotGiven = NOT_GIVEN,
+        expires: str | Omit = omit,
+        server_alias: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
         """Updates storage configuration such as expiration date and server alias.
 
@@ -205,22 +205,22 @@ class StorageResource(SyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: Literal["active", "suspended", "deleted", "pending"] | NotGiven = NOT_GIVEN,
-        type: Literal["s3", "sftp"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        show_deleted: bool | Omit = omit,
+        status: Literal["active", "suspended", "deleted", "pending"] | Omit = omit,
+        type: Literal["s3", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Storage]:
         """
         Returns storages with the same filtering and pagination as v2, but in a
@@ -293,7 +293,7 @@ class StorageResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Permanently deletes a storage and all its data.
 
@@ -326,7 +326,7 @@ class StorageResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
         """
         Retrieves detailed information about a specific storage including its
@@ -359,7 +359,7 @@ class StorageResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Associates an SSH public key with an SFTP storage, enabling passwordless
@@ -388,13 +388,13 @@ class StorageResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
-        client_id: int | NotGiven = NOT_GIVEN,
+        client_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Restores a previously deleted S3 storage if it was deleted within the last 2
@@ -432,7 +432,7 @@ class StorageResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Removes SSH key association from an SFTP storage, disabling passwordless
@@ -500,14 +500,14 @@ class AsyncStorageResource(AsyncAPIResource):
         location: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"],
         name: str,
         type: Literal["sftp", "s3"],
-        generate_sftp_password: bool | NotGiven = NOT_GIVEN,
-        sftp_password: str | NotGiven = NOT_GIVEN,
+        generate_sftp_password: bool | Omit = omit,
+        sftp_password: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
         """
         Creates a new storage instance (S3 or SFTP) in the specified location and
@@ -561,14 +561,14 @@ class AsyncStorageResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
-        expires: str | NotGiven = NOT_GIVEN,
-        server_alias: str | NotGiven = NOT_GIVEN,
+        expires: str | Omit = omit,
+        server_alias: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
         """Updates storage configuration such as expiration date and server alias.
 
@@ -607,22 +607,22 @@ class AsyncStorageResource(AsyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: Literal["active", "suspended", "deleted", "pending"] | NotGiven = NOT_GIVEN,
-        type: Literal["s3", "sftp"] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        show_deleted: bool | Omit = omit,
+        status: Literal["active", "suspended", "deleted", "pending"] | Omit = omit,
+        type: Literal["s3", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Storage, AsyncOffsetPage[Storage]]:
         """
         Returns storages with the same filtering and pagination as v2, but in a
@@ -695,7 +695,7 @@ class AsyncStorageResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Permanently deletes a storage and all its data.
 
@@ -728,7 +728,7 @@ class AsyncStorageResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
         """
         Retrieves detailed information about a specific storage including its
@@ -761,7 +761,7 @@ class AsyncStorageResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Associates an SSH public key with an SFTP storage, enabling passwordless
@@ -790,13 +790,13 @@ class AsyncStorageResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
-        client_id: int | NotGiven = NOT_GIVEN,
+        client_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Restores a previously deleted S3 storage if it was deleted within the last 2
@@ -836,7 +836,7 @@ class AsyncStorageResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Removes SSH key association from an SFTP storage, disabling passwordless

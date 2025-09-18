@@ -9,7 +9,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import is_given, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -87,23 +87,23 @@ class TasksResource(SyncAPIResource):
     def list(
         self,
         *,
-        from_timestamp: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        is_acknowledged: Optional[bool] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        project_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        region_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | NotGiven = NOT_GIVEN,
-        task_type: Optional[str] | NotGiven = NOT_GIVEN,
-        to_timestamp: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        from_timestamp: Union[str, datetime, None] | Omit = omit,
+        is_acknowledged: Optional[bool] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["asc", "desc"] | Omit = omit,
+        project_id: Optional[Iterable[int]] | Omit = omit,
+        region_id: Optional[Iterable[int]] | Omit = omit,
+        sorting: Literal["asc", "desc"] | Omit = omit,
+        state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | Omit = omit,
+        task_type: Optional[str] | Omit = omit,
+        to_timestamp: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Task]:
         """List tasks
 
@@ -224,14 +224,14 @@ class TasksResource(SyncAPIResource):
     def acknowledge_all(
         self,
         *,
-        project_id: Optional[int] | NotGiven = NOT_GIVEN,
-        region_id: Optional[int] | NotGiven = NOT_GIVEN,
+        project_id: Optional[int] | Omit = omit,
+        region_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Acknowledge all tasks
@@ -277,7 +277,7 @@ class TasksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Task:
         """
         Acknowledge one task
@@ -312,7 +312,7 @@ class TasksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Task:
         """
         Get task
@@ -396,23 +396,23 @@ class AsyncTasksResource(AsyncAPIResource):
     def list(
         self,
         *,
-        from_timestamp: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        is_acknowledged: Optional[bool] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        project_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        region_id: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        sorting: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | NotGiven = NOT_GIVEN,
-        task_type: Optional[str] | NotGiven = NOT_GIVEN,
-        to_timestamp: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        from_timestamp: Union[str, datetime, None] | Omit = omit,
+        is_acknowledged: Optional[bool] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["asc", "desc"] | Omit = omit,
+        project_id: Optional[Iterable[int]] | Omit = omit,
+        region_id: Optional[Iterable[int]] | Omit = omit,
+        sorting: Literal["asc", "desc"] | Omit = omit,
+        state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | Omit = omit,
+        task_type: Optional[str] | Omit = omit,
+        to_timestamp: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Task, AsyncOffsetPage[Task]]:
         """List tasks
 
@@ -533,14 +533,14 @@ class AsyncTasksResource(AsyncAPIResource):
     async def acknowledge_all(
         self,
         *,
-        project_id: Optional[int] | NotGiven = NOT_GIVEN,
-        region_id: Optional[int] | NotGiven = NOT_GIVEN,
+        project_id: Optional[int] | Omit = omit,
+        region_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Acknowledge all tasks
@@ -586,7 +586,7 @@ class AsyncTasksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Task:
         """
         Acknowledge one task
@@ -621,7 +621,7 @@ class AsyncTasksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Task:
         """
         Get task

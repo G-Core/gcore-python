@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -66,18 +66,17 @@ class VolumesResource(SyncAPIResource):
         name: str,
         size: int,
         source: Literal["image"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new volume in the project and region.
 
@@ -134,19 +133,18 @@ class VolumesResource(SyncAPIResource):
         name: str,
         snapshot_id: str,
         source: Literal["snapshot"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        size: int | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new volume in the project and region.
 
@@ -204,18 +202,17 @@ class VolumesResource(SyncAPIResource):
         name: str,
         size: int,
         source: Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new volume in the project and region.
 
@@ -269,23 +266,22 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        image_id: str | NotGiven = NOT_GIVEN,
+        image_id: str | Omit = omit,
         name: str,
-        size: int | NotGiven = NOT_GIVEN,
+        size: int | Omit = omit,
         source: Literal["image"] | Literal["snapshot"] | Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
+        snapshot_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -320,14 +316,14 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Volume:
         """
         Rename a volume or update tags
@@ -395,22 +391,22 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        bootable: bool | NotGiven = NOT_GIVEN,
-        cluster_id: str | NotGiven = NOT_GIVEN,
-        has_attachments: bool | NotGiven = NOT_GIVEN,
-        id_part: str | NotGiven = NOT_GIVEN,
-        instance_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name_part: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
+        bootable: bool | Omit = omit,
+        cluster_id: str | Omit = omit,
+        has_attachments: bool | Omit = omit,
+        id_part: str | Omit = omit,
+        instance_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        name_part: str | Omit = omit,
+        offset: int | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Volume]:
         """Retrieve a list of volumes in the project and region.
 
@@ -490,13 +486,13 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        snapshots: str | NotGiven = NOT_GIVEN,
+        snapshots: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a volume and all its snapshots.
 
@@ -545,13 +541,13 @@ class VolumesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         instance_id: str,
-        attachment_tag: str | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Attach the volume to instance.
 
@@ -610,7 +606,7 @@ class VolumesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Volume:
         """Change the type of a volume.
 
@@ -661,7 +657,7 @@ class VolumesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Detach the volume from instance
@@ -711,7 +707,7 @@ class VolumesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Volume:
         """
         Retrieve detailed information about a specific volume.
@@ -757,7 +753,7 @@ class VolumesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Increase the size of a volume.
 
@@ -807,7 +803,7 @@ class VolumesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Revert a volume to its last snapshot.
 
@@ -1296,18 +1292,17 @@ class AsyncVolumesResource(AsyncAPIResource):
         name: str,
         size: int,
         source: Literal["image"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new volume in the project and region.
 
@@ -1364,19 +1359,18 @@ class AsyncVolumesResource(AsyncAPIResource):
         name: str,
         snapshot_id: str,
         source: Literal["snapshot"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        size: int | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new volume in the project and region.
 
@@ -1434,18 +1428,17 @@ class AsyncVolumesResource(AsyncAPIResource):
         name: str,
         size: int,
         source: Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Create a new volume in the project and region.
 
@@ -1499,23 +1492,22 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        image_id: str | NotGiven = NOT_GIVEN,
+        image_id: str | Omit = omit,
         name: str,
-        size: int | NotGiven = NOT_GIVEN,
+        size: int | Omit = omit,
         source: Literal["image"] | Literal["snapshot"] | Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
+        snapshot_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -1550,14 +1542,14 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Volume:
         """
         Rename a volume or update tags
@@ -1625,22 +1617,22 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        bootable: bool | NotGiven = NOT_GIVEN,
-        cluster_id: str | NotGiven = NOT_GIVEN,
-        has_attachments: bool | NotGiven = NOT_GIVEN,
-        id_part: str | NotGiven = NOT_GIVEN,
-        instance_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name_part: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        tag_key: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tag_key_value: str | NotGiven = NOT_GIVEN,
+        bootable: bool | Omit = omit,
+        cluster_id: str | Omit = omit,
+        has_attachments: bool | Omit = omit,
+        id_part: str | Omit = omit,
+        instance_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        name_part: str | Omit = omit,
+        offset: int | Omit = omit,
+        tag_key: SequenceNotStr[str] | Omit = omit,
+        tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Volume, AsyncOffsetPage[Volume]]:
         """Retrieve a list of volumes in the project and region.
 
@@ -1720,13 +1712,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        snapshots: str | NotGiven = NOT_GIVEN,
+        snapshots: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Delete a volume and all its snapshots.
 
@@ -1775,13 +1767,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         instance_id: str,
-        attachment_tag: str | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Attach the volume to instance.
 
@@ -1840,7 +1832,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Volume:
         """Change the type of a volume.
 
@@ -1893,7 +1885,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Detach the volume from instance
@@ -1943,7 +1935,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Volume:
         """
         Retrieve detailed information about a specific volume.
@@ -1989,7 +1981,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """Increase the size of a volume.
 
@@ -2039,7 +2031,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Revert a volume to its last snapshot.
 

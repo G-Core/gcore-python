@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -51,19 +51,19 @@ class MembersResource(SyncAPIResource):
         region_id: int | None = None,
         address: str,
         protocol_port: int,
-        admin_state_up: bool | NotGiven = NOT_GIVEN,
-        backup: bool | NotGiven = NOT_GIVEN,
-        instance_id: Optional[str] | NotGiven = NOT_GIVEN,
-        monitor_address: Optional[str] | NotGiven = NOT_GIVEN,
-        monitor_port: Optional[int] | NotGiven = NOT_GIVEN,
-        subnet_id: Optional[str] | NotGiven = NOT_GIVEN,
-        weight: int | NotGiven = NOT_GIVEN,
+        admin_state_up: bool | Omit = omit,
+        backup: bool | Omit = omit,
+        instance_id: Optional[str] | Omit = omit,
+        monitor_address: Optional[str] | Omit = omit,
+        monitor_port: Optional[int] | Omit = omit,
+        subnet_id: Optional[str] | Omit = omit,
+        weight: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer pool member
@@ -164,7 +164,7 @@ class MembersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer pool member
@@ -231,19 +231,19 @@ class AsyncMembersResource(AsyncAPIResource):
         region_id: int | None = None,
         address: str,
         protocol_port: int,
-        admin_state_up: bool | NotGiven = NOT_GIVEN,
-        backup: bool | NotGiven = NOT_GIVEN,
-        instance_id: Optional[str] | NotGiven = NOT_GIVEN,
-        monitor_address: Optional[str] | NotGiven = NOT_GIVEN,
-        monitor_port: Optional[int] | NotGiven = NOT_GIVEN,
-        subnet_id: Optional[str] | NotGiven = NOT_GIVEN,
-        weight: int | NotGiven = NOT_GIVEN,
+        admin_state_up: bool | Omit = omit,
+        backup: bool | Omit = omit,
+        instance_id: Optional[str] | Omit = omit,
+        monitor_address: Optional[str] | Omit = omit,
+        monitor_port: Optional[int] | Omit = omit,
+        subnet_id: Optional[str] | Omit = omit,
+        weight: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create load balancer pool member
@@ -344,7 +344,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete load balancer pool member

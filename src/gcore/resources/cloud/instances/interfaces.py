@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class InterfacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkInterfaceList:
         """
         List all network interfaces attached to the specified instance.
@@ -91,20 +91,19 @@ class InterfacesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -140,18 +139,17 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -187,19 +185,18 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -237,18 +234,17 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -286,25 +282,25 @@ class InterfacesResource(SyncAPIResource):
         | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
         | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
         | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
         | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
         | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
         | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        port_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -640,7 +636,7 @@ class InterfacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Detach interface from instance
@@ -711,7 +707,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkInterfaceList:
         """
         List all network interfaces attached to the specified instance.
@@ -746,20 +742,19 @@ class AsyncInterfacesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -795,18 +790,17 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -842,19 +836,18 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -892,18 +885,17 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Attach interface to instance
@@ -941,25 +933,25 @@ class AsyncInterfacesResource(AsyncAPIResource):
         | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
         | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
         | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
         | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
         | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
         | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        port_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -1217,7 +1209,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Detach interface from instance

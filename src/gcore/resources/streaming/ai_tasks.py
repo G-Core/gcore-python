@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,17 +53,17 @@ class AITasksResource(SyncAPIResource):
         *,
         task_name: Literal["transcription", "content-moderation"],
         url: str,
-        audio_language: str | NotGiven = NOT_GIVEN,
-        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | NotGiven = NOT_GIVEN,
-        client_entity_data: str | NotGiven = NOT_GIVEN,
-        client_user_id: str | NotGiven = NOT_GIVEN,
-        subtitles_language: str | NotGiven = NOT_GIVEN,
+        audio_language: str | Omit = omit,
+        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | Omit = omit,
+        client_entity_data: str | Omit = omit,
+        client_user_id: str | Omit = omit,
+        subtitles_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskCreateResponse:
         """Creating an AI task.
 
@@ -341,21 +341,20 @@ class AITasksResource(SyncAPIResource):
     def list(
         self,
         *,
-        date_created: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["task_id", "status", "task_name", "started_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        status: Literal["FAILURE", "PENDING", "RECEIVED", "RETRY", "REVOKED", "STARTED", "SUCCESS"]
-        | NotGiven = NOT_GIVEN,
-        task_id: str | NotGiven = NOT_GIVEN,
-        task_name: Literal["transcription", "content-moderation"] | NotGiven = NOT_GIVEN,
+        date_created: str | Omit = omit,
+        limit: int | Omit = omit,
+        ordering: Literal["task_id", "status", "task_name", "started_at"] | Omit = omit,
+        page: int | Omit = omit,
+        search: str | Omit = omit,
+        status: Literal["FAILURE", "PENDING", "RECEIVED", "RETRY", "REVOKED", "STARTED", "SUCCESS"] | Omit = omit,
+        task_id: str | Omit = omit,
+        task_name: Literal["transcription", "content-moderation"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageStreamingAI[AITask]:
         """Returns a list of previously created and processed AI tasks.
 
@@ -433,7 +432,7 @@ class AITasksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskCancelResponse:
         """
         Stopping a previously launched AI-task without waiting for it to be fully
@@ -467,7 +466,7 @@ class AITasksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskGetResponse:
         """
         This is the single method to check the execution status of an AI task, and
@@ -529,14 +528,14 @@ class AITasksResource(SyncAPIResource):
         self,
         *,
         type: Literal["language_support"],
-        audio_language: str | NotGiven = NOT_GIVEN,
-        subtitles_language: str | NotGiven = NOT_GIVEN,
+        audio_language: str | Omit = omit,
+        subtitles_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskGetAISettingsResponse:
         """
         The method for revealing basic information and advanced underlying settings that
@@ -634,17 +633,17 @@ class AsyncAITasksResource(AsyncAPIResource):
         *,
         task_name: Literal["transcription", "content-moderation"],
         url: str,
-        audio_language: str | NotGiven = NOT_GIVEN,
-        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | NotGiven = NOT_GIVEN,
-        client_entity_data: str | NotGiven = NOT_GIVEN,
-        client_user_id: str | NotGiven = NOT_GIVEN,
-        subtitles_language: str | NotGiven = NOT_GIVEN,
+        audio_language: str | Omit = omit,
+        category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"] | Omit = omit,
+        client_entity_data: str | Omit = omit,
+        client_user_id: str | Omit = omit,
+        subtitles_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskCreateResponse:
         """Creating an AI task.
 
@@ -922,21 +921,20 @@ class AsyncAITasksResource(AsyncAPIResource):
     def list(
         self,
         *,
-        date_created: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["task_id", "status", "task_name", "started_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        status: Literal["FAILURE", "PENDING", "RECEIVED", "RETRY", "REVOKED", "STARTED", "SUCCESS"]
-        | NotGiven = NOT_GIVEN,
-        task_id: str | NotGiven = NOT_GIVEN,
-        task_name: Literal["transcription", "content-moderation"] | NotGiven = NOT_GIVEN,
+        date_created: str | Omit = omit,
+        limit: int | Omit = omit,
+        ordering: Literal["task_id", "status", "task_name", "started_at"] | Omit = omit,
+        page: int | Omit = omit,
+        search: str | Omit = omit,
+        status: Literal["FAILURE", "PENDING", "RECEIVED", "RETRY", "REVOKED", "STARTED", "SUCCESS"] | Omit = omit,
+        task_id: str | Omit = omit,
+        task_name: Literal["transcription", "content-moderation"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AITask, AsyncPageStreamingAI[AITask]]:
         """Returns a list of previously created and processed AI tasks.
 
@@ -1014,7 +1012,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskCancelResponse:
         """
         Stopping a previously launched AI-task without waiting for it to be fully
@@ -1048,7 +1046,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskGetResponse:
         """
         This is the single method to check the execution status of an AI task, and
@@ -1110,14 +1108,14 @@ class AsyncAITasksResource(AsyncAPIResource):
         self,
         *,
         type: Literal["language_support"],
-        audio_language: str | NotGiven = NOT_GIVEN,
-        subtitles_language: str | NotGiven = NOT_GIVEN,
+        audio_language: str | Omit = omit,
+        subtitles_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AITaskGetAISettingsResponse:
         """
         The method for revealing basic information and advanced underlying settings that

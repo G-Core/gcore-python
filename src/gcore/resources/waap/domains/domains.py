@@ -23,7 +23,7 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from .api_paths import (
     APIPathsResource,
@@ -172,13 +172,13 @@ class DomainsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        status: Literal["active", "monitor"] | NotGiven = NOT_GIVEN,
+        status: Literal["active", "monitor"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update Domain
@@ -209,19 +209,18 @@ class DomainsResource(SyncAPIResource):
     def list(
         self,
         *,
-        ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["id", "name", "status", "created_at", "-id", "-name", "-status", "-created_at"]
-        | NotGiven = NOT_GIVEN,
-        status: Literal["active", "bypass", "monitor", "locked"] | NotGiven = NOT_GIVEN,
+        ids: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["id", "name", "status", "created_at", "-id", "-name", "-status", "-created_at"] | Omit = omit,
+        status: Literal["active", "bypass", "monitor", "locked"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapSummaryDomain]:
         """
         Retrieve a list of domains associated with the client
@@ -279,7 +278,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Delete an inactive domain by ID.
 
@@ -315,7 +314,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDetailedDomain:
         """
         Retrieve detailed information about a specific domain
@@ -348,7 +347,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainListRuleSetsResponse:
         """
         Retrieve all rule sets linked to a particular domain
@@ -382,7 +381,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapPolicyMode:
         """
         Modify the activation state of a policy associated with a domain
@@ -475,13 +474,13 @@ class AsyncDomainsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        status: Literal["active", "monitor"] | NotGiven = NOT_GIVEN,
+        status: Literal["active", "monitor"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update Domain
@@ -512,19 +511,18 @@ class AsyncDomainsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["id", "name", "status", "created_at", "-id", "-name", "-status", "-created_at"]
-        | NotGiven = NOT_GIVEN,
-        status: Literal["active", "bypass", "monitor", "locked"] | NotGiven = NOT_GIVEN,
+        ids: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["id", "name", "status", "created_at", "-id", "-name", "-status", "-created_at"] | Omit = omit,
+        status: Literal["active", "bypass", "monitor", "locked"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapSummaryDomain, AsyncOffsetPage[WaapSummaryDomain]]:
         """
         Retrieve a list of domains associated with the client
@@ -582,7 +580,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Delete an inactive domain by ID.
 
@@ -618,7 +616,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDetailedDomain:
         """
         Retrieve detailed information about a specific domain
@@ -651,7 +649,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainListRuleSetsResponse:
         """
         Retrieve all rule sets linked to a particular domain
@@ -685,7 +683,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapPolicyMode:
         """
         Modify the activation state of a policy associated with a domain

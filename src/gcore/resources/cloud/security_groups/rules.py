@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,11 +50,11 @@ class RulesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: Literal["egress", "ingress"] | NotGiven = NOT_GIVEN,
-        ethertype: Literal["IPv4", "IPv6"] | NotGiven = NOT_GIVEN,
-        port_range_max: Optional[int] | NotGiven = NOT_GIVEN,
-        port_range_min: Optional[int] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        direction: Literal["egress", "ingress"] | Omit = omit,
+        ethertype: Literal["IPv4", "IPv6"] | Omit = omit,
+        port_range_max: Optional[int] | Omit = omit,
+        port_range_min: Optional[int] | Omit = omit,
         protocol: Literal[
             "ah",
             "any",
@@ -81,15 +81,15 @@ class RulesResource(SyncAPIResource):
             "udplite",
             "vrrp",
         ]
-        | NotGiven = NOT_GIVEN,
-        remote_group_id: str | NotGiven = NOT_GIVEN,
-        remote_ip_prefix: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        remote_group_id: str | Omit = omit,
+        remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroupRule:
         """
         Add a new rule to an existing security group.
@@ -157,7 +157,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific rule from a security group.
@@ -194,10 +194,10 @@ class RulesResource(SyncAPIResource):
         region_id: int | None = None,
         direction: Literal["egress", "ingress"],
         security_group_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        ethertype: Optional[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        port_range_max: Optional[int] | NotGiven = NOT_GIVEN,
-        port_range_min: Optional[int] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        ethertype: Optional[Literal["IPv4", "IPv6"]] | Omit = omit,
+        port_range_max: Optional[int] | Omit = omit,
+        port_range_min: Optional[int] | Omit = omit,
         protocol: Literal[
             "ah",
             "any",
@@ -224,15 +224,15 @@ class RulesResource(SyncAPIResource):
             "udplite",
             "vrrp",
         ]
-        | NotGiven = NOT_GIVEN,
-        remote_group_id: Optional[str] | NotGiven = NOT_GIVEN,
-        remote_ip_prefix: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        remote_group_id: Optional[str] | Omit = omit,
+        remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroupRule:
         """
         Update the configuration of an existing security group rule.
@@ -321,11 +321,11 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: Literal["egress", "ingress"] | NotGiven = NOT_GIVEN,
-        ethertype: Literal["IPv4", "IPv6"] | NotGiven = NOT_GIVEN,
-        port_range_max: Optional[int] | NotGiven = NOT_GIVEN,
-        port_range_min: Optional[int] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        direction: Literal["egress", "ingress"] | Omit = omit,
+        ethertype: Literal["IPv4", "IPv6"] | Omit = omit,
+        port_range_max: Optional[int] | Omit = omit,
+        port_range_min: Optional[int] | Omit = omit,
         protocol: Literal[
             "ah",
             "any",
@@ -352,15 +352,15 @@ class AsyncRulesResource(AsyncAPIResource):
             "udplite",
             "vrrp",
         ]
-        | NotGiven = NOT_GIVEN,
-        remote_group_id: str | NotGiven = NOT_GIVEN,
-        remote_ip_prefix: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        remote_group_id: str | Omit = omit,
+        remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroupRule:
         """
         Add a new rule to an existing security group.
@@ -428,7 +428,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific rule from a security group.
@@ -465,10 +465,10 @@ class AsyncRulesResource(AsyncAPIResource):
         region_id: int | None = None,
         direction: Literal["egress", "ingress"],
         security_group_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        ethertype: Optional[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        port_range_max: Optional[int] | NotGiven = NOT_GIVEN,
-        port_range_min: Optional[int] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        ethertype: Optional[Literal["IPv4", "IPv6"]] | Omit = omit,
+        port_range_max: Optional[int] | Omit = omit,
+        port_range_min: Optional[int] | Omit = omit,
         protocol: Literal[
             "ah",
             "any",
@@ -495,15 +495,15 @@ class AsyncRulesResource(AsyncAPIResource):
             "udplite",
             "vrrp",
         ]
-        | NotGiven = NOT_GIVEN,
-        remote_group_id: Optional[str] | NotGiven = NOT_GIVEN,
-        remote_ip_prefix: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        remote_group_id: Optional[str] | Omit = omit,
+        remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroupRule:
         """
         Update the configuration of an existing security group rule.

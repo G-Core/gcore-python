@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -74,16 +74,16 @@ class FileSharesResource(SyncAPIResource):
         network: file_share_create_params.CreateStandardFileShareSerializerNetwork,
         protocol: Literal["NFS"],
         size: int,
-        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type_name: Literal["standard"] | NotGiven = NOT_GIVEN,
-        volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
+        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["standard"] | Omit = omit,
+        volume_type: Literal["default_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create file share
@@ -132,16 +132,16 @@ class FileSharesResource(SyncAPIResource):
         name: str,
         protocol: Literal["NFS"],
         size: int,
-        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type_name: Literal["vast"] | NotGiven = NOT_GIVEN,
-        volume_type: Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["vast"] | Omit = omit,
+        volume_type: Literal["vast_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create file share
@@ -186,20 +186,20 @@ class FileSharesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
-        network: file_share_create_params.CreateStandardFileShareSerializerNetwork | NotGiven = NOT_GIVEN,
+        network: file_share_create_params.CreateStandardFileShareSerializerNetwork | Omit = omit,
         protocol: Literal["NFS"],
         size: int,
-        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type_name: Literal["standard"] | Literal["vast"] | NotGiven = NOT_GIVEN,
-        volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
-        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
+        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["standard"] | Literal["vast"] | Omit = omit,
+        volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | Omit = omit,
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -233,15 +233,15 @@ class FileSharesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
-        share_settings: file_share_update_params.ShareSettings | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        share_settings: file_share_update_params.ShareSettings | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileShare:
         """
         Rename file share or update tags
@@ -312,16 +312,16 @@ class FileSharesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        type_name: Literal["standard", "vast"] | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        type_name: Literal["standard", "vast"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[FileShare]:
         """
         List file shares
@@ -384,7 +384,7 @@ class FileSharesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete file share
@@ -429,7 +429,7 @@ class FileSharesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileShare:
         """
         Get file share
@@ -475,7 +475,7 @@ class FileSharesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Resize file share
@@ -547,16 +547,16 @@ class AsyncFileSharesResource(AsyncAPIResource):
         network: file_share_create_params.CreateStandardFileShareSerializerNetwork,
         protocol: Literal["NFS"],
         size: int,
-        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type_name: Literal["standard"] | NotGiven = NOT_GIVEN,
-        volume_type: Literal["default_share_type"] | NotGiven = NOT_GIVEN,
+        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["standard"] | Omit = omit,
+        volume_type: Literal["default_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create file share
@@ -605,16 +605,16 @@ class AsyncFileSharesResource(AsyncAPIResource):
         name: str,
         protocol: Literal["NFS"],
         size: int,
-        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type_name: Literal["vast"] | NotGiven = NOT_GIVEN,
-        volume_type: Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["vast"] | Omit = omit,
+        volume_type: Literal["vast_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create file share
@@ -659,20 +659,20 @@ class AsyncFileSharesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
-        network: file_share_create_params.CreateStandardFileShareSerializerNetwork | NotGiven = NOT_GIVEN,
+        network: file_share_create_params.CreateStandardFileShareSerializerNetwork | Omit = omit,
         protocol: Literal["NFS"],
         size: int,
-        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        type_name: Literal["standard"] | Literal["vast"] | NotGiven = NOT_GIVEN,
-        volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | NotGiven = NOT_GIVEN,
-        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | NotGiven = NOT_GIVEN,
+        access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["standard"] | Literal["vast"] | Omit = omit,
+        volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | Omit = omit,
+        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
@@ -706,15 +706,15 @@ class AsyncFileSharesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str | NotGiven = NOT_GIVEN,
-        share_settings: file_share_update_params.ShareSettings | NotGiven = NOT_GIVEN,
-        tags: Optional[TagUpdateMapParam] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        share_settings: file_share_update_params.ShareSettings | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileShare:
         """
         Rename file share or update tags
@@ -785,16 +785,16 @@ class AsyncFileSharesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        type_name: Literal["standard", "vast"] | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        type_name: Literal["standard", "vast"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[FileShare, AsyncOffsetPage[FileShare]]:
         """
         List file shares
@@ -857,7 +857,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete file share
@@ -902,7 +902,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileShare:
         """
         Get file share
@@ -948,7 +948,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Resize file share

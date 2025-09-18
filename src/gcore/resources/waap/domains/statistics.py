@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,17 +61,17 @@ class StatisticsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        end_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["start_time", "-start_time", "end_time", "-end_time"] | NotGiven = NOT_GIVEN,
-        start_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        end_time: Union[str, datetime, None] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["start_time", "-start_time", "end_time", "-end_time"] | Omit = omit,
+        start_time: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapDDOSAttack]:
         """
         Retrieve a domain's DDoS attacks
@@ -125,15 +125,15 @@ class StatisticsResource(SyncAPIResource):
         *,
         group_by: Literal["URL", "User-Agent", "IP"],
         start: str,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        end: Optional[str] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapDDOSInfo]:
         """
         Returns the top DDoS counts grouped by URL, User-Agent or IP
@@ -187,17 +187,17 @@ class StatisticsResource(SyncAPIResource):
         domain_id: int,
         *,
         start: str,
-        action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | NotGiven = NOT_GIVEN,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
-        ip: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        reference_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | NotGiven = NOT_GIVEN,
+        action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        ip: Optional[SequenceNotStr[str]] | Omit = omit,
+        reference_id: Optional[SequenceNotStr[str]] | Omit = omit,
+        result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapEventStatistics:
         """
         Retrieve an domain's event statistics
@@ -258,7 +258,7 @@ class StatisticsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRequestDetails:
         """
         Retrieves all the available information for a request that matches a given
@@ -292,16 +292,16 @@ class StatisticsResource(SyncAPIResource):
         domain_id: int,
         *,
         start: str,
-        actions: List[Literal["allow", "block", "captcha", "handshake"]] | NotGiven = NOT_GIVEN,
-        countries: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: str | NotGiven = NOT_GIVEN,
-        reference_id: str | NotGiven = NOT_GIVEN,
-        security_rule_name: str | NotGiven = NOT_GIVEN,
-        status_code: int | NotGiven = NOT_GIVEN,
+        actions: List[Literal["allow", "block", "captcha", "handshake"]] | Omit = omit,
+        countries: SequenceNotStr[str] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        ip: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: str | Omit = omit,
+        reference_id: str | Omit = omit,
+        security_rule_name: str | Omit = omit,
+        status_code: int | Omit = omit,
         traffic_types: List[
             Literal[
                 "policy_allowed",
@@ -326,13 +326,13 @@ class StatisticsResource(SyncAPIResource):
                 "monitored",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapRequestSummary]:
         """
         Retrieve a domain's requests data.
@@ -408,13 +408,13 @@ class StatisticsResource(SyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
+        end: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetTrafficSeriesResponse:
         """
         Retrieves a comprehensive report on a domain's traffic statistics based on
@@ -483,17 +483,17 @@ class AsyncStatisticsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        end_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: Literal["start_time", "-start_time", "end_time", "-end_time"] | NotGiven = NOT_GIVEN,
-        start_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        end_time: Union[str, datetime, None] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["start_time", "-start_time", "end_time", "-end_time"] | Omit = omit,
+        start_time: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapDDOSAttack, AsyncOffsetPage[WaapDDOSAttack]]:
         """
         Retrieve a domain's DDoS attacks
@@ -547,15 +547,15 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         group_by: Literal["URL", "User-Agent", "IP"],
         start: str,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        end: Optional[str] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapDDOSInfo, AsyncOffsetPage[WaapDDOSInfo]]:
         """
         Returns the top DDoS counts grouped by URL, User-Agent or IP
@@ -609,17 +609,17 @@ class AsyncStatisticsResource(AsyncAPIResource):
         domain_id: int,
         *,
         start: str,
-        action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | NotGiven = NOT_GIVEN,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
-        ip: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        reference_id: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | NotGiven = NOT_GIVEN,
+        action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        ip: Optional[SequenceNotStr[str]] | Omit = omit,
+        reference_id: Optional[SequenceNotStr[str]] | Omit = omit,
+        result: Optional[List[Literal["passed", "blocked", "monitored", "allowed"]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapEventStatistics:
         """
         Retrieve an domain's event statistics
@@ -680,7 +680,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRequestDetails:
         """
         Retrieves all the available information for a request that matches a given
@@ -714,16 +714,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
         domain_id: int,
         *,
         start: str,
-        actions: List[Literal["allow", "block", "captcha", "handshake"]] | NotGiven = NOT_GIVEN,
-        countries: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        ordering: str | NotGiven = NOT_GIVEN,
-        reference_id: str | NotGiven = NOT_GIVEN,
-        security_rule_name: str | NotGiven = NOT_GIVEN,
-        status_code: int | NotGiven = NOT_GIVEN,
+        actions: List[Literal["allow", "block", "captcha", "handshake"]] | Omit = omit,
+        countries: SequenceNotStr[str] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        ip: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: str | Omit = omit,
+        reference_id: str | Omit = omit,
+        security_rule_name: str | Omit = omit,
+        status_code: int | Omit = omit,
         traffic_types: List[
             Literal[
                 "policy_allowed",
@@ -748,13 +748,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
                 "monitored",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapRequestSummary, AsyncOffsetPage[WaapRequestSummary]]:
         """
         Retrieve a domain's requests data.
@@ -830,13 +830,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
-        end: Optional[str] | NotGiven = NOT_GIVEN,
+        end: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetTrafficSeriesResponse:
         """
         Retrieves a comprehensive report on a domain's traffic statistics based on

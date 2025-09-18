@@ -6,7 +6,7 @@ from typing import Iterable, Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -54,14 +54,14 @@ class ProfilesResource(SyncAPIResource):
         *,
         fields: Iterable[profile_create_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        ip_address: Optional[str] | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """Create protection profile.
 
@@ -97,16 +97,16 @@ class ProfilesResource(SyncAPIResource):
     def list(
         self,
         *,
-        exclude_empty_address: bool | NotGiven = NOT_GIVEN,
-        include_deleted: bool | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        exclude_empty_address: bool | Omit = omit,
+        include_deleted: bool | Omit = omit,
+        ip_address: str | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProfileListResponse:
         """Get list of protection profiles.
 
@@ -150,7 +150,7 @@ class ProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Delete protection profile.
 
@@ -184,7 +184,7 @@ class ProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """
         Get profile by id
@@ -212,14 +212,14 @@ class ProfilesResource(SyncAPIResource):
         *,
         fields: Iterable[profile_recreate_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        ip_address: Optional[str] | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """
         Recreate profile with another profile template (for other cases use detail API)
@@ -256,14 +256,14 @@ class ProfilesResource(SyncAPIResource):
         *,
         fields: Iterable[profile_replace_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        ip_address: Optional[str] | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """Update profile.
 
@@ -322,14 +322,14 @@ class AsyncProfilesResource(AsyncAPIResource):
         *,
         fields: Iterable[profile_create_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        ip_address: Optional[str] | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """Create protection profile.
 
@@ -365,16 +365,16 @@ class AsyncProfilesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        exclude_empty_address: bool | NotGiven = NOT_GIVEN,
-        include_deleted: bool | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        exclude_empty_address: bool | Omit = omit,
+        include_deleted: bool | Omit = omit,
+        ip_address: str | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProfileListResponse:
         """Get list of protection profiles.
 
@@ -418,7 +418,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Delete protection profile.
 
@@ -452,7 +452,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """
         Get profile by id
@@ -480,14 +480,14 @@ class AsyncProfilesResource(AsyncAPIResource):
         *,
         fields: Iterable[profile_recreate_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        ip_address: Optional[str] | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """
         Recreate profile with another profile template (for other cases use detail API)
@@ -524,14 +524,14 @@ class AsyncProfilesResource(AsyncAPIResource):
         *,
         fields: Iterable[profile_replace_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        site: str | NotGiven = NOT_GIVEN,
+        ip_address: Optional[str] | Omit = omit,
+        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClientProfile:
         """Update profile.
 

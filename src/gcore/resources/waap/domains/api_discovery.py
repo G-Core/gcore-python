@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,7 +61,7 @@ class APIDiscoveryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIScanResult:
         """
         Get Scan Result
@@ -98,7 +98,7 @@ class APIDiscoveryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIDiscoverySettings:
         """
         Retrieve the API discovery settings for a domain
@@ -126,9 +126,9 @@ class APIDiscoveryResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        message: Optional[str] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        message: Optional[str] | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "id",
             "type",
@@ -143,15 +143,15 @@ class APIDiscoveryResource(SyncAPIResource):
             "-status",
             "-message",
         ]
-        | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["SUCCESS", "FAILURE", "IN_PROGRESS"]] | NotGiven = NOT_GIVEN,
-        type: Optional[Literal["TRAFFIC_SCAN", "API_DESCRIPTION_FILE_SCAN"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        status: Optional[Literal["SUCCESS", "FAILURE", "IN_PROGRESS"]] | Omit = omit,
+        type: Optional[Literal["TRAFFIC_SCAN", "API_DESCRIPTION_FILE_SCAN"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapAPIScanResult]:
         """
         Get Scan Results
@@ -211,7 +211,7 @@ class APIDiscoveryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapTaskID:
         """Scan an API description file hosted online.
 
@@ -242,17 +242,17 @@ class APIDiscoveryResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        description_file_location: Optional[str] | NotGiven = NOT_GIVEN,
-        description_file_scan_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        description_file_scan_interval_hours: Optional[int] | NotGiven = NOT_GIVEN,
-        traffic_scan_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        traffic_scan_interval_hours: Optional[int] | NotGiven = NOT_GIVEN,
+        description_file_location: Optional[str] | Omit = omit,
+        description_file_scan_enabled: Optional[bool] | Omit = omit,
+        description_file_scan_interval_hours: Optional[int] | Omit = omit,
+        traffic_scan_enabled: Optional[bool] | Omit = omit,
+        traffic_scan_interval_hours: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIDiscoverySettings:
         """
         Update the API discovery settings for a domain
@@ -309,7 +309,7 @@ class APIDiscoveryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapTaskID:
         """
         An API description file must adhere to the OpenAPI specification and be written
@@ -379,7 +379,7 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIScanResult:
         """
         Get Scan Result
@@ -416,7 +416,7 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIDiscoverySettings:
         """
         Retrieve the API discovery settings for a domain
@@ -444,9 +444,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        message: Optional[str] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        message: Optional[str] | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "id",
             "type",
@@ -461,15 +461,15 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
             "-status",
             "-message",
         ]
-        | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["SUCCESS", "FAILURE", "IN_PROGRESS"]] | NotGiven = NOT_GIVEN,
-        type: Optional[Literal["TRAFFIC_SCAN", "API_DESCRIPTION_FILE_SCAN"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        status: Optional[Literal["SUCCESS", "FAILURE", "IN_PROGRESS"]] | Omit = omit,
+        type: Optional[Literal["TRAFFIC_SCAN", "API_DESCRIPTION_FILE_SCAN"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapAPIScanResult, AsyncOffsetPage[WaapAPIScanResult]]:
         """
         Get Scan Results
@@ -529,7 +529,7 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapTaskID:
         """Scan an API description file hosted online.
 
@@ -560,17 +560,17 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        description_file_location: Optional[str] | NotGiven = NOT_GIVEN,
-        description_file_scan_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        description_file_scan_interval_hours: Optional[int] | NotGiven = NOT_GIVEN,
-        traffic_scan_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        traffic_scan_interval_hours: Optional[int] | NotGiven = NOT_GIVEN,
+        description_file_location: Optional[str] | Omit = omit,
+        description_file_scan_enabled: Optional[bool] | Omit = omit,
+        description_file_scan_interval_hours: Optional[int] | Omit = omit,
+        traffic_scan_enabled: Optional[bool] | Omit = omit,
+        traffic_scan_interval_hours: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAPIDiscoverySettings:
         """
         Update the API discovery settings for a domain
@@ -627,7 +627,7 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapTaskID:
         """
         An API description file must adhere to the OpenAPI specification and be written

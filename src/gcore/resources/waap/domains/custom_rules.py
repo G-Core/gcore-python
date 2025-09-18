@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,13 +58,13 @@ class CustomRulesResource(SyncAPIResource):
         conditions: Iterable[custom_rule_create_params.Condition],
         enabled: bool,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomRule:
         """
         Create a custom rule
@@ -114,17 +114,17 @@ class CustomRulesResource(SyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[custom_rule_update_params.Action] | NotGiven = NOT_GIVEN,
-        conditions: Optional[Iterable[custom_rule_update_params.Condition]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        action: Optional[custom_rule_update_params.Action] | Omit = omit,
+        conditions: Optional[Iterable[custom_rule_update_params.Condition]] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Only properties present in the request will be updated
@@ -176,24 +176,24 @@ class CustomRulesResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: Literal["allow", "block", "captcha", "handshake", "monitor", "tag"] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "block", "captcha", "handshake", "monitor", "tag"] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Optional[
             Literal[
                 "id", "name", "description", "enabled", "action", "-id", "-name", "-description", "-enabled", "-action"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapCustomRule]:
         """
         Extracts a list of custom rules assigned to a domain, offering filter, ordering,
@@ -258,7 +258,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a custom rule
@@ -295,7 +295,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete multiple WAAP rules
@@ -335,7 +335,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomRule:
         """
         Extracts a specific custom rule assigned to a domain
@@ -372,7 +372,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Toggle a custom rule
@@ -432,13 +432,13 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         conditions: Iterable[custom_rule_create_params.Condition],
         enabled: bool,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomRule:
         """
         Create a custom rule
@@ -488,17 +488,17 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[custom_rule_update_params.Action] | NotGiven = NOT_GIVEN,
-        conditions: Optional[Iterable[custom_rule_update_params.Condition]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        action: Optional[custom_rule_update_params.Action] | Omit = omit,
+        conditions: Optional[Iterable[custom_rule_update_params.Condition]] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Only properties present in the request will be updated
@@ -550,24 +550,24 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        action: Literal["allow", "block", "captcha", "handshake", "monitor", "tag"] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "block", "captcha", "handshake", "monitor", "tag"] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Optional[
             Literal[
                 "id", "name", "description", "enabled", "action", "-id", "-name", "-description", "-enabled", "-action"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapCustomRule, AsyncOffsetPage[WaapCustomRule]]:
         """
         Extracts a list of custom rules assigned to a domain, offering filter, ordering,
@@ -632,7 +632,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a custom rule
@@ -669,7 +669,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete multiple WAAP rules
@@ -709,7 +709,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomRule:
         """
         Extracts a specific custom rule assigned to a domain
@@ -746,7 +746,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Toggle a custom rule

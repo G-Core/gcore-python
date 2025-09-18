@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -45,14 +45,14 @@ class SettingsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        api: setting_update_params.API | NotGiven = NOT_GIVEN,
-        ddos: setting_update_params.DDOS | NotGiven = NOT_GIVEN,
+        api: setting_update_params.API | Omit = omit,
+        ddos: setting_update_params.DDOS | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update settings for a specific domain
@@ -97,7 +97,7 @@ class SettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDomainSettingsModel:
         """
         Retrieve settings for a specific domain
@@ -146,14 +146,14 @@ class AsyncSettingsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        api: setting_update_params.API | NotGiven = NOT_GIVEN,
-        ddos: setting_update_params.DDOS | NotGiven = NOT_GIVEN,
+        api: setting_update_params.API | Omit = omit,
+        ddos: setting_update_params.DDOS | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update settings for a specific domain
@@ -198,7 +198,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDomainSettingsModel:
         """
         Retrieve settings for a specific domain

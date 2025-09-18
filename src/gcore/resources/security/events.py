@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,11 +49,11 @@ class EventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        alert_type: Optional[Literal["ddos_alert", "rtbh_alert"]] | NotGiven = NOT_GIVEN,
-        date_from: Union[Union[str, datetime], str] | NotGiven = NOT_GIVEN,
-        date_to: Union[Union[str, datetime], str] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        alert_type: Optional[Literal["ddos_alert", "rtbh_alert"]] | Omit = omit,
+        date_from: Union[Union[str, datetime], str] | Omit = omit,
+        date_to: Union[Union[str, datetime], str] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "attack_start_time",
             "-attack_start_time",
@@ -66,14 +66,14 @@ class EventsResource(SyncAPIResource):
             "alert_type",
             "-alert_type",
         ]
-        | NotGiven = NOT_GIVEN,
-        targeted_ip_addresses: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        targeted_ip_addresses: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[ClientView]:
         """
         Event Logs Clients View
@@ -135,11 +135,11 @@ class AsyncEventsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        alert_type: Optional[Literal["ddos_alert", "rtbh_alert"]] | NotGiven = NOT_GIVEN,
-        date_from: Union[Union[str, datetime], str] | NotGiven = NOT_GIVEN,
-        date_to: Union[Union[str, datetime], str] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        alert_type: Optional[Literal["ddos_alert", "rtbh_alert"]] | Omit = omit,
+        date_from: Union[Union[str, datetime], str] | Omit = omit,
+        date_to: Union[Union[str, datetime], str] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         ordering: Literal[
             "attack_start_time",
             "-attack_start_time",
@@ -152,14 +152,14 @@ class AsyncEventsResource(AsyncAPIResource):
             "alert_type",
             "-alert_type",
         ]
-        | NotGiven = NOT_GIVEN,
-        targeted_ip_addresses: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        targeted_ip_addresses: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ClientView, AsyncOffsetPage[ClientView]]:
         """
         Event Logs Clients View

@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -47,18 +47,17 @@ class RegionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "display_name.asc", "display_name.desc"]
-        | NotGiven = NOT_GIVEN,
-        product: Literal["containers", "inference"] | NotGiven = NOT_GIVEN,
-        show_volume_types: bool | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "display_name.asc", "display_name.desc"] | Omit = omit,
+        product: Literal["containers", "inference"] | Omit = omit,
+        show_volume_types: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Region]:
         """List regions
 
@@ -111,13 +110,13 @@ class RegionsResource(SyncAPIResource):
         self,
         *,
         region_id: int | None = None,
-        show_volume_types: bool | NotGiven = NOT_GIVEN,
+        show_volume_types: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Region:
         """
         Get region
@@ -174,18 +173,17 @@ class AsyncRegionsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["created_at.asc", "created_at.desc", "display_name.asc", "display_name.desc"]
-        | NotGiven = NOT_GIVEN,
-        product: Literal["containers", "inference"] | NotGiven = NOT_GIVEN,
-        show_volume_types: bool | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "display_name.asc", "display_name.desc"] | Omit = omit,
+        product: Literal["containers", "inference"] | Omit = omit,
+        show_volume_types: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Region, AsyncOffsetPage[Region]]:
         """List regions
 
@@ -238,13 +236,13 @@ class AsyncRegionsResource(AsyncAPIResource):
         self,
         *,
         region_id: int | None = None,
-        show_volume_types: bool | NotGiven = NOT_GIVEN,
+        show_volume_types: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Region:
         """
         Get region

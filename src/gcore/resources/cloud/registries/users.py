@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -54,14 +54,14 @@ class UsersResource(SyncAPIResource):
         region_id: int | None = None,
         duration: int,
         name: str,
-        read_only: bool | NotGiven = NOT_GIVEN,
-        secret: str | NotGiven = NOT_GIVEN,
+        read_only: bool | Omit = omit,
+        secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUserCreated:
         """
         Create a new user for accessing the container registry.
@@ -113,13 +113,13 @@ class UsersResource(SyncAPIResource):
         region_id: int | None = None,
         registry_id: int,
         duration: int,
-        read_only: bool | NotGiven = NOT_GIVEN,
+        read_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUser:
         """
         Update the configuration of a specific registry user.
@@ -167,7 +167,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUserList:
         """
         List all users with access to the container registry.
@@ -205,7 +205,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific user from the container registry.
@@ -244,7 +244,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUserCreated:
         """
         Create multiple users for accessing the container registry in a single request.
@@ -285,7 +285,7 @@ class UsersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserRefreshSecretResponse:
         """
         Generate a new secret for a specific registry user.
@@ -340,14 +340,14 @@ class AsyncUsersResource(AsyncAPIResource):
         region_id: int | None = None,
         duration: int,
         name: str,
-        read_only: bool | NotGiven = NOT_GIVEN,
-        secret: str | NotGiven = NOT_GIVEN,
+        read_only: bool | Omit = omit,
+        secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUserCreated:
         """
         Create a new user for accessing the container registry.
@@ -399,13 +399,13 @@ class AsyncUsersResource(AsyncAPIResource):
         region_id: int | None = None,
         registry_id: int,
         duration: int,
-        read_only: bool | NotGiven = NOT_GIVEN,
+        read_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUser:
         """
         Update the configuration of a specific registry user.
@@ -453,7 +453,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUserList:
         """
         List all users with access to the container registry.
@@ -491,7 +491,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific user from the container registry.
@@ -530,7 +530,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegistryUserCreated:
         """
         Create multiple users for accessing the container registry in a single request.
@@ -571,7 +571,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserRefreshSecretResponse:
         """
         Generate a new secret for a specific registry user.

@@ -14,7 +14,7 @@ from .nodes import (
     NodesResourceWithStreamingResponse,
     AsyncNodesResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from .pools.pools import (
@@ -86,25 +86,25 @@ class ClustersResource(SyncAPIResource):
         name: str,
         pools: Iterable[cluster_create_params.Pool],
         version: str,
-        authentication: Optional[cluster_create_params.Authentication] | NotGiven = NOT_GIVEN,
-        autoscaler_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        cni: Optional[cluster_create_params.Cni] | NotGiven = NOT_GIVEN,
-        csi: cluster_create_params.Csi | NotGiven = NOT_GIVEN,
-        ddos_profile: Optional[cluster_create_params.DDOSProfile] | NotGiven = NOT_GIVEN,
-        fixed_network: Optional[str] | NotGiven = NOT_GIVEN,
-        fixed_subnet: Optional[str] | NotGiven = NOT_GIVEN,
-        is_ipv6: Optional[bool] | NotGiven = NOT_GIVEN,
-        logging: Optional[cluster_create_params.Logging] | NotGiven = NOT_GIVEN,
-        pods_ip_pool: Optional[str] | NotGiven = NOT_GIVEN,
-        pods_ipv6_pool: Optional[str] | NotGiven = NOT_GIVEN,
-        services_ip_pool: Optional[str] | NotGiven = NOT_GIVEN,
-        services_ipv6_pool: Optional[str] | NotGiven = NOT_GIVEN,
+        authentication: Optional[cluster_create_params.Authentication] | Omit = omit,
+        autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
+        cni: Optional[cluster_create_params.Cni] | Omit = omit,
+        csi: cluster_create_params.Csi | Omit = omit,
+        ddos_profile: Optional[cluster_create_params.DDOSProfile] | Omit = omit,
+        fixed_network: Optional[str] | Omit = omit,
+        fixed_subnet: Optional[str] | Omit = omit,
+        is_ipv6: Optional[bool] | Omit = omit,
+        logging: Optional[cluster_create_params.Logging] | Omit = omit,
+        pods_ip_pool: Optional[str] | Omit = omit,
+        pods_ipv6_pool: Optional[str] | Omit = omit,
+        services_ip_pool: Optional[str] | Omit = omit,
+        services_ipv6_pool: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create k8s cluster
@@ -245,17 +245,17 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        authentication: Optional[cluster_update_params.Authentication] | NotGiven = NOT_GIVEN,
-        autoscaler_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        cni: Optional[cluster_update_params.Cni] | NotGiven = NOT_GIVEN,
-        ddos_profile: Optional[cluster_update_params.DDOSProfile] | NotGiven = NOT_GIVEN,
-        logging: Optional[cluster_update_params.Logging] | NotGiven = NOT_GIVEN,
+        authentication: Optional[cluster_update_params.Authentication] | Omit = omit,
+        autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
+        cni: Optional[cluster_update_params.Cni] | Omit = omit,
+        ddos_profile: Optional[cluster_update_params.DDOSProfile] | Omit = omit,
+        logging: Optional[cluster_update_params.Logging] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Update k8s cluster
@@ -366,7 +366,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterList:
         """
         List k8s clusters
@@ -398,13 +398,13 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        volumes: str | NotGiven = NOT_GIVEN,
+        volumes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete k8s cluster
@@ -449,7 +449,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sCluster:
         """
         Get k8s cluster
@@ -488,7 +488,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterCertificate:
         """
         Get k8s cluster CA certificate
@@ -527,7 +527,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterKubeconfig:
         """
         Get k8s cluster kubeconfig
@@ -566,7 +566,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterVersionList:
         """
         List available k8s cluster versions for upgrade
@@ -606,7 +606,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Upgrade k8s cluster
@@ -675,25 +675,25 @@ class AsyncClustersResource(AsyncAPIResource):
         name: str,
         pools: Iterable[cluster_create_params.Pool],
         version: str,
-        authentication: Optional[cluster_create_params.Authentication] | NotGiven = NOT_GIVEN,
-        autoscaler_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        cni: Optional[cluster_create_params.Cni] | NotGiven = NOT_GIVEN,
-        csi: cluster_create_params.Csi | NotGiven = NOT_GIVEN,
-        ddos_profile: Optional[cluster_create_params.DDOSProfile] | NotGiven = NOT_GIVEN,
-        fixed_network: Optional[str] | NotGiven = NOT_GIVEN,
-        fixed_subnet: Optional[str] | NotGiven = NOT_GIVEN,
-        is_ipv6: Optional[bool] | NotGiven = NOT_GIVEN,
-        logging: Optional[cluster_create_params.Logging] | NotGiven = NOT_GIVEN,
-        pods_ip_pool: Optional[str] | NotGiven = NOT_GIVEN,
-        pods_ipv6_pool: Optional[str] | NotGiven = NOT_GIVEN,
-        services_ip_pool: Optional[str] | NotGiven = NOT_GIVEN,
-        services_ipv6_pool: Optional[str] | NotGiven = NOT_GIVEN,
+        authentication: Optional[cluster_create_params.Authentication] | Omit = omit,
+        autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
+        cni: Optional[cluster_create_params.Cni] | Omit = omit,
+        csi: cluster_create_params.Csi | Omit = omit,
+        ddos_profile: Optional[cluster_create_params.DDOSProfile] | Omit = omit,
+        fixed_network: Optional[str] | Omit = omit,
+        fixed_subnet: Optional[str] | Omit = omit,
+        is_ipv6: Optional[bool] | Omit = omit,
+        logging: Optional[cluster_create_params.Logging] | Omit = omit,
+        pods_ip_pool: Optional[str] | Omit = omit,
+        pods_ipv6_pool: Optional[str] | Omit = omit,
+        services_ip_pool: Optional[str] | Omit = omit,
+        services_ipv6_pool: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Create k8s cluster
@@ -834,17 +834,17 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        authentication: Optional[cluster_update_params.Authentication] | NotGiven = NOT_GIVEN,
-        autoscaler_config: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        cni: Optional[cluster_update_params.Cni] | NotGiven = NOT_GIVEN,
-        ddos_profile: Optional[cluster_update_params.DDOSProfile] | NotGiven = NOT_GIVEN,
-        logging: Optional[cluster_update_params.Logging] | NotGiven = NOT_GIVEN,
+        authentication: Optional[cluster_update_params.Authentication] | Omit = omit,
+        autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
+        cni: Optional[cluster_update_params.Cni] | Omit = omit,
+        ddos_profile: Optional[cluster_update_params.DDOSProfile] | Omit = omit,
+        logging: Optional[cluster_update_params.Logging] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Update k8s cluster
@@ -955,7 +955,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterList:
         """
         List k8s clusters
@@ -987,13 +987,13 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        volumes: str | NotGiven = NOT_GIVEN,
+        volumes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Delete k8s cluster
@@ -1038,7 +1038,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sCluster:
         """
         Get k8s cluster
@@ -1077,7 +1077,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterCertificate:
         """
         Get k8s cluster CA certificate
@@ -1116,7 +1116,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterKubeconfig:
         """
         Get k8s cluster kubeconfig
@@ -1155,7 +1155,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> K8sClusterVersionList:
         """
         List available k8s cluster versions for upgrade
@@ -1195,7 +1195,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
         Upgrade k8s cluster
