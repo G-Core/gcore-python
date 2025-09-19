@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -156,15 +156,15 @@ class SubnetsResource(SyncAPIResource):
         cidr: str,
         name: str,
         network_id: str,
-        connect_to_network_router: bool | NotGiven = NOT_GIVEN,
-        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        enable_dhcp: bool | NotGiven = NOT_GIVEN,
-        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
-        ip_version: IPVersion | NotGiven = NOT_GIVEN,
-        router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        connect_to_network_router: bool | Omit = omit,
+        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
+        enable_dhcp: bool | Omit = omit,
+        gateway_ip: Optional[str] | Omit = omit,
+        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
+        ip_version: IPVersion | Omit = omit,
+        router_id_to_connect: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -612,15 +612,15 @@ class AsyncSubnetsResource(AsyncAPIResource):
         cidr: str,
         name: str,
         network_id: str,
-        connect_to_network_router: bool | NotGiven = NOT_GIVEN,
-        dns_nameservers: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        enable_dhcp: bool | NotGiven = NOT_GIVEN,
-        gateway_ip: Optional[str] | NotGiven = NOT_GIVEN,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | NotGiven = NOT_GIVEN,
-        ip_version: IPVersion | NotGiven = NOT_GIVEN,
-        router_id_to_connect: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        connect_to_network_router: bool | Omit = omit,
+        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
+        enable_dhcp: bool | Omit = omit,
+        gateway_ip: Optional[str] | Omit = omit,
+        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
+        ip_version: IPVersion | Omit = omit,
+        router_id_to_connect: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

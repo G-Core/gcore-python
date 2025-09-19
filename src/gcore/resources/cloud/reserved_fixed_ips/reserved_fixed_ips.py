@@ -15,7 +15,7 @@ from .vip import (
     VipResourceWithStreamingResponse,
     AsyncVipResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -462,9 +462,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -500,8 +500,8 @@ class ReservedFixedIPsResource(SyncAPIResource):
         region_id: int | None = None,
         subnet_id: str,
         type: Literal["subnet"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -537,9 +537,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
         region_id: int | None = None,
         network_id: str,
         type: Literal["any_subnet"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -578,8 +578,8 @@ class ReservedFixedIPsResource(SyncAPIResource):
         ip_address: str,
         network_id: str,
         type: Literal["ip_address"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -617,7 +617,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         region_id: int | None = None,
         port_id: str,
         type: Literal["port"],
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -657,13 +657,13 @@ class ReservedFixedIPsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"] | Literal["subnet"] | Literal["any_subnet"] | Literal["ip_address"] | Literal["port"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        ip_address: str | Omit = omit,
+        port_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -719,7 +719,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1175,9 +1175,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1213,8 +1213,8 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         region_id: int | None = None,
         subnet_id: str,
         type: Literal["subnet"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1250,9 +1250,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         region_id: int | None = None,
         network_id: str,
         type: Literal["any_subnet"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1291,8 +1291,8 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         ip_address: str,
         network_id: str,
         type: Literal["ip_address"],
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        is_vip: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1330,7 +1330,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         region_id: int | None = None,
         port_id: str,
         type: Literal["port"],
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1370,13 +1370,13 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         type: Literal["external"] | Literal["subnet"] | Literal["any_subnet"] | Literal["ip_address"] | Literal["port"],
-        ip_family: Optional[InterfaceIPFamily] | NotGiven = NOT_GIVEN,
-        is_vip: bool | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        is_vip: bool | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        ip_address: str | Omit = omit,
+        port_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1432,7 +1432,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -6,7 +6,7 @@ from typing import Dict, Optional
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -434,10 +434,10 @@ class FloatingIPsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        fixed_ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        port_id: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        fixed_ip_address: Optional[str] | Omit = omit,
+        port_id: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -485,7 +485,7 @@ class FloatingIPsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -916,10 +916,10 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        fixed_ip_address: Optional[str] | NotGiven = NOT_GIVEN,
-        port_id: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        fixed_ip_address: Optional[str] | Omit = omit,
+        port_id: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -967,7 +967,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import NOT_GIVEN, Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -850,13 +850,13 @@ class VolumesResource(SyncAPIResource):
         name: str,
         size: int,
         source: Literal["image"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -919,14 +919,14 @@ class VolumesResource(SyncAPIResource):
         name: str,
         snapshot_id: str,
         source: Literal["snapshot"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        size: int | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -990,13 +990,13 @@ class VolumesResource(SyncAPIResource):
         name: str,
         size: int,
         source: Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1056,18 +1056,18 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        image_id: str | NotGiven = NOT_GIVEN,
+        image_id: str | Omit = omit,
         name: str,
-        size: int | NotGiven = NOT_GIVEN,
+        size: int | Omit = omit,
         source: Literal["image"] | Literal["snapshot"] | Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1120,8 +1120,8 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        snapshots: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        snapshots: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1155,8 +1155,8 @@ class VolumesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         instance_id: str,
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1191,7 +1191,7 @@ class VolumesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         instance_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1225,7 +1225,7 @@ class VolumesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         size: int,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2078,13 +2078,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         name: str,
         size: int,
         source: Literal["image"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2147,14 +2147,14 @@ class AsyncVolumesResource(AsyncAPIResource):
         name: str,
         snapshot_id: str,
         source: Literal["snapshot"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        size: int | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2218,13 +2218,13 @@ class AsyncVolumesResource(AsyncAPIResource):
         name: str,
         size: int,
         source: Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2284,18 +2284,18 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        image_id: str | NotGiven = NOT_GIVEN,
+        image_id: str | Omit = omit,
         name: str,
-        size: int | NotGiven = NOT_GIVEN,
+        size: int | Omit = omit,
         source: Literal["image"] | Literal["snapshot"] | Literal["new-volume"],
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        instance_id_to_attach_to: str | NotGiven = NOT_GIVEN,
-        lifecycle_policy_ids: Iterable[int] | NotGiven = NOT_GIVEN,
-        tags: TagUpdateMapParam | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        instance_id_to_attach_to: str | Omit = omit,
+        lifecycle_policy_ids: Iterable[int] | Omit = omit,
+        tags: TagUpdateMapParam | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2348,8 +2348,8 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        snapshots: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        snapshots: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2383,8 +2383,8 @@ class AsyncVolumesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         instance_id: str,
-        attachment_tag: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        attachment_tag: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2419,7 +2419,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         instance_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2453,7 +2453,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         size: int,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

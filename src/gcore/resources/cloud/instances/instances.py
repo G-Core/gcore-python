@@ -32,7 +32,7 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .interfaces import (
@@ -262,18 +262,18 @@ class InstancesResource(SyncAPIResource):
         flavor: str,
         interfaces: Iterable[instance_create_params.Interface],
         volumes: Iterable[instance_create_params.Volume],
-        allow_app_ports: bool | NotGiven = NOT_GIVEN,
-        configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        name_template: str | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
-        servergroup_id: str | NotGiven = NOT_GIVEN,
-        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        allow_app_ports: bool | Omit = omit,
+        configuration: Optional[object] | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        password: str | Omit = omit,
+        security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
+        servergroup_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        user_data: str | Omit = omit,
+        username: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -633,11 +633,11 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
-        floatings: str | NotGiven = NOT_GIVEN,
-        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
-        volumes: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        delete_floatings: bool | Omit = omit,
+        floatings: str | Omit = omit,
+        reserved_fixed_ips: str | Omit = omit,
+        volumes: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -781,7 +781,7 @@ class InstancesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -848,7 +848,7 @@ class InstancesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start", "reboot", "reboot_hard", "resume", "stop", "suspend"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -947,7 +947,7 @@ class InstancesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         servergroup_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1265,7 +1265,7 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1349,7 +1349,7 @@ class InstancesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         flavor_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1631,18 +1631,18 @@ class AsyncInstancesResource(AsyncAPIResource):
         flavor: str,
         interfaces: Iterable[instance_create_params.Interface],
         volumes: Iterable[instance_create_params.Volume],
-        allow_app_ports: bool | NotGiven = NOT_GIVEN,
-        configuration: Optional[object] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        name_template: str | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        security_groups: Iterable[instance_create_params.SecurityGroup] | NotGiven = NOT_GIVEN,
-        servergroup_id: str | NotGiven = NOT_GIVEN,
-        ssh_key_name: Optional[str] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        allow_app_ports: bool | Omit = omit,
+        configuration: Optional[object] | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        password: str | Omit = omit,
+        security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
+        servergroup_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        user_data: str | Omit = omit,
+        username: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2002,11 +2002,11 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        delete_floatings: bool | NotGiven = NOT_GIVEN,
-        floatings: str | NotGiven = NOT_GIVEN,
-        reserved_fixed_ips: str | NotGiven = NOT_GIVEN,
-        volumes: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        delete_floatings: bool | Omit = omit,
+        floatings: str | Omit = omit,
+        reserved_fixed_ips: str | Omit = omit,
+        volumes: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2150,7 +2150,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2217,7 +2217,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         action: Literal["start", "reboot", "reboot_hard", "resume", "stop", "suspend"],
-        activate_profile: Optional[bool] | NotGiven = NOT_GIVEN,
+        activate_profile: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2316,7 +2316,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         servergroup_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2634,7 +2634,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2718,7 +2718,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         flavor_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

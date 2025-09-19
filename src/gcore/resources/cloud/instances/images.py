@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -243,7 +243,7 @@ class ImagesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -365,15 +365,15 @@ class ImagesResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         volume_id: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        source: Literal["volume"] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        source: Literal["volume"] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -567,17 +567,17 @@ class ImagesResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         url: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        os_version: Optional[str] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        cow_format: bool | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_distro: Optional[str] | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        os_version: Optional[str] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -835,7 +835,7 @@ class AsyncImagesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -957,15 +957,15 @@ class AsyncImagesResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         volume_id: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        source: Literal["volume"] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        source: Literal["volume"] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1159,17 +1159,17 @@ class AsyncImagesResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         url: str,
-        architecture: Literal["aarch64", "x86_64"] | NotGiven = NOT_GIVEN,
-        cow_format: bool | NotGiven = NOT_GIVEN,
-        hw_firmware_type: Optional[Literal["bios", "uefi"]] | NotGiven = NOT_GIVEN,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | NotGiven = NOT_GIVEN,
-        is_baremetal: bool | NotGiven = NOT_GIVEN,
-        os_distro: Optional[str] | NotGiven = NOT_GIVEN,
-        os_type: Literal["linux", "windows"] | NotGiven = NOT_GIVEN,
-        os_version: Optional[str] | NotGiven = NOT_GIVEN,
-        ssh_key: Literal["allow", "deny", "required"] | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
+        cow_format: bool | Omit = omit,
+        hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        is_baremetal: bool | Omit = omit,
+        os_distro: Optional[str] | Omit = omit,
+        os_type: Literal["linux", "windows"] | Omit = omit,
+        os_version: Optional[str] | Omit = omit,
+        ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

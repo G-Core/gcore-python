@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -338,13 +338,13 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -386,12 +386,12 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,13 +433,13 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -483,12 +483,12 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -529,17 +529,17 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        port_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -591,7 +591,7 @@ class InterfacesResource(SyncAPIResource):
         region_id: int | None = None,
         ip_address: str,
         port_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -989,14 +989,14 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1018,13 +1018,13 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1046,14 +1046,14 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1075,13 +1075,13 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        interface_name: str | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1102,17 +1102,17 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | NotGiven = NOT_GIVEN,
-        interface_name: str | NotGiven = NOT_GIVEN,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | NotGiven = NOT_GIVEN,
-        port_group: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        interface_name: str | Omit = omit,
+        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        port_group: int | Omit = omit,
         security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        subnet_id: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        port_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: str | Omit = omit,
+        subnet_id: str | Omit = omit,
+        network_id: str | Omit = omit,
+        port_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1164,7 +1164,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         region_id: int | None = None,
         ip_address: str,
         port_id: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
