@@ -258,8 +258,8 @@ class SecretsResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         payload: secret_upload_tls_certificate_params.Payload,
-        expiration: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        expiration: Union[str, datetime, None] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -525,8 +525,8 @@ class AsyncSecretsResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         payload: secret_upload_tls_certificate_params.Payload,
-        expiration: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        expiration: Union[str, datetime, None] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -30,7 +30,7 @@ from .statuses import (
     StatusesResourceWithStreamingResponse,
     AsyncStatusesResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from .listeners import (
     ListenersResource,
@@ -586,19 +586,19 @@ class LoadBalancersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        flavor: str | NotGiven = NOT_GIVEN,
-        floating_ip: load_balancer_create_params.FloatingIP | NotGiven = NOT_GIVEN,
-        listeners: Iterable[load_balancer_create_params.Listener] | NotGiven = NOT_GIVEN,
-        logging: load_balancer_create_params.Logging | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        name_template: str | NotGiven = NOT_GIVEN,
-        preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
-        vip_network_id: str | NotGiven = NOT_GIVEN,
-        vip_port_id: str | NotGiven = NOT_GIVEN,
-        vip_subnet_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        flavor: str | Omit = omit,
+        floating_ip: load_balancer_create_params.FloatingIP | Omit = omit,
+        listeners: Iterable[load_balancer_create_params.Listener] | Omit = omit,
+        logging: load_balancer_create_params.Logging | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        vip_ip_family: InterfaceIPFamily | Omit = omit,
+        vip_network_id: str | Omit = omit,
+        vip_port_id: str | Omit = omit,
+        vip_subnet_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -653,7 +653,7 @@ class LoadBalancersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -687,8 +687,8 @@ class LoadBalancersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        force: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        force: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -731,7 +731,7 @@ class LoadBalancersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         flavor: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1271,19 +1271,19 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        flavor: str | NotGiven = NOT_GIVEN,
-        floating_ip: load_balancer_create_params.FloatingIP | NotGiven = NOT_GIVEN,
-        listeners: Iterable[load_balancer_create_params.Listener] | NotGiven = NOT_GIVEN,
-        logging: load_balancer_create_params.Logging | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        name_template: str | NotGiven = NOT_GIVEN,
-        preferred_connectivity: LoadBalancerMemberConnectivity | NotGiven = NOT_GIVEN,
-        tags: Dict[str, str] | NotGiven = NOT_GIVEN,
-        vip_ip_family: InterfaceIPFamily | NotGiven = NOT_GIVEN,
-        vip_network_id: str | NotGiven = NOT_GIVEN,
-        vip_port_id: str | NotGiven = NOT_GIVEN,
-        vip_subnet_id: str | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        flavor: str | Omit = omit,
+        floating_ip: load_balancer_create_params.FloatingIP | Omit = omit,
+        listeners: Iterable[load_balancer_create_params.Listener] | Omit = omit,
+        logging: load_balancer_create_params.Logging | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        vip_ip_family: InterfaceIPFamily | Omit = omit,
+        vip_network_id: str | Omit = omit,
+        vip_port_id: str | Omit = omit,
+        vip_subnet_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1338,7 +1338,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1372,8 +1372,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        force: bool | NotGiven = NOT_GIVEN,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        force: bool | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1416,7 +1416,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         flavor: str,
-        polling_interval_seconds: int | NotGiven = NOT_GIVEN,
+        polling_interval_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
