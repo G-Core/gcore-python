@@ -53,7 +53,7 @@ class AdvancedRulesResource(SyncAPIResource):
         enabled: bool,
         name: str,
         source: str,
-        description: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
         phase: Optional[Literal["access", "header_filter", "body_filter"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -68,7 +68,8 @@ class AdvancedRulesResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that the rule takes when triggered
+          action: The action that the rule takes when triggered. Only one action can be set per
+              rule.
 
           enabled: Whether or not the rule is enabled
 
@@ -141,7 +142,7 @@ class AdvancedRulesResource(SyncAPIResource):
 
           rule_id: The advanced rule ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that a WAAP rule takes when triggered.
 
           description: The description assigned to the rule
 
@@ -429,7 +430,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         enabled: bool,
         name: str,
         source: str,
-        description: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
         phase: Optional[Literal["access", "header_filter", "body_filter"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -444,7 +445,8 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that the rule takes when triggered
+          action: The action that the rule takes when triggered. Only one action can be set per
+              rule.
 
           enabled: Whether or not the rule is enabled
 
@@ -517,7 +519,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
 
           rule_id: The advanced rule ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that a WAAP rule takes when triggered.
 
           description: The description assigned to the rule
 

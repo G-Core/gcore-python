@@ -23,10 +23,7 @@ class APIPathCreateParams(TypedDict, total=False):
     """
 
     api_groups: SequenceNotStr[str]
-    """An array of api groups associated with the API path"""
 
     api_version: str
-    """The API version"""
 
     tags: SequenceNotStr[str]
-    """An array of tags associated with the API path"""

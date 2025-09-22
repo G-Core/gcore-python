@@ -15,7 +15,7 @@ class AdvancedRuleUpdateParams(TypedDict, total=False):
     """The domain ID"""
 
     action: Optional[Action]
-    """The action that a WAAP rule takes when triggered"""
+    """The action that a WAAP rule takes when triggered."""
 
     description: Optional[str]
     """The description assigned to the rule"""
@@ -46,7 +46,7 @@ class AdvancedRuleUpdateParams(TypedDict, total=False):
 
 
 class ActionBlock(TypedDict, total=False):
-    action_duration: Optional[str]
+    action_duration: str
     """How long a rule's block action will apply to subsequent requests.
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
@@ -54,8 +54,8 @@ class ActionBlock(TypedDict, total=False):
     intervals are not allowed.
     """
 
-    status_code: Optional[Literal[403, 405, 418, 429]]
-    """Designates the HTTP status code to deliver when a request is blocked."""
+    status_code: Literal[403, 405, 418, 429]
+    """A custom HTTP status code that the WAAP returns if a rule blocks a request"""
 
 
 class ActionTag(TypedDict, total=False):
@@ -64,23 +64,23 @@ class ActionTag(TypedDict, total=False):
 
 
 class Action(TypedDict, total=False):
-    allow: Optional[object]
+    allow: object
     """The WAAP allowed the request"""
 
-    block: Optional[ActionBlock]
+    block: ActionBlock
     """
     WAAP block action behavior could be configured with response status code and
     action duration.
     """
 
-    captcha: Optional[object]
+    captcha: object
     """The WAAP presented the user with a captcha"""
 
-    handshake: Optional[object]
+    handshake: object
     """The WAAP performed automatic browser validation"""
 
-    monitor: Optional[object]
+    monitor: object
     """The WAAP monitored the request but took no action"""
 
-    tag: Optional[ActionTag]
+    tag: ActionTag
     """WAAP tag action gets a list of tags to tag the request scope with"""

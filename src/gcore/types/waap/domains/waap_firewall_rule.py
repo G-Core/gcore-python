@@ -18,7 +18,7 @@ class ActionBlock(BaseModel):
     """
 
     status_code: Optional[Literal[403, 405, 418, 429]] = None
-    """Designates the HTTP status code to deliver when a request is blocked."""
+    """A custom HTTP status code that the WAAP returns if a rule blocks a request"""
 
 
 class Action(BaseModel):

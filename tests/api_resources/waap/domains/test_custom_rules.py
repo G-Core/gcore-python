@@ -75,12 +75,12 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                     "organization": {
@@ -96,7 +96,7 @@ class TestCustomRules:
                         "requests": 20,
                         "time": 1,
                         "http_methods": ["CONNECT"],
-                        "ips": ["192.168.1.1"],
+                        "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
                     },
                     "response_header": {
@@ -224,12 +224,12 @@ class TestCustomRules:
                         "negation": True,
                     },
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                     "organization": {
@@ -245,7 +245,7 @@ class TestCustomRules:
                         "requests": 20,
                         "time": 1,
                         "http_methods": ["CONNECT"],
-                        "ips": ["192.168.1.1"],
+                        "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
                     },
                     "response_header": {
@@ -559,12 +559,12 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                     "organization": {
@@ -580,7 +580,7 @@ class TestAsyncCustomRules:
                         "requests": 20,
                         "time": 1,
                         "http_methods": ["CONNECT"],
-                        "ips": ["192.168.1.1"],
+                        "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
                     },
                     "response_header": {
@@ -708,12 +708,12 @@ class TestAsyncCustomRules:
                         "negation": True,
                     },
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                     "organization": {
@@ -729,7 +729,7 @@ class TestAsyncCustomRules:
                         "requests": 20,
                         "time": 1,
                         "http_methods": ["CONNECT"],
-                        "ips": ["192.168.1.1"],
+                        "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
                     },
                     "response_header": {

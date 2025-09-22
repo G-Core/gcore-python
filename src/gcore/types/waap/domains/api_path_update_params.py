@@ -14,7 +14,6 @@ class APIPathUpdateParams(TypedDict, total=False):
     """The domain ID"""
 
     api_groups: SequenceNotStr[str]
-    """An array of api groups associated with the API path"""
 
     path: str
     """The updated API path.
@@ -24,7 +23,6 @@ class APIPathUpdateParams(TypedDict, total=False):
     """
 
     status: Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]
-    """The status of the discovered API path"""
+    """The different statuses an API path can have"""
 
     tags: SequenceNotStr[str]
-    """An array of tags associated with the API path"""
