@@ -472,26 +472,30 @@ class ZonesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneGetStatisticsResponse:
-        """Statistics of DNS zone in common and by record types.
+        """
+        Statistics of DNS zone in common and by record types.
 
-        To get summary statistics
-        for all zones use `all` instead of zone name in path. Note: Consumption
-        statistics is updated in near real-time as a standard practice. However, the
-        frequency of updates can vary, but they are typically available within a 30
-        minutes period. Exceptions, such as maintenance periods, may delay data beyond
-        30 minutes until servers resume and backfill missing statistics.
+        To get summary statistics for all zones use `all` instead of zone name in path.
+
+        Note: Consumption statistics is updated in near real-time as a standard
+        practice. However, the frequency of updates can vary, but they are typically
+        available within a 30 minutes period. Exceptions, such as maintenance periods,
+        may delay data beyond 30 minutes until servers resume and backfill missing
+        statistics.
 
         Args:
-          from_:
-              Beginning of the requested time period (Unix Timestamp, UTC.) In a query string:
-              &from=1709068637
+          from_: Beginning of the requested time period (Unix Timestamp, UTC.)
+
+              In a query string: &from=1709068637
 
           granularity: Granularity parameter string is a sequence of decimal numbers, each with
-              optional fraction and a unit suffix, such as "300ms", "1.5h" or "2h45m". Valid
-              time units are "s", "m", "h".
+              optional fraction and a unit suffix, such as "300ms", "1.5h" or "2h45m".
 
-          record_type:
-              DNS record type. Possible values:
+              Valid time units are "s", "m", "h".
+
+          record_type: DNS record type.
+
+              Possible values:
 
               - A
               - AAAA
@@ -502,9 +506,9 @@ class ZonesResource(SyncAPIResource):
               - SVCB
               - HTTPS
 
-          to:
-              End of the requested time period (Unix Timestamp, UTC.) In a query string:
-              &to=1709673437
+          to: End of the requested time period (Unix Timestamp, UTC.)
+
+              In a query string: &to=1709673437
 
           extra_headers: Send extra headers
 
@@ -557,20 +561,27 @@ class ZonesResource(SyncAPIResource):
               n <= len(p)) and any error encountered. Even if Read returns n < len(p), it may
               use all of p as scratch space during the call. If some data is available but not
               len(p) bytes, Read conventionally returns what is available instead of waiting
-              for more. When Read encounters an error or end-of-file condition after
-              successfully reading n > 0 bytes, it returns the number of bytes read. It may
-              return the (non-nil) error from the same call or return the error (and n == 0)
-              from a subsequent call. An instance of this general case is that a Reader
-              returning a non-zero number of bytes at the end of the input stream may return
-              either err == EOF or err == nil. The next Read should return 0, EOF. Callers
-              should always process the n > 0 bytes returned before considering the error err.
-              Doing so correctly handles I/O errors that happen after reading some bytes and
-              also both of the allowed EOF behaviors. If len(p) == 0, Read should always
-              return n == 0. It may return a non-nil error if some error condition is known,
-              such as EOF. Implementations of Read are discouraged from returning a zero byte
-              count with a nil error, except when len(p) == 0. Callers should treat a return
-              of 0 and nil as indicating that nothing happened; in particular it does not
-              indicate EOF. Implementations must not retain p.
+              for more.
+
+              When Read encounters an error or end-of-file condition after successfully
+              reading n > 0 bytes, it returns the number of bytes read. It may return the
+              (non-nil) error from the same call or return the error (and n == 0) from a
+              subsequent call. An instance of this general case is that a Reader returning a
+              non-zero number of bytes at the end of the input stream may return either err ==
+              EOF or err == nil. The next Read should return 0, EOF.
+
+              Callers should always process the n > 0 bytes returned before considering the
+              error err. Doing so correctly handles I/O errors that happen after reading some
+              bytes and also both of the allowed EOF behaviors.
+
+              If len(p) == 0, Read should always return n == 0. It may return a non-nil error
+              if some error condition is known, such as EOF.
+
+              Implementations of Read are discouraged from returning a zero byte count with a
+              nil error, except when len(p) == 0. Callers should treat a return of 0 and nil
+              as indicating that nothing happened; in particular it does not indicate EOF.
+
+              Implementations must not retain p.
 
           extra_headers: Send extra headers
 
@@ -1098,26 +1109,30 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneGetStatisticsResponse:
-        """Statistics of DNS zone in common and by record types.
+        """
+        Statistics of DNS zone in common and by record types.
 
-        To get summary statistics
-        for all zones use `all` instead of zone name in path. Note: Consumption
-        statistics is updated in near real-time as a standard practice. However, the
-        frequency of updates can vary, but they are typically available within a 30
-        minutes period. Exceptions, such as maintenance periods, may delay data beyond
-        30 minutes until servers resume and backfill missing statistics.
+        To get summary statistics for all zones use `all` instead of zone name in path.
+
+        Note: Consumption statistics is updated in near real-time as a standard
+        practice. However, the frequency of updates can vary, but they are typically
+        available within a 30 minutes period. Exceptions, such as maintenance periods,
+        may delay data beyond 30 minutes until servers resume and backfill missing
+        statistics.
 
         Args:
-          from_:
-              Beginning of the requested time period (Unix Timestamp, UTC.) In a query string:
-              &from=1709068637
+          from_: Beginning of the requested time period (Unix Timestamp, UTC.)
+
+              In a query string: &from=1709068637
 
           granularity: Granularity parameter string is a sequence of decimal numbers, each with
-              optional fraction and a unit suffix, such as "300ms", "1.5h" or "2h45m". Valid
-              time units are "s", "m", "h".
+              optional fraction and a unit suffix, such as "300ms", "1.5h" or "2h45m".
 
-          record_type:
-              DNS record type. Possible values:
+              Valid time units are "s", "m", "h".
+
+          record_type: DNS record type.
+
+              Possible values:
 
               - A
               - AAAA
@@ -1128,9 +1143,9 @@ class AsyncZonesResource(AsyncAPIResource):
               - SVCB
               - HTTPS
 
-          to:
-              End of the requested time period (Unix Timestamp, UTC.) In a query string:
-              &to=1709673437
+          to: End of the requested time period (Unix Timestamp, UTC.)
+
+              In a query string: &to=1709673437
 
           extra_headers: Send extra headers
 
@@ -1183,20 +1198,27 @@ class AsyncZonesResource(AsyncAPIResource):
               n <= len(p)) and any error encountered. Even if Read returns n < len(p), it may
               use all of p as scratch space during the call. If some data is available but not
               len(p) bytes, Read conventionally returns what is available instead of waiting
-              for more. When Read encounters an error or end-of-file condition after
-              successfully reading n > 0 bytes, it returns the number of bytes read. It may
-              return the (non-nil) error from the same call or return the error (and n == 0)
-              from a subsequent call. An instance of this general case is that a Reader
-              returning a non-zero number of bytes at the end of the input stream may return
-              either err == EOF or err == nil. The next Read should return 0, EOF. Callers
-              should always process the n > 0 bytes returned before considering the error err.
-              Doing so correctly handles I/O errors that happen after reading some bytes and
-              also both of the allowed EOF behaviors. If len(p) == 0, Read should always
-              return n == 0. It may return a non-nil error if some error condition is known,
-              such as EOF. Implementations of Read are discouraged from returning a zero byte
-              count with a nil error, except when len(p) == 0. Callers should treat a return
-              of 0 and nil as indicating that nothing happened; in particular it does not
-              indicate EOF. Implementations must not retain p.
+              for more.
+
+              When Read encounters an error or end-of-file condition after successfully
+              reading n > 0 bytes, it returns the number of bytes read. It may return the
+              (non-nil) error from the same call or return the error (and n == 0) from a
+              subsequent call. An instance of this general case is that a Reader returning a
+              non-zero number of bytes at the end of the input stream may return either err ==
+              EOF or err == nil. The next Read should return 0, EOF.
+
+              Callers should always process the n > 0 bytes returned before considering the
+              error err. Doing so correctly handles I/O errors that happen after reading some
+              bytes and also both of the allowed EOF behaviors.
+
+              If len(p) == 0, Read should always return n == 0. It may return a non-nil error
+              if some error condition is known, such as EOF.
+
+              Implementations of Read are discouraged from returning a zero byte count with a
+              nil error, except when len(p) == 0. Callers should treat a return of 0 and nil
+              as indicating that nothing happened; in particular it does not indicate EOF.
+
+              Implementations must not retain p.
 
           extra_headers: Send extra headers
 

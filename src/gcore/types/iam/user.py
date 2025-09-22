@@ -51,7 +51,9 @@ class User(BaseModel):
     """User's email address."""
 
     groups: Optional[List[Group]] = None
-    """User's group in the current account. IAM supports 5 groups:
+    """User's group in the current account.
+
+    IAM supports 5 groups:
 
     - Users
     - Administrators
@@ -61,7 +63,10 @@ class User(BaseModel):
     """
 
     lang: Optional[Literal["de", "en", "ru", "zh", "az"]] = None
-    """User's language. Defines language of the control panel and email messages."""
+    """User's language.
+
+    Defines language of the control panel and email messages.
+    """
 
     name: Optional[str] = None
     """User's name."""

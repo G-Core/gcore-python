@@ -58,8 +58,9 @@ class SubtitlesResource(SyncAPIResource):
         """
         Add new subtitle/captions to a video entity.
 
-        **Add already exist subtitles** Subtitles must be in one of the following
-        formats:
+        **Add already exist subtitles**
+
+        Subtitles must be in one of the following formats:
 
         - SRT – SubRip Text is described on
           [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#SubRip_file_format). Must
@@ -69,19 +70,26 @@ class SubtitlesResource(SyncAPIResource):
         - WebVTT – Web Video Text Tracks Format is described on
           [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API).
           Must start from "WEBVTT" header. Use validators to check the subtitles, like
-          [W3C](https://w3c.github.io/webvtt.js/parser.html). Language is 3-letter
-          language code according to ISO-639-2 (bibliographic code). Specify language
-          you need, or just look at our list in the attribute "`audio_language`" of
-          section
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
-          You can add multiple subtitles in the same language, language uniqueness is
-          not required. Size must be up to 5Mb.
+          [W3C](https://w3c.github.io/webvtt.js/parser.html).
+
+        Language is 3-letter language code according to ISO-639-2 (bibliographic code).
+        Specify language you need, or just look at our list in the attribute
+        "`audio_language`" of section
+        ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+
+        You can add multiple subtitles in the same language, language uniqueness is not
+        required.
+
+        Size must be up to 5Mb.
 
         The update time for added or changed subtitles is up to 30 seconds. Just like
         videos, subtitles are cached, so it takes time to update the data.
 
-        **AI subtitles and transcribing** It is also possible to automatically create
-        subtitles based on AI. Read more:
+        **AI subtitles and transcribing**
+
+        It is also possible to automatically create subtitles based on AI.
+
+        Read more:
 
         - What is
           ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
@@ -95,14 +103,20 @@ class SubtitlesResource(SyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language. The created AI-task(s)
           will be automatically executed, and result will also be automatically attached
-          to this video as subtitle(s). If AI is disabled in your account, you will
-          receive code 422 in response.
+          to this video as subtitle(s).
 
-        **Where and how subtitles are displayed?** Subtitles are became available in the
-        API response and in playback manifests. All added subtitles are automatically
-        inserted into the output manifest .m3u8. This way, subtitles become available to
-        any player: our player, OS built-in, or other specialized ones. You don't need
-        to do anything else. Read more information in the Knowledge Base. Example:
+        If AI is disabled in your account, you will receive code 422 in response.
+
+        **Where and how subtitles are displayed?**
+
+        Subtitles are became available in the API response and in playback manifests.
+
+        All added subtitles are automatically inserted into the output manifest .m3u8.
+        This way, subtitles become available to any player: our player, OS built-in, or
+        other specialized ones. You don't need to do anything else. Read more
+        information in the Knowledge Base.
+
+        Example:
 
         ```
         # EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs0",NAME="English",LANGUAGE="en",AUTOSELECT=YES,URI="subs-0.m3u8"
@@ -143,16 +157,20 @@ class SubtitlesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubtitleBase:
-        """Method to update subtitle of a video.
+        """
+        Method to update subtitle of a video.
 
-        You can update all or only some of fields
-        you need. If you want to replace the text of subtitles (i.e. found a typo in the
-        text, or the timing in the video changed), then:
+        You can update all or only some of fields you need.
+
+        If you want to replace the text of subtitles (i.e. found a typo in the text, or
+        the timing in the video changed), then:
 
         - download it using GET method,
         - change it in an external editor,
-        - and update it using this PATCH method. Just like videos, subtitles are cached,
-          so it takes time to update the data. See POST method for details.
+        - and update it using this PATCH method.
+
+        Just like videos, subtitles are cached, so it takes time to update the data. See
+        POST method for details.
 
         Args:
           language: 3-letter language code according to ISO-639-2 (bibliographic code)
@@ -317,8 +335,9 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         """
         Add new subtitle/captions to a video entity.
 
-        **Add already exist subtitles** Subtitles must be in one of the following
-        formats:
+        **Add already exist subtitles**
+
+        Subtitles must be in one of the following formats:
 
         - SRT – SubRip Text is described on
           [wikipedia.org](https://en.wikipedia.org/wiki/SubRip#SubRip_file_format). Must
@@ -328,19 +347,26 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         - WebVTT – Web Video Text Tracks Format is described on
           [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API).
           Must start from "WEBVTT" header. Use validators to check the subtitles, like
-          [W3C](https://w3c.github.io/webvtt.js/parser.html). Language is 3-letter
-          language code according to ISO-639-2 (bibliographic code). Specify language
-          you need, or just look at our list in the attribute "`audio_language`" of
-          section
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
-          You can add multiple subtitles in the same language, language uniqueness is
-          not required. Size must be up to 5Mb.
+          [W3C](https://w3c.github.io/webvtt.js/parser.html).
+
+        Language is 3-letter language code according to ISO-639-2 (bibliographic code).
+        Specify language you need, or just look at our list in the attribute
+        "`audio_language`" of section
+        ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+
+        You can add multiple subtitles in the same language, language uniqueness is not
+        required.
+
+        Size must be up to 5Mb.
 
         The update time for added or changed subtitles is up to 30 seconds. Just like
         videos, subtitles are cached, so it takes time to update the data.
 
-        **AI subtitles and transcribing** It is also possible to automatically create
-        subtitles based on AI. Read more:
+        **AI subtitles and transcribing**
+
+        It is also possible to automatically create subtitles based on AI.
+
+        Read more:
 
         - What is
           ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
@@ -354,14 +380,20 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language. The created AI-task(s)
           will be automatically executed, and result will also be automatically attached
-          to this video as subtitle(s). If AI is disabled in your account, you will
-          receive code 422 in response.
+          to this video as subtitle(s).
 
-        **Where and how subtitles are displayed?** Subtitles are became available in the
-        API response and in playback manifests. All added subtitles are automatically
-        inserted into the output manifest .m3u8. This way, subtitles become available to
-        any player: our player, OS built-in, or other specialized ones. You don't need
-        to do anything else. Read more information in the Knowledge Base. Example:
+        If AI is disabled in your account, you will receive code 422 in response.
+
+        **Where and how subtitles are displayed?**
+
+        Subtitles are became available in the API response and in playback manifests.
+
+        All added subtitles are automatically inserted into the output manifest .m3u8.
+        This way, subtitles become available to any player: our player, OS built-in, or
+        other specialized ones. You don't need to do anything else. Read more
+        information in the Knowledge Base.
+
+        Example:
 
         ```
         # EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs0",NAME="English",LANGUAGE="en",AUTOSELECT=YES,URI="subs-0.m3u8"
@@ -402,16 +434,20 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubtitleBase:
-        """Method to update subtitle of a video.
+        """
+        Method to update subtitle of a video.
 
-        You can update all or only some of fields
-        you need. If you want to replace the text of subtitles (i.e. found a typo in the
-        text, or the timing in the video changed), then:
+        You can update all or only some of fields you need.
+
+        If you want to replace the text of subtitles (i.e. found a typo in the text, or
+        the timing in the video changed), then:
 
         - download it using GET method,
         - change it in an external editor,
-        - and update it using this PATCH method. Just like videos, subtitles are cached,
-          so it takes time to update the data. See POST method for details.
+        - and update it using this PATCH method.
+
+        Just like videos, subtitles are cached, so it takes time to update the data. See
+        POST method for details.
 
         Args:
           language: 3-letter language code according to ISO-639-2 (bibliographic code)

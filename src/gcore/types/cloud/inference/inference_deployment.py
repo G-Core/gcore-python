@@ -239,7 +239,9 @@ class InferenceDeployment(BaseModel):
     """Project ID. If not provided, your default project ID will be used."""
 
     status: Literal["ACTIVE", "DELETING", "DEPLOYING", "DISABLED", "PARTIALLYDEPLOYED", "PENDING"]
-    """Inference instance status. Value can be one of the following:
+    """Inference instance status.
+
+    Value can be one of the following:
 
     - `DEPLOYING` - The instance is being deployed. Containers are not yet created.
     - `PARTIALLYDEPLOYED` - All containers have been created, but some may not be

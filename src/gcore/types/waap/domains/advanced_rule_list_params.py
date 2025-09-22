@@ -46,11 +46,14 @@ class AdvancedRuleListParams(TypedDict, total=False):
     """Determine the field to order results by"""
 
     phase: Literal["access", "header_filter", "body_filter"]
-    """
-    Filter rules based on the WAAP request/response phase for applying the rule. The
-    "access" phase is responsible for modifying the request before it is sent to the
-    origin server. The "`header_filter`" phase is responsible for modifying the HTTP
-    headers of a response before they are sent back to the client. The
-    "`body_filter`" phase is responsible for modifying the body of a response before
-    it is sent back to the client.
+    """Filter rules based on the WAAP request/response phase for applying the rule.
+
+    The "access" phase is responsible for modifying the request before it is sent to
+    the origin server.
+
+    The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+    response before they are sent back to the client.
+
+    The "`body_filter`" phase is responsible for modifying the body of a response
+    before it is sent back to the client.
     """

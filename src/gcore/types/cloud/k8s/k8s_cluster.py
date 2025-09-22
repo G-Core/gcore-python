@@ -166,9 +166,10 @@ class K8sCluster(BaseModel):
     """Cluster authentication settings"""
 
     autoscaler_config: Optional[Dict[str, str]] = None
-    """
-    Cluster autoscaler configuration. It contains overrides to the default
-    cluster-autoscaler parameters provided by the platform.
+    """Cluster autoscaler configuration.
+
+    It contains overrides to the default cluster-autoscaler parameters provided by
+    the platform.
     """
 
     cni: Optional[Cni] = None

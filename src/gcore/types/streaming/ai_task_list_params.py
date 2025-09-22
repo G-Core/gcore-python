@@ -17,8 +17,10 @@ class AITaskListParams(TypedDict, total=False):
     ordering: Literal["task_id", "status", "task_name", "started_at"]
     """
     Which field to use when ordering the results: `task_id`, status, and
-    `task_name`. Sorting is done in ascending (ASC) order. If parameter is omitted
-    then "`started_at` DESC" is used for ordering by default.
+    `task_name`. Sorting is done in ascending (ASC) order.
+
+    If parameter is omitted then "`started_at` DESC" is used for ordering by
+    default.
     """
 
     page: int
@@ -27,9 +29,13 @@ class AITaskListParams(TypedDict, total=False):
     search: str
     """
     This is an field for combined text search in the following fields: `task_id`,
-    `task_name`, status, and `task_data`. Both full and partial searches are
-    possible inside specified above fields. For example, you can filter tasks of a
-    certain category, or tasks by a specific original file. Example:
+    `task_name`, status, and `task_data`.
+
+    Both full and partial searches are possible inside specified above fields. For
+    example, you can filter tasks of a certain category, or tasks by a specific
+    original file.
+
+    Example:
 
     - To filter tasks of Content Moderation NSFW method:
       `GET /streaming/ai/tasks?search=nsfw`

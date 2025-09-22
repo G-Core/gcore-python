@@ -25,14 +25,20 @@ class TaskDataAITranscribe(BaseModel):
     audio_language: Optional[str] = None
     """Language in original audio (transcription only).
 
-    This value is used to determine the language from which to transcribe. If this
-    is not set, the system will run auto language identification and the subtitles
-    will be in the detected language. The method also works based on AI analysis.
-    It's fairly accurate, but if it's wrong, then set the language explicitly.
+    This value is used to determine the language from which to transcribe.
+
+    If this is not set, the system will run auto language identification and the
+    subtitles will be in the detected language. The method also works based on AI
+    analysis. It's fairly accurate, but if it's wrong, then set the language
+    explicitly.
+
     Additionally, when this is not set, we also support recognition of alternate
-    languages in the video (language code-switching). Language is set by 3-letter
-    language code according to ISO-639-2 (bibliographic code). We can process
-    languages:
+    languages in the video (language code-switching).
+
+    Language is set by 3-letter language code according to ISO-639-2 (bibliographic
+    code).
+
+    We can process languages:
 
     - 'afr': Afrikaans
     - 'alb': Albanian
@@ -139,10 +145,12 @@ class TaskDataAITranscribe(BaseModel):
     """
     Meta parameter, designed to store your own extra information about a video
     entity: video source, video id, etc. It is not used in any way in video
-    processing. For example, if an AI-task was created automatically when you
-    uploaded a video with the AI auto-processing option (transcribing,
-    translationing), then the ID of the associated video for which the task was
-    performed will be explicitly indicated here.
+    processing.
+
+    For example, if an AI-task was created automatically when you uploaded a video
+    with the AI auto-processing option (transcribing, translationing), then the ID
+    of the associated video for which the task was performed will be explicitly
+    indicated here.
     """
 
     client_user_id: Optional[str] = None
@@ -156,6 +164,7 @@ class TaskDataAITranscribe(BaseModel):
     """
     Indicates which language it is clearly necessary to translate into. If this is
     not set, the original language will be used from attribute "`audio_language`".
+
     Please note that:
 
     - transcription into the original language is a free procedure,
