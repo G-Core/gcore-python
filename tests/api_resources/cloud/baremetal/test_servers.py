@@ -51,9 +51,9 @@ class TestServers:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
+                        "field_name": None,
                         "field_value": [45046, 45047],
-                        "value": "value",
+                        "value": None,
                     }
                 ],
             },
@@ -255,9 +255,9 @@ class TestAsyncServers:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
+                        "field_name": None,
                         "field_value": [45046, 45047],
-                        "value": "value",
+                        "value": None,
                     }
                 ],
             },
