@@ -27,7 +27,7 @@ class TestInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
         )
         assert_matches_type(WaapInsightSilence, insight_silence, path=["response"])
@@ -38,7 +38,7 @@ class TestInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -50,7 +50,7 @@ class TestInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
         )
 
@@ -65,7 +65,7 @@ class TestInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
         ) as response:
             assert not response.is_closed
@@ -283,7 +283,7 @@ class TestAsyncInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
         )
         assert_matches_type(WaapInsightSilence, insight_silence, path=["response"])
@@ -294,7 +294,7 @@ class TestAsyncInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
             expire_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -306,7 +306,7 @@ class TestAsyncInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
         )
 
@@ -321,7 +321,7 @@ class TestAsyncInsightSilences:
             domain_id=1,
             author="author",
             comment="comment",
-            insight_type="insight_type",
+            insight_type="26f1klzn5713-56bincal4ca-60zz1k91s4",
             labels={"foo": "string"},
         ) as response:
             assert not response.is_closed

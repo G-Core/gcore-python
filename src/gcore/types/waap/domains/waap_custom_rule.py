@@ -42,7 +42,7 @@ class ActionBlock(BaseModel):
     """
 
     status_code: Optional[Literal[403, 405, 418, 429]] = None
-    """Designates the HTTP status code to deliver when a request is blocked."""
+    """A custom HTTP status code that the WAAP returns if a rule blocks a request"""
 
 
 class ActionTag(BaseModel):
@@ -355,7 +355,10 @@ class WaapCustomRule(BaseModel):
     """The unique identifier for the rule"""
 
     action: Action
-    """The action that the rule takes when triggered"""
+    """The action that the rule takes when triggered.
+
+    Only one action can be set per rule.
+    """
 
     conditions: List[Condition]
     """The conditions required for the WAAP engine to trigger the rule.

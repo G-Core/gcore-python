@@ -20,7 +20,7 @@ class WaapInsight(BaseModel):
     """The date and time the insight was first seen in ISO 8601 format"""
 
     insight_type: str
-    """The type of the insight represented as a slug"""
+    """The slug of the insight type"""
 
     labels: Dict[str, str]
     """A hash table of label names and values that apply to the insight"""

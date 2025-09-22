@@ -45,12 +45,12 @@ class TestFirewallRules:
             conditions=[
                 {
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                 }
@@ -116,12 +116,12 @@ class TestFirewallRules:
             conditions=[
                 {
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                 }
@@ -373,12 +373,12 @@ class TestAsyncFirewallRules:
             conditions=[
                 {
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                 }
@@ -444,12 +444,12 @@ class TestAsyncFirewallRules:
             conditions=[
                 {
                     "ip": {
-                        "ip_address": "192.168.1.1",
+                        "ip_address": "ip_address",
                         "negation": True,
                     },
                     "ip_range": {
-                        "lower_bound": "192.168.1.1",
-                        "upper_bound": "192.168.1.1",
+                        "lower_bound": "lower_bound",
+                        "upper_bound": "upper_bound",
                         "negation": True,
                     },
                 }

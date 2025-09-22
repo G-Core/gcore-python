@@ -25,4 +25,4 @@ class InsightListTypesParams(TypedDict, total=False):
     """Sort the response by given field."""
 
     slug: Optional[str]
-    """Filter by the slug of the insight type"""
+    """The slug of the insight type"""

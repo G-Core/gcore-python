@@ -76,7 +76,7 @@ class InsightsResource(SyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          slug: Filter by the slug of the insight type
+          slug: The slug of the insight type
 
           extra_headers: Send extra headers
 
@@ -161,7 +161,7 @@ class AsyncInsightsResource(AsyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          slug: Filter by the slug of the insight type
+          slug: The slug of the insight type
 
           extra_headers: Send extra headers
 
