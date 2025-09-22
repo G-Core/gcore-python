@@ -35,7 +35,7 @@ class TestRoleAssignments:
             role="ClientAdministrator",
             user_id=777,
             client_id=8,
-            project_id=0,
+            project_id=None,
         )
         assert_matches_type(RoleAssignment, role_assignment, path=["response"])
 
@@ -81,7 +81,7 @@ class TestRoleAssignments:
             role="ClientAdministrator",
             user_id=777,
             client_id=8,
-            project_id=0,
+            project_id=None,
         )
         assert_matches_type(RoleAssignmentUpdateDelete, role_assignment, path=["response"])
 
@@ -199,7 +199,7 @@ class TestAsyncRoleAssignments:
             role="ClientAdministrator",
             user_id=777,
             client_id=8,
-            project_id=0,
+            project_id=None,
         )
         assert_matches_type(RoleAssignment, role_assignment, path=["response"])
 
@@ -245,7 +245,7 @@ class TestAsyncRoleAssignments:
             role="ClientAdministrator",
             user_id=777,
             client_id=8,
-            project_id=0,
+            project_id=None,
         )
         assert_matches_type(RoleAssignmentUpdateDelete, role_assignment, path=["response"])
 
