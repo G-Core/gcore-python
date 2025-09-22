@@ -58,7 +58,7 @@ class CustomRulesResource(SyncAPIResource):
         conditions: Iterable[custom_rule_create_params.Condition],
         enabled: bool,
         name: str,
-        description: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -72,7 +72,8 @@ class CustomRulesResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that the rule takes when triggered
+          action: The action that the rule takes when triggered. Only one action can be set per
+              rule.
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger
@@ -134,7 +135,7 @@ class CustomRulesResource(SyncAPIResource):
 
           rule_id: The custom rule ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that a WAAP rule takes when triggered.
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger
@@ -432,7 +433,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         conditions: Iterable[custom_rule_create_params.Condition],
         enabled: bool,
         name: str,
-        description: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -446,7 +447,8 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          action: The action that the rule takes when triggered
+          action: The action that the rule takes when triggered. Only one action can be set per
+              rule.
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger
@@ -508,7 +510,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
 
           rule_id: The custom rule ID
 
-          action: The action that a WAAP rule takes when triggered
+          action: The action that a WAAP rule takes when triggered.
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger

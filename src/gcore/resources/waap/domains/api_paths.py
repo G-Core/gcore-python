@@ -75,12 +75,6 @@ class APIPathsResource(SyncAPIResource):
           path: The API path, locations that are saved for resource IDs will be put in curly
               brackets
 
-          api_groups: An array of api groups associated with the API path
-
-          api_version: The API version
-
-          tags: An array of tags associated with the API path
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -132,14 +126,10 @@ class APIPathsResource(SyncAPIResource):
 
           path_id: The path ID
 
-          api_groups: An array of api groups associated with the API path
-
           path: The updated API path. When updating the path, variables can be renamed, path
               parts can be converted to variables and vice versa.
 
-          status: The status of the discovered API path
-
-          tags: An array of tags associated with the API path
+          status: The different statuses an API path can have
 
           extra_headers: Send extra headers
 
@@ -403,12 +393,6 @@ class AsyncAPIPathsResource(AsyncAPIResource):
           path: The API path, locations that are saved for resource IDs will be put in curly
               brackets
 
-          api_groups: An array of api groups associated with the API path
-
-          api_version: The API version
-
-          tags: An array of tags associated with the API path
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -460,14 +444,10 @@ class AsyncAPIPathsResource(AsyncAPIResource):
 
           path_id: The path ID
 
-          api_groups: An array of api groups associated with the API path
-
           path: The updated API path. When updating the path, variables can be renamed, path
               parts can be converted to variables and vice versa.
 
-          status: The status of the discovered API path
-
-          tags: An array of tags associated with the API path
+          status: The different statuses an API path can have
 
           extra_headers: Send extra headers
 

@@ -27,13 +27,6 @@ class TestDomains:
     def test_method_update(self, client: Gcore) -> None:
         domain = client.waap.domains.update(
             domain_id=1,
-        )
-        assert domain is None
-
-    @parametrize
-    def test_method_update_with_all_params(self, client: Gcore) -> None:
-        domain = client.waap.domains.update(
-            domain_id=1,
             status="active",
         )
         assert domain is None
@@ -42,6 +35,7 @@ class TestDomains:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.waap.domains.with_raw_response.update(
             domain_id=1,
+            status="active",
         )
 
         assert response.is_closed is True
@@ -53,6 +47,7 @@ class TestDomains:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.waap.domains.with_streaming_response.update(
             domain_id=1,
+            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,13 +239,6 @@ class TestAsyncDomains:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         domain = await async_client.waap.domains.update(
             domain_id=1,
-        )
-        assert domain is None
-
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        domain = await async_client.waap.domains.update(
-            domain_id=1,
             status="active",
         )
         assert domain is None
@@ -259,6 +247,7 @@ class TestAsyncDomains:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.waap.domains.with_raw_response.update(
             domain_id=1,
+            status="active",
         )
 
         assert response.is_closed is True
@@ -270,6 +259,7 @@ class TestAsyncDomains:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.waap.domains.with_streaming_response.update(
             domain_id=1,
+            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

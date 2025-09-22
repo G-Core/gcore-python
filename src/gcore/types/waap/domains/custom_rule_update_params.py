@@ -39,7 +39,7 @@ class CustomRuleUpdateParams(TypedDict, total=False):
     """The domain ID"""
 
     action: Optional[Action]
-    """The action that a WAAP rule takes when triggered"""
+    """The action that a WAAP rule takes when triggered."""
 
     conditions: Optional[Iterable[Condition]]
     """The conditions required for the WAAP engine to trigger the rule.
@@ -59,7 +59,7 @@ class CustomRuleUpdateParams(TypedDict, total=False):
 
 
 class ActionBlock(TypedDict, total=False):
-    action_duration: Optional[str]
+    action_duration: str
     """How long a rule's block action will apply to subsequent requests.
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
@@ -67,8 +67,8 @@ class ActionBlock(TypedDict, total=False):
     intervals are not allowed.
     """
 
-    status_code: Optional[Literal[403, 405, 418, 429]]
-    """Designates the HTTP status code to deliver when a request is blocked."""
+    status_code: Literal[403, 405, 418, 429]
+    """A custom HTTP status code that the WAAP returns if a rule blocks a request"""
 
 
 class ActionTag(TypedDict, total=False):
@@ -77,25 +77,25 @@ class ActionTag(TypedDict, total=False):
 
 
 class Action(TypedDict, total=False):
-    allow: Optional[object]
+    allow: object
     """The WAAP allowed the request"""
 
-    block: Optional[ActionBlock]
+    block: ActionBlock
     """
     WAAP block action behavior could be configured with response status code and
     action duration.
     """
 
-    captcha: Optional[object]
+    captcha: object
     """The WAAP presented the user with a captcha"""
 
-    handshake: Optional[object]
+    handshake: object
     """The WAAP performed automatic browser validation"""
 
-    monitor: Optional[object]
+    monitor: object
     """The WAAP monitored the request but took no action"""
 
-    tag: Optional[ActionTag]
+    tag: ActionTag
     """WAAP tag action gets a list of tags to tag the request scope with"""
 
 
@@ -221,15 +221,13 @@ class ConditionRequestRate(TypedDict, total=False):
     triggering a request rate condition
     """
 
-    http_methods: Optional[
-        List[Literal["CONNECT", "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
-    ]
+    http_methods: List[Literal["CONNECT", "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
     """Possible HTTP request methods that can trigger a request rate condition"""
 
-    ips: Optional[SequenceNotStr[str]]
+    ips: SequenceNotStr[str]
     """A list of source IPs that can trigger a request rate condition"""
 
-    user_defined_tag: Optional[str]
+    user_defined_tag: str
     """
     A user-defined tag that can be included in incoming requests and used to trigger
     a request rate condition
@@ -313,62 +311,62 @@ class ConditionUserDefinedTags(TypedDict, total=False):
 
 
 class Condition(TypedDict, total=False):
-    content_type: Optional[ConditionContentType]
+    content_type: ConditionContentType
     """Match the requested Content-Type"""
 
-    country: Optional[ConditionCountry]
+    country: ConditionCountry
     """Match the country that the request originated from"""
 
-    file_extension: Optional[ConditionFileExtension]
+    file_extension: ConditionFileExtension
     """Match the incoming file extension"""
 
-    header: Optional[ConditionHeader]
+    header: ConditionHeader
     """Match an incoming request header"""
 
-    header_exists: Optional[ConditionHeaderExists]
+    header_exists: ConditionHeaderExists
     """Match when an incoming request header is present"""
 
-    http_method: Optional[ConditionHTTPMethod]
+    http_method: ConditionHTTPMethod
     """Match the incoming HTTP method"""
 
-    ip: Optional[ConditionIP]
+    ip: ConditionIP
     """Match the incoming request against a single IP address"""
 
-    ip_range: Optional[ConditionIPRange]
+    ip_range: ConditionIPRange
     """Match the incoming request against an IP range"""
 
-    organization: Optional[ConditionOrganization]
+    organization: ConditionOrganization
     """
     Match the organization the request originated from, as determined by a WHOIS
     lookup of the requesting IP
     """
 
-    owner_types: Optional[ConditionOwnerTypes]
+    owner_types: ConditionOwnerTypes
     """
     Match the type of organization that owns the IP address making an incoming
     request
     """
 
-    request_rate: Optional[ConditionRequestRate]
+    request_rate: ConditionRequestRate
     """Match the rate at which requests come in that match certain conditions"""
 
-    response_header: Optional[ConditionResponseHeader]
+    response_header: ConditionResponseHeader
     """Match a response header"""
 
-    response_header_exists: Optional[ConditionResponseHeaderExists]
+    response_header_exists: ConditionResponseHeaderExists
     """Match when a response header is present"""
 
-    session_request_count: Optional[ConditionSessionRequestCount]
+    session_request_count: ConditionSessionRequestCount
     """Match the number of dynamic page requests made in a WAAP session"""
 
-    tags: Optional[ConditionTags]
+    tags: ConditionTags
     """Matches requests based on specified tags"""
 
-    url: Optional[ConditionURL]
+    url: ConditionURL
     """Match the incoming request URL"""
 
-    user_agent: Optional[ConditionUserAgent]
+    user_agent: ConditionUserAgent
     """Match the user agent making the request"""
 
-    user_defined_tags: Optional[ConditionUserDefinedTags]
+    user_defined_tags: ConditionUserDefinedTags
     """Matches requests based on user-defined tags"""
