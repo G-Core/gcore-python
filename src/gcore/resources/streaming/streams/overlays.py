@@ -65,6 +65,7 @@ class OverlaysResource(SyncAPIResource):
         There are can be more that 1 overlay over a stream, which are small or stretched
         over full frame. Overlays can have transparent areas. Frequency of update is 1
         FPS. Automatic size scaling for Adaptative Bitrate qualities is applied.
+
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/coffee_run_overlays.gif)
 
         How to activate and use in simple steps:
@@ -73,12 +74,16 @@ class OverlaysResource(SyncAPIResource):
         - Set “`html_overlay`” attribute to "true" for a stream
         - Set array of overlays
         - Start or restart your stream again
-        - Enjoy :-) For the first time an overlay should be enabled **before** start
-          pushing of a live stream. If you are pushing the stream already (stream is
-          alive and you are activating overlay for the first time), then overlay will
-          become active after restart pushing. Once you activate the overlay for the
-          stream for the first time, you can add, change, move, delete widgets on the
-          fly even during a live stream with no affection on a result stream.
+        - Enjoy :-)
+
+        For the first time an overlay should be enabled **before** start pushing of a
+        live stream. If you are pushing the stream already (stream is alive and you are
+        activating overlay for the first time), then overlay will become active after
+        restart pushing.
+
+        Once you activate the overlay for the stream for the first time, you can add,
+        change, move, delete widgets on the fly even during a live stream with no
+        affection on a result stream.
 
         Tech limits:
 
@@ -105,13 +110,16 @@ class OverlaysResource(SyncAPIResource):
           can be stopped automatically, and the ability to insert widgets itself is
           banned.
         - If feature is disabled, you will receive HTTP code: 422. Error text: Feature
-          disabled. Contact support to enable. Please, pay attention to the content of
-          HTML widges you use. If you don't trust them, then you shouldn't use them, as
-          their result will be displayed in live stream to all users. **Will there be a
-          widget in the recording?** Right now overlay widgets are sent to the end
-          viewer in the HLS/DASH streams, but are not recorded due to technical
-          limitations. We are working to ensure that widgets remain in the recordings as
-          well. Follow the news.
+          disabled. Contact support to enable.
+
+        Please, pay attention to the content of HTML widges you use. If you don't trust
+        them, then you shouldn't use them, as their result will be displayed in live
+        stream to all users.
+
+        **Will there be a widget in the recording?** Right now overlay widgets are sent
+        to the end viewer in the HLS/DASH streams, but are not recorded due to technical
+        limitations. We are working to ensure that widgets remain in the recordings as
+        well. Follow the news.
 
         Args:
           extra_headers: Send extra headers
@@ -362,6 +370,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         There are can be more that 1 overlay over a stream, which are small or stretched
         over full frame. Overlays can have transparent areas. Frequency of update is 1
         FPS. Automatic size scaling for Adaptative Bitrate qualities is applied.
+
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/coffee_run_overlays.gif)
 
         How to activate and use in simple steps:
@@ -370,12 +379,16 @@ class AsyncOverlaysResource(AsyncAPIResource):
         - Set “`html_overlay`” attribute to "true" for a stream
         - Set array of overlays
         - Start or restart your stream again
-        - Enjoy :-) For the first time an overlay should be enabled **before** start
-          pushing of a live stream. If you are pushing the stream already (stream is
-          alive and you are activating overlay for the first time), then overlay will
-          become active after restart pushing. Once you activate the overlay for the
-          stream for the first time, you can add, change, move, delete widgets on the
-          fly even during a live stream with no affection on a result stream.
+        - Enjoy :-)
+
+        For the first time an overlay should be enabled **before** start pushing of a
+        live stream. If you are pushing the stream already (stream is alive and you are
+        activating overlay for the first time), then overlay will become active after
+        restart pushing.
+
+        Once you activate the overlay for the stream for the first time, you can add,
+        change, move, delete widgets on the fly even during a live stream with no
+        affection on a result stream.
 
         Tech limits:
 
@@ -402,13 +415,16 @@ class AsyncOverlaysResource(AsyncAPIResource):
           can be stopped automatically, and the ability to insert widgets itself is
           banned.
         - If feature is disabled, you will receive HTTP code: 422. Error text: Feature
-          disabled. Contact support to enable. Please, pay attention to the content of
-          HTML widges you use. If you don't trust them, then you shouldn't use them, as
-          their result will be displayed in live stream to all users. **Will there be a
-          widget in the recording?** Right now overlay widgets are sent to the end
-          viewer in the HLS/DASH streams, but are not recorded due to technical
-          limitations. We are working to ensure that widgets remain in the recordings as
-          well. Follow the news.
+          disabled. Contact support to enable.
+
+        Please, pay attention to the content of HTML widges you use. If you don't trust
+        them, then you shouldn't use them, as their result will be displayed in live
+        stream to all users.
+
+        **Will there be a widget in the recording?** Right now overlay widgets are sent
+        to the end viewer in the HLS/DASH streams, but are not recorded due to technical
+        limitations. We are working to ensure that widgets remain in the recordings as
+        well. Follow the news.
 
         Args:
           extra_headers: Send extra headers

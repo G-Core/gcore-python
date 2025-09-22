@@ -104,6 +104,7 @@ class StatisticsResource(SyncAPIResource):
         """
         Aggregates data for the specified video stream in the specified time interval.
         "interval" and "units" params working together to point aggregation interval.
+
         You can use this method to watch when stream was alive in time, and when it was
         off.
 
@@ -158,14 +159,17 @@ class StatisticsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetLiveUniqueViewersResponse:
-        """Calculates time series of unique viewers of Live streams via CDN.
+        """
+        Calculates time series of unique viewers of Live streams via CDN.
 
-        The statistics
-        are taken from the data of CDN and work regardless of which player the views
-        were made with. Works similar to the method `/statistics/cdn/uniqs`. But this
-        allows you to break down data with the specified granularity: minutes, hours,
-        days. Based on this method, a graph of unique views in the Customer Portal is
-        built.
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Works similar to the method `/statistics/cdn/uniqs`. But this allows you to
+        break down data with the specified granularity: minutes, hours, days.
+
+        Based on this method, a graph of unique views in the Customer Portal is built.
+
         ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
@@ -226,11 +230,14 @@ class StatisticsResource(SyncAPIResource):
         """Calculates a time series of live streams watching duration in minutes.
 
         Views of
-        only those streams that meet the specified filters are summed up. The statistics
-        are taken from the data of CDN and work regardless of which player the views
-        were made with. Please note that the result for each time interval is in
-        minutes, it is rounded to the nearest upper integer. You cannot use the sum of
-        all intervals as the total watch time value; instead, use the /total method.
+        only those streams that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Please note that the result for each time interval is in minutes, it is rounded
+        to the nearest upper integer. You cannot use the sum of all intervals as the
+        total watch time value; instead, use the /total method.
 
         Args:
           from_: Start of the time period for counting minutes of watching. Format is date time
@@ -291,9 +298,10 @@ class StatisticsResource(SyncAPIResource):
         """Calculates the total duration of live streams watching in minutes.
 
         Views of only
-        those streams that meet the specified filters are summed up. The statistics are
-        taken from the data of CDN and work regardless of which player the views were
-        made with.
+        those streams that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
 
         Args:
           client_user_id: Filter by field "`client_user_id`"
@@ -400,12 +408,13 @@ class StatisticsResource(SyncAPIResource):
     ) -> PopularVideos:
         """
         Aggregates the number of views for all client videos, grouping them by id and
-        sort from most popular to less in the built-in player. Note. This method
-        operates only on data collected by the built-in HTML player. It will not show
-        statistics if you are using another player or viewing in native OS players
-        through direct .m3u8/.mpd/.mp4 links. For such cases, use calculations through
-        CDN (look at method /statistics/cdn/uniqs) or statistics of the players you have
-        chosen.
+        sort from most popular to less in the built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -560,15 +569,19 @@ class StatisticsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewers:
-        """Get the number of unique viewers in the built-in player.
+        """
+        Get the number of unique viewers in the built-in player.
 
-        Counts the number of
-        unique IPs. Allows flexible grouping and filtering. The fields in the response
-        depend on the selected grouping. Note. This method operates only on data
-        collected by the built-in HTML player. It will not show statistics if you are
-        using another player or viewing in native OS players through direct
-        .m3u8/.mpd/.mp4 links. For such cases, use calculations through CDN (look at
-        method /statistics/cdn/uniqs) or statistics of the players you have chosen.
+        Counts the number of unique IPs.
+
+        Allows flexible grouping and filtering. The fields in the response depend on the
+        selected grouping.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -636,30 +649,44 @@ class StatisticsResource(SyncAPIResource):
         """Сounts the number of unique viewers of a video entity over CDN.
 
         It doesn't
-        matter what player you used. All unique viewers for the specified period of time
-        are counted. **How does it work?** Calculating the number of unique viewers for
-        a Live stream or VOD over CDN involves aggregating and analyzing various metrics
-        to ensure each individual viewer is counted only once, regardless of how many
-        times they connect or disconnect during the stream. This method provides
-        statistics for any video viewing by unique users, regardless of viewing method
-        and a player you used. Thus, this is the most important difference from viewing
-        through the built-in player:
+        matter what player you used.
+
+        All unique viewers for the specified period of time are counted.
+
+        **How does it work?**
+
+        Calculating the number of unique viewers for a Live stream or VOD over CDN
+        involves aggregating and analyzing various metrics to ensure each individual
+        viewer is counted only once, regardless of how many times they connect or
+        disconnect during the stream.
+
+        This method provides statistics for any video viewing by unique users,
+        regardless of viewing method and a player you used. Thus, this is the most
+        important difference from viewing through the built-in player:
 
         - In method /statistics/uniqs viewers of the built-in player are tracked only.
-        - But this method tracks all viewers from everywhere. This method is a
-          combination of two other Live and VOD detailed methods. If you need detailed
-          information, then see the methods: `/statistics/stream/viewers` and
-          `/statistics/vod/viewers`. **Data Processing and Deduplication** We us IP
-          Address & User-Agent combination. Each unique combination of IP address and
-          User-Agent string might be considered a unique viewer. This approach allows to
-          accurately estimate the number of unique viewers. However, this is not
-          foolproof due to NAT (Network Address Translation) and shared networks. Thus
-          if your users fall under such restrictions, then the number of unique viewers
-          may be higher than calculated. **Why is there no "Unique Views" method?**
-          Based on CDN data, we can calculate the number of unique viewers only. Thus
-          only your player will be able to count the number of unique views (clicks on
-          the Play button) within the player session (i.e. how many times 1 unique
-          viewer clicked the Play button within a unique player's session).
+        - But this method tracks all viewers from everywhere.
+
+        This method is a combination of two other Live and VOD detailed methods. If you
+        need detailed information, then see the methods: `/statistics/stream/viewers`
+        and `/statistics/vod/viewers`.
+
+        **Data Processing and Deduplication**
+
+        We us IP Address & User-Agent combination. Each unique combination of IP address
+        and User-Agent string might be considered a unique viewer.
+
+        This approach allows to accurately estimate the number of unique viewers.
+        However, this is not foolproof due to NAT (Network Address Translation) and
+        shared networks. Thus if your users fall under such restrictions, then the
+        number of unique viewers may be higher than calculated.
+
+        **Why is there no "Unique Views" method?**
+
+        Based on CDN data, we can calculate the number of unique viewers only. Thus only
+        your player will be able to count the number of unique views (clicks on the Play
+        button) within the player session (i.e. how many times 1 unique viewer clicked
+        the Play button within a unique player's session).
 
         Args:
           date_from: Start of time frame. Format is date time in ISO 8601.
@@ -667,10 +694,13 @@ class StatisticsResource(SyncAPIResource):
           date_to: End of time frame. Format is date time in ISO 8601.
 
           id: Filter by entity's id. Put ID of a Live stream, VOD or a playlist to be
-              calculated. If the value is omitted, then the calculation is done for all
-              videos/streams of the specified type. When using this "id" parameter, be sure to
-              specify the "type" parameter too. If you do not specify a type, the "id" will be
-              ignored.
+              calculated.
+
+              If the value is omitted, then the calculation is done for all videos/streams of
+              the specified type.
+
+              When using this "id" parameter, be sure to specify the "type" parameter too. If
+              you do not specify a type, the "id" will be ignored.
 
           type: Filter by entity's type
 
@@ -720,15 +750,17 @@ class StatisticsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Views:
-        """Get the number of views in the built-in player.
+        """
+        Get the number of views in the built-in player.
 
-        Allows flexible grouping and
-        filtering. The fields in the response depend on the selected grouping. Note.
-        This method operates only on data collected by the built-in HTML player. It will
-        not show statistics if you are using another player or viewing in native OS
-        players through direct .m3u8/.mpd/.mp4 links. For such cases, use calculations
-        through CDN (look at method /statistics/cdn/uniqs) or statistics of the players
-        you have chosen.
+        Allows flexible grouping and filtering. The fields in the response depend on the
+        selected grouping.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -793,11 +825,13 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsByBrowser:
         """
         Aggregates the number of views for all client videos, grouping them by browsers
-        in the built-in player. Note. This method operates only on data collected by the
-        built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        in the built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -844,6 +878,7 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsByCountry:
         """
         Aggregates the number of views grouping them by country in the built-in player.
+
         Note. This method operates only on data collected by the built-in HTML player.
         It will not show statistics if you are using another player or viewing in native
         OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
@@ -895,11 +930,13 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsByHostname:
         """
         Aggregates the number of views, grouping them by "host" domain name the built-in
-        player was embeded to. Note. This method operates only on data collected by the
-        built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        player was embeded to.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -946,11 +983,13 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsByOperatingSystem:
         """
         Aggregates the number of views for all client videos, grouping them by device
-        OSs in the built-in player. Note. This method operates only on data collected by
-        the built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        OSs in the built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -997,11 +1036,13 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsByReferer:
         """
         Aggregates the number of views, grouping them by "referer" URL of pages the
-        built-in player was embeded to. Note. This method operates only on data
-        collected by the built-in HTML player. It will not show statistics if you are
-        using another player or viewing in native OS players through direct
-        .m3u8/.mpd/.mp4 links. For such cases, use calculations through CDN (look at
-        method /statistics/cdn/uniqs) or statistics of the players you have chosen.
+        built-in player was embeded to.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -1048,11 +1089,13 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsByRegion:
         """
         Aggregates the number of views grouping them by regions of countries in the
-        built-in player. Note. This method operates only on data collected by the
-        built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -1101,14 +1144,18 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsHeatmap:
         """
         Shows information about what part of the video your viewers watched in the
-        built-in player. This way you can find out how many viewers started watching the
-        video, and where they stopped watching instead of watching the entire video to
-        the end. Has different format of response depends on query param "type". Note.
-        This method operates only on data collected by the built-in HTML player. It will
-        not show statistics if you are using another player or viewing in native OS
-        players through direct .m3u8/.mpd/.mp4 links. For such cases, use calculations
-        through CDN (look at method /statistics/cdn/uniqs) or statistics of the players
-        you have chosen.
+        built-in player.
+
+        This way you can find out how many viewers started watching the video, and where
+        they stopped watching instead of watching the entire video to the end.
+
+        Has different format of response depends on query param "type".
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -1161,8 +1208,10 @@ class StatisticsResource(SyncAPIResource):
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the duration in minutes for all processed and
-        undeleted client videos. The data is updated every 8 hours, it does not make
-        sense to set the granulation less than 1 day.
+        undeleted client videos.
+
+        The data is updated every 8 hours, it does not make sense to set the granulation
+        less than 1 day.
 
         Args:
           from_: Start of time frame. Datetime in ISO 8601 format.
@@ -1209,8 +1258,10 @@ class StatisticsResource(SyncAPIResource):
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the transcoding time in minutes for all processed
-        client videos. The data is updated every 8 hours, it does not make sense to set
-        the granulation less than 1 day.
+        client videos.
+
+        The data is updated every 8 hours, it does not make sense to set the granulation
+        less than 1 day.
 
         Args:
           from_: Start of time frame. Datetime in ISO 8601 format.
@@ -1258,13 +1309,17 @@ class StatisticsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
-        """Calculates time series of unique viewers of VOD via CDN.
+        """
+        Calculates time series of unique viewers of VOD via CDN.
 
-        The statistics are
-        taken from the data of CDN and work regardless of which player the views were
-        made with. Works similar to the method `/statistics/cdn/uniqs`. But this allows
-        you to break down data with the specified granularity: minutes, hours, days.
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Works similar to the method `/statistics/cdn/uniqs`. But this allows you to
+        break down data with the specified granularity: minutes, hours, days.
+
         Based on this method, a graph of unique views in the Customer Portal is built.
+
         ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
@@ -1325,11 +1380,14 @@ class StatisticsResource(SyncAPIResource):
         """Calculates a time series of video watching duration in minutes.
 
         Views of only
-        those videos that meet the specified filters are summed up. The statistics are
-        taken from the data of CDN and work regardless of which player the views were
-        made with. Please note that the result for each time interval is in minutes, it
-        is rounded to the nearest upper integer. You cannot use the sum of all intervals
-        as the total watch time value; instead, use the /total method.
+        those videos that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Please note that the result for each time interval is in minutes, it is rounded
+        to the nearest upper integer. You cannot use the sum of all intervals as the
+        total watch time value; instead, use the /total method.
 
         Args:
           from_: Start of the time period for counting minutes of watching. Format is date time
@@ -1390,9 +1448,10 @@ class StatisticsResource(SyncAPIResource):
         """Calculates the total duration of video watching in minutes.
 
         Views of only those
-        videos that meet the specified filters are summed up. The statistics are taken
-        from the data of CDN and work regardless of which player the views were made
-        with.
+        videos that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
 
         Args:
           client_user_id: Filter by field "`client_user_id`"
@@ -1472,6 +1531,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         """
         Aggregates data for the specified video stream in the specified time interval.
         "interval" and "units" params working together to point aggregation interval.
+
         You can use this method to watch when stream was alive in time, and when it was
         off.
 
@@ -1526,14 +1586,17 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetLiveUniqueViewersResponse:
-        """Calculates time series of unique viewers of Live streams via CDN.
+        """
+        Calculates time series of unique viewers of Live streams via CDN.
 
-        The statistics
-        are taken from the data of CDN and work regardless of which player the views
-        were made with. Works similar to the method `/statistics/cdn/uniqs`. But this
-        allows you to break down data with the specified granularity: minutes, hours,
-        days. Based on this method, a graph of unique views in the Customer Portal is
-        built.
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Works similar to the method `/statistics/cdn/uniqs`. But this allows you to
+        break down data with the specified granularity: minutes, hours, days.
+
+        Based on this method, a graph of unique views in the Customer Portal is built.
+
         ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
@@ -1594,11 +1657,14 @@ class AsyncStatisticsResource(AsyncAPIResource):
         """Calculates a time series of live streams watching duration in minutes.
 
         Views of
-        only those streams that meet the specified filters are summed up. The statistics
-        are taken from the data of CDN and work regardless of which player the views
-        were made with. Please note that the result for each time interval is in
-        minutes, it is rounded to the nearest upper integer. You cannot use the sum of
-        all intervals as the total watch time value; instead, use the /total method.
+        only those streams that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Please note that the result for each time interval is in minutes, it is rounded
+        to the nearest upper integer. You cannot use the sum of all intervals as the
+        total watch time value; instead, use the /total method.
 
         Args:
           from_: Start of the time period for counting minutes of watching. Format is date time
@@ -1659,9 +1725,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
         """Calculates the total duration of live streams watching in minutes.
 
         Views of only
-        those streams that meet the specified filters are summed up. The statistics are
-        taken from the data of CDN and work regardless of which player the views were
-        made with.
+        those streams that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
 
         Args:
           client_user_id: Filter by field "`client_user_id`"
@@ -1768,12 +1835,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> PopularVideos:
         """
         Aggregates the number of views for all client videos, grouping them by id and
-        sort from most popular to less in the built-in player. Note. This method
-        operates only on data collected by the built-in HTML player. It will not show
-        statistics if you are using another player or viewing in native OS players
-        through direct .m3u8/.mpd/.mp4 links. For such cases, use calculations through
-        CDN (look at method /statistics/cdn/uniqs) or statistics of the players you have
-        chosen.
+        sort from most popular to less in the built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -1928,15 +1996,19 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewers:
-        """Get the number of unique viewers in the built-in player.
+        """
+        Get the number of unique viewers in the built-in player.
 
-        Counts the number of
-        unique IPs. Allows flexible grouping and filtering. The fields in the response
-        depend on the selected grouping. Note. This method operates only on data
-        collected by the built-in HTML player. It will not show statistics if you are
-        using another player or viewing in native OS players through direct
-        .m3u8/.mpd/.mp4 links. For such cases, use calculations through CDN (look at
-        method /statistics/cdn/uniqs) or statistics of the players you have chosen.
+        Counts the number of unique IPs.
+
+        Allows flexible grouping and filtering. The fields in the response depend on the
+        selected grouping.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2004,30 +2076,44 @@ class AsyncStatisticsResource(AsyncAPIResource):
         """Сounts the number of unique viewers of a video entity over CDN.
 
         It doesn't
-        matter what player you used. All unique viewers for the specified period of time
-        are counted. **How does it work?** Calculating the number of unique viewers for
-        a Live stream or VOD over CDN involves aggregating and analyzing various metrics
-        to ensure each individual viewer is counted only once, regardless of how many
-        times they connect or disconnect during the stream. This method provides
-        statistics for any video viewing by unique users, regardless of viewing method
-        and a player you used. Thus, this is the most important difference from viewing
-        through the built-in player:
+        matter what player you used.
+
+        All unique viewers for the specified period of time are counted.
+
+        **How does it work?**
+
+        Calculating the number of unique viewers for a Live stream or VOD over CDN
+        involves aggregating and analyzing various metrics to ensure each individual
+        viewer is counted only once, regardless of how many times they connect or
+        disconnect during the stream.
+
+        This method provides statistics for any video viewing by unique users,
+        regardless of viewing method and a player you used. Thus, this is the most
+        important difference from viewing through the built-in player:
 
         - In method /statistics/uniqs viewers of the built-in player are tracked only.
-        - But this method tracks all viewers from everywhere. This method is a
-          combination of two other Live and VOD detailed methods. If you need detailed
-          information, then see the methods: `/statistics/stream/viewers` and
-          `/statistics/vod/viewers`. **Data Processing and Deduplication** We us IP
-          Address & User-Agent combination. Each unique combination of IP address and
-          User-Agent string might be considered a unique viewer. This approach allows to
-          accurately estimate the number of unique viewers. However, this is not
-          foolproof due to NAT (Network Address Translation) and shared networks. Thus
-          if your users fall under such restrictions, then the number of unique viewers
-          may be higher than calculated. **Why is there no "Unique Views" method?**
-          Based on CDN data, we can calculate the number of unique viewers only. Thus
-          only your player will be able to count the number of unique views (clicks on
-          the Play button) within the player session (i.e. how many times 1 unique
-          viewer clicked the Play button within a unique player's session).
+        - But this method tracks all viewers from everywhere.
+
+        This method is a combination of two other Live and VOD detailed methods. If you
+        need detailed information, then see the methods: `/statistics/stream/viewers`
+        and `/statistics/vod/viewers`.
+
+        **Data Processing and Deduplication**
+
+        We us IP Address & User-Agent combination. Each unique combination of IP address
+        and User-Agent string might be considered a unique viewer.
+
+        This approach allows to accurately estimate the number of unique viewers.
+        However, this is not foolproof due to NAT (Network Address Translation) and
+        shared networks. Thus if your users fall under such restrictions, then the
+        number of unique viewers may be higher than calculated.
+
+        **Why is there no "Unique Views" method?**
+
+        Based on CDN data, we can calculate the number of unique viewers only. Thus only
+        your player will be able to count the number of unique views (clicks on the Play
+        button) within the player session (i.e. how many times 1 unique viewer clicked
+        the Play button within a unique player's session).
 
         Args:
           date_from: Start of time frame. Format is date time in ISO 8601.
@@ -2035,10 +2121,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
           date_to: End of time frame. Format is date time in ISO 8601.
 
           id: Filter by entity's id. Put ID of a Live stream, VOD or a playlist to be
-              calculated. If the value is omitted, then the calculation is done for all
-              videos/streams of the specified type. When using this "id" parameter, be sure to
-              specify the "type" parameter too. If you do not specify a type, the "id" will be
-              ignored.
+              calculated.
+
+              If the value is omitted, then the calculation is done for all videos/streams of
+              the specified type.
+
+              When using this "id" parameter, be sure to specify the "type" parameter too. If
+              you do not specify a type, the "id" will be ignored.
 
           type: Filter by entity's type
 
@@ -2088,15 +2177,17 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Views:
-        """Get the number of views in the built-in player.
+        """
+        Get the number of views in the built-in player.
 
-        Allows flexible grouping and
-        filtering. The fields in the response depend on the selected grouping. Note.
-        This method operates only on data collected by the built-in HTML player. It will
-        not show statistics if you are using another player or viewing in native OS
-        players through direct .m3u8/.mpd/.mp4 links. For such cases, use calculations
-        through CDN (look at method /statistics/cdn/uniqs) or statistics of the players
-        you have chosen.
+        Allows flexible grouping and filtering. The fields in the response depend on the
+        selected grouping.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2161,11 +2252,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsByBrowser:
         """
         Aggregates the number of views for all client videos, grouping them by browsers
-        in the built-in player. Note. This method operates only on data collected by the
-        built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        in the built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2212,6 +2305,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsByCountry:
         """
         Aggregates the number of views grouping them by country in the built-in player.
+
         Note. This method operates only on data collected by the built-in HTML player.
         It will not show statistics if you are using another player or viewing in native
         OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
@@ -2263,11 +2357,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsByHostname:
         """
         Aggregates the number of views, grouping them by "host" domain name the built-in
-        player was embeded to. Note. This method operates only on data collected by the
-        built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        player was embeded to.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2314,11 +2410,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsByOperatingSystem:
         """
         Aggregates the number of views for all client videos, grouping them by device
-        OSs in the built-in player. Note. This method operates only on data collected by
-        the built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        OSs in the built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2365,11 +2463,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsByReferer:
         """
         Aggregates the number of views, grouping them by "referer" URL of pages the
-        built-in player was embeded to. Note. This method operates only on data
-        collected by the built-in HTML player. It will not show statistics if you are
-        using another player or viewing in native OS players through direct
-        .m3u8/.mpd/.mp4 links. For such cases, use calculations through CDN (look at
-        method /statistics/cdn/uniqs) or statistics of the players you have chosen.
+        built-in player was embeded to.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2416,11 +2516,13 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsByRegion:
         """
         Aggregates the number of views grouping them by regions of countries in the
-        built-in player. Note. This method operates only on data collected by the
-        built-in HTML player. It will not show statistics if you are using another
-        player or viewing in native OS players through direct .m3u8/.mpd/.mp4 links. For
-        such cases, use calculations through CDN (look at method /statistics/cdn/uniqs)
-        or statistics of the players you have chosen.
+        built-in player.
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2469,14 +2571,18 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsHeatmap:
         """
         Shows information about what part of the video your viewers watched in the
-        built-in player. This way you can find out how many viewers started watching the
-        video, and where they stopped watching instead of watching the entire video to
-        the end. Has different format of response depends on query param "type". Note.
-        This method operates only on data collected by the built-in HTML player. It will
-        not show statistics if you are using another player or viewing in native OS
-        players through direct .m3u8/.mpd/.mp4 links. For such cases, use calculations
-        through CDN (look at method /statistics/cdn/uniqs) or statistics of the players
-        you have chosen.
+        built-in player.
+
+        This way you can find out how many viewers started watching the video, and where
+        they stopped watching instead of watching the entire video to the end.
+
+        Has different format of response depends on query param "type".
+
+        Note. This method operates only on data collected by the built-in HTML player.
+        It will not show statistics if you are using another player or viewing in native
+        OS players through direct .m3u8/.mpd/.mp4 links. For such cases, use
+        calculations through CDN (look at method /statistics/cdn/uniqs) or statistics of
+        the players you have chosen.
 
         Args:
           date_from: Start of time frame. Datetime in ISO 8601 format.
@@ -2529,8 +2635,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the duration in minutes for all processed and
-        undeleted client videos. The data is updated every 8 hours, it does not make
-        sense to set the granulation less than 1 day.
+        undeleted client videos.
+
+        The data is updated every 8 hours, it does not make sense to set the granulation
+        less than 1 day.
 
         Args:
           from_: Start of time frame. Datetime in ISO 8601 format.
@@ -2577,8 +2685,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> VodStatisticsSeries:
         """
         Calculates time series of the transcoding time in minutes for all processed
-        client videos. The data is updated every 8 hours, it does not make sense to set
-        the granulation less than 1 day.
+        client videos.
+
+        The data is updated every 8 hours, it does not make sense to set the granulation
+        less than 1 day.
 
         Args:
           from_: Start of time frame. Datetime in ISO 8601 format.
@@ -2626,13 +2736,17 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VodStatisticsSeries:
-        """Calculates time series of unique viewers of VOD via CDN.
+        """
+        Calculates time series of unique viewers of VOD via CDN.
 
-        The statistics are
-        taken from the data of CDN and work regardless of which player the views were
-        made with. Works similar to the method `/statistics/cdn/uniqs`. But this allows
-        you to break down data with the specified granularity: minutes, hours, days.
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Works similar to the method `/statistics/cdn/uniqs`. But this allows you to
+        break down data with the specified granularity: minutes, hours, days.
+
         Based on this method, a graph of unique views in the Customer Portal is built.
+
         ![Unique viewers via CDN in Customer Portal](https://demo-files.gvideo.io/apidocs/cdn_unique_viewers.png)
 
         Args:
@@ -2693,11 +2807,14 @@ class AsyncStatisticsResource(AsyncAPIResource):
         """Calculates a time series of video watching duration in minutes.
 
         Views of only
-        those videos that meet the specified filters are summed up. The statistics are
-        taken from the data of CDN and work regardless of which player the views were
-        made with. Please note that the result for each time interval is in minutes, it
-        is rounded to the nearest upper integer. You cannot use the sum of all intervals
-        as the total watch time value; instead, use the /total method.
+        those videos that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
+
+        Please note that the result for each time interval is in minutes, it is rounded
+        to the nearest upper integer. You cannot use the sum of all intervals as the
+        total watch time value; instead, use the /total method.
 
         Args:
           from_: Start of the time period for counting minutes of watching. Format is date time
@@ -2758,9 +2875,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
         """Calculates the total duration of video watching in minutes.
 
         Views of only those
-        videos that meet the specified filters are summed up. The statistics are taken
-        from the data of CDN and work regardless of which player the views were made
-        with.
+        videos that meet the specified filters are summed up.
+
+        The statistics are taken from the data of CDN and work regardless of which
+        player the views were made with.
 
         Args:
           client_user_id: Filter by field "`client_user_id`"

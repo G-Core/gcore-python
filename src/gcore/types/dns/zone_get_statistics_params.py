@@ -11,20 +11,23 @@ __all__ = ["ZoneGetStatisticsParams"]
 
 class ZoneGetStatisticsParams(TypedDict, total=False):
     from_: Annotated[int, PropertyInfo(alias="from")]
-    """
-    Beginning of the requested time period (Unix Timestamp, UTC.) In a query string:
-    &from=1709068637
+    """Beginning of the requested time period (Unix Timestamp, UTC.)
+
+    In a query string: &from=1709068637
     """
 
     granularity: str
     """
     Granularity parameter string is a sequence of decimal numbers, each with
-    optional fraction and a unit suffix, such as "300ms", "1.5h" or "2h45m". Valid
-    time units are "s", "m", "h".
+    optional fraction and a unit suffix, such as "300ms", "1.5h" or "2h45m".
+
+    Valid time units are "s", "m", "h".
     """
 
     record_type: str
-    """DNS record type. Possible values:
+    """DNS record type.
+
+    Possible values:
 
     - A
     - AAAA
@@ -37,7 +40,7 @@ class ZoneGetStatisticsParams(TypedDict, total=False):
     """
 
     to: int
-    """
-    End of the requested time period (Unix Timestamp, UTC.) In a query string:
-    &to=1709673437
+    """End of the requested time period (Unix Timestamp, UTC.)
+
+    In a query string: &to=1709673437
     """

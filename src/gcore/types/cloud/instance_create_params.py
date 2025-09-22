@@ -97,7 +97,9 @@ class InstanceCreateParams(TypedDict, total=False):
     """
 
     servergroup_id: str
-    """Placement group ID for instance placement policy. Supported group types:
+    """Placement group ID for instance placement policy.
+
+    Supported group types:
 
     - `anti-affinity`: Ensures instances are placed on different hosts for high
       availability.

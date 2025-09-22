@@ -27,20 +27,25 @@ class AdvancedRuleUpdateParams(TypedDict, total=False):
     """The name assigned to the rule"""
 
     phase: Optional[Literal["access", "header_filter", "body_filter"]]
-    """
-    The WAAP request/response phase for applying the rule. The "access" phase is
-    responsible for modifying the request before it is sent to the origin server.
+    """The WAAP request/response phase for applying the rule.
+
+    The "access" phase is responsible for modifying the request before it is sent to
+    the origin server.
+
     The "`header_filter`" phase is responsible for modifying the HTTP headers of a
-    response before they are sent back to the client. The "`body_filter`" phase is
-    responsible for modifying the body of a response before it is sent back to the
-    client.
+    response before they are sent back to the client.
+
+    The "`body_filter`" phase is responsible for modifying the body of a response
+    before it is sent back to the client.
     """
 
     source: Optional[str]
     """A CEL syntax expression that contains the rule's conditions.
 
     Allowed objects are: request, whois, session, response, tags,
-    `user_defined_tags`, `user_agent`, `client_data`. More info can be found here:
+    `user_defined_tags`, `user_agent`, `client_data`.
+
+    More info can be found here:
     https://gcore.com/docs/waap/waap-rules/advanced-rules
     """
 

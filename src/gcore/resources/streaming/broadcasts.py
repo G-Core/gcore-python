@@ -59,8 +59,10 @@ class BroadcastsResource(SyncAPIResource):
 
         - many live streams,
         - advertising,
-        - and design in one config. If you use other players or you get streams by
-          direct .m3u8/.mpd links, then you will not need this entity.
+        - and design in one config.
+
+        If you use other players or you get streams by direct .m3u8/.mpd links, then you
+        will not need this entity.
 
         Scheme of "broadcast" entity using:
         ![Scheme of "broadcast" using](https://demo-files.gvideo.io/apidocs/broadcasts.png)
@@ -289,8 +291,10 @@ class AsyncBroadcastsResource(AsyncAPIResource):
 
         - many live streams,
         - advertising,
-        - and design in one config. If you use other players or you get streams by
-          direct .m3u8/.mpd links, then you will not need this entity.
+        - and design in one config.
+
+        If you use other players or you get streams by direct .m3u8/.mpd links, then you
+        will not need this entity.
 
         Scheme of "broadcast" entity using:
         ![Scheme of "broadcast" using](https://demo-files.gvideo.io/apidocs/broadcasts.png)

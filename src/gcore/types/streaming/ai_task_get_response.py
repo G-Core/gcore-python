@@ -65,10 +65,11 @@ class AITaskGetResponseResultAIResultsTranscribe(BaseModel):
     """
 
     speech_detected: Optional[bool] = None
-    """
-    Determines whether speech was detected or not. Please note: If the task is in
-    "SUCCESS" status and speech was not found in the entire file, then "false" will
-    be indicated here and the `subtitles` field will be empty.
+    """Determines whether speech was detected or not.
+
+    Please note: If the task is in "SUCCESS" status and speech was not found in the
+    entire file, then "false" will be indicated here and the `subtitles` field will
+    be empty.
     """
 
     subtitles: Optional[List[AITaskGetResponseResultAIResultsTranscribeSubtitle]] = None

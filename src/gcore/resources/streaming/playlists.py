@@ -73,8 +73,10 @@ class PlaylistsResource(SyncAPIResource):
     ) -> PlaylistCreate:
         """
         Playlist is a curated collection of video content organized in a sequential
-        manner. This method offers several advantages and features that are typical of
-        live streaming but with more control over the content. Here's how it works:
+        manner.
+
+        This method offers several advantages and features that are typical of live
+        streaming but with more control over the content. Here's how it works:
 
         - Playlist always consists only of static VOD videos you previously uploaded to
           the system.
@@ -84,24 +86,33 @@ class PlaylistsResource(SyncAPIResource):
         - Playlist can be looped endlessly. In this case, all the videos in the list
           will be constantly repeated through the list.
         - Playlist can be programmed to be played at a specific time in the future. In
-          that case, before the start time there will be empty manifest. You can add new
-          videos to the list, remove unnecessary videos, or change the order of videos
-          in the list. But please pay attention to when the video list changes, it is
-          updated instantly on the server. This means that after saving the changed
-          list, the playlist will be reloaded for all users and it will start plays from
-          the very first element. Maximum video limit = 128 videos in a row.
+          that case, before the start time there will be empty manifest.
+
+        You can add new videos to the list, remove unnecessary videos, or change the
+        order of videos in the list. But please pay attention to when the video list
+        changes, it is updated instantly on the server. This means that after saving the
+        changed list, the playlist will be reloaded for all users and it will start
+        plays from the very first element.
+
+        Maximum video limit = 128 videos in a row.
 
         Examples of usage:
 
         - Looped video playback
-        - Scheduled playback **Looped video playback** It can be used to simulate TV
-          channel pre-programmed behaviour.
+        - Scheduled playback
+
+        **Looped video playback**
+
+        It can be used to simulate TV channel pre-programmed behaviour.
+
         - Selection: Choose a series of videos, such as TV show episodes, movies,
           tutorials, or any other relevant content.
         - Order: Arrange the selected videos in the desired sequence, much like setting
           a broadcast schedule.
         - Looping: Optionally, the playlist can be set to loop, replaying the sequence
-          once it finishes to maintain a continuous stream. Example:
+          once it finishes to maintain a continuous stream.
+
+        Example:
 
         ```
           active: true
@@ -109,9 +120,11 @@ class PlaylistsResource(SyncAPIResource):
           name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
         ```
 
-        **Scheduled playback** It can be used to simulate live events such as virtual
-        concerts, webinars, or any special broadcasts without the logistical challenges
-        of an actual live stream.
+        **Scheduled playback**
+
+        It can be used to simulate live events such as virtual concerts, webinars, or
+        any special broadcasts without the logistical challenges of an actual live
+        stream.
 
         - Timing: Set specific start time, creating the illusion of a live broadcast
           schedule.
@@ -172,8 +185,10 @@ class PlaylistsResource(SyncAPIResource):
 
           iframe_url: A URL to a built-in HTML video player with the video inside. It can be inserted
               into an iframe on your website and the video will automatically play in all
-              browsers. The player can be opened or shared via this direct link. Also the
-              video player can be integrated into your web pages using the Iframe tag.
+              browsers.
+
+              The player can be opened or shared via this direct link. Also the video player
+              can be integrated into your web pages using the Iframe tag.
 
               Please see the details in `iframe_url` attribute of /videos/{id} method.
 
@@ -193,7 +208,9 @@ class PlaylistsResource(SyncAPIResource):
               Datetime in ISO 8601 format.
 
           video_ids: A list of VOD IDs included in the playlist. Order of videos in a playlist
-              reflects the order of IDs in the array. Maximum video limit = 128.
+              reflects the order of IDs in the array.
+
+              Maximum video limit = 128.
 
           extra_headers: Send extra headers
 
@@ -303,8 +320,10 @@ class PlaylistsResource(SyncAPIResource):
 
           iframe_url: A URL to a built-in HTML video player with the video inside. It can be inserted
               into an iframe on your website and the video will automatically play in all
-              browsers. The player can be opened or shared via this direct link. Also the
-              video player can be integrated into your web pages using the Iframe tag.
+              browsers.
+
+              The player can be opened or shared via this direct link. Also the video player
+              can be integrated into your web pages using the Iframe tag.
 
               Please see the details in `iframe_url` attribute of /videos/{id} method.
 
@@ -324,7 +343,9 @@ class PlaylistsResource(SyncAPIResource):
               Datetime in ISO 8601 format.
 
           video_ids: A list of VOD IDs included in the playlist. Order of videos in a playlist
-              reflects the order of IDs in the array. Maximum video limit = 128.
+              reflects the order of IDs in the array.
+
+              Maximum video limit = 128.
 
           extra_headers: Send extra headers
 
@@ -541,8 +562,10 @@ class AsyncPlaylistsResource(AsyncAPIResource):
     ) -> PlaylistCreate:
         """
         Playlist is a curated collection of video content organized in a sequential
-        manner. This method offers several advantages and features that are typical of
-        live streaming but with more control over the content. Here's how it works:
+        manner.
+
+        This method offers several advantages and features that are typical of live
+        streaming but with more control over the content. Here's how it works:
 
         - Playlist always consists only of static VOD videos you previously uploaded to
           the system.
@@ -552,24 +575,33 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         - Playlist can be looped endlessly. In this case, all the videos in the list
           will be constantly repeated through the list.
         - Playlist can be programmed to be played at a specific time in the future. In
-          that case, before the start time there will be empty manifest. You can add new
-          videos to the list, remove unnecessary videos, or change the order of videos
-          in the list. But please pay attention to when the video list changes, it is
-          updated instantly on the server. This means that after saving the changed
-          list, the playlist will be reloaded for all users and it will start plays from
-          the very first element. Maximum video limit = 128 videos in a row.
+          that case, before the start time there will be empty manifest.
+
+        You can add new videos to the list, remove unnecessary videos, or change the
+        order of videos in the list. But please pay attention to when the video list
+        changes, it is updated instantly on the server. This means that after saving the
+        changed list, the playlist will be reloaded for all users and it will start
+        plays from the very first element.
+
+        Maximum video limit = 128 videos in a row.
 
         Examples of usage:
 
         - Looped video playback
-        - Scheduled playback **Looped video playback** It can be used to simulate TV
-          channel pre-programmed behaviour.
+        - Scheduled playback
+
+        **Looped video playback**
+
+        It can be used to simulate TV channel pre-programmed behaviour.
+
         - Selection: Choose a series of videos, such as TV show episodes, movies,
           tutorials, or any other relevant content.
         - Order: Arrange the selected videos in the desired sequence, much like setting
           a broadcast schedule.
         - Looping: Optionally, the playlist can be set to loop, replaying the sequence
-          once it finishes to maintain a continuous stream. Example:
+          once it finishes to maintain a continuous stream.
+
+        Example:
 
         ```
           active: true
@@ -577,9 +609,11 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           name: "Playlist: TV channel 'The world around us' (Programmed broadcast for 24 hours)"
         ```
 
-        **Scheduled playback** It can be used to simulate live events such as virtual
-        concerts, webinars, or any special broadcasts without the logistical challenges
-        of an actual live stream.
+        **Scheduled playback**
+
+        It can be used to simulate live events such as virtual concerts, webinars, or
+        any special broadcasts without the logistical challenges of an actual live
+        stream.
 
         - Timing: Set specific start time, creating the illusion of a live broadcast
           schedule.
@@ -640,8 +674,10 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
           iframe_url: A URL to a built-in HTML video player with the video inside. It can be inserted
               into an iframe on your website and the video will automatically play in all
-              browsers. The player can be opened or shared via this direct link. Also the
-              video player can be integrated into your web pages using the Iframe tag.
+              browsers.
+
+              The player can be opened or shared via this direct link. Also the video player
+              can be integrated into your web pages using the Iframe tag.
 
               Please see the details in `iframe_url` attribute of /videos/{id} method.
 
@@ -661,7 +697,9 @@ class AsyncPlaylistsResource(AsyncAPIResource):
               Datetime in ISO 8601 format.
 
           video_ids: A list of VOD IDs included in the playlist. Order of videos in a playlist
-              reflects the order of IDs in the array. Maximum video limit = 128.
+              reflects the order of IDs in the array.
+
+              Maximum video limit = 128.
 
           extra_headers: Send extra headers
 
@@ -771,8 +809,10 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
           iframe_url: A URL to a built-in HTML video player with the video inside. It can be inserted
               into an iframe on your website and the video will automatically play in all
-              browsers. The player can be opened or shared via this direct link. Also the
-              video player can be integrated into your web pages using the Iframe tag.
+              browsers.
+
+              The player can be opened or shared via this direct link. Also the video player
+              can be integrated into your web pages using the Iframe tag.
 
               Please see the details in `iframe_url` attribute of /videos/{id} method.
 
@@ -792,7 +832,9 @@ class AsyncPlaylistsResource(AsyncAPIResource):
               Datetime in ISO 8601 format.
 
           video_ids: A list of VOD IDs included in the playlist. Order of videos in a playlist
-              reflects the order of IDs in the array. Maximum video limit = 128.
+              reflects the order of IDs in the array.
+
+              Maximum video limit = 128.
 
           extra_headers: Send extra headers
 

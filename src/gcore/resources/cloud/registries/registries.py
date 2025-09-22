@@ -108,8 +108,11 @@ class RegistriesResource(SyncAPIResource):
         Create a new container registry with the specified configuration.
 
         Args:
-          name: A name for the container registry. Should be in lowercase, consisting only of
-              numbers, letters and -, with maximum length of 24 characters
+          name: A name for the container registry.
+
+              Should be in lowercase, consisting only of numbers, letters and -,
+
+              with maximum length of 24 characters
 
           storage_limit: Registry storage limit, GiB
 
@@ -347,8 +350,11 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Create a new container registry with the specified configuration.
 
         Args:
-          name: A name for the container registry. Should be in lowercase, consisting only of
-              numbers, letters and -, with maximum length of 24 characters
+          name: A name for the container registry.
+
+              Should be in lowercase, consisting only of numbers, letters and -,
+
+              with maximum length of 24 characters
 
           storage_limit: Registry storage limit, GiB
 

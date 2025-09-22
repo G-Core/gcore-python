@@ -26,9 +26,12 @@ class SSHKeyCreated(BaseModel):
     """The private part of an SSH key is the confidential portion of the key pair.
 
     It should never be shared or exposed. This key is used to prove your identity
-    when connecting to a server. If you omit the `public_key`, the platform will
-    generate a key for you. The `private_key` will be returned **once** in the API
-    response. Be sure to save it securely, as it cannot be retrieved again later.
+    when connecting to a server.
+
+    If you omit the `public_key`, the platform will generate a key for you. The
+    `private_key` will be returned **once** in the API response. Be sure to save it
+    securely, as it cannot be retrieved again later.
+
     Best practice: Save the private key to a secure location on your machine (e.g.,
     `~/.ssh/id_ed25519`) and set the file permissions to be readable only by you.
     """

@@ -26,13 +26,16 @@ class ConvertedVideo(BaseModel):
     A URL to a rendition file of the specified quality in MP4 format for
     downloading.
 
-    **Download methods** For each converted video, additional download endpoints are
-    available under `converted_videos`/`mp4_urls`. An MP4 download enpoints:
+    **Download methods**
+
+    For each converted video, additional download endpoints are available under
+    `converted_videos`/`mp4_urls`. An MP4 download enpoints:
 
     - /videos/{`client_id`}\\__{slug}/{filename}.mp4
     - /videos/{`client_id`}\\__{slug}/{filename}.mp4/download
-    - /videos/{`client_id`}\\__{slug}/{filename}.mp4/download={`custom_filename`} The
-      first option returns the file as is. Response will be:
+    - /videos/{`client_id`}\\__{slug}/{filename}.mp4/download={`custom_filename`}
+
+    The first option returns the file as is. Response will be:
 
     ```
       GET .mp4
@@ -54,7 +57,9 @@ class ConvertedVideo(BaseModel):
 
     The third option allows you to set a custom name for the file being downloaded.
     You can optionally specify a custom filename (just name excluding the .mp4
-    extension) using the download= query. Filename constraints:
+    extension) using the download= query.
+
+    Filename constraints:
 
     - Length: 1-255 characters
     - Must NOT include the .mp4 extension (it is added automatically)
@@ -77,40 +82,55 @@ class ConvertedVideo(BaseModel):
     - Video with custom download filename:
       `https://demo-public.gvideo.io/videos/2675_1OFgHZ1FWZNNvx1A/qid3567v1_h264_4050_1080.mp4/download=highlights_v1.1_2025-05-30`
 
-    **Default MP4 file name structure** Link to the file {filename} contains
-    information about the encoding method using format:
-    `<quality_version>_<codec>_<bitrate>_<height>.mp4`
+    **Default MP4 file name structure**
+
+    Link to the file {filename} contains information about the encoding method using
+    format: `<quality_version>_<codec>_<bitrate>_<height>.mp4`
 
     - `<quality_version>` – Internal quality identifier and file version. Please do
       not use it, can be changed at any time without any notice.
     - `<codec>` – Codec name that was used to encode the video, or audio codec if it
       is an audio-only file.
     - `<bitrate>` – Encoding bitrate in Kbps.
-    - `<height>` – Video height, or word "audio" if it is an audio-only file. Note
-      that this link format has been applied since 14.08.2024. If the video entity
-      was uploaded earlier, links may have old simplified format. Example:
-      `/videos/{client_id}_{slug}/qid3567v1_h264_4050_1080.mp4`
+    - `<height>` – Video height, or word "audio" if it is an audio-only file.
+
+    Note that this link format has been applied since 14.08.2024. If the video
+    entity was uploaded earlier, links may have old simplified format.
+
+    Example: `/videos/{client_id}_{slug}/qid3567v1_h264_4050_1080.mp4`
 
     **Dynamic speed limiting** This mode sets different limits for different users
     or for different types of content. The speed is adjusted based on requests with
-    the “speed” and “buffer” arguments. Example: `?speed=50k&buffer=500k` Read more
-    in Product Documentation in CDN section "Network limits".
+    the “speed” and “buffer” arguments.
 
-    **Secure token authentication (updated)** Access to MP4 download links can be
-    protected using secure tokens passed as query parameters. The token generation
-    logic has been updated to allow fine-grained protection per file and bitrate.
+    Example: `?speed=50k&buffer=500k`
+
+    Read more in Product Documentation in CDN section "Network limits".
+
+    **Secure token authentication (updated)**
+
+    Access to MP4 download links can be protected using secure tokens passed as
+    query parameters. The token generation logic has been updated to allow
+    fine-grained protection per file and bitrate.
+
     Token generation uses the entire MP4 path, which ensures the token only grants
     access to a specific quality/version of the video. This prevents unintended
-    access to other bitrate versions of an ABR stream. Token Query Parameters:
+    access to other bitrate versions of an ABR stream.
+
+    Token Query Parameters:
 
     - token: The generated hash
     - expires: Expiration timestamp
     - speed: (optional) Speed limit in bytes/sec, or empty string
-    - buffer: (optional) Buffer size in bytes, or empty string Optional (for
-      IP-bound tokens):
+    - buffer: (optional) Buffer size in bytes, or empty string
+
+    Optional (for IP-bound tokens):
+
     - ip: The user’s IP address Example:
-      `?md5=QX39c77lbQKvYgMMAvpyMQ&expires=1743167062` Read more in Product
-      Documentation in Streaming section "Protected temporarily link".
+      `?md5=QX39c77lbQKvYgMMAvpyMQ&expires=1743167062`
+
+    Read more in Product Documentation in Streaming section "Protected temporarily
+    link".
     """
 
     name: Optional[str] = None
@@ -178,22 +198,27 @@ class Video(BaseModel):
     dash_url: Optional[str] = None
     """
     A URL to a master playlist MPEG-DASH (master.mpd) with CMAF or WebM based
-    chunks. Chunk type will be selected automatically for each quality:
+    chunks.
+
+    Chunk type will be selected automatically for each quality:
 
     - CMAF for H264 and H265 codecs.
     - WebM for AV1 codec.
 
     This URL is a link to the main manifest. But you can also manually specify
     suffix-options that will allow you to change the manifest to your request:
-    `/videos/{client_id}_{slug}/master[-min-N][-max-N][-(h264|hevc|av1)].mpd` List
-    of suffix-options:
+    `/videos/{client_id}_{slug}/master[-min-N][-max-N][-(h264|hevc|av1)].mpd`
+
+    List of suffix-options:
 
     - [-min-N] – ABR soft limitation of qualities from below.
     - [-max-N] – ABR soft limitation of qualities from above.
     - [-(h264|hevc|av1) – Video codec soft limitation. Applicable if the video was
       transcoded into multiple codecs H264, H265 and AV1 at once, but you want to
       return just 1 video codec in a manifest. Read the Product Documentation for
-      details. Read more what is ABR soft-limiting in the "`hls_url`" field above.
+      details.
+
+    Read more what is ABR soft-limiting in the "`hls_url`" field above.
 
     Caution. Solely master.mpd is officially documented and intended for your use.
     Any additional internal manifests, sub-manifests, parameters, chunk names, file
@@ -234,9 +259,9 @@ class Video(BaseModel):
     """
 
     hls_url: Optional[str] = None
-    """
-    A URL to a master playlist HLS (master.m3u8). Chunk type will be selected
-    automatically:
+    """A URL to a master playlist HLS (master.m3u8).
+
+    Chunk type will be selected automatically:
 
     - TS if your video was encoded to H264 only.
     - CMAF if your video was encoded additionally to H265 and/or AV1 codecs (as
@@ -246,6 +271,7 @@ class Video(BaseModel):
     You can also manually specify suffix-options that will allow you to change the
     manifest to your request:
     `/videos/{client_id}_{video_slug}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
+
     List of suffix-options:
 
     - [-cmaf] – getting HLS CMAF version of the manifest. Look at the `hls_cmaf_url`
@@ -257,12 +283,15 @@ class Video(BaseModel):
     - [-(h264|hevc|av1) – Video codec soft limitation. Applicable if the video was
       transcoded into multiple codecs H264, H265 and AV1 at once, but you want to
       return just 1 video codec in a manifest. Read the Product Documentation for
-      details. ABR soft-limiting: Soft limitation of the list of qualities allows
-      you to return not the entire list of transcoded qualities for a video, but
-      only those you need. For more details look at the Product Documentation. For
-      example, the video is available in 7 qualities from 360p to 4K, but you want
-      to return not more than 480p only due to the conditions of distribution of
-      content to a specific end-user (i.e. free account):
+      details.
+
+    ABR soft-limiting: Soft limitation of the list of qualities allows you to return
+    not the entire list of transcoded qualities for a video, but only those you
+    need. For more details look at the Product Documentation. For example, the video
+    is available in 7 qualities from 360p to 4K, but you want to return not more
+    than 480p only due to the conditions of distribution of content to a specific
+    end-user (i.e. free account):
+
     - To a generic `.../master.m3u8` manifest
     - Add a suffix-option to limit quality `.../master-max-480.m3u8`
     - Add a suffix-option to limit quality and codec
@@ -280,24 +309,32 @@ class Video(BaseModel):
     """A URL to a built-in HTML video player with the video inside.
 
     It can be inserted into an iframe on your website and the video will
-    automatically play in all browsers. The player can be opened or shared via this
-    direct link. Also the video player can be integrated into your web pages using
-    the Iframe tag. Example of usage on a web page:
+    automatically play in all browsers.
+
+    The player can be opened or shared via this direct link. Also the video player
+    can be integrated into your web pages using the Iframe tag.
+
+    Example of usage on a web page:
 
     <iframe width="100%" height="100%" src="https://player.gvideo.co/videos/2675_FnlHXwA16ZMxmUr" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+
     There are some link modificators you can specify and add manually:
-    - ?`no_low_latency` – player is forced to use non-low-latency streams HLS MPEG-TS, instead of MPEG-DASH CMAF or HLS/LL-HLS CMAF.
-    - ?t=(integer) – time to start playback from specified point in the video. Applicable for VOD only.
-    - ?`sub_lang`=(language) – force subtitles to specific language (2 letters ISO 639 code of a language).
+
+    - ?`no_low_latency` – player is forced to use non-low-latency streams HLS
+      MPEG-TS, instead of MPEG-DASH CMAF or HLS/LL-HLS CMAF.
+    - ?t=(integer) – time to start playback from specified point in the video.
+      Applicable for VOD only.
+    - ?`sub_lang`=(language) – force subtitles to specific language (2 letters ISO
+      639 code of a language).
     - Read more in the Product Documentation.
     """
 
     name: Optional[str] = None
-    """
-    Title of the video. Often used as a human-readable name of the video, but can
-    contain any text you wish. The values are not unique and may be repeated.
-    Examples:
+    """Title of the video.
+
+    Often used as a human-readable name of the video, but can contain any text you
+    wish. The values are not unique and may be repeated. Examples:
 
     - Educational training 2024-03-29
     - Series X S3E14, The empire strikes back
@@ -308,28 +345,42 @@ class Video(BaseModel):
     """Size of original file"""
 
     origin_url: Optional[str] = None
-    """
-    URL to an original file from which the information for transcoding was taken.
+    """URL to an original file from which the information for transcoding was taken.
+
     May contain a link for scenarios:
 
     - If the video was downloaded from another origin
     - If the video is a recording of a live stream
-    - Otherwise it is "null" **Copy from another server** URL to an original file
-      that was downloaded. Look at method "Copy from another server" in POST
-      /videos. **Recording of an original live stream** URL to the original
-      non-transcoded stream recording with original quality, saved in MP4 format.
-      File is created immediately after the completion of the stream recording. The
-      stream from which the recording was made is reflected in "`stream_id`" field.
-      Can be used for internal operations when a recording needs to be received
-      faster than the transcoded versions are ready. But this version is not
-      intended for public distribution. Views and downloads occur in the usual way,
-      like viewing an MP4 rendition. The MP4 file becomes available for downloading
-      when the video entity "status" changes from "new" to "pending". The file is
-      stored for 7 days, after which it will be automatically deleted. Format of URL
-      is `/videos/<cid>_<slug>/origin_<bitrate>_<height>.mp4` Where:
+    - Otherwise it is "null"
+
+    **Copy from another server**
+
+    URL to an original file that was downloaded. Look at method "Copy from another
+    server" in POST /videos.
+
+    **Recording of an original live stream**
+
+    URL to the original non-transcoded stream recording with original quality, saved
+    in MP4 format. File is created immediately after the completion of the stream
+    recording. The stream from which the recording was made is reflected in
+    "`stream_id`" field.
+
+    Can be used for internal operations when a recording needs to be received faster
+    than the transcoded versions are ready. But this version is not intended for
+    public distribution. Views and downloads occur in the usual way, like viewing an
+    MP4 rendition.
+
+    The MP4 file becomes available for downloading when the video entity "status"
+    changes from "new" to "pending". The file is stored for 7 days, after which it
+    will be automatically deleted.
+
+    Format of URL is `/videos/<cid>_<slug>/origin_<bitrate>_<height>.mp4` Where:
+
     - `<bitrate>` – Encoding bitrate in Kbps.
-    - `<height>` – Video height. This is a premium feature, available only upon
-      request through your manager or support team.
+    - `<height>` – Video height.
+
+    This is a premium feature, available only upon request through your manager or
+    support team.
     """
 
     origin_video_duration: Optional[int] = None
@@ -338,8 +389,11 @@ class Video(BaseModel):
     poster: Optional[str] = None
     """
     Poster is your own static image which can be displayed before the video begins
-    playing. This is often a frame of the video or a custom title screen. Field
-    contains a link to your own uploaded image. Also look at "screenshot" attribute.
+    playing. This is often a frame of the video or a custom title screen.
+
+    Field contains a link to your own uploaded image.
+
+    Also look at "screenshot" attribute.
     """
 
     poster_thumb: Optional[str] = None
@@ -371,29 +425,34 @@ class Video(BaseModel):
 
     The image is selected from an array of all screenshots based on the
     “`screenshot_id`” attribute. If you use your own "poster", the link to it will
-    be here too. Our video player uses this field to display the static image before
-    the video starts playing. As soon as the user hits "play" the image will go
-    away. If you use your own external video player, then you can use the value of
-    this field to set the poster/thumbnail in your player. Example:
+    be here too.
+
+    Our video player uses this field to display the static image before the video
+    starts playing. As soon as the user hits "play" the image will go away. If you
+    use your own external video player, then you can use the value of this field to
+    set the poster/thumbnail in your player.
+
+    Example:
 
     - `video_js`.poster: `api.screenshot`
     - clappr.poster: `api.screenshot`
     """
 
     screenshot_id: Optional[int] = None
-    """
-    ID of auto generated screenshots to be used for default screenshot. Counting
-    from 0. A value of -1 sets the "screenshot" attribute to the URL of your own
-    image from the "poster" attribute.
+    """ID of auto generated screenshots to be used for default screenshot.
+
+    Counting from 0. A value of -1 sets the "screenshot" attribute to the URL of
+    your own image from the "poster" attribute.
     """
 
     screenshots: Optional[List[str]] = None
     """Array of auto generated screenshots from the video.
 
     By default 5 static screenshots are taken from different places in the video. If
-    the video is short, there may be fewer screenshots. Screenshots are created
-    automatically, so they may contain not very good frames from the video. To use
-    your own image look at "poster" attribute.
+    the video is short, there may be fewer screenshots.
+
+    Screenshots are created automatically, so they may contain not very good frames
+    from the video. To use your own image look at "poster" attribute.
     """
 
     share_url: Optional[str] = None
@@ -407,7 +466,10 @@ class Video(BaseModel):
     """
     A unique alphanumeric identifier used in public URLs to retrieve and view the
     video. It is unique for each video, generated randomly and set automatically by
-    the system. Format of usage in URL is \\**.../videos/{`client_id`}\\__{slug}/...\\**
+    the system.
+
+    Format of usage in URL is \\**.../videos/{`client_id`}\\__{slug}/...\\**
+
     Example:
 
     - Player: /videos/`12345_neAq1bYZ2`

@@ -128,11 +128,11 @@ class BucketsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Bucket]:
-        """Returns the list of buckets for the storage in a wrapped response.
+        """
+        Returns the list of buckets for the storage in a wrapped response.
 
-        Response
-        format: count: total number of buckets (independent of pagination) results:
-        current page of buckets according to limit/offset
+        Response format: count: total number of buckets (independent of pagination)
+        results: current page of buckets according to limit/offset
 
         Args:
           limit: Max number of records in response
@@ -286,11 +286,11 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Bucket, AsyncOffsetPage[Bucket]]:
-        """Returns the list of buckets for the storage in a wrapped response.
+        """
+        Returns the list of buckets for the storage in a wrapped response.
 
-        Response
-        format: count: total number of buckets (independent of pagination) results:
-        current page of buckets according to limit/offset
+        Response format: count: total number of buckets (independent of pagination)
+        results: current page of buckets according to limit/offset
 
         Args:
           limit: Max number of records in response
