@@ -64,19 +64,26 @@ class QualitySetsResource(SyncAPIResource):
         described in the
         [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
         These values are the default for everyone. There is no need to configure
-        anything additional. Read more about qiality in our blog
+        anything additional.
+
+        Read more about qiality in our blog
         [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality).
-        ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
-        for those cases when, in addition to the main parameters, it is necessary to use
-        your own, then it is necessary to use custom quality sets. How to use:
+
+        ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png)
+
+        Only for those cases when, in addition to the main parameters, it is necessary
+        to use your own, then it is necessary to use custom quality sets.
+
+        How to use:
 
         1. By default custom quality set is empty – `{ "live":[],"vod":[] }`
         2. Request the use of custom quality sets from your manager or the Support Team.
         3. Please forward your requirements to us, since the parameters are set not by
            you, but by our engineers. (We are working to ensure that later you can
            create qualities by yourself.)
-        4. Use the created quality sets through the these specified API methods. Here
-           are some common parameters of quality settings:
+        4. Use the created quality sets through the these specified API methods.
+
+        Here are some common parameters of quality settings:
 
         - Resolution: Determines the size of the video frame. I.e. 720p, 1080p, 4K, etc.
         - Bitrate: Refers to the amount of data processed per unit of time.
@@ -110,19 +117,23 @@ class QualitySetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QualitySets:
-        """Method to set default quality set for VOD and Live transcoding.
+        """
+        Method to set default quality set for VOD and Live transcoding.
 
-        For changing
-        default quality set, specify the ID of the custom quality set from the method
-        GET /`quality_sets`. Default value can be reverted to the system defaults
-        (cleared) by setting `"id": null`.
+        For changing default quality set, specify the ID of the custom quality set from
+        the method GET /`quality_sets`.
+
+        Default value can be reverted to the system defaults (cleared) by setting
+        `"id": null`.
 
         Live transcoding management:
 
         - You can specify quality set explicitly in POST /streams method, look at
           attribute "`quality_set_id`".
-        - Otherwise these default values will be used by the system by default. VOD
-          transcoding management:
+        - Otherwise these default values will be used by the system by default.
+
+        VOD transcoding management:
+
         - You can specify quality set explicitly in POST /videos method, look at
           attribute "`quality_set_id`".
         - Otherwise these default values will be used by the system by default.
@@ -195,19 +206,26 @@ class AsyncQualitySetsResource(AsyncAPIResource):
         described in the
         [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
         These values are the default for everyone. There is no need to configure
-        anything additional. Read more about qiality in our blog
+        anything additional.
+
+        Read more about qiality in our blog
         [How we lowered the bitrate for live and VOD streaming by 32.5% without sacrificing quality](https://gcore.com/blog/how-we-lowered-the-bitrate-for-live-and-vod-streaming-by-32-5-without-sacrificing-quality).
-        ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png) Only
-        for those cases when, in addition to the main parameters, it is necessary to use
-        your own, then it is necessary to use custom quality sets. How to use:
+
+        ![Quality ladder](https://demo-files.gvideo.io/apidocs/encoding_ladder.png)
+
+        Only for those cases when, in addition to the main parameters, it is necessary
+        to use your own, then it is necessary to use custom quality sets.
+
+        How to use:
 
         1. By default custom quality set is empty – `{ "live":[],"vod":[] }`
         2. Request the use of custom quality sets from your manager or the Support Team.
         3. Please forward your requirements to us, since the parameters are set not by
            you, but by our engineers. (We are working to ensure that later you can
            create qualities by yourself.)
-        4. Use the created quality sets through the these specified API methods. Here
-           are some common parameters of quality settings:
+        4. Use the created quality sets through the these specified API methods.
+
+        Here are some common parameters of quality settings:
 
         - Resolution: Determines the size of the video frame. I.e. 720p, 1080p, 4K, etc.
         - Bitrate: Refers to the amount of data processed per unit of time.
@@ -241,19 +259,23 @@ class AsyncQualitySetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QualitySets:
-        """Method to set default quality set for VOD and Live transcoding.
+        """
+        Method to set default quality set for VOD and Live transcoding.
 
-        For changing
-        default quality set, specify the ID of the custom quality set from the method
-        GET /`quality_sets`. Default value can be reverted to the system defaults
-        (cleared) by setting `"id": null`.
+        For changing default quality set, specify the ID of the custom quality set from
+        the method GET /`quality_sets`.
+
+        Default value can be reverted to the system defaults (cleared) by setting
+        `"id": null`.
 
         Live transcoding management:
 
         - You can specify quality set explicitly in POST /streams method, look at
           attribute "`quality_set_id`".
-        - Otherwise these default values will be used by the system by default. VOD
-          transcoding management:
+        - Otherwise these default values will be used by the system by default.
+
+        VOD transcoding management:
+
         - You can specify quality set explicitly in POST /videos method, look at
           attribute "`quality_set_id`".
         - Otherwise these default values will be used by the system by default.

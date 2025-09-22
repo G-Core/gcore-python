@@ -120,9 +120,12 @@ class ClustersResource(SyncAPIResource):
 
           authentication: Authentication settings
 
-          autoscaler_config: Cluster autoscaler configuration. It allows you to override the default
-              cluster-autoscaler parameters provided by the platform with your preferred
-              values. Supported parameters (in alphabetical order):
+          autoscaler_config: Cluster autoscaler configuration.
+
+              It allows you to override the default cluster-autoscaler parameters provided by
+              the platform with your preferred values.
+
+              Supported parameters (in alphabetical order):
 
               - balance-similar-node-groups (boolean: true/false) - Detect similar node groups
                 and balance the number of nodes between them.
@@ -263,9 +266,12 @@ class ClustersResource(SyncAPIResource):
         Args:
           authentication: Authentication settings
 
-          autoscaler_config: Cluster autoscaler configuration. It allows you to override the default
-              cluster-autoscaler parameters provided by the platform with your preferred
-              values. Supported parameters (in alphabetical order):
+          autoscaler_config: Cluster autoscaler configuration.
+
+              It allows you to override the default cluster-autoscaler parameters provided by
+              the platform with your preferred values.
+
+              Supported parameters (in alphabetical order):
 
               - balance-similar-node-groups (boolean: true/false) - Detect similar node groups
                 and balance the number of nodes between them.
@@ -709,9 +715,12 @@ class AsyncClustersResource(AsyncAPIResource):
 
           authentication: Authentication settings
 
-          autoscaler_config: Cluster autoscaler configuration. It allows you to override the default
-              cluster-autoscaler parameters provided by the platform with your preferred
-              values. Supported parameters (in alphabetical order):
+          autoscaler_config: Cluster autoscaler configuration.
+
+              It allows you to override the default cluster-autoscaler parameters provided by
+              the platform with your preferred values.
+
+              Supported parameters (in alphabetical order):
 
               - balance-similar-node-groups (boolean: true/false) - Detect similar node groups
                 and balance the number of nodes between them.
@@ -852,9 +861,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Args:
           authentication: Authentication settings
 
-          autoscaler_config: Cluster autoscaler configuration. It allows you to override the default
-              cluster-autoscaler parameters provided by the platform with your preferred
-              values. Supported parameters (in alphabetical order):
+          autoscaler_config: Cluster autoscaler configuration.
+
+              It allows you to override the default cluster-autoscaler parameters provided by
+              the platform with your preferred values.
+
+              Supported parameters (in alphabetical order):
 
               - balance-similar-node-groups (boolean: true/false) - Detect similar node groups
                 and balance the number of nodes between them.

@@ -17,7 +17,10 @@ class UserInviteParams(TypedDict, total=False):
     user_role: Required[UserRole]
 
     lang: Literal["de", "en", "ru", "zh", "az"]
-    """User's language. Defines language of the control panel and email messages."""
+    """User's language.
+
+    Defines language of the control panel and email messages.
+    """
 
     name: str
     """User name."""

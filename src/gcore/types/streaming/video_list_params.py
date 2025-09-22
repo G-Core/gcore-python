@@ -38,8 +38,10 @@ class VideoListParams(TypedDict, total=False):
 
     If set, the video list is filtered by one combined SQL criterion:
 
-    - id={s} OR slug={s} OR name like {s} i.e. "/videos?search=1000" returns list of
-      videos where id=1000 or slug=1000 or name contains "1000".
+    - id={s} OR slug={s} OR name like {s}
+
+    i.e. "/videos?search=1000" returns list of videos where id=1000 or slug=1000 or
+    name contains "1000".
     """
 
     status: str

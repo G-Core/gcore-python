@@ -25,10 +25,12 @@ class AIContentmoderationSoftnudity(BaseModel):
     """
     Meta parameter, designed to store your own extra information about a video
     entity: video source, video id, etc. It is not used in any way in video
-    processing. For example, if an AI-task was created automatically when you
-    uploaded a video with the AI auto-processing option (nudity detection, etc),
-    then the ID of the associated video for which the task was performed will be
-    explicitly indicated here.
+    processing.
+
+    For example, if an AI-task was created automatically when you uploaded a video
+    with the AI auto-processing option (nudity detection, etc), then the ID of the
+    associated video for which the task was performed will be explicitly indicated
+    here.
     """
 
     client_user_id: Optional[str] = None

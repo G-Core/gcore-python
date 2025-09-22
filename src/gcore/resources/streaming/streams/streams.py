@@ -97,22 +97,26 @@ class StreamsResource(SyncAPIResource):
 
         The input in API may contain streams of different formats, including the most
         common ones RTMP, RTMPS, SRT, HLS. Note that multicast MPEG-TS over UDP and
-        others are supported too, ask the Support Team please. For ingestion, you can
-        use both PUSH and PULL methods. Also you can use the main and backup servers,
-        which are geographically located in different locations. By default, any free
-        ingest points in the world are used. Settings have been applied that deliver
-        low-latency streams in the optimal way. If for some reason you need to set a
-        fixed ingest point, or if you need to set the main and backup ingest points in
-        the same region (for example, do not send streams outside the EU or US), then
-        contact our Support Team.
+        others are supported too, ask the Support Team please.
+
+        For ingestion, you can use both PUSH and PULL methods.
+
+        Also you can use the main and backup servers, which are geographically located
+        in different locations. By default, any free ingest points in the world are
+        used. Settings have been applied that deliver low-latency streams in the optimal
+        way. If for some reason you need to set a fixed ingest point, or if you need to
+        set the main and backup ingest points in the same region (for example, do not
+        send streams outside the EU or US), then contact our Support Team.
 
         The output is HLS and MPEG-DASH with ABR. We transcode video for you by our
         cloud-based infrastructure. ABR ladder supports all qualities from SD to 8K HDR
-        60fps. All our streams are Low Latency enabled. We support a delay of ±4 seconds
-        for video streams by utilizing Common Media Application Format (CMAF)
-        technology. So you obtain latency from the traditional 30-50 seconds to ±4
-        seconds only by default. If you need legacy non-low-latency HLS, then look at
-        HLS MPEG-TS delivery below.
+        60fps.
+
+        All our streams are Low Latency enabled. We support a delay of ±4 seconds for
+        video streams by utilizing Common Media Application Format (CMAF) technology. So
+        you obtain latency from the traditional 30-50 seconds to ±4 seconds only by
+        default. If you need legacy non-low-latency HLS, then look at HLS MPEG-TS
+        delivery below.
 
         You have access to additional functions such as:
 
@@ -125,11 +129,16 @@ class StreamsResource(SyncAPIResource):
         For more information see specific API methods, and the Knowledge Base. To
         organize streaming with ultra-low latency, look for WebRTC delivery in different
         section in the Knowledge Base.
+
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/low-latency-football.gif)
 
         Args:
-          name: Stream name. Often used as a human-readable name for the stream, but can contain
-              any text you wish. The values are not unique and may be repeated. Examples:
+          name: Stream name.
+
+              Often used as a human-readable name for the stream, but can contain any text you
+              wish. The values are not unique and may be repeated.
+
+              Examples:
 
               - Conference in July
               - Stream #10003
@@ -137,17 +146,21 @@ class StreamsResource(SyncAPIResource):
               - 480fd499-2de2-4988-bc1a-a4eebe9818ee
 
           active: Stream switch between on and off. This is not an indicator of the status "stream
-              is receiving and it is LIVE", but rather an on/off switch. When stream is
-              switched off, there is no way to process it: PULL is deactivated and PUSH will
-              return an error.
+              is receiving and it is LIVE", but rather an on/off switch.
+
+              When stream is switched off, there is no way to process it: PULL is deactivated
+              and PUSH will return an error.
 
               - true – stream can be processed
               - false – stream is off, and cannot be processed
 
           auto_record: Enables autotomatic recording of the stream when it started. So you don't need
-              to call recording manually. Result of recording is automatically added to video
-              hosting. For details see the /streams/`start_recording` method and in knowledge
-              base Values:
+              to call recording manually.
+
+              Result of recording is automatically added to video hosting. For details see the
+              /streams/`start_recording` method and in knowledge base
+
+              Values:
 
               - true – auto recording is enabled
               - false – auto recording is disabled
@@ -167,9 +180,12 @@ class StreamsResource(SyncAPIResource):
               field in any way when processing the stream. Example: `client_user_id = 1001`
 
           dvr_duration: DVR duration in seconds if DVR feature is enabled for the stream. So this is
-              duration of how far the user can rewind the live stream. `dvr_duration` range is
-              [30...14400]. Maximum value is 4 hours = 14400 seconds. If you need more, ask
-              the Support Team please.
+              duration of how far the user can rewind the live stream.
+
+              `dvr_duration` range is [30...14400].
+
+              Maximum value is 4 hours = 14400 seconds. If you need more, ask the Support Team
+              please.
 
           dvr_enabled:
               Enables DVR for the stream:
@@ -185,7 +201,9 @@ class StreamsResource(SyncAPIResource):
 
           projection: Visualization mode for 360° streams, how the stream is rendered in our web
               player ONLY. If you would like to show video 360° in an external video player,
-              then use parameters of that video player. Modes:
+              then use parameters of that video player.
+
+              Modes:
 
               - regular – regular “flat” stream
               - vr360 – display stream in 360° mode
@@ -205,23 +223,28 @@ class StreamsResource(SyncAPIResource):
               your conditions. Look at GET /`quality_sets` method
 
           record_type: Method of recording a stream. Specifies the source from which the stream will be
-              recorded: original or transcoded. Types:
+              recorded: original or transcoded.
+
+              Types:
 
               - "origin" – To record RMTP/SRT/etc original clean media source.
               - "transcoded" – To record the output transcoded version of the stream,
                 including overlays, texts, logos, etc. additional media layers.
 
-          uri: When using PULL method, this is the URL to pull a stream from. You can specify
-              multiple addresses separated by a space (" "), so you can organize a backup
-              plan. In this case, the specified addresses will be selected one by one using
-              round robin scheduling. If the first address does not respond, then the next one
-              in the list will be automatically requested, returning to the first and so on in
-              a circle. Also, if the sucessfully working stream stops sending data, then the
-              next one will be selected according to the same scheme. After 2 hours of
-              inactivity of your original stream, the system stops PULL requests and the
-              stream is deactivated (the "active" field switches to "false"). Please, note
-              that this field is for PULL only, so is not suitable for PUSH. Look at fields
-              "`push_url`" and "`push_url_srt`" from GET method.
+          uri: When using PULL method, this is the URL to pull a stream from.
+
+              You can specify multiple addresses separated by a space (" "), so you can
+              organize a backup plan. In this case, the specified addresses will be selected
+              one by one using round robin scheduling. If the first address does not respond,
+              then the next one in the list will be automatically requested, returning to the
+              first and so on in a circle. Also, if the sucessfully working stream stops
+              sending data, then the next one will be selected according to the same scheme.
+
+              After 2 hours of inactivity of your original stream, the system stops PULL
+              requests and the stream is deactivated (the "active" field switches to "false").
+
+              Please, note that this field is for PULL only, so is not suitable for PUSH. Look
+              at fields "`push_url`" and "`push_url_srt`" from GET method.
 
           extra_headers: Send extra headers
 
@@ -357,11 +380,14 @@ class StreamsResource(SyncAPIResource):
         Delete a live stream.
 
         After deleting the live stream, all associated data is deleted: settings, PUSH
-        and PULL links, video playback links, etc. Live stream information is deleted
-        permanently and irreversibly. Therefore, it is impossible to restore data and
-        files after this. But if the live had recordings, they continue to remain
-        independent Video entities. The "`stream_id`" parameter will simply point to a
-        stream that no longer exists.
+        and PULL links, video playback links, etc.
+
+        Live stream information is deleted permanently and irreversibly. Therefore, it
+        is impossible to restore data and files after this.
+
+        But if the live had recordings, they continue to remain independent Video
+        entities. The "`stream_id`" parameter will simply point to a stream that no
+        longer exists.
 
         Perhaps, instead of deleting, you may use the stream deactivation:
 
@@ -437,24 +463,29 @@ class StreamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Clip:
-        """Create an instant clip from on-going live stream.
+        """
+        Create an instant clip from on-going live stream.
 
-        Instant clips are applicable
-        in cases where there is no time to wait for the broadcast to be completed and
-        recorded. For example, for quickly cutting highlights in sport events, or
-        cutting an important moment in the news or live performance.
+        Instant clips are applicable in cases where there is no time to wait for the
+        broadcast to be completed and recorded. For example, for quickly cutting
+        highlights in sport events, or cutting an important moment in the news or live
+        performance.
 
         Instant clip becomes available for viewing in the following formats:
 
         - HLS .m3u8,
         - MP4,
         - VOD in video hosting with a permanent link to watch video.
-          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
 
-        **Clip lifetime:** Instant clips are a copy of the stream, created from a live
-        stream. They are stored in memory for a limited time, after which the clip
-        ceases to exist and you will receive a 404 on the link. Limits that you should
-        keep in mind:
+        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
+
+        **Clip lifetime:**
+
+        Instant clips are a copy of the stream, created from a live stream. They are
+        stored in memory for a limited time, after which the clip ceases to exist and
+        you will receive a 404 on the link.
+
+        Limits that you should keep in mind:
 
         - The clip's lifespan is controlled by `expiration` parameter.
         - The default expiration value is 1 hour. The value can be set from 1 minute to
@@ -468,9 +499,10 @@ class StreamsResource(SyncAPIResource):
           you try to request it before this time, the response will be error code 425
           "Too Early".
 
-        **Cutting a clip from a source:** In order to use clips recording feature, DVR
-        must be enabled for a stream: "`dvr_enabled`: true". The DVR serves as a source
-        for creating clips:
+        **Cutting a clip from a source:**
+
+        In order to use clips recording feature, DVR must be enabled for a stream:
+        "`dvr_enabled`: true". The DVR serves as a source for creating clips:
 
         - By default live stream DVR is set to 1 hour (3600 seconds). You can create an
           instant clip using any segment of this time period by specifying the desired
@@ -478,39 +510,56 @@ class StreamsResource(SyncAPIResource):
         - If you create a clip, but the DVR expires, the clip will still exist for the
           specified time as a copy of the stream.
 
-        **Getting permanent VOD:** To get permanent VOD version of a live clip use this
-        parameter when making a request to create a clip: `vod_required: true`. Later,
-        when the clip is ready, grab `video_id` value from the response and query the
-        video by regular GET /video/{id} method.
+        **Getting permanent VOD:**
+
+        To get permanent VOD version of a live clip use this parameter when making a
+        request to create a clip: `vod_required: true`.
+
+        Later, when the clip is ready, grab `video_id` value from the response and query
+        the video by regular GET /video/{id} method.
 
         Args:
-          duration: Requested segment duration in seconds to be cut. Please, note that cutting is
-              based on the idea of instantly creating a clip, instead of precise timing. So
-              final segment may be:
+          duration: Requested segment duration in seconds to be cut.
+
+              Please, note that cutting is based on the idea of instantly creating a clip,
+              instead of precise timing. So final segment may be:
 
               - Less than the specified value if there is less data in the DVR than the
                 requested segment.
               - Greater than the specified value, because segment is aligned to the first and
                 last key frames of already stored fragment in DVR, this way -1 and +1 chunks
-                can be added to left and right. Duration of cutted segment cannot be greater
-                than DVR duration for this stream. Therefore, to change the maximum, use
-                "`dvr_duration`" parameter of this stream.
+                can be added to left and right.
 
-          expiration: Expire time of the clip via a public link. Unix timestamp in seconds, absolute
-              value. This is the time how long the instant clip will be stored in the server
-              memory and can be accessed via public HLS/MP4 links. Download and/or use the
-              instant clip before this time expires. After the time has expired, the clip is
-              deleted from memory and is no longer available via the link. You need to create
-              a new segment, or use `vod_required: true` attribute. If value is omitted, then
-              expiration is counted as +3600 seconds (1 hour) to the end of the clip (i.e.
-              `unix timestamp = <start> + <duration> + 3600`). Allowed range: 1m <= expiration
-              <= 4h. Example:
+              Duration of cutted segment cannot be greater than DVR duration for this stream.
+              Therefore, to change the maximum, use "`dvr_duration`" parameter of this stream.
+
+          expiration: Expire time of the clip via a public link.
+
+              Unix timestamp in seconds, absolute value.
+
+              This is the time how long the instant clip will be stored in the server memory
+              and can be accessed via public HLS/MP4 links. Download and/or use the instant
+              clip before this time expires.
+
+              After the time has expired, the clip is deleted from memory and is no longer
+              available via the link. You need to create a new segment, or use
+              `vod_required: true` attribute.
+
+              If value is omitted, then expiration is counted as +3600 seconds (1 hour) to the
+              end of the clip (i.e. `unix timestamp = <start> + <duration> + 3600`).
+
+              Allowed range: 1m <= expiration <= 4h.
+
+              Example:
               `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
 
-          start: Starting point of the segment to cut. Unix timestamp in seconds, absolute value.
-              Example: `24.05.2024 14:00:00 (GMT) is Unix timestamp = 1716559200` If a value
-              from the past is specified, it is used as the starting point for the segment to
-              cut. If the value is omitted, then clip will start from now.
+          start: Starting point of the segment to cut.
+
+              Unix timestamp in seconds, absolute value. Example:
+              `24.05.2024 14:00:00 (GMT) is Unix timestamp = 1716559200`
+
+              If a value from the past is specified, it is used as the starting point for the
+              segment to cut. If the value is omitted, then clip will start from now.
 
           vod_required: Indicates if video needs to be stored also as permanent VOD
 
@@ -587,11 +636,13 @@ class StreamsResource(SyncAPIResource):
         You can now use both MP4 just-in-time packager and HLS for all clips. Get URLs
         from "`hls_master`" and "`mp4_master`".
 
-        **How to download renditions of clips:** URLs contain "master" alias by default,
-        which means maximum available quality from ABR set (based on height metadata).
-        There is also possibility to access individual bitrates from ABR ladder. That
-        works for both HLS and MP4. You can replace manually "master" to a value from
-        renditions list in order to get exact bitrate/quality from the set. Example:
+        **How to download renditions of clips:**
+
+        URLs contain "master" alias by default, which means maximum available quality
+        from ABR set (based on height metadata). There is also possibility to access
+        individual bitrates from ABR ladder. That works for both HLS and MP4. You can
+        replace manually "master" to a value from renditions list in order to get exact
+        bitrate/quality from the set. Example:
 
         - HLS 720p:
           `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
@@ -648,12 +699,14 @@ class StreamsResource(SyncAPIResource):
         - If you have access to the premium feature of saving the original stream (so
           not just transcoded renditions), then the link to the original file will be in
           the "`origin_url`" field. Look at the description of the field how to use it.
-          Stream must be live for the recording to start, please check fields "live"
-          and/or "`backup_live`". After the recording starts, field "recording" will
-          switch to "true", and the recording duration in seconds will appear in the
-          "`recording_duration`" field. Please, keep in mind that recording doesn't
-          start instantly, it takes ±3-7 seconds to initialize the process after
-          executing this method.
+
+        Stream must be live for the recording to start, please check fields "live"
+        and/or "`backup_live`". After the recording starts, field "recording" will
+        switch to "true", and the recording duration in seconds will appear in the
+        "`recording_duration`" field.
+
+        Please, keep in mind that recording doesn't start instantly, it takes ±3-7
+        seconds to initialize the process after executing this method.
 
         Stream recording stops when:
 
@@ -662,6 +715,7 @@ class StreamsResource(SyncAPIResource):
           method again, the recording will be made to a new video file.
         - When sending the stream stops on the client side, or stops accidentally. In
           this case, recording process is waiting for 10 seconds to resume recording:
+
         - If the stream resumes within that period, recording will continue to the same
           file.
         - After that period, the file will be completely saved and closed.
@@ -780,22 +834,26 @@ class AsyncStreamsResource(AsyncAPIResource):
 
         The input in API may contain streams of different formats, including the most
         common ones RTMP, RTMPS, SRT, HLS. Note that multicast MPEG-TS over UDP and
-        others are supported too, ask the Support Team please. For ingestion, you can
-        use both PUSH and PULL methods. Also you can use the main and backup servers,
-        which are geographically located in different locations. By default, any free
-        ingest points in the world are used. Settings have been applied that deliver
-        low-latency streams in the optimal way. If for some reason you need to set a
-        fixed ingest point, or if you need to set the main and backup ingest points in
-        the same region (for example, do not send streams outside the EU or US), then
-        contact our Support Team.
+        others are supported too, ask the Support Team please.
+
+        For ingestion, you can use both PUSH and PULL methods.
+
+        Also you can use the main and backup servers, which are geographically located
+        in different locations. By default, any free ingest points in the world are
+        used. Settings have been applied that deliver low-latency streams in the optimal
+        way. If for some reason you need to set a fixed ingest point, or if you need to
+        set the main and backup ingest points in the same region (for example, do not
+        send streams outside the EU or US), then contact our Support Team.
 
         The output is HLS and MPEG-DASH with ABR. We transcode video for you by our
         cloud-based infrastructure. ABR ladder supports all qualities from SD to 8K HDR
-        60fps. All our streams are Low Latency enabled. We support a delay of ±4 seconds
-        for video streams by utilizing Common Media Application Format (CMAF)
-        technology. So you obtain latency from the traditional 30-50 seconds to ±4
-        seconds only by default. If you need legacy non-low-latency HLS, then look at
-        HLS MPEG-TS delivery below.
+        60fps.
+
+        All our streams are Low Latency enabled. We support a delay of ±4 seconds for
+        video streams by utilizing Common Media Application Format (CMAF) technology. So
+        you obtain latency from the traditional 30-50 seconds to ±4 seconds only by
+        default. If you need legacy non-low-latency HLS, then look at HLS MPEG-TS
+        delivery below.
 
         You have access to additional functions such as:
 
@@ -808,11 +866,16 @@ class AsyncStreamsResource(AsyncAPIResource):
         For more information see specific API methods, and the Knowledge Base. To
         organize streaming with ultra-low latency, look for WebRTC delivery in different
         section in the Knowledge Base.
+
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/low-latency-football.gif)
 
         Args:
-          name: Stream name. Often used as a human-readable name for the stream, but can contain
-              any text you wish. The values are not unique and may be repeated. Examples:
+          name: Stream name.
+
+              Often used as a human-readable name for the stream, but can contain any text you
+              wish. The values are not unique and may be repeated.
+
+              Examples:
 
               - Conference in July
               - Stream #10003
@@ -820,17 +883,21 @@ class AsyncStreamsResource(AsyncAPIResource):
               - 480fd499-2de2-4988-bc1a-a4eebe9818ee
 
           active: Stream switch between on and off. This is not an indicator of the status "stream
-              is receiving and it is LIVE", but rather an on/off switch. When stream is
-              switched off, there is no way to process it: PULL is deactivated and PUSH will
-              return an error.
+              is receiving and it is LIVE", but rather an on/off switch.
+
+              When stream is switched off, there is no way to process it: PULL is deactivated
+              and PUSH will return an error.
 
               - true – stream can be processed
               - false – stream is off, and cannot be processed
 
           auto_record: Enables autotomatic recording of the stream when it started. So you don't need
-              to call recording manually. Result of recording is automatically added to video
-              hosting. For details see the /streams/`start_recording` method and in knowledge
-              base Values:
+              to call recording manually.
+
+              Result of recording is automatically added to video hosting. For details see the
+              /streams/`start_recording` method and in knowledge base
+
+              Values:
 
               - true – auto recording is enabled
               - false – auto recording is disabled
@@ -850,9 +917,12 @@ class AsyncStreamsResource(AsyncAPIResource):
               field in any way when processing the stream. Example: `client_user_id = 1001`
 
           dvr_duration: DVR duration in seconds if DVR feature is enabled for the stream. So this is
-              duration of how far the user can rewind the live stream. `dvr_duration` range is
-              [30...14400]. Maximum value is 4 hours = 14400 seconds. If you need more, ask
-              the Support Team please.
+              duration of how far the user can rewind the live stream.
+
+              `dvr_duration` range is [30...14400].
+
+              Maximum value is 4 hours = 14400 seconds. If you need more, ask the Support Team
+              please.
 
           dvr_enabled:
               Enables DVR for the stream:
@@ -868,7 +938,9 @@ class AsyncStreamsResource(AsyncAPIResource):
 
           projection: Visualization mode for 360° streams, how the stream is rendered in our web
               player ONLY. If you would like to show video 360° in an external video player,
-              then use parameters of that video player. Modes:
+              then use parameters of that video player.
+
+              Modes:
 
               - regular – regular “flat” stream
               - vr360 – display stream in 360° mode
@@ -888,23 +960,28 @@ class AsyncStreamsResource(AsyncAPIResource):
               your conditions. Look at GET /`quality_sets` method
 
           record_type: Method of recording a stream. Specifies the source from which the stream will be
-              recorded: original or transcoded. Types:
+              recorded: original or transcoded.
+
+              Types:
 
               - "origin" – To record RMTP/SRT/etc original clean media source.
               - "transcoded" – To record the output transcoded version of the stream,
                 including overlays, texts, logos, etc. additional media layers.
 
-          uri: When using PULL method, this is the URL to pull a stream from. You can specify
-              multiple addresses separated by a space (" "), so you can organize a backup
-              plan. In this case, the specified addresses will be selected one by one using
-              round robin scheduling. If the first address does not respond, then the next one
-              in the list will be automatically requested, returning to the first and so on in
-              a circle. Also, if the sucessfully working stream stops sending data, then the
-              next one will be selected according to the same scheme. After 2 hours of
-              inactivity of your original stream, the system stops PULL requests and the
-              stream is deactivated (the "active" field switches to "false"). Please, note
-              that this field is for PULL only, so is not suitable for PUSH. Look at fields
-              "`push_url`" and "`push_url_srt`" from GET method.
+          uri: When using PULL method, this is the URL to pull a stream from.
+
+              You can specify multiple addresses separated by a space (" "), so you can
+              organize a backup plan. In this case, the specified addresses will be selected
+              one by one using round robin scheduling. If the first address does not respond,
+              then the next one in the list will be automatically requested, returning to the
+              first and so on in a circle. Also, if the sucessfully working stream stops
+              sending data, then the next one will be selected according to the same scheme.
+
+              After 2 hours of inactivity of your original stream, the system stops PULL
+              requests and the stream is deactivated (the "active" field switches to "false").
+
+              Please, note that this field is for PULL only, so is not suitable for PUSH. Look
+              at fields "`push_url`" and "`push_url_srt`" from GET method.
 
           extra_headers: Send extra headers
 
@@ -1040,11 +1117,14 @@ class AsyncStreamsResource(AsyncAPIResource):
         Delete a live stream.
 
         After deleting the live stream, all associated data is deleted: settings, PUSH
-        and PULL links, video playback links, etc. Live stream information is deleted
-        permanently and irreversibly. Therefore, it is impossible to restore data and
-        files after this. But if the live had recordings, they continue to remain
-        independent Video entities. The "`stream_id`" parameter will simply point to a
-        stream that no longer exists.
+        and PULL links, video playback links, etc.
+
+        Live stream information is deleted permanently and irreversibly. Therefore, it
+        is impossible to restore data and files after this.
+
+        But if the live had recordings, they continue to remain independent Video
+        entities. The "`stream_id`" parameter will simply point to a stream that no
+        longer exists.
 
         Perhaps, instead of deleting, you may use the stream deactivation:
 
@@ -1120,24 +1200,29 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Clip:
-        """Create an instant clip from on-going live stream.
+        """
+        Create an instant clip from on-going live stream.
 
-        Instant clips are applicable
-        in cases where there is no time to wait for the broadcast to be completed and
-        recorded. For example, for quickly cutting highlights in sport events, or
-        cutting an important moment in the news or live performance.
+        Instant clips are applicable in cases where there is no time to wait for the
+        broadcast to be completed and recorded. For example, for quickly cutting
+        highlights in sport events, or cutting an important moment in the news or live
+        performance.
 
         Instant clip becomes available for viewing in the following formats:
 
         - HLS .m3u8,
         - MP4,
         - VOD in video hosting with a permanent link to watch video.
-          ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
 
-        **Clip lifetime:** Instant clips are a copy of the stream, created from a live
-        stream. They are stored in memory for a limited time, after which the clip
-        ceases to exist and you will receive a 404 on the link. Limits that you should
-        keep in mind:
+        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
+
+        **Clip lifetime:**
+
+        Instant clips are a copy of the stream, created from a live stream. They are
+        stored in memory for a limited time, after which the clip ceases to exist and
+        you will receive a 404 on the link.
+
+        Limits that you should keep in mind:
 
         - The clip's lifespan is controlled by `expiration` parameter.
         - The default expiration value is 1 hour. The value can be set from 1 minute to
@@ -1151,9 +1236,10 @@ class AsyncStreamsResource(AsyncAPIResource):
           you try to request it before this time, the response will be error code 425
           "Too Early".
 
-        **Cutting a clip from a source:** In order to use clips recording feature, DVR
-        must be enabled for a stream: "`dvr_enabled`: true". The DVR serves as a source
-        for creating clips:
+        **Cutting a clip from a source:**
+
+        In order to use clips recording feature, DVR must be enabled for a stream:
+        "`dvr_enabled`: true". The DVR serves as a source for creating clips:
 
         - By default live stream DVR is set to 1 hour (3600 seconds). You can create an
           instant clip using any segment of this time period by specifying the desired
@@ -1161,39 +1247,56 @@ class AsyncStreamsResource(AsyncAPIResource):
         - If you create a clip, but the DVR expires, the clip will still exist for the
           specified time as a copy of the stream.
 
-        **Getting permanent VOD:** To get permanent VOD version of a live clip use this
-        parameter when making a request to create a clip: `vod_required: true`. Later,
-        when the clip is ready, grab `video_id` value from the response and query the
-        video by regular GET /video/{id} method.
+        **Getting permanent VOD:**
+
+        To get permanent VOD version of a live clip use this parameter when making a
+        request to create a clip: `vod_required: true`.
+
+        Later, when the clip is ready, grab `video_id` value from the response and query
+        the video by regular GET /video/{id} method.
 
         Args:
-          duration: Requested segment duration in seconds to be cut. Please, note that cutting is
-              based on the idea of instantly creating a clip, instead of precise timing. So
-              final segment may be:
+          duration: Requested segment duration in seconds to be cut.
+
+              Please, note that cutting is based on the idea of instantly creating a clip,
+              instead of precise timing. So final segment may be:
 
               - Less than the specified value if there is less data in the DVR than the
                 requested segment.
               - Greater than the specified value, because segment is aligned to the first and
                 last key frames of already stored fragment in DVR, this way -1 and +1 chunks
-                can be added to left and right. Duration of cutted segment cannot be greater
-                than DVR duration for this stream. Therefore, to change the maximum, use
-                "`dvr_duration`" parameter of this stream.
+                can be added to left and right.
 
-          expiration: Expire time of the clip via a public link. Unix timestamp in seconds, absolute
-              value. This is the time how long the instant clip will be stored in the server
-              memory and can be accessed via public HLS/MP4 links. Download and/or use the
-              instant clip before this time expires. After the time has expired, the clip is
-              deleted from memory and is no longer available via the link. You need to create
-              a new segment, or use `vod_required: true` attribute. If value is omitted, then
-              expiration is counted as +3600 seconds (1 hour) to the end of the clip (i.e.
-              `unix timestamp = <start> + <duration> + 3600`). Allowed range: 1m <= expiration
-              <= 4h. Example:
+              Duration of cutted segment cannot be greater than DVR duration for this stream.
+              Therefore, to change the maximum, use "`dvr_duration`" parameter of this stream.
+
+          expiration: Expire time of the clip via a public link.
+
+              Unix timestamp in seconds, absolute value.
+
+              This is the time how long the instant clip will be stored in the server memory
+              and can be accessed via public HLS/MP4 links. Download and/or use the instant
+              clip before this time expires.
+
+              After the time has expired, the clip is deleted from memory and is no longer
+              available via the link. You need to create a new segment, or use
+              `vod_required: true` attribute.
+
+              If value is omitted, then expiration is counted as +3600 seconds (1 hour) to the
+              end of the clip (i.e. `unix timestamp = <start> + <duration> + 3600`).
+
+              Allowed range: 1m <= expiration <= 4h.
+
+              Example:
               `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
 
-          start: Starting point of the segment to cut. Unix timestamp in seconds, absolute value.
-              Example: `24.05.2024 14:00:00 (GMT) is Unix timestamp = 1716559200` If a value
-              from the past is specified, it is used as the starting point for the segment to
-              cut. If the value is omitted, then clip will start from now.
+          start: Starting point of the segment to cut.
+
+              Unix timestamp in seconds, absolute value. Example:
+              `24.05.2024 14:00:00 (GMT) is Unix timestamp = 1716559200`
+
+              If a value from the past is specified, it is used as the starting point for the
+              segment to cut. If the value is omitted, then clip will start from now.
 
           vod_required: Indicates if video needs to be stored also as permanent VOD
 
@@ -1270,11 +1373,13 @@ class AsyncStreamsResource(AsyncAPIResource):
         You can now use both MP4 just-in-time packager and HLS for all clips. Get URLs
         from "`hls_master`" and "`mp4_master`".
 
-        **How to download renditions of clips:** URLs contain "master" alias by default,
-        which means maximum available quality from ABR set (based on height metadata).
-        There is also possibility to access individual bitrates from ABR ladder. That
-        works for both HLS and MP4. You can replace manually "master" to a value from
-        renditions list in order to get exact bitrate/quality from the set. Example:
+        **How to download renditions of clips:**
+
+        URLs contain "master" alias by default, which means maximum available quality
+        from ABR set (based on height metadata). There is also possibility to access
+        individual bitrates from ABR ladder. That works for both HLS and MP4. You can
+        replace manually "master" to a value from renditions list in order to get exact
+        bitrate/quality from the set. Example:
 
         - HLS 720p:
           `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
@@ -1331,12 +1436,14 @@ class AsyncStreamsResource(AsyncAPIResource):
         - If you have access to the premium feature of saving the original stream (so
           not just transcoded renditions), then the link to the original file will be in
           the "`origin_url`" field. Look at the description of the field how to use it.
-          Stream must be live for the recording to start, please check fields "live"
-          and/or "`backup_live`". After the recording starts, field "recording" will
-          switch to "true", and the recording duration in seconds will appear in the
-          "`recording_duration`" field. Please, keep in mind that recording doesn't
-          start instantly, it takes ±3-7 seconds to initialize the process after
-          executing this method.
+
+        Stream must be live for the recording to start, please check fields "live"
+        and/or "`backup_live`". After the recording starts, field "recording" will
+        switch to "true", and the recording duration in seconds will appear in the
+        "`recording_duration`" field.
+
+        Please, keep in mind that recording doesn't start instantly, it takes ±3-7
+        seconds to initialize the process after executing this method.
 
         Stream recording stops when:
 
@@ -1345,6 +1452,7 @@ class AsyncStreamsResource(AsyncAPIResource):
           method again, the recording will be made to a new video file.
         - When sending the stream stops on the client side, or stops accidentally. In
           this case, recording process is waiting for 10 seconds to resume recording:
+
         - If the stream resumes within that period, recording will continue to the same
           file.
         - After that period, the file will be completely saved and closed.

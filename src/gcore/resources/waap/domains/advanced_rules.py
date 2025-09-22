@@ -77,17 +77,23 @@ class AdvancedRulesResource(SyncAPIResource):
 
           source: A CEL syntax expression that contains the rule's conditions. Allowed objects
               are: request, whois, session, response, tags, `user_defined_tags`, `user_agent`,
-              `client_data`. More info can be found here:
+              `client_data`.
+
+              More info can be found here:
               https://gcore.com/docs/waap/waap-rules/advanced-rules
 
           description: The description assigned to the rule
 
-          phase: The WAAP request/response phase for applying the rule. Default is "access". The
-              "access" phase is responsible for modifying the request before it is sent to the
-              origin server. The "`header_filter`" phase is responsible for modifying the HTTP
-              headers of a response before they are sent back to the client. The
-              "`body_filter`" phase is responsible for modifying the body of a response before
-              it is sent back to the client.
+          phase: The WAAP request/response phase for applying the rule. Default is "access".
+
+              The "access" phase is responsible for modifying the request before it is sent to
+              the origin server.
+
+              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              response before they are sent back to the client.
+
+              The "`body_filter`" phase is responsible for modifying the body of a response
+              before it is sent back to the client.
 
           extra_headers: Send extra headers
 
@@ -150,16 +156,22 @@ class AdvancedRulesResource(SyncAPIResource):
 
           name: The name assigned to the rule
 
-          phase: The WAAP request/response phase for applying the rule. The "access" phase is
-              responsible for modifying the request before it is sent to the origin server.
+          phase: The WAAP request/response phase for applying the rule.
+
+              The "access" phase is responsible for modifying the request before it is sent to
+              the origin server.
+
               The "`header_filter`" phase is responsible for modifying the HTTP headers of a
-              response before they are sent back to the client. The "`body_filter`" phase is
-              responsible for modifying the body of a response before it is sent back to the
-              client.
+              response before they are sent back to the client.
+
+              The "`body_filter`" phase is responsible for modifying the body of a response
+              before it is sent back to the client.
 
           source: A CEL syntax expression that contains the rule's conditions. Allowed objects
               are: request, whois, session, response, tags, `user_defined_tags`, `user_agent`,
-              `client_data`. More info can be found here:
+              `client_data`.
+
+              More info can be found here:
               https://gcore.com/docs/waap/waap-rules/advanced-rules
 
           extra_headers: Send extra headers
@@ -246,12 +258,16 @@ class AdvancedRulesResource(SyncAPIResource):
 
           ordering: Determine the field to order results by
 
-          phase: Filter rules based on the WAAP request/response phase for applying the rule. The
-              "access" phase is responsible for modifying the request before it is sent to the
-              origin server. The "`header_filter`" phase is responsible for modifying the HTTP
-              headers of a response before they are sent back to the client. The
-              "`body_filter`" phase is responsible for modifying the body of a response before
-              it is sent back to the client.
+          phase: Filter rules based on the WAAP request/response phase for applying the rule.
+
+              The "access" phase is responsible for modifying the request before it is sent to
+              the origin server.
+
+              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              response before they are sent back to the client.
+
+              The "`body_filter`" phase is responsible for modifying the body of a response
+              before it is sent back to the client.
 
           extra_headers: Send extra headers
 
@@ -454,17 +470,23 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
 
           source: A CEL syntax expression that contains the rule's conditions. Allowed objects
               are: request, whois, session, response, tags, `user_defined_tags`, `user_agent`,
-              `client_data`. More info can be found here:
+              `client_data`.
+
+              More info can be found here:
               https://gcore.com/docs/waap/waap-rules/advanced-rules
 
           description: The description assigned to the rule
 
-          phase: The WAAP request/response phase for applying the rule. Default is "access". The
-              "access" phase is responsible for modifying the request before it is sent to the
-              origin server. The "`header_filter`" phase is responsible for modifying the HTTP
-              headers of a response before they are sent back to the client. The
-              "`body_filter`" phase is responsible for modifying the body of a response before
-              it is sent back to the client.
+          phase: The WAAP request/response phase for applying the rule. Default is "access".
+
+              The "access" phase is responsible for modifying the request before it is sent to
+              the origin server.
+
+              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              response before they are sent back to the client.
+
+              The "`body_filter`" phase is responsible for modifying the body of a response
+              before it is sent back to the client.
 
           extra_headers: Send extra headers
 
@@ -527,16 +549,22 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
 
           name: The name assigned to the rule
 
-          phase: The WAAP request/response phase for applying the rule. The "access" phase is
-              responsible for modifying the request before it is sent to the origin server.
+          phase: The WAAP request/response phase for applying the rule.
+
+              The "access" phase is responsible for modifying the request before it is sent to
+              the origin server.
+
               The "`header_filter`" phase is responsible for modifying the HTTP headers of a
-              response before they are sent back to the client. The "`body_filter`" phase is
-              responsible for modifying the body of a response before it is sent back to the
-              client.
+              response before they are sent back to the client.
+
+              The "`body_filter`" phase is responsible for modifying the body of a response
+              before it is sent back to the client.
 
           source: A CEL syntax expression that contains the rule's conditions. Allowed objects
               are: request, whois, session, response, tags, `user_defined_tags`, `user_agent`,
-              `client_data`. More info can be found here:
+              `client_data`.
+
+              More info can be found here:
               https://gcore.com/docs/waap/waap-rules/advanced-rules
 
           extra_headers: Send extra headers
@@ -623,12 +651,16 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
 
           ordering: Determine the field to order results by
 
-          phase: Filter rules based on the WAAP request/response phase for applying the rule. The
-              "access" phase is responsible for modifying the request before it is sent to the
-              origin server. The "`header_filter`" phase is responsible for modifying the HTTP
-              headers of a response before they are sent back to the client. The
-              "`body_filter`" phase is responsible for modifying the body of a response before
-              it is sent back to the client.
+          phase: Filter rules based on the WAAP request/response phase for applying the rule.
+
+              The "access" phase is responsible for modifying the request before it is sent to
+              the origin server.
+
+              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              response before they are sent back to the client.
+
+              The "`body_filter`" phase is responsible for modifying the body of a response
+              before it is sent back to the client.
 
           extra_headers: Send extra headers
 

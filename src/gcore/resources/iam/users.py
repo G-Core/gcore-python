@@ -77,8 +77,9 @@ class UsersResource(SyncAPIResource):
 
           email: User's email address.
 
-          groups:
-              User's group in the current account. IAM supports 5 groups:
+          groups: User's group in the current account.
+
+              IAM supports 5 groups:
 
               - Users
               - Administrators
@@ -86,7 +87,9 @@ class UsersResource(SyncAPIResource):
               - Purge and Prefetch only (API)
               - Purge and Prefetch only (API+Web)
 
-          lang: User's language. Defines language of the control panel and email messages.
+          lang: User's language.
+
+              Defines language of the control panel and email messages.
 
           name: User's name.
 
@@ -132,11 +135,12 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[User]:
-        """Get a list of users.
+        """
+        Get a list of users.
 
-        Pass a value for the `limit` parameter in your request if
-        you want retrieve a paginated result. Otherwise API returns a list with all
-        users without pagination.
+        Pass a value for the `limit` parameter in your request if you want retrieve a
+        paginated result. Otherwise API returns a list with all users without
+        pagination.
 
         Args:
           limit: The maximum number of items.
@@ -253,16 +257,20 @@ class UsersResource(SyncAPIResource):
     ) -> UserInvite:
         """Invite a user to the account.
 
-        User will receive an email. The new user will
-        receive an invitation email with a link to create an account password, the
-        existing user will be notified about the invitation to the account.
+        User will receive an email.
+
+        The new user will receive an invitation email with a
+        link to create an account password, the existing user will be notified about the
+        invitation to the account.
 
         Args:
           client_id: ID of account.
 
           email: User email.
 
-          lang: User's language. Defines language of the control panel and email messages.
+          lang: User's language.
+
+              Defines language of the control panel and email messages.
 
           name: User name.
 
@@ -342,8 +350,9 @@ class AsyncUsersResource(AsyncAPIResource):
 
           email: User's email address.
 
-          groups:
-              User's group in the current account. IAM supports 5 groups:
+          groups: User's group in the current account.
+
+              IAM supports 5 groups:
 
               - Users
               - Administrators
@@ -351,7 +360,9 @@ class AsyncUsersResource(AsyncAPIResource):
               - Purge and Prefetch only (API)
               - Purge and Prefetch only (API+Web)
 
-          lang: User's language. Defines language of the control panel and email messages.
+          lang: User's language.
+
+              Defines language of the control panel and email messages.
 
           name: User's name.
 
@@ -397,11 +408,12 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[User, AsyncOffsetPage[User]]:
-        """Get a list of users.
+        """
+        Get a list of users.
 
-        Pass a value for the `limit` parameter in your request if
-        you want retrieve a paginated result. Otherwise API returns a list with all
-        users without pagination.
+        Pass a value for the `limit` parameter in your request if you want retrieve a
+        paginated result. Otherwise API returns a list with all users without
+        pagination.
 
         Args:
           limit: The maximum number of items.
@@ -518,16 +530,20 @@ class AsyncUsersResource(AsyncAPIResource):
     ) -> UserInvite:
         """Invite a user to the account.
 
-        User will receive an email. The new user will
-        receive an invitation email with a link to create an account password, the
-        existing user will be notified about the invitation to the account.
+        User will receive an email.
+
+        The new user will receive an invitation email with a
+        link to create an account password, the existing user will be notified about the
+        invitation to the account.
 
         Args:
           client_id: ID of account.
 
           email: User email.
 
-          lang: User's language. Defines language of the control panel and email messages.
+          lang: User's language.
+
+              Defines language of the control panel and email messages.
 
           name: User name.
 

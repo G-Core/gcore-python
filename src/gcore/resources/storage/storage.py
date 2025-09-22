@@ -224,9 +224,11 @@ class StorageResource(SyncAPIResource):
     ) -> SyncOffsetPage[Storage]:
         """
         Returns storages with the same filtering and pagination as v2, but in a
-        simplified response shape for easier client consumption. Response format: count:
-        total number of storages matching the filter (independent of pagination)
-        results: the current page of storages according to limit/offset
+        simplified response shape for easier client consumption.
+
+        Response format: count: total number of storages matching the filter
+        (independent of pagination) results: the current page of storages according to
+        limit/offset
 
         Args:
           id: Filter by storage ID
@@ -626,9 +628,11 @@ class AsyncStorageResource(AsyncAPIResource):
     ) -> AsyncPaginator[Storage, AsyncOffsetPage[Storage]]:
         """
         Returns storages with the same filtering and pagination as v2, but in a
-        simplified response shape for easier client consumption. Response format: count:
-        total number of storages matching the filter (independent of pagination)
-        results: the current page of storages according to limit/offset
+        simplified response shape for easier client consumption.
+
+        Response format: count: total number of storages matching the filter
+        (independent of pagination) results: the current page of storages according to
+        limit/offset
 
         Args:
           id: Filter by storage ID

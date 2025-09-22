@@ -193,7 +193,9 @@ class SubnetsResource(SyncAPIResource):
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified. **Examples:**
+              cannot be modified.
+
+              **Examples:**
 
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
@@ -589,7 +591,9 @@ class AsyncSubnetsResource(AsyncAPIResource):
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified. **Examples:**
+              cannot be modified.
+
+              **Examples:**
 
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or

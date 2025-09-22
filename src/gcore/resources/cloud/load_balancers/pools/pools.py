@@ -200,6 +200,7 @@ class PoolsResource(SyncAPIResource):
     ) -> TaskIDList:
         """
         Updates the specified load balancer pool with the provided changes.
+
         **Behavior:**
 
         - Simple fields (strings, numbers, booleans) will be updated if provided
@@ -209,8 +210,10 @@ class PoolsResource(SyncAPIResource):
         - If no change is detected for a specific field compared to the current pool
           state, that field will be skipped
         - If no changes are detected at all across all fields, no task will be created
-          and an empty task list will be returned **Examples of complex objects that
-          require full specification:**
+          and an empty task list will be returned
+
+        **Examples of complex objects that require full specification:**
+
         - Pool members: All member properties must be provided when updating members
         - Health monitors: Complete health monitor configuration must be specified
         - Session persistence: Full session persistence settings must be included
@@ -593,6 +596,7 @@ class AsyncPoolsResource(AsyncAPIResource):
     ) -> TaskIDList:
         """
         Updates the specified load balancer pool with the provided changes.
+
         **Behavior:**
 
         - Simple fields (strings, numbers, booleans) will be updated if provided
@@ -602,8 +606,10 @@ class AsyncPoolsResource(AsyncAPIResource):
         - If no change is detected for a specific field compared to the current pool
           state, that field will be skipped
         - If no changes are detected at all across all fields, no task will be created
-          and an empty task list will be returned **Examples of complex objects that
-          require full specification:**
+          and an empty task list will be returned
+
+        **Examples of complex objects that require full specification:**
+
         - Pool members: All member properties must be provided when updating members
         - Health monitors: Complete health monitor configuration must be specified
         - Session persistence: Full session persistence settings must be included

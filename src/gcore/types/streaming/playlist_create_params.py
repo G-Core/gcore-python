@@ -64,9 +64,10 @@ class PlaylistCreateParams(TypedDict, total=False):
     """A URL to a built-in HTML video player with the video inside.
 
     It can be inserted into an iframe on your website and the video will
-    automatically play in all browsers. The player can be opened or shared via this
-    direct link. Also the video player can be integrated into your web pages using
-    the Iframe tag.
+    automatically play in all browsers.
+
+    The player can be opened or shared via this direct link. Also the video player
+    can be integrated into your web pages using the Iframe tag.
 
     Please see the details in `iframe_url` attribute of /videos/{id} method.
     """
@@ -97,6 +98,7 @@ class PlaylistCreateParams(TypedDict, total=False):
     video_ids: Iterable[int]
     """A list of VOD IDs included in the playlist.
 
-    Order of videos in a playlist reflects the order of IDs in the array. Maximum
-    video limit = 128.
+    Order of videos in a playlist reflects the order of IDs in the array.
+
+    Maximum video limit = 128.
     """

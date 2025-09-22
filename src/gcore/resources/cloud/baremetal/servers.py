@@ -72,10 +72,12 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Create a new bare metal server with the specified configuration.
+        """
+        Create a new bare metal server with the specified configuration.
 
-        How to get
-        access: For Linux,
+        How to get access:
+
+        For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -83,7 +85,10 @@ class ServersResource(SyncAPIResource):
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified. For Windows,
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
         - Use the `user_data` field to provide a
           [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
           in base64 to create new users on Windows.
@@ -437,10 +442,12 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Create a new bare metal server with the specified configuration.
+        """
+        Create a new bare metal server with the specified configuration.
 
-        How to get
-        access: For Linux,
+        How to get access:
+
+        For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -448,7 +455,10 @@ class AsyncServersResource(AsyncAPIResource):
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified. For Windows,
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
         - Use the `user_data` field to provide a
           [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
           in base64 to create new users on Windows.

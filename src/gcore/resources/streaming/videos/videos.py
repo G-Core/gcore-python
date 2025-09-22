@@ -81,8 +81,10 @@ class VideosResource(SyncAPIResource):
         """
         Use this method to create a new video entity.
 
-        **Methods of creating** To upload the original video file to the server, there
-        are several possible scenarios:
+        **Methods of creating**
+
+        To upload the original video file to the server, there are several possible
+        scenarios:
 
         - **Copy from another server** – If your video is accessable via "http://",
           "https://", or "sftp://" public link, then you can use this method to copy a
@@ -91,20 +93,26 @@ class VideosResource(SyncAPIResource):
           execution file will be uploaded and will be sent to transcoding automatically,
           you don't have to do anything else. Use extra field `origin_http_headers` if
           authorization is required on the external server.
+
         - **Direct upload from a local device** – If you need to upload video directly
           from your local device or from a mobile app, then use this method. Keep
           `origin_url` empty and use TUS protocol ([tus.io](https://tus.io)) to upload
           file. More details are here
           ["Get TUS' upload"](/docs/api-reference/streaming/videos/get-tus-parameters-for-direct-upload)
-          After getting the video, it is processed through the queue. There are 2
-          priority criteria: global and local. Global is determined automatically by the
-          system as converters are ready to get next video, so your videos rarely queue
-          longer than usual (when you don't have a dedicated region). Local priority
-          works at the level of your account and you have full control over it, look at
-          "priority" attribute.
 
-        **AI processing** When uploading a video, it is possible to automatically create
-        subtitles based on AI. Read more:
+        After getting the video, it is processed through the queue. There are 2 priority
+        criteria: global and local. Global is determined automatically by the system as
+        converters are ready to get next video, so your videos rarely queue longer than
+        usual (when you don't have a dedicated region). Local priority works at the
+        level of your account and you have full control over it, look at "priority"
+        attribute.
+
+        **AI processing**
+
+        When uploading a video, it is possible to automatically create subtitles based
+        on AI.
+
+        Read more:
 
         - What is
           ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
@@ -119,21 +127,26 @@ class VideosResource(SyncAPIResource):
           subtitle will be generated for each specified language.
         - How to
           ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
-          The created AI-task(s) will be automatically executed, and result will also be
-          automatically attached to this video as subtitle(s). Please note that
-          transcription is done automatically for all videos uploaded to our video
-          hosting. If necessary, you can disable automatic creation of subtitles. If AI
-          is disabled in your account, no AI functionality is called.
 
-        **Advanced Features** For details on the requirements for incoming original
-        files, and output video parameters after transcoding, refer to the Knowledge
-        Base documentation. By default video will be transcoded according to the
-        original resolution, and a quality ladder suitable for your original video will
-        be applied. There is no automatic upscaling; the maximum quality is taken from
-        the original video. If you want to upload specific files not explicitly listed
-        in requirements or wish to modify the standard quality ladder (i.e. decrease
-        quality or add new non-standard qualities), then such customization is possible.
-        Please reach out to us for assistance.
+        The created AI-task(s) will be automatically executed, and result will also be
+        automatically attached to this video as subtitle(s).
+
+        Please note that transcription is done automatically for all videos uploaded to
+        our video hosting. If necessary, you can disable automatic creation of
+        subtitles. If AI is disabled in your account, no AI functionality is called.
+
+        **Advanced Features**
+
+        For details on the requirements for incoming original files, and output video
+        parameters after transcoding, refer to the Knowledge Base documentation. By
+        default video will be transcoded according to the original resolution, and a
+        quality ladder suitable for your original video will be applied. There is no
+        automatic upscaling; the maximum quality is taken from the original video.
+
+        If you want to upload specific files not explicitly listed in requirements or
+        wish to modify the standard quality ladder (i.e. decrease quality or add new
+        non-standard qualities), then such customization is possible. Please reach out
+        to us for assistance.
 
         Additionally, check the Knowledge Base for any supplementary information you may
         need.
@@ -187,26 +200,30 @@ class VideosResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
-        """Changes parameters of the video to new values.
+        """
+        Changes parameters of the video to new values.
 
-        It's allowed to update only those
-        public parameters that are described in POST method to create a new “video”
-        entity. So it's not possible to change calculated parameters like "id",
-        "duration", "`hls_url`", etc. Examples of changing:
+        It's allowed to update only those public parameters that are described in POST
+        method to create a new “video” entity. So it's not possible to change calculated
+        parameters like "id", "duration", "`hls_url`", etc.
+
+        Examples of changing:
 
         - Name: `{ "name": "new name of the video" }`
-        - Move the video to a new directory: ` { "directory_id": 200 }` Please note that
-          some parameters are used on initial step (before transcoding) only, so after
-          transcoding there is no use in changing their values. For example,
-          "`origin_url`" parameter is used for downloading an original file from a
-          source and never used after transcoding; or "priority" parameter is used to
-          set priority of processing and never used after transcoding.
+        - Move the video to a new directory: ` { "directory_id": 200 }`
+
+        Please note that some parameters are used on initial step (before transcoding)
+        only, so after transcoding there is no use in changing their values. For
+        example, "`origin_url`" parameter is used for downloading an original file from
+        a source and never used after transcoding; or "priority" parameter is used to
+        set priority of processing and never used after transcoding.
 
         Args:
           name: Video name
 
-          auto_transcribe_audio_language:
-              Automatic creation of subtitles by transcribing the audio track. Values:
+          auto_transcribe_audio_language: Automatic creation of subtitles by transcribing the audio track.
+
+              Values:
 
               - disable – Do not transcribe.
               - auto – Automatically detects the activation of the option based on the
@@ -216,7 +233,9 @@ class VideosResource(SyncAPIResource):
                 language spoken in the audio track, or when auto language detection fails.
                 Language is set by 3-letter language code according to ISO-639-2
                 (bibliographic code). List of languages is available in `audio_language`
-                attribute of API POST /streaming/ai/transcribe . Example:
+                attribute of API POST /streaming/ai/transcribe .
+
+              Example:
 
               ```
               auto_transcribe_audio_language: "auto"
@@ -232,15 +251,23 @@ class VideosResource(SyncAPIResource):
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
-              option only. Use it when you want to make automatic subtitles in languages other
-              than the original language in audio. Values:
+              option only.
+
+              Use it when you want to make automatic subtitles in languages other than the
+              original language in audio.
+
+              Values:
 
               - disable – Do not translate.
               - default – There are 3 default languages: eng,fre,ger
               - \\  – Explicit language to translate to, or list of languages separated by a
                 comma. Look at list of available languages in description of AI ASR task
-                creation. If several languages are specified for translation, a separate
-                subtitle will be generated for each language. Example:
+                creation.
+
+              If several languages are specified for translation, a separate subtitle will be
+              generated for each language.
+
+              Example:
 
               ```
               auto_translate_subtitles_language: default
@@ -260,8 +287,10 @@ class VideosResource(SyncAPIResource):
               length if the video, then you can provide timecodes of starting point and
               duration of a segment to process. Start encoding from is a number in seconds.
 
-          custom_iframe_url: Deprecated. Custom URL of IFrame for video player to be used in share panel in
-              player. Auto generated IFrame URL provided by default
+          custom_iframe_url: Deprecated.
+
+              Custom URL of IFrame for video player to be used in share panel in player. Auto
+              generated IFrame URL provided by default
 
           description: Video details; not visible to the end-users
 
@@ -269,8 +298,11 @@ class VideosResource(SyncAPIResource):
 
           origin_http_headers: Authorization HTTP request header. Will be used as credentials to authenticate a
               request to download a file (specified in "`origin_url`" parameter) on an
-              external server. Syntax:
-              `Authorization: <auth-scheme> <authorization-parameters>` Examples:
+              external server.
+
+              Syntax: `Authorization: <auth-scheme> <authorization-parameters>`
+
+              Examples:
 
               - "`origin_http_headers`": "Authorization: Basic ..."
               - "`origin_http_headers`": "Authorization: Bearer ..."
@@ -292,14 +324,20 @@ class VideosResource(SyncAPIResource):
               transcoding.
 
           poster: Poster is your own static image which can be displayed before the video starts.
+
               After uploading the video, the system will automatically create several
               screenshots (they will be stored in "screenshots" attribute) from which you can
               select an default screenshot. This "poster" field is for uploading your own
               image. Also use attribute "`screenshot_id`" to select poster as a default
-              screnshot. Attribute accepts single image as base64-encoded string
+              screnshot.
+
+              Attribute accepts single image as base64-encoded string
               [(RFC 2397 – The "data" URL scheme)](https://www.rfc-editor.org/rfc/rfc2397). In
-              format: `data:[<mediatype>];base64,<data>` MIME-types are image/jpeg,
-              image/webp, and image/png and file sizes up to 1Mb. Examples:
+              format: `data:[<mediatype>];base64,<data>`
+
+              MIME-types are image/jpeg, image/webp, and image/png and file sizes up to 1Mb.
+
+              Examples:
 
               - `data:image/jpeg;base64,/9j/4AA...qf/2Q==`
               - `data:image/png;base64,iVBORw0KGg...ggg==`
@@ -307,12 +345,14 @@ class VideosResource(SyncAPIResource):
 
           priority: Priority allows you to adjust the urgency of processing some videos before
               others in your account, if your algorithm requires it. For example, when there
-              are very urgent video and some regular ones that can wait in the queue. Value
-              range, integer [-10..10]. -10 is the lowest down-priority, 10 is the highest
-              up-priority. Default priority is 0.
+              are very urgent video and some regular ones that can wait in the queue.
 
-          projection:
-              Deprecated. Regulates the video format:
+              Value range, integer [-10..10]. -10 is the lowest down-priority, 10 is the
+              highest up-priority. Default priority is 0.
+
+          projection: Deprecated.
+
+              Regulates the video format:
 
               - **regular** — plays the video as usual
               - **vr360** — plays the video in 360 degree mode
@@ -325,21 +365,29 @@ class VideosResource(SyncAPIResource):
               your conditions. Look at GET /`quality_sets` method
 
           remote_poster_url: Poster URL to download from external resource, instead of uploading via "poster"
-              attribute. It has the same restrictions as "poster" attribute.
+              attribute.
+
+              It has the same restrictions as "poster" attribute.
 
           remove_poster: Set it to true to remove poster
 
-          screenshot_id: Default screenshot index. Specify an ID from the "screenshots" array, so that
-              the URL of the required screenshot appears in the "screenshot" attribute as the
-              default screenshot. By default 5 static screenshots will be taken from different
-              places in the video after transcoding. If the video is short, there may be fewer
-              screenshots. Counting from 0. A value of -1 sets the default screenshot to the
-              URL of your own image from the "poster" attribute. Look at "screenshot"
-              attribute in GET /videos/{`video_id`} for details.
+          screenshot_id: Default screenshot index.
 
-          share_url: Deprecated. Custom URL or iframe displayed in the link field when a user clicks
-              on a sharing button in player. If empty, the link field and social network
-              sharing is disabled
+              Specify an ID from the "screenshots" array, so that the URL of the required
+              screenshot appears in the "screenshot" attribute as the default screenshot. By
+              default 5 static screenshots will be taken from different places in the video
+              after transcoding. If the video is short, there may be fewer screenshots.
+
+              Counting from 0. A value of -1 sets the default screenshot to the URL of your
+              own image from the "poster" attribute.
+
+              Look at "screenshot" attribute in GET /videos/{`video_id`} for details.
+
+          share_url: Deprecated.
+
+              Custom URL or iframe displayed in the link field when a user clicks on a sharing
+              button in player. If empty, the link field and social network sharing is
+              disabled
 
           source_bitrate_limit: The option allows you to set the video transcoding rule so that the output
               bitrate in ABR ladder is not exceeding the bitrate of the original video.
@@ -349,18 +397,21 @@ class VideosResource(SyncAPIResource):
               By default `source_bitrate_limit: true` this option allows you to have the
               output bitrate not more than in the original video, thus to transcode video
               faster and to deliver it to end-viewers faster as well. At the same time, the
-              quality will be similar to the original. If for some reason you need more
-              byte-space in the output quality when encoding, you can set this option to
-              `source_bitrate_limit: false`. Then, when transcoding, the quality ceiling will
-              be raised from the bitrate of the original video to the maximum possible limit
-              specified in our the Product Documentation. For example, this may be needed
-              when:
+              quality will be similar to the original.
+
+              If for some reason you need more byte-space in the output quality when encoding,
+              you can set this option to `source_bitrate_limit: false`. Then, when
+              transcoding, the quality ceiling will be raised from the bitrate of the original
+              video to the maximum possible limit specified in our the Product Documentation.
+              For example, this may be needed when:
 
               - to improve the visual quality parameters using PSNR, SSIM, VMAF metrics,
               - to improve the picture quality on dynamic scenes,
-              - etc. The option is applied only at the video creation stage and cannot be
-                changed later. If you want to re-transcode the video using new value, then you
-                need to create and upload a new video only.
+              - etc.
+
+              The option is applied only at the video creation stage and cannot be changed
+              later. If you want to re-transcode the video using new value, then you need to
+              create and upload a new video only.
 
           extra_headers: Send extra headers
 
@@ -443,8 +494,10 @@ class VideosResource(SyncAPIResource):
           search: Aggregated search condition. If set, the video list is filtered by one combined
               SQL criterion:
 
-              - id={s} OR slug={s} OR name like {s} i.e. "/videos?search=1000" returns list of
-                videos where id=1000 or slug=1000 or name contains "1000".
+              - id={s} OR slug={s} OR name like {s}
+
+              i.e. "/videos?search=1000" returns list of videos where id=1000 or slug=1000 or
+              name contains "1000".
 
           status:
               Use it to get videos filtered by their status. Possible values:
@@ -507,8 +560,10 @@ class VideosResource(SyncAPIResource):
 
         When you delete a video, all transcoded qualities and all associated files such
         as subtitles and screenshots, as well as other data, are deleted from cloud
-        storage. The video is deleted permanently and irreversibly. Therefore, it is
-        impossible to restore files after this.
+        storage.
+
+        The video is deleted permanently and irreversibly. Therefore, it is impossible
+        to restore files after this.
 
         For detailed information and information on calculating your maximum monthly
         storage usage, please refer to the Product Documentation.
@@ -553,6 +608,7 @@ class VideosResource(SyncAPIResource):
 
         All videos in the request will be processed in queue in order of priority. Use
         "priority" attribute and look at general description in POST /videos method.
+
         Limits:
 
         - Batch max size = 500 videos.
@@ -598,11 +654,13 @@ class VideosResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
-        """Information about a video entity.
+        """
+        Information about a video entity.
 
-        Contains all the data about the video:
-        meta-data, data for streaming and renditions, static media data, data about
-        original video. You can use different methods to play video:
+        Contains all the data about the video: meta-data, data for streaming and
+        renditions, static media data, data about original video.
+
+        You can use different methods to play video:
 
         - `iframe_url` – a URL to a built-in HTML video player with automatically
           configured video playback.
@@ -613,7 +671,8 @@ class VideosResource(SyncAPIResource):
         - `dash_url` – a URL to MPEG-DASH .mpd manifest, which can be played in most
           modern video players. Preferable for Android and Windows devices.
         - `converted_videos`/`mp4_url` – a URL to MP4 file of specific rendition.
-          ![Video player](https://demo-files.gvideo.io/apidocs/coffee-run-player.jpg)
+
+        ![Video player](https://demo-files.gvideo.io/apidocs/coffee-run-player.jpg)
 
         Args:
           extra_headers: Send extra headers
@@ -645,19 +704,23 @@ class VideosResource(SyncAPIResource):
     ) -> DirectUploadParameters:
         """
         Use this method to get TUS' session parameters: hostname of the server to
-        upload, secure token. The general sequence of actions for a direct upload of a
-        video is as follows:
+        upload, secure token.
+
+        The general sequence of actions for a direct upload of a video is as follows:
 
         - Create video entity via POST method
           ["Create video"](/docs/api-reference/streaming/videos/create-video)
         - Get TUS' session parameters (you are here now)
         - Upload file via TUS client, choose your implementation on
-          [tus.io](https://tus.io/implementations) Final endpoint for uploading is
-          constructed using the following template: "https://{hostname}/upload/". Also
-          you have to provide token, `client_id`, `video_id` as metadata too. A short
-          javascript example is shown below, based on tus-js-client. Variable "data"
-          below is the result of this API request. Please, note that we support 2.x
-          version only of tus-js-client.
+          [tus.io](https://tus.io/implementations)
+
+        Final endpoint for uploading is constructed using the following template:
+        "https://{hostname}/upload/". Also you have to provide token, `client_id`,
+        `video_id` as metadata too.
+
+        A short javascript example is shown below, based on tus-js-client. Variable
+        "data" below is the result of this API request. Please, note that we support 2.x
+        version only of tus-js-client.
 
         ```
             uploads[data.video.id] = new tus.Upload(file, {
@@ -769,8 +832,10 @@ class AsyncVideosResource(AsyncAPIResource):
         """
         Use this method to create a new video entity.
 
-        **Methods of creating** To upload the original video file to the server, there
-        are several possible scenarios:
+        **Methods of creating**
+
+        To upload the original video file to the server, there are several possible
+        scenarios:
 
         - **Copy from another server** – If your video is accessable via "http://",
           "https://", or "sftp://" public link, then you can use this method to copy a
@@ -779,20 +844,26 @@ class AsyncVideosResource(AsyncAPIResource):
           execution file will be uploaded and will be sent to transcoding automatically,
           you don't have to do anything else. Use extra field `origin_http_headers` if
           authorization is required on the external server.
+
         - **Direct upload from a local device** – If you need to upload video directly
           from your local device or from a mobile app, then use this method. Keep
           `origin_url` empty and use TUS protocol ([tus.io](https://tus.io)) to upload
           file. More details are here
           ["Get TUS' upload"](/docs/api-reference/streaming/videos/get-tus-parameters-for-direct-upload)
-          After getting the video, it is processed through the queue. There are 2
-          priority criteria: global and local. Global is determined automatically by the
-          system as converters are ready to get next video, so your videos rarely queue
-          longer than usual (when you don't have a dedicated region). Local priority
-          works at the level of your account and you have full control over it, look at
-          "priority" attribute.
 
-        **AI processing** When uploading a video, it is possible to automatically create
-        subtitles based on AI. Read more:
+        After getting the video, it is processed through the queue. There are 2 priority
+        criteria: global and local. Global is determined automatically by the system as
+        converters are ready to get next video, so your videos rarely queue longer than
+        usual (when you don't have a dedicated region). Local priority works at the
+        level of your account and you have full control over it, look at "priority"
+        attribute.
+
+        **AI processing**
+
+        When uploading a video, it is possible to automatically create subtitles based
+        on AI.
+
+        Read more:
 
         - What is
           ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
@@ -807,21 +878,26 @@ class AsyncVideosResource(AsyncAPIResource):
           subtitle will be generated for each specified language.
         - How to
           ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
-          The created AI-task(s) will be automatically executed, and result will also be
-          automatically attached to this video as subtitle(s). Please note that
-          transcription is done automatically for all videos uploaded to our video
-          hosting. If necessary, you can disable automatic creation of subtitles. If AI
-          is disabled in your account, no AI functionality is called.
 
-        **Advanced Features** For details on the requirements for incoming original
-        files, and output video parameters after transcoding, refer to the Knowledge
-        Base documentation. By default video will be transcoded according to the
-        original resolution, and a quality ladder suitable for your original video will
-        be applied. There is no automatic upscaling; the maximum quality is taken from
-        the original video. If you want to upload specific files not explicitly listed
-        in requirements or wish to modify the standard quality ladder (i.e. decrease
-        quality or add new non-standard qualities), then such customization is possible.
-        Please reach out to us for assistance.
+        The created AI-task(s) will be automatically executed, and result will also be
+        automatically attached to this video as subtitle(s).
+
+        Please note that transcription is done automatically for all videos uploaded to
+        our video hosting. If necessary, you can disable automatic creation of
+        subtitles. If AI is disabled in your account, no AI functionality is called.
+
+        **Advanced Features**
+
+        For details on the requirements for incoming original files, and output video
+        parameters after transcoding, refer to the Knowledge Base documentation. By
+        default video will be transcoded according to the original resolution, and a
+        quality ladder suitable for your original video will be applied. There is no
+        automatic upscaling; the maximum quality is taken from the original video.
+
+        If you want to upload specific files not explicitly listed in requirements or
+        wish to modify the standard quality ladder (i.e. decrease quality or add new
+        non-standard qualities), then such customization is possible. Please reach out
+        to us for assistance.
 
         Additionally, check the Knowledge Base for any supplementary information you may
         need.
@@ -875,26 +951,30 @@ class AsyncVideosResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
-        """Changes parameters of the video to new values.
+        """
+        Changes parameters of the video to new values.
 
-        It's allowed to update only those
-        public parameters that are described in POST method to create a new “video”
-        entity. So it's not possible to change calculated parameters like "id",
-        "duration", "`hls_url`", etc. Examples of changing:
+        It's allowed to update only those public parameters that are described in POST
+        method to create a new “video” entity. So it's not possible to change calculated
+        parameters like "id", "duration", "`hls_url`", etc.
+
+        Examples of changing:
 
         - Name: `{ "name": "new name of the video" }`
-        - Move the video to a new directory: ` { "directory_id": 200 }` Please note that
-          some parameters are used on initial step (before transcoding) only, so after
-          transcoding there is no use in changing their values. For example,
-          "`origin_url`" parameter is used for downloading an original file from a
-          source and never used after transcoding; or "priority" parameter is used to
-          set priority of processing and never used after transcoding.
+        - Move the video to a new directory: ` { "directory_id": 200 }`
+
+        Please note that some parameters are used on initial step (before transcoding)
+        only, so after transcoding there is no use in changing their values. For
+        example, "`origin_url`" parameter is used for downloading an original file from
+        a source and never used after transcoding; or "priority" parameter is used to
+        set priority of processing and never used after transcoding.
 
         Args:
           name: Video name
 
-          auto_transcribe_audio_language:
-              Automatic creation of subtitles by transcribing the audio track. Values:
+          auto_transcribe_audio_language: Automatic creation of subtitles by transcribing the audio track.
+
+              Values:
 
               - disable – Do not transcribe.
               - auto – Automatically detects the activation of the option based on the
@@ -904,7 +984,9 @@ class AsyncVideosResource(AsyncAPIResource):
                 language spoken in the audio track, or when auto language detection fails.
                 Language is set by 3-letter language code according to ISO-639-2
                 (bibliographic code). List of languages is available in `audio_language`
-                attribute of API POST /streaming/ai/transcribe . Example:
+                attribute of API POST /streaming/ai/transcribe .
+
+              Example:
 
               ```
               auto_transcribe_audio_language: "auto"
@@ -920,15 +1002,23 @@ class AsyncVideosResource(AsyncAPIResource):
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
-              option only. Use it when you want to make automatic subtitles in languages other
-              than the original language in audio. Values:
+              option only.
+
+              Use it when you want to make automatic subtitles in languages other than the
+              original language in audio.
+
+              Values:
 
               - disable – Do not translate.
               - default – There are 3 default languages: eng,fre,ger
               - \\  – Explicit language to translate to, or list of languages separated by a
                 comma. Look at list of available languages in description of AI ASR task
-                creation. If several languages are specified for translation, a separate
-                subtitle will be generated for each language. Example:
+                creation.
+
+              If several languages are specified for translation, a separate subtitle will be
+              generated for each language.
+
+              Example:
 
               ```
               auto_translate_subtitles_language: default
@@ -948,8 +1038,10 @@ class AsyncVideosResource(AsyncAPIResource):
               length if the video, then you can provide timecodes of starting point and
               duration of a segment to process. Start encoding from is a number in seconds.
 
-          custom_iframe_url: Deprecated. Custom URL of IFrame for video player to be used in share panel in
-              player. Auto generated IFrame URL provided by default
+          custom_iframe_url: Deprecated.
+
+              Custom URL of IFrame for video player to be used in share panel in player. Auto
+              generated IFrame URL provided by default
 
           description: Video details; not visible to the end-users
 
@@ -957,8 +1049,11 @@ class AsyncVideosResource(AsyncAPIResource):
 
           origin_http_headers: Authorization HTTP request header. Will be used as credentials to authenticate a
               request to download a file (specified in "`origin_url`" parameter) on an
-              external server. Syntax:
-              `Authorization: <auth-scheme> <authorization-parameters>` Examples:
+              external server.
+
+              Syntax: `Authorization: <auth-scheme> <authorization-parameters>`
+
+              Examples:
 
               - "`origin_http_headers`": "Authorization: Basic ..."
               - "`origin_http_headers`": "Authorization: Bearer ..."
@@ -980,14 +1075,20 @@ class AsyncVideosResource(AsyncAPIResource):
               transcoding.
 
           poster: Poster is your own static image which can be displayed before the video starts.
+
               After uploading the video, the system will automatically create several
               screenshots (they will be stored in "screenshots" attribute) from which you can
               select an default screenshot. This "poster" field is for uploading your own
               image. Also use attribute "`screenshot_id`" to select poster as a default
-              screnshot. Attribute accepts single image as base64-encoded string
+              screnshot.
+
+              Attribute accepts single image as base64-encoded string
               [(RFC 2397 – The "data" URL scheme)](https://www.rfc-editor.org/rfc/rfc2397). In
-              format: `data:[<mediatype>];base64,<data>` MIME-types are image/jpeg,
-              image/webp, and image/png and file sizes up to 1Mb. Examples:
+              format: `data:[<mediatype>];base64,<data>`
+
+              MIME-types are image/jpeg, image/webp, and image/png and file sizes up to 1Mb.
+
+              Examples:
 
               - `data:image/jpeg;base64,/9j/4AA...qf/2Q==`
               - `data:image/png;base64,iVBORw0KGg...ggg==`
@@ -995,12 +1096,14 @@ class AsyncVideosResource(AsyncAPIResource):
 
           priority: Priority allows you to adjust the urgency of processing some videos before
               others in your account, if your algorithm requires it. For example, when there
-              are very urgent video and some regular ones that can wait in the queue. Value
-              range, integer [-10..10]. -10 is the lowest down-priority, 10 is the highest
-              up-priority. Default priority is 0.
+              are very urgent video and some regular ones that can wait in the queue.
 
-          projection:
-              Deprecated. Regulates the video format:
+              Value range, integer [-10..10]. -10 is the lowest down-priority, 10 is the
+              highest up-priority. Default priority is 0.
+
+          projection: Deprecated.
+
+              Regulates the video format:
 
               - **regular** — plays the video as usual
               - **vr360** — plays the video in 360 degree mode
@@ -1013,21 +1116,29 @@ class AsyncVideosResource(AsyncAPIResource):
               your conditions. Look at GET /`quality_sets` method
 
           remote_poster_url: Poster URL to download from external resource, instead of uploading via "poster"
-              attribute. It has the same restrictions as "poster" attribute.
+              attribute.
+
+              It has the same restrictions as "poster" attribute.
 
           remove_poster: Set it to true to remove poster
 
-          screenshot_id: Default screenshot index. Specify an ID from the "screenshots" array, so that
-              the URL of the required screenshot appears in the "screenshot" attribute as the
-              default screenshot. By default 5 static screenshots will be taken from different
-              places in the video after transcoding. If the video is short, there may be fewer
-              screenshots. Counting from 0. A value of -1 sets the default screenshot to the
-              URL of your own image from the "poster" attribute. Look at "screenshot"
-              attribute in GET /videos/{`video_id`} for details.
+          screenshot_id: Default screenshot index.
 
-          share_url: Deprecated. Custom URL or iframe displayed in the link field when a user clicks
-              on a sharing button in player. If empty, the link field and social network
-              sharing is disabled
+              Specify an ID from the "screenshots" array, so that the URL of the required
+              screenshot appears in the "screenshot" attribute as the default screenshot. By
+              default 5 static screenshots will be taken from different places in the video
+              after transcoding. If the video is short, there may be fewer screenshots.
+
+              Counting from 0. A value of -1 sets the default screenshot to the URL of your
+              own image from the "poster" attribute.
+
+              Look at "screenshot" attribute in GET /videos/{`video_id`} for details.
+
+          share_url: Deprecated.
+
+              Custom URL or iframe displayed in the link field when a user clicks on a sharing
+              button in player. If empty, the link field and social network sharing is
+              disabled
 
           source_bitrate_limit: The option allows you to set the video transcoding rule so that the output
               bitrate in ABR ladder is not exceeding the bitrate of the original video.
@@ -1037,18 +1148,21 @@ class AsyncVideosResource(AsyncAPIResource):
               By default `source_bitrate_limit: true` this option allows you to have the
               output bitrate not more than in the original video, thus to transcode video
               faster and to deliver it to end-viewers faster as well. At the same time, the
-              quality will be similar to the original. If for some reason you need more
-              byte-space in the output quality when encoding, you can set this option to
-              `source_bitrate_limit: false`. Then, when transcoding, the quality ceiling will
-              be raised from the bitrate of the original video to the maximum possible limit
-              specified in our the Product Documentation. For example, this may be needed
-              when:
+              quality will be similar to the original.
+
+              If for some reason you need more byte-space in the output quality when encoding,
+              you can set this option to `source_bitrate_limit: false`. Then, when
+              transcoding, the quality ceiling will be raised from the bitrate of the original
+              video to the maximum possible limit specified in our the Product Documentation.
+              For example, this may be needed when:
 
               - to improve the visual quality parameters using PSNR, SSIM, VMAF metrics,
               - to improve the picture quality on dynamic scenes,
-              - etc. The option is applied only at the video creation stage and cannot be
-                changed later. If you want to re-transcode the video using new value, then you
-                need to create and upload a new video only.
+              - etc.
+
+              The option is applied only at the video creation stage and cannot be changed
+              later. If you want to re-transcode the video using new value, then you need to
+              create and upload a new video only.
 
           extra_headers: Send extra headers
 
@@ -1131,8 +1245,10 @@ class AsyncVideosResource(AsyncAPIResource):
           search: Aggregated search condition. If set, the video list is filtered by one combined
               SQL criterion:
 
-              - id={s} OR slug={s} OR name like {s} i.e. "/videos?search=1000" returns list of
-                videos where id=1000 or slug=1000 or name contains "1000".
+              - id={s} OR slug={s} OR name like {s}
+
+              i.e. "/videos?search=1000" returns list of videos where id=1000 or slug=1000 or
+              name contains "1000".
 
           status:
               Use it to get videos filtered by their status. Possible values:
@@ -1195,8 +1311,10 @@ class AsyncVideosResource(AsyncAPIResource):
 
         When you delete a video, all transcoded qualities and all associated files such
         as subtitles and screenshots, as well as other data, are deleted from cloud
-        storage. The video is deleted permanently and irreversibly. Therefore, it is
-        impossible to restore files after this.
+        storage.
+
+        The video is deleted permanently and irreversibly. Therefore, it is impossible
+        to restore files after this.
 
         For detailed information and information on calculating your maximum monthly
         storage usage, please refer to the Product Documentation.
@@ -1241,6 +1359,7 @@ class AsyncVideosResource(AsyncAPIResource):
 
         All videos in the request will be processed in queue in order of priority. Use
         "priority" attribute and look at general description in POST /videos method.
+
         Limits:
 
         - Batch max size = 500 videos.
@@ -1290,11 +1409,13 @@ class AsyncVideosResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Video:
-        """Information about a video entity.
+        """
+        Information about a video entity.
 
-        Contains all the data about the video:
-        meta-data, data for streaming and renditions, static media data, data about
-        original video. You can use different methods to play video:
+        Contains all the data about the video: meta-data, data for streaming and
+        renditions, static media data, data about original video.
+
+        You can use different methods to play video:
 
         - `iframe_url` – a URL to a built-in HTML video player with automatically
           configured video playback.
@@ -1305,7 +1426,8 @@ class AsyncVideosResource(AsyncAPIResource):
         - `dash_url` – a URL to MPEG-DASH .mpd manifest, which can be played in most
           modern video players. Preferable for Android and Windows devices.
         - `converted_videos`/`mp4_url` – a URL to MP4 file of specific rendition.
-          ![Video player](https://demo-files.gvideo.io/apidocs/coffee-run-player.jpg)
+
+        ![Video player](https://demo-files.gvideo.io/apidocs/coffee-run-player.jpg)
 
         Args:
           extra_headers: Send extra headers
@@ -1337,19 +1459,23 @@ class AsyncVideosResource(AsyncAPIResource):
     ) -> DirectUploadParameters:
         """
         Use this method to get TUS' session parameters: hostname of the server to
-        upload, secure token. The general sequence of actions for a direct upload of a
-        video is as follows:
+        upload, secure token.
+
+        The general sequence of actions for a direct upload of a video is as follows:
 
         - Create video entity via POST method
           ["Create video"](/docs/api-reference/streaming/videos/create-video)
         - Get TUS' session parameters (you are here now)
         - Upload file via TUS client, choose your implementation on
-          [tus.io](https://tus.io/implementations) Final endpoint for uploading is
-          constructed using the following template: "https://{hostname}/upload/". Also
-          you have to provide token, `client_id`, `video_id` as metadata too. A short
-          javascript example is shown below, based on tus-js-client. Variable "data"
-          below is the result of this API request. Please, note that we support 2.x
-          version only of tus-js-client.
+          [tus.io](https://tus.io/implementations)
+
+        Final endpoint for uploading is constructed using the following template:
+        "https://{hostname}/upload/". Also you have to provide token, `client_id`,
+        `video_id` as metadata too.
+
+        A short javascript example is shown below, based on tus-js-client. Variable
+        "data" below is the result of this API request. Please, note that we support 2.x
+        version only of tus-js-client.
 
         ```
             uploads[data.video.id] = new tus.Upload(file, {

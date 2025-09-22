@@ -42,9 +42,13 @@ class ResourceRecord(BaseModel):
     6. `backup` (bool)
     7. `notes` (string)
     8. `weight` (float)
-    9. `ip` (string) Some keys are reserved for balancing, @see
-       https://api.gcore.com/dns/v2/info/meta This meta will be used to decide which
-       resource record should pass through filters from the filter set
+    9. `ip` (string)
+
+    Some keys are reserved for balancing, @see
+    https://api.gcore.com/dns/v2/info/meta
+
+    This meta will be used to decide which resource record should pass through
+    filters from the filter set
     """
 
 

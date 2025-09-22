@@ -134,9 +134,12 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Create an instance with specified configuration.
+        """
+        Create an instance with specified configuration.
 
-        How to get access: For Linux,
+        How to get access:
+
+        For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -144,7 +147,10 @@ class InstancesResource(SyncAPIResource):
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified. For Windows,
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
         - Use the `user_data` field to provide a
           [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
           in base64 to create new users on Windows.
@@ -188,8 +194,9 @@ class InstancesResource(SyncAPIResource):
 
           security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id:
-              Placement group ID for instance placement policy. Supported group types:
+          servergroup_id: Placement group ID for instance placement policy.
+
+              Supported group types:
 
               - `anti-affinity`: Ensures instances are placed on different hosts for high
                 availability.
@@ -860,7 +867,9 @@ class InstancesResource(SyncAPIResource):
 
         The response content
         language for `ddos_profile` can be controlled via the 'language' cookie
-        parameter. **Cookie Parameters**:
+        parameter.
+
+        **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
@@ -1148,9 +1157,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Create an instance with specified configuration.
+        """
+        Create an instance with specified configuration.
 
-        How to get access: For Linux,
+        How to get access:
+
+        For Linux,
 
         - Use the `user_data` field to provide a
           [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
@@ -1158,7 +1170,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         - Specify the `username` and `password` to create a new user.
         - When only `password` is provided, it is set as the password for the default
           user of the image.
-        - The `user_data` is ignored when the `password` is specified. For Windows,
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
         - Use the `user_data` field to provide a
           [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
           in base64 to create new users on Windows.
@@ -1202,8 +1217,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
-          servergroup_id:
-              Placement group ID for instance placement policy. Supported group types:
+          servergroup_id: Placement group ID for instance placement policy.
+
+              Supported group types:
 
               - `anti-affinity`: Ensures instances are placed on different hosts for high
                 availability.
@@ -1874,7 +1890,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         The response content
         language for `ddos_profile` can be controlled via the 'language' cookie
-        parameter. **Cookie Parameters**:
+        parameter.
+
+        **Cookie Parameters**:
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:

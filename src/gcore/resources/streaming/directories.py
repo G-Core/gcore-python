@@ -148,9 +148,12 @@ class DirectoriesResource(SyncAPIResource):
         After its execution, all contents of the directory will be deleted recursively:
 
         - Subdirectories
-        - Videos The directory and contents are deleted permanently and irreversibly.
-          Therefore, it is impossible to restore files after this. For details, see the
-          Product Documentation.
+        - Videos
+
+        The directory and contents are deleted permanently and irreversibly. Therefore,
+        it is impossible to restore files after this.
+
+        For details, see the Product Documentation.
 
         Args:
           extra_headers: Send extra headers
@@ -213,10 +216,10 @@ class DirectoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectoriesTree:
-        """Tree structure of directories.
+        """
+        Tree structure of directories.
 
-        This endpoint returns hierarchical data about
-        directories in video hosting.
+        This endpoint returns hierarchical data about directories in video hosting.
         """
         return self._get(
             "/streaming/directories/tree",
@@ -352,9 +355,12 @@ class AsyncDirectoriesResource(AsyncAPIResource):
         After its execution, all contents of the directory will be deleted recursively:
 
         - Subdirectories
-        - Videos The directory and contents are deleted permanently and irreversibly.
-          Therefore, it is impossible to restore files after this. For details, see the
-          Product Documentation.
+        - Videos
+
+        The directory and contents are deleted permanently and irreversibly. Therefore,
+        it is impossible to restore files after this.
+
+        For details, see the Product Documentation.
 
         Args:
           extra_headers: Send extra headers
@@ -417,10 +423,10 @@ class AsyncDirectoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectoriesTree:
-        """Tree structure of directories.
+        """
+        Tree structure of directories.
 
-        This endpoint returns hierarchical data about
-        directories in video hosting.
+        This endpoint returns hierarchical data about directories in video hosting.
         """
         return await self._get(
             "/streaming/directories/tree",

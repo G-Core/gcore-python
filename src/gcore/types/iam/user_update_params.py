@@ -19,7 +19,9 @@ class UserUpdateParams(TypedDict, total=False):
     """User's email address."""
 
     groups: Iterable[Group]
-    """User's group in the current account. IAM supports 5 groups:
+    """User's group in the current account.
+
+    IAM supports 5 groups:
 
     - Users
     - Administrators
@@ -29,7 +31,10 @@ class UserUpdateParams(TypedDict, total=False):
     """
 
     lang: Literal["de", "en", "ru", "zh", "az"]
-    """User's language. Defines language of the control panel and email messages."""
+    """User's language.
+
+    Defines language of the control panel and email messages.
+    """
 
     name: Optional[str]
     """User's name."""

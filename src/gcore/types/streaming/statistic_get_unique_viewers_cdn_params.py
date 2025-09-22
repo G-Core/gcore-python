@@ -17,10 +17,13 @@ class StatisticGetUniqueViewersCdnParams(TypedDict, total=False):
     id: str
     """Filter by entity's id.
 
-    Put ID of a Live stream, VOD or a playlist to be calculated. If the value is
-    omitted, then the calculation is done for all videos/streams of the specified
-    type. When using this "id" parameter, be sure to specify the "type" parameter
-    too. If you do not specify a type, the "id" will be ignored.
+    Put ID of a Live stream, VOD or a playlist to be calculated.
+
+    If the value is omitted, then the calculation is done for all videos/streams of
+    the specified type.
+
+    When using this "id" parameter, be sure to specify the "type" parameter too. If
+    you do not specify a type, the "id" will be ignored.
     """
 
     type: Literal["live", "vod", "playlist"]

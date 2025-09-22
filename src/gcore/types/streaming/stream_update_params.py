@@ -14,9 +14,12 @@ class StreamUpdateParams(TypedDict, total=False):
 
 class Stream(TypedDict, total=False):
     name: Required[str]
-    """
-    Stream name. Often used as a human-readable name for the stream, but can contain
-    any text you wish. The values are not unique and may be repeated. Examples:
+    """Stream name.
+
+    Often used as a human-readable name for the stream, but can contain any text you
+    wish. The values are not unique and may be repeated.
+
+    Examples:
 
     - Conference in July
     - Stream #10003
@@ -28,8 +31,10 @@ class Stream(TypedDict, total=False):
     """Stream switch between on and off.
 
     This is not an indicator of the status "stream is receiving and it is LIVE", but
-    rather an on/off switch. When stream is switched off, there is no way to process
-    it: PULL is deactivated and PUSH will return an error.
+    rather an on/off switch.
+
+    When stream is switched off, there is no way to process it: PULL is deactivated
+    and PUSH will return an error.
 
     - true – stream can be processed
     - false – stream is off, and cannot be processed
@@ -38,9 +43,12 @@ class Stream(TypedDict, total=False):
     auto_record: bool
     """Enables autotomatic recording of the stream when it started.
 
-    So you don't need to call recording manually. Result of recording is
-    automatically added to video hosting. For details see the
-    /streams/`start_recording` method and in knowledge base Values:
+    So you don't need to call recording manually.
+
+    Result of recording is automatically added to video hosting. For details see the
+    /streams/`start_recording` method and in knowledge base
+
+    Values:
 
     - true – auto recording is enabled
     - false – auto recording is disabled
@@ -75,8 +83,11 @@ class Stream(TypedDict, total=False):
     """DVR duration in seconds if DVR feature is enabled for the stream.
 
     So this is duration of how far the user can rewind the live stream.
-    `dvr_duration` range is [30...14400]. Maximum value is 4 hours = 14400 seconds.
-    If you need more, ask the Support Team please.
+
+    `dvr_duration` range is [30...14400].
+
+    Maximum value is 4 hours = 14400 seconds. If you need more, ask the Support Team
+    please.
     """
 
     dvr_enabled: bool
@@ -102,7 +113,9 @@ class Stream(TypedDict, total=False):
     """
     Visualization mode for 360° streams, how the stream is rendered in our web
     player ONLY. If you would like to show video 360° in an external video player,
-    then use parameters of that video player. Modes:
+    then use parameters of that video player.
+
+    Modes:
 
     - regular – regular “flat” stream
     - vr360 – display stream in 360° mode
@@ -132,7 +145,9 @@ class Stream(TypedDict, total=False):
     """Method of recording a stream.
 
     Specifies the source from which the stream will be recorded: original or
-    transcoded. Types:
+    transcoded.
+
+    Types:
 
     - "origin" – To record RMTP/SRT/etc original clean media source.
     - "transcoded" – To record the output transcoded version of the stream,
@@ -140,16 +155,18 @@ class Stream(TypedDict, total=False):
     """
 
     uri: str
-    """
-    When using PULL method, this is the URL to pull a stream from. You can specify
-    multiple addresses separated by a space (" "), so you can organize a backup
-    plan. In this case, the specified addresses will be selected one by one using
-    round robin scheduling. If the first address does not respond, then the next one
-    in the list will be automatically requested, returning to the first and so on in
-    a circle. Also, if the sucessfully working stream stops sending data, then the
-    next one will be selected according to the same scheme. After 2 hours of
-    inactivity of your original stream, the system stops PULL requests and the
-    stream is deactivated (the "active" field switches to "false"). Please, note
-    that this field is for PULL only, so is not suitable for PUSH. Look at fields
-    "`push_url`" and "`push_url_srt`" from GET method.
+    """When using PULL method, this is the URL to pull a stream from.
+
+    You can specify multiple addresses separated by a space (" "), so you can
+    organize a backup plan. In this case, the specified addresses will be selected
+    one by one using round robin scheduling. If the first address does not respond,
+    then the next one in the list will be automatically requested, returning to the
+    first and so on in a circle. Also, if the sucessfully working stream stops
+    sending data, then the next one will be selected according to the same scheme.
+
+    After 2 hours of inactivity of your original stream, the system stops PULL
+    requests and the stream is deactivated (the "active" field switches to "false").
+
+    Please, note that this field is for PULL only, so is not suitable for PUSH. Look
+    at fields "`push_url`" and "`push_url_srt`" from GET method.
     """
