@@ -187,7 +187,7 @@ class PoolsResource(SyncAPIResource):
 
           min_node_count: Minimum node count
 
-          node_count: Current node count
+          node_count: This field is deprecated. Please use the cluster pool resize handler instead.
 
           taints: Taints applied to the cluster pool
 
@@ -549,7 +549,7 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           min_node_count: Minimum node count
 
-          node_count: Current node count
+          node_count: This field is deprecated. Please use the cluster pool resize handler instead.
 
           taints: Taints applied to the cluster pool
 

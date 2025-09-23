@@ -66,6 +66,14 @@ class TestClusters:
                 }
             ],
             version="1.28.1",
+            add_ons={
+                "slurm": {
+                    "enabled": True,
+                    "file_share_id": "cbc94d0e-06c6-4d12-9e86-9782ba14fc8c",
+                    "ssh_key_ids": ["25735292-bd97-44b0-a1af-d7eab876261d", "efc01f3a-35b9-4385-89f9-e38439093ee7"],
+                    "worker_count": 2,
+                }
+            },
             authentication={
                 "oidc": {
                     "client_id": "kubernetes",
@@ -183,6 +191,14 @@ class TestClusters:
             cluster_name="cluster_name",
             project_id=0,
             region_id=0,
+            add_ons={
+                "slurm": {
+                    "enabled": True,
+                    "file_share_id": "cbc94d0e-06c6-4d12-9e86-9782ba14fc8c",
+                    "ssh_key_ids": ["25735292-bd97-44b0-a1af-d7eab876261d", "efc01f3a-35b9-4385-89f9-e38439093ee7"],
+                    "worker_count": 2,
+                }
+            },
             authentication={
                 "oidc": {
                     "client_id": "kubernetes",
@@ -641,6 +657,14 @@ class TestAsyncClusters:
                 }
             ],
             version="1.28.1",
+            add_ons={
+                "slurm": {
+                    "enabled": True,
+                    "file_share_id": "cbc94d0e-06c6-4d12-9e86-9782ba14fc8c",
+                    "ssh_key_ids": ["25735292-bd97-44b0-a1af-d7eab876261d", "efc01f3a-35b9-4385-89f9-e38439093ee7"],
+                    "worker_count": 2,
+                }
+            },
             authentication={
                 "oidc": {
                     "client_id": "kubernetes",
@@ -758,6 +782,14 @@ class TestAsyncClusters:
             cluster_name="cluster_name",
             project_id=0,
             region_id=0,
+            add_ons={
+                "slurm": {
+                    "enabled": True,
+                    "file_share_id": "cbc94d0e-06c6-4d12-9e86-9782ba14fc8c",
+                    "ssh_key_ids": ["25735292-bd97-44b0-a1af-d7eab876261d", "efc01f3a-35b9-4385-89f9-e38439093ee7"],
+                    "worker_count": 2,
+                }
+            },
             authentication={
                 "oidc": {
                     "client_id": "kubernetes",

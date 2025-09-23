@@ -10,6 +10,8 @@ from .clusters.k8s_cluster_pool import K8sClusterPool
 
 __all__ = [
     "K8sCluster",
+    "AddOns",
+    "AddOnsSlurm",
     "Csi",
     "CsiNfs",
     "Authentication",
@@ -19,6 +21,37 @@ __all__ = [
     "DDOSProfile",
     "DDOSProfileField",
 ]
+
+
+class AddOnsSlurm(BaseModel):
+    enabled: bool
+    """Indicates whether Slurm add-on is deployed in the cluster.
+
+    This add-on is only supported in clusters running Kubernetes v1.31 and v1.32
+    with at least 1 GPU cluster pool.
+    """
+
+    file_share_id: Optional[str] = None
+    """ID of a VAST file share used as Slurm storage.
+
+    The Slurm add-on creates separate Persistent Volume Claims for different
+    purposes (controller spool, worker spool, jail) on that file share.
+    """
+
+    ssh_key_ids: Optional[List[str]] = None
+    """IDs of SSH keys authorized for SSH connection to Slurm login nodes."""
+
+    worker_count: Optional[int] = None
+    """Size of the worker pool, i.e. number of worker nodes.
+
+    Each Slurm worker node is backed by a Pod scheduled on one of cluster's GPU
+    nodes.
+    """
+
+
+class AddOns(BaseModel):
+    slurm: AddOnsSlurm
+    """Slurm add-on configuration"""
 
 
 class CsiNfs(BaseModel):
@@ -134,6 +167,9 @@ class DDOSProfile(BaseModel):
 class K8sCluster(BaseModel):
     id: str
     """Cluster pool uuid"""
+
+    add_ons: AddOns
+    """Cluster add-ons configuration"""
 
     created_at: str
     """Function creation date"""
