@@ -86,6 +86,7 @@ class ClustersResource(SyncAPIResource):
         name: str,
         pools: Iterable[cluster_create_params.Pool],
         version: str,
+        add_ons: cluster_create_params.AddOns | Omit = omit,
         authentication: Optional[cluster_create_params.Authentication] | Omit = omit,
         autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
         cni: Optional[cluster_create_params.Cni] | Omit = omit,
@@ -117,6 +118,8 @@ class ClustersResource(SyncAPIResource):
           pools: The pools of the cluster
 
           version: The version of the k8s cluster
+
+          add_ons: Cluster add-ons configuration
 
           authentication: Authentication settings
 
@@ -220,6 +223,7 @@ class ClustersResource(SyncAPIResource):
                     "name": name,
                     "pools": pools,
                     "version": version,
+                    "add_ons": add_ons,
                     "authentication": authentication,
                     "autoscaler_config": autoscaler_config,
                     "cni": cni,
@@ -248,6 +252,7 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        add_ons: cluster_update_params.AddOns | Omit = omit,
         authentication: Optional[cluster_update_params.Authentication] | Omit = omit,
         autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
         cni: Optional[cluster_update_params.Cni] | Omit = omit,
@@ -264,6 +269,8 @@ class ClustersResource(SyncAPIResource):
         Update k8s cluster
 
         Args:
+          add_ons: Cluster add-ons configuration
+
           authentication: Authentication settings
 
           autoscaler_config: Cluster autoscaler configuration.
@@ -348,6 +355,7 @@ class ClustersResource(SyncAPIResource):
             f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             body=maybe_transform(
                 {
+                    "add_ons": add_ons,
                     "authentication": authentication,
                     "autoscaler_config": autoscaler_config,
                     "cni": cni,
@@ -681,6 +689,7 @@ class AsyncClustersResource(AsyncAPIResource):
         name: str,
         pools: Iterable[cluster_create_params.Pool],
         version: str,
+        add_ons: cluster_create_params.AddOns | Omit = omit,
         authentication: Optional[cluster_create_params.Authentication] | Omit = omit,
         autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
         cni: Optional[cluster_create_params.Cni] | Omit = omit,
@@ -712,6 +721,8 @@ class AsyncClustersResource(AsyncAPIResource):
           pools: The pools of the cluster
 
           version: The version of the k8s cluster
+
+          add_ons: Cluster add-ons configuration
 
           authentication: Authentication settings
 
@@ -815,6 +826,7 @@ class AsyncClustersResource(AsyncAPIResource):
                     "name": name,
                     "pools": pools,
                     "version": version,
+                    "add_ons": add_ons,
                     "authentication": authentication,
                     "autoscaler_config": autoscaler_config,
                     "cni": cni,
@@ -843,6 +855,7 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        add_ons: cluster_update_params.AddOns | Omit = omit,
         authentication: Optional[cluster_update_params.Authentication] | Omit = omit,
         autoscaler_config: Optional[Dict[str, str]] | Omit = omit,
         cni: Optional[cluster_update_params.Cni] | Omit = omit,
@@ -859,6 +872,8 @@ class AsyncClustersResource(AsyncAPIResource):
         Update k8s cluster
 
         Args:
+          add_ons: Cluster add-ons configuration
+
           authentication: Authentication settings
 
           autoscaler_config: Cluster autoscaler configuration.
@@ -943,6 +958,7 @@ class AsyncClustersResource(AsyncAPIResource):
             f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
             body=await async_maybe_transform(
                 {
+                    "add_ons": add_ons,
                     "authentication": authentication,
                     "autoscaler_config": autoscaler_config,
                     "cni": cni,

@@ -28,7 +28,7 @@ class PoolUpdateParams(TypedDict, total=False):
     """Minimum node count"""
 
     node_count: Optional[int]
-    """Current node count"""
+    """This field is deprecated. Please use the cluster pool resize handler instead."""
 
     taints: Optional[Dict[str, str]]
     """Taints applied to the cluster pool"""
