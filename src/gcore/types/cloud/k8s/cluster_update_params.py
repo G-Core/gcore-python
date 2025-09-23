@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ...._types import SequenceNotStr
 from ..laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
 
 __all__ = [
     "ClusterUpdateParams",
+    "AddOns",
+    "AddOnsSlurm",
+    "AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer",
+    "AddOnsSlurmK8sClusterSlurmAddonDisableV2Serializer",
     "Authentication",
     "AuthenticationOidc",
     "Cni",
@@ -23,6 +28,9 @@ class ClusterUpdateParams(TypedDict, total=False):
     project_id: int
 
     region_id: int
+
+    add_ons: AddOns
+    """Cluster add-ons configuration"""
 
     authentication: Optional[Authentication]
     """Authentication settings"""
@@ -95,6 +103,50 @@ class ClusterUpdateParams(TypedDict, total=False):
 
     logging: Optional[Logging]
     """Logging configuration"""
+
+
+class AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer(TypedDict, total=False):
+    enabled: Required[Literal[True]]
+    """The Slurm add-on will be enabled in the cluster.
+
+    This add-on is only supported in clusters running Kubernetes v1.31 and v1.32
+    with at least 1 GPU cluster pool and VAST NFS support enabled.
+    """
+
+    file_share_id: Required[str]
+    """ID of a VAST file share to be used as Slurm storage.
+
+    The Slurm add-on will create separate Persistent Volume Claims for different
+    purposes (controller spool, worker spool, jail) on that file share.
+
+    The file share must have `root_squash` disabled, while `path_length` and
+    `allowed_characters` settings must be set to `NPL`.
+    """
+
+    ssh_key_ids: Required[SequenceNotStr[str]]
+    """IDs of SSH keys to authorize for SSH connection to Slurm login nodes."""
+
+    worker_count: Required[int]
+    """Size of the worker pool, i.e. the number of Slurm worker nodes.
+
+    Each Slurm worker node will be backed by a Pod scheduled on one of cluster's GPU
+    nodes.
+    """
+
+
+class AddOnsSlurmK8sClusterSlurmAddonDisableV2Serializer(TypedDict, total=False):
+    enabled: Required[bool]
+    """The Slurm add-on will be disabled in the cluster."""
+
+
+AddOnsSlurm: TypeAlias = Union[
+    AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer, AddOnsSlurmK8sClusterSlurmAddonDisableV2Serializer
+]
+
+
+class AddOns(TypedDict, total=False):
+    slurm: AddOnsSlurm
+    """Slurm add-on configuration"""
 
 
 class AuthenticationOidc(TypedDict, total=False):
