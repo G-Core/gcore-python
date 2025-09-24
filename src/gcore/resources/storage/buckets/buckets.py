@@ -108,7 +108,9 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -148,7 +150,9 @@ class BucketsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets",
+            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}/s3/buckets",
             page=SyncOffsetPage[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -196,7 +200,9 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -266,7 +272,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -306,7 +314,9 @@ class AsyncBucketsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets",
+            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}/s3/buckets",
             page=AsyncOffsetPage[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -354,7 +364,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

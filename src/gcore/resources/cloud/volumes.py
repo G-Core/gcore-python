@@ -288,7 +288,9 @@ class VolumesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "image_id": image_id,
@@ -374,7 +376,9 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._patch(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -456,7 +460,9 @@ class VolumesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/volumes/{project_id}/{region_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}",
             page=SyncOffsetPage[Volume],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -525,7 +531,9 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._delete(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -582,7 +590,9 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._post(
-            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach",
+            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach",
             body=maybe_transform(
                 {
                     "instance_id": instance_id,
@@ -639,7 +649,9 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype",
             body=maybe_transform({"volume_type": volume_type}, volume_change_type_params.VolumeChangeTypeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -688,7 +700,9 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._post(
-            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach",
+            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach",
             body=maybe_transform(
                 {"instance_id": instance_id}, volume_detach_from_instance_params.VolumeDetachFromInstanceParams
             ),
@@ -736,7 +750,9 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._get(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -786,7 +802,9 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend",
             body=maybe_transform({"size": size}, volume_resize_params.VolumeResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -835,7 +853,9 @@ class VolumesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1095,7 +1115,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "image_id": image_id,
@@ -1181,7 +1203,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._patch(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -1263,7 +1287,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/volumes/{project_id}/{region_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}",
             page=AsyncOffsetPage[Volume],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1332,7 +1358,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._delete(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1389,7 +1417,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._post(
-            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach",
+            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach",
             body=await async_maybe_transform(
                 {
                     "instance_id": instance_id,
@@ -1446,7 +1476,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype",
             body=await async_maybe_transform(
                 {"volume_type": volume_type}, volume_change_type_params.VolumeChangeTypeParams
             ),
@@ -1497,7 +1529,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._post(
-            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach",
+            f"/cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach",
             body=await async_maybe_transform(
                 {"instance_id": instance_id}, volume_detach_from_instance_params.VolumeDetachFromInstanceParams
             ),
@@ -1545,7 +1579,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._get(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1595,7 +1631,9 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend",
             body=await async_maybe_transform({"size": size}, volume_resize_params.VolumeResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1644,7 +1682,9 @@ class AsyncVolumesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert",
+            f"/cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

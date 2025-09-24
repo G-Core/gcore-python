@@ -104,7 +104,9 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/iam/users/{user_id}",
+            f"/iam/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//iam/users/{user_id}",
             body=maybe_transform(
                 {
                     "auth_types": auth_types,
@@ -156,7 +158,7 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/iam/users",
+            "/iam/users" if self._client._base_url_overridden else "https://api.gcore.com//iam/users",
             page=SyncOffsetPage[User],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -202,7 +204,9 @@ class UsersResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/iam/clients/{client_id}/client-users/{user_id}",
+            f"/iam/clients/{client_id}/client-users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//iam/clients/{client_id}/client-users/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -233,7 +237,9 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/iam/users/{user_id}",
+            f"/iam/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//iam/users/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -283,7 +289,9 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/iam/clients/invite_user",
+            "/iam/clients/invite_user"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//iam/clients/invite_user",
             body=maybe_transform(
                 {
                     "client_id": client_id,
@@ -377,7 +385,9 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/iam/users/{user_id}",
+            f"/iam/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//iam/users/{user_id}",
             body=await async_maybe_transform(
                 {
                     "auth_types": auth_types,
@@ -429,7 +439,7 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/iam/users",
+            "/iam/users" if self._client._base_url_overridden else "https://api.gcore.com//iam/users",
             page=AsyncOffsetPage[User],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -475,7 +485,9 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/iam/clients/{client_id}/client-users/{user_id}",
+            f"/iam/clients/{client_id}/client-users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//iam/clients/{client_id}/client-users/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -506,7 +518,9 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/iam/users/{user_id}",
+            f"/iam/users/{user_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//iam/users/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -556,7 +570,9 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/iam/clients/invite_user",
+            "/iam/clients/invite_user"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//iam/clients/invite_user",
             body=await async_maybe_transform(
                 {
                     "client_id": client_id,

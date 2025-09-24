@@ -100,7 +100,9 @@ class FloatingIPsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "fixed_ip_address": fixed_ip_address,
@@ -176,7 +178,9 @@ class FloatingIPsResource(SyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._patch(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
             body=maybe_transform({"tags": tags}, floating_ip_update_params.FloatingIPUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -230,7 +234,9 @@ class FloatingIPsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}",
             page=SyncOffsetPage[FloatingIPDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -288,7 +294,9 @@ class FloatingIPsResource(SyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._delete(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -333,7 +341,9 @@ class FloatingIPsResource(SyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._post(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign",
             body=maybe_transform(
                 {
                     "port_id": port_id,
@@ -385,7 +395,9 @@ class FloatingIPsResource(SyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._get(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -424,7 +436,9 @@ class FloatingIPsResource(SyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._post(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -500,7 +514,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "fixed_ip_address": fixed_ip_address,
@@ -576,7 +592,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._patch(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
             body=await async_maybe_transform({"tags": tags}, floating_ip_update_params.FloatingIPUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -630,7 +648,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}",
             page=AsyncOffsetPage[FloatingIPDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -688,7 +708,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._delete(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -733,7 +755,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._post(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/assign",
             body=await async_maybe_transform(
                 {
                     "port_id": port_id,
@@ -785,7 +809,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._get(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -824,7 +850,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._post(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign",
+            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}/unassign",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

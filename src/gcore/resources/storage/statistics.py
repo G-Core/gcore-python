@@ -82,7 +82,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/storage/stats/v1/storage/usage/total",
+            "/storage/stats/v1/storage/usage/total"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/stats/v1/storage/usage/total",
             body=maybe_transform(
                 {
                     "from_": from_,
@@ -149,7 +151,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/storage/stats/v1/storage/usage/series",
+            "/storage/stats/v1/storage/usage/series"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/stats/v1/storage/usage/series",
             body=maybe_transform(
                 {
                     "from_": from_,
@@ -229,7 +233,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/storage/stats/v1/storage/usage/total",
+            "/storage/stats/v1/storage/usage/total"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/stats/v1/storage/usage/total",
             body=await async_maybe_transform(
                 {
                     "from_": from_,
@@ -296,7 +302,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/storage/stats/v1/storage/usage/series",
+            "/storage/stats/v1/storage/usage/series"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/stats/v1/storage/usage/series",
             body=await async_maybe_transform(
                 {
                     "from_": from_,

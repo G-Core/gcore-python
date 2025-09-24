@@ -143,7 +143,9 @@ class ServersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
             page=SyncOffsetPage[GPUBaremetalClusterServer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -209,7 +211,9 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._delete(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
+            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -448,7 +452,9 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
             body=maybe_transform(
                 {
                     "ddos_profile": ddos_profile,
@@ -507,7 +513,9 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
             body=maybe_transform(
                 {
                     "ip_address": ip_address,
@@ -553,7 +561,9 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -592,7 +602,9 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -631,7 +643,9 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -748,7 +762,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
             page=AsyncOffsetPage[GPUBaremetalClusterServer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -814,7 +830,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._delete(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
+            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1055,7 +1073,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
             body=await async_maybe_transform(
                 {
                     "ddos_profile": ddos_profile,
@@ -1114,7 +1134,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
             body=await async_maybe_transform(
                 {
                     "ip_address": ip_address,
@@ -1160,7 +1182,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1199,7 +1223,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1238,7 +1264,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

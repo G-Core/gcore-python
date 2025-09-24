@@ -79,7 +79,9 @@ class ImagesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -124,7 +126,9 @@ class ImagesResource(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._delete(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -169,7 +173,9 @@ class ImagesResource(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -244,7 +250,9 @@ class ImagesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
             body=maybe_transform(
                 {
                     "name": name,
@@ -320,7 +328,9 @@ class AsyncImagesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -365,7 +375,9 @@ class AsyncImagesResource(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._delete(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -410,7 +422,9 @@ class AsyncImagesResource(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -485,7 +499,9 @@ class AsyncImagesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/images"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/images",
             body=await async_maybe_transform(
                 {
                     "name": name,

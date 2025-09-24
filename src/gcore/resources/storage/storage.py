@@ -138,7 +138,9 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/storage/provisioning/v2/storage",
+            "/storage/provisioning/v2/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v2/storage",
             body=maybe_transform(
                 {
                     "location": location,
@@ -188,7 +190,9 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/storage/provisioning/v2/storage/{storage_id}",
+            f"/storage/provisioning/v2/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}",
             body=maybe_transform(
                 {
                     "expires": expires,
@@ -260,7 +264,9 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/storage/provisioning/v3/storage",
+            "/storage/provisioning/v3/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v3/storage",
             page=SyncOffsetPage[Storage],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -312,7 +318,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -344,7 +352,9 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -379,7 +389,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -413,7 +425,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/restore",
+            f"/storage/provisioning/v1/storage/{storage_id}/restore"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/restore",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -452,7 +466,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -542,7 +558,9 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/storage/provisioning/v2/storage",
+            "/storage/provisioning/v2/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v2/storage",
             body=await async_maybe_transform(
                 {
                     "location": location,
@@ -592,7 +610,9 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/storage/provisioning/v2/storage/{storage_id}",
+            f"/storage/provisioning/v2/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v2/storage/{storage_id}",
             body=await async_maybe_transform(
                 {
                     "expires": expires,
@@ -664,7 +684,9 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/storage/provisioning/v3/storage",
+            "/storage/provisioning/v3/storage"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//storage/provisioning/v3/storage",
             page=AsyncOffsetPage[Storage],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -716,7 +738,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -748,7 +772,9 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            f"/storage/provisioning/v1/storage/{storage_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -783,7 +809,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -817,7 +845,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/restore",
+            f"/storage/provisioning/v1/storage/{storage_id}/restore"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/restore",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -858,7 +888,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

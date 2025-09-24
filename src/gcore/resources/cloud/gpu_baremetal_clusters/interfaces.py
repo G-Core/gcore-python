@@ -71,7 +71,9 @@ class InterfacesResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -131,7 +133,9 @@ class AsyncInterfacesResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
+            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

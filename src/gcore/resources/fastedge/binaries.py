@@ -67,7 +67,9 @@ class BinariesResource(SyncAPIResource):
         """
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
-            "/fastedge/v1/binaries/raw",
+            "/fastedge/v1/binaries/raw"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//fastedge/v1/binaries/raw",
             body=read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -87,7 +89,9 @@ class BinariesResource(SyncAPIResource):
     ) -> BinaryListResponse:
         """List binaries"""
         return self._get(
-            "/fastedge/v1/binaries",
+            "/fastedge/v1/binaries"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//fastedge/v1/binaries",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -119,7 +123,9 @@ class BinariesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//fastedge/v1/binaries/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -150,7 +156,9 @@ class BinariesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//fastedge/v1/binaries/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -203,7 +211,9 @@ class AsyncBinariesResource(AsyncAPIResource):
         """
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
-            "/fastedge/v1/binaries/raw",
+            "/fastedge/v1/binaries/raw"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//fastedge/v1/binaries/raw",
             body=await async_read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -223,7 +233,9 @@ class AsyncBinariesResource(AsyncAPIResource):
     ) -> BinaryListResponse:
         """List binaries"""
         return await self._get(
-            "/fastedge/v1/binaries",
+            "/fastedge/v1/binaries"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//fastedge/v1/binaries",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -255,7 +267,9 @@ class AsyncBinariesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//fastedge/v1/binaries/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -286,7 +300,9 @@ class AsyncBinariesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//fastedge/v1/binaries/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

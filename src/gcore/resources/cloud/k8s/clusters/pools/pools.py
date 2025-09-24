@@ -130,7 +130,9 @@ class PoolsResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
             body=maybe_transform(
                 {
                     "flavor_id": flavor_id,
@@ -208,7 +210,9 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
             body=maybe_transform(
                 {
                     "auto_healing_enabled": auto_healing_enabled,
@@ -258,7 +262,9 @@ class PoolsResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -300,7 +306,9 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -342,7 +350,9 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -387,7 +397,9 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
             body=maybe_transform({"node_count": node_count}, pool_resize_params.PoolResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -492,7 +504,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
             body=await async_maybe_transform(
                 {
                     "flavor_id": flavor_id,
@@ -570,7 +584,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
             body=await async_maybe_transform(
                 {
                     "auto_healing_enabled": auto_healing_enabled,
@@ -620,7 +636,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -662,7 +680,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -704,7 +724,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -749,7 +771,9 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
             body=await async_maybe_transform({"node_count": node_count}, pool_resize_params.PoolResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -104,7 +104,9 @@ class DNSResource(SyncAPIResource):
     ) -> DNSGetAccountOverviewResponse:
         """Get info about client"""
         return self._get(
-            "/dns/v2/platform/info",
+            "/dns/v2/platform/info"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//dns/v2/platform/info",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -141,7 +143,7 @@ class DNSResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/dns/v2/lookup",
+            "/dns/v2/lookup" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/lookup",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +209,9 @@ class AsyncDNSResource(AsyncAPIResource):
     ) -> DNSGetAccountOverviewResponse:
         """Get info about client"""
         return await self._get(
-            "/dns/v2/platform/info",
+            "/dns/v2/platform/info"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//dns/v2/platform/info",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -244,7 +248,7 @@ class AsyncDNSResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/dns/v2/lookup",
+            "/dns/v2/lookup" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/lookup",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
