@@ -78,7 +78,9 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/security/iaas/v2/profiles",
+            "/security/iaas/v2/profiles"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//security/iaas/v2/profiles",
             body=maybe_transform(
                 {
                     "fields": fields,
@@ -122,7 +124,9 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/security/iaas/v2/profiles",
+            "/security/iaas/v2/profiles"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//security/iaas/v2/profiles",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -168,7 +172,9 @@ class ProfilesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/security/iaas/v2/profiles/{id}",
+            f"/security/iaas/v2/profiles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -199,7 +205,9 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/security/iaas/v2/profiles/{id}",
+            f"/security/iaas/v2/profiles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -234,7 +242,9 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/security/iaas/v2/profiles/{id}/recreate",
+            f"/security/iaas/v2/profiles/{id}/recreate"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}/recreate",
             body=maybe_transform(
                 {
                     "fields": fields,
@@ -280,7 +290,9 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/security/iaas/v2/profiles/{id}",
+            f"/security/iaas/v2/profiles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}",
             body=maybe_transform(
                 {
                     "fields": fields,
@@ -346,7 +358,9 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/security/iaas/v2/profiles",
+            "/security/iaas/v2/profiles"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//security/iaas/v2/profiles",
             body=await async_maybe_transform(
                 {
                     "fields": fields,
@@ -390,7 +404,9 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/security/iaas/v2/profiles",
+            "/security/iaas/v2/profiles"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//security/iaas/v2/profiles",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -436,7 +452,9 @@ class AsyncProfilesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/security/iaas/v2/profiles/{id}",
+            f"/security/iaas/v2/profiles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -467,7 +485,9 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/security/iaas/v2/profiles/{id}",
+            f"/security/iaas/v2/profiles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -502,7 +522,9 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/security/iaas/v2/profiles/{id}/recreate",
+            f"/security/iaas/v2/profiles/{id}/recreate"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}/recreate",
             body=await async_maybe_transform(
                 {
                     "fields": fields,
@@ -548,7 +570,9 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/security/iaas/v2/profiles/{id}",
+            f"/security/iaas/v2/profiles/{id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//security/iaas/v2/profiles/{id}",
             body=await async_maybe_transform(
                 {
                     "fields": fields,

@@ -92,7 +92,9 @@ class RoutersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/routers/{project_id}/{region_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -149,7 +151,9 @@ class RoutersResource(SyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return self._patch(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}",
             body=maybe_transform(
                 {
                     "external_gateway_info": external_gateway_info,
@@ -199,7 +203,9 @@ class RoutersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/routers/{project_id}/{region_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}",
             page=SyncOffsetPage[Router],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -249,7 +255,9 @@ class RoutersResource(SyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return self._delete(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -301,7 +309,9 @@ class RoutersResource(SyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return self._post(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach",
             body=maybe_transform(
                 {
                     "subnet_id": subnet_id,
@@ -350,7 +360,9 @@ class RoutersResource(SyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return self._post(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach",
             body=maybe_transform({"subnet_id": subnet_id}, router_detach_subnet_params.RouterDetachSubnetParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -390,7 +402,9 @@ class RoutersResource(SyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return self._get(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -459,7 +473,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/routers/{project_id}/{region_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -516,7 +532,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return await self._patch(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}",
             body=await async_maybe_transform(
                 {
                     "external_gateway_info": external_gateway_info,
@@ -566,7 +584,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/routers/{project_id}/{region_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}",
             page=AsyncOffsetPage[Router],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -616,7 +636,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return await self._delete(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -668,7 +690,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return await self._post(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}/attach",
             body=await async_maybe_transform(
                 {
                     "subnet_id": subnet_id,
@@ -717,7 +741,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return await self._post(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}/detach",
             body=await async_maybe_transform(
                 {"subnet_id": subnet_id}, router_detach_subnet_params.RouterDetachSubnetParams
             ),
@@ -759,7 +785,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         if not router_id:
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return await self._get(
-            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+            f"/cloud/v1/routers/{project_id}/{region_id}/{router_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/routers/{project_id}/{region_id}/{router_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -75,7 +75,7 @@ class IamResource(SyncAPIResource):
     ) -> AccountOverview:
         """Get information about your profile, users and other account details."""
         return self._get(
-            "/iam/clients/me",
+            "/iam/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//iam/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -123,7 +123,7 @@ class AsyncIamResource(AsyncAPIResource):
     ) -> AccountOverview:
         """Get information about your profile, users and other account details."""
         return await self._get(
-            "/iam/clients/me",
+            "/iam/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//iam/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

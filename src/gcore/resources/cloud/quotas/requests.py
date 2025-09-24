@@ -79,7 +79,9 @@ class RequestsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/cloud/v2/limits_request",
+            "/cloud/v2/limits_request"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v2/limits_request",
             body=maybe_transform(
                 {
                     "description": description,
@@ -127,7 +129,9 @@ class RequestsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v2/limits_request",
+            "/cloud/v2/limits_request"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v2/limits_request",
             page=SyncOffsetPage[RequestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -173,7 +177,9 @@ class RequestsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v2/limits_request/{request_id}",
+            f"/cloud/v2/limits_request/{request_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/limits_request/{request_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -206,7 +212,9 @@ class RequestsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cloud/v2/limits_request/{request_id}",
+            f"/cloud/v2/limits_request/{request_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/limits_request/{request_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -267,7 +275,9 @@ class AsyncRequestsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/cloud/v2/limits_request",
+            "/cloud/v2/limits_request"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v2/limits_request",
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -315,7 +325,9 @@ class AsyncRequestsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v2/limits_request",
+            "/cloud/v2/limits_request"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/v2/limits_request",
             page=AsyncOffsetPage[RequestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -361,7 +373,9 @@ class AsyncRequestsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v2/limits_request/{request_id}",
+            f"/cloud/v2/limits_request/{request_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/limits_request/{request_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -394,7 +408,9 @@ class AsyncRequestsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cloud/v2/limits_request/{request_id}",
+            f"/cloud/v2/limits_request/{request_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/limits_request/{request_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

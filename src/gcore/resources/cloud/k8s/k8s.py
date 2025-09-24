@@ -92,7 +92,9 @@ class K8sResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v2/k8s/{project_id}/{region_id}/create_versions",
+            f"/cloud/v2/k8s/{project_id}/{region_id}/create_versions"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/{project_id}/{region_id}/create_versions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -157,7 +159,9 @@ class AsyncK8sResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v2/k8s/{project_id}/{region_id}/create_versions",
+            f"/cloud/v2/k8s/{project_id}/{region_id}/create_versions"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/k8s/{project_id}/{region_id}/create_versions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

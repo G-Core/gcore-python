@@ -82,7 +82,9 @@ class APIDiscoveryResource(SyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return self._get(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}",
+            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -115,7 +117,9 @@ class APIDiscoveryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/api-discovery/settings",
+            f"/waap/v1/domains/{domain_id}/api-discovery/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -180,7 +184,9 @@ class APIDiscoveryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results",
+            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/scan-results",
             page=SyncOffsetPage[WaapAPIScanResult],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -231,7 +237,9 @@ class APIDiscoveryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan",
+            f"/waap/v1/domains/{domain_id}/api-discovery/scan"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/scan",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -281,7 +289,9 @@ class APIDiscoveryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/api-discovery/settings",
+            f"/waap/v1/domains/{domain_id}/api-discovery/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/settings",
             body=maybe_transform(
                 {
                     "description_file_location": description_file_location,
@@ -334,7 +344,9 @@ class APIDiscoveryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/upload",
+            f"/waap/v1/domains/{domain_id}/api-discovery/upload"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/upload",
             body=maybe_transform(
                 {
                     "file_data": file_data,
@@ -400,7 +412,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}",
+            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -433,7 +447,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/api-discovery/settings",
+            f"/waap/v1/domains/{domain_id}/api-discovery/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -498,7 +514,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results",
+            f"/waap/v1/domains/{domain_id}/api-discovery/scan-results"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/scan-results",
             page=AsyncOffsetPage[WaapAPIScanResult],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -549,7 +567,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan",
+            f"/waap/v1/domains/{domain_id}/api-discovery/scan"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/scan",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -599,7 +619,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/api-discovery/settings",
+            f"/waap/v1/domains/{domain_id}/api-discovery/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/settings",
             body=await async_maybe_transform(
                 {
                     "description_file_location": description_file_location,
@@ -652,7 +674,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/upload",
+            f"/waap/v1/domains/{domain_id}/api-discovery/upload"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/api-discovery/upload",
             body=await async_maybe_transform(
                 {
                     "file_data": file_data,

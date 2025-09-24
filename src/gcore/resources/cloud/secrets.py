@@ -86,7 +86,9 @@ class SecretsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/secrets/{project_id}/{region_id}",
+            f"/cloud/v1/secrets/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/secrets/{project_id}/{region_id}",
             page=SyncOffsetPage[Secret],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -142,7 +144,9 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._delete(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -187,7 +191,9 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._get(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -236,7 +242,9 @@ class SecretsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/secrets/{project_id}/{region_id}",
+            f"/cloud/v2/secrets/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/secrets/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -353,7 +361,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/secrets/{project_id}/{region_id}",
+            f"/cloud/v1/secrets/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/secrets/{project_id}/{region_id}",
             page=AsyncOffsetPage[Secret],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -409,7 +419,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._delete(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -454,7 +466,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._get(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -503,7 +517,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/secrets/{project_id}/{region_id}",
+            f"/cloud/v2/secrets/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v2/secrets/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,

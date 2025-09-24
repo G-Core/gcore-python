@@ -87,7 +87,9 @@ class MetricsResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics",
             body=maybe_transform(
                 {
                     "time_interval": time_interval,
@@ -166,7 +168,9 @@ class AsyncMetricsResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics",
             body=await async_maybe_transform(
                 {
                     "time_interval": time_interval,

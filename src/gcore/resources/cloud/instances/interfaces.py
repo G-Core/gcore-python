@@ -77,7 +77,9 @@ class InterfacesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -309,7 +311,9 @@ class InterfacesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface",
             body=maybe_transform(
                 {
                     "ddos_profile": ddos_profile,
@@ -661,7 +665,9 @@ class InterfacesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface",
             body=maybe_transform(
                 {
                     "ip_address": ip_address,
@@ -728,7 +734,9 @@ class AsyncInterfacesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -960,7 +968,9 @@ class AsyncInterfacesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface",
             body=await async_maybe_transform(
                 {
                     "ddos_profile": ddos_profile,
@@ -1234,7 +1244,9 @@ class AsyncInterfacesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface",
             body=await async_maybe_transform(
                 {
                     "ip_address": ip_address,

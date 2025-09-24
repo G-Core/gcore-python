@@ -88,7 +88,7 @@ class TagsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/tags",
+            "/waap/v1/tags" if self._client._base_url_overridden else "https://api.gcore.com//waap/v1/tags",
             page=SyncOffsetPage[WaapTag],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -174,7 +174,7 @@ class AsyncTagsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/tags",
+            "/waap/v1/tags" if self._client._base_url_overridden else "https://api.gcore.com//waap/v1/tags",
             page=AsyncOffsetPage[WaapTag],
             options=make_request_options(
                 extra_headers=extra_headers,

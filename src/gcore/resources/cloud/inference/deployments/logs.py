@@ -91,7 +91,9 @@ class LogsResource(SyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs",
+            f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs",
             page=SyncOffsetPage[InferenceDeploymentLog],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -178,7 +180,9 @@ class AsyncLogsResource(AsyncAPIResource):
         if not deployment_name:
             raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs",
+            f"/cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/inference/{project_id}/deployments/{deployment_name}/logs",
             page=AsyncOffsetPage[InferenceDeploymentLog],
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -87,7 +87,9 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/waap/v1/statistics/series",
+            "/waap/v1/statistics/series"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/statistics/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,7 +171,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/waap/v1/statistics/series",
+            "/waap/v1/statistics/series"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//waap/v1/statistics/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

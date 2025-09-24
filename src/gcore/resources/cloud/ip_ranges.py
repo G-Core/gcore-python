@@ -70,7 +70,9 @@ class IPRangesResource(SyncAPIResource):
         duplicate prefixes are not returned.
         """
         return self._get(
-            "/cloud/public/v1/ipranges/egress",
+            "/cloud/public/v1/ipranges/egress"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/public/v1/ipranges/egress",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -129,7 +131,9 @@ class AsyncIPRangesResource(AsyncAPIResource):
         duplicate prefixes are not returned.
         """
         return await self._get(
-            "/cloud/public/v1/ipranges/egress",
+            "/cloud/public/v1/ipranges/egress"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//cloud/public/v1/ipranges/egress",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
