@@ -79,7 +79,9 @@ class VipResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -118,7 +120,9 @@ class VipResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -160,7 +164,9 @@ class VipResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._put(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
             body=maybe_transform(
                 {"port_ids": port_ids}, vip_replace_connected_ports_params.VipReplaceConnectedPortsParams
             ),
@@ -205,7 +211,9 @@ class VipResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             body=maybe_transform({"is_vip": is_vip}, vip_toggle_params.VipToggleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -248,7 +256,9 @@ class VipResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
             body=maybe_transform(
                 {"port_ids": port_ids}, vip_update_connected_ports_params.VipUpdateConnectedPortsParams
             ),
@@ -311,7 +321,9 @@ class AsyncVipResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -350,7 +362,9 @@ class AsyncVipResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -392,7 +406,9 @@ class AsyncVipResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._put(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
             body=await async_maybe_transform(
                 {"port_ids": port_ids}, vip_replace_connected_ports_params.VipReplaceConnectedPortsParams
             ),
@@ -437,7 +453,9 @@ class AsyncVipResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             body=await async_maybe_transform({"is_vip": is_vip}, vip_toggle_params.VipToggleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -480,7 +498,9 @@ class AsyncVipResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
             body=await async_maybe_transform(
                 {"port_ids": port_ids}, vip_update_connected_ports_params.VipUpdateConnectedPortsParams
             ),

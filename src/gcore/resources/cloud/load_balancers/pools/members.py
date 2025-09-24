@@ -131,7 +131,9 @@ class MembersResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
             body=maybe_transform(
                 {
                     "address": address,
@@ -195,7 +197,9 @@ class MembersResource(SyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -311,7 +315,9 @@ class AsyncMembersResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
             body=await async_maybe_transform(
                 {
                     "address": address,
@@ -375,7 +381,9 @@ class AsyncMembersResource(AsyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

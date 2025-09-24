@@ -72,7 +72,9 @@ class DirectoriesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/streaming/directories",
+            "/streaming/directories"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//streaming/directories",
             body=maybe_transform(
                 {
                     "name": name,
@@ -117,7 +119,9 @@ class DirectoriesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/directories/{directory_id}",
+            f"/streaming/directories/{directory_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/directories/{directory_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -166,7 +170,9 @@ class DirectoriesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/directories/{directory_id}",
+            f"/streaming/directories/{directory_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/directories/{directory_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -199,7 +205,9 @@ class DirectoriesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/directories/{directory_id}",
+            f"/streaming/directories/{directory_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/directories/{directory_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -222,7 +230,9 @@ class DirectoriesResource(SyncAPIResource):
         This endpoint returns hierarchical data about directories in video hosting.
         """
         return self._get(
-            "/streaming/directories/tree",
+            "/streaming/directories/tree"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//streaming/directories/tree",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -279,7 +289,9 @@ class AsyncDirectoriesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/streaming/directories",
+            "/streaming/directories"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//streaming/directories",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -324,7 +336,9 @@ class AsyncDirectoriesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/directories/{directory_id}",
+            f"/streaming/directories/{directory_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/directories/{directory_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -373,7 +387,9 @@ class AsyncDirectoriesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/directories/{directory_id}",
+            f"/streaming/directories/{directory_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/directories/{directory_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -406,7 +422,9 @@ class AsyncDirectoriesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/directories/{directory_id}",
+            f"/streaming/directories/{directory_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//streaming/directories/{directory_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -429,7 +447,9 @@ class AsyncDirectoriesResource(AsyncAPIResource):
         This endpoint returns hierarchical data about directories in video hosting.
         """
         return await self._get(
-            "/streaming/directories/tree",
+            "/streaming/directories/tree"
+            if self._client._base_url_overridden
+            else "https://api.gcore.com//streaming/directories/tree",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

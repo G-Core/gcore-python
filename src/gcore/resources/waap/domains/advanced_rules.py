@@ -104,7 +104,9 @@ class AdvancedRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            f"/waap/v1/domains/{domain_id}/advanced-rules"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules",
             body=maybe_transform(
                 {
                     "action": action,
@@ -184,7 +186,9 @@ class AdvancedRulesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
             body=maybe_transform(
                 {
                     "action": action,
@@ -278,7 +282,9 @@ class AdvancedRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            f"/waap/v1/domains/{domain_id}/advanced-rules"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules",
             page=SyncOffsetPage[WaapAdvancedRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -332,7 +338,9 @@ class AdvancedRulesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -368,7 +376,9 @@ class AdvancedRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -410,7 +420,9 @@ class AdvancedRulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -497,7 +509,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            f"/waap/v1/domains/{domain_id}/advanced-rules"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules",
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -577,7 +591,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -671,7 +687,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            f"/waap/v1/domains/{domain_id}/advanced-rules"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules",
             page=AsyncOffsetPage[WaapAdvancedRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -725,7 +743,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -761,7 +781,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -803,7 +825,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

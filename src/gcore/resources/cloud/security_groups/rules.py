@@ -126,7 +126,9 @@ class RulesResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules",
             body=maybe_transform(
                 {
                     "description": description,
@@ -179,7 +181,9 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -273,7 +277,9 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._put(
-            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
             body=maybe_transform(
                 {
                     "direction": direction,
@@ -397,7 +403,9 @@ class AsyncRulesResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules",
+            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules",
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -450,7 +458,9 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -544,7 +554,9 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._put(
-            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
             body=await async_maybe_transform(
                 {
                     "direction": direction,

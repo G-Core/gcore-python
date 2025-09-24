@@ -161,7 +161,9 @@ class ServersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}",
+            f"/cloud/v1/bminstances/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/bminstances/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -299,7 +301,9 @@ class ServersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}",
+            f"/cloud/v1/bminstances/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/bminstances/{project_id}/{region_id}",
             page=SyncOffsetPage[BaremetalServer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -382,7 +386,9 @@ class ServersResource(SyncAPIResource):
         if not server_id:
             raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
         return self._post(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild",
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild",
             body=maybe_transform(
                 {
                     "image_id": image_id,
@@ -648,7 +654,9 @@ class AsyncServersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}",
+            f"/cloud/v1/bminstances/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/bminstances/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -786,7 +794,9 @@ class AsyncServersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}",
+            f"/cloud/v1/bminstances/{project_id}/{region_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/bminstances/{project_id}/{region_id}",
             page=AsyncOffsetPage[BaremetalServer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -869,7 +879,9 @@ class AsyncServersResource(AsyncAPIResource):
         if not server_id:
             raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
         return await self._post(
-            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild",
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild",
             body=await async_maybe_transform(
                 {
                     "image_id": image_id,

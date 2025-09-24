@@ -74,7 +74,9 @@ class SettingsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/settings",
+            f"/waap/v1/domains/{domain_id}/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/settings",
             body=maybe_transform(
                 {
                     "api": api,
@@ -114,7 +116,9 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/settings",
+            f"/waap/v1/domains/{domain_id}/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -175,7 +179,9 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/settings",
+            f"/waap/v1/domains/{domain_id}/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/settings",
             body=await async_maybe_transform(
                 {
                     "api": api,
@@ -215,7 +221,9 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/settings",
+            f"/waap/v1/domains/{domain_id}/settings"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//waap/v1/domains/{domain_id}/settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

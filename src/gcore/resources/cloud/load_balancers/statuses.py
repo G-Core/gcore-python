@@ -69,7 +69,9 @@ class StatusesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/status",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/status"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/status",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -108,7 +110,9 @@ class StatusesResource(SyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -165,7 +169,9 @@ class AsyncStatusesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/status",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/status"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/status",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -204,7 +210,9 @@ class AsyncStatusesResource(AsyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return await self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/status",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
