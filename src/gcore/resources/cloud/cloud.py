@@ -263,6 +263,10 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def floating_ips(self) -> FloatingIPsResource:
+        """A floating IP is a static IP address that points to one of your Instances.
+
+        It allows you to redirect network traffic to any of your Instances in the same datacenter.
+        """
         return FloatingIPsResource(self._client)
 
     @cached_property
@@ -388,6 +392,10 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResource:
+        """A floating IP is a static IP address that points to one of your Instances.
+
+        It allows you to redirect network traffic to any of your Instances in the same datacenter.
+        """
         return AsyncFloatingIPsResource(self._client)
 
     @cached_property
@@ -516,6 +524,10 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def floating_ips(self) -> FloatingIPsResourceWithRawResponse:
+        """A floating IP is a static IP address that points to one of your Instances.
+
+        It allows you to redirect network traffic to any of your Instances in the same datacenter.
+        """
         return FloatingIPsResourceWithRawResponse(self._cloud.floating_ips)
 
     @cached_property
@@ -625,6 +637,10 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithRawResponse:
+        """A floating IP is a static IP address that points to one of your Instances.
+
+        It allows you to redirect network traffic to any of your Instances in the same datacenter.
+        """
         return AsyncFloatingIPsResourceWithRawResponse(self._cloud.floating_ips)
 
     @cached_property
@@ -734,6 +750,10 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def floating_ips(self) -> FloatingIPsResourceWithStreamingResponse:
+        """A floating IP is a static IP address that points to one of your Instances.
+
+        It allows you to redirect network traffic to any of your Instances in the same datacenter.
+        """
         return FloatingIPsResourceWithStreamingResponse(self._cloud.floating_ips)
 
     @cached_property
@@ -843,6 +863,10 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithStreamingResponse:
+        """A floating IP is a static IP address that points to one of your Instances.
+
+        It allows you to redirect network traffic to any of your Instances in the same datacenter.
+        """
         return AsyncFloatingIPsResourceWithStreamingResponse(self._cloud.floating_ips)
 
     @cached_property
