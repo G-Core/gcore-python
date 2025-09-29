@@ -135,7 +135,7 @@ class AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer(TypedDict, total=False):
 
 
 class AddOnsSlurmK8sClusterSlurmAddonDisableV2Serializer(TypedDict, total=False):
-    enabled: Required[bool]
+    enabled: Required[Literal[False]]
     """The Slurm add-on will be disabled in the cluster."""
 
 
