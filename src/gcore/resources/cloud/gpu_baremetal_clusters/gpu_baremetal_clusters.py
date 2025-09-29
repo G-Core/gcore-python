@@ -52,6 +52,7 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import (
     gpu_baremetal_cluster_list_params,
+    gpu_baremetal_cluster_action_params,
     gpu_baremetal_cluster_create_params,
     gpu_baremetal_cluster_delete_params,
     gpu_baremetal_cluster_resize_params,
@@ -59,6 +60,7 @@ from ....types.cloud import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.gpu_baremetal_cluster import GPUBaremetalCluster
 from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server_v1_list import GPUBaremetalClusterServerV1List
 
@@ -312,6 +314,88 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     },
                     gpu_baremetal_cluster_delete_params.GPUBaremetalClusterDeleteParams,
                 ),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["update_tags"],
+        tags: Optional[TagUpdateMapParam],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Perform a specific action on a baremetal GPU cluster.
+
+        Available actions: update
+        tags.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return self._post(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action",
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "tags": tags,
+                },
+                gpu_baremetal_cluster_action_params.GPUBaremetalClusterActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
         )
@@ -809,6 +893,88 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["update_tags"],
+        tags: Optional[TagUpdateMapParam],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Perform a specific action on a baremetal GPU cluster.
+
+        Available actions: update
+        tags.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return await self._post(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action",
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "tags": tags,
+                },
+                gpu_baremetal_cluster_action_params.GPUBaremetalClusterActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
     async def get(
         self,
         cluster_id: str,
@@ -1064,6 +1230,9 @@ class GPUBaremetalClustersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             gpu_baremetal_clusters.delete,
         )
+        self.action = to_raw_response_wrapper(
+            gpu_baremetal_clusters.action,
+        )
         self.get = to_raw_response_wrapper(
             gpu_baremetal_clusters.get,
         )
@@ -1109,6 +1278,9 @@ class AsyncGPUBaremetalClustersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             gpu_baremetal_clusters.delete,
+        )
+        self.action = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.action,
         )
         self.get = async_to_raw_response_wrapper(
             gpu_baremetal_clusters.get,
@@ -1156,6 +1328,9 @@ class GPUBaremetalClustersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             gpu_baremetal_clusters.delete,
         )
+        self.action = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.action,
+        )
         self.get = to_streamed_response_wrapper(
             gpu_baremetal_clusters.get,
         )
@@ -1201,6 +1376,9 @@ class AsyncGPUBaremetalClustersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             gpu_baremetal_clusters.delete,
+        )
+        self.action = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.action,
         )
         self.get = async_to_streamed_response_wrapper(
             gpu_baremetal_clusters.get,
