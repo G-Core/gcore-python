@@ -22,6 +22,11 @@ __all__ = [
     "AsyncPageStreamingAI",
     "SyncPageStreaming",
     "AsyncPageStreaming",
+    "SyncOffsetPageCdn",
+    "AsyncOffsetPageCdn",
+    "OffsetPageCdnLogsMeta",
+    "SyncOffsetPageCdnLogs",
+    "AsyncOffsetPageCdnLogs",
 ]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
@@ -357,3 +362,135 @@ class AsyncPageStreaming(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
                 **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
             },
         )
+
+
+class SyncOffsetPageCdn(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    items: List[_T]
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        items = self.items
+        if not items:
+            return []
+        return items
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        return PageInfo(params={"offset": current_count})
+
+    @classmethod
+    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
+        return cls.construct(
+            None,
+            **{
+                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
+            },
+        )
+
+
+class AsyncOffsetPageCdn(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    items: List[_T]
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        items = self.items
+        if not items:
+            return []
+        return items
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        return PageInfo(params={"offset": current_count})
+
+    @classmethod
+    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
+        return cls.construct(
+            None,
+            **{
+                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
+            },
+        )
+
+
+class OffsetPageCdnLogsMeta(BaseModel):
+    count: Optional[int] = None
+
+
+class SyncOffsetPageCdnLogs(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[OffsetPageCdnLogsMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        count = None
+        if self.meta is not None:
+            if self.meta.count is not None:
+                count = self.meta.count
+        if count is None:
+            return None
+
+        if current_count < count:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class AsyncOffsetPageCdnLogs(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[OffsetPageCdnLogsMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        count = None
+        if self.meta is not None:
+            if self.meta.count is not None:
+                count = self.meta.count
+        if count is None:
+            return None
+
+        if current_count < count:
+            return PageInfo(params={"offset": current_count})
+
+        return None

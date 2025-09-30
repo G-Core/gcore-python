@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .cdn import (
+    CdnResource,
+    AsyncCdnResource,
+    CdnResourceWithRawResponse,
+    AsyncCdnResourceWithRawResponse,
+    CdnResourceWithStreamingResponse,
+    AsyncCdnResourceWithStreamingResponse,
+)
 from .dns import (
     DNSResource,
     AsyncDNSResource,
@@ -114,4 +122,10 @@ __all__ = [
     "AsyncStorageResourceWithRawResponse",
     "StorageResourceWithStreamingResponse",
     "AsyncStorageResourceWithStreamingResponse",
+    "CdnResource",
+    "AsyncCdnResource",
+    "CdnResourceWithRawResponse",
+    "AsyncCdnResourceWithRawResponse",
+    "CdnResourceWithStreamingResponse",
+    "AsyncCdnResourceWithStreamingResponse",
 ]
