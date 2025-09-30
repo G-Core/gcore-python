@@ -207,6 +207,8 @@ class TestRuleTemplates:
                     "enabled": True,
                     "forward_from_file_types": ["m3u8", "mpd"],
                     "forward_to_file_types": ["ts", "mp4"],
+                    "forward_except_keys": ["debug_info"],
+                    "forward_only_keys": ["auth_token", "session_id"],
                 },
                 "redirect_http_to_https": {
                     "enabled": True,
@@ -510,6 +512,8 @@ class TestRuleTemplates:
                     "enabled": True,
                     "forward_from_file_types": ["m3u8", "mpd"],
                     "forward_to_file_types": ["ts", "mp4"],
+                    "forward_except_keys": ["debug_info"],
+                    "forward_only_keys": ["auth_token", "session_id"],
                 },
                 "redirect_http_to_https": {
                     "enabled": True,
@@ -904,6 +908,8 @@ class TestRuleTemplates:
                     "enabled": True,
                     "forward_from_file_types": ["m3u8", "mpd"],
                     "forward_to_file_types": ["ts", "mp4"],
+                    "forward_except_keys": ["debug_info"],
+                    "forward_only_keys": ["auth_token", "session_id"],
                 },
                 "redirect_http_to_https": {
                     "enabled": True,
@@ -1217,6 +1223,8 @@ class TestAsyncRuleTemplates:
                     "enabled": True,
                     "forward_from_file_types": ["m3u8", "mpd"],
                     "forward_to_file_types": ["ts", "mp4"],
+                    "forward_except_keys": ["debug_info"],
+                    "forward_only_keys": ["auth_token", "session_id"],
                 },
                 "redirect_http_to_https": {
                     "enabled": True,
@@ -1520,6 +1528,8 @@ class TestAsyncRuleTemplates:
                     "enabled": True,
                     "forward_from_file_types": ["m3u8", "mpd"],
                     "forward_to_file_types": ["ts", "mp4"],
+                    "forward_except_keys": ["debug_info"],
+                    "forward_only_keys": ["auth_token", "session_id"],
                 },
                 "redirect_http_to_https": {
                     "enabled": True,
@@ -1914,6 +1924,8 @@ class TestAsyncRuleTemplates:
                     "enabled": True,
                     "forward_from_file_types": ["m3u8", "mpd"],
                     "forward_to_file_types": ["ts", "mp4"],
+                    "forward_except_keys": ["debug_info"],
+                    "forward_only_keys": ["auth_token", "session_id"],
                 },
                 "redirect_http_to_https": {
                     "enabled": True,

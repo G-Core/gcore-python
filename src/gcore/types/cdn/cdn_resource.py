@@ -832,6 +832,26 @@ class OptionsQueryStringForwarding(BaseModel):
     of the streaming session.
     """
 
+    forward_except_keys: Optional[List[str]] = None
+    """
+    The `forward_except_keys` field provides a mechanism to exclude specific
+    parameters from being forwarded from playlist files to media chunk files. By
+    listing certain keys in this field, you can ensure that these parameters are
+    omitted during the forwarding process. This is particularly useful for
+    preventing sensitive or irrelevant information from being included in requests
+    for media chunks, thereby enhancing security and optimizing performance.
+    """
+
+    forward_only_keys: Optional[List[str]] = None
+    """
+    The `forward_only_keys` field allows for granular control over which specific
+    parameters are forwarded from playlist files to media chunk files. By specifying
+    certain keys, only those parameters will be propagated, ensuring that only
+    relevant information is passed along. This is particularly useful for security
+    and performance optimization, as it prevents unnecessary or sensitive data from
+    being included in requests for media chunks.
+    """
+
 
 class OptionsRedirectHTTPToHTTPS(BaseModel):
     enabled: bool
