@@ -206,7 +206,7 @@ class TestSubnets:
             project_id=1,
             region_id=1,
         )
-        assert subnet is None
+        assert_matches_type(TaskIDList, subnet, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
@@ -219,7 +219,7 @@ class TestSubnets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subnet = response.parse()
-        assert subnet is None
+        assert_matches_type(TaskIDList, subnet, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
@@ -232,7 +232,7 @@ class TestSubnets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subnet = response.parse()
-            assert subnet is None
+            assert_matches_type(TaskIDList, subnet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -485,7 +485,7 @@ class TestAsyncSubnets:
             project_id=1,
             region_id=1,
         )
-        assert subnet is None
+        assert_matches_type(TaskIDList, subnet, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
@@ -498,7 +498,7 @@ class TestAsyncSubnets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subnet = await response.parse()
-        assert subnet is None
+        assert_matches_type(TaskIDList, subnet, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
@@ -511,7 +511,7 @@ class TestAsyncSubnets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subnet = await response.parse()
-            assert subnet is None
+            assert_matches_type(TaskIDList, subnet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

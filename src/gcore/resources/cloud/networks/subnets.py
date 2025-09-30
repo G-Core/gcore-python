@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -353,7 +353,7 @@ class SubnetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> TaskIDList:
         """
         Delete subnet
 
@@ -378,7 +378,6 @@ class SubnetsResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
             if self._client._base_url_overridden
@@ -386,7 +385,7 @@ class SubnetsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=TaskIDList,
         )
 
     def get(
@@ -761,7 +760,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> TaskIDList:
         """
         Delete subnet
 
@@ -786,7 +785,6 @@ class AsyncSubnetsResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
             if self._client._base_url_overridden
@@ -794,7 +792,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=TaskIDList,
         )
 
     async def get(

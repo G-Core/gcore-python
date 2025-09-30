@@ -46,6 +46,12 @@ class GPUBaremetalFlavorSerializerWithoutPriceHardwareProperties(BaseModel):
     gpu_model: Optional[str] = None
     """GPU model"""
 
+    nic_eth: Optional[str] = None
+    """The configuration of the Ethernet ports"""
+
+    nic_ib: Optional[str] = None
+    """The configuration of the InfiniBand ports"""
+
 
 class GPUBaremetalFlavorSerializerWithoutPriceSupportedFeatures(BaseModel):
     security_groups: bool
@@ -100,6 +106,12 @@ class GPUBaremetalFlavorSerializerWithPricesHardwareProperties(BaseModel):
 
     gpu_model: Optional[str] = None
     """GPU model"""
+
+    nic_eth: Optional[str] = None
+    """The configuration of the Ethernet ports"""
+
+    nic_ib: Optional[str] = None
+    """The configuration of the InfiniBand ports"""
 
 
 class GPUBaremetalFlavorSerializerWithPricesPrice(BaseModel):
