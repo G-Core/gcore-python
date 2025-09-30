@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.14.0 (2025-09-30)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/G-Core/gcore-python/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** aggregated API specs update ([0e7967b](https://github.com/G-Core/gcore-python/commit/0e7967b1f6be77cac807f5a1e3d3483c9151902b))
+* **api:** aggregated API specs update ([0199b8c](https://github.com/G-Core/gcore-python/commit/0199b8ccce3fc74ba60586b9cbe6411b29bf9ece))
+* **api:** aggregated API specs update ([0784cf9](https://github.com/G-Core/gcore-python/commit/0784cf918ef8d820a7a5ecfd9dc5b185829041a1))
+* **api:** aggregated API specs update ([f1ff659](https://github.com/G-Core/gcore-python/commit/f1ff65992ff4992554d00f10b1b17794155cc129))
+* **api:** aggregated API specs update ([fc88cbd](https://github.com/G-Core/gcore-python/commit/fc88cbd66531167d50927d4a87c53d5f05fbdce1))
+* **cdn:** add API support ([e07d4e7](https://github.com/G-Core/gcore-python/commit/e07d4e7427042c2996c6dae86f70f0cc86a8d6d5))
+* **cloud:** enable TF for floating IPs ([634f34b](https://github.com/G-Core/gcore-python/commit/634f34b96fb7e74f7566493af8716f90d85016b9))
+
+
+### Bug Fixes
+
+* **client:** correctly generate K8sClusterSlurmAddonV2Serializers ([e5961ca](https://github.com/G-Core/gcore-python/commit/e5961ca7683a89bf6e551bd4bedd82c1b76e4052))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([9482c47](https://github.com/G-Core/gcore-python/commit/9482c4755e629b9411290d189efc5f1de4bbbec1))
+* improve example values ([2560541](https://github.com/G-Core/gcore-python/commit/25605419cf1878d28e77251f44246b68212efb8a))
+* **internal:** update pydantic dependency ([adf8df6](https://github.com/G-Core/gcore-python/commit/adf8df69810c6e978395aefe12b4ba6f88772d16))
+* **types:** change optional parameter type from NotGiven to Omit ([24bebe1](https://github.com/G-Core/gcore-python/commit/24bebe1a809b38732c6b960f5cc6703fa2d6d1be))
+* use Omit in more places ([2a4abf1](https://github.com/G-Core/gcore-python/commit/2a4abf1aa6f07c9c9f8d16150caed76e8e35a146))
+
 ## 0.13.0 (2025-09-16)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/G-Core/gcore-python/compare/v0.12.0...v0.13.0)
