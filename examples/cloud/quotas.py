@@ -23,8 +23,6 @@ def main() -> None:
 
     # Get client ID from IAM account overview
     gcore_client_id = gcore.iam.get_account_overview().id
-    if gcore_client_id is None:
-        raise ValueError("Client ID is None for this account")
 
     get_all_quotas(client=gcore)
     get_regional_quotas(client=gcore, client_id=gcore_client_id)
