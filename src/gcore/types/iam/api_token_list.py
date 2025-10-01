@@ -25,57 +25,57 @@ class APITokenListItemClientUserRole(BaseModel):
 
 
 class APITokenListItemClientUser(BaseModel):
-    client_id: Optional[int] = None
+    client_id: int
     """Account's ID."""
 
-    deleted: Optional[bool] = None
+    deleted: bool
     """Deletion flag. If true, then the API token was deleted."""
 
-    role: Optional[APITokenListItemClientUserRole] = None
+    role: APITokenListItemClientUserRole
 
-    user_email: Optional[str] = None
+    user_email: str
     """User's email who issued the API token."""
 
-    user_id: Optional[int] = None
+    user_id: int
     """User's ID who issued the API token."""
 
-    user_name: Optional[str] = None
+    user_name: str
     """User's name who issued the API token."""
 
 
 class APITokenListItem(BaseModel):
+    id: int
+    """API token ID."""
+
     client_user: APITokenListItemClientUser
 
-    exp_date: str
+    created: str
+    """Date when the API token was issued (ISO 8086/RFC 3339 format), UTC."""
+
+    deleted: bool
+    """Deletion flag. If true, then the API token was deleted."""
+
+    exp_date: Optional[str] = None
     """
     Date when the API token becomes expired (ISO 8086/RFC 3339 format), UTC. If
     null, then the API token will never expire.
     """
 
-    name: str
-    """API token name."""
-
-    id: Optional[int] = None
-    """API token ID."""
-
-    created: Optional[str] = None
-    """Date when the API token was issued (ISO 8086/RFC 3339 format), UTC."""
-
-    deleted: Optional[bool] = None
-    """Deletion flag. If true, then the API token was deleted."""
-
-    description: Optional[str] = None
-    """API token description."""
-
-    expired: Optional[bool] = None
+    expired: bool
     """Expiration flag.
 
     If true, then the API token has expired. When an API token expires it will be
     automatically deleted.
     """
 
-    last_usage: Optional[str] = None
+    last_usage: str
     """Date when the API token was last used (ISO 8086/RFC 3339 format), UTC."""
+
+    name: str
+    """API token name."""
+
+    description: Optional[str] = None
+    """API token description."""
 
 
 APITokenList: TypeAlias = List[APITokenListItem]

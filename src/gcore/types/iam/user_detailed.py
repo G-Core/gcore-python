@@ -37,35 +37,35 @@ class Group(BaseModel):
 
 
 class UserDetailed(BaseModel):
-    id: Optional[int] = None
+    id: int
     """User's ID."""
 
-    activated: Optional[bool] = None
+    activated: bool
     """Email confirmation:
 
     - `true` – user confirmed the email;
     - `false` – user did not confirm the email.
     """
 
-    auth_types: Optional[List[Literal["password", "sso", "github", "google-oauth2"]]] = None
+    auth_types: List[Literal["password", "sso", "github", "google-oauth2"]]
     """System field. List of auth types available for the account."""
 
-    client: Optional[float] = None
+    client: float
     """User's account ID."""
 
-    client_and_roles: Optional[List[ClientAndRole]] = None
+    client_and_roles: List[ClientAndRole]
     """List of user's clients. User can access to one or more clients."""
 
-    company: Optional[str] = None
+    company: str
     """User's company."""
 
-    deleted: Optional[bool] = None
+    deleted: bool
     """Deletion flag. If `true` then user was deleted."""
 
-    email: Optional[str] = None
+    email: str
     """User's email address."""
 
-    groups: Optional[List[Group]] = None
+    groups: List[Group]
     """User's group in the current account.
 
     IAM supports 5 groups:
@@ -77,10 +77,10 @@ class UserDetailed(BaseModel):
     - Purge and Prefetch only (API+Web)
     """
 
-    is_active: Optional[bool] = None
+    is_active: bool
     """User activity flag."""
 
-    lang: Optional[Literal["de", "en", "ru", "zh", "az"]] = None
+    lang: Literal["de", "en", "ru", "zh", "az"]
     """User's language.
 
     Defines language of the control panel and email messages.
@@ -92,18 +92,18 @@ class UserDetailed(BaseModel):
     phone: Optional[str] = None
     """User's phone."""
 
-    reseller: Optional[int] = None
+    reseller: int
     """Services provider ID."""
 
-    sso_auth: Optional[bool] = None
+    sso_auth: bool
     """SSO authentication flag. If `true` then user can login via SAML SSO."""
 
-    two_fa: Optional[bool] = None
+    two_fa: bool
     """Two-step verification:
 
     - `true` – user enabled two-step verification;
     - `false` – user disabled two-step verification.
     """
 
-    user_type: Optional[Literal["common", "reseller", "seller"]] = None
+    user_type: Literal["common", "reseller", "seller"]
     """User's type."""

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["APITokenCreateParams", "ClientUser", "ClientUserRole"]
@@ -11,7 +12,7 @@ class APITokenCreateParams(TypedDict, total=False):
     client_user: Required[ClientUser]
     """API token role."""
 
-    exp_date: Required[str]
+    exp_date: Required[Optional[str]]
     """
     Date when the API token becomes expired (ISO 8086/RFC 3339 format), UTC. If
     null, then the API token will never expire.
