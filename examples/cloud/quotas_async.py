@@ -25,8 +25,6 @@ async def main() -> None:
     # Get client ID from IAM account overview
     account_overview = await gcore.iam.get_account_overview()
     gcore_client_id = account_overview.id
-    if gcore_client_id is None:
-        raise ValueError("Client ID is None for this account")
 
     await get_all_quotas(client=gcore)
     await get_regional_quotas(client=gcore, client_id=gcore_client_id)
