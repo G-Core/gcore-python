@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -48,7 +50,7 @@ class APITokensResource(SyncAPIResource):
         client_id: int,
         *,
         client_user: api_token_create_params.ClientUser,
-        exp_date: str,
+        exp_date: Optional[str],
         name: str,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -269,7 +271,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         client_id: int,
         *,
         client_user: api_token_create_params.ClientUser,
-        exp_date: str,
+        exp_date: Optional[str],
         name: str,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

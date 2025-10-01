@@ -410,50 +410,44 @@ class User(BaseModel):
 
 
 class AccountOverview(BaseModel):
-    id: Optional[int] = None
+    id: int
     """The account ID."""
 
-    bill_type: Optional[str] = None
+    bill_type: str
     """System field. Billing type of the account."""
 
-    capabilities: Optional[List[Literal["CDN", "STORAGE", "STREAMING", "DNS", "DDOS", "CLOUD"]]] = None
+    capabilities: List[Literal["CDN", "STORAGE", "STREAMING", "DNS", "DDOS", "CLOUD"]]
     """System field. List of services available for the account."""
 
-    company_name: Optional[str] = FieldInfo(alias="companyName", default=None)
+    company_name: str = FieldInfo(alias="companyName")
     """The company name."""
 
-    country_code: Optional[str] = None
-    """System field. The company country (ISO 3166-1 alpha-2 format)."""
-
-    current_user: Optional[int] = FieldInfo(alias="currentUser", default=None)
+    current_user: int = FieldInfo(alias="currentUser")
     """ID of the current user."""
 
-    custom_id: Optional[str] = None
-    """The account custom ID."""
-
-    deleted: Optional[bool] = None
+    deleted: bool
     """The field shows the status of the account:
 
     - `true` – the account has been deleted
     - `false` – the account is not deleted
     """
 
-    email: Optional[str] = None
+    email: str
     """The account email."""
 
     entry_base_domain: Optional[str] = FieldInfo(alias="entryBaseDomain", default=None)
     """System field. Control panel domain."""
 
-    free_features: Optional[FreeFeatures] = FieldInfo(alias="freeFeatures", default=None)
+    free_features: FreeFeatures = FieldInfo(alias="freeFeatures")
     """
     An object of arrays which contains information about free features available for
     the requested account.
     """
 
-    has_active_admin: Optional[bool] = None
+    has_active_admin: bool
     """System field."""
 
-    is_test: Optional[bool] = None
+    is_test: bool
     """System field:
 
     - `true` — a test account;
@@ -463,28 +457,32 @@ class AccountOverview(BaseModel):
     name: Optional[str] = None
     """Name of a user who registered the requested account."""
 
-    paid_features: Optional[PaidFeatures] = FieldInfo(alias="paidFeatures", default=None)
+    paid_features: PaidFeatures = FieldInfo(alias="paidFeatures")
     """
     An object of arrays which contains information about paid features available for
     the requested account.
     """
 
-    phone: Optional[str] = None
-    """Phone of a user who registered the requested account."""
-
-    service_statuses: Optional[ServiceStatuses] = FieldInfo(alias="serviceStatuses", default=None)
+    service_statuses: ServiceStatuses = FieldInfo(alias="serviceStatuses")
     """
     An object of arrays which contains information about all services available for
     the requested account.
     """
 
+    status: Literal["new", "trial", "trialend", "active", "integration", "paused", "preparation", "ready"]
+    """Status of the account."""
+
+    country_code: Optional[str] = None
+    """System field. The company country (ISO 3166-1 alpha-2 format)."""
+
+    custom_id: Optional[str] = None
+    """The account custom ID."""
+
+    phone: Optional[str] = None
+    """Phone of a user who registered the requested account."""
+
     signup_process: Optional[Literal["sign_up_full", "sign_up_simple"]] = None
     """System field. Type of the account registration process."""
-
-    status: Optional[Literal["new", "trial", "trialend", "active", "integration", "paused", "preparation", "ready"]] = (
-        None
-    )
-    """Status of the account."""
 
     users: Optional[List[User]] = None
     """List of account users."""
