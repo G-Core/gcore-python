@@ -59,10 +59,10 @@ class RegionalQuota(BaseModel):
     """Basic bare metal servers count usage"""
 
     baremetal_gpu_a100_count_limit: Optional[int] = None
-    """Baremetal A100 GPU card count limit"""
+    """Bare metal A100 GPU server count limit"""
 
     baremetal_gpu_a100_count_usage: Optional[int] = None
-    """Baremetal A100 GPU card count usage"""
+    """Bare metal A100 GPU server count usage"""
 
     baremetal_gpu_count_limit: Optional[int] = None
     """Total number of AI GPU bare metal servers.
@@ -81,22 +81,22 @@ class RegionalQuota(BaseModel):
     """
 
     baremetal_gpu_h100_count_limit: Optional[int] = None
-    """Baremetal H100 GPU card count limit"""
+    """Bare metal H100 GPU server count limit"""
 
     baremetal_gpu_h100_count_usage: Optional[int] = None
-    """Baremetal H100 GPU card count usage"""
+    """Bare metal H100 GPU server count usage"""
 
     baremetal_gpu_h200_count_limit: Optional[int] = None
-    """Baremetal H200 GPU card count limit"""
+    """Bare metal H200 GPU server count limit"""
 
     baremetal_gpu_h200_count_usage: Optional[int] = None
-    """Baremetal H200 GPU card count usage"""
+    """Bare metal H200 GPU server count usage"""
 
     baremetal_gpu_l40s_count_limit: Optional[int] = None
-    """Baremetal L40S GPU card count limit"""
+    """Bare metal L40S GPU server count limit"""
 
     baremetal_gpu_l40s_count_usage: Optional[int] = None
-    """Baremetal L40S GPU card count usage"""
+    """Bare metal L40S GPU server count usage"""
 
     baremetal_hf_count_limit: Optional[int] = None
     """High-frequency bare metal servers count limit"""
