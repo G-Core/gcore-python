@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.15.0 (2025-10-02)
+
+Full Changelog: [v0.14.0...v0.15.0](https://github.com/G-Core/gcore-python/compare/v0.14.0...v0.15.0)
+
+### Features
+
+* **api:** Add missing reserved_fixed_ips update method ([b7b8db0](https://github.com/G-Core/gcore-python/commit/b7b8db03bd75a4889601a6da2fd5aa2e8004a141))
+* **api:** aggregated API specs update ([8c59ffa](https://github.com/G-Core/gcore-python/commit/8c59ffa34fe9d77a585d53b9243fb0ec752de5c4))
+* **api:** aggregated API specs update ([6281066](https://github.com/G-Core/gcore-python/commit/6281066df4e5cc479f7f53f731e4ecd59f41e7a4))
+* **api:** aggregated API specs update ([0a2f63b](https://github.com/G-Core/gcore-python/commit/0a2f63b1a5dd2dfc26cfa9b3e5ad4e4e997e4988))
+
+
+### Bug Fixes
+
+* **examples:** remove unnecessary None checks in quota examples ([#97](https://github.com/G-Core/gcore-python/issues/97)) ([ff71c83](https://github.com/G-Core/gcore-python/commit/ff71c83bb97e5fabf25efc32e0e2f6b60addbe64))
+
 ## 0.14.0 (2025-09-30)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/G-Core/gcore-python/compare/v0.13.0...v0.14.0)
