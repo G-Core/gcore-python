@@ -26,7 +26,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.cloud import InterfaceIPFamily, reserved_fixed_ip_list_params, reserved_fixed_ip_create_params
+from ....types.cloud import (
+    InterfaceIPFamily,
+    reserved_fixed_ip_list_params,
+    reserved_fixed_ip_create_params,
+    reserved_fixed_ip_update_params,
+)
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.reserved_fixed_ip import ReservedFixedIP
@@ -293,6 +298,51 @@ class ReservedFixedIPsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    def update(
+        self,
+        port_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        is_vip: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReservedFixedIP:
+        """
+        Update the VIP status of a reserved fixed IP.
+
+        Args:
+          is_vip: If reserved fixed IP should be a VIP
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not port_id:
+            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
+        return self._patch(
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            body=maybe_transform({"is_vip": is_vip}, reserved_fixed_ip_update_params.ReservedFixedIPUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ReservedFixedIP,
         )
 
     def list(
@@ -1016,6 +1066,53 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def update(
+        self,
+        port_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        is_vip: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReservedFixedIP:
+        """
+        Update the VIP status of a reserved fixed IP.
+
+        Args:
+          is_vip: If reserved fixed IP should be a VIP
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not port_id:
+            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
+        return await self._patch(
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
+            if self._client._base_url_overridden
+            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            body=await async_maybe_transform(
+                {"is_vip": is_vip}, reserved_fixed_ip_update_params.ReservedFixedIPUpdateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ReservedFixedIP,
+        )
+
     def list(
         self,
         *,
@@ -1484,6 +1581,9 @@ class ReservedFixedIPsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             reserved_fixed_ips.create,
         )
+        self.update = to_raw_response_wrapper(
+            reserved_fixed_ips.update,
+        )
         self.list = to_raw_response_wrapper(
             reserved_fixed_ips.list,
         )
@@ -1511,6 +1611,9 @@ class AsyncReservedFixedIPsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             reserved_fixed_ips.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            reserved_fixed_ips.update,
         )
         self.list = async_to_raw_response_wrapper(
             reserved_fixed_ips.list,
@@ -1540,6 +1643,9 @@ class ReservedFixedIPsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             reserved_fixed_ips.create,
         )
+        self.update = to_streamed_response_wrapper(
+            reserved_fixed_ips.update,
+        )
         self.list = to_streamed_response_wrapper(
             reserved_fixed_ips.list,
         )
@@ -1567,6 +1673,9 @@ class AsyncReservedFixedIPsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             reserved_fixed_ips.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            reserved_fixed_ips.update,
         )
         self.list = async_to_streamed_response_wrapper(
             reserved_fixed_ips.list,
