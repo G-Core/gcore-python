@@ -47,7 +47,7 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     """Basic bare metal servers count limit"""
 
     baremetal_gpu_a100_count_limit: int
-    """Baremetal A100 GPU card count limit"""
+    """Bare metal A100 GPU server count limit"""
 
     baremetal_gpu_count_limit: int
     """Total number of AI GPU bare metal servers.
@@ -58,13 +58,13 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     """
 
     baremetal_gpu_h100_count_limit: int
-    """Baremetal H100 GPU card count limit"""
+    """Bare metal H100 GPU server count limit"""
 
     baremetal_gpu_h200_count_limit: int
-    """Baremetal H200 GPU card count limit"""
+    """Bare metal H200 GPU server count limit"""
 
     baremetal_gpu_l40s_count_limit: int
-    """Baremetal L40S GPU card count limit"""
+    """Bare metal L40S GPU server count limit"""
 
     baremetal_hf_count_limit: int
     """High-frequency bare metal servers count limit"""
