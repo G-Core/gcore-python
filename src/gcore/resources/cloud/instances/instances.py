@@ -405,7 +405,8 @@ class InstancesResource(SyncAPIResource):
         offset: int | Omit = omit,
         only_isolated: bool | Omit = omit,
         only_with_fixed_external_ip: bool | Omit = omit,
-        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"] | Omit = omit,
+        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
+        | Omit = omit,
         profile_name: str | Omit = omit,
         protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
         status: Literal[
@@ -1811,7 +1812,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         offset: int | Omit = omit,
         only_isolated: bool | Omit = omit,
         only_with_fixed_external_ip: bool | Omit = omit,
-        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"] | Omit = omit,
+        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
+        | Omit = omit,
         profile_name: str | Omit = omit,
         protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
         status: Literal[

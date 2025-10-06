@@ -82,7 +82,7 @@ class InstanceListParams(TypedDict, total=False):
     only_with_fixed_external_ip: bool
     """Return bare metals only with external fixed IP addresses."""
 
-    order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc"]
+    order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
     """Order by field and direction."""
 
     profile_name: str
