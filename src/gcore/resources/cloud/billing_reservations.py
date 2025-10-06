@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Union
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -46,6 +47,7 @@ class BillingReservationsResource(SyncAPIResource):
         """
         return BillingReservationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -150,6 +152,7 @@ class BillingReservationsResource(SyncAPIResource):
             model=BillingReservation,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         reservation_id: int,
@@ -206,6 +209,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         """
         return AsyncBillingReservationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -310,6 +314,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
             model=BillingReservation,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         reservation_id: int,
@@ -350,11 +355,15 @@ class BillingReservationsResourceWithRawResponse:
     def __init__(self, billing_reservations: BillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = to_raw_response_wrapper(
-            billing_reservations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                billing_reservations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            billing_reservations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                billing_reservations.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -362,11 +371,15 @@ class AsyncBillingReservationsResourceWithRawResponse:
     def __init__(self, billing_reservations: AsyncBillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = async_to_raw_response_wrapper(
-            billing_reservations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                billing_reservations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            billing_reservations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                billing_reservations.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -374,11 +387,15 @@ class BillingReservationsResourceWithStreamingResponse:
     def __init__(self, billing_reservations: BillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = to_streamed_response_wrapper(
-            billing_reservations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                billing_reservations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            billing_reservations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                billing_reservations.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -386,9 +403,13 @@ class AsyncBillingReservationsResourceWithStreamingResponse:
     def __init__(self, billing_reservations: AsyncBillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = async_to_streamed_response_wrapper(
-            billing_reservations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                billing_reservations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            billing_reservations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                billing_reservations.get,  # pyright: ignore[reportDeprecated],
+            )
         )
