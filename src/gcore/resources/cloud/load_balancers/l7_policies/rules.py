@@ -106,9 +106,7 @@ class RulesResource(SyncAPIResource):
         if not l7policy_id:
             raise ValueError(f"Expected a non-empty value for `l7policy_id` but received {l7policy_id!r}")
         return self._post(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
             body=maybe_transform(
                 {
                     "compare_type": compare_type,
@@ -158,9 +156,7 @@ class RulesResource(SyncAPIResource):
         if not l7policy_id:
             raise ValueError(f"Expected a non-empty value for `l7policy_id` but received {l7policy_id!r}")
         return self._get(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -202,9 +198,7 @@ class RulesResource(SyncAPIResource):
         if not l7rule_id:
             raise ValueError(f"Expected a non-empty value for `l7rule_id` but received {l7rule_id!r}")
         return self._delete(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -246,9 +240,7 @@ class RulesResource(SyncAPIResource):
         if not l7rule_id:
             raise ValueError(f"Expected a non-empty value for `l7rule_id` but received {l7rule_id!r}")
         return self._get(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -320,9 +312,7 @@ class RulesResource(SyncAPIResource):
         if not l7rule_id:
             raise ValueError(f"Expected a non-empty value for `l7rule_id` but received {l7rule_id!r}")
         return self._put(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
             body=maybe_transform(
                 {
                     "compare_type": compare_type,
@@ -422,9 +412,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not l7policy_id:
             raise ValueError(f"Expected a non-empty value for `l7policy_id` but received {l7policy_id!r}")
         return await self._post(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
             body=await async_maybe_transform(
                 {
                     "compare_type": compare_type,
@@ -474,9 +462,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not l7policy_id:
             raise ValueError(f"Expected a non-empty value for `l7policy_id` but received {l7policy_id!r}")
         return await self._get(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -518,9 +504,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not l7rule_id:
             raise ValueError(f"Expected a non-empty value for `l7rule_id` but received {l7rule_id!r}")
         return await self._delete(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -562,9 +546,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not l7rule_id:
             raise ValueError(f"Expected a non-empty value for `l7rule_id` but received {l7rule_id!r}")
         return await self._get(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -636,9 +618,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not l7rule_id:
             raise ValueError(f"Expected a non-empty value for `l7rule_id` but received {l7rule_id!r}")
         return await self._put(
-            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
+            f"/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}",
             body=await async_maybe_transform(
                 {
                     "compare_type": compare_type,

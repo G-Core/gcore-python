@@ -127,9 +127,7 @@ class ListenersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "loadbalancer_id": loadbalancer_id,
@@ -221,9 +219,7 @@ class ListenersResource(SyncAPIResource):
         if not listener_id:
             raise ValueError(f"Expected a non-empty value for `listener_id` but received {listener_id!r}")
         return self._patch(
-            f"/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}",
+            f"/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}",
             body=maybe_transform(
                 {
                     "allowed_cidrs": allowed_cidrs,
@@ -283,9 +279,7 @@ class ListenersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -340,9 +334,7 @@ class ListenersResource(SyncAPIResource):
         if not listener_id:
             raise ValueError(f"Expected a non-empty value for `listener_id` but received {listener_id!r}")
         return self._delete(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -390,9 +382,7 @@ class ListenersResource(SyncAPIResource):
         if not listener_id:
             raise ValueError(f"Expected a non-empty value for `listener_id` but received {listener_id!r}")
         return self._get(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -499,9 +489,7 @@ class AsyncListenersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "loadbalancer_id": loadbalancer_id,
@@ -593,9 +581,7 @@ class AsyncListenersResource(AsyncAPIResource):
         if not listener_id:
             raise ValueError(f"Expected a non-empty value for `listener_id` but received {listener_id!r}")
         return await self._patch(
-            f"/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}",
+            f"/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}",
             body=await async_maybe_transform(
                 {
                     "allowed_cidrs": allowed_cidrs,
@@ -655,9 +641,7 @@ class AsyncListenersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -712,9 +696,7 @@ class AsyncListenersResource(AsyncAPIResource):
         if not listener_id:
             raise ValueError(f"Expected a non-empty value for `listener_id` but received {listener_id!r}")
         return await self._delete(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -762,9 +744,7 @@ class AsyncListenersResource(AsyncAPIResource):
         if not listener_id:
             raise ValueError(f"Expected a non-empty value for `listener_id` but received {listener_id!r}")
         return await self._get(
-            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
+            f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

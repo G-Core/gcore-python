@@ -98,9 +98,7 @@ class QualitySetsResource(SyncAPIResource):
           is a paid feature.
         """
         return self._get(
-            "/streaming/quality_sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets",
+            "/streaming/quality_sets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -150,9 +148,7 @@ class QualitySetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            "/streaming/quality_sets/default"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets/default",
+            "/streaming/quality_sets/default",
             body=maybe_transform(
                 {
                     "live": live,
@@ -244,9 +240,7 @@ class AsyncQualitySetsResource(AsyncAPIResource):
           is a paid feature.
         """
         return await self._get(
-            "/streaming/quality_sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets",
+            "/streaming/quality_sets",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -296,9 +290,7 @@ class AsyncQualitySetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            "/streaming/quality_sets/default"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/quality_sets/default",
+            "/streaming/quality_sets/default",
             body=await async_maybe_transform(
                 {
                     "live": live,

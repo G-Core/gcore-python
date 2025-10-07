@@ -120,9 +120,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cdn/logs_uploader/policies"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/policies",
+            "/cdn/logs_uploader/policies",
             body=maybe_transform(
                 {
                     "date_format": date_format,
@@ -220,9 +218,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             body=maybe_transform(
                 {
                     "date_format": date_format,
@@ -278,9 +274,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/logs_uploader/policies"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/policies",
+            "/cdn/logs_uploader/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -327,9 +321,7 @@ class PoliciesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -360,9 +352,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -381,9 +371,7 @@ class PoliciesResource(SyncAPIResource):
     ) -> PolicyListFieldsResponse:
         """Get list of available fields for logs uploader policy."""
         return self._get(
-            "/cdn/logs_uploader/policies/fields"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/policies/fields",
+            "/cdn/logs_uploader/policies/fields",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -461,9 +449,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             body=maybe_transform(
                 {
                     "date_format": date_format,
@@ -581,9 +567,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cdn/logs_uploader/policies"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/policies",
+            "/cdn/logs_uploader/policies",
             body=await async_maybe_transform(
                 {
                     "date_format": date_format,
@@ -681,9 +665,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             body=await async_maybe_transform(
                 {
                     "date_format": date_format,
@@ -739,9 +721,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/logs_uploader/policies"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/policies",
+            "/cdn/logs_uploader/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -788,9 +768,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -821,9 +799,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -842,9 +818,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
     ) -> PolicyListFieldsResponse:
         """Get list of available fields for logs uploader policy."""
         return await self._get(
-            "/cdn/logs_uploader/policies/fields"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/policies/fields",
+            "/cdn/logs_uploader/policies/fields",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -922,9 +896,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/logs_uploader/policies/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/policies/{id}",
+            f"/cdn/logs_uploader/policies/{id}",
             body=await async_maybe_transform(
                 {
                     "date_format": date_format,

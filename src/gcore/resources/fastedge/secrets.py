@@ -83,9 +83,7 @@ class SecretsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/fastedge/v1/secrets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/secrets",
+            "/fastedge/v1/secrets",
             body=maybe_transform(
                 {
                     "name": name,
@@ -133,9 +131,7 @@ class SecretsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             body=maybe_transform(
                 {
                     "comment": comment,
@@ -179,9 +175,7 @@ class SecretsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/fastedge/v1/secrets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/secrets",
+            "/fastedge/v1/secrets",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -226,9 +220,7 @@ class SecretsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -263,9 +255,7 @@ class SecretsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -305,9 +295,7 @@ class SecretsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -375,9 +363,7 @@ class AsyncSecretsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/fastedge/v1/secrets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/secrets",
+            "/fastedge/v1/secrets",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -425,9 +411,7 @@ class AsyncSecretsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             body=await async_maybe_transform(
                 {
                     "comment": comment,
@@ -471,9 +455,7 @@ class AsyncSecretsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/fastedge/v1/secrets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/secrets",
+            "/fastedge/v1/secrets",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -518,9 +500,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -555,9 +535,7 @@ class AsyncSecretsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -597,9 +575,7 @@ class AsyncSecretsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/fastedge/v1/secrets/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/secrets/{id}",
+            f"/fastedge/v1/secrets/{id}",
             body=await async_maybe_transform(
                 {
                     "name": name,

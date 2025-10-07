@@ -213,9 +213,7 @@ class CdnResource(SyncAPIResource):
     ) -> CdnAccountLimits:
         """Get information about CDN service limits."""
         return self._get(
-            "/cdn/clients/me/limits"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/clients/me/limits",
+            "/cdn/clients/me/limits",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -234,7 +232,7 @@ class CdnResource(SyncAPIResource):
     ) -> CdnAccount:
         """Get information about CDN service."""
         return self._get(
-            "/cdn/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//cdn/clients/me",
+            "/cdn/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -253,9 +251,7 @@ class CdnResource(SyncAPIResource):
     ) -> CdnAvailableFeatures:
         """Get information about available CDN features."""
         return self._get(
-            "/cdn/clients/me/features"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/clients/me/features",
+            "/cdn/clients/me/features",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -335,7 +331,7 @@ class CdnResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cdn/purge_statuses" if self._client._base_url_overridden else "https://api.gcore.com//cdn/purge_statuses",
+            "/cdn/purge_statuses",
             page=SyncOffsetPageCdn[PurgeStatus],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -386,7 +382,7 @@ class CdnResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            "/cdn/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//cdn/clients/me",
+            "/cdn/clients/me",
             body=maybe_transform(
                 {"utilization_level": utilization_level}, cdn_update_account_params.CdnUpdateAccountParams
             ),
@@ -481,9 +477,7 @@ class AsyncCdnResource(AsyncAPIResource):
     ) -> CdnAccountLimits:
         """Get information about CDN service limits."""
         return await self._get(
-            "/cdn/clients/me/limits"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/clients/me/limits",
+            "/cdn/clients/me/limits",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -502,7 +496,7 @@ class AsyncCdnResource(AsyncAPIResource):
     ) -> CdnAccount:
         """Get information about CDN service."""
         return await self._get(
-            "/cdn/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//cdn/clients/me",
+            "/cdn/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -521,9 +515,7 @@ class AsyncCdnResource(AsyncAPIResource):
     ) -> CdnAvailableFeatures:
         """Get information about available CDN features."""
         return await self._get(
-            "/cdn/clients/me/features"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/clients/me/features",
+            "/cdn/clients/me/features",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -603,7 +595,7 @@ class AsyncCdnResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cdn/purge_statuses" if self._client._base_url_overridden else "https://api.gcore.com//cdn/purge_statuses",
+            "/cdn/purge_statuses",
             page=AsyncOffsetPageCdn[PurgeStatus],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -654,7 +646,7 @@ class AsyncCdnResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            "/cdn/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//cdn/clients/me",
+            "/cdn/clients/me",
             body=await async_maybe_transform(
                 {"utilization_level": utilization_level}, cdn_update_account_params.CdnUpdateAccountParams
             ),

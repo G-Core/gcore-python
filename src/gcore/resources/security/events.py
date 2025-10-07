@@ -88,9 +88,7 @@ class EventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/security/notifier/v1/event_logs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//security/notifier/v1/event_logs",
+            "/security/notifier/v1/event_logs",
             page=SyncOffsetPage[ClientView],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -176,9 +174,7 @@ class AsyncEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/security/notifier/v1/event_logs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//security/notifier/v1/event_logs",
+            "/security/notifier/v1/event_logs",
             page=AsyncOffsetPage[ClientView],
             options=make_request_options(
                 extra_headers=extra_headers,

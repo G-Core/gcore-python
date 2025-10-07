@@ -94,9 +94,7 @@ class LogsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/fastedge/v1/apps/{id}/logs"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}/logs",
+            f"/fastedge/v1/apps/{id}/logs",
             page=SyncOffsetPageFastedgeAppLogs[Log],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -189,9 +187,7 @@ class AsyncLogsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/fastedge/v1/apps/{id}/logs"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/apps/{id}/logs",
+            f"/fastedge/v1/apps/{id}/logs",
             page=AsyncOffsetPageFastedgeAppLogs[Log],
             options=make_request_options(
                 extra_headers=extra_headers,

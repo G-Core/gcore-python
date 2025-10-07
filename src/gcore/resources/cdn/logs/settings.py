@@ -214,9 +214,7 @@ class SettingsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             body=maybe_transform(
                 {
                     "all_resources_bucket": all_resources_bucket,
@@ -424,9 +422,7 @@ class SettingsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             body=maybe_transform(
                 {
                     "all_resources_bucket": all_resources_bucket,
@@ -485,9 +481,7 @@ class SettingsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -506,9 +500,7 @@ class SettingsResource(SyncAPIResource):
     ) -> LogSettings:
         """Get information about raw logs feature settings."""
         return self._get(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -707,9 +699,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             body=await async_maybe_transform(
                 {
                     "all_resources_bucket": all_resources_bucket,
@@ -917,9 +907,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             body=await async_maybe_transform(
                 {
                     "all_resources_bucket": all_resources_bucket,
@@ -978,9 +966,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -999,9 +985,7 @@ class AsyncSettingsResource(AsyncAPIResource):
     ) -> LogSettings:
         """Get information about raw logs feature settings."""
         return await self._get(
-            "/cdn/raw_log_settings"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/raw_log_settings",
+            "/cdn/raw_log_settings",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

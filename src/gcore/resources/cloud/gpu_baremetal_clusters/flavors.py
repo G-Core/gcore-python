@@ -80,9 +80,7 @@ class FlavorsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,9 +157,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors",
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

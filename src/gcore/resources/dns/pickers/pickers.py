@@ -63,7 +63,7 @@ class PickersResource(SyncAPIResource):
     ) -> PickerListResponse:
         """Returns list of picker"""
         return self._get(
-            "/dns/v2/pickers" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/pickers",
+            "/dns/v2/pickers",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -107,7 +107,7 @@ class AsyncPickersResource(AsyncAPIResource):
     ) -> PickerListResponse:
         """Returns list of picker"""
         return await self._get(
-            "/dns/v2/pickers" if self._client._base_url_overridden else "https://api.gcore.com//dns/v2/pickers",
+            "/dns/v2/pickers",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

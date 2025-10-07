@@ -115,9 +115,7 @@ class RuleTemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cdn/resources/rule_templates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/resources/rule_templates",
+            "/cdn/resources/rule_templates",
             body=maybe_transform(
                 {
                     "rule": rule,
@@ -206,9 +204,7 @@ class RuleTemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -238,9 +234,7 @@ class RuleTemplatesResource(SyncAPIResource):
     ) -> RuleTemplateList:
         """Get rule templates list"""
         return self._get(
-            "/cdn/resources/rule_templates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/resources/rule_templates",
+            "/cdn/resources/rule_templates",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -272,9 +266,7 @@ class RuleTemplatesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -305,9 +297,7 @@ class RuleTemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -385,9 +375,7 @@ class RuleTemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             body=maybe_transform(
                 {
                     "rule": rule,
@@ -496,9 +484,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cdn/resources/rule_templates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/resources/rule_templates",
+            "/cdn/resources/rule_templates",
             body=await async_maybe_transform(
                 {
                     "rule": rule,
@@ -587,9 +573,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -619,9 +603,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
     ) -> RuleTemplateList:
         """Get rule templates list"""
         return await self._get(
-            "/cdn/resources/rule_templates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/resources/rule_templates",
+            "/cdn/resources/rule_templates",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -653,9 +635,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -686,9 +666,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -766,9 +744,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/resources/rule_templates/{rule_template_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/rule_templates/{rule_template_id}",
+            f"/cdn/resources/rule_templates/{rule_template_id}",
             body=await async_maybe_transform(
                 {
                     "rule": rule,

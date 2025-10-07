@@ -83,9 +83,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/fastedge/v1/stats/calls"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/stats/calls",
+            "/fastedge/v1/stats/calls",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -143,9 +141,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/fastedge/v1/stats/app_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/stats/app_duration",
+            "/fastedge/v1/stats/app_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -224,9 +220,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/fastedge/v1/stats/calls"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/stats/calls",
+            "/fastedge/v1/stats/calls",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -284,9 +278,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/fastedge/v1/stats/app_duration"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/stats/app_duration",
+            "/fastedge/v1/stats/app_duration",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

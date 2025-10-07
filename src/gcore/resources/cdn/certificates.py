@@ -164,7 +164,7 @@ class CertificatesResource(SyncAPIResource):
     ) -> None:
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/cdn/sslData" if self._client._base_url_overridden else "https://api.gcore.com//cdn/sslData",
+            "/cdn/sslData",
             body=maybe_transform(
                 {
                     "name": name,
@@ -221,7 +221,7 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/sslData" if self._client._base_url_overridden else "https://api.gcore.com//cdn/sslData",
+            "/cdn/sslData",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -264,9 +264,7 @@ class CertificatesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/sslData/{ssl_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{ssl_id}",
+            f"/cdn/sslData/{ssl_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -299,9 +297,7 @@ class CertificatesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/sslData/{cert_id}/force-retry"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{cert_id}/force-retry",
+            f"/cdn/sslData/{cert_id}/force-retry",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -332,9 +328,7 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/sslData/{ssl_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{ssl_id}",
+            f"/cdn/sslData/{ssl_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -369,9 +363,7 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/sslData/{cert_id}/status"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{cert_id}/status",
+            f"/cdn/sslData/{cert_id}/status",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -409,9 +401,7 @@ class CertificatesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/sslData/{cert_id}/renew"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{cert_id}/renew",
+            f"/cdn/sslData/{cert_id}/renew",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -466,9 +456,7 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/sslData/{ssl_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{ssl_id}",
+            f"/cdn/sslData/{ssl_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -619,7 +607,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
     ) -> None:
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/cdn/sslData" if self._client._base_url_overridden else "https://api.gcore.com//cdn/sslData",
+            "/cdn/sslData",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -676,7 +664,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/sslData" if self._client._base_url_overridden else "https://api.gcore.com//cdn/sslData",
+            "/cdn/sslData",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -719,9 +707,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/sslData/{ssl_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{ssl_id}",
+            f"/cdn/sslData/{ssl_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -754,9 +740,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/sslData/{cert_id}/force-retry"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{cert_id}/force-retry",
+            f"/cdn/sslData/{cert_id}/force-retry",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -787,9 +771,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/sslData/{ssl_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{ssl_id}",
+            f"/cdn/sslData/{ssl_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -824,9 +806,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/sslData/{cert_id}/status"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{cert_id}/status",
+            f"/cdn/sslData/{cert_id}/status",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -866,9 +846,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/sslData/{cert_id}/renew"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{cert_id}/renew",
+            f"/cdn/sslData/{cert_id}/renew",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -923,9 +901,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/sslData/{ssl_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslData/{ssl_id}",
+            f"/cdn/sslData/{ssl_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
