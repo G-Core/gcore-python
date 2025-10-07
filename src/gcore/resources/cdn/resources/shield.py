@@ -67,9 +67,7 @@ class ShieldResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/resources/{resource_id}/shielding_v2"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/shielding_v2",
+            f"/cdn/resources/{resource_id}/shielding_v2",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -105,9 +103,7 @@ class ShieldResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/resources/{resource_id}/shielding_v2"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/shielding_v2",
+            f"/cdn/resources/{resource_id}/shielding_v2",
             body=maybe_transform({"shielding_pop": shielding_pop}, shield_replace_params.ShieldReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -160,9 +156,7 @@ class AsyncShieldResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/resources/{resource_id}/shielding_v2"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/shielding_v2",
+            f"/cdn/resources/{resource_id}/shielding_v2",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -198,9 +192,7 @@ class AsyncShieldResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/resources/{resource_id}/shielding_v2"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/shielding_v2",
+            f"/cdn/resources/{resource_id}/shielding_v2",
             body=await async_maybe_transform(
                 {"shielding_pop": shielding_pop}, shield_replace_params.ShieldReplaceParams
             ),

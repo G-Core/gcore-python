@@ -235,9 +235,7 @@ class InstancesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/instances/{project_id}/{region_id}",
+            f"/cloud/v2/instances/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -374,9 +372,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._patch(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
             body=maybe_transform({"name": name}, instance_update_params.InstanceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -526,9 +522,7 @@ class InstancesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/instances/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}",
             page=SyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -622,9 +616,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._delete(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -775,9 +767,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
             body=maybe_transform(
                 {
                     "action": action,
@@ -947,9 +937,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
             body=maybe_transform(
                 {"servergroup_id": servergroup_id},
                 instance_add_to_placement_group_params.InstanceAddToPlacementGroupParams,
@@ -1044,9 +1032,7 @@ class InstancesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
             body=maybe_transform(
                 {
                     "name": name,
@@ -1092,9 +1078,7 @@ class InstancesResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1133,9 +1117,7 @@ class InstancesResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1191,9 +1173,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1235,9 +1215,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1284,9 +1262,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1368,9 +1344,7 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
             body=maybe_transform({"flavor_id": flavor_id}, instance_resize_params.InstanceResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1462,9 +1436,7 @@ class InstancesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
             body=maybe_transform(
                 {
                     "name": name,
@@ -1642,9 +1614,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/instances/{project_id}/{region_id}",
+            f"/cloud/v2/instances/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -1781,9 +1751,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._patch(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
             body=await async_maybe_transform({"name": name}, instance_update_params.InstanceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1933,9 +1901,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/instances/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}",
             page=AsyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -2029,9 +1995,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._delete(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2182,9 +2146,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -2354,9 +2316,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
             body=await async_maybe_transform(
                 {"servergroup_id": servergroup_id},
                 instance_add_to_placement_group_params.InstanceAddToPlacementGroupParams,
@@ -2451,9 +2411,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -2499,9 +2457,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2540,9 +2496,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2598,9 +2552,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2642,9 +2594,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2691,9 +2641,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2775,9 +2723,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
             body=await async_maybe_transform({"flavor_id": flavor_id}, instance_resize_params.InstanceResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -2869,9 +2815,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
             body=await async_maybe_transform(
                 {
                     "name": name,

@@ -125,9 +125,7 @@ class SubnetsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/subnets/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "cidr": cidr,
@@ -289,9 +287,7 @@ class SubnetsResource(SyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._patch(
-            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
             body=maybe_transform(
                 {
                     "dns_nameservers": dns_nameservers,
@@ -377,9 +373,7 @@ class SubnetsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/subnets/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}",
             page=SyncOffsetPage[Subnet],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -439,9 +433,7 @@ class SubnetsResource(SyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._delete(
-            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -486,9 +478,7 @@ class SubnetsResource(SyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._get(
-            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -592,9 +582,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/subnets/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "cidr": cidr,
@@ -756,9 +744,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._patch(
-            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
             body=await async_maybe_transform(
                 {
                     "dns_nameservers": dns_nameservers,
@@ -844,9 +830,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/subnets/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}",
             page=AsyncOffsetPage[Subnet],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -906,9 +890,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._delete(
-            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -953,9 +935,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._get(
-            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
+            f"/cloud/v1/subnets/{project_id}/{region_id}/{subnet_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

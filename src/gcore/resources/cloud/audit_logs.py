@@ -206,9 +206,7 @@ class AuditLogsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/user_actions"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/user_actions",
+            "/cloud/v1/user_actions",
             page=SyncOffsetPage[AuditLogEntry],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -417,9 +415,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cloud/v1/user_actions"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v1/user_actions",
+            "/cloud/v1/user_actions",
             page=AsyncOffsetPage[AuditLogEntry],
             options=make_request_options(
                 extra_headers=extra_headers,

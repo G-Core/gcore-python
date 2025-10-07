@@ -125,9 +125,7 @@ class AuditLogResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cdn/activity_log/requests"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/activity_log/requests",
+            "/cdn/activity_log/requests",
             page=SyncOffsetPage[CdnAuditLogEntry],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -180,9 +178,7 @@ class AuditLogResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/activity_log/requests/{log_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/activity_log/requests/{log_id}",
+            f"/cdn/activity_log/requests/{log_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -293,9 +289,7 @@ class AsyncAuditLogResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cdn/activity_log/requests"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/activity_log/requests",
+            "/cdn/activity_log/requests",
             page=AsyncOffsetPage[CdnAuditLogEntry],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -348,9 +342,7 @@ class AsyncAuditLogResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/activity_log/requests/{log_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/activity_log/requests/{log_id}",
+            f"/cdn/activity_log/requests/{log_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

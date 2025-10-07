@@ -182,9 +182,7 @@ class MetricsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cdn/advanced/v1/metrics"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/metrics",
+            "/cdn/advanced/v1/metrics",
             body=maybe_transform(
                 {
                     "from_": from_,
@@ -362,9 +360,7 @@ class AsyncMetricsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cdn/advanced/v1/metrics"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/metrics",
+            "/cdn/advanced/v1/metrics",
             body=await async_maybe_transform(
                 {
                     "from_": from_,

@@ -88,9 +88,7 @@ class CustomPageSetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/waap/v1/custom-page-sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/custom-page-sets",
+            "/waap/v1/custom-page-sets",
             body=maybe_transform(
                 {
                     "name": name,
@@ -154,9 +152,7 @@ class CustomPageSetsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/custom-page-sets/{set_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/custom-page-sets/{set_id}",
+            f"/waap/v1/custom-page-sets/{set_id}",
             body=maybe_transform(
                 {
                     "block": block,
@@ -214,9 +210,7 @@ class CustomPageSetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/custom-page-sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/custom-page-sets",
+            "/waap/v1/custom-page-sets",
             page=SyncOffsetPage[WaapCustomPageSet],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -264,9 +258,7 @@ class CustomPageSetsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/custom-page-sets/{set_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/custom-page-sets/{set_id}",
+            f"/waap/v1/custom-page-sets/{set_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -299,9 +291,7 @@ class CustomPageSetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/custom-page-sets/{set_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/custom-page-sets/{set_id}",
+            f"/waap/v1/custom-page-sets/{set_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -359,9 +349,7 @@ class CustomPageSetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/waap/v1/preview-custom-page"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/preview-custom-page",
+            "/waap/v1/preview-custom-page",
             body=maybe_transform(
                 {
                     "error": error,
@@ -442,9 +430,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/waap/v1/custom-page-sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/custom-page-sets",
+            "/waap/v1/custom-page-sets",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -508,9 +494,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/custom-page-sets/{set_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/custom-page-sets/{set_id}",
+            f"/waap/v1/custom-page-sets/{set_id}",
             body=await async_maybe_transform(
                 {
                     "block": block,
@@ -568,9 +552,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/custom-page-sets"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/custom-page-sets",
+            "/waap/v1/custom-page-sets",
             page=AsyncOffsetPage[WaapCustomPageSet],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -618,9 +600,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/custom-page-sets/{set_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/custom-page-sets/{set_id}",
+            f"/waap/v1/custom-page-sets/{set_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -653,9 +633,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/custom-page-sets/{set_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//waap/v1/custom-page-sets/{set_id}",
+            f"/waap/v1/custom-page-sets/{set_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -713,9 +691,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/waap/v1/preview-custom-page"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//waap/v1/preview-custom-page",
+            "/waap/v1/preview-custom-page",
             body=await async_maybe_transform(
                 {
                     "error": error,

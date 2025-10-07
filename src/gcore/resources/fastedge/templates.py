@@ -93,9 +93,7 @@ class TemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/fastedge/v1/template"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/template",
+            "/fastedge/v1/template",
             body=maybe_transform(
                 {
                     "binary_id": binary_id,
@@ -151,9 +149,7 @@ class TemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/fastedge/v1/template"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/template",
+            "/fastedge/v1/template",
             page=SyncOffsetPageFastedgeTemplates[TemplateShort],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -201,9 +197,7 @@ class TemplatesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/template/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/template/{id}",
+            f"/fastedge/v1/template/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -238,9 +232,7 @@ class TemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/template/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/template/{id}",
+            f"/fastedge/v1/template/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -289,9 +281,7 @@ class TemplatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/fastedge/v1/template/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/template/{id}",
+            f"/fastedge/v1/template/{id}",
             body=maybe_transform(
                 {
                     "binary_id": binary_id,
@@ -371,9 +361,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/fastedge/v1/template"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/template",
+            "/fastedge/v1/template",
             body=await async_maybe_transform(
                 {
                     "binary_id": binary_id,
@@ -429,9 +417,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/fastedge/v1/template"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//fastedge/v1/template",
+            "/fastedge/v1/template",
             page=AsyncOffsetPageFastedgeTemplates[TemplateShort],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -479,9 +465,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/template/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/template/{id}",
+            f"/fastedge/v1/template/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -516,9 +500,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/template/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/template/{id}",
+            f"/fastedge/v1/template/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -567,9 +549,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/fastedge/v1/template/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//fastedge/v1/template/{id}",
+            f"/fastedge/v1/template/{id}",
             body=await async_maybe_transform(
                 {
                     "binary_id": binary_id,

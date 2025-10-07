@@ -69,9 +69,7 @@ class DnssecResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._patch(
-            f"/dns/v2/zones/{name}/dnssec"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{name}/dnssec",
+            f"/dns/v2/zones/{name}/dnssec",
             body=maybe_transform({"enabled": enabled}, dnssec_update_params.DnssecUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -105,9 +103,7 @@ class DnssecResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/zones/{name}/dnssec"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{name}/dnssec",
+            f"/dns/v2/zones/{name}/dnssec",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -162,9 +158,7 @@ class AsyncDnssecResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._patch(
-            f"/dns/v2/zones/{name}/dnssec"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{name}/dnssec",
+            f"/dns/v2/zones/{name}/dnssec",
             body=await async_maybe_transform({"enabled": enabled}, dnssec_update_params.DnssecUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -198,9 +192,7 @@ class AsyncDnssecResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/zones/{name}/dnssec"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//dns/v2/zones/{name}/dnssec",
+            f"/dns/v2/zones/{name}/dnssec",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

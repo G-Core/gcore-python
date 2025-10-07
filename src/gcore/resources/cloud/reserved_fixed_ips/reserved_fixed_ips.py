@@ -279,9 +279,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "type": type,
@@ -335,9 +333,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             body=maybe_transform({"is_vip": is_vip}, reserved_fixed_ip_update_params.ReservedFixedIPUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -404,9 +400,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             page=SyncOffsetPage[ReservedFixedIP],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -463,9 +457,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._delete(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -504,9 +496,7 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1045,9 +1035,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "type": type,
@@ -1101,9 +1089,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             body=await async_maybe_transform(
                 {"is_vip": is_vip}, reserved_fixed_ip_update_params.ReservedFixedIPUpdateParams
             ),
@@ -1172,9 +1158,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
             page=AsyncOffsetPage[ReservedFixedIP],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1231,9 +1215,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._delete(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1272,9 +1254,7 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

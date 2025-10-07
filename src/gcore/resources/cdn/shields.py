@@ -51,9 +51,7 @@ class ShieldsResource(SyncAPIResource):
     ) -> ShieldListResponse:
         """Get information about all origin shielding locations available in the account."""
         return self._get(
-            "/cdn/shieldingpop_v2"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/shieldingpop_v2",
+            "/cdn/shieldingpop_v2",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -93,9 +91,7 @@ class AsyncShieldsResource(AsyncAPIResource):
     ) -> ShieldListResponse:
         """Get information about all origin shielding locations available in the account."""
         return await self._get(
-            "/cdn/shieldingpop_v2"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/shieldingpop_v2",
+            "/cdn/shieldingpop_v2",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

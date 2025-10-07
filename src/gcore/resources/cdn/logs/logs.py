@@ -309,9 +309,7 @@ class LogsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cdn/advanced/v1/logs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/logs",
+            "/cdn/advanced/v1/logs",
             page=SyncOffsetPageCdnLogs[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -627,9 +625,7 @@ class LogsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "application/zip", **(extra_headers or {})}
         return self._get(
-            "/cdn/advanced/v1/logs/download"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/logs/download",
+            "/cdn/advanced/v1/logs/download",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -968,9 +964,7 @@ class AsyncLogsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/cdn/advanced/v1/logs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/logs",
+            "/cdn/advanced/v1/logs",
             page=AsyncOffsetPageCdnLogs[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1286,9 +1280,7 @@ class AsyncLogsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "application/zip", **(extra_headers or {})}
         return await self._get(
-            "/cdn/advanced/v1/logs/download"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/logs/download",
+            "/cdn/advanced/v1/logs/download",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

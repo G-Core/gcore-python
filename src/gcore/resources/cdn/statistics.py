@@ -105,9 +105,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/statistics/raw_logs_usage/aggregated"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/raw_logs_usage/aggregated",
+            "/cdn/statistics/raw_logs_usage/aggregated",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,9 +171,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/statistics/raw_logs_usage/series"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/raw_logs_usage/series",
+            "/cdn/statistics/raw_logs_usage/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,9 +347,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/statistics/aggregate/stats"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/aggregate/stats",
+            "/cdn/statistics/aggregate/stats",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -512,9 +506,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/statistics/series"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/series",
+            "/cdn/statistics/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -591,9 +583,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/statistics/shield_usage/aggregated"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/shield_usage/aggregated",
+            "/cdn/statistics/shield_usage/aggregated",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -651,9 +641,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/statistics/shield_usage/series"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/shield_usage/series",
+            "/cdn/statistics/shield_usage/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -745,9 +733,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/statistics/raw_logs_usage/aggregated"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/raw_logs_usage/aggregated",
+            "/cdn/statistics/raw_logs_usage/aggregated",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -813,9 +799,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/statistics/raw_logs_usage/series"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/raw_logs_usage/series",
+            "/cdn/statistics/raw_logs_usage/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -991,9 +975,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/statistics/aggregate/stats"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/aggregate/stats",
+            "/cdn/statistics/aggregate/stats",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1152,9 +1134,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/statistics/series"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/series",
+            "/cdn/statistics/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1231,9 +1211,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/statistics/shield_usage/aggregated"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/shield_usage/aggregated",
+            "/cdn/statistics/shield_usage/aggregated",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1291,9 +1269,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/statistics/shield_usage/series"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/statistics/shield_usage/series",
+            "/cdn/statistics/shield_usage/series",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

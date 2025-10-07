@@ -200,7 +200,7 @@ class ResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cdn/resources" if self._client._base_url_overridden else "https://api.gcore.com//cdn/resources",
+            "/cdn/resources",
             body=maybe_transform(
                 {
                     "cname": cname,
@@ -327,9 +327,7 @@ class ResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             body=maybe_transform(
                 {
                     "active": active,
@@ -461,7 +459,7 @@ class ResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/resources" if self._client._base_url_overridden else "https://api.gcore.com//cdn/resources",
+            "/cdn/resources",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -527,9 +525,7 @@ class ResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -560,9 +556,7 @@ class ResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -609,9 +603,7 @@ class ResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/resources/{resource_id}/prefetch"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/prefetch",
+            f"/cdn/resources/{resource_id}/prefetch",
             body=maybe_transform({"paths": paths}, resource_prefetch_params.ResourcePrefetchParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -644,9 +636,7 @@ class ResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/resources/{resource_id}/ssl/le/pre-validate"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/ssl/le/pre-validate",
+            f"/cdn/resources/{resource_id}/ssl/le/pre-validate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -821,9 +811,7 @@ class ResourcesResource(SyncAPIResource):
     ) -> None:
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/resources/{resource_id}/purge"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/purge",
+            f"/cdn/resources/{resource_id}/purge",
             body=maybe_transform(
                 {
                     "urls": urls,
@@ -944,9 +932,7 @@ class ResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             body=maybe_transform(
                 {
                     "origin_group": origin_group,
@@ -1124,7 +1110,7 @@ class AsyncResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cdn/resources" if self._client._base_url_overridden else "https://api.gcore.com//cdn/resources",
+            "/cdn/resources",
             body=await async_maybe_transform(
                 {
                     "cname": cname,
@@ -1251,9 +1237,7 @@ class AsyncResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             body=await async_maybe_transform(
                 {
                     "active": active,
@@ -1385,7 +1369,7 @@ class AsyncResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/resources" if self._client._base_url_overridden else "https://api.gcore.com//cdn/resources",
+            "/cdn/resources",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1451,9 +1435,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1484,9 +1466,7 @@ class AsyncResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1533,9 +1513,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/resources/{resource_id}/prefetch"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/prefetch",
+            f"/cdn/resources/{resource_id}/prefetch",
             body=await async_maybe_transform({"paths": paths}, resource_prefetch_params.ResourcePrefetchParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1568,9 +1546,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/resources/{resource_id}/ssl/le/pre-validate"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/ssl/le/pre-validate",
+            f"/cdn/resources/{resource_id}/ssl/le/pre-validate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1745,9 +1721,7 @@ class AsyncResourcesResource(AsyncAPIResource):
     ) -> None:
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/resources/{resource_id}/purge"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}/purge",
+            f"/cdn/resources/{resource_id}/purge",
             body=await async_maybe_transform(
                 {
                     "urls": urls,
@@ -1868,9 +1842,7 @@ class AsyncResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/resources/{resource_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/resources/{resource_id}",
+            f"/cdn/resources/{resource_id}",
             body=await async_maybe_transform(
                 {
                     "origin_group": origin_group,
