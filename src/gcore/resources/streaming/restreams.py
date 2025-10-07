@@ -67,9 +67,7 @@ class RestreamsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/streaming/restreams"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/restreams",
+            "/streaming/restreams",
             body=maybe_transform({"restream": restream}, restream_create_params.RestreamCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -102,9 +100,7 @@ class RestreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/restreams/{restream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/restreams/{restream_id}",
+            f"/streaming/restreams/{restream_id}",
             body=maybe_transform({"restream": restream}, restream_update_params.RestreamUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -139,9 +135,7 @@ class RestreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/restreams"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/restreams",
+            "/streaming/restreams",
             page=SyncPageStreaming[Restream],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -178,9 +172,7 @@ class RestreamsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/restreams/{restream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/restreams/{restream_id}",
+            f"/streaming/restreams/{restream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -211,9 +203,7 @@ class RestreamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/restreams/{restream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/restreams/{restream_id}",
+            f"/streaming/restreams/{restream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -266,9 +256,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/streaming/restreams"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/restreams",
+            "/streaming/restreams",
             body=await async_maybe_transform({"restream": restream}, restream_create_params.RestreamCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -301,9 +289,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/restreams/{restream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/restreams/{restream_id}",
+            f"/streaming/restreams/{restream_id}",
             body=await async_maybe_transform({"restream": restream}, restream_update_params.RestreamUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -338,9 +324,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/streaming/restreams"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//streaming/restreams",
+            "/streaming/restreams",
             page=AsyncPageStreaming[Restream],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -377,9 +361,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/restreams/{restream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/restreams/{restream_id}",
+            f"/streaming/restreams/{restream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -410,9 +392,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/restreams/{restream_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//streaming/restreams/{restream_id}",
+            f"/streaming/restreams/{restream_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

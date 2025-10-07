@@ -93,9 +93,7 @@ class ConfigsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cdn/logs_uploader/configs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/configs",
+            "/cdn/logs_uploader/configs",
             body=maybe_transform(
                 {
                     "name": name,
@@ -157,9 +155,7 @@ class ConfigsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             body=maybe_transform(
                 {
                     "enabled": enabled,
@@ -206,9 +202,7 @@ class ConfigsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/logs_uploader/configs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/configs",
+            "/cdn/logs_uploader/configs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -255,9 +249,7 @@ class ConfigsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -288,9 +280,7 @@ class ConfigsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -341,9 +331,7 @@ class ConfigsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -385,9 +373,7 @@ class ConfigsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/cdn/logs_uploader/configs/{id}/validate"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}/validate",
+            f"/cdn/logs_uploader/configs/{id}/validate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -458,9 +444,7 @@ class AsyncConfigsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cdn/logs_uploader/configs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/configs",
+            "/cdn/logs_uploader/configs",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -522,9 +506,7 @@ class AsyncConfigsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
@@ -571,9 +553,7 @@ class AsyncConfigsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/logs_uploader/configs"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/logs_uploader/configs",
+            "/cdn/logs_uploader/configs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -620,9 +600,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -653,9 +631,7 @@ class AsyncConfigsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -706,9 +682,7 @@ class AsyncConfigsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/logs_uploader/configs/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}",
+            f"/cdn/logs_uploader/configs/{id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -750,9 +724,7 @@ class AsyncConfigsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/cdn/logs_uploader/configs/{id}/validate"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/logs_uploader/configs/{id}/validate",
+            f"/cdn/logs_uploader/configs/{id}/validate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

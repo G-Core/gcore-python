@@ -60,9 +60,7 @@ class IPRangesResource(SyncAPIResource):
         This request does not require authorization.
         """
         return self._get(
-            "/cdn/public-net-list"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/public-net-list",
+            "/cdn/public-net-list",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -90,7 +88,7 @@ class IPRangesResource(SyncAPIResource):
         This request does not require authorization.
         """
         return self._get(
-            "/cdn/public-ip-list" if self._client._base_url_overridden else "https://api.gcore.com//cdn/public-ip-list",
+            "/cdn/public-ip-list",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -138,9 +136,7 @@ class AsyncIPRangesResource(AsyncAPIResource):
         This request does not require authorization.
         """
         return await self._get(
-            "/cdn/public-net-list"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/public-net-list",
+            "/cdn/public-net-list",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -168,7 +164,7 @@ class AsyncIPRangesResource(AsyncAPIResource):
         This request does not require authorization.
         """
         return await self._get(
-            "/cdn/public-ip-list" if self._client._base_url_overridden else "https://api.gcore.com//cdn/public-ip-list",
+            "/cdn/public-ip-list",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

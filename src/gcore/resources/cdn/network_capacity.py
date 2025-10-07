@@ -51,9 +51,7 @@ class NetworkCapacityResource(SyncAPIResource):
     ) -> NetworkCapacity:
         """Get network capacity per country."""
         return self._get(
-            "/cdn/advanced/v1/capacity"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/capacity",
+            "/cdn/advanced/v1/capacity",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -93,9 +91,7 @@ class AsyncNetworkCapacityResource(AsyncAPIResource):
     ) -> NetworkCapacity:
         """Get network capacity per country."""
         return await self._get(
-            "/cdn/advanced/v1/capacity"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/advanced/v1/capacity",
+            "/cdn/advanced/v1/capacity",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

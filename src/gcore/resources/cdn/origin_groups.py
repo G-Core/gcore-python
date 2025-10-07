@@ -201,9 +201,7 @@ class OriginGroupsResource(SyncAPIResource):
         return cast(
             OriginGroups,
             self._post(
-                "/cdn/origin_groups"
-                if self._client._base_url_overridden
-                else "https://api.gcore.com//cdn/origin_groups",
+                "/cdn/origin_groups",
                 body=maybe_transform(
                     {
                         "name": name,
@@ -382,9 +380,7 @@ class OriginGroupsResource(SyncAPIResource):
         return cast(
             OriginGroups,
             self._patch(
-                f"/cdn/origin_groups/{origin_group_id}"
-                if self._client._base_url_overridden
-                else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+                f"/cdn/origin_groups/{origin_group_id}",
                 body=maybe_transform(
                     {
                         "name": name,
@@ -441,7 +437,7 @@ class OriginGroupsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/origin_groups" if self._client._base_url_overridden else "https://api.gcore.com//cdn/origin_groups",
+            "/cdn/origin_groups",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,9 +480,7 @@ class OriginGroupsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/origin_groups/{origin_group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+            f"/cdn/origin_groups/{origin_group_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -519,9 +513,7 @@ class OriginGroupsResource(SyncAPIResource):
         return cast(
             OriginGroups,
             self._get(
-                f"/cdn/origin_groups/{origin_group_id}"
-                if self._client._base_url_overridden
-                else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+                f"/cdn/origin_groups/{origin_group_id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -692,9 +684,7 @@ class OriginGroupsResource(SyncAPIResource):
         return cast(
             OriginGroups,
             self._put(
-                f"/cdn/origin_groups/{origin_group_id}"
-                if self._client._base_url_overridden
-                else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+                f"/cdn/origin_groups/{origin_group_id}",
                 body=maybe_transform(
                     {
                         "auth_type": auth_type,
@@ -886,9 +876,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         return cast(
             OriginGroups,
             await self._post(
-                "/cdn/origin_groups"
-                if self._client._base_url_overridden
-                else "https://api.gcore.com//cdn/origin_groups",
+                "/cdn/origin_groups",
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -1067,9 +1055,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         return cast(
             OriginGroups,
             await self._patch(
-                f"/cdn/origin_groups/{origin_group_id}"
-                if self._client._base_url_overridden
-                else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+                f"/cdn/origin_groups/{origin_group_id}",
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -1126,7 +1112,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/origin_groups" if self._client._base_url_overridden else "https://api.gcore.com//cdn/origin_groups",
+            "/cdn/origin_groups",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1169,9 +1155,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/origin_groups/{origin_group_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+            f"/cdn/origin_groups/{origin_group_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1204,9 +1188,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         return cast(
             OriginGroups,
             await self._get(
-                f"/cdn/origin_groups/{origin_group_id}"
-                if self._client._base_url_overridden
-                else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+                f"/cdn/origin_groups/{origin_group_id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -1377,9 +1359,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         return cast(
             OriginGroups,
             await self._put(
-                f"/cdn/origin_groups/{origin_group_id}"
-                if self._client._base_url_overridden
-                else f"https://api.gcore.com//cdn/origin_groups/{origin_group_id}",
+                f"/cdn/origin_groups/{origin_group_id}",
                 body=await async_maybe_transform(
                     {
                         "auth_type": auth_type,

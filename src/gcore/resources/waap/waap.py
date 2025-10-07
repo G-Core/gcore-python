@@ -147,7 +147,7 @@ class WaapResource(SyncAPIResource):
     ) -> WaapGetAccountOverviewResponse:
         """Get information about WAAP service for the client"""
         return self._get(
-            "/waap/v1/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//waap/v1/clients/me",
+            "/waap/v1/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -219,7 +219,7 @@ class AsyncWaapResource(AsyncAPIResource):
     ) -> WaapGetAccountOverviewResponse:
         """Get information about WAAP service for the client"""
         return await self._get(
-            "/waap/v1/clients/me" if self._client._base_url_overridden else "https://api.gcore.com//waap/v1/clients/me",
+            "/waap/v1/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

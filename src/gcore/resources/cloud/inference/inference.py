@@ -123,9 +123,7 @@ class InferenceResource(SyncAPIResource):
     ) -> InferenceRegionCapacityList:
         """Get inference capacity by region"""
         return self._get(
-            "/cloud/v3/inference/capacity"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v3/inference/capacity",
+            "/cloud/v3/inference/capacity",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -189,9 +187,7 @@ class AsyncInferenceResource(AsyncAPIResource):
     ) -> InferenceRegionCapacityList:
         """Get inference capacity by region"""
         return await self._get(
-            "/cloud/v3/inference/capacity"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cloud/v3/inference/capacity",
+            "/cloud/v3/inference/capacity",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

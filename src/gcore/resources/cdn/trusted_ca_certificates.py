@@ -82,9 +82,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cdn/sslCertificates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/sslCertificates",
+            "/cdn/sslCertificates",
             body=maybe_transform(
                 {
                     "name": name,
@@ -138,9 +136,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/cdn/sslCertificates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/sslCertificates",
+            "/cdn/sslCertificates",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,9 +179,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/sslCertificates/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslCertificates/{id}",
+            f"/cdn/sslCertificates/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -216,9 +210,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/sslCertificates/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslCertificates/{id}",
+            f"/cdn/sslCertificates/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -254,9 +246,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/sslCertificates/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslCertificates/{id}",
+            f"/cdn/sslCertificates/{id}",
             body=maybe_transform(
                 {"name": name}, trusted_ca_certificate_replace_params.TrustedCaCertificateReplaceParams
             ),
@@ -323,9 +313,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cdn/sslCertificates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/sslCertificates",
+            "/cdn/sslCertificates",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -379,9 +367,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/cdn/sslCertificates"
-            if self._client._base_url_overridden
-            else "https://api.gcore.com//cdn/sslCertificates",
+            "/cdn/sslCertificates",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -424,9 +410,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/sslCertificates/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslCertificates/{id}",
+            f"/cdn/sslCertificates/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -457,9 +441,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/sslCertificates/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslCertificates/{id}",
+            f"/cdn/sslCertificates/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -495,9 +477,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/sslCertificates/{id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cdn/sslCertificates/{id}",
+            f"/cdn/sslCertificates/{id}",
             body=await async_maybe_transform(
                 {"name": name}, trusted_ca_certificate_replace_params.TrustedCaCertificateReplaceParams
             ),

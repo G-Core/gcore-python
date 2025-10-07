@@ -81,9 +81,7 @@ class MetricsResource(SyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics",
             body=maybe_transform(
                 {
                     "time_interval": time_interval,
@@ -156,9 +154,7 @@ class AsyncMetricsResource(AsyncAPIResource):
         if not loadbalancer_id:
             raise ValueError(f"Expected a non-empty value for `loadbalancer_id` but received {loadbalancer_id!r}")
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics",
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{loadbalancer_id}/metrics",
             body=await async_maybe_transform(
                 {
                     "time_interval": time_interval,

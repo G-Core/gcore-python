@@ -147,9 +147,7 @@ class PoolsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}",
             body=maybe_transform(
                 {
                     "lb_algorithm": lb_algorithm,
@@ -267,9 +265,7 @@ class PoolsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._patch(
-            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
             body=maybe_transform(
                 {
                     "ca_secret_id": ca_secret_id,
@@ -335,9 +331,7 @@ class PoolsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -393,9 +387,7 @@ class PoolsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -440,9 +432,7 @@ class PoolsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -718,9 +708,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
                     "lb_algorithm": lb_algorithm,
@@ -838,9 +826,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._patch(
-            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
             body=await async_maybe_transform(
                 {
                     "ca_secret_id": ca_secret_id,
@@ -906,9 +892,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -964,9 +948,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1011,9 +993,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.gcore.com//cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

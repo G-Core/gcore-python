@@ -123,7 +123,7 @@ class FastedgeResource(SyncAPIResource):
     ) -> Client:
         """Get status and limits for the client"""
         return self._get(
-            "/fastedge/v1/me" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/me",
+            "/fastedge/v1/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -187,7 +187,7 @@ class AsyncFastedgeResource(AsyncAPIResource):
     ) -> Client:
         """Get status and limits for the client"""
         return await self._get(
-            "/fastedge/v1/me" if self._client._base_url_overridden else "https://api.gcore.com//fastedge/v1/me",
+            "/fastedge/v1/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
