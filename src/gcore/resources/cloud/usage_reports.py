@@ -95,14 +95,13 @@ class UsageReportsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReport:
-        """Receiving data from the past hour might lead to incomplete statistics.
+        """Data from the past hour may not reflect the full set of statistics.
 
-        For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the
@@ -233,14 +232,13 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReport:
-        """Receiving data from the past hour might lead to incomplete statistics.
+        """Data from the past hour may not reflect the full set of statistics.
 
-        For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the

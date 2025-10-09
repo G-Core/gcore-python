@@ -110,12 +110,11 @@ class CostReportsResource(SyncAPIResource):
         /v1/`reservation_cost_report`/totals, as the results from this report will not
         be accurate.
 
-        Receiving data from the past hour might lead to incomplete statistics. For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the
@@ -226,12 +225,11 @@ class CostReportsResource(SyncAPIResource):
         spent billing units (e.g., hours or GB) for resources. The "`time_to`" parameter
         represents all days in the specified month.
 
-        Receiving data from the past hour might lead to incomplete statistics. For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           regions: List of region IDs.
@@ -344,12 +342,11 @@ class CostReportsResource(SyncAPIResource):
         /v1/`reservation_cost_report`/totals, as the results from this report will not
         be accurate.
 
-        Receiving data from the past hour might lead to incomplete statistics. For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the
@@ -495,12 +492,11 @@ class AsyncCostReportsResource(AsyncAPIResource):
         /v1/`reservation_cost_report`/totals, as the results from this report will not
         be accurate.
 
-        Receiving data from the past hour might lead to incomplete statistics. For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the
@@ -611,12 +607,11 @@ class AsyncCostReportsResource(AsyncAPIResource):
         spent billing units (e.g., hours or GB) for resources. The "`time_to`" parameter
         represents all days in the specified month.
 
-        Receiving data from the past hour might lead to incomplete statistics. For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           regions: List of region IDs.
@@ -729,12 +724,11 @@ class AsyncCostReportsResource(AsyncAPIResource):
         /v1/`reservation_cost_report`/totals, as the results from this report will not
         be accurate.
 
-        Receiving data from the past hour might lead to incomplete statistics. For the
-        most accurate data, we recommend accessing the statistics after at least one
-        hour. Typically, updates are available within a 24-hour period, although the
-        frequency can vary. Maintenance periods or other exceptions may cause delays,
-        potentially extending beyond 24 hours until the servers are back online and the
-        missing data is filled in.
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the
