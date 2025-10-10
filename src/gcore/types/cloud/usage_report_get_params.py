@@ -47,13 +47,13 @@ class UsageReportGetParams(TypedDict, total=False):
     time_from: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
     """The start date of the report period (ISO 8601).
 
-    The report starts from the beginning of this day.
+    The report starts from the beginning of this day in UTC.
     """
 
     time_to: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
     """The end date of the report period (ISO 8601).
 
-    The report ends just before the beginning of this day.
+    The report ends just before the beginning of this day in UTC.
     """
 
     enable_last_day: bool
