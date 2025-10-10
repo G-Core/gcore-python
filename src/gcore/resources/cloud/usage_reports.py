@@ -105,10 +105,10 @@ class UsageReportsResource(SyncAPIResource):
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the
-              beginning of this day.
+              beginning of this day in UTC.
 
           time_to: The end date of the report period (ISO 8601). The report ends just before the
-              beginning of this day.
+              beginning of this day in UTC.
 
           enable_last_day: Expenses for the last specified day are taken into account. As the default,
               False.
@@ -242,10 +242,10 @@ class AsyncUsageReportsResource(AsyncAPIResource):
 
         Args:
           time_from: The start date of the report period (ISO 8601). The report starts from the
-              beginning of this day.
+              beginning of this day in UTC.
 
           time_to: The end date of the report period (ISO 8601). The report ends just before the
-              beginning of this day.
+              beginning of this day in UTC.
 
           enable_last_day: Expenses for the last specified day are taken into account. As the default,
               False.
