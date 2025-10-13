@@ -54,8 +54,8 @@ class ProfilesResource(SyncAPIResource):
         *,
         fields: Iterable[profile_create_params.Field],
         profile_template: int,
+        site: str,
         ip_address: Optional[str] | Omit = omit,
-        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,8 +83,8 @@ class ProfilesResource(SyncAPIResource):
                 {
                     "fields": fields,
                     "profile_template": profile_template,
-                    "ip_address": ip_address,
                     "site": site,
+                    "ip_address": ip_address,
                 },
                 profile_create_params.ProfileCreateParams,
             ),
@@ -322,8 +322,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         *,
         fields: Iterable[profile_create_params.Field],
         profile_template: int,
+        site: str,
         ip_address: Optional[str] | Omit = omit,
-        site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -351,8 +351,8 @@ class AsyncProfilesResource(AsyncAPIResource):
                 {
                     "fields": fields,
                     "profile_template": profile_template,
-                    "ip_address": ip_address,
                     "site": site,
+                    "ip_address": ip_address,
                 },
                 profile_create_params.ProfileCreateParams,
             ),
