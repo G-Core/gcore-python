@@ -127,7 +127,17 @@ class TestInstances:
             instance_id="instance_id",
             project_id=0,
             region_id=0,
-            name="my-resource",
+        )
+        assert_matches_type(Instance, instance, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gcore) -> None:
+        instance = client.cloud.instances.update(
+            instance_id="instance_id",
+            project_id=0,
+            region_id=0,
+            name="instance_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Instance, instance, path=["response"])
 
@@ -137,7 +147,6 @@ class TestInstances:
             instance_id="instance_id",
             project_id=0,
             region_id=0,
-            name="my-resource",
         )
 
         assert response.is_closed is True
@@ -151,7 +160,6 @@ class TestInstances:
             instance_id="instance_id",
             project_id=0,
             region_id=0,
-            name="my-resource",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,7 +176,6 @@ class TestInstances:
                 instance_id="",
                 project_id=0,
                 region_id=0,
-                name="my-resource",
             )
 
     @parametrize
@@ -990,7 +997,17 @@ class TestAsyncInstances:
             instance_id="instance_id",
             project_id=0,
             region_id=0,
-            name="my-resource",
+        )
+        assert_matches_type(Instance, instance, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
+        instance = await async_client.cloud.instances.update(
+            instance_id="instance_id",
+            project_id=0,
+            region_id=0,
+            name="instance_name",
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(Instance, instance, path=["response"])
 
@@ -1000,7 +1017,6 @@ class TestAsyncInstances:
             instance_id="instance_id",
             project_id=0,
             region_id=0,
-            name="my-resource",
         )
 
         assert response.is_closed is True
@@ -1014,7 +1030,6 @@ class TestAsyncInstances:
             instance_id="instance_id",
             project_id=0,
             region_id=0,
-            name="my-resource",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1031,7 +1046,6 @@ class TestAsyncInstances:
                 instance_id="",
                 project_id=0,
                 region_id=0,
-                name="my-resource",
             )
 
     @parametrize

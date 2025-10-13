@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, overload
 
@@ -227,6 +228,7 @@ class FileSharesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         file_share_id: str,
@@ -245,6 +247,9 @@ class FileSharesResource(SyncAPIResource):
     ) -> FileShare:
         """
         Rename file share or update tags
+
+        **Deprecated**: Use PATCH
+        /v3/`file_shares`/{`project_id`}/{`region_id`}/{`file_share_id`} instead
 
         Args:
           project_id: Project ID
@@ -702,6 +707,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         file_share_id: str,
@@ -720,6 +726,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
     ) -> FileShare:
         """
         Rename file share or update tags
+
+        **Deprecated**: Use PATCH
+        /v3/`file_shares`/{`project_id`}/{`region_id`}/{`file_share_id`} instead
 
         Args:
           project_id: Project ID
@@ -997,8 +1006,10 @@ class FileSharesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             file_shares.create,
         )
-        self.update = to_raw_response_wrapper(
-            file_shares.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                file_shares.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             file_shares.list,
@@ -1025,8 +1036,10 @@ class AsyncFileSharesResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             file_shares.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            file_shares.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                file_shares.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             file_shares.list,
@@ -1053,8 +1066,10 @@ class FileSharesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             file_shares.create,
         )
-        self.update = to_streamed_response_wrapper(
-            file_shares.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                file_shares.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             file_shares.list,
@@ -1081,8 +1096,10 @@ class AsyncFileSharesResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             file_shares.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            file_shares.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                file_shares.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             file_shares.list,

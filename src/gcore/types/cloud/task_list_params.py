@@ -103,9 +103,9 @@ class TaskListParams(TypedDict, total=False):
     '`suspend_vm`', '`sync_private_flavors`', '`update_ddos_profile`',
     '`update_inference_application`', '`update_inference_instance`',
     '`update_k8s_cluster_v2`', '`update_lbmetadata`',
-    '`update_port_allowed_address_pairs`', '`update_tags_gpu_virtual_cluster`',
-    '`upgrade_k8s_cluster_v2`', '`upscale_ai_cluster_gpu`',
-    '`upscale_gpu_virtual_cluster`']
+    '`update_port_allowed_address_pairs`', '`update_sfs`',
+    '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
+    '`upscale_ai_cluster_gpu`', '`upscale_gpu_virtual_cluster`']
     """
 
     to_timestamp: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]

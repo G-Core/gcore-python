@@ -68,6 +68,7 @@ from ....types.cloud.console import Console
 from ....types.cloud.instance import Instance
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.instance_interface import InstanceInterface
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["InstancesResource", "AsyncInstancesResource"]
 
@@ -267,7 +268,8 @@ class InstancesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,7 +278,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
-        Rename instance
+        Rename instance or update tags
 
         Args:
           project_id: Project ID
@@ -285,7 +287,29 @@ class InstancesResource(SyncAPIResource):
 
           instance_id: Instance ID
 
-          name: Name.
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -303,7 +327,13 @@ class InstancesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._patch(
             f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
-            body=maybe_transform({"name": name}, instance_update_params.InstanceUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                instance_update_params.InstanceUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1291,7 +1321,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1300,7 +1331,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
-        Rename instance
+        Rename instance or update tags
 
         Args:
           project_id: Project ID
@@ -1309,7 +1340,29 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           instance_id: Instance ID
 
-          name: Name.
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                adds/updates 'environment' and '`cost_center`' while removing
+                '`deprecated_tag`', preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -1327,7 +1380,13 @@ class AsyncInstancesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._patch(
             f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
-            body=await async_maybe_transform({"name": name}, instance_update_params.InstanceUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                instance_update_params.InstanceUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
