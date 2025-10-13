@@ -25,6 +25,7 @@ class TestProfiles:
         profile = client.security.profiles.create(
             fields=[{"base_field": 1}],
             profile_template=1,
+            site="GNC",
         )
         assert_matches_type(ClientProfile, profile, path=["response"])
 
@@ -38,8 +39,8 @@ class TestProfiles:
                 }
             ],
             profile_template=1,
+            site="GNC",
             ip_address="123.43.2.10",
-            site="ED",
         )
         assert_matches_type(ClientProfile, profile, path=["response"])
 
@@ -48,6 +49,7 @@ class TestProfiles:
         response = client.security.profiles.with_raw_response.create(
             fields=[{"base_field": 1}],
             profile_template=1,
+            site="GNC",
         )
 
         assert response.is_closed is True
@@ -60,6 +62,7 @@ class TestProfiles:
         with client.security.profiles.with_streaming_response.create(
             fields=[{"base_field": 1}],
             profile_template=1,
+            site="GNC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -283,6 +286,7 @@ class TestAsyncProfiles:
         profile = await async_client.security.profiles.create(
             fields=[{"base_field": 1}],
             profile_template=1,
+            site="GNC",
         )
         assert_matches_type(ClientProfile, profile, path=["response"])
 
@@ -296,8 +300,8 @@ class TestAsyncProfiles:
                 }
             ],
             profile_template=1,
+            site="GNC",
             ip_address="123.43.2.10",
-            site="ED",
         )
         assert_matches_type(ClientProfile, profile, path=["response"])
 
@@ -306,6 +310,7 @@ class TestAsyncProfiles:
         response = await async_client.security.profiles.with_raw_response.create(
             fields=[{"base_field": 1}],
             profile_template=1,
+            site="GNC",
         )
 
         assert response.is_closed is True
@@ -318,6 +323,7 @@ class TestAsyncProfiles:
         async with async_client.security.profiles.with_streaming_response.create(
             fields=[{"base_field": 1}],
             profile_template=1,
+            site="GNC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

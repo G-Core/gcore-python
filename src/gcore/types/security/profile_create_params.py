@@ -13,9 +13,9 @@ class ProfileCreateParams(TypedDict, total=False):
 
     profile_template: Required[int]
 
-    ip_address: Optional[str]
+    site: Required[str]
 
-    site: str
+    ip_address: Optional[str]
 
 
 class Field(TypedDict, total=False):
