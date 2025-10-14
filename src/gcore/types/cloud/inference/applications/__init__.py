@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .deployment_patch_params import DeploymentPatchParams as DeploymentPatchParams
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
+from .deployment_update_params import DeploymentUpdateParams as DeploymentUpdateParams
 from .inference_application_template import InferenceApplicationTemplate as InferenceApplicationTemplate
 from .inference_application_deployment import InferenceApplicationDeployment as InferenceApplicationDeployment
 from .inference_application_template_list import InferenceApplicationTemplateList as InferenceApplicationTemplateList
