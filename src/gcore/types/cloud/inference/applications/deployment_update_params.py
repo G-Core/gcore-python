@@ -8,14 +8,14 @@ from typing_extensions import Required, TypedDict
 from ....._types import SequenceNotStr
 
 __all__ = [
-    "DeploymentPatchParams",
+    "DeploymentUpdateParams",
     "ComponentsConfiguration",
     "ComponentsConfigurationParameterOverrides",
     "ComponentsConfigurationScale",
 ]
 
 
-class DeploymentPatchParams(TypedDict, total=False):
+class DeploymentUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

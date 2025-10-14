@@ -18,7 +18,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.inference.applications import deployment_patch_params, deployment_create_params
+from .....types.cloud.inference.applications import deployment_create_params, deployment_update_params
 from .....types.cloud.inference.applications.inference_application_deployment import InferenceApplicationDeployment
 from .....types.cloud.inference.applications.inference_application_deployment_list import (
     InferenceApplicationDeploymentList,
@@ -103,6 +103,67 @@ class DeploymentsResource(SyncAPIResource):
                     "api_keys": api_keys,
                 },
                 deployment_create_params.DeploymentCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def update(
+        self,
+        deployment_name: str,
+        *,
+        project_id: int | None = None,
+        api_keys: SequenceNotStr[str] | Omit = omit,
+        components_configuration: Dict[str, Optional[deployment_update_params.ComponentsConfiguration]] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Updates an existing application deployment.
+
+        You can modify the target regions
+        and update configurations for individual components. To disable a component, set
+        its value to null. Only the provided fields will be updated; all others remain
+        unchanged.
+
+        Args:
+          project_id: Project ID
+
+          deployment_name: Name of deployment
+
+          api_keys: List of API keys for the application
+
+          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
+
+          regions: Geographical regions to be updated for the deployment
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
+        return self._patch(
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            body=maybe_transform(
+                {
+                    "api_keys": api_keys,
+                    "components_configuration": components_configuration,
+                    "regions": regions,
+                },
+                deployment_update_params.DeploymentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -233,67 +294,6 @@ class DeploymentsResource(SyncAPIResource):
             cast_to=InferenceApplicationDeployment,
         )
 
-    def patch(
-        self,
-        deployment_name: str,
-        *,
-        project_id: int | None = None,
-        api_keys: SequenceNotStr[str] | Omit = omit,
-        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]] | Omit = omit,
-        regions: Iterable[int] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """Updates an existing application deployment.
-
-        You can modify the target regions
-        and update configurations for individual components. To disable a component, set
-        its value to null. Only the provided fields will be updated; all others remain
-        unchanged.
-
-        Args:
-          project_id: Project ID
-
-          deployment_name: Name of deployment
-
-          api_keys: List of API keys for the application
-
-          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
-
-          regions: Geographical regions to be updated for the deployment
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if not deployment_name:
-            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
-        return self._patch(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
-            body=maybe_transform(
-                {
-                    "api_keys": api_keys,
-                    "components_configuration": components_configuration,
-                    "regions": regions,
-                },
-                deployment_patch_params.DeploymentPatchParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
 
 class AsyncDeploymentsResource(AsyncAPIResource):
     @cached_property
@@ -371,6 +371,67 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     "api_keys": api_keys,
                 },
                 deployment_create_params.DeploymentCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def update(
+        self,
+        deployment_name: str,
+        *,
+        project_id: int | None = None,
+        api_keys: SequenceNotStr[str] | Omit = omit,
+        components_configuration: Dict[str, Optional[deployment_update_params.ComponentsConfiguration]] | Omit = omit,
+        regions: Iterable[int] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Updates an existing application deployment.
+
+        You can modify the target regions
+        and update configurations for individual components. To disable a component, set
+        its value to null. Only the provided fields will be updated; all others remain
+        unchanged.
+
+        Args:
+          project_id: Project ID
+
+          deployment_name: Name of deployment
+
+          api_keys: List of API keys for the application
+
+          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
+
+          regions: Geographical regions to be updated for the deployment
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if not deployment_name:
+            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
+        return await self._patch(
+            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
+            body=await async_maybe_transform(
+                {
+                    "api_keys": api_keys,
+                    "components_configuration": components_configuration,
+                    "regions": regions,
+                },
+                deployment_update_params.DeploymentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -501,67 +562,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             cast_to=InferenceApplicationDeployment,
         )
 
-    async def patch(
-        self,
-        deployment_name: str,
-        *,
-        project_id: int | None = None,
-        api_keys: SequenceNotStr[str] | Omit = omit,
-        components_configuration: Dict[str, Optional[deployment_patch_params.ComponentsConfiguration]] | Omit = omit,
-        regions: Iterable[int] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """Updates an existing application deployment.
-
-        You can modify the target regions
-        and update configurations for individual components. To disable a component, set
-        its value to null. Only the provided fields will be updated; all others remain
-        unchanged.
-
-        Args:
-          project_id: Project ID
-
-          deployment_name: Name of deployment
-
-          api_keys: List of API keys for the application
-
-          components_configuration: Mapping of component names to their configuration (e.g., `"model": {...}`)
-
-          regions: Geographical regions to be updated for the deployment
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if not deployment_name:
-            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
-        return await self._patch(
-            f"/cloud/v3/inference/applications/{project_id}/deployments/{deployment_name}",
-            body=await async_maybe_transform(
-                {
-                    "api_keys": api_keys,
-                    "components_configuration": components_configuration,
-                    "regions": regions,
-                },
-                deployment_patch_params.DeploymentPatchParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
 
 class DeploymentsResourceWithRawResponse:
     def __init__(self, deployments: DeploymentsResource) -> None:
@@ -569,6 +569,9 @@ class DeploymentsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             deployments.create,
+        )
+        self.update = to_raw_response_wrapper(
+            deployments.update,
         )
         self.list = to_raw_response_wrapper(
             deployments.list,
@@ -579,9 +582,6 @@ class DeploymentsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             deployments.get,
         )
-        self.patch = to_raw_response_wrapper(
-            deployments.patch,
-        )
 
 
 class AsyncDeploymentsResourceWithRawResponse:
@@ -590,6 +590,9 @@ class AsyncDeploymentsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             deployments.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            deployments.update,
         )
         self.list = async_to_raw_response_wrapper(
             deployments.list,
@@ -600,9 +603,6 @@ class AsyncDeploymentsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             deployments.get,
         )
-        self.patch = async_to_raw_response_wrapper(
-            deployments.patch,
-        )
 
 
 class DeploymentsResourceWithStreamingResponse:
@@ -611,6 +611,9 @@ class DeploymentsResourceWithStreamingResponse:
 
         self.create = to_streamed_response_wrapper(
             deployments.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            deployments.update,
         )
         self.list = to_streamed_response_wrapper(
             deployments.list,
@@ -621,9 +624,6 @@ class DeploymentsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             deployments.get,
         )
-        self.patch = to_streamed_response_wrapper(
-            deployments.patch,
-        )
 
 
 class AsyncDeploymentsResourceWithStreamingResponse:
@@ -633,6 +633,9 @@ class AsyncDeploymentsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             deployments.create,
         )
+        self.update = async_to_streamed_response_wrapper(
+            deployments.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             deployments.list,
         )
@@ -641,7 +644,4 @@ class AsyncDeploymentsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             deployments.get,
-        )
-        self.patch = async_to_streamed_response_wrapper(
-            deployments.patch,
         )
