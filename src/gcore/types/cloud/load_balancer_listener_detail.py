@@ -38,7 +38,7 @@ class LoadBalancerListenerDetail(BaseModel):
     Only used with HTTP and `TERMINATED_HTTPS` protocols.
     """
 
-    load_balancer_id: Optional[str] = None
+    loadbalancer_id: Optional[str] = None
     """Load balancer ID"""
 
     name: str

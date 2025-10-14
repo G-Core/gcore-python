@@ -22,7 +22,7 @@ class TestListeners:
         listener = client.cloud.load_balancers.listeners.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -34,7 +34,7 @@ class TestListeners:
         listener = client.cloud.load_balancers.listeners.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -60,7 +60,7 @@ class TestListeners:
         response = client.cloud.load_balancers.listeners.with_raw_response.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -76,7 +76,7 @@ class TestListeners:
         with client.cloud.load_balancers.listeners.with_streaming_response.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -171,7 +171,7 @@ class TestListeners:
         listener = client.cloud.load_balancers.listeners.list(
             project_id=1,
             region_id=1,
-            load_balancer_id="00000000-0000-4000-8000-000000000000",
+            loadbalancer_id="00000000-0000-4000-8000-000000000000",
             show_stats=True,
         )
         assert_matches_type(LoadBalancerListenerList, listener, path=["response"])
@@ -315,7 +315,7 @@ class TestAsyncListeners:
         listener = await async_client.cloud.load_balancers.listeners.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -327,7 +327,7 @@ class TestAsyncListeners:
         listener = await async_client.cloud.load_balancers.listeners.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -353,7 +353,7 @@ class TestAsyncListeners:
         response = await async_client.cloud.load_balancers.listeners.with_raw_response.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -369,7 +369,7 @@ class TestAsyncListeners:
         async with async_client.cloud.load_balancers.listeners.with_streaming_response.create(
             project_id=1,
             region_id=1,
-            load_balancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
+            loadbalancer_id="30f4f55b-4a7c-48e0-9954-5cddfee216e7",
             name="my_listener",
             protocol="HTTP",
             protocol_port=80,
@@ -464,7 +464,7 @@ class TestAsyncListeners:
         listener = await async_client.cloud.load_balancers.listeners.list(
             project_id=1,
             region_id=1,
-            load_balancer_id="00000000-0000-4000-8000-000000000000",
+            loadbalancer_id="00000000-0000-4000-8000-000000000000",
             show_stats=True,
         )
         assert_matches_type(LoadBalancerListenerList, listener, path=["response"])

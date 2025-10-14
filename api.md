@@ -210,12 +210,7 @@ from gcore.types.cloud import (
 Methods:
 
 - <code title="post /cloud/v1/loadbalancers/{project_id}/{region_id}">client.cloud.load_balancers.<a href="./src/gcore/resources/cloud/load_balancers/load_balancers.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancer_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="patch /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}">client.cloud.load_balancers.<a href="./src/gcore/resources/cloud/load_balancers/load_balancers.py">update</a>(load_balancer_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancer_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer.py">LoadBalancer</a></code>
 - <code title="get /cloud/v1/loadbalancers/{project_id}/{region_id}">client.cloud.load_balancers.<a href="./src/gcore/resources/cloud/load_balancers/load_balancers.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancer_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer.py">SyncOffsetPage[LoadBalancer]</a></code>
-- <code title="delete /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}">client.cloud.load_balancers.<a href="./src/gcore/resources/cloud/load_balancers/load_balancers.py">delete</a>(load_balancer_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/failover">client.cloud.load_balancers.<a href="./src/gcore/resources/cloud/load_balancers/load_balancers.py">failover</a>(load_balancer_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancer_failover_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}">client.cloud.load_balancers.<a href="./src/gcore/resources/cloud/load_balancers/load_balancers.py">get</a>(load_balancer_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancer_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer.py">LoadBalancer</a></code>
-- <code title="post /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/resize">client.cloud.load_balancers.<a href="./src/gcore/resources/cloud/load_balancers/load_balancers.py">resize</a>(load_balancer_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancer_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 ### L7Policies
 
@@ -277,18 +272,11 @@ Methods:
 - <code title="post /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member">client.cloud.load_balancers.pools.members.<a href="./src/gcore/resources/cloud/load_balancers/pools/members.py">add</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pools/member_add_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="delete /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}">client.cloud.load_balancers.pools.members.<a href="./src/gcore/resources/cloud/load_balancers/pools/members.py">remove</a>(member_id, \*, project_id, region_id, pool_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
-### Metrics
-
-Methods:
-
-- <code title="post /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/metrics">client.cloud.load_balancers.metrics.<a href="./src/gcore/resources/cloud/load_balancers/metrics.py">list</a>(load_balancer_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_metrics_list.py">LoadBalancerMetricsList</a></code>
-
 ### Statuses
 
 Methods:
 
 - <code title="get /cloud/v1/loadbalancers/{project_id}/{region_id}/status">client.cloud.load_balancers.statuses.<a href="./src/gcore/resources/cloud/load_balancers/statuses.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_status_list.py">LoadBalancerStatusList</a></code>
-- <code title="get /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/status">client.cloud.load_balancers.statuses.<a href="./src/gcore/resources/cloud/load_balancers/statuses.py">get</a>(load_balancer_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_status.py">LoadBalancerStatus</a></code>
 
 ## ReservedFixedIPs
 
