@@ -14,6 +14,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from ....types.cloud.load_balancer_status import LoadBalancerStatus
 from ....types.cloud.load_balancer_status_list import LoadBalancerStatusList
 
 __all__ = ["StatusesResource", "AsyncStatusesResource"]
@@ -75,6 +76,45 @@ class StatusesResource(SyncAPIResource):
             cast_to=LoadBalancerStatusList,
         )
 
+    def get(
+        self,
+        load_balancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LoadBalancerStatus:
+        """
+        Get load balancer status
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not load_balancer_id:
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        return self._get(
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=LoadBalancerStatus,
+        )
+
 
 class AsyncStatusesResource(AsyncAPIResource):
     @cached_property
@@ -132,6 +172,45 @@ class AsyncStatusesResource(AsyncAPIResource):
             cast_to=LoadBalancerStatusList,
         )
 
+    async def get(
+        self,
+        load_balancer_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LoadBalancerStatus:
+        """
+        Get load balancer status
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not load_balancer_id:
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        return await self._get(
+            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=LoadBalancerStatus,
+        )
+
 
 class StatusesResourceWithRawResponse:
     def __init__(self, statuses: StatusesResource) -> None:
@@ -139,6 +218,9 @@ class StatusesResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             statuses.list,
+        )
+        self.get = to_raw_response_wrapper(
+            statuses.get,
         )
 
 
@@ -149,6 +231,9 @@ class AsyncStatusesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             statuses.list,
         )
+        self.get = async_to_raw_response_wrapper(
+            statuses.get,
+        )
 
 
 class StatusesResourceWithStreamingResponse:
@@ -158,6 +243,9 @@ class StatusesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             statuses.list,
         )
+        self.get = to_streamed_response_wrapper(
+            statuses.get,
+        )
 
 
 class AsyncStatusesResourceWithStreamingResponse:
@@ -166,4 +254,7 @@ class AsyncStatusesResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             statuses.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            statuses.get,
         )
