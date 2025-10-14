@@ -57,7 +57,7 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        load_balancer_id: str,
+        loadbalancer_id: str,
         name: str,
         protocol: LbListenerProtocol,
         protocol_port: int,
@@ -85,7 +85,7 @@ class ListenersResource(SyncAPIResource):
 
           region_id: Region ID
 
-          load_balancer_id: Load balancer ID
+          loadbalancer_id: Load balancer ID
 
           name: Load balancer listener name
 
@@ -130,7 +130,7 @@ class ListenersResource(SyncAPIResource):
             f"/cloud/v1/lblisteners/{project_id}/{region_id}",
             body=maybe_transform(
                 {
-                    "load_balancer_id": load_balancer_id,
+                    "loadbalancer_id": loadbalancer_id,
                     "name": name,
                     "protocol": protocol,
                     "protocol_port": protocol_port,
@@ -245,7 +245,7 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        load_balancer_id: str | Omit = omit,
+        loadbalancer_id: str | Omit = omit,
         show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -262,7 +262,7 @@ class ListenersResource(SyncAPIResource):
 
           region_id: Region ID
 
-          load_balancer_id: Load Balancer ID
+          loadbalancer_id: Load Balancer ID
 
           show_stats: Show stats
 
@@ -287,7 +287,7 @@ class ListenersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "load_balancer_id": load_balancer_id,
+                        "loadbalancer_id": loadbalancer_id,
                         "show_stats": show_stats,
                     },
                     listener_list_params.ListenerListParams,
@@ -419,7 +419,7 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        load_balancer_id: str,
+        loadbalancer_id: str,
         name: str,
         protocol: LbListenerProtocol,
         protocol_port: int,
@@ -447,7 +447,7 @@ class AsyncListenersResource(AsyncAPIResource):
 
           region_id: Region ID
 
-          load_balancer_id: Load balancer ID
+          loadbalancer_id: Load balancer ID
 
           name: Load balancer listener name
 
@@ -492,7 +492,7 @@ class AsyncListenersResource(AsyncAPIResource):
             f"/cloud/v1/lblisteners/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
-                    "load_balancer_id": load_balancer_id,
+                    "loadbalancer_id": loadbalancer_id,
                     "name": name,
                     "protocol": protocol,
                     "protocol_port": protocol_port,
@@ -607,7 +607,7 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        load_balancer_id: str | Omit = omit,
+        loadbalancer_id: str | Omit = omit,
         show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -624,7 +624,7 @@ class AsyncListenersResource(AsyncAPIResource):
 
           region_id: Region ID
 
-          load_balancer_id: Load Balancer ID
+          loadbalancer_id: Load Balancer ID
 
           show_stats: Show stats
 
@@ -649,7 +649,7 @@ class AsyncListenersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "load_balancer_id": load_balancer_id,
+                        "loadbalancer_id": loadbalancer_id,
                         "show_stats": show_stats,
                     },
                     listener_list_params.ListenerListParams,

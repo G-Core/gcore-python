@@ -84,7 +84,7 @@ class PoolsResource(SyncAPIResource):
         crl_secret_id: Optional[str] | Omit = omit,
         healthmonitor: Optional[pool_create_params.Healthmonitor] | Omit = omit,
         listener_id: Optional[str] | Omit = omit,
-        load_balancer_id: Optional[str] | Omit = omit,
+        loadbalancer_id: Optional[str] | Omit = omit,
         members: Optional[Iterable[pool_create_params.Member]] | Omit = omit,
         secret_id: Optional[str] | Omit = omit,
         session_persistence: Optional[pool_create_params.SessionPersistence] | Omit = omit,
@@ -120,7 +120,7 @@ class PoolsResource(SyncAPIResource):
 
           listener_id: Listener ID
 
-          load_balancer_id: Loadbalancer ID
+          loadbalancer_id: Loadbalancer ID
 
           members: Pool members
 
@@ -157,7 +157,7 @@ class PoolsResource(SyncAPIResource):
                     "crl_secret_id": crl_secret_id,
                     "healthmonitor": healthmonitor,
                     "listener_id": listener_id,
-                    "load_balancer_id": load_balancer_id,
+                    "loadbalancer_id": loadbalancer_id,
                     "members": members,
                     "secret_id": secret_id,
                     "session_persistence": session_persistence,
@@ -296,7 +296,7 @@ class PoolsResource(SyncAPIResource):
         region_id: int | None = None,
         details: bool | Omit = omit,
         listener_id: str | Omit = omit,
-        load_balancer_id: str | Omit = omit,
+        loadbalancer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -316,7 +316,7 @@ class PoolsResource(SyncAPIResource):
 
           listener_id: Listener ID
 
-          load_balancer_id: Load Balancer ID
+          loadbalancer_id: Load Balancer ID
 
           extra_headers: Send extra headers
 
@@ -341,7 +341,7 @@ class PoolsResource(SyncAPIResource):
                     {
                         "details": details,
                         "listener_id": listener_id,
-                        "load_balancer_id": load_balancer_id,
+                        "loadbalancer_id": loadbalancer_id,
                     },
                     pool_list_params.PoolListParams,
                 ),
@@ -480,7 +480,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         crl_secret_id: Optional[str] | Omit = omit,
         healthmonitor: Optional[pool_create_params.Healthmonitor] | Omit = omit,
         listener_id: Optional[str] | Omit = omit,
-        load_balancer_id: Optional[str] | Omit = omit,
+        loadbalancer_id: Optional[str] | Omit = omit,
         members: Optional[Iterable[pool_create_params.Member]] | Omit = omit,
         secret_id: Optional[str] | Omit = omit,
         session_persistence: Optional[pool_create_params.SessionPersistence] | Omit = omit,
@@ -516,7 +516,7 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           listener_id: Listener ID
 
-          load_balancer_id: Loadbalancer ID
+          loadbalancer_id: Loadbalancer ID
 
           members: Pool members
 
@@ -553,7 +553,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "crl_secret_id": crl_secret_id,
                     "healthmonitor": healthmonitor,
                     "listener_id": listener_id,
-                    "load_balancer_id": load_balancer_id,
+                    "loadbalancer_id": loadbalancer_id,
                     "members": members,
                     "secret_id": secret_id,
                     "session_persistence": session_persistence,
@@ -692,7 +692,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         region_id: int | None = None,
         details: bool | Omit = omit,
         listener_id: str | Omit = omit,
-        load_balancer_id: str | Omit = omit,
+        loadbalancer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -712,7 +712,7 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           listener_id: Listener ID
 
-          load_balancer_id: Load Balancer ID
+          loadbalancer_id: Load Balancer ID
 
           extra_headers: Send extra headers
 
@@ -737,7 +737,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     {
                         "details": details,
                         "listener_id": listener_id,
-                        "load_balancer_id": load_balancer_id,
+                        "loadbalancer_id": loadbalancer_id,
                     },
                     pool_list_params.PoolListParams,
                 ),

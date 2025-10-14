@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, Iterable
 
 import httpx
 
@@ -13,14 +13,6 @@ from .flavors import (
     AsyncFlavorsResourceWithRawResponse,
     FlavorsResourceWithStreamingResponse,
     AsyncFlavorsResourceWithStreamingResponse,
-)
-from .metrics import (
-    MetricsResource,
-    AsyncMetricsResource,
-    MetricsResourceWithRawResponse,
-    AsyncMetricsResourceWithRawResponse,
-    MetricsResourceWithStreamingResponse,
-    AsyncMetricsResourceWithStreamingResponse,
 )
 from .statuses import (
     StatusesResource,
@@ -60,12 +52,8 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import (
     InterfaceIPFamily,
     LoadBalancerMemberConnectivity,
-    load_balancer_get_params,
     load_balancer_list_params,
     load_balancer_create_params,
-    load_balancer_resize_params,
-    load_balancer_update_params,
-    load_balancer_failover_params,
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from .l7_policies.l7_policies import (
@@ -79,7 +67,6 @@ from .l7_policies.l7_policies import (
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.load_balancer import LoadBalancer
 from ....types.cloud.interface_ip_family import InterfaceIPFamily
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
 __all__ = ["LoadBalancersResource", "AsyncLoadBalancersResource"]
@@ -101,10 +88,6 @@ class LoadBalancersResource(SyncAPIResource):
     @cached_property
     def pools(self) -> PoolsResource:
         return PoolsResource(self._client)
-
-    @cached_property
-    def metrics(self) -> MetricsResource:
-        return MetricsResource(self._client)
 
     @cached_property
     def statuses(self) -> StatusesResource:
@@ -231,90 +214,6 @@ class LoadBalancersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def update(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        logging: load_balancer_update_params.Logging | Omit = omit,
-        name: str | Omit = omit,
-        preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancer:
-        """
-        Rename load balancer, activate/deactivate logging, update preferred connectivity
-        type and/or modify load balancer tags. The request will only process the fields
-        that are provided in the request body. Any fields that are not included will
-        remain unchanged.
-
-        Args:
-          logging: Logging configuration
-
-          name: Name.
-
-          preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
-              members
-
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
-              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified.
-
-              **Examples:**
-
-              - **Add/update tags:**
-                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
-                updates existing ones.
-              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
-              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
-                tags are preserved).
-              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
-                specified tags.
-              - **Mixed operations:**
-                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
-                adds/updates 'environment' and '`cost_center`' while removing
-                '`deprecated_tag`', preserving other existing tags.
-              - **Replace all:** first delete existing tags with null values, then add new
-                ones in the same request.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return self._patch(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
-            body=maybe_transform(
-                {
-                    "logging": logging,
-                    "name": name,
-                    "preferred_connectivity": preferred_connectivity,
-                    "tags": tags,
-                },
-                load_balancer_update_params.LoadBalancerUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LoadBalancer,
-        )
-
     def list(
         self,
         *,
@@ -403,186 +302,6 @@ class LoadBalancersResource(SyncAPIResource):
             model=LoadBalancer,
         )
 
-    def delete(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Delete load balancer
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return self._delete(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    def failover(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        force: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Failover load balancer
-
-        Args:
-          force: Validate current load balancer status before failover or not.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/failover",
-            body=maybe_transform({"force": force}, load_balancer_failover_params.LoadBalancerFailoverParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    def get(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        show_stats: bool | Omit = omit,
-        with_ddos: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancer:
-        """
-        Get load balancer
-
-        Args:
-          show_stats: Show statistics
-
-          with_ddos: Show DDoS profile
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "show_stats": show_stats,
-                        "with_ddos": with_ddos,
-                    },
-                    load_balancer_get_params.LoadBalancerGetParams,
-                ),
-            ),
-            cast_to=LoadBalancer,
-        )
-
-    def resize(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        flavor: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Resize load balancer
-
-        Args:
-          flavor: Name of the desired flavor to resize to.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/resize",
-            body=maybe_transform({"flavor": flavor}, load_balancer_resize_params.LoadBalancerResizeParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
 
 class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
@@ -600,10 +319,6 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
     def pools(self) -> AsyncPoolsResource:
         return AsyncPoolsResource(self._client)
-
-    @cached_property
-    def metrics(self) -> AsyncMetricsResource:
-        return AsyncMetricsResource(self._client)
 
     @cached_property
     def statuses(self) -> AsyncStatusesResource:
@@ -730,90 +445,6 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def update(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        logging: load_balancer_update_params.Logging | Omit = omit,
-        name: str | Omit = omit,
-        preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancer:
-        """
-        Rename load balancer, activate/deactivate logging, update preferred connectivity
-        type and/or modify load balancer tags. The request will only process the fields
-        that are provided in the request body. Any fields that are not included will
-        remain unchanged.
-
-        Args:
-          logging: Logging configuration
-
-          name: Name.
-
-          preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
-              members
-
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
-              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified.
-
-              **Examples:**
-
-              - **Add/update tags:**
-                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
-                updates existing ones.
-              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
-              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
-                tags are preserved).
-              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
-                specified tags.
-              - **Mixed operations:**
-                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
-                adds/updates 'environment' and '`cost_center`' while removing
-                '`deprecated_tag`', preserving other existing tags.
-              - **Replace all:** first delete existing tags with null values, then add new
-                ones in the same request.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return await self._patch(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
-            body=await async_maybe_transform(
-                {
-                    "logging": logging,
-                    "name": name,
-                    "preferred_connectivity": preferred_connectivity,
-                    "tags": tags,
-                },
-                load_balancer_update_params.LoadBalancerUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LoadBalancer,
-        )
-
     def list(
         self,
         *,
@@ -902,188 +533,6 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             model=LoadBalancer,
         )
 
-    async def delete(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Delete load balancer
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return await self._delete(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    async def failover(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        force: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Failover load balancer
-
-        Args:
-          force: Validate current load balancer status before failover or not.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/failover",
-            body=await async_maybe_transform(
-                {"force": force}, load_balancer_failover_params.LoadBalancerFailoverParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    async def get(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        show_stats: bool | Omit = omit,
-        with_ddos: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancer:
-        """
-        Get load balancer
-
-        Args:
-          show_stats: Show statistics
-
-          with_ddos: Show DDoS profile
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return await self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "show_stats": show_stats,
-                        "with_ddos": with_ddos,
-                    },
-                    load_balancer_get_params.LoadBalancerGetParams,
-                ),
-            ),
-            cast_to=LoadBalancer,
-        )
-
-    async def resize(
-        self,
-        load_balancer_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        flavor: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Resize load balancer
-
-        Args:
-          flavor: Name of the desired flavor to resize to.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not load_balancer_id:
-            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
-        return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/resize",
-            body=await async_maybe_transform({"flavor": flavor}, load_balancer_resize_params.LoadBalancerResizeParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
 
 class LoadBalancersResourceWithRawResponse:
     def __init__(self, load_balancers: LoadBalancersResource) -> None:
@@ -1092,23 +541,8 @@ class LoadBalancersResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             load_balancers.create,
         )
-        self.update = to_raw_response_wrapper(
-            load_balancers.update,
-        )
         self.list = to_raw_response_wrapper(
             load_balancers.list,
-        )
-        self.delete = to_raw_response_wrapper(
-            load_balancers.delete,
-        )
-        self.failover = to_raw_response_wrapper(
-            load_balancers.failover,
-        )
-        self.get = to_raw_response_wrapper(
-            load_balancers.get,
-        )
-        self.resize = to_raw_response_wrapper(
-            load_balancers.resize,
         )
 
     @cached_property
@@ -1128,10 +562,6 @@ class LoadBalancersResourceWithRawResponse:
         return PoolsResourceWithRawResponse(self._load_balancers.pools)
 
     @cached_property
-    def metrics(self) -> MetricsResourceWithRawResponse:
-        return MetricsResourceWithRawResponse(self._load_balancers.metrics)
-
-    @cached_property
     def statuses(self) -> StatusesResourceWithRawResponse:
         return StatusesResourceWithRawResponse(self._load_balancers.statuses)
 
@@ -1143,23 +573,8 @@ class AsyncLoadBalancersResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             load_balancers.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            load_balancers.update,
-        )
         self.list = async_to_raw_response_wrapper(
             load_balancers.list,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            load_balancers.delete,
-        )
-        self.failover = async_to_raw_response_wrapper(
-            load_balancers.failover,
-        )
-        self.get = async_to_raw_response_wrapper(
-            load_balancers.get,
-        )
-        self.resize = async_to_raw_response_wrapper(
-            load_balancers.resize,
         )
 
     @cached_property
@@ -1179,10 +594,6 @@ class AsyncLoadBalancersResourceWithRawResponse:
         return AsyncPoolsResourceWithRawResponse(self._load_balancers.pools)
 
     @cached_property
-    def metrics(self) -> AsyncMetricsResourceWithRawResponse:
-        return AsyncMetricsResourceWithRawResponse(self._load_balancers.metrics)
-
-    @cached_property
     def statuses(self) -> AsyncStatusesResourceWithRawResponse:
         return AsyncStatusesResourceWithRawResponse(self._load_balancers.statuses)
 
@@ -1194,23 +605,8 @@ class LoadBalancersResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             load_balancers.create,
         )
-        self.update = to_streamed_response_wrapper(
-            load_balancers.update,
-        )
         self.list = to_streamed_response_wrapper(
             load_balancers.list,
-        )
-        self.delete = to_streamed_response_wrapper(
-            load_balancers.delete,
-        )
-        self.failover = to_streamed_response_wrapper(
-            load_balancers.failover,
-        )
-        self.get = to_streamed_response_wrapper(
-            load_balancers.get,
-        )
-        self.resize = to_streamed_response_wrapper(
-            load_balancers.resize,
         )
 
     @cached_property
@@ -1230,10 +626,6 @@ class LoadBalancersResourceWithStreamingResponse:
         return PoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
     @cached_property
-    def metrics(self) -> MetricsResourceWithStreamingResponse:
-        return MetricsResourceWithStreamingResponse(self._load_balancers.metrics)
-
-    @cached_property
     def statuses(self) -> StatusesResourceWithStreamingResponse:
         return StatusesResourceWithStreamingResponse(self._load_balancers.statuses)
 
@@ -1245,23 +637,8 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             load_balancers.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            load_balancers.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             load_balancers.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            load_balancers.delete,
-        )
-        self.failover = async_to_streamed_response_wrapper(
-            load_balancers.failover,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            load_balancers.get,
-        )
-        self.resize = async_to_streamed_response_wrapper(
-            load_balancers.resize,
         )
 
     @cached_property
@@ -1279,10 +656,6 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithStreamingResponse:
         return AsyncPoolsResourceWithStreamingResponse(self._load_balancers.pools)
-
-    @cached_property
-    def metrics(self) -> AsyncMetricsResourceWithStreamingResponse:
-        return AsyncMetricsResourceWithStreamingResponse(self._load_balancers.metrics)
 
     @cached_property
     def statuses(self) -> AsyncStatusesResourceWithStreamingResponse:

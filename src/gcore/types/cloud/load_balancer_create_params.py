@@ -274,7 +274,7 @@ class ListenerPool(TypedDict, total=False):
     listener_id: Optional[str]
     """Listener ID"""
 
-    load_balancer_id: Optional[str]
+    loadbalancer_id: Optional[str]
     """Loadbalancer ID"""
 
     members: Optional[Iterable[ListenerPoolMember]]

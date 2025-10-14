@@ -49,7 +49,7 @@ class TestPools:
                 "url_path": "/",
             },
             listener_id="listener_id",
-            load_balancer_id="bbb35f84-35cc-4b2f-84c2-a6a29bba68aa",
+            loadbalancer_id="bbb35f84-35cc-4b2f-84c2-a6a29bba68aa",
             members=[
                 {
                     "address": "192.168.1.101",
@@ -227,7 +227,7 @@ class TestPools:
             region_id=1,
             details=True,
             listener_id="00000000-0000-4000-8000-000000000000",
-            load_balancer_id="00000000-0000-4000-8000-000000000000",
+            loadbalancer_id="00000000-0000-4000-8000-000000000000",
         )
         assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 
@@ -387,7 +387,7 @@ class TestAsyncPools:
                 "url_path": "/",
             },
             listener_id="listener_id",
-            load_balancer_id="bbb35f84-35cc-4b2f-84c2-a6a29bba68aa",
+            loadbalancer_id="bbb35f84-35cc-4b2f-84c2-a6a29bba68aa",
             members=[
                 {
                     "address": "192.168.1.101",
@@ -565,7 +565,7 @@ class TestAsyncPools:
             region_id=1,
             details=True,
             listener_id="00000000-0000-4000-8000-000000000000",
-            load_balancer_id="00000000-0000-4000-8000-000000000000",
+            loadbalancer_id="00000000-0000-4000-8000-000000000000",
         )
         assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
 

@@ -18,7 +18,7 @@ class ListenerCreateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
-    load_balancer_id: Required[str]
+    loadbalancer_id: Required[str]
     """Load balancer ID"""
 
     name: Required[str]

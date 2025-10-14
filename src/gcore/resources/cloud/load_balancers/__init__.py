@@ -16,14 +16,6 @@ from .flavors import (
     FlavorsResourceWithStreamingResponse,
     AsyncFlavorsResourceWithStreamingResponse,
 )
-from .metrics import (
-    MetricsResource,
-    AsyncMetricsResource,
-    MetricsResourceWithRawResponse,
-    AsyncMetricsResourceWithRawResponse,
-    MetricsResourceWithStreamingResponse,
-    AsyncMetricsResourceWithStreamingResponse,
-)
 from .statuses import (
     StatusesResource,
     AsyncStatusesResource,
@@ -82,12 +74,6 @@ __all__ = [
     "AsyncPoolsResourceWithRawResponse",
     "PoolsResourceWithStreamingResponse",
     "AsyncPoolsResourceWithStreamingResponse",
-    "MetricsResource",
-    "AsyncMetricsResource",
-    "MetricsResourceWithRawResponse",
-    "AsyncMetricsResourceWithRawResponse",
-    "MetricsResourceWithStreamingResponse",
-    "AsyncMetricsResourceWithStreamingResponse",
     "StatusesResource",
     "AsyncStatusesResource",
     "StatusesResourceWithRawResponse",
