@@ -14,7 +14,7 @@ class ListenerListParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
-    loadbalancer_id: str
+    load_balancer_id: str
     """Load Balancer ID"""
 
     show_stats: bool

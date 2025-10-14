@@ -20,5 +20,5 @@ class PoolListParams(TypedDict, total=False):
     listener_id: str
     """Listener ID"""
 
-    loadbalancer_id: str
+    load_balancer_id: str
     """Load Balancer ID"""
