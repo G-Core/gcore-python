@@ -159,6 +159,70 @@ class TestLoadBalancers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_update(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            logging={
+                "destination_region_id": 1,
+                "enabled": True,
+                "retention_policy": {"period": 45},
+                "topic_name": "my-log-name",
+            },
+            name="some_name",
+            preferred_connectivity="L2",
+            tags={"foo": "my-tag-value"},
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.with_raw_response.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.with_streaming_response.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            client.cloud.load_balancers.with_raw_response.update(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
     def test_method_list(self, client: Gcore) -> None:
         load_balancer = client.cloud.load_balancers.list(
             project_id=0,
@@ -209,6 +273,215 @@ class TestLoadBalancers:
             assert_matches_type(SyncOffsetPage[LoadBalancer], load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_delete(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.delete(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.with_raw_response.delete(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.with_streaming_response.delete(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            client.cloud.load_balancers.with_raw_response.delete(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
+    def test_method_failover(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    def test_method_failover_with_all_params(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            force=True,
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    def test_raw_response_failover(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.with_raw_response.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_failover(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.with_streaming_response.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_failover(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            client.cloud.load_balancers.with_raw_response.failover(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
+    def test_method_get(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            show_stats=True,
+            with_ddos=True,
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.with_raw_response.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.with_streaming_response.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            client.cloud.load_balancers.with_raw_response.get(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
+    def test_method_resize(self, client: Gcore) -> None:
+        load_balancer = client.cloud.load_balancers.resize(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            flavor="lb1-2-4",
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    def test_raw_response_resize(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.with_raw_response.resize(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            flavor="lb1-2-4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_resize(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.with_streaming_response.resize(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            flavor="lb1-2-4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_resize(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            client.cloud.load_balancers.with_raw_response.resize(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+                flavor="lb1-2-4",
+            )
 
 
 class TestAsyncLoadBalancers:
@@ -354,6 +627,70 @@ class TestAsyncLoadBalancers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            logging={
+                "destination_region_id": 1,
+                "enabled": True,
+                "retention_policy": {"period": 45},
+                "topic_name": "my-log-name",
+            },
+            name="some_name",
+            preferred_connectivity="L2",
+            tags={"foo": "my-tag-value"},
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.with_raw_response.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.with_streaming_response.update(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            await async_client.cloud.load_balancers.with_raw_response.update(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         load_balancer = await async_client.cloud.load_balancers.list(
             project_id=0,
@@ -404,3 +741,212 @@ class TestAsyncLoadBalancers:
             assert_matches_type(AsyncOffsetPage[LoadBalancer], load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.delete(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.with_raw_response.delete(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.with_streaming_response.delete(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            await async_client.cloud.load_balancers.with_raw_response.delete(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
+    async def test_method_failover(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_method_failover_with_all_params(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            force=True,
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_failover(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.with_raw_response.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_failover(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.with_streaming_response.failover(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_failover(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            await async_client.cloud.load_balancers.with_raw_response.failover(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            show_stats=True,
+            with_ddos=True,
+        )
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.with_raw_response.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.with_streaming_response.get(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            await async_client.cloud.load_balancers.with_raw_response.get(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+            )
+
+    @parametrize
+    async def test_method_resize(self, async_client: AsyncGcore) -> None:
+        load_balancer = await async_client.cloud.load_balancers.resize(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            flavor="lb1-2-4",
+        )
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_resize(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.with_raw_response.resize(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            flavor="lb1-2-4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_resize(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.with_streaming_response.resize(
+            load_balancer_id="load_balancer_id",
+            project_id=0,
+            region_id=0,
+            flavor="lb1-2-4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(TaskIDList, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_resize(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            await async_client.cloud.load_balancers.with_raw_response.resize(
+                load_balancer_id="",
+                project_id=0,
+                region_id=0,
+                flavor="lb1-2-4",
+            )
