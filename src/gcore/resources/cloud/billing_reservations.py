@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-import typing_extensions
-from typing import List, Union
-from datetime import date, datetime
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,10 +16,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.cloud import billing_reservation_list_params
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.cloud.billing_reservation import BillingReservation
+from ..._base_client import make_request_options
+from ...types.cloud.billing_reservations import BillingReservations
 
 __all__ = ["BillingReservationsResource", "AsyncBillingReservationsResource"]
 
@@ -47,126 +43,32 @@ class BillingReservationsResource(SyncAPIResource):
         """
         return BillingReservationsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
-        activated_from: Union[str, date] | Omit = omit,
-        activated_to: Union[str, date] | Omit = omit,
-        created_from: Union[str, datetime] | Omit = omit,
-        created_to: Union[str, datetime] | Omit = omit,
-        deactivated_from: Union[str, date] | Omit = omit,
-        deactivated_to: Union[str, date] | Omit = omit,
-        limit: int | Omit = omit,
         metric_name: str | Omit = omit,
-        offset: int | Omit = omit,
-        order_by: Literal[
-            "active_from.asc",
-            "active_from.desc",
-            "active_to.asc",
-            "active_to.desc",
-            "created_at.asc",
-            "created_at.desc",
-        ]
-        | Omit = omit,
+        order_by: Literal["active_from.asc", "active_from.desc", "active_to.asc", "active_to.desc"] | Omit = omit,
         region_id: int | Omit = omit,
-        status: List[
-            Literal[
-                "ACTIVATED", "APPROVED", "COPIED", "CREATED", "EXPIRED", "REJECTED", "RESERVED", "WAITING_FOR_PAYMENT"
-            ]
-        ]
-        | Omit = omit,
+        show_inactive: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[BillingReservation]:
+    ) -> BillingReservations:
         """
-        List reservations
+        Get a list of billing reservations along with detailed information on resource
+        configurations and associated pricing.
 
         Args:
-          activated_from: Lower bound, starting from what date the reservation was/will be activated
-
-          activated_to: High bound, before what date the reservation was/will be activated
-
-          created_from: Lower bound the filter, showing result(s) equal to or greater than date the
-              reservation was created
-
-          created_to: High bound the filter, showing result(s) equal to or less date the reservation
-              was created
-
-          deactivated_from: Lower bound, starting from what date the reservation was/will be deactivated
-
-          deactivated_to: High bound, before what date the reservation was/will be deactivated
-
-          limit: Limit of reservation list page
-
           metric_name: Name from billing features for specific resource
-
-          offset: Offset in reservation list
 
           order_by: Order by field and direction.
 
           region_id: Region for reservation
 
-          status: Field for fixed a status by reservation workflow
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            "/cloud/v1/reservations",
-            page=SyncOffsetPage[BillingReservation],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "activated_from": activated_from,
-                        "activated_to": activated_to,
-                        "created_from": created_from,
-                        "created_to": created_to,
-                        "deactivated_from": deactivated_from,
-                        "deactivated_to": deactivated_to,
-                        "limit": limit,
-                        "metric_name": metric_name,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "region_id": region_id,
-                        "status": status,
-                    },
-                    billing_reservation_list_params.BillingReservationListParams,
-                ),
-            ),
-            model=BillingReservation,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    def get(
-        self,
-        reservation_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BillingReservation:
-        """
-        Get reservation
-
-        Args:
-          reservation_id: ID of the reservation
+          show_inactive: Include inactive commits in the response
 
           extra_headers: Send extra headers
 
@@ -177,11 +79,23 @@ class BillingReservationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cloud/v1/reservations/{reservation_id}",
+            "/cloud/v2/reservations",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "metric_name": metric_name,
+                        "order_by": order_by,
+                        "region_id": region_id,
+                        "show_inactive": show_inactive,
+                    },
+                    billing_reservation_list_params.BillingReservationListParams,
+                ),
             ),
-            cast_to=BillingReservation,
+            cast_to=BillingReservations,
         )
 
 
@@ -205,126 +119,32 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         """
         return AsyncBillingReservationsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
-    def list(
+    async def list(
         self,
         *,
-        activated_from: Union[str, date] | Omit = omit,
-        activated_to: Union[str, date] | Omit = omit,
-        created_from: Union[str, datetime] | Omit = omit,
-        created_to: Union[str, datetime] | Omit = omit,
-        deactivated_from: Union[str, date] | Omit = omit,
-        deactivated_to: Union[str, date] | Omit = omit,
-        limit: int | Omit = omit,
         metric_name: str | Omit = omit,
-        offset: int | Omit = omit,
-        order_by: Literal[
-            "active_from.asc",
-            "active_from.desc",
-            "active_to.asc",
-            "active_to.desc",
-            "created_at.asc",
-            "created_at.desc",
-        ]
-        | Omit = omit,
+        order_by: Literal["active_from.asc", "active_from.desc", "active_to.asc", "active_to.desc"] | Omit = omit,
         region_id: int | Omit = omit,
-        status: List[
-            Literal[
-                "ACTIVATED", "APPROVED", "COPIED", "CREATED", "EXPIRED", "REJECTED", "RESERVED", "WAITING_FOR_PAYMENT"
-            ]
-        ]
-        | Omit = omit,
+        show_inactive: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[BillingReservation, AsyncOffsetPage[BillingReservation]]:
+    ) -> BillingReservations:
         """
-        List reservations
+        Get a list of billing reservations along with detailed information on resource
+        configurations and associated pricing.
 
         Args:
-          activated_from: Lower bound, starting from what date the reservation was/will be activated
-
-          activated_to: High bound, before what date the reservation was/will be activated
-
-          created_from: Lower bound the filter, showing result(s) equal to or greater than date the
-              reservation was created
-
-          created_to: High bound the filter, showing result(s) equal to or less date the reservation
-              was created
-
-          deactivated_from: Lower bound, starting from what date the reservation was/will be deactivated
-
-          deactivated_to: High bound, before what date the reservation was/will be deactivated
-
-          limit: Limit of reservation list page
-
           metric_name: Name from billing features for specific resource
-
-          offset: Offset in reservation list
 
           order_by: Order by field and direction.
 
           region_id: Region for reservation
 
-          status: Field for fixed a status by reservation workflow
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            "/cloud/v1/reservations",
-            page=AsyncOffsetPage[BillingReservation],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "activated_from": activated_from,
-                        "activated_to": activated_to,
-                        "created_from": created_from,
-                        "created_to": created_to,
-                        "deactivated_from": deactivated_from,
-                        "deactivated_to": deactivated_to,
-                        "limit": limit,
-                        "metric_name": metric_name,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "region_id": region_id,
-                        "status": status,
-                    },
-                    billing_reservation_list_params.BillingReservationListParams,
-                ),
-            ),
-            model=BillingReservation,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    async def get(
-        self,
-        reservation_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BillingReservation:
-        """
-        Get reservation
-
-        Args:
-          reservation_id: ID of the reservation
+          show_inactive: Include inactive commits in the response
 
           extra_headers: Send extra headers
 
@@ -335,11 +155,23 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cloud/v1/reservations/{reservation_id}",
+            "/cloud/v2/reservations",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "metric_name": metric_name,
+                        "order_by": order_by,
+                        "region_id": region_id,
+                        "show_inactive": show_inactive,
+                    },
+                    billing_reservation_list_params.BillingReservationListParams,
+                ),
             ),
-            cast_to=BillingReservation,
+            cast_to=BillingReservations,
         )
 
 
@@ -347,15 +179,8 @@ class BillingReservationsResourceWithRawResponse:
     def __init__(self, billing_reservations: BillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                billing_reservations.list,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                billing_reservations.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_raw_response_wrapper(
+            billing_reservations.list,
         )
 
 
@@ -363,15 +188,8 @@ class AsyncBillingReservationsResourceWithRawResponse:
     def __init__(self, billing_reservations: AsyncBillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                billing_reservations.list,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                billing_reservations.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_raw_response_wrapper(
+            billing_reservations.list,
         )
 
 
@@ -379,15 +197,8 @@ class BillingReservationsResourceWithStreamingResponse:
     def __init__(self, billing_reservations: BillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                billing_reservations.list,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                billing_reservations.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_streamed_response_wrapper(
+            billing_reservations.list,
         )
 
 
@@ -395,13 +206,6 @@ class AsyncBillingReservationsResourceWithStreamingResponse:
     def __init__(self, billing_reservations: AsyncBillingReservationsResource) -> None:
         self._billing_reservations = billing_reservations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                billing_reservations.list,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                billing_reservations.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_streamed_response_wrapper(
+            billing_reservations.list,
         )

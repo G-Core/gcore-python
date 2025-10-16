@@ -750,13 +750,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import BillingReservation
+from gcore.types.cloud import BillingReservation, BillingReservations
 ```
 
 Methods:
 
-- <code title="get /cloud/v1/reservations">client.cloud.billing_reservations.<a href="./src/gcore/resources/cloud/billing_reservations.py">list</a>(\*\*<a href="src/gcore/types/cloud/billing_reservation_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/billing_reservation.py">SyncOffsetPage[BillingReservation]</a></code>
-- <code title="get /cloud/v1/reservations/{reservation_id}">client.cloud.billing_reservations.<a href="./src/gcore/resources/cloud/billing_reservations.py">get</a>(reservation_id) -> <a href="./src/gcore/types/cloud/billing_reservation.py">BillingReservation</a></code>
+- <code title="get /cloud/v2/reservations">client.cloud.billing_reservations.<a href="./src/gcore/resources/cloud/billing_reservations.py">list</a>(\*\*<a href="src/gcore/types/cloud/billing_reservation_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/billing_reservations.py">BillingReservations</a></code>
 
 ## GPUBaremetalClusters
 
