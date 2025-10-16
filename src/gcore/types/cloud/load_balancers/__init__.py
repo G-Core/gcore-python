@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .pool_list_params import PoolListParams as PoolListParams
 from .flavor_list_params import FlavorListParams as FlavorListParams
+from .metric_list_params import MetricListParams as MetricListParams
 from .pool_create_params import PoolCreateParams as PoolCreateParams
 from .pool_update_params import PoolUpdateParams as PoolUpdateParams
 from .listener_get_params import ListenerGetParams as ListenerGetParams
