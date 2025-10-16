@@ -2251,21 +2251,6 @@ Methods:
 - <code title="get /cdn/advanced/v1/logs">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs/logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/log_list_params.py">params</a>) -> SyncOffsetPageCdnLogs[Data]</code>
 - <code title="get /cdn/advanced/v1/logs/download">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs/logs.py">download</a>(\*\*<a href="src/gcore/types/cdn/log_download_params.py">params</a>) -> BinaryAPIResponse</code>
 
-### Settings
-
-Types:
-
-```python
-from gcore.types.cdn.logs import LogSettings
-```
-
-Methods:
-
-- <code title="post /cdn/raw_log_settings">client.cdn.logs.settings.<a href="./src/gcore/resources/cdn/logs/settings.py">create</a>(\*\*<a href="src/gcore/types/cdn/logs/setting_create_params.py">params</a>) -> None</code>
-- <code title="put /cdn/raw_log_settings">client.cdn.logs.settings.<a href="./src/gcore/resources/cdn/logs/settings.py">update</a>(\*\*<a href="src/gcore/types/cdn/logs/setting_update_params.py">params</a>) -> None</code>
-- <code title="delete /cdn/raw_log_settings">client.cdn.logs.settings.<a href="./src/gcore/resources/cdn/logs/settings.py">delete</a>() -> None</code>
-- <code title="get /cdn/raw_log_settings">client.cdn.logs.settings.<a href="./src/gcore/resources/cdn/logs/settings.py">get</a>() -> <a href="./src/gcore/types/cdn/logs/log_settings.py">LogSettings</a></code>
-
 ## LogsUploader
 
 Types:
