@@ -462,7 +462,7 @@ class LoadBalancersResource(SyncAPIResource):
         ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return self.get(
-            loadbalancer_id=task.created_resources.loadbalancers[0],
+            load_balancer_id=task.created_resources.loadbalancers[0],
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
@@ -471,7 +471,7 @@ class LoadBalancersResource(SyncAPIResource):
 
     def delete_and_poll(
         self,
-        loadbalancer_id: str,
+        load_balancer_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
@@ -487,7 +487,7 @@ class LoadBalancersResource(SyncAPIResource):
         Delete load balancer and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.delete(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
@@ -505,7 +505,7 @@ class LoadBalancersResource(SyncAPIResource):
 
     def failover_and_poll(
         self,
-        loadbalancer_id: str,
+        load_balancer_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
@@ -522,7 +522,7 @@ class LoadBalancersResource(SyncAPIResource):
         Failover load balancer and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.failover(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             force=force,
@@ -539,7 +539,7 @@ class LoadBalancersResource(SyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
         )
         return self.get(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
@@ -548,7 +548,7 @@ class LoadBalancersResource(SyncAPIResource):
 
     def resize_and_poll(
         self,
-        loadbalancer_id: str,
+        load_balancer_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
@@ -565,7 +565,7 @@ class LoadBalancersResource(SyncAPIResource):
         Resize load balancer and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = self.resize(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             flavor=flavor,
@@ -582,7 +582,7 @@ class LoadBalancersResource(SyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
         )
         return self.get(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
@@ -1147,7 +1147,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         ):
             raise ValueError(f"Expected exactly one resource to be created in a task")
         return await self.get(
-            loadbalancer_id=task.created_resources.loadbalancers[0],
+            load_balancer_id=task.created_resources.loadbalancers[0],
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
@@ -1156,7 +1156,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
     async def delete_and_poll(
         self,
-        loadbalancer_id: str,
+        load_balancer_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
@@ -1172,7 +1172,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Delete load balancer and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.delete(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
@@ -1190,7 +1190,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
     async def failover_and_poll(
         self,
-        loadbalancer_id: str,
+        load_balancer_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
@@ -1207,7 +1207,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Failover load balancer and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.failover(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             force=force,
@@ -1224,7 +1224,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
         )
         return await self.get(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
@@ -1233,7 +1233,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
     async def resize_and_poll(
         self,
-        loadbalancer_id: str,
+        load_balancer_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
@@ -1250,7 +1250,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Resize load balancer and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
         response = await self.resize(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             flavor=flavor,
@@ -1267,7 +1267,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
         )
         return await self.get(
-            loadbalancer_id=loadbalancer_id,
+            load_balancer_id=load_balancer_id,
             project_id=project_id,
             region_id=region_id,
             extra_headers=extra_headers,
