@@ -72,6 +72,7 @@ from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .security_group_rule import SecurityGroupRule as SecurityGroupRule
 from .session_persistence import SessionPersistence as SessionPersistence
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
+from .billing_reservations import BillingReservations as BillingReservations
 from .cost_report_detailed import CostReportDetailed as CostReportDetailed
 from .floating_ip_detailed import FloatingIPDetailed as FloatingIPDetailed
 from .instance_list_params import InstanceListParams as InstanceListParams
