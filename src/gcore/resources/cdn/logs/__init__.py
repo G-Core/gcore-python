@@ -8,22 +8,8 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "SettingsResource",
-    "AsyncSettingsResource",
-    "SettingsResourceWithRawResponse",
-    "AsyncSettingsResourceWithRawResponse",
-    "SettingsResourceWithStreamingResponse",
-    "AsyncSettingsResourceWithStreamingResponse",
     "LogsResource",
     "AsyncLogsResource",
     "LogsResourceWithRawResponse",

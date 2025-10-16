@@ -17,7 +17,7 @@ class LogsAggregatedStats(BaseModel):
     """Statistics parameters."""
 
     raw_logs_usage: Optional[str] = None
-    """Number of resources that used raw logs."""
+    """Number of resources that used Logs uploader."""
 
     resource: Optional[object] = None
     """Resources IDs by which statistics data is grouped.."""

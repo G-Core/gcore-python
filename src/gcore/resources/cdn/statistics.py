@@ -68,7 +68,7 @@ class StatisticsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogsAggregatedStats:
         """
-        Get the number of CDN resources that used raw logs.
+        Get the number of CDN resources that used Logs uploader.
 
         Request URL parameters should be added as a query string after the endpoint.
 
@@ -139,7 +139,7 @@ class StatisticsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageSeriesStats:
         """
-        Get raw logs usage statistics for up to 90 days starting today.
+        Get Logs uploader usage statistics for up to 90 days starting today.
 
         Request URL parameters should be added as a query string after the endpoint.
 
@@ -696,7 +696,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogsAggregatedStats:
         """
-        Get the number of CDN resources that used raw logs.
+        Get the number of CDN resources that used Logs uploader.
 
         Request URL parameters should be added as a query string after the endpoint.
 
@@ -767,7 +767,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageSeriesStats:
         """
-        Get raw logs usage statistics for up to 90 days starting today.
+        Get Logs uploader usage statistics for up to 90 days starting today.
 
         Request URL parameters should be added as a query string after the endpoint.
 
