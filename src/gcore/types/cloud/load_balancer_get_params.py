@@ -4,18 +4,16 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["ListenerListParams"]
+__all__ = ["LoadBalancerGetParams"]
 
 
-class ListenerListParams(TypedDict, total=False):
+class LoadBalancerGetParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
 
     region_id: int
-    """Region ID"""
-
-    load_balancer_id: str
-    """Load Balancer ID"""
 
     show_stats: bool
-    """Show stats"""
+    """Show statistics"""
+
+    with_ddos: bool
+    """Show DDoS profile"""
