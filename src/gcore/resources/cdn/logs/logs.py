@@ -4,14 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -39,10 +31,6 @@ __all__ = ["LogsResource", "AsyncLogsResource"]
 
 
 class LogsResource(SyncAPIResource):
-    @cached_property
-    def settings(self) -> SettingsResource:
-        return SettingsResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> LogsResourceWithRawResponse:
         """
@@ -694,10 +682,6 @@ class LogsResource(SyncAPIResource):
 
 
 class AsyncLogsResource(AsyncAPIResource):
-    @cached_property
-    def settings(self) -> AsyncSettingsResource:
-        return AsyncSettingsResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
         """
@@ -1360,10 +1344,6 @@ class LogsResourceWithRawResponse:
             BinaryAPIResponse,
         )
 
-    @cached_property
-    def settings(self) -> SettingsResourceWithRawResponse:
-        return SettingsResourceWithRawResponse(self._logs.settings)
-
 
 class AsyncLogsResourceWithRawResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:
@@ -1376,10 +1356,6 @@ class AsyncLogsResourceWithRawResponse:
             logs.download,
             AsyncBinaryAPIResponse,
         )
-
-    @cached_property
-    def settings(self) -> AsyncSettingsResourceWithRawResponse:
-        return AsyncSettingsResourceWithRawResponse(self._logs.settings)
 
 
 class LogsResourceWithStreamingResponse:
@@ -1394,10 +1370,6 @@ class LogsResourceWithStreamingResponse:
             StreamedBinaryAPIResponse,
         )
 
-    @cached_property
-    def settings(self) -> SettingsResourceWithStreamingResponse:
-        return SettingsResourceWithStreamingResponse(self._logs.settings)
-
 
 class AsyncLogsResourceWithStreamingResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:
@@ -1410,7 +1382,3 @@ class AsyncLogsResourceWithStreamingResponse:
             logs.download,
             AsyncStreamedBinaryAPIResponse,
         )
-
-    @cached_property
-    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
-        return AsyncSettingsResourceWithStreamingResponse(self._logs.settings)
