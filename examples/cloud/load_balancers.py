@@ -19,19 +19,19 @@ def main() -> None:
 
     lb_id = create_load_balancer(client=gcore)
     list_load_balancers(client=gcore)
-    get_load_balancer(client=gcore, loadbalancer_id=lb_id)
-    update_load_balancer(client=gcore, loadbalancer_id=lb_id)
-    resize_load_balancer(client=gcore, loadbalancer_id=lb_id)
-    failover_load_balancer(client=gcore, loadbalancer_id=lb_id)
+    get_load_balancer(client=gcore, load_balancer_id=lb_id)
+    update_load_balancer(client=gcore, load_balancer_id=lb_id)
+    resize_load_balancer(client=gcore, load_balancer_id=lb_id)
+    failover_load_balancer(client=gcore, load_balancer_id=lb_id)
 
     # Statuses
     list_load_balancer_statuses(client=gcore)
-    get_load_balancer_status(client=gcore, loadbalancer_id=lb_id)
+    get_load_balancer_status(client=gcore, load_balancer_id=lb_id)
 
     # Metrics
-    get_load_balancer_metrics(client=gcore, loadbalancer_id=lb_id)
+    get_load_balancer_metrics(client=gcore, load_balancer_id=lb_id)
 
-    delete_load_balancer(client=gcore, loadbalancer_id=lb_id)
+    delete_load_balancer(client=gcore, load_balancer_id=lb_id)
 
 
 def create_load_balancer(*, client: Gcore) -> str:
@@ -50,31 +50,31 @@ def list_load_balancers(*, client: Gcore) -> None:
     print("========================")
 
 
-def get_load_balancer(*, client: Gcore, loadbalancer_id: str) -> None:
+def get_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== GET LOAD BALANCER ===")
-    lb = client.cloud.load_balancers.get(loadbalancer_id=loadbalancer_id)
+    lb = client.cloud.load_balancers.get(load_balancer_id=load_balancer_id)
     flavor_name = lb.flavor.flavor_name if lb.flavor else "Unknown"
     print(f"Load balancer: ID={lb.id}, name={lb.name}, status={lb.provisioning_status}, flavor={flavor_name}")
     print("========================")
 
 
-def update_load_balancer(*, client: Gcore, loadbalancer_id: str) -> None:
+def update_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== UPDATE LOAD BALANCER ===")
-    lb = client.cloud.load_balancers.update(loadbalancer_id=loadbalancer_id, name="gcore-go-example-updated")
+    lb = client.cloud.load_balancers.update(load_balancer_id=load_balancer_id, name="gcore-go-example-updated")
     print(f"Updated load balancer: ID={lb.id}, name={lb.name}")
     print("========================")
 
 
-def resize_load_balancer(*, client: Gcore, loadbalancer_id: str) -> None:
+def resize_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== RESIZE LOAD BALANCER ===")
-    lb = client.cloud.load_balancers.resize_and_poll(loadbalancer_id=loadbalancer_id, flavor="lb1-2-4")
+    lb = client.cloud.load_balancers.resize_and_poll(load_balancer_id=load_balancer_id, flavor="lb1-2-4")
     print(f"Resized load balancer: ID={lb.id}, flavor=lb1-2-4")
     print("========================")
 
 
-def failover_load_balancer(*, client: Gcore, loadbalancer_id: str) -> None:
+def failover_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== FAILOVER LOAD BALANCER ===")
-    lb = client.cloud.load_balancers.failover_and_poll(loadbalancer_id=loadbalancer_id)
+    lb = client.cloud.load_balancers.failover_and_poll(load_balancer_id=load_balancer_id)
     print(f"Failed over load balancer: ID={lb.id}")
     print("========================")
 
@@ -89,33 +89,33 @@ def list_load_balancer_statuses(*, client: Gcore) -> None:
     print("========================")
 
 
-def get_load_balancer_status(*, client: Gcore, loadbalancer_id: str) -> None:
+def get_load_balancer_status(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== GET LOAD BALANCER STATUS ===")
-    status = client.cloud.load_balancers.statuses.get(loadbalancer_id=loadbalancer_id)
+    status = client.cloud.load_balancers.statuses.get(load_balancer_id=load_balancer_id)
     print(
         f"Load balancer status: ID={status.id}, operating status={status.operating_status}, provisioning status={status.provisioning_status}"
     )
     print("========================")
 
 
-def get_load_balancer_metrics(*, client: Gcore, loadbalancer_id: str) -> None:
+def get_load_balancer_metrics(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== GET LOAD BALANCER METRICS ===")
     metrics = client.cloud.load_balancers.metrics.list(
-        loadbalancer_id=loadbalancer_id,
+        load_balancer_id=load_balancer_id,
         time_interval=1,
         time_unit="hour",
     )
-    print(f"Load balancer metrics: ID={loadbalancer_id}")
+    print(f"Load balancer metrics: ID={load_balancer_id}")
     if metrics.results:
         metric = metrics.results[0]
         print(f"CPU: {metric.cpu_util}%, memory: {metric.memory_util}%, time: {metric.time}")
     print("========================")
 
 
-def delete_load_balancer(*, client: Gcore, loadbalancer_id: str) -> None:
+def delete_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== DELETE LOAD BALANCER ===")
-    client.cloud.load_balancers.delete_and_poll(loadbalancer_id=loadbalancer_id)
-    print(f"Deleted load balancer: ID={loadbalancer_id}")
+    client.cloud.load_balancers.delete_and_poll(load_balancer_id=load_balancer_id)
+    print(f"Deleted load balancer: ID={load_balancer_id}")
     print("========================")
 
 
