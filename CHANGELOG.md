@@ -1,5 +1,45 @@
 # Changelog
 
+## 0.16.0 (2025-10-17)
+
+Full Changelog: [v0.15.0...v0.16.0](https://github.com/G-Core/gcore-python/compare/v0.15.0...v0.16.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** remove get and update list method for billing reservations
+* **cloud:** use load_balancer_id in poll methods
+* **cloud:** rename to load_balancer_id path param
+* **cloud:** rename inference applications deployments update method
+
+### Features
+
+* **api:** aggregated API specs update ([ca4cbba](https://github.com/G-Core/gcore-python/commit/ca4cbbabc6c143e6a1c54e861cafbd38f906ebda))
+* **api:** aggregated API specs update ([0d92524](https://github.com/G-Core/gcore-python/commit/0d92524c16aeac6e96b0360c49de70a7912a8485))
+* **api:** aggregated API specs update ([7a58cae](https://github.com/G-Core/gcore-python/commit/7a58cae302e7a3818a11e616f967719db076fd25))
+* **api:** aggregated API specs update ([c62d748](https://github.com/G-Core/gcore-python/commit/c62d7487ca76b74c8919c438b7d50979e75527cf))
+* **api:** aggregated API specs update ([2a0347f](https://github.com/G-Core/gcore-python/commit/2a0347fbb670a29ca3cf0418637cd843bd8d535d))
+* **api:** aggregated API specs update ([1dc8993](https://github.com/G-Core/gcore-python/commit/1dc8993163988b192d1f7bcedd2b4df4259f60d0))
+* **api:** aggregated API specs update ([555824b](https://github.com/G-Core/gcore-python/commit/555824be97e936b2a20077870dfd50a186446e40))
+* **api:** aggregated API specs update ([c8e06a9](https://github.com/G-Core/gcore-python/commit/c8e06a9c4db67838c190b7f985fa99e2ee1bc9f4))
+* **api:** aggregated API specs update ([8eedd02](https://github.com/G-Core/gcore-python/commit/8eedd0251f0519932ccc9034383e56bbf385d4a4))
+* **cloude:** remove cloud_lbmember name ([0c3df8e](https://github.com/G-Core/gcore-python/commit/0c3df8e1330f518b13457f5a3db8e7fcf963ea42))
+* **cloud:** remove get and update list method for billing reservations ([b030ed6](https://github.com/G-Core/gcore-python/commit/b030ed6e7f2b26e396ebd2852df3e915b425a761))
+
+
+### Bug Fixes
+
+* **cloud:** rename to load_balancer_id path param ([ab273aa](https://github.com/G-Core/gcore-python/commit/ab273aadd364dc22a1fc8538c8b39c916fd002df))
+* **cloud:** use load_balancer_id in poll methods ([6b55df9](https://github.com/G-Core/gcore-python/commit/6b55df953a0695b0047b947ab898063df9cba044))
+* **examples:** suppress deprecation warnings for file shares update method ([#104](https://github.com/G-Core/gcore-python/issues/104)) ([0b3c21b](https://github.com/G-Core/gcore-python/commit/0b3c21b3f1f971a9d22623ae03c136e3aad84611))
+
+
+### Chores
+
+* add pull request template ([2e2997b](https://github.com/G-Core/gcore-python/commit/2e2997b1591f489581b6568c7adf9a4d39d5501c))
+* **ci:** add fossa ([289bea8](https://github.com/G-Core/gcore-python/commit/289bea8c56d1b1e185dc1374628115b708aedcfa))
+* **cloud:** rename inference applications deployments update method ([c672843](https://github.com/G-Core/gcore-python/commit/c6728438a3bba4d47de59bbdf30fe4d1c82a3d97))
+* **internal:** detect missing future annotations with ruff ([9b55e6e](https://github.com/G-Core/gcore-python/commit/9b55e6e072e0f4210545e5fb91d5b628a8512cf8))
+
 ## 0.15.0 (2025-10-02)
 
 Full Changelog: [v0.14.0...v0.15.0](https://github.com/G-Core/gcore-python/compare/v0.14.0...v0.15.0)
