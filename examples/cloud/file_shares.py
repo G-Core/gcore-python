@@ -71,7 +71,7 @@ def get_file_share(*, client: Gcore, file_share_id: str) -> None:
 
 def update_file_share(*, client: Gcore, file_share_id: str) -> None:
     print("\n=== UPDATE FILE SHARE ===")
-    file_share = client.cloud.file_shares.update(
+    file_share = client.cloud.file_shares.update(  # pyright: ignore[reportDeprecated]
         file_share_id=file_share_id,
         name="gcore-go-example-updated",
     )
