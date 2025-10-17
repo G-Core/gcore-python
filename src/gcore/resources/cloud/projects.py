@@ -18,7 +18,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ...types.cloud import project_list_params, project_create_params, project_replace_params
+from ...types.cloud import project_list_params, project_create_params, project_update_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.project import Project
 from ...types.cloud.task_id_list import TaskIDList
@@ -92,6 +92,54 @@ class ProjectsResource(SyncAPIResource):
                     "state": state,
                 },
                 project_create_params.ProjectCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Project,
+        )
+
+    def update(
+        self,
+        *,
+        project_id: int | None = None,
+        name: str,
+        description: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Project:
+        """Update project name and description.
+
+        Project management must be enabled to
+        perform this operation.
+
+        Args:
+          name: Name of the entity, following a specific format.
+
+          description: Description of the project.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        return self._put(
+            f"/cloud/v1/projects/{project_id}",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                },
+                project_update_params.ProjectUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -233,54 +281,6 @@ class ProjectsResource(SyncAPIResource):
             cast_to=Project,
         )
 
-    def replace(
-        self,
-        *,
-        project_id: int | None = None,
-        name: str,
-        description: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
-        """Update project name and description.
-
-        Project management must be enabled to
-        perform this operation.
-
-        Args:
-          name: Name of the entity, following a specific format.
-
-          description: Description of the project.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        return self._put(
-            f"/cloud/v1/projects/{project_id}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "description": description,
-                },
-                project_replace_params.ProjectReplaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Project,
-        )
-
 
 class AsyncProjectsResource(AsyncAPIResource):
     @cached_property
@@ -348,6 +348,54 @@ class AsyncProjectsResource(AsyncAPIResource):
                     "state": state,
                 },
                 project_create_params.ProjectCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Project,
+        )
+
+    async def update(
+        self,
+        *,
+        project_id: int | None = None,
+        name: str,
+        description: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Project:
+        """Update project name and description.
+
+        Project management must be enabled to
+        perform this operation.
+
+        Args:
+          name: Name of the entity, following a specific format.
+
+          description: Description of the project.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        return await self._put(
+            f"/cloud/v1/projects/{project_id}",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                },
+                project_update_params.ProjectUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -489,54 +537,6 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=Project,
         )
 
-    async def replace(
-        self,
-        *,
-        project_id: int | None = None,
-        name: str,
-        description: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
-        """Update project name and description.
-
-        Project management must be enabled to
-        perform this operation.
-
-        Args:
-          name: Name of the entity, following a specific format.
-
-          description: Description of the project.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        return await self._put(
-            f"/cloud/v1/projects/{project_id}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "description": description,
-                },
-                project_replace_params.ProjectReplaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Project,
-        )
-
 
 class ProjectsResourceWithRawResponse:
     def __init__(self, projects: ProjectsResource) -> None:
@@ -544,6 +544,9 @@ class ProjectsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             projects.create,
+        )
+        self.update = to_raw_response_wrapper(
+            projects.update,
         )
         self.list = to_raw_response_wrapper(
             projects.list,
@@ -554,9 +557,6 @@ class ProjectsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             projects.get,
         )
-        self.replace = to_raw_response_wrapper(
-            projects.replace,
-        )
 
 
 class AsyncProjectsResourceWithRawResponse:
@@ -565,6 +565,9 @@ class AsyncProjectsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             projects.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            projects.update,
         )
         self.list = async_to_raw_response_wrapper(
             projects.list,
@@ -575,9 +578,6 @@ class AsyncProjectsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             projects.get,
         )
-        self.replace = async_to_raw_response_wrapper(
-            projects.replace,
-        )
 
 
 class ProjectsResourceWithStreamingResponse:
@@ -586,6 +586,9 @@ class ProjectsResourceWithStreamingResponse:
 
         self.create = to_streamed_response_wrapper(
             projects.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            projects.update,
         )
         self.list = to_streamed_response_wrapper(
             projects.list,
@@ -596,9 +599,6 @@ class ProjectsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             projects.get,
         )
-        self.replace = to_streamed_response_wrapper(
-            projects.replace,
-        )
 
 
 class AsyncProjectsResourceWithStreamingResponse:
@@ -608,6 +608,9 @@ class AsyncProjectsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             projects.create,
         )
+        self.update = async_to_streamed_response_wrapper(
+            projects.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             projects.list,
         )
@@ -616,7 +619,4 @@ class AsyncProjectsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             projects.get,
-        )
-        self.replace = async_to_streamed_response_wrapper(
-            projects.replace,
         )

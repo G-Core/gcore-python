@@ -95,6 +95,7 @@ from .load_balancer_metrics import LoadBalancerMetrics as LoadBalancerMetrics
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
+from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
 from .cost_report_aggregated import CostReportAggregated as CostReportAggregated
@@ -106,7 +107,6 @@ from .instance_resize_params import InstanceResizeParams as InstanceResizeParams
 from .instance_update_params import InstanceUpdateParams as InstanceUpdateParams
 from .lb_health_monitor_type import LbHealthMonitorType as LbHealthMonitorType
 from .network_interface_list import NetworkInterfaceList as NetworkInterfaceList
-from .project_replace_params import ProjectReplaceParams as ProjectReplaceParams
 from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
