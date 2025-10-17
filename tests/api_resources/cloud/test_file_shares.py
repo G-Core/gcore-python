@@ -15,8 +15,6 @@ from gcore.types.cloud import (
     TaskIDList,
 )
 
-# pyright: reportDeprecated=false
-
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -157,72 +155,65 @@ class TestFileShares:
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            file_share = client.cloud.file_shares.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-            )
-
-        assert_matches_type(FileShare, file_share, path=["response"])
+        file_share = client.cloud.file_shares.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            file_share = client.cloud.file_shares.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-                name="some_name",
-                share_settings={
-                    "allowed_characters": "LCD",
-                    "path_length": "LCD",
-                    "root_squash": True,
-                },
-                tags={"foo": "my-tag-value"},
-            )
-
-        assert_matches_type(FileShare, file_share, path=["response"])
+        file_share = client.cloud.file_shares.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+            name="some_name",
+            share_settings={
+                "allowed_characters": "LCD",
+                "path_length": "LCD",
+                "root_squash": True,
+            },
+            tags={"foo": "my-tag-value"},
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.file_shares.with_raw_response.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-            )
+        response = client.cloud.file_shares.with_raw_response.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file_share = response.parse()
-        assert_matches_type(FileShare, file_share, path=["response"])
+        assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.file_shares.with_streaming_response.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.file_shares.with_streaming_response.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                file_share = response.parse()
-                assert_matches_type(FileShare, file_share, path=["response"])
+            file_share = response.parse()
+            assert_matches_type(TaskIDList, file_share, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_share_id` but received ''"):
-                client.cloud.file_shares.with_raw_response.update(
-                    file_share_id="",
-                    project_id=1,
-                    region_id=1,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_share_id` but received ''"):
+            client.cloud.file_shares.with_raw_response.update(
+                file_share_id="",
+                project_id=1,
+                region_id=1,
+            )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
@@ -552,72 +543,65 @@ class TestAsyncFileShares:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            file_share = await async_client.cloud.file_shares.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-            )
-
-        assert_matches_type(FileShare, file_share, path=["response"])
+        file_share = await async_client.cloud.file_shares.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            file_share = await async_client.cloud.file_shares.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-                name="some_name",
-                share_settings={
-                    "allowed_characters": "LCD",
-                    "path_length": "LCD",
-                    "root_squash": True,
-                },
-                tags={"foo": "my-tag-value"},
-            )
-
-        assert_matches_type(FileShare, file_share, path=["response"])
+        file_share = await async_client.cloud.file_shares.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+            name="some_name",
+            share_settings={
+                "allowed_characters": "LCD",
+                "path_length": "LCD",
+                "root_squash": True,
+            },
+            tags={"foo": "my-tag-value"},
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.file_shares.with_raw_response.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-            )
+        response = await async_client.cloud.file_shares.with_raw_response.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file_share = await response.parse()
-        assert_matches_type(FileShare, file_share, path=["response"])
+        assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.file_shares.with_streaming_response.update(
-                file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
-                project_id=1,
-                region_id=1,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.file_shares.with_streaming_response.update(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                file_share = await response.parse()
-                assert_matches_type(FileShare, file_share, path=["response"])
+            file_share = await response.parse()
+            assert_matches_type(TaskIDList, file_share, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_share_id` but received ''"):
-                await async_client.cloud.file_shares.with_raw_response.update(
-                    file_share_id="",
-                    project_id=1,
-                    region_id=1,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_share_id` but received ''"):
+            await async_client.cloud.file_shares.with_raw_response.update(
+                file_share_id="",
+                project_id=1,
+                region_id=1,
+            )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
