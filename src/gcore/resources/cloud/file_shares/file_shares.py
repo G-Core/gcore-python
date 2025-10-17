@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, overload
 
@@ -228,7 +227,6 @@ class FileSharesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         file_share_id: str,
@@ -244,12 +242,9 @@ class FileSharesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileShare:
+    ) -> TaskIDList:
         """
-        Rename file share or update tags
-
-        **Deprecated**: Use PATCH
-        /v3/`file_shares`/{`project_id`}/{`region_id`}/{`file_share_id`} instead
+        Rename file share, update tags or set share specific properties
 
         Args:
           project_id: Project ID
@@ -299,7 +294,7 @@ class FileSharesResource(SyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return self._patch(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v3/file_shares/{project_id}/{region_id}/{file_share_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -311,7 +306,53 @@ class FileSharesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileShare,
+            cast_to=TaskIDList,
+        )
+
+    def update_and_poll(
+        self,
+        file_share_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        share_settings: file_share_update_params.ShareSettings | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> FileShare:
+        response = self.update(
+            file_share_id,
+            project_id=project_id,
+            region_id=region_id,
+            name=name,
+            share_settings=share_settings,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return self.get(
+            file_share_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
         )
 
     def list(
@@ -707,7 +748,6 @@ class AsyncFileSharesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         file_share_id: str,
@@ -723,12 +763,9 @@ class AsyncFileSharesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileShare:
+    ) -> TaskIDList:
         """
-        Rename file share or update tags
-
-        **Deprecated**: Use PATCH
-        /v3/`file_shares`/{`project_id`}/{`region_id`}/{`file_share_id`} instead
+        Rename file share, update tags or set share specific properties
 
         Args:
           project_id: Project ID
@@ -778,7 +815,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         if not file_share_id:
             raise ValueError(f"Expected a non-empty value for `file_share_id` but received {file_share_id!r}")
         return await self._patch(
-            f"/cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}",
+            f"/cloud/v3/file_shares/{project_id}/{region_id}/{file_share_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -790,7 +827,53 @@ class AsyncFileSharesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileShare,
+            cast_to=TaskIDList,
+        )
+
+    async def update_and_poll(
+        self,
+        file_share_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        share_settings: file_share_update_params.ShareSettings | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> FileShare:
+        response = await self.update(
+            file_share_id,
+            project_id=project_id,
+            region_id=region_id,
+            name=name,
+            share_settings=share_settings,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+        )
+        return await self.get(
+            file_share_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
         )
 
     def list(
@@ -1006,10 +1089,11 @@ class FileSharesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             file_shares.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                file_shares.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            file_shares.update,
+        )
+        self.update_and_poll = to_raw_response_wrapper(
+            file_shares.update_and_poll,
         )
         self.list = to_raw_response_wrapper(
             file_shares.list,
@@ -1036,10 +1120,11 @@ class AsyncFileSharesResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             file_shares.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                file_shares.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            file_shares.update,
+        )
+        self.update_and_poll = async_to_raw_response_wrapper(
+            file_shares.update_and_poll,
         )
         self.list = async_to_raw_response_wrapper(
             file_shares.list,
@@ -1066,10 +1151,11 @@ class FileSharesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             file_shares.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                file_shares.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            file_shares.update,
+        )
+        self.update_and_poll = to_streamed_response_wrapper(
+            file_shares.update_and_poll,
         )
         self.list = to_streamed_response_wrapper(
             file_shares.list,
@@ -1096,10 +1182,11 @@ class AsyncFileSharesResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             file_shares.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                file_shares.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            file_shares.update,
+        )
+        self.update_and_pol = async_to_streamed_response_wrapper(
+            file_shares.update_and_poll,
         )
         self.list = async_to_streamed_response_wrapper(
             file_shares.list,
