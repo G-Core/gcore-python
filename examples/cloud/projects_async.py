@@ -50,7 +50,7 @@ async def get_project_by_id(*, client: AsyncGcore, project_id: int) -> Project:
 
 async def update_project(*, client: AsyncGcore, project_id: int) -> Project:
     print("\n=== UPDATE PROJECT ===")
-    updated_project = await client.cloud.projects.replace(project_id=project_id, name="gcore-go-example-updated")
+    updated_project = await client.cloud.projects.update(project_id=project_id, name="gcore-go-example-updated")
     print(f"Project ID: {updated_project.id}, name: {updated_project.name}")
     print("=======================")
     return updated_project
