@@ -283,6 +283,9 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def placement_groups(self) -> PlacementGroupsResource:
+        """
+        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        """
         return PlacementGroupsResource(self._client)
 
     @cached_property
@@ -412,6 +415,9 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResource:
+        """
+        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        """
         return AsyncPlacementGroupsResource(self._client)
 
     @cached_property
@@ -544,6 +550,9 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithRawResponse:
+        """
+        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        """
         return PlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
     @cached_property
@@ -657,6 +666,9 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithRawResponse:
+        """
+        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        """
         return AsyncPlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
     @cached_property
@@ -770,6 +782,9 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithStreamingResponse:
+        """
+        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        """
         return PlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 
     @cached_property
@@ -883,6 +898,9 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithStreamingResponse:
+        """
+        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        """
         return AsyncPlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 
     @cached_property

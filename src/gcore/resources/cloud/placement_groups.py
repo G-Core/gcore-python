@@ -26,6 +26,10 @@ __all__ = ["PlacementGroupsResource", "AsyncPlacementGroupsResource"]
 
 
 class PlacementGroupsResource(SyncAPIResource):
+    """
+    Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+    """
+
     @cached_property
     def with_raw_response(self) -> PlacementGroupsResourceWithRawResponse:
         """
@@ -210,6 +214,10 @@ class PlacementGroupsResource(SyncAPIResource):
 
 
 class AsyncPlacementGroupsResource(AsyncAPIResource):
+    """
+    Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncPlacementGroupsResourceWithRawResponse:
         """
