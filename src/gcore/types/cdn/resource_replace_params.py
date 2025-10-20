@@ -1288,7 +1288,7 @@ class OptionsStaticHeaders(TypedDict, total=False):
     - **false** - Option is disabled.
     """
 
-    value: Required[Dict[str, str]]
+    value: Required[object]
     """A MAP for static headers in a format of `header_name: header_value`.
 
     Restrictions:
