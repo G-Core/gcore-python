@@ -1166,7 +1166,7 @@ class OptionsStaticHeaders(BaseModel):
     - **false** - Option is disabled.
     """
 
-    value: Dict[str, str]
+    value: object
     """A MAP for static headers in a format of `header_name: header_value`.
 
     Restrictions:
