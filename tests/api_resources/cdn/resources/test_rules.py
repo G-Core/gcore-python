@@ -136,13 +136,13 @@ class TestRules:
                     "enabled": True,
                 },
                 "force_return": {
-                    "body": "body",
-                    "code": 100,
+                    "body": "http://example.com/redirect_address",
+                    "code": 301,
                     "enabled": True,
                     "time_interval": {
-                        "end_time": "18:11:19.117Z",
-                        "start_time": "18:11:19.117Z",
-                        "time_zone": "Europe/Luxembourg",
+                        "end_time": "20:00",
+                        "start_time": "09:00",
+                        "time_zone": "CET",
                     },
                 },
                 "forward_host_header": {
@@ -277,7 +277,10 @@ class TestRules:
                 },
                 "static_headers": {
                     "enabled": True,
-                    "value": {"foo": "string"},
+                    "value": {
+                        "X-Example": "Value_1",
+                        "X-Example-Multiple": ["Value_2", "Value_3"],
+                    },
                 },
                 "static_request_headers": {
                     "enabled": True,
@@ -449,13 +452,13 @@ class TestRules:
                     "enabled": True,
                 },
                 "force_return": {
-                    "body": "body",
-                    "code": 100,
+                    "body": "http://example.com/redirect_address",
+                    "code": 301,
                     "enabled": True,
                     "time_interval": {
-                        "end_time": "18:11:19.117Z",
-                        "start_time": "18:11:19.117Z",
-                        "time_zone": "Europe/Luxembourg",
+                        "end_time": "20:00",
+                        "start_time": "09:00",
+                        "time_zone": "CET",
                     },
                 },
                 "forward_host_header": {
@@ -590,7 +593,10 @@ class TestRules:
                 },
                 "static_headers": {
                     "enabled": True,
-                    "value": {"foo": "string"},
+                    "value": {
+                        "X-Example": "Value_1",
+                        "X-Example-Multiple": ["Value_2", "Value_3"],
+                    },
                 },
                 "static_request_headers": {
                     "enabled": True,
@@ -863,13 +869,13 @@ class TestRules:
                     "enabled": True,
                 },
                 "force_return": {
-                    "body": "body",
-                    "code": 100,
+                    "body": "http://example.com/redirect_address",
+                    "code": 301,
                     "enabled": True,
                     "time_interval": {
-                        "end_time": "18:11:19.117Z",
-                        "start_time": "18:11:19.117Z",
-                        "time_zone": "Europe/Luxembourg",
+                        "end_time": "20:00",
+                        "start_time": "09:00",
+                        "time_zone": "CET",
                     },
                 },
                 "forward_host_header": {
@@ -1004,7 +1010,10 @@ class TestRules:
                 },
                 "static_headers": {
                     "enabled": True,
-                    "value": {"foo": "string"},
+                    "value": {
+                        "X-Example": "Value_1",
+                        "X-Example-Multiple": ["Value_2", "Value_3"],
+                    },
                 },
                 "static_request_headers": {
                     "enabled": True,
@@ -1185,13 +1194,13 @@ class TestAsyncRules:
                     "enabled": True,
                 },
                 "force_return": {
-                    "body": "body",
-                    "code": 100,
+                    "body": "http://example.com/redirect_address",
+                    "code": 301,
                     "enabled": True,
                     "time_interval": {
-                        "end_time": "18:11:19.117Z",
-                        "start_time": "18:11:19.117Z",
-                        "time_zone": "Europe/Luxembourg",
+                        "end_time": "20:00",
+                        "start_time": "09:00",
+                        "time_zone": "CET",
                     },
                 },
                 "forward_host_header": {
@@ -1326,7 +1335,10 @@ class TestAsyncRules:
                 },
                 "static_headers": {
                     "enabled": True,
-                    "value": {"foo": "string"},
+                    "value": {
+                        "X-Example": "Value_1",
+                        "X-Example-Multiple": ["Value_2", "Value_3"],
+                    },
                 },
                 "static_request_headers": {
                     "enabled": True,
@@ -1498,13 +1510,13 @@ class TestAsyncRules:
                     "enabled": True,
                 },
                 "force_return": {
-                    "body": "body",
-                    "code": 100,
+                    "body": "http://example.com/redirect_address",
+                    "code": 301,
                     "enabled": True,
                     "time_interval": {
-                        "end_time": "18:11:19.117Z",
-                        "start_time": "18:11:19.117Z",
-                        "time_zone": "Europe/Luxembourg",
+                        "end_time": "20:00",
+                        "start_time": "09:00",
+                        "time_zone": "CET",
                     },
                 },
                 "forward_host_header": {
@@ -1639,7 +1651,10 @@ class TestAsyncRules:
                 },
                 "static_headers": {
                     "enabled": True,
-                    "value": {"foo": "string"},
+                    "value": {
+                        "X-Example": "Value_1",
+                        "X-Example-Multiple": ["Value_2", "Value_3"],
+                    },
                 },
                 "static_request_headers": {
                     "enabled": True,
@@ -1912,13 +1927,13 @@ class TestAsyncRules:
                     "enabled": True,
                 },
                 "force_return": {
-                    "body": "body",
-                    "code": 100,
+                    "body": "http://example.com/redirect_address",
+                    "code": 301,
                     "enabled": True,
                     "time_interval": {
-                        "end_time": "18:11:19.117Z",
-                        "start_time": "18:11:19.117Z",
-                        "time_zone": "Europe/Luxembourg",
+                        "end_time": "20:00",
+                        "start_time": "09:00",
+                        "time_zone": "CET",
                     },
                 },
                 "forward_host_header": {
@@ -2053,7 +2068,10 @@ class TestAsyncRules:
                 },
                 "static_headers": {
                     "enabled": True,
-                    "value": {"foo": "string"},
+                    "value": {
+                        "X-Example": "Value_1",
+                        "X-Example-Multiple": ["Value_2", "Value_3"],
+                    },
                 },
                 "static_request_headers": {
                     "enabled": True,
