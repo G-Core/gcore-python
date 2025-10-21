@@ -17,7 +17,6 @@ async def main() -> None:
     cloud_network_id = os.environ["GCORE_CLOUD_NETWORK_ID"]
 
     gcore = AsyncGcore(
-        timeout=180.0,
         # No need to explicitly pass to AsyncGcore constructor if using environment variables
         # api_key=api_key,
         # cloud_project_id=cloud_project_id,

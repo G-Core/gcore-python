@@ -53,6 +53,7 @@ class TasksResource(SyncAPIResource):
         task_id: str,
         *,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,16 +66,22 @@ class TasksResource(SyncAPIResource):
         # Ensure the polling interval is at least 1 second
         polling_interval_seconds = max(1, polling_interval_seconds)
 
-        if not is_given(timeout):
-            timeout = extract_timeout_value(self._client.timeout)
+        if not is_given(polling_timeout_seconds):
+            polling_timeout_seconds = cast(int, self._client.cloud_polling_timeout_seconds)
 
-        end_time = time.time() + timeout
+        if polling_timeout_seconds <= polling_interval_seconds:
+            raise ValueError(
+                f"`polling_timeout_seconds` must be greater than `polling_interval_seconds` ({polling_interval_seconds})"
+            )
+
+        end_time = time.time() + polling_timeout_seconds
         while time.time() <= end_time:
             task = self.get(
                 task_id,
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
             )
             if task.state == "ERROR":
                 raise ValueError(task.error or f"Task {task_id} failed")

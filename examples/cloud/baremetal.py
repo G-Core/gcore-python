@@ -17,7 +17,6 @@ def main() -> None:
     # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
     gcore = Gcore(
-        timeout=1800.0,
         # No need to explicitly pass to Gcore constructor if using environment variables
         # api_key=api_key,
         # cloud_project_id=cloud_project_id,

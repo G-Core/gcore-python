@@ -21,7 +21,6 @@ async def main() -> None:
     cloud_inference_flavor_name = os.environ["GCORE_CLOUD_INFERENCE_FLAVOR_NAME"]
 
     gcore = AsyncGcore(
-        timeout=180.0,
         # No need to explicitly pass to AsyncGcore constructor if using environment variables
         # api_key=api_key,
         # cloud_project_id=cloud_project_id,
