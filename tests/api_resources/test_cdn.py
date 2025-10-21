@@ -10,12 +10,13 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import (
+    AwsRegions,
     CdnAccount,
-    PurgeStatus,
+    AlibabaRegions,
     CdnAccountLimits,
     CdnAvailableFeatures,
+    CdnListPurgeStatusesResponse,
 )
-from gcore.pagination import SyncOffsetPageCdn, AsyncOffsetPageCdn
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -99,9 +100,59 @@ class TestCdn:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_list_alibaba_regions(self, client: Gcore) -> None:
+        cdn = client.cdn.list_alibaba_regions()
+        assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+    @parametrize
+    def test_raw_response_list_alibaba_regions(self, client: Gcore) -> None:
+        response = client.cdn.with_raw_response.list_alibaba_regions()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cdn = response.parse()
+        assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list_alibaba_regions(self, client: Gcore) -> None:
+        with client.cdn.with_streaming_response.list_alibaba_regions() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cdn = response.parse()
+            assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_list_aws_regions(self, client: Gcore) -> None:
+        cdn = client.cdn.list_aws_regions()
+        assert_matches_type(AwsRegions, cdn, path=["response"])
+
+    @parametrize
+    def test_raw_response_list_aws_regions(self, client: Gcore) -> None:
+        response = client.cdn.with_raw_response.list_aws_regions()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cdn = response.parse()
+        assert_matches_type(AwsRegions, cdn, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list_aws_regions(self, client: Gcore) -> None:
+        with client.cdn.with_streaming_response.list_aws_regions() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cdn = response.parse()
+            assert_matches_type(AwsRegions, cdn, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_list_purge_statuses(self, client: Gcore) -> None:
         cdn = client.cdn.list_purge_statuses()
-        assert_matches_type(SyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     def test_method_list_purge_statuses_with_all_params(self, client: Gcore) -> None:
@@ -114,7 +165,7 @@ class TestCdn:
             status="status",
             to_created="to_created",
         )
-        assert_matches_type(SyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     def test_raw_response_list_purge_statuses(self, client: Gcore) -> None:
@@ -123,7 +174,7 @@ class TestCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = response.parse()
-        assert_matches_type(SyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     def test_streaming_response_list_purge_statuses(self, client: Gcore) -> None:
@@ -132,7 +183,7 @@ class TestCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = response.parse()
-            assert_matches_type(SyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+            assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -250,9 +301,59 @@ class TestAsyncCdn:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_method_list_alibaba_regions(self, async_client: AsyncGcore) -> None:
+        cdn = await async_client.cdn.list_alibaba_regions()
+        assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list_alibaba_regions(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.with_raw_response.list_alibaba_regions()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cdn = await response.parse()
+        assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list_alibaba_regions(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.with_streaming_response.list_alibaba_regions() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cdn = await response.parse()
+            assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_list_aws_regions(self, async_client: AsyncGcore) -> None:
+        cdn = await async_client.cdn.list_aws_regions()
+        assert_matches_type(AwsRegions, cdn, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list_aws_regions(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.with_raw_response.list_aws_regions()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cdn = await response.parse()
+        assert_matches_type(AwsRegions, cdn, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list_aws_regions(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.with_streaming_response.list_aws_regions() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cdn = await response.parse()
+            assert_matches_type(AwsRegions, cdn, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     async def test_method_list_purge_statuses(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_purge_statuses()
-        assert_matches_type(AsyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     async def test_method_list_purge_statuses_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -265,7 +366,7 @@ class TestAsyncCdn:
             status="status",
             to_created="to_created",
         )
-        assert_matches_type(AsyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     async def test_raw_response_list_purge_statuses(self, async_client: AsyncGcore) -> None:
@@ -274,7 +375,7 @@ class TestAsyncCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = await response.parse()
-        assert_matches_type(AsyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     async def test_streaming_response_list_purge_statuses(self, async_client: AsyncGcore) -> None:
@@ -283,7 +384,7 @@ class TestAsyncCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = await response.parse()
-            assert_matches_type(AsyncOffsetPageCdn[PurgeStatus], cdn, path=["response"])
+            assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

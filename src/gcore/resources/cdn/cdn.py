@@ -63,7 +63,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.cdn import cdn_update_account_params, cdn_list_purge_statuses_params
-from ...pagination import SyncOffsetPageCdn, AsyncOffsetPageCdn
 from .certificates import (
     CertificatesResource,
     AsyncCertificatesResource,
@@ -80,7 +79,7 @@ from .origin_groups import (
     OriginGroupsResourceWithStreamingResponse,
     AsyncOriginGroupsResourceWithStreamingResponse,
 )
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .rule_templates import (
     RuleTemplatesResource,
     AsyncRuleTemplatesResource,
@@ -105,6 +104,7 @@ from .resources.resources import (
     ResourcesResourceWithStreamingResponse,
     AsyncResourcesResourceWithStreamingResponse,
 )
+from ...types.cdn.aws_regions import AwsRegions
 from ...types.cdn.cdn_account import CdnAccount
 from .trusted_ca_certificates import (
     TrustedCaCertificatesResource,
@@ -114,7 +114,7 @@ from .trusted_ca_certificates import (
     TrustedCaCertificatesResourceWithStreamingResponse,
     AsyncTrustedCaCertificatesResourceWithStreamingResponse,
 )
-from ...types.cdn.purge_status import PurgeStatus
+from ...types.cdn.alibaba_regions import AlibabaRegions
 from .logs_uploader.logs_uploader import (
     LogsUploaderResource,
     AsyncLogsUploaderResource,
@@ -125,6 +125,7 @@ from .logs_uploader.logs_uploader import (
 )
 from ...types.cdn.cdn_account_limits import CdnAccountLimits
 from ...types.cdn.cdn_available_features import CdnAvailableFeatures
+from ...types.cdn.cdn_list_purge_statuses_response import CdnListPurgeStatusesResponse
 
 __all__ = ["CdnResource", "AsyncCdnResource"]
 
@@ -258,6 +259,44 @@ class CdnResource(SyncAPIResource):
             cast_to=CdnAvailableFeatures,
         )
 
+    def list_alibaba_regions(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AlibabaRegions:
+        """Get the list of Alibaba Cloud regions."""
+        return self._get(
+            "/cdn/alibaba_regions",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AlibabaRegions,
+        )
+
+    def list_aws_regions(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AwsRegions:
+        """Get the list of Amazon AWS regions."""
+        return self._get(
+            "/cdn/aws_regions",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AwsRegions,
+        )
+
     def list_purge_statuses(
         self,
         *,
@@ -274,7 +313,7 @@ class CdnResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPageCdn[PurgeStatus]:
+    ) -> CdnListPurgeStatusesResponse:
         """
         Get purges history.
 
@@ -330,9 +369,8 @@ class CdnResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/cdn/purge_statuses",
-            page=SyncOffsetPageCdn[PurgeStatus],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,7 +389,7 @@ class CdnResource(SyncAPIResource):
                     cdn_list_purge_statuses_params.CdnListPurgeStatusesParams,
                 ),
             ),
-            model=PurgeStatus,
+            cast_to=CdnListPurgeStatusesResponse,
         )
 
     def update_account(
@@ -522,7 +560,45 @@ class AsyncCdnResource(AsyncAPIResource):
             cast_to=CdnAvailableFeatures,
         )
 
-    def list_purge_statuses(
+    async def list_alibaba_regions(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AlibabaRegions:
+        """Get the list of Alibaba Cloud regions."""
+        return await self._get(
+            "/cdn/alibaba_regions",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AlibabaRegions,
+        )
+
+    async def list_aws_regions(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AwsRegions:
+        """Get the list of Amazon AWS regions."""
+        return await self._get(
+            "/cdn/aws_regions",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AwsRegions,
+        )
+
+    async def list_purge_statuses(
         self,
         *,
         cname: str | Omit = omit,
@@ -538,7 +614,7 @@ class AsyncCdnResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PurgeStatus, AsyncOffsetPageCdn[PurgeStatus]]:
+    ) -> CdnListPurgeStatusesResponse:
         """
         Get purges history.
 
@@ -594,15 +670,14 @@ class AsyncCdnResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/cdn/purge_statuses",
-            page=AsyncOffsetPageCdn[PurgeStatus],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "cname": cname,
                         "from_created": from_created,
@@ -615,7 +690,7 @@ class AsyncCdnResource(AsyncAPIResource):
                     cdn_list_purge_statuses_params.CdnListPurgeStatusesParams,
                 ),
             ),
-            model=PurgeStatus,
+            cast_to=CdnListPurgeStatusesResponse,
         )
 
     async def update_account(
@@ -669,6 +744,12 @@ class CdnResourceWithRawResponse:
         )
         self.get_available_features = to_raw_response_wrapper(
             cdn.get_available_features,
+        )
+        self.list_alibaba_regions = to_raw_response_wrapper(
+            cdn.list_alibaba_regions,
+        )
+        self.list_aws_regions = to_raw_response_wrapper(
+            cdn.list_aws_regions,
         )
         self.list_purge_statuses = to_raw_response_wrapper(
             cdn.list_purge_statuses,
@@ -743,6 +824,12 @@ class AsyncCdnResourceWithRawResponse:
         self.get_available_features = async_to_raw_response_wrapper(
             cdn.get_available_features,
         )
+        self.list_alibaba_regions = async_to_raw_response_wrapper(
+            cdn.list_alibaba_regions,
+        )
+        self.list_aws_regions = async_to_raw_response_wrapper(
+            cdn.list_aws_regions,
+        )
         self.list_purge_statuses = async_to_raw_response_wrapper(
             cdn.list_purge_statuses,
         )
@@ -816,6 +903,12 @@ class CdnResourceWithStreamingResponse:
         self.get_available_features = to_streamed_response_wrapper(
             cdn.get_available_features,
         )
+        self.list_alibaba_regions = to_streamed_response_wrapper(
+            cdn.list_alibaba_regions,
+        )
+        self.list_aws_regions = to_streamed_response_wrapper(
+            cdn.list_aws_regions,
+        )
         self.list_purge_statuses = to_streamed_response_wrapper(
             cdn.list_purge_statuses,
         )
@@ -888,6 +981,12 @@ class AsyncCdnResourceWithStreamingResponse:
         )
         self.get_available_features = async_to_streamed_response_wrapper(
             cdn.get_available_features,
+        )
+        self.list_alibaba_regions = async_to_streamed_response_wrapper(
+            cdn.list_alibaba_regions,
+        )
+        self.list_aws_regions = async_to_streamed_response_wrapper(
+            cdn.list_aws_regions,
         )
         self.list_purge_statuses = async_to_streamed_response_wrapper(
             cdn.list_purge_statuses,

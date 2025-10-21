@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .ssl_detail import SslDetail as SslDetail
+from .aws_regions import AwsRegions as AwsRegions
 from .cdn_account import CdnAccount as CdnAccount
 from .cdn_metrics import CdnMetrics as CdnMetrics
 from .cdn_resource import CdnResource as CdnResource
@@ -12,6 +13,7 @@ from .origin_groups import OriginGroups as OriginGroups
 from .rule_template import RuleTemplate as RuleTemplate
 from .ca_certificate import CaCertificate as CaCertificate
 from .public_ip_list import PublicIPList as PublicIPList
+from .alibaba_regions import AlibabaRegions as AlibabaRegions
 from .log_list_params import LogListParams as LogListParams
 from .ssl_detail_list import SslDetailList as SslDetailList
 from .network_capacity import NetworkCapacity as NetworkCapacity
@@ -55,6 +57,7 @@ from .rule_template_update_params import RuleTemplateUpdateParams as RuleTemplat
 from .rule_template_replace_params import RuleTemplateReplaceParams as RuleTemplateReplaceParams
 from .certificate_get_status_params import CertificateGetStatusParams as CertificateGetStatusParams
 from .cdn_list_purge_statuses_params import CdnListPurgeStatusesParams as CdnListPurgeStatusesParams
+from .cdn_list_purge_statuses_response import CdnListPurgeStatusesResponse as CdnListPurgeStatusesResponse
 from .trusted_ca_certificate_list_params import TrustedCaCertificateListParams as TrustedCaCertificateListParams
 from .trusted_ca_certificate_create_params import TrustedCaCertificateCreateParams as TrustedCaCertificateCreateParams
 from .trusted_ca_certificate_replace_params import (
