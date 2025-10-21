@@ -138,6 +138,7 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,6 +166,7 @@ class ImagesResource(SyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     def get(
@@ -318,6 +320,7 @@ class ImagesResource(SyncAPIResource):
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -354,6 +357,7 @@ class ImagesResource(SyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.images:
             raise ValueError("No image was created")
@@ -481,6 +485,7 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -508,6 +513,7 @@ class AsyncImagesResource(AsyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     async def get(
@@ -661,6 +667,7 @@ class AsyncImagesResource(AsyncAPIResource):
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -697,6 +704,7 @@ class AsyncImagesResource(AsyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.images:
             raise ValueError("No image was created")

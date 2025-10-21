@@ -146,6 +146,7 @@ class NetworksResource(SyncAPIResource):
         tags: Dict[str, str] | Omit = omit,
         type: Literal["vlan", "vxlan"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,6 +173,7 @@ class NetworksResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if (
             not task.created_resources
@@ -394,6 +396,7 @@ class NetworksResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -417,6 +420,7 @@ class NetworksResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     def get(
@@ -568,6 +572,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         tags: Dict[str, str] | Omit = omit,
         type: Literal["vlan", "vxlan"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -594,6 +599,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if (
             not task.created_resources
@@ -816,6 +822,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -839,6 +846,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     async def get(
