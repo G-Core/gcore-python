@@ -2247,8 +2247,8 @@ from gcore.types.cdn import CdnLogEntry
 
 Methods:
 
-- <code title="get /cdn/advanced/v1/logs">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs/logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/log_list_params.py">params</a>) -> SyncOffsetPageCdnLogs[Data]</code>
-- <code title="get /cdn/advanced/v1/logs/download">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs/logs.py">download</a>(\*\*<a href="src/gcore/types/cdn/log_download_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="get /cdn/advanced/v1/logs">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/log_list_params.py">params</a>) -> SyncOffsetPageCdnLogs[Data]</code>
+- <code title="get /cdn/advanced/v1/logs/download">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs.py">download</a>(\*\*<a href="src/gcore/types/cdn/log_download_params.py">params</a>) -> BinaryAPIResponse</code>
 
 ## LogsUploader
 
