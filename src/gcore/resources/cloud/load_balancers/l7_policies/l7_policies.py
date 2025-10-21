@@ -349,6 +349,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -379,6 +380,7 @@ class L7PoliciesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if (
             not task.created_resources
@@ -401,6 +403,7 @@ class L7PoliciesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -423,6 +426,7 @@ class L7PoliciesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     def replace_and_poll(
@@ -440,6 +444,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -470,6 +475,7 @@ class L7PoliciesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return self.get(
             l7policy_id=l7policy_id,
@@ -796,6 +802,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -826,6 +833,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if (
             not task.created_resources
@@ -848,6 +856,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -870,6 +879,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     async def replace_and_poll(
@@ -887,6 +897,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -917,6 +928,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return await self.get(
             l7policy_id=l7policy_id,

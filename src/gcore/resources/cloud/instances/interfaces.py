@@ -540,6 +540,7 @@ class InterfacesResource(SyncAPIResource):
         network_id: str | Omit = omit,
         port_id: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -580,6 +581,7 @@ class InterfacesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
 
@@ -592,6 +594,7 @@ class InterfacesResource(SyncAPIResource):
         ip_address: str,
         port_id: str,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -620,6 +623,7 @@ class InterfacesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
 
@@ -997,6 +1001,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1025,6 +1030,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1054,6 +1060,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1082,6 +1089,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1113,6 +1121,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         network_id: str | Omit = omit,
         port_id: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1153,6 +1162,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return await self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
 
@@ -1165,6 +1175,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         ip_address: str,
         port_id: str,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1193,6 +1204,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return await self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers)
 

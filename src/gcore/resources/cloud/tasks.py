@@ -20,7 +20,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ...lib.polling import extract_timeout_value
 from ...types.cloud import task_list_params, task_acknowledge_all_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.task import Task
@@ -371,6 +370,7 @@ class AsyncTasksResource(AsyncAPIResource):
         task_id: str,
         *,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -380,17 +380,25 @@ class AsyncTasksResource(AsyncAPIResource):
     ) -> Task:
         if not is_given(polling_interval_seconds):
             polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
+        # Ensure the polling interval is at least 1 second
+        polling_interval_seconds = max(1, polling_interval_seconds)
 
-        if not is_given(timeout):
-            timeout = extract_timeout_value(self._client.timeout)
+        if not is_given(polling_timeout_seconds):
+            polling_timeout_seconds = cast(int, self._client.cloud_polling_timeout_seconds)
 
-        end_time = time.time() + timeout
+        if polling_timeout_seconds <= polling_interval_seconds:
+            raise ValueError(
+                f"`polling_timeout_seconds` must be greater than `polling_interval_seconds` ({polling_interval_seconds})"
+            )
+
+        end_time = time.time() + polling_timeout_seconds
         while time.time() <= end_time:
             task = await self.get(
                 task_id,
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
             )
             if task.state == "ERROR":
                 raise ValueError(task.error or f"Task {task_id} failed")

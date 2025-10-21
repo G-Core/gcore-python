@@ -477,6 +477,7 @@ class ServersResource(SyncAPIResource):
         image_id: str | Omit = omit,
         user_data: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -502,6 +503,7 @@ class ServersResource(SyncAPIResource):
             response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         servers = self.list(
             project_id=project_id,
@@ -904,6 +906,7 @@ class AsyncServersResource(AsyncAPIResource):
         user_data: str | Omit = omit,
         username: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -939,6 +942,7 @@ class AsyncServersResource(AsyncAPIResource):
             response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.instances:
             raise ValueError("No server was created")
@@ -964,6 +968,7 @@ class AsyncServersResource(AsyncAPIResource):
         image_id: str | Omit = omit,
         user_data: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -989,6 +994,7 @@ class AsyncServersResource(AsyncAPIResource):
             response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         servers = await self.list(
             project_id=project_id,

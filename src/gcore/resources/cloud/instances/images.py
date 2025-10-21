@@ -244,6 +244,7 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -269,6 +270,7 @@ class ImagesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     def create_from_volume(
@@ -374,6 +376,7 @@ class ImagesResource(SyncAPIResource):
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -408,6 +411,7 @@ class ImagesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.images or len(task.created_resources.images) != 1:
             raise ValueError(f"Expected exactly one resource to be created in a task")
@@ -578,6 +582,7 @@ class ImagesResource(SyncAPIResource):
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -614,6 +619,7 @@ class ImagesResource(SyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.images or len(task.created_resources.images) != 1:
             raise ValueError(f"Expected exactly one resource to be created in a task")
@@ -836,6 +842,7 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -861,6 +868,7 @@ class AsyncImagesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     async def create_from_volume(
@@ -966,6 +974,7 @@ class AsyncImagesResource(AsyncAPIResource):
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1000,6 +1009,7 @@ class AsyncImagesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.images or len(task.created_resources.images) != 1:
             raise ValueError(f"Expected exactly one resource to be created in a task")
@@ -1170,6 +1180,7 @@ class AsyncImagesResource(AsyncAPIResource):
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1206,6 +1217,7 @@ class AsyncImagesResource(AsyncAPIResource):
             task_id=response.tasks[0],
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.images or len(task.created_resources.images) != 1:
             raise ValueError(f"Expected exactly one resource to be created in a task")

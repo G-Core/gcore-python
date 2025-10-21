@@ -635,6 +635,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -667,6 +668,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.ai_clusters:
             raise ValueError("No cluster was created")
@@ -691,6 +693,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         image_id: Optional[str] | Omit = omit,
         user_data: Optional[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -721,6 +724,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
@@ -740,6 +744,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         region_id: int | None = None,
         instances_count: int,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -768,6 +773,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
@@ -1348,6 +1354,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1380,6 +1387,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         if not task.created_resources or not task.created_resources.ai_clusters:
             raise ValueError("No cluster was created")
@@ -1404,6 +1412,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         image_id: Optional[str] | Omit = omit,
         user_data: Optional[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1434,6 +1443,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return await self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
@@ -1453,6 +1463,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         region_id: int | None = None,
         instances_count: int,
         polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1481,6 +1492,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
             extra_query=extra_query,
             extra_body=extra_body,
             polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
         )
         return await self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
