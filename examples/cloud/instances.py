@@ -23,7 +23,6 @@ def main() -> None:
     placement_group_id = os.environ.get("GCORE_CLOUD_PLACEMENT_GROUP_ID")
 
     gcore = Gcore(
-        timeout=180.0,
         # No need to explicitly pass to Gcore constructor if using environment variables
         # api_key=api_key,
         # cloud_project_id=cloud_project_id,
