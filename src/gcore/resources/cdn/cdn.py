@@ -4,6 +4,14 @@ from __future__ import annotations
 
 import httpx
 
+from .logs import (
+    LogsResource,
+    AsyncLogsResource,
+    LogsResourceWithRawResponse,
+    AsyncLogsResourceWithRawResponse,
+    LogsResourceWithStreamingResponse,
+    AsyncLogsResourceWithStreamingResponse,
+)
 from .metrics import (
     MetricsResource,
     AsyncMetricsResource,
@@ -38,14 +46,6 @@ from .ip_ranges import (
     AsyncIPRangesResourceWithRawResponse,
     IPRangesResourceWithStreamingResponse,
     AsyncIPRangesResourceWithStreamingResponse,
-)
-from .logs.logs import (
-    LogsResource,
-    AsyncLogsResource,
-    LogsResourceWithRawResponse,
-    AsyncLogsResourceWithRawResponse,
-    LogsResourceWithStreamingResponse,
-    AsyncLogsResourceWithStreamingResponse,
 )
 from .statistics import (
     StatisticsResource,

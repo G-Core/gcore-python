@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
     StreamedBinaryAPIResponse,
@@ -22,10 +22,10 @@ from ...._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ....types.cdn import log_list_params, log_download_params
-from ....pagination import SyncOffsetPageCdnLogs, AsyncOffsetPageCdnLogs
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cdn.cdn_log_entry import Data
+from ...types.cdn import log_list_params, log_download_params
+from ...pagination import SyncOffsetPageCdnLogs, AsyncOffsetPageCdnLogs
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.cdn.cdn_log_entry import Data
 
 __all__ = ["LogsResource", "AsyncLogsResource"]
 
