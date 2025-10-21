@@ -2082,7 +2082,15 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn import CdnAccount, CdnAccountLimits, CdnAvailableFeatures, PurgeStatus
+from gcore.types.cdn import (
+    AlibabaRegions,
+    AwsRegions,
+    CdnAccount,
+    CdnAccountLimits,
+    CdnAvailableFeatures,
+    PurgeStatus,
+    CdnListPurgeStatusesResponse,
+)
 ```
 
 Methods:
@@ -2090,7 +2098,9 @@ Methods:
 - <code title="get /cdn/clients/me/limits">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_limits</a>() -> <a href="./src/gcore/types/cdn/cdn_account_limits.py">CdnAccountLimits</a></code>
 - <code title="get /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_overview</a>() -> <a href="./src/gcore/types/cdn/cdn_account.py">CdnAccount</a></code>
 - <code title="get /cdn/clients/me/features">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_available_features</a>() -> <a href="./src/gcore/types/cdn/cdn_available_features.py">CdnAvailableFeatures</a></code>
-- <code title="get /cdn/purge_statuses">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_purge_statuses</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_purge_statuses_params.py">params</a>) -> <a href="./src/gcore/types/cdn/purge_status.py">SyncOffsetPageCdn[PurgeStatus]</a></code>
+- <code title="get /cdn/alibaba_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_alibaba_regions</a>() -> <a href="./src/gcore/types/cdn/alibaba_regions.py">AlibabaRegions</a></code>
+- <code title="get /cdn/aws_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_aws_regions</a>() -> <a href="./src/gcore/types/cdn/aws_regions.py">AwsRegions</a></code>
+- <code title="get /cdn/purge_statuses">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_purge_statuses</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_purge_statuses_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_list_purge_statuses_response.py">CdnListPurgeStatusesResponse</a></code>
 - <code title="patch /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">update_account</a>(\*\*<a href="src/gcore/types/cdn/cdn_update_account_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_account.py">CdnAccount</a></code>
 
 ## Resources
