@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.17.0 (2025-10-21)
+
+Full Changelog: [v0.16.0...v0.17.0](https://github.com/G-Core/gcore-python/compare/v0.16.0...v0.17.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** rename to projects update
+* **cloud:** use new PATCH files shares endpoint
+
+### Features
+
+* **api:** aggregated API specs update ([c9d6195](https://github.com/G-Core/gcore-python/commit/c9d6195649fd18c9c32107a978e0d40032b285be))
+* **cdn:** add methods to list aws and alibaba regions ([0d1d290](https://github.com/G-Core/gcore-python/commit/0d1d290d11626ac0128329c005d048f0ab2f25dc))
+* **client:** add client opt for cloud polling timeout ([bad7ecb](https://github.com/G-Core/gcore-python/commit/bad7ecbb58f0decc31e4091c5bdb0585b7471b09))
+* **cloud:** add polling_timeout_seconds parameter to polling methods ([8b556ae](https://github.com/G-Core/gcore-python/commit/8b556aefc279caddaad9782747b2d6f65a523067))
+* **cloud:** enable TF for placement groups ([63abaa7](https://github.com/G-Core/gcore-python/commit/63abaa7156d2a79bf27f9ba0d3fa2abb3a31aafd))
+* **cloud:** support polling timeout in tasks.poll() ([3f8a419](https://github.com/G-Core/gcore-python/commit/3f8a419a48677e5f443248c963e045dd5169979a))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([e906ee6](https://github.com/G-Core/gcore-python/commit/e906ee6224833181a4618bcd63671d9a131bca94))
+* **cloud:** fix file shares examples ([c5cc6fa](https://github.com/G-Core/gcore-python/commit/c5cc6fa74b5678d08d1ed750872e424edd6f5377))
+* **cloud:** rename to projects update ([f3f52da](https://github.com/G-Core/gcore-python/commit/f3f52da58998f8ce2637b99d1c944fd692861b48))
+* **cloud:** use new PATCH files shares endpoint ([2ac6bce](https://github.com/G-Core/gcore-python/commit/2ac6bce8afbe4783620060964359d01ab105979e))
+
+
+### Refactors
+
+* **spec:** remove CDN deprecated endpoints ([193a257](https://github.com/G-Core/gcore-python/commit/193a257bcf3e00d85179809e63fa47b021323f65))
+
 ## 0.16.0 (2025-10-17)
 
 Full Changelog: [v0.15.0...v0.16.0](https://github.com/G-Core/gcore-python/compare/v0.15.0...v0.16.0)
