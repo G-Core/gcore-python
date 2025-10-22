@@ -30,6 +30,7 @@ from .ca_certificate_list import CaCertificateList as CaCertificateList
 from .cdn_audit_log_entry import CdnAuditLogEntry as CdnAuditLogEntry
 from .log_download_params import LogDownloadParams as LogDownloadParams
 from .public_network_list import PublicNetworkList as PublicNetworkList
+from .ip_range_list_params import IPRangeListParams as IPRangeListParams
 from .resource_list_params import ResourceListParams as ResourceListParams
 from .resource_usage_stats import ResourceUsageStats as ResourceUsageStats
 from .shield_list_response import ShieldListResponse as ShieldListResponse
@@ -42,6 +43,7 @@ from .resource_update_params import ResourceUpdateParams as ResourceUpdateParams
 from .certificate_list_params import CertificateListParams as CertificateListParams
 from .resource_replace_params import ResourceReplaceParams as ResourceReplaceParams
 from .shield_aggregated_stats import ShieldAggregatedStats as ShieldAggregatedStats
+from .ip_range_list_ips_params import IPRangeListIPsParams as IPRangeListIPsParams
 from .logs_uploader_validation import LogsUploaderValidation as LogsUploaderValidation
 from .origin_group_list_params import OriginGroupListParams as OriginGroupListParams
 from .resource_prefetch_params import ResourcePrefetchParams as ResourcePrefetchParams
