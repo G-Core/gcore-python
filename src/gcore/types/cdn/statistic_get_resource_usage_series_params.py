@@ -100,6 +100,8 @@ class StatisticGetResourceUsageSeriesParams(TypedDict, total=False):
     - **region** – Data is grouped by regions of CDN edge servers.
     - **country** – Data is grouped by countries of CDN edge servers.
     - **vhost** – Data is grouped by resources CNAMEs.
+    - **`client_country`** - Data is grouped by countries, based on end-users'
+      location.
 
     To request multiple values, use:
 
@@ -123,9 +125,12 @@ class StatisticGetResourceUsageSeriesParams(TypedDict, total=False):
     """
 
     resource: int
-    """CDN resource IDs.
+    """CDN resources IDs by that statistics data is grouped.
 
     To request multiple values, use:
 
     - &resource=1&resource=2
+
+    If CDN resource ID is not specified, data related to all CDN resources is
+    returned.
     """
