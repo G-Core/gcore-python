@@ -97,7 +97,6 @@ class TestRequests:
                     }
                 ],
             },
-            client_id=1,
         )
         assert request is None
 
@@ -308,7 +307,6 @@ class TestAsyncRequests:
                     }
                 ],
             },
-            client_id=1,
         )
         assert request is None
 

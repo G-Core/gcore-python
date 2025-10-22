@@ -77,7 +77,7 @@ class StatisticsResource(SyncAPIResource):
 
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-          flat: The waу parameters are arranged in the response.
+          flat: The way the parameters are arranged in the response.
 
               Possible values:
 
@@ -95,6 +95,9 @@ class StatisticsResource(SyncAPIResource):
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -146,21 +149,16 @@ class StatisticsResource(SyncAPIResource):
         Args:
           from_: Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-              Example:
-
-              - &from=2020-01-01T00:00:00.000
-
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
-
-              Example:
-
-              - &from=2020-01-01T00:00:00.000
 
           resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -218,11 +216,6 @@ class StatisticsResource(SyncAPIResource):
         Args:
           from_: Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-              Examples:
-
-              - &from=2018-11-01T00:00:00.000
-              - &from=2018-11-01
-
           metrics: Types of statistics data.
 
               Possible values:
@@ -279,15 +272,8 @@ class StatisticsResource(SyncAPIResource):
 
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-              Examples:
-
-              - &to=2018-11-01T00:00:00.000
-              - &to=2018-11-01
-
-          countries: Names of countries for which data is displayed.
-
-              English short name from [ISO 3166 standard][1] without the definite article
-              "the" should be used.
+          countries: Names of countries for which data should be displayed. English short name from
+              [ISO 3166 standard][1] without the definite article ("the") should be used.
 
               [1]: https://www.iso.org/obp/ui/#search/code/
 
@@ -295,7 +281,7 @@ class StatisticsResource(SyncAPIResource):
 
               - &countries=france&countries=denmark
 
-          flat: The waу the parameters are arranged in the response.
+          flat: The way the parameters are arranged in the response.
 
               Possible values:
 
@@ -309,7 +295,9 @@ class StatisticsResource(SyncAPIResource):
               - **resource** – Data is grouped by CDN resources IDs.
               - **region** – Data is grouped by regions of CDN edge servers.
               - **country** – Data is grouped by countries of CDN edge servers.
-              - **vhost** – Data is grouped by resources CNAME.
+              - **vhost** – Data is grouped by resources CNAMEs.
+              - **`client_country`** - Data is grouped by countries, based on end-users'
+                location.
 
               To request multiple values, use:
 
@@ -329,7 +317,7 @@ class StatisticsResource(SyncAPIResource):
               - **africa** - Africa
               - **sa** - South America
 
-          resource: CDN resources IDs by which statistics data is grouped.
+          resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
@@ -472,6 +460,8 @@ class StatisticsResource(SyncAPIResource):
               - **region** – Data is grouped by regions of CDN edge servers.
               - **country** – Data is grouped by countries of CDN edge servers.
               - **vhost** – Data is grouped by resources CNAMEs.
+              - **`client_country`** - Data is grouped by countries, based on end-users'
+                location.
 
               To request multiple values, use:
 
@@ -491,11 +481,14 @@ class StatisticsResource(SyncAPIResource):
               - **africa** - Africa
               - **sa** - South America
 
-          resource: CDN resource IDs.
+          resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -555,7 +548,7 @@ class StatisticsResource(SyncAPIResource):
 
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-          flat: The waу parameters are arranged in the response.
+          flat: The way the parameters are arranged in the response.
 
               Possible values:
 
@@ -566,13 +559,16 @@ class StatisticsResource(SyncAPIResource):
 
               Possible value:
 
-              - **resource** - Data is grouped by CDN resource.
+              - **resource** - Data is grouped by CDN resources.
 
           resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -631,6 +627,9 @@ class StatisticsResource(SyncAPIResource):
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -705,7 +704,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-          flat: The waу parameters are arranged in the response.
+          flat: The way the parameters are arranged in the response.
 
               Possible values:
 
@@ -723,6 +722,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -774,21 +776,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
         Args:
           from_: Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-              Example:
-
-              - &from=2020-01-01T00:00:00.000
-
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
-
-              Example:
-
-              - &from=2020-01-01T00:00:00.000
 
           resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -846,11 +843,6 @@ class AsyncStatisticsResource(AsyncAPIResource):
         Args:
           from_: Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-              Examples:
-
-              - &from=2018-11-01T00:00:00.000
-              - &from=2018-11-01
-
           metrics: Types of statistics data.
 
               Possible values:
@@ -907,15 +899,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-              Examples:
-
-              - &to=2018-11-01T00:00:00.000
-              - &to=2018-11-01
-
-          countries: Names of countries for which data is displayed.
-
-              English short name from [ISO 3166 standard][1] without the definite article
-              "the" should be used.
+          countries: Names of countries for which data should be displayed. English short name from
+              [ISO 3166 standard][1] without the definite article ("the") should be used.
 
               [1]: https://www.iso.org/obp/ui/#search/code/
 
@@ -923,7 +908,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
               - &countries=france&countries=denmark
 
-          flat: The waу the parameters are arranged in the response.
+          flat: The way the parameters are arranged in the response.
 
               Possible values:
 
@@ -937,7 +922,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
               - **resource** – Data is grouped by CDN resources IDs.
               - **region** – Data is grouped by regions of CDN edge servers.
               - **country** – Data is grouped by countries of CDN edge servers.
-              - **vhost** – Data is grouped by resources CNAME.
+              - **vhost** – Data is grouped by resources CNAMEs.
+              - **`client_country`** - Data is grouped by countries, based on end-users'
+                location.
 
               To request multiple values, use:
 
@@ -957,7 +944,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
               - **africa** - Africa
               - **sa** - South America
 
-          resource: CDN resources IDs by which statistics data is grouped.
+          resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
@@ -1100,6 +1087,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
               - **region** – Data is grouped by regions of CDN edge servers.
               - **country** – Data is grouped by countries of CDN edge servers.
               - **vhost** – Data is grouped by resources CNAMEs.
+              - **`client_country`** - Data is grouped by countries, based on end-users'
+                location.
 
               To request multiple values, use:
 
@@ -1119,11 +1108,14 @@ class AsyncStatisticsResource(AsyncAPIResource):
               - **africa** - Africa
               - **sa** - South America
 
-          resource: CDN resource IDs.
+          resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -1183,7 +1175,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
 
-          flat: The waу parameters are arranged in the response.
+          flat: The way the parameters are arranged in the response.
 
               Possible values:
 
@@ -1194,13 +1186,16 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
               Possible value:
 
-              - **resource** - Data is grouped by CDN resource.
+              - **resource** - Data is grouped by CDN resources.
 
           resource: CDN resources IDs by that statistics data is grouped.
 
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 
@@ -1259,6 +1254,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
               To request multiple values, use:
 
               - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
 
           extra_headers: Send extra headers
 

@@ -28,7 +28,7 @@ class ResourceUsageStats(BaseModel):
     Possible values:
 
     - **`upstream_bytes`** – Traffic in bytes from an origin server to CDN servers
-      or to origin shielding, if used.
+      or to origin shielding when used.
     - **`sent_bytes`** – Traffic in bytes from CDN servers to clients.
     - **`shield_bytes`** – Traffic in bytes from origin shielding to CDN servers.
     - **`backblaze_bytes`** - Traffic in bytes from Backblaze origin.
@@ -45,39 +45,40 @@ class ResourceUsageStats(BaseModel):
     - **`response_types`** – Statistics by content type. It returns a number of
       responses for content with different MIME types.
     - **`cache_hit_traffic_ratio`** – Formula: 1 - `upstream_bytes` / `sent_bytes`.
-      We deduct the non-cached traffic from the total traffic value.
-    - **`cache_hit_requests_ratio`** – Share of sending cached content. Formula:
-      `responses_hit` / requests.
-    - **`shield_traffic_ratio`** – Origin shielding efficiency: how much more
-      traffic is sent from the origin shielding than from the origin. Formula:
-      (`shield_bytes` - `upstream_bytes`) / `shield_bytes`.
+      We deduct the non-cached traffic from the total traffic amount.
+    - **`cache_hit_requests_ratio`** – Formula: `responses_hit` / requests. The
+      share of sending cached content.
+    - **`shield_traffic_ratio`** – Formula: (`shield_bytes` - `upstream_bytes`) /
+      `shield_bytes`. The efficiency of the Origin Shielding: how much more traffic
+      is sent from the Origin Shielding than from the origin.
     - **`image_processed`** - Number of images transformed on the Image optimization
       service.
     - **`request_time`** - Time elapsed between the first bytes of a request were
       processed and logging after the last bytes were sent to a user.
     - **`upstream_response_time`** - Number of milliseconds it took to receive a
       response from an origin. If upstream `response_time_` contains several
-      indications for one request (when there is more than one origin,) we summarize
-      them. When aggregating several queries, the average is calculated.
+      indications for one request (in case of more than 1 origin), we summarize
+      them. In case of aggregating several queries, the average of this amount is
+      calculated.
 
     Metrics **`upstream_response_time`** and **`request_time`** should be requested
     separately from other metrics
     """
 
     region: Optional[object] = None
-    """Locations (regions) by which the data is grouped.
+    """Regions for which data is displayed.
 
     Possible values:
 
+    - **na** – North America
+    - **eu** – Europe
+    - **cis** – Commonwealth of Independent States
     - **asia** – Asia
     - **au** – Australia
-    - **cis** – CIS (Commonwealth of Independent States)
-    - **eu** – Europe
     - **latam** – Latin America
     - **me** – Middle East
-    - **na** – North America
-    - **africa** – Africa
-    - **sa** – South America
+    - **africa** - Africa
+    - **sa** - South America
     """
 
     resource: Optional[object] = None
