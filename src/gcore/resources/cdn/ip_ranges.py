@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -13,6 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...types.cdn import ip_range_list_params, ip_range_list_ips_params
 from ..._base_client import make_request_options
 from ...types.cdn.public_ip_list import PublicIPList
 from ...types.cdn.public_network_list import PublicNetworkList
@@ -43,6 +47,8 @@ class IPRangesResource(SyncAPIResource):
     def list(
         self,
         *,
+        format: Literal["json", "plain"] | Omit = omit,
+        accept: Literal["application/json", "text/plain"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -58,11 +64,31 @@ class IPRangesResource(SyncAPIResource):
         relevance. We recommend using a script for automatically update IP ACL.
 
         This request does not require authorization.
+
+        Args:
+          format: Optional format override. When set, this takes precedence over the `Accept`
+              header.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given({"Accept": str(accept) if is_given(accept) else not_given}),
+            **(extra_headers or {}),
+        }
         return self._get(
             "/cdn/public-net-list",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"format": format}, ip_range_list_params.IPRangeListParams),
             ),
             cast_to=PublicNetworkList,
         )
@@ -70,6 +96,8 @@ class IPRangesResource(SyncAPIResource):
     def list_ips(
         self,
         *,
+        format: Literal["json", "plain"] | Omit = omit,
+        accept: Literal["application/json", "text/plain"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,11 +114,31 @@ class IPRangesResource(SyncAPIResource):
         relevance. We recommend using a script to automatically update IP ACL.
 
         This request does not require authorization.
+
+        Args:
+          format: Optional format override. When set, this takes precedence over the `Accept`
+              header.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given({"Accept": str(accept) if is_given(accept) else not_given}),
+            **(extra_headers or {}),
+        }
         return self._get(
             "/cdn/public-ip-list",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"format": format}, ip_range_list_ips_params.IPRangeListIPsParams),
             ),
             cast_to=PublicIPList,
         )
@@ -119,6 +167,8 @@ class AsyncIPRangesResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        format: Literal["json", "plain"] | Omit = omit,
+        accept: Literal["application/json", "text/plain"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -134,11 +184,31 @@ class AsyncIPRangesResource(AsyncAPIResource):
         relevance. We recommend using a script for automatically update IP ACL.
 
         This request does not require authorization.
+
+        Args:
+          format: Optional format override. When set, this takes precedence over the `Accept`
+              header.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given({"Accept": str(accept) if is_given(accept) else not_given}),
+            **(extra_headers or {}),
+        }
         return await self._get(
             "/cdn/public-net-list",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"format": format}, ip_range_list_params.IPRangeListParams),
             ),
             cast_to=PublicNetworkList,
         )
@@ -146,6 +216,8 @@ class AsyncIPRangesResource(AsyncAPIResource):
     async def list_ips(
         self,
         *,
+        format: Literal["json", "plain"] | Omit = omit,
+        accept: Literal["application/json", "text/plain"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,11 +234,31 @@ class AsyncIPRangesResource(AsyncAPIResource):
         relevance. We recommend using a script to automatically update IP ACL.
 
         This request does not require authorization.
+
+        Args:
+          format: Optional format override. When set, this takes precedence over the `Accept`
+              header.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {
+            **strip_not_given({"Accept": str(accept) if is_given(accept) else not_given}),
+            **(extra_headers or {}),
+        }
         return await self._get(
             "/cdn/public-ip-list",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"format": format}, ip_range_list_ips_params.IPRangeListIPsParams),
             ),
             cast_to=PublicIPList,
         )

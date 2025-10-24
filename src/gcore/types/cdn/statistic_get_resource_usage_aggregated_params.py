@@ -11,13 +11,7 @@ __all__ = ["StatisticGetResourceUsageAggregatedParams"]
 
 class StatisticGetResourceUsageAggregatedParams(TypedDict, total=False):
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
-
-    Examples:
-
-    - &from=2018-11-01T00:00:00.000
-    - &from=2018-11-01
-    """
+    """Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)"""
 
     metrics: Required[str]
     """Types of statistics data.
@@ -78,19 +72,12 @@ class StatisticGetResourceUsageAggregatedParams(TypedDict, total=False):
     """
 
     to: Required[str]
-    """End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
-
-    Examples:
-
-    - &to=2018-11-01T00:00:00.000
-    - &to=2018-11-01
-    """
+    """End of the requested time period (ISO 8601/RFC 3339 format, UTC.)"""
 
     countries: str
-    """Names of countries for which data is displayed.
-
-    English short name from [ISO 3166 standard][1] without the definite article
-    "the" should be used.
+    """
+    Names of countries for which data should be displayed. English short name from
+    [ISO 3166 standard][1] without the definite article ("the") should be used.
 
     [1]: https://www.iso.org/obp/ui/#search/code/
 
@@ -100,7 +87,7 @@ class StatisticGetResourceUsageAggregatedParams(TypedDict, total=False):
     """
 
     flat: bool
-    """The waу the parameters are arranged in the response.
+    """The way the parameters are arranged in the response.
 
     Possible values:
 
@@ -116,7 +103,9 @@ class StatisticGetResourceUsageAggregatedParams(TypedDict, total=False):
     - **resource** – Data is grouped by CDN resources IDs.
     - **region** – Data is grouped by regions of CDN edge servers.
     - **country** – Data is grouped by countries of CDN edge servers.
-    - **vhost** – Data is grouped by resources CNAME.
+    - **vhost** – Data is grouped by resources CNAMEs.
+    - **`client_country`** - Data is grouped by countries, based on end-users'
+      location.
 
     To request multiple values, use:
 
@@ -140,7 +129,7 @@ class StatisticGetResourceUsageAggregatedParams(TypedDict, total=False):
     """
 
     resource: int
-    """CDN resources IDs by which statistics data is grouped.
+    """CDN resources IDs by that statistics data is grouped.
 
     To request multiple values, use:
 

@@ -23,6 +23,14 @@ class TestIPRanges:
         assert_matches_type(PublicNetworkList, ip_range, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        ip_range = client.cdn.ip_ranges.list(
+            format="json",
+            accept="application/json",
+        )
+        assert_matches_type(PublicNetworkList, ip_range, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cdn.ip_ranges.with_raw_response.list()
 
@@ -45,6 +53,14 @@ class TestIPRanges:
     @parametrize
     def test_method_list_ips(self, client: Gcore) -> None:
         ip_range = client.cdn.ip_ranges.list_ips()
+        assert_matches_type(PublicIPList, ip_range, path=["response"])
+
+    @parametrize
+    def test_method_list_ips_with_all_params(self, client: Gcore) -> None:
+        ip_range = client.cdn.ip_ranges.list_ips(
+            format="json",
+            accept="application/json",
+        )
         assert_matches_type(PublicIPList, ip_range, path=["response"])
 
     @parametrize
@@ -79,6 +95,14 @@ class TestAsyncIPRanges:
         assert_matches_type(PublicNetworkList, ip_range, path=["response"])
 
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        ip_range = await async_client.cdn.ip_ranges.list(
+            format="json",
+            accept="application/json",
+        )
+        assert_matches_type(PublicNetworkList, ip_range, path=["response"])
+
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.ip_ranges.with_raw_response.list()
 
@@ -101,6 +125,14 @@ class TestAsyncIPRanges:
     @parametrize
     async def test_method_list_ips(self, async_client: AsyncGcore) -> None:
         ip_range = await async_client.cdn.ip_ranges.list_ips()
+        assert_matches_type(PublicIPList, ip_range, path=["response"])
+
+    @parametrize
+    async def test_method_list_ips_with_all_params(self, async_client: AsyncGcore) -> None:
+        ip_range = await async_client.cdn.ip_ranges.list_ips(
+            format="json",
+            accept="application/json",
+        )
         assert_matches_type(PublicIPList, ip_range, path=["response"])
 
     @parametrize

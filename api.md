@@ -2383,5 +2383,5 @@ from gcore.types.cdn import PublicIPList, PublicNetworkList
 
 Methods:
 
-- <code title="get /cdn/public-net-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list</a>() -> <a href="./src/gcore/types/cdn/public_network_list.py">PublicNetworkList</a></code>
-- <code title="get /cdn/public-ip-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list_ips</a>() -> <a href="./src/gcore/types/cdn/public_ip_list.py">PublicIPList</a></code>
+- <code title="get /cdn/public-net-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list</a>(\*\*<a href="src/gcore/types/cdn/ip_range_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_network_list.py">PublicNetworkList</a></code>
+- <code title="get /cdn/public-ip-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list_ips</a>(\*\*<a href="src/gcore/types/cdn/ip_range_list_ips_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_ip_list.py">PublicIPList</a></code>

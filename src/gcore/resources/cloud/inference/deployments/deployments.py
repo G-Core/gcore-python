@@ -1463,6 +1463,15 @@ class DeploymentsResourceWithRawResponse:
         self.stop = to_raw_response_wrapper(
             deployments.stop,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            deployments.create_and_poll,
+        )
+        self.update_and_poll = to_raw_response_wrapper(
+            deployments.update_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            deployments.delete_and_poll,
+        )
 
     @cached_property
     def logs(self) -> LogsResourceWithRawResponse:
@@ -1498,6 +1507,15 @@ class AsyncDeploymentsResourceWithRawResponse:
         )
         self.stop = async_to_raw_response_wrapper(
             deployments.stop,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            deployments.create_and_poll,
+        )
+        self.update_and_poll = async_to_raw_response_wrapper(
+            deployments.update_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            deployments.delete_and_poll,
         )
 
     @cached_property
@@ -1535,6 +1553,15 @@ class DeploymentsResourceWithStreamingResponse:
         self.stop = to_streamed_response_wrapper(
             deployments.stop,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            deployments.create_and_poll,
+        )
+        self.update_and_poll = to_streamed_response_wrapper(
+            deployments.update_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            deployments.delete_and_poll,
+        )
 
     @cached_property
     def logs(self) -> LogsResourceWithStreamingResponse:
@@ -1570,6 +1597,15 @@ class AsyncDeploymentsResourceWithStreamingResponse:
         )
         self.stop = async_to_streamed_response_wrapper(
             deployments.stop,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            deployments.create_and_poll,
+        )
+        self.update_and_poll = async_to_streamed_response_wrapper(
+            deployments.update_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            deployments.delete_and_poll,
         )
 
     @cached_property

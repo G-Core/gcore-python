@@ -15,9 +15,6 @@ class RequestCreateParams(TypedDict, total=False):
     requested_limits: Required[RequestedLimits]
     """Limits you want to increase."""
 
-    client_id: int
-    """Client ID that requests the limit increase."""
-
 
 class RequestedLimitsGlobalLimits(TypedDict, total=False):
     inference_cpu_millicore_count_limit: int

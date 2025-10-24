@@ -51,7 +51,6 @@ class RequestsResource(SyncAPIResource):
         *,
         description: str,
         requested_limits: request_create_params.RequestedLimits,
-        client_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,8 +65,6 @@ class RequestsResource(SyncAPIResource):
           description: Describe the reason, in general terms.
 
           requested_limits: Limits you want to increase.
-
-          client_id: Client ID that requests the limit increase.
 
           extra_headers: Send extra headers
 
@@ -84,7 +81,6 @@ class RequestsResource(SyncAPIResource):
                 {
                     "description": description,
                     "requested_limits": requested_limits,
-                    "client_id": client_id,
                 },
                 request_create_params.RequestCreateParams,
             ),
@@ -239,7 +235,6 @@ class AsyncRequestsResource(AsyncAPIResource):
         *,
         description: str,
         requested_limits: request_create_params.RequestedLimits,
-        client_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -254,8 +249,6 @@ class AsyncRequestsResource(AsyncAPIResource):
           description: Describe the reason, in general terms.
 
           requested_limits: Limits you want to increase.
-
-          client_id: Client ID that requests the limit increase.
 
           extra_headers: Send extra headers
 
@@ -272,7 +265,6 @@ class AsyncRequestsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "requested_limits": requested_limits,
-                    "client_id": client_id,
                 },
                 request_create_params.RequestCreateParams,
             ),

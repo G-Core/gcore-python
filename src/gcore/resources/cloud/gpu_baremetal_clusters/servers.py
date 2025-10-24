@@ -1355,6 +1355,9 @@ class ServersResourceWithRawResponse:
         self.reboot = to_raw_response_wrapper(
             servers.reboot,
         )
+        self.delete_and_poll = to_raw_response_wrapper(
+            servers.delete_and_poll,
+        )
 
 
 class AsyncServersResourceWithRawResponse:
@@ -1381,6 +1384,9 @@ class AsyncServersResourceWithRawResponse:
         )
         self.reboot = async_to_raw_response_wrapper(
             servers.reboot,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            servers.delete_and_poll,
         )
 
 
@@ -1409,6 +1415,9 @@ class ServersResourceWithStreamingResponse:
         self.reboot = to_streamed_response_wrapper(
             servers.reboot,
         )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            servers.delete_and_poll,
+        )
 
 
 class AsyncServersResourceWithStreamingResponse:
@@ -1435,4 +1444,7 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.reboot = async_to_streamed_response_wrapper(
             servers.reboot,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            servers.delete_and_poll,
         )
