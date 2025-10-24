@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.18.0 (2025-10-24)
+
+Full Changelog: [v0.17.0...v0.18.0](https://github.com/G-Core/gcore-python/compare/v0.17.0...v0.18.0)
+
+### Features
+
+* **api:** aggregated API specs update ([926c0dd](https://github.com/G-Core/gcore-python/commit/926c0ddfcef420ba47eca7b399ea43462a18371a))
+
+
+### Chores
+
+* **cloud:** add *_and_poll() to *WithRawResponse and *WithStreaming ([d8886ce](https://github.com/G-Core/gcore-python/commit/d8886ce4abeadd3d260c3f533e72b778d521482c))
+
 ## 0.17.0 (2025-10-21)
 
 Full Changelog: [v0.16.0...v0.17.0](https://github.com/G-Core/gcore-python/compare/v0.16.0...v0.17.0)
