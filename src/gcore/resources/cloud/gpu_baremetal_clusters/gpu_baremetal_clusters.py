@@ -1536,6 +1536,15 @@ class GPUBaremetalClustersResourceWithRawResponse:
         self.resize = to_raw_response_wrapper(
             gpu_baremetal_clusters.resize,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            gpu_baremetal_clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = to_raw_response_wrapper(
+            gpu_baremetal_clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = to_raw_response_wrapper(
+            gpu_baremetal_clusters.resize_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> InterfacesResourceWithRawResponse:
@@ -1584,6 +1593,15 @@ class AsyncGPUBaremetalClustersResourceWithRawResponse:
         )
         self.resize = async_to_raw_response_wrapper(
             gpu_baremetal_clusters.resize,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = async_to_raw_response_wrapper(
+            gpu_baremetal_clusters.resize_and_poll,
         )
 
     @cached_property
@@ -1634,6 +1652,15 @@ class GPUBaremetalClustersResourceWithStreamingResponse:
         self.resize = to_streamed_response_wrapper(
             gpu_baremetal_clusters.resize,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = to_streamed_response_wrapper(
+            gpu_baremetal_clusters.resize_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> InterfacesResourceWithStreamingResponse:
@@ -1682,6 +1709,15 @@ class AsyncGPUBaremetalClustersResourceWithStreamingResponse:
         )
         self.resize = async_to_streamed_response_wrapper(
             gpu_baremetal_clusters.resize,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = async_to_streamed_response_wrapper(
+            gpu_baremetal_clusters.resize_and_poll,
         )
 
     @cached_property

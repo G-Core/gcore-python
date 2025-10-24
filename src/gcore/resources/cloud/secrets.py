@@ -580,6 +580,9 @@ class SecretsResourceWithRawResponse:
         self.upload_tls_certificate = to_raw_response_wrapper(
             secrets.upload_tls_certificate,
         )
+        self.upload_tls_certificate_and_poll = to_raw_response_wrapper(
+            secrets.upload_tls_certificate_and_poll,
+        )
 
 
 class AsyncSecretsResourceWithRawResponse:
@@ -597,6 +600,9 @@ class AsyncSecretsResourceWithRawResponse:
         )
         self.upload_tls_certificate = async_to_raw_response_wrapper(
             secrets.upload_tls_certificate,
+        )
+        self.upload_tls_certificate_and_poll = async_to_raw_response_wrapper(
+            secrets.upload_tls_certificate_and_poll,
         )
 
 
@@ -616,6 +622,9 @@ class SecretsResourceWithStreamingResponse:
         self.upload_tls_certificate = to_streamed_response_wrapper(
             secrets.upload_tls_certificate,
         )
+        self.upload_tls_certificate_and_poll = to_streamed_response_wrapper(
+            secrets.upload_tls_certificate_and_poll,
+        )
 
 
 class AsyncSecretsResourceWithStreamingResponse:
@@ -633,4 +642,7 @@ class AsyncSecretsResourceWithStreamingResponse:
         )
         self.upload_tls_certificate = async_to_streamed_response_wrapper(
             secrets.upload_tls_certificate,
+        )
+        self.upload_tls_certificate_and_poll = async_to_streamed_response_wrapper(
+            secrets.upload_tls_certificate_and_poll,
         )
