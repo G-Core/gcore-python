@@ -2958,6 +2958,21 @@ class InstancesResourceWithRawResponse:
         self.unassign_security_group = to_raw_response_wrapper(
             instances.unassign_security_group,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            instances.create_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            instances.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = to_raw_response_wrapper(
+            instances.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = to_raw_response_wrapper(
+            instances.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = to_raw_response_wrapper(
+            instances.resize_and_poll,
+        )
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithRawResponse:
@@ -3024,6 +3039,21 @@ class AsyncInstancesResourceWithRawResponse:
         )
         self.unassign_security_group = async_to_raw_response_wrapper(
             instances.unassign_security_group,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            instances.create_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            instances.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = async_to_raw_response_wrapper(
+            instances.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = async_to_raw_response_wrapper(
+            instances.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = async_to_raw_response_wrapper(
+            instances.resize_and_poll,
         )
 
     @cached_property
@@ -3092,6 +3122,21 @@ class InstancesResourceWithStreamingResponse:
         self.unassign_security_group = to_streamed_response_wrapper(
             instances.unassign_security_group,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            instances.create_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            instances.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = to_streamed_response_wrapper(
+            instances.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = to_streamed_response_wrapper(
+            instances.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = to_streamed_response_wrapper(
+            instances.resize_and_poll,
+        )
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithStreamingResponse:
@@ -3158,6 +3203,21 @@ class AsyncInstancesResourceWithStreamingResponse:
         )
         self.unassign_security_group = async_to_streamed_response_wrapper(
             instances.unassign_security_group,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            instances.create_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            instances.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = async_to_streamed_response_wrapper(
+            instances.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = async_to_streamed_response_wrapper(
+            instances.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = async_to_streamed_response_wrapper(
+            instances.resize_and_poll,
         )
 
     @cached_property

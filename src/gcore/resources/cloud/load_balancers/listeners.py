@@ -1109,6 +1109,15 @@ class ListenersResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             listeners.get,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            listeners.create_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            listeners.delete_and_poll,
+        )
+        self.update_and_poll = to_raw_response_wrapper(
+            listeners.update_and_poll,
+        )
 
 
 class AsyncListenersResourceWithRawResponse:
@@ -1129,6 +1138,15 @@ class AsyncListenersResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             listeners.get,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            listeners.create_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            listeners.delete_and_poll,
+        )
+        self.update_and_poll = async_to_raw_response_wrapper(
+            listeners.update_and_poll,
         )
 
 
@@ -1151,6 +1169,15 @@ class ListenersResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             listeners.get,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            listeners.create_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            listeners.delete_and_poll,
+        )
+        self.update_and_poll = to_streamed_response_wrapper(
+            listeners.update_and_poll,
+        )
 
 
 class AsyncListenersResourceWithStreamingResponse:
@@ -1171,4 +1198,13 @@ class AsyncListenersResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             listeners.get,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            listeners.create_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            listeners.delete_and_poll,
+        )
+        self.update_and_poll = async_to_streamed_response_wrapper(
+            listeners.update_and_poll,
         )

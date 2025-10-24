@@ -994,6 +994,15 @@ class RulesResourceWithRawResponse:
         self.replace = to_raw_response_wrapper(
             rules.replace,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            rules.create_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            rules.delete_and_poll,
+        )
+        self.replace_and_poll = to_raw_response_wrapper(
+            rules.replace_and_poll,
+        )
 
 
 class AsyncRulesResourceWithRawResponse:
@@ -1014,6 +1023,15 @@ class AsyncRulesResourceWithRawResponse:
         )
         self.replace = async_to_raw_response_wrapper(
             rules.replace,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            rules.create_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            rules.delete_and_poll,
+        )
+        self.replace_and_poll = async_to_raw_response_wrapper(
+            rules.replace_and_poll,
         )
 
 
@@ -1036,6 +1054,15 @@ class RulesResourceWithStreamingResponse:
         self.replace = to_streamed_response_wrapper(
             rules.replace,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            rules.create_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            rules.delete_and_poll,
+        )
+        self.replace_and_poll = to_streamed_response_wrapper(
+            rules.replace_and_poll,
+        )
 
 
 class AsyncRulesResourceWithStreamingResponse:
@@ -1056,4 +1083,13 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.replace = async_to_streamed_response_wrapper(
             rules.replace,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            rules.create_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            rules.delete_and_poll,
+        )
+        self.replace_and_poll = async_to_streamed_response_wrapper(
+            rules.replace_and_poll,
         )
