@@ -886,7 +886,7 @@ class TestResources:
     def test_method_purge_with_all_params_overload_1(self, client: Gcore) -> None:
         resource = client.cdn.resources.purge(
             resource_id=0,
-            urls=["string"],
+            urls=["/some-url.jpg", "/img/example.jpg"],
         )
         assert resource is None
 
@@ -925,7 +925,7 @@ class TestResources:
     def test_method_purge_with_all_params_overload_2(self, client: Gcore) -> None:
         resource = client.cdn.resources.purge(
             resource_id=0,
-            paths=["string"],
+            paths=["/images/*", "/videos/*"],
         )
         assert resource is None
 
@@ -2202,7 +2202,7 @@ class TestAsyncResources:
     async def test_method_purge_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         resource = await async_client.cdn.resources.purge(
             resource_id=0,
-            urls=["string"],
+            urls=["/some-url.jpg", "/img/example.jpg"],
         )
         assert resource is None
 
@@ -2241,7 +2241,7 @@ class TestAsyncResources:
     async def test_method_purge_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
         resource = await async_client.cdn.resources.purge(
             resource_id=0,
-            paths=["string"],
+            paths=["/images/*", "/videos/*"],
         )
         assert resource is None
 
