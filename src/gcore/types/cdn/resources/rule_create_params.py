@@ -812,7 +812,10 @@ class OptionsProxyConnectTimeout(TypedDict, total=False):
     """
 
     value: Required[str]
-    """Timeout value in seconds."""
+    """Timeout value in seconds.
+
+    Supported range: **1s - 5s**.
+    """
 
 
 class OptionsProxyReadTimeout(TypedDict, total=False):
@@ -826,7 +829,10 @@ class OptionsProxyReadTimeout(TypedDict, total=False):
     """
 
     value: Required[str]
-    """Timeout value in seconds."""
+    """Timeout value in seconds.
+
+    Supported range: **1s - 30s**.
+    """
 
 
 class OptionsQueryParamsBlacklist(TypedDict, total=False):
