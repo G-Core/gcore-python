@@ -736,7 +736,10 @@ class OptionsProxyConnectTimeout(BaseModel):
     """
 
     value: str
-    """Timeout value in seconds."""
+    """Timeout value in seconds.
+
+    Supported range: **1s - 5s**.
+    """
 
 
 class OptionsProxyReadTimeout(BaseModel):
@@ -750,7 +753,10 @@ class OptionsProxyReadTimeout(BaseModel):
     """
 
     value: str
-    """Timeout value in seconds."""
+    """Timeout value in seconds.
+
+    Supported range: **1s - 30s**.
+    """
 
 
 class OptionsQueryParamsBlacklist(BaseModel):
