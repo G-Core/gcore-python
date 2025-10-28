@@ -212,6 +212,16 @@ class TestListeners:
         assert_matches_type(TaskIDList, listener, path=["response"])
 
     @parametrize
+    def test_method_delete_with_all_params(self, client: Gcore) -> None:
+        listener = client.cloud.load_balancers.listeners.delete(
+            listener_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+            delete_default_pool=False,
+        )
+        assert_matches_type(TaskIDList, listener, path=["response"])
+
+    @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.listeners.with_raw_response.delete(
             listener_id="00000000-0000-4000-8000-000000000000",
@@ -501,6 +511,16 @@ class TestAsyncListeners:
             listener_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
+        )
+        assert_matches_type(TaskIDList, listener, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
+        listener = await async_client.cloud.load_balancers.listeners.delete(
+            listener_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+            delete_default_pool=False,
         )
         assert_matches_type(TaskIDList, listener, path=["response"])
 
