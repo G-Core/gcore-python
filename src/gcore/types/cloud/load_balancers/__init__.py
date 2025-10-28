@@ -10,6 +10,7 @@ from .pool_update_params import PoolUpdateParams as PoolUpdateParams
 from .listener_get_params import ListenerGetParams as ListenerGetParams
 from .listener_list_params import ListenerListParams as ListenerListParams
 from .listener_create_params import ListenerCreateParams as ListenerCreateParams
+from .listener_delete_params import ListenerDeleteParams as ListenerDeleteParams
 from .listener_update_params import ListenerUpdateParams as ListenerUpdateParams
 from .l7_policy_create_params import L7PolicyCreateParams as L7PolicyCreateParams
 from .l7_policy_replace_params import L7PolicyReplaceParams as L7PolicyReplaceParams
