@@ -23,6 +23,7 @@ from ....types.cloud.load_balancers import (
     listener_get_params,
     listener_list_params,
     listener_create_params,
+    listener_delete_params,
     listener_update_params,
 )
 from ....types.cloud.lb_listener_protocol import LbListenerProtocol
@@ -95,7 +96,8 @@ class ListenersResource(SyncAPIResource):
 
           allowed_cidrs: Network CIDRs from which service will be accessible
 
-          connection_limit: Limit of the simultaneous connections
+          connection_limit: Limit of the simultaneous connections. If -1 is provided, it is translated to
+              the default value 100000.
 
           insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
               Only used with HTTP or `TERMINATED_HTTPS` protocols.
@@ -186,7 +188,8 @@ class ListenersResource(SyncAPIResource):
 
           allowed_cidrs: Network CIDRs from which service will be accessible
 
-          connection_limit: Limit of simultaneous connections
+          connection_limit: Limit of simultaneous connections. If -1 is provided, it is translated to the
+              default value 100000.
 
           name: Load balancer listener name
 
@@ -302,6 +305,7 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        delete_default_pool: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -318,6 +322,8 @@ class ListenersResource(SyncAPIResource):
           region_id: Region ID
 
           listener_id: Listener ID
+
+          delete_default_pool: Delete default pool attached directly to the listener.
 
           extra_headers: Send extra headers
 
@@ -336,7 +342,13 @@ class ListenersResource(SyncAPIResource):
         return self._delete(
             f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"delete_default_pool": delete_default_pool}, listener_delete_params.ListenerDeleteParams
+                ),
             ),
             cast_to=TaskIDList,
         )
@@ -457,7 +469,8 @@ class AsyncListenersResource(AsyncAPIResource):
 
           allowed_cidrs: Network CIDRs from which service will be accessible
 
-          connection_limit: Limit of the simultaneous connections
+          connection_limit: Limit of the simultaneous connections. If -1 is provided, it is translated to
+              the default value 100000.
 
           insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
               Only used with HTTP or `TERMINATED_HTTPS` protocols.
@@ -548,7 +561,8 @@ class AsyncListenersResource(AsyncAPIResource):
 
           allowed_cidrs: Network CIDRs from which service will be accessible
 
-          connection_limit: Limit of simultaneous connections
+          connection_limit: Limit of simultaneous connections. If -1 is provided, it is translated to the
+              default value 100000.
 
           name: Load balancer listener name
 
@@ -664,6 +678,7 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        delete_default_pool: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -680,6 +695,8 @@ class AsyncListenersResource(AsyncAPIResource):
           region_id: Region ID
 
           listener_id: Listener ID
+
+          delete_default_pool: Delete default pool attached directly to the listener.
 
           extra_headers: Send extra headers
 
@@ -698,7 +715,13 @@ class AsyncListenersResource(AsyncAPIResource):
         return await self._delete(
             f"/cloud/v1/lblisteners/{project_id}/{region_id}/{listener_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"delete_default_pool": delete_default_pool}, listener_delete_params.ListenerDeleteParams
+                ),
             ),
             cast_to=TaskIDList,
         )
