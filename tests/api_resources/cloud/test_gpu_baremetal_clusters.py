@@ -57,6 +57,12 @@ class TestGPUBaremetalClusters:
                     "ssh_key_name": "my-ssh-key",
                     "username": "admin",
                 },
+                "file_shares": [
+                    {
+                        "id": "a3f2d1b8-45e6-4f8a-bb5d-19dbf2cd7e9a",
+                        "mount_path": "/mnt/vast",
+                    }
+                ],
                 "security_groups": [{"id": "b4849ffa-89f2-45a1-951f-0ae5b7809d98"}],
                 "user_data": "eyJ0ZXN0IjogImRhdGEifQ==",
             },
@@ -549,6 +555,12 @@ class TestAsyncGPUBaremetalClusters:
                     "ssh_key_name": "my-ssh-key",
                     "username": "admin",
                 },
+                "file_shares": [
+                    {
+                        "id": "a3f2d1b8-45e6-4f8a-bb5d-19dbf2cd7e9a",
+                        "mount_path": "/mnt/vast",
+                    }
+                ],
                 "security_groups": [{"id": "b4849ffa-89f2-45a1-951f-0ae5b7809d98"}],
                 "user_data": "eyJ0ZXN0IjogImRhdGEifQ==",
             },

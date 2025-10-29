@@ -11,6 +11,7 @@ from ..._models import BaseModel
 __all__ = [
     "GPUBaremetalCluster",
     "ServersSettings",
+    "ServersSettingsFileShare",
     "ServersSettingsInterface",
     "ServersSettingsInterfaceExternalInterfaceOutputSerializer",
     "ServersSettingsInterfaceSubnetInterfaceOutputSerializer",
@@ -19,6 +20,14 @@ __all__ = [
     "ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerFloatingIP",
     "ServersSettingsSecurityGroup",
 ]
+
+
+class ServersSettingsFileShare(BaseModel):
+    id: str
+    """Unique identifier of the file share in UUID format."""
+
+    mount_path: str
+    """Absolute mount path inside the system where the file share will be mounted."""
 
 
 class ServersSettingsInterfaceExternalInterfaceOutputSerializer(BaseModel):
@@ -90,6 +99,9 @@ class ServersSettingsSecurityGroup(BaseModel):
 
 
 class ServersSettings(BaseModel):
+    file_shares: List[ServersSettingsFileShare]
+    """List of file shares mounted across the cluster."""
+
     interfaces: List[ServersSettingsInterface]
 
     security_groups: List[ServersSettingsSecurityGroup]
@@ -99,7 +111,7 @@ class ServersSettings(BaseModel):
     """SSH key name"""
 
     user_data: Optional[str] = None
-    """Optional custom user data (Base64-encoded) Mutually exclusive with 'password'."""
+    """Optional custom user data"""
 
 
 class GPUBaremetalCluster(BaseModel):
