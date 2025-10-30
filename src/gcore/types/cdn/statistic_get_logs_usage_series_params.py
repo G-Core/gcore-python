@@ -11,20 +11,10 @@ __all__ = ["StatisticGetLogsUsageSeriesParams"]
 
 class StatisticGetLogsUsageSeriesParams(TypedDict, total=False):
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
-
-    Example:
-
-    - &from=2020-01-01T00:00:00.000
-    """
+    """Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)"""
 
     to: Required[str]
-    """End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
-
-    Example:
-
-    - &from=2020-01-01T00:00:00.000
-    """
+    """End of the requested time period (ISO 8601/RFC 3339 format, UTC.)"""
 
     resource: int
     """CDN resources IDs by that statistics data is grouped.
@@ -32,4 +22,7 @@ class StatisticGetLogsUsageSeriesParams(TypedDict, total=False):
     To request multiple values, use:
 
     - &resource=1&resource=2
+
+    If CDN resource ID is not specified, data related to all CDN resources is
+    returned.
     """

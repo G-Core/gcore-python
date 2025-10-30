@@ -22,4 +22,7 @@ class StatisticGetShieldUsageSeriesParams(TypedDict, total=False):
     To request multiple values, use:
 
     - &resource=1&resource=2
+
+    If CDN resource ID is not specified, data related to all CDN resources is
+    returned.
     """

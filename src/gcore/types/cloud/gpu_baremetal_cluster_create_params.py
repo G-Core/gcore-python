@@ -15,6 +15,7 @@ __all__ = [
     "ServersSettingsInterfaceAnySubnetInterfaceInputSerializer",
     "ServersSettingsInterfaceAnySubnetInterfaceInputSerializerFloatingIP",
     "ServersSettingsCredentials",
+    "ServersSettingsFileShare",
     "ServersSettingsSecurityGroup",
 ]
 
@@ -127,6 +128,14 @@ class ServersSettingsCredentials(TypedDict, total=False):
     """The 'username' and 'password' fields create a new user on the system"""
 
 
+class ServersSettingsFileShare(TypedDict, total=False):
+    id: Required[str]
+    """Unique identifier of the file share in UUID format."""
+
+    mount_path: Required[str]
+    """Absolute mount path inside the system where the file share will be mounted."""
+
+
 class ServersSettingsSecurityGroup(TypedDict, total=False):
     id: Required[str]
     """Resource ID"""
@@ -138,6 +147,9 @@ class ServersSettings(TypedDict, total=False):
 
     credentials: ServersSettingsCredentials
     """Optional server access credentials"""
+
+    file_shares: Iterable[ServersSettingsFileShare]
+    """List of file shares to be mounted across the cluster."""
 
     security_groups: Iterable[ServersSettingsSecurityGroup]
     """List of security groups UUIDs"""

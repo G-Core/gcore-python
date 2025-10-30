@@ -1251,6 +1251,15 @@ class ImagesResourceWithRawResponse:
         self.upload = to_raw_response_wrapper(
             images.upload,
         )
+        self.delete_and_poll = to_raw_response_wrapper(
+            images.delete_and_poll,
+        )
+        self.create_from_volume_and_poll = to_raw_response_wrapper(
+            images.create_from_volume_and_poll,
+        )
+        self.upload_and_poll = to_raw_response_wrapper(
+            images.upload_and_poll,
+        )
 
 
 class AsyncImagesResourceWithRawResponse:
@@ -1274,6 +1283,15 @@ class AsyncImagesResourceWithRawResponse:
         )
         self.upload = async_to_raw_response_wrapper(
             images.upload,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            images.delete_and_poll,
+        )
+        self.create_from_volume_and_poll = async_to_raw_response_wrapper(
+            images.create_from_volume_and_poll,
+        )
+        self.upload_and_poll = async_to_raw_response_wrapper(
+            images.upload_and_poll,
         )
 
 
@@ -1299,6 +1317,15 @@ class ImagesResourceWithStreamingResponse:
         self.upload = to_streamed_response_wrapper(
             images.upload,
         )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            images.delete_and_poll,
+        )
+        self.create_from_volume_and_poll = to_streamed_response_wrapper(
+            images.create_from_volume_and_poll,
+        )
+        self.upload_and_poll = to_streamed_response_wrapper(
+            images.upload_and_poll,
+        )
 
 
 class AsyncImagesResourceWithStreamingResponse:
@@ -1322,4 +1349,13 @@ class AsyncImagesResourceWithStreamingResponse:
         )
         self.upload = async_to_streamed_response_wrapper(
             images.upload,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            images.delete_and_poll,
+        )
+        self.create_from_volume_and_poll = async_to_streamed_response_wrapper(
+            images.create_from_volume_and_poll,
+        )
+        self.upload_and_poll = async_to_streamed_response_wrapper(
+            images.upload_and_poll,
         )

@@ -1022,6 +1022,12 @@ class ServersResourceWithRawResponse:
         self.rebuild = to_raw_response_wrapper(
             servers.rebuild,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            servers.create_and_poll,
+        )
+        self.rebuild_and_poll = to_raw_response_wrapper(
+            servers.rebuild_and_poll,
+        )
 
 
 class AsyncServersResourceWithRawResponse:
@@ -1036,6 +1042,12 @@ class AsyncServersResourceWithRawResponse:
         )
         self.rebuild = async_to_raw_response_wrapper(
             servers.rebuild,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            servers.create_and_poll,
+        )
+        self.rebuild_and_poll = async_to_raw_response_wrapper(
+            servers.rebuild_and_poll,
         )
 
 
@@ -1052,6 +1064,12 @@ class ServersResourceWithStreamingResponse:
         self.rebuild = to_streamed_response_wrapper(
             servers.rebuild,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            servers.create_and_poll,
+        )
+        self.rebuild_and_poll = to_streamed_response_wrapper(
+            servers.rebuild_and_poll,
+        )
 
 
 class AsyncServersResourceWithStreamingResponse:
@@ -1066,4 +1084,10 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.rebuild = async_to_streamed_response_wrapper(
             servers.rebuild,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            servers.create_and_poll,
+        )
+        self.rebuild_and_poll = async_to_streamed_response_wrapper(
+            servers.rebuild_and_poll,
         )

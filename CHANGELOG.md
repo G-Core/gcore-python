@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.18.0 (2025-10-30)
+
+Full Changelog: [v0.17.0...v0.18.0](https://github.com/G-Core/gcore-python/compare/v0.17.0...v0.18.0)
+
+### Features
+
+* **api:** aggregated API specs update ([3ef8586](https://github.com/G-Core/gcore-python/commit/3ef8586481df9533a0627310458bb72b9b458d2f))
+* **api:** aggregated API specs update ([af54c88](https://github.com/G-Core/gcore-python/commit/af54c886222ea41e6ef57d8683fbb64e2b688a15))
+* **api:** aggregated API specs update ([4e62953](https://github.com/G-Core/gcore-python/commit/4e629534e07db80d93c46e5ccc5e3d2ba48d9eb4))
+* **api:** aggregated API specs update ([18614cb](https://github.com/G-Core/gcore-python/commit/18614cb786fd3ea9020cee18c2a23c4c81f116f3))
+* **api:** aggregated API specs update ([926c0dd](https://github.com/G-Core/gcore-python/commit/926c0ddfcef420ba47eca7b399ea43462a18371a))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([cd7152c](https://github.com/G-Core/gcore-python/commit/cd7152cd959a9984e5c60edb41d16fa2db342012))
+
+
+### Chores
+
+* **cloud:** add *_and_poll() to *WithRawResponse and *WithStreaming ([d8886ce](https://github.com/G-Core/gcore-python/commit/d8886ce4abeadd3d260c3f533e72b778d521482c))
+* **internal/tests:** avoid race condition with implicit client cleanup ([67e4c77](https://github.com/G-Core/gcore-python/commit/67e4c77936fca0b2192b931ec71003dd62383c81))
+
 ## 0.17.0 (2025-10-21)
 
 Full Changelog: [v0.16.0...v0.17.0](https://github.com/G-Core/gcore-python/compare/v0.16.0...v0.17.0)

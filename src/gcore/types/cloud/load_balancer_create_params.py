@@ -318,7 +318,10 @@ class Listener(TypedDict, total=False):
     """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
-    """Limit of the simultaneous connections"""
+    """Limit of the simultaneous connections.
+
+    If -1 is provided, it is translated to the default value 100000.
+    """
 
     insert_x_forwarded: bool
     """Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.

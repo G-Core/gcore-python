@@ -17,7 +17,7 @@ class StatisticGetLogsUsageAggregatedParams(TypedDict, total=False):
     """End of the requested time period (ISO 8601/RFC 3339 format, UTC.)"""
 
     flat: bool
-    """The waу parameters are arranged in the response.
+    """The way the parameters are arranged in the response.
 
     Possible values:
 
@@ -39,4 +39,7 @@ class StatisticGetLogsUsageAggregatedParams(TypedDict, total=False):
     To request multiple values, use:
 
     - &resource=1&resource=2
+
+    If CDN resource ID is not specified, data related to all CDN resources is
+    returned.
     """

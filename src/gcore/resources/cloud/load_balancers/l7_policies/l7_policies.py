@@ -958,6 +958,15 @@ class L7PoliciesResourceWithRawResponse:
         self.replace = to_raw_response_wrapper(
             l7_policies.replace,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            l7_policies.create_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            l7_policies.delete_and_poll,
+        )
+        self.replace_and_poll = to_raw_response_wrapper(
+            l7_policies.replace_and_poll,
+        )
 
     @cached_property
     def rules(self) -> RulesResourceWithRawResponse:
@@ -982,6 +991,15 @@ class AsyncL7PoliciesResourceWithRawResponse:
         )
         self.replace = async_to_raw_response_wrapper(
             l7_policies.replace,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            l7_policies.create_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            l7_policies.delete_and_poll,
+        )
+        self.replace_and_poll = async_to_raw_response_wrapper(
+            l7_policies.replace_and_poll,
         )
 
     @cached_property
@@ -1008,6 +1026,15 @@ class L7PoliciesResourceWithStreamingResponse:
         self.replace = to_streamed_response_wrapper(
             l7_policies.replace,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            l7_policies.create_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            l7_policies.delete_and_poll,
+        )
+        self.replace_and_poll = to_streamed_response_wrapper(
+            l7_policies.replace_and_poll,
+        )
 
     @cached_property
     def rules(self) -> RulesResourceWithStreamingResponse:
@@ -1032,6 +1059,15 @@ class AsyncL7PoliciesResourceWithStreamingResponse:
         )
         self.replace = async_to_streamed_response_wrapper(
             l7_policies.replace,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            l7_policies.create_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            l7_policies.delete_and_poll,
+        )
+        self.replace_and_poll = async_to_streamed_response_wrapper(
+            l7_policies.replace_and_poll,
         )
 
     @cached_property

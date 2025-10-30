@@ -21,7 +21,10 @@ class ListenerUpdateParams(TypedDict, total=False):
     """Network CIDRs from which service will be accessible"""
 
     connection_limit: int
-    """Limit of simultaneous connections"""
+    """Limit of simultaneous connections.
+
+    If -1 is provided, it is translated to the default value 100000.
+    """
 
     name: str
     """Load balancer listener name"""

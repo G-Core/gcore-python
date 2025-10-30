@@ -1197,6 +1197,15 @@ class PoolsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             pools.get,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            pools.create_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            pools.delete_and_poll,
+        )
+        self.update_and_poll = to_raw_response_wrapper(
+            pools.update_and_poll,
+        )
 
     @cached_property
     def health_monitors(self) -> HealthMonitorsResourceWithRawResponse:
@@ -1225,6 +1234,15 @@ class AsyncPoolsResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             pools.get,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            pools.create_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            pools.delete_and_poll,
+        )
+        self.update_and_poll = async_to_raw_response_wrapper(
+            pools.update_and_poll,
         )
 
     @cached_property
@@ -1255,6 +1273,15 @@ class PoolsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             pools.get,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            pools.create_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            pools.delete_and_poll,
+        )
+        self.update_and_poll = to_streamed_response_wrapper(
+            pools.update_and_poll,
+        )
 
     @cached_property
     def health_monitors(self) -> HealthMonitorsResourceWithStreamingResponse:
@@ -1283,6 +1310,15 @@ class AsyncPoolsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             pools.get,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            pools.create_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            pools.delete_and_poll,
+        )
+        self.update_and_poll = async_to_streamed_response_wrapper(
+            pools.update_and_poll,
         )
 
     @cached_property

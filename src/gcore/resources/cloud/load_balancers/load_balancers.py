@@ -1498,6 +1498,18 @@ class LoadBalancersResourceWithRawResponse:
         self.resize = to_raw_response_wrapper(
             load_balancers.resize,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            load_balancers.create_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            load_balancers.delete_and_poll,
+        )
+        self.failover_and_poll = to_raw_response_wrapper(
+            load_balancers.failover_and_poll,
+        )
+        self.resize_and_poll = to_raw_response_wrapper(
+            load_balancers.resize_and_poll,
+        )
 
     @cached_property
     def l7_policies(self) -> L7PoliciesResourceWithRawResponse:
@@ -1548,6 +1560,18 @@ class AsyncLoadBalancersResourceWithRawResponse:
         )
         self.resize = async_to_raw_response_wrapper(
             load_balancers.resize,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            load_balancers.create_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            load_balancers.delete_and_poll,
+        )
+        self.failover_and_poll = async_to_raw_response_wrapper(
+            load_balancers.failover_and_poll,
+        )
+        self.resize_and_poll = async_to_raw_response_wrapper(
+            load_balancers.resize_and_poll,
         )
 
     @cached_property
@@ -1600,6 +1624,18 @@ class LoadBalancersResourceWithStreamingResponse:
         self.resize = to_streamed_response_wrapper(
             load_balancers.resize,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            load_balancers.create_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            load_balancers.delete_and_poll,
+        )
+        self.failover_and_poll = to_streamed_response_wrapper(
+            load_balancers.failover_and_poll,
+        )
+        self.resize_and_poll = to_streamed_response_wrapper(
+            load_balancers.resize_and_poll,
+        )
 
     @cached_property
     def l7_policies(self) -> L7PoliciesResourceWithStreamingResponse:
@@ -1650,6 +1686,18 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
         )
         self.resize = async_to_streamed_response_wrapper(
             load_balancers.resize,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            load_balancers.create_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            load_balancers.delete_and_poll,
+        )
+        self.failover_and_poll = async_to_streamed_response_wrapper(
+            load_balancers.failover_and_poll,
+        )
+        self.resize_and_poll = async_to_streamed_response_wrapper(
+            load_balancers.resize_and_poll,
         )
 
     @cached_property
