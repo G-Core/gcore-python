@@ -35,7 +35,6 @@ from .resources.waap import waap
 from .resources.cloud import cloud
 from .resources.storage import storage
 from .resources.fastedge import fastedge
-from .resources.security import security
 from .resources.streaming import streaming
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Gcore", "AsyncGcore", "Client", "AsyncClient"]
@@ -47,7 +46,6 @@ class Gcore(SyncAPIClient):
     iam: iam.IamResource
     fastedge: fastedge.FastedgeResource
     streaming: streaming.StreamingResource
-    security: security.SecurityResource
     dns: dns.DNSResource
     storage: storage.StorageResource
     cdn: cdn.CdnResource
@@ -140,7 +138,6 @@ class Gcore(SyncAPIClient):
         self.iam = iam.IamResource(self)
         self.fastedge = fastedge.FastedgeResource(self)
         self.streaming = streaming.StreamingResource(self)
-        self.security = security.SecurityResource(self)
         self.dns = dns.DNSResource(self)
         self.storage = storage.StorageResource(self)
         self.cdn = cdn.CdnResource(self)
@@ -284,7 +281,6 @@ class AsyncGcore(AsyncAPIClient):
     iam: iam.AsyncIamResource
     fastedge: fastedge.AsyncFastedgeResource
     streaming: streaming.AsyncStreamingResource
-    security: security.AsyncSecurityResource
     dns: dns.AsyncDNSResource
     storage: storage.AsyncStorageResource
     cdn: cdn.AsyncCdnResource
@@ -377,7 +373,6 @@ class AsyncGcore(AsyncAPIClient):
         self.iam = iam.AsyncIamResource(self)
         self.fastedge = fastedge.AsyncFastedgeResource(self)
         self.streaming = streaming.AsyncStreamingResource(self)
-        self.security = security.AsyncSecurityResource(self)
         self.dns = dns.AsyncDNSResource(self)
         self.storage = storage.AsyncStorageResource(self)
         self.cdn = cdn.AsyncCdnResource(self)
@@ -522,7 +517,6 @@ class GcoreWithRawResponse:
         self.iam = iam.IamResourceWithRawResponse(client.iam)
         self.fastedge = fastedge.FastedgeResourceWithRawResponse(client.fastedge)
         self.streaming = streaming.StreamingResourceWithRawResponse(client.streaming)
-        self.security = security.SecurityResourceWithRawResponse(client.security)
         self.dns = dns.DNSResourceWithRawResponse(client.dns)
         self.storage = storage.StorageResourceWithRawResponse(client.storage)
         self.cdn = cdn.CdnResourceWithRawResponse(client.cdn)
@@ -535,7 +529,6 @@ class AsyncGcoreWithRawResponse:
         self.iam = iam.AsyncIamResourceWithRawResponse(client.iam)
         self.fastedge = fastedge.AsyncFastedgeResourceWithRawResponse(client.fastedge)
         self.streaming = streaming.AsyncStreamingResourceWithRawResponse(client.streaming)
-        self.security = security.AsyncSecurityResourceWithRawResponse(client.security)
         self.dns = dns.AsyncDNSResourceWithRawResponse(client.dns)
         self.storage = storage.AsyncStorageResourceWithRawResponse(client.storage)
         self.cdn = cdn.AsyncCdnResourceWithRawResponse(client.cdn)
@@ -548,7 +541,6 @@ class GcoreWithStreamedResponse:
         self.iam = iam.IamResourceWithStreamingResponse(client.iam)
         self.fastedge = fastedge.FastedgeResourceWithStreamingResponse(client.fastedge)
         self.streaming = streaming.StreamingResourceWithStreamingResponse(client.streaming)
-        self.security = security.SecurityResourceWithStreamingResponse(client.security)
         self.dns = dns.DNSResourceWithStreamingResponse(client.dns)
         self.storage = storage.StorageResourceWithStreamingResponse(client.storage)
         self.cdn = cdn.CdnResourceWithStreamingResponse(client.cdn)
@@ -561,7 +553,6 @@ class AsyncGcoreWithStreamedResponse:
         self.iam = iam.AsyncIamResourceWithStreamingResponse(client.iam)
         self.fastedge = fastedge.AsyncFastedgeResourceWithStreamingResponse(client.fastedge)
         self.streaming = streaming.AsyncStreamingResourceWithStreamingResponse(client.streaming)
-        self.security = security.AsyncSecurityResourceWithStreamingResponse(client.security)
         self.dns = dns.AsyncDNSResourceWithStreamingResponse(client.dns)
         self.storage = storage.AsyncStorageResourceWithStreamingResponse(client.storage)
         self.cdn = cdn.AsyncCdnResourceWithStreamingResponse(client.cdn)
