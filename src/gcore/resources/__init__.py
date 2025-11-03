@@ -56,14 +56,6 @@ from .fastedge import (
     FastedgeResourceWithStreamingResponse,
     AsyncFastedgeResourceWithStreamingResponse,
 )
-from .security import (
-    SecurityResource,
-    AsyncSecurityResource,
-    SecurityResourceWithRawResponse,
-    AsyncSecurityResourceWithRawResponse,
-    SecurityResourceWithStreamingResponse,
-    AsyncSecurityResourceWithStreamingResponse,
-)
 from .streaming import (
     StreamingResource,
     AsyncStreamingResource,
@@ -104,12 +96,6 @@ __all__ = [
     "AsyncStreamingResourceWithRawResponse",
     "StreamingResourceWithStreamingResponse",
     "AsyncStreamingResourceWithStreamingResponse",
-    "SecurityResource",
-    "AsyncSecurityResource",
-    "SecurityResourceWithRawResponse",
-    "AsyncSecurityResourceWithRawResponse",
-    "SecurityResourceWithStreamingResponse",
-    "AsyncSecurityResourceWithStreamingResponse",
     "DNSResource",
     "AsyncDNSResource",
     "DNSResourceWithRawResponse",
