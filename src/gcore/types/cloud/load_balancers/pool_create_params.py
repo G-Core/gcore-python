@@ -45,7 +45,7 @@ class PoolCreateParams(TypedDict, total=False):
     load_balancer_id: Optional[str]
     """Loadbalancer ID"""
 
-    members: Optional[Iterable[Member]]
+    members: Iterable[Member]
     """Pool members"""
 
     secret_id: Optional[str]
