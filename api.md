@@ -1006,6 +1006,63 @@ Methods:
 
 - <code title="post /cloud/v1/usage_report">client.cloud.usage_reports.<a href="./src/gcore/resources/cloud/usage_reports.py">get</a>(\*\*<a href="src/gcore/types/cloud/usage_report_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/usage_report.py">UsageReport</a></code>
 
+## Databases
+
+### Postgres
+
+#### Clusters
+
+Types:
+
+```python
+from gcore.types.cloud.databases.postgres import PostgresCluster, PostgresClusterShort
+```
+
+Methods:
+
+- <code title="post /cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}">client.cloud.databases.postgres.clusters.<a href="./src/gcore/resources/cloud/databases/postgres/clusters/clusters.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/cluster_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.databases.postgres.clusters.<a href="./src/gcore/resources/cloud/databases/postgres/clusters/clusters.py">update</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/cluster_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}">client.cloud.databases.postgres.clusters.<a href="./src/gcore/resources/cloud/databases/postgres/clusters/clusters.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/cluster_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/databases/postgres/postgres_cluster_short.py">SyncOffsetPage[PostgresClusterShort]</a></code>
+- <code title="delete /cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.databases.postgres.clusters.<a href="./src/gcore/resources/cloud/databases/postgres/clusters/clusters.py">delete</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.databases.postgres.clusters.<a href="./src/gcore/resources/cloud/databases/postgres/clusters/clusters.py">get</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/databases/postgres/postgres_cluster.py">PostgresCluster</a></code>
+
+##### UserCredentials
+
+Types:
+
+```python
+from gcore.types.cloud.databases.postgres.clusters import PostgresUserCredentials
+```
+
+Methods:
+
+- <code title="get /cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials">client.cloud.databases.postgres.clusters.user_credentials.<a href="./src/gcore/resources/cloud/databases/postgres/clusters/user_credentials.py">get</a>(username, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/databases/postgres/clusters/postgres_user_credentials.py">PostgresUserCredentials</a></code>
+- <code title="post /cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials">client.cloud.databases.postgres.clusters.user_credentials.<a href="./src/gcore/resources/cloud/databases/postgres/clusters/user_credentials.py">regenerate</a>(username, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/databases/postgres/clusters/postgres_user_credentials.py">PostgresUserCredentials</a></code>
+
+#### Configurations
+
+Types:
+
+```python
+from gcore.types.cloud.databases.postgres import PostgresConfiguration
+```
+
+Methods:
+
+- <code title="get /cloud/v1/dbaas/postgres/configuration/{project_id}/{region_id}">client.cloud.databases.postgres.configurations.<a href="./src/gcore/resources/cloud/databases/postgres/configurations.py">get</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/databases/postgres/postgres_configuration.py">PostgresConfiguration</a></code>
+
+#### CustomConfigurations
+
+Types:
+
+```python
+from gcore.types.cloud.databases.postgres import PgConfValidation
+```
+
+Methods:
+
+- <code title="post /cloud/v1/dbaas/postgres/validate_pg_conf/{project_id}/{region_id}">client.cloud.databases.postgres.custom_configurations.<a href="./src/gcore/resources/cloud/databases/postgres/custom_configurations.py">validate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/custom_configuration_validate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/databases/postgres/pg_conf_validation.py">PgConfValidation</a></code>
+
 # Waap
 
 Types:

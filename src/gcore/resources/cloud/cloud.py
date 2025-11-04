@@ -140,6 +140,14 @@ from .baremetal.baremetal import (
     BaremetalResourceWithStreamingResponse,
     AsyncBaremetalResourceWithStreamingResponse,
 )
+from .databases.databases import (
+    DatabasesResource,
+    AsyncDatabasesResource,
+    DatabasesResourceWithRawResponse,
+    AsyncDatabasesResourceWithRawResponse,
+    DatabasesResourceWithStreamingResponse,
+    AsyncDatabasesResourceWithStreamingResponse,
+)
 from .inference.inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -329,6 +337,10 @@ class CloudResource(SyncAPIResource):
         return UsageReportsResource(self._client)
 
     @cached_property
+    def databases(self) -> DatabasesResource:
+        return DatabasesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -459,6 +471,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResource:
         return AsyncUsageReportsResource(self._client)
+
+    @cached_property
+    def databases(self) -> AsyncDatabasesResource:
+        return AsyncDatabasesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -595,6 +611,10 @@ class CloudResourceWithRawResponse:
     def usage_reports(self) -> UsageReportsResourceWithRawResponse:
         return UsageReportsResourceWithRawResponse(self._cloud.usage_reports)
 
+    @cached_property
+    def databases(self) -> DatabasesResourceWithRawResponse:
+        return DatabasesResourceWithRawResponse(self._cloud.databases)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -710,6 +730,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResourceWithRawResponse:
         return AsyncUsageReportsResourceWithRawResponse(self._cloud.usage_reports)
+
+    @cached_property
+    def databases(self) -> AsyncDatabasesResourceWithRawResponse:
+        return AsyncDatabasesResourceWithRawResponse(self._cloud.databases)
 
 
 class CloudResourceWithStreamingResponse:
@@ -827,6 +851,10 @@ class CloudResourceWithStreamingResponse:
     def usage_reports(self) -> UsageReportsResourceWithStreamingResponse:
         return UsageReportsResourceWithStreamingResponse(self._cloud.usage_reports)
 
+    @cached_property
+    def databases(self) -> DatabasesResourceWithStreamingResponse:
+        return DatabasesResourceWithStreamingResponse(self._cloud.databases)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -942,3 +970,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResourceWithStreamingResponse:
         return AsyncUsageReportsResourceWithStreamingResponse(self._cloud.usage_reports)
+
+    @cached_property
+    def databases(self) -> AsyncDatabasesResourceWithStreamingResponse:
+        return AsyncDatabasesResourceWithStreamingResponse(self._cloud.databases)
