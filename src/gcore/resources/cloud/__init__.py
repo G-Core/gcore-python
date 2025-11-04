@@ -96,6 +96,14 @@ from .baremetal import (
     BaremetalResourceWithStreamingResponse,
     AsyncBaremetalResourceWithStreamingResponse,
 )
+from .databases import (
+    DatabasesResource,
+    AsyncDatabasesResource,
+    DatabasesResourceWithRawResponse,
+    AsyncDatabasesResourceWithRawResponse,
+    DatabasesResourceWithStreamingResponse,
+    AsyncDatabasesResourceWithStreamingResponse,
+)
 from .inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -374,6 +382,12 @@ __all__ = [
     "AsyncUsageReportsResourceWithRawResponse",
     "UsageReportsResourceWithStreamingResponse",
     "AsyncUsageReportsResourceWithStreamingResponse",
+    "DatabasesResource",
+    "AsyncDatabasesResource",
+    "DatabasesResourceWithRawResponse",
+    "AsyncDatabasesResourceWithRawResponse",
+    "DatabasesResourceWithStreamingResponse",
+    "AsyncDatabasesResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",
