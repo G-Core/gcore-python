@@ -34,7 +34,7 @@ client = Gcore(
 )
 
 project = client.cloud.projects.create(
-    name="New Project",
+    name="my-project",
 )
 print(project.id)
 ```
@@ -60,7 +60,7 @@ client = AsyncGcore(
 
 async def main() -> None:
     project = await client.cloud.projects.create(
-        name="New Project",
+        name="my-project",
     )
     print(project.id)
 
@@ -95,7 +95,7 @@ async def main() -> None:
         http_client=DefaultAioHttpClient(),
     ) as client:
         project = await client.cloud.projects.create(
-            name="New Project",
+            name="my-project",
         )
         print(project.id)
 
@@ -236,7 +236,7 @@ client = Gcore()
 
 try:
     client.cloud.projects.create(
-        name="New Project",
+        name="my-project",
     )
 except gcore.APIConnectionError as e:
     print("The server could not be reached")
@@ -280,7 +280,7 @@ client = Gcore(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).cloud.projects.create(
-    name="New Project",
+    name="my-project",
 )
 ```
 
@@ -305,7 +305,7 @@ client = Gcore(
 
 # Override per-request:
 client.with_options(timeout=5.0).cloud.projects.create(
-    name="New Project",
+    name="my-project",
 )
 ```
 
@@ -348,7 +348,7 @@ from gcore import Gcore
 
 client = Gcore()
 response = client.cloud.projects.with_raw_response.create(
-    name="New Project",
+    name="my-project",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -368,7 +368,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.cloud.projects.with_streaming_response.create(
-    name="New Project",
+    name="my-project",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

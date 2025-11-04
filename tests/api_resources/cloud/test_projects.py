@@ -21,24 +21,22 @@ class TestProjects:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         project = client.cloud.projects.create(
-            name="New Project",
+            name="my-project",
         )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         project = client.cloud.projects.create(
-            name="New Project",
-            client_id=3,
+            name="my-project",
             description="Project description",
-            state="ACTIVE",
         )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.projects.with_raw_response.create(
-            name="New Project",
+            name="my-project",
         )
 
         assert response.is_closed is True
@@ -49,7 +47,7 @@ class TestProjects:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.projects.with_streaming_response.create(
-            name="New Project",
+            name="my-project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -63,7 +61,7 @@ class TestProjects:
     def test_method_update(self, client: Gcore) -> None:
         project = client.cloud.projects.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -71,7 +69,7 @@ class TestProjects:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         project = client.cloud.projects.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
             description="Project description",
         )
         assert_matches_type(Project, project, path=["response"])
@@ -80,7 +78,7 @@ class TestProjects:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.cloud.projects.with_raw_response.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
         )
 
         assert response.is_closed is True
@@ -92,7 +90,7 @@ class TestProjects:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.cloud.projects.with_streaming_response.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -210,24 +208,22 @@ class TestAsyncProjects:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         project = await async_client.cloud.projects.create(
-            name="New Project",
+            name="my-project",
         )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         project = await async_client.cloud.projects.create(
-            name="New Project",
-            client_id=3,
+            name="my-project",
             description="Project description",
-            state="ACTIVE",
         )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.projects.with_raw_response.create(
-            name="New Project",
+            name="my-project",
         )
 
         assert response.is_closed is True
@@ -238,7 +234,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.projects.with_streaming_response.create(
-            name="New Project",
+            name="my-project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -252,7 +248,7 @@ class TestAsyncProjects:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         project = await async_client.cloud.projects.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -260,7 +256,7 @@ class TestAsyncProjects:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         project = await async_client.cloud.projects.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
             description="Project description",
         )
         assert_matches_type(Project, project, path=["response"])
@@ -269,7 +265,7 @@ class TestAsyncProjects:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.projects.with_raw_response.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
         )
 
         assert response.is_closed is True
@@ -281,7 +277,7 @@ class TestAsyncProjects:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.projects.with_streaming_response.update(
             project_id=0,
-            name="New Project",
+            name="my-project",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
