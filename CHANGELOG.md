@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.18.0 (2025-11-04)
+
+Full Changelog: [v0.17.0...v0.18.0](https://github.com/G-Core/gcore-python/compare/v0.17.0...v0.18.0)
+
+### Features
+
+* **api:** aggregated API specs update ([c69f622](https://github.com/G-Core/gcore-python/commit/c69f622f4d085d5c93978edbf4deb2ecbe4279d6))
+* **api:** aggregated API specs update ([e008291](https://github.com/G-Core/gcore-python/commit/e008291499f90553d12deffbcef5c4a9b6752f61))
+* **api:** aggregated API specs update ([7e17f98](https://github.com/G-Core/gcore-python/commit/7e17f98624fecfb8d1ad5a53a001dcd20ca15214))
+* **api:** aggregated API specs update ([01c7469](https://github.com/G-Core/gcore-python/commit/01c746977c89d813e54b97c87513960a5cba42c3))
+* **api:** aggregated API specs update ([3ef8586](https://github.com/G-Core/gcore-python/commit/3ef8586481df9533a0627310458bb72b9b458d2f))
+* **api:** aggregated API specs update ([af54c88](https://github.com/G-Core/gcore-python/commit/af54c886222ea41e6ef57d8683fbb64e2b688a15))
+* **api:** aggregated API specs update ([4e62953](https://github.com/G-Core/gcore-python/commit/4e629534e07db80d93c46e5ccc5e3d2ba48d9eb4))
+* **api:** aggregated API specs update ([18614cb](https://github.com/G-Core/gcore-python/commit/18614cb786fd3ea9020cee18c2a23c4c81f116f3))
+* **api:** aggregated API specs update ([926c0dd](https://github.com/G-Core/gcore-python/commit/926c0ddfcef420ba47eca7b399ea43462a18371a))
+* **cloud:** add support for postgres ([2802edf](https://github.com/G-Core/gcore-python/commit/2802edf3bbac88b644ba8ff4d5b83dc0606e4b48))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([cd7152c](https://github.com/G-Core/gcore-python/commit/cd7152cd959a9984e5c60edb41d16fa2db342012))
+* **cloud:** members not optional in lb pools create_and_poll ([27bc07a](https://github.com/G-Core/gcore-python/commit/27bc07acab63505e03f4a5b51e21544fe84877ec))
+
+
+### Chores
+
+* **cloud:** add *_and_poll() to *WithRawResponse and *WithStreaming ([d8886ce](https://github.com/G-Core/gcore-python/commit/d8886ce4abeadd3d260c3f533e72b778d521482c))
+* **internal/tests:** avoid race condition with implicit client cleanup ([67e4c77](https://github.com/G-Core/gcore-python/commit/67e4c77936fca0b2192b931ec71003dd62383c81))
+* **internal:** grammar fix (it's -&gt; its) ([9bf8a18](https://github.com/G-Core/gcore-python/commit/9bf8a18f42a2122f43d9084ff3287e4d1aa7dd95))
+
 ## 0.17.0 (2025-10-21)
 
 Full Changelog: [v0.16.0...v0.17.0](https://github.com/G-Core/gcore-python/compare/v0.16.0...v0.17.0)
