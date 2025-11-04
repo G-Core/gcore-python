@@ -377,11 +377,11 @@ class TestGcore:
     def test_cloud_project_id_client_params(self, client: Gcore) -> None:
         # Test with base client (no custom params)
         with pytest.raises(ValueError, match="Missing cloud_project_id argument;"):
-            client.cloud.projects.update(name="New Project")
+            client.cloud.projects.update(name="my-project")
 
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_project_id=0)
         with client as c2:
-            c2.cloud.projects.update(name="New Project")
+            c2.cloud.projects.update(name="my-project")
 
     def test_cloud_region_id_client_params(self, client: Gcore) -> None:
         # Test with base client (no custom params)
@@ -753,7 +753,7 @@ class TestGcore:
         respx_mock.post("/cloud/v1/projects").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.cloud.projects.with_streaming_response.create(name="New Project").__enter__()
+            client.cloud.projects.with_streaming_response.create(name="my-project").__enter__()
 
         assert _get_open_connections(client) == 0
 
@@ -763,7 +763,7 @@ class TestGcore:
         respx_mock.post("/cloud/v1/projects").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.cloud.projects.with_streaming_response.create(name="New Project").__enter__()
+            client.cloud.projects.with_streaming_response.create(name="my-project").__enter__()
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -792,7 +792,7 @@ class TestGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = client.cloud.projects.with_raw_response.create(name="New Project")
+        response = client.cloud.projects.with_raw_response.create(name="my-project")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -815,7 +815,7 @@ class TestGcore:
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
         response = client.cloud.projects.with_raw_response.create(
-            name="New Project", extra_headers={"x-stainless-retry-count": Omit()}
+            name="my-project", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -840,7 +840,7 @@ class TestGcore:
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
         response = client.cloud.projects.with_raw_response.create(
-            name="New Project", extra_headers={"x-stainless-retry-count": "42"}
+            name="my-project", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1216,11 +1216,11 @@ class TestAsyncGcore:
     async def test_cloud_project_id_client_params(self, async_client: AsyncGcore) -> None:
         # Test with base client (no custom params)
         with pytest.raises(ValueError, match="Missing cloud_project_id argument;"):
-            await async_client.cloud.projects.update(name="New Project")
+            await async_client.cloud.projects.update(name="my-project")
 
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_project_id=0)
         async with client as c2:
-            await c2.cloud.projects.update(name="New Project")
+            await c2.cloud.projects.update(name="my-project")
 
     async def test_cloud_region_id_client_params(self, async_client: AsyncGcore) -> None:
         # Test with base client (no custom params)
@@ -1603,7 +1603,7 @@ class TestAsyncGcore:
         respx_mock.post("/cloud/v1/projects").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.cloud.projects.with_streaming_response.create(name="New Project").__aenter__()
+            await async_client.cloud.projects.with_streaming_response.create(name="my-project").__aenter__()
 
         assert _get_open_connections(async_client) == 0
 
@@ -1613,7 +1613,7 @@ class TestAsyncGcore:
         respx_mock.post("/cloud/v1/projects").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.cloud.projects.with_streaming_response.create(name="New Project").__aenter__()
+            await async_client.cloud.projects.with_streaming_response.create(name="my-project").__aenter__()
         assert _get_open_connections(async_client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1642,7 +1642,7 @@ class TestAsyncGcore:
 
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
-        response = await client.cloud.projects.with_raw_response.create(name="New Project")
+        response = await client.cloud.projects.with_raw_response.create(name="my-project")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1667,7 +1667,7 @@ class TestAsyncGcore:
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
         response = await client.cloud.projects.with_raw_response.create(
-            name="New Project", extra_headers={"x-stainless-retry-count": Omit()}
+            name="my-project", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1692,7 +1692,7 @@ class TestAsyncGcore:
         respx_mock.post("/cloud/v1/projects").mock(side_effect=retry_handler)
 
         response = await client.cloud.projects.with_raw_response.create(
-            name="New Project", extra_headers={"x-stainless-retry-count": "42"}
+            name="my-project", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
