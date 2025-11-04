@@ -50,9 +50,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        client_id: Optional[int] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        state: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,11 +66,7 @@ class ProjectsResource(SyncAPIResource):
         Args:
           name: Unique project name for a client. Each client always has one "default" project.
 
-          client_id: ID associated with the client.
-
           description: Description of the project.
-
-          state: State of the project.
 
           extra_headers: Send extra headers
 
@@ -87,9 +81,7 @@ class ProjectsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "client_id": client_id,
                     "description": description,
-                    "state": state,
                 },
                 project_create_params.ProjectCreateParams,
             ),
@@ -112,10 +104,8 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """Update project name and description.
-
-        Project management must be enabled to
-        perform this operation.
+        """
+        Update project name and description.
 
         Args:
           name: Name of the entity, following a specific format.
@@ -306,9 +296,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        client_id: Optional[int] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        state: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -324,11 +312,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         Args:
           name: Unique project name for a client. Each client always has one "default" project.
 
-          client_id: ID associated with the client.
-
           description: Description of the project.
-
-          state: State of the project.
 
           extra_headers: Send extra headers
 
@@ -343,9 +327,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
-                    "client_id": client_id,
                     "description": description,
-                    "state": state,
                 },
                 project_create_params.ProjectCreateParams,
             ),
@@ -368,10 +350,8 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """Update project name and description.
-
-        Project management must be enabled to
-        perform this operation.
+        """
+        Update project name and description.
 
         Args:
           name: Name of the entity, following a specific format.
