@@ -53,7 +53,7 @@ class Storage(BaseModel):
     created_at: str
     """ISO 8601 timestamp when the storage was created"""
 
-    location: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"]
+    location: str
     """Geographic location code where the storage is provisioned"""
 
     name: str
