@@ -28,11 +28,11 @@ class TestCredentials:
     def test_method_recreate_with_all_params(self, client: Gcore) -> None:
         credential = client.storage.credentials.recreate(
             storage_id=0,
-            delete_sftp_password=False,
+            delete_sftp_password=True,
             generate_s3_keys=True,
             generate_sftp_password=True,
-            reset_sftp_keys=False,
-            sftp_password="MyNewSecurePassword123",
+            reset_sftp_keys=True,
+            sftp_password="sftp_password",
         )
         assert_matches_type(Storage, credential, path=["response"])
 
@@ -77,11 +77,11 @@ class TestAsyncCredentials:
     async def test_method_recreate_with_all_params(self, async_client: AsyncGcore) -> None:
         credential = await async_client.storage.credentials.recreate(
             storage_id=0,
-            delete_sftp_password=False,
+            delete_sftp_password=True,
             generate_s3_keys=True,
             generate_sftp_password=True,
-            reset_sftp_keys=False,
-            sftp_password="MyNewSecurePassword123",
+            reset_sftp_keys=True,
+            sftp_password="sftp_password",
         )
         assert_matches_type(Storage, credential, path=["response"])
 

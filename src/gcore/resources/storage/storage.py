@@ -95,7 +95,7 @@ class StorageResource(SyncAPIResource):
     def create(
         self,
         *,
-        location: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"],
+        location: str,
         name: str,
         type: Literal["sftp", "s3"],
         generate_sftp_password: bool | Omit = omit,
@@ -499,7 +499,7 @@ class AsyncStorageResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        location: Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"],
+        location: str,
         name: str,
         type: Literal["sftp", "s3"],
         generate_sftp_password: bool | Omit = omit,
