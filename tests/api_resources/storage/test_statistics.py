@@ -29,7 +29,7 @@ class TestStatistics:
     def test_method_get_usage_aggregated_with_all_params(self, client: Gcore) -> None:
         statistic = client.storage.statistics.get_usage_aggregated(
             from_="2006-01-02",
-            locations=["s-ed1", "s-drc2", "s-sgc1"],
+            locations=["s-region-1", "s-region-2"],
             storages=["123-myStorage"],
             to="2006-01-02",
         )
@@ -65,7 +65,7 @@ class TestStatistics:
         statistic = client.storage.statistics.get_usage_series(
             from_="2006-01-02",
             granularity="12h",
-            locations=["s-ed1", "s-drc2", "s-sgc1"],
+            locations=["s-region-1", "s-region-2"],
             source=0,
             storages=["123-myStorage"],
             to="2006-01-02",
@@ -108,7 +108,7 @@ class TestAsyncStatistics:
     async def test_method_get_usage_aggregated_with_all_params(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.storage.statistics.get_usage_aggregated(
             from_="2006-01-02",
-            locations=["s-ed1", "s-drc2", "s-sgc1"],
+            locations=["s-region-1", "s-region-2"],
             storages=["123-myStorage"],
             to="2006-01-02",
         )
@@ -144,7 +144,7 @@ class TestAsyncStatistics:
         statistic = await async_client.storage.statistics.get_usage_series(
             from_="2006-01-02",
             granularity="12h",
-            locations=["s-ed1", "s-drc2", "s-sgc1"],
+            locations=["s-region-1", "s-region-2"],
             source=0,
             storages=["123-myStorage"],
             to="2006-01-02",

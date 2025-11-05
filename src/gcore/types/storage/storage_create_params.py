@@ -8,7 +8,7 @@ __all__ = ["StorageCreateParams"]
 
 
 class StorageCreateParams(TypedDict, total=False):
-    location: Required[Literal["s-ed1", "s-drc2", "s-sgc1", "s-nhn2", "s-darz", "s-ws1", "ams", "sin", "fra", "mia"]]
+    location: Required[str]
     """Geographic location where the storage will be provisioned.
 
     Each location represents a specific data center region.

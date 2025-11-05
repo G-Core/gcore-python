@@ -23,7 +23,7 @@ class TestStorage:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         storage = client.storage.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
         )
@@ -32,7 +32,7 @@ class TestStorage:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         storage = client.storage.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
             generate_sftp_password=True,
@@ -43,7 +43,7 @@ class TestStorage:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.storage.with_raw_response.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
         )
@@ -56,7 +56,7 @@ class TestStorage:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.storage.with_streaming_response.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
         ) as response:
@@ -327,7 +327,7 @@ class TestAsyncStorage:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         storage = await async_client.storage.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
         )
@@ -336,7 +336,7 @@ class TestAsyncStorage:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         storage = await async_client.storage.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
             generate_sftp_password=True,
@@ -347,7 +347,7 @@ class TestAsyncStorage:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.with_raw_response.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
         )
@@ -360,7 +360,7 @@ class TestAsyncStorage:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.with_streaming_response.create(
-            location="s-ed1",
+            location="s-region-1",
             name="my-storage-prod",
             type="s3",
         ) as response:

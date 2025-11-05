@@ -62,20 +62,6 @@ class CredentialsResource(SyncAPIResource):
         password for SFTP storage).
 
         Args:
-          delete_sftp_password: Remove the SFTP password, disabling password authentication. Only applicable to
-              SFTP storage type.
-
-          generate_s3_keys: Generate new S3 access and secret keys for S3 storage. Only applicable to S3
-              storage type.
-
-          generate_sftp_password: Generate a new random password for SFTP access. Only applicable to SFTP storage
-              type.
-
-          reset_sftp_keys: Reset/remove all SSH keys associated with the SFTP storage. Only applicable to
-              SFTP storage type.
-
-          sftp_password: Set a custom password for SFTP access. Only applicable to SFTP storage type.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -144,20 +130,6 @@ class AsyncCredentialsResource(AsyncAPIResource):
         password for SFTP storage).
 
         Args:
-          delete_sftp_password: Remove the SFTP password, disabling password authentication. Only applicable to
-              SFTP storage type.
-
-          generate_s3_keys: Generate new S3 access and secret keys for S3 storage. Only applicable to S3
-              storage type.
-
-          generate_sftp_password: Generate a new random password for SFTP access. Only applicable to SFTP storage
-              type.
-
-          reset_sftp_keys: Reset/remove all SSH keys associated with the SFTP storage. Only applicable to
-              SFTP storage type.
-
-          sftp_password: Set a custom password for SFTP access. Only applicable to SFTP storage type.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
