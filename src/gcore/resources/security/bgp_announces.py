@@ -48,7 +48,6 @@ class BgpAnnouncesResource(SyncAPIResource):
         self,
         *,
         announced: Optional[bool] | Omit = omit,
-        client_id: Optional[int] | Omit = omit,
         origin: Optional[Literal["STATIC", "DYNAMIC"]] | Omit = omit,
         site: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -83,7 +82,6 @@ class BgpAnnouncesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "announced": announced,
-                        "client_id": client_id,
                         "origin": origin,
                         "site": site,
                     },
@@ -165,7 +163,6 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
         self,
         *,
         announced: Optional[bool] | Omit = omit,
-        client_id: Optional[int] | Omit = omit,
         origin: Optional[Literal["STATIC", "DYNAMIC"]] | Omit = omit,
         site: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -200,7 +197,6 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "announced": announced,
-                        "client_id": client_id,
                         "origin": origin,
                         "site": site,
                     },

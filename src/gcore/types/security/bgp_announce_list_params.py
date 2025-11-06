@@ -11,8 +11,6 @@ __all__ = ["BgpAnnounceListParams"]
 class BgpAnnounceListParams(TypedDict, total=False):
     announced: Optional[bool]
 
-    client_id: Optional[int]
-
     origin: Optional[Literal["STATIC", "DYNAMIC"]]
 
     site: Optional[str]
