@@ -83,7 +83,7 @@ class TestProfiles:
             exclude_empty_address=True,
             include_deleted=True,
             ip_address="ip_address",
-            site="site",
+            site="ED",
         )
         assert_matches_type(ProfileListResponse, profile, path=["response"])
 
@@ -344,7 +344,7 @@ class TestAsyncProfiles:
             exclude_empty_address=True,
             include_deleted=True,
             ip_address="ip_address",
-            site="site",
+            site="ED",
         )
         assert_matches_type(ProfileListResponse, profile, path=["response"])
 

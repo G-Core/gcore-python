@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 __all__ = ["ProfileCreateParams", "Field"]
@@ -15,7 +15,8 @@ class ProfileCreateParams(TypedDict, total=False):
 
     site: Required[str]
 
-    ip_address: Optional[str]
+    ip_address: str
+    """Required for Universal template only. Optional for all others."""
 
 
 class Field(TypedDict, total=False):
