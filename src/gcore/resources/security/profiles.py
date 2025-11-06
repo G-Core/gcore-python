@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Iterable
 
 import httpx
 
@@ -55,7 +55,7 @@ class ProfilesResource(SyncAPIResource):
         fields: Iterable[profile_create_params.Field],
         profile_template: int,
         site: str,
-        ip_address: Optional[str] | Omit = omit,
+        ip_address: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +69,8 @@ class ProfilesResource(SyncAPIResource):
         created
 
         Args:
+          ip_address: Required for Universal template only. Optional for all others.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -212,7 +214,7 @@ class ProfilesResource(SyncAPIResource):
         *,
         fields: Iterable[profile_recreate_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | Omit = omit,
+        ip_address: str | Omit = omit,
         site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -225,6 +227,8 @@ class ProfilesResource(SyncAPIResource):
         Recreate profile with another profile template (for other cases use detail API)
 
         Args:
+          ip_address: Required for Universal template only. Optional for all others.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -256,7 +260,7 @@ class ProfilesResource(SyncAPIResource):
         *,
         fields: Iterable[profile_replace_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | Omit = omit,
+        ip_address: str | Omit = omit,
         site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -271,6 +275,8 @@ class ProfilesResource(SyncAPIResource):
         updated
 
         Args:
+          ip_address: Required for Universal template only. Optional for all others.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -323,7 +329,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         fields: Iterable[profile_create_params.Field],
         profile_template: int,
         site: str,
-        ip_address: Optional[str] | Omit = omit,
+        ip_address: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -337,6 +343,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         created
 
         Args:
+          ip_address: Required for Universal template only. Optional for all others.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -480,7 +488,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         *,
         fields: Iterable[profile_recreate_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | Omit = omit,
+        ip_address: str | Omit = omit,
         site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -493,6 +501,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         Recreate profile with another profile template (for other cases use detail API)
 
         Args:
+          ip_address: Required for Universal template only. Optional for all others.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -524,7 +534,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         *,
         fields: Iterable[profile_replace_params.Field],
         profile_template: int,
-        ip_address: Optional[str] | Omit = omit,
+        ip_address: str | Omit = omit,
         site: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -539,6 +549,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         updated
 
         Args:
+          ip_address: Required for Universal template only. Optional for all others.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -26,7 +26,6 @@ class TestBgpAnnounces:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         bgp_announce = client.security.bgp_announces.list(
             announced=True,
-            client_id=0,
             origin="STATIC",
             site="x",
         )
@@ -110,7 +109,6 @@ class TestAsyncBgpAnnounces:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         bgp_announce = await async_client.security.bgp_announces.list(
             announced=True,
-            client_id=0,
             origin="STATIC",
             site="x",
         )
