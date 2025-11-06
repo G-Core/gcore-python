@@ -47,6 +47,15 @@ class GPUImage(BaseModel):
     architecture: Optional[str] = None
     """Image architecture type"""
 
+    gpu_driver: Optional[str] = None
+    """Name of the GPU driver vendor"""
+
+    gpu_driver_type: Optional[str] = None
+    """Type of the GPU driver"""
+
+    gpu_driver_version: Optional[str] = None
+    """Version of the installed GPU driver"""
+
     os_distro: Optional[str] = None
     """OS Distribution"""
 

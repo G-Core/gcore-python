@@ -94,8 +94,11 @@ ServersSettingsInterface: TypeAlias = Annotated[
 
 
 class ServersSettingsSecurityGroup(BaseModel):
+    id: str
+    """Security group ID"""
+
     name: str
-    """Name."""
+    """Security group name"""
 
 
 class ServersSettings(BaseModel):
@@ -105,7 +108,7 @@ class ServersSettings(BaseModel):
     interfaces: List[ServersSettingsInterface]
 
     security_groups: List[ServersSettingsSecurityGroup]
-    """Security groups names"""
+    """Security groups"""
 
     ssh_key_name: Optional[str] = None
     """SSH key name"""

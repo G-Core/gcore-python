@@ -11,8 +11,11 @@ __all__ = ["GPUBaremetalClusterServer", "SecurityGroup"]
 
 
 class SecurityGroup(BaseModel):
+    id: str
+    """Security group ID"""
+
     name: str
-    """Name."""
+    """Security group name"""
 
 
 class GPUBaremetalClusterServer(BaseModel):
@@ -35,7 +38,7 @@ class GPUBaremetalClusterServer(BaseModel):
     """Server's name generated using cluster's name"""
 
     security_groups: List[SecurityGroup]
-    """Security groups names"""
+    """Security groups"""
 
     ssh_key_name: Optional[str] = None
     """SSH key pair assigned to the server"""
