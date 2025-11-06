@@ -80,6 +80,15 @@ class Image(BaseModel):
 
     display_order: Optional[int] = None
 
+    gpu_driver: Optional[str] = None
+    """Name of the GPU driver vendor"""
+
+    gpu_driver_type: Optional[str] = None
+    """Type of the GPU driver"""
+
+    gpu_driver_version: Optional[str] = None
+    """Version of the installed GPU driver"""
+
     hw_firmware_type: Optional[Literal["bios", "uefi"]] = None
     """Specifies the type of firmware with which to boot the guest."""
 
