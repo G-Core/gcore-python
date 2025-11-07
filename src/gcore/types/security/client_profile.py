@@ -50,6 +50,7 @@ class ClientProfile(BaseModel):
     protocols: List[Dict[str, object]]
 
     site: str
+    """Region where the protection profiles will be deployed"""
 
     status: Dict[str, object]
 

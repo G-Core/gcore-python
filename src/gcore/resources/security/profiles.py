@@ -69,6 +69,8 @@ class ProfilesResource(SyncAPIResource):
         created
 
         Args:
+          site: Region where the protection profiles will be deployed
+
           ip_address: Required for Universal template only. Optional for all others.
 
           extra_headers: Send extra headers
@@ -229,6 +231,8 @@ class ProfilesResource(SyncAPIResource):
         Args:
           ip_address: Required for Universal template only. Optional for all others.
 
+          site: Region where the protection profiles will be deployed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -276,6 +280,8 @@ class ProfilesResource(SyncAPIResource):
 
         Args:
           ip_address: Required for Universal template only. Optional for all others.
+
+          site: Region where the protection profiles will be deployed
 
           extra_headers: Send extra headers
 
@@ -343,6 +349,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         created
 
         Args:
+          site: Region where the protection profiles will be deployed
+
           ip_address: Required for Universal template only. Optional for all others.
 
           extra_headers: Send extra headers
@@ -503,6 +511,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         Args:
           ip_address: Required for Universal template only. Optional for all others.
 
+          site: Region where the protection profiles will be deployed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -550,6 +560,8 @@ class AsyncProfilesResource(AsyncAPIResource):
 
         Args:
           ip_address: Required for Universal template only. Optional for all others.
+
+          site: Region where the protection profiles will be deployed
 
           extra_headers: Send extra headers
 
