@@ -14,6 +14,7 @@ class ProfileCreateParams(TypedDict, total=False):
     profile_template: Required[int]
 
     site: Required[str]
+    """Region where the protection profiles will be deployed"""
 
     ip_address: str
     """Required for Universal template only. Optional for all others."""
