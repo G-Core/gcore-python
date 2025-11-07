@@ -17,6 +17,7 @@ class ProfileRecreateParams(TypedDict, total=False):
     """Required for Universal template only. Optional for all others."""
 
     site: str
+    """Region where the protection profiles will be deployed"""
 
 
 class Field(TypedDict, total=False):
