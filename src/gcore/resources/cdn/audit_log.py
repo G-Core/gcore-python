@@ -99,9 +99,9 @@ class AuditLogResource(SyncAPIResource):
 
           offset: Offset relative to the beginning of activity logs.
 
-          path: Path that a requested URL should contain.
+          path: Exact URL path.
 
-          remote_ip_address: IP address or part of it from which requests are sent.
+          remote_ip_address: Exact IP address from which requests are sent.
 
           status_code: Status code returned in the response.
 
@@ -263,9 +263,9 @@ class AsyncAuditLogResource(AsyncAPIResource):
 
           offset: Offset relative to the beginning of activity logs.
 
-          path: Path that a requested URL should contain.
+          path: Exact URL path.
 
-          remote_ip_address: IP address or part of it from which requests are sent.
+          remote_ip_address: Exact IP address from which requests are sent.
 
           status_code: Status code returned in the response.
 
