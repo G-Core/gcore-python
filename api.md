@@ -826,6 +826,87 @@ Methods:
 - <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">get</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image.py">GPUImage</a></code>
 - <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
+## GPUVirtualClusters
+
+Types:
+
+```python
+from gcore.types.cloud import GPUVirtualCluster
+```
+
+Methods:
+
+- <code title="post /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters">client.cloud.gpu_virtual_clusters.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/gpu_virtual_clusters.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_cluster_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}">client.cloud.gpu_virtual_clusters.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/gpu_virtual_clusters.py">update</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_cluster_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_virtual_cluster.py">GPUVirtualCluster</a></code>
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters">client.cloud.gpu_virtual_clusters.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/gpu_virtual_clusters.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_cluster_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_virtual_cluster.py">SyncOffsetPage[GPUVirtualCluster]</a></code>
+- <code title="delete /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}">client.cloud.gpu_virtual_clusters.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/gpu_virtual_clusters.py">delete</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_cluster_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/action">client.cloud.gpu_virtual_clusters.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/gpu_virtual_clusters.py">action</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_cluster_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}">client.cloud.gpu_virtual_clusters.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/gpu_virtual_clusters.py">get</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_virtual_cluster.py">GPUVirtualCluster</a></code>
+
+### Servers
+
+Types:
+
+```python
+from gcore.types.cloud.gpu_virtual_clusters import (
+    GPUVirtualClusterServer,
+    GPUVirtualClusterServerList,
+)
+```
+
+Methods:
+
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/servers">client.cloud.gpu_virtual_clusters.servers.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/servers.py">list</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_clusters/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_virtual_clusters/gpu_virtual_cluster_server_list.py">GPUVirtualClusterServerList</a></code>
+- <code title="delete /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}">client.cloud.gpu_virtual_clusters.servers.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/servers.py">delete</a>(server_id, \*, project_id, region_id, cluster_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_clusters/server_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+### Volumes
+
+Types:
+
+```python
+from gcore.types.cloud.gpu_virtual_clusters import (
+    GPUVirtualClusterVolume,
+    GPUVirtualClusterVolumeList,
+)
+```
+
+Methods:
+
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/volumes">client.cloud.gpu_virtual_clusters.volumes.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/volumes.py">list</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_virtual_clusters/gpu_virtual_cluster_volume_list.py">GPUVirtualClusterVolumeList</a></code>
+
+### Interfaces
+
+Types:
+
+```python
+from gcore.types.cloud.gpu_virtual_clusters import GPUVirtualInterface, GPUVirtualInterfaceList
+```
+
+Methods:
+
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/interfaces">client.cloud.gpu_virtual_clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/interfaces.py">list</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_virtual_clusters/gpu_virtual_interface_list.py">GPUVirtualInterfaceList</a></code>
+
+### Flavors
+
+Types:
+
+```python
+from gcore.types.cloud.gpu_virtual_clusters import GPUVirtualFlavor, GPUVirtualFlavorList
+```
+
+Methods:
+
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/flavors">client.cloud.gpu_virtual_clusters.flavors.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_clusters/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_virtual_clusters/gpu_virtual_flavor_list.py">GPUVirtualFlavorList</a></code>
+
+### Images
+
+Methods:
+
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/images">client.cloud.gpu_virtual_clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/images.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image_list.py">GPUImageList</a></code>
+- <code title="delete /cloud/v3/gpu/virtual/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_virtual_clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_virtual_clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/images.py">get</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image.py">GPUImage</a></code>
+- <code title="post /cloud/v3/gpu/virtual/{project_id}/{region_id}/images">client.cloud.gpu_virtual_clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual_clusters/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual_clusters/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
 ## Instances
 
 Types:

@@ -212,6 +212,14 @@ from .reserved_fixed_ips.reserved_fixed_ips import (
     ReservedFixedIPsResourceWithStreamingResponse,
     AsyncReservedFixedIPsResourceWithStreamingResponse,
 )
+from .gpu_virtual_clusters.gpu_virtual_clusters import (
+    GPUVirtualClustersResource,
+    AsyncGPUVirtualClustersResource,
+    GPUVirtualClustersResourceWithRawResponse,
+    AsyncGPUVirtualClustersResourceWithRawResponse,
+    GPUVirtualClustersResourceWithStreamingResponse,
+    AsyncGPUVirtualClustersResourceWithStreamingResponse,
+)
 from .gpu_baremetal_clusters.gpu_baremetal_clusters import (
     GPUBaremetalClustersResource,
     AsyncGPUBaremetalClustersResource,
@@ -315,6 +323,10 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def gpu_baremetal_clusters(self) -> GPUBaremetalClustersResource:
         return GPUBaremetalClustersResource(self._client)
+
+    @cached_property
+    def gpu_virtual_clusters(self) -> GPUVirtualClustersResource:
+        return GPUVirtualClustersResource(self._client)
 
     @cached_property
     def instances(self) -> InstancesResource:
@@ -451,6 +463,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def gpu_baremetal_clusters(self) -> AsyncGPUBaremetalClustersResource:
         return AsyncGPUBaremetalClustersResource(self._client)
+
+    @cached_property
+    def gpu_virtual_clusters(self) -> AsyncGPUVirtualClustersResource:
+        return AsyncGPUVirtualClustersResource(self._client)
 
     @cached_property
     def instances(self) -> AsyncInstancesResource:
@@ -592,6 +608,10 @@ class CloudResourceWithRawResponse:
         return GPUBaremetalClustersResourceWithRawResponse(self._cloud.gpu_baremetal_clusters)
 
     @cached_property
+    def gpu_virtual_clusters(self) -> GPUVirtualClustersResourceWithRawResponse:
+        return GPUVirtualClustersResourceWithRawResponse(self._cloud.gpu_virtual_clusters)
+
+    @cached_property
     def instances(self) -> InstancesResourceWithRawResponse:
         return InstancesResourceWithRawResponse(self._cloud.instances)
 
@@ -710,6 +730,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def gpu_baremetal_clusters(self) -> AsyncGPUBaremetalClustersResourceWithRawResponse:
         return AsyncGPUBaremetalClustersResourceWithRawResponse(self._cloud.gpu_baremetal_clusters)
+
+    @cached_property
+    def gpu_virtual_clusters(self) -> AsyncGPUVirtualClustersResourceWithRawResponse:
+        return AsyncGPUVirtualClustersResourceWithRawResponse(self._cloud.gpu_virtual_clusters)
 
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
@@ -832,6 +856,10 @@ class CloudResourceWithStreamingResponse:
         return GPUBaremetalClustersResourceWithStreamingResponse(self._cloud.gpu_baremetal_clusters)
 
     @cached_property
+    def gpu_virtual_clusters(self) -> GPUVirtualClustersResourceWithStreamingResponse:
+        return GPUVirtualClustersResourceWithStreamingResponse(self._cloud.gpu_virtual_clusters)
+
+    @cached_property
     def instances(self) -> InstancesResourceWithStreamingResponse:
         return InstancesResourceWithStreamingResponse(self._cloud.instances)
 
@@ -950,6 +978,10 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def gpu_baremetal_clusters(self) -> AsyncGPUBaremetalClustersResourceWithStreamingResponse:
         return AsyncGPUBaremetalClustersResourceWithStreamingResponse(self._cloud.gpu_baremetal_clusters)
+
+    @cached_property
+    def gpu_virtual_clusters(self) -> AsyncGPUVirtualClustersResourceWithStreamingResponse:
+        return AsyncGPUVirtualClustersResourceWithStreamingResponse(self._cloud.gpu_virtual_clusters)
 
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
