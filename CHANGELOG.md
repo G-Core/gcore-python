@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.20.0 (2025-11-11)
+
+Full Changelog: [v0.19.0...v0.20.0](https://github.com/G-Core/gcore-python/compare/v0.19.0...v0.20.0)
+
+### Features
+
+* **api:** aggregated API specs update ([767fdd5](https://github.com/G-Core/gcore-python/commit/767fdd5d74846369e3331efba210aff12a43e802))
+* **cloud:** add support for GPU virtual clusters ([c406d97](https://github.com/G-Core/gcore-python/commit/c406d97d04db03f5c4d105f2e9761e9b8c2d96c8))
+
+
+### Bug Fixes
+
+* compat with Python 3.14 ([90bfffe](https://github.com/G-Core/gcore-python/commit/90bfffeed8b28a360e1489162d4dc6a28745b411))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([70e1cc8](https://github.com/G-Core/gcore-python/commit/70e1cc8404668e008c236881c5819eeff91725d6))
+
+
+### Chores
+
+* **package:** drop Python 3.8 support ([99955b9](https://github.com/G-Core/gcore-python/commit/99955b9208b2810fcbafbf5f8d941b5981faebbe))
+
 ## 0.19.0 (2025-11-07)
 
 Full Changelog: [v0.18.0...v0.19.0](https://github.com/G-Core/gcore-python/compare/v0.18.0...v0.19.0)
