@@ -50,10 +50,10 @@ class AuditLogListParams(TypedDict, total=False):
     """Offset relative to the beginning of activity logs."""
 
     path: str
-    """Path that a requested URL should contain."""
+    """Exact URL path."""
 
     remote_ip_address: str
-    """IP address or part of it from which requests are sent."""
+    """Exact IP address from which requests are sent."""
 
     status_code: int
     """Status code returned in the response.
