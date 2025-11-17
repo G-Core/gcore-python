@@ -19,7 +19,7 @@ class ZoneListParams(TypedDict, total=False):
     case_sensitive: bool
 
     client_id: Iterable[int]
-    """to pass several `client_ids` `client_id=1&`client_id`=3&`client_id`=5...`"""
+    """to pass several `client_ids` `client_id=1&client_id=3&client_id=5...`"""
 
     dynamic: bool
     """Zones with dynamic RRsets"""

@@ -257,7 +257,7 @@ class ConditionURL(BaseModel):
     `match_type`:
 
     - **Exact/Contains**: plain text matching (e.g., `/admin`, must comply with
-      `^[\\ww!\\$$~:#\\[[\\]]@\\((\\))\\*\\++,=\\//\\--\\..\\%%]+$`).
+      `^[\\ww!\\$$~:#\\[[\\]]@\\((\\))*\\++,=\\//\\--\\..\\%%]+$`).
     - **Regex**: a valid regular expression (e.g., `^/upload(/\\dd+)?/\\ww+`).
       Lookahead/lookbehind constructs are forbidden.
     """

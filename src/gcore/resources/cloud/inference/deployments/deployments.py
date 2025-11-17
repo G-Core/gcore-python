@@ -109,7 +109,7 @@ class DeploymentsResource(SyncAPIResource):
               ValidationError will be raised.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
               for the requests to the instance if enabled. This field is deprecated and will
               be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
               `api_keys` are both specified, a ValidationError will be raised.
@@ -214,7 +214,7 @@ class DeploymentsResource(SyncAPIResource):
               and auth will be disabled on the deployment.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
               for the requests to the instance if enabled. This field is deprecated and will
               be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
               `api_keys` are both specified, a ValidationError will be raised.
@@ -808,7 +808,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
               ValidationError will be raised.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
               for the requests to the instance if enabled. This field is deprecated and will
               be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
               `api_keys` are both specified, a ValidationError will be raised.
@@ -913,7 +913,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
               and auth will be disabled on the deployment.
 
           auth_enabled: Set to `true` to enable API key authentication for the inference instance.
-              `"Authorization": "Bearer ****\\**"` or `"X-Api-Key": "****\\**"` header is required
+              `"Authorization": "Bearer *****"` or `"X-Api-Key": "*****"` header is required
               for the requests to the instance if enabled. This field is deprecated and will
               be removed in the future. Use `api_keys` field instead.If `auth_enabled` and
               `api_keys` are both specified, a ValidationError will be raised.

@@ -238,6 +238,9 @@ class AuditLogEntry(BaseModel):
     resources: List[Resource]
     """Resources"""
 
+    source_user_ip: Optional[str] = None
+    """User IP that made the request"""
+
     task_id: Optional[str] = None
     """Task ID"""
 
@@ -249,6 +252,9 @@ class AuditLogEntry(BaseModel):
 
     total_price: Optional[TotalPrice] = None
     """Total resource price VAT inclusive"""
+
+    user_agent: Optional[str] = None
+    """User-Agent that made the request"""
 
     user_id: int
     """User ID"""

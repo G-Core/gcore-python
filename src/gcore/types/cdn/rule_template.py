@@ -182,7 +182,7 @@ class OptionsCors(BaseModel):
     Possible values:
 
     - **Adds \\** as the Access-Control-Allow-Origin header value** - Content will be
-      uploaded for requests from any domain. `"value": ["\\**"]`
+      uploaded for requests from any domain. `"value": ["*"]`
     - **Adds "$`http_origin`" as the Access-Control-Allow-Origin header value if the
       origin matches one of the listed domains** - Content will be uploaded only for
       requests from the domains specified in the field.
@@ -190,7 +190,7 @@ class OptionsCors(BaseModel):
     - **Adds "$`http_origin`" as the Access-Control-Allow-Origin header value** -
       Content will be uploaded for requests from any domain, and the domain from
       which the request was sent will be added to the "Access-Control-Allow-Origin"
-      header in the response. `"value": ["$`http_origin`"]`
+      header in the response. `"value": ["$http_origin"]`
     """
 
     always: Optional[bool] = None
@@ -895,7 +895,7 @@ class OptionsReferrerACL(BaseModel):
     Examples:
 
     - `example.com`
-    - `\\**.example.com`
+    - `*.example.com`
     """
 
     policy_type: Literal["allow", "deny"]
@@ -985,7 +985,7 @@ class OptionsRewrite(BaseModel):
 
     Example:
 
-    - `/(.\\**) /media/$1`
+    - `/(.*) /media/$1`
     """
 
     enabled: bool
@@ -1369,7 +1369,7 @@ class Options(BaseModel):
     2. `fetch_compressed` overrides `gzipON` and `brotli_compression` in rule. If
        you enable it in CDN resource and want to use `gzipON` and
        `brotli_compression` in a rule, you have to specify
-       `"`fetch_compressed`": false` in the rule.
+       `"fetch_compressed": false` in the rule.
     """
 
     follow_origin_redirect: Optional[OptionsFollowOriginRedirect] = None
@@ -1403,8 +1403,7 @@ class Options(BaseModel):
        options enabled.
     2. `fetch_compressed` option in CDN resource settings overrides `gzipON` in
        rules. If you enable `fetch_compressed` in CDN resource and want to enable
-       `gzipON` in rules, you need to specify `"`fetch_compressed`":false` for
-       rules.
+       `gzipON` in rules, you need to specify `"fetch_compressed":false` for rules.
     """
 
     host_header: Optional[OptionsHostHeader] = FieldInfo(alias="hostHeader", default=None)
