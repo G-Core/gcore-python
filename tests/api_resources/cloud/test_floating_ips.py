@@ -138,6 +138,7 @@ class TestFloatingIPs:
             region_id=1,
             limit=1000,
             offset=0,
+            status="ACTIVE",
             tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )
@@ -490,6 +491,7 @@ class TestAsyncFloatingIPs:
             region_id=1,
             limit=1000,
             offset=0,
+            status="ACTIVE",
             tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )

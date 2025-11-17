@@ -200,7 +200,7 @@ class ZonesResource(SyncAPIResource):
         Args:
           id: to pass several ids `id=1&id=3&id=5...`
 
-          client_id: to pass several `client_ids` `client_id=1&`client_id`=3&`client_id`=5...`
+          client_id: to pass several `client_ids` `client_id=1&client_id=3&client_id=5...`
 
           dynamic: Zones with dynamic RRsets
 
@@ -837,7 +837,7 @@ class AsyncZonesResource(AsyncAPIResource):
         Args:
           id: to pass several ids `id=1&id=3&id=5...`
 
-          client_id: to pass several `client_ids` `client_id=1&`client_id`=3&`client_id`=5...`
+          client_id: to pass several `client_ids` `client_id=1&client_id=3&client_id=5...`
 
           dynamic: Zones with dynamic RRsets
 

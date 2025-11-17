@@ -18,6 +18,7 @@ from ..._response import (
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.cloud import (
+    FloatingIPStatus,
     floating_ip_list_params,
     floating_ip_assign_params,
     floating_ip_create_params,
@@ -26,6 +27,7 @@ from ...types.cloud import (
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.floating_ip import FloatingIP
 from ...types.cloud.task_id_list import TaskIDList
+from ...types.cloud.floating_ip_status import FloatingIPStatus
 from ...types.cloud.floating_ip_detailed import FloatingIPDetailed
 from ...types.cloud.tag_update_map_param import TagUpdateMapParam
 
@@ -154,15 +156,20 @@ class FloatingIPsResource(SyncAPIResource):
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
-              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+
               - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
                 tags are preserved).
+
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
+
               - **Mixed operations:**
-                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
                 adds/updates 'environment' and '`cost_center`' while removing
                 '`deprecated_tag`', preserving other existing tags.
+
               - **Replace all:** first delete existing tags with null values, then add new
                 ones in the same request.
 
@@ -196,6 +203,7 @@ class FloatingIPsResource(SyncAPIResource):
         region_id: int | None = None,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        status: FloatingIPStatus | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -217,6 +225,9 @@ class FloatingIPsResource(SyncAPIResource):
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          status: Filter by floating IP status. DOWN - unassigned (available). ACTIVE - attached
+              to a port (in use). ERROR - error state.
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
@@ -246,6 +257,7 @@ class FloatingIPsResource(SyncAPIResource):
                     {
                         "limit": limit,
                         "offset": offset,
+                        "status": status,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
                     },
@@ -647,15 +659,20 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
-              - **Delete tags:** `{'tags': {'`old_tag`': null}}` removes specific tags.
+
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+
               - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
                 tags are preserved).
+
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
+
               - **Mixed operations:**
-                `{'tags': {'environment': 'production', '`cost_center`': 'engineering', '`deprecated_tag`': null}}`
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
                 adds/updates 'environment' and '`cost_center`' while removing
                 '`deprecated_tag`', preserving other existing tags.
+
               - **Replace all:** first delete existing tags with null values, then add new
                 ones in the same request.
 
@@ -689,6 +706,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         region_id: int | None = None,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        status: FloatingIPStatus | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -710,6 +728,9 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          status: Filter by floating IP status. DOWN - unassigned (available). ACTIVE - attached
+              to a port (in use). ERROR - error state.
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
@@ -739,6 +760,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
                     {
                         "limit": limit,
                         "offset": offset,
+                        "status": status,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
                     },

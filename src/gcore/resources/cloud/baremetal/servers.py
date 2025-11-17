@@ -120,8 +120,8 @@ class ServersResource(SyncAPIResource):
           name_template: If you want server names to be automatically generated based on IP addresses,
               you can provide a name template instead of specifying the name manually. The
               template should include a placeholder that will be replaced during provisioning.
-              Supported placeholders are: `{`ip_octets`}` (last 3 octets of the IP),
-              `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
+              Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
+              `{two_ip_octets}`, and `{one_ip_octet}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user
@@ -611,8 +611,8 @@ class AsyncServersResource(AsyncAPIResource):
           name_template: If you want server names to be automatically generated based on IP addresses,
               you can provide a name template instead of specifying the name manually. The
               template should include a placeholder that will be replaced during provisioning.
-              Supported placeholders are: `{`ip_octets`}` (last 3 octets of the IP),
-              `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
+              Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
+              `{two_ip_octets}`, and `{one_ip_octet}`.
 
           password: For Linux instances, 'username' and 'password' are used to create a new user.
               When only 'password' is provided, it is set as the password for the default user

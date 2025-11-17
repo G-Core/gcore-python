@@ -359,8 +359,9 @@ class Stream(BaseModel):
 
     Small latency values may lead to packet loss when jitter or retransmissions
     occur, while very large values introduce unnecessary end-to-end delay.
-    \\**Incorrect or low default value is one of the most common reasons for packet
-    loss, frames loss, and bad picture.\\**
+
+    _Incorrect or low default value is one of the most common reasons for packet
+    loss, frames loss, and bad picture._
 
     We therefore recommend setting latency manually rather than relying on the
     default, to ensure the buffer is correctly sized for your environment. A
