@@ -152,8 +152,20 @@ class AuditLogListParams(TypedDict, total=False):
     Oldest first, or most recent first
     """
 
+    source_user_ips: SequenceNotStr[str]
+    """Originating IP address of the client making the request.
+
+    Several options can be specified.
+    """
+
     to_timestamp: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """ISO formatted datetime string.
 
     Ending timestamp until which user actions are requested
+    """
+
+    user_agents: SequenceNotStr[str]
+    """User-Agent string identifying the client making the request.
+
+    Several options can be specified.
     """

@@ -13,7 +13,7 @@ class TaskIDList(BaseModel):
 
     Use these IDs to monitor operation progress:
 
-    - `GET /v1/tasks/{`task_id`}` - Check individual task status and details Poll
-      task status until completion (`FINISHED`/`ERROR`) before proceeding with
-      dependent operations.
+    - `GET /v1/tasks/{task_id}` - Check individual task status and details Poll task
+      status until completion (`FINISHED`/`ERROR`) before proceeding with dependent
+      operations.
     """

@@ -77,8 +77,8 @@ class InstanceCreateParams(TypedDict, total=False):
     If you want the instance name to be automatically generated based on IP
     addresses, you can provide a name template instead of specifying the name
     manually. The template should include a placeholder that will be replaced during
-    provisioning. Supported placeholders are: `{`ip_octets`}` (last 3 octets of the
-    IP), `{`two_ip_octets`}`, and `{`one_ip_octet`}`.
+    provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
+    IP), `{two_ip_octets}`, and `{one_ip_octet}`.
     """
 
     password: str

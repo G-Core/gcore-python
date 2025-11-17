@@ -190,7 +190,11 @@ class FloatingIPDetailed(BaseModel):
     """Router ID"""
 
     status: Optional[FloatingIPStatus] = None
-    """Floating IP status"""
+    """Floating IP status.
+
+    DOWN - unassigned (available). ACTIVE - attached to a port (in use). ERROR -
+    error state.
+    """
 
     tags: List[Tag]
     """List of key-value tags associated with the resource.

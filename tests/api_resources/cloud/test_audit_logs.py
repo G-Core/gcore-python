@@ -38,7 +38,9 @@ class TestAuditLogs:
             resource_id=["string"],
             search_field="default",
             sorting="asc",
+            source_user_ips=["203.0.113.42", "192.168.1.100"],
             to_timestamp=parse_datetime("2019-11-14T10:30:32Z"),
+            user_agents=["Mozilla/5.0", "MyApp/1.0.0"],
         )
         assert_matches_type(SyncOffsetPage[AuditLogEntry], audit_log, path=["response"])
 
@@ -87,7 +89,9 @@ class TestAsyncAuditLogs:
             resource_id=["string"],
             search_field="default",
             sorting="asc",
+            source_user_ips=["203.0.113.42", "192.168.1.100"],
             to_timestamp=parse_datetime("2019-11-14T10:30:32Z"),
+            user_agents=["Mozilla/5.0", "MyApp/1.0.0"],
         )
         assert_matches_type(AsyncOffsetPage[AuditLogEntry], audit_log, path=["response"])
 

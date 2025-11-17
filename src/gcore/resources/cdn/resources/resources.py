@@ -154,11 +154,11 @@ class ResourcesResource(SyncAPIResource):
 
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_data: ID of the SSL certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_enabled: Enables or disables SSL certificate validation of the origin server before
               completing any connection.
@@ -288,11 +288,11 @@ class ResourcesResource(SyncAPIResource):
 
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_data: ID of the SSL certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_enabled: Enables or disables SSL certificate validation of the origin server before
               completing any connection.
@@ -731,16 +731,16 @@ class ResourcesResource(SyncAPIResource):
         Args:
           paths: **Purge by pattern** clears the cache that matches the pattern.
 
-              Use \\** operator, which replaces any number of symbols in your path. It's
-              important to note that wildcard usage (\\**) is permitted only at the end of a
+              Use _ operator, which replaces any number of symbols in your path. It's
+              important to note that wildcard usage (_) is permitted only at the end of a
               pattern.
 
               Query string added to any patterns will be ignored, and purge request will be
               processed as if there weren't any parameters.
 
-              Purge by pattern is recursive. Both /path and /path\\** will result in recursive
+              Purge by pattern is recursive. Both /path and /path* will result in recursive
               purging, meaning all content under the specified path will be affected. As such,
-              using the pattern /path\\** is functionally equivalent to simply using /path.
+              using the pattern /path* is functionally equivalent to simply using /path.
 
           extra_headers: Send extra headers
 
@@ -886,11 +886,11 @@ class ResourcesResource(SyncAPIResource):
 
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_data: ID of the SSL certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_enabled: Enables or disables SSL certificate validation of the origin server before
               completing any connection.
@@ -1064,11 +1064,11 @@ class AsyncResourcesResource(AsyncAPIResource):
 
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_data: ID of the SSL certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_enabled: Enables or disables SSL certificate validation of the origin server before
               completing any connection.
@@ -1198,11 +1198,11 @@ class AsyncResourcesResource(AsyncAPIResource):
 
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_data: ID of the SSL certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_enabled: Enables or disables SSL certificate validation of the origin server before
               completing any connection.
@@ -1641,16 +1641,16 @@ class AsyncResourcesResource(AsyncAPIResource):
         Args:
           paths: **Purge by pattern** clears the cache that matches the pattern.
 
-              Use \\** operator, which replaces any number of symbols in your path. It's
-              important to note that wildcard usage (\\**) is permitted only at the end of a
+              Use _ operator, which replaces any number of symbols in your path. It's
+              important to note that wildcard usage (_) is permitted only at the end of a
               pattern.
 
               Query string added to any patterns will be ignored, and purge request will be
               processed as if there weren't any parameters.
 
-              Purge by pattern is recursive. Both /path and /path\\** will result in recursive
+              Purge by pattern is recursive. Both /path and /path* will result in recursive
               purging, meaning all content under the specified path will be affected. As such,
-              using the pattern /path\\** is functionally equivalent to simply using /path.
+              using the pattern /path* is functionally equivalent to simply using /path.
 
           extra_headers: Send extra headers
 
@@ -1796,11 +1796,11 @@ class AsyncResourcesResource(AsyncAPIResource):
 
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_data: ID of the SSL certificate used to verify an origin.
 
-              It can be used only with `"`proxy_ssl_enabled`": true`.
+              It can be used only with `"proxy_ssl_enabled": true`.
 
           proxy_ssl_enabled: Enables or disables SSL certificate validation of the origin server before
               completing any connection.

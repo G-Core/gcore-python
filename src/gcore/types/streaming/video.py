@@ -468,7 +468,7 @@ class Video(BaseModel):
     video. It is unique for each video, generated randomly and set automatically by
     the system.
 
-    Format of usage in URL is \\**.../videos/{`client_id`}\\__{slug}/...\\**
+    Format of usage in URL is _.../videos/{`client_id`}\\__{slug}/..._
 
     Example:
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
+from .floating_ip_status import FloatingIPStatus
 
 __all__ = ["FloatingIPListParams"]
 
@@ -23,6 +24,13 @@ class FloatingIPListParams(TypedDict, total=False):
     """Optional.
 
     Offset value is used to exclude the first set of records from the result
+    """
+
+    status: FloatingIPStatus
+    """Filter by floating IP status.
+
+    DOWN - unassigned (available). ACTIVE - attached to a port (in use). ERROR -
+    error state.
     """
 
     tag_key: SequenceNotStr[str]

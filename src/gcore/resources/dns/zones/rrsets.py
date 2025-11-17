@@ -91,7 +91,7 @@ class RrsetsResource(SyncAPIResource):
         For example, sort records by proximity to user, shuffle based on weights and
         return not more than 3:
 
-        `"pickers": [ { "type": "geodistance" }, { "type": "`weighted_shuffle`" }, { "type": "`first_n`", "limit": 3 } ]`
+        `"pickers": [ { "type": "geodistance" }, { "type": "weighted_shuffle" }, { "type": "first_n", "limit": 3 } ]`
 
         #### geodns filter
 
@@ -168,7 +168,7 @@ class RrsetsResource(SyncAPIResource):
         `"meta": {"default": true}`.
 
         Example:
-        `"pickers": [ { "type": "geodns", "strict": false }, { "type": "default" }, { "type": "`first_n`", "limit": 2 } ]`
+        `"pickers": [ { "type": "geodns", "strict": false }, { "type": "default" }, { "type": "first_n", "limit": 2 } ]`
 
         #### geodistance mutator
 
@@ -179,20 +179,20 @@ class RrsetsResource(SyncAPIResource):
         `[52.520008, 13.404954]`.;
 
         In this configuration the only "nearest" to the requestor record to be returned:
-        `"pickers": [ { "type": "geodistance" }, { "type": "`first_n`", "limit": 1 } ]`
+        `"pickers": [ { "type": "geodistance" }, { "type": "first_n", "limit": 1 } ]`
 
         #### `weighted_shuffle` mutator
 
         The resource records are rearranged in random order based on the `weight`
         metadata. Default weight (if not specified) is 50.
 
-        Example: `"pickers": [ { "type": "`weighted_shuffle`" } ]`
+        Example: `"pickers": [ { "type": "weighted_shuffle" } ]`
 
         #### `first_n` filter
 
         Slices first N (N specified as a limit parameter value) resource records.
 
-        Example: `"pickers": [ { "type": "`first_n`", "limit": 1 } ]` returns only the
+        Example: `"pickers": [ { "type": "first_n", "limit": 1 } ]` returns only the
         first resource record.
 
         ##### limit parameter
@@ -547,7 +547,7 @@ class AsyncRrsetsResource(AsyncAPIResource):
         For example, sort records by proximity to user, shuffle based on weights and
         return not more than 3:
 
-        `"pickers": [ { "type": "geodistance" }, { "type": "`weighted_shuffle`" }, { "type": "`first_n`", "limit": 3 } ]`
+        `"pickers": [ { "type": "geodistance" }, { "type": "weighted_shuffle" }, { "type": "first_n", "limit": 3 } ]`
 
         #### geodns filter
 
@@ -624,7 +624,7 @@ class AsyncRrsetsResource(AsyncAPIResource):
         `"meta": {"default": true}`.
 
         Example:
-        `"pickers": [ { "type": "geodns", "strict": false }, { "type": "default" }, { "type": "`first_n`", "limit": 2 } ]`
+        `"pickers": [ { "type": "geodns", "strict": false }, { "type": "default" }, { "type": "first_n", "limit": 2 } ]`
 
         #### geodistance mutator
 
@@ -635,20 +635,20 @@ class AsyncRrsetsResource(AsyncAPIResource):
         `[52.520008, 13.404954]`.;
 
         In this configuration the only "nearest" to the requestor record to be returned:
-        `"pickers": [ { "type": "geodistance" }, { "type": "`first_n`", "limit": 1 } ]`
+        `"pickers": [ { "type": "geodistance" }, { "type": "first_n", "limit": 1 } ]`
 
         #### `weighted_shuffle` mutator
 
         The resource records are rearranged in random order based on the `weight`
         metadata. Default weight (if not specified) is 50.
 
-        Example: `"pickers": [ { "type": "`weighted_shuffle`" } ]`
+        Example: `"pickers": [ { "type": "weighted_shuffle" } ]`
 
         #### `first_n` filter
 
         Slices first N (N specified as a limit parameter value) resource records.
 
-        Example: `"pickers": [ { "type": "`first_n`", "limit": 1 } ]` returns only the
+        Example: `"pickers": [ { "type": "first_n", "limit": 1 } ]` returns only the
         first resource record.
 
         ##### limit parameter

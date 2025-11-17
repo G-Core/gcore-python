@@ -156,7 +156,9 @@ class AuditLogsResource(SyncAPIResource):
         resource_id: SequenceNotStr[str] | Omit = omit,
         search_field: str | Omit = omit,
         sorting: Literal["asc", "desc"] | Omit = omit,
+        source_user_ips: SequenceNotStr[str] | Omit = omit,
         to_timestamp: Union[str, datetime] | Omit = omit,
+        user_agents: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,8 +196,14 @@ class AuditLogsResource(SyncAPIResource):
           sorting: (DEPRECATED Use '`order_by`' instead) Sorting by timestamp. Oldest first, or
               most recent first
 
+          source_user_ips: Originating IP address of the client making the request. Several options can be
+              specified.
+
           to_timestamp: ISO formatted datetime string. Ending timestamp until which user actions are
               requested
+
+          user_agents: User-Agent string identifying the client making the request. Several options can
+              be specified.
 
           extra_headers: Send extra headers
 
@@ -226,7 +234,9 @@ class AuditLogsResource(SyncAPIResource):
                         "resource_id": resource_id,
                         "search_field": search_field,
                         "sorting": sorting,
+                        "source_user_ips": source_user_ips,
                         "to_timestamp": to_timestamp,
+                        "user_agents": user_agents,
                     },
                     audit_log_list_params.AuditLogListParams,
                 ),
@@ -365,7 +375,9 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         resource_id: SequenceNotStr[str] | Omit = omit,
         search_field: str | Omit = omit,
         sorting: Literal["asc", "desc"] | Omit = omit,
+        source_user_ips: SequenceNotStr[str] | Omit = omit,
         to_timestamp: Union[str, datetime] | Omit = omit,
+        user_agents: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -403,8 +415,14 @@ class AsyncAuditLogsResource(AsyncAPIResource):
           sorting: (DEPRECATED Use '`order_by`' instead) Sorting by timestamp. Oldest first, or
               most recent first
 
+          source_user_ips: Originating IP address of the client making the request. Several options can be
+              specified.
+
           to_timestamp: ISO formatted datetime string. Ending timestamp until which user actions are
               requested
+
+          user_agents: User-Agent string identifying the client making the request. Several options can
+              be specified.
 
           extra_headers: Send extra headers
 
@@ -435,7 +453,9 @@ class AsyncAuditLogsResource(AsyncAPIResource):
                         "resource_id": resource_id,
                         "search_field": search_field,
                         "sorting": sorting,
+                        "source_user_ips": source_user_ips,
                         "to_timestamp": to_timestamp,
+                        "user_agents": user_agents,
                     },
                     audit_log_list_params.AuditLogListParams,
                 ),
