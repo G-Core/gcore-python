@@ -166,9 +166,10 @@ class LoadBalancersResource(SyncAPIResource):
 
           logging: Logging configuration
 
-          name: Load balancer name
+          name: Load balancer name. Either `name` or `name_template` should be specified.
 
-          name_template: Load balancer name which will be changed by template.
+          name_template: Load balancer name which will be changed by template. Either `name` or
+              `name_template` should be specified.
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members. L2 provides best performance, L3 provides less IPs usage. It is taking
@@ -864,9 +865,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           logging: Logging configuration
 
-          name: Load balancer name
+          name: Load balancer name. Either `name` or `name_template` should be specified.
 
-          name_template: Load balancer name which will be changed by template.
+          name_template: Load balancer name which will be changed by template. Either `name` or
+              `name_template` should be specified.
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members. L2 provides best performance, L3 provides less IPs usage. It is taking
