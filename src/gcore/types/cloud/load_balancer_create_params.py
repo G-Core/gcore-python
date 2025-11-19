@@ -52,10 +52,13 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     """Logging configuration"""
 
     name: str
-    """Load balancer name"""
+    """Load balancer name. Either `name` or `name_template` should be specified."""
 
     name_template: str
-    """Load balancer name which will be changed by template."""
+    """Load balancer name which will be changed by template.
+
+    Either `name` or `name_template` should be specified.
+    """
 
     preferred_connectivity: LoadBalancerMemberConnectivity
     """
