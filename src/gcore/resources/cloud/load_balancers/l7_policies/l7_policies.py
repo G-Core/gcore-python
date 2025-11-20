@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -15,7 +15,7 @@ from .rules import (
     AsyncRulesResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import required_args, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -27,8 +27,8 @@ from ....._response import (
 from ....._base_client import make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancers import l7_policy_create_params, l7_policy_replace_params
-from .....types.cloud.load_balancer_l7_policy import LoadBalancerL7Policy
-from .....types.cloud.load_balancer_l7_policy_list import LoadBalancerL7PolicyList
+from .....types.cloud.load_balancers.l7_policy_get_response import L7PolicyGetResponse
+from .....types.cloud.load_balancers.l7_policy_list_response import L7PolicyListResponse
 
 __all__ = ["L7PoliciesResource", "AsyncL7PoliciesResource"]
 
@@ -57,19 +57,18 @@ class L7PoliciesResource(SyncAPIResource):
         """
         return L7PoliciesResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
         listener_id: str,
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -82,26 +81,23 @@ class L7PoliciesResource(SyncAPIResource):
         Create load balancer L7 policy
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           action: Action
 
           listener_id: Listener ID
 
+          redirect_url: Requests matching this policy will be redirected to this URL.
+
           name: Human-readable name of the policy
 
-          position: The position of this policy on the listener. Positions start at 1.
+          position: The position of this policy on the listener
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
-              URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
-              `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
-
-          redirect_pool_id: Requests matching this policy will be redirected to the pool withthis ID. Only
-              valid if action is `REDIRECT_TO_POOL`.
-
-          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is `REDIRECT_PREFIX`.
-
-          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is `REDIRECT_TO_URL`.
+              URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
+              Default is 302.
 
           tags: A list of simple strings assigned to the resource.
 
@@ -113,6 +109,187 @@ class L7PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        listener_id: str,
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create load balancer L7 policy
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          action: Action
+
+          listener_id: Listener ID
+
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
+              Default is 302.
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        listener_id: str,
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create load balancer L7 policy
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          action: Action
+
+          listener_id: Listener ID
+
+          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        listener_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create load balancer L7 policy
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          action: Action
+
+          listener_id: Listener ID
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["action", "listener_id", "redirect_url"],
+        ["action", "listener_id", "redirect_prefix"],
+        ["action", "listener_id", "redirect_pool_id"],
+        ["action", "listener_id"],
+    )
+    def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        listener_id: str,
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
@@ -123,13 +300,13 @@ class L7PoliciesResource(SyncAPIResource):
                 {
                     "action": action,
                     "listener_id": listener_id,
+                    "redirect_url": redirect_url,
                     "name": name,
                     "position": position,
                     "redirect_http_code": redirect_http_code,
-                    "redirect_pool_id": redirect_pool_id,
-                    "redirect_prefix": redirect_prefix,
-                    "redirect_url": redirect_url,
                     "tags": tags,
+                    "redirect_prefix": redirect_prefix,
+                    "redirect_pool_id": redirect_pool_id,
                 },
                 l7_policy_create_params.L7PolicyCreateParams,
             ),
@@ -150,11 +327,15 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7PolicyList:
+    ) -> L7PolicyListResponse:
         """
         List load balancer L7 policies
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -172,7 +353,7 @@ class L7PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7PolicyList,
+            cast_to=L7PolicyListResponse,
         )
 
     def delete(
@@ -192,6 +373,12 @@ class L7PoliciesResource(SyncAPIResource):
         Delete load balancer L7 policy
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -226,11 +413,17 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7Policy:
+    ) -> L7PolicyGetResponse:
         """
         Get load balancer L7 policy
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -250,22 +443,21 @@ class L7PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7Policy,
+            cast_to=L7PolicyGetResponse,
         )
 
+    @overload
     def replace(
         self,
         l7policy_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -274,28 +466,32 @@ class L7PoliciesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Replace load balancer L7 policy
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           action: Action
+
+          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
+              action is `REDIRECT_TO_URL`.
 
           name: Human-readable name of the policy
 
-          position: The position of this policy on the listener. Positions start at 1.
+          position: The position of this policy on the listener
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
               URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
               `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
-
-          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID. Only
-              valid if action is `REDIRECT_TO_POOL`.
-
-          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is `REDIRECT_PREFIX`.
-
-          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is `REDIRECT_TO_URL`.
 
           tags: A list of simple strings assigned to the resource.
 
@@ -307,6 +503,196 @@ class L7PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          action: Action
+
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
+              Default is 302.
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          action: Action
+
+          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          action: Action
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["action", "redirect_url"], ["action", "redirect_prefix"], ["action", "redirect_pool_id"], ["action"]
+    )
+    def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
@@ -318,13 +704,13 @@ class L7PoliciesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "action": action,
+                    "redirect_url": redirect_url,
                     "name": name,
                     "position": position,
                     "redirect_http_code": redirect_http_code,
-                    "redirect_pool_id": redirect_pool_id,
-                    "redirect_prefix": redirect_prefix,
-                    "redirect_url": redirect_url,
                     "tags": tags,
+                    "redirect_prefix": redirect_prefix,
+                    "redirect_pool_id": redirect_pool_id,
                 },
                 l7_policy_replace_params.L7PolicyReplaceParams,
             ),
@@ -510,19 +896,18 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         """
         return AsyncL7PoliciesResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
         listener_id: str,
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -535,26 +920,23 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         Create load balancer L7 policy
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           action: Action
 
           listener_id: Listener ID
 
+          redirect_url: Requests matching this policy will be redirected to this URL.
+
           name: Human-readable name of the policy
 
-          position: The position of this policy on the listener. Positions start at 1.
+          position: The position of this policy on the listener
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
-              URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
-              `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
-
-          redirect_pool_id: Requests matching this policy will be redirected to the pool withthis ID. Only
-              valid if action is `REDIRECT_TO_POOL`.
-
-          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is `REDIRECT_PREFIX`.
-
-          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is `REDIRECT_TO_URL`.
+              URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
+              Default is 302.
 
           tags: A list of simple strings assigned to the resource.
 
@@ -566,6 +948,187 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        listener_id: str,
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create load balancer L7 policy
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          action: Action
+
+          listener_id: Listener ID
+
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
+              Default is 302.
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        listener_id: str,
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create load balancer L7 policy
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          action: Action
+
+          listener_id: Listener ID
+
+          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        listener_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create load balancer L7 policy
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          action: Action
+
+          listener_id: Listener ID
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["action", "listener_id", "redirect_url"],
+        ["action", "listener_id", "redirect_prefix"],
+        ["action", "listener_id", "redirect_pool_id"],
+        ["action", "listener_id"],
+    )
+    async def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        listener_id: str,
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
@@ -576,13 +1139,13 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
                 {
                     "action": action,
                     "listener_id": listener_id,
+                    "redirect_url": redirect_url,
                     "name": name,
                     "position": position,
                     "redirect_http_code": redirect_http_code,
-                    "redirect_pool_id": redirect_pool_id,
-                    "redirect_prefix": redirect_prefix,
-                    "redirect_url": redirect_url,
                     "tags": tags,
+                    "redirect_prefix": redirect_prefix,
+                    "redirect_pool_id": redirect_pool_id,
                 },
                 l7_policy_create_params.L7PolicyCreateParams,
             ),
@@ -603,11 +1166,15 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7PolicyList:
+    ) -> L7PolicyListResponse:
         """
         List load balancer L7 policies
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -625,7 +1192,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7PolicyList,
+            cast_to=L7PolicyListResponse,
         )
 
     async def delete(
@@ -645,6 +1212,12 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         Delete load balancer L7 policy
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -679,11 +1252,17 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7Policy:
+    ) -> L7PolicyGetResponse:
         """
         Get load balancer L7 policy
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -703,22 +1282,21 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7Policy,
+            cast_to=L7PolicyGetResponse,
         )
 
+    @overload
     async def replace(
         self,
         l7policy_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -727,28 +1305,32 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Replace load balancer L7 policy
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           action: Action
+
+          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
+              action is `REDIRECT_TO_URL`.
 
           name: Human-readable name of the policy
 
-          position: The position of this policy on the listener. Positions start at 1.
+          position: The position of this policy on the listener
 
           redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
               URL with the HTTP response code. Valid if action is `REDIRECT_TO_URL` or
               `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
-
-          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID. Only
-              valid if action is `REDIRECT_TO_POOL`.
-
-          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL. Only valid
-              if action is `REDIRECT_PREFIX`.
-
-          redirect_url: Requests matching this policy will be redirected to this URL. Only valid if
-              action is `REDIRECT_TO_URL`.
 
           tags: A list of simple strings assigned to the resource.
 
@@ -760,6 +1342,196 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          action: Action
+
+          redirect_prefix: Requests matching this policy will be redirected to this Prefix URL.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          redirect_http_code: Requests matching this policy will be redirected to the specified URL or Prefix
+              URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
+              Default is 302.
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          action: Action
+
+          redirect_pool_id: Requests matching this policy will be redirected to the pool with this ID.
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Replaces the entire L7 policy configuration with the provided data.
+
+        Any fields
+        omitted from the request body will be unset (set to null) or reset to their
+        default values (such as "`redirect_http_code`") depending on the "action". This
+        is a destructive operation that overwrites the complete policy configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          action: Action
+
+          name: Human-readable name of the policy
+
+          position: The position of this policy on the listener
+
+          tags: A list of simple strings assigned to the resource.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["action", "redirect_url"], ["action", "redirect_prefix"], ["action", "redirect_pool_id"], ["action"]
+    )
+    async def replace(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
@@ -771,13 +1543,13 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "action": action,
+                    "redirect_url": redirect_url,
                     "name": name,
                     "position": position,
                     "redirect_http_code": redirect_http_code,
-                    "redirect_pool_id": redirect_pool_id,
-                    "redirect_prefix": redirect_prefix,
-                    "redirect_url": redirect_url,
                     "tags": tags,
+                    "redirect_prefix": redirect_prefix,
+                    "redirect_pool_id": redirect_pool_id,
                 },
                 l7_policy_replace_params.L7PolicyReplaceParams,
             ),
