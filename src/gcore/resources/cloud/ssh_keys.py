@@ -154,6 +154,7 @@ class SSHKeysResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -170,6 +171,9 @@ class SSHKeysResource(SyncAPIResource):
           project_id: Project ID
 
           limit: Maximum number of SSH keys to return
+
+          name: SSH key name. Partial substring match. Example: `name=abc` matches any key
+              containing `abc` in name.
 
           offset: Offset for pagination
 
@@ -196,6 +200,7 @@ class SSHKeysResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                         "order_by": order_by,
                     },
@@ -418,6 +423,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -434,6 +440,9 @@ class AsyncSSHKeysResource(AsyncAPIResource):
           project_id: Project ID
 
           limit: Maximum number of SSH keys to return
+
+          name: SSH key name. Partial substring match. Example: `name=abc` matches any key
+              containing `abc` in name.
 
           offset: Offset for pagination
 
@@ -460,6 +469,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                         "order_by": order_by,
                     },

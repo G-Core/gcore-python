@@ -120,6 +120,7 @@ class TestSSHKeys:
         ssh_key = client.cloud.ssh_keys.list(
             project_id=1,
             limit=100,
+            name="my-ssh-key",
             offset=0,
             order_by="created_at.desc",
         )
@@ -341,6 +342,7 @@ class TestAsyncSSHKeys:
         ssh_key = await async_client.cloud.ssh_keys.list(
             project_id=1,
             limit=100,
+            name="my-ssh-key",
             offset=0,
             order_by="created_at.desc",
         )
