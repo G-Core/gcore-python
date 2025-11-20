@@ -2,26 +2,41 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["L7PolicyReplaceParams"]
+__all__ = [
+    "L7PolicyReplaceParams",
+    "UpdateL7PolicyRedirectToURLSerializer",
+    "UpdateL7PolicyRedirectPrefixSerializer",
+    "UpdateL7PolicyRedirectToPoolSerializer",
+    "UpdateL7PolicyRejectSerializer",
+]
 
 
-class L7PolicyReplaceParams(TypedDict, total=False):
+class UpdateL7PolicyRedirectToURLSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
-    action: Required[Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"]]
+    action: Required[Literal["REDIRECT_TO_URL"]]
     """Action"""
+
+    redirect_url: Required[str]
+    """Requests matching this policy will be redirected to this URL.
+
+    Only valid if action is `REDIRECT_TO_URL`.
+    """
 
     name: str
     """Human-readable name of the policy"""
 
     position: int
-    """The position of this policy on the listener. Positions start at 1."""
+    """The position of this policy on the listener"""
 
     redirect_http_code: int
     """
@@ -30,23 +45,86 @@ class L7PolicyReplaceParams(TypedDict, total=False):
     `REDIRECT_PREFIX`. Valid options are 301, 302, 303, 307, or 308. Default is 302.
     """
 
-    redirect_pool_id: str
-    """Requests matching this policy will be redirected to the pool with this ID.
+    tags: SequenceNotStr[str]
+    """A list of simple strings assigned to the resource."""
 
-    Only valid if action is `REDIRECT_TO_POOL`.
+
+class UpdateL7PolicyRedirectPrefixSerializer(TypedDict, total=False):
+    project_id: int
+    """Project ID"""
+
+    region_id: int
+    """Region ID"""
+
+    action: Required[Literal["REDIRECT_PREFIX"]]
+    """Action"""
+
+    redirect_prefix: Required[str]
+    """Requests matching this policy will be redirected to this Prefix URL."""
+
+    name: str
+    """Human-readable name of the policy"""
+
+    position: int
+    """The position of this policy on the listener"""
+
+    redirect_http_code: int
     """
-
-    redirect_prefix: str
-    """Requests matching this policy will be redirected to this Prefix URL.
-
-    Only valid if action is `REDIRECT_PREFIX`.
-    """
-
-    redirect_url: str
-    """Requests matching this policy will be redirected to this URL.
-
-    Only valid if action is `REDIRECT_TO_URL`.
+    Requests matching this policy will be redirected to the specified URL or Prefix
+    URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
+    Default is 302.
     """
 
     tags: SequenceNotStr[str]
     """A list of simple strings assigned to the resource."""
+
+
+class UpdateL7PolicyRedirectToPoolSerializer(TypedDict, total=False):
+    project_id: int
+    """Project ID"""
+
+    region_id: int
+    """Region ID"""
+
+    action: Required[Literal["REDIRECT_TO_POOL"]]
+    """Action"""
+
+    redirect_pool_id: Required[str]
+    """Requests matching this policy will be redirected to the pool with this ID."""
+
+    name: str
+    """Human-readable name of the policy"""
+
+    position: int
+    """The position of this policy on the listener"""
+
+    tags: SequenceNotStr[str]
+    """A list of simple strings assigned to the resource."""
+
+
+class UpdateL7PolicyRejectSerializer(TypedDict, total=False):
+    project_id: int
+    """Project ID"""
+
+    region_id: int
+    """Region ID"""
+
+    action: Required[Literal["REJECT"]]
+    """Action"""
+
+    name: str
+    """Human-readable name of the policy"""
+
+    position: int
+    """The position of this policy on the listener"""
+
+    tags: SequenceNotStr[str]
+    """A list of simple strings assigned to the resource."""
+
+
+L7PolicyReplaceParams: TypeAlias = Union[
+    UpdateL7PolicyRedirectToURLSerializer,
+    UpdateL7PolicyRedirectPrefixSerializer,
+    UpdateL7PolicyRedirectToPoolSerializer,
+    UpdateL7PolicyRejectSerializer,
+]
