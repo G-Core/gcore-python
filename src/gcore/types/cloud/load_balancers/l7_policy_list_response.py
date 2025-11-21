@@ -3,37 +3,50 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..._models import BaseModel
-from .load_balancer_l7_rule import LoadBalancerL7Rule
+from ...._models import BaseModel
+from ..provisioning_status import ProvisioningStatus
+from ..load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["LoadBalancerL7Policy"]
+__all__ = ["L7PolicyListResponse", "Result", "ResultRule"]
 
 
-class LoadBalancerL7Policy(BaseModel):
-    id: Optional[str] = None
-    """ID"""
+class ResultRule(BaseModel):
+    id: str
+    """L7Rule ID"""
 
-    action: Optional[Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"]] = None
-    """Action"""
-
-    listener_id: Optional[str] = None
-    """Listener ID"""
-
-    name: Optional[str] = None
-    """Human-readable name of the policy"""
-
-    operating_status: Optional[Literal["DEGRADED", "DRAINING", "ERROR", "NO_MONITOR", "OFFLINE", "ONLINE"]] = None
-    """L7 policy operating status"""
-
-    position: Optional[int] = None
-    """The position of this policy on the listener. Positions start at 1."""
-
-    project_id: Optional[int] = None
+    project_id: int
     """Project ID"""
 
-    provisioning_status: Optional[
-        Literal["ACTIVE", "DELETED", "ERROR", "PENDING_CREATE", "PENDING_DELETE", "PENDING_UPDATE"]
-    ] = None
+    region: str
+    """Region name"""
+
+    region_id: int
+    """Region ID"""
+
+
+class Result(BaseModel):
+    id: str
+    """ID"""
+
+    action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"]
+    """Action"""
+
+    listener_id: str
+    """Listener ID"""
+
+    name: str
+    """Human-readable name of the policy"""
+
+    operating_status: LoadBalancerOperatingStatus
+    """L7 policy operating status"""
+
+    position: int
+    """The position of this policy on the listener. Positions start at 1."""
+
+    project_id: int
+    """Project ID"""
+
+    provisioning_status: ProvisioningStatus
 
     redirect_http_code: Optional[int] = None
     """
@@ -60,13 +73,13 @@ class LoadBalancerL7Policy(BaseModel):
     Only valid if action is `REDIRECT_TO_URL`.
     """
 
-    region: Optional[str] = None
+    region: str
     """Region name"""
 
-    region_id: Optional[int] = None
+    region_id: int
     """Region ID"""
 
-    rules: Optional[List[LoadBalancerL7Rule]] = None
+    rules: List[ResultRule]
     """Rules.
 
     All the rules associated with a given policy are logically ANDed together. A
@@ -75,7 +88,7 @@ class LoadBalancerL7Policy(BaseModel):
     policies with the same action.
     """
 
-    tags: Optional[List[str]] = None
+    tags: List[str]
     """A list of simple strings assigned to the resource."""
 
     task_id: Optional[str] = None
@@ -84,3 +97,11 @@ class LoadBalancerL7Policy(BaseModel):
     This lock prevents concurrent modifications to ensure consistency. If `null`,
     the resource is not locked.
     """
+
+
+class L7PolicyListResponse(BaseModel):
+    count: int
+    """Number of objects"""
+
+    results: List[Result]
+    """Objects"""

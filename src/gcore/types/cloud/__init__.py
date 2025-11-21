@@ -91,7 +91,6 @@ from .baremetal_flavor_list import BaremetalFlavorList as BaremetalFlavorList
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .gpu_baremetal_cluster import GPUBaremetalCluster as GPUBaremetalCluster
 from .health_monitor_status import HealthMonitorStatus as HealthMonitorStatus
-from .load_balancer_l7_rule import LoadBalancerL7Rule as LoadBalancerL7Rule
 from .load_balancer_metrics import LoadBalancerMetrics as LoadBalancerMetrics
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
@@ -112,7 +111,6 @@ from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
-from .load_balancer_l7_policy import LoadBalancerL7Policy as LoadBalancerL7Policy
 from .load_balancer_pool_list import LoadBalancerPoolList as LoadBalancerPoolList
 from .usage_report_get_params import UsageReportGetParams as UsageReportGetParams
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
@@ -132,7 +130,6 @@ from .load_balancer_status_list import LoadBalancerStatusList as LoadBalancerSta
 from .quota_get_global_response import QuotaGetGlobalResponse as QuotaGetGlobalResponse
 from .volume_change_type_params import VolumeChangeTypeParams as VolumeChangeTypeParams
 from .instance_metrics_time_unit import InstanceMetricsTimeUnit as InstanceMetricsTimeUnit
-from .load_balancer_l7_rule_list import LoadBalancerL7RuleList as LoadBalancerL7RuleList
 from .load_balancer_metrics_list import LoadBalancerMetricsList as LoadBalancerMetricsList
 from .security_group_copy_params import SecurityGroupCopyParams as SecurityGroupCopyParams
 from .security_group_list_params import SecurityGroupListParams as SecurityGroupListParams
@@ -148,7 +145,6 @@ from .load_balancer_listener_list import LoadBalancerListenerList as LoadBalance
 from .load_balancer_resize_params import LoadBalancerResizeParams as LoadBalancerResizeParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
-from .load_balancer_l7_policy_list import LoadBalancerL7PolicyList as LoadBalancerL7PolicyList
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
 from .security_group_create_params import SecurityGroupCreateParams as SecurityGroupCreateParams
 from .security_group_update_params import SecurityGroupUpdateParams as SecurityGroupUpdateParams

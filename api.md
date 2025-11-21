@@ -188,10 +188,6 @@ from gcore.types.cloud import (
     ListenerStatus,
     LoadBalancerFlavorDetail,
     LoadBalancerFlavorList,
-    LoadBalancerL7Policy,
-    LoadBalancerL7PolicyList,
-    LoadBalancerL7Rule,
-    LoadBalancerL7RuleList,
     LoadBalancerListenerDetail,
     LoadBalancerListenerList,
     LoadBalancerMetrics,
@@ -219,22 +215,34 @@ Methods:
 
 ### L7Policies
 
+Types:
+
+```python
+from gcore.types.cloud.load_balancers import L7PolicyListResponse, L7PolicyGetResponse
+```
+
 Methods:
 
 - <code title="post /cloud/v1/l7policies/{project_id}/{region_id}">client.cloud.load_balancers.l7_policies.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/l7_policies.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/l7_policy_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}">client.cloud.load_balancers.l7_policies.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/l7_policies.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_l7_policy_list.py">LoadBalancerL7PolicyList</a></code>
+- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}">client.cloud.load_balancers.l7_policies.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/l7_policies.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancers/l7_policy_list_response.py">L7PolicyListResponse</a></code>
 - <code title="delete /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}">client.cloud.load_balancers.l7_policies.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/l7_policies.py">delete</a>(l7policy_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}">client.cloud.load_balancers.l7_policies.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/l7_policies.py">get</a>(l7policy_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_l7_policy.py">LoadBalancerL7Policy</a></code>
+- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}">client.cloud.load_balancers.l7_policies.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/l7_policies.py">get</a>(l7policy_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancers/l7_policy_get_response.py">L7PolicyGetResponse</a></code>
 - <code title="put /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}">client.cloud.load_balancers.l7_policies.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/l7_policies.py">replace</a>(l7policy_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/l7_policy_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 #### Rules
 
+Types:
+
+```python
+from gcore.types.cloud.load_balancers.l7_policies import RuleListResponse, RuleGetResponse
+```
+
 Methods:
 
 - <code title="post /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules">client.cloud.load_balancers.l7_policies.rules.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/rules.py">create</a>(l7policy_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/l7_policies/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules">client.cloud.load_balancers.l7_policies.rules.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/rules.py">list</a>(l7policy_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_l7_rule_list.py">LoadBalancerL7RuleList</a></code>
+- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules">client.cloud.load_balancers.l7_policies.rules.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/rules.py">list</a>(l7policy_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancers/l7_policies/rule_list_response.py">RuleListResponse</a></code>
 - <code title="delete /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}">client.cloud.load_balancers.l7_policies.rules.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/rules.py">delete</a>(l7rule_id, \*, project_id, region_id, l7policy_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}">client.cloud.load_balancers.l7_policies.rules.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/rules.py">get</a>(l7rule_id, \*, project_id, region_id, l7policy_id) -> <a href="./src/gcore/types/cloud/load_balancer_l7_rule.py">LoadBalancerL7Rule</a></code>
+- <code title="get /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}">client.cloud.load_balancers.l7_policies.rules.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/rules.py">get</a>(l7rule_id, \*, project_id, region_id, l7policy_id) -> <a href="./src/gcore/types/cloud/load_balancers/l7_policies/rule_get_response.py">RuleGetResponse</a></code>
 - <code title="put /cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules/{l7rule_id}">client.cloud.load_balancers.l7_policies.rules.<a href="./src/gcore/resources/cloud/load_balancers/l7_policies/rules.py">replace</a>(l7rule_id, \*, project_id, region_id, l7policy_id, \*\*<a href="src/gcore/types/cloud/load_balancers/l7_policies/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 ### Flavors

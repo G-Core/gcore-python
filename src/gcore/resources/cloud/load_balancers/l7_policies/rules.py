@@ -18,9 +18,9 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.load_balancer_l7_rule import LoadBalancerL7Rule
-from .....types.cloud.load_balancer_l7_rule_list import LoadBalancerL7RuleList
 from .....types.cloud.load_balancers.l7_policies import rule_create_params, rule_replace_params
+from .....types.cloud.load_balancers.l7_policies.rule_get_response import RuleGetResponse
+from .....types.cloud.load_balancers.l7_policies.rule_list_response import RuleListResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -77,17 +77,21 @@ class RulesResource(SyncAPIResource):
         Create load balancer L7 rule
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           compare_type: The comparison type for the L7 rule
 
           type: The L7 rule type
 
-          value: The value to use for the comparison. For example, the file type to compare
+          value: The value to use for the comparison
 
-          invert: When true the logic of the rule is inverted. For example, with invert true,
-              'equal to' would become 'not equal to'. Default is false.
+          invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison. For example, the name of the cookie to
-              evaluate.
+          key: The key to use for the comparison.
 
           tags: A list of simple strings assigned to the l7 rule
 
@@ -136,11 +140,17 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7RuleList:
+    ) -> RuleListResponse:
         """
         List load balancer L7 policy rules
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -160,7 +170,7 @@ class RulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7RuleList,
+            cast_to=RuleListResponse,
         )
 
     def delete(
@@ -181,6 +191,14 @@ class RulesResource(SyncAPIResource):
         Delete load balancer L7 rule
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          l7rule_id: L7 rule ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -218,11 +236,19 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7Rule:
+    ) -> RuleGetResponse:
         """
         Get load balancer L7 rule
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          l7rule_id: L7 rule ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -244,7 +270,7 @@ class RulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7Rule,
+            cast_to=RuleGetResponse,
         )
 
     def replace(
@@ -254,7 +280,7 @@ class RulesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         l7policy_id: str,
-        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"] | Omit = omit,
+        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"],
         invert: bool | Omit = omit,
         key: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -281,19 +307,25 @@ class RulesResource(SyncAPIResource):
         Replace load balancer L7 rule properties
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          l7rule_id: L7 rule ID
+
           compare_type: The comparison type for the L7 rule
 
-          invert: When true the logic of the rule is inverted. For example, with invert true,
-              'equal to' would become 'not equal to'. Default is false.
+          invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison. For example, the name of the cookie to
-              evaluate.
+          key: The key to use for the comparison.
 
           tags: A list of simple strings assigned to the l7 rule
 
           type: The L7 rule type
 
-          value: The value to use for the comparison. For example, the file type to compare
+          value: The value to use for the comparison
 
           extra_headers: Send extra headers
 
@@ -552,17 +584,21 @@ class AsyncRulesResource(AsyncAPIResource):
         Create load balancer L7 rule
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           compare_type: The comparison type for the L7 rule
 
           type: The L7 rule type
 
-          value: The value to use for the comparison. For example, the file type to compare
+          value: The value to use for the comparison
 
-          invert: When true the logic of the rule is inverted. For example, with invert true,
-              'equal to' would become 'not equal to'. Default is false.
+          invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison. For example, the name of the cookie to
-              evaluate.
+          key: The key to use for the comparison.
 
           tags: A list of simple strings assigned to the l7 rule
 
@@ -611,11 +647,17 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7RuleList:
+    ) -> RuleListResponse:
         """
         List load balancer L7 policy rules
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -635,7 +677,7 @@ class AsyncRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7RuleList,
+            cast_to=RuleListResponse,
         )
 
     async def delete(
@@ -656,6 +698,14 @@ class AsyncRulesResource(AsyncAPIResource):
         Delete load balancer L7 rule
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          l7rule_id: L7 rule ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -693,11 +743,19 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7Rule:
+    ) -> RuleGetResponse:
         """
         Get load balancer L7 rule
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          l7rule_id: L7 rule ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -719,7 +777,7 @@ class AsyncRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerL7Rule,
+            cast_to=RuleGetResponse,
         )
 
     async def replace(
@@ -729,7 +787,7 @@ class AsyncRulesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         l7policy_id: str,
-        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"] | Omit = omit,
+        compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"],
         invert: bool | Omit = omit,
         key: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -756,19 +814,25 @@ class AsyncRulesResource(AsyncAPIResource):
         Replace load balancer L7 rule properties
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          l7policy_id: L7 policy ID
+
+          l7rule_id: L7 rule ID
+
           compare_type: The comparison type for the L7 rule
 
-          invert: When true the logic of the rule is inverted. For example, with invert true,
-              'equal to' would become 'not equal to'. Default is false.
+          invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison. For example, the name of the cookie to
-              evaluate.
+          key: The key to use for the comparison.
 
           tags: A list of simple strings assigned to the l7 rule
 
           type: The L7 rule type
 
-          value: The value to use for the comparison. For example, the file type to compare
+          value: The value to use for the comparison
 
           extra_headers: Send extra headers
 

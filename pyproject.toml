@@ -1,6 +1,6 @@
 [project]
 name = "gcore"
-version = "0.21.0"
+version = "0.22.0"
 description = "The official Python library for the gcore API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -24,6 +24,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Operating System :: OS Independent",
   "Operating System :: POSIX",
   "Operating System :: MacOS",

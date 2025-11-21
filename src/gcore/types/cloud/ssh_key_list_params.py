@@ -14,6 +14,13 @@ class SSHKeyListParams(TypedDict, total=False):
     limit: int
     """Maximum number of SSH keys to return"""
 
+    name: str
+    """SSH key name.
+
+    Partial substring match. Example: `name=abc` matches any key containing `abc` in
+    name.
+    """
+
     offset: int
     """Offset for pagination"""
 

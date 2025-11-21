@@ -3,19 +3,21 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..._models import BaseModel
+from ....._models import BaseModel
+from ...provisioning_status import ProvisioningStatus
+from ...load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["LoadBalancerL7Rule"]
+__all__ = ["RuleGetResponse"]
 
 
-class LoadBalancerL7Rule(BaseModel):
-    id: Optional[str] = None
+class RuleGetResponse(BaseModel):
+    id: str
     """L7Rule ID"""
 
-    compare_type: Optional[Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"]] = None
+    compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"]
     """The comparison type for the L7 rule"""
 
-    invert: Optional[bool] = None
+    invert: bool
     """When true the logic of the rule is inverted.
 
     For example, with invert true, 'equal to' would become 'not equal to'. Default
@@ -28,20 +30,18 @@ class LoadBalancerL7Rule(BaseModel):
     For example, the name of the cookie to evaluate.
     """
 
-    operating_status: Optional[Literal["DEGRADED", "DRAINING", "ERROR", "NO_MONITOR", "OFFLINE", "ONLINE"]] = None
+    operating_status: LoadBalancerOperatingStatus
     """L7 policy operating status"""
 
-    project_id: Optional[int] = None
+    project_id: int
     """Project ID"""
 
-    provisioning_status: Optional[
-        Literal["ACTIVE", "DELETED", "ERROR", "PENDING_CREATE", "PENDING_DELETE", "PENDING_UPDATE"]
-    ] = None
+    provisioning_status: ProvisioningStatus
 
-    region: Optional[str] = None
+    region: str
     """Region name"""
 
-    region_id: Optional[int] = None
+    region_id: int
     """Region ID"""
 
     tags: Optional[List[str]] = None
@@ -54,19 +54,10 @@ class LoadBalancerL7Rule(BaseModel):
     the resource is not locked.
     """
 
-    type: Optional[
-        Literal[
-            "COOKIE",
-            "FILE_TYPE",
-            "HEADER",
-            "HOST_NAME",
-            "PATH",
-            "SSL_CONN_HAS_CERT",
-            "SSL_DN_FIELD",
-            "SSL_VERIFY_RESULT",
-        ]
-    ] = None
+    type: Literal[
+        "COOKIE", "FILE_TYPE", "HEADER", "HOST_NAME", "PATH", "SSL_CONN_HAS_CERT", "SSL_DN_FIELD", "SSL_VERIFY_RESULT"
+    ]
     """The L7 rule type"""
 
-    value: Optional[str] = None
+    value: str
     """The value to use for the comparison. For example, the file type to compare."""
