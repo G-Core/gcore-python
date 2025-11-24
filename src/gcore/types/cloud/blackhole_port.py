@@ -12,7 +12,10 @@ __all__ = ["BlackholePort"]
 
 class BlackholePort(BaseModel):
     alarm_end: datetime = FieldInfo(alias="AlarmEnd")
-    """A date-time string giving the time that the alarm ended"""
+    """A date-time string giving the time that the alarm ended.
+
+    If not yet ended, time will be given as 0001-01-01T00:00:00Z
+    """
 
     alarm_start: datetime = FieldInfo(alias="AlarmStart")
     """A date-time string giving the time that the alarm started"""

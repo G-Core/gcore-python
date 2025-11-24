@@ -49,7 +49,7 @@ class TestSecurityGroups:
                         "remote_ip_prefix": "10.0.0.0/8",
                     }
                 ],
-                "tags": {"my-tag": "bar"},
+                "tags": {"my-tag": "my-tag-value"},
             },
             instances=["00000000-0000-4000-8000-000000000000"],
         )
@@ -423,7 +423,7 @@ class TestAsyncSecurityGroups:
                         "remote_ip_prefix": "10.0.0.0/8",
                     }
                 ],
-                "tags": {"my-tag": "bar"},
+                "tags": {"my-tag": "my-tag-value"},
             },
             instances=["00000000-0000-4000-8000-000000000000"],
         )

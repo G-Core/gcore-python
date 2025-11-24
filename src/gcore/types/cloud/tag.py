@@ -7,10 +7,10 @@ __all__ = ["Tag"]
 
 class Tag(BaseModel):
     key: str
-    """Tag key. The maximum size for a key is 255 bytes."""
+    """Tag key. The maximum size for a key is 255 characters."""
 
     read_only: bool
     """If true, the tag is read-only and cannot be modified by the user"""
 
     value: str
-    """Tag value. The maximum size for a value is 1024 bytes."""
+    """Tag value. The maximum size for a value is 255 characters."""
