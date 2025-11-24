@@ -3,14 +3,14 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ....._models import BaseModel
-from ...provisioning_status import ProvisioningStatus
-from ...load_balancer_operating_status import LoadBalancerOperatingStatus
+from ..._models import BaseModel
+from .provisioning_status import ProvisioningStatus
+from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["RuleGetResponse"]
+__all__ = ["LoadBalancerL7Rule"]
 
 
-class RuleGetResponse(BaseModel):
+class LoadBalancerL7Rule(BaseModel):
     id: str
     """L7Rule ID"""
 
