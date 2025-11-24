@@ -743,7 +743,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = self.create(
+        response: TaskIDList = self.create(  # type: ignore[call-overload, misc]
             project_id=project_id,
             region_id=region_id,
             action=action,
@@ -760,10 +760,10 @@ class L7PoliciesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -838,7 +838,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = self.replace(
+        response: TaskIDList = self.replace(  # type: ignore[call-overload, misc]
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -855,10 +855,10 @@ class L7PoliciesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -1582,7 +1582,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = await self.create(
+        response: TaskIDList = await self.create(  # type: ignore[call-overload, misc]
             project_id=project_id,
             region_id=region_id,
             action=action,
@@ -1599,10 +1599,10 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -1677,7 +1677,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = await self.replace(
+        response: TaskIDList = await self.replace(  # type: ignore[call-overload, misc]
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -1694,10 +1694,10 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,

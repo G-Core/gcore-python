@@ -392,7 +392,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Rule:
-        response = self.create(
+        response: TaskIDList = self.create(  # type: ignore[call-overload, misc]
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -407,10 +407,10 @@ class RulesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -498,7 +498,7 @@ class RulesResource(SyncAPIResource):
         """
         Replace L7 rule and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
-        response = self.replace(
+        response: TaskIDList = self.replace(  # type: ignore[call-overload, misc]
             l7rule_id=l7rule_id,
             project_id=project_id,
             region_id=region_id,
@@ -514,10 +514,10 @@ class RulesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks:
+        if not response.tasks:  # type: ignore[union-attr]
             raise ValueError("Expected at least one task to be created")
         self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -899,7 +899,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Rule:
-        response = await self.create(
+        response: TaskIDList = await self.create(  # type: ignore[call-overload, misc]
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -914,10 +914,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -1005,7 +1005,7 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         Replace L7 rule and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
-        response = await self.replace(
+        response: TaskIDList = await self.replace(  # type: ignore[call-overload, misc]
             l7rule_id=l7rule_id,
             project_id=project_id,
             region_id=region_id,
@@ -1021,10 +1021,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks:
+        if not response.tasks:  # type: ignore[union-attr]
             raise ValueError("Expected at least one task to be created")
         await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[union-attr]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
