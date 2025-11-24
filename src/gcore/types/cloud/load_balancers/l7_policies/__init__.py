@@ -2,7 +2,5 @@
 
 from __future__ import annotations
 
-from .rule_get_response import RuleGetResponse as RuleGetResponse
 from .rule_create_params import RuleCreateParams as RuleCreateParams
-from .rule_list_response import RuleListResponse as RuleListResponse
 from .rule_replace_params import RuleReplaceParams as RuleReplaceParams

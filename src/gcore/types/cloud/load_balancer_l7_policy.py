@@ -3,14 +3,14 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ...._models import BaseModel
-from ..provisioning_status import ProvisioningStatus
-from ..load_balancer_operating_status import LoadBalancerOperatingStatus
+from ..._models import BaseModel
+from .provisioning_status import ProvisioningStatus
+from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
-__all__ = ["L7PolicyListResponse", "Result", "ResultRule"]
+__all__ = ["LoadBalancerL7Policy", "Rule"]
 
 
-class ResultRule(BaseModel):
+class Rule(BaseModel):
     id: str
     """L7Rule ID"""
 
@@ -24,7 +24,7 @@ class ResultRule(BaseModel):
     """Region ID"""
 
 
-class Result(BaseModel):
+class LoadBalancerL7Policy(BaseModel):
     id: str
     """ID"""
 
@@ -79,7 +79,7 @@ class Result(BaseModel):
     region_id: int
     """Region ID"""
 
-    rules: List[ResultRule]
+    rules: List[Rule]
     """Rules.
 
     All the rules associated with a given policy are logically ANDed together. A
@@ -97,11 +97,3 @@ class Result(BaseModel):
     This lock prevents concurrent modifications to ensure consistency. If `null`,
     the resource is not locked.
     """
-
-
-class L7PolicyListResponse(BaseModel):
-    count: int
-    """Number of objects"""
-
-    results: List[Result]
-    """Objects"""

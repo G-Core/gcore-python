@@ -9,11 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList
-from gcore.types.cloud.load_balancers import (
-    L7PolicyGetResponse,
-    L7PolicyListResponse,
-)
+from gcore.types.cloud import TaskIDList, LoadBalancerL7Policy, LoadBalancerL7PolicyList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -253,7 +249,7 @@ class TestL7Policies:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(L7PolicyListResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -265,7 +261,7 @@ class TestL7Policies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         l7_policy = response.parse()
-        assert_matches_type(L7PolicyListResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -277,7 +273,7 @@ class TestL7Policies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             l7_policy = response.parse()
-            assert_matches_type(L7PolicyListResponse, l7_policy, path=["response"])
+            assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,7 +330,7 @@ class TestL7Policies:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(L7PolicyGetResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7Policy, l7_policy, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -347,7 +343,7 @@ class TestL7Policies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         l7_policy = response.parse()
-        assert_matches_type(L7PolicyGetResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7Policy, l7_policy, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -360,7 +356,7 @@ class TestL7Policies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             l7_policy = response.parse()
-            assert_matches_type(L7PolicyGetResponse, l7_policy, path=["response"])
+            assert_matches_type(LoadBalancerL7Policy, l7_policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -880,7 +876,7 @@ class TestAsyncL7Policies:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(L7PolicyListResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -892,7 +888,7 @@ class TestAsyncL7Policies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         l7_policy = await response.parse()
-        assert_matches_type(L7PolicyListResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -904,7 +900,7 @@ class TestAsyncL7Policies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             l7_policy = await response.parse()
-            assert_matches_type(L7PolicyListResponse, l7_policy, path=["response"])
+            assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -961,7 +957,7 @@ class TestAsyncL7Policies:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(L7PolicyGetResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7Policy, l7_policy, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -974,7 +970,7 @@ class TestAsyncL7Policies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         l7_policy = await response.parse()
-        assert_matches_type(L7PolicyGetResponse, l7_policy, path=["response"])
+        assert_matches_type(LoadBalancerL7Policy, l7_policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -987,7 +983,7 @@ class TestAsyncL7Policies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             l7_policy = await response.parse()
-            assert_matches_type(L7PolicyGetResponse, l7_policy, path=["response"])
+            assert_matches_type(LoadBalancerL7Policy, l7_policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
