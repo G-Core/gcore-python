@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.22.0 (2025-11-25)
+
+Full Changelog: [v0.21.0...v0.22.0](https://github.com/G-Core/gcore-python/compare/v0.21.0...v0.22.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** k8s references from k8 to k8s
+* **cloud:** updates to get/list LB l7 policy/rules models
+
+### Features
+
+* **api:** aggregated API specs update ([49ac2ae](https://github.com/G-Core/gcore-python/commit/49ac2ae5ff6575877adfc16d46454c1ddf9b4160))
+* **api:** aggregated API specs update ([299adc0](https://github.com/G-Core/gcore-python/commit/299adc06cba63fb89bd3cd5f17d10188db08c735))
+* **api:** aggregated API specs update ([fff1d1e](https://github.com/G-Core/gcore-python/commit/fff1d1e981d3c286288c77c0a9a7c3fa146abd80))
+* **cloud:** updates to get/list LB l7 policy/rules models ([95a4cf1](https://github.com/G-Core/gcore-python/commit/95a4cf12132dc638e3a0994e3b5a5249b079e5ad))
+
+
+### Bug Fixes
+
+* add overloads to L7 policy polling methods to match create/replace signatures ([ecd63d8](https://github.com/G-Core/gcore-python/commit/ecd63d8704925bb86d232ea97e90bf7b45bb6e0b))
+* add overloads to L7 policy polling methods to match create/replace signatures ([44d657e](https://github.com/G-Core/gcore-python/commit/44d657e515ffd4c65bdcd82a419f85db138ceeba))
+* **cloud:** add overloads to L7 policy polling methods ([a639930](https://github.com/G-Core/gcore-python/commit/a639930e1d18b1a95ba4dfff4b847efc9093f5ef))
+* **cloud:** k8s references from k8 to k8s ([96211ea](https://github.com/G-Core/gcore-python/commit/96211ea00c49baddd1ada6c26af994181bcd50de))
+* resolve type errors in L7 policy/rule polling methods ([30e648f](https://github.com/G-Core/gcore-python/commit/30e648f9d9a5f6ed0ad7bb9b34272819d85fb594))
+
+
+### Chores
+
+* **internal:** codegen related update ([a6fbaff](https://github.com/G-Core/gcore-python/commit/a6fbaffe05cbdd3dac367525266a736d6b633ec1))
+
 ## 0.21.0 (2025-11-17)
 
 Full Changelog: [v0.20.0...v0.21.0](https://github.com/G-Core/gcore-python/compare/v0.20.0...v0.21.0)
