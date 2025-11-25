@@ -720,30 +720,127 @@ class L7PoliciesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
     def create_and_poll(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
         listener_id: str,
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = self.create(
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @overload
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        listener_id: str,
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @overload
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        listener_id: str,
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @overload
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        listener_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @required_args(
+        ["action", "listener_id", "redirect_url"],
+        ["action", "listener_id", "redirect_prefix"],
+        ["action", "listener_id", "redirect_pool_id"],
+        ["action", "listener_id"],
+    )
+    def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        listener_id: str,
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        response: TaskIDList = self.create(  # type: ignore
             project_id=project_id,
             region_id=region_id,
             action=action,
@@ -760,10 +857,10 @@ class L7PoliciesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[index]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -815,30 +912,124 @@ class L7PoliciesResource(SyncAPIResource):
             polling_timeout_seconds=polling_timeout_seconds,
         )
 
+    @overload
     def replace_and_poll(
         self,
         l7policy_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = self.replace(
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @overload
+    def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @overload
+    def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @overload
+    def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @required_args(
+        ["action", "redirect_url"], ["action", "redirect_prefix"], ["action", "redirect_pool_id"], ["action"]
+    )
+    def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        response: TaskIDList = self.replace(  # type: ignore
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -855,10 +1046,10 @@ class L7PoliciesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[index]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -1559,30 +1750,127 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
     async def create_and_poll(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
         listener_id: str,
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = await self.create(
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @overload
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        listener_id: str,
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @overload
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        listener_id: str,
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @overload
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        listener_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        ...
+
+    @required_args(
+        ["action", "listener_id", "redirect_url"],
+        ["action", "listener_id", "redirect_prefix"],
+        ["action", "listener_id", "redirect_pool_id"],
+        ["action", "listener_id"],
+    )
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        listener_id: str,
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Create L7 policy and poll for completion."""
+        response: TaskIDList = await self.create(  # type: ignore
             project_id=project_id,
             region_id=region_id,
             action=action,
@@ -1599,10 +1887,10 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[index]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
@@ -1654,30 +1942,124 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             polling_timeout_seconds=polling_timeout_seconds,
         )
 
+    @overload
     async def replace_and_poll(
         self,
         l7policy_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        action: Literal["REDIRECT_PREFIX", "REDIRECT_TO_POOL", "REDIRECT_TO_URL", "REJECT"],
+        action: Literal["REDIRECT_TO_URL"],
+        redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
         redirect_http_code: int | Omit = omit,
-        redirect_pool_id: str | Omit = omit,
-        redirect_prefix: str | Omit = omit,
-        redirect_url: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        response = await self.replace(
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @overload
+    async def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_PREFIX"],
+        redirect_prefix: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @overload
+    async def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_POOL"],
+        redirect_pool_id: str,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @overload
+    async def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REJECT"],
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        ...
+
+    @required_args(
+        ["action", "redirect_url"], ["action", "redirect_prefix"], ["action", "redirect_pool_id"], ["action"]
+    )
+    async def replace_and_poll(
+        self,
+        l7policy_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["REDIRECT_TO_URL"]
+        | Literal["REDIRECT_PREFIX"]
+        | Literal["REDIRECT_TO_POOL"]
+        | Literal["REJECT"],
+        redirect_url: str | Omit = omit,
+        name: str | Omit = omit,
+        position: int | Omit = omit,
+        redirect_http_code: int | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        redirect_prefix: str | Omit = omit,
+        redirect_pool_id: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> LoadBalancerL7Policy:
+        """Replace L7 policy and poll for completion."""
+        response: TaskIDList = await self.replace(  # type: ignore
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -1694,10 +2076,10 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:
+        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
             raise ValueError(f"Expected exactly one task to be created")
         await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
+            task_id=response.tasks[0],  # type: ignore[index]
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
