@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["K8sClusterKubeconfig"]
+__all__ = ["K8SClusterKubeconfig"]
 
 
-class K8sClusterKubeconfig(BaseModel):
+class K8SClusterKubeconfig(BaseModel):
     client_certificate: str
     """String in base64 format. Cluster client certificate"""
 

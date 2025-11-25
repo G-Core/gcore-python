@@ -66,7 +66,7 @@ from .ddos_profile_status import DDOSProfileStatus as DDOSProfileStatus
 from .fixed_address_short import FixedAddressShort as FixedAddressShort
 from .gpu_virtual_cluster import GPUVirtualCluster as GPUVirtualCluster
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
-from .k8s_cluster_version import K8sClusterVersion as K8sClusterVersion
+from .k8s_cluster_version import K8SClusterVersion as K8SClusterVersion
 from .network_list_params import NetworkListParams as NetworkListParams
 from .project_list_params import ProjectListParams as ProjectListParams
 from .provisioning_status import ProvisioningStatus as ProvisioningStatus
@@ -119,7 +119,7 @@ from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOption
 from .file_share_create_params import FileShareCreateParams as FileShareCreateParams
 from .file_share_resize_params import FileShareResizeParams as FileShareResizeParams
 from .file_share_update_params import FileShareUpdateParams as FileShareUpdateParams
-from .k8s_cluster_version_list import K8sClusterVersionList as K8sClusterVersionList
+from .k8s_cluster_version_list import K8SClusterVersionList as K8SClusterVersionList
 from .load_balancer_get_params import LoadBalancerGetParams as LoadBalancerGetParams
 from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStatistics
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams

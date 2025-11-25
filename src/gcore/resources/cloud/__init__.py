@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .k8s import (
-    K8sResource,
-    AsyncK8sResource,
-    K8sResourceWithRawResponse,
-    AsyncK8sResourceWithRawResponse,
-    K8sResourceWithStreamingResponse,
-    AsyncK8sResourceWithStreamingResponse,
+    K8SResource,
+    AsyncK8SResource,
+    K8SResourceWithRawResponse,
+    AsyncK8SResourceWithRawResponse,
+    K8SResourceWithStreamingResponse,
+    AsyncK8SResourceWithStreamingResponse,
 )
 from .cloud import (
     CloudResource,
@@ -372,12 +372,12 @@ __all__ = [
     "AsyncInstancesResourceWithRawResponse",
     "InstancesResourceWithStreamingResponse",
     "AsyncInstancesResourceWithStreamingResponse",
-    "K8sResource",
-    "AsyncK8sResource",
-    "K8sResourceWithRawResponse",
-    "AsyncK8sResourceWithRawResponse",
-    "K8sResourceWithStreamingResponse",
-    "AsyncK8sResourceWithStreamingResponse",
+    "K8SResource",
+    "AsyncK8SResource",
+    "K8SResourceWithRawResponse",
+    "AsyncK8SResourceWithRawResponse",
+    "K8SResourceWithStreamingResponse",
+    "AsyncK8SResourceWithStreamingResponse",
     "AuditLogsResource",
     "AsyncAuditLogsResource",
     "AuditLogsResourceWithRawResponse",

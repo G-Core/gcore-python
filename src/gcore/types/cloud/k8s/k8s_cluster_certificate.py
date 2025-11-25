@@ -2,10 +2,10 @@
 
 from ...._models import BaseModel
 
-__all__ = ["K8sClusterCertificate"]
+__all__ = ["K8SClusterCertificate"]
 
 
-class K8sClusterCertificate(BaseModel):
+class K8SClusterCertificate(BaseModel):
     certificate: str
     """Cluster CA certificate"""
 
