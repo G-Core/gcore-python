@@ -28,8 +28,8 @@ from ......_response import (
 from ......_base_client import make_request_options
 from ......types.cloud.k8s.clusters import pool_create_params, pool_resize_params, pool_update_params
 from ......types.cloud.task_id_list import TaskIDList
-from ......types.cloud.k8s.clusters.k8s_cluster_pool import K8sClusterPool
-from ......types.cloud.k8s.clusters.k8s_cluster_pool_list import K8sClusterPoolList
+from ......types.cloud.k8s.clusters.k8s_cluster_pool import K8SClusterPool
+from ......types.cloud.k8s.clusters.k8s_cluster_pool_list import K8SClusterPoolList
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
@@ -174,7 +174,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterPool:
+    ) -> K8SClusterPool:
         """
         Update k8s cluster pool
 
@@ -223,7 +223,7 @@ class PoolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterPool,
+            cast_to=K8SClusterPool,
         )
 
     def list(
@@ -238,7 +238,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterPoolList:
+    ) -> K8SClusterPoolList:
         """
         List k8s cluster pools
 
@@ -262,7 +262,7 @@ class PoolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterPoolList,
+            cast_to=K8SClusterPoolList,
         )
 
     def delete(
@@ -320,7 +320,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterPool:
+    ) -> K8SClusterPool:
         """
         Get k8s cluster pool
 
@@ -346,7 +346,7 @@ class PoolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterPool,
+            cast_to=K8SClusterPool,
         )
 
     def resize(
@@ -536,7 +536,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterPool:
+    ) -> K8SClusterPool:
         """
         Update k8s cluster pool
 
@@ -585,7 +585,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterPool,
+            cast_to=K8SClusterPool,
         )
 
     async def list(
@@ -600,7 +600,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterPoolList:
+    ) -> K8SClusterPoolList:
         """
         List k8s cluster pools
 
@@ -624,7 +624,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterPoolList,
+            cast_to=K8SClusterPoolList,
         )
 
     async def delete(
@@ -682,7 +682,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterPool:
+    ) -> K8SClusterPool:
         """
         Get k8s cluster pool
 
@@ -708,7 +708,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterPool,
+            cast_to=K8SClusterPool,
         )
 
     async def resize(

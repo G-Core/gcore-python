@@ -12,8 +12,8 @@ __all__ = [
     "ClusterUpdateParams",
     "AddOns",
     "AddOnsSlurm",
-    "AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer",
-    "AddOnsSlurmK8sClusterSlurmAddonDisableV2Serializer",
+    "AddOnsSlurmK8SClusterSlurmAddonEnableV2Serializer",
+    "AddOnsSlurmK8SClusterSlurmAddonDisableV2Serializer",
     "Authentication",
     "AuthenticationOidc",
     "Cni",
@@ -105,7 +105,7 @@ class ClusterUpdateParams(TypedDict, total=False):
     """Logging configuration"""
 
 
-class AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer(TypedDict, total=False):
+class AddOnsSlurmK8SClusterSlurmAddonEnableV2Serializer(TypedDict, total=False):
     enabled: Required[Literal[True]]
     """The Slurm add-on will be enabled in the cluster.
 
@@ -134,13 +134,13 @@ class AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer(TypedDict, total=False):
     """
 
 
-class AddOnsSlurmK8sClusterSlurmAddonDisableV2Serializer(TypedDict, total=False):
+class AddOnsSlurmK8SClusterSlurmAddonDisableV2Serializer(TypedDict, total=False):
     enabled: Required[Literal[False]]
     """The Slurm add-on will be disabled in the cluster."""
 
 
 AddOnsSlurm: TypeAlias = Union[
-    AddOnsSlurmK8sClusterSlurmAddonEnableV2Serializer, AddOnsSlurmK8sClusterSlurmAddonDisableV2Serializer
+    AddOnsSlurmK8SClusterSlurmAddonEnableV2Serializer, AddOnsSlurmK8SClusterSlurmAddonDisableV2Serializer
 ]
 
 
