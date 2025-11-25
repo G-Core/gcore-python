@@ -4,10 +4,10 @@ from typing import Dict, Optional
 
 from ....._models import BaseModel
 
-__all__ = ["K8sClusterPool"]
+__all__ = ["K8SClusterPool"]
 
 
-class K8sClusterPool(BaseModel):
+class K8SClusterPool(BaseModel):
     id: str
     """UUID of the cluster pool"""
 

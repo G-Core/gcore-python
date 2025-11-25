@@ -30,12 +30,12 @@ from .clusters.clusters import (
     ClustersResourceWithStreamingResponse,
     AsyncClustersResourceWithStreamingResponse,
 )
-from ....types.cloud.k8s_cluster_version_list import K8sClusterVersionList
+from ....types.cloud.k8s_cluster_version_list import K8SClusterVersionList
 
-__all__ = ["K8sResource", "AsyncK8sResource"]
+__all__ = ["K8SResource", "AsyncK8SResource"]
 
 
-class K8sResource(SyncAPIResource):
+class K8SResource(SyncAPIResource):
     @cached_property
     def flavors(self) -> FlavorsResource:
         return FlavorsResource(self._client)
@@ -45,23 +45,23 @@ class K8sResource(SyncAPIResource):
         return ClustersResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> K8sResourceWithRawResponse:
+    def with_raw_response(self) -> K8SResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return K8sResourceWithRawResponse(self)
+        return K8SResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> K8sResourceWithStreamingResponse:
+    def with_streaming_response(self) -> K8SResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return K8sResourceWithStreamingResponse(self)
+        return K8SResourceWithStreamingResponse(self)
 
     def list_versions(
         self,
@@ -74,7 +74,7 @@ class K8sResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterVersionList:
+    ) -> K8SClusterVersionList:
         """
         List available k8s cluster versions for creation
 
@@ -96,11 +96,11 @@ class K8sResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterVersionList,
+            cast_to=K8SClusterVersionList,
         )
 
 
-class AsyncK8sResource(AsyncAPIResource):
+class AsyncK8SResource(AsyncAPIResource):
     @cached_property
     def flavors(self) -> AsyncFlavorsResource:
         return AsyncFlavorsResource(self._client)
@@ -110,23 +110,23 @@ class AsyncK8sResource(AsyncAPIResource):
         return AsyncClustersResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncK8sResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncK8SResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncK8sResourceWithRawResponse(self)
+        return AsyncK8SResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncK8sResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncK8SResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncK8sResourceWithStreamingResponse(self)
+        return AsyncK8SResourceWithStreamingResponse(self)
 
     async def list_versions(
         self,
@@ -139,7 +139,7 @@ class AsyncK8sResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8sClusterVersionList:
+    ) -> K8SClusterVersionList:
         """
         List available k8s cluster versions for creation
 
@@ -161,12 +161,12 @@ class AsyncK8sResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8sClusterVersionList,
+            cast_to=K8SClusterVersionList,
         )
 
 
-class K8sResourceWithRawResponse:
-    def __init__(self, k8s: K8sResource) -> None:
+class K8SResourceWithRawResponse:
+    def __init__(self, k8s: K8SResource) -> None:
         self._k8s = k8s
 
         self.list_versions = to_raw_response_wrapper(
@@ -182,8 +182,8 @@ class K8sResourceWithRawResponse:
         return ClustersResourceWithRawResponse(self._k8s.clusters)
 
 
-class AsyncK8sResourceWithRawResponse:
-    def __init__(self, k8s: AsyncK8sResource) -> None:
+class AsyncK8SResourceWithRawResponse:
+    def __init__(self, k8s: AsyncK8SResource) -> None:
         self._k8s = k8s
 
         self.list_versions = async_to_raw_response_wrapper(
@@ -199,8 +199,8 @@ class AsyncK8sResourceWithRawResponse:
         return AsyncClustersResourceWithRawResponse(self._k8s.clusters)
 
 
-class K8sResourceWithStreamingResponse:
-    def __init__(self, k8s: K8sResource) -> None:
+class K8SResourceWithStreamingResponse:
+    def __init__(self, k8s: K8SResource) -> None:
         self._k8s = k8s
 
         self.list_versions = to_streamed_response_wrapper(
@@ -216,8 +216,8 @@ class K8sResourceWithStreamingResponse:
         return ClustersResourceWithStreamingResponse(self._k8s.clusters)
 
 
-class AsyncK8sResourceWithStreamingResponse:
-    def __init__(self, k8s: AsyncK8sResource) -> None:
+class AsyncK8SResourceWithStreamingResponse:
+    def __init__(self, k8s: AsyncK8SResource) -> None:
         self._k8s = k8s
 
         self.list_versions = async_to_streamed_response_wrapper(

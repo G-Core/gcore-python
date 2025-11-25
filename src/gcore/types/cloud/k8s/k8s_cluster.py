@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..logging import Logging
 from ...._models import BaseModel
-from .clusters.k8s_cluster_pool import K8sClusterPool
+from .clusters.k8s_cluster_pool import K8SClusterPool
 
 __all__ = [
-    "K8sCluster",
+    "K8SCluster",
     "AddOns",
     "AddOnsSlurm",
     "Csi",
@@ -164,7 +164,7 @@ class DDOSProfile(BaseModel):
     """DDoS profile template name"""
 
 
-class K8sCluster(BaseModel):
+class K8SCluster(BaseModel):
     id: str
     """Cluster pool uuid"""
 
@@ -189,7 +189,7 @@ class K8sCluster(BaseModel):
     name: str
     """Name"""
 
-    pools: List[K8sClusterPool]
+    pools: List[K8SClusterPool]
     """pools"""
 
     status: Literal["Deleting", "Provisioned", "Provisioning"]
