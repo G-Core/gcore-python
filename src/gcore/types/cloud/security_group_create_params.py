@@ -12,8 +12,10 @@ __all__ = ["SecurityGroupCreateParams", "SecurityGroup", "SecurityGroupSecurityG
 
 class SecurityGroupCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     security_group: Required[SecurityGroup]
     """Security group"""

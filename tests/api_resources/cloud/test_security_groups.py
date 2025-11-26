@@ -23,8 +23,8 @@ class TestSecurityGroups:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         security_group = client.cloud.security_groups.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={"name": "my_security_group"},
         )
         assert_matches_type(SecurityGroup, security_group, path=["response"])
@@ -32,8 +32,8 @@ class TestSecurityGroups:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         security_group = client.cloud.security_groups.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={
                 "name": "my_security_group",
                 "description": "Some description",
@@ -58,8 +58,8 @@ class TestSecurityGroups:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.security_groups.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={"name": "my_security_group"},
         )
 
@@ -71,8 +71,8 @@ class TestSecurityGroups:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.security_groups.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={"name": "my_security_group"},
         ) as response:
             assert not response.is_closed
@@ -157,19 +157,19 @@ class TestSecurityGroups:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         security_group = client.cloud.security_groups.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(SyncOffsetPage[SecurityGroup], security_group, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         security_group = client.cloud.security_groups.list(
-            project_id=0,
-            region_id=0,
-            limit=0,
+            project_id=1,
+            region_id=1,
+            limit=10,
             offset=0,
-            tag_key=["string"],
+            tag_key=["my-tag"],
             tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[SecurityGroup], security_group, path=["response"])
@@ -177,8 +177,8 @@ class TestSecurityGroups:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.security_groups.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -189,8 +189,8 @@ class TestSecurityGroups:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.security_groups.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -397,8 +397,8 @@ class TestAsyncSecurityGroups:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         security_group = await async_client.cloud.security_groups.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={"name": "my_security_group"},
         )
         assert_matches_type(SecurityGroup, security_group, path=["response"])
@@ -406,8 +406,8 @@ class TestAsyncSecurityGroups:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         security_group = await async_client.cloud.security_groups.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={
                 "name": "my_security_group",
                 "description": "Some description",
@@ -432,8 +432,8 @@ class TestAsyncSecurityGroups:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.security_groups.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={"name": "my_security_group"},
         )
 
@@ -445,8 +445,8 @@ class TestAsyncSecurityGroups:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.security_groups.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             security_group={"name": "my_security_group"},
         ) as response:
             assert not response.is_closed
@@ -531,19 +531,19 @@ class TestAsyncSecurityGroups:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         security_group = await async_client.cloud.security_groups.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(AsyncOffsetPage[SecurityGroup], security_group, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         security_group = await async_client.cloud.security_groups.list(
-            project_id=0,
-            region_id=0,
-            limit=0,
+            project_id=1,
+            region_id=1,
+            limit=10,
             offset=0,
-            tag_key=["string"],
+            tag_key=["my-tag"],
             tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[SecurityGroup], security_group, path=["response"])
@@ -551,8 +551,8 @@ class TestAsyncSecurityGroups:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.security_groups.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -563,8 +563,8 @@ class TestAsyncSecurityGroups:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.security_groups.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

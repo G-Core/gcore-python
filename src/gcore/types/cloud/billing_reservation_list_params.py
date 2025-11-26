@@ -9,7 +9,7 @@ __all__ = ["BillingReservationListParams"]
 
 class BillingReservationListParams(TypedDict, total=False):
     metric_name: str
-    """Name from billing features for specific resource"""
+    """Metric name for the resource (e.g., 'bm1-hf-`medium_min`')"""
 
     order_by: Literal["active_from.asc", "active_from.desc", "active_to.asc", "active_to.desc"]
     """Order by field and direction."""

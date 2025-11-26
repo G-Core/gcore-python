@@ -80,6 +80,10 @@ class SecurityGroupsResource(SyncAPIResource):
         Create a new security group with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           security_group: Security group
 
           instances: List of instances
@@ -212,13 +216,17 @@ class SecurityGroupsResource(SyncAPIResource):
         List all security groups in the specified project and region.
 
         Args:
-          limit: Limit the number of returned security groups
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
 
-          tag_key: Filter by tag keys.
+          limit: Limit of items on a single page
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          offset: Offset in results list
+
+          tag_key: Optional. Filter by tag keys.
+
+          tag_key_value: Optional. Filter by tag key-value pairs. Must be a valid JSON string.
 
           extra_headers: Send extra headers
 
@@ -457,6 +465,10 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Create a new security group with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           security_group: Security group
 
           instances: List of instances
@@ -589,13 +601,17 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         List all security groups in the specified project and region.
 
         Args:
-          limit: Limit the number of returned security groups
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
 
-          tag_key: Filter by tag keys.
+          limit: Limit of items on a single page
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          offset: Offset in results list
+
+          tag_key: Optional. Filter by tag keys.
+
+          tag_key_value: Optional. Filter by tag key-value pairs. Must be a valid JSON string.
 
           extra_headers: Send extra headers
 
