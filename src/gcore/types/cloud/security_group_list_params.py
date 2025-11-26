@@ -11,17 +11,19 @@ __all__ = ["SecurityGroupListParams"]
 
 class SecurityGroupListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     limit: int
-    """Limit the number of returned security groups"""
+    """Limit of items on a single page"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result"""
+    """Offset in results list"""
 
     tag_key: SequenceNotStr[str]
-    """Filter by tag keys."""
+    """Optional. Filter by tag keys."""
 
     tag_key_value: str
-    """Filter by tag key-value pairs. Must be a valid JSON string."""
+    """Optional. Filter by tag key-value pairs. Must be a valid JSON string."""
