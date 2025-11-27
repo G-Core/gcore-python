@@ -66,7 +66,7 @@ class TestInstances:
                 }
             ],
             allow_app_ports=True,
-            configuration={},
+            configuration={"foo": "bar"},
             name="my-instance",
             name_template="name_template",
             password="password",
@@ -936,7 +936,7 @@ class TestAsyncInstances:
                 }
             ],
             allow_app_ports=True,
-            configuration={},
+            configuration={"foo": "bar"},
             name="my-instance",
             name_template="name_template",
             password="password",

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
@@ -8,7 +8,7 @@ from .flavor_hardware_description import FlavorHardwareDescription
 
 __all__ = ["LoadBalancerFlavorDetail", "HardwareDescription"]
 
-HardwareDescription: TypeAlias = Union[FlavorHardwareDescription, object]
+HardwareDescription: TypeAlias = Union[FlavorHardwareDescription, Dict[str, object]]
 
 
 class LoadBalancerFlavorDetail(BaseModel):
