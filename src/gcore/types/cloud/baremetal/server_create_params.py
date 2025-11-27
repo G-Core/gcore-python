@@ -44,7 +44,7 @@ class ServerCreateParams(TypedDict, total=False):
     You can create one or more interfaces - private, public, or both.
     """
 
-    app_config: Optional[object]
+    app_config: Optional[Dict[str, object]]
     """
     Parameters for the application template if creating the instance from an
     `apptemplate`.

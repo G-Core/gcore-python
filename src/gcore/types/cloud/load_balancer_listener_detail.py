@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 from .provisioning_status import ProvisioningStatus
@@ -32,7 +32,7 @@ class LoadBalancerListenerDetail(BaseModel):
     creator_task_id: Optional[str] = None
     """Task that created this entity"""
 
-    insert_headers: object
+    insert_headers: Dict[str, object]
     """Dictionary of additional header insertion into HTTP headers.
 
     Only used with HTTP and `TERMINATED_HTTPS` protocols.
