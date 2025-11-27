@@ -63,7 +63,7 @@ class InstanceCreateParams(TypedDict, total=False):
     marketplace application template.
     """
 
-    configuration: Optional[object]
+    configuration: Optional[Dict[str, object]]
     """
     Parameters for the application template if creating the instance from an
     `apptemplate`.

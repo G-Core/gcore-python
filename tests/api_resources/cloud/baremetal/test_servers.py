@@ -44,7 +44,7 @@ class TestServers:
                     "port_group": 0,
                 }
             ],
-            app_config={},
+            app_config={"foo": "bar"},
             apptemplate_id="apptemplate_id",
             ddos_profile={
                 "profile_template": 123,
@@ -248,7 +248,7 @@ class TestAsyncServers:
                     "port_group": 0,
                 }
             ],
-            app_config={},
+            app_config={"foo": "bar"},
             apptemplate_id="apptemplate_id",
             ddos_profile={
                 "profile_template": 123,

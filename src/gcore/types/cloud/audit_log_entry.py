@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -81,7 +81,7 @@ class Resource(BaseModel):
     ]
     """Resource type"""
 
-    resource_body: Optional[object] = None
+    resource_body: Optional[Dict[str, object]] = None
     """Free-form object, resource body."""
 
     search_field: Optional[str] = None
@@ -115,7 +115,7 @@ class AuditLogEntry(BaseModel):
     User action log was successfully received by its subscriber in case there is one
     """
 
-    action_data: Optional[object] = None
+    action_data: Optional[Dict[str, object]] = None
     """Additional information about the action"""
 
     action_type: Literal[
