@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.23.0 (2025-12-01)
+
+Full Changelog: [v0.22.0...v0.23.0](https://github.com/G-Core/gcore-python/compare/v0.22.0...v0.23.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** change *_and_poll signature types to correspond to regular methods
+
+### Features
+
+* **api:** aggregated API specs update ([66af572](https://github.com/G-Core/gcore-python/commit/66af57201d06fc54c6b79a59690982bcc107fbfa))
+* **api:** aggregated API specs update ([8e6e84f](https://github.com/G-Core/gcore-python/commit/8e6e84f26b4dfc56558641e3996529f7552a7b9f))
+
+
+### Bug Fixes
+
+* **cloud:** change *_and_poll signature types to correspond to regular methods ([d58e9b4](https://github.com/G-Core/gcore-python/commit/d58e9b48d2aa104beef736c57b6170886bea6072))
+* ensure streams are always closed ([e2716cb](https://github.com/G-Core/gcore-python/commit/e2716cbc3b7de2b3fe7eef68fa1c07dcf4014385))
+
+
+### Chores
+
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([7703d53](https://github.com/G-Core/gcore-python/commit/7703d534a550a9465212e391aeeef906cf589dd0))
+
 ## 0.22.0 (2025-11-25)
 
 Full Changelog: [v0.21.0...v0.22.0](https://github.com/G-Core/gcore-python/compare/v0.21.0...v0.22.0)
