@@ -126,9 +126,7 @@ class StreamsResource(SyncAPIResource):
         - Restreaming
         - (soon) AI Automatic Speech Recognition for subtitles/captions generating
 
-        For more information see specific API methods, and the Knowledge Base. To
-        organize streaming with ultra-low latency, look for WebRTC delivery in different
-        section in the Knowledge Base.
+        For more information see specific API methods, and the Knowledge Base.
 
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/low-latency-football.gif)
 
@@ -470,6 +468,9 @@ class StreamsResource(SyncAPIResource):
         broadcast to be completed and recorded. For example, for quickly cutting
         highlights in sport events, or cutting an important moment in the news or live
         performance.
+
+        DVR function must be enabled for clip recording. If the DVR is disabled, the
+        response will be error 422.
 
         Instant clip becomes available for viewing in the following formats:
 
@@ -863,9 +864,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         - Restreaming
         - (soon) AI Automatic Speech Recognition for subtitles/captions generating
 
-        For more information see specific API methods, and the Knowledge Base. To
-        organize streaming with ultra-low latency, look for WebRTC delivery in different
-        section in the Knowledge Base.
+        For more information see specific API methods, and the Knowledge Base.
 
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/low-latency-football.gif)
 
@@ -1207,6 +1206,9 @@ class AsyncStreamsResource(AsyncAPIResource):
         broadcast to be completed and recorded. For example, for quickly cutting
         highlights in sport events, or cutting an important moment in the news or live
         performance.
+
+        DVR function must be enabled for clip recording. If the DVR is disabled, the
+        response will be error 422.
 
         Instant clip becomes available for viewing in the following formats:
 
