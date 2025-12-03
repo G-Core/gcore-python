@@ -91,7 +91,7 @@ class RulesResource(SyncAPIResource):
 
           invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison.
+          key: The key to use for the comparison. Required for COOKIE and HEADER `type` only.
 
           tags: A list of simple strings assigned to the l7 rule
 
@@ -319,7 +319,7 @@ class RulesResource(SyncAPIResource):
 
           invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison.
+          key: The key to use for the comparison. Required for COOKIE and HEADER `type` only.
 
           tags: A list of simple strings assigned to the l7 rule
 
@@ -429,7 +429,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison.
+          key: The key to use for the comparison. Required for COOKIE and HEADER `type` only.
 
           tags: A list of simple strings assigned to the l7 rule
 
@@ -657,7 +657,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           invert: When true the logic of the rule is inverted.
 
-          key: The key to use for the comparison.
+          key: The key to use for the comparison. Required for COOKIE and HEADER `type` only.
 
           tags: A list of simple strings assigned to the l7 rule
 
