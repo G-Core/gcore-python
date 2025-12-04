@@ -149,12 +149,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import SSHKey, SSHKeyCreated
+from gcore.types.cloud import SSHKey, SSHKeyCreate
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/ssh_keys/{project_id}">client.cloud.ssh_keys.<a href="./src/gcore/resources/cloud/ssh_keys.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/ssh_key_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/ssh_key_created.py">SSHKeyCreated</a></code>
+- <code title="post /cloud/v1/ssh_keys/{project_id}">client.cloud.ssh_keys.<a href="./src/gcore/resources/cloud/ssh_keys.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/ssh_key_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/ssh_key_create.py">SSHKeyCreate</a></code>
 - <code title="patch /cloud/v1/ssh_keys/{project_id}/{ssh_key_id}">client.cloud.ssh_keys.<a href="./src/gcore/resources/cloud/ssh_keys.py">update</a>(ssh_key_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/ssh_key_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/ssh_key.py">SSHKey</a></code>
 - <code title="get /cloud/v1/ssh_keys/{project_id}">client.cloud.ssh_keys.<a href="./src/gcore/resources/cloud/ssh_keys.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/ssh_key_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/ssh_key.py">SyncOffsetPage[SSHKey]</a></code>
 - <code title="delete /cloud/v1/ssh_keys/{project_id}/{ssh_key_id}">client.cloud.ssh_keys.<a href="./src/gcore/resources/cloud/ssh_keys.py">delete</a>(ssh_key_id, \*, project_id) -> None</code>
@@ -699,7 +699,7 @@ Types:
 ```python
 from gcore.types.cloud.registries import (
     RegistryUser,
-    RegistryUserCreated,
+    RegistryUserCreate,
     RegistryUserList,
     UserRefreshSecretResponse,
 )
@@ -707,11 +707,11 @@ from gcore.types.cloud.registries import (
 
 Methods:
 
-- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_created.py">RegistryUserCreated</a></code>
+- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_create.py">RegistryUserCreate</a></code>
 - <code title="patch /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">update</a>(user_id, \*, project_id, region_id, registry_id, \*\*<a href="src/gcore/types/cloud/registries/user_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user.py">RegistryUser</a></code>
 - <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">list</a>(registry_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/registries/registry_user_list.py">RegistryUserList</a></code>
 - <code title="delete /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">delete</a>(user_id, \*, project_id, region_id, registry_id) -> None</code>
-- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create_multiple</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_multiple_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_created.py">RegistryUserCreated</a></code>
+- <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create_multiple</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_multiple_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_create.py">RegistryUserCreate</a></code>
 - <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">refresh_secret</a>(user_id, \*, project_id, region_id, registry_id) -> <a href="./src/gcore/types/cloud/registries/user_refresh_secret_response.py">UserRefreshSecretResponse</a></code>
 
 ## FileShares
@@ -2266,13 +2266,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn.resources import OriginShielding, OriginShieldingUpdated
+from gcore.types.cdn.resources import OriginShielding, OriginShieldingReplace
 ```
 
 Methods:
 
 - <code title="get /cdn/resources/{resource_id}/shielding_v2">client.cdn.resources.shield.<a href="./src/gcore/resources/cdn/resources/shield.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/resources/origin_shielding.py">OriginShielding</a></code>
-- <code title="put /cdn/resources/{resource_id}/shielding_v2">client.cdn.resources.shield.<a href="./src/gcore/resources/cdn/resources/shield.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resources/shield_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/origin_shielding_updated.py">object</a></code>
+- <code title="put /cdn/resources/{resource_id}/shielding_v2">client.cdn.resources.shield.<a href="./src/gcore/resources/cdn/resources/shield.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resources/shield_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/origin_shielding_replace.py">object</a></code>
 
 ### Rules
 

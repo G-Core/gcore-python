@@ -41,11 +41,11 @@ from .blackhole_port import BlackholePort as BlackholePort
 from .gpu_image_list import GPUImageList as GPUImageList
 from .health_monitor import HealthMonitor as HealthMonitor
 from .security_group import SecurityGroup as SecurityGroup
+from .ssh_key_create import SSHKeyCreate as SSHKeyCreate
 from .audit_log_entry import AuditLogEntry as AuditLogEntry
 from .listener_status import ListenerStatus as ListenerStatus
 from .network_details import NetworkDetails as NetworkDetails
 from .placement_group import PlacementGroup as PlacementGroup
-from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
 from .baremetal_flavor import BaremetalFlavor as BaremetalFlavor
 from .floating_address import FloatingAddress as FloatingAddress
 from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol

@@ -20,7 +20,7 @@ from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.cloud import ssh_key_list_params, ssh_key_create_params, ssh_key_update_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.ssh_key import SSHKey
-from ...types.cloud.ssh_key_created import SSHKeyCreated
+from ...types.cloud.ssh_key_create import SSHKeyCreate
 
 __all__ = ["SSHKeysResource", "AsyncSSHKeysResource"]
 
@@ -58,7 +58,7 @@ class SSHKeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SSHKeyCreated:
+    ) -> SSHKeyCreate:
         """
         To generate a key, omit the `public_key` parameter from the request body
 
@@ -102,7 +102,7 @@ class SSHKeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SSHKeyCreated,
+            cast_to=SSHKeyCreate,
         )
 
     def update(
@@ -325,7 +325,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SSHKeyCreated:
+    ) -> SSHKeyCreate:
         """
         To generate a key, omit the `public_key` parameter from the request body
 
@@ -369,7 +369,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SSHKeyCreated,
+            cast_to=SSHKeyCreate,
         )
 
     async def update(
