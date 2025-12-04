@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["MemberAddParams"]
+__all__ = ["MemberCreateParams"]
 
 
-class MemberAddParams(TypedDict, total=False):
+class MemberCreateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
