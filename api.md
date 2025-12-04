@@ -274,8 +274,8 @@ Methods:
 
 Methods:
 
-- <code title="post /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member">client.cloud.load_balancers.pools.members.<a href="./src/gcore/resources/cloud/load_balancers/pools/members.py">add</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pools/member_add_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="delete /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}">client.cloud.load_balancers.pools.members.<a href="./src/gcore/resources/cloud/load_balancers/pools/members.py">remove</a>(member_id, \*, project_id, region_id, pool_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member">client.cloud.load_balancers.pools.members.<a href="./src/gcore/resources/cloud/load_balancers/pools/members.py">create</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pools/member_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="delete /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}">client.cloud.load_balancers.pools.members.<a href="./src/gcore/resources/cloud/load_balancers/pools/members.py">delete</a>(member_id, \*, project_id, region_id, pool_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 ### Metrics
 

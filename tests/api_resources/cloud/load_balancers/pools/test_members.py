@@ -18,8 +18,8 @@ class TestMembers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_add(self, client: Gcore) -> None:
-        member = client.cloud.load_balancers.pools.members.add(
+    def test_method_create(self, client: Gcore) -> None:
+        member = client.cloud.load_balancers.pools.members.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -29,8 +29,8 @@ class TestMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    def test_method_add_with_all_params(self, client: Gcore) -> None:
-        member = client.cloud.load_balancers.pools.members.add(
+    def test_method_create_with_all_params(self, client: Gcore) -> None:
+        member = client.cloud.load_balancers.pools.members.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -47,8 +47,8 @@ class TestMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    def test_raw_response_add(self, client: Gcore) -> None:
-        response = client.cloud.load_balancers.pools.members.with_raw_response.add(
+    def test_raw_response_create(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.pools.members.with_raw_response.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -62,8 +62,8 @@ class TestMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    def test_streaming_response_add(self, client: Gcore) -> None:
-        with client.cloud.load_balancers.pools.members.with_streaming_response.add(
+    def test_streaming_response_create(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.pools.members.with_streaming_response.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -79,9 +79,9 @@ class TestMembers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_add(self, client: Gcore) -> None:
+    def test_path_params_create(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
-            client.cloud.load_balancers.pools.members.with_raw_response.add(
+            client.cloud.load_balancers.pools.members.with_raw_response.create(
                 pool_id="",
                 project_id=1,
                 region_id=1,
@@ -90,8 +90,8 @@ class TestMembers:
             )
 
     @parametrize
-    def test_method_remove(self, client: Gcore) -> None:
-        member = client.cloud.load_balancers.pools.members.remove(
+    def test_method_delete(self, client: Gcore) -> None:
+        member = client.cloud.load_balancers.pools.members.delete(
             member_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -100,8 +100,8 @@ class TestMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    def test_raw_response_remove(self, client: Gcore) -> None:
-        response = client.cloud.load_balancers.pools.members.with_raw_response.remove(
+    def test_raw_response_delete(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.pools.members.with_raw_response.delete(
             member_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -114,8 +114,8 @@ class TestMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    def test_streaming_response_remove(self, client: Gcore) -> None:
-        with client.cloud.load_balancers.pools.members.with_streaming_response.remove(
+    def test_streaming_response_delete(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.pools.members.with_streaming_response.delete(
             member_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -130,9 +130,9 @@ class TestMembers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_remove(self, client: Gcore) -> None:
+    def test_path_params_delete(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
-            client.cloud.load_balancers.pools.members.with_raw_response.remove(
+            client.cloud.load_balancers.pools.members.with_raw_response.delete(
                 member_id="00000000-0000-4000-8000-000000000000",
                 project_id=1,
                 region_id=1,
@@ -140,7 +140,7 @@ class TestMembers:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
-            client.cloud.load_balancers.pools.members.with_raw_response.remove(
+            client.cloud.load_balancers.pools.members.with_raw_response.delete(
                 member_id="",
                 project_id=1,
                 region_id=1,
@@ -154,8 +154,8 @@ class TestAsyncMembers:
     )
 
     @parametrize
-    async def test_method_add(self, async_client: AsyncGcore) -> None:
-        member = await async_client.cloud.load_balancers.pools.members.add(
+    async def test_method_create(self, async_client: AsyncGcore) -> None:
+        member = await async_client.cloud.load_balancers.pools.members.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -165,8 +165,8 @@ class TestAsyncMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    async def test_method_add_with_all_params(self, async_client: AsyncGcore) -> None:
-        member = await async_client.cloud.load_balancers.pools.members.add(
+    async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
+        member = await async_client.cloud.load_balancers.pools.members.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -183,8 +183,8 @@ class TestAsyncMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    async def test_raw_response_add(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.load_balancers.pools.members.with_raw_response.add(
+    async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.pools.members.with_raw_response.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -198,8 +198,8 @@ class TestAsyncMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    async def test_streaming_response_add(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.load_balancers.pools.members.with_streaming_response.add(
+    async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.pools.members.with_streaming_response.create(
             pool_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -215,9 +215,9 @@ class TestAsyncMembers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_add(self, async_client: AsyncGcore) -> None:
+    async def test_path_params_create(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
-            await async_client.cloud.load_balancers.pools.members.with_raw_response.add(
+            await async_client.cloud.load_balancers.pools.members.with_raw_response.create(
                 pool_id="",
                 project_id=1,
                 region_id=1,
@@ -226,8 +226,8 @@ class TestAsyncMembers:
             )
 
     @parametrize
-    async def test_method_remove(self, async_client: AsyncGcore) -> None:
-        member = await async_client.cloud.load_balancers.pools.members.remove(
+    async def test_method_delete(self, async_client: AsyncGcore) -> None:
+        member = await async_client.cloud.load_balancers.pools.members.delete(
             member_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -236,8 +236,8 @@ class TestAsyncMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    async def test_raw_response_remove(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.load_balancers.pools.members.with_raw_response.remove(
+    async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.pools.members.with_raw_response.delete(
             member_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -250,8 +250,8 @@ class TestAsyncMembers:
         assert_matches_type(TaskIDList, member, path=["response"])
 
     @parametrize
-    async def test_streaming_response_remove(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.load_balancers.pools.members.with_streaming_response.remove(
+    async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.pools.members.with_streaming_response.delete(
             member_id="00000000-0000-4000-8000-000000000000",
             project_id=1,
             region_id=1,
@@ -266,9 +266,9 @@ class TestAsyncMembers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_remove(self, async_client: AsyncGcore) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
-            await async_client.cloud.load_balancers.pools.members.with_raw_response.remove(
+            await async_client.cloud.load_balancers.pools.members.with_raw_response.delete(
                 member_id="00000000-0000-4000-8000-000000000000",
                 project_id=1,
                 region_id=1,
@@ -276,7 +276,7 @@ class TestAsyncMembers:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
-            await async_client.cloud.load_balancers.pools.members.with_raw_response.remove(
+            await async_client.cloud.load_balancers.pools.members.with_raw_response.delete(
                 member_id="",
                 project_id=1,
                 region_id=1,
