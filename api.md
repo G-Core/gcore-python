@@ -2372,7 +2372,7 @@ Methods:
 - <code title="get /cdn/sslCertificates/{id}">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">get</a>(id) -> <a href="./src/gcore/types/cdn/ca_certificate.py">CaCertificate</a></code>
 - <code title="put /cdn/sslCertificates/{id}">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">replace</a>(id, \*\*<a href="src/gcore/types/cdn/trusted_ca_certificate_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ca_certificate.py">CaCertificate</a></code>
 
-## AuditLog
+## AuditLogs
 
 Types:
 
@@ -2382,8 +2382,8 @@ from gcore.types.cdn import CdnAuditLogEntry
 
 Methods:
 
-- <code title="get /cdn/activity_log/requests">client.cdn.audit_log.<a href="./src/gcore/resources/cdn/audit_log.py">list</a>(\*\*<a href="src/gcore/types/cdn/audit_log_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">SyncOffsetPage[CdnAuditLogEntry]</a></code>
-- <code title="get /cdn/activity_log/requests/{log_id}">client.cdn.audit_log.<a href="./src/gcore/resources/cdn/audit_log.py">get</a>(log_id) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">CdnAuditLogEntry</a></code>
+- <code title="get /cdn/activity_log/requests">client.cdn.audit_logs.<a href="./src/gcore/resources/cdn/audit_logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/audit_log_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">SyncOffsetPage[CdnAuditLogEntry]</a></code>
+- <code title="get /cdn/activity_log/requests/{log_id}">client.cdn.audit_logs.<a href="./src/gcore/resources/cdn/audit_logs.py">get</a>(log_id) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">CdnAuditLogEntry</a></code>
 
 ## Logs
 
