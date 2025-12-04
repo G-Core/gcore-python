@@ -327,8 +327,8 @@ class Stream(BaseModel):
       Double-check the documentation for your encoder.
 
     Please note that 1 connection and 1 protocol can be used at a single moment in
-    time per unique stream key input. Trying to send 2+ connection requests into
-    `push_url` to once, or 2+ protocols at once will not lead to a result.
+    time per unique stream key input. Trying to send 2+ connection requests into the
+    single `push_url`, or 2+ protocols at once will not lead to a result.
 
     For example, transcoding process will fail if:
 
@@ -373,8 +373,8 @@ class Stream(BaseModel):
     necessary, ask us and we will help you.
 
     Please note that 1 connection and 1 protocol can be used at a single moment in
-    time per unique stream key input. Trying to send 2+ connection requests into
-    `push_url_srt` to once, or 2+ protocols at once will not lead to a result.
+    time per unique stream key input. Trying to send 2+ connection requests into the
+    single `push_url_srt`, or 2+ protocols at once will not lead to a result.
 
     For example, transcoding process will fail if:
 
@@ -431,8 +431,8 @@ class Stream(BaseModel):
     start in browser" has been added.
 
     Please note that 1 connection and 1 protocol can be used at a single moment in
-    time per unique stream key input. Trying to send 2+ connection requests into
-    `push_url_whip` to once, or 2+ protocols at once will not lead to a result.
+    time per unique stream key input. Trying to send 2+ connection requests into the
+    single `push_url_whip`, or 2+ protocols at once will not lead to a result.
 
     For example, transcoding process will fail if:
 
@@ -491,6 +491,14 @@ class Stream(BaseModel):
     This means that if the stream was started 1 time, then here will be the time it
     was started. If the stream was started several times, or restarted on your side,
     then only the time of the last session is displayed here.
+    """
+
+    stream_source_type: Optional[Literal["rtmp", "srt", "webrtc", "https"]] = None
+    """
+    For the current transcoding, this specifies the source protocol: RTMP, SRT,
+    WebRTC, or HTTPS. This does not specify which source is used primary or backup,
+    only the source protocol type. If transcoding is inactive, the value will be
+    null.
     """
 
     transcoded_qualities: Optional[List[str]] = None

@@ -32,14 +32,6 @@ from .shields import (
     ShieldsResourceWithStreamingResponse,
     AsyncShieldsResourceWithStreamingResponse,
 )
-from .audit_log import (
-    AuditLogResource,
-    AsyncAuditLogResource,
-    AuditLogResourceWithRawResponse,
-    AsyncAuditLogResourceWithRawResponse,
-    AuditLogResourceWithStreamingResponse,
-    AsyncAuditLogResourceWithStreamingResponse,
-)
 from .ip_ranges import (
     IPRangesResource,
     AsyncIPRangesResource,
@@ -55,6 +47,14 @@ from .resources import (
     AsyncResourcesResourceWithRawResponse,
     ResourcesResourceWithStreamingResponse,
     AsyncResourcesResourceWithStreamingResponse,
+)
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
 )
 from .statistics import (
     StatisticsResource,
@@ -150,12 +150,12 @@ __all__ = [
     "AsyncTrustedCaCertificatesResourceWithRawResponse",
     "TrustedCaCertificatesResourceWithStreamingResponse",
     "AsyncTrustedCaCertificatesResourceWithStreamingResponse",
-    "AuditLogResource",
-    "AsyncAuditLogResource",
-    "AuditLogResourceWithRawResponse",
-    "AsyncAuditLogResourceWithRawResponse",
-    "AuditLogResourceWithStreamingResponse",
-    "AsyncAuditLogResourceWithStreamingResponse",
+    "AuditLogsResource",
+    "AsyncAuditLogsResource",
+    "AuditLogsResourceWithRawResponse",
+    "AsyncAuditLogsResourceWithRawResponse",
+    "AuditLogsResourceWithStreamingResponse",
+    "AsyncAuditLogsResourceWithStreamingResponse",
     "LogsResource",
     "AsyncLogsResource",
     "LogsResourceWithRawResponse",

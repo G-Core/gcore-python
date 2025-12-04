@@ -18,7 +18,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.load_balancers.pools import member_add_params
+from .....types.cloud.load_balancers.pools import member_create_params
 
 __all__ = ["MembersResource", "AsyncMembersResource"]
 
@@ -43,7 +43,7 @@ class MembersResource(SyncAPIResource):
         """
         return MembersResourceWithStreamingResponse(self)
 
-    def add(
+    def create(
         self,
         pool_id: str,
         *,
@@ -144,7 +144,7 @@ class MembersResource(SyncAPIResource):
                     "subnet_id": subnet_id,
                     "weight": weight,
                 },
-                member_add_params.MemberAddParams,
+                member_create_params.MemberCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -152,7 +152,7 @@ class MembersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def remove(
+    def delete(
         self,
         member_id: str,
         *,
@@ -223,7 +223,7 @@ class AsyncMembersResource(AsyncAPIResource):
         """
         return AsyncMembersResourceWithStreamingResponse(self)
 
-    async def add(
+    async def create(
         self,
         pool_id: str,
         *,
@@ -324,7 +324,7 @@ class AsyncMembersResource(AsyncAPIResource):
                     "subnet_id": subnet_id,
                     "weight": weight,
                 },
-                member_add_params.MemberAddParams,
+                member_create_params.MemberCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -332,7 +332,7 @@ class AsyncMembersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def remove(
+    async def delete(
         self,
         member_id: str,
         *,
@@ -387,11 +387,11 @@ class MembersResourceWithRawResponse:
     def __init__(self, members: MembersResource) -> None:
         self._members = members
 
-        self.add = to_raw_response_wrapper(
-            members.add,
+        self.create = to_raw_response_wrapper(
+            members.create,
         )
-        self.remove = to_raw_response_wrapper(
-            members.remove,
+        self.delete = to_raw_response_wrapper(
+            members.delete,
         )
 
 
@@ -399,11 +399,11 @@ class AsyncMembersResourceWithRawResponse:
     def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
-        self.add = async_to_raw_response_wrapper(
-            members.add,
+        self.create = async_to_raw_response_wrapper(
+            members.create,
         )
-        self.remove = async_to_raw_response_wrapper(
-            members.remove,
+        self.delete = async_to_raw_response_wrapper(
+            members.delete,
         )
 
 
@@ -411,11 +411,11 @@ class MembersResourceWithStreamingResponse:
     def __init__(self, members: MembersResource) -> None:
         self._members = members
 
-        self.add = to_streamed_response_wrapper(
-            members.add,
+        self.create = to_streamed_response_wrapper(
+            members.create,
         )
-        self.remove = to_streamed_response_wrapper(
-            members.remove,
+        self.delete = to_streamed_response_wrapper(
+            members.delete,
         )
 
 
@@ -423,9 +423,9 @@ class AsyncMembersResourceWithStreamingResponse:
     def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
-        self.add = async_to_streamed_response_wrapper(
-            members.add,
+        self.create = async_to_streamed_response_wrapper(
+            members.create,
         )
-        self.remove = async_to_streamed_response_wrapper(
-            members.remove,
+        self.delete = async_to_streamed_response_wrapper(
+            members.delete,
         )

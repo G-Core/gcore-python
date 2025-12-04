@@ -39,7 +39,7 @@ class TestRules:
             type="PATH",
             value="/images*",
             invert=True,
-            key="the name of the cookie to evaluate.",
+            key="the name of the cookie or header to evaluate.",
             tags=["test_tag_1", "test_tag_2"],
         )
         assert_matches_type(TaskIDList, rule, path=["response"])
@@ -272,7 +272,7 @@ class TestRules:
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
             compare_type="REGEX",
             invert=True,
-            key="the name of the cookie to evaluate.",
+            key="the name of the cookie or header to evaluate.",
             tags=["test_tag_1", "test_tag_2"],
             type="PATH",
             value="/images*",
@@ -359,7 +359,7 @@ class TestAsyncRules:
             type="PATH",
             value="/images*",
             invert=True,
-            key="the name of the cookie to evaluate.",
+            key="the name of the cookie or header to evaluate.",
             tags=["test_tag_1", "test_tag_2"],
         )
         assert_matches_type(TaskIDList, rule, path=["response"])
@@ -592,7 +592,7 @@ class TestAsyncRules:
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
             compare_type="REGEX",
             invert=True,
-            key="the name of the cookie to evaluate.",
+            key="the name of the cookie or header to evaluate.",
             tags=["test_tag_1", "test_tag_2"],
             type="PATH",
             value="/images*",

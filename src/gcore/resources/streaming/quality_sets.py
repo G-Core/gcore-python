@@ -62,7 +62,7 @@ class QualitySetsResource(SyncAPIResource):
         Our experts have selected the optimal parameters for transcoding, to ensure
         maximum video/audio quality with the best compression. Default quality sets are
         described in the
-        [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
+        [documentation](/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-and-codecs#custom-quality-sets).
         These values are the default for everyone. There is no need to configure
         anything additional.
 
@@ -204,7 +204,7 @@ class AsyncQualitySetsResource(AsyncAPIResource):
         Our experts have selected the optimal parameters for transcoding, to ensure
         maximum video/audio quality with the best compression. Default quality sets are
         described in the
-        [documentation](https://gcore.com/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-after-transcoding-bitrate-frame-rate-and-codecs).
+        [documentation](/docs/streaming-platform/live-streams-and-videos-protocols-and-codecs/output-parameters-and-codecs#custom-quality-sets).
         These values are the default for everyone. There is no need to configure
         anything additional.
 

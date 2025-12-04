@@ -19,28 +19,28 @@ from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.cdn_audit_log_entry import CdnAuditLogEntry
 
-__all__ = ["AuditLogResource", "AsyncAuditLogResource"]
+__all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]
 
 
-class AuditLogResource(SyncAPIResource):
+class AuditLogsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AuditLogResourceWithRawResponse:
+    def with_raw_response(self) -> AuditLogsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AuditLogResourceWithRawResponse(self)
+        return AuditLogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AuditLogResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AuditLogsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AuditLogResourceWithStreamingResponse(self)
+        return AuditLogsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -186,25 +186,25 @@ class AuditLogResource(SyncAPIResource):
         )
 
 
-class AsyncAuditLogResource(AsyncAPIResource):
+class AsyncAuditLogsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAuditLogResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncAuditLogsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncAuditLogResourceWithRawResponse(self)
+        return AsyncAuditLogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAuditLogResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncAuditLogsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncAuditLogResourceWithStreamingResponse(self)
+        return AsyncAuditLogsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -350,49 +350,49 @@ class AsyncAuditLogResource(AsyncAPIResource):
         )
 
 
-class AuditLogResourceWithRawResponse:
-    def __init__(self, audit_log: AuditLogResource) -> None:
-        self._audit_log = audit_log
+class AuditLogsResourceWithRawResponse:
+    def __init__(self, audit_logs: AuditLogsResource) -> None:
+        self._audit_logs = audit_logs
 
         self.list = to_raw_response_wrapper(
-            audit_log.list,
+            audit_logs.list,
         )
         self.get = to_raw_response_wrapper(
-            audit_log.get,
+            audit_logs.get,
         )
 
 
-class AsyncAuditLogResourceWithRawResponse:
-    def __init__(self, audit_log: AsyncAuditLogResource) -> None:
-        self._audit_log = audit_log
+class AsyncAuditLogsResourceWithRawResponse:
+    def __init__(self, audit_logs: AsyncAuditLogsResource) -> None:
+        self._audit_logs = audit_logs
 
         self.list = async_to_raw_response_wrapper(
-            audit_log.list,
+            audit_logs.list,
         )
         self.get = async_to_raw_response_wrapper(
-            audit_log.get,
+            audit_logs.get,
         )
 
 
-class AuditLogResourceWithStreamingResponse:
-    def __init__(self, audit_log: AuditLogResource) -> None:
-        self._audit_log = audit_log
+class AuditLogsResourceWithStreamingResponse:
+    def __init__(self, audit_logs: AuditLogsResource) -> None:
+        self._audit_logs = audit_logs
 
         self.list = to_streamed_response_wrapper(
-            audit_log.list,
+            audit_logs.list,
         )
         self.get = to_streamed_response_wrapper(
-            audit_log.get,
+            audit_logs.get,
         )
 
 
-class AsyncAuditLogResourceWithStreamingResponse:
-    def __init__(self, audit_log: AsyncAuditLogResource) -> None:
-        self._audit_log = audit_log
+class AsyncAuditLogsResourceWithStreamingResponse:
+    def __init__(self, audit_logs: AsyncAuditLogsResource) -> None:
+        self._audit_logs = audit_logs
 
         self.list = async_to_streamed_response_wrapper(
-            audit_log.list,
+            audit_logs.list,
         )
         self.get = async_to_streamed_response_wrapper(
-            audit_log.get,
+            audit_logs.get,
         )

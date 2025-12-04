@@ -31,14 +31,6 @@ from .shields import (
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
-from .audit_log import (
-    AuditLogResource,
-    AsyncAuditLogResource,
-    AuditLogResourceWithRawResponse,
-    AsyncAuditLogResourceWithRawResponse,
-    AuditLogResourceWithStreamingResponse,
-    AsyncAuditLogResourceWithStreamingResponse,
-)
 from .ip_ranges import (
     IPRangesResource,
     AsyncIPRangesResource,
@@ -46,6 +38,14 @@ from .ip_ranges import (
     AsyncIPRangesResourceWithRawResponse,
     IPRangesResourceWithStreamingResponse,
     AsyncIPRangesResourceWithStreamingResponse,
+)
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
 )
 from .statistics import (
     StatisticsResource,
@@ -156,8 +156,8 @@ class CdnResource(SyncAPIResource):
         return TrustedCaCertificatesResource(self._client)
 
     @cached_property
-    def audit_log(self) -> AuditLogResource:
-        return AuditLogResource(self._client)
+    def audit_logs(self) -> AuditLogsResource:
+        return AuditLogsResource(self._client)
 
     @cached_property
     def logs(self) -> LogsResource:
@@ -457,8 +457,8 @@ class AsyncCdnResource(AsyncAPIResource):
         return AsyncTrustedCaCertificatesResource(self._client)
 
     @cached_property
-    def audit_log(self) -> AsyncAuditLogResource:
-        return AsyncAuditLogResource(self._client)
+    def audit_logs(self) -> AsyncAuditLogsResource:
+        return AsyncAuditLogsResource(self._client)
 
     @cached_property
     def logs(self) -> AsyncLogsResource:
@@ -783,8 +783,8 @@ class CdnResourceWithRawResponse:
         return TrustedCaCertificatesResourceWithRawResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property
-    def audit_log(self) -> AuditLogResourceWithRawResponse:
-        return AuditLogResourceWithRawResponse(self._cdn.audit_log)
+    def audit_logs(self) -> AuditLogsResourceWithRawResponse:
+        return AuditLogsResourceWithRawResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> LogsResourceWithRawResponse:
@@ -862,8 +862,8 @@ class AsyncCdnResourceWithRawResponse:
         return AsyncTrustedCaCertificatesResourceWithRawResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property
-    def audit_log(self) -> AsyncAuditLogResourceWithRawResponse:
-        return AsyncAuditLogResourceWithRawResponse(self._cdn.audit_log)
+    def audit_logs(self) -> AsyncAuditLogsResourceWithRawResponse:
+        return AsyncAuditLogsResourceWithRawResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
@@ -941,8 +941,8 @@ class CdnResourceWithStreamingResponse:
         return TrustedCaCertificatesResourceWithStreamingResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property
-    def audit_log(self) -> AuditLogResourceWithStreamingResponse:
-        return AuditLogResourceWithStreamingResponse(self._cdn.audit_log)
+    def audit_logs(self) -> AuditLogsResourceWithStreamingResponse:
+        return AuditLogsResourceWithStreamingResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> LogsResourceWithStreamingResponse:
@@ -1020,8 +1020,8 @@ class AsyncCdnResourceWithStreamingResponse:
         return AsyncTrustedCaCertificatesResourceWithStreamingResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property
-    def audit_log(self) -> AsyncAuditLogResourceWithStreamingResponse:
-        return AsyncAuditLogResourceWithStreamingResponse(self._cdn.audit_log)
+    def audit_logs(self) -> AsyncAuditLogsResourceWithStreamingResponse:
+        return AsyncAuditLogsResourceWithStreamingResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:

@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.24.0 (2025-12-04)
+
+Full Changelog: [v0.23.0...v0.24.0](https://github.com/G-Core/gcore-python/compare/v0.23.0...v0.24.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cdn:** streamline audit_logs naming
+* **cloud:** rename load balancer pool member methods to create/delete
+* streamline naming for create/replace models
+
+### Features
+
+* **api:** aggregated API specs update ([61299ed](https://github.com/G-Core/gcore-python/commit/61299edb52f077ab1cd4ac198b3ce59283fe779c))
+* **api:** aggregated API specs update ([b745f43](https://github.com/G-Core/gcore-python/commit/b745f43a066be1d41dd690c0e767d60e495c4a6c))
+
+
+### Bug Fixes
+
+* **cdn:** streamline audit_logs naming ([cb075f5](https://github.com/G-Core/gcore-python/commit/cb075f51ee3bda135fbeb9eae1957ad0cda1c22a))
+* **cloud:** rename load balancer pool member methods to create/delete ([86346d4](https://github.com/G-Core/gcore-python/commit/86346d4fd0f464f120dd0ed6c1e7fb2b0107a625))
+* streamline naming for create/replace models ([06e1dc3](https://github.com/G-Core/gcore-python/commit/06e1dc32499533ad16b88458164ec5a9ea385cc5))
+
+
+### Chores
+
+* **docs:** use environment variables for authentication in code snippets ([2c2fa17](https://github.com/G-Core/gcore-python/commit/2c2fa1790799aab90409f65669bcb7f48659a7cb))
+* update lockfile ([ece4535](https://github.com/G-Core/gcore-python/commit/ece45355779bfa9a8d3c68783cd3512236f83f96))
+
 ## 0.23.0 (2025-12-01)
 
 Full Changelog: [v0.22.0...v0.23.0](https://github.com/G-Core/gcore-python/compare/v0.22.0...v0.23.0)

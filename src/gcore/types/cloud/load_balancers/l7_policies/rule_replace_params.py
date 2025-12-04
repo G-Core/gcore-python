@@ -26,7 +26,7 @@ class RuleReplaceParams(TypedDict, total=False):
     """When true the logic of the rule is inverted."""
 
     key: str
-    """The key to use for the comparison."""
+    """The key to use for the comparison. Required for COOKIE and HEADER `type` only."""
 
     tags: SequenceNotStr[str]
     """A list of simple strings assigned to the l7 rule"""

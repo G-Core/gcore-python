@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .member_add_params import MemberAddParams as MemberAddParams
+from .member_create_params import MemberCreateParams as MemberCreateParams
 from .health_monitor_create_params import HealthMonitorCreateParams as HealthMonitorCreateParams
