@@ -6,5 +6,7 @@ __all__ = ["WaapTaskID"]
 
 
 class WaapTaskID(BaseModel):
+    """Response model for the task result ID"""
+
     id: str
     """The task ID"""

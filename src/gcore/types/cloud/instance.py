@@ -43,6 +43,8 @@ class FixedIPAssignment(BaseModel):
 
 
 class FlavorInstanceFlavorSerializerHardwareDescription(BaseModel):
+    """Additional hardware description"""
+
     ram: str
     """RAM description"""
 
@@ -51,6 +53,8 @@ class FlavorInstanceFlavorSerializerHardwareDescription(BaseModel):
 
 
 class FlavorInstanceFlavorSerializer(BaseModel):
+    """Instances flavor schema embedded into instance schema"""
+
     architecture: str
     """CPU architecture"""
 
@@ -74,6 +78,8 @@ class FlavorInstanceFlavorSerializer(BaseModel):
 
 
 class FlavorBareMetalFlavorSerializerHardwareDescription(BaseModel):
+    """Additional hardware description"""
+
     cpu: str
     """Human-readable CPU description"""
 
@@ -91,6 +97,8 @@ class FlavorBareMetalFlavorSerializerHardwareDescription(BaseModel):
 
 
 class FlavorBareMetalFlavorSerializer(BaseModel):
+    """Bare metal flavor schema embedded into instance schema"""
+
     architecture: str
     """CPU architecture"""
 
@@ -117,6 +125,8 @@ class FlavorBareMetalFlavorSerializer(BaseModel):
 
 
 class FlavorDeprecatedGPUClusterFlavorSerializerHardwareDescription(BaseModel):
+    """Additional hardware description"""
+
     cpu: str
     """Human-readable CPU description"""
 
@@ -137,6 +147,8 @@ class FlavorDeprecatedGPUClusterFlavorSerializerHardwareDescription(BaseModel):
 
 
 class FlavorDeprecatedGPUClusterFlavorSerializer(BaseModel):
+    """GPU cluster flavor schema embedded into instance schema"""
+
     architecture: str
     """CPU architecture"""
 

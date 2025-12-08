@@ -61,6 +61,8 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
 
 
 class Logging(TypedDict, total=False):
+    """Logging configuration"""
+
     destination_region_id: Optional[int]
     """Destination region id to which the logs will be written"""
 

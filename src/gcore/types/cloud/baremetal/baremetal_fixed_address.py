@@ -9,6 +9,8 @@ __all__ = ["BaremetalFixedAddress"]
 
 
 class BaremetalFixedAddress(BaseModel):
+    """IP addresses of the trunk port and its subports."""
+
     addr: str
     """Address"""
 

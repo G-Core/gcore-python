@@ -9,6 +9,12 @@ __all__ = ["FixedAddressShort"]
 
 
 class FixedAddressShort(BaseModel):
+    """Schema for `fixed` addresses.
+
+    This schema is used when listing instances.
+    It omits the `subnet_name` and `subnet_id` fields.
+    """
+
     addr: str
     """IP address"""
 

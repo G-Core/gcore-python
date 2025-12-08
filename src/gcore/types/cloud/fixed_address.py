@@ -9,6 +9,11 @@ __all__ = ["FixedAddress"]
 
 
 class FixedAddress(BaseModel):
+    """Schema for `fixed` addresses.
+
+    This schema is used when fetching a single instance.
+    """
+
     addr: str
     """IP address"""
 

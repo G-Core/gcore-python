@@ -9,6 +9,8 @@ __all__ = ["WaapRuleSet", "Tag", "Rule"]
 
 
 class Tag(BaseModel):
+    """A single tag associated with a rule set."""
+
     id: int
     """Identifier of the tag."""
 
@@ -20,6 +22,8 @@ class Tag(BaseModel):
 
 
 class Rule(BaseModel):
+    """Represents a configurable WAAP security rule, also known as a policy."""
+
     id: str
     """Unique identifier for the security rule"""
 
@@ -43,6 +47,8 @@ class Rule(BaseModel):
 
 
 class WaapRuleSet(BaseModel):
+    """Represents a custom rule set."""
+
     id: int
     """Identifier of the rule set."""
 

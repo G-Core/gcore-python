@@ -36,6 +36,8 @@ __all__ = [
 
 
 class FreeFeaturesCdn(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -53,6 +55,8 @@ class FreeFeaturesCdn(BaseModel):
 
 
 class FreeFeaturesCloud(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -70,6 +74,8 @@ class FreeFeaturesCloud(BaseModel):
 
 
 class FreeFeaturesDDOS(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -87,6 +93,8 @@ class FreeFeaturesDDOS(BaseModel):
 
 
 class FreeFeaturesDNS(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -104,6 +112,8 @@ class FreeFeaturesDNS(BaseModel):
 
 
 class FreeFeaturesStorage(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -121,6 +131,8 @@ class FreeFeaturesStorage(BaseModel):
 
 
 class FreeFeaturesStreaming(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -138,6 +150,10 @@ class FreeFeaturesStreaming(BaseModel):
 
 
 class FreeFeatures(BaseModel):
+    """
+    An object of arrays which contains information about free features available for the requested account.
+    """
+
     cdn: Optional[List[FreeFeaturesCdn]] = FieldInfo(alias="CDN", default=None)
 
     cloud: Optional[List[FreeFeaturesCloud]] = FieldInfo(alias="CLOUD", default=None)
@@ -152,6 +168,8 @@ class FreeFeatures(BaseModel):
 
 
 class PaidFeaturesCdn(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -169,6 +187,8 @@ class PaidFeaturesCdn(BaseModel):
 
 
 class PaidFeaturesCloud(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -186,6 +206,8 @@ class PaidFeaturesCloud(BaseModel):
 
 
 class PaidFeaturesDDOS(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -203,6 +225,8 @@ class PaidFeaturesDDOS(BaseModel):
 
 
 class PaidFeaturesDNS(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -220,6 +244,8 @@ class PaidFeaturesDNS(BaseModel):
 
 
 class PaidFeaturesStorage(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -237,6 +263,8 @@ class PaidFeaturesStorage(BaseModel):
 
 
 class PaidFeaturesStreaming(BaseModel):
+    """Feature object."""
+
     create_date: Optional[str] = None
     """Date and time when the feature was activated (ISO 8086/RFC 3339 format)."""
 
@@ -254,6 +282,10 @@ class PaidFeaturesStreaming(BaseModel):
 
 
 class PaidFeatures(BaseModel):
+    """
+    An object of arrays which contains information about paid features available for the requested account.
+    """
+
     cdn: Optional[List[PaidFeaturesCdn]] = FieldInfo(alias="CDN", default=None)
 
     cloud: Optional[List[PaidFeaturesCloud]] = FieldInfo(alias="CLOUD", default=None)
@@ -316,6 +348,10 @@ class ServiceStatusesStreaming(BaseModel):
 
 
 class ServiceStatuses(BaseModel):
+    """
+    An object of arrays which contains information about all services available for the requested account.
+    """
+
     cdn: Optional[ServiceStatusesCdn] = FieldInfo(alias="CDN", default=None)
 
     cloud: Optional[ServiceStatusesCloud] = FieldInfo(alias="CLOUD", default=None)

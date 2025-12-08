@@ -55,6 +55,8 @@ class CreateStandardFileShareSerializer(TypedDict, total=False):
 
 
 class CreateStandardFileShareSerializerNetwork(TypedDict, total=False):
+    """File share network configuration"""
+
     network_id: Required[str]
     """Network ID."""
 
@@ -110,6 +112,8 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
 
 
 class CreateVastFileShareSerializerShareSettings(TypedDict, total=False):
+    """Configuration settings for the share"""
+
     allowed_characters: Literal["LCD", "NPL"]
     """Determines which characters are allowed in file names. Choose between:
 

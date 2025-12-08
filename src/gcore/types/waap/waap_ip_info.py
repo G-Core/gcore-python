@@ -9,6 +9,8 @@ __all__ = ["WaapIPInfo", "Whois"]
 
 
 class Whois(BaseModel):
+    """The WHOIS information for the IP address"""
+
     abuse_mail: Optional[str] = None
     """The abuse mail"""
 

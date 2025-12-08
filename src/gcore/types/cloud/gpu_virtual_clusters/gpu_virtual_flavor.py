@@ -20,6 +20,8 @@ __all__ = [
 
 
 class GPUVirtualFlavorSerializerWithoutPriceHardwareDescription(BaseModel):
+    """Additional virtual hardware description"""
+
     gpu: Optional[str] = None
     """Human-readable GPU description"""
 
@@ -34,6 +36,8 @@ class GPUVirtualFlavorSerializerWithoutPriceHardwareDescription(BaseModel):
 
 
 class GPUVirtualFlavorSerializerWithoutPriceHardwareProperties(BaseModel):
+    """Additional virtual hardware properties"""
+
     gpu_count: Optional[int] = None
     """The total count of available GPUs."""
 
@@ -51,6 +55,8 @@ class GPUVirtualFlavorSerializerWithoutPriceHardwareProperties(BaseModel):
 
 
 class GPUVirtualFlavorSerializerWithoutPriceSupportedFeatures(BaseModel):
+    """Set of enabled features based on the flavor's type and configuration"""
+
     security_groups: bool
 
 
@@ -78,6 +84,8 @@ class GPUVirtualFlavorSerializerWithoutPrice(BaseModel):
 
 
 class GPUVirtualFlavorSerializerWithPricesHardwareDescription(BaseModel):
+    """Additional virtual hardware description"""
+
     gpu: Optional[str] = None
     """Human-readable GPU description"""
 
@@ -92,6 +100,8 @@ class GPUVirtualFlavorSerializerWithPricesHardwareDescription(BaseModel):
 
 
 class GPUVirtualFlavorSerializerWithPricesHardwareProperties(BaseModel):
+    """Additional virtual hardware properties"""
+
     gpu_count: Optional[int] = None
     """The total count of available GPUs."""
 
@@ -109,6 +119,8 @@ class GPUVirtualFlavorSerializerWithPricesHardwareProperties(BaseModel):
 
 
 class GPUVirtualFlavorSerializerWithPricesPrice(BaseModel):
+    """Flavor price."""
+
     currency_code: Optional[str] = None
     """Currency code. Shown if the `include_prices` query parameter if set to true"""
 
@@ -123,6 +135,8 @@ class GPUVirtualFlavorSerializerWithPricesPrice(BaseModel):
 
 
 class GPUVirtualFlavorSerializerWithPricesSupportedFeatures(BaseModel):
+    """Set of enabled features based on the flavor's type and configuration"""
+
     security_groups: bool
 
 

@@ -10,6 +10,8 @@ __all__ = ["ZoneGetResponse", "Zone", "ZoneRecord", "ZoneRrsetsAmount", "ZoneRrs
 
 
 class ZoneRecord(BaseModel):
+    """Record - readonly short version of rrset"""
+
     name: Optional[str] = None
 
     short_answers: Optional[List[str]] = None
@@ -20,6 +22,8 @@ class ZoneRecord(BaseModel):
 
 
 class ZoneRrsetsAmountDynamic(BaseModel):
+    """Amount of dynamic RRsets in zone"""
+
     healthcheck: Optional[int] = None
     """Amount of RRsets with enabled healthchecks"""
 
@@ -39,6 +43,8 @@ class ZoneRrsetsAmount(BaseModel):
 
 
 class Zone(BaseModel):
+    """OutputZone"""
+
     id: Optional[int] = None
     """
     ID of zone. This field usually is omitted in response and available only in case
@@ -102,5 +108,7 @@ class Zone(BaseModel):
 
 
 class ZoneGetResponse(BaseModel):
+    """Complete zone info with all records included"""
+
     zone: Optional[Zone] = FieldInfo(alias="Zone", default=None)
     """OutputZone"""

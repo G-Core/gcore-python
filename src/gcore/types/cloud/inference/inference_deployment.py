@@ -26,6 +26,8 @@ __all__ = [
 
 
 class ContainerDeployStatus(BaseModel):
+    """Status of the containers deployment"""
+
     ready: int
     """Number of ready instances"""
 
@@ -34,21 +36,35 @@ class ContainerDeployStatus(BaseModel):
 
 
 class ContainerScaleTriggersCPU(BaseModel):
+    """CPU trigger configuration"""
+
     threshold: int
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersGPUMemory(BaseModel):
+    """GPU memory trigger configuration.
+
+    Calculated by `DCGM_FI_DEV_MEM_COPY_UTIL` metric
+    """
+
     threshold: int
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersGPUUtilization(BaseModel):
+    """GPU utilization trigger configuration.
+
+    Calculated by `DCGM_FI_DEV_GPU_UTIL` metric
+    """
+
     threshold: int
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersHTTP(BaseModel):
+    """HTTP trigger configuration"""
+
     rate: int
     """Request count per 'window' seconds for the http trigger"""
 
@@ -57,11 +73,15 @@ class ContainerScaleTriggersHTTP(BaseModel):
 
 
 class ContainerScaleTriggersMemory(BaseModel):
+    """Memory trigger configuration"""
+
     threshold: int
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersSqs(BaseModel):
+    """SQS trigger configuration"""
+
     activation_queue_length: int
     """Number of messages for activation"""
 
@@ -88,6 +108,8 @@ class ContainerScaleTriggersSqs(BaseModel):
 
 
 class ContainerScaleTriggers(BaseModel):
+    """Triggers for scaling actions"""
+
     cpu: Optional[ContainerScaleTriggersCPU] = None
     """CPU trigger configuration"""
 
@@ -114,6 +136,8 @@ class ContainerScaleTriggers(BaseModel):
 
 
 class ContainerScale(BaseModel):
+    """Scale for the container"""
+
     cooldown_period: Optional[int] = None
     """Cooldown period between scaling actions in seconds"""
 
@@ -148,6 +172,8 @@ class Container(BaseModel):
 
 
 class IngressOpts(BaseModel):
+    """Ingress options for the inference instance"""
+
     disable_response_buffering: bool
     """Disable response buffering if true.
 
@@ -167,6 +193,8 @@ class ObjectReference(BaseModel):
 
 
 class Probes(BaseModel):
+    """Probes configured for all containers of the inference instance."""
+
     liveness_probe: Optional[ProbeConfig] = None
     """Liveness probe configuration"""
 

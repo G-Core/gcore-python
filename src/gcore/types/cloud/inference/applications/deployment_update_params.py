@@ -35,6 +35,8 @@ class ComponentsConfigurationParameterOverrides(TypedDict, total=False):
 
 
 class ComponentsConfigurationScale(TypedDict, total=False):
+    """Scaling parameters of the component"""
+
     max: int
     """Maximum number of replicas the container can be scaled up to"""
 

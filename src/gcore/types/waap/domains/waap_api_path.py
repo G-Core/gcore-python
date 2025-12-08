@@ -10,6 +10,8 @@ __all__ = ["WaapAPIPath"]
 
 
 class WaapAPIPath(BaseModel):
+    """Response model for the API path"""
+
     id: str
     """The path ID"""
 

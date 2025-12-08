@@ -29,6 +29,8 @@ class SecretUploadTlsCertificateParams(TypedDict, total=False):
 
 
 class Payload(TypedDict, total=False):
+    """Secret payload."""
+
     certificate: Required[str]
     """SSL certificate in PEM format."""
 

@@ -184,6 +184,8 @@ class Pool(TypedDict, total=False):
 
 
 class AddOnsSlurm(TypedDict, total=False):
+    """Slurm add-on configuration"""
+
     enabled: Required[Literal[True]]
     """The Slurm add-on will be enabled in the cluster.
 
@@ -213,11 +215,15 @@ class AddOnsSlurm(TypedDict, total=False):
 
 
 class AddOns(TypedDict, total=False):
+    """Cluster add-ons configuration"""
+
     slurm: AddOnsSlurm
     """Slurm add-on configuration"""
 
 
 class AuthenticationOidc(TypedDict, total=False):
+    """OIDC authentication settings"""
+
     client_id: Optional[str]
     """Client ID"""
 
@@ -246,11 +252,15 @@ class AuthenticationOidc(TypedDict, total=False):
 
 
 class Authentication(TypedDict, total=False):
+    """Authentication settings"""
+
     oidc: Optional[AuthenticationOidc]
     """OIDC authentication settings"""
 
 
 class CniCilium(TypedDict, total=False):
+    """Cilium settings"""
+
     encryption: bool
     """Wireguard encryption"""
 
@@ -280,6 +290,8 @@ class CniCilium(TypedDict, total=False):
 
 
 class Cni(TypedDict, total=False):
+    """Cluster CNI settings"""
+
     cilium: Optional[CniCilium]
     """Cilium settings"""
 
@@ -288,6 +300,8 @@ class Cni(TypedDict, total=False):
 
 
 class CsiNfs(TypedDict, total=False):
+    """NFS CSI driver settings"""
+
     vast_enabled: bool
     """Enable or disable VAST NFS integration.
 
@@ -299,6 +313,8 @@ class CsiNfs(TypedDict, total=False):
 
 
 class Csi(TypedDict, total=False):
+    """Container Storage Interface (CSI) driver settings"""
+
     nfs: CsiNfs
     """NFS CSI driver settings"""
 
@@ -314,6 +330,8 @@ class DDOSProfileField(TypedDict, total=False):
 
 
 class DDOSProfile(TypedDict, total=False):
+    """Advanced DDoS Protection profile"""
+
     enabled: Required[bool]
     """Enable advanced DDoS protection"""
 
@@ -328,6 +346,8 @@ class DDOSProfile(TypedDict, total=False):
 
 
 class Logging(TypedDict, total=False):
+    """Logging configuration"""
+
     destination_region_id: Optional[int]
     """Destination region id to which the logs will be written"""
 

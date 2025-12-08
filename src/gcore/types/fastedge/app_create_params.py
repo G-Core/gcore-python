@@ -52,5 +52,7 @@ class AppCreateParams(TypedDict, total=False):
 
 
 class Secrets(TypedDict, total=False):
+    """Application secret short description"""
+
     id: Required[int]
     """The unique identifier of the secret."""

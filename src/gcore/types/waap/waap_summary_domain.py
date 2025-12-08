@@ -10,6 +10,8 @@ __all__ = ["WaapSummaryDomain"]
 
 
 class WaapSummaryDomain(BaseModel):
+    """Represents a WAAP domain when getting a list of domains."""
+
     id: int
     """The domain ID"""
 

@@ -8,6 +8,8 @@ __all__ = ["Location"]
 
 
 class Location(BaseModel):
+    """LocationV2 represents location data for v2 API where title is a string"""
+
     address: str
     """Full hostname/address for accessing the storage endpoint in this location"""
 

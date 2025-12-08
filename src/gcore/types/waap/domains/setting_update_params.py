@@ -18,6 +18,8 @@ class SettingUpdateParams(TypedDict, total=False):
 
 
 class API(TypedDict, total=False):
+    """Editable API settings of a domain"""
+
     api_urls: SequenceNotStr[str]
     """The API URLs for a domain.
 
@@ -33,6 +35,8 @@ class API(TypedDict, total=False):
 
 
 class DDOS(TypedDict, total=False):
+    """Editable DDoS settings for a domain."""
+
     burst_threshold: int
     """The burst threshold detects sudden rises in traffic.
 

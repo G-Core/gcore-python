@@ -8,6 +8,8 @@ __all__ = ["ZoneGetStatisticsResponse"]
 
 
 class ZoneGetStatisticsResponse(BaseModel):
+    """StatisticsZoneResponse"""
+
     requests: Optional[object] = None
     """
     Requests amount (values) for particular zone fractionated by time intervals

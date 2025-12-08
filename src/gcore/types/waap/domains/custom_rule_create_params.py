@@ -59,6 +59,10 @@ class CustomRuleCreateParams(TypedDict, total=False):
 
 
 class ActionBlock(TypedDict, total=False):
+    """
+    WAAP block action behavior could be configured with response status code and action duration.
+    """
+
     action_duration: str
     """How long a rule's block action will apply to subsequent requests.
 
@@ -72,11 +76,18 @@ class ActionBlock(TypedDict, total=False):
 
 
 class ActionTag(TypedDict, total=False):
+    """WAAP tag action gets a list of tags to tag the request scope with"""
+
     tags: Required[SequenceNotStr[str]]
     """The list of user defined tags to tag the request with"""
 
 
 class Action(TypedDict, total=False):
+    """The action that the rule takes when triggered.
+
+    Only one action can be set per rule.
+    """
+
     allow: object
     """The WAAP allowed the request"""
 
@@ -100,6 +111,8 @@ class Action(TypedDict, total=False):
 
 
 class ConditionContentType(TypedDict, total=False):
+    """Match the requested Content-Type"""
+
     content_type: Required[SequenceNotStr[str]]
     """The list of content types to match against"""
 
@@ -108,6 +121,8 @@ class ConditionContentType(TypedDict, total=False):
 
 
 class ConditionCountry(TypedDict, total=False):
+    """Match the country that the request originated from"""
+
     country_code: Required[SequenceNotStr[str]]
     """
     A list of ISO 3166-1 alpha-2 formatted strings representing the countries to
@@ -119,6 +134,8 @@ class ConditionCountry(TypedDict, total=False):
 
 
 class ConditionFileExtension(TypedDict, total=False):
+    """Match the incoming file extension"""
+
     file_extension: Required[SequenceNotStr[str]]
     """The list of file extensions to match against"""
 
@@ -127,6 +144,8 @@ class ConditionFileExtension(TypedDict, total=False):
 
 
 class ConditionHeader(TypedDict, total=False):
+    """Match an incoming request header"""
+
     header: Required[str]
     """The request header name"""
 
@@ -141,6 +160,8 @@ class ConditionHeader(TypedDict, total=False):
 
 
 class ConditionHeaderExists(TypedDict, total=False):
+    """Match when an incoming request header is present"""
+
     header: Required[str]
     """The request header name"""
 
@@ -149,6 +170,8 @@ class ConditionHeaderExists(TypedDict, total=False):
 
 
 class ConditionHTTPMethod(TypedDict, total=False):
+    """Match the incoming HTTP method"""
+
     http_method: Required[Literal["CONNECT", "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
     """HTTP methods of a request"""
 
@@ -157,6 +180,8 @@ class ConditionHTTPMethod(TypedDict, total=False):
 
 
 class ConditionIP(TypedDict, total=False):
+    """Match the incoming request against a single IP address"""
+
     ip_address: Required[str]
     """A single IPv4 or IPv6 address"""
 
@@ -165,6 +190,8 @@ class ConditionIP(TypedDict, total=False):
 
 
 class ConditionIPRange(TypedDict, total=False):
+    """Match the incoming request against an IP range"""
+
     lower_bound: Required[str]
     """The lower bound IPv4 or IPv6 address to match against"""
 
@@ -176,6 +203,10 @@ class ConditionIPRange(TypedDict, total=False):
 
 
 class ConditionOrganization(TypedDict, total=False):
+    """
+    Match the organization the request originated from, as determined by a WHOIS lookup of the requesting IP
+    """
+
     organization: Required[str]
     """The organization to match against"""
 
@@ -184,6 +215,10 @@ class ConditionOrganization(TypedDict, total=False):
 
 
 class ConditionOwnerTypes(TypedDict, total=False):
+    """
+    Match the type of organization that owns the IP address making an incoming request
+    """
+
     negation: bool
     """Whether or not to apply a boolean NOT operation to the rule's condition"""
 
@@ -206,6 +241,8 @@ class ConditionOwnerTypes(TypedDict, total=False):
 
 
 class ConditionRequestRate(TypedDict, total=False):
+    """Match the rate at which requests come in that match certain conditions"""
+
     path_pattern: Required[str]
     """A regular expression matching the URL path of the incoming request"""
 
@@ -235,6 +272,8 @@ class ConditionRequestRate(TypedDict, total=False):
 
 
 class ConditionResponseHeader(TypedDict, total=False):
+    """Match a response header"""
+
     header: Required[str]
     """The response header name"""
 
@@ -249,6 +288,8 @@ class ConditionResponseHeader(TypedDict, total=False):
 
 
 class ConditionResponseHeaderExists(TypedDict, total=False):
+    """Match when a response header is present"""
+
     header: Required[str]
     """The response header name"""
 
@@ -257,6 +298,8 @@ class ConditionResponseHeaderExists(TypedDict, total=False):
 
 
 class ConditionSessionRequestCount(TypedDict, total=False):
+    """Match the number of dynamic page requests made in a WAAP session"""
+
     request_count: Required[int]
     """The number of dynamic requests in the session"""
 
@@ -265,6 +308,8 @@ class ConditionSessionRequestCount(TypedDict, total=False):
 
 
 class ConditionTags(TypedDict, total=False):
+    """Matches requests based on specified tags"""
+
     tags: Required[SequenceNotStr[str]]
     """A list of tags to match against the request tags"""
 
@@ -273,6 +318,8 @@ class ConditionTags(TypedDict, total=False):
 
 
 class ConditionURL(TypedDict, total=False):
+    """Match the incoming request URL"""
+
     url: Required[str]
     """
     The pattern to match against the request URL. Constraints depend on
@@ -292,6 +339,8 @@ class ConditionURL(TypedDict, total=False):
 
 
 class ConditionUserAgent(TypedDict, total=False):
+    """Match the user agent making the request"""
+
     user_agent: Required[str]
     """The user agent value to match"""
 
@@ -303,6 +352,8 @@ class ConditionUserAgent(TypedDict, total=False):
 
 
 class ConditionUserDefinedTags(TypedDict, total=False):
+    """Matches requests based on user-defined tags"""
+
     tags: Required[SequenceNotStr[str]]
     """A list of user-defined tags to match against the request tags"""
 
@@ -311,6 +362,10 @@ class ConditionUserDefinedTags(TypedDict, total=False):
 
 
 class Condition(TypedDict, total=False):
+    """
+    The criteria of an incoming web request and the models of the various values those criteria can take
+    """
+
     content_type: ConditionContentType
     """Match the requested Content-Type"""
 

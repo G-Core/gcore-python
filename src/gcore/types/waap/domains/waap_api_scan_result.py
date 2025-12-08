@@ -10,6 +10,8 @@ __all__ = ["WaapAPIScanResult"]
 
 
 class WaapAPIScanResult(BaseModel):
+    """The result of a scan"""
+
     id: str
     """The scan ID"""
 

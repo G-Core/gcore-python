@@ -36,6 +36,8 @@ class DeploymentCreateParams(TypedDict, total=False):
 
 
 class ComponentsConfigurationScale(TypedDict, total=False):
+    """Scaling parameters of the component"""
+
     max: Required[int]
     """Maximum number of replicas the container can be scaled up to"""
 

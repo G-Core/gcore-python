@@ -131,6 +131,8 @@ class AwsSignatureV4(TypedDict, total=False):
 
 
 class AwsSignatureV4Auth(TypedDict, total=False):
+    """Credentials to access the private bucket."""
+
     s3_access_key_id: Required[str]
     """Access key ID for the S3 account.
 

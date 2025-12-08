@@ -8,6 +8,8 @@ __all__ = ["FloatingAddress"]
 
 
 class FloatingAddress(BaseModel):
+    """Schema for `floating` addresses."""
+
     addr: str
     """Address"""
 

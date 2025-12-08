@@ -197,6 +197,11 @@ Config: TypeAlias = Union[
 
 
 class Status(LogsUploaderValidation):
+    """Validation status of the logs uploader target.
+
+    Informs if the specified target is reachable.
+    """
+
     pass
 
 

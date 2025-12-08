@@ -8,6 +8,11 @@ __all__ = ["PlayerParam"]
 
 
 class PlayerParam(TypedDict, total=False):
+    """Set of properties for displaying videos.
+
+    All parameters may be blank to inherit their values from default Streaming player.
+    """
+
     name: Required[str]
     """Player name"""
 

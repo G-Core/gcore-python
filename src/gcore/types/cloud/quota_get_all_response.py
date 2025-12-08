@@ -8,6 +8,8 @@ __all__ = ["QuotaGetAllResponse", "GlobalQuotas", "RegionalQuota"]
 
 
 class GlobalQuotas(BaseModel):
+    """Global entity quotas"""
+
     inference_cpu_millicore_count_limit: Optional[int] = None
     """Inference CPU millicore count limit"""
 

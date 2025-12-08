@@ -63,6 +63,8 @@ class PoolUpdateParams(TypedDict, total=False):
 
 
 class Healthmonitor(TypedDict, total=False):
+    """New pool health monitor settings"""
+
     delay: Required[int]
     """The time, in seconds, between sending probes to members"""
 
@@ -167,6 +169,8 @@ class Member(TypedDict, total=False):
 
 
 class SessionPersistence(TypedDict, total=False):
+    """New session persistence settings"""
+
     type: Required[LbSessionPersistenceType]
     """Session persistence type"""
 

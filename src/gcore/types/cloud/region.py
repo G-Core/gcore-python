@@ -10,6 +10,8 @@ __all__ = ["Region", "Coordinates"]
 
 
 class Coordinates(BaseModel):
+    """Coordinates of the region"""
+
     latitude: Union[float, str]
 
     longitude: Union[float, str]

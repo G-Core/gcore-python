@@ -120,6 +120,8 @@ class NetworkSubnet(BaseModel):
 
 
 class Network(BaseModel):
+    """Body of the network this port is attached to"""
+
     id: str
     """Network ID"""
 

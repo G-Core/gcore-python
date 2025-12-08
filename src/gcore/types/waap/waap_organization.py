@@ -6,6 +6,8 @@ __all__ = ["WaapOrganization"]
 
 
 class WaapOrganization(BaseModel):
+    """Represents an IP range owner organization"""
+
     id: int
     """The ID of an organization"""
 

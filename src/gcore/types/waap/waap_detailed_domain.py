@@ -18,6 +18,14 @@ class Quotas(BaseModel):
 
 
 class WaapDetailedDomain(BaseModel):
+    """Represents a WAAP domain, serving as a singular unit within the WAAP
+    service.
+
+    Each domain functions autonomously, possessing its own set of rules and
+    configurations to manage web application firewall settings and
+    behaviors.
+    """
+
     id: int
     """The domain ID"""
 

@@ -10,6 +10,8 @@ __all__ = ["BucketCors"]
 
 
 class BucketCors(BaseModel):
+    """StorageGetBucketCorsEndpointRes output"""
+
     allowed_origins: Optional[List[str]] = FieldInfo(alias="allowedOrigins", default=None)
     """
     List of allowed origins for Cross-Origin Resource Sharing (CORS) requests.

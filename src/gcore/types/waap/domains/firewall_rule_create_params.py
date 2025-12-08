@@ -26,6 +26,10 @@ class FirewallRuleCreateParams(TypedDict, total=False):
 
 
 class ActionBlock(TypedDict, total=False):
+    """
+    WAAP block action behavior could be configured with response status code and action duration.
+    """
+
     action_duration: str
     """How long a rule's block action will apply to subsequent requests.
 
@@ -39,6 +43,8 @@ class ActionBlock(TypedDict, total=False):
 
 
 class Action(TypedDict, total=False):
+    """The action that the rule takes when triggered"""
+
     allow: Optional[object]
     """The WAAP allowed the request"""
 
@@ -50,6 +56,8 @@ class Action(TypedDict, total=False):
 
 
 class ConditionIP(TypedDict, total=False):
+    """Match the incoming request against a single IP address"""
+
     ip_address: Required[str]
     """A single IPv4 or IPv6 address"""
 
@@ -58,6 +66,8 @@ class ConditionIP(TypedDict, total=False):
 
 
 class ConditionIPRange(TypedDict, total=False):
+    """Match the incoming request against an IP range"""
+
     lower_bound: Required[str]
     """The lower bound IPv4 or IPv6 address to match against"""
 
@@ -69,6 +79,10 @@ class ConditionIPRange(TypedDict, total=False):
 
 
 class Condition(TypedDict, total=False):
+    """
+    The criteria of an incoming web request and the models of the various values those criteria can take
+    """
+
     ip: ConditionIP
     """Match the incoming request against a single IP address"""
 

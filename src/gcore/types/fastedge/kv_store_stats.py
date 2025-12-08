@@ -8,6 +8,8 @@ __all__ = ["KvStoreStats", "Stats"]
 
 
 class Stats(BaseModel):
+    """Store statistics"""
+
     cf_count: int
     """Total number of Cuckoo filter entries"""
 

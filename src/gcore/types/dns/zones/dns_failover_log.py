@@ -9,6 +9,8 @@ __all__ = ["DNSFailoverLog", "DNSFailoverLogItem"]
 
 
 class DNSFailoverLogItem(BaseModel):
+    """FailoverLogEntry"""
+
     action: Optional[str] = None
 
     address: Optional[str] = None

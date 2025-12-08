@@ -23,6 +23,8 @@ class InstanceUnassignSecurityGroupParams(TypedDict, total=False):
 
 
 class PortsSecurityGroupName(TypedDict, total=False):
+    """Port security group names"""
+
     port_id: Required[Optional[str]]
     """Port ID. If None, security groups will be applied to all ports"""
 

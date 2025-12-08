@@ -6,5 +6,7 @@ __all__ = ["WaapPolicyMode"]
 
 
 class WaapPolicyMode(BaseModel):
+    """Represents the mode of a security rule."""
+
     mode: bool
     """Indicates if the security rule is active"""
