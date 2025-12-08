@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["TaskAcknowledgeAllParams"]
 
 
 class TaskAcknowledgeAllParams(TypedDict, total=False):
-    project_id: Optional[int]
+    project_id: int
     """Project ID"""
 
-    region_id: Optional[int]
+    region_id: int
     """Region ID"""

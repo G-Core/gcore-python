@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import time
-from typing import List, Union, Iterable, Optional, cast
+from typing import List, Union, Iterable, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -93,17 +93,17 @@ class TasksResource(SyncAPIResource):
     def list(
         self,
         *,
-        from_timestamp: Union[str, datetime, None] | Omit = omit,
-        is_acknowledged: Optional[bool] | Omit = omit,
+        from_timestamp: Union[str, datetime] | Omit = omit,
+        is_acknowledged: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["asc", "desc"] | Omit = omit,
-        project_id: Optional[Iterable[int]] | Omit = omit,
-        region_id: Optional[Iterable[int]] | Omit = omit,
+        project_id: Iterable[int] | Omit = omit,
+        region_id: Iterable[int] | Omit = omit,
         sorting: Literal["asc", "desc"] | Omit = omit,
-        state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | Omit = omit,
-        task_type: Optional[str] | Omit = omit,
-        to_timestamp: Union[str, datetime, None] | Omit = omit,
+        state: List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]] | Omit = omit,
+        task_type: str | Omit = omit,
+        to_timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -163,17 +163,17 @@ class TasksResource(SyncAPIResource):
               '`delete_k8s_cluster_v2`', '`delete_l7policy`', '`delete_l7rule`',
               '`delete_lblistener`', '`delete_lbmember`', '`delete_lbmetadata`',
               '`delete_lbpool`', '`delete_loadbalancer`', '`delete_network`',
-              '`delete_reserved_fixed_ip`', '`delete_router`', '`delete_secret`',
-              '`delete_servergroup`', '`delete_sfs`', '`delete_snapshot`', '`delete_subnet`',
-              '`delete_vm`', '`delete_volume`', '`detach_vm_interface`', '`detach_volume`',
-              '`download_image`', '`downscale_ai_cluster_gpu`',
+              '`delete_project`', '`delete_reserved_fixed_ip`', '`delete_router`',
+              '`delete_secret`', '`delete_servergroup`', '`delete_sfs`', '`delete_snapshot`',
+              '`delete_subnet`', '`delete_vm`', '`delete_volume`', '`detach_vm_interface`',
+              '`detach_volume`', '`download_image`', '`downscale_ai_cluster_gpu`',
               '`downscale_gpu_virtual_cluster`', '`extend_sfs`', '`extend_volume`',
               '`failover_loadbalancer`', '`hard_reboot_gpu_baremetal_server`',
               '`hard_reboot_gpu_virtual_cluster`', '`hard_reboot_gpu_virtual_server`',
               '`hard_reboot_vm`', '`patch_caas_container`', '`patch_dbaas_postgres_cluster`',
               '`patch_faas_function`', '`patch_faas_namespace`', '`patch_lblistener`',
-              '`patch_lbpool`', '`put_into_server_group`', '`put_l7policy`', '`put_l7rule`',
-              '`rebuild_bm`', '`rebuild_gpu_baremetal_node`', '`remove_from_server_group`',
+              '`patch_lbpool`', '`put_into_server_group`', '`put_l7rule`', '`rebuild_bm`',
+              '`rebuild_gpu_baremetal_node`', '`remove_from_server_group`',
               '`replace_lbmetadata`', '`resize_k8s_cluster_v2`', '`resize_loadbalancer`',
               '`resize_vm`', '`resume_vm`', '`revert_volume`',
               '`soft_reboot_gpu_baremetal_server`', '`soft_reboot_gpu_virtual_cluster`',
@@ -183,7 +183,7 @@ class TasksResource(SyncAPIResource):
               '`stop_gpu_virtual_cluster`', '`stop_gpu_virtual_server`', '`stop_vm`',
               '`suspend_vm`', '`sync_private_flavors`', '`update_ddos_profile`',
               '`update_inference_application`', '`update_inference_instance`',
-              '`update_k8s_cluster_v2`', '`update_lbmetadata`',
+              '`update_k8s_cluster_v2`', '`update_l7policy`', '`update_lbmetadata`',
               '`update_port_allowed_address_pairs`', '`update_sfs`',
               '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
               '`upscale_ai_cluster_gpu`', '`upscale_gpu_virtual_cluster`']
@@ -230,8 +230,8 @@ class TasksResource(SyncAPIResource):
     def acknowledge_all(
         self,
         *,
-        project_id: Optional[int] | Omit = omit,
-        region_id: Optional[int] | Omit = omit,
+        project_id: int | Omit = omit,
+        region_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -411,17 +411,17 @@ class AsyncTasksResource(AsyncAPIResource):
     def list(
         self,
         *,
-        from_timestamp: Union[str, datetime, None] | Omit = omit,
-        is_acknowledged: Optional[bool] | Omit = omit,
+        from_timestamp: Union[str, datetime] | Omit = omit,
+        is_acknowledged: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["asc", "desc"] | Omit = omit,
-        project_id: Optional[Iterable[int]] | Omit = omit,
-        region_id: Optional[Iterable[int]] | Omit = omit,
+        project_id: Iterable[int] | Omit = omit,
+        region_id: Iterable[int] | Omit = omit,
         sorting: Literal["asc", "desc"] | Omit = omit,
-        state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]] | Omit = omit,
-        task_type: Optional[str] | Omit = omit,
-        to_timestamp: Union[str, datetime, None] | Omit = omit,
+        state: List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]] | Omit = omit,
+        task_type: str | Omit = omit,
+        to_timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -481,17 +481,17 @@ class AsyncTasksResource(AsyncAPIResource):
               '`delete_k8s_cluster_v2`', '`delete_l7policy`', '`delete_l7rule`',
               '`delete_lblistener`', '`delete_lbmember`', '`delete_lbmetadata`',
               '`delete_lbpool`', '`delete_loadbalancer`', '`delete_network`',
-              '`delete_reserved_fixed_ip`', '`delete_router`', '`delete_secret`',
-              '`delete_servergroup`', '`delete_sfs`', '`delete_snapshot`', '`delete_subnet`',
-              '`delete_vm`', '`delete_volume`', '`detach_vm_interface`', '`detach_volume`',
-              '`download_image`', '`downscale_ai_cluster_gpu`',
+              '`delete_project`', '`delete_reserved_fixed_ip`', '`delete_router`',
+              '`delete_secret`', '`delete_servergroup`', '`delete_sfs`', '`delete_snapshot`',
+              '`delete_subnet`', '`delete_vm`', '`delete_volume`', '`detach_vm_interface`',
+              '`detach_volume`', '`download_image`', '`downscale_ai_cluster_gpu`',
               '`downscale_gpu_virtual_cluster`', '`extend_sfs`', '`extend_volume`',
               '`failover_loadbalancer`', '`hard_reboot_gpu_baremetal_server`',
               '`hard_reboot_gpu_virtual_cluster`', '`hard_reboot_gpu_virtual_server`',
               '`hard_reboot_vm`', '`patch_caas_container`', '`patch_dbaas_postgres_cluster`',
               '`patch_faas_function`', '`patch_faas_namespace`', '`patch_lblistener`',
-              '`patch_lbpool`', '`put_into_server_group`', '`put_l7policy`', '`put_l7rule`',
-              '`rebuild_bm`', '`rebuild_gpu_baremetal_node`', '`remove_from_server_group`',
+              '`patch_lbpool`', '`put_into_server_group`', '`put_l7rule`', '`rebuild_bm`',
+              '`rebuild_gpu_baremetal_node`', '`remove_from_server_group`',
               '`replace_lbmetadata`', '`resize_k8s_cluster_v2`', '`resize_loadbalancer`',
               '`resize_vm`', '`resume_vm`', '`revert_volume`',
               '`soft_reboot_gpu_baremetal_server`', '`soft_reboot_gpu_virtual_cluster`',
@@ -501,7 +501,7 @@ class AsyncTasksResource(AsyncAPIResource):
               '`stop_gpu_virtual_cluster`', '`stop_gpu_virtual_server`', '`stop_vm`',
               '`suspend_vm`', '`sync_private_flavors`', '`update_ddos_profile`',
               '`update_inference_application`', '`update_inference_instance`',
-              '`update_k8s_cluster_v2`', '`update_lbmetadata`',
+              '`update_k8s_cluster_v2`', '`update_l7policy`', '`update_lbmetadata`',
               '`update_port_allowed_address_pairs`', '`update_sfs`',
               '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
               '`upscale_ai_cluster_gpu`', '`upscale_gpu_virtual_cluster`']
@@ -548,8 +548,8 @@ class AsyncTasksResource(AsyncAPIResource):
     async def acknowledge_all(
         self,
         *,
-        project_id: Optional[int] | Omit = omit,
-        region_id: Optional[int] | Omit = omit,
+        project_id: int | Omit = omit,
+        region_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
