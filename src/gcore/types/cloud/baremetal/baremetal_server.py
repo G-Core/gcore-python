@@ -29,6 +29,8 @@ class FixedIPAssignment(BaseModel):
 
 
 class FlavorHardwareDescription(BaseModel):
+    """Additional hardware description"""
+
     cpu: str
     """Human-readable CPU description"""
 
@@ -46,6 +48,8 @@ class FlavorHardwareDescription(BaseModel):
 
 
 class Flavor(BaseModel):
+    """Flavor details"""
+
     architecture: str
     """CPU architecture"""
 

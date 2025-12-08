@@ -22,6 +22,8 @@ class SecretCreateParams(TypedDict, total=False):
 
 
 class Data(TypedDict, total=False):
+    """Secret data."""
+
     aws_access_key_id: Required[str]
     """AWS IAM key ID."""
 

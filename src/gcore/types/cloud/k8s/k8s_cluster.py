@@ -24,6 +24,8 @@ __all__ = [
 
 
 class AddOnsSlurm(BaseModel):
+    """Slurm add-on configuration"""
+
     enabled: bool
     """Indicates whether Slurm add-on is deployed in the cluster.
 
@@ -50,21 +52,29 @@ class AddOnsSlurm(BaseModel):
 
 
 class AddOns(BaseModel):
+    """Cluster add-ons configuration"""
+
     slurm: AddOnsSlurm
     """Slurm add-on configuration"""
 
 
 class CsiNfs(BaseModel):
+    """NFS settings"""
+
     vast_enabled: bool
     """Indicates the status of VAST NFS integration"""
 
 
 class Csi(BaseModel):
+    """Cluster CSI settings"""
+
     nfs: CsiNfs
     """NFS settings"""
 
 
 class AuthenticationOidc(BaseModel):
+    """OIDC authentication settings"""
+
     client_id: Optional[str] = None
     """Client ID"""
 
@@ -93,6 +103,8 @@ class AuthenticationOidc(BaseModel):
 
 
 class Authentication(BaseModel):
+    """Cluster authentication settings"""
+
     kubeconfig_created_at: Optional[datetime] = None
     """Kubeconfig creation date"""
 
@@ -104,6 +116,8 @@ class Authentication(BaseModel):
 
 
 class CniCilium(BaseModel):
+    """Cilium settings"""
+
     encryption: Optional[bool] = None
     """Wireguard encryption"""
 
@@ -133,6 +147,8 @@ class CniCilium(BaseModel):
 
 
 class Cni(BaseModel):
+    """Cluster CNI settings"""
+
     cilium: Optional[CniCilium] = None
     """Cilium settings"""
 
@@ -151,6 +167,8 @@ class DDOSProfileField(BaseModel):
 
 
 class DDOSProfile(BaseModel):
+    """Advanced DDoS Protection profile"""
+
     enabled: bool
     """Enable advanced DDoS protection"""
 

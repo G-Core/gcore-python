@@ -78,6 +78,8 @@ class SecurityGroupSecurityGroupRule(TypedDict, total=False):
 
 
 class SecurityGroup(TypedDict, total=False):
+    """Security group"""
+
     name: Required[str]
     """Security group name"""
 

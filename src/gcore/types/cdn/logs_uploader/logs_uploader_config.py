@@ -10,6 +10,8 @@ __all__ = ["LogsUploaderConfig", "Status"]
 
 
 class Status(LogsUploaderValidation):
+    """Validation status of the logs uploader config."""
+
     pass
 
 

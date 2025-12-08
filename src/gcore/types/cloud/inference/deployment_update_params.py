@@ -111,21 +111,35 @@ class DeploymentUpdateParams(TypedDict, total=False):
 
 
 class ContainerScaleTriggersCPU(TypedDict, total=False):
+    """CPU trigger configuration"""
+
     threshold: Required[int]
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersGPUMemory(TypedDict, total=False):
+    """GPU memory trigger configuration.
+
+    Calculated by `DCGM_FI_DEV_MEM_COPY_UTIL` metric
+    """
+
     threshold: Required[int]
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersGPUUtilization(TypedDict, total=False):
+    """GPU utilization trigger configuration.
+
+    Calculated by `DCGM_FI_DEV_GPU_UTIL` metric
+    """
+
     threshold: Required[int]
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersHTTP(TypedDict, total=False):
+    """HTTP trigger configuration"""
+
     rate: Required[int]
     """Request count per 'window' seconds for the http trigger"""
 
@@ -134,11 +148,15 @@ class ContainerScaleTriggersHTTP(TypedDict, total=False):
 
 
 class ContainerScaleTriggersMemory(TypedDict, total=False):
+    """Memory trigger configuration"""
+
     threshold: Required[int]
     """Threshold value for the trigger in percentage"""
 
 
 class ContainerScaleTriggersSqs(TypedDict, total=False):
+    """SQS trigger configuration"""
+
     activation_queue_length: Required[int]
     """Number of messages for activation"""
 
@@ -165,6 +183,8 @@ class ContainerScaleTriggersSqs(TypedDict, total=False):
 
 
 class ContainerScaleTriggers(TypedDict, total=False):
+    """Triggers for scaling actions"""
+
     cpu: Optional[ContainerScaleTriggersCPU]
     """CPU trigger configuration"""
 
@@ -191,6 +211,8 @@ class ContainerScaleTriggers(TypedDict, total=False):
 
 
 class ContainerScale(TypedDict, total=False):
+    """Scale for the container"""
+
     max: Required[int]
     """Maximum scale for the container"""
 
@@ -216,6 +238,8 @@ class Container(TypedDict, total=False):
 
 
 class IngressOpts(TypedDict, total=False):
+    """Ingress options for the inference instance"""
+
     disable_response_buffering: bool
     """Disable response buffering if true.
 
@@ -227,6 +251,8 @@ class IngressOpts(TypedDict, total=False):
 
 
 class Logging(TypedDict, total=False):
+    """Logging configuration for the inference instance"""
+
     destination_region_id: Optional[int]
     """ID of the region in which the logs will be stored"""
 
@@ -241,11 +267,15 @@ class Logging(TypedDict, total=False):
 
 
 class ProbesLivenessProbeProbeExec(TypedDict, total=False):
+    """Exec probe configuration"""
+
     command: SequenceNotStr[str]
     """Command to be executed inside the running container."""
 
 
 class ProbesLivenessProbeProbeHTTPGet(TypedDict, total=False):
+    """HTTP GET probe configuration"""
+
     headers: Dict[str, str]
     """HTTP headers to be sent with the request."""
 
@@ -263,11 +293,15 @@ class ProbesLivenessProbeProbeHTTPGet(TypedDict, total=False):
 
 
 class ProbesLivenessProbeProbeTcpSocket(TypedDict, total=False):
+    """TCP socket probe configuration"""
+
     port: int
     """Port number to check if it's open."""
 
 
 class ProbesLivenessProbeProbe(TypedDict, total=False):
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""
+
     exec: Optional[ProbesLivenessProbeProbeExec]
     """Exec probe configuration"""
 
@@ -294,6 +328,8 @@ class ProbesLivenessProbeProbe(TypedDict, total=False):
 
 
 class ProbesLivenessProbe(TypedDict, total=False):
+    """Liveness probe configuration"""
+
     enabled: bool
     """Whether the probe is enabled or not."""
 
@@ -302,11 +338,15 @@ class ProbesLivenessProbe(TypedDict, total=False):
 
 
 class ProbesReadinessProbeProbeExec(TypedDict, total=False):
+    """Exec probe configuration"""
+
     command: SequenceNotStr[str]
     """Command to be executed inside the running container."""
 
 
 class ProbesReadinessProbeProbeHTTPGet(TypedDict, total=False):
+    """HTTP GET probe configuration"""
+
     headers: Dict[str, str]
     """HTTP headers to be sent with the request."""
 
@@ -324,11 +364,15 @@ class ProbesReadinessProbeProbeHTTPGet(TypedDict, total=False):
 
 
 class ProbesReadinessProbeProbeTcpSocket(TypedDict, total=False):
+    """TCP socket probe configuration"""
+
     port: int
     """Port number to check if it's open."""
 
 
 class ProbesReadinessProbeProbe(TypedDict, total=False):
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""
+
     exec: Optional[ProbesReadinessProbeProbeExec]
     """Exec probe configuration"""
 
@@ -355,6 +399,8 @@ class ProbesReadinessProbeProbe(TypedDict, total=False):
 
 
 class ProbesReadinessProbe(TypedDict, total=False):
+    """Readiness probe configuration"""
+
     enabled: bool
     """Whether the probe is enabled or not."""
 
@@ -363,11 +409,15 @@ class ProbesReadinessProbe(TypedDict, total=False):
 
 
 class ProbesStartupProbeProbeExec(TypedDict, total=False):
+    """Exec probe configuration"""
+
     command: SequenceNotStr[str]
     """Command to be executed inside the running container."""
 
 
 class ProbesStartupProbeProbeHTTPGet(TypedDict, total=False):
+    """HTTP GET probe configuration"""
+
     headers: Dict[str, str]
     """HTTP headers to be sent with the request."""
 
@@ -385,11 +435,15 @@ class ProbesStartupProbeProbeHTTPGet(TypedDict, total=False):
 
 
 class ProbesStartupProbeProbeTcpSocket(TypedDict, total=False):
+    """TCP socket probe configuration"""
+
     port: int
     """Port number to check if it's open."""
 
 
 class ProbesStartupProbeProbe(TypedDict, total=False):
+    """Probe configuration (exec, `http_get` or `tcp_socket`)"""
+
     exec: Optional[ProbesStartupProbeProbeExec]
     """Exec probe configuration"""
 
@@ -416,6 +470,8 @@ class ProbesStartupProbeProbe(TypedDict, total=False):
 
 
 class ProbesStartupProbe(TypedDict, total=False):
+    """Startup probe configuration"""
+
     enabled: bool
     """Whether the probe is enabled or not."""
 
@@ -424,6 +480,8 @@ class ProbesStartupProbe(TypedDict, total=False):
 
 
 class Probes(TypedDict, total=False):
+    """Probes configured for all containers of the inference instance."""
+
     liveness_probe: Optional[ProbesLivenessProbe]
     """Liveness probe configuration"""
 

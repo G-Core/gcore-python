@@ -9,6 +9,8 @@ __all__ = ["RequestListResponse", "RequestedLimits", "RequestedLimitsGlobalLimit
 
 
 class RequestedLimitsGlobalLimits(BaseModel):
+    """Global entity quota limits"""
+
     inference_cpu_millicore_count_limit: Optional[int] = None
     """Inference CPU millicore count limit"""
 
@@ -195,6 +197,8 @@ class RequestedLimitsRegionalLimit(BaseModel):
 
 
 class RequestedLimits(BaseModel):
+    """Requested limits."""
+
     global_limits: Optional[RequestedLimitsGlobalLimits] = None
     """Global entity quota limits"""
 

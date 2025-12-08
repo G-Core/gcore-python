@@ -25,6 +25,8 @@ class Interface(BaseModel):
 
 
 class ExternalGatewayInfo(BaseModel):
+    """State of this router's external gateway."""
+
     enable_snat: bool
     """Is SNAT enabled."""
 

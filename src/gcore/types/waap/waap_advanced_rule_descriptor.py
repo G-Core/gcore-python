@@ -8,6 +8,8 @@ __all__ = ["WaapAdvancedRuleDescriptor", "Attr", "AttrArg"]
 
 
 class AttrArg(BaseModel):
+    """An argument of a descriptor's object"""
+
     name: str
     """The argument's name"""
 
@@ -19,6 +21,8 @@ class AttrArg(BaseModel):
 
 
 class Attr(BaseModel):
+    """An attribute of a descriptor's object"""
+
     name: str
     """The attribute's name"""
 
@@ -36,6 +40,8 @@ class Attr(BaseModel):
 
 
 class WaapAdvancedRuleDescriptor(BaseModel):
+    """Advanced rules descriptor object"""
+
     name: str
     """The object's name"""
 

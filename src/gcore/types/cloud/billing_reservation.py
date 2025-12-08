@@ -9,6 +9,8 @@ __all__ = ["BillingReservation", "ActiveOvercommit", "Commit", "HardwareInfo"]
 
 
 class ActiveOvercommit(BaseModel):
+    """Overcommit pricing details"""
+
     active_from: datetime
     """Billing subscription active from date"""
 
@@ -29,6 +31,8 @@ class ActiveOvercommit(BaseModel):
 
 
 class Commit(BaseModel):
+    """Commit pricing details"""
+
     active_from: datetime
     """Billing subscription active from date"""
 
@@ -49,6 +53,8 @@ class Commit(BaseModel):
 
 
 class HardwareInfo(BaseModel):
+    """Hardware specifications"""
+
     cpu: Optional[str] = None
     """CPU specification"""
 

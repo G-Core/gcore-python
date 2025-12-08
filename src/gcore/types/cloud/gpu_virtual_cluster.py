@@ -42,6 +42,8 @@ class ServersSettingsInterfaceExternalInterfaceOutputSerializer(BaseModel):
 
 
 class ServersSettingsInterfaceSubnetInterfaceOutputSerializerFloatingIP(BaseModel):
+    """Floating IP config for this subnet attachment"""
+
     source: Literal["new"]
 
 
@@ -62,6 +64,8 @@ class ServersSettingsInterfaceSubnetInterfaceOutputSerializer(BaseModel):
 
 
 class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerFloatingIP(BaseModel):
+    """Floating IP config for this subnet attachment"""
+
     source: Literal["new"]
 
 

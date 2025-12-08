@@ -35,10 +35,14 @@ class DataStream(BaseModel):
 
 
 class Data(BaseModel):
+    """Stream data"""
+
     stream: Optional[DataStream] = None
 
 
 class WarningMeta(BaseModel):
+    """storage usage state for client"""
+
     storage_limit_mb: Optional[int] = None
     """Current storage limit for client by megabytes"""
 
@@ -47,6 +51,8 @@ class WarningMeta(BaseModel):
 
 
 class WarningSourceObject(BaseModel):
+    """Warning source object"""
+
     id: Optional[int] = None
     """Client ID"""
 

@@ -10,6 +10,8 @@ __all__ = ["App", "Secrets"]
 
 
 class Secrets(BaseModel):
+    """Application secret short description"""
+
     id: int
     """The unique identifier of the secret."""
 

@@ -58,6 +58,8 @@ class Data(BaseModel):
 
 
 class Meta(BaseModel):
+    """Contains meta-information."""
+
     count: Optional[int] = None
     """Total number of records which match given parameters."""
 

@@ -17,6 +17,8 @@ class CountByStatus(BaseModel):
 
 
 class CallStatus(BaseModel):
+    """Edge app call statistics"""
+
     count_by_status: List[CountByStatus]
     """Count by status"""
 

@@ -9,6 +9,10 @@ __all__ = ["WaapFirewallRule", "Action", "ActionBlock", "Condition", "ConditionI
 
 
 class ActionBlock(BaseModel):
+    """
+    WAAP block action behavior could be configured with response status code and action duration.
+    """
+
     action_duration: Optional[str] = None
     """How long a rule's block action will apply to subsequent requests.
 
@@ -22,6 +26,8 @@ class ActionBlock(BaseModel):
 
 
 class Action(BaseModel):
+    """The action that the rule takes when triggered"""
+
     allow: Optional[object] = None
     """The WAAP allowed the request"""
 
@@ -33,6 +39,8 @@ class Action(BaseModel):
 
 
 class ConditionIP(BaseModel):
+    """Match the incoming request against a single IP address"""
+
     ip_address: str
     """A single IPv4 or IPv6 address"""
 
@@ -41,6 +49,8 @@ class ConditionIP(BaseModel):
 
 
 class ConditionIPRange(BaseModel):
+    """Match the incoming request against an IP range"""
+
     lower_bound: str
     """The lower bound IPv4 or IPv6 address to match against"""
 
@@ -52,6 +62,10 @@ class ConditionIPRange(BaseModel):
 
 
 class Condition(BaseModel):
+    """
+    The criteria of an incoming web request and the models of the various values those criteria can take
+    """
+
     ip: Optional[ConditionIP] = None
     """Match the incoming request against a single IP address"""
 

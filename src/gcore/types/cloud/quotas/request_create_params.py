@@ -17,6 +17,8 @@ class RequestCreateParams(TypedDict, total=False):
 
 
 class RequestedLimitsGlobalLimits(TypedDict, total=False):
+    """Global entity quota limits"""
+
     inference_cpu_millicore_count_limit: int
     """Inference CPU millicore count limit"""
 
@@ -203,6 +205,8 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
 
 
 class RequestedLimits(TypedDict, total=False):
+    """Limits you want to increase."""
+
     global_limits: RequestedLimitsGlobalLimits
     """Global entity quota limits"""
 

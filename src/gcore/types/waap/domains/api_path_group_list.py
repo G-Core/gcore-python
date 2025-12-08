@@ -8,5 +8,7 @@ __all__ = ["APIPathGroupList"]
 
 
 class APIPathGroupList(BaseModel):
+    """Response model for the API path groups"""
+
     api_path_groups: List[str]
     """An array of api groups associated with the API path"""

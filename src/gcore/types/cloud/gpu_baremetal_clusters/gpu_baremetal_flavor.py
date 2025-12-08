@@ -20,6 +20,8 @@ __all__ = [
 
 
 class GPUBaremetalFlavorSerializerWithoutPriceHardwareDescription(BaseModel):
+    """Additional bare metal hardware description"""
+
     cpu: str
     """Human-readable CPU description"""
 
@@ -37,6 +39,8 @@ class GPUBaremetalFlavorSerializerWithoutPriceHardwareDescription(BaseModel):
 
 
 class GPUBaremetalFlavorSerializerWithoutPriceHardwareProperties(BaseModel):
+    """Additional bare metal hardware properties"""
+
     gpu_count: Optional[int] = None
     """The total count of available GPUs."""
 
@@ -54,6 +58,8 @@ class GPUBaremetalFlavorSerializerWithoutPriceHardwareProperties(BaseModel):
 
 
 class GPUBaremetalFlavorSerializerWithoutPriceSupportedFeatures(BaseModel):
+    """Set of enabled features based on the flavor's type and configuration"""
+
     security_groups: bool
 
 
@@ -81,6 +87,8 @@ class GPUBaremetalFlavorSerializerWithoutPrice(BaseModel):
 
 
 class GPUBaremetalFlavorSerializerWithPricesHardwareDescription(BaseModel):
+    """Additional virtual hardware description"""
+
     cpu: str
     """Human-readable CPU description"""
 
@@ -98,6 +106,8 @@ class GPUBaremetalFlavorSerializerWithPricesHardwareDescription(BaseModel):
 
 
 class GPUBaremetalFlavorSerializerWithPricesHardwareProperties(BaseModel):
+    """Additional bare metal hardware properties"""
+
     gpu_count: Optional[int] = None
     """The total count of available GPUs."""
 
@@ -115,6 +125,8 @@ class GPUBaremetalFlavorSerializerWithPricesHardwareProperties(BaseModel):
 
 
 class GPUBaremetalFlavorSerializerWithPricesPrice(BaseModel):
+    """Flavor price"""
+
     currency_code: Optional[str] = None
     """Currency code. Shown if the `include_prices` query parameter if set to true"""
 
@@ -129,6 +141,8 @@ class GPUBaremetalFlavorSerializerWithPricesPrice(BaseModel):
 
 
 class GPUBaremetalFlavorSerializerWithPricesSupportedFeatures(BaseModel):
+    """Set of enabled features based on the flavor's type and configuration"""
+
     security_groups: bool
 
 

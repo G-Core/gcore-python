@@ -16,6 +16,8 @@ class KvStoreReplaceParams(TypedDict, total=False):
 
 
 class Byod(TypedDict, total=False):
+    """BYOD (Bring Your Own Data) settings"""
+
     prefix: Required[str]
     """Key prefix"""
 

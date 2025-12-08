@@ -8,6 +8,8 @@ __all__ = ["CdnAccount", "Service"]
 
 
 class Service(BaseModel):
+    """Information about the CDN service status."""
+
     enabled: Optional[bool] = None
     """Defines whether the CDN service is activated.
 

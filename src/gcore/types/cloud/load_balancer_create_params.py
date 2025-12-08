@@ -138,6 +138,8 @@ FloatingIP: TypeAlias = Union[
 
 
 class ListenerPoolHealthmonitor(TypedDict, total=False):
+    """Health monitor details"""
+
     delay: Required[int]
     """The time, in seconds, between sending probes to members"""
 
@@ -242,6 +244,8 @@ class ListenerPoolMember(TypedDict, total=False):
 
 
 class ListenerPoolSessionPersistence(TypedDict, total=False):
+    """Session persistence details"""
+
     type: Required[LbSessionPersistenceType]
     """Session persistence type"""
 
@@ -361,6 +365,8 @@ class Listener(TypedDict, total=False):
 
 
 class Logging(TypedDict, total=False):
+    """Logging configuration"""
+
     destination_region_id: Optional[int]
     """Destination region id to which the logs will be written"""
 

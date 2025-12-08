@@ -8,6 +8,11 @@ __all__ = ["Player"]
 
 
 class Player(BaseModel):
+    """Set of properties for displaying videos.
+
+    All parameters may be blank to inherit their values from default Streaming player.
+    """
+
     name: str
     """Player name"""
 

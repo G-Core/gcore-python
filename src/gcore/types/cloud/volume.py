@@ -36,6 +36,8 @@ class Attachment(BaseModel):
 
 
 class LimiterStats(BaseModel):
+    """Schema representing the Quality of Service (QoS) parameters for a volume."""
+
     iops_base_limit: int
     """The sustained IOPS (Input/Output Operations Per Second) limit."""
 

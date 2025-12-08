@@ -8,6 +8,8 @@ __all__ = ["WaapRequestSummary"]
 
 
 class WaapRequestSummary(BaseModel):
+    """Request summary used when displaying a list of requests"""
+
     id: str
     """Request's unique id"""
 

@@ -9,6 +9,8 @@ __all__ = ["AppParam", "Secrets"]
 
 
 class Secrets(TypedDict, total=False):
+    """Application secret short description"""
+
     id: Required[int]
     """The unique identifier of the secret."""
 

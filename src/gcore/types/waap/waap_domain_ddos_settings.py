@@ -8,6 +8,8 @@ __all__ = ["WaapDomainDDOSSettings"]
 
 
 class WaapDomainDDOSSettings(BaseModel):
+    """DDoS settings for a domain."""
+
     burst_threshold: Optional[int] = None
     """The burst threshold detects sudden rises in traffic.
 

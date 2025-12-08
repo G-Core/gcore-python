@@ -8,6 +8,8 @@ __all__ = ["Bucket"]
 
 
 class Bucket(BaseModel):
+    """BucketDtoV2 for response"""
+
     name: str
     """Name of the S3 bucket"""
 

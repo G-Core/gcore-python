@@ -51,6 +51,10 @@ class AdvancedRuleUpdateParams(TypedDict, total=False):
 
 
 class ActionBlock(TypedDict, total=False):
+    """
+    WAAP block action behavior could be configured with response status code and action duration.
+    """
+
     action_duration: str
     """How long a rule's block action will apply to subsequent requests.
 
@@ -64,11 +68,15 @@ class ActionBlock(TypedDict, total=False):
 
 
 class ActionTag(TypedDict, total=False):
+    """WAAP tag action gets a list of tags to tag the request scope with"""
+
     tags: Required[SequenceNotStr[str]]
     """The list of user defined tags to tag the request with"""
 
 
 class Action(TypedDict, total=False):
+    """The action that a WAAP rule takes when triggered."""
+
     allow: object
     """The WAAP allowed the request"""
 

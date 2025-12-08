@@ -8,6 +8,8 @@ __all__ = ["WaapDomainSettingsModel"]
 
 
 class WaapDomainSettingsModel(BaseModel):
+    """Settings for a domain."""
+
     api: WaapDomainAPISettings
     """API settings of a domain"""
 

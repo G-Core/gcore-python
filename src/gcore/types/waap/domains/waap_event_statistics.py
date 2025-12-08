@@ -8,6 +8,8 @@ __all__ = ["WaapEventStatistics"]
 
 
 class WaapEventStatistics(BaseModel):
+    """A collection of event metrics over a time span"""
+
     blocked: WaapBlockedStatistics
     """A collection of total numbers of events with blocked results per criteria"""
 

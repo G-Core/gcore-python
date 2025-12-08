@@ -10,6 +10,8 @@ __all__ = ["WaapAPIDiscoverySettings"]
 
 
 class WaapAPIDiscoverySettings(BaseModel):
+    """Response model for the API discovery settings"""
+
     description_file_location: Optional[str] = FieldInfo(alias="descriptionFileLocation", default=None)
     """The URL of the API description file.
 

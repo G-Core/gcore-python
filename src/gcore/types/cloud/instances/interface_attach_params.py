@@ -65,6 +65,8 @@ class NewInterfaceExternalExtendSchemaWithDdosddosProfileField(TypedDict, total=
 
 
 class NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile(TypedDict, total=False):
+    """Advanced DDoS protection."""
+
     profile_template: Required[int]
     """DDoS profile template ID."""
 
@@ -76,6 +78,8 @@ class NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile(TypedDict, total=False
 
 
 class NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup(TypedDict, total=False):
+    """MandatoryIdSchema schema"""
+
     id: Required[str]
     """Resource ID"""
 
@@ -119,6 +123,8 @@ class NewInterfaceSpecificSubnetSchemaDDOSProfileField(TypedDict, total=False):
 
 
 class NewInterfaceSpecificSubnetSchemaDDOSProfile(TypedDict, total=False):
+    """Advanced DDoS protection."""
+
     profile_template: Required[int]
     """DDoS profile template ID."""
 
@@ -130,6 +136,8 @@ class NewInterfaceSpecificSubnetSchemaDDOSProfile(TypedDict, total=False):
 
 
 class NewInterfaceSpecificSubnetSchemaSecurityGroup(TypedDict, total=False):
+    """MandatoryIdSchema schema"""
+
     id: Required[str]
     """Resource ID"""
 
@@ -176,6 +184,8 @@ class NewInterfaceAnySubnetSchemaDDOSProfileField(TypedDict, total=False):
 
 
 class NewInterfaceAnySubnetSchemaDDOSProfile(TypedDict, total=False):
+    """Advanced DDoS protection."""
+
     profile_template: Required[int]
     """DDoS profile template ID."""
 
@@ -187,6 +197,8 @@ class NewInterfaceAnySubnetSchemaDDOSProfile(TypedDict, total=False):
 
 
 class NewInterfaceAnySubnetSchemaSecurityGroup(TypedDict, total=False):
+    """MandatoryIdSchema schema"""
+
     id: Required[str]
     """Resource ID"""
 
@@ -230,6 +242,8 @@ class NewInterfaceReservedFixedIPSchemaDDOSProfileField(TypedDict, total=False):
 
 
 class NewInterfaceReservedFixedIPSchemaDDOSProfile(TypedDict, total=False):
+    """Advanced DDoS protection."""
+
     profile_template: Required[int]
     """DDoS profile template ID."""
 
@@ -241,6 +255,8 @@ class NewInterfaceReservedFixedIPSchemaDDOSProfile(TypedDict, total=False):
 
 
 class NewInterfaceReservedFixedIPSchemaSecurityGroup(TypedDict, total=False):
+    """MandatoryIdSchema schema"""
+
     id: Required[str]
     """Resource ID"""
 

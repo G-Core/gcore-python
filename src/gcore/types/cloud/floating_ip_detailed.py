@@ -25,6 +25,8 @@ InstanceAddress: TypeAlias = Union[FloatingAddress, FixedAddressShort, FixedAddr
 
 
 class InstanceFlavor(BaseModel):
+    """Flavor"""
+
     flavor_id: str
     """Flavor ID is the same as name"""
 
@@ -52,6 +54,8 @@ class InstanceVolume(BaseModel):
 
 
 class Instance(BaseModel):
+    """Instance the floating IP is attached to"""
+
     id: str
     """Instance ID"""
 

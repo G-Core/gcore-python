@@ -8,6 +8,8 @@ __all__ = ["ZoneImportResponse", "Imported"]
 
 
 class Imported(BaseModel):
+    """ImportedRRSets - import statistics"""
+
     qtype: Optional[int] = None
 
     resource_records: Optional[int] = None
