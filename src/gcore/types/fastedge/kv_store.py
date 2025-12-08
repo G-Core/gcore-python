@@ -9,6 +9,8 @@ __all__ = ["KvStore", "Byod"]
 
 
 class Byod(BaseModel):
+    """BYOD (Bring Your Own Data) settings"""
+
     prefix: str
     """Key prefix"""
 

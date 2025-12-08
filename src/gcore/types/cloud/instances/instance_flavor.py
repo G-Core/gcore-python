@@ -9,6 +9,8 @@ __all__ = ["InstanceFlavor"]
 
 
 class InstanceFlavor(BaseModel):
+    """Instances flavor schema"""
+
     architecture: str
     """Flavor architecture type"""
 

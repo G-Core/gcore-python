@@ -93,6 +93,8 @@ class Resource(BaseModel):
 
 
 class TotalPrice(BaseModel):
+    """Total resource price VAT inclusive"""
+
     currency_code: Optional[str] = None
     """Currency code (3 letter code per ISO 4217)"""
 

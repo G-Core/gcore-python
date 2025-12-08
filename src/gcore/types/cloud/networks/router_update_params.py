@@ -24,6 +24,8 @@ class RouterUpdateParams(TypedDict, total=False):
 
 
 class ExternalGatewayInfo(TypedDict, total=False):
+    """New external gateway."""
+
     network_id: Required[str]
     """id of the external network."""
 

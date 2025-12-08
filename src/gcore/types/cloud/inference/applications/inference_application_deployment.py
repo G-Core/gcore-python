@@ -24,6 +24,8 @@ class ComponentsConfigurationParameterOverrides(BaseModel):
 
 
 class ComponentsConfigurationScale(BaseModel):
+    """Scaling parameters of the component"""
+
     max: int
     """Maximum number of replicas the container can be scaled up to"""
 
@@ -78,6 +80,8 @@ class StatusRegion(BaseModel):
 
 
 class Status(BaseModel):
+    """Current state of the deployment across regions"""
+
     component_inferences: Dict[str, StatusComponentInferences]
     """Map of components and their inferences"""
 

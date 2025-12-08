@@ -10,6 +10,8 @@ __all__ = ["WaapRequestDetails", "CommonTag", "Network", "NetworkOrganization", 
 
 
 class CommonTag(BaseModel):
+    """Common tag details"""
+
     description: str
     """Tag description information"""
 
@@ -21,6 +23,8 @@ class CommonTag(BaseModel):
 
 
 class NetworkOrganization(BaseModel):
+    """Organization details"""
+
     name: str
     """Organization name"""
 
@@ -29,6 +33,8 @@ class NetworkOrganization(BaseModel):
 
 
 class Network(BaseModel):
+    """Network details"""
+
     client_ip: str
     """Client IP"""
 
@@ -40,6 +46,8 @@ class Network(BaseModel):
 
 
 class PatternMatchedTag(BaseModel):
+    """Pattern matched tag details"""
+
     description: str
     """Tag description information"""
 
@@ -72,6 +80,8 @@ class PatternMatchedTag(BaseModel):
 
 
 class UserAgent(BaseModel):
+    """User agent"""
+
     base_browser: str
     """User agent browser"""
 
@@ -107,6 +117,8 @@ class UserAgent(BaseModel):
 
 
 class WaapRequestDetails(BaseModel):
+    """Request's details used when displaying a single request."""
+
     id: str
     """Request ID"""
 

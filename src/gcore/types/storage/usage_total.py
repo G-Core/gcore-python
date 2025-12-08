@@ -46,6 +46,8 @@ class DataMetrics(BaseModel):
 
 
 class Data(BaseModel):
+    """StorageStatsTotalElement for response"""
+
     metrics: Optional[DataMetrics] = None
 
 

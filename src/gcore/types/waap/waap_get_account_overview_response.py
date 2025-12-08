@@ -16,11 +16,15 @@ class Quotas(BaseModel):
 
 
 class Service(BaseModel):
+    """Information about the WAAP service status"""
+
     enabled: bool
     """Whether the service is enabled"""
 
 
 class WaapGetAccountOverviewResponse(BaseModel):
+    """Represents the WAAP service information for a client"""
+
     id: Optional[int] = None
     """The client ID"""
 

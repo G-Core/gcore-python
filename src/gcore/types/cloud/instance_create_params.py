@@ -147,6 +147,8 @@ class InterfaceNewInterfaceExternalSerializerPydanticSecurityGroup(TypedDict, to
 
 
 class InterfaceNewInterfaceExternalSerializerPydantic(TypedDict, total=False):
+    """Instance will be attached to default external network"""
+
     type: Required[Literal["external"]]
     """A public IP address will be assigned to the instance."""
 
@@ -205,6 +207,12 @@ class InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticSecurityGroup(Type
 
 
 class InterfaceNewInterfaceSpecificSubnetFipSerializerPydantic(TypedDict, total=False):
+    """
+    The instance will get an IP address from the selected network.
+    If you choose to add a floating IP, the instance will be reachable from the internet.
+    Otherwise, it will only have a private IP within the network.
+    """
+
     network_id: Required[str]
     """The network where the instance will be connected."""
 

@@ -9,6 +9,8 @@ __all__ = ["WaapAdvancedRuleDescriptorList"]
 
 
 class WaapAdvancedRuleDescriptorList(BaseModel):
+    """A response from a request to retrieve an advanced rules descriptor"""
+
     version: str
     """The descriptor's version"""
 

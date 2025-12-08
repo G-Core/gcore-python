@@ -8,6 +8,8 @@ __all__ = ["WaapBlockedStatistics"]
 
 
 class WaapBlockedStatistics(BaseModel):
+    """A collection of total numbers of events with blocked results per criteria"""
+
     action: List[List[Union[str, int]]]
     """A collection of event counts per action.
 

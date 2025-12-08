@@ -6,6 +6,8 @@ __all__ = ["Console", "RemoteConsole"]
 
 
 class RemoteConsole(BaseModel):
+    """Remote console information"""
+
     protocol: str
 
     type: str

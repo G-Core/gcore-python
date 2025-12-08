@@ -8,6 +8,8 @@ __all__ = ["WaapCountStatistics"]
 
 
 class WaapCountStatistics(BaseModel):
+    """A collection of total numbers of events per criteria"""
+
     action: List[List[Union[str, int]]]
     """A collection of event counts per action.
 

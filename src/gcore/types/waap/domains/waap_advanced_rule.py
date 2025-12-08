@@ -9,6 +9,10 @@ __all__ = ["WaapAdvancedRule", "Action", "ActionBlock", "ActionTag"]
 
 
 class ActionBlock(BaseModel):
+    """
+    WAAP block action behavior could be configured with response status code and action duration.
+    """
+
     action_duration: Optional[str] = None
     """How long a rule's block action will apply to subsequent requests.
 
@@ -22,11 +26,18 @@ class ActionBlock(BaseModel):
 
 
 class ActionTag(BaseModel):
+    """WAAP tag action gets a list of tags to tag the request scope with"""
+
     tags: List[str]
     """The list of user defined tags to tag the request with"""
 
 
 class Action(BaseModel):
+    """The action that the rule takes when triggered.
+
+    Only one action can be set per rule.
+    """
+
     allow: Optional[object] = None
     """The WAAP allowed the request"""
 
@@ -50,6 +61,8 @@ class Action(BaseModel):
 
 
 class WaapAdvancedRule(BaseModel):
+    """An advanced WAAP rule applied to a domain"""
+
     id: int
     """The unique identifier for the rule"""
 

@@ -6,6 +6,8 @@ __all__ = ["InferenceSecret", "Data"]
 
 
 class Data(BaseModel):
+    """Secret data."""
+
     aws_access_key_id: str
     """AWS IAM key ID."""
 

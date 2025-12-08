@@ -10,6 +10,8 @@ __all__ = ["WaapTrafficMetrics"]
 
 
 class WaapTrafficMetrics(BaseModel):
+    """Represents the traffic metrics for a domain at a given time window"""
+
     timestamp: int
     """UNIX timestamp indicating when the traffic data was recorded"""
 

@@ -64,6 +64,8 @@ class ServersSettingsInterfaceExternalInterfaceInputSerializer(TypedDict, total=
 
 
 class ServersSettingsInterfaceSubnetInterfaceInputSerializerFloatingIP(TypedDict, total=False):
+    """Floating IP config for this subnet attachment"""
+
     source: Required[Literal["new"]]
 
 
@@ -84,6 +86,8 @@ class ServersSettingsInterfaceSubnetInterfaceInputSerializer(TypedDict, total=Fa
 
 
 class ServersSettingsInterfaceAnySubnetInterfaceInputSerializerFloatingIP(TypedDict, total=False):
+    """Floating IP config for this subnet attachment"""
+
     source: Required[Literal["new"]]
 
 
@@ -111,6 +115,8 @@ ServersSettingsInterface: TypeAlias = Union[
 
 
 class ServersSettingsCredentials(TypedDict, total=False):
+    """Optional server access credentials"""
+
     password: str
     """Used to set the password for the specified 'username' on Linux instances.
 
@@ -142,6 +148,8 @@ class ServersSettingsSecurityGroup(TypedDict, total=False):
 
 
 class ServersSettings(TypedDict, total=False):
+    """Configuration settings for the servers in the cluster"""
+
     interfaces: Required[Iterable[ServersSettingsInterface]]
     """Subnet IPs and floating IPs"""
 

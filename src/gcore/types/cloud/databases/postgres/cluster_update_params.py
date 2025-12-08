@@ -53,6 +53,8 @@ class Database(TypedDict, total=False):
 
 
 class Flavor(TypedDict, total=False):
+    """New instance RAM and CPU"""
+
     cpu: Required[int]
     """Maximum available cores for instance"""
 
@@ -61,6 +63,8 @@ class Flavor(TypedDict, total=False):
 
 
 class HighAvailability(TypedDict, total=False):
+    """New High Availability settings"""
+
     replication_mode: Required[Literal["async", "sync"]]
     """Type of replication"""
 
@@ -80,6 +84,8 @@ class PgServerConfigurationPooler(TypedDict, total=False):
 
 
 class PgServerConfiguration(TypedDict, total=False):
+    """New PosgtreSQL cluster configuration"""
+
     pg_conf: Optional[str]
     """New pg.conf file settings"""
 
@@ -90,6 +96,8 @@ class PgServerConfiguration(TypedDict, total=False):
 
 
 class Storage(TypedDict, total=False):
+    """New storage configuration"""
+
     size_gib: Required[int]
     """Total available storage for database"""
 

@@ -115,6 +115,8 @@ class ServerCreateParams(TypedDict, total=False):
 
 
 class InterfaceCreateBareMetalExternalInterfaceSerializer(TypedDict, total=False):
+    """Instance will be attached to default external network"""
+
     type: Required[Literal["external"]]
     """A public IP address will be assigned to the instance."""
 
@@ -173,6 +175,12 @@ InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIP: TypeAlias = Union[
 
 
 class InterfaceCreateBareMetalSubnetInterfaceSerializer(TypedDict, total=False):
+    """
+    The instance will get an IP address from the selected network.
+    If you choose to add a floating IP, the instance will be reachable from the internet.
+    Otherwise, it will only have a private IP within the network.
+    """
+
     network_id: Required[str]
     """The network where the instance will be connected."""
 
@@ -358,6 +366,8 @@ class DDOSProfileField(TypedDict, total=False):
 
 
 class DDOSProfile(TypedDict, total=False):
+    """Enable advanced DDoS protection for the server"""
+
     profile_template: Required[int]
     """Unique identifier of the DDoS protection template to use for this profile"""
 

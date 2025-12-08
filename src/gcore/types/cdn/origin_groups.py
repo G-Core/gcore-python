@@ -99,6 +99,8 @@ class NoneAuth(BaseModel):
 
 
 class AwsSignatureV4Auth(BaseModel):
+    """Credentials to access the private bucket."""
+
     s3_access_key_id: str
     """Access key ID for the S3 account.
 

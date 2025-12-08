@@ -28,6 +28,8 @@ class RrsetReplaceParams(TypedDict, total=False):
 
 
 class ResourceRecord(TypedDict, total=False):
+    """nolint: lll"""
+
     content: Required[Iterable[object]]
     """
     Content of resource record The exact length of the array depends on the type of

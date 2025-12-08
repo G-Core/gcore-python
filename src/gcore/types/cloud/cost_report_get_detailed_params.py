@@ -432,6 +432,8 @@ class TagsCondition(TypedDict, total=False):
 
 
 class Tags(TypedDict, total=False):
+    """Filter by tags"""
+
     conditions: Required[Iterable[TagsCondition]]
     """A list of tag filtering conditions defining how tags should match."""
 

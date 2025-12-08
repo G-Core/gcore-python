@@ -6,6 +6,10 @@ __all__ = ["WaapTag"]
 
 
 class WaapTag(BaseModel):
+    """
+    Tags provide shortcuts for the rules used in WAAP policies for the creation of more complex WAAP rules.
+    """
+
     description: str
     """A tag's human readable description"""
 

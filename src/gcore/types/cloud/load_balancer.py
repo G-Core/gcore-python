@@ -27,6 +27,8 @@ class AdditionalVip(BaseModel):
 
 
 class Flavor(BaseModel):
+    """Load balancer flavor (if not default)"""
+
     flavor_id: str
     """Flavor ID is the same as name"""
 

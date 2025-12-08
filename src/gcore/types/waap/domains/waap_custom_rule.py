@@ -33,6 +33,10 @@ __all__ = [
 
 
 class ActionBlock(BaseModel):
+    """
+    WAAP block action behavior could be configured with response status code and action duration.
+    """
+
     action_duration: Optional[str] = None
     """How long a rule's block action will apply to subsequent requests.
 
@@ -46,11 +50,18 @@ class ActionBlock(BaseModel):
 
 
 class ActionTag(BaseModel):
+    """WAAP tag action gets a list of tags to tag the request scope with"""
+
     tags: List[str]
     """The list of user defined tags to tag the request with"""
 
 
 class Action(BaseModel):
+    """The action that the rule takes when triggered.
+
+    Only one action can be set per rule.
+    """
+
     allow: Optional[object] = None
     """The WAAP allowed the request"""
 
@@ -74,6 +85,8 @@ class Action(BaseModel):
 
 
 class ConditionContentType(BaseModel):
+    """Match the requested Content-Type"""
+
     content_type: List[str]
     """The list of content types to match against"""
 
@@ -82,6 +95,8 @@ class ConditionContentType(BaseModel):
 
 
 class ConditionCountry(BaseModel):
+    """Match the country that the request originated from"""
+
     country_code: List[str]
     """
     A list of ISO 3166-1 alpha-2 formatted strings representing the countries to
@@ -93,6 +108,8 @@ class ConditionCountry(BaseModel):
 
 
 class ConditionFileExtension(BaseModel):
+    """Match the incoming file extension"""
+
     file_extension: List[str]
     """The list of file extensions to match against"""
 
@@ -101,6 +118,8 @@ class ConditionFileExtension(BaseModel):
 
 
 class ConditionHeader(BaseModel):
+    """Match an incoming request header"""
+
     header: str
     """The request header name"""
 
@@ -115,6 +134,8 @@ class ConditionHeader(BaseModel):
 
 
 class ConditionHeaderExists(BaseModel):
+    """Match when an incoming request header is present"""
+
     header: str
     """The request header name"""
 
@@ -123,6 +144,8 @@ class ConditionHeaderExists(BaseModel):
 
 
 class ConditionHTTPMethod(BaseModel):
+    """Match the incoming HTTP method"""
+
     http_method: Literal["CONNECT", "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]
     """HTTP methods of a request"""
 
@@ -131,6 +154,8 @@ class ConditionHTTPMethod(BaseModel):
 
 
 class ConditionIP(BaseModel):
+    """Match the incoming request against a single IP address"""
+
     ip_address: str
     """A single IPv4 or IPv6 address"""
 
@@ -139,6 +164,8 @@ class ConditionIP(BaseModel):
 
 
 class ConditionIPRange(BaseModel):
+    """Match the incoming request against an IP range"""
+
     lower_bound: str
     """The lower bound IPv4 or IPv6 address to match against"""
 
@@ -150,6 +177,10 @@ class ConditionIPRange(BaseModel):
 
 
 class ConditionOrganization(BaseModel):
+    """
+    Match the organization the request originated from, as determined by a WHOIS lookup of the requesting IP
+    """
+
     organization: str
     """The organization to match against"""
 
@@ -158,6 +189,10 @@ class ConditionOrganization(BaseModel):
 
 
 class ConditionOwnerTypes(BaseModel):
+    """
+    Match the type of organization that owns the IP address making an incoming request
+    """
+
     negation: Optional[bool] = None
     """Whether or not to apply a boolean NOT operation to the rule's condition"""
 
@@ -182,6 +217,8 @@ class ConditionOwnerTypes(BaseModel):
 
 
 class ConditionRequestRate(BaseModel):
+    """Match the rate at which requests come in that match certain conditions"""
+
     path_pattern: str
     """A regular expression matching the URL path of the incoming request"""
 
@@ -213,6 +250,8 @@ class ConditionRequestRate(BaseModel):
 
 
 class ConditionResponseHeader(BaseModel):
+    """Match a response header"""
+
     header: str
     """The response header name"""
 
@@ -227,6 +266,8 @@ class ConditionResponseHeader(BaseModel):
 
 
 class ConditionResponseHeaderExists(BaseModel):
+    """Match when a response header is present"""
+
     header: str
     """The response header name"""
 
@@ -235,6 +276,8 @@ class ConditionResponseHeaderExists(BaseModel):
 
 
 class ConditionSessionRequestCount(BaseModel):
+    """Match the number of dynamic page requests made in a WAAP session"""
+
     request_count: int
     """The number of dynamic requests in the session"""
 
@@ -243,6 +286,8 @@ class ConditionSessionRequestCount(BaseModel):
 
 
 class ConditionTags(BaseModel):
+    """Matches requests based on specified tags"""
+
     tags: List[str]
     """A list of tags to match against the request tags"""
 
@@ -251,6 +296,8 @@ class ConditionTags(BaseModel):
 
 
 class ConditionURL(BaseModel):
+    """Match the incoming request URL"""
+
     url: str
     """
     The pattern to match against the request URL. Constraints depend on
@@ -270,6 +317,8 @@ class ConditionURL(BaseModel):
 
 
 class ConditionUserAgent(BaseModel):
+    """Match the user agent making the request"""
+
     user_agent: str
     """The user agent value to match"""
 
@@ -281,6 +330,8 @@ class ConditionUserAgent(BaseModel):
 
 
 class ConditionUserDefinedTags(BaseModel):
+    """Matches requests based on user-defined tags"""
+
     tags: List[str]
     """A list of user-defined tags to match against the request tags"""
 
@@ -289,6 +340,10 @@ class ConditionUserDefinedTags(BaseModel):
 
 
 class Condition(BaseModel):
+    """
+    The criteria of an incoming web request and the models of the various values those criteria can take
+    """
+
     content_type: Optional[ConditionContentType] = None
     """Match the requested Content-Type"""
 
@@ -351,6 +406,8 @@ class Condition(BaseModel):
 
 
 class WaapCustomRule(BaseModel):
+    """An WAAP rule applied to a domain"""
+
     id: int
     """The unique identifier for the rule"""
 

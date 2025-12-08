@@ -8,6 +8,8 @@ __all__ = ["WaapDomainAPISettings"]
 
 
 class WaapDomainAPISettings(BaseModel):
+    """API settings of a domain"""
+
     api_urls: Optional[List[str]] = None
     """The API URLs for a domain.
 

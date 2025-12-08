@@ -8,6 +8,8 @@ __all__ = ["DurationStats"]
 
 
 class DurationStats(BaseModel):
+    """Edge app execution duration statistics"""
+
     avg: int
     """Average duration in usec"""
 

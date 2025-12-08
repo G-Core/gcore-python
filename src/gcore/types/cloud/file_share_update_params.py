@@ -55,6 +55,8 @@ class FileShareUpdateParams(TypedDict, total=False):
 
 
 class ShareSettings(TypedDict, total=False):
+    """Configuration settings for the share"""
+
     allowed_characters: Literal["LCD", "NPL"]
     """Determines which characters are allowed in file names. Choose between:
 

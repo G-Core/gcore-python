@@ -10,6 +10,8 @@ __all__ = ["Metrics", "Disk"]
 
 
 class Disk(BaseModel):
+    """Disk metrics item"""
+
     disk_bps_read: Optional[float] = FieldInfo(alias="disk_Bps_read", default=None)
     """Disk read, Bytes per second"""
 
@@ -27,6 +29,8 @@ class Disk(BaseModel):
 
 
 class Metrics(BaseModel):
+    """Instance metrics item"""
+
     time: str
     """Timestamp"""
 

@@ -40,4 +40,6 @@ class ClientUserRole(TypedDict, total=False):
 
 
 class ClientUser(TypedDict, total=False):
+    """API token role."""
+
     role: ClientUserRole

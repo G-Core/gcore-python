@@ -64,6 +64,11 @@ __all__ = [
 
 
 class ResourceResourceAIClusterSerializer(BaseModel):
+    """
+    These properties are common for all individual AI clusters
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -104,6 +109,11 @@ class ResourceResourceAIClusterSerializer(BaseModel):
 
 
 class ResourceResourceAIVirtualClusterSerializer(BaseModel):
+    """
+    These properties are common for all individual AI Virtual clusters
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -144,6 +154,11 @@ class ResourceResourceAIVirtualClusterSerializer(BaseModel):
 
 
 class ResourceResourceBaremetalSerializer(BaseModel):
+    """
+    These properties are common for all individual bare metal servers
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -184,6 +199,11 @@ class ResourceResourceBaremetalSerializer(BaseModel):
 
 
 class ResourceResourceBasicVmSerializer(BaseModel):
+    """
+    These properties are common for all individual basic VMs
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -224,6 +244,11 @@ class ResourceResourceBasicVmSerializer(BaseModel):
 
 
 class ResourceResourceBackupSerializer(BaseModel):
+    """
+    These properties are common for all individual backups
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -301,6 +326,11 @@ class ResourceResourceContainerSerializer(BaseModel):
 
 
 class ResourceResourceEgressTrafficSerializer(BaseModel):
+    """
+    These properties are common for all individual egress traffic
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -347,6 +377,11 @@ class ResourceResourceEgressTrafficSerializer(BaseModel):
 
 
 class ResourceResourceExternalIPSerializer(BaseModel):
+    """
+    These properties are common for all individual external IPs
+    in all cost and usage reports results (but not in totals)
+    """
+
     attached_to_vm: Optional[str] = None
     """ID of the VM the IP is attached to"""
 
@@ -390,6 +425,11 @@ class ResourceResourceExternalIPSerializer(BaseModel):
 
 
 class ResourceResourceFileShareSerializer(BaseModel):
+    """
+    These properties are common for all individual file shares
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -436,6 +476,11 @@ class ResourceResourceFileShareSerializer(BaseModel):
 
 
 class ResourceResourceFloatingIPSerializer(BaseModel):
+    """
+    These properties are common for all individual floating IPs
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -476,6 +521,11 @@ class ResourceResourceFloatingIPSerializer(BaseModel):
 
 
 class ResourceResourceFunctionsSerializer(BaseModel):
+    """
+    These properties are common for all individual functions
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -510,6 +560,11 @@ class ResourceResourceFunctionsSerializer(BaseModel):
 
 
 class ResourceResourceFunctionCallsSerializer(BaseModel):
+    """
+    These properties are common for all individual function calls
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -544,6 +599,11 @@ class ResourceResourceFunctionCallsSerializer(BaseModel):
 
 
 class ResourceResourceFunctionEgressTrafficSerializer(BaseModel):
+    """
+    These properties are common for all individual function egress traffic
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -578,6 +638,11 @@ class ResourceResourceFunctionEgressTrafficSerializer(BaseModel):
 
 
 class ResourceResourceImagesSerializer(BaseModel):
+    """
+    These properties are common for all individual images
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -658,6 +723,11 @@ class ResourceResourceInferenceSerializer(BaseModel):
 
 
 class ResourceResourceInstanceSerializer(BaseModel):
+    """
+    These properties are common for all individual instances
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -698,6 +768,11 @@ class ResourceResourceInstanceSerializer(BaseModel):
 
 
 class ResourceResourceLoadBalancerSerializer(BaseModel):
+    """
+    These properties are common for all individual load balancers
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -738,6 +813,11 @@ class ResourceResourceLoadBalancerSerializer(BaseModel):
 
 
 class ResourceResourceLogIndexSerializer(BaseModel):
+    """
+    These properties are common for all individual log indexes
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -778,6 +858,11 @@ class ResourceResourceLogIndexSerializer(BaseModel):
 
 
 class ResourceResourceSnapshotSerializer(BaseModel):
+    """
+    These properties are common for all individual snapshots
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -827,6 +912,11 @@ class ResourceResourceSnapshotSerializer(BaseModel):
 
 
 class ResourceResourceVolumeSerializer(BaseModel):
+    """
+    These properties are common for all individual volumes
+    in all cost and usage reports results (but not in totals)
+    """
+
     billing_metric_name: str
     """Name of the billing metric"""
 

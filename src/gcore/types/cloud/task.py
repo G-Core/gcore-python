@@ -9,6 +9,8 @@ __all__ = ["Task", "CreatedResources"]
 
 
 class CreatedResources(BaseModel):
+    """If the task creates resources, this field will contain their IDs"""
+
     ai_clusters: Optional[List[str]] = None
     """IDs of created AI clusters"""
 

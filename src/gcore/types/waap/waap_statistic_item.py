@@ -8,6 +8,8 @@ __all__ = ["WaapStatisticItem"]
 
 
 class WaapStatisticItem(BaseModel):
+    """Response model for the statistics item"""
+
     date_time: datetime
     """The date and time for the statistic in ISO 8601 format"""
 

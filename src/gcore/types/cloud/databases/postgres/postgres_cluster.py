@@ -31,6 +31,8 @@ class Database(BaseModel):
 
 
 class Flavor(BaseModel):
+    """Instance RAM and CPU"""
+
     cpu: int
     """Maximum available cores for instance"""
 
@@ -64,6 +66,8 @@ class PgServerConfigurationPooler(BaseModel):
 
 
 class PgServerConfiguration(BaseModel):
+    """Main PG configuration"""
+
     pg_conf: str
     """pg.conf settings"""
 
@@ -74,6 +78,8 @@ class PgServerConfiguration(BaseModel):
 
 
 class Storage(BaseModel):
+    """PG's storage configuration"""
+
     size_gib: int
     """Total available storage for database"""
 

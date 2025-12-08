@@ -19,6 +19,8 @@ class Attachment(BaseModel):
 
 
 class Reservation(BaseModel):
+    """Reserved fixed IP status with resource type and ID it is attached to"""
+
     resource_id: Optional[str] = None
     """ID of the instance or load balancer the IP is attached to"""
 

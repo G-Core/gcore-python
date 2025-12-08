@@ -8,6 +8,8 @@ __all__ = ["SslRequestStatus", "LatestStatus", "Status"]
 
 
 class LatestStatus(BaseModel):
+    """Detailed information about last attempt to issue a Let's Encrypt certificate."""
+
     id: Optional[int] = None
     """ID of the attempt to issue the Let's Encrypt certificate."""
 

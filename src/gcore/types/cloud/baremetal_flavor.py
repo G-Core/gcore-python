@@ -9,6 +9,8 @@ __all__ = ["BaremetalFlavor"]
 
 
 class BaremetalFlavor(BaseModel):
+    """Bare metal flavor schema"""
+
     architecture: str
     """Flavor architecture type"""
 
