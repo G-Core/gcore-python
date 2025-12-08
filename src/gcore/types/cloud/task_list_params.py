@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -12,13 +12,13 @@ __all__ = ["TaskListParams"]
 
 
 class TaskListParams(TypedDict, total=False):
-    from_timestamp: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    from_timestamp: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """ISO formatted datetime string.
 
     Filter the tasks by creation date greater than or equal to `from_timestamp`
     """
 
-    is_acknowledged: Optional[bool]
+    is_acknowledged: bool
     """Filter the tasks by their acknowledgement status"""
 
     limit: int
@@ -33,13 +33,13 @@ class TaskListParams(TypedDict, total=False):
     order_by: Literal["asc", "desc"]
     """Sorting by creation date. Oldest first, or most recent first"""
 
-    project_id: Optional[Iterable[int]]
+    project_id: Iterable[int]
     """The project ID to filter the tasks by project.
 
     Supports multiple values of kind key=value1&key=value2
     """
 
-    region_id: Optional[Iterable[int]]
+    region_id: Iterable[int]
     """The region ID to filter the tasks by region.
 
     Supports multiple values of kind key=value1&key=value2
@@ -51,13 +51,13 @@ class TaskListParams(TypedDict, total=False):
     Oldest first, or most recent first
     """
 
-    state: Optional[List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]]
+    state: List[Literal["ERROR", "FINISHED", "NEW", "RUNNING"]]
     """Filter the tasks by state.
 
     Supports multiple values of kind key=value1&key=value2
     """
 
-    task_type: Optional[str]
+    task_type: str
     """
     Filter the tasks by their type one of ['`activate_ddos_profile`',
     '`attach_bm_to_reserved_fixed_ip`', '`attach_vm_interface`',
@@ -82,17 +82,17 @@ class TaskListParams(TypedDict, total=False):
     '`delete_k8s_cluster_v2`', '`delete_l7policy`', '`delete_l7rule`',
     '`delete_lblistener`', '`delete_lbmember`', '`delete_lbmetadata`',
     '`delete_lbpool`', '`delete_loadbalancer`', '`delete_network`',
-    '`delete_reserved_fixed_ip`', '`delete_router`', '`delete_secret`',
-    '`delete_servergroup`', '`delete_sfs`', '`delete_snapshot`', '`delete_subnet`',
-    '`delete_vm`', '`delete_volume`', '`detach_vm_interface`', '`detach_volume`',
-    '`download_image`', '`downscale_ai_cluster_gpu`',
+    '`delete_project`', '`delete_reserved_fixed_ip`', '`delete_router`',
+    '`delete_secret`', '`delete_servergroup`', '`delete_sfs`', '`delete_snapshot`',
+    '`delete_subnet`', '`delete_vm`', '`delete_volume`', '`detach_vm_interface`',
+    '`detach_volume`', '`download_image`', '`downscale_ai_cluster_gpu`',
     '`downscale_gpu_virtual_cluster`', '`extend_sfs`', '`extend_volume`',
     '`failover_loadbalancer`', '`hard_reboot_gpu_baremetal_server`',
     '`hard_reboot_gpu_virtual_cluster`', '`hard_reboot_gpu_virtual_server`',
     '`hard_reboot_vm`', '`patch_caas_container`', '`patch_dbaas_postgres_cluster`',
     '`patch_faas_function`', '`patch_faas_namespace`', '`patch_lblistener`',
-    '`patch_lbpool`', '`put_into_server_group`', '`put_l7policy`', '`put_l7rule`',
-    '`rebuild_bm`', '`rebuild_gpu_baremetal_node`', '`remove_from_server_group`',
+    '`patch_lbpool`', '`put_into_server_group`', '`put_l7rule`', '`rebuild_bm`',
+    '`rebuild_gpu_baremetal_node`', '`remove_from_server_group`',
     '`replace_lbmetadata`', '`resize_k8s_cluster_v2`', '`resize_loadbalancer`',
     '`resize_vm`', '`resume_vm`', '`revert_volume`',
     '`soft_reboot_gpu_baremetal_server`', '`soft_reboot_gpu_virtual_cluster`',
@@ -102,13 +102,13 @@ class TaskListParams(TypedDict, total=False):
     '`stop_gpu_virtual_cluster`', '`stop_gpu_virtual_server`', '`stop_vm`',
     '`suspend_vm`', '`sync_private_flavors`', '`update_ddos_profile`',
     '`update_inference_application`', '`update_inference_instance`',
-    '`update_k8s_cluster_v2`', '`update_lbmetadata`',
+    '`update_k8s_cluster_v2`', '`update_l7policy`', '`update_lbmetadata`',
     '`update_port_allowed_address_pairs`', '`update_sfs`',
     '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
     '`upscale_ai_cluster_gpu`', '`upscale_gpu_virtual_cluster`']
     """
 
-    to_timestamp: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    to_timestamp: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """ISO formatted datetime string.
 
     Filter the tasks by creation date less than or equal to `to_timestamp`
