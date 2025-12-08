@@ -2,7 +2,7 @@ import asyncio
 
 from gcore import AsyncGcore
 from gcore.pagination import AsyncOffsetPage
-from gcore.types.cloud import SSHKey, SSHKeyCreated
+from gcore.types.cloud import SSHKey, SSHKeyCreate
 
 
 async def main() -> None:
@@ -27,7 +27,7 @@ async def main() -> None:
     await delete_ssh_key(client=gcore, ssh_key_id=ssh_key.id)
 
 
-async def create_ssh_key(*, client: AsyncGcore) -> SSHKeyCreated:
+async def create_ssh_key(*, client: AsyncGcore) -> SSHKeyCreate:
     print("\n=== CREATE SSH KEY ===")
     ssh_key = await client.cloud.ssh_keys.create(name="gcore-go-example")
     print(f"Created SSH key: ID={ssh_key.id}, name={ssh_key.name}")
