@@ -10,6 +10,7 @@ __all__ = ["ProjectUpdateParams"]
 
 class ProjectUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     name: Required[str]
     """Name of the entity, following a specific format."""
