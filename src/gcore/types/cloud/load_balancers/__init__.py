@@ -13,3 +13,4 @@ from .listener_create_params import ListenerCreateParams as ListenerCreateParams
 from .listener_delete_params import ListenerDeleteParams as ListenerDeleteParams
 from .listener_update_params import ListenerUpdateParams as ListenerUpdateParams
 from .l7_policy_create_params import L7PolicyCreateParams as L7PolicyCreateParams
+from .l7_policy_update_params import L7PolicyUpdateParams as L7PolicyUpdateParams
