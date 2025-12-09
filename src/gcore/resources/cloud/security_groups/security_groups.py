@@ -224,9 +224,9 @@ class SecurityGroupsResource(SyncAPIResource):
 
           offset: Offset in results list
 
-          tag_key: Optional. Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -609,9 +609,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
 
           offset: Offset in results list
 
-          tag_key: Optional. Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Optional. Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           extra_headers: Send extra headers
 

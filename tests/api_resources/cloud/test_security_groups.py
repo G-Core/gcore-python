@@ -169,7 +169,7 @@ class TestSecurityGroups:
             region_id=1,
             limit=10,
             offset=0,
-            tag_key=["my-tag"],
+            tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )
         assert_matches_type(SyncOffsetPage[SecurityGroup], security_group, path=["response"])
@@ -543,7 +543,7 @@ class TestAsyncSecurityGroups:
             region_id=1,
             limit=10,
             offset=0,
-            tag_key=["my-tag"],
+            tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )
         assert_matches_type(AsyncOffsetPage[SecurityGroup], security_group, path=["response"])
