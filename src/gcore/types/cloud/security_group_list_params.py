@@ -23,7 +23,7 @@ class SecurityGroupListParams(TypedDict, total=False):
     """Offset in results list"""
 
     tag_key: SequenceNotStr[str]
-    """Optional. Filter by tag keys."""
+    """Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2"""
 
     tag_key_value: str
-    """Optional. Filter by tag key-value pairs. Must be a valid JSON string."""
+    """Optional. Filter by tag key-value pairs."""
