@@ -50,6 +50,14 @@ from .pickers.pickers import (
     PickersResourceWithStreamingResponse,
     AsyncPickersResourceWithStreamingResponse,
 )
+from .network_mappings import (
+    NetworkMappingsResource,
+    AsyncNetworkMappingsResource,
+    NetworkMappingsResourceWithRawResponse,
+    AsyncNetworkMappingsResourceWithRawResponse,
+    NetworkMappingsResourceWithStreamingResponse,
+    AsyncNetworkMappingsResourceWithStreamingResponse,
+)
 from ...types.dns.dns_lookup_response import DNSLookupResponse
 from ...types.dns.dns_get_account_overview_response import DNSGetAccountOverviewResponse
 
@@ -72,6 +80,10 @@ class DNSResource(SyncAPIResource):
     @cached_property
     def zones(self) -> ZonesResource:
         return ZonesResource(self._client)
+
+    @cached_property
+    def network_mappings(self) -> NetworkMappingsResource:
+        return NetworkMappingsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DNSResourceWithRawResponse:
@@ -175,6 +187,10 @@ class AsyncDNSResource(AsyncAPIResource):
     @cached_property
     def zones(self) -> AsyncZonesResource:
         return AsyncZonesResource(self._client)
+
+    @cached_property
+    def network_mappings(self) -> AsyncNetworkMappingsResource:
+        return AsyncNetworkMappingsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDNSResourceWithRawResponse:
@@ -289,6 +305,10 @@ class DNSResourceWithRawResponse:
     def zones(self) -> ZonesResourceWithRawResponse:
         return ZonesResourceWithRawResponse(self._dns.zones)
 
+    @cached_property
+    def network_mappings(self) -> NetworkMappingsResourceWithRawResponse:
+        return NetworkMappingsResourceWithRawResponse(self._dns.network_mappings)
+
 
 class AsyncDNSResourceWithRawResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
@@ -316,6 +336,10 @@ class AsyncDNSResourceWithRawResponse:
     @cached_property
     def zones(self) -> AsyncZonesResourceWithRawResponse:
         return AsyncZonesResourceWithRawResponse(self._dns.zones)
+
+    @cached_property
+    def network_mappings(self) -> AsyncNetworkMappingsResourceWithRawResponse:
+        return AsyncNetworkMappingsResourceWithRawResponse(self._dns.network_mappings)
 
 
 class DNSResourceWithStreamingResponse:
@@ -345,6 +369,10 @@ class DNSResourceWithStreamingResponse:
     def zones(self) -> ZonesResourceWithStreamingResponse:
         return ZonesResourceWithStreamingResponse(self._dns.zones)
 
+    @cached_property
+    def network_mappings(self) -> NetworkMappingsResourceWithStreamingResponse:
+        return NetworkMappingsResourceWithStreamingResponse(self._dns.network_mappings)
+
 
 class AsyncDNSResourceWithStreamingResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
@@ -372,3 +400,7 @@ class AsyncDNSResourceWithStreamingResponse:
     @cached_property
     def zones(self) -> AsyncZonesResourceWithStreamingResponse:
         return AsyncZonesResourceWithStreamingResponse(self._dns.zones)
+
+    @cached_property
+    def network_mappings(self) -> AsyncNetworkMappingsResourceWithStreamingResponse:
+        return AsyncNetworkMappingsResourceWithStreamingResponse(self._dns.network_mappings)

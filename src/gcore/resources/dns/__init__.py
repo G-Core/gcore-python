@@ -40,6 +40,14 @@ from .locations import (
     LocationsResourceWithStreamingResponse,
     AsyncLocationsResourceWithStreamingResponse,
 )
+from .network_mappings import (
+    NetworkMappingsResource,
+    AsyncNetworkMappingsResource,
+    NetworkMappingsResourceWithRawResponse,
+    AsyncNetworkMappingsResourceWithRawResponse,
+    NetworkMappingsResourceWithStreamingResponse,
+    AsyncNetworkMappingsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "LocationsResource",
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncZonesResourceWithRawResponse",
     "ZonesResourceWithStreamingResponse",
     "AsyncZonesResourceWithStreamingResponse",
+    "NetworkMappingsResource",
+    "AsyncNetworkMappingsResource",
+    "NetworkMappingsResourceWithRawResponse",
+    "AsyncNetworkMappingsResourceWithRawResponse",
+    "NetworkMappingsResourceWithStreamingResponse",
+    "AsyncNetworkMappingsResourceWithStreamingResponse",
     "DNSResource",
     "AsyncDNSResource",
     "DNSResourceWithRawResponse",
