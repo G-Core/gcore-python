@@ -2116,6 +2116,30 @@ Methods:
 - <code title="get /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}/failover/log">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">get_failover_logs</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_get_failover_logs_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/rrset_get_failover_logs_response.py">RrsetGetFailoverLogsResponse</a></code>
 - <code title="put /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">replace</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_replace_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
 
+## NetworkMappings
+
+Types:
+
+```python
+from gcore.types.dns import (
+    DNSMappingEntry,
+    DNSNetworkMapping,
+    NetworkMappingCreateResponse,
+    NetworkMappingListResponse,
+    NetworkMappingImportResponse,
+)
+```
+
+Methods:
+
+- <code title="post /dns/v2/network-mappings">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">create</a>(\*\*<a href="src/gcore/types/dns/network_mapping_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/network_mapping_create_response.py">NetworkMappingCreateResponse</a></code>
+- <code title="get /dns/v2/network-mappings">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">list</a>(\*\*<a href="src/gcore/types/dns/network_mapping_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/network_mapping_list_response.py">NetworkMappingListResponse</a></code>
+- <code title="delete /dns/v2/network-mappings/{id}">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">delete</a>(id) -> object</code>
+- <code title="get /dns/v2/network-mappings/{id}">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">get</a>(id) -> <a href="./src/gcore/types/dns/dns_network_mapping.py">DNSNetworkMapping</a></code>
+- <code title="get /dns/v2/network-mappings/{name}">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">get_by_name</a>(name) -> <a href="./src/gcore/types/dns/dns_network_mapping.py">DNSNetworkMapping</a></code>
+- <code title="post /dns/v2/network-mappings/import">client.dns.network*mappings.<a href="./src/gcore/resources/dns/network_mappings.py">import*</a>() -> <a href="./src/gcore/types/dns/network_mapping_import_response.py">NetworkMappingImportResponse</a></code>
+- <code title="put /dns/v2/network-mappings/{id}">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">replace</a>(path_id, \*\*<a href="src/gcore/types/dns/network_mapping_replace_params.py">params</a>) -> object</code>
+
 # Storage
 
 Types:
