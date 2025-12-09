@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Optional
 from typing_extensions import Literal
 
@@ -91,6 +92,7 @@ class ProjectsResource(SyncAPIResource):
             cast_to=Project,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         *,
@@ -104,10 +106,14 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """
-        Update project name and description.
+        """Update project.
+
+        Depricated: Use PATCH /v1/projects/{project_id} instead Update
+        project name and description.
 
         Args:
+          project_id: Project ID
+
           name: Name of the entity, following a specific format.
 
           description: Description of the project.
@@ -220,6 +226,8 @@ class ProjectsResource(SyncAPIResource):
         deleted.
 
         Args:
+          project_id: Project ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -249,10 +257,13 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """
+        """Get project.
+
         Retrieve detailed information about a specific project.
 
         Args:
+          project_id: Project ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -337,6 +348,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=Project,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         *,
@@ -350,10 +362,14 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """
-        Update project name and description.
+        """Update project.
+
+        Depricated: Use PATCH /v1/projects/{project_id} instead Update
+        project name and description.
 
         Args:
+          project_id: Project ID
+
           name: Name of the entity, following a specific format.
 
           description: Description of the project.
@@ -466,6 +482,8 @@ class AsyncProjectsResource(AsyncAPIResource):
         deleted.
 
         Args:
+          project_id: Project ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -495,10 +513,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """
+        """Get project.
+
         Retrieve detailed information about a specific project.
 
         Args:
+          project_id: Project ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -525,8 +546,10 @@ class ProjectsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             projects.create,
         )
-        self.update = to_raw_response_wrapper(
-            projects.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                projects.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             projects.list,
@@ -546,8 +569,10 @@ class AsyncProjectsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             projects.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            projects.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                projects.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             projects.list,
@@ -567,8 +592,10 @@ class ProjectsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             projects.create,
         )
-        self.update = to_streamed_response_wrapper(
-            projects.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                projects.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             projects.list,
@@ -588,8 +615,10 @@ class AsyncProjectsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             projects.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            projects.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                projects.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             projects.list,
