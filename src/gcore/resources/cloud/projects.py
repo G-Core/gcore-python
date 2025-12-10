@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Optional
 from typing_extensions import Literal
 
@@ -92,13 +91,12 @@ class ProjectsResource(SyncAPIResource):
             cast_to=Project,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         *,
         project_id: int | None = None,
-        name: str,
-        description: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -106,17 +104,17 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """Update project.
-
-        Depricated: Use PATCH /v1/projects/{project_id} instead Update
-        project name and description.
+        """
+        This endpoint allows partial updates of a project (such as its name or
+        description). Only the fields explicitly provided in the request body will be
+        updated.
 
         Args:
           project_id: Project ID
 
-          name: Name of the entity, following a specific format.
-
           description: Description of the project.
+
+          name: Name of the entity, following a specific format.
 
           extra_headers: Send extra headers
 
@@ -128,12 +126,12 @@ class ProjectsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        return self._put(
+        return self._patch(
             f"/cloud/v1/projects/{project_id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
+                    "name": name,
                 },
                 project_update_params.ProjectUpdateParams,
             ),
@@ -348,13 +346,12 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=Project,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         *,
         project_id: int | None = None,
-        name: str,
-        description: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -362,17 +359,17 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """Update project.
-
-        Depricated: Use PATCH /v1/projects/{project_id} instead Update
-        project name and description.
+        """
+        This endpoint allows partial updates of a project (such as its name or
+        description). Only the fields explicitly provided in the request body will be
+        updated.
 
         Args:
           project_id: Project ID
 
-          name: Name of the entity, following a specific format.
-
           description: Description of the project.
+
+          name: Name of the entity, following a specific format.
 
           extra_headers: Send extra headers
 
@@ -384,12 +381,12 @@ class AsyncProjectsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        return await self._put(
+        return await self._patch(
             f"/cloud/v1/projects/{project_id}",
             body=await async_maybe_transform(
                 {
-                    "name": name,
                     "description": description,
+                    "name": name,
                 },
                 project_update_params.ProjectUpdateParams,
             ),
@@ -546,10 +543,8 @@ class ProjectsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             projects.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                projects.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            projects.update,
         )
         self.list = to_raw_response_wrapper(
             projects.list,
@@ -569,10 +564,8 @@ class AsyncProjectsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             projects.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                projects.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            projects.update,
         )
         self.list = async_to_raw_response_wrapper(
             projects.list,
@@ -592,10 +585,8 @@ class ProjectsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             projects.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                projects.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            projects.update,
         )
         self.list = to_streamed_response_wrapper(
             projects.list,
@@ -615,10 +606,8 @@ class AsyncProjectsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             projects.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                projects.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            projects.update,
         )
         self.list = async_to_streamed_response_wrapper(
             projects.list,
