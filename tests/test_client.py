@@ -377,11 +377,11 @@ class TestGcore:
     def test_cloud_project_id_client_params(self, client: Gcore) -> None:
         # Test with base client (no custom params)
         with pytest.raises(ValueError, match="Missing cloud_project_id argument;"):
-            client.cloud.projects.update(name="my-project")
+            client.cloud.projects.update()
 
         client = Gcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_project_id=0)
         with client as c2:
-            c2.cloud.projects.update(name="my-project")
+            c2.cloud.projects.update()
 
     def test_cloud_region_id_client_params(self, client: Gcore) -> None:
         # Test with base client (no custom params)
@@ -1216,11 +1216,11 @@ class TestAsyncGcore:
     async def test_cloud_project_id_client_params(self, async_client: AsyncGcore) -> None:
         # Test with base client (no custom params)
         with pytest.raises(ValueError, match="Missing cloud_project_id argument;"):
-            await async_client.cloud.projects.update(name="my-project")
+            await async_client.cloud.projects.update()
 
         client = AsyncGcore(base_url=base_url, api_key=api_key, _strict_response_validation=True, cloud_project_id=0)
         async with client as c2:
-            await c2.cloud.projects.update(name="my-project")
+            await c2.cloud.projects.update()
 
     async def test_cloud_region_id_client_params(self, async_client: AsyncGcore) -> None:
         # Test with base client (no custom params)
