@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ProjectUpdateParams"]
 
@@ -12,8 +11,8 @@ class ProjectUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
-    name: Required[str]
-    """Name of the entity, following a specific format."""
-
-    description: Optional[str]
+    description: str
     """Description of the project."""
+
+    name: str
+    """Name of the entity, following a specific format."""

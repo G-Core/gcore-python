@@ -12,8 +12,6 @@ from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import Project, TaskIDList
 
-# pyright: reportDeprecated=false
-
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -61,32 +59,25 @@ class TestProjects:
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            project = client.cloud.projects.update(
-                project_id=4,
-                name="my-project",
-            )
-
+        project = client.cloud.projects.update(
+            project_id=4,
+        )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            project = client.cloud.projects.update(
-                project_id=4,
-                name="my-project",
-                description="Project description",
-            )
-
+        project = client.cloud.projects.update(
+            project_id=4,
+            description="Project description",
+            name="my-project",
+        )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.projects.with_raw_response.update(
-                project_id=4,
-                name="my-project",
-            )
+        response = client.cloud.projects.with_raw_response.update(
+            project_id=4,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -95,16 +86,14 @@ class TestProjects:
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.projects.with_streaming_response.update(
-                project_id=4,
-                name="my-project",
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.projects.with_streaming_response.update(
+            project_id=4,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                project = response.parse()
-                assert_matches_type(Project, project, path=["response"])
+            project = response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -254,32 +243,25 @@ class TestAsyncProjects:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            project = await async_client.cloud.projects.update(
-                project_id=4,
-                name="my-project",
-            )
-
+        project = await async_client.cloud.projects.update(
+            project_id=4,
+        )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            project = await async_client.cloud.projects.update(
-                project_id=4,
-                name="my-project",
-                description="Project description",
-            )
-
+        project = await async_client.cloud.projects.update(
+            project_id=4,
+            description="Project description",
+            name="my-project",
+        )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.projects.with_raw_response.update(
-                project_id=4,
-                name="my-project",
-            )
+        response = await async_client.cloud.projects.with_raw_response.update(
+            project_id=4,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -288,16 +270,14 @@ class TestAsyncProjects:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.projects.with_streaming_response.update(
-                project_id=4,
-                name="my-project",
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.projects.with_streaming_response.update(
+            project_id=4,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                project = await response.parse()
-                assert_matches_type(Project, project, path=["response"])
+            project = await response.parse()
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
