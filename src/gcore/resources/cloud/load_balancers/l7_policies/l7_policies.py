@@ -897,7 +897,7 @@ class L7PoliciesResource(SyncAPIResource):
         )
 
     @overload
-    def replace_and_poll(
+    def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -916,11 +916,11 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @overload
-    def replace_and_poll(
+    def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -939,11 +939,11 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @overload
-    def replace_and_poll(
+    def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -961,11 +961,11 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @overload
-    def replace_and_poll(
+    def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -982,13 +982,13 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @required_args(
         ["action", "redirect_url"], ["action", "redirect_prefix"], ["action", "redirect_pool_id"], ["action"]
     )
-    def replace_and_poll(
+    def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -1012,8 +1012,8 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
-        response: TaskIDList = self.replace(  # type: ignore
+        """Update L7 policy and poll for completion."""
+        response: TaskIDList = self.update(  # type: ignore
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -1911,7 +1911,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         )
 
     @overload
-    async def replace_and_poll(
+    async def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -1930,11 +1930,11 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @overload
-    async def replace_and_poll(
+    async def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -1953,11 +1953,11 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @overload
-    async def replace_and_poll(
+    async def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -1975,11 +1975,11 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @overload
-    async def replace_and_poll(
+    async def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -1996,13 +1996,13 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
+        """Update L7 policy and poll for completion."""
         ...
 
     @required_args(
         ["action", "redirect_url"], ["action", "redirect_prefix"], ["action", "redirect_pool_id"], ["action"]
     )
-    async def replace_and_poll(
+    async def update_and_poll(
         self,
         l7policy_id: str,
         *,
@@ -2026,8 +2026,8 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LoadBalancerL7Policy:
-        """Replace L7 policy and poll for completion."""
-        response: TaskIDList = await self.replace(  # type: ignore
+        """Update L7 policy and poll for completion."""
+        response: TaskIDList = await self.update(  # type: ignore
             l7policy_id=l7policy_id,
             project_id=project_id,
             region_id=region_id,
@@ -2086,8 +2086,8 @@ class L7PoliciesResourceWithRawResponse:
         self.delete_and_poll = to_raw_response_wrapper(
             l7_policies.delete_and_poll,
         )
-        self.replace_and_poll = to_raw_response_wrapper(
-            l7_policies.replace_and_poll,
+        self.update_and_poll = to_raw_response_wrapper(
+            l7_policies.update_and_poll,
         )
 
     @cached_property
@@ -2120,8 +2120,8 @@ class AsyncL7PoliciesResourceWithRawResponse:
         self.delete_and_poll = async_to_raw_response_wrapper(
             l7_policies.delete_and_poll,
         )
-        self.replace_and_poll = async_to_raw_response_wrapper(
-            l7_policies.replace_and_poll,
+        self.update_and_poll = async_to_raw_response_wrapper(
+            l7_policies.update_and_poll,
         )
 
     @cached_property
@@ -2154,8 +2154,8 @@ class L7PoliciesResourceWithStreamingResponse:
         self.delete_and_poll = to_streamed_response_wrapper(
             l7_policies.delete_and_poll,
         )
-        self.replace_and_poll = to_streamed_response_wrapper(
-            l7_policies.replace_and_poll,
+        self.update_and_poll = to_streamed_response_wrapper(
+            l7_policies.update_and_poll,
         )
 
     @cached_property
@@ -2188,8 +2188,8 @@ class AsyncL7PoliciesResourceWithStreamingResponse:
         self.delete_and_poll = async_to_streamed_response_wrapper(
             l7_policies.delete_and_poll,
         )
-        self.replace_and_poll = async_to_streamed_response_wrapper(
-            l7_policies.replace_and_poll,
+        self.update_and_poll = async_to_streamed_response_wrapper(
+            l7_policies.update_and_poll,
         )
 
     @cached_property
