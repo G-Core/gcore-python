@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from ...._types import SequenceNotStr
+from ....._types import SequenceNotStr
 
-__all__ = ["VipReplaceConnectedPortsParams"]
+__all__ = ["ConnectedPortReplaceParams"]
 
 
-class VipReplaceConnectedPortsParams(TypedDict, total=False):
+class ConnectedPortReplaceParams(TypedDict, total=False):
     project_id: int
 
     region_id: int
