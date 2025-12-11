@@ -2,7 +2,7 @@
 
 from typing import List
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 from .connected_port import ConnectedPort
 
 __all__ = ["ConnectedPortList"]

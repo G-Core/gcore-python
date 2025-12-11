@@ -2,14 +2,14 @@
 
 from typing import List
 
-from ..network import Network
-from ...._models import BaseModel
-from .ip_with_subnet import IPWithSubnet
+from ...network import Network
+from ....._models import BaseModel
+from ..ip_with_subnet import IPWithSubnet
 
-__all__ = ["ConnectedPort"]
+__all__ = ["CandidatePort"]
 
 
-class ConnectedPort(BaseModel):
+class CandidatePort(BaseModel):
     instance_id: str
     """ID of the instance that owns the port"""
 
