@@ -73,7 +73,7 @@ def toggle_reserved_fixed_ip_vip(*, client: Gcore, port_id: str, is_vip: bool) -
 
 def list_candidate_ports(*, client: Gcore, port_id: str) -> None:
     print("\n=== LIST CANDIDATE PORTS ===")
-    candidate_ports = client.cloud.reserved_fixed_ips.vip.list_candidate_ports(port_id)
+    candidate_ports = client.cloud.reserved_fixed_ips.vip.candidate_ports.list(port_id)
     for count, port in enumerate(candidate_ports.results, 1):
         print(f"{count}. Candidate port: ID={port.port_id}, instance name={port.instance_name}")
     print("========================")
@@ -81,7 +81,7 @@ def list_candidate_ports(*, client: Gcore, port_id: str) -> None:
 
 def list_connected_ports(*, client: Gcore, port_id: str) -> None:
     print("\n=== LIST CONNECTED PORTS ===")
-    connected_ports = client.cloud.reserved_fixed_ips.vip.list_connected_ports(port_id)
+    connected_ports = client.cloud.reserved_fixed_ips.vip.connected_ports.list(port_id)
     for count, port in enumerate(connected_ports.results, 1):
         print(f"{count}. Connected port: ID={port.port_id}, instance name={port.instance_name}")
     print("========================")
