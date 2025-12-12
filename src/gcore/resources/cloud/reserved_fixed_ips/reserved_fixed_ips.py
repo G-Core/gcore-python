@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from .vip import (
+from .vip.vip import (
     VipResource,
     AsyncVipResource,
     VipResourceWithRawResponse,

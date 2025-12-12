@@ -2,7 +2,7 @@
 
 from typing import List
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 from .candidate_port import CandidatePort
 
 __all__ = ["CandidatePortList"]

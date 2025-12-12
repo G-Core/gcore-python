@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.25.0 (2025-12-12)
+
+Full Changelog: [v0.24.0...v0.25.0](https://github.com/G-Core/gcore-python/compare/v0.24.0...v0.25.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** streamline vip connected and candidate ports
+
+### Bug Fixes
+
+* **cloud:** fix vip examples ([f4f6c46](https://github.com/G-Core/gcore-python/commit/f4f6c46f6352fb55eae9d91a2060f24289ed4dda))
+* **cloud:** streamline vip connected and candidate ports ([958b2a7](https://github.com/G-Core/gcore-python/commit/958b2a735265407c29cc2ccd4b06566f9151dd15))
+
 ## 0.24.0 (2025-12-10)
 
 Full Changelog: [v0.23.0...v0.24.0](https://github.com/G-Core/gcore-python/compare/v0.23.0...v0.24.0)
