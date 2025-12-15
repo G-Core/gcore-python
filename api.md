@@ -1046,7 +1046,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.k8s.clusters import K8SClusterPool, K8SClusterPoolList
+from gcore.types.cloud.k8s.clusters import K8SClusterPool, K8SClusterPoolList, K8SClusterPoolQuota
 ```
 
 Methods:
@@ -1055,6 +1055,7 @@ Methods:
 - <code title="patch /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">update</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8SClusterPool</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">list</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_list.py">K8SClusterPoolList</a></code>
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">delete</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">check_quota</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_check_quota_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_quota.py">K8SClusterPoolQuota</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">get</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8SClusterPool</a></code>
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">resize</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 

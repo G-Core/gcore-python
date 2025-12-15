@@ -26,10 +26,16 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.cloud.k8s.clusters import pool_create_params, pool_resize_params, pool_update_params
+from ......types.cloud.k8s.clusters import (
+    pool_create_params,
+    pool_resize_params,
+    pool_update_params,
+    pool_check_quota_params,
+)
 from ......types.cloud.task_id_list import TaskIDList
 from ......types.cloud.k8s.clusters.k8s_cluster_pool import K8SClusterPool
 from ......types.cloud.k8s.clusters.k8s_cluster_pool_list import K8SClusterPoolList
+from ......types.cloud.k8s.clusters.k8s_cluster_pool_quota import K8SClusterPoolQuota
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
@@ -305,6 +311,83 @@ class PoolsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
+        )
+
+    def check_quota(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor_id: str,
+        boot_volume_size: Optional[int] | Omit = omit,
+        max_node_count: Optional[int] | Omit = omit,
+        min_node_count: Optional[int] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        node_count: Optional[int] | Omit = omit,
+        servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> K8SClusterPoolQuota:
+        """Calculate quota requirements for a new cluster pool before creation.
+
+        Returns
+        exceeded quotas if regional limits would be violated. Use before pool creation
+        to validate resource availability. Checks: CPU, RAM, volumes, VMs, GPUs, and
+        baremetal quotas depending on flavor type.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          flavor_id: Flavor ID
+
+          boot_volume_size: Boot volume size
+
+          max_node_count: Maximum node count
+
+          min_node_count: Minimum node count
+
+          name: Name of the cluster pool
+
+          node_count: Maximum node count
+
+          servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._post(
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits",
+            body=maybe_transform(
+                {
+                    "flavor_id": flavor_id,
+                    "boot_volume_size": boot_volume_size,
+                    "max_node_count": max_node_count,
+                    "min_node_count": min_node_count,
+                    "name": name,
+                    "node_count": node_count,
+                    "servergroup_policy": servergroup_policy,
+                },
+                pool_check_quota_params.PoolCheckQuotaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=K8SClusterPoolQuota,
         )
 
     def get(
@@ -669,6 +752,83 @@ class AsyncPoolsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def check_quota(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor_id: str,
+        boot_volume_size: Optional[int] | Omit = omit,
+        max_node_count: Optional[int] | Omit = omit,
+        min_node_count: Optional[int] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        node_count: Optional[int] | Omit = omit,
+        servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> K8SClusterPoolQuota:
+        """Calculate quota requirements for a new cluster pool before creation.
+
+        Returns
+        exceeded quotas if regional limits would be violated. Use before pool creation
+        to validate resource availability. Checks: CPU, RAM, volumes, VMs, GPUs, and
+        baremetal quotas depending on flavor type.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          flavor_id: Flavor ID
+
+          boot_volume_size: Boot volume size
+
+          max_node_count: Maximum node count
+
+          min_node_count: Minimum node count
+
+          name: Name of the cluster pool
+
+          node_count: Maximum node count
+
+          servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return await self._post(
+            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits",
+            body=await async_maybe_transform(
+                {
+                    "flavor_id": flavor_id,
+                    "boot_volume_size": boot_volume_size,
+                    "max_node_count": max_node_count,
+                    "min_node_count": min_node_count,
+                    "name": name,
+                    "node_count": node_count,
+                    "servergroup_policy": servergroup_policy,
+                },
+                pool_check_quota_params.PoolCheckQuotaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=K8SClusterPoolQuota,
+        )
+
     async def get(
         self,
         pool_name: str,
@@ -774,6 +934,9 @@ class PoolsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             pools.delete,
         )
+        self.check_quota = to_raw_response_wrapper(
+            pools.check_quota,
+        )
         self.get = to_raw_response_wrapper(
             pools.get,
         )
@@ -801,6 +964,9 @@ class AsyncPoolsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             pools.delete,
+        )
+        self.check_quota = async_to_raw_response_wrapper(
+            pools.check_quota,
         )
         self.get = async_to_raw_response_wrapper(
             pools.get,
@@ -830,6 +996,9 @@ class PoolsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             pools.delete,
         )
+        self.check_quota = to_streamed_response_wrapper(
+            pools.check_quota,
+        )
         self.get = to_streamed_response_wrapper(
             pools.get,
         )
@@ -857,6 +1026,9 @@ class AsyncPoolsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             pools.delete,
+        )
+        self.check_quota = async_to_streamed_response_wrapper(
+            pools.check_quota,
         )
         self.get = async_to_streamed_response_wrapper(
             pools.get,
