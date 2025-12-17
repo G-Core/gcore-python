@@ -51,7 +51,6 @@ class NetworkMappingsResource(SyncAPIResource):
     def create(
         self,
         *,
-        id: int | Omit = omit,
         mapping: Iterable[DNSMappingEntryParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -112,7 +111,6 @@ class NetworkMappingsResource(SyncAPIResource):
             "/dns/v2/network-mappings",
             body=maybe_transform(
                 {
-                    "id": id,
                     "mapping": mapping,
                     "name": name,
                 },
@@ -388,9 +386,8 @@ class NetworkMappingsResource(SyncAPIResource):
 
     def replace(
         self,
-        path_id: int,
+        id: int,
         *,
-        body_id: int | Omit = omit,
         mapping: Iterable[DNSMappingEntryParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -446,10 +443,9 @@ class NetworkMappingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/dns/v2/network-mappings/{path_id}",
+            f"/dns/v2/network-mappings/{id}",
             body=maybe_transform(
                 {
-                    "body_id": body_id,
                     "mapping": mapping,
                     "name": name,
                 },
@@ -485,7 +481,6 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        id: int | Omit = omit,
         mapping: Iterable[DNSMappingEntryParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -546,7 +541,6 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
             "/dns/v2/network-mappings",
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "mapping": mapping,
                     "name": name,
                 },
@@ -822,9 +816,8 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
 
     async def replace(
         self,
-        path_id: int,
+        id: int,
         *,
-        body_id: int | Omit = omit,
         mapping: Iterable[DNSMappingEntryParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -880,10 +873,9 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/dns/v2/network-mappings/{path_id}",
+            f"/dns/v2/network-mappings/{id}",
             body=await async_maybe_transform(
                 {
-                    "body_id": body_id,
                     "mapping": mapping,
                     "name": name,
                 },

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Iterable
 from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
@@ -11,8 +10,8 @@ __all__ = ["DNSMappingEntryParam"]
 
 
 class DNSMappingEntryParam(TypedDict, total=False):
-    cidr4: Iterable[object]
+    cidr4: SequenceNotStr[str]
 
-    cidr6: Iterable[object]
+    cidr6: SequenceNotStr[str]
 
     tags: SequenceNotStr[str]

@@ -30,11 +30,10 @@ class TestNetworkMappings:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         network_mapping = client.dns.network_mappings.create(
-            id=0,
             mapping=[
                 {
-                    "cidr4": [{}],
-                    "cidr6": [{}],
+                    "cidr4": ["string"],
+                    "cidr6": ["string"],
                     "tags": ["string"],
                 }
             ],
@@ -225,19 +224,18 @@ class TestNetworkMappings:
     @parametrize
     def test_method_replace(self, client: Gcore) -> None:
         network_mapping = client.dns.network_mappings.replace(
-            path_id=0,
+            id=0,
         )
         assert_matches_type(object, network_mapping, path=["response"])
 
     @parametrize
     def test_method_replace_with_all_params(self, client: Gcore) -> None:
         network_mapping = client.dns.network_mappings.replace(
-            path_id=0,
-            body_id=0,
+            id=0,
             mapping=[
                 {
-                    "cidr4": [{}],
-                    "cidr6": [{}],
+                    "cidr4": ["string"],
+                    "cidr6": ["string"],
                     "tags": ["string"],
                 }
             ],
@@ -248,7 +246,7 @@ class TestNetworkMappings:
     @parametrize
     def test_raw_response_replace(self, client: Gcore) -> None:
         response = client.dns.network_mappings.with_raw_response.replace(
-            path_id=0,
+            id=0,
         )
 
         assert response.is_closed is True
@@ -259,7 +257,7 @@ class TestNetworkMappings:
     @parametrize
     def test_streaming_response_replace(self, client: Gcore) -> None:
         with client.dns.network_mappings.with_streaming_response.replace(
-            path_id=0,
+            id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -283,11 +281,10 @@ class TestAsyncNetworkMappings:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         network_mapping = await async_client.dns.network_mappings.create(
-            id=0,
             mapping=[
                 {
-                    "cidr4": [{}],
-                    "cidr6": [{}],
+                    "cidr4": ["string"],
+                    "cidr6": ["string"],
                     "tags": ["string"],
                 }
             ],
@@ -478,19 +475,18 @@ class TestAsyncNetworkMappings:
     @parametrize
     async def test_method_replace(self, async_client: AsyncGcore) -> None:
         network_mapping = await async_client.dns.network_mappings.replace(
-            path_id=0,
+            id=0,
         )
         assert_matches_type(object, network_mapping, path=["response"])
 
     @parametrize
     async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
         network_mapping = await async_client.dns.network_mappings.replace(
-            path_id=0,
-            body_id=0,
+            id=0,
             mapping=[
                 {
-                    "cidr4": [{}],
-                    "cidr6": [{}],
+                    "cidr4": ["string"],
+                    "cidr6": ["string"],
                     "tags": ["string"],
                 }
             ],
@@ -501,7 +497,7 @@ class TestAsyncNetworkMappings:
     @parametrize
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
         response = await async_client.dns.network_mappings.with_raw_response.replace(
-            path_id=0,
+            id=0,
         )
 
         assert response.is_closed is True
@@ -512,7 +508,7 @@ class TestAsyncNetworkMappings:
     @parametrize
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
         async with async_client.dns.network_mappings.with_streaming_response.replace(
-            path_id=0,
+            id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
