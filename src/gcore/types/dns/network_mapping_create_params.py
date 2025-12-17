@@ -11,8 +11,6 @@ __all__ = ["NetworkMappingCreateParams"]
 
 
 class NetworkMappingCreateParams(TypedDict, total=False):
-    id: int
-
     mapping: Iterable[DNSMappingEntryParam]
 
     name: str

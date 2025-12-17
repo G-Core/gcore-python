@@ -8,8 +8,8 @@ __all__ = ["DNSMappingEntry"]
 
 
 class DNSMappingEntry(BaseModel):
-    cidr4: Optional[List[object]] = None
+    cidr4: Optional[List[str]] = None
 
-    cidr6: Optional[List[object]] = None
+    cidr6: Optional[List[str]] = None
 
     tags: Optional[List[str]] = None
