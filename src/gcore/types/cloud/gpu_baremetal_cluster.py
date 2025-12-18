@@ -131,6 +131,9 @@ class GPUBaremetalCluster(BaseModel):
     flavor: str
     """Cluster flavor name"""
 
+    image_id: str
+    """Image ID"""
+
     managed_by: Literal["k8s", "user"]
     """User type managing the resource"""
 

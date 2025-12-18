@@ -19,7 +19,7 @@ class ListenerCreateParams(TypedDict, total=False):
     """Region ID"""
 
     load_balancer_id: Required[str]
-    """Load balancer ID"""
+    """ID of already existent Load Balancer."""
 
     name: Required[str]
     """Load balancer listener name"""
@@ -38,6 +38,9 @@ class ListenerCreateParams(TypedDict, total=False):
 
     If -1 is provided, it is translated to the default value 100000.
     """
+
+    default_pool_id: str
+    """ID of already existent Load Balancer Pool to attach listener to."""
 
     insert_x_forwarded: bool
     """Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
