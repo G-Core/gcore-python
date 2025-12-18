@@ -64,6 +64,7 @@ class ListenersResource(SyncAPIResource):
         protocol_port: int,
         allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
         connection_limit: int | Omit = omit,
+        default_pool_id: str | Omit = omit,
         insert_x_forwarded: bool | Omit = omit,
         secret_id: str | Omit = omit,
         sni_secret_id: SequenceNotStr[str] | Omit = omit,
@@ -86,7 +87,7 @@ class ListenersResource(SyncAPIResource):
 
           region_id: Region ID
 
-          load_balancer_id: Load balancer ID
+          load_balancer_id: ID of already existent Load Balancer.
 
           name: Load balancer listener name
 
@@ -98,6 +99,8 @@ class ListenersResource(SyncAPIResource):
 
           connection_limit: Limit of the simultaneous connections. If -1 is provided, it is translated to
               the default value 100000.
+
+          default_pool_id: ID of already existent Load Balancer Pool to attach listener to.
 
           insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
               Only used with HTTP or `TERMINATED_HTTPS` protocols.
@@ -138,6 +141,7 @@ class ListenersResource(SyncAPIResource):
                     "protocol_port": protocol_port,
                     "allowed_cidrs": allowed_cidrs,
                     "connection_limit": connection_limit,
+                    "default_pool_id": default_pool_id,
                     "insert_x_forwarded": insert_x_forwarded,
                     "secret_id": secret_id,
                     "sni_secret_id": sni_secret_id,
@@ -437,6 +441,7 @@ class AsyncListenersResource(AsyncAPIResource):
         protocol_port: int,
         allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
         connection_limit: int | Omit = omit,
+        default_pool_id: str | Omit = omit,
         insert_x_forwarded: bool | Omit = omit,
         secret_id: str | Omit = omit,
         sni_secret_id: SequenceNotStr[str] | Omit = omit,
@@ -459,7 +464,7 @@ class AsyncListenersResource(AsyncAPIResource):
 
           region_id: Region ID
 
-          load_balancer_id: Load balancer ID
+          load_balancer_id: ID of already existent Load Balancer.
 
           name: Load balancer listener name
 
@@ -471,6 +476,8 @@ class AsyncListenersResource(AsyncAPIResource):
 
           connection_limit: Limit of the simultaneous connections. If -1 is provided, it is translated to
               the default value 100000.
+
+          default_pool_id: ID of already existent Load Balancer Pool to attach listener to.
 
           insert_x_forwarded: Add headers X-Forwarded-For, X-Forwarded-Port, X-Forwarded-Proto to requests.
               Only used with HTTP or `TERMINATED_HTTPS` protocols.
@@ -511,6 +518,7 @@ class AsyncListenersResource(AsyncAPIResource):
                     "protocol_port": protocol_port,
                     "allowed_cidrs": allowed_cidrs,
                     "connection_limit": connection_limit,
+                    "default_pool_id": default_pool_id,
                     "insert_x_forwarded": insert_x_forwarded,
                     "secret_id": secret_id,
                     "sni_secret_id": sni_secret_id,
