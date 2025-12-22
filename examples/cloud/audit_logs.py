@@ -21,8 +21,8 @@ def main() -> None:
     # Example: list the last 10 user actions of type 'create' in the 'instance' api_group from the last 7 days
     from_time = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
     logs = gcore.cloud.audit_logs.list(
-        # action_type=["create"],
-        # api_group=["instance"],
+        action_type=["create"],
+        api_group=["instance"],
         from_timestamp=from_time,
         limit=10,
         order_by="desc",
