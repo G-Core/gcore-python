@@ -152,6 +152,14 @@ from .file_shares import (
     FileSharesResourceWithStreamingResponse,
     AsyncFileSharesResourceWithStreamingResponse,
 )
+from .gpu_virtual import (
+    GPUVirtualResource,
+    AsyncGPUVirtualResource,
+    GPUVirtualResourceWithRawResponse,
+    AsyncGPUVirtualResourceWithRawResponse,
+    GPUVirtualResourceWithStreamingResponse,
+    AsyncGPUVirtualResourceWithStreamingResponse,
+)
 from .cost_reports import (
     CostReportsResource,
     AsyncCostReportsResource,
@@ -215,14 +223,6 @@ from .billing_reservations import (
     AsyncBillingReservationsResourceWithRawResponse,
     BillingReservationsResourceWithStreamingResponse,
     AsyncBillingReservationsResourceWithStreamingResponse,
-)
-from .gpu_virtual_clusters import (
-    GPUVirtualClustersResource,
-    AsyncGPUVirtualClustersResource,
-    GPUVirtualClustersResourceWithRawResponse,
-    AsyncGPUVirtualClustersResourceWithRawResponse,
-    GPUVirtualClustersResourceWithStreamingResponse,
-    AsyncGPUVirtualClustersResourceWithStreamingResponse,
 )
 from .gpu_baremetal_clusters import (
     GPUBaremetalClustersResource,
@@ -360,12 +360,12 @@ __all__ = [
     "AsyncGPUBaremetalClustersResourceWithRawResponse",
     "GPUBaremetalClustersResourceWithStreamingResponse",
     "AsyncGPUBaremetalClustersResourceWithStreamingResponse",
-    "GPUVirtualClustersResource",
-    "AsyncGPUVirtualClustersResource",
-    "GPUVirtualClustersResourceWithRawResponse",
-    "AsyncGPUVirtualClustersResourceWithRawResponse",
-    "GPUVirtualClustersResourceWithStreamingResponse",
-    "AsyncGPUVirtualClustersResourceWithStreamingResponse",
+    "GPUVirtualResource",
+    "AsyncGPUVirtualResource",
+    "GPUVirtualResourceWithRawResponse",
+    "AsyncGPUVirtualResourceWithRawResponse",
+    "GPUVirtualResourceWithStreamingResponse",
+    "AsyncGPUVirtualResourceWithStreamingResponse",
     "InstancesResource",
     "AsyncInstancesResource",
     "InstancesResourceWithRawResponse",
