@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union
 from datetime import datetime
-from typing_extensions import Literal, overload
+from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -22,12 +22,7 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.console import Console
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.gpu_baremetal_clusters import (
-    server_list_params,
-    server_delete_params,
-    server_attach_interface_params,
-    server_detach_interface_params,
-)
+from ....types.cloud.gpu_baremetal_clusters import server_list_params, server_delete_params
 from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1
 
@@ -220,6 +215,7 @@ class ServersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+
     def delete_and_poll(
         self,
         instance_id: str,
@@ -235,7 +231,7 @@ class ServersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a bare metal GPU server from cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
@@ -262,306 +258,6 @@ class ServersResource(SyncAPIResource):
             polling_timeout_seconds=polling_timeout_seconds,
         )
 
-    @overload
-    def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'external'. Union tag
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        subnet_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          subnet_id: Port will get an IP address from this subnet
-
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'subnet'
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        network_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          network_id: Port will get an IP address in this network subnet
-
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be '`any_subnet`'
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        port_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          port_id: Port ID
-
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be '`reserved_fixed_ip`'. Union tag
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
-        | server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile
-        | server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        subnet_id: str | Omit = omit,
-        network_id: str | Omit = omit,
-        port_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
-            body=maybe_transform(
-                {
-                    "ddos_profile": ddos_profile,
-                    "interface_name": interface_name,
-                    "ip_family": ip_family,
-                    "port_group": port_group,
-                    "security_groups": security_groups,
-                    "type": type,
-                    "subnet_id": subnet_id,
-                    "network_id": network_id,
-                    "port_id": port_id,
-                },
-                server_attach_interface_params.ServerAttachInterfaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    def detach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        ip_address: str,
-        port_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Detach interface from bare metal GPU cluster server
-
-        Args:
-          ip_address: IP address
-
-          port_id: ID of the port
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
-            body=maybe_transform(
-                {
-                    "ip_address": ip_address,
-                    "port_id": port_id,
-                },
-                server_detach_interface_params.ServerDetachInterfaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
 
     def get_console(
         self,
@@ -869,6 +565,7 @@ class AsyncServersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+
     async def delete_and_poll(
         self,
         instance_id: str,
@@ -884,7 +581,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a bare metal GPU server from cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
@@ -911,306 +608,6 @@ class AsyncServersResource(AsyncAPIResource):
             polling_timeout_seconds=polling_timeout_seconds,
         )
 
-    @overload
-    async def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'external'. Union tag
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        subnet_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          subnet_id: Port will get an IP address from this subnet
-
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'subnet'
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        network_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          network_id: Port will get an IP address in this network subnet
-
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be '`any_subnet`'
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        port_id: str,
-        ddos_profile: server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Attach interface to bare metal GPU cluster server
-
-        Args:
-          port_id: Port ID
-
-          ddos_profile: Advanced DDoS protection.
-
-          interface_name: Interface name
-
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be '`reserved_fixed_ip`'. Union tag
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    async def attach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        ddos_profile: server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | server_attach_interface_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
-        | server_attach_interface_params.NewInterfaceAnySubnetSchemaDDOSProfile
-        | server_attach_interface_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
-        | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[server_attach_interface_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Iterable[server_attach_interface_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Iterable[server_attach_interface_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Iterable[server_attach_interface_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | Omit = omit,
-        type: str | Omit = omit,
-        subnet_id: str | Omit = omit,
-        network_id: str | Omit = omit,
-        port_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
-            body=await async_maybe_transform(
-                {
-                    "ddos_profile": ddos_profile,
-                    "interface_name": interface_name,
-                    "ip_family": ip_family,
-                    "port_group": port_group,
-                    "security_groups": security_groups,
-                    "type": type,
-                    "subnet_id": subnet_id,
-                    "network_id": network_id,
-                    "port_id": port_id,
-                },
-                server_attach_interface_params.ServerAttachInterfaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    async def detach_interface(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        ip_address: str,
-        port_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Detach interface from bare metal GPU cluster server
-
-        Args:
-          ip_address: IP address
-
-          port_id: ID of the port
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
-            body=await async_maybe_transform(
-                {
-                    "ip_address": ip_address,
-                    "port_id": port_id,
-                },
-                server_detach_interface_params.ServerDetachInterfaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
 
     async def get_console(
         self,
@@ -1340,12 +737,6 @@ class ServersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             servers.delete,
         )
-        self.attach_interface = to_raw_response_wrapper(
-            servers.attach_interface,
-        )
-        self.detach_interface = to_raw_response_wrapper(
-            servers.detach_interface,
-        )
         self.get_console = to_raw_response_wrapper(
             servers.get_console,
         )
@@ -1369,12 +760,6 @@ class AsyncServersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             servers.delete,
-        )
-        self.attach_interface = async_to_raw_response_wrapper(
-            servers.attach_interface,
-        )
-        self.detach_interface = async_to_raw_response_wrapper(
-            servers.detach_interface,
         )
         self.get_console = async_to_raw_response_wrapper(
             servers.get_console,
@@ -1400,12 +785,6 @@ class ServersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             servers.delete,
         )
-        self.attach_interface = to_streamed_response_wrapper(
-            servers.attach_interface,
-        )
-        self.detach_interface = to_streamed_response_wrapper(
-            servers.detach_interface,
-        )
         self.get_console = to_streamed_response_wrapper(
             servers.get_console,
         )
@@ -1429,12 +808,6 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             servers.delete,
-        )
-        self.attach_interface = async_to_streamed_response_wrapper(
-            servers.attach_interface,
-        )
-        self.detach_interface = async_to_streamed_response_wrapper(
-            servers.detach_interface,
         )
         self.get_console = async_to_streamed_response_wrapper(
             servers.get_console,

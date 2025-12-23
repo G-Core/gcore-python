@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import TYPE_CHECKING, Any, Mapping
+from typing import Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,7 +20,6 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library, maybe_coerce_integer
-from ._compat import cached_property
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import GcoreError, APIStatusError
@@ -29,23 +28,32 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-
-if TYPE_CHECKING:
-    from .resources import cdn, dns, iam, waap, cloud, storage, fastedge, security, streaming
-    from .resources.cdn.cdn import CdnResource, AsyncCdnResource
-    from .resources.dns.dns import DNSResource, AsyncDNSResource
-    from .resources.iam.iam import IamResource, AsyncIamResource
-    from .resources.waap.waap import WaapResource, AsyncWaapResource
-    from .resources.cloud.cloud import CloudResource, AsyncCloudResource
-    from .resources.storage.storage import StorageResource, AsyncStorageResource
-    from .resources.fastedge.fastedge import FastedgeResource, AsyncFastedgeResource
-    from .resources.security.security import SecurityResource, AsyncSecurityResource
-    from .resources.streaming.streaming import StreamingResource, AsyncStreamingResource
+from .resources.cdn import cdn
+from .resources.dns import dns
+from .resources.iam import iam
+from .resources.waap import waap
+from .resources.cloud import cloud
+from .resources.storage import storage
+from .resources.fastedge import fastedge
+from .resources.security import security
+from .resources.streaming import streaming
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Gcore", "AsyncGcore", "Client", "AsyncClient"]
 
 
 class Gcore(SyncAPIClient):
+    cloud: cloud.CloudResource
+    waap: waap.WaapResource
+    iam: iam.IamResource
+    fastedge: fastedge.FastedgeResource
+    streaming: streaming.StreamingResource
+    security: security.SecurityResource
+    dns: dns.DNSResource
+    storage: storage.StorageResource
+    cdn: cdn.CdnResource
+    with_raw_response: GcoreWithRawResponse
+    with_streaming_response: GcoreWithStreamedResponse
+
     # client options
     api_key: str
     cloud_project_id: int | None
@@ -127,67 +135,17 @@ class Gcore(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-    @cached_property
-    def cloud(self) -> CloudResource:
-        from .resources.cloud import CloudResource
-
-        return CloudResource(self)
-
-    @cached_property
-    def waap(self) -> WaapResource:
-        from .resources.waap import WaapResource
-
-        return WaapResource(self)
-
-    @cached_property
-    def iam(self) -> IamResource:
-        from .resources.iam import IamResource
-
-        return IamResource(self)
-
-    @cached_property
-    def fastedge(self) -> FastedgeResource:
-        from .resources.fastedge import FastedgeResource
-
-        return FastedgeResource(self)
-
-    @cached_property
-    def streaming(self) -> StreamingResource:
-        from .resources.streaming import StreamingResource
-
-        return StreamingResource(self)
-
-    @cached_property
-    def security(self) -> SecurityResource:
-        from .resources.security import SecurityResource
-
-        return SecurityResource(self)
-
-    @cached_property
-    def dns(self) -> DNSResource:
-        from .resources.dns import DNSResource
-
-        return DNSResource(self)
-
-    @cached_property
-    def storage(self) -> StorageResource:
-        from .resources.storage import StorageResource
-
-        return StorageResource(self)
-
-    @cached_property
-    def cdn(self) -> CdnResource:
-        from .resources.cdn import CdnResource
-
-        return CdnResource(self)
-
-    @cached_property
-    def with_raw_response(self) -> GcoreWithRawResponse:
-        return GcoreWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> GcoreWithStreamedResponse:
-        return GcoreWithStreamedResponse(self)
+        self.cloud = cloud.CloudResource(self)
+        self.waap = waap.WaapResource(self)
+        self.iam = iam.IamResource(self)
+        self.fastedge = fastedge.FastedgeResource(self)
+        self.streaming = streaming.StreamingResource(self)
+        self.security = security.SecurityResource(self)
+        self.dns = dns.DNSResource(self)
+        self.storage = storage.StorageResource(self)
+        self.cdn = cdn.CdnResource(self)
+        self.with_raw_response = GcoreWithRawResponse(self)
+        self.with_streaming_response = GcoreWithStreamedResponse(self)
 
     @property
     @override
@@ -321,6 +279,18 @@ class Gcore(SyncAPIClient):
 
 
 class AsyncGcore(AsyncAPIClient):
+    cloud: cloud.AsyncCloudResource
+    waap: waap.AsyncWaapResource
+    iam: iam.AsyncIamResource
+    fastedge: fastedge.AsyncFastedgeResource
+    streaming: streaming.AsyncStreamingResource
+    security: security.AsyncSecurityResource
+    dns: dns.AsyncDNSResource
+    storage: storage.AsyncStorageResource
+    cdn: cdn.AsyncCdnResource
+    with_raw_response: AsyncGcoreWithRawResponse
+    with_streaming_response: AsyncGcoreWithStreamedResponse
+
     # client options
     api_key: str
     cloud_project_id: int | None
@@ -402,67 +372,17 @@ class AsyncGcore(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-    @cached_property
-    def cloud(self) -> AsyncCloudResource:
-        from .resources.cloud import AsyncCloudResource
-
-        return AsyncCloudResource(self)
-
-    @cached_property
-    def waap(self) -> AsyncWaapResource:
-        from .resources.waap import AsyncWaapResource
-
-        return AsyncWaapResource(self)
-
-    @cached_property
-    def iam(self) -> AsyncIamResource:
-        from .resources.iam import AsyncIamResource
-
-        return AsyncIamResource(self)
-
-    @cached_property
-    def fastedge(self) -> AsyncFastedgeResource:
-        from .resources.fastedge import AsyncFastedgeResource
-
-        return AsyncFastedgeResource(self)
-
-    @cached_property
-    def streaming(self) -> AsyncStreamingResource:
-        from .resources.streaming import AsyncStreamingResource
-
-        return AsyncStreamingResource(self)
-
-    @cached_property
-    def security(self) -> AsyncSecurityResource:
-        from .resources.security import AsyncSecurityResource
-
-        return AsyncSecurityResource(self)
-
-    @cached_property
-    def dns(self) -> AsyncDNSResource:
-        from .resources.dns import AsyncDNSResource
-
-        return AsyncDNSResource(self)
-
-    @cached_property
-    def storage(self) -> AsyncStorageResource:
-        from .resources.storage import AsyncStorageResource
-
-        return AsyncStorageResource(self)
-
-    @cached_property
-    def cdn(self) -> AsyncCdnResource:
-        from .resources.cdn import AsyncCdnResource
-
-        return AsyncCdnResource(self)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncGcoreWithRawResponse:
-        return AsyncGcoreWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncGcoreWithStreamedResponse:
-        return AsyncGcoreWithStreamedResponse(self)
+        self.cloud = cloud.AsyncCloudResource(self)
+        self.waap = waap.AsyncWaapResource(self)
+        self.iam = iam.AsyncIamResource(self)
+        self.fastedge = fastedge.AsyncFastedgeResource(self)
+        self.streaming = streaming.AsyncStreamingResource(self)
+        self.security = security.AsyncSecurityResource(self)
+        self.dns = dns.AsyncDNSResource(self)
+        self.storage = storage.AsyncStorageResource(self)
+        self.cdn = cdn.AsyncCdnResource(self)
+        self.with_raw_response = AsyncGcoreWithRawResponse(self)
+        self.with_streaming_response = AsyncGcoreWithStreamedResponse(self)
 
     @property
     @override
@@ -596,247 +516,55 @@ class AsyncGcore(AsyncAPIClient):
 
 
 class GcoreWithRawResponse:
-    _client: Gcore
-
     def __init__(self, client: Gcore) -> None:
-        self._client = client
-
-    @cached_property
-    def cloud(self) -> cloud.CloudResourceWithRawResponse:
-        from .resources.cloud import CloudResourceWithRawResponse
-
-        return CloudResourceWithRawResponse(self._client.cloud)
-
-    @cached_property
-    def waap(self) -> waap.WaapResourceWithRawResponse:
-        from .resources.waap import WaapResourceWithRawResponse
-
-        return WaapResourceWithRawResponse(self._client.waap)
-
-    @cached_property
-    def iam(self) -> iam.IamResourceWithRawResponse:
-        from .resources.iam import IamResourceWithRawResponse
-
-        return IamResourceWithRawResponse(self._client.iam)
-
-    @cached_property
-    def fastedge(self) -> fastedge.FastedgeResourceWithRawResponse:
-        from .resources.fastedge import FastedgeResourceWithRawResponse
-
-        return FastedgeResourceWithRawResponse(self._client.fastedge)
-
-    @cached_property
-    def streaming(self) -> streaming.StreamingResourceWithRawResponse:
-        from .resources.streaming import StreamingResourceWithRawResponse
-
-        return StreamingResourceWithRawResponse(self._client.streaming)
-
-    @cached_property
-    def security(self) -> security.SecurityResourceWithRawResponse:
-        from .resources.security import SecurityResourceWithRawResponse
-
-        return SecurityResourceWithRawResponse(self._client.security)
-
-    @cached_property
-    def dns(self) -> dns.DNSResourceWithRawResponse:
-        from .resources.dns import DNSResourceWithRawResponse
-
-        return DNSResourceWithRawResponse(self._client.dns)
-
-    @cached_property
-    def storage(self) -> storage.StorageResourceWithRawResponse:
-        from .resources.storage import StorageResourceWithRawResponse
-
-        return StorageResourceWithRawResponse(self._client.storage)
-
-    @cached_property
-    def cdn(self) -> cdn.CdnResourceWithRawResponse:
-        from .resources.cdn import CdnResourceWithRawResponse
-
-        return CdnResourceWithRawResponse(self._client.cdn)
+        self.cloud = cloud.CloudResourceWithRawResponse(client.cloud)
+        self.waap = waap.WaapResourceWithRawResponse(client.waap)
+        self.iam = iam.IamResourceWithRawResponse(client.iam)
+        self.fastedge = fastedge.FastedgeResourceWithRawResponse(client.fastedge)
+        self.streaming = streaming.StreamingResourceWithRawResponse(client.streaming)
+        self.security = security.SecurityResourceWithRawResponse(client.security)
+        self.dns = dns.DNSResourceWithRawResponse(client.dns)
+        self.storage = storage.StorageResourceWithRawResponse(client.storage)
+        self.cdn = cdn.CdnResourceWithRawResponse(client.cdn)
 
 
 class AsyncGcoreWithRawResponse:
-    _client: AsyncGcore
-
     def __init__(self, client: AsyncGcore) -> None:
-        self._client = client
-
-    @cached_property
-    def cloud(self) -> cloud.AsyncCloudResourceWithRawResponse:
-        from .resources.cloud import AsyncCloudResourceWithRawResponse
-
-        return AsyncCloudResourceWithRawResponse(self._client.cloud)
-
-    @cached_property
-    def waap(self) -> waap.AsyncWaapResourceWithRawResponse:
-        from .resources.waap import AsyncWaapResourceWithRawResponse
-
-        return AsyncWaapResourceWithRawResponse(self._client.waap)
-
-    @cached_property
-    def iam(self) -> iam.AsyncIamResourceWithRawResponse:
-        from .resources.iam import AsyncIamResourceWithRawResponse
-
-        return AsyncIamResourceWithRawResponse(self._client.iam)
-
-    @cached_property
-    def fastedge(self) -> fastedge.AsyncFastedgeResourceWithRawResponse:
-        from .resources.fastedge import AsyncFastedgeResourceWithRawResponse
-
-        return AsyncFastedgeResourceWithRawResponse(self._client.fastedge)
-
-    @cached_property
-    def streaming(self) -> streaming.AsyncStreamingResourceWithRawResponse:
-        from .resources.streaming import AsyncStreamingResourceWithRawResponse
-
-        return AsyncStreamingResourceWithRawResponse(self._client.streaming)
-
-    @cached_property
-    def security(self) -> security.AsyncSecurityResourceWithRawResponse:
-        from .resources.security import AsyncSecurityResourceWithRawResponse
-
-        return AsyncSecurityResourceWithRawResponse(self._client.security)
-
-    @cached_property
-    def dns(self) -> dns.AsyncDNSResourceWithRawResponse:
-        from .resources.dns import AsyncDNSResourceWithRawResponse
-
-        return AsyncDNSResourceWithRawResponse(self._client.dns)
-
-    @cached_property
-    def storage(self) -> storage.AsyncStorageResourceWithRawResponse:
-        from .resources.storage import AsyncStorageResourceWithRawResponse
-
-        return AsyncStorageResourceWithRawResponse(self._client.storage)
-
-    @cached_property
-    def cdn(self) -> cdn.AsyncCdnResourceWithRawResponse:
-        from .resources.cdn import AsyncCdnResourceWithRawResponse
-
-        return AsyncCdnResourceWithRawResponse(self._client.cdn)
+        self.cloud = cloud.AsyncCloudResourceWithRawResponse(client.cloud)
+        self.waap = waap.AsyncWaapResourceWithRawResponse(client.waap)
+        self.iam = iam.AsyncIamResourceWithRawResponse(client.iam)
+        self.fastedge = fastedge.AsyncFastedgeResourceWithRawResponse(client.fastedge)
+        self.streaming = streaming.AsyncStreamingResourceWithRawResponse(client.streaming)
+        self.security = security.AsyncSecurityResourceWithRawResponse(client.security)
+        self.dns = dns.AsyncDNSResourceWithRawResponse(client.dns)
+        self.storage = storage.AsyncStorageResourceWithRawResponse(client.storage)
+        self.cdn = cdn.AsyncCdnResourceWithRawResponse(client.cdn)
 
 
 class GcoreWithStreamedResponse:
-    _client: Gcore
-
     def __init__(self, client: Gcore) -> None:
-        self._client = client
-
-    @cached_property
-    def cloud(self) -> cloud.CloudResourceWithStreamingResponse:
-        from .resources.cloud import CloudResourceWithStreamingResponse
-
-        return CloudResourceWithStreamingResponse(self._client.cloud)
-
-    @cached_property
-    def waap(self) -> waap.WaapResourceWithStreamingResponse:
-        from .resources.waap import WaapResourceWithStreamingResponse
-
-        return WaapResourceWithStreamingResponse(self._client.waap)
-
-    @cached_property
-    def iam(self) -> iam.IamResourceWithStreamingResponse:
-        from .resources.iam import IamResourceWithStreamingResponse
-
-        return IamResourceWithStreamingResponse(self._client.iam)
-
-    @cached_property
-    def fastedge(self) -> fastedge.FastedgeResourceWithStreamingResponse:
-        from .resources.fastedge import FastedgeResourceWithStreamingResponse
-
-        return FastedgeResourceWithStreamingResponse(self._client.fastedge)
-
-    @cached_property
-    def streaming(self) -> streaming.StreamingResourceWithStreamingResponse:
-        from .resources.streaming import StreamingResourceWithStreamingResponse
-
-        return StreamingResourceWithStreamingResponse(self._client.streaming)
-
-    @cached_property
-    def security(self) -> security.SecurityResourceWithStreamingResponse:
-        from .resources.security import SecurityResourceWithStreamingResponse
-
-        return SecurityResourceWithStreamingResponse(self._client.security)
-
-    @cached_property
-    def dns(self) -> dns.DNSResourceWithStreamingResponse:
-        from .resources.dns import DNSResourceWithStreamingResponse
-
-        return DNSResourceWithStreamingResponse(self._client.dns)
-
-    @cached_property
-    def storage(self) -> storage.StorageResourceWithStreamingResponse:
-        from .resources.storage import StorageResourceWithStreamingResponse
-
-        return StorageResourceWithStreamingResponse(self._client.storage)
-
-    @cached_property
-    def cdn(self) -> cdn.CdnResourceWithStreamingResponse:
-        from .resources.cdn import CdnResourceWithStreamingResponse
-
-        return CdnResourceWithStreamingResponse(self._client.cdn)
+        self.cloud = cloud.CloudResourceWithStreamingResponse(client.cloud)
+        self.waap = waap.WaapResourceWithStreamingResponse(client.waap)
+        self.iam = iam.IamResourceWithStreamingResponse(client.iam)
+        self.fastedge = fastedge.FastedgeResourceWithStreamingResponse(client.fastedge)
+        self.streaming = streaming.StreamingResourceWithStreamingResponse(client.streaming)
+        self.security = security.SecurityResourceWithStreamingResponse(client.security)
+        self.dns = dns.DNSResourceWithStreamingResponse(client.dns)
+        self.storage = storage.StorageResourceWithStreamingResponse(client.storage)
+        self.cdn = cdn.CdnResourceWithStreamingResponse(client.cdn)
 
 
 class AsyncGcoreWithStreamedResponse:
-    _client: AsyncGcore
-
     def __init__(self, client: AsyncGcore) -> None:
-        self._client = client
-
-    @cached_property
-    def cloud(self) -> cloud.AsyncCloudResourceWithStreamingResponse:
-        from .resources.cloud import AsyncCloudResourceWithStreamingResponse
-
-        return AsyncCloudResourceWithStreamingResponse(self._client.cloud)
-
-    @cached_property
-    def waap(self) -> waap.AsyncWaapResourceWithStreamingResponse:
-        from .resources.waap import AsyncWaapResourceWithStreamingResponse
-
-        return AsyncWaapResourceWithStreamingResponse(self._client.waap)
-
-    @cached_property
-    def iam(self) -> iam.AsyncIamResourceWithStreamingResponse:
-        from .resources.iam import AsyncIamResourceWithStreamingResponse
-
-        return AsyncIamResourceWithStreamingResponse(self._client.iam)
-
-    @cached_property
-    def fastedge(self) -> fastedge.AsyncFastedgeResourceWithStreamingResponse:
-        from .resources.fastedge import AsyncFastedgeResourceWithStreamingResponse
-
-        return AsyncFastedgeResourceWithStreamingResponse(self._client.fastedge)
-
-    @cached_property
-    def streaming(self) -> streaming.AsyncStreamingResourceWithStreamingResponse:
-        from .resources.streaming import AsyncStreamingResourceWithStreamingResponse
-
-        return AsyncStreamingResourceWithStreamingResponse(self._client.streaming)
-
-    @cached_property
-    def security(self) -> security.AsyncSecurityResourceWithStreamingResponse:
-        from .resources.security import AsyncSecurityResourceWithStreamingResponse
-
-        return AsyncSecurityResourceWithStreamingResponse(self._client.security)
-
-    @cached_property
-    def dns(self) -> dns.AsyncDNSResourceWithStreamingResponse:
-        from .resources.dns import AsyncDNSResourceWithStreamingResponse
-
-        return AsyncDNSResourceWithStreamingResponse(self._client.dns)
-
-    @cached_property
-    def storage(self) -> storage.AsyncStorageResourceWithStreamingResponse:
-        from .resources.storage import AsyncStorageResourceWithStreamingResponse
-
-        return AsyncStorageResourceWithStreamingResponse(self._client.storage)
-
-    @cached_property
-    def cdn(self) -> cdn.AsyncCdnResourceWithStreamingResponse:
-        from .resources.cdn import AsyncCdnResourceWithStreamingResponse
-
-        return AsyncCdnResourceWithStreamingResponse(self._client.cdn)
+        self.cloud = cloud.AsyncCloudResourceWithStreamingResponse(client.cloud)
+        self.waap = waap.AsyncWaapResourceWithStreamingResponse(client.waap)
+        self.iam = iam.AsyncIamResourceWithStreamingResponse(client.iam)
+        self.fastedge = fastedge.AsyncFastedgeResourceWithStreamingResponse(client.fastedge)
+        self.streaming = streaming.AsyncStreamingResourceWithStreamingResponse(client.streaming)
+        self.security = security.AsyncSecurityResourceWithStreamingResponse(client.security)
+        self.dns = dns.AsyncDNSResourceWithStreamingResponse(client.dns)
+        self.storage = storage.AsyncStorageResourceWithStreamingResponse(client.storage)
+        self.cdn = cdn.AsyncCdnResourceWithStreamingResponse(client.cdn)
 
 
 Client = Gcore

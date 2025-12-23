@@ -6,7 +6,7 @@ from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
-    "ServerAttachInterfaceParams",
+    "InterfaceAttachParams",
     "NewInterfaceExternalExtendSchemaWithDDOS",
     "NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile",
     "NewInterfaceExternalExtendSchemaWithDdosddosProfileField",
@@ -261,7 +261,7 @@ class NewInterfaceReservedFixedIPSchemaSecurityGroup(TypedDict, total=False):
     """Resource ID"""
 
 
-ServerAttachInterfaceParams: TypeAlias = Union[
+InterfaceAttachParams: TypeAlias = Union[
     NewInterfaceExternalExtendSchemaWithDDOS,
     NewInterfaceSpecificSubnetSchema,
     NewInterfaceAnySubnetSchema,

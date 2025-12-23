@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ServerDetachInterfaceParams"]
+__all__ = ["InterfaceDetachParams"]
 
 
-class ServerDetachInterfaceParams(TypedDict, total=False):
+class InterfaceDetachParams(TypedDict, total=False):
     project_id: int
 
     region_id: int
