@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.26.0 (2025-12-23)
+
+Full Changelog: [v0.25.0...v0.26.0](https://github.com/G-Core/gcore-python/compare/v0.25.0...v0.26.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** move methods to gpu_baremetal_clusters.interfaces.attach()/detach()
+* **cloud:** restructure to be gpu_virtual.clusters
+
+### Features
+
+* **api:** aggregated API specs update ([3a272e8](https://github.com/G-Core/gcore-python/commit/3a272e8b9a0399be48094ce82cc9127e59a2867a))
+* **api:** aggregated API specs update ([789277a](https://github.com/G-Core/gcore-python/commit/789277a61a3ead490d9b8b0f439e0e21100036ba))
+* **cloud:** add k8s cluster pools check quotas method ([326786c](https://github.com/G-Core/gcore-python/commit/326786cd4d499fffe760f308326bbd79003e4856))
+
+
+### Bug Fixes
+
+* **cloud:** move methods to gpu_baremetal_clusters.interfaces.attach()/detach() ([053ebcf](https://github.com/G-Core/gcore-python/commit/053ebcfdf462a66c3edc929e052b75d8afd51a20))
+* **cloud:** restructure to be gpu_virtual.clusters ([36b7b63](https://github.com/G-Core/gcore-python/commit/36b7b63d98a20c3927069bb396154b068304f321))
+* **examples:** make code consistent with comment ([85a0331](https://github.com/G-Core/gcore-python/commit/85a03310d31fa3ac6b74897b8754a19bd905df75))
+* use async_to_httpx_files in patch method ([88c4050](https://github.com/G-Core/gcore-python/commit/88c4050f59d8a55796ab553a60b1e55aaadc81ca))
+
+
+### Chores
+
+* **internal:** add missing files argument to base client ([7d81efb](https://github.com/G-Core/gcore-python/commit/7d81efb323f72cdcaed3faa59a4fc5182f0fedab))
+* **internal:** codegen related update ([3c38f42](https://github.com/G-Core/gcore-python/commit/3c38f4280bc1b57f987ff984c7504c4781d74ab8))
+* speedup initial import ([ff1db23](https://github.com/G-Core/gcore-python/commit/ff1db23e58ffc5e118bd1fed3585ffc0cd04855e))
+
 ## 0.25.0 (2025-12-12)
 
 Full Changelog: [v0.24.0...v0.25.0](https://github.com/G-Core/gcore-python/compare/v0.24.0...v0.25.0)
