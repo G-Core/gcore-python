@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.0 (2025-12-30)
+
+Full Changelog: [v0.26.0...v0.27.0](https://github.com/G-Core/gcore-python/compare/v0.26.0...v0.27.0)
+
+### Features
+
+* **api:** manual updates ([e6fec4e](https://github.com/G-Core/gcore-python/commit/e6fec4e8c85de66bd2557833cd03f38c30b19ecd))
+
 ## 0.26.0 (2025-12-23)
 
 Full Changelog: [v0.25.0...v0.26.0](https://github.com/G-Core/gcore-python/compare/v0.25.0...v0.26.0)
