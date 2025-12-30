@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["UserUpdate", "ClientAndRole", "Group"]
+__all__ = ["UserUpdated", "ClientAndRole", "Group"]
 
 
 class ClientAndRole(BaseModel):
@@ -36,7 +36,7 @@ class Group(BaseModel):
     """Group's name."""
 
 
-class UserUpdate(BaseModel):
+class UserUpdated(BaseModel):
     id: int
     """User's ID."""
 

@@ -20,7 +20,7 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.inference import api_key_list_params, api_key_create_params, api_key_update_params
 from ....types.cloud.inference.inference_api_key import InferenceAPIKey
-from ....types.cloud.inference.inference_api_key_create import InferenceAPIKeyCreate
+from ....types.cloud.inference.inference_api_key_created import InferenceAPIKeyCreated
 
 __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 
@@ -58,7 +58,7 @@ class APIKeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InferenceAPIKeyCreate:
+    ) -> InferenceAPIKeyCreated:
         """This endpoint creates a new API key for everywhere inference.
 
         It returs api
@@ -96,7 +96,7 @@ class APIKeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceAPIKeyCreate,
+            cast_to=InferenceAPIKeyCreated,
         )
 
     def update(
@@ -314,7 +314,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InferenceAPIKeyCreate:
+    ) -> InferenceAPIKeyCreated:
         """This endpoint creates a new API key for everywhere inference.
 
         It returs api
@@ -352,7 +352,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InferenceAPIKeyCreate,
+            cast_to=InferenceAPIKeyCreated,
         )
 
     async def update(

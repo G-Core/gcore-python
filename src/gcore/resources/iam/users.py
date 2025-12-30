@@ -22,7 +22,7 @@ from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.user import User
 from ...types.iam.user_invite import UserInvite
-from ...types.iam.user_update import UserUpdate
+from ...types.iam.user_updated import UserUpdated
 from ...types.iam.user_detailed import UserDetailed
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
@@ -65,7 +65,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserUpdate:
+    ) -> UserUpdated:
         """This method updates user's details.
 
         Args:
@@ -120,7 +120,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserUpdate,
+            cast_to=UserUpdated,
         )
 
     def list(
@@ -338,7 +338,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserUpdate:
+    ) -> UserUpdated:
         """This method updates user's details.
 
         Args:
@@ -393,7 +393,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserUpdate,
+            cast_to=UserUpdated,
         )
 
     def list(

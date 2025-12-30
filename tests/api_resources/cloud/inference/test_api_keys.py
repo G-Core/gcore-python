@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud.inference import (
     InferenceAPIKey,
-    InferenceAPIKeyCreate,
+    InferenceAPIKeyCreated,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +27,7 @@ class TestAPIKeys:
             project_id=1,
             name="my-api-key",
         )
-        assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+        assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -37,7 +37,7 @@ class TestAPIKeys:
             description="This key is used for accessing the inference service.",
             expires_at="2024-10-01T12:00:00Z",
         )
-        assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+        assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -49,7 +49,7 @@ class TestAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = response.parse()
-        assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+        assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -61,7 +61,7 @@ class TestAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = response.parse()
-            assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+            assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -252,7 +252,7 @@ class TestAsyncAPIKeys:
             project_id=1,
             name="my-api-key",
         )
-        assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+        assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -262,7 +262,7 @@ class TestAsyncAPIKeys:
             description="This key is used for accessing the inference service.",
             expires_at="2024-10-01T12:00:00Z",
         )
-        assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+        assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -274,7 +274,7 @@ class TestAsyncAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = await response.parse()
-        assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+        assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -286,7 +286,7 @@ class TestAsyncAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = await response.parse()
-            assert_matches_type(InferenceAPIKeyCreate, api_key, path=["response"])
+            assert_matches_type(InferenceAPIKeyCreated, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

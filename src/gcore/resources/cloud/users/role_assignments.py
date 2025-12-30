@@ -25,7 +25,7 @@ from ....types.cloud.users import (
     role_assignment_update_params,
 )
 from ....types.cloud.users.role_assignment import RoleAssignment
-from ....types.cloud.users.role_assignment_update_delete import RoleAssignmentUpdateDelete
+from ....types.cloud.users.role_assignment_updated_deleted import RoleAssignmentUpdatedDeleted
 
 __all__ = ["RoleAssignmentsResource", "AsyncRoleAssignmentsResource"]
 
@@ -115,7 +115,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoleAssignmentUpdateDelete:
+    ) -> RoleAssignmentUpdatedDeleted:
         """
         Modify an existing role assignment for a user.
 
@@ -152,7 +152,7 @@ class RoleAssignmentsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RoleAssignmentUpdateDelete,
+            cast_to=RoleAssignmentUpdatedDeleted,
         )
 
     def list(
@@ -221,7 +221,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoleAssignmentUpdateDelete:
+    ) -> RoleAssignmentUpdatedDeleted:
         """
         Delete an existing role assignment.
 
@@ -241,7 +241,7 @@ class RoleAssignmentsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RoleAssignmentUpdateDelete,
+            cast_to=RoleAssignmentUpdatedDeleted,
         )
 
 
@@ -330,7 +330,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoleAssignmentUpdateDelete:
+    ) -> RoleAssignmentUpdatedDeleted:
         """
         Modify an existing role assignment for a user.
 
@@ -367,7 +367,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RoleAssignmentUpdateDelete,
+            cast_to=RoleAssignmentUpdatedDeleted,
         )
 
     def list(
@@ -436,7 +436,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoleAssignmentUpdateDelete:
+    ) -> RoleAssignmentUpdatedDeleted:
         """
         Delete an existing role assignment.
 
@@ -456,7 +456,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RoleAssignmentUpdateDelete,
+            cast_to=RoleAssignmentUpdatedDeleted,
         )
 
 

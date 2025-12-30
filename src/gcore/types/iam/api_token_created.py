@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["APITokenCreate", "ClientUser", "ClientUserRole"]
+__all__ = ["APITokenCreated", "ClientUser", "ClientUserRole"]
 
 
 class ClientUserRole(BaseModel):
@@ -43,7 +43,7 @@ class ClientUser(BaseModel):
     """User's name who issued the API token."""
 
 
-class APITokenCreate(BaseModel):
+class APITokenCreated(BaseModel):
     id: int
     """API token ID."""
 

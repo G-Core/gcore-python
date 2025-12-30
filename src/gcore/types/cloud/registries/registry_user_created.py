@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["RegistryUserCreate"]
+__all__ = ["RegistryUserCreated"]
 
 
-class RegistryUserCreate(BaseModel):
+class RegistryUserCreated(BaseModel):
     id: int
     """User ID"""
 

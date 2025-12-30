@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from gcore.types.cloud.registries import (
     RegistryUser,
     RegistryUserList,
-    RegistryUserCreate,
+    RegistryUserCreated,
     UserRefreshSecretResponse,
 )
 
@@ -31,7 +31,7 @@ class TestUsers:
             duration=14,
             name="user1",
         )
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -44,7 +44,7 @@ class TestUsers:
             read_only=False,
             secret="secret",
         )
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -59,7 +59,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -74,7 +74,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(RegistryUserCreate, user, path=["response"])
+            assert_matches_type(RegistryUserCreated, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -223,7 +223,7 @@ class TestUsers:
                 }
             ],
         )
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     def test_raw_response_create_multiple(self, client: Gcore) -> None:
@@ -242,7 +242,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     def test_streaming_response_create_multiple(self, client: Gcore) -> None:
@@ -261,7 +261,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(RegistryUserCreate, user, path=["response"])
+            assert_matches_type(RegistryUserCreated, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -320,7 +320,7 @@ class TestAsyncUsers:
             duration=14,
             name="user1",
         )
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -333,7 +333,7 @@ class TestAsyncUsers:
             read_only=False,
             secret="secret",
         )
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -348,7 +348,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -363,7 +363,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(RegistryUserCreate, user, path=["response"])
+            assert_matches_type(RegistryUserCreated, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -512,7 +512,7 @@ class TestAsyncUsers:
                 }
             ],
         )
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     async def test_raw_response_create_multiple(self, async_client: AsyncGcore) -> None:
@@ -531,7 +531,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(RegistryUserCreate, user, path=["response"])
+        assert_matches_type(RegistryUserCreated, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_create_multiple(self, async_client: AsyncGcore) -> None:
@@ -550,7 +550,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(RegistryUserCreate, user, path=["response"])
+            assert_matches_type(RegistryUserCreated, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
