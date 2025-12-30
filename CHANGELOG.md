@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.28.0 (2025-12-30)
+
+Full Changelog: [v0.27.0...v0.28.0](https://github.com/G-Core/gcore-python/compare/v0.27.0...v0.28.0)
+
+### ⚠ BREAKING CHANGES
+
+* change naming for POST, PUT, PATCH, DELETE models
+
+### Bug Fixes
+
+* **cloud:** fix SSH keys examples ([4e79f57](https://github.com/G-Core/gcore-python/commit/4e79f578b04fbca2126a46aded663246c449eb64))
+
+
+### Chores
+
+* change naming for POST, PUT, PATCH, DELETE models ([ae21e7c](https://github.com/G-Core/gcore-python/commit/ae21e7c61096ade39749c39a7c4c7572516980e9))
+
 ## 0.27.0 (2025-12-30)
 
 Full Changelog: [v0.26.0...v0.27.0](https://github.com/G-Core/gcore-python/compare/v0.26.0...v0.27.0)
