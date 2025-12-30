@@ -19,7 +19,7 @@ class TestImages:
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        image = client.cloud.gpu_baremetal_clusters.images.list(
+        image = client.cloud.gpu_baremetal.clusters.images.list(
             project_id=1,
             region_id=7,
         )
@@ -27,7 +27,7 @@ class TestImages:
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.images.with_raw_response.list(
+        response = client.cloud.gpu_baremetal.clusters.images.with_raw_response.list(
             project_id=1,
             region_id=7,
         )
@@ -39,7 +39,7 @@ class TestImages:
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.images.with_streaming_response.list(
+        with client.cloud.gpu_baremetal.clusters.images.with_streaming_response.list(
             project_id=1,
             region_id=7,
         ) as response:
@@ -53,7 +53,7 @@ class TestImages:
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
-        image = client.cloud.gpu_baremetal_clusters.images.delete(
+        image = client.cloud.gpu_baremetal.clusters.images.delete(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -62,7 +62,7 @@ class TestImages:
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.images.with_raw_response.delete(
+        response = client.cloud.gpu_baremetal.clusters.images.with_raw_response.delete(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -75,7 +75,7 @@ class TestImages:
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.images.with_streaming_response.delete(
+        with client.cloud.gpu_baremetal.clusters.images.with_streaming_response.delete(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -91,7 +91,7 @@ class TestImages:
     @parametrize
     def test_path_params_delete(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.images.with_raw_response.delete(
+            client.cloud.gpu_baremetal.clusters.images.with_raw_response.delete(
                 image_id="",
                 project_id=1,
                 region_id=7,
@@ -99,7 +99,7 @@ class TestImages:
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
-        image = client.cloud.gpu_baremetal_clusters.images.get(
+        image = client.cloud.gpu_baremetal.clusters.images.get(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -108,7 +108,7 @@ class TestImages:
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.images.with_raw_response.get(
+        response = client.cloud.gpu_baremetal.clusters.images.with_raw_response.get(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -121,7 +121,7 @@ class TestImages:
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.images.with_streaming_response.get(
+        with client.cloud.gpu_baremetal.clusters.images.with_streaming_response.get(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -137,7 +137,7 @@ class TestImages:
     @parametrize
     def test_path_params_get(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.images.with_raw_response.get(
+            client.cloud.gpu_baremetal.clusters.images.with_raw_response.get(
                 image_id="",
                 project_id=1,
                 region_id=7,
@@ -145,7 +145,7 @@ class TestImages:
 
     @parametrize
     def test_method_upload(self, client: Gcore) -> None:
-        image = client.cloud.gpu_baremetal_clusters.images.upload(
+        image = client.cloud.gpu_baremetal.clusters.images.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",
@@ -155,7 +155,7 @@ class TestImages:
 
     @parametrize
     def test_method_upload_with_all_params(self, client: Gcore) -> None:
-        image = client.cloud.gpu_baremetal_clusters.images.upload(
+        image = client.cloud.gpu_baremetal.clusters.images.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",
@@ -173,7 +173,7 @@ class TestImages:
 
     @parametrize
     def test_raw_response_upload(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.images.with_raw_response.upload(
+        response = client.cloud.gpu_baremetal.clusters.images.with_raw_response.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",
@@ -187,7 +187,7 @@ class TestImages:
 
     @parametrize
     def test_streaming_response_upload(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.images.with_streaming_response.upload(
+        with client.cloud.gpu_baremetal.clusters.images.with_streaming_response.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",
@@ -209,7 +209,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        image = await async_client.cloud.gpu_baremetal_clusters.images.list(
+        image = await async_client.cloud.gpu_baremetal.clusters.images.list(
             project_id=1,
             region_id=7,
         )
@@ -217,7 +217,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.images.with_raw_response.list(
+        response = await async_client.cloud.gpu_baremetal.clusters.images.with_raw_response.list(
             project_id=1,
             region_id=7,
         )
@@ -229,7 +229,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.images.with_streaming_response.list(
+        async with async_client.cloud.gpu_baremetal.clusters.images.with_streaming_response.list(
             project_id=1,
             region_id=7,
         ) as response:
@@ -243,7 +243,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
-        image = await async_client.cloud.gpu_baremetal_clusters.images.delete(
+        image = await async_client.cloud.gpu_baremetal.clusters.images.delete(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -252,7 +252,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.images.with_raw_response.delete(
+        response = await async_client.cloud.gpu_baremetal.clusters.images.with_raw_response.delete(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -265,7 +265,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.images.with_streaming_response.delete(
+        async with async_client.cloud.gpu_baremetal.clusters.images.with_streaming_response.delete(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -281,7 +281,7 @@ class TestAsyncImages:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.images.with_raw_response.delete(
+            await async_client.cloud.gpu_baremetal.clusters.images.with_raw_response.delete(
                 image_id="",
                 project_id=1,
                 region_id=7,
@@ -289,7 +289,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
-        image = await async_client.cloud.gpu_baremetal_clusters.images.get(
+        image = await async_client.cloud.gpu_baremetal.clusters.images.get(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -298,7 +298,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.images.with_raw_response.get(
+        response = await async_client.cloud.gpu_baremetal.clusters.images.with_raw_response.get(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -311,7 +311,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.images.with_streaming_response.get(
+        async with async_client.cloud.gpu_baremetal.clusters.images.with_streaming_response.get(
             image_id="8cab6f28-09ca-4201-b3f7-23c7893f4bd6",
             project_id=1,
             region_id=7,
@@ -327,7 +327,7 @@ class TestAsyncImages:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.images.with_raw_response.get(
+            await async_client.cloud.gpu_baremetal.clusters.images.with_raw_response.get(
                 image_id="",
                 project_id=1,
                 region_id=7,
@@ -335,7 +335,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_method_upload(self, async_client: AsyncGcore) -> None:
-        image = await async_client.cloud.gpu_baremetal_clusters.images.upload(
+        image = await async_client.cloud.gpu_baremetal.clusters.images.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",
@@ -345,7 +345,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_method_upload_with_all_params(self, async_client: AsyncGcore) -> None:
-        image = await async_client.cloud.gpu_baremetal_clusters.images.upload(
+        image = await async_client.cloud.gpu_baremetal.clusters.images.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",
@@ -363,7 +363,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_raw_response_upload(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.images.with_raw_response.upload(
+        response = await async_client.cloud.gpu_baremetal.clusters.images.with_raw_response.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",
@@ -377,7 +377,7 @@ class TestAsyncImages:
 
     @parametrize
     async def test_streaming_response_upload(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.images.with_streaming_response.upload(
+        async with async_client.cloud.gpu_baremetal.clusters.images.with_streaming_response.upload(
             project_id=1,
             region_id=7,
             name="ubuntu-23.10-x64",

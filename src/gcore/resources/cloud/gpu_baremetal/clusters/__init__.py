@@ -24,6 +24,14 @@ from .servers import (
     ServersResourceWithStreamingResponse,
     AsyncServersResourceWithStreamingResponse,
 )
+from .clusters import (
+    ClustersResource,
+    AsyncClustersResource,
+    ClustersResourceWithRawResponse,
+    AsyncClustersResourceWithRawResponse,
+    ClustersResourceWithStreamingResponse,
+    AsyncClustersResourceWithStreamingResponse,
+)
 from .interfaces import (
     InterfacesResource,
     AsyncInterfacesResource,
@@ -31,14 +39,6 @@ from .interfaces import (
     AsyncInterfacesResourceWithRawResponse,
     InterfacesResourceWithStreamingResponse,
     AsyncInterfacesResourceWithStreamingResponse,
-)
-from .gpu_baremetal_clusters import (
-    GPUBaremetalClustersResource,
-    AsyncGPUBaremetalClustersResource,
-    GPUBaremetalClustersResourceWithRawResponse,
-    AsyncGPUBaremetalClustersResourceWithRawResponse,
-    GPUBaremetalClustersResourceWithStreamingResponse,
-    AsyncGPUBaremetalClustersResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -66,10 +66,10 @@ __all__ = [
     "AsyncImagesResourceWithRawResponse",
     "ImagesResourceWithStreamingResponse",
     "AsyncImagesResourceWithStreamingResponse",
-    "GPUBaremetalClustersResource",
-    "AsyncGPUBaremetalClustersResource",
-    "GPUBaremetalClustersResourceWithRawResponse",
-    "AsyncGPUBaremetalClustersResourceWithRawResponse",
-    "GPUBaremetalClustersResourceWithStreamingResponse",
-    "AsyncGPUBaremetalClustersResourceWithStreamingResponse",
+    "ClustersResource",
+    "AsyncClustersResource",
+    "ClustersResourceWithRawResponse",
+    "AsyncClustersResourceWithRawResponse",
+    "ClustersResourceWithStreamingResponse",
+    "AsyncClustersResourceWithStreamingResponse",
 ]

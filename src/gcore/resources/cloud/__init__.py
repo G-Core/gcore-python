@@ -176,6 +176,14 @@ from .floating_ips import (
     FloatingIPsResourceWithStreamingResponse,
     AsyncFloatingIPsResourceWithStreamingResponse,
 )
+from .gpu_baremetal import (
+    GPUBaremetalResource,
+    AsyncGPUBaremetalResource,
+    GPUBaremetalResourceWithRawResponse,
+    AsyncGPUBaremetalResourceWithRawResponse,
+    GPUBaremetalResourceWithStreamingResponse,
+    AsyncGPUBaremetalResourceWithStreamingResponse,
+)
 from .usage_reports import (
     UsageReportsResource,
     AsyncUsageReportsResource,
@@ -223,14 +231,6 @@ from .billing_reservations import (
     AsyncBillingReservationsResourceWithRawResponse,
     BillingReservationsResourceWithStreamingResponse,
     AsyncBillingReservationsResourceWithStreamingResponse,
-)
-from .gpu_baremetal_clusters import (
-    GPUBaremetalClustersResource,
-    AsyncGPUBaremetalClustersResource,
-    GPUBaremetalClustersResourceWithRawResponse,
-    AsyncGPUBaremetalClustersResourceWithRawResponse,
-    GPUBaremetalClustersResourceWithStreamingResponse,
-    AsyncGPUBaremetalClustersResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -354,12 +354,12 @@ __all__ = [
     "AsyncBillingReservationsResourceWithRawResponse",
     "BillingReservationsResourceWithStreamingResponse",
     "AsyncBillingReservationsResourceWithStreamingResponse",
-    "GPUBaremetalClustersResource",
-    "AsyncGPUBaremetalClustersResource",
-    "GPUBaremetalClustersResourceWithRawResponse",
-    "AsyncGPUBaremetalClustersResourceWithRawResponse",
-    "GPUBaremetalClustersResourceWithStreamingResponse",
-    "AsyncGPUBaremetalClustersResourceWithStreamingResponse",
+    "GPUBaremetalResource",
+    "AsyncGPUBaremetalResource",
+    "GPUBaremetalResourceWithRawResponse",
+    "AsyncGPUBaremetalResourceWithRawResponse",
+    "GPUBaremetalResourceWithStreamingResponse",
+    "AsyncGPUBaremetalResourceWithStreamingResponse",
     "GPUVirtualResource",
     "AsyncGPUVirtualResource",
     "GPUVirtualResourceWithRawResponse",

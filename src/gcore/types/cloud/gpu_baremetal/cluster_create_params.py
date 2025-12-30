@@ -6,7 +6,7 @@ from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
-    "GPUBaremetalClusterCreateParams",
+    "ClusterCreateParams",
     "ServersSettings",
     "ServersSettingsInterface",
     "ServersSettingsInterfaceExternalInterfaceInputSerializer",
@@ -20,7 +20,7 @@ __all__ = [
 ]
 
 
-class GPUBaremetalClusterCreateParams(TypedDict, total=False):
+class ClusterCreateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

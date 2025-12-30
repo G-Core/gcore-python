@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from .tag_update_map_param import TagUpdateMapParam
+from ..tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["GPUBaremetalClusterActionParams"]
+__all__ = ["ClusterActionParams"]
 
 
-class GPUBaremetalClusterActionParams(TypedDict, total=False):
+class ClusterActionParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
