@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["GPUBaremetalClusterListParams"]
+__all__ = ["ClusterListParams"]
 
 
-class GPUBaremetalClusterListParams(TypedDict, total=False):
+class ClusterListParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

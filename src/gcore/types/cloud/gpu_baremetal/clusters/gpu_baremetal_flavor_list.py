@@ -2,7 +2,7 @@
 
 from typing import List
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 from .gpu_baremetal_flavor import GPUBaremetalFlavor
 
 __all__ = ["GPUBaremetalFlavorList"]

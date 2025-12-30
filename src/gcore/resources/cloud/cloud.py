@@ -196,6 +196,14 @@ from .gpu_virtual.gpu_virtual import (
     GPUVirtualResourceWithStreamingResponse,
     AsyncGPUVirtualResourceWithStreamingResponse,
 )
+from .gpu_baremetal.gpu_baremetal import (
+    GPUBaremetalResource,
+    AsyncGPUBaremetalResource,
+    GPUBaremetalResourceWithRawResponse,
+    AsyncGPUBaremetalResourceWithRawResponse,
+    GPUBaremetalResourceWithStreamingResponse,
+    AsyncGPUBaremetalResourceWithStreamingResponse,
+)
 from .load_balancers.load_balancers import (
     LoadBalancersResource,
     AsyncLoadBalancersResource,
@@ -219,14 +227,6 @@ from .reserved_fixed_ips.reserved_fixed_ips import (
     AsyncReservedFixedIPsResourceWithRawResponse,
     ReservedFixedIPsResourceWithStreamingResponse,
     AsyncReservedFixedIPsResourceWithStreamingResponse,
-)
-from .gpu_baremetal_clusters.gpu_baremetal_clusters import (
-    GPUBaremetalClustersResource,
-    AsyncGPUBaremetalClustersResource,
-    GPUBaremetalClustersResourceWithRawResponse,
-    AsyncGPUBaremetalClustersResourceWithRawResponse,
-    GPUBaremetalClustersResourceWithStreamingResponse,
-    AsyncGPUBaremetalClustersResourceWithStreamingResponse,
 )
 
 __all__ = ["CloudResource", "AsyncCloudResource"]
@@ -321,8 +321,8 @@ class CloudResource(SyncAPIResource):
         return BillingReservationsResource(self._client)
 
     @cached_property
-    def gpu_baremetal_clusters(self) -> GPUBaremetalClustersResource:
-        return GPUBaremetalClustersResource(self._client)
+    def gpu_baremetal(self) -> GPUBaremetalResource:
+        return GPUBaremetalResource(self._client)
 
     @cached_property
     def gpu_virtual(self) -> GPUVirtualResource:
@@ -461,8 +461,8 @@ class AsyncCloudResource(AsyncAPIResource):
         return AsyncBillingReservationsResource(self._client)
 
     @cached_property
-    def gpu_baremetal_clusters(self) -> AsyncGPUBaremetalClustersResource:
-        return AsyncGPUBaremetalClustersResource(self._client)
+    def gpu_baremetal(self) -> AsyncGPUBaremetalResource:
+        return AsyncGPUBaremetalResource(self._client)
 
     @cached_property
     def gpu_virtual(self) -> AsyncGPUVirtualResource:
@@ -604,8 +604,8 @@ class CloudResourceWithRawResponse:
         return BillingReservationsResourceWithRawResponse(self._cloud.billing_reservations)
 
     @cached_property
-    def gpu_baremetal_clusters(self) -> GPUBaremetalClustersResourceWithRawResponse:
-        return GPUBaremetalClustersResourceWithRawResponse(self._cloud.gpu_baremetal_clusters)
+    def gpu_baremetal(self) -> GPUBaremetalResourceWithRawResponse:
+        return GPUBaremetalResourceWithRawResponse(self._cloud.gpu_baremetal)
 
     @cached_property
     def gpu_virtual(self) -> GPUVirtualResourceWithRawResponse:
@@ -728,8 +728,8 @@ class AsyncCloudResourceWithRawResponse:
         return AsyncBillingReservationsResourceWithRawResponse(self._cloud.billing_reservations)
 
     @cached_property
-    def gpu_baremetal_clusters(self) -> AsyncGPUBaremetalClustersResourceWithRawResponse:
-        return AsyncGPUBaremetalClustersResourceWithRawResponse(self._cloud.gpu_baremetal_clusters)
+    def gpu_baremetal(self) -> AsyncGPUBaremetalResourceWithRawResponse:
+        return AsyncGPUBaremetalResourceWithRawResponse(self._cloud.gpu_baremetal)
 
     @cached_property
     def gpu_virtual(self) -> AsyncGPUVirtualResourceWithRawResponse:
@@ -852,8 +852,8 @@ class CloudResourceWithStreamingResponse:
         return BillingReservationsResourceWithStreamingResponse(self._cloud.billing_reservations)
 
     @cached_property
-    def gpu_baremetal_clusters(self) -> GPUBaremetalClustersResourceWithStreamingResponse:
-        return GPUBaremetalClustersResourceWithStreamingResponse(self._cloud.gpu_baremetal_clusters)
+    def gpu_baremetal(self) -> GPUBaremetalResourceWithStreamingResponse:
+        return GPUBaremetalResourceWithStreamingResponse(self._cloud.gpu_baremetal)
 
     @cached_property
     def gpu_virtual(self) -> GPUVirtualResourceWithStreamingResponse:
@@ -976,8 +976,8 @@ class AsyncCloudResourceWithStreamingResponse:
         return AsyncBillingReservationsResourceWithStreamingResponse(self._cloud.billing_reservations)
 
     @cached_property
-    def gpu_baremetal_clusters(self) -> AsyncGPUBaremetalClustersResourceWithStreamingResponse:
-        return AsyncGPUBaremetalClustersResourceWithStreamingResponse(self._cloud.gpu_baremetal_clusters)
+    def gpu_baremetal(self) -> AsyncGPUBaremetalResourceWithStreamingResponse:
+        return AsyncGPUBaremetalResourceWithStreamingResponse(self._cloud.gpu_baremetal)
 
     @cached_property
     def gpu_virtual(self) -> AsyncGPUVirtualResourceWithStreamingResponse:

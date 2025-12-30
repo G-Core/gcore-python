@@ -8,23 +8,23 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloud.console import Console
-from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.gpu_baremetal_clusters import server_list_params, server_delete_params
-from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
-from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.cloud.console import Console
+from .....types.cloud.task_id_list import TaskIDList
+from .....types.cloud.gpu_baremetal.clusters import server_list_params, server_delete_params
+from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
+from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1
 
 __all__ = ["ServersResource", "AsyncServersResource"]
 

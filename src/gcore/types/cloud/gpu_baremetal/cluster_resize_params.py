@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["GPUBaremetalClusterResizeParams"]
+__all__ = ["ClusterResizeParams"]
 
 
-class GPUBaremetalClusterResizeParams(TypedDict, total=False):
+class ClusterResizeParams(TypedDict, total=False):
     project_id: int
 
     region_id: int

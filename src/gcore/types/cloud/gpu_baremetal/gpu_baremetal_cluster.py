@@ -4,9 +4,9 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
-from .tag import Tag
-from ..._utils import PropertyInfo
-from ..._models import BaseModel
+from ..tag import Tag
+from ...._utils import PropertyInfo
+from ...._models import BaseModel
 
 __all__ = [
     "GPUBaremetalCluster",
