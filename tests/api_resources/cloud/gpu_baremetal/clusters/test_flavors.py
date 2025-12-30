@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud.gpu_baremetal_clusters import GPUBaremetalFlavorList
+from gcore.types.cloud.gpu_baremetal.clusters import GPUBaremetalFlavorList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +19,7 @@ class TestFlavors:
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        flavor = client.cloud.gpu_baremetal_clusters.flavors.list(
+        flavor = client.cloud.gpu_baremetal.clusters.flavors.list(
             project_id=1,
             region_id=7,
         )
@@ -27,7 +27,7 @@ class TestFlavors:
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
-        flavor = client.cloud.gpu_baremetal_clusters.flavors.list(
+        flavor = client.cloud.gpu_baremetal.clusters.flavors.list(
             project_id=1,
             region_id=7,
             hide_disabled=True,
@@ -37,7 +37,7 @@ class TestFlavors:
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.flavors.with_raw_response.list(
+        response = client.cloud.gpu_baremetal.clusters.flavors.with_raw_response.list(
             project_id=1,
             region_id=7,
         )
@@ -49,7 +49,7 @@ class TestFlavors:
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.flavors.with_streaming_response.list(
+        with client.cloud.gpu_baremetal.clusters.flavors.with_streaming_response.list(
             project_id=1,
             region_id=7,
         ) as response:
@@ -69,7 +69,7 @@ class TestAsyncFlavors:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        flavor = await async_client.cloud.gpu_baremetal_clusters.flavors.list(
+        flavor = await async_client.cloud.gpu_baremetal.clusters.flavors.list(
             project_id=1,
             region_id=7,
         )
@@ -77,7 +77,7 @@ class TestAsyncFlavors:
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
-        flavor = await async_client.cloud.gpu_baremetal_clusters.flavors.list(
+        flavor = await async_client.cloud.gpu_baremetal.clusters.flavors.list(
             project_id=1,
             region_id=7,
             hide_disabled=True,
@@ -87,7 +87,7 @@ class TestAsyncFlavors:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.flavors.with_raw_response.list(
+        response = await async_client.cloud.gpu_baremetal.clusters.flavors.with_raw_response.list(
             project_id=1,
             region_id=7,
         )
@@ -99,7 +99,7 @@ class TestAsyncFlavors:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.flavors.with_streaming_response.list(
+        async with async_client.cloud.gpu_baremetal.clusters.flavors.with_streaming_response.list(
             project_id=1,
             region_id=7,
         ) as response:

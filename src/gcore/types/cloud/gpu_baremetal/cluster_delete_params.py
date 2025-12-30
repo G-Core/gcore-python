@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from ..._types import SequenceNotStr
+from ...._types import SequenceNotStr
 
-__all__ = ["GPUBaremetalClusterDeleteParams"]
+__all__ = ["ClusterDeleteParams"]
 
 
-class GPUBaremetalClusterDeleteParams(TypedDict, total=False):
+class ClusterDeleteParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

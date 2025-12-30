@@ -7,20 +7,20 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.gpu_baremetal_clusters import interface_attach_params, interface_detach_params
-from ....types.cloud.network_interface_list import NetworkInterfaceList
+from ....._base_client import make_request_options
+from .....types.cloud.task_id_list import TaskIDList
+from .....types.cloud.gpu_baremetal.clusters import interface_attach_params, interface_detach_params
+from .....types.cloud.network_interface_list import NetworkInterfaceList
 
 __all__ = ["InterfacesResource", "AsyncInterfacesResource"]
 

@@ -31,9 +31,8 @@ from .servers import (
     ServersResourceWithStreamingResponse,
     AsyncServersResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
+from ....._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
 from .interfaces import (
     InterfacesResource,
     AsyncInterfacesResource,
@@ -42,32 +41,33 @@ from .interfaces import (
     InterfacesResourceWithStreamingResponse,
     AsyncInterfacesResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.cloud import (
-    gpu_baremetal_cluster_list_params,
-    gpu_baremetal_cluster_action_params,
-    gpu_baremetal_cluster_create_params,
-    gpu_baremetal_cluster_delete_params,
-    gpu_baremetal_cluster_resize_params,
-    gpu_baremetal_cluster_rebuild_params,
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.cloud.task_id_list import TaskIDList
+from .....types.cloud.gpu_baremetal import (
+    cluster_list_params,
+    cluster_action_params,
+    cluster_create_params,
+    cluster_delete_params,
+    cluster_resize_params,
+    cluster_rebuild_params,
 )
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.tag_update_map_param import TagUpdateMapParam
-from ....types.cloud.gpu_baremetal_cluster import GPUBaremetalCluster
-from ....types.cloud.gpu_baremetal_clusters.gpu_baremetal_cluster_server_v1_list import GPUBaremetalClusterServerV1List
+from .....types.cloud.tag_update_map_param import TagUpdateMapParam
+from .....types.cloud.gpu_baremetal.gpu_baremetal_cluster import GPUBaremetalCluster
+from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server_v1_list import GPUBaremetalClusterServerV1List
 
-__all__ = ["GPUBaremetalClustersResource", "AsyncGPUBaremetalClustersResource"]
+__all__ = ["ClustersResource", "AsyncClustersResource"]
 
 
-class GPUBaremetalClustersResource(SyncAPIResource):
+class ClustersResource(SyncAPIResource):
     @cached_property
     def interfaces(self) -> InterfacesResource:
         return InterfacesResource(self._client)
@@ -85,23 +85,23 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         return ImagesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> GPUBaremetalClustersResourceWithRawResponse:
+    def with_raw_response(self) -> ClustersResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return GPUBaremetalClustersResourceWithRawResponse(self)
+        return ClustersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> GPUBaremetalClustersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ClustersResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return GPUBaremetalClustersResourceWithStreamingResponse(self)
+        return ClustersResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -112,7 +112,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         image_id: str,
         name: str,
         servers_count: int,
-        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
+        servers_settings: cluster_create_params.ServersSettings,
         tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -169,7 +169,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "servers_settings": servers_settings,
                     "tags": tags,
                 },
-                gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
+                cluster_create_params.ClusterCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -236,7 +236,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                         "managed_by": managed_by,
                         "offset": offset,
                     },
-                    gpu_baremetal_cluster_list_params.GPUBaremetalClusterListParams,
+                    cluster_list_params.ClusterListParams,
                 ),
             ),
             model=GPUBaremetalCluster,
@@ -307,7 +307,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                         "floating_ip_ids": floating_ip_ids,
                         "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
-                    gpu_baremetal_cluster_delete_params.GPUBaremetalClusterDeleteParams,
+                    cluster_delete_params.ClusterDeleteParams,
                 ),
             ),
             cast_to=TaskIDList,
@@ -390,7 +390,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "action": action,
                     "tags": tags,
                 },
-                gpu_baremetal_cluster_action_params.GPUBaremetalClusterActionParams,
+                cluster_action_params.ClusterActionParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -573,7 +573,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
                     "image_id": image_id,
                     "user_data": user_data,
                 },
-                gpu_baremetal_cluster_rebuild_params.GPUBaremetalClusterRebuildParams,
+                cluster_rebuild_params.ClusterRebuildParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -619,10 +619,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
-            body=maybe_transform(
-                {"instances_count": instances_count},
-                gpu_baremetal_cluster_resize_params.GPUBaremetalClusterResizeParams,
-            ),
+            body=maybe_transform({"instances_count": instances_count}, cluster_resize_params.ClusterResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -638,7 +635,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         image_id: str,
         name: str,
         servers_count: int,
-        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
+        servers_settings: cluster_create_params.ServersSettings,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -792,7 +789,7 @@ class GPUBaremetalClustersResource(SyncAPIResource):
         )
 
 
-class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
+class AsyncClustersResource(AsyncAPIResource):
     @cached_property
     def interfaces(self) -> AsyncInterfacesResource:
         return AsyncInterfacesResource(self._client)
@@ -810,23 +807,23 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         return AsyncImagesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncGPUBaremetalClustersResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncClustersResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncGPUBaremetalClustersResourceWithRawResponse(self)
+        return AsyncClustersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncGPUBaremetalClustersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncClustersResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncGPUBaremetalClustersResourceWithStreamingResponse(self)
+        return AsyncClustersResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -837,7 +834,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         image_id: str,
         name: str,
         servers_count: int,
-        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
+        servers_settings: cluster_create_params.ServersSettings,
         tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -894,7 +891,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "servers_settings": servers_settings,
                     "tags": tags,
                 },
-                gpu_baremetal_cluster_create_params.GPUBaremetalClusterCreateParams,
+                cluster_create_params.ClusterCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -961,7 +958,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                         "managed_by": managed_by,
                         "offset": offset,
                     },
-                    gpu_baremetal_cluster_list_params.GPUBaremetalClusterListParams,
+                    cluster_list_params.ClusterListParams,
                 ),
             ),
             model=GPUBaremetalCluster,
@@ -1032,7 +1029,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                         "floating_ip_ids": floating_ip_ids,
                         "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
-                    gpu_baremetal_cluster_delete_params.GPUBaremetalClusterDeleteParams,
+                    cluster_delete_params.ClusterDeleteParams,
                 ),
             ),
             cast_to=TaskIDList,
@@ -1115,7 +1112,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "action": action,
                     "tags": tags,
                 },
-                gpu_baremetal_cluster_action_params.GPUBaremetalClusterActionParams,
+                cluster_action_params.ClusterActionParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1298,7 +1295,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
                     "image_id": image_id,
                     "user_data": user_data,
                 },
-                gpu_baremetal_cluster_rebuild_params.GPUBaremetalClusterRebuildParams,
+                cluster_rebuild_params.ClusterRebuildParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1345,8 +1342,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         return await self._post(
             f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
             body=await async_maybe_transform(
-                {"instances_count": instances_count},
-                gpu_baremetal_cluster_resize_params.GPUBaremetalClusterResizeParams,
+                {"instances_count": instances_count}, cluster_resize_params.ClusterResizeParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1363,7 +1359,7 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         image_id: str,
         name: str,
         servers_count: int,
-        servers_settings: gpu_baremetal_cluster_create_params.ServersSettings,
+        servers_settings: cluster_create_params.ServersSettings,
         tags: Dict[str, str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -1517,233 +1513,233 @@ class AsyncGPUBaremetalClustersResource(AsyncAPIResource):
         )
 
 
-class GPUBaremetalClustersResourceWithRawResponse:
-    def __init__(self, gpu_baremetal_clusters: GPUBaremetalClustersResource) -> None:
-        self._gpu_baremetal_clusters = gpu_baremetal_clusters
+class ClustersResourceWithRawResponse:
+    def __init__(self, clusters: ClustersResource) -> None:
+        self._clusters = clusters
 
         self.create = to_raw_response_wrapper(
-            gpu_baremetal_clusters.create,
+            clusters.create,
         )
         self.list = to_raw_response_wrapper(
-            gpu_baremetal_clusters.list,
+            clusters.list,
         )
         self.delete = to_raw_response_wrapper(
-            gpu_baremetal_clusters.delete,
+            clusters.delete,
         )
         self.action = to_raw_response_wrapper(
-            gpu_baremetal_clusters.action,
+            clusters.action,
         )
         self.get = to_raw_response_wrapper(
-            gpu_baremetal_clusters.get,
+            clusters.get,
         )
         self.powercycle_all_servers = to_raw_response_wrapper(
-            gpu_baremetal_clusters.powercycle_all_servers,
+            clusters.powercycle_all_servers,
         )
         self.reboot_all_servers = to_raw_response_wrapper(
-            gpu_baremetal_clusters.reboot_all_servers,
+            clusters.reboot_all_servers,
         )
         self.rebuild = to_raw_response_wrapper(
-            gpu_baremetal_clusters.rebuild,
+            clusters.rebuild,
         )
         self.resize = to_raw_response_wrapper(
-            gpu_baremetal_clusters.resize,
+            clusters.resize,
         )
         self.create_and_poll = to_raw_response_wrapper(
-            gpu_baremetal_clusters.create_and_poll,
+            clusters.create_and_poll,
         )
         self.rebuild_and_poll = to_raw_response_wrapper(
-            gpu_baremetal_clusters.rebuild_and_poll,
+            clusters.rebuild_and_poll,
         )
         self.resize_and_poll = to_raw_response_wrapper(
-            gpu_baremetal_clusters.resize_and_poll,
+            clusters.resize_and_poll,
         )
 
     @cached_property
     def interfaces(self) -> InterfacesResourceWithRawResponse:
-        return InterfacesResourceWithRawResponse(self._gpu_baremetal_clusters.interfaces)
+        return InterfacesResourceWithRawResponse(self._clusters.interfaces)
 
     @cached_property
     def servers(self) -> ServersResourceWithRawResponse:
-        return ServersResourceWithRawResponse(self._gpu_baremetal_clusters.servers)
+        return ServersResourceWithRawResponse(self._clusters.servers)
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithRawResponse:
-        return FlavorsResourceWithRawResponse(self._gpu_baremetal_clusters.flavors)
+        return FlavorsResourceWithRawResponse(self._clusters.flavors)
 
     @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
-        return ImagesResourceWithRawResponse(self._gpu_baremetal_clusters.images)
+        return ImagesResourceWithRawResponse(self._clusters.images)
 
 
-class AsyncGPUBaremetalClustersResourceWithRawResponse:
-    def __init__(self, gpu_baremetal_clusters: AsyncGPUBaremetalClustersResource) -> None:
-        self._gpu_baremetal_clusters = gpu_baremetal_clusters
+class AsyncClustersResourceWithRawResponse:
+    def __init__(self, clusters: AsyncClustersResource) -> None:
+        self._clusters = clusters
 
         self.create = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.create,
+            clusters.create,
         )
         self.list = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.list,
+            clusters.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.delete,
+            clusters.delete,
         )
         self.action = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.action,
+            clusters.action,
         )
         self.get = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.get,
+            clusters.get,
         )
         self.powercycle_all_servers = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.powercycle_all_servers,
+            clusters.powercycle_all_servers,
         )
         self.reboot_all_servers = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.reboot_all_servers,
+            clusters.reboot_all_servers,
         )
         self.rebuild = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.rebuild,
+            clusters.rebuild,
         )
         self.resize = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.resize,
+            clusters.resize,
         )
         self.create_and_poll = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.create_and_poll,
+            clusters.create_and_poll,
         )
         self.rebuild_and_poll = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.rebuild_and_poll,
+            clusters.rebuild_and_poll,
         )
         self.resize_and_poll = async_to_raw_response_wrapper(
-            gpu_baremetal_clusters.resize_and_poll,
+            clusters.resize_and_poll,
         )
 
     @cached_property
     def interfaces(self) -> AsyncInterfacesResourceWithRawResponse:
-        return AsyncInterfacesResourceWithRawResponse(self._gpu_baremetal_clusters.interfaces)
+        return AsyncInterfacesResourceWithRawResponse(self._clusters.interfaces)
 
     @cached_property
     def servers(self) -> AsyncServersResourceWithRawResponse:
-        return AsyncServersResourceWithRawResponse(self._gpu_baremetal_clusters.servers)
+        return AsyncServersResourceWithRawResponse(self._clusters.servers)
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
-        return AsyncFlavorsResourceWithRawResponse(self._gpu_baremetal_clusters.flavors)
+        return AsyncFlavorsResourceWithRawResponse(self._clusters.flavors)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
-        return AsyncImagesResourceWithRawResponse(self._gpu_baremetal_clusters.images)
+        return AsyncImagesResourceWithRawResponse(self._clusters.images)
 
 
-class GPUBaremetalClustersResourceWithStreamingResponse:
-    def __init__(self, gpu_baremetal_clusters: GPUBaremetalClustersResource) -> None:
-        self._gpu_baremetal_clusters = gpu_baremetal_clusters
+class ClustersResourceWithStreamingResponse:
+    def __init__(self, clusters: ClustersResource) -> None:
+        self._clusters = clusters
 
         self.create = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.create,
+            clusters.create,
         )
         self.list = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.list,
+            clusters.list,
         )
         self.delete = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.delete,
+            clusters.delete,
         )
         self.action = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.action,
+            clusters.action,
         )
         self.get = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.get,
+            clusters.get,
         )
         self.powercycle_all_servers = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.powercycle_all_servers,
+            clusters.powercycle_all_servers,
         )
         self.reboot_all_servers = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.reboot_all_servers,
+            clusters.reboot_all_servers,
         )
         self.rebuild = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.rebuild,
+            clusters.rebuild,
         )
         self.resize = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.resize,
+            clusters.resize,
         )
         self.create_and_poll = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.create_and_poll,
+            clusters.create_and_poll,
         )
         self.rebuild_and_poll = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.rebuild_and_poll,
+            clusters.rebuild_and_poll,
         )
         self.resize_and_poll = to_streamed_response_wrapper(
-            gpu_baremetal_clusters.resize_and_poll,
+            clusters.resize_and_poll,
         )
 
     @cached_property
     def interfaces(self) -> InterfacesResourceWithStreamingResponse:
-        return InterfacesResourceWithStreamingResponse(self._gpu_baremetal_clusters.interfaces)
+        return InterfacesResourceWithStreamingResponse(self._clusters.interfaces)
 
     @cached_property
     def servers(self) -> ServersResourceWithStreamingResponse:
-        return ServersResourceWithStreamingResponse(self._gpu_baremetal_clusters.servers)
+        return ServersResourceWithStreamingResponse(self._clusters.servers)
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithStreamingResponse:
-        return FlavorsResourceWithStreamingResponse(self._gpu_baremetal_clusters.flavors)
+        return FlavorsResourceWithStreamingResponse(self._clusters.flavors)
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
-        return ImagesResourceWithStreamingResponse(self._gpu_baremetal_clusters.images)
+        return ImagesResourceWithStreamingResponse(self._clusters.images)
 
 
-class AsyncGPUBaremetalClustersResourceWithStreamingResponse:
-    def __init__(self, gpu_baremetal_clusters: AsyncGPUBaremetalClustersResource) -> None:
-        self._gpu_baremetal_clusters = gpu_baremetal_clusters
+class AsyncClustersResourceWithStreamingResponse:
+    def __init__(self, clusters: AsyncClustersResource) -> None:
+        self._clusters = clusters
 
         self.create = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.create,
+            clusters.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.list,
+            clusters.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.delete,
+            clusters.delete,
         )
         self.action = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.action,
+            clusters.action,
         )
         self.get = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.get,
+            clusters.get,
         )
         self.powercycle_all_servers = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.powercycle_all_servers,
+            clusters.powercycle_all_servers,
         )
         self.reboot_all_servers = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.reboot_all_servers,
+            clusters.reboot_all_servers,
         )
         self.rebuild = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.rebuild,
+            clusters.rebuild,
         )
         self.resize = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.resize,
+            clusters.resize,
         )
         self.create_and_poll = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.create_and_poll,
+            clusters.create_and_poll,
         )
         self.rebuild_and_poll = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.rebuild_and_poll,
+            clusters.rebuild_and_poll,
         )
         self.resize_and_poll = async_to_streamed_response_wrapper(
-            gpu_baremetal_clusters.resize_and_poll,
+            clusters.resize_and_poll,
         )
 
     @cached_property
     def interfaces(self) -> AsyncInterfacesResourceWithStreamingResponse:
-        return AsyncInterfacesResourceWithStreamingResponse(self._gpu_baremetal_clusters.interfaces)
+        return AsyncInterfacesResourceWithStreamingResponse(self._clusters.interfaces)
 
     @cached_property
     def servers(self) -> AsyncServersResourceWithStreamingResponse:
-        return AsyncServersResourceWithStreamingResponse(self._gpu_baremetal_clusters.servers)
+        return AsyncServersResourceWithStreamingResponse(self._clusters.servers)
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
-        return AsyncFlavorsResourceWithStreamingResponse(self._gpu_baremetal_clusters.flavors)
+        return AsyncFlavorsResourceWithStreamingResponse(self._clusters.flavors)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
-        return AsyncImagesResourceWithStreamingResponse(self._gpu_baremetal_clusters.images)
+        return AsyncImagesResourceWithStreamingResponse(self._clusters.images)

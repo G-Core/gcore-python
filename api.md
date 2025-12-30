@@ -773,40 +773,42 @@ Methods:
 
 - <code title="get /cloud/v2/reservations">client.cloud.billing_reservations.<a href="./src/gcore/resources/cloud/billing_reservations.py">list</a>(\*\*<a href="src/gcore/types/cloud/billing_reservation_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/billing_reservations.py">BillingReservations</a></code>
 
-## GPUBaremetalClusters
+## GPUBaremetal
+
+### Clusters
 
 Types:
 
 ```python
-from gcore.types.cloud import GPUBaremetalCluster
+from gcore.types.cloud.gpu_baremetal import GPUBaremetalCluster
 ```
 
 Methods:
 
-- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_cluster_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_cluster_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_baremetal_cluster.py">SyncOffsetPage[GPUBaremetalCluster]</a></code>
-- <code title="delete /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">delete</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_cluster_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">action</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_cluster_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">get</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal_cluster.py">GPUBaremetalCluster</a></code>
-- <code title="post /cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">powercycle_all_servers</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal_clusters/gpu_baremetal_cluster_server_v1_list.py">GPUBaremetalClusterServerV1List</a></code>
-- <code title="post /cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">reboot_all_servers</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal_clusters/gpu_baremetal_cluster_server_v1_list.py">GPUBaremetalClusterServerV1List</a></code>
-- <code title="post /cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">rebuild</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_cluster_rebuild_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize">client.cloud.gpu_baremetal_clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/gpu_baremetal_clusters.py">resize</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_cluster_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/cluster_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/cluster_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_baremetal/gpu_baremetal_cluster.py">SyncOffsetPage[GPUBaremetalCluster]</a></code>
+- <code title="delete /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">delete</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/cluster_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">action</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/cluster_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">get</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/gpu_baremetal_cluster.py">GPUBaremetalCluster</a></code>
+- <code title="post /cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">powercycle_all_servers</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1_list.py">GPUBaremetalClusterServerV1List</a></code>
+- <code title="post /cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">reboot_all_servers</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1_list.py">GPUBaremetalClusterServerV1List</a></code>
+- <code title="post /cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/rebuild">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">rebuild</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/cluster_rebuild_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize">client.cloud.gpu_baremetal.clusters.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/clusters.py">resize</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/cluster_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
-### Interfaces
+#### Interfaces
 
 Methods:
 
-- <code title="get /cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces">client.cloud.gpu_baremetal_clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/interfaces.py">list</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/network_interface_list.py">NetworkInterfaceList</a></code>
-- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface">client.cloud.gpu_baremetal_clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/interfaces.py">attach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/interface_attach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface">client.cloud.gpu_baremetal_clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/interfaces.py">detach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/interface_detach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces">client.cloud.gpu_baremetal.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/interfaces.py">list</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/network_interface_list.py">NetworkInterfaceList</a></code>
+- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface">client.cloud.gpu_baremetal.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/interfaces.py">attach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/interface_attach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface">client.cloud.gpu_baremetal.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/interfaces.py">detach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/interface_detach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
-### Servers
+#### Servers
 
 Types:
 
 ```python
-from gcore.types.cloud.gpu_baremetal_clusters import (
+from gcore.types.cloud.gpu_baremetal.clusters import (
     GPUBaremetalClusterServer,
     GPUBaremetalClusterServerV1,
     GPUBaremetalClusterServerV1List,
@@ -815,32 +817,32 @@ from gcore.types.cloud.gpu_baremetal_clusters import (
 
 Methods:
 
-- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers">client.cloud.gpu_baremetal_clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/servers.py">list</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_baremetal_clusters/gpu_baremetal_cluster_server.py">SyncOffsetPage[GPUBaremetalClusterServer]</a></code>
-- <code title="delete /cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}">client.cloud.gpu_baremetal_clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/servers.py">delete</a>(instance_id, \*, project_id, region_id, cluster_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/server_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console">client.cloud.gpu_baremetal_clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/servers.py">get_console</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/console.py">Console</a></code>
-- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle">client.cloud.gpu_baremetal_clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/servers.py">powercycle</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal_clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
-- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot">client.cloud.gpu_baremetal_clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/servers.py">reboot</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal_clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
+- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">list</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server.py">SyncOffsetPage[GPUBaremetalClusterServer]</a></code>
+- <code title="delete /cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">delete</a>(instance_id, \*, project_id, region_id, cluster_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/server_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">get_console</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/console.py">Console</a></code>
+- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">powercycle</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
+- <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">reboot</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
 
-### Flavors
+#### Flavors
 
 Types:
 
 ```python
-from gcore.types.cloud.gpu_baremetal_clusters import GPUBaremetalFlavor, GPUBaremetalFlavorList
+from gcore.types.cloud.gpu_baremetal.clusters import GPUBaremetalFlavor, GPUBaremetalFlavorList
 ```
 
 Methods:
 
-- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors">client.cloud.gpu_baremetal_clusters.flavors.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_baremetal_clusters/gpu_baremetal_flavor_list.py">GPUBaremetalFlavorList</a></code>
+- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/flavors">client.cloud.gpu_baremetal.clusters.flavors.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_flavor_list.py">GPUBaremetalFlavorList</a></code>
 
-### Images
+#### Images
 
 Methods:
 
-- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image_list.py">GPUImageList</a></code>
-- <code title="delete /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">get</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image.py">GPUImage</a></code>
-- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal_clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal_clusters/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal_clusters/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image_list.py">GPUImageList</a></code>
+- <code title="delete /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">get</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image.py">GPUImage</a></code>
+- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 ## GPUVirtual
 

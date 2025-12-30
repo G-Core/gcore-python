@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from gcore._utils import parse_datetime
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import Console, TaskIDList
-from gcore.types.cloud.gpu_baremetal_clusters import (
+from gcore.types.cloud.gpu_baremetal.clusters import (
     GPUBaremetalClusterServer,
     GPUBaremetalClusterServerV1,
 )
@@ -25,7 +25,7 @@ class TestServers:
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        server = client.cloud.gpu_baremetal_clusters.servers.list(
+        server = client.cloud.gpu_baremetal.clusters.servers.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -34,7 +34,7 @@ class TestServers:
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
-        server = client.cloud.gpu_baremetal_clusters.servers.list(
+        server = client.cloud.gpu_baremetal.clusters.servers.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -52,7 +52,7 @@ class TestServers:
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.servers.with_raw_response.list(
+        response = client.cloud.gpu_baremetal.clusters.servers.with_raw_response.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -65,7 +65,7 @@ class TestServers:
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.list(
+        with client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -81,7 +81,7 @@ class TestServers:
     @parametrize
     def test_path_params_list(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.list(
+            client.cloud.gpu_baremetal.clusters.servers.with_raw_response.list(
                 cluster_id="",
                 project_id=1,
                 region_id=7,
@@ -89,7 +89,7 @@ class TestServers:
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
-        server = client.cloud.gpu_baremetal_clusters.servers.delete(
+        server = client.cloud.gpu_baremetal.clusters.servers.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -99,7 +99,7 @@ class TestServers:
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Gcore) -> None:
-        server = client.cloud.gpu_baremetal_clusters.servers.delete(
+        server = client.cloud.gpu_baremetal.clusters.servers.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -110,7 +110,7 @@ class TestServers:
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
+        response = client.cloud.gpu_baremetal.clusters.servers.with_raw_response.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -124,7 +124,7 @@ class TestServers:
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.delete(
+        with client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -141,7 +141,7 @@ class TestServers:
     @parametrize
     def test_path_params_delete(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
+            client.cloud.gpu_baremetal.clusters.servers.with_raw_response.delete(
                 instance_id="instance_id",
                 project_id=0,
                 region_id=0,
@@ -149,7 +149,7 @@ class TestServers:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
+            client.cloud.gpu_baremetal.clusters.servers.with_raw_response.delete(
                 instance_id="",
                 project_id=0,
                 region_id=0,
@@ -158,7 +158,7 @@ class TestServers:
 
     @parametrize
     def test_method_get_console(self, client: Gcore) -> None:
-        server = client.cloud.gpu_baremetal_clusters.servers.get_console(
+        server = client.cloud.gpu_baremetal.clusters.servers.get_console(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -167,7 +167,7 @@ class TestServers:
 
     @parametrize
     def test_raw_response_get_console(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.servers.with_raw_response.get_console(
+        response = client.cloud.gpu_baremetal.clusters.servers.with_raw_response.get_console(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -180,7 +180,7 @@ class TestServers:
 
     @parametrize
     def test_streaming_response_get_console(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.get_console(
+        with client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.get_console(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -196,7 +196,7 @@ class TestServers:
     @parametrize
     def test_path_params_get_console(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.get_console(
+            client.cloud.gpu_baremetal.clusters.servers.with_raw_response.get_console(
                 instance_id="",
                 project_id=0,
                 region_id=0,
@@ -204,7 +204,7 @@ class TestServers:
 
     @parametrize
     def test_method_powercycle(self, client: Gcore) -> None:
-        server = client.cloud.gpu_baremetal_clusters.servers.powercycle(
+        server = client.cloud.gpu_baremetal.clusters.servers.powercycle(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -213,7 +213,7 @@ class TestServers:
 
     @parametrize
     def test_raw_response_powercycle(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.servers.with_raw_response.powercycle(
+        response = client.cloud.gpu_baremetal.clusters.servers.with_raw_response.powercycle(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -226,7 +226,7 @@ class TestServers:
 
     @parametrize
     def test_streaming_response_powercycle(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.powercycle(
+        with client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.powercycle(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -242,7 +242,7 @@ class TestServers:
     @parametrize
     def test_path_params_powercycle(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.powercycle(
+            client.cloud.gpu_baremetal.clusters.servers.with_raw_response.powercycle(
                 instance_id="",
                 project_id=0,
                 region_id=0,
@@ -250,7 +250,7 @@ class TestServers:
 
     @parametrize
     def test_method_reboot(self, client: Gcore) -> None:
-        server = client.cloud.gpu_baremetal_clusters.servers.reboot(
+        server = client.cloud.gpu_baremetal.clusters.servers.reboot(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -259,7 +259,7 @@ class TestServers:
 
     @parametrize
     def test_raw_response_reboot(self, client: Gcore) -> None:
-        response = client.cloud.gpu_baremetal_clusters.servers.with_raw_response.reboot(
+        response = client.cloud.gpu_baremetal.clusters.servers.with_raw_response.reboot(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -272,7 +272,7 @@ class TestServers:
 
     @parametrize
     def test_streaming_response_reboot(self, client: Gcore) -> None:
-        with client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.reboot(
+        with client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.reboot(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -288,7 +288,7 @@ class TestServers:
     @parametrize
     def test_path_params_reboot(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.gpu_baremetal_clusters.servers.with_raw_response.reboot(
+            client.cloud.gpu_baremetal.clusters.servers.with_raw_response.reboot(
                 instance_id="",
                 project_id=0,
                 region_id=0,
@@ -302,7 +302,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        server = await async_client.cloud.gpu_baremetal_clusters.servers.list(
+        server = await async_client.cloud.gpu_baremetal.clusters.servers.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -311,7 +311,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
-        server = await async_client.cloud.gpu_baremetal_clusters.servers.list(
+        server = await async_client.cloud.gpu_baremetal.clusters.servers.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -329,7 +329,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.list(
+        response = await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -342,7 +342,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.list(
+        async with async_client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
@@ -358,7 +358,7 @@ class TestAsyncServers:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.list(
+            await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.list(
                 cluster_id="",
                 project_id=1,
                 region_id=7,
@@ -366,7 +366,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
-        server = await async_client.cloud.gpu_baremetal_clusters.servers.delete(
+        server = await async_client.cloud.gpu_baremetal.clusters.servers.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -376,7 +376,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
-        server = await async_client.cloud.gpu_baremetal_clusters.servers.delete(
+        server = await async_client.cloud.gpu_baremetal.clusters.servers.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -387,7 +387,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
+        response = await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -401,7 +401,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.delete(
+        async with async_client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.delete(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -418,7 +418,7 @@ class TestAsyncServers:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
+            await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.delete(
                 instance_id="instance_id",
                 project_id=0,
                 region_id=0,
@@ -426,7 +426,7 @@ class TestAsyncServers:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.delete(
+            await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.delete(
                 instance_id="",
                 project_id=0,
                 region_id=0,
@@ -435,7 +435,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_method_get_console(self, async_client: AsyncGcore) -> None:
-        server = await async_client.cloud.gpu_baremetal_clusters.servers.get_console(
+        server = await async_client.cloud.gpu_baremetal.clusters.servers.get_console(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -444,7 +444,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_raw_response_get_console(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.get_console(
+        response = await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.get_console(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -457,7 +457,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_streaming_response_get_console(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.get_console(
+        async with async_client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.get_console(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -473,7 +473,7 @@ class TestAsyncServers:
     @parametrize
     async def test_path_params_get_console(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.get_console(
+            await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.get_console(
                 instance_id="",
                 project_id=0,
                 region_id=0,
@@ -481,7 +481,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_method_powercycle(self, async_client: AsyncGcore) -> None:
-        server = await async_client.cloud.gpu_baremetal_clusters.servers.powercycle(
+        server = await async_client.cloud.gpu_baremetal.clusters.servers.powercycle(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -490,7 +490,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_raw_response_powercycle(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.powercycle(
+        response = await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.powercycle(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -503,7 +503,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_streaming_response_powercycle(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.powercycle(
+        async with async_client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.powercycle(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -519,7 +519,7 @@ class TestAsyncServers:
     @parametrize
     async def test_path_params_powercycle(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.powercycle(
+            await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.powercycle(
                 instance_id="",
                 project_id=0,
                 region_id=0,
@@ -527,7 +527,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_method_reboot(self, async_client: AsyncGcore) -> None:
-        server = await async_client.cloud.gpu_baremetal_clusters.servers.reboot(
+        server = await async_client.cloud.gpu_baremetal.clusters.servers.reboot(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -536,7 +536,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_raw_response_reboot(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.reboot(
+        response = await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.reboot(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -549,7 +549,7 @@ class TestAsyncServers:
 
     @parametrize
     async def test_streaming_response_reboot(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.gpu_baremetal_clusters.servers.with_streaming_response.reboot(
+        async with async_client.cloud.gpu_baremetal.clusters.servers.with_streaming_response.reboot(
             instance_id="instance_id",
             project_id=0,
             region_id=0,
@@ -565,7 +565,7 @@ class TestAsyncServers:
     @parametrize
     async def test_path_params_reboot(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.gpu_baremetal_clusters.servers.with_raw_response.reboot(
+            await async_client.cloud.gpu_baremetal.clusters.servers.with_raw_response.reboot(
                 instance_id="",
                 project_id=0,
                 region_id=0,

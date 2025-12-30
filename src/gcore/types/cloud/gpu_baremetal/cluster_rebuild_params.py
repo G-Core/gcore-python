@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from ..._types import SequenceNotStr
+from ...._types import SequenceNotStr
 
-__all__ = ["GPUBaremetalClusterRebuildParams"]
+__all__ = ["ClusterRebuildParams"]
 
 
-class GPUBaremetalClusterRebuildParams(TypedDict, total=False):
+class ClusterRebuildParams(TypedDict, total=False):
     project_id: int
 
     region_id: int
