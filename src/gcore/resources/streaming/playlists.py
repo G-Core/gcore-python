@@ -21,7 +21,7 @@ from ...pagination import SyncPageStreaming, AsyncPageStreaming
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.streaming import playlist_list_params, playlist_create_params, playlist_update_params
 from ...types.streaming.playlist import Playlist
-from ...types.streaming.playlist_create import PlaylistCreate
+from ...types.streaming.playlist_created import PlaylistCreated
 from ...types.streaming.playlist_list_videos_response import PlaylistListVideosResponse
 
 __all__ = ["PlaylistsResource", "AsyncPlaylistsResource"]
@@ -70,7 +70,7 @@ class PlaylistsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlaylistCreate:
+    ) -> PlaylistCreated:
         """
         Playlist is a curated collection of video content organized in a sequential
         manner.
@@ -244,7 +244,7 @@ class PlaylistsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlaylistCreate,
+            cast_to=PlaylistCreated,
         )
 
     def update(
@@ -559,7 +559,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlaylistCreate:
+    ) -> PlaylistCreated:
         """
         Playlist is a curated collection of video content organized in a sequential
         manner.
@@ -733,7 +733,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlaylistCreate,
+            cast_to=PlaylistCreated,
         )
 
     async def update(

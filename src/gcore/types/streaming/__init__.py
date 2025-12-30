@@ -25,9 +25,9 @@ from .popular_videos import PopularVideos as PopularVideos
 from .storage_series import StorageSeries as StorageSeries
 from .unique_viewers import UniqueViewers as UniqueViewers
 from .directory_video import DirectoryVideo as DirectoryVideo
-from .playlist_create import PlaylistCreate as PlaylistCreate
 from .views_by_region import ViewsByRegion as ViewsByRegion
 from .directories_tree import DirectoriesTree as DirectoriesTree
+from .playlist_created import PlaylistCreated as PlaylistCreated
 from .views_by_browser import ViewsByBrowser as ViewsByBrowser
 from .views_by_country import ViewsByCountry as ViewsByCountry
 from .views_by_referer import ViewsByReferer as ViewsByReferer

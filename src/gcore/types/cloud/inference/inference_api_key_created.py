@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["InferenceAPIKeyCreate"]
+__all__ = ["InferenceAPIKeyCreated"]
 
 
-class InferenceAPIKeyCreate(BaseModel):
+class InferenceAPIKeyCreated(BaseModel):
     created_at: str
     """Timestamp when the API Key was created."""
 
