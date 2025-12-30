@@ -2,9 +2,9 @@
 
 from ...._models import BaseModel
 
-__all__ = ["RoleAssignmentUpdateDelete"]
+__all__ = ["RoleAssignmentUpdatedDeleted"]
 
 
-class RoleAssignmentUpdateDelete(BaseModel):
+class RoleAssignmentUpdatedDeleted(BaseModel):
     assignment_id: int
     """Assignment ID"""

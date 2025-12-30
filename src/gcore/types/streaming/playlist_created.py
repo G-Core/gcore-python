@@ -4,9 +4,9 @@ from typing import Optional
 
 from .playlist import Playlist
 
-__all__ = ["PlaylistCreate"]
+__all__ = ["PlaylistCreated"]
 
 
-class PlaylistCreate(Playlist):
+class PlaylistCreated(Playlist):
     id: Optional[int] = None
     """Playlist ID"""

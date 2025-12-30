@@ -20,7 +20,7 @@ from ...types.iam import api_token_list_params, api_token_create_params
 from ..._base_client import make_request_options
 from ...types.iam.api_token import APIToken
 from ...types.iam.api_token_list import APITokenList
-from ...types.iam.api_token_create import APITokenCreate
+from ...types.iam.api_token_created import APITokenCreated
 
 __all__ = ["APITokensResource", "AsyncAPITokensResource"]
 
@@ -59,7 +59,7 @@ class APITokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> APITokenCreate:
+    ) -> APITokenCreated:
         """
         Create an API token in the current account.
 
@@ -95,7 +95,7 @@ class APITokensResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APITokenCreate,
+            cast_to=APITokenCreated,
         )
 
     def list(
@@ -272,7 +272,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> APITokenCreate:
+    ) -> APITokenCreated:
         """
         Create an API token in the current account.
 
@@ -308,7 +308,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APITokenCreate,
+            cast_to=APITokenCreated,
         )
 
     async def list(

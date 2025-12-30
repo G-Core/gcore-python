@@ -20,7 +20,7 @@ from ...._base_client import make_request_options
 from ....types.cloud.registries import user_create_params, user_update_params, user_create_multiple_params
 from ....types.cloud.registries.registry_user import RegistryUser
 from ....types.cloud.registries.registry_user_list import RegistryUserList
-from ....types.cloud.registries.registry_user_create import RegistryUserCreate
+from ....types.cloud.registries.registry_user_created import RegistryUserCreated
 from ....types.cloud.registries.user_refresh_secret_response import UserRefreshSecretResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
@@ -62,7 +62,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserCreate:
+    ) -> RegistryUserCreated:
         """
         Create a new user for accessing the container registry.
 
@@ -105,7 +105,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUserCreate,
+            cast_to=RegistryUserCreated,
         )
 
     def update(
@@ -248,7 +248,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserCreate:
+    ) -> RegistryUserCreated:
         """
         Create multiple users for accessing the container registry in a single request.
 
@@ -273,7 +273,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUserCreate,
+            cast_to=RegistryUserCreated,
         )
 
     def refresh_secret(
@@ -351,7 +351,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserCreate:
+    ) -> RegistryUserCreated:
         """
         Create a new user for accessing the container registry.
 
@@ -394,7 +394,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUserCreate,
+            cast_to=RegistryUserCreated,
         )
 
     async def update(
@@ -537,7 +537,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserCreate:
+    ) -> RegistryUserCreated:
         """
         Create multiple users for accessing the container registry in a single request.
 
@@ -562,7 +562,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUserCreate,
+            cast_to=RegistryUserCreated,
         )
 
     async def refresh_secret(
