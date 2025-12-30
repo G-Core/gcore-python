@@ -1,6 +1,6 @@
 from gcore import Gcore
 from gcore.pagination import SyncOffsetPage
-from gcore.types.cloud import SSHKey, SSHKeyCreate
+from gcore.types.cloud import SSHKey, SSHKeyCreated
 
 
 def main() -> None:
@@ -25,7 +25,7 @@ def main() -> None:
     delete_ssh_key(client=gcore, ssh_key_id=ssh_key.id)
 
 
-def create_ssh_key(*, client: Gcore) -> SSHKeyCreate:
+def create_ssh_key(*, client: Gcore) -> SSHKeyCreated:
     print("\n=== CREATE SSH KEY ===")
     ssh_key = client.cloud.ssh_keys.create(name="gcore-go-example")
     print(f"Created SSH key: ID={ssh_key.id}, name={ssh_key.name}")
