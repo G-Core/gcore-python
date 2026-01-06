@@ -216,6 +216,14 @@ from .placement_groups import (
     PlacementGroupsResourceWithStreamingResponse,
     AsyncPlacementGroupsResourceWithStreamingResponse,
 )
+from .volume_snapshots import (
+    VolumeSnapshotsResource,
+    AsyncVolumeSnapshotsResource,
+    VolumeSnapshotsResourceWithRawResponse,
+    AsyncVolumeSnapshotsResourceWithRawResponse,
+    VolumeSnapshotsResourceWithStreamingResponse,
+    AsyncVolumeSnapshotsResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -402,6 +410,12 @@ __all__ = [
     "AsyncDatabasesResourceWithRawResponse",
     "DatabasesResourceWithStreamingResponse",
     "AsyncDatabasesResourceWithStreamingResponse",
+    "VolumeSnapshotsResource",
+    "AsyncVolumeSnapshotsResource",
+    "VolumeSnapshotsResourceWithRawResponse",
+    "AsyncVolumeSnapshotsResourceWithRawResponse",
+    "VolumeSnapshotsResourceWithStreamingResponse",
+    "AsyncVolumeSnapshotsResourceWithStreamingResponse",
     "CloudResource",
     "AsyncCloudResource",
     "CloudResourceWithRawResponse",

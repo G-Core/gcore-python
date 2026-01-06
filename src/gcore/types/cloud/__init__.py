@@ -18,6 +18,7 @@ from .project import Project as Project
 from .ssh_key import SSHKey as SSHKey
 from .instance import Instance as Instance
 from .registry import Registry as Registry
+from .snapshot import Snapshot as Snapshot
 from .gpu_image import GPUImage as GPUImage
 from .ip_ranges import IPRanges as IPRanges
 from .file_share import FileShare as FileShare
@@ -154,6 +155,8 @@ from .load_balancer_failover_params import LoadBalancerFailoverParams as LoadBal
 from .load_balancer_listener_detail import LoadBalancerListenerDetail as LoadBalancerListenerDetail
 from .placement_group_create_params import PlacementGroupCreateParams as PlacementGroupCreateParams
 from .reserved_fixed_ip_list_params import ReservedFixedIPListParams as ReservedFixedIPListParams
+from .volume_snapshot_create_params import VolumeSnapshotCreateParams as VolumeSnapshotCreateParams
+from .volume_snapshot_update_params import VolumeSnapshotUpdateParams as VolumeSnapshotUpdateParams
 from .cost_report_aggregated_monthly import CostReportAggregatedMonthly as CostReportAggregatedMonthly
 from .inference_region_capacity_list import InferenceRegionCapacityList as InferenceRegionCapacityList
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus

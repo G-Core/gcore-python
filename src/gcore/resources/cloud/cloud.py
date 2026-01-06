@@ -124,6 +124,14 @@ from .placement_groups import (
     PlacementGroupsResourceWithStreamingResponse,
     AsyncPlacementGroupsResourceWithStreamingResponse,
 )
+from .volume_snapshots import (
+    VolumeSnapshotsResource,
+    AsyncVolumeSnapshotsResource,
+    VolumeSnapshotsResourceWithRawResponse,
+    AsyncVolumeSnapshotsResourceWithRawResponse,
+    VolumeSnapshotsResourceWithStreamingResponse,
+    AsyncVolumeSnapshotsResourceWithStreamingResponse,
+)
 from .networks.networks import (
     NetworksResource,
     AsyncNetworksResource,
@@ -353,6 +361,10 @@ class CloudResource(SyncAPIResource):
         return DatabasesResource(self._client)
 
     @cached_property
+    def volume_snapshots(self) -> VolumeSnapshotsResource:
+        return VolumeSnapshotsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CloudResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -491,6 +503,10 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def databases(self) -> AsyncDatabasesResource:
         return AsyncDatabasesResource(self._client)
+
+    @cached_property
+    def volume_snapshots(self) -> AsyncVolumeSnapshotsResource:
+        return AsyncVolumeSnapshotsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudResourceWithRawResponse:
@@ -635,6 +651,10 @@ class CloudResourceWithRawResponse:
     def databases(self) -> DatabasesResourceWithRawResponse:
         return DatabasesResourceWithRawResponse(self._cloud.databases)
 
+    @cached_property
+    def volume_snapshots(self) -> VolumeSnapshotsResourceWithRawResponse:
+        return VolumeSnapshotsResourceWithRawResponse(self._cloud.volume_snapshots)
+
 
 class AsyncCloudResourceWithRawResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -758,6 +778,10 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def databases(self) -> AsyncDatabasesResourceWithRawResponse:
         return AsyncDatabasesResourceWithRawResponse(self._cloud.databases)
+
+    @cached_property
+    def volume_snapshots(self) -> AsyncVolumeSnapshotsResourceWithRawResponse:
+        return AsyncVolumeSnapshotsResourceWithRawResponse(self._cloud.volume_snapshots)
 
 
 class CloudResourceWithStreamingResponse:
@@ -883,6 +907,10 @@ class CloudResourceWithStreamingResponse:
     def databases(self) -> DatabasesResourceWithStreamingResponse:
         return DatabasesResourceWithStreamingResponse(self._cloud.databases)
 
+    @cached_property
+    def volume_snapshots(self) -> VolumeSnapshotsResourceWithStreamingResponse:
+        return VolumeSnapshotsResourceWithStreamingResponse(self._cloud.volume_snapshots)
+
 
 class AsyncCloudResourceWithStreamingResponse:
     def __init__(self, cloud: AsyncCloudResource) -> None:
@@ -1006,3 +1034,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def databases(self) -> AsyncDatabasesResourceWithStreamingResponse:
         return AsyncDatabasesResourceWithStreamingResponse(self._cloud.databases)
+
+    @cached_property
+    def volume_snapshots(self) -> AsyncVolumeSnapshotsResourceWithStreamingResponse:
+        return AsyncVolumeSnapshotsResourceWithStreamingResponse(self._cloud.volume_snapshots)

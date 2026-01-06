@@ -1165,6 +1165,21 @@ Methods:
 
 - <code title="post /cloud/v1/dbaas/postgres/validate_pg_conf/{project_id}/{region_id}">client.cloud.databases.postgres.custom_configurations.<a href="./src/gcore/resources/cloud/databases/postgres/custom_configurations.py">validate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/custom_configuration_validate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/databases/postgres/pg_conf_validation.py">PgConfValidation</a></code>
 
+## VolumeSnapshots
+
+Types:
+
+```python
+from gcore.types.cloud import Snapshot
+```
+
+Methods:
+
+- <code title="post /cloud/v1/snapshots/{project_id}/{region_id}">client.cloud.volume_snapshots.<a href="./src/gcore/resources/cloud/volume_snapshots.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_snapshot_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/snapshots/{project_id}/{region_id}/{snapshot_id}">client.cloud.volume_snapshots.<a href="./src/gcore/resources/cloud/volume_snapshots.py">update</a>(snapshot_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_snapshot_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/snapshot.py">Snapshot</a></code>
+- <code title="delete /cloud/v1/snapshots/{project_id}/{region_id}/{snapshot_id}">client.cloud.volume_snapshots.<a href="./src/gcore/resources/cloud/volume_snapshots.py">delete</a>(snapshot_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/snapshots/{project_id}/{region_id}/{snapshot_id}">client.cloud.volume_snapshots.<a href="./src/gcore/resources/cloud/volume_snapshots.py">get</a>(snapshot_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/snapshot.py">Snapshot</a></code>
+
 # Waap
 
 Types:
