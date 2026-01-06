@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 
@@ -60,13 +60,15 @@ class Zone(BaseModel):
     dnssec is disabled for the zone
     """
 
+    enabled: Optional[bool] = None
+
     expiry: Optional[int] = None
     """
     number of seconds after which secondary name servers should stop answering
     request for this zone
     """
 
-    meta: Optional[object] = None
+    meta: Optional[Dict[str, object]] = None
     """arbitrarily data of zone in json format"""
 
     name: Optional[str] = None
