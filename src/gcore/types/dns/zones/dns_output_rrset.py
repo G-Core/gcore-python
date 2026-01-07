@@ -38,11 +38,11 @@ class ResourceRecord(BaseModel):
     2. `continents` (array of string)
     3. `countries` (array of string)
     4. `latlong` (array of float64, latitude and longitude)
-    5. `fallback` (bool)
-    6. `backup` (bool)
-    7. `notes` (string)
-    8. `weight` (float)
-    9. `ip` (string)
+    5. `backup` (bool)
+    6. `notes` (string)
+    7. `weight` (float)
+    8. `ip` (string)
+    9. `default` (bool)
 
     Some keys are reserved for balancing, @see
     https://api.gcore.com/dns/v2/info/meta
