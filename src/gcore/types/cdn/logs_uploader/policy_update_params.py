@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ...._types import SequenceNotStr
 
@@ -17,6 +17,20 @@ class PolicyUpdateParams(TypedDict, total=False):
     description: str
     """Description of the policy."""
 
+    escape_special_characters: bool
+    """
+    When set to true, the service sanitizes string values by escaping characters
+    that may be unsafe for transport, logging, or downstream processing.
+
+    The following categories of characters are escaped:
+
+    - Control and non-printable characters
+    - Quotation marks and escape characters
+    - Characters outside the standard ASCII range
+
+    The resulting output contains only printable ASCII characters.
+    """
+
     field_delimiter: str
     """Field delimiter for logs."""
 
@@ -29,8 +43,15 @@ class PolicyUpdateParams(TypedDict, total=False):
     file_name_template: str
     """Template for log file name."""
 
-    format_type: str
-    """Format type for logs."""
+    format_type: Literal["json", ""]
+    """Format type for logs.
+
+    Possible values:
+
+    - **""** - empty, it means it will apply the format configurations from the
+      policy.
+    - **"json"** - output the logs as json lines.
+    """
 
     include_empty_logs: bool
     """Include empty logs in the upload."""
