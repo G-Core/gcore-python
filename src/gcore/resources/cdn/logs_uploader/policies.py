@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -55,11 +56,12 @@ class PoliciesResource(SyncAPIResource):
         *,
         date_format: str | Omit = omit,
         description: str | Omit = omit,
+        escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
-        format_type: str | Omit = omit,
+        format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
         name: str | Omit = omit,
@@ -83,6 +85,17 @@ class PoliciesResource(SyncAPIResource):
 
           description: Description of the policy.
 
+          escape_special_characters: When set to true, the service sanitizes string values by escaping characters
+              that may be unsafe for transport, logging, or downstream processing.
+
+              The following categories of characters are escaped:
+
+              - Control and non-printable characters
+              - Quotation marks and escape characters
+              - Characters outside the standard ASCII range
+
+              The resulting output contains only printable ASCII characters.
+
           field_delimiter: Field delimiter for logs.
 
           field_separator: Field separator for logs.
@@ -92,6 +105,12 @@ class PoliciesResource(SyncAPIResource):
           file_name_template: Template for log file name.
 
           format_type: Format type for logs.
+
+              Possible values:
+
+              - **""** - empty, it means it will apply the format configurations from the
+                policy.
+              - **"json"** - output the logs as json lines.
 
           include_empty_logs: Include empty logs in the upload.
 
@@ -125,6 +144,7 @@ class PoliciesResource(SyncAPIResource):
                 {
                     "date_format": date_format,
                     "description": description,
+                    "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
                     "field_separator": field_separator,
                     "fields": fields,
@@ -153,11 +173,12 @@ class PoliciesResource(SyncAPIResource):
         *,
         date_format: str | Omit = omit,
         description: str | Omit = omit,
+        escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
-        format_type: str | Omit = omit,
+        format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
         name: str | Omit = omit,
@@ -181,6 +202,17 @@ class PoliciesResource(SyncAPIResource):
 
           description: Description of the policy.
 
+          escape_special_characters: When set to true, the service sanitizes string values by escaping characters
+              that may be unsafe for transport, logging, or downstream processing.
+
+              The following categories of characters are escaped:
+
+              - Control and non-printable characters
+              - Quotation marks and escape characters
+              - Characters outside the standard ASCII range
+
+              The resulting output contains only printable ASCII characters.
+
           field_delimiter: Field delimiter for logs.
 
           field_separator: Field separator for logs.
@@ -190,6 +222,12 @@ class PoliciesResource(SyncAPIResource):
           file_name_template: Template for log file name.
 
           format_type: Format type for logs.
+
+              Possible values:
+
+              - **""** - empty, it means it will apply the format configurations from the
+                policy.
+              - **"json"** - output the logs as json lines.
 
           include_empty_logs: Include empty logs in the upload.
 
@@ -223,6 +261,7 @@ class PoliciesResource(SyncAPIResource):
                 {
                     "date_format": date_format,
                     "description": description,
+                    "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
                     "field_separator": field_separator,
                     "fields": fields,
@@ -384,11 +423,12 @@ class PoliciesResource(SyncAPIResource):
         *,
         date_format: str | Omit = omit,
         description: str | Omit = omit,
+        escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
-        format_type: str | Omit = omit,
+        format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
         name: str | Omit = omit,
@@ -412,6 +452,17 @@ class PoliciesResource(SyncAPIResource):
 
           description: Description of the policy.
 
+          escape_special_characters: When set to true, the service sanitizes string values by escaping characters
+              that may be unsafe for transport, logging, or downstream processing.
+
+              The following categories of characters are escaped:
+
+              - Control and non-printable characters
+              - Quotation marks and escape characters
+              - Characters outside the standard ASCII range
+
+              The resulting output contains only printable ASCII characters.
+
           field_delimiter: Field delimiter for logs.
 
           field_separator: Field separator for logs.
@@ -421,6 +472,12 @@ class PoliciesResource(SyncAPIResource):
           file_name_template: Template for log file name.
 
           format_type: Format type for logs.
+
+              Possible values:
+
+              - **""** - empty, it means it will apply the format configurations from the
+                policy.
+              - **"json"** - output the logs as json lines.
 
           include_empty_logs: Include empty logs in the upload.
 
@@ -454,6 +511,7 @@ class PoliciesResource(SyncAPIResource):
                 {
                     "date_format": date_format,
                     "description": description,
+                    "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
                     "field_separator": field_separator,
                     "fields": fields,
@@ -502,11 +560,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
         *,
         date_format: str | Omit = omit,
         description: str | Omit = omit,
+        escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
-        format_type: str | Omit = omit,
+        format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
         name: str | Omit = omit,
@@ -530,6 +589,17 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           description: Description of the policy.
 
+          escape_special_characters: When set to true, the service sanitizes string values by escaping characters
+              that may be unsafe for transport, logging, or downstream processing.
+
+              The following categories of characters are escaped:
+
+              - Control and non-printable characters
+              - Quotation marks and escape characters
+              - Characters outside the standard ASCII range
+
+              The resulting output contains only printable ASCII characters.
+
           field_delimiter: Field delimiter for logs.
 
           field_separator: Field separator for logs.
@@ -539,6 +609,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
           file_name_template: Template for log file name.
 
           format_type: Format type for logs.
+
+              Possible values:
+
+              - **""** - empty, it means it will apply the format configurations from the
+                policy.
+              - **"json"** - output the logs as json lines.
 
           include_empty_logs: Include empty logs in the upload.
 
@@ -572,6 +648,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 {
                     "date_format": date_format,
                     "description": description,
+                    "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
                     "field_separator": field_separator,
                     "fields": fields,
@@ -600,11 +677,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
         *,
         date_format: str | Omit = omit,
         description: str | Omit = omit,
+        escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
-        format_type: str | Omit = omit,
+        format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
         name: str | Omit = omit,
@@ -628,6 +706,17 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           description: Description of the policy.
 
+          escape_special_characters: When set to true, the service sanitizes string values by escaping characters
+              that may be unsafe for transport, logging, or downstream processing.
+
+              The following categories of characters are escaped:
+
+              - Control and non-printable characters
+              - Quotation marks and escape characters
+              - Characters outside the standard ASCII range
+
+              The resulting output contains only printable ASCII characters.
+
           field_delimiter: Field delimiter for logs.
 
           field_separator: Field separator for logs.
@@ -637,6 +726,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
           file_name_template: Template for log file name.
 
           format_type: Format type for logs.
+
+              Possible values:
+
+              - **""** - empty, it means it will apply the format configurations from the
+                policy.
+              - **"json"** - output the logs as json lines.
 
           include_empty_logs: Include empty logs in the upload.
 
@@ -670,6 +765,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 {
                     "date_format": date_format,
                     "description": description,
+                    "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
                     "field_separator": field_separator,
                     "fields": fields,
@@ -831,11 +927,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
         *,
         date_format: str | Omit = omit,
         description: str | Omit = omit,
+        escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
-        format_type: str | Omit = omit,
+        format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
         name: str | Omit = omit,
@@ -859,6 +956,17 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           description: Description of the policy.
 
+          escape_special_characters: When set to true, the service sanitizes string values by escaping characters
+              that may be unsafe for transport, logging, or downstream processing.
+
+              The following categories of characters are escaped:
+
+              - Control and non-printable characters
+              - Quotation marks and escape characters
+              - Characters outside the standard ASCII range
+
+              The resulting output contains only printable ASCII characters.
+
           field_delimiter: Field delimiter for logs.
 
           field_separator: Field separator for logs.
@@ -868,6 +976,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
           file_name_template: Template for log file name.
 
           format_type: Format type for logs.
+
+              Possible values:
+
+              - **""** - empty, it means it will apply the format configurations from the
+                policy.
+              - **"json"** - output the logs as json lines.
 
           include_empty_logs: Include empty logs in the upload.
 
@@ -901,6 +1015,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 {
                     "date_format": date_format,
                     "description": description,
+                    "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
                     "field_separator": field_separator,
                     "fields": fields,
