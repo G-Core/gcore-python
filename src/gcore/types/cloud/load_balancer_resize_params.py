@@ -9,8 +9,10 @@ __all__ = ["LoadBalancerResizeParams"]
 
 class LoadBalancerResizeParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     flavor: Required[str]
     """Name of the desired flavor to resize to."""

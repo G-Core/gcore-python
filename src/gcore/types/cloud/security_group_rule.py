@@ -16,23 +16,14 @@ class SecurityGroupRule(BaseModel):
     created_at: datetime
     """Datetime when the rule was created"""
 
+    description: Optional[str] = None
+    """Rule description"""
+
     direction: Literal["egress", "ingress"]
     """
     Ingress or egress, which is the direction in which the security group rule is
     applied
     """
-
-    revision_number: int
-    """The revision number of the resource"""
-
-    security_group_id: str
-    """The security group ID to associate with this security group rule"""
-
-    updated_at: datetime
-    """Datetime when the rule was last updated"""
-
-    description: Optional[str] = None
-    """Rule description"""
 
     ethertype: Optional[Literal["IPv4", "IPv6"]] = None
     """
@@ -81,3 +72,12 @@ class SecurityGroupRule(BaseModel):
 
     remote_ip_prefix: Optional[str] = None
     """The remote IP prefix that is matched by this security group rule"""
+
+    revision_number: int
+    """The revision number of the resource"""
+
+    security_group_id: str
+    """The security group ID to associate with this security group rule"""
+
+    updated_at: datetime
+    """Datetime when the rule was last updated"""

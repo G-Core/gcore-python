@@ -230,10 +230,10 @@ class ContainerScale(TypedDict, total=False):
 
 
 class Container(TypedDict, total=False):
-    region_id: Required[Optional[int]]
+    region_id: Required[int]
     """Region id for the container"""
 
-    scale: Required[Optional[ContainerScale]]
+    scale: Required[ContainerScale]
     """Scale for the container"""
 
 

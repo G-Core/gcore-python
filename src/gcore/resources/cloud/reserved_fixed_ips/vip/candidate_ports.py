@@ -14,7 +14,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.cloud.reserved_fixed_ips.vip.candidate_port_list import CandidatePortList
+from .....types.cloud.reserved_fixed_ips.vip.candidate_port_list_response import CandidatePortListResponse
 
 __all__ = ["CandidatePortsResource", "AsyncCandidatePortsResource"]
 
@@ -51,7 +51,7 @@ class CandidatePortsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CandidatePortList:
+    ) -> CandidatePortListResponse:
         """
         List all instance ports that are available for connecting to a VIP.
 
@@ -75,7 +75,7 @@ class CandidatePortsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CandidatePortList,
+            cast_to=CandidatePortListResponse,
         )
 
 
@@ -111,7 +111,7 @@ class AsyncCandidatePortsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CandidatePortList:
+    ) -> CandidatePortListResponse:
         """
         List all instance ports that are available for connecting to a VIP.
 
@@ -135,7 +135,7 @@ class AsyncCandidatePortsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CandidatePortList,
+            cast_to=CandidatePortListResponse,
         )
 
 

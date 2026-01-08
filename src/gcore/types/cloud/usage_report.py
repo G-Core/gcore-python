@@ -343,6 +343,9 @@ class ResourceResourceEgressTrafficSerializer(BaseModel):
     first_seen: datetime
     """First time the resource was seen in the given period"""
 
+    instance_name: Optional[str] = None
+    """Name of the instance"""
+
     instance_type: Literal["baremetal", "vm"]
     """Type of the instance"""
 
@@ -371,9 +374,6 @@ class ResourceResourceEgressTrafficSerializer(BaseModel):
 
     vm_id: str
     """ID of the bare metal server the traffic is associated with"""
-
-    instance_name: Optional[str] = None
-    """Name of the instance"""
 
 
 class ResourceResourceExternalIPSerializer(BaseModel):
@@ -917,6 +917,9 @@ class ResourceResourceVolumeSerializer(BaseModel):
     in all cost and usage reports results (but not in totals)
     """
 
+    attached_to_vm: Optional[str] = None
+    """ID of the VM the volume is attached to"""
+
     billing_metric_name: str
     """Name of the billing metric"""
 
@@ -960,9 +963,6 @@ class ResourceResourceVolumeSerializer(BaseModel):
 
     volume_type: str
     """Type of the volume"""
-
-    attached_to_vm: Optional[str] = None
-    """ID of the VM the volume is attached to"""
 
 
 class ResourceResourceDbaasPostgreSQLPoolerSerializer(BaseModel):

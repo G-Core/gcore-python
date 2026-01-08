@@ -10,8 +10,10 @@ __all__ = ["RuleReplaceParams"]
 
 class RuleReplaceParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     direction: Required[Literal["egress", "ingress"]]
     """

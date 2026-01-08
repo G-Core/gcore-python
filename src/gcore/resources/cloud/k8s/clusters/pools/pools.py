@@ -34,7 +34,7 @@ from ......types.cloud.k8s.clusters import (
 )
 from ......types.cloud.task_id_list import TaskIDList
 from ......types.cloud.k8s.clusters.k8s_cluster_pool import K8SClusterPool
-from ......types.cloud.k8s.clusters.k8s_cluster_pool_list import K8SClusterPoolList
+from ......types.cloud.k8s.clusters.pool_list_response import PoolListResponse
 from ......types.cloud.k8s.clusters.k8s_cluster_pool_quota import K8SClusterPoolQuota
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
@@ -244,7 +244,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterPoolList:
+    ) -> PoolListResponse:
         """
         List k8s cluster pools
 
@@ -268,7 +268,7 @@ class PoolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SClusterPoolList,
+            cast_to=PoolListResponse,
         )
 
     def delete(
@@ -683,7 +683,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterPoolList:
+    ) -> PoolListResponse:
         """
         List k8s cluster pools
 
@@ -707,7 +707,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SClusterPoolList,
+            cast_to=PoolListResponse,
         )
 
     async def delete(

@@ -16,7 +16,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.load_balancers import flavor_list_params
-from ....types.cloud.load_balancer_flavor_list import LoadBalancerFlavorList
+from ....types.cloud.load_balancers.flavor_list_response import FlavorListResponse
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
@@ -53,7 +53,7 @@ class FlavorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerFlavorList:
+    ) -> FlavorListResponse:
         """Retrieve a list of load balancer flavors.
 
         When the `include_prices` query
@@ -61,6 +61,10 @@ class FlavorsResource(SyncAPIResource):
         price values as 0. If you get Pricing Error contact the support
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           include_prices: Set to true if the response should include flavor prices
 
           extra_headers: Send extra headers
@@ -84,7 +88,7 @@ class FlavorsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"include_prices": include_prices}, flavor_list_params.FlavorListParams),
             ),
-            cast_to=LoadBalancerFlavorList,
+            cast_to=FlavorListResponse,
         )
 
 
@@ -120,7 +124,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerFlavorList:
+    ) -> FlavorListResponse:
         """Retrieve a list of load balancer flavors.
 
         When the `include_prices` query
@@ -128,6 +132,10 @@ class AsyncFlavorsResource(AsyncAPIResource):
         price values as 0. If you get Pricing Error contact the support
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           include_prices: Set to true if the response should include flavor prices
 
           extra_headers: Send extra headers
@@ -153,7 +161,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     {"include_prices": include_prices}, flavor_list_params.FlavorListParams
                 ),
             ),
-            cast_to=LoadBalancerFlavorList,
+            cast_to=FlavorListResponse,
         )
 
 

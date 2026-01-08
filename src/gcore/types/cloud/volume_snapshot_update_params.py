@@ -6,29 +6,21 @@ from typing import Optional
 from typing_extensions import TypedDict
 
 from .tag_update_map_param import TagUpdateMapParam
-from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam
-from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
-__all__ = ["LoadBalancerUpdateParams", "Logging"]
+__all__ = ["VolumeSnapshotUpdateParams"]
 
 
-class LoadBalancerUpdateParams(TypedDict, total=False):
+class VolumeSnapshotUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
     region_id: int
     """Region ID"""
 
-    logging: Logging
-    """Logging configuration"""
-
     name: str
-    """Name."""
+    """Display name for the snapshot (3-63 chars).
 
-    preferred_connectivity: LoadBalancerMemberConnectivity
-    """
-    Preferred option to establish connectivity between load balancer and its pools
-    members
+    Used in customer portal and API. Does not affect snapshot data.
     """
 
     tags: Optional[TagUpdateMapParam]
@@ -60,19 +52,3 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     - **Replace all:** first delete existing tags with null values, then add new
       ones in the same request.
     """
-
-
-class Logging(TypedDict, total=False):
-    """Logging configuration"""
-
-    destination_region_id: Optional[int]
-    """Destination region id to which the logs will be written"""
-
-    enabled: bool
-    """Enable/disable forwarding logs to LaaS"""
-
-    retention_policy: Optional[LaasIndexRetentionPolicyParam]
-    """The logs retention policy"""
-
-    topic_name: Optional[str]
-    """The topic name to which the logs will be written"""

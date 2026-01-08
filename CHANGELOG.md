@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.29.0 (2026-01-08)
+
+Full Changelog: [v0.28.0...v0.29.0](https://github.com/G-Core/gcore-python/compare/v0.28.0...v0.29.0)
+
+### Features
+
+* **api:** aggregated API specs update ([9f567f9](https://github.com/G-Core/gcore-python/commit/9f567f9268490b9c1b403a502ddd5f5e7a617534))
+* **api:** aggregated API specs update ([43225eb](https://github.com/G-Core/gcore-python/commit/43225eb53397a63c3b44c518a20e665561d1a86e))
+* **api:** aggregated API specs update ([3dc71fe](https://github.com/G-Core/gcore-python/commit/3dc71fe42e2466ae8040af28c77153383609e041))
+* **api:** aggregated API specs update ([3c15807](https://github.com/G-Core/gcore-python/commit/3c15807ac8fdc5c0ca42421896f829054eaa82cf))
+* **cloud:** add support for volume snapshots ([19103d9](https://github.com/G-Core/gcore-python/commit/19103d9b95b37e597d545052d957d2593810307c))
+
 ## 0.28.0 (2025-12-30)
 
 Full Changelog: [v0.27.0...v0.28.0](https://github.com/G-Core/gcore-python/compare/v0.27.0...v0.28.0)

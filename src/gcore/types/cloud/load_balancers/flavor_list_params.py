@@ -9,8 +9,10 @@ __all__ = ["FlavorListParams"]
 
 class FlavorListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     include_prices: bool
     """Set to true if the response should include flavor prices"""
