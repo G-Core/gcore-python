@@ -3,14 +3,14 @@
 from typing import List
 
 from ....._models import BaseModel
-from .k8s_cluster_pool import K8SClusterPool
+from .connected_port import ConnectedPort
 
-__all__ = ["K8SClusterPoolList"]
+__all__ = ["ConnectedPortListResponse"]
 
 
-class K8SClusterPoolList(BaseModel):
+class ConnectedPortListResponse(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[K8SClusterPool]
+    results: List[ConnectedPort]
     """Objects"""

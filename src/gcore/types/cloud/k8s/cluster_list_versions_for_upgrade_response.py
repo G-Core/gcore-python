@@ -3,14 +3,14 @@
 from typing import List
 
 from ...._models import BaseModel
-from .k8s_cluster import K8SCluster
+from ..k8s_cluster_version import K8SClusterVersion
 
-__all__ = ["K8SClusterList"]
+__all__ = ["ClusterListVersionsForUpgradeResponse"]
 
 
-class K8SClusterList(BaseModel):
+class ClusterListVersionsForUpgradeResponse(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[K8SCluster]
+    results: List[K8SClusterVersion]
     """Objects"""

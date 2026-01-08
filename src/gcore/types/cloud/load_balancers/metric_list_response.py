@@ -2,15 +2,15 @@
 
 from typing import List
 
-from .router import Router
 from ...._models import BaseModel
+from ..load_balancer_metrics import LoadBalancerMetrics
 
-__all__ = ["RouterList"]
+__all__ = ["MetricListResponse"]
 
 
-class RouterList(BaseModel):
+class MetricListResponse(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[Router]
+    results: List[LoadBalancerMetrics]
     """Objects"""

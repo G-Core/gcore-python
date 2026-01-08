@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from .router import Router as Router
-from .router_list import RouterList as RouterList
 from .router_list_params import RouterListParams as RouterListParams
 from .subnet_list_params import SubnetListParams as SubnetListParams
 from .router_create_params import RouterCreateParams as RouterCreateParams

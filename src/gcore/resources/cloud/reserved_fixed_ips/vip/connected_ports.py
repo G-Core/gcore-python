@@ -16,7 +16,9 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cloud.reserved_fixed_ips.vip import connected_port_add_params, connected_port_replace_params
-from .....types.cloud.reserved_fixed_ips.vip.connected_port_list import ConnectedPortList
+from .....types.cloud.reserved_fixed_ips.vip.connected_port_add_response import ConnectedPortAddResponse
+from .....types.cloud.reserved_fixed_ips.vip.connected_port_list_response import ConnectedPortListResponse
+from .....types.cloud.reserved_fixed_ips.vip.connected_port_replace_response import ConnectedPortReplaceResponse
 
 __all__ = ["ConnectedPortsResource", "AsyncConnectedPortsResource"]
 
@@ -53,7 +55,7 @@ class ConnectedPortsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectedPortList:
+    ) -> ConnectedPortListResponse:
         """
         List all instance ports that share a VIP.
 
@@ -77,7 +79,7 @@ class ConnectedPortsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConnectedPortList,
+            cast_to=ConnectedPortListResponse,
         )
 
     def add(
@@ -93,7 +95,7 @@ class ConnectedPortsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectedPortList:
+    ) -> ConnectedPortAddResponse:
         """
         Add instance ports to share a VIP.
 
@@ -120,7 +122,7 @@ class ConnectedPortsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConnectedPortList,
+            cast_to=ConnectedPortAddResponse,
         )
 
     def replace(
@@ -136,7 +138,7 @@ class ConnectedPortsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectedPortList:
+    ) -> ConnectedPortReplaceResponse:
         """
         Replace the list of instance ports that share a VIP.
 
@@ -163,7 +165,7 @@ class ConnectedPortsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConnectedPortList,
+            cast_to=ConnectedPortReplaceResponse,
         )
 
 
@@ -199,7 +201,7 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectedPortList:
+    ) -> ConnectedPortListResponse:
         """
         List all instance ports that share a VIP.
 
@@ -223,7 +225,7 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConnectedPortList,
+            cast_to=ConnectedPortListResponse,
         )
 
     async def add(
@@ -239,7 +241,7 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectedPortList:
+    ) -> ConnectedPortAddResponse:
         """
         Add instance ports to share a VIP.
 
@@ -266,7 +268,7 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConnectedPortList,
+            cast_to=ConnectedPortAddResponse,
         )
 
     async def replace(
@@ -282,7 +284,7 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectedPortList:
+    ) -> ConnectedPortReplaceResponse:
         """
         Replace the list of instance ports that share a VIP.
 
@@ -311,7 +313,7 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConnectedPortList,
+            cast_to=ConnectedPortReplaceResponse,
         )
 
 

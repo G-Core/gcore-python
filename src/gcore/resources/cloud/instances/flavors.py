@@ -16,7 +16,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.instances import flavor_list_params
-from ....types.cloud.instances.instance_flavor_list import InstanceFlavorList
+from ....types.cloud.instances.flavor_list_response import FlavorListResponse
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
@@ -56,7 +56,7 @@ class FlavorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceFlavorList:
+    ) -> FlavorListResponse:
         """Retrieve a list of available instance flavors in the project and region.
 
         When
@@ -101,7 +101,7 @@ class FlavorsResource(SyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            cast_to=InstanceFlavorList,
+            cast_to=FlavorListResponse,
         )
 
 
@@ -140,7 +140,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceFlavorList:
+    ) -> FlavorListResponse:
         """Retrieve a list of available instance flavors in the project and region.
 
         When
@@ -185,7 +185,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            cast_to=InstanceFlavorList,
+            cast_to=FlavorListResponse,
         )
 
 

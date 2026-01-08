@@ -25,13 +25,13 @@ class SecurityGroupCreateParams(TypedDict, total=False):
 
 
 class SecurityGroupSecurityGroupRule(TypedDict, total=False):
-    description: str
-    """Rule description"""
-
-    direction: Literal["egress", "ingress"]
+    direction: Required[Literal["egress", "ingress"]]
     """
     Ingress or egress, which is the direction in which the security group is applied
     """
+
+    description: str
+    """Rule description"""
 
     ethertype: Literal["IPv4", "IPv6"]
     """Ether type"""

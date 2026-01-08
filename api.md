@@ -187,7 +187,6 @@ from gcore.types.cloud import (
     LbSessionPersistenceType,
     ListenerStatus,
     LoadBalancerFlavorDetail,
-    LoadBalancerFlavorList,
     LoadBalancerL7Policy,
     LoadBalancerL7PolicyList,
     LoadBalancerL7Rule,
@@ -195,11 +194,9 @@ from gcore.types.cloud import (
     LoadBalancerListenerDetail,
     LoadBalancerListenerList,
     LoadBalancerMetrics,
-    LoadBalancerMetricsList,
     LoadBalancerPool,
     LoadBalancerPoolList,
     LoadBalancerStatus,
-    LoadBalancerStatusList,
     Member,
     MemberStatus,
     PoolStatus,
@@ -239,9 +236,15 @@ Methods:
 
 ### Flavors
 
+Types:
+
+```python
+from gcore.types.cloud.load_balancers import FlavorListResponse
+```
+
 Methods:
 
-- <code title="get /cloud/v1/lbflavors/{project_id}/{region_id}">client.cloud.load_balancers.flavors.<a href="./src/gcore/resources/cloud/load_balancers/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_flavor_list.py">LoadBalancerFlavorList</a></code>
+- <code title="get /cloud/v1/lbflavors/{project_id}/{region_id}">client.cloud.load_balancers.flavors.<a href="./src/gcore/resources/cloud/load_balancers/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancers/flavor_list_response.py">FlavorListResponse</a></code>
 
 ### Listeners
 
@@ -279,15 +282,27 @@ Methods:
 
 ### Metrics
 
+Types:
+
+```python
+from gcore.types.cloud.load_balancers import MetricListResponse
+```
+
 Methods:
 
-- <code title="post /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/metrics">client.cloud.load_balancers.metrics.<a href="./src/gcore/resources/cloud/load_balancers/metrics.py">list</a>(load_balancer_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancer_metrics_list.py">LoadBalancerMetricsList</a></code>
+- <code title="post /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/metrics">client.cloud.load_balancers.metrics.<a href="./src/gcore/resources/cloud/load_balancers/metrics.py">list</a>(load_balancer_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/load_balancers/metric_list_response.py">MetricListResponse</a></code>
 
 ### Statuses
 
+Types:
+
+```python
+from gcore.types.cloud.load_balancers import StatusListResponse
+```
+
 Methods:
 
-- <code title="get /cloud/v1/loadbalancers/{project_id}/{region_id}/status">client.cloud.load_balancers.statuses.<a href="./src/gcore/resources/cloud/load_balancers/statuses.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_status_list.py">LoadBalancerStatusList</a></code>
+- <code title="get /cloud/v1/loadbalancers/{project_id}/{region_id}/status">client.cloud.load_balancers.statuses.<a href="./src/gcore/resources/cloud/load_balancers/statuses.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancers/status_list_response.py">StatusListResponse</a></code>
 - <code title="get /cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/status">client.cloud.load_balancers.statuses.<a href="./src/gcore/resources/cloud/load_balancers/statuses.py">get</a>(load_balancer_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/load_balancer_status.py">LoadBalancerStatus</a></code>
 
 ## ReservedFixedIPs
@@ -323,26 +338,31 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.reserved_fixed_ips.vip import CandidatePort, CandidatePortList
+from gcore.types.cloud.reserved_fixed_ips.vip import CandidatePort, CandidatePortListResponse
 ```
 
 Methods:
 
-- <code title="get /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices">client.cloud.reserved_fixed_ips.vip.candidate_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/candidate_ports.py">list</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/candidate_port_list.py">CandidatePortList</a></code>
+- <code title="get /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices">client.cloud.reserved_fixed_ips.vip.candidate_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/candidate_ports.py">list</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/candidate_port_list_response.py">CandidatePortListResponse</a></code>
 
 #### ConnectedPorts
 
 Types:
 
 ```python
-from gcore.types.cloud.reserved_fixed_ips.vip import ConnectedPort, ConnectedPortList
+from gcore.types.cloud.reserved_fixed_ips.vip import (
+    ConnectedPort,
+    ConnectedPortListResponse,
+    ConnectedPortAddResponse,
+    ConnectedPortReplaceResponse,
+)
 ```
 
 Methods:
 
-- <code title="get /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">list</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_list.py">ConnectedPortList</a></code>
-- <code title="patch /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">add</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_add_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_list.py">ConnectedPortList</a></code>
-- <code title="put /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">replace</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_list.py">ConnectedPortList</a></code>
+- <code title="get /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">list</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_list_response.py">ConnectedPortListResponse</a></code>
+- <code title="patch /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">add</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_add_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_add_response.py">ConnectedPortAddResponse</a></code>
+- <code title="put /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">replace</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_replace_response.py">ConnectedPortReplaceResponse</a></code>
 
 ## Networks
 
@@ -369,7 +389,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.networks import Router, RouterList, SubnetID
+from gcore.types.cloud.networks import Router, SubnetID
 ```
 
 Methods:
@@ -618,13 +638,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import PlacementGroup, PlacementGroupList
+from gcore.types.cloud import PlacementGroup, PlacementGroupListResponse
 ```
 
 Methods:
 
 - <code title="post /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/placement_group_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/placement_group.py">PlacementGroup</a></code>
-- <code title="get /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/placement_group_list.py">PlacementGroupList</a></code>
+- <code title="get /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/placement_group_list_response.py">PlacementGroupListResponse</a></code>
 - <code title="delete /cloud/v1/servergroups/{project_id}/{region_id}/{group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">delete</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/servergroups/{project_id}/{region_id}/{group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">get</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/placement_group.py">PlacementGroup</a></code>
 
@@ -957,12 +977,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.instances import InstanceFlavor, InstanceFlavorList
+from gcore.types.cloud.instances import InstanceFlavor, InstanceFlavorList, FlavorListResponse
 ```
 
 Methods:
 
-- <code title="get /cloud/v1/flavors/{project_id}/{region_id}">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_list.py">InstanceFlavorList</a></code>
+- <code title="get /cloud/v1/flavors/{project_id}/{region_id}">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/flavor_list_response.py">FlavorListResponse</a></code>
 
 ### Interfaces
 
@@ -1000,12 +1020,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import K8SClusterVersion, K8SClusterVersionList
+from gcore.types.cloud import K8SClusterVersion, K8SListVersionsResponse
 ```
 
 Methods:
 
-- <code title="get /cloud/v2/k8s/{project_id}/{region_id}/create_versions">client.cloud.k8s.<a href="./src/gcore/resources/cloud/k8s/k8s.py">list_versions</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8SClusterVersionList</a></code>
+- <code title="get /cloud/v2/k8s/{project_id}/{region_id}/create_versions">client.cloud.k8s.<a href="./src/gcore/resources/cloud/k8s/k8s.py">list_versions</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_list_versions_response.py">K8SListVersionsResponse</a></code>
 
 ### Flavors
 
@@ -1022,7 +1042,8 @@ from gcore.types.cloud.k8s import (
     K8SCluster,
     K8SClusterCertificate,
     K8SClusterKubeconfig,
-    K8SClusterList,
+    ClusterListResponse,
+    ClusterListVersionsForUpgradeResponse,
 )
 ```
 
@@ -1030,12 +1051,12 @@ Methods:
 
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="patch /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">update</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_list.py">K8SClusterList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/cluster_list_response.py">ClusterListResponse</a></code>
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">delete</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster.py">K8SCluster</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get_certificate</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_certificate.py">K8SClusterCertificate</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get_kubeconfig</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_kubeconfig.py">K8SClusterKubeconfig</a></code>
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list_versions_for_upgrade</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8SClusterVersionList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list_versions_for_upgrade</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/cluster_list_versions_for_upgrade_response.py">ClusterListVersionsForUpgradeResponse</a></code>
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">upgrade</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_upgrade_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 #### Nodes
@@ -1050,14 +1071,14 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.k8s.clusters import K8SClusterPool, K8SClusterPoolList, K8SClusterPoolQuota
+from gcore.types.cloud.k8s.clusters import K8SClusterPool, K8SClusterPoolQuota, PoolListResponse
 ```
 
 Methods:
 
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">create</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="patch /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">update</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8SClusterPool</a></code>
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">list</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_list.py">K8SClusterPoolList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">list</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/clusters/pool_list_response.py">PoolListResponse</a></code>
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">delete</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">check_quota</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_check_quota_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_quota.py">K8SClusterPoolQuota</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">get</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8SClusterPool</a></code>
