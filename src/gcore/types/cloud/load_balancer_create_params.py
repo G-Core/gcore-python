@@ -33,8 +33,10 @@ __all__ = [
 
 class LoadBalancerCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     flavor: str
     """Load balancer flavor name"""
@@ -277,12 +279,6 @@ class ListenerPool(TypedDict, total=False):
 
     healthmonitor: Optional[ListenerPoolHealthmonitor]
     """Health monitor details"""
-
-    listener_id: Optional[str]
-    """Listener ID"""
-
-    load_balancer_id: Optional[str]
-    """Loadbalancer ID"""
 
     members: Iterable[ListenerPoolMember]
     """Pool members"""

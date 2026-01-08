@@ -30,8 +30,8 @@ class Region(BaseModel):
     coordinates: Optional[Coordinates] = None
     """Coordinates of the region"""
 
-    country: Optional[str] = None
-    """Country"""
+    country: str
+    """Two-letter country code, ISO 3166-1 alpha-2"""
 
     created_at: datetime
     """Region creation date and time"""

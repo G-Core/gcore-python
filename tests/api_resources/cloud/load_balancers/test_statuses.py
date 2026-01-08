@@ -9,7 +9,8 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import LoadBalancerStatus, LoadBalancerStatusList
+from gcore.types.cloud import LoadBalancerStatus
+from gcore.types.cloud.load_balancers import StatusListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,52 +21,52 @@ class TestStatuses:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         status = client.cloud.load_balancers.statuses.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
-        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
+        assert_matches_type(StatusListResponse, status, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.statuses.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         status = response.parse()
-        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
+        assert_matches_type(StatusListResponse, status, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.load_balancers.statuses.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             status = response.parse()
-            assert_matches_type(LoadBalancerStatusList, status, path=["response"])
+            assert_matches_type(StatusListResponse, status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         status = client.cloud.load_balancers.statuses.get(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(LoadBalancerStatus, status, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.statuses.with_raw_response.get(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -76,9 +77,9 @@ class TestStatuses:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.load_balancers.statuses.with_streaming_response.get(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -93,8 +94,8 @@ class TestStatuses:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
             client.cloud.load_balancers.statuses.with_raw_response.get(
                 load_balancer_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
 
@@ -106,52 +107,52 @@ class TestAsyncStatuses:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         status = await async_client.cloud.load_balancers.statuses.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
-        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
+        assert_matches_type(StatusListResponse, status, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.statuses.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         status = await response.parse()
-        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
+        assert_matches_type(StatusListResponse, status, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.statuses.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             status = await response.parse()
-            assert_matches_type(LoadBalancerStatusList, status, path=["response"])
+            assert_matches_type(StatusListResponse, status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         status = await async_client.cloud.load_balancers.statuses.get(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(LoadBalancerStatus, status, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.statuses.with_raw_response.get(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -162,9 +163,9 @@ class TestAsyncStatuses:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.statuses.with_streaming_response.get(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,6 +180,6 @@ class TestAsyncStatuses:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
             await async_client.cloud.load_balancers.statuses.with_raw_response.get(
                 load_balancer_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )

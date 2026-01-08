@@ -135,6 +135,12 @@ class SecurityGroupsResource(SyncAPIResource):
         Update the configuration of an existing security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           changed_rules: List of rules to create or delete
 
           name: Name
@@ -278,6 +284,12 @@ class SecurityGroupsResource(SyncAPIResource):
         Delete a specific security group and all its associated rules.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -319,6 +331,12 @@ class SecurityGroupsResource(SyncAPIResource):
         Create a deep copy of an existing security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           name: Name.
 
           extra_headers: Send extra headers
@@ -361,6 +379,12 @@ class SecurityGroupsResource(SyncAPIResource):
         Get detailed information about a specific security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -400,6 +424,12 @@ class SecurityGroupsResource(SyncAPIResource):
         Revert a security group to its previous state.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -520,6 +550,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Update the configuration of an existing security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           changed_rules: List of rules to create or delete
 
           name: Name
@@ -663,6 +699,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Delete a specific security group and all its associated rules.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -704,6 +746,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Create a deep copy of an existing security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           name: Name.
 
           extra_headers: Send extra headers
@@ -746,6 +794,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Get detailed information about a specific security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -785,6 +839,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         Revert a security group to its previous state.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from .candidate_port import CandidatePort as CandidatePort
 from .connected_port import ConnectedPort as ConnectedPort
-from .candidate_port_list import CandidatePortList as CandidatePortList
-from .connected_port_list import ConnectedPortList as ConnectedPortList
 from .connected_port_add_params import ConnectedPortAddParams as ConnectedPortAddParams
+from .connected_port_add_response import ConnectedPortAddResponse as ConnectedPortAddResponse
+from .candidate_port_list_response import CandidatePortListResponse as CandidatePortListResponse
+from .connected_port_list_response import ConnectedPortListResponse as ConnectedPortListResponse
 from .connected_port_replace_params import ConnectedPortReplaceParams as ConnectedPortReplaceParams
+from .connected_port_replace_response import ConnectedPortReplaceResponse as ConnectedPortReplaceResponse

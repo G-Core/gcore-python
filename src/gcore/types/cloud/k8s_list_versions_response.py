@@ -3,14 +3,14 @@
 from typing import List
 
 from ..._models import BaseModel
-from .load_balancer_flavor_detail import LoadBalancerFlavorDetail
+from .k8s_cluster_version import K8SClusterVersion
 
-__all__ = ["LoadBalancerFlavorList"]
+__all__ = ["K8SListVersionsResponse"]
 
 
-class LoadBalancerFlavorList(BaseModel):
+class K8SListVersionsResponse(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[LoadBalancerFlavorDetail]
+    results: List[K8SClusterVersion]
     """Objects"""

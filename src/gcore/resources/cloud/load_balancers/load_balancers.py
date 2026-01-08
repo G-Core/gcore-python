@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -157,6 +158,10 @@ class LoadBalancersResource(SyncAPIResource):
         Create load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           flavor: Load balancer flavor name
 
           floating_ip: Floating IP configuration for assignment
@@ -257,6 +262,12 @@ class LoadBalancersResource(SyncAPIResource):
         remain unchanged.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           logging: Logging configuration
 
           name: Name.
@@ -332,7 +343,25 @@ class LoadBalancersResource(SyncAPIResource):
         logging_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
-        order_by: str | Omit = omit,
+        order_by: Literal[
+            "created_at.asc",
+            "created_at.desc",
+            "flavor.asc",
+            "flavor.desc",
+            "name.asc",
+            "name.desc",
+            "operating_status.asc",
+            "operating_status.desc",
+            "provisioning_status.asc",
+            "provisioning_status.desc",
+            "updated_at.asc",
+            "updated_at.desc",
+            "vip_address.asc",
+            "vip_address.desc",
+            "vip_ip_family.asc",
+            "vip_ip_family.desc",
+        ]
+        | Omit = omit,
         show_stats: bool | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -348,26 +377,27 @@ class LoadBalancersResource(SyncAPIResource):
         List load balancers
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           assigned_floating: With or without assigned floating IP
 
-          limit: Limit the number of returned limit request entities.
+          limit: Limit of items on a single page
 
-          logging_enabled: With or without logging
+          logging_enabled: With or without logging enabled
 
           name: Filter by name
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          offset: Offset in results list
 
-          order_by: Ordering Load Balancer list result by name, `created_at`, `updated_at`,
-              `operating_status`, `provisioning_status`, `vip_address`, `vip_ip_family` and
-              flavor fields of the load balancer and directions (name.asc), default is
-              "`created_at`.asc"
+          order_by: Order by field and direction.
 
           show_stats: Show statistics
 
-          tag_key: Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           with_ddos: Show Advanced DDoS protection profile, if exists
 
@@ -621,6 +651,12 @@ class LoadBalancersResource(SyncAPIResource):
         Delete load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -661,6 +697,12 @@ class LoadBalancersResource(SyncAPIResource):
         Failover load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           force: Validate current load balancer status before failover or not.
 
           extra_headers: Send extra headers
@@ -705,9 +747,15 @@ class LoadBalancersResource(SyncAPIResource):
         Get load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           show_stats: Show statistics
 
-          with_ddos: Show DDoS profile
+          with_ddos: Show Advanced DDoS protection profile, if exists
 
           extra_headers: Send extra headers
 
@@ -759,6 +807,12 @@ class LoadBalancersResource(SyncAPIResource):
         Resize load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           flavor: Name of the desired flavor to resize to.
 
           extra_headers: Send extra headers
@@ -857,6 +911,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Create load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           flavor: Load balancer flavor name
 
           floating_ip: Floating IP configuration for assignment
@@ -957,6 +1015,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         remain unchanged.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           logging: Logging configuration
 
           name: Name.
@@ -1032,7 +1096,25 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         logging_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
-        order_by: str | Omit = omit,
+        order_by: Literal[
+            "created_at.asc",
+            "created_at.desc",
+            "flavor.asc",
+            "flavor.desc",
+            "name.asc",
+            "name.desc",
+            "operating_status.asc",
+            "operating_status.desc",
+            "provisioning_status.asc",
+            "provisioning_status.desc",
+            "updated_at.asc",
+            "updated_at.desc",
+            "vip_address.asc",
+            "vip_address.desc",
+            "vip_ip_family.asc",
+            "vip_ip_family.desc",
+        ]
+        | Omit = omit,
         show_stats: bool | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -1048,26 +1130,27 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         List load balancers
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           assigned_floating: With or without assigned floating IP
 
-          limit: Limit the number of returned limit request entities.
+          limit: Limit of items on a single page
 
-          logging_enabled: With or without logging
+          logging_enabled: With or without logging enabled
 
           name: Filter by name
 
-          offset: Offset value is used to exclude the first set of records from the result.
+          offset: Offset in results list
 
-          order_by: Ordering Load Balancer list result by name, `created_at`, `updated_at`,
-              `operating_status`, `provisioning_status`, `vip_address`, `vip_ip_family` and
-              flavor fields of the load balancer and directions (name.asc), default is
-              "`created_at`.asc"
+          order_by: Order by field and direction.
 
           show_stats: Show statistics
 
-          tag_key: Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           with_ddos: Show Advanced DDoS protection profile, if exists
 
@@ -1321,6 +1404,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Delete load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1361,6 +1450,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Failover load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           force: Validate current load balancer status before failover or not.
 
           extra_headers: Send extra headers
@@ -1407,9 +1502,15 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Get load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           show_stats: Show statistics
 
-          with_ddos: Show DDoS profile
+          with_ddos: Show Advanced DDoS protection profile, if exists
 
           extra_headers: Send extra headers
 
@@ -1461,6 +1562,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         Resize load balancer
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           flavor: Name of the desired flavor to resize to.
 
           extra_headers: Send extra headers
