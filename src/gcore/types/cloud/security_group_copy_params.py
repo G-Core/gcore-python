@@ -9,8 +9,10 @@ __all__ = ["SecurityGroupCopyParams"]
 
 class SecurityGroupCopyParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     name: Required[str]
     """Name."""

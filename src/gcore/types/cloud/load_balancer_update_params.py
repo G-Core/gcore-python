@@ -14,8 +14,10 @@ __all__ = ["LoadBalancerUpdateParams", "Logging"]
 
 class LoadBalancerUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     logging: Logging
     """Logging configuration"""

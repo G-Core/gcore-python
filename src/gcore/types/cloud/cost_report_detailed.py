@@ -365,6 +365,9 @@ class ResultResourceEgressTrafficWithCostSerializer(BaseModel):
     first_seen: datetime
     """First time the resource was seen in the given period"""
 
+    instance_name: Optional[str] = None
+    """Name of the instance"""
+
     instance_type: Literal["baremetal", "vm"]
     """Type of the instance"""
 
@@ -393,9 +396,6 @@ class ResultResourceEgressTrafficWithCostSerializer(BaseModel):
 
     vm_id: str
     """ID of the bare metal server the traffic is associated with"""
-
-    instance_name: Optional[str] = None
-    """Name of the instance"""
 
 
 class ResultResourceExternalIPWithCostSerializer(BaseModel):
@@ -1011,6 +1011,9 @@ class ResultResourceSnapshotWithCostSerializer(BaseModel):
 
 
 class ResultResourceVolumeWithCostSerializer(BaseModel):
+    attached_to_vm: Optional[str] = None
+    """ID of the VM the volume is attached to"""
+
     billing_feature_name: Optional[str] = None
 
     billing_metric_name: str
@@ -1065,9 +1068,6 @@ class ResultResourceVolumeWithCostSerializer(BaseModel):
 
     volume_type: str
     """Type of the volume"""
-
-    attached_to_vm: Optional[str] = None
-    """ID of the VM the volume is attached to"""
 
 
 class ResultResourceDbaasPostgreSQLPoolerWithCostSerializer(BaseModel):

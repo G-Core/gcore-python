@@ -9,11 +9,13 @@ __all__ = ["LoadBalancerGetParams"]
 
 class LoadBalancerGetParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     show_stats: bool
     """Show statistics"""
 
     with_ddos: bool
-    """Show DDoS profile"""
+    """Show Advanced DDoS protection profile, if exists"""

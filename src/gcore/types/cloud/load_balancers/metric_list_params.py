@@ -11,8 +11,10 @@ __all__ = ["MetricListParams"]
 
 class MetricListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     time_interval: Required[int]
     """Time interval"""

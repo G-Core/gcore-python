@@ -230,7 +230,7 @@ class TestDeployments:
             command=["nginx", "-g", "daemon off;"],
             containers=[
                 {
-                    "region_id": 0,
+                    "region_id": 1337,
                     "scale": {
                         "max": 3,
                         "min": 1,
@@ -839,7 +839,7 @@ class TestAsyncDeployments:
             command=["nginx", "-g", "daemon off;"],
             containers=[
                 {
-                    "region_id": 0,
+                    "region_id": 1337,
                     "scale": {
                         "max": 3,
                         "min": 1,

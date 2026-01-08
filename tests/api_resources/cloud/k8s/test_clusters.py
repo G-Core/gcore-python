@@ -9,12 +9,13 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList, K8SClusterVersionList
+from gcore.types.cloud import TaskIDList
 from gcore.types.cloud.k8s import (
     K8SCluster,
-    K8SClusterList,
+    ClusterListResponse,
     K8SClusterKubeconfig,
     K8SClusterCertificate,
+    ClusterListVersionsForUpgradeResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -290,7 +291,7 @@ class TestClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(K8SClusterList, cluster, path=["response"])
+        assert_matches_type(ClusterListResponse, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -302,7 +303,7 @@ class TestClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cluster = response.parse()
-        assert_matches_type(K8SClusterList, cluster, path=["response"])
+        assert_matches_type(ClusterListResponse, cluster, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -314,7 +315,7 @@ class TestClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cluster = response.parse()
-            assert_matches_type(K8SClusterList, cluster, path=["response"])
+            assert_matches_type(ClusterListResponse, cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -519,7 +520,7 @@ class TestClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+        assert_matches_type(ClusterListVersionsForUpgradeResponse, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_list_versions_for_upgrade(self, client: Gcore) -> None:
@@ -532,7 +533,7 @@ class TestClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cluster = response.parse()
-        assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+        assert_matches_type(ClusterListVersionsForUpgradeResponse, cluster, path=["response"])
 
     @parametrize
     def test_streaming_response_list_versions_for_upgrade(self, client: Gcore) -> None:
@@ -545,7 +546,7 @@ class TestClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cluster = response.parse()
-            assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+            assert_matches_type(ClusterListVersionsForUpgradeResponse, cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -881,7 +882,7 @@ class TestAsyncClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(K8SClusterList, cluster, path=["response"])
+        assert_matches_type(ClusterListResponse, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -893,7 +894,7 @@ class TestAsyncClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cluster = await response.parse()
-        assert_matches_type(K8SClusterList, cluster, path=["response"])
+        assert_matches_type(ClusterListResponse, cluster, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -905,7 +906,7 @@ class TestAsyncClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cluster = await response.parse()
-            assert_matches_type(K8SClusterList, cluster, path=["response"])
+            assert_matches_type(ClusterListResponse, cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1110,7 +1111,7 @@ class TestAsyncClusters:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+        assert_matches_type(ClusterListVersionsForUpgradeResponse, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_list_versions_for_upgrade(self, async_client: AsyncGcore) -> None:
@@ -1123,7 +1124,7 @@ class TestAsyncClusters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cluster = await response.parse()
-        assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+        assert_matches_type(ClusterListVersionsForUpgradeResponse, cluster, path=["response"])
 
     @parametrize
     async def test_streaming_response_list_versions_for_upgrade(self, async_client: AsyncGcore) -> None:
@@ -1136,7 +1137,7 @@ class TestAsyncClusters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cluster = await response.parse()
-            assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+            assert_matches_type(ClusterListVersionsForUpgradeResponse, cluster, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

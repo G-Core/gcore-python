@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import LoadBalancerMetricsList
+from gcore.types.cloud.load_balancers import MetricListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,20 +20,20 @@ class TestMetrics:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         metric = client.cloud.load_balancers.metrics.list(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
             time_interval=6,
             time_unit="day",
         )
-        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
+        assert_matches_type(MetricListResponse, metric, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.metrics.with_raw_response.list(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
             time_interval=6,
             time_unit="day",
         )
@@ -41,14 +41,14 @@ class TestMetrics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = response.parse()
-        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
+        assert_matches_type(MetricListResponse, metric, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.load_balancers.metrics.with_streaming_response.list(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
             time_interval=6,
             time_unit="day",
         ) as response:
@@ -56,7 +56,7 @@ class TestMetrics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = response.parse()
-            assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
+            assert_matches_type(MetricListResponse, metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -65,8 +65,8 @@ class TestMetrics:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
             client.cloud.load_balancers.metrics.with_raw_response.list(
                 load_balancer_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
                 time_interval=6,
                 time_unit="day",
             )
@@ -80,20 +80,20 @@ class TestAsyncMetrics:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         metric = await async_client.cloud.load_balancers.metrics.list(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
             time_interval=6,
             time_unit="day",
         )
-        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
+        assert_matches_type(MetricListResponse, metric, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.load_balancers.metrics.with_raw_response.list(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
             time_interval=6,
             time_unit="day",
         )
@@ -101,14 +101,14 @@ class TestAsyncMetrics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = await response.parse()
-        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
+        assert_matches_type(MetricListResponse, metric, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.load_balancers.metrics.with_streaming_response.list(
-            load_balancer_id="load_balancer_id",
-            project_id=0,
-            region_id=0,
+            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+            project_id=1,
+            region_id=7,
             time_interval=6,
             time_unit="day",
         ) as response:
@@ -116,7 +116,7 @@ class TestAsyncMetrics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = await response.parse()
-            assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
+            assert_matches_type(MetricListResponse, metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -125,8 +125,8 @@ class TestAsyncMetrics:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
             await async_client.cloud.load_balancers.metrics.with_raw_response.list(
                 load_balancer_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
                 time_interval=6,
                 time_unit="day",
             )
