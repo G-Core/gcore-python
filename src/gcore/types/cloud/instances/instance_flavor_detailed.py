@@ -1,19 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 
 __all__ = [
-    "FlavorListResponse",
-    "Result",
-    "ResultInstanceFlavorExtendedSerializerWithoutPrice",
-    "ResultInstanceFlavorExtendedSerializerWithPrice",
+    "InstanceFlavorDetailed",
+    "InstanceFlavorExtendedSerializerWithoutPrice",
+    "InstanceFlavorExtendedSerializerWithPrice",
 ]
 
 
-class ResultInstanceFlavorExtendedSerializerWithoutPrice(BaseModel):
+class InstanceFlavorExtendedSerializerWithoutPrice(BaseModel):
     """Instances flavor schema without price information"""
 
     architecture: str
@@ -41,7 +40,7 @@ class ResultInstanceFlavorExtendedSerializerWithoutPrice(BaseModel):
     """Virtual CPU count"""
 
 
-class ResultInstanceFlavorExtendedSerializerWithPrice(BaseModel):
+class InstanceFlavorExtendedSerializerWithPrice(BaseModel):
     """Instances flavor schema with price information"""
 
     architecture: str
@@ -81,14 +80,6 @@ class ResultInstanceFlavorExtendedSerializerWithPrice(BaseModel):
     """Virtual CPU count"""
 
 
-Result: TypeAlias = Union[
-    ResultInstanceFlavorExtendedSerializerWithoutPrice, ResultInstanceFlavorExtendedSerializerWithPrice
+InstanceFlavorDetailed: TypeAlias = Union[
+    InstanceFlavorExtendedSerializerWithoutPrice, InstanceFlavorExtendedSerializerWithPrice
 ]
-
-
-class FlavorListResponse(BaseModel):
-    count: int
-    """Number of objects"""
-
-    results: List[Result]
-    """Objects"""
