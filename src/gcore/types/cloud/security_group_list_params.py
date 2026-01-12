@@ -19,6 +19,9 @@ class SecurityGroupListParams(TypedDict, total=False):
     limit: int
     """Limit of items on a single page"""
 
+    name: str
+    """Optional. Filter by name. Must be specified a full name of the security group."""
+
     offset: int
     """Offset in results list"""
 
