@@ -176,7 +176,9 @@ class GPUVirtualCluster(BaseModel):
 
     servers_settings: ServersSettings
 
-    status: Literal["active", "deleting", "error", "new", "resizing"]
+    status: Literal[
+        "active", "creating", "degraded", "deleting", "error", "new", "rebooting", "rebuilding", "resizing", "shutoff"
+    ]
     """Cluster status"""
 
     tags: List[Tag]

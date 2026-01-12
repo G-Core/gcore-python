@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable, Optional
 
 import httpx
@@ -62,6 +63,7 @@ class SecurityGroupsResource(SyncAPIResource):
         """
         return SecurityGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -77,7 +79,7 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroup:
         """
-        Create a new security group with the specified configuration.
+        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>` instead.
 
         Args:
           project_id: Project ID
@@ -115,6 +117,7 @@ class SecurityGroupsResource(SyncAPIResource):
             cast_to=SecurityGroup,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         group_id: str,
@@ -132,7 +135,8 @@ class SecurityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroup:
         """
-        Update the configuration of an existing security group.
+        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>/<group_id>`
+        instead.
 
         Args:
           project_id: Project ID
@@ -208,6 +212,7 @@ class SecurityGroupsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -227,6 +232,8 @@ class SecurityGroupsResource(SyncAPIResource):
           region_id: Region ID
 
           limit: Limit of items on a single page
+
+          name: Optional. Filter by name. Must be specified a full name of the security group.
 
           offset: Offset in results list
 
@@ -257,6 +264,7 @@ class SecurityGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
@@ -477,6 +485,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         """
         return AsyncSecurityGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -492,7 +501,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroup:
         """
-        Create a new security group with the specified configuration.
+        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>` instead.
 
         Args:
           project_id: Project ID
@@ -530,6 +539,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
             cast_to=SecurityGroup,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         group_id: str,
@@ -547,7 +557,8 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityGroup:
         """
-        Update the configuration of an existing security group.
+        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>/<group_id>`
+        instead.
 
         Args:
           project_id: Project ID
@@ -623,6 +634,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -642,6 +654,8 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
           region_id: Region ID
 
           limit: Limit of items on a single page
+
+          name: Optional. Filter by name. Must be specified a full name of the security group.
 
           offset: Offset in results list
 
@@ -672,6 +686,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
@@ -872,11 +887,15 @@ class SecurityGroupsResourceWithRawResponse:
     def __init__(self, security_groups: SecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = to_raw_response_wrapper(
-            security_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                security_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_raw_response_wrapper(
-            security_groups.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                security_groups.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             security_groups.list,
@@ -903,11 +922,15 @@ class AsyncSecurityGroupsResourceWithRawResponse:
     def __init__(self, security_groups: AsyncSecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = async_to_raw_response_wrapper(
-            security_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                security_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_raw_response_wrapper(
-            security_groups.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                security_groups.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             security_groups.list,
@@ -934,11 +957,15 @@ class SecurityGroupsResourceWithStreamingResponse:
     def __init__(self, security_groups: SecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = to_streamed_response_wrapper(
-            security_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                security_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_streamed_response_wrapper(
-            security_groups.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                security_groups.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             security_groups.list,
@@ -965,11 +992,15 @@ class AsyncSecurityGroupsResourceWithStreamingResponse:
     def __init__(self, security_groups: AsyncSecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = async_to_streamed_response_wrapper(
-            security_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                security_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_streamed_response_wrapper(
-            security_groups.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                security_groups.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             security_groups.list,
