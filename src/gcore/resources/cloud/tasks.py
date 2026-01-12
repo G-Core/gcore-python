@@ -108,9 +108,9 @@ class TasksResource(SyncAPIResource):
               '`create_l7rule`', '`create_lblistener`', '`create_lbmember`',
               '`create_lbpool`', '`create_lbpool_health_monitor`', '`create_loadbalancer`',
               '`create_network`', '`create_reserved_fixed_ip`', '`create_router`',
-              '`create_secret`', '`create_servergroup`', '`create_sfs`', '`create_snapshot`',
-              '`create_subnet`', '`create_vm`', '`create_volume`',
-              '`deactivate_ddos_profile`', '`delete_ai_cluster_gpu`',
+              '`create_secret`', '`create_security_group`', '`create_servergroup`',
+              '`create_sfs`', '`create_snapshot`', '`create_subnet`', '`create_vm`',
+              '`create_volume`', '`deactivate_ddos_profile`', '`delete_ai_cluster_gpu`',
               '`delete_caas_container`', '`delete_dbaas_postgres_cluster`',
               '`delete_ddos_profile`', '`delete_faas_function`', '`delete_faas_namespace`',
               '`delete_fip`', '`delete_gpu_virtual_cluster`', '`delete_gpu_virtual_server`',
@@ -140,8 +140,8 @@ class TasksResource(SyncAPIResource):
               '`suspend_vm`', '`sync_private_flavors`', '`update_ddos_profile`',
               '`update_inference_application`', '`update_inference_instance`',
               '`update_k8s_cluster_v2`', '`update_l7policy`', '`update_lbmetadata`',
-              '`update_port_allowed_address_pairs`', '`update_sfs`',
-              '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
+              '`update_port_allowed_address_pairs`', '`update_security_group`',
+              '`update_sfs`', '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
               '`upscale_ai_cluster_gpu`', '`upscale_gpu_virtual_cluster`']
 
           to_timestamp: ISO formatted datetime string. Filter the tasks by creation date less than or
@@ -383,9 +383,9 @@ class AsyncTasksResource(AsyncAPIResource):
               '`create_l7rule`', '`create_lblistener`', '`create_lbmember`',
               '`create_lbpool`', '`create_lbpool_health_monitor`', '`create_loadbalancer`',
               '`create_network`', '`create_reserved_fixed_ip`', '`create_router`',
-              '`create_secret`', '`create_servergroup`', '`create_sfs`', '`create_snapshot`',
-              '`create_subnet`', '`create_vm`', '`create_volume`',
-              '`deactivate_ddos_profile`', '`delete_ai_cluster_gpu`',
+              '`create_secret`', '`create_security_group`', '`create_servergroup`',
+              '`create_sfs`', '`create_snapshot`', '`create_subnet`', '`create_vm`',
+              '`create_volume`', '`deactivate_ddos_profile`', '`delete_ai_cluster_gpu`',
               '`delete_caas_container`', '`delete_dbaas_postgres_cluster`',
               '`delete_ddos_profile`', '`delete_faas_function`', '`delete_faas_namespace`',
               '`delete_fip`', '`delete_gpu_virtual_cluster`', '`delete_gpu_virtual_server`',
@@ -415,8 +415,8 @@ class AsyncTasksResource(AsyncAPIResource):
               '`suspend_vm`', '`sync_private_flavors`', '`update_ddos_profile`',
               '`update_inference_application`', '`update_inference_instance`',
               '`update_k8s_cluster_v2`', '`update_l7policy`', '`update_lbmetadata`',
-              '`update_port_allowed_address_pairs`', '`update_sfs`',
-              '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
+              '`update_port_allowed_address_pairs`', '`update_security_group`',
+              '`update_sfs`', '`update_tags_gpu_virtual_cluster`', '`upgrade_k8s_cluster_v2`',
               '`upscale_ai_cluster_gpu`', '`upscale_gpu_virtual_cluster`']
 
           to_timestamp: ISO formatted datetime string. Filter the tasks by creation date less than or
