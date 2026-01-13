@@ -161,7 +161,6 @@ class AuditLogEntry(BaseModel):
 
     api_group: Literal[
         "ai_cluster",
-        "backup_service",
         "caas_container",
         "caas_key",
         "caas_pull_secret",

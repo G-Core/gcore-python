@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
@@ -24,8 +23,8 @@ class RegistryUserCreated(BaseModel):
     name: str
     """User name"""
 
-    read_only: Optional[bool] = None
+    read_only: bool
     """Read-only user"""
 
-    secret: Optional[str] = None
+    secret: str
     """User secret"""

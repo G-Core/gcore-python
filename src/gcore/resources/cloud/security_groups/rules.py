@@ -50,8 +50,8 @@ class RulesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        direction: Literal["egress", "ingress"],
         description: str | Omit = omit,
-        direction: Literal["egress", "ingress"] | Omit = omit,
         ethertype: Literal["IPv4", "IPv6"] | Omit = omit,
         port_range_max: Optional[int] | Omit = omit,
         port_range_min: Optional[int] | Omit = omit,
@@ -95,9 +95,15 @@ class RulesResource(SyncAPIResource):
         Add a new rule to an existing security group.
 
         Args:
-          description: Rule description
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
 
           direction: Ingress or egress, which is the direction in which the security group is applied
+
+          description: Rule description
 
           ethertype: Ether type
 
@@ -129,8 +135,8 @@ class RulesResource(SyncAPIResource):
             f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules",
             body=maybe_transform(
                 {
-                    "description": description,
                     "direction": direction,
+                    "description": description,
                     "ethertype": ethertype,
                     "port_range_max": port_range_max,
                     "port_range_min": port_range_min,
@@ -163,6 +169,12 @@ class RulesResource(SyncAPIResource):
         Delete a specific rule from a security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          rule_id: Rule ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -238,6 +250,12 @@ class RulesResource(SyncAPIResource):
         Update the configuration of an existing security group rule.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          rule_id: Rule ID
+
           direction: Ingress or egress, which is the direction in which the security group rule is
               applied
 
@@ -321,8 +339,8 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        direction: Literal["egress", "ingress"],
         description: str | Omit = omit,
-        direction: Literal["egress", "ingress"] | Omit = omit,
         ethertype: Literal["IPv4", "IPv6"] | Omit = omit,
         port_range_max: Optional[int] | Omit = omit,
         port_range_min: Optional[int] | Omit = omit,
@@ -366,9 +384,15 @@ class AsyncRulesResource(AsyncAPIResource):
         Add a new rule to an existing security group.
 
         Args:
-          description: Rule description
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: Group ID
 
           direction: Ingress or egress, which is the direction in which the security group is applied
+
+          description: Rule description
 
           ethertype: Ether type
 
@@ -400,8 +424,8 @@ class AsyncRulesResource(AsyncAPIResource):
             f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules",
             body=await async_maybe_transform(
                 {
-                    "description": description,
                     "direction": direction,
+                    "description": description,
                     "ethertype": ethertype,
                     "port_range_max": port_range_max,
                     "port_range_min": port_range_min,
@@ -434,6 +458,12 @@ class AsyncRulesResource(AsyncAPIResource):
         Delete a specific rule from a security group.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          rule_id: Rule ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -509,6 +539,12 @@ class AsyncRulesResource(AsyncAPIResource):
         Update the configuration of an existing security group rule.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          rule_id: Rule ID
+
           direction: Ingress or egress, which is the direction in which the security group rule is
               applied
 

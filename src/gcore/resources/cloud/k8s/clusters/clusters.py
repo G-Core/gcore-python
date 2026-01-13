@@ -41,10 +41,10 @@ from .....types.cloud.k8s import (
 )
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.k8s.k8s_cluster import K8SCluster
-from .....types.cloud.k8s.k8s_cluster_list import K8SClusterList
-from .....types.cloud.k8s_cluster_version_list import K8SClusterVersionList
+from .....types.cloud.k8s.cluster_list_response import ClusterListResponse
 from .....types.cloud.k8s.k8s_cluster_kubeconfig import K8SClusterKubeconfig
 from .....types.cloud.k8s.k8s_cluster_certificate import K8SClusterCertificate
+from .....types.cloud.k8s.cluster_list_versions_for_upgrade_response import ClusterListVersionsForUpgradeResponse
 
 __all__ = ["ClustersResource", "AsyncClustersResource"]
 
@@ -381,7 +381,7 @@ class ClustersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterList:
+    ) -> ClusterListResponse:
         """
         List k8s clusters
 
@@ -403,7 +403,7 @@ class ClustersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SClusterList,
+            cast_to=ClusterListResponse,
         )
 
     def delete(
@@ -581,7 +581,7 @@ class ClustersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterVersionList:
+    ) -> ClusterListVersionsForUpgradeResponse:
         """
         List available k8s cluster versions for upgrade
 
@@ -605,7 +605,7 @@ class ClustersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SClusterVersionList,
+            cast_to=ClusterListVersionsForUpgradeResponse,
         )
 
     def upgrade(
@@ -984,7 +984,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterList:
+    ) -> ClusterListResponse:
         """
         List k8s clusters
 
@@ -1006,7 +1006,7 @@ class AsyncClustersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SClusterList,
+            cast_to=ClusterListResponse,
         )
 
     async def delete(
@@ -1184,7 +1184,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterVersionList:
+    ) -> ClusterListVersionsForUpgradeResponse:
         """
         List available k8s cluster versions for upgrade
 
@@ -1208,7 +1208,7 @@ class AsyncClustersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SClusterVersionList,
+            cast_to=ClusterListVersionsForUpgradeResponse,
         )
 
     async def upgrade(

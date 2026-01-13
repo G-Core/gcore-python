@@ -3,23 +3,25 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["RuleCreateParams"]
 
 
 class RuleCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
-    description: str
-    """Rule description"""
-
-    direction: Literal["egress", "ingress"]
+    direction: Required[Literal["egress", "ingress"]]
     """
     Ingress or egress, which is the direction in which the security group is applied
     """
+
+    description: str
+    """Rule description"""
 
     ethertype: Literal["IPv4", "IPv6"]
     """Ether type"""

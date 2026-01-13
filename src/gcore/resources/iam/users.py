@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -52,13 +52,11 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]] | Omit = omit,
-        company: str | Omit = omit,
-        email: str | Omit = omit,
-        groups: Iterable[user_update_params.Group] | Omit = omit,
-        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        phone: Optional[str] | Omit = omit,
+        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]],
+        email: str,
+        lang: Literal["de", "en", "ru", "zh", "az"],
+        name: Optional[str],
+        phone: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,19 +71,7 @@ class UsersResource(SyncAPIResource):
 
         List of auth types available for the account.
 
-          company: User's company.
-
           email: User's email address.
-
-          groups: User's group in the current account.
-
-              IAM supports 5 groups:
-
-              - Users
-              - Administrators
-              - Engineers
-              - Purge and Prefetch only (API)
-              - Purge and Prefetch only (API+Web)
 
           lang: User's language.
 
@@ -108,9 +94,7 @@ class UsersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "auth_types": auth_types,
-                    "company": company,
                     "email": email,
-                    "groups": groups,
                     "lang": lang,
                     "name": name,
                     "phone": phone,
@@ -325,13 +309,11 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]] | Omit = omit,
-        company: str | Omit = omit,
-        email: str | Omit = omit,
-        groups: Iterable[user_update_params.Group] | Omit = omit,
-        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        phone: Optional[str] | Omit = omit,
+        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]],
+        email: str,
+        lang: Literal["de", "en", "ru", "zh", "az"],
+        name: Optional[str],
+        phone: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -346,19 +328,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
         List of auth types available for the account.
 
-          company: User's company.
-
           email: User's email address.
-
-          groups: User's group in the current account.
-
-              IAM supports 5 groups:
-
-              - Users
-              - Administrators
-              - Engineers
-              - Purge and Prefetch only (API)
-              - Purge and Prefetch only (API+Web)
 
           lang: User's language.
 
@@ -381,9 +351,7 @@ class AsyncUsersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "auth_types": auth_types,
-                    "company": company,
                     "email": email,
-                    "groups": groups,
                     "lang": lang,
                     "name": name,
                     "phone": phone,

@@ -15,7 +15,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.load_balancer_status import LoadBalancerStatus
-from ....types.cloud.load_balancer_status_list import LoadBalancerStatusList
+from ....types.cloud.load_balancers.status_list_response import StatusListResponse
 
 __all__ = ["StatusesResource", "AsyncStatusesResource"]
 
@@ -51,11 +51,15 @@ class StatusesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerStatusList:
+    ) -> StatusListResponse:
         """
         List load balancers statuses
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -73,7 +77,7 @@ class StatusesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerStatusList,
+            cast_to=StatusListResponse,
         )
 
     def get(
@@ -93,6 +97,12 @@ class StatusesResource(SyncAPIResource):
         Get load balancer status
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -147,11 +157,15 @@ class AsyncStatusesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerStatusList:
+    ) -> StatusListResponse:
         """
         List load balancers statuses
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -169,7 +183,7 @@ class AsyncStatusesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoadBalancerStatusList,
+            cast_to=StatusListResponse,
         )
 
     async def get(
@@ -189,6 +203,12 @@ class AsyncStatusesResource(AsyncAPIResource):
         Get load balancer status
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          load_balancer_id: Load-Balancer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

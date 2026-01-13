@@ -1,15 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
-from pydantic import Field as FieldInfo
+from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ZoneGetResponse", "Zone", "ZoneRecord", "ZoneRrsetsAmount", "ZoneRrsetsAmountDynamic"]
+__all__ = ["ZoneGetResponse", "Record", "RrsetsAmount", "RrsetsAmountDynamic"]
 
 
-class ZoneRecord(BaseModel):
+class Record(BaseModel):
     """Record - readonly short version of rrset"""
 
     name: Optional[str] = None
@@ -21,7 +19,7 @@ class ZoneRecord(BaseModel):
     type: Optional[str] = None
 
 
-class ZoneRrsetsAmountDynamic(BaseModel):
+class RrsetsAmountDynamic(BaseModel):
     """Amount of dynamic RRsets in zone"""
 
     healthcheck: Optional[int] = None
@@ -31,8 +29,8 @@ class ZoneRrsetsAmountDynamic(BaseModel):
     """Total amount of dynamic RRsets in zone"""
 
 
-class ZoneRrsetsAmount(BaseModel):
-    dynamic: Optional[ZoneRrsetsAmountDynamic] = None
+class RrsetsAmount(BaseModel):
+    dynamic: Optional[RrsetsAmountDynamic] = None
     """Amount of dynamic RRsets in zone"""
 
     static: Optional[int] = None
@@ -42,16 +40,14 @@ class ZoneRrsetsAmount(BaseModel):
     """Total amount of RRsets in zone"""
 
 
-class Zone(BaseModel):
-    """OutputZone"""
+class ZoneGetResponse(BaseModel):
+    """Complete zone info with all records included"""
 
     id: Optional[int] = None
     """
     ID of zone. This field usually is omitted in response and available only in case
     of getting deleted zones by admin.
     """
-
-    client_id: Optional[int] = None
 
     contact: Optional[str] = None
     """email address of the administrator responsible for this zone"""
@@ -62,13 +58,15 @@ class Zone(BaseModel):
     dnssec is disabled for the zone
     """
 
+    enabled: Optional[bool] = None
+
     expiry: Optional[int] = None
     """
     number of seconds after which secondary name servers should stop answering
     request for this zone
     """
 
-    meta: Optional[object] = None
+    meta: Optional[Dict[str, object]] = None
     """arbitrarily data of zone in json format"""
 
     name: Optional[str] = None
@@ -80,7 +78,7 @@ class Zone(BaseModel):
     primary_server: Optional[str] = None
     """primary master name server for zone"""
 
-    records: Optional[List[ZoneRecord]] = None
+    records: Optional[List[Record]] = None
 
     refresh: Optional[int] = None
     """
@@ -94,7 +92,7 @@ class Zone(BaseModel):
     serial number
     """
 
-    rrsets_amount: Optional[ZoneRrsetsAmount] = None
+    rrsets_amount: Optional[RrsetsAmount] = None
 
     serial: Optional[int] = None
     """
@@ -105,10 +103,3 @@ class Zone(BaseModel):
     """
 
     status: Optional[str] = None
-
-
-class ZoneGetResponse(BaseModel):
-    """Complete zone info with all records included"""
-
-    zone: Optional[Zone] = FieldInfo(alias="Zone", default=None)
-    """OutputZone"""

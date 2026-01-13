@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.29.0 (2026-01-13)
+
+Full Changelog: [v0.28.0...v0.29.0](https://github.com/G-Core/gcore-python/compare/v0.28.0...v0.29.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** rename instance flavor model
+
+### Features
+
+* **api:** aggregated API specs update ([d2e76de](https://github.com/G-Core/gcore-python/commit/d2e76de6e6e070d6253ba6ee5102cbadb9fc1ff4))
+* **api:** aggregated API specs update ([667f129](https://github.com/G-Core/gcore-python/commit/667f129c821808b2f2a250a90d4fb6adb36195e9))
+* **api:** aggregated API specs update ([e4f64fd](https://github.com/G-Core/gcore-python/commit/e4f64fd76cb32caa28782a171a4cf1cb4c47674d))
+* **api:** aggregated API specs update ([9f567f9](https://github.com/G-Core/gcore-python/commit/9f567f9268490b9c1b403a502ddd5f5e7a617534))
+* **api:** aggregated API specs update ([43225eb](https://github.com/G-Core/gcore-python/commit/43225eb53397a63c3b44c518a20e665561d1a86e))
+* **api:** aggregated API specs update ([3dc71fe](https://github.com/G-Core/gcore-python/commit/3dc71fe42e2466ae8040af28c77153383609e041))
+* **api:** aggregated API specs update ([3c15807](https://github.com/G-Core/gcore-python/commit/3c15807ac8fdc5c0ca42421896f829054eaa82cf))
+* **cloud:** add support for volume snapshots ([19103d9](https://github.com/G-Core/gcore-python/commit/19103d9b95b37e597d545052d957d2593810307c))
+
+
+### Bug Fixes
+
+* **cloud:** rename instance flavor model ([3374f91](https://github.com/G-Core/gcore-python/commit/3374f91b05a70fbc617ef2e070b8fec96e0b08b8))
+
 ## 0.28.0 (2025-12-30)
 
 Full Changelog: [v0.27.0...v0.28.0](https://github.com/G-Core/gcore-python/compare/v0.27.0...v0.28.0)

@@ -57,7 +57,6 @@ class AuditLogListParams(TypedDict, total=False):
     api_group: List[
         Literal[
             "ai_cluster",
-            "backup_service",
             "caas_container",
             "caas_key",
             "caas_pull_secret",

@@ -12,8 +12,10 @@ __all__ = ["SecurityGroupUpdateParams", "ChangedRule"]
 
 class SecurityGroupUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     changed_rules: Iterable[ChangedRule]
     """List of rules to create or delete"""

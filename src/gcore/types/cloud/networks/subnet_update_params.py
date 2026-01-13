@@ -21,7 +21,7 @@ class SubnetUpdateParams(TypedDict, total=False):
     dns_nameservers: Optional[SequenceNotStr[str]]
     """List IP addresses of DNS servers to advertise via DHCP."""
 
-    enable_dhcp: Optional[bool]
+    enable_dhcp: bool
     """True if DHCP should be enabled"""
 
     gateway_ip: Optional[str]
