@@ -2,10 +2,22 @@
 
 from __future__ import annotations
 
+import os
+
 import httpx
 
 from ..._files import read_file_content, async_read_file_content
-from ..._types import Body, Query, Headers, NoneType, NotGiven, FileContent, not_given
+from ..._types import (
+    Body,
+    Query,
+    Headers,
+    NoneType,
+    NotGiven,
+    BinaryTypes,
+    FileContent,
+    AsyncBinaryTypes,
+    not_given,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -44,7 +56,7 @@ class BinariesResource(SyncAPIResource):
 
     def create(
         self,
-        body: FileContent,
+        body: FileContent | BinaryTypes,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -68,7 +80,7 @@ class BinariesResource(SyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
             "/fastedge/v1/binaries/raw",
-            body=read_file_content(body),
+            content=read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -180,7 +192,7 @@ class AsyncBinariesResource(AsyncAPIResource):
 
     async def create(
         self,
-        body: FileContent,
+        body: FileContent | AsyncBinaryTypes,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,7 +216,7 @@ class AsyncBinariesResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
             "/fastedge/v1/binaries/raw",
-            body=await async_read_file_content(body),
+            content=await async_read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
