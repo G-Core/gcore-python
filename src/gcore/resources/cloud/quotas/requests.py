@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Union, Iterable
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -93,8 +94,11 @@ class RequestsResource(SyncAPIResource):
     def list(
         self,
         *,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        request_ids: Iterable[int] | Omit = omit,
         status: List[Literal["done", "in progress", "rejected"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -107,10 +111,16 @@ class RequestsResource(SyncAPIResource):
         Get a list of sent requests to change current quotas and their statuses.
 
         Args:
+          created_from: Filter limit requests created at or after this datetime (inclusive)
+
+          created_to: Filter limit requests created at or before this datetime (inclusive)
+
           limit: Optional. Limit the number of returned items
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          request_ids: List of limit request IDs for filtering
 
           status: List of limit requests statuses for filtering
 
@@ -132,8 +142,11 @@ class RequestsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_from": created_from,
+                        "created_to": created_to,
                         "limit": limit,
                         "offset": offset,
+                        "request_ids": request_ids,
                         "status": status,
                     },
                     request_list_params.RequestListParams,
@@ -277,8 +290,11 @@ class AsyncRequestsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        request_ids: Iterable[int] | Omit = omit,
         status: List[Literal["done", "in progress", "rejected"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -291,10 +307,16 @@ class AsyncRequestsResource(AsyncAPIResource):
         Get a list of sent requests to change current quotas and their statuses.
 
         Args:
+          created_from: Filter limit requests created at or after this datetime (inclusive)
+
+          created_to: Filter limit requests created at or before this datetime (inclusive)
+
           limit: Optional. Limit the number of returned items
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          request_ids: List of limit request IDs for filtering
 
           status: List of limit requests statuses for filtering
 
@@ -316,8 +338,11 @@ class AsyncRequestsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_from": created_from,
+                        "created_to": created_to,
                         "limit": limit,
                         "offset": offset,
+                        "request_ids": request_ids,
                         "status": status,
                     },
                     request_list_params.RequestListParams,
