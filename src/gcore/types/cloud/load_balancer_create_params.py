@@ -290,7 +290,10 @@ class ListenerPool(TypedDict, total=False):
     """Session persistence details"""
 
     timeout_client_data: Optional[int]
-    """Frontend client inactivity timeout in milliseconds"""
+    """Frontend client inactivity timeout in milliseconds.
+
+    We are recommending to use `listener.timeout_client_data` instead.
+    """
 
     timeout_member_connect: Optional[int]
     """Backend member connection timeout in milliseconds"""
@@ -351,10 +354,16 @@ class Listener(TypedDict, total=False):
     """Frontend client inactivity timeout in milliseconds"""
 
     timeout_member_connect: Optional[int]
-    """Backend member connection timeout in milliseconds"""
+    """Backend member connection timeout in milliseconds.
+
+    We are recommending to use `pool.timeout_member_connect` instead.
+    """
 
     timeout_member_data: Optional[int]
-    """Backend member inactivity timeout in milliseconds"""
+    """Backend member inactivity timeout in milliseconds.
+
+    We are recommending to use `pool.timeout_member_data` instead.
+    """
 
     user_list: Iterable[ListenerUserList]
     """Load balancer listener list of username and encrypted password items"""

@@ -1,14 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing import Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .flavor_hardware_description import FlavorHardwareDescription
 
-__all__ = ["LoadBalancerFlavorDetail", "HardwareDescription"]
-
-HardwareDescription: TypeAlias = Union[FlavorHardwareDescription, Dict[str, object]]
+__all__ = ["LoadBalancerFlavorDetail"]
 
 
 class LoadBalancerFlavorDetail(BaseModel):
@@ -17,9 +14,6 @@ class LoadBalancerFlavorDetail(BaseModel):
 
     flavor_name: str
     """Flavor name"""
-
-    hardware_description: HardwareDescription
-    """Additional hardware description."""
 
     ram: int
     """RAM size in MiB"""

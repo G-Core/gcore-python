@@ -128,7 +128,8 @@ class PoolsResource(SyncAPIResource):
 
           session_persistence: Session persistence details
 
-          timeout_client_data: Frontend client inactivity timeout in milliseconds
+          timeout_client_data: Frontend client inactivity timeout in milliseconds. We are recommending to use
+              `listener.timeout_client_data` instead.
 
           timeout_member_connect: Backend member connection timeout in milliseconds
 
@@ -244,7 +245,8 @@ class PoolsResource(SyncAPIResource):
 
           session_persistence: New session persistence settings
 
-          timeout_client_data: Frontend client inactivity timeout in milliseconds
+          timeout_client_data: Frontend client inactivity timeout in milliseconds. We are recommending to use
+              `listener.timeout_client_data` instead.
 
           timeout_member_connect: Backend member connection timeout in milliseconds
 
@@ -524,7 +526,8 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           session_persistence: Session persistence details
 
-          timeout_client_data: Frontend client inactivity timeout in milliseconds
+          timeout_client_data: Frontend client inactivity timeout in milliseconds. We are recommending to use
+              `listener.timeout_client_data` instead.
 
           timeout_member_connect: Backend member connection timeout in milliseconds
 
@@ -640,7 +643,8 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           session_persistence: New session persistence settings
 
-          timeout_client_data: Frontend client inactivity timeout in milliseconds
+          timeout_client_data: Frontend client inactivity timeout in milliseconds. We are recommending to use
+              `listener.timeout_client_data` instead.
 
           timeout_member_connect: Backend member connection timeout in milliseconds
 
