@@ -10,9 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cloud.reserved_fixed_ips.vip import (
-    ConnectedPortAddResponse,
-    ConnectedPortListResponse,
-    ConnectedPortReplaceResponse,
+    ConnectedPortList,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,7 +26,7 @@ class TestConnectedPorts:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ConnectedPortListResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -41,7 +39,7 @@ class TestConnectedPorts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connected_port = response.parse()
-        assert_matches_type(ConnectedPortListResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -54,7 +52,7 @@ class TestConnectedPorts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connected_port = response.parse()
-            assert_matches_type(ConnectedPortListResponse, connected_port, path=["response"])
+            assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +72,7 @@ class TestConnectedPorts:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_method_add_with_all_params(self, client: Gcore) -> None:
@@ -84,7 +82,7 @@ class TestConnectedPorts:
             region_id=0,
             port_ids=["351b0dd7-ca09-431c-be53-935db3785067", "bc688791-f1b0-44eb-97d4-07697294b1e1"],
         )
-        assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_raw_response_add(self, client: Gcore) -> None:
@@ -97,7 +95,7 @@ class TestConnectedPorts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connected_port = response.parse()
-        assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_streaming_response_add(self, client: Gcore) -> None:
@@ -110,7 +108,7 @@ class TestConnectedPorts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connected_port = response.parse()
-            assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+            assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,7 +128,7 @@ class TestConnectedPorts:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_method_replace_with_all_params(self, client: Gcore) -> None:
@@ -140,7 +138,7 @@ class TestConnectedPorts:
             region_id=0,
             port_ids=["351b0dd7-ca09-431c-be53-935db3785067", "bc688791-f1b0-44eb-97d4-07697294b1e1"],
         )
-        assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_raw_response_replace(self, client: Gcore) -> None:
@@ -153,7 +151,7 @@ class TestConnectedPorts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connected_port = response.parse()
-        assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     def test_streaming_response_replace(self, client: Gcore) -> None:
@@ -166,7 +164,7 @@ class TestConnectedPorts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connected_port = response.parse()
-            assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+            assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -192,7 +190,7 @@ class TestAsyncConnectedPorts:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ConnectedPortListResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -205,7 +203,7 @@ class TestAsyncConnectedPorts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connected_port = await response.parse()
-        assert_matches_type(ConnectedPortListResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -218,7 +216,7 @@ class TestAsyncConnectedPorts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connected_port = await response.parse()
-            assert_matches_type(ConnectedPortListResponse, connected_port, path=["response"])
+            assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -238,7 +236,7 @@ class TestAsyncConnectedPorts:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_method_add_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -248,7 +246,7 @@ class TestAsyncConnectedPorts:
             region_id=0,
             port_ids=["351b0dd7-ca09-431c-be53-935db3785067", "bc688791-f1b0-44eb-97d4-07697294b1e1"],
         )
-        assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_raw_response_add(self, async_client: AsyncGcore) -> None:
@@ -261,7 +259,7 @@ class TestAsyncConnectedPorts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connected_port = await response.parse()
-        assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_streaming_response_add(self, async_client: AsyncGcore) -> None:
@@ -274,7 +272,7 @@ class TestAsyncConnectedPorts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connected_port = await response.parse()
-            assert_matches_type(ConnectedPortAddResponse, connected_port, path=["response"])
+            assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -294,7 +292,7 @@ class TestAsyncConnectedPorts:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -304,7 +302,7 @@ class TestAsyncConnectedPorts:
             region_id=0,
             port_ids=["351b0dd7-ca09-431c-be53-935db3785067", "bc688791-f1b0-44eb-97d4-07697294b1e1"],
         )
-        assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
@@ -317,7 +315,7 @@ class TestAsyncConnectedPorts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connected_port = await response.parse()
-        assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+        assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
     @parametrize
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
@@ -330,7 +328,7 @@ class TestAsyncConnectedPorts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connected_port = await response.parse()
-            assert_matches_type(ConnectedPortReplaceResponse, connected_port, path=["response"])
+            assert_matches_type(ConnectedPortList, connected_port, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,14 +3,14 @@
 from typing import List
 
 from ..._models import BaseModel
-from .placement_group import PlacementGroup
+from .k8s_cluster_version import K8SClusterVersion
 
-__all__ = ["PlacementGroupListResponse"]
+__all__ = ["K8SClusterVersionList"]
 
 
-class PlacementGroupListResponse(BaseModel):
+class K8SClusterVersionList(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[PlacementGroup]
+    results: List[K8SClusterVersion]
     """Objects"""

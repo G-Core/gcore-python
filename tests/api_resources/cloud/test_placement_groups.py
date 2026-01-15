@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList, PlacementGroup, PlacementGroupListResponse
+from gcore.types.cloud import TaskIDList, PlacementGroup, PlacementGroupList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -63,7 +63,7 @@ class TestPlacementGroups:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(PlacementGroupListResponse, placement_group, path=["response"])
+        assert_matches_type(PlacementGroupList, placement_group, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -75,7 +75,7 @@ class TestPlacementGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         placement_group = response.parse()
-        assert_matches_type(PlacementGroupListResponse, placement_group, path=["response"])
+        assert_matches_type(PlacementGroupList, placement_group, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -87,7 +87,7 @@ class TestPlacementGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             placement_group = response.parse()
-            assert_matches_type(PlacementGroupListResponse, placement_group, path=["response"])
+            assert_matches_type(PlacementGroupList, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +235,7 @@ class TestAsyncPlacementGroups:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(PlacementGroupListResponse, placement_group, path=["response"])
+        assert_matches_type(PlacementGroupList, placement_group, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -247,7 +247,7 @@ class TestAsyncPlacementGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         placement_group = await response.parse()
-        assert_matches_type(PlacementGroupListResponse, placement_group, path=["response"])
+        assert_matches_type(PlacementGroupList, placement_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -259,7 +259,7 @@ class TestAsyncPlacementGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             placement_group = await response.parse()
-            assert_matches_type(PlacementGroupListResponse, placement_group, path=["response"])
+            assert_matches_type(PlacementGroupList, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

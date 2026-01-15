@@ -9,8 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import LoadBalancerStatus
-from gcore.types.cloud.load_balancers import StatusListResponse
+from gcore.types.cloud import LoadBalancerStatus, LoadBalancerStatusList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +23,7 @@ class TestStatuses:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(StatusListResponse, status, path=["response"])
+        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -36,7 +35,7 @@ class TestStatuses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         status = response.parse()
-        assert_matches_type(StatusListResponse, status, path=["response"])
+        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -48,7 +47,7 @@ class TestStatuses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             status = response.parse()
-            assert_matches_type(StatusListResponse, status, path=["response"])
+            assert_matches_type(LoadBalancerStatusList, status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -110,7 +109,7 @@ class TestAsyncStatuses:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(StatusListResponse, status, path=["response"])
+        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -122,7 +121,7 @@ class TestAsyncStatuses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         status = await response.parse()
-        assert_matches_type(StatusListResponse, status, path=["response"])
+        assert_matches_type(LoadBalancerStatusList, status, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -134,7 +133,7 @@ class TestAsyncStatuses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             status = await response.parse()
-            assert_matches_type(StatusListResponse, status, path=["response"])
+            assert_matches_type(LoadBalancerStatusList, status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

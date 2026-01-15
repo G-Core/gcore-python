@@ -2,13 +2,13 @@
 
 from typing import List
 
-from ...._models import BaseModel
-from ..load_balancer_status import LoadBalancerStatus
+from ..._models import BaseModel
+from .load_balancer_status import LoadBalancerStatus
 
-__all__ = ["StatusListResponse"]
+__all__ = ["LoadBalancerStatusList"]
 
 
-class StatusListResponse(BaseModel):
+class LoadBalancerStatusList(BaseModel):
     count: int
     """Number of objects"""
 

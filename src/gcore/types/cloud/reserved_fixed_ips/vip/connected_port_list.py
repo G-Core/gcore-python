@@ -5,10 +5,10 @@ from typing import List
 from ....._models import BaseModel
 from .connected_port import ConnectedPort
 
-__all__ = ["ConnectedPortAddResponse"]
+__all__ = ["ConnectedPortList"]
 
 
-class ConnectedPortAddResponse(BaseModel):
+class ConnectedPortList(BaseModel):
     count: int
     """Number of objects"""
 

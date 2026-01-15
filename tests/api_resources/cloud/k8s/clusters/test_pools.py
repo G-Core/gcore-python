@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from gcore.types.cloud import TaskIDList
 from gcore.types.cloud.k8s.clusters import (
     K8SClusterPool,
-    PoolListResponse,
+    K8SClusterPoolList,
     K8SClusterPoolQuota,
 )
 
@@ -183,7 +183,7 @@ class TestPools:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(PoolListResponse, pool, path=["response"])
+        assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -196,7 +196,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(PoolListResponse, pool, path=["response"])
+        assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -209,7 +209,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(PoolListResponse, pool, path=["response"])
+            assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -620,7 +620,7 @@ class TestAsyncPools:
             project_id=0,
             region_id=0,
         )
-        assert_matches_type(PoolListResponse, pool, path=["response"])
+        assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -633,7 +633,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(PoolListResponse, pool, path=["response"])
+        assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -646,7 +646,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(PoolListResponse, pool, path=["response"])
+            assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
