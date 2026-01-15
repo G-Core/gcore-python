@@ -18,7 +18,7 @@ from ....types.cloud import InstanceMetricsTimeUnit
 from ...._base_client import make_request_options
 from ....types.cloud.load_balancers import metric_list_params
 from ....types.cloud.instance_metrics_time_unit import InstanceMetricsTimeUnit
-from ....types.cloud.load_balancers.metric_list_response import MetricListResponse
+from ....types.cloud.load_balancer_metrics_list import LoadBalancerMetricsList
 
 __all__ = ["MetricsResource", "AsyncMetricsResource"]
 
@@ -57,7 +57,7 @@ class MetricsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MetricListResponse:
+    ) -> LoadBalancerMetricsList:
         """
         Get load balancer metrics, including cpu, memory and network
 
@@ -98,7 +98,7 @@ class MetricsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MetricListResponse,
+            cast_to=LoadBalancerMetricsList,
         )
 
 
@@ -136,7 +136,7 @@ class AsyncMetricsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MetricListResponse:
+    ) -> LoadBalancerMetricsList:
         """
         Get load balancer metrics, including cpu, memory and network
 
@@ -177,7 +177,7 @@ class AsyncMetricsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MetricListResponse,
+            cast_to=LoadBalancerMetricsList,
         )
 
 

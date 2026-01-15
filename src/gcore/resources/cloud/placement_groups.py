@@ -20,7 +20,7 @@ from ...types.cloud import placement_group_create_params
 from ..._base_client import make_request_options
 from ...types.cloud.task_id_list import TaskIDList
 from ...types.cloud.placement_group import PlacementGroup
-from ...types.cloud.placement_group_list_response import PlacementGroupListResponse
+from ...types.cloud.placement_group_list import PlacementGroupList
 
 __all__ = ["PlacementGroupsResource", "AsyncPlacementGroupsResource"]
 
@@ -109,7 +109,7 @@ class PlacementGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlacementGroupListResponse:
+    ) -> PlacementGroupList:
         """
         List placement groups
 
@@ -131,7 +131,7 @@ class PlacementGroupsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlacementGroupListResponse,
+            cast_to=PlacementGroupList,
         )
 
     def delete(
@@ -297,7 +297,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlacementGroupListResponse:
+    ) -> PlacementGroupList:
         """
         List placement groups
 
@@ -319,7 +319,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlacementGroupListResponse,
+            cast_to=PlacementGroupList,
         )
 
     async def delete(
