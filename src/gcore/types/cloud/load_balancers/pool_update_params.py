@@ -53,7 +53,10 @@ class PoolUpdateParams(TypedDict, total=False):
     """New session persistence settings"""
 
     timeout_client_data: Optional[int]
-    """Frontend client inactivity timeout in milliseconds"""
+    """Frontend client inactivity timeout in milliseconds.
+
+    We are recommending to use `listener.timeout_client_data` instead.
+    """
 
     timeout_member_connect: Optional[int]
     """Backend member connection timeout in milliseconds"""

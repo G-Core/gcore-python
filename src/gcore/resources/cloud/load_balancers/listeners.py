@@ -113,9 +113,11 @@ class ListenersResource(SyncAPIResource):
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          timeout_member_connect: Backend member connection timeout in milliseconds
+          timeout_member_connect: Backend member connection timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_connect` instead.
 
-          timeout_member_data: Backend member inactivity timeout in milliseconds
+          timeout_member_data: Backend member inactivity timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_data` instead.
 
           user_list: Load balancer listener list of username and encrypted password items
 
@@ -205,9 +207,11 @@ class ListenersResource(SyncAPIResource):
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          timeout_member_connect: Backend member connection timeout in milliseconds
+          timeout_member_connect: Backend member connection timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_connect` instead.
 
-          timeout_member_data: Backend member inactivity timeout in milliseconds
+          timeout_member_data: Backend member inactivity timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_data` instead.
 
           user_list: Load balancer listener users list
 
@@ -657,9 +661,11 @@ class AsyncListenersResource(AsyncAPIResource):
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          timeout_member_connect: Backend member connection timeout in milliseconds
+          timeout_member_connect: Backend member connection timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_connect` instead.
 
-          timeout_member_data: Backend member inactivity timeout in milliseconds
+          timeout_member_data: Backend member inactivity timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_data` instead.
 
           user_list: Load balancer listener list of username and encrypted password items
 
@@ -749,9 +755,11 @@ class AsyncListenersResource(AsyncAPIResource):
 
           timeout_client_data: Frontend client inactivity timeout in milliseconds
 
-          timeout_member_connect: Backend member connection timeout in milliseconds
+          timeout_member_connect: Backend member connection timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_connect` instead.
 
-          timeout_member_data: Backend member inactivity timeout in milliseconds
+          timeout_member_data: Backend member inactivity timeout in milliseconds. We are recommending to use
+              `pool.timeout_member_data` instead.
 
           user_list: Load balancer listener users list
 
