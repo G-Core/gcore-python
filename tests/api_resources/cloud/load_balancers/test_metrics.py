@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud.load_balancers import MetricListResponse
+from gcore.types.cloud import LoadBalancerMetricsList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +26,7 @@ class TestMetrics:
             time_interval=6,
             time_unit="day",
         )
-        assert_matches_type(MetricListResponse, metric, path=["response"])
+        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -41,7 +41,7 @@ class TestMetrics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = response.parse()
-        assert_matches_type(MetricListResponse, metric, path=["response"])
+        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -56,7 +56,7 @@ class TestMetrics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = response.parse()
-            assert_matches_type(MetricListResponse, metric, path=["response"])
+            assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +86,7 @@ class TestAsyncMetrics:
             time_interval=6,
             time_unit="day",
         )
-        assert_matches_type(MetricListResponse, metric, path=["response"])
+        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -101,7 +101,7 @@ class TestAsyncMetrics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = await response.parse()
-        assert_matches_type(MetricListResponse, metric, path=["response"])
+        assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -116,7 +116,7 @@ class TestAsyncMetrics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = await response.parse()
-            assert_matches_type(MetricListResponse, metric, path=["response"])
+            assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

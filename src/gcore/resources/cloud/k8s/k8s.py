@@ -30,7 +30,7 @@ from .clusters.clusters import (
     ClustersResourceWithStreamingResponse,
     AsyncClustersResourceWithStreamingResponse,
 )
-from ....types.cloud.k8s_list_versions_response import K8SListVersionsResponse
+from ....types.cloud.k8s_cluster_version_list import K8SClusterVersionList
 
 __all__ = ["K8SResource", "AsyncK8SResource"]
 
@@ -74,7 +74,7 @@ class K8SResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SListVersionsResponse:
+    ) -> K8SClusterVersionList:
         """
         List available k8s cluster versions for creation
 
@@ -96,7 +96,7 @@ class K8SResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SListVersionsResponse,
+            cast_to=K8SClusterVersionList,
         )
 
 
@@ -139,7 +139,7 @@ class AsyncK8SResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SListVersionsResponse:
+    ) -> K8SClusterVersionList:
         """
         List available k8s cluster versions for creation
 
@@ -161,7 +161,7 @@ class AsyncK8SResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=K8SListVersionsResponse,
+            cast_to=K8SClusterVersionList,
         )
 
 

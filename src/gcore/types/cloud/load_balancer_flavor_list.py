@@ -3,10 +3,10 @@
 from typing import List, Union
 from typing_extensions import TypeAlias
 
-from ...._models import BaseModel
-from ..load_balancer_flavor_detail import LoadBalancerFlavorDetail
+from ..._models import BaseModel
+from .load_balancer_flavor_detail import LoadBalancerFlavorDetail
 
-__all__ = ["FlavorListResponse", "Result", "ResultLbFlavorSerializer"]
+__all__ = ["LoadBalancerFlavorList", "Result", "ResultLbFlavorSerializer"]
 
 
 class ResultLbFlavorSerializer(BaseModel):
@@ -26,7 +26,7 @@ class ResultLbFlavorSerializer(BaseModel):
 Result: TypeAlias = Union[ResultLbFlavorSerializer, LoadBalancerFlavorDetail]
 
 
-class FlavorListResponse(BaseModel):
+class LoadBalancerFlavorList(BaseModel):
     count: int
     """Number of objects"""
 
