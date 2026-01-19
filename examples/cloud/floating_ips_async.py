@@ -60,7 +60,7 @@ async def get_floating_ip(*, client: AsyncGcore, floating_ip_id: str) -> None:
 
 async def assign_floating_ip(*, client: AsyncGcore, floating_ip_id: str, port_id: str) -> None:
     print("\n=== ASSIGN FLOATING IP ===")
-    floating_ip = await client.cloud.floating_ips.assign(
+    floating_ip = await client.cloud.floating_ips.assign(  # pyright: ignore[reportDeprecated]
         floating_ip_id=floating_ip_id,
         port_id=port_id,
     )
@@ -70,7 +70,7 @@ async def assign_floating_ip(*, client: AsyncGcore, floating_ip_id: str, port_id
 
 async def unassign_floating_ip(*, client: AsyncGcore, floating_ip_id: str) -> None:
     print("\n=== UNASSIGN FLOATING IP ===")
-    floating_ip = await client.cloud.floating_ips.unassign(floating_ip_id=floating_ip_id)
+    floating_ip = await client.cloud.floating_ips.unassign(floating_ip_id=floating_ip_id)  # pyright: ignore[reportDeprecated]
     print(f"Unassigned floating IP: ID={floating_ip.id}")
     print("========================")
 
