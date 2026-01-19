@@ -8,7 +8,7 @@ from gcore.types.cloud.instance_create_params import (
     InterfaceNewInterfaceExternalSerializerPydantic,
     VolumeCreateInstanceCreateVolumeFromImageSerializer,
 )
-from gcore.types.cloud.instances.instance_flavor import InstanceFlavor
+from gcore.types.cloud.instances.instance_flavor_detailed import InstanceFlavorDetailed
 
 
 def main() -> None:
@@ -328,7 +328,7 @@ def delete_image(*, client: Gcore, image_id: str) -> None:
     print("========================")
 
 
-def _print_flavor_details(flavors: List[InstanceFlavor]) -> None:
+def _print_flavor_details(flavors: List[InstanceFlavorDetailed]) -> None:
     display_count = 3
     if len(flavors) < display_count:
         display_count = len(flavors)
