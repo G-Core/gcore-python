@@ -124,8 +124,10 @@ class RoutersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
-        """
-        Update the configuration of an existing router.
+        """Update the configuration of an existing router.
+
+        **Deprecated**: Use PATCH
+        /v2/routers/{`project_id`}/{`region_id`}/{`router_id`}
 
         Args:
           external_gateway_info: New external gateway.
@@ -491,8 +493,10 @@ class AsyncRoutersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Router:
-        """
-        Update the configuration of an existing router.
+        """Update the configuration of an existing router.
+
+        **Deprecated**: Use PATCH
+        /v2/routers/{`project_id`}/{`region_id`}/{`router_id`}
 
         Args:
           external_gateway_info: New external gateway.

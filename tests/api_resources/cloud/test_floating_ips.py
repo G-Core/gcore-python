@@ -16,6 +16,8 @@ from gcore.types.cloud import (
     FloatingIPDetailed,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -69,30 +71,35 @@ class TestFloatingIPs:
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        floating_ip = client.cloud.floating_ips.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = client.cloud.floating_ips.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        floating_ip = client.cloud.floating_ips.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-            tags={"foo": "my-tag-value"},
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = client.cloud.floating_ips.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                tags={"foo": "my-tag-value"},
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        response = client.cloud.floating_ips.with_raw_response.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.floating_ips.with_raw_response.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -101,27 +108,29 @@ class TestFloatingIPs:
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with client.cloud.floating_ips.with_streaming_response.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.floating_ips.with_streaming_response.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            floating_ip = response.parse()
-            assert_matches_type(FloatingIP, floating_ip, path=["response"])
+                floating_ip = response.parse()
+                assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
-            client.cloud.floating_ips.with_raw_response.update(
-                floating_ip_id="",
-                project_id=1,
-                region_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
+                client.cloud.floating_ips.with_raw_response.update(
+                    floating_ip_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
@@ -218,33 +227,38 @@ class TestFloatingIPs:
 
     @parametrize
     def test_method_assign(self, client: Gcore) -> None:
-        floating_ip = client.cloud.floating_ips.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = client.cloud.floating_ips.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     def test_method_assign_with_all_params(self, client: Gcore) -> None:
-        floating_ip = client.cloud.floating_ips.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-            fixed_ip_address="192.168.10.15",
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = client.cloud.floating_ips.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+                fixed_ip_address="192.168.10.15",
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     def test_raw_response_assign(self, client: Gcore) -> None:
-        response = client.cloud.floating_ips.with_raw_response.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.floating_ips.with_raw_response.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -253,29 +267,31 @@ class TestFloatingIPs:
 
     @parametrize
     def test_streaming_response_assign(self, client: Gcore) -> None:
-        with client.cloud.floating_ips.with_streaming_response.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.floating_ips.with_streaming_response.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            floating_ip = response.parse()
-            assert_matches_type(FloatingIP, floating_ip, path=["response"])
+                floating_ip = response.parse()
+                assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_assign(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
-            client.cloud.floating_ips.with_raw_response.assign(
-                floating_ip_id="",
-                project_id=0,
-                region_id=0,
-                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
+                client.cloud.floating_ips.with_raw_response.assign(
+                    floating_ip_id="",
+                    project_id=1,
+                    region_id=1,
+                    port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+                )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
@@ -325,20 +341,23 @@ class TestFloatingIPs:
 
     @parametrize
     def test_method_unassign(self, client: Gcore) -> None:
-        floating_ip = client.cloud.floating_ips.unassign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = client.cloud.floating_ips.unassign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     def test_raw_response_unassign(self, client: Gcore) -> None:
-        response = client.cloud.floating_ips.with_raw_response.unassign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.floating_ips.with_raw_response.unassign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -347,27 +366,29 @@ class TestFloatingIPs:
 
     @parametrize
     def test_streaming_response_unassign(self, client: Gcore) -> None:
-        with client.cloud.floating_ips.with_streaming_response.unassign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.floating_ips.with_streaming_response.unassign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            floating_ip = response.parse()
-            assert_matches_type(FloatingIP, floating_ip, path=["response"])
+                floating_ip = response.parse()
+                assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_unassign(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
-            client.cloud.floating_ips.with_raw_response.unassign(
-                floating_ip_id="",
-                project_id=0,
-                region_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
+                client.cloud.floating_ips.with_raw_response.unassign(
+                    floating_ip_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
 
 class TestAsyncFloatingIPs:
@@ -422,30 +443,35 @@ class TestAsyncFloatingIPs:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        floating_ip = await async_client.cloud.floating_ips.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = await async_client.cloud.floating_ips.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        floating_ip = await async_client.cloud.floating_ips.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-            tags={"foo": "my-tag-value"},
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = await async_client.cloud.floating_ips.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                tags={"foo": "my-tag-value"},
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.floating_ips.with_raw_response.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.floating_ips.with_raw_response.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -454,27 +480,29 @@ class TestAsyncFloatingIPs:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.floating_ips.with_streaming_response.update(
-            floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.floating_ips.with_streaming_response.update(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            floating_ip = await response.parse()
-            assert_matches_type(FloatingIP, floating_ip, path=["response"])
+                floating_ip = await response.parse()
+                assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
-            await async_client.cloud.floating_ips.with_raw_response.update(
-                floating_ip_id="",
-                project_id=1,
-                region_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
+                await async_client.cloud.floating_ips.with_raw_response.update(
+                    floating_ip_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
@@ -571,33 +599,38 @@ class TestAsyncFloatingIPs:
 
     @parametrize
     async def test_method_assign(self, async_client: AsyncGcore) -> None:
-        floating_ip = await async_client.cloud.floating_ips.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = await async_client.cloud.floating_ips.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     async def test_method_assign_with_all_params(self, async_client: AsyncGcore) -> None:
-        floating_ip = await async_client.cloud.floating_ips.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-            fixed_ip_address="192.168.10.15",
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = await async_client.cloud.floating_ips.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+                fixed_ip_address="192.168.10.15",
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_assign(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.floating_ips.with_raw_response.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.floating_ips.with_raw_response.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -606,29 +639,31 @@ class TestAsyncFloatingIPs:
 
     @parametrize
     async def test_streaming_response_assign(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.floating_ips.with_streaming_response.assign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-            port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.floating_ips.with_streaming_response.assign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            floating_ip = await response.parse()
-            assert_matches_type(FloatingIP, floating_ip, path=["response"])
+                floating_ip = await response.parse()
+                assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_assign(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
-            await async_client.cloud.floating_ips.with_raw_response.assign(
-                floating_ip_id="",
-                project_id=0,
-                region_id=0,
-                port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
+                await async_client.cloud.floating_ips.with_raw_response.assign(
+                    floating_ip_id="",
+                    project_id=1,
+                    region_id=1,
+                    port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
+                )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
@@ -678,20 +713,23 @@ class TestAsyncFloatingIPs:
 
     @parametrize
     async def test_method_unassign(self, async_client: AsyncGcore) -> None:
-        floating_ip = await async_client.cloud.floating_ips.unassign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            floating_ip = await async_client.cloud.floating_ips.unassign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_unassign(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.floating_ips.with_raw_response.unassign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.floating_ips.with_raw_response.unassign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -700,24 +738,26 @@ class TestAsyncFloatingIPs:
 
     @parametrize
     async def test_streaming_response_unassign(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.floating_ips.with_streaming_response.unassign(
-            floating_ip_id="floating_ip_id",
-            project_id=0,
-            region_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.floating_ips.with_streaming_response.unassign(
+                floating_ip_id="c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            floating_ip = await response.parse()
-            assert_matches_type(FloatingIP, floating_ip, path=["response"])
+                floating_ip = await response.parse()
+                assert_matches_type(FloatingIP, floating_ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_unassign(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
-            await async_client.cloud.floating_ips.with_raw_response.unassign(
-                floating_ip_id="",
-                project_id=0,
-                region_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip_id` but received ''"):
+                await async_client.cloud.floating_ips.with_raw_response.unassign(
+                    floating_ip_id="",
+                    project_id=1,
+                    region_id=1,
+                )

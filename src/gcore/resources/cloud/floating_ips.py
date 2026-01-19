@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, Optional
 
 import httpx
@@ -123,6 +124,7 @@ class FloatingIPsResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         floating_ip_id: str,
@@ -138,7 +140,8 @@ class FloatingIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        Update floating IP
+        **Deprecated**: Use PATCH
+        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
 
         Args:
           project_id: Project ID
@@ -313,6 +316,7 @@ class FloatingIPsResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def assign(
         self,
         floating_ip_id: str,
@@ -331,7 +335,16 @@ class FloatingIPsResource(SyncAPIResource):
         """
         Assign floating IP to instance or loadbalancer
 
+        **Deprecated**: Use PATCH
+        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           port_id: Port ID
 
           fixed_ip_address: Fixed IP address
@@ -410,6 +423,7 @@ class FloatingIPsResource(SyncAPIResource):
             cast_to=FloatingIP,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def unassign(
         self,
         floating_ip_id: str,
@@ -424,9 +438,16 @@ class FloatingIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        Unassign floating IP
+        **Deprecated**: Use PATCH
+        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -539,6 +560,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         floating_ip_id: str,
@@ -554,7 +576,8 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        Update floating IP
+        **Deprecated**: Use PATCH
+        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
 
         Args:
           project_id: Project ID
@@ -729,6 +752,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def assign(
         self,
         floating_ip_id: str,
@@ -747,7 +771,16 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         """
         Assign floating IP to instance or loadbalancer
 
+        **Deprecated**: Use PATCH
+        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           port_id: Port ID
 
           fixed_ip_address: Fixed IP address
@@ -826,6 +859,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             cast_to=FloatingIP,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def unassign(
         self,
         floating_ip_id: str,
@@ -840,9 +874,16 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        Unassign floating IP
+        **Deprecated**: Use PATCH
+        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          floating_ip_id: Floating IP ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -873,8 +914,10 @@ class FloatingIPsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             floating_ips.create,
         )
-        self.update = to_raw_response_wrapper(
-            floating_ips.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                floating_ips.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             floating_ips.list,
@@ -882,14 +925,18 @@ class FloatingIPsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             floating_ips.delete,
         )
-        self.assign = to_raw_response_wrapper(
-            floating_ips.assign,
+        self.assign = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                floating_ips.assign,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_raw_response_wrapper(
             floating_ips.get,
         )
-        self.unassign = to_raw_response_wrapper(
-            floating_ips.unassign,
+        self.unassign = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                floating_ips.unassign,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -900,8 +947,10 @@ class AsyncFloatingIPsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             floating_ips.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            floating_ips.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                floating_ips.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             floating_ips.list,
@@ -909,14 +958,18 @@ class AsyncFloatingIPsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             floating_ips.delete,
         )
-        self.assign = async_to_raw_response_wrapper(
-            floating_ips.assign,
+        self.assign = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                floating_ips.assign,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_raw_response_wrapper(
             floating_ips.get,
         )
-        self.unassign = async_to_raw_response_wrapper(
-            floating_ips.unassign,
+        self.unassign = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                floating_ips.unassign,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -927,8 +980,10 @@ class FloatingIPsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             floating_ips.create,
         )
-        self.update = to_streamed_response_wrapper(
-            floating_ips.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                floating_ips.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             floating_ips.list,
@@ -936,14 +991,18 @@ class FloatingIPsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             floating_ips.delete,
         )
-        self.assign = to_streamed_response_wrapper(
-            floating_ips.assign,
+        self.assign = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                floating_ips.assign,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_streamed_response_wrapper(
             floating_ips.get,
         )
-        self.unassign = to_streamed_response_wrapper(
-            floating_ips.unassign,
+        self.unassign = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                floating_ips.unassign,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -954,8 +1013,10 @@ class AsyncFloatingIPsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             floating_ips.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            floating_ips.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                floating_ips.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             floating_ips.list,
@@ -963,12 +1024,16 @@ class AsyncFloatingIPsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             floating_ips.delete,
         )
-        self.assign = async_to_streamed_response_wrapper(
-            floating_ips.assign,
+        self.assign = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                floating_ips.assign,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_streamed_response_wrapper(
             floating_ips.get,
         )
-        self.unassign = async_to_streamed_response_wrapper(
-            floating_ips.unassign,
+        self.unassign = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                floating_ips.unassign,  # pyright: ignore[reportDeprecated],
+            )
         )
