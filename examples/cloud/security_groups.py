@@ -32,7 +32,7 @@ def main() -> None:
 
 def create_security_group(*, client: Gcore) -> str:
     print("\n=== CREATE SECURITY GROUP ===")
-    security_group = client.cloud.security_groups.create(security_group=SecurityGroup(name="gcore-go-example"))
+    security_group = client.cloud.security_groups.create(security_group=SecurityGroup(name="gcore-go-example"))  # pyright: ignore[reportDeprecated]
     print(f"Created security group: ID={security_group.id}, name={security_group.name}")
     print("========================")
     return security_group.id
@@ -57,7 +57,7 @@ def get_security_group(*, client: Gcore, security_group_id: str) -> None:
 
 def update_security_group(*, client: Gcore, security_group_id: str) -> None:
     print("\n=== UPDATE SECURITY GROUP ===")
-    security_group = client.cloud.security_groups.update(
+    security_group = client.cloud.security_groups.update(  # pyright: ignore[reportDeprecated]
         group_id=security_group_id,
         name="gcore-go-example-updated",
     )
