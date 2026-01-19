@@ -1282,6 +1282,8 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         *,
         cast_to: Type[ResponseT],
         body: Body | None = None,
+        content: BinaryTypes | None = None,
+        files: RequestFiles | None = None,
         options: RequestOptions = {},
     ) -> ResponseT:
         if body is not None and content is not None:
@@ -1852,6 +1854,8 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         *,
         cast_to: Type[ResponseT],
         body: Body | None = None,
+        content: AsyncBinaryTypes | None = None,
+        files: RequestFiles | None = None,
         options: RequestOptions = {},
     ) -> ResponseT:
         if body is not None and content is not None:
