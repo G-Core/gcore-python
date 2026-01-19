@@ -10,8 +10,10 @@ __all__ = ["FloatingIPAssignParams"]
 
 class FloatingIPAssignParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     port_id: Required[str]
     """Port ID"""
