@@ -684,14 +684,14 @@ class ResourcesResource(SyncAPIResource):
                  the CDN cache, purge by URL will delete only the first slice (with bytes=0…
                  .)
               3. "ignoreQueryString" is used. Don’t specify parameters in the purge request.
-              4. "`query_params_blacklist`" is used. Only files with the listed in the option
+              4. "query_params_blacklist" is used. Only files with the listed in the option
                  parameters will be cached as different objects. Files with other parameters
                  will be cached as one object. In this case, specify the listed parameters in
                  the Purge request. Don't specify other parameters.
-              5. "`query_params_whitelist`" is used. Files with listed in the option
-                 parameters will be cached as one object. Files with other parameters will be
-                 cached as different objects. In this case, specify other parameters (if any)
-                 besides the ones listed in the purge request.
+              5. "query_params_whitelist" is used. Files with listed in the option parameters
+                 will be cached as one object. Files with other parameters will be cached as
+                 different objects. In this case, specify other parameters (if any) besides
+                 the ones listed in the purge request.
 
           extra_headers: Send extra headers
 
@@ -1594,14 +1594,14 @@ class AsyncResourcesResource(AsyncAPIResource):
                  the CDN cache, purge by URL will delete only the first slice (with bytes=0…
                  .)
               3. "ignoreQueryString" is used. Don’t specify parameters in the purge request.
-              4. "`query_params_blacklist`" is used. Only files with the listed in the option
+              4. "query_params_blacklist" is used. Only files with the listed in the option
                  parameters will be cached as different objects. Files with other parameters
                  will be cached as one object. In this case, specify the listed parameters in
                  the Purge request. Don't specify other parameters.
-              5. "`query_params_whitelist`" is used. Files with listed in the option
-                 parameters will be cached as one object. Files with other parameters will be
-                 cached as different objects. In this case, specify other parameters (if any)
-                 besides the ones listed in the purge request.
+              5. "query_params_whitelist" is used. Files with listed in the option parameters
+                 will be cached as one object. Files with other parameters will be cached as
+                 different objects. In this case, specify other parameters (if any) besides
+                 the ones listed in the purge request.
 
           extra_headers: Send extra headers
 

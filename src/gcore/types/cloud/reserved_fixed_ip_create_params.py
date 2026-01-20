@@ -56,7 +56,7 @@ class NewReservedFixedIPAnySubnetSerializer(TypedDict, total=False):
     """Reserved fixed IP will be allocated in a subnet of this network"""
 
     type: Required[Literal["any_subnet"]]
-    """Must be '`any_subnet`'."""
+    """Must be 'any_subnet'."""
 
     ip_family: Optional[InterfaceIPFamily]
     """Which subnets should be selected: IPv4, IPv6 or use dual stack."""
@@ -77,7 +77,7 @@ class NewReservedFixedIPSpecificIPAddressSerializer(TypedDict, total=False):
     """Reserved fixed IP will be allocated in a subnet of this network"""
 
     type: Required[Literal["ip_address"]]
-    """Must be '`ip_address`'."""
+    """Must be 'ip_address'."""
 
     is_vip: bool
     """If reserved fixed IP is a VIP"""

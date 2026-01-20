@@ -89,10 +89,10 @@ class AdvancedRulesResource(SyncAPIResource):
               The "access" phase is responsible for modifying the request before it is sent to
               the origin server.
 
-              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              The "header_filter" phase is responsible for modifying the HTTP headers of a
               response before they are sent back to the client.
 
-              The "`body_filter`" phase is responsible for modifying the body of a response
+              The "body_filter" phase is responsible for modifying the body of a response
               before it is sent back to the client.
 
           extra_headers: Send extra headers
@@ -161,10 +161,10 @@ class AdvancedRulesResource(SyncAPIResource):
               The "access" phase is responsible for modifying the request before it is sent to
               the origin server.
 
-              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              The "header_filter" phase is responsible for modifying the HTTP headers of a
               response before they are sent back to the client.
 
-              The "`body_filter`" phase is responsible for modifying the body of a response
+              The "body_filter" phase is responsible for modifying the body of a response
               before it is sent back to the client.
 
           source: A CEL syntax expression that contains the rule's conditions. Allowed objects
@@ -263,10 +263,10 @@ class AdvancedRulesResource(SyncAPIResource):
               The "access" phase is responsible for modifying the request before it is sent to
               the origin server.
 
-              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              The "header_filter" phase is responsible for modifying the HTTP headers of a
               response before they are sent back to the client.
 
-              The "`body_filter`" phase is responsible for modifying the body of a response
+              The "body_filter" phase is responsible for modifying the body of a response
               before it is sent back to the client.
 
           extra_headers: Send extra headers
@@ -482,10 +482,10 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
               The "access" phase is responsible for modifying the request before it is sent to
               the origin server.
 
-              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              The "header_filter" phase is responsible for modifying the HTTP headers of a
               response before they are sent back to the client.
 
-              The "`body_filter`" phase is responsible for modifying the body of a response
+              The "body_filter" phase is responsible for modifying the body of a response
               before it is sent back to the client.
 
           extra_headers: Send extra headers
@@ -554,10 +554,10 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
               The "access" phase is responsible for modifying the request before it is sent to
               the origin server.
 
-              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              The "header_filter" phase is responsible for modifying the HTTP headers of a
               response before they are sent back to the client.
 
-              The "`body_filter`" phase is responsible for modifying the body of a response
+              The "body_filter" phase is responsible for modifying the body of a response
               before it is sent back to the client.
 
           source: A CEL syntax expression that contains the rule's conditions. Allowed objects
@@ -656,10 +656,10 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
               The "access" phase is responsible for modifying the request before it is sent to
               the origin server.
 
-              The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+              The "header_filter" phase is responsible for modifying the HTTP headers of a
               response before they are sent back to the client.
 
-              The "`body_filter`" phase is responsible for modifying the body of a response
+              The "body_filter" phase is responsible for modifying the body of a response
               before it is sent back to the client.
 
           extra_headers: Send extra headers

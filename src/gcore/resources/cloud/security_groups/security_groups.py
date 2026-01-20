@@ -193,20 +193,15 @@ class SecurityGroupsResource(SyncAPIResource):
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
-
               - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-
               - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
                 tags are preserved).
-
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
-
               - **Mixed operations:**
                 `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and '`cost_center`' while removing
-                '`deprecated_tag`', preserving other existing tags.
-
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
               - **Replace all:** first delete existing tags with null values, then add new
                 ones in the same request.
 
@@ -756,20 +751,15 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
-
               - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-
               - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
                 tags are preserved).
-
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
-
               - **Mixed operations:**
                 `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and '`cost_center`' while removing
-                '`deprecated_tag`', preserving other existing tags.
-
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
               - **Replace all:** first delete existing tags with null values, then add new
                 ones in the same request.
 

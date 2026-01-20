@@ -51,9 +51,9 @@ class AdvancedRuleListParams(TypedDict, total=False):
     The "access" phase is responsible for modifying the request before it is sent to
     the origin server.
 
-    The "`header_filter`" phase is responsible for modifying the HTTP headers of a
+    The "header_filter" phase is responsible for modifying the HTTP headers of a
     response before they are sent back to the client.
 
-    The "`body_filter`" phase is responsible for modifying the body of a response
+    The "body_filter" phase is responsible for modifying the body of a response
     before it is sent back to the client.
     """

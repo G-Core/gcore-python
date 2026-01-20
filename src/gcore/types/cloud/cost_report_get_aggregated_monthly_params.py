@@ -380,7 +380,7 @@ SchemaFilter: TypeAlias = Union[
 
 class TagsCondition(TypedDict, total=False):
     key: str
-    """The name of the tag to filter (e.g., '`os_version`')."""
+    """The name of the tag to filter (e.g., 'os_version')."""
 
     strict: bool
     """Determines how strictly the tag value must match the specified value.

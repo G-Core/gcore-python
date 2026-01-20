@@ -25,7 +25,7 @@ class Region(BaseModel):
     """The access level of the region."""
 
     available_volume_types: Optional[List[str]] = None
-    """List of available volume types, 'standard', '`ssd_hiiops`', 'cold']."""
+    """List of available volume types, 'standard', 'ssd_hiiops', 'cold']."""
 
     coordinates: Optional[Coordinates] = None
     """Coordinates of the region"""

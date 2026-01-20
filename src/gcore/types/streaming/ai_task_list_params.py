@@ -19,8 +19,7 @@ class AITaskListParams(TypedDict, total=False):
     Which field to use when ordering the results: `task_id`, status, and
     `task_name`. Sorting is done in ascending (ASC) order.
 
-    If parameter is omitted then "`started_at` DESC" is used for ordering by
-    default.
+    If parameter is omitted then "started_at DESC" is used for ordering by default.
     """
 
     page: int

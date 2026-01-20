@@ -331,7 +331,7 @@ class AITasksResource(SyncAPIResource):
               processing.
 
           subtitles_language: Indicates which language it is clearly necessary to translate into. If this is
-              not set, the original language will be used from attribute "`audio_language`".
+              not set, the original language will be used from attribute "audio_language".
 
               Please note that:
 
@@ -402,8 +402,7 @@ class AITasksResource(SyncAPIResource):
           ordering: Which field to use when ordering the results: `task_id`, status, and
               `task_name`. Sorting is done in ascending (ASC) order.
 
-              If parameter is omitted then "`started_at` DESC" is used for ordering by
-              default.
+              If parameter is omitted then "started_at DESC" is used for ordering by default.
 
           page: Page to view from task list, starting from 1
 
@@ -588,8 +587,8 @@ class AITasksResource(SyncAPIResource):
 
         Parameter sections:
 
-        - "`language_support`" – AI Translation: check if a language pair is supported
-          or not for AI translation.
+        - "language_support" – AI Translation: check if a language pair is supported or
+          not for AI translation.
         - this list will expand as new AI methods are added.
 
         **`language_support`**
@@ -597,7 +596,7 @@ class AITasksResource(SyncAPIResource):
         There are many languages available for transcription. But not all languages can
         be automatically translated to and from with good quality. In order to determine
         the availability of translation from the audio language to the desired subtitle
-        language, you can use this type of "`language_support`".
+        language, you can use this type of "language_support".
 
         AI models are constantly improving, so this method can be used for dynamic
         determination.
@@ -963,7 +962,7 @@ class AsyncAITasksResource(AsyncAPIResource):
               processing.
 
           subtitles_language: Indicates which language it is clearly necessary to translate into. If this is
-              not set, the original language will be used from attribute "`audio_language`".
+              not set, the original language will be used from attribute "audio_language".
 
               Please note that:
 
@@ -1034,8 +1033,7 @@ class AsyncAITasksResource(AsyncAPIResource):
           ordering: Which field to use when ordering the results: `task_id`, status, and
               `task_name`. Sorting is done in ascending (ASC) order.
 
-              If parameter is omitted then "`started_at` DESC" is used for ordering by
-              default.
+              If parameter is omitted then "started_at DESC" is used for ordering by default.
 
           page: Page to view from task list, starting from 1
 
@@ -1220,8 +1218,8 @@ class AsyncAITasksResource(AsyncAPIResource):
 
         Parameter sections:
 
-        - "`language_support`" – AI Translation: check if a language pair is supported
-          or not for AI translation.
+        - "language_support" – AI Translation: check if a language pair is supported or
+          not for AI translation.
         - this list will expand as new AI methods are added.
 
         **`language_support`**
@@ -1229,7 +1227,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         There are many languages available for transcription. But not all languages can
         be automatically translated to and from with good quality. In order to determine
         the availability of translation from the audio language to the desired subtitle
-        language, you can use this type of "`language_support`".
+        language, you can use this type of "language_support".
 
         AI models are constantly improving, so this method can be used for dynamic
         determination.

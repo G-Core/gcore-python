@@ -21,7 +21,7 @@ class StreamCreateClipParams(TypedDict, total=False):
       can be added to left and right.
 
     Duration of cutted segment cannot be greater than DVR duration for this stream.
-    Therefore, to change the maximum, use "`dvr_duration`" parameter of this stream.
+    Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
     """
 
     expiration: int

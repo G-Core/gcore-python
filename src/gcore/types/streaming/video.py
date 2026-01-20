@@ -220,7 +220,7 @@ class Video(BaseModel):
       return just 1 video codec in a manifest. Read the Product Documentation for
       details.
 
-    Read more what is ABR soft-limiting in the "`hls_url`" field above.
+    Read more what is ABR soft-limiting in the "hls_url" field above.
 
     Caution. Solely master.mpd is officially documented and intended for your use.
     Any additional internal manifests, sub-manifests, parameters, chunk names, file
@@ -235,9 +235,8 @@ class Video(BaseModel):
     duration: Optional[int] = None
     """Video duration in milliseconds.
 
-    May differ from "`origin_video_duration`" value if the video was uploaded with
-    clipping through the parameters "`clip_start_seconds`" and
-    "`clip_duration_seconds`"
+    May differ from "origin_video_duration" value if the video was uploaded with
+    clipping through the parameters "clip_start_seconds" and "clip_duration_seconds"
     """
 
     error: Optional[str] = None
@@ -249,7 +248,7 @@ class Video(BaseModel):
     Chunks are in fMP4 container. It's a code-agnostic container, which allows to
     use any like H264, H265, AV1, etc.
 
-    It is possible to use the same suffix-options as described in the "`hls_url`"
+    It is possible to use the same suffix-options as described in the "hls_url"
     attribute.
 
     Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented
@@ -366,7 +365,7 @@ class Video(BaseModel):
     URL to the original non-transcoded stream recording with original quality, saved
     in MP4 format. File is created immediately after the completion of the stream
     recording. The stream from which the recording was made is reflected in
-    "`stream_id`" field.
+    "stream_id" field.
 
     Can be used for internal operations when a recording needs to be received faster
     than the transcoded versions are ready. But this version is not intended for
@@ -515,6 +514,5 @@ class Video(BaseModel):
     """
     Number of video views through the built-in HTML video player of the Streaming
     Platform only. This attribute does not count views from other external players
-    and native OS players, so here may be less number of views than in
-    "`cdn_views`".
+    and native OS players, so here may be less number of views than in "cdn_views".
     """

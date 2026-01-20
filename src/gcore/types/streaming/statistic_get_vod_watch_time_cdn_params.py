@@ -17,7 +17,7 @@ class StatisticGetVodWatchTimeCdnParams(TypedDict, total=False):
     """
 
     client_user_id: int
-    """Filter by field "`client_user_id`" """
+    """Filter by field "client_user_id" """
 
     granularity: Literal["1m", "5m", "15m", "1h", "1d", "1mo"]
     """Data is grouped by the specified time interval"""

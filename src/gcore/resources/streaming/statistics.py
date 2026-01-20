@@ -177,11 +177,11 @@ class StatisticsResource(SyncAPIResource):
 
           to: End of time frame. Format is date time in ISO 8601
 
-          client_user_id: Filter by "`client_user_id`"
+          client_user_id: Filter by "client_user_id"
 
           granularity: Specifies the time interval for grouping data
 
-          stream_id: Filter by "`stream_id`"
+          stream_id: Filter by "stream_id"
 
           extra_headers: Send extra headers
 
@@ -243,7 +243,7 @@ class StatisticsResource(SyncAPIResource):
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601.
 
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           granularity: Data is grouped by the specified time interval
 
@@ -304,7 +304,7 @@ class StatisticsResource(SyncAPIResource):
         player the views were made with.
 
         Args:
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601. If omitted, the earliest start time for viewing is taken
@@ -1393,7 +1393,7 @@ class StatisticsResource(SyncAPIResource):
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601.
 
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           granularity: Data is grouped by the specified time interval
 
@@ -1454,7 +1454,7 @@ class StatisticsResource(SyncAPIResource):
         player the views were made with.
 
         Args:
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601. If omitted, the earliest start time for viewing is taken
@@ -1604,11 +1604,11 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           to: End of time frame. Format is date time in ISO 8601
 
-          client_user_id: Filter by "`client_user_id`"
+          client_user_id: Filter by "client_user_id"
 
           granularity: Specifies the time interval for grouping data
 
-          stream_id: Filter by "`stream_id`"
+          stream_id: Filter by "stream_id"
 
           extra_headers: Send extra headers
 
@@ -1670,7 +1670,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601.
 
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           granularity: Data is grouped by the specified time interval
 
@@ -1731,7 +1731,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         player the views were made with.
 
         Args:
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601. If omitted, the earliest start time for viewing is taken
@@ -2820,7 +2820,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601.
 
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           granularity: Data is grouped by the specified time interval
 
@@ -2881,7 +2881,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         player the views were made with.
 
         Args:
-          client_user_id: Filter by field "`client_user_id`"
+          client_user_id: Filter by field "client_user_id"
 
           from_: Start of the time period for counting minutes of watching. Format is date time
               in ISO 8601. If omitted, the earliest start time for viewing is taken

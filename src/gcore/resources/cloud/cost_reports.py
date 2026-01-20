@@ -222,7 +222,7 @@ class CostReportsResource(SyncAPIResource):
         """
         Retrieve a detailed cost report totals for a specified month, which includes
         both commit and pay-as-you-go (overcommit) prices. Additionally, it provides the
-        spent billing units (e.g., hours or GB) for resources. The "`time_to`" parameter
+        spent billing units (e.g., hours or GB) for resources. The "time_to" parameter
         represents all days in the specified month.
 
         Data from the past hour may not reflect the full set of statistics. For the most
@@ -604,7 +604,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
         """
         Retrieve a detailed cost report totals for a specified month, which includes
         both commit and pay-as-you-go (overcommit) prices. Additionally, it provides the
-        spent billing units (e.g., hours or GB) for resources. The "`time_to`" parameter
+        spent billing units (e.g., hours or GB) for resources. The "time_to" parameter
         represents all days in the specified month.
 
         Data from the past hour may not reflect the full set of statistics. For the most

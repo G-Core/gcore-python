@@ -16,7 +16,7 @@ class VideoListParams(TypedDict, total=False):
     """
 
     client_user_id: int
-    """Find videos where "`client_user_id`" meta field is equal to the search value"""
+    """Find videos where "client_user_id" meta field is equal to the search value"""
 
     fields: str
     """
@@ -56,6 +56,6 @@ class VideoListParams(TypedDict, total=False):
 
     stream_id: int
     """
-    Find videos recorded from a specific stream, so for which "`stream_id`" field is
+    Find videos recorded from a specific stream, so for which "stream_id" field is
     equal to the search value
     """

@@ -173,7 +173,7 @@ class ServersSettingsCredentials(TypedDict, total=False):
     """Used to set the password for the specified 'username' on Linux instances.
 
     If 'username' is not provided, the password is applied to the default user of
-    the image. Mutually exclusive with '`user_data`' - only one can be specified.
+    the image. Mutually exclusive with 'user_data' - only one can be specified.
     """
 
     ssh_key_name: str

@@ -192,8 +192,8 @@ class AuditLogsResource(SyncAPIResource):
           search_field: Extra search field for common object properties such as name, IP address, or
               other, depending on the `resource_type`
 
-          sorting: (DEPRECATED Use '`order_by`' instead) Sorting by timestamp. Oldest first, or
-              most recent first
+          sorting: (DEPRECATED Use 'order_by' instead) Sorting by timestamp. Oldest first, or most
+              recent first
 
           source_user_ips: Originating IP address of the client making the request. Several options can be
               specified.
@@ -410,8 +410,8 @@ class AsyncAuditLogsResource(AsyncAPIResource):
           search_field: Extra search field for common object properties such as name, IP address, or
               other, depending on the `resource_type`
 
-          sorting: (DEPRECATED Use '`order_by`' instead) Sorting by timestamp. Oldest first, or
-              most recent first
+          sorting: (DEPRECATED Use 'order_by' instead) Sorting by timestamp. Oldest first, or most
+              recent first
 
           source_user_ips: Originating IP address of the client making the request. Several options can be
               specified.

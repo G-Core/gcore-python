@@ -10,7 +10,7 @@ __all__ = ["AIContentmoderationSoftnudity"]
 
 class AIContentmoderationSoftnudity(BaseModel):
     category: Literal["soft_nudity", "sport", "nsfw", "hard_nudity"]
-    """AI content moderation with "`soft_nudity`" algorithm"""
+    """AI content moderation with "soft_nudity" algorithm"""
 
     task_name: Literal["content-moderation"]
     """Name of the task to be performed"""

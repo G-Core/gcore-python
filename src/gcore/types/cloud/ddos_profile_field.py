@@ -27,7 +27,7 @@ class DDOSProfileField(BaseModel):
     """Data type classification of the field (e.g., string, integer, array)"""
 
     field_value: object
-    """Complex value. Only one of 'value' or '`field_value`' must be specified."""
+    """Complex value. Only one of 'value' or 'field_value' must be specified."""
 
     name: str
     """Human-readable name of the protection field"""
@@ -41,4 +41,4 @@ class DDOSProfileField(BaseModel):
     """JSON schema defining validation rules and constraints for the field value"""
 
     value: Optional[str] = None
-    """Basic type value. Only one of 'value' or '`field_value`' must be specified."""
+    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
