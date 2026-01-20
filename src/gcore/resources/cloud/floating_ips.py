@@ -124,13 +124,14 @@ class FloatingIPsResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         floating_ip_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        fixed_ip_address: Optional[str] | Omit = omit,
+        port_id: Optional[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,10 +139,52 @@ class FloatingIPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FloatingIP:
-        """
-        **Deprecated**: Use PATCH
-        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+    ) -> TaskIDList:
+        """This endpoint updates the association and tags of an existing Floating IP.
+
+        The
+        behavior depends on the current association state and the provided fields:
+
+        Parameters:
+
+        `port_id`: The unique identifier of the network interface (port) to which the
+        Floating IP should be assigned. This ID can be retrieved from the "Get instance"
+        or "List network interfaces" endpoints.
+
+        `fixed_ip_address`: The private IP address assigned to the network interface.
+        This must be one of the IP addresses currently assigned to the specified port.
+        You can retrieve available fixed IP addresses from the "Get instance" or "List
+        network interfaces" endpoints.
+
+        When the Floating IP has no port associated (`port_id` is null):
+
+        - Patch with both `port_id` and `fixed_ip_address`: Assign the Floating IP to
+          the specified port and the provided `fixed_ip_address`, if that
+          `fixed_ip_address` exists on the port and is not yet used by another Floating
+          IP.
+        - Patch with `port_id` only (`fixed_ip_address` omitted): Assign the Floating IP
+          to the specified port using the first available IPv4 fixed IP of that port.
+
+        When the Floating IP is already associated with a port:
+
+        - Patch with both `port_id` and `fixed_ip_address`: Re-assign the Floating IP to
+          the specified port and address if all validations pass.
+        - Patch with `port_id` only (`fixed_ip_address` omitted): Re-assign the Floating
+          IP to the specified port using the first available IPv4 fixed IP of that port.
+        - Patch with `port_id` = null: Unassign the Floating IP from its current port.
+
+        Tags:
+
+        - You can update tags alongside association changes. Tags are provided as a list
+          of key-value pairs.
+
+        Idempotency and task creation:
+
+        - No worker task is created if the requested state is already actual, i.e., the
+          requested `port_id` equals the current `port_id` and/or the requested
+          `fixed_ip_address` equals the current `fixed_ip_address`, and the tags already
+          match the current tags. In such cases, the endpoint returns an empty tasks
+          list.
 
         Args:
           project_id: Project ID
@@ -149,6 +192,10 @@ class FloatingIPsResource(SyncAPIResource):
           region_id: Region ID
 
           floating_ip_id: Floating IP ID
+
+          fixed_ip_address: Fixed IP address
+
+          port_id: Port ID
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -192,12 +239,19 @@ class FloatingIPsResource(SyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return self._patch(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
-            body=maybe_transform({"tags": tags}, floating_ip_update_params.FloatingIPUpdateParams),
+            f"/cloud/v2/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            body=maybe_transform(
+                {
+                    "fixed_ip_address": fixed_ip_address,
+                    "port_id": port_id,
+                    "tags": tags,
+                },
+                floating_ip_update_params.FloatingIPUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FloatingIP,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -648,13 +702,14 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         floating_ip_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        fixed_ip_address: Optional[str] | Omit = omit,
+        port_id: Optional[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -662,10 +717,52 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FloatingIP:
-        """
-        **Deprecated**: Use PATCH
-        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+    ) -> TaskIDList:
+        """This endpoint updates the association and tags of an existing Floating IP.
+
+        The
+        behavior depends on the current association state and the provided fields:
+
+        Parameters:
+
+        `port_id`: The unique identifier of the network interface (port) to which the
+        Floating IP should be assigned. This ID can be retrieved from the "Get instance"
+        or "List network interfaces" endpoints.
+
+        `fixed_ip_address`: The private IP address assigned to the network interface.
+        This must be one of the IP addresses currently assigned to the specified port.
+        You can retrieve available fixed IP addresses from the "Get instance" or "List
+        network interfaces" endpoints.
+
+        When the Floating IP has no port associated (`port_id` is null):
+
+        - Patch with both `port_id` and `fixed_ip_address`: Assign the Floating IP to
+          the specified port and the provided `fixed_ip_address`, if that
+          `fixed_ip_address` exists on the port and is not yet used by another Floating
+          IP.
+        - Patch with `port_id` only (`fixed_ip_address` omitted): Assign the Floating IP
+          to the specified port using the first available IPv4 fixed IP of that port.
+
+        When the Floating IP is already associated with a port:
+
+        - Patch with both `port_id` and `fixed_ip_address`: Re-assign the Floating IP to
+          the specified port and address if all validations pass.
+        - Patch with `port_id` only (`fixed_ip_address` omitted): Re-assign the Floating
+          IP to the specified port using the first available IPv4 fixed IP of that port.
+        - Patch with `port_id` = null: Unassign the Floating IP from its current port.
+
+        Tags:
+
+        - You can update tags alongside association changes. Tags are provided as a list
+          of key-value pairs.
+
+        Idempotency and task creation:
+
+        - No worker task is created if the requested state is already actual, i.e., the
+          requested `port_id` equals the current `port_id` and/or the requested
+          `fixed_ip_address` equals the current `fixed_ip_address`, and the tags already
+          match the current tags. In such cases, the endpoint returns an empty tasks
+          list.
 
         Args:
           project_id: Project ID
@@ -673,6 +770,10 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
           region_id: Region ID
 
           floating_ip_id: Floating IP ID
+
+          fixed_ip_address: Fixed IP address
+
+          port_id: Port ID
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -716,12 +817,19 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if not floating_ip_id:
             raise ValueError(f"Expected a non-empty value for `floating_ip_id` but received {floating_ip_id!r}")
         return await self._patch(
-            f"/cloud/v1/floatingips/{project_id}/{region_id}/{floating_ip_id}",
-            body=await async_maybe_transform({"tags": tags}, floating_ip_update_params.FloatingIPUpdateParams),
+            f"/cloud/v2/floatingips/{project_id}/{region_id}/{floating_ip_id}",
+            body=await async_maybe_transform(
+                {
+                    "fixed_ip_address": fixed_ip_address,
+                    "port_id": port_id,
+                    "tags": tags,
+                },
+                floating_ip_update_params.FloatingIPUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FloatingIP,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -1090,10 +1198,8 @@ class FloatingIPsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             floating_ips.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                floating_ips.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            floating_ips.update,
         )
         self.list = to_raw_response_wrapper(
             floating_ips.list,
@@ -1129,10 +1235,8 @@ class AsyncFloatingIPsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             floating_ips.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                floating_ips.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            floating_ips.update,
         )
         self.list = async_to_raw_response_wrapper(
             floating_ips.list,
@@ -1168,10 +1272,8 @@ class FloatingIPsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             floating_ips.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                floating_ips.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            floating_ips.update,
         )
         self.list = to_streamed_response_wrapper(
             floating_ips.list,
@@ -1207,10 +1309,8 @@ class AsyncFloatingIPsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             floating_ips.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                floating_ips.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            floating_ips.update,
         )
         self.list = async_to_streamed_response_wrapper(
             floating_ips.list,

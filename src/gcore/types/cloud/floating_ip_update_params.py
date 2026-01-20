@@ -17,6 +17,12 @@ class FloatingIPUpdateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
+    fixed_ip_address: Optional[str]
+    """Fixed IP address"""
+
+    port_id: Optional[str]
+    """Port ID"""
+
     tags: Optional[TagUpdateMapParam]
     """Update key-value tags using JSON Merge Patch semantics (RFC 7386).
 
