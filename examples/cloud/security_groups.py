@@ -1,5 +1,4 @@
 from gcore import Gcore
-from gcore.types.cloud.security_group_create_params import SecurityGroup
 
 
 def main() -> None:
@@ -20,6 +19,7 @@ def main() -> None:
     security_group_id = create_security_group(client=gcore)
     list_security_groups(client=gcore)
     get_security_group(client=gcore, security_group_id=security_group_id)
+    update_tags_security_group(client=gcore, security_group_id=security_group_id)
     update_security_group(client=gcore, security_group_id=security_group_id)
 
     # Rules
@@ -32,7 +32,10 @@ def main() -> None:
 
 def create_security_group(*, client: Gcore) -> str:
     print("\n=== CREATE SECURITY GROUP ===")
-    security_group = client.cloud.security_groups.create(security_group=SecurityGroup(name="gcore-go-example"))  # pyright: ignore[reportDeprecated]
+    security_group = client.cloud.security_groups.create_and_poll(
+        name="gcore-python-example",
+        tags={"environment": "development"},
+    )
     print(f"Created security group: ID={security_group.id}, name={security_group.name}")
     print("========================")
     return security_group.id
@@ -55,11 +58,21 @@ def get_security_group(*, client: Gcore, security_group_id: str) -> None:
     print("========================")
 
 
+def update_tags_security_group(*, client: Gcore, security_group_id: str) -> None:
+    print("\n=== UPDATE TAGS SECURITY GROUP ===")
+    security_group = client.cloud.security_groups.update_and_poll(
+        group_id=security_group_id,
+        tags={"environment": "production", "team": "backend"},
+    )
+    print(f"Updated security group tags: ID={security_group.id}, tags={security_group.tags_v2}")
+    print("========================")
+
+
 def update_security_group(*, client: Gcore, security_group_id: str) -> None:
     print("\n=== UPDATE SECURITY GROUP ===")
-    security_group = client.cloud.security_groups.update(  # pyright: ignore[reportDeprecated]
+    security_group = client.cloud.security_groups.update_and_poll(
         group_id=security_group_id,
-        name="gcore-go-example-updated",
+        name="gcore-python-example-updated",
     )
     print(f"Updated security group: ID={security_group.id}, name={security_group.name}")
     print("========================")

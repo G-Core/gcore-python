@@ -1,7 +1,6 @@
 import asyncio
 
 from gcore import AsyncGcore
-from gcore.types.cloud.security_group_create_params import SecurityGroup
 
 
 async def main() -> None:
@@ -22,6 +21,7 @@ async def main() -> None:
     security_group_id = await create_security_group(client=gcore)
     await list_security_groups(client=gcore)
     await get_security_group(client=gcore, security_group_id=security_group_id)
+    await update_tags_security_group(client=gcore, security_group_id=security_group_id)
     await update_security_group(client=gcore, security_group_id=security_group_id)
 
     # Rules
@@ -34,7 +34,10 @@ async def main() -> None:
 
 async def create_security_group(client: AsyncGcore) -> str:
     print("\n=== CREATE SECURITY GROUP ===")
-    security_group = await client.cloud.security_groups.create(security_group=SecurityGroup(name="gcore-go-example"))  # pyright: ignore[reportDeprecated]
+    security_group = await client.cloud.security_groups.create_and_poll(
+        name="gcore-python-example",
+        tags={"environment": "development"},
+    )
     print(f"Created security group: ID={security_group.id}, name={security_group.name}")
     print("========================")
     return security_group.id
@@ -42,9 +45,8 @@ async def create_security_group(client: AsyncGcore) -> str:
 
 async def list_security_groups(*, client: AsyncGcore) -> None:
     print("\n=== LIST SECURITY GROUPS ===")
-    security_groups = await client.cloud.security_groups.list()
     count = 0
-    async for security_group in security_groups:
+    async for security_group in client.cloud.security_groups.list():
         count += 1
         print(f"{count}. Security group: ID={security_group.id}, name={security_group.name}")
     print("========================")
@@ -59,11 +61,21 @@ async def get_security_group(*, client: AsyncGcore, security_group_id: str) -> N
     print("========================")
 
 
+async def update_tags_security_group(*, client: AsyncGcore, security_group_id: str) -> None:
+    print("\n=== UPDATE TAGS SECURITY GROUP ===")
+    security_group = await client.cloud.security_groups.update_and_poll(
+        group_id=security_group_id,
+        tags={"environment": "production", "team": "backend"},
+    )
+    print(f"Updated security group tags: ID={security_group.id}, tags={security_group.tags_v2}")
+    print("========================")
+
+
 async def update_security_group(*, client: AsyncGcore, security_group_id: str) -> None:
     print("\n=== UPDATE SECURITY GROUP ===")
-    security_group = await client.cloud.security_groups.update(  # pyright: ignore[reportDeprecated]
+    security_group = await client.cloud.security_groups.update_and_poll(
         group_id=security_group_id,
-        name="gcore-go-example-updated",
+        name="gcore-python-example-updated",
     )
     print(f"Updated security group: ID={security_group.id}, name={security_group.name}")
     print("========================")
