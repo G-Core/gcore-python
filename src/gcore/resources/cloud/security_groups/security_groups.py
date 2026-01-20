@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-import typing_extensions
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 
 import httpx
 
@@ -33,6 +32,7 @@ from ....types.cloud import (
     security_group_update_params,
 )
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.security_group import SecurityGroup
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
@@ -63,32 +63,45 @@ class SecurityGroupsResource(SyncAPIResource):
         """
         return SecurityGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        security_group: security_group_create_params.SecurityGroup,
-        instances: SequenceNotStr[str] | Omit = omit,
+        name: str,
+        description: str | Omit = omit,
+        rules: Iterable[security_group_create_params.Rule] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SecurityGroup:
-        """
-        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>` instead.
+    ) -> TaskIDList:
+        """Creates a new security group with the specified configuration.
+
+        If no egress
+        rules are provided, default set of egress rules will be applied If rules are
+        explicitly set to empty, no rules will be created.
 
         Args:
           project_id: Project ID
 
           region_id: Region ID
 
-          security_group: Security group
+          name: Security group name
 
-          instances: List of instances
+          description: Security group description
+
+          rules: Security group rules
+
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Both tag keys and values have a maximum
+              length of 255 characters. Some tags are read-only and cannot be modified by the
+              user. Tags are also integrated with cost reports, allowing cost data to be
+              filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -103,29 +116,31 @@ class SecurityGroupsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
+            f"/cloud/v2/security_groups/{project_id}/{region_id}",
             body=maybe_transform(
                 {
-                    "security_group": security_group,
-                    "instances": instances,
+                    "name": name,
+                    "description": description,
+                    "rules": rules,
+                    "tags": tags,
                 },
                 security_group_create_params.SecurityGroupCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecurityGroup,
+            cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         group_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        changed_rules: Iterable[security_group_update_params.ChangedRule] | Omit = omit,
+        description: str | Omit = omit,
         name: str | Omit = omit,
+        rules: Iterable[security_group_update_params.Rule] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,21 +148,40 @@ class SecurityGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SecurityGroup:
+    ) -> TaskIDList:
         """
-        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>/<group_id>`
-        instead.
+        Updates the specified security group with the provided changes.
+
+        **Behavior:**
+
+        - Simple fields (name, description) will be updated if provided
+        - Undefined fields will remain unchanged
+        - If no change is detected for a specific field compared to the current security
+          group state, that field will be skipped
+        - If no changes are detected at all across all fields, no task will be created
+          and an empty task list will be returned
+
+        **Important - Security Group Rules:**
+
+        - Rules must be specified completely as the desired final state
+        - The system compares the provided rules against the current state
+        - Rules that exist in the request but not in the current state will be added
+        - Rules that exist in the current state but not in the request will be removed
+        - To keep existing rules, they must be included in the request alongside any new
+          rules
 
         Args:
           project_id: Project ID
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
-          changed_rules: List of rules to create or delete
+          description: Security group description
 
           name: Name
+
+          rules: Security group rules
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -191,11 +225,12 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._patch(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}",
             body=maybe_transform(
                 {
-                    "changed_rules": changed_rules,
+                    "description": description,
                     "name": name,
+                    "rules": rules,
                     "tags": tags,
                 },
                 security_group_update_params.SecurityGroupUpdateParams,
@@ -203,7 +238,7 @@ class SecurityGroupsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecurityGroup,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -485,32 +520,45 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         """
         return AsyncSecurityGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        security_group: security_group_create_params.SecurityGroup,
-        instances: SequenceNotStr[str] | Omit = omit,
+        name: str,
+        description: str | Omit = omit,
+        rules: Iterable[security_group_create_params.Rule] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SecurityGroup:
-        """
-        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>` instead.
+    ) -> TaskIDList:
+        """Creates a new security group with the specified configuration.
+
+        If no egress
+        rules are provided, default set of egress rules will be applied If rules are
+        explicitly set to empty, no rules will be created.
 
         Args:
           project_id: Project ID
 
           region_id: Region ID
 
-          security_group: Security group
+          name: Security group name
 
-          instances: List of instances
+          description: Security group description
+
+          rules: Security group rules
+
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Both tag keys and values have a maximum
+              length of 255 characters. Some tags are read-only and cannot be modified by the
+              user. Tags are also integrated with cost reports, allowing cost data to be
+              filtered based on tag keys or values.
 
           extra_headers: Send extra headers
 
@@ -525,29 +573,31 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
+            f"/cloud/v2/security_groups/{project_id}/{region_id}",
             body=await async_maybe_transform(
                 {
-                    "security_group": security_group,
-                    "instances": instances,
+                    "name": name,
+                    "description": description,
+                    "rules": rules,
+                    "tags": tags,
                 },
                 security_group_create_params.SecurityGroupCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecurityGroup,
+            cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         group_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        changed_rules: Iterable[security_group_update_params.ChangedRule] | Omit = omit,
+        description: str | Omit = omit,
         name: str | Omit = omit,
+        rules: Iterable[security_group_update_params.Rule] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -555,21 +605,40 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SecurityGroup:
+    ) -> TaskIDList:
         """
-        **Deprecated** Use `/v2/security_groups/<project_id>/<region_id>/<group_id>`
-        instead.
+        Updates the specified security group with the provided changes.
+
+        **Behavior:**
+
+        - Simple fields (name, description) will be updated if provided
+        - Undefined fields will remain unchanged
+        - If no change is detected for a specific field compared to the current security
+          group state, that field will be skipped
+        - If no changes are detected at all across all fields, no task will be created
+          and an empty task list will be returned
+
+        **Important - Security Group Rules:**
+
+        - Rules must be specified completely as the desired final state
+        - The system compares the provided rules against the current state
+        - Rules that exist in the request but not in the current state will be added
+        - Rules that exist in the current state but not in the request will be removed
+        - To keep existing rules, they must be included in the request alongside any new
+          rules
 
         Args:
           project_id: Project ID
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
-          changed_rules: List of rules to create or delete
+          description: Security group description
 
           name: Name
+
+          rules: Security group rules
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -613,11 +682,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._patch(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}",
             body=await async_maybe_transform(
                 {
-                    "changed_rules": changed_rules,
+                    "description": description,
                     "name": name,
+                    "rules": rules,
                     "tags": tags,
                 },
                 security_group_update_params.SecurityGroupUpdateParams,
@@ -625,7 +695,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecurityGroup,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -887,15 +957,11 @@ class SecurityGroupsResourceWithRawResponse:
     def __init__(self, security_groups: SecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                security_groups.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_raw_response_wrapper(
+            security_groups.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                security_groups.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            security_groups.update,
         )
         self.list = to_raw_response_wrapper(
             security_groups.list,
@@ -922,15 +988,11 @@ class AsyncSecurityGroupsResourceWithRawResponse:
     def __init__(self, security_groups: AsyncSecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                security_groups.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_raw_response_wrapper(
+            security_groups.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                security_groups.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            security_groups.update,
         )
         self.list = async_to_raw_response_wrapper(
             security_groups.list,
@@ -957,15 +1019,11 @@ class SecurityGroupsResourceWithStreamingResponse:
     def __init__(self, security_groups: SecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                security_groups.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_streamed_response_wrapper(
+            security_groups.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                security_groups.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            security_groups.update,
         )
         self.list = to_streamed_response_wrapper(
             security_groups.list,
@@ -992,15 +1050,11 @@ class AsyncSecurityGroupsResourceWithStreamingResponse:
     def __init__(self, security_groups: AsyncSecurityGroupsResource) -> None:
         self._security_groups = security_groups
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                security_groups.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_streamed_response_wrapper(
+            security_groups.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                security_groups.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            security_groups.update,
         )
         self.list = async_to_streamed_response_wrapper(
             security_groups.list,
