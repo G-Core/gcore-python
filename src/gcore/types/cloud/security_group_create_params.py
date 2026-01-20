@@ -5,9 +5,7 @@ from __future__ import annotations
 from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from ..._types import SequenceNotStr
-
-__all__ = ["SecurityGroupCreateParams", "SecurityGroup", "SecurityGroupSecurityGroupRule"]
+__all__ = ["SecurityGroupCreateParams", "Rule"]
 
 
 class SecurityGroupCreateParams(TypedDict, total=False):
@@ -17,14 +15,27 @@ class SecurityGroupCreateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
-    security_group: Required[SecurityGroup]
-    """Security group"""
+    name: Required[str]
+    """Security group name"""
 
-    instances: SequenceNotStr[str]
-    """List of instances"""
+    description: str
+    """Security group description"""
+
+    rules: Iterable[Rule]
+    """Security group rules"""
+
+    tags: Dict[str, str]
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Both
+    tag keys and values have a maximum length of 255 characters. Some tags are
+    read-only and cannot be modified by the user. Tags are also integrated with cost
+    reports, allowing cost data to be filtered based on tag keys or values.
+    """
 
 
-class SecurityGroupSecurityGroupRule(TypedDict, total=False):
+class Rule(TypedDict, total=False):
     direction: Required[Literal["egress", "ingress"]]
     """
     Ingress or egress, which is the direction in which the security group is applied
@@ -75,26 +86,3 @@ class SecurityGroupSecurityGroupRule(TypedDict, total=False):
 
     remote_ip_prefix: Optional[str]
     """The remote IP prefix that is matched by this security group rule"""
-
-
-class SecurityGroup(TypedDict, total=False):
-    """Security group"""
-
-    name: Required[str]
-    """Security group name"""
-
-    description: Optional[str]
-    """Security group description"""
-
-    security_group_rules: Iterable[SecurityGroupSecurityGroupRule]
-    """Security group rules"""
-
-    tags: Dict[str, str]
-    """Key-value tags to associate with the resource.
-
-    A tag is a key-value pair that can be associated with a resource, enabling
-    efficient filtering and grouping for better organization and management. Both
-    tag keys and values have a maximum length of 255 characters. Some tags are
-    read-only and cannot be modified by the user. Tags are also integrated with cost
-    reports, allowing cost data to be filtered based on tag keys or values.
-    """
