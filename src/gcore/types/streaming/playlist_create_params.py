@@ -33,7 +33,7 @@ class PlaylistCreateParams(TypedDict, total=False):
 
     Chunks are in fMP4 container.
 
-    It is possible to use the same suffix-options as described in the "`hls_url`"
+    It is possible to use the same suffix-options as described in the "hls_url"
     attribute.
 
     Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented

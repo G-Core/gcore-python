@@ -242,7 +242,7 @@ class StreamsResource(SyncAPIResource):
               requests and the stream is deactivated (the "active" field switches to "false").
 
               Please, note that this field is for PULL only, so is not suitable for PUSH. Look
-              at fields "`push_url`" and "`push_url_srt`" from GET method.
+              at fields "push_url" and "push_url_srt" from GET method.
 
           extra_headers: Send extra headers
 
@@ -384,8 +384,8 @@ class StreamsResource(SyncAPIResource):
         is impossible to restore data and files after this.
 
         But if the live had recordings, they continue to remain independent Video
-        entities. The "`stream_id`" parameter will simply point to a stream that no
-        longer exists.
+        entities. The "stream_id" parameter will simply point to a stream that no longer
+        exists.
 
         Perhaps, instead of deleting, you may use the stream deactivation:
 
@@ -503,7 +503,7 @@ class StreamsResource(SyncAPIResource):
         **Cutting a clip from a source:**
 
         In order to use clips recording feature, DVR must be enabled for a stream:
-        "`dvr_enabled`: true". The DVR serves as a source for creating clips:
+        "dvr_enabled: true". The DVR serves as a source for creating clips:
 
         - By default live stream DVR is set to 1 hour (3600 seconds). You can create an
           instant clip using any segment of this time period by specifying the desired
@@ -532,7 +532,7 @@ class StreamsResource(SyncAPIResource):
                 can be added to left and right.
 
               Duration of cutted segment cannot be greater than DVR duration for this stream.
-              Therefore, to change the maximum, use "`dvr_duration`" parameter of this stream.
+              Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
 
           expiration: Expire time of the clip via a public link.
 
@@ -635,7 +635,7 @@ class StreamsResource(SyncAPIResource):
         Get list of non expired instant clips for a stream.
 
         You can now use both MP4 just-in-time packager and HLS for all clips. Get URLs
-        from "`hls_master`" and "`mp4_master`".
+        from "hls_master" and "mp4_master".
 
         **How to download renditions of clips:**
 
@@ -689,22 +689,22 @@ class StreamsResource(SyncAPIResource):
         separate video VOD:
 
         - ID of the stream from which the recording was organized is added to
-          "`stream_id`" field. You can find the video by that value later.
+          "stream_id" field. You can find the video by that value later.
         - Title of the video is based on pattern "Stream Record: {`stream_title`},
           {`recording_end_time_utc`}".
-        - Recording start time is stored in "`recording_started_at`" field.
+        - Recording start time is stored in "recording_started_at" field.
         - You can record the original stream or the transcoded one. Only the transcoded
           version will contain overlays. Set the appropriate recording method when
           creating the stream or before calling this recording method. Details in the
-          "`record_type`" parameter of the stream.
+          "record_type" parameter of the stream.
         - If you have access to the premium feature of saving the original stream (so
           not just transcoded renditions), then the link to the original file will be in
-          the "`origin_url`" field. Look at the description of the field how to use it.
+          the "origin_url" field. Look at the description of the field how to use it.
 
         Stream must be live for the recording to start, please check fields "live"
-        and/or "`backup_live`". After the recording starts, field "recording" will
-        switch to "true", and the recording duration in seconds will appear in the
-        "`recording_duration`" field.
+        and/or "backup_live". After the recording starts, field "recording" will switch
+        to "true", and the recording duration in seconds will appear in the
+        "recording_duration" field.
 
         Please, keep in mind that recording doesn't start instantly, it takes ±3-7
         seconds to initialize the process after executing this method.
@@ -980,7 +980,7 @@ class AsyncStreamsResource(AsyncAPIResource):
               requests and the stream is deactivated (the "active" field switches to "false").
 
               Please, note that this field is for PULL only, so is not suitable for PUSH. Look
-              at fields "`push_url`" and "`push_url_srt`" from GET method.
+              at fields "push_url" and "push_url_srt" from GET method.
 
           extra_headers: Send extra headers
 
@@ -1122,8 +1122,8 @@ class AsyncStreamsResource(AsyncAPIResource):
         is impossible to restore data and files after this.
 
         But if the live had recordings, they continue to remain independent Video
-        entities. The "`stream_id`" parameter will simply point to a stream that no
-        longer exists.
+        entities. The "stream_id" parameter will simply point to a stream that no longer
+        exists.
 
         Perhaps, instead of deleting, you may use the stream deactivation:
 
@@ -1241,7 +1241,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         **Cutting a clip from a source:**
 
         In order to use clips recording feature, DVR must be enabled for a stream:
-        "`dvr_enabled`: true". The DVR serves as a source for creating clips:
+        "dvr_enabled: true". The DVR serves as a source for creating clips:
 
         - By default live stream DVR is set to 1 hour (3600 seconds). You can create an
           instant clip using any segment of this time period by specifying the desired
@@ -1270,7 +1270,7 @@ class AsyncStreamsResource(AsyncAPIResource):
                 can be added to left and right.
 
               Duration of cutted segment cannot be greater than DVR duration for this stream.
-              Therefore, to change the maximum, use "`dvr_duration`" parameter of this stream.
+              Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
 
           expiration: Expire time of the clip via a public link.
 
@@ -1373,7 +1373,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         Get list of non expired instant clips for a stream.
 
         You can now use both MP4 just-in-time packager and HLS for all clips. Get URLs
-        from "`hls_master`" and "`mp4_master`".
+        from "hls_master" and "mp4_master".
 
         **How to download renditions of clips:**
 
@@ -1427,22 +1427,22 @@ class AsyncStreamsResource(AsyncAPIResource):
         separate video VOD:
 
         - ID of the stream from which the recording was organized is added to
-          "`stream_id`" field. You can find the video by that value later.
+          "stream_id" field. You can find the video by that value later.
         - Title of the video is based on pattern "Stream Record: {`stream_title`},
           {`recording_end_time_utc`}".
-        - Recording start time is stored in "`recording_started_at`" field.
+        - Recording start time is stored in "recording_started_at" field.
         - You can record the original stream or the transcoded one. Only the transcoded
           version will contain overlays. Set the appropriate recording method when
           creating the stream or before calling this recording method. Details in the
-          "`record_type`" parameter of the stream.
+          "record_type" parameter of the stream.
         - If you have access to the premium feature of saving the original stream (so
           not just transcoded renditions), then the link to the original file will be in
-          the "`origin_url`" field. Look at the description of the field how to use it.
+          the "origin_url" field. Look at the description of the field how to use it.
 
         Stream must be live for the recording to start, please check fields "live"
-        and/or "`backup_live`". After the recording starts, field "recording" will
-        switch to "true", and the recording duration in seconds will appear in the
-        "`recording_duration`" field.
+        and/or "backup_live". After the recording starts, field "recording" will switch
+        to "true", and the recording duration in seconds will appear in the
+        "recording_duration" field.
 
         Please, keep in mind that recording doesn't start instantly, it takes ±3-7
         seconds to initialize the process after executing this method.

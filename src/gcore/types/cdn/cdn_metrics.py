@@ -16,7 +16,7 @@ class CdnMetrics(BaseModel):
     data: Optional[Data] = None
     """
     If no grouping was requested then "data" holds an array of metric values. If at
-    least one field is specified in "`group_by`" then "data" is an object whose
+    least one field is specified in "group_by" then "data" is an object whose
     properties are groups, which may include other groups; the last group will hold
     array of metrics values.
     """

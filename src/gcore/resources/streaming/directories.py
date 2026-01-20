@@ -100,7 +100,7 @@ class DirectoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectoryBase:
         """
-        Change a directory name or move to another "`parent_id`".
+        Change a directory name or move to another "parent_id".
 
         Args:
           name: Title of the directory. Omit this if you don't want to change.
@@ -307,7 +307,7 @@ class AsyncDirectoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectoryBase:
         """
-        Change a directory name or move to another "`parent_id`".
+        Change a directory name or move to another "parent_id".
 
         Args:
           name: Title of the directory. Omit this if you don't want to change.

@@ -164,5 +164,5 @@ class StreamCreateParams(TypedDict, total=False):
     requests and the stream is deactivated (the "active" field switches to "false").
 
     Please, note that this field is for PULL only, so is not suitable for PUSH. Look
-    at fields "`push_url`" and "`push_url_srt`" from GET method.
+    at fields "push_url" and "push_url_srt" from GET method.
     """

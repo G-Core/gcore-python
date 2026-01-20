@@ -40,7 +40,7 @@ class ReservedFixedIPListParams(TypedDict, total=False):
     """
     Ordering reserved fixed IP list result by name, status, `updated_at`,
     `created_at` or `fixed_ip_address` fields and directions (status.asc), default
-    is "`fixed_ip_address`.asc"
+    is "fixed_ip_address.asc"
     """
 
     vip_only: bool

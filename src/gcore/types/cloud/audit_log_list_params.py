@@ -146,7 +146,7 @@ class AuditLogListParams(TypedDict, total=False):
     """
 
     sorting: Literal["asc", "desc"]
-    """(DEPRECATED Use '`order_by`' instead) Sorting by timestamp.
+    """(DEPRECATED Use 'order_by' instead) Sorting by timestamp.
 
     Oldest first, or most recent first
     """

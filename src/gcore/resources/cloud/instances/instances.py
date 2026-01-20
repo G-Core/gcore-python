@@ -190,8 +190,8 @@ class InstancesResource(SyncAPIResource):
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              '`user_data`' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via '`user_data`'.
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
           security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
@@ -215,9 +215,9 @@ class InstancesResource(SyncAPIResource):
               user. Tags are also integrated with cost reports, allowing cost data to be
               filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
               `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.
@@ -300,20 +300,15 @@ class InstancesResource(SyncAPIResource):
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
-
               - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-
               - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
                 tags are preserved).
-
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
-
               - **Mixed operations:**
                 `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and '`cost_center`' while removing
-                '`deprecated_tag`', preserving other existing tags.
-
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
               - **Replace all:** first delete existing tags with null values, then add new
                 ones in the same request.
 
@@ -1249,8 +1244,8 @@ class AsyncInstancesResource(AsyncAPIResource):
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              '`user_data`' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via '`user_data`'.
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
           security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
 
@@ -1274,9 +1269,9 @@ class AsyncInstancesResource(AsyncAPIResource):
               user. Tags are also integrated with cost reports, allowing cost data to be
               filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
               `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.
@@ -1359,20 +1354,15 @@ class AsyncInstancesResource(AsyncAPIResource):
               - **Add/update tags:**
                 `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
                 updates existing ones.
-
               - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-
               - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
                 tags are preserved).
-
               - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
                 specified tags.
-
               - **Mixed operations:**
                 `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and '`cost_center`' while removing
-                '`deprecated_tag`', preserving other existing tags.
-
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
               - **Replace all:** first delete existing tags with null values, then add new
                 ones in the same request.
 

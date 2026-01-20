@@ -17,10 +17,10 @@ class StatisticGetLiveUniqueViewersParams(TypedDict, total=False):
     """End of time frame. Format is date time in ISO 8601"""
 
     client_user_id: int
-    """Filter by "`client_user_id`" """
+    """Filter by "client_user_id" """
 
     granularity: Literal["1m", "5m", "15m", "1h", "1d"]
     """Specifies the time interval for grouping data"""
 
     stream_id: int
-    """Filter by "`stream_id`" """
+    """Filter by "stream_id" """

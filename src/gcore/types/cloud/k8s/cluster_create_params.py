@@ -323,10 +323,10 @@ class DDOSProfileField(TypedDict, total=False):
     base_field: Required[int]
 
     field_value: object
-    """Complex value. Only one of 'value' or '`field_value`' must be specified"""
+    """Complex value. Only one of 'value' or 'field_value' must be specified"""
 
     value: Optional[str]
-    """Basic value. Only one of 'value' or '`field_value`' must be specified"""
+    """Basic value. Only one of 'value' or 'field_value' must be specified"""
 
 
 class DDOSProfile(TypedDict, total=False):

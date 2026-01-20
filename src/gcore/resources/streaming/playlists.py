@@ -159,7 +159,7 @@ class PlaylistsResource(SyncAPIResource):
           hls_cmaf_url: A URL to a master playlist HLS (master-cmaf.m3u8) with CMAF-based chunks. Chunks
               are in fMP4 container.
 
-              It is possible to use the same suffix-options as described in the "`hls_url`"
+              It is possible to use the same suffix-options as described in the "hls_url"
               attribute.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented
@@ -294,7 +294,7 @@ class PlaylistsResource(SyncAPIResource):
           hls_cmaf_url: A URL to a master playlist HLS (master-cmaf.m3u8) with CMAF-based chunks. Chunks
               are in fMP4 container.
 
-              It is possible to use the same suffix-options as described in the "`hls_url`"
+              It is possible to use the same suffix-options as described in the "hls_url"
               attribute.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented
@@ -648,7 +648,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           hls_cmaf_url: A URL to a master playlist HLS (master-cmaf.m3u8) with CMAF-based chunks. Chunks
               are in fMP4 container.
 
-              It is possible to use the same suffix-options as described in the "`hls_url`"
+              It is possible to use the same suffix-options as described in the "hls_url"
               attribute.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented
@@ -783,7 +783,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           hls_cmaf_url: A URL to a master playlist HLS (master-cmaf.m3u8) with CMAF-based chunks. Chunks
               are in fMP4 container.
 
-              It is possible to use the same suffix-options as described in the "`hls_url`"
+              It is possible to use the same suffix-options as described in the "hls_url"
               attribute.
 
               Caution. Solely master.m3u8 (and master[-options].m3u8) is officially documented

@@ -127,8 +127,8 @@ class ServersResource(SyncAPIResource):
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              '`user_data`' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via '`user_data`'.
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
@@ -140,9 +140,9 @@ class ServersResource(SyncAPIResource):
               user. Tags are also integrated with cost reports, allowing cost data to be
               filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
               `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.
@@ -498,8 +498,8 @@ class AsyncServersResource(AsyncAPIResource):
               When only 'password' is provided, it is set as the password for the default user
               of the image. For Windows instances, 'username' cannot be specified. Use the
               'password' field to set the password for the 'Admin' user on Windows. Use the
-              '`user_data`' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via '`user_data`'.
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
 
           ssh_key_name: Specifies the name of the SSH keypair, created via the
               [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
@@ -511,9 +511,9 @@ class AsyncServersResource(AsyncAPIResource):
               user. Tags are also integrated with cost reports, allowing cost data to be
               filtered based on tag keys or values.
 
-          user_data: String in base64 format. For Linux instances, '`user_data`' is ignored when
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
               'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via '`user_data`'. Examples of the
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
               `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
           username: For Linux instances, 'username' and 'password' are used to create a new user.

@@ -106,15 +106,15 @@ class VideoUpdateParams(TypedDict, total=False):
     """Authorization HTTP request header.
 
     Will be used as credentials to authenticate a request to download a file
-    (specified in "`origin_url`" parameter) on an external server.
+    (specified in "origin_url" parameter) on an external server.
 
     Syntax: `Authorization: <auth-scheme> <authorization-parameters>`
 
     Examples:
 
-    - "`origin_http_headers`": "Authorization: Basic ..."
-    - "`origin_http_headers`": "Authorization: Bearer ..."
-    - "`origin_http_headers`": "Authorization: APIKey ..." Example of usage when
+    - "origin_http_headers": "Authorization: Basic ..."
+    - "origin_http_headers": "Authorization: Bearer ..."
+    - "origin_http_headers": "Authorization: APIKey ..." Example of usage when
       downloading a file from Google Drive:
 
     ```
@@ -141,7 +141,7 @@ class VideoUpdateParams(TypedDict, total=False):
     After uploading the video, the system will automatically create several
     screenshots (they will be stored in "screenshots" attribute) from which you can
     select an default screenshot. This "poster" field is for uploading your own
-    image. Also use attribute "`screenshot_id`" to select poster as a default
+    image. Also use attribute "screenshot_id" to select poster as a default
     screnshot.
 
     Attribute accepts single image as base64-encoded string
