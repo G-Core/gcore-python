@@ -11,10 +11,9 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import (
+    TaskIDList,
     SecurityGroup,
 )
-
-# pyright: reportDeprecated=false
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,150 +23,133 @@ class TestSecurityGroups:
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = client.cloud.security_groups.create(
-                project_id=1,
-                region_id=1,
-                security_group={"name": "my_security_group"},
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        security_group = client.cloud.security_groups.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = client.cloud.security_groups.create(
-                project_id=1,
-                region_id=1,
-                security_group={
-                    "name": "my_security_group",
+        security_group = client.cloud.security_groups.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+            description="My security group description",
+            rules=[
+                {
+                    "direction": "ingress",
                     "description": "Some description",
-                    "security_group_rules": [
-                        {
-                            "direction": "ingress",
-                            "description": "Some description",
-                            "ethertype": "IPv4",
-                            "port_range_max": 80,
-                            "port_range_min": 80,
-                            "protocol": "tcp",
-                            "remote_group_id": "00000000-0000-4000-8000-000000000000",
-                            "remote_ip_prefix": "10.0.0.0/8",
-                        }
-                    ],
-                    "tags": {"my-tag": "my-tag-value"},
-                },
-                instances=["00000000-0000-4000-8000-000000000000"],
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+                    "ethertype": "IPv4",
+                    "port_range_max": 80,
+                    "port_range_min": 80,
+                    "protocol": "tcp",
+                    "remote_group_id": "00000000-0000-4000-8000-000000000000",
+                    "remote_ip_prefix": "10.0.0.0/8",
+                }
+            ],
+            tags={"my-tag": "my-tag-value"},
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.security_groups.with_raw_response.create(
-                project_id=1,
-                region_id=1,
-                security_group={"name": "my_security_group"},
-            )
+        response = client.cloud.security_groups.with_raw_response.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_group = response.parse()
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.security_groups.with_streaming_response.create(
-                project_id=1,
-                region_id=1,
-                security_group={"name": "my_security_group"},
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.security_groups.with_streaming_response.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                security_group = response.parse()
-                assert_matches_type(SecurityGroup, security_group, path=["response"])
+            security_group = response.parse()
+            assert_matches_type(TaskIDList, security_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = client.cloud.security_groups.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        security_group = client.cloud.security_groups.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = client.cloud.security_groups.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-                changed_rules=[
-                    {
-                        "action": "delete",
-                        "description": "Some description",
-                        "direction": "egress",
-                        "ethertype": "IPv4",
-                        "port_range_max": 80,
-                        "port_range_min": 80,
-                        "protocol": "tcp",
-                        "remote_group_id": "00000000-0000-4000-8000-000000000000",
-                        "remote_ip_prefix": "10.0.0.0/8",
-                        "security_group_rule_id": "00000000-0000-4000-8000-000000000000",
-                    }
-                ],
-                name="some_name",
-                tags={"foo": "my-tag-value"},
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        security_group = client.cloud.security_groups.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+            description="Some description",
+            name="some_name",
+            rules=[
+                {
+                    "description": "Some description",
+                    "direction": "egress",
+                    "ethertype": "IPv4",
+                    "port_range_max": 80,
+                    "port_range_min": 80,
+                    "protocol": "tcp",
+                    "remote_group_id": "00000000-0000-4000-8000-000000000000",
+                    "remote_ip_prefix": "10.0.0.0/8",
+                }
+            ],
+            tags={"foo": "my-tag-value"},
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.cloud.security_groups.with_raw_response.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-            )
+        response = client.cloud.security_groups.with_raw_response.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_group = response.parse()
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.cloud.security_groups.with_streaming_response.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.cloud.security_groups.with_streaming_response.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                security_group = response.parse()
-                assert_matches_type(SecurityGroup, security_group, path=["response"])
+            security_group = response.parse()
+            assert_matches_type(TaskIDList, security_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-                client.cloud.security_groups.with_raw_response.update(
-                    group_id="",
-                    project_id=1,
-                    region_id=1,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+            client.cloud.security_groups.with_raw_response.update(
+                group_id="",
+                project_id=1,
+                region_id=1,
+            )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
@@ -412,150 +394,133 @@ class TestAsyncSecurityGroups:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = await async_client.cloud.security_groups.create(
-                project_id=1,
-                region_id=1,
-                security_group={"name": "my_security_group"},
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        security_group = await async_client.cloud.security_groups.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = await async_client.cloud.security_groups.create(
-                project_id=1,
-                region_id=1,
-                security_group={
-                    "name": "my_security_group",
+        security_group = await async_client.cloud.security_groups.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+            description="My security group description",
+            rules=[
+                {
+                    "direction": "ingress",
                     "description": "Some description",
-                    "security_group_rules": [
-                        {
-                            "direction": "ingress",
-                            "description": "Some description",
-                            "ethertype": "IPv4",
-                            "port_range_max": 80,
-                            "port_range_min": 80,
-                            "protocol": "tcp",
-                            "remote_group_id": "00000000-0000-4000-8000-000000000000",
-                            "remote_ip_prefix": "10.0.0.0/8",
-                        }
-                    ],
-                    "tags": {"my-tag": "my-tag-value"},
-                },
-                instances=["00000000-0000-4000-8000-000000000000"],
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+                    "ethertype": "IPv4",
+                    "port_range_max": 80,
+                    "port_range_min": 80,
+                    "protocol": "tcp",
+                    "remote_group_id": "00000000-0000-4000-8000-000000000000",
+                    "remote_ip_prefix": "10.0.0.0/8",
+                }
+            ],
+            tags={"my-tag": "my-tag-value"},
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.security_groups.with_raw_response.create(
-                project_id=1,
-                region_id=1,
-                security_group={"name": "my_security_group"},
-            )
+        response = await async_client.cloud.security_groups.with_raw_response.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_group = await response.parse()
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.security_groups.with_streaming_response.create(
-                project_id=1,
-                region_id=1,
-                security_group={"name": "my_security_group"},
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.security_groups.with_streaming_response.create(
+            project_id=1,
+            region_id=1,
+            name="my_security_group",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                security_group = await response.parse()
-                assert_matches_type(SecurityGroup, security_group, path=["response"])
+            security_group = await response.parse()
+            assert_matches_type(TaskIDList, security_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = await async_client.cloud.security_groups.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        security_group = await async_client.cloud.security_groups.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            security_group = await async_client.cloud.security_groups.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-                changed_rules=[
-                    {
-                        "action": "delete",
-                        "description": "Some description",
-                        "direction": "egress",
-                        "ethertype": "IPv4",
-                        "port_range_max": 80,
-                        "port_range_min": 80,
-                        "protocol": "tcp",
-                        "remote_group_id": "00000000-0000-4000-8000-000000000000",
-                        "remote_ip_prefix": "10.0.0.0/8",
-                        "security_group_rule_id": "00000000-0000-4000-8000-000000000000",
-                    }
-                ],
-                name="some_name",
-                tags={"foo": "my-tag-value"},
-            )
-
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        security_group = await async_client.cloud.security_groups.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+            description="Some description",
+            name="some_name",
+            rules=[
+                {
+                    "description": "Some description",
+                    "direction": "egress",
+                    "ethertype": "IPv4",
+                    "port_range_max": 80,
+                    "port_range_min": 80,
+                    "protocol": "tcp",
+                    "remote_group_id": "00000000-0000-4000-8000-000000000000",
+                    "remote_ip_prefix": "10.0.0.0/8",
+                }
+            ],
+            tags={"foo": "my-tag-value"},
+        )
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.cloud.security_groups.with_raw_response.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-            )
+        response = await async_client.cloud.security_groups.with_raw_response.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_group = await response.parse()
-        assert_matches_type(SecurityGroup, security_group, path=["response"])
+        assert_matches_type(TaskIDList, security_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.cloud.security_groups.with_streaming_response.update(
-                group_id="024a29e9-b4b7-4c91-9a46-505be123d9f8",
-                project_id=1,
-                region_id=1,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.cloud.security_groups.with_streaming_response.update(
+            group_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                security_group = await response.parse()
-                assert_matches_type(SecurityGroup, security_group, path=["response"])
+            security_group = await response.parse()
+            assert_matches_type(TaskIDList, security_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-                await async_client.cloud.security_groups.with_raw_response.update(
-                    group_id="",
-                    project_id=1,
-                    region_id=1,
-                )
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+            await async_client.cloud.security_groups.with_raw_response.update(
+                group_id="",
+                project_id=1,
+                region_id=1,
+            )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:

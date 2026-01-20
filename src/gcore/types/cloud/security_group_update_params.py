@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from .tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["SecurityGroupUpdateParams", "ChangedRule"]
+__all__ = ["SecurityGroupUpdateParams", "Rule"]
 
 
 class SecurityGroupUpdateParams(TypedDict, total=False):
@@ -17,11 +17,14 @@ class SecurityGroupUpdateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
-    changed_rules: Iterable[ChangedRule]
-    """List of rules to create or delete"""
+    description: str
+    """Security group description"""
 
     name: str
     """Name"""
+
+    rules: Iterable[Rule]
+    """Security group rules"""
 
     tags: Optional[TagUpdateMapParam]
     """Update key-value tags using JSON Merge Patch semantics (RFC 7386).
@@ -54,10 +57,7 @@ class SecurityGroupUpdateParams(TypedDict, total=False):
     """
 
 
-class ChangedRule(TypedDict, total=False):
-    action: Required[Literal["create", "delete"]]
-    """Action for a rule"""
-
+class Rule(TypedDict, total=False):
     description: str
     """Security grpup rule description"""
 
@@ -67,7 +67,7 @@ class ChangedRule(TypedDict, total=False):
     applied
     """
 
-    ethertype: Optional[Literal["IPv4", "IPv6"]]
+    ethertype: Literal["IPv4", "IPv6"]
     """
     Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
     or egress rules.
@@ -107,11 +107,8 @@ class ChangedRule(TypedDict, total=False):
     ]
     """Protocol"""
 
-    remote_group_id: Optional[str]
+    remote_group_id: str
     """The remote group UUID to associate with this security group rule"""
 
-    remote_ip_prefix: Optional[str]
+    remote_ip_prefix: str
     """The remote IP prefix that is matched by this security group rule"""
-
-    security_group_rule_id: Optional[str]
-    """UUID of rule to be deleted. Required for action 'delete' only"""
