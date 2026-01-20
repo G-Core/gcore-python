@@ -576,6 +576,56 @@ class FloatingIPsResource(SyncAPIResource):
             timeout=timeout,
         )
 
+    def update_and_poll(
+        self,
+        floating_ip_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        fixed_ip_address: Optional[str] | Omit = omit,
+        port_id: Optional[str] | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> FloatingIP:
+        """
+        Update floating IP and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = self.update(
+            floating_ip_id=floating_ip_id,
+            project_id=project_id,
+            region_id=region_id,
+            fixed_ip_address=fixed_ip_address,
+            port_id=port_id,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if response.tasks:
+            self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
+        return self.get(
+            floating_ip_id=floating_ip_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
     def delete_and_poll(
         self,
         floating_ip_id: str,
@@ -1154,6 +1204,56 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             timeout=timeout,
         )
 
+    async def update_and_poll(
+        self,
+        floating_ip_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        fixed_ip_address: Optional[str] | Omit = omit,
+        port_id: Optional[str] | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> FloatingIP:
+        """
+        Update floating IP and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = await self.update(
+            floating_ip_id=floating_ip_id,
+            project_id=project_id,
+            region_id=region_id,
+            fixed_ip_address=fixed_ip_address,
+            port_id=port_id,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if response.tasks:
+            await self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
+        return await self.get(
+            floating_ip_id=floating_ip_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
     async def delete_and_poll(
         self,
         floating_ip_id: str,
@@ -1223,6 +1323,9 @@ class FloatingIPsResourceWithRawResponse:
         self.create_and_poll = to_raw_response_wrapper(
             floating_ips.create_and_poll,
         )
+        self.update_and_poll = to_raw_response_wrapper(
+            floating_ips.update_and_poll,
+        )
         self.delete_and_poll = to_raw_response_wrapper(
             floating_ips.delete_and_poll,
         )
@@ -1259,6 +1362,9 @@ class AsyncFloatingIPsResourceWithRawResponse:
         )
         self.create_and_poll = async_to_raw_response_wrapper(
             floating_ips.create_and_poll,
+        )
+        self.update_and_poll = async_to_raw_response_wrapper(
+            floating_ips.update_and_poll,
         )
         self.delete_and_poll = async_to_raw_response_wrapper(
             floating_ips.delete_and_poll,
@@ -1297,6 +1403,9 @@ class FloatingIPsResourceWithStreamingResponse:
         self.create_and_poll = to_streamed_response_wrapper(
             floating_ips.create_and_poll,
         )
+        self.update_and_poll = to_streamed_response_wrapper(
+            floating_ips.update_and_poll,
+        )
         self.delete_and_poll = to_streamed_response_wrapper(
             floating_ips.delete_and_poll,
         )
@@ -1333,6 +1442,9 @@ class AsyncFloatingIPsResourceWithStreamingResponse:
         )
         self.create_and_poll = async_to_streamed_response_wrapper(
             floating_ips.create_and_poll,
+        )
+        self.update_and_poll = async_to_streamed_response_wrapper(
+            floating_ips.update_and_poll,
         )
         self.delete_and_poll = async_to_streamed_response_wrapper(
             floating_ips.delete_and_poll,

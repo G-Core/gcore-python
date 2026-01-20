@@ -27,6 +27,7 @@ async def main() -> None:
     floating_ip_id = await create_floating_ip(client=gcore)
     await list_floating_ips(client=gcore)
     await get_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
+    await update_tags_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
     await assign_floating_ip(client=gcore, floating_ip_id=floating_ip_id, port_id=cloud_port_id)
     await unassign_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
     await delete_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
@@ -34,7 +35,7 @@ async def main() -> None:
 
 async def create_floating_ip(*, client: AsyncGcore) -> str:
     print("\n=== CREATE FLOATING IP ===")
-    floating_ip = await client.cloud.floating_ips.create_and_poll(tags={"name": "gcore-go-example"})
+    floating_ip = await client.cloud.floating_ips.create_and_poll(tags={"name": "gcore-python-example"})
     print(f"Created floating IP: ID={floating_ip.id}")
     print("========================")
     return floating_ip.id
@@ -58,9 +59,19 @@ async def get_floating_ip(*, client: AsyncGcore, floating_ip_id: str) -> None:
     print("========================")
 
 
+async def update_tags_floating_ip(*, client: AsyncGcore, floating_ip_id: str) -> None:
+    print("\n=== UPDATE TAGS FLOATING IP ===")
+    floating_ip = await client.cloud.floating_ips.update_and_poll(
+        floating_ip_id=floating_ip_id,
+        tags={"environment": "production", "team": "backend"},
+    )
+    print(f"Updated floating IP tags: ID={floating_ip.id}, tags={floating_ip.tags}")
+    print("========================")
+
+
 async def assign_floating_ip(*, client: AsyncGcore, floating_ip_id: str, port_id: str) -> None:
     print("\n=== ASSIGN FLOATING IP ===")
-    floating_ip = await client.cloud.floating_ips.assign(  # pyright: ignore[reportDeprecated]
+    floating_ip = await client.cloud.floating_ips.update_and_poll(
         floating_ip_id=floating_ip_id,
         port_id=port_id,
     )
@@ -70,7 +81,10 @@ async def assign_floating_ip(*, client: AsyncGcore, floating_ip_id: str, port_id
 
 async def unassign_floating_ip(*, client: AsyncGcore, floating_ip_id: str) -> None:
     print("\n=== UNASSIGN FLOATING IP ===")
-    floating_ip = await client.cloud.floating_ips.unassign(floating_ip_id=floating_ip_id)  # pyright: ignore[reportDeprecated]
+    floating_ip = await client.cloud.floating_ips.update_and_poll(
+        floating_ip_id=floating_ip_id,
+        port_id=None,
+    )
     print(f"Unassigned floating IP: ID={floating_ip.id}")
     print("========================")
 

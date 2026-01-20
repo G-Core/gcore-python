@@ -26,6 +26,7 @@ def main() -> None:
     floating_ip_id = create_floating_ip(client=gcore)
     list_floating_ips(client=gcore)
     get_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
+    update_tags_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
     assign_floating_ip(client=gcore, floating_ip_id=floating_ip_id, port_id=cloud_port_id)
     unassign_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
     delete_floating_ip(client=gcore, floating_ip_id=floating_ip_id)
@@ -33,7 +34,7 @@ def main() -> None:
 
 def create_floating_ip(*, client: Gcore) -> str:
     print("\n=== CREATE FLOATING IP ===")
-    floating_ip = client.cloud.floating_ips.create_and_poll(tags={"name": "gcore-go-example"})
+    floating_ip = client.cloud.floating_ips.create_and_poll(tags={"name": "gcore-gython-example"})
     print(f"Created Floating IP: ID={floating_ip.id}")
     print("========================")
     return floating_ip.id
@@ -58,9 +59,19 @@ def get_floating_ip(*, client: Gcore, floating_ip_id: str) -> None:
     print("========================")
 
 
+def update_tags_floating_ip(*, client: Gcore, floating_ip_id: str) -> None:
+    print("\n=== UPDATE TAGS FLOATING IP ===")
+    floating_ip = client.cloud.floating_ips.update_and_poll(
+        floating_ip_id=floating_ip_id,
+        tags={"environment": "production", "team": "backend"},
+    )
+    print(f"Updated floating IP tags: ID={floating_ip.id}, tags={floating_ip.tags}")
+    print("========================")
+
+
 def assign_floating_ip(*, client: Gcore, floating_ip_id: str, port_id: str) -> None:
     print("\n=== ASSIGN FLOATING IP ===")
-    floating_ip = client.cloud.floating_ips.assign(  # pyright: ignore[reportDeprecated]
+    floating_ip = client.cloud.floating_ips.update_and_poll(
         floating_ip_id=floating_ip_id,
         port_id=port_id,
     )
@@ -70,7 +81,10 @@ def assign_floating_ip(*, client: Gcore, floating_ip_id: str, port_id: str) -> N
 
 def unassign_floating_ip(*, client: Gcore, floating_ip_id: str) -> None:
     print("\n=== UNASSIGN FLOATING IP ===")
-    floating_ip = client.cloud.floating_ips.unassign(floating_ip_id=floating_ip_id)  # pyright: ignore[reportDeprecated]
+    floating_ip = client.cloud.floating_ips.update_and_poll(
+        floating_ip_id=floating_ip_id,
+        port_id=None,
+    )
     print(f"Unassigned floating IP: ID={floating_ip.id}")
     print("========================")
 
