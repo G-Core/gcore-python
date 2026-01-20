@@ -11,7 +11,7 @@ __all__ = ["StatisticGetLiveWatchTimeTotalCdnParams"]
 
 class StatisticGetLiveWatchTimeTotalCdnParams(TypedDict, total=False):
     client_user_id: int
-    """Filter by field "`client_user_id`" """
+    """Filter by field "client_user_id" """
 
     from_: Annotated[str, PropertyInfo(alias="from")]
     """Start of the time period for counting minutes of watching.

@@ -163,7 +163,7 @@ class TaskDataAITranscribe(BaseModel):
     subtitles_language: Optional[str] = None
     """
     Indicates which language it is clearly necessary to translate into. If this is
-    not set, the original language will be used from attribute "`audio_language`".
+    not set, the original language will be used from attribute "audio_language".
 
     Please note that:
 

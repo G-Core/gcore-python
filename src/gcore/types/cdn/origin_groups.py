@@ -125,8 +125,8 @@ class AwsSignatureV4Auth(BaseModel):
 
     - Latin letters (A-Z, a-z), numbers (0-9), pluses, slashes, dashes, colons and
       underscores.
-    - If "`s3_type`": amazon, length should be 40 characters.
-    - If "`s3_type`": other, length should be from 16 to 255 characters.
+    - If "s3_type": amazon, length should be 40 characters.
+    - If "s3_type": other, length should be from 16 to 255 characters.
     """
 
     s3_type: str
@@ -141,13 +141,13 @@ class AwsSignatureV4Auth(BaseModel):
     s3_region: Optional[str] = None
     """S3 storage region.
 
-    The parameter is required, if "`s3_type`": amazon.
+    The parameter is required, if "s3_type": amazon.
     """
 
     s3_storage_hostname: Optional[str] = None
     """S3 storage hostname.
 
-    The parameter is required, if "`s3_type`": other.
+    The parameter is required, if "s3_type": other.
     """
 
 

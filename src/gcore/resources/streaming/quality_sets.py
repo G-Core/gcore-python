@@ -129,13 +129,13 @@ class QualitySetsResource(SyncAPIResource):
         Live transcoding management:
 
         - You can specify quality set explicitly in POST /streams method, look at
-          attribute "`quality_set_id`".
+          attribute "quality_set_id".
         - Otherwise these default values will be used by the system by default.
 
         VOD transcoding management:
 
         - You can specify quality set explicitly in POST /videos method, look at
-          attribute "`quality_set_id`".
+          attribute "quality_set_id".
         - Otherwise these default values will be used by the system by default.
 
         Args:
@@ -271,13 +271,13 @@ class AsyncQualitySetsResource(AsyncAPIResource):
         Live transcoding management:
 
         - You can specify quality set explicitly in POST /streams method, look at
-          attribute "`quality_set_id`".
+          attribute "quality_set_id".
         - Otherwise these default values will be used by the system by default.
 
         VOD transcoding management:
 
         - You can specify quality set explicitly in POST /videos method, look at
-          attribute "`quality_set_id`".
+          attribute "quality_set_id".
         - Otherwise these default values will be used by the system by default.
 
         Args:

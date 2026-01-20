@@ -24,7 +24,7 @@ class Clip(BaseModel):
       can be added to left and right.
 
     Duration of cutted segment cannot be greater than DVR duration for this stream.
-    Therefore, to change the maximum, use "`dvr_duration`" parameter of this stream.
+    Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
     """
 
     created_at: Optional[str] = None
@@ -56,7 +56,7 @@ class Clip(BaseModel):
     """Link to HLS .m3u8 with immediate clip.
 
     The link retains same adaptive bitrate as in the stream for end viewers. For
-    additional restrictions, see the description of parameter "`mp4_master`".
+    additional restrictions, see the description of parameter "mp4_master".
     """
 
     mp4_master: Optional[str] = None

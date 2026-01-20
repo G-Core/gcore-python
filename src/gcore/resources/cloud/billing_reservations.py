@@ -62,7 +62,7 @@ class BillingReservationsResource(SyncAPIResource):
         configurations and associated pricing.
 
         Args:
-          metric_name: Metric name for the resource (e.g., 'bm1-hf-`medium_min`')
+          metric_name: Metric name for the resource (e.g., 'bm1-hf-medium_min')
 
           order_by: Order by field and direction.
 
@@ -138,7 +138,7 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         configurations and associated pricing.
 
         Args:
-          metric_name: Metric name for the resource (e.g., 'bm1-hf-`medium_min`')
+          metric_name: Metric name for the resource (e.g., 'bm1-hf-medium_min')
 
           order_by: Order by field and direction.
 

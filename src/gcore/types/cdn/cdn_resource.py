@@ -225,11 +225,11 @@ class OptionsCors(BaseModel):
 
     - **Adds \\** as the Access-Control-Allow-Origin header value** - Content will be
       uploaded for requests from any domain. `"value": ["*"]`
-    - **Adds "$`http_origin`" as the Access-Control-Allow-Origin header value if the
+    - **Adds "$http_origin" as the Access-Control-Allow-Origin header value if the
       origin matches one of the listed domains** - Content will be uploaded only for
       requests from the domains specified in the field.
       `"value": ["domain.com", "second.dom.com"]`
-    - **Adds "$`http_origin`" as the Access-Control-Allow-Origin header value** -
+    - **Adds "$http_origin" as the Access-Control-Allow-Origin header value** -
       Content will be uploaded for requests from any domain, and the domain from
       which the request was sent will be added to the "Access-Control-Allow-Origin"
       header in the response. `"value": ["$http_origin"]`
@@ -821,9 +821,9 @@ class OptionsIPAddressACL(BaseModel):
 
     Possible values:
 
-    - **allow** - Allow access to all IPs except IPs specified in
-      "`excepted_values`" field.
-    - **deny** - Deny access to all IPs except IPs specified in "`excepted_values`"
+    - **allow** - Allow access to all IPs except IPs specified in "excepted_values"
+      field.
+    - **deny** - Deny access to all IPs except IPs specified in "excepted_values"
       field.
     """
 

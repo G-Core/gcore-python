@@ -214,7 +214,7 @@ class InterfacesResource(SyncAPIResource):
 
           security_groups: List of security group IDs
 
-          type: Must be '`any_subnet`'
+          type: Must be 'any_subnet'
 
           extra_headers: Send extra headers
 
@@ -260,7 +260,7 @@ class InterfacesResource(SyncAPIResource):
 
           security_groups: List of security group IDs
 
-          type: Must be '`reserved_fixed_ip`'. Union tag
+          type: Must be 'reserved_fixed_ip'. Union tag
 
           extra_headers: Send extra headers
 
@@ -869,7 +869,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
 
           security_groups: List of security group IDs
 
-          type: Must be '`any_subnet`'
+          type: Must be 'any_subnet'
 
           extra_headers: Send extra headers
 
@@ -915,7 +915,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
 
           security_groups: List of security group IDs
 
-          type: Must be '`reserved_fixed_ip`'. Union tag
+          type: Must be 'reserved_fixed_ip'. Union tag
 
           extra_headers: Send extra headers
 

@@ -57,7 +57,7 @@ class Stream(BaseModel):
     backup_live: Optional[bool] = None
     """
     State of receiving and transcoding master stream from source by backup server if
-    you pushing stream to "`backup_push_url`" or "`backup_push_url_srt`".
+    you pushing stream to "backup_push_url" or "backup_push_url_srt".
 
     Displays the backup server status of PUSH method only. For PULL a "live" field
     is always used, even when origin servers are switched using round robin
@@ -191,8 +191,8 @@ class Stream(BaseModel):
     - and its possible to enable ±3 sec for LL-HLS, just ask our Support Team.
 
     It is also possible to use modifier-attributes, which are described in the
-    "`hls_mpegts_url`" field above. If you need to get MPEG-TS (.ts) chunks, look at
-    the attribute "`hls_mpegts_url`".
+    "hls_mpegts_url" field above. If you need to get MPEG-TS (.ts) chunks, look at
+    the attribute "hls_mpegts_url".
 
     Read more information in the article "How Low Latency streaming works" in the
     Knowledge Base.
@@ -215,7 +215,7 @@ class Stream(BaseModel):
     Some legacy devices or software may require MPEG-TS (.ts) segments as a format
     for streaming, so we provide this options keeping backward compatibility with
     any of your existing workflows. For other cases it's better to use
-    "`hls_cmaf_url`" instead.
+    "hls_cmaf_url" instead.
 
     You can use this legacy HLSv6 format based on MPEG-TS segmenter in parallel with
     main HLS CMAF. Both formats are sharing same segments size, manifest length
@@ -225,9 +225,9 @@ class Stream(BaseModel):
 
     - ?`get_duration_sec`=true – Adds the real segment duration in seconds to chunk
       requests. A chunk duration will be automatically added to a chunk request
-      string with the "`duration_sec`" attribute. The value is an integer for a
-      length multiple of whole seconds, or a fractional number separated by a dot
-      for chunks that are not multiples of seconds. This attribute allows you to
+      string with the "duration_sec" attribute. The value is an integer for a length
+      multiple of whole seconds, or a fractional number separated by a dot for
+      chunks that are not multiples of seconds. This attribute allows you to
       determine duration in seconds at the level of analyzing the logs of CDN
       requests and compare it with file size (so to use it in your analytics).
 
@@ -264,8 +264,8 @@ class Stream(BaseModel):
     It can be inserted into an iframe on your website and the video will
     automatically play in all browsers.
 
-    Please, remember that transcoded streams from "`hls_cmaf_url`" with .m3u8 at the
-    end, and from "`dash_url`" with .mpd at the end are to be played inside video
+    Please, remember that transcoded streams from "hls_cmaf_url" with .m3u8 at the
+    end, and from "dash_url" with .mpd at the end are to be played inside video
     players only. For example: AVplayer on iOS, Exoplayer on Android, HTML web
     player in browser, etc. General bowsers like Chrome, Firefox, etc cannot play
     transcoded streams with .m3u8 and .mpd at the end. The only exception is Safari,
@@ -339,9 +339,9 @@ class Stream(BaseModel):
     For advanced customers only: For your complexly distributed broadcast systems,
     it is also possible to additionally output an array of multi-regional ingestion
     points for manual selection from them. To activate this mode, contact your
-    manager or the Support Team to activate the "`multi_region_push_urls`" attibute.
+    manager or the Support Team to activate the "multi_region_push_urls" attibute.
     But if you clearly don’t understand why you need this, then it’s best to use the
-    default single URL in the "`push_url`" attribute.
+    default single URL in the "push_url" attribute.
     """
 
     push_url_srt: Optional[str] = None
@@ -527,7 +527,7 @@ class Stream(BaseModel):
     requests and the stream is deactivated (the "active" field switches to "false").
 
     Please, note that this field is for PULL only, so is not suitable for PUSH. Look
-    at fields "`push_url`" and "`push_url_srt`" from GET method.
+    at fields "push_url" and "push_url_srt" from GET method.
     """
 
     video_height: Optional[float] = None

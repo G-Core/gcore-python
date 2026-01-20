@@ -93,7 +93,6 @@ class VideosResource(SyncAPIResource):
           execution file will be uploaded and will be sent to transcoding automatically,
           you don't have to do anything else. Use extra field `origin_http_headers` if
           authorization is required on the external server.
-
         - **Direct upload from a local device** – If you need to upload video directly
           from your local device or from a mobile app, then use this method. Keep
           `origin_url` empty and use TUS protocol ([tus.io](https://tus.io)) to upload
@@ -202,7 +201,7 @@ class VideosResource(SyncAPIResource):
 
         It's allowed to update only those public parameters that are described in POST
         method to create a new “video” entity. So it's not possible to change calculated
-        parameters like "id", "duration", "`hls_url`", etc.
+        parameters like "id", "duration", "hls_url", etc.
 
         Examples of changing:
 
@@ -211,9 +210,9 @@ class VideosResource(SyncAPIResource):
 
         Please note that some parameters are used on initial step (before transcoding)
         only, so after transcoding there is no use in changing their values. For
-        example, "`origin_url`" parameter is used for downloading an original file from
-        a source and never used after transcoding; or "priority" parameter is used to
-        set priority of processing and never used after transcoding.
+        example, "origin_url" parameter is used for downloading an original file from a
+        source and never used after transcoding; or "priority" parameter is used to set
+        priority of processing and never used after transcoding.
 
         Args:
           name: Video name
@@ -294,16 +293,16 @@ class VideosResource(SyncAPIResource):
           directory_id: ID of the directory where the video should be uploaded. (beta)
 
           origin_http_headers: Authorization HTTP request header. Will be used as credentials to authenticate a
-              request to download a file (specified in "`origin_url`" parameter) on an
-              external server.
+              request to download a file (specified in "origin_url" parameter) on an external
+              server.
 
               Syntax: `Authorization: <auth-scheme> <authorization-parameters>`
 
               Examples:
 
-              - "`origin_http_headers`": "Authorization: Basic ..."
-              - "`origin_http_headers`": "Authorization: Bearer ..."
-              - "`origin_http_headers`": "Authorization: APIKey ..." Example of usage when
+              - "origin_http_headers": "Authorization: Basic ..."
+              - "origin_http_headers": "Authorization: Bearer ..."
+              - "origin_http_headers": "Authorization: APIKey ..." Example of usage when
                 downloading a file from Google Drive:
 
               ```
@@ -325,7 +324,7 @@ class VideosResource(SyncAPIResource):
               After uploading the video, the system will automatically create several
               screenshots (they will be stored in "screenshots" attribute) from which you can
               select an default screenshot. This "poster" field is for uploading your own
-              image. Also use attribute "`screenshot_id`" to select poster as a default
+              image. Also use attribute "screenshot_id" to select poster as a default
               screnshot.
 
               Attribute accepts single image as base64-encoded string
@@ -476,7 +475,7 @@ class VideosResource(SyncAPIResource):
           id: IDs of the videos to find. You can specify one or more identifiers separated by
               commas. Example, ?id=1,101,1001
 
-          client_user_id: Find videos where "`client_user_id`" meta field is equal to the search value
+          client_user_id: Find videos where "client_user_id" meta field is equal to the search value
 
           fields: Restriction to return only the specified attributes, instead of the entire
               dataset. Specify, if you need to get short response. The following fields are
@@ -505,7 +504,7 @@ class VideosResource(SyncAPIResource):
               - ready
               - error
 
-          stream_id: Find videos recorded from a specific stream, so for which "`stream_id`" field is
+          stream_id: Find videos recorded from a specific stream, so for which "stream_id" field is
               equal to the search value
 
           extra_headers: Send extra headers
@@ -841,7 +840,6 @@ class AsyncVideosResource(AsyncAPIResource):
           execution file will be uploaded and will be sent to transcoding automatically,
           you don't have to do anything else. Use extra field `origin_http_headers` if
           authorization is required on the external server.
-
         - **Direct upload from a local device** – If you need to upload video directly
           from your local device or from a mobile app, then use this method. Keep
           `origin_url` empty and use TUS protocol ([tus.io](https://tus.io)) to upload
@@ -950,7 +948,7 @@ class AsyncVideosResource(AsyncAPIResource):
 
         It's allowed to update only those public parameters that are described in POST
         method to create a new “video” entity. So it's not possible to change calculated
-        parameters like "id", "duration", "`hls_url`", etc.
+        parameters like "id", "duration", "hls_url", etc.
 
         Examples of changing:
 
@@ -959,9 +957,9 @@ class AsyncVideosResource(AsyncAPIResource):
 
         Please note that some parameters are used on initial step (before transcoding)
         only, so after transcoding there is no use in changing their values. For
-        example, "`origin_url`" parameter is used for downloading an original file from
-        a source and never used after transcoding; or "priority" parameter is used to
-        set priority of processing and never used after transcoding.
+        example, "origin_url" parameter is used for downloading an original file from a
+        source and never used after transcoding; or "priority" parameter is used to set
+        priority of processing and never used after transcoding.
 
         Args:
           name: Video name
@@ -1042,16 +1040,16 @@ class AsyncVideosResource(AsyncAPIResource):
           directory_id: ID of the directory where the video should be uploaded. (beta)
 
           origin_http_headers: Authorization HTTP request header. Will be used as credentials to authenticate a
-              request to download a file (specified in "`origin_url`" parameter) on an
-              external server.
+              request to download a file (specified in "origin_url" parameter) on an external
+              server.
 
               Syntax: `Authorization: <auth-scheme> <authorization-parameters>`
 
               Examples:
 
-              - "`origin_http_headers`": "Authorization: Basic ..."
-              - "`origin_http_headers`": "Authorization: Bearer ..."
-              - "`origin_http_headers`": "Authorization: APIKey ..." Example of usage when
+              - "origin_http_headers": "Authorization: Basic ..."
+              - "origin_http_headers": "Authorization: Bearer ..."
+              - "origin_http_headers": "Authorization: APIKey ..." Example of usage when
                 downloading a file from Google Drive:
 
               ```
@@ -1073,7 +1071,7 @@ class AsyncVideosResource(AsyncAPIResource):
               After uploading the video, the system will automatically create several
               screenshots (they will be stored in "screenshots" attribute) from which you can
               select an default screenshot. This "poster" field is for uploading your own
-              image. Also use attribute "`screenshot_id`" to select poster as a default
+              image. Also use attribute "screenshot_id" to select poster as a default
               screnshot.
 
               Attribute accepts single image as base64-encoded string
@@ -1224,7 +1222,7 @@ class AsyncVideosResource(AsyncAPIResource):
           id: IDs of the videos to find. You can specify one or more identifiers separated by
               commas. Example, ?id=1,101,1001
 
-          client_user_id: Find videos where "`client_user_id`" meta field is equal to the search value
+          client_user_id: Find videos where "client_user_id" meta field is equal to the search value
 
           fields: Restriction to return only the specified attributes, instead of the entire
               dataset. Specify, if you need to get short response. The following fields are
@@ -1253,7 +1251,7 @@ class AsyncVideosResource(AsyncAPIResource):
               - ready
               - error
 
-          stream_id: Find videos recorded from a specific stream, so for which "`stream_id`" field is
+          stream_id: Find videos recorded from a specific stream, so for which "stream_id" field is
               equal to the search value
 
           extra_headers: Send extra headers
