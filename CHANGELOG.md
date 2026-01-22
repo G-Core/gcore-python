@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.30.0 (2026-01-22)
+
+Full Changelog: [v0.29.0...v0.30.0](https://github.com/G-Core/gcore-python/compare/v0.29.0...v0.30.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** use create and update v2 endpoints for security groups
+* **cloud:** use v2 endpoint for floating IPs updates
+
+### Features
+
+* **api:** aggregated API specs update ([fa26406](https://github.com/G-Core/gcore-python/commit/fa264060cead49f546830f072683f4cd06f3351e))
+* **cloud:** add create_and_poll and update_and_poll methods for security groups ([a0f8a75](https://github.com/G-Core/gcore-python/commit/a0f8a759796951e084b318e91a95ba413fa3b349))
+* **cloud:** add update_and_poll method for floating IPs ([26bfe18](https://github.com/G-Core/gcore-python/commit/26bfe184ecda853f88b7ba13f4eb4f2153237a7b))
+* **cloud:** use create and update v2 endpoints for security groups ([31501d3](https://github.com/G-Core/gcore-python/commit/31501d36608339851da4b8982bb32bf18a7518cb))
+* **cloud:** use v2 endpoint for floating IPs updates ([31ef098](https://github.com/G-Core/gcore-python/commit/31ef0984768bca7f1aa8b2fa5eb8249fca7af36f))
+
 ## 0.29.0 (2026-01-19)
 
 Full Changelog: [v0.28.0...v0.29.0](https://github.com/G-Core/gcore-python/compare/v0.28.0...v0.29.0)
