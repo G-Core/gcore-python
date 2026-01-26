@@ -762,6 +762,7 @@ class OptionsIPAddressACL(BaseModel):
     """Controls access to the CDN resource content for specific IP addresses.
 
     If you want to use IPs from our CDN servers IP list for IP ACL configuration, you have to independently monitor their relevance.
+
     We recommend you use a script for automatically update IP ACL. [Read more.](/docs/api-reference/cdn/ip-addresses-list/get-cdn-servers-ip-addresses)
     """
 
@@ -1474,6 +1475,9 @@ class OptionsUserAgentACL(BaseModel):
     - **allow** - List of User-Agents for which access is prohibited.
     - **deny** - List of User-Agents for which access is allowed.
 
+    You can provide exact User-Agent strings or regular expressions. Regular
+    expressions must start with `~` (case-sensitive) or `~*` (case-insensitive).
+
     Use an empty string `""` to allow/deny access when the User-Agent header is
     empty.
     """
@@ -1699,8 +1703,9 @@ class Options(BaseModel):
     """Controls access to the CDN resource content for specific IP addresses.
 
     If you want to use IPs from our CDN servers IP list for IP ACL configuration,
-    you have to independently monitor their relevance. We recommend you use a script
-    for automatically update IP ACL.
+    you have to independently monitor their relevance.
+
+    We recommend you use a script for automatically update IP ACL.
     [Read more.](/docs/api-reference/cdn/ip-addresses-list/get-cdn-servers-ip-addresses)
     """
 
