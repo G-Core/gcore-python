@@ -14,7 +14,7 @@ class StatisticGetEventsAggregatedParams(TypedDict, total=False):
     start: Required[str]
     """Filter data items starting from a specified date in ISO 8601 format"""
 
-    action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]]
+    action: Optional[List[Literal["allow", "block", "captcha", "handshake"]]]
     """A list of action names to filter on."""
 
     end: Optional[str]
