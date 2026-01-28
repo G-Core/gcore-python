@@ -58,8 +58,8 @@ class MetricsResource(SyncAPIResource):
         Example of success response:
 
         ```
-        # HELP healthcheck_state The `healthcheck_state` metric reflects the state of a specific monitor after conducting a health check
-        # TYPE healthcheck_state gauge
+        HELP healthcheck_state The `healthcheck_state` metric reflects the state of a specific monitor after conducting a health check
+        TYPE healthcheck_state gauge
         healthcheck_state{client_id="1",monitor_id="431",monitor_locations="us-east-1,us-west-1",monitor_name="test-monitor-1",monitor_type="http",rrset_name="rrset-name1",rrset_type="rrset-type1",zone_name="zone-name1"} 0
         healthcheck_state{client_id="1",monitor_id="4871",monitor_locations="fr-1,fr-2",monitor_name="test-monitor-2",monitor_type="tcp",rrset_name="rrset-name2",rrset_type="rrset-type2",zone_name="zone-name2"} 1
         healthcheck_state{client_id="2",monitor_id="7123",monitor_locations="ua-1,ua-2",monitor_name="test-monitor-3",monitor_type="icmp",rrset_name="rrset-name3",rrset_type="rrset-type3",zone_name="zone-name3"} 0
@@ -136,8 +136,8 @@ class AsyncMetricsResource(AsyncAPIResource):
         Example of success response:
 
         ```
-        # HELP healthcheck_state The `healthcheck_state` metric reflects the state of a specific monitor after conducting a health check
-        # TYPE healthcheck_state gauge
+        HELP healthcheck_state The `healthcheck_state` metric reflects the state of a specific monitor after conducting a health check
+        TYPE healthcheck_state gauge
         healthcheck_state{client_id="1",monitor_id="431",monitor_locations="us-east-1,us-west-1",monitor_name="test-monitor-1",monitor_type="http",rrset_name="rrset-name1",rrset_type="rrset-type1",zone_name="zone-name1"} 0
         healthcheck_state{client_id="1",monitor_id="4871",monitor_locations="fr-1,fr-2",monitor_name="test-monitor-2",monitor_type="tcp",rrset_name="rrset-name2",rrset_type="rrset-type2",zone_name="zone-name2"} 1
         healthcheck_state{client_id="2",monitor_id="7123",monitor_locations="ua-1,ua-2",monitor_name="test-monitor-3",monitor_type="icmp",rrset_name="rrset-name3",rrset_type="rrset-type3",zone_name="zone-name3"} 0
