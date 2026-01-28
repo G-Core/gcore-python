@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -187,7 +188,7 @@ class StatisticsResource(SyncAPIResource):
         domain_id: int,
         *,
         start: str,
-        action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | Omit = omit,
+        action: Optional[List[Literal["allow", "block", "captcha", "handshake"]]] | Omit = omit,
         end: Optional[str] | Omit = omit,
         ip: Optional[SequenceNotStr[str]] | Omit = omit,
         reference_id: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -287,6 +288,7 @@ class StatisticsResource(SyncAPIResource):
             cast_to=WaapRequestDetails,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get_requests_series(
         self,
         domain_id: int,
@@ -334,8 +336,11 @@ class StatisticsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapRequestSummary]:
-        """
-        Retrieve a domain's requests data.
+        """Retrieve a domain's requests data.
+
+        Deprecated. Use
+        [GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
+        instead.
 
         Args:
           domain_id: The domain ID
@@ -609,7 +614,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         domain_id: int,
         *,
         start: str,
-        action: Optional[List[Literal["block", "captcha", "handshake", "monitor"]]] | Omit = omit,
+        action: Optional[List[Literal["allow", "block", "captcha", "handshake"]]] | Omit = omit,
         end: Optional[str] | Omit = omit,
         ip: Optional[SequenceNotStr[str]] | Omit = omit,
         reference_id: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -709,6 +714,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
             cast_to=WaapRequestDetails,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get_requests_series(
         self,
         domain_id: int,
@@ -756,8 +762,11 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapRequestSummary, AsyncOffsetPage[WaapRequestSummary]]:
-        """
-        Retrieve a domain's requests data.
+        """Retrieve a domain's requests data.
+
+        Deprecated. Use
+        [GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
+        instead.
 
         Args:
           domain_id: The domain ID
@@ -897,8 +906,10 @@ class StatisticsResourceWithRawResponse:
         self.get_request_details = to_raw_response_wrapper(
             statistics.get_request_details,
         )
-        self.get_requests_series = to_raw_response_wrapper(
-            statistics.get_requests_series,
+        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic_series = to_raw_response_wrapper(
             statistics.get_traffic_series,
@@ -921,8 +932,10 @@ class AsyncStatisticsResourceWithRawResponse:
         self.get_request_details = async_to_raw_response_wrapper(
             statistics.get_request_details,
         )
-        self.get_requests_series = async_to_raw_response_wrapper(
-            statistics.get_requests_series,
+        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic_series = async_to_raw_response_wrapper(
             statistics.get_traffic_series,
@@ -945,8 +958,10 @@ class StatisticsResourceWithStreamingResponse:
         self.get_request_details = to_streamed_response_wrapper(
             statistics.get_request_details,
         )
-        self.get_requests_series = to_streamed_response_wrapper(
-            statistics.get_requests_series,
+        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic_series = to_streamed_response_wrapper(
             statistics.get_traffic_series,
@@ -969,8 +984,10 @@ class AsyncStatisticsResourceWithStreamingResponse:
         self.get_request_details = async_to_streamed_response_wrapper(
             statistics.get_request_details,
         )
-        self.get_requests_series = async_to_streamed_response_wrapper(
-            statistics.get_requests_series,
+        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic_series = async_to_streamed_response_wrapper(
             statistics.get_traffic_series,
