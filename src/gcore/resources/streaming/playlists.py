@@ -173,6 +173,7 @@ class PlaylistsResource(SyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
+
               `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 
@@ -308,6 +309,7 @@ class PlaylistsResource(SyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
+
               `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 
@@ -662,6 +664,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
+
               `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 
@@ -797,6 +800,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
               This URL is a link to the main manifest. But you can also manually specify
               suffix-options that will allow you to change the manifest to your request:
+
               `/playlists/{client_id}_{playlist_id}/master[-cmaf][-min-N][-max-N][-img][-(h264|hevc|av1)].m3u8`
               Please see the details in `hls_url` attribute of /videos/{id} method.
 

@@ -291,7 +291,7 @@ class TestRules:
                 },
                 "user_agent_acl": {
                     "enabled": True,
-                    "excepted_values": ["UserAgent Value", ""],
+                    "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
                     "policy_type": "allow",
                 },
                 "waap": {
@@ -607,7 +607,7 @@ class TestRules:
                 },
                 "user_agent_acl": {
                     "enabled": True,
-                    "excepted_values": ["UserAgent Value", ""],
+                    "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
                     "policy_type": "allow",
                 },
                 "waap": {
@@ -1024,7 +1024,7 @@ class TestRules:
                 },
                 "user_agent_acl": {
                     "enabled": True,
-                    "excepted_values": ["UserAgent Value", ""],
+                    "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
                     "policy_type": "allow",
                 },
                 "waap": {
@@ -1349,7 +1349,7 @@ class TestAsyncRules:
                 },
                 "user_agent_acl": {
                     "enabled": True,
-                    "excepted_values": ["UserAgent Value", ""],
+                    "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
                     "policy_type": "allow",
                 },
                 "waap": {
@@ -1665,7 +1665,7 @@ class TestAsyncRules:
                 },
                 "user_agent_acl": {
                     "enabled": True,
-                    "excepted_values": ["UserAgent Value", ""],
+                    "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
                     "policy_type": "allow",
                 },
                 "waap": {
@@ -2082,7 +2082,7 @@ class TestAsyncRules:
                 },
                 "user_agent_acl": {
                     "enabled": True,
-                    "excepted_values": ["UserAgent Value", ""],
+                    "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
                     "policy_type": "allow",
                 },
                 "waap": {
