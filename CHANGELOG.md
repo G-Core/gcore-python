@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.31.0 (2026-01-29)
+
+Full Changelog: [v0.30.0...v0.31.0](https://github.com/G-Core/gcore-python/compare/v0.30.0...v0.31.0)
+
+### Features
+
+* **api:** aggregated API specs update ([cd35cbf](https://github.com/G-Core/gcore-python/commit/cd35cbf266cf598045a8a4f8ebf3cf7cd8340092))
+* **api:** aggregated API specs update ([a7076d0](https://github.com/G-Core/gcore-python/commit/a7076d04fa78e4ea71b148ef8c10d0013536e904))
+* **api:** manual upload of aggregated API specs ([47734d2](https://github.com/G-Core/gcore-python/commit/47734d2b4fcd22875d2ec80b2b0453600b912eca))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([a2328c0](https://github.com/G-Core/gcore-python/commit/a2328c02b6d94f8af8cdeb7dbc72d81f1e2d17d0))
+
 ## 0.30.0 (2026-01-22)
 
 Full Changelog: [v0.29.0...v0.30.0](https://github.com/G-Core/gcore-python/compare/v0.29.0...v0.30.0)
