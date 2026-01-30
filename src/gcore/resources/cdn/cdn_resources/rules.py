@@ -18,9 +18,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cdn.resources import rule_create_params, rule_update_params, rule_replace_params
-from ....types.cdn.resources.cdn_resource_rule import CDNResourceRule
-from ....types.cdn.resources.rule_list_response import RuleListResponse
+from ....types.cdn.cdn_resources import rule_create_params, rule_update_params, rule_replace_params
+from ....types.cdn.cdn_resources.cdn_resource_rule import CDNResourceRule
+from ....types.cdn.cdn_resources.rule_list_response import RuleListResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 

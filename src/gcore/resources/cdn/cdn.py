@@ -96,14 +96,6 @@ from .network_capacity import (
     NetworkCapacityResourceWithStreamingResponse,
     AsyncNetworkCapacityResourceWithStreamingResponse,
 )
-from .resources.resources import (
-    ResourcesResource,
-    AsyncResourcesResource,
-    ResourcesResourceWithRawResponse,
-    AsyncResourcesResourceWithRawResponse,
-    ResourcesResourceWithStreamingResponse,
-    AsyncResourcesResourceWithStreamingResponse,
-)
 from ...types.cdn.aws_regions import AwsRegions
 from ...types.cdn.cdn_account import CDNAccount
 from .trusted_ca_certificates import (
@@ -115,6 +107,14 @@ from .trusted_ca_certificates import (
     AsyncTrustedCaCertificatesResourceWithStreamingResponse,
 )
 from ...types.cdn.alibaba_regions import AlibabaRegions
+from .cdn_resources.cdn_resources import (
+    CDNResourcesResource,
+    AsyncCDNResourcesResource,
+    CDNResourcesResourceWithRawResponse,
+    AsyncCDNResourcesResourceWithRawResponse,
+    CDNResourcesResourceWithStreamingResponse,
+    AsyncCDNResourcesResourceWithStreamingResponse,
+)
 from .logs_uploader.logs_uploader import (
     LogsUploaderResource,
     AsyncLogsUploaderResource,
@@ -132,8 +132,8 @@ __all__ = ["CDNResource", "AsyncCDNResource"]
 
 class CDNResource(SyncAPIResource):
     @cached_property
-    def resources(self) -> ResourcesResource:
-        return ResourcesResource(self._client)
+    def cdn_resources(self) -> CDNResourcesResource:
+        return CDNResourcesResource(self._client)
 
     @cached_property
     def shields(self) -> ShieldsResource:
@@ -433,8 +433,8 @@ class CDNResource(SyncAPIResource):
 
 class AsyncCDNResource(AsyncAPIResource):
     @cached_property
-    def resources(self) -> AsyncResourcesResource:
-        return AsyncResourcesResource(self._client)
+    def cdn_resources(self) -> AsyncCDNResourcesResource:
+        return AsyncCDNResourcesResource(self._client)
 
     @cached_property
     def shields(self) -> AsyncShieldsResource:
@@ -759,8 +759,8 @@ class CDNResourceWithRawResponse:
         )
 
     @cached_property
-    def resources(self) -> ResourcesResourceWithRawResponse:
-        return ResourcesResourceWithRawResponse(self._cdn.resources)
+    def cdn_resources(self) -> CDNResourcesResourceWithRawResponse:
+        return CDNResourcesResourceWithRawResponse(self._cdn.cdn_resources)
 
     @cached_property
     def shields(self) -> ShieldsResourceWithRawResponse:
@@ -838,8 +838,8 @@ class AsyncCDNResourceWithRawResponse:
         )
 
     @cached_property
-    def resources(self) -> AsyncResourcesResourceWithRawResponse:
-        return AsyncResourcesResourceWithRawResponse(self._cdn.resources)
+    def cdn_resources(self) -> AsyncCDNResourcesResourceWithRawResponse:
+        return AsyncCDNResourcesResourceWithRawResponse(self._cdn.cdn_resources)
 
     @cached_property
     def shields(self) -> AsyncShieldsResourceWithRawResponse:
@@ -917,8 +917,8 @@ class CDNResourceWithStreamingResponse:
         )
 
     @cached_property
-    def resources(self) -> ResourcesResourceWithStreamingResponse:
-        return ResourcesResourceWithStreamingResponse(self._cdn.resources)
+    def cdn_resources(self) -> CDNResourcesResourceWithStreamingResponse:
+        return CDNResourcesResourceWithStreamingResponse(self._cdn.cdn_resources)
 
     @cached_property
     def shields(self) -> ShieldsResourceWithStreamingResponse:
@@ -996,8 +996,8 @@ class AsyncCDNResourceWithStreamingResponse:
         )
 
     @cached_property
-    def resources(self) -> AsyncResourcesResourceWithStreamingResponse:
-        return AsyncResourcesResourceWithStreamingResponse(self._cdn.resources)
+    def cdn_resources(self) -> AsyncCDNResourcesResourceWithStreamingResponse:
+        return AsyncCDNResourcesResourceWithStreamingResponse(self._cdn.cdn_resources)
 
     @cached_property
     def shields(self) -> AsyncShieldsResourceWithStreamingResponse:

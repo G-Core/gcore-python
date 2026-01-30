@@ -9,35 +9,35 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cdn import (
-    CDNResource,
-    CDNResourceList,
+from gcore.types.cdn.cdn_resources import (
+    CDNResourceRule,
+    RuleListResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestResources:
+class TestRules:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        resource = client.cdn.resources.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        rule = client.cdn.cdn_resources.rules.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
-        resource = client.cdn.resources.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        rule = client.cdn.cdn_resources.rules.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
             active=True,
-            description="My resource",
-            name="Resource for images",
             options={
                 "allowed_http_methods": {
                     "enabled": True,
@@ -156,10 +156,6 @@ class TestResources:
                 "host_header": {
                     "enabled": True,
                     "value": "host.com",
-                },
-                "http3_enabled": {
-                    "enabled": True,
-                    "value": True,
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -293,22 +289,6 @@ class TestResources:
                         "Header-Two": "Value 2",
                     },
                 },
-                "tls_versions": {
-                    "enabled": True,
-                    "value": ["SSLv3", "TLSv1.3"],
-                },
-                "use_default_le_chain": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_dns01_le_challenge": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_rsa_le_cert": {
-                    "enabled": True,
-                    "value": True,
-                },
                 "user_agent_acl": {
                     "enabled": True,
                     "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
@@ -323,62 +303,57 @@ class TestResources:
                     "value": True,
                 },
             },
-            origin_protocol="HTTPS",
-            primary_resource=None,
-            proxy_ssl_ca=None,
-            proxy_ssl_data=None,
-            proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
-            ssl_data=192,
-            ssl_enabled=False,
-            waap_api_domain_enabled=True,
+            origin_group=None,
+            override_origin_protocol="HTTPS",
+            weight=1,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        response = client.cdn.cdn_resources.rules.with_raw_response.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        with client.cdn.cdn_resources.rules.with_streaming_response.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
+            rule = response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        resource = client.cdn.resources.update(
+        rule = client.cdn.cdn_resources.rules.update(
+            rule_id=0,
             resource_id=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        resource = client.cdn.resources.update(
+        rule = client.cdn.cdn_resources.rules.update(
+            rule_id=0,
             resource_id=0,
             active=True,
-            description="My resource",
-            name="Resource for images",
+            name="My first rule",
             options={
                 "allowed_http_methods": {
                     "enabled": True,
@@ -497,10 +472,6 @@ class TestResources:
                 "host_header": {
                     "enabled": True,
                     "value": "host.com",
-                },
-                "http3_enabled": {
-                    "enabled": True,
-                    "value": True,
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -634,22 +605,6 @@ class TestResources:
                         "Header-Two": "Value 2",
                     },
                 },
-                "tls_versions": {
-                    "enabled": True,
-                    "value": ["SSLv3", "TLSv1.3"],
-                },
-                "use_default_le_chain": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_dns01_le_challenge": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_rsa_le_cert": {
-                    "enabled": True,
-                    "value": True,
-                },
                 "user_agent_acl": {
                     "enabled": True,
                     "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
@@ -664,350 +619,158 @@ class TestResources:
                     "value": True,
                 },
             },
-            origin_group=132,
-            origin_protocol="HTTPS",
-            proxy_ssl_ca=None,
-            proxy_ssl_data=None,
-            proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
-            ssl_data=192,
-            ssl_enabled=False,
+            origin_group=None,
+            override_origin_protocol="HTTPS",
+            rule="/folder/images/*.png",
+            rule_type=0,
+            weight=1,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.update(
+        response = client.cdn.cdn_resources.rules.with_raw_response.update(
+            rule_id=0,
             resource_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.update(
+        with client.cdn.cdn_resources.rules.with_streaming_response.update(
+            rule_id=0,
             resource_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
+            rule = response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        resource = client.cdn.resources.list()
-        assert_matches_type(CDNResourceList, resource, path=["response"])
-
-    @parametrize
-    def test_method_list_with_all_params(self, client: Gcore) -> None:
-        resource = client.cdn.resources.list(
-            cname="cname",
-            deleted=True,
-            enabled=True,
-            max_created="max_created",
-            min_created="min_created",
-            origin_group=0,
-            rules="rules",
-            secondary_hostnames="secondaryHostnames",
-            shield_dc="shield_dc",
-            shielded=True,
-            ssl_data=0,
-            ssl_data_in=0,
-            ssl_enabled=True,
-            status="active",
-            suspend=True,
-            vp_enabled=True,
+        rule = client.cdn.cdn_resources.rules.list(
+            0,
         )
-        assert_matches_type(CDNResourceList, resource, path=["response"])
+        assert_matches_type(RuleListResponse, rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.list()
+        response = client.cdn.cdn_resources.rules.with_raw_response.list(
+            0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert_matches_type(CDNResourceList, resource, path=["response"])
+        rule = response.parse()
+        assert_matches_type(RuleListResponse, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.list() as response:
+        with client.cdn.cdn_resources.rules.with_streaming_response.list(
+            0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = response.parse()
-            assert_matches_type(CDNResourceList, resource, path=["response"])
+            rule = response.parse()
+            assert_matches_type(RuleListResponse, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
-        resource = client.cdn.resources.delete(
-            0,
+        rule = client.cdn.cdn_resources.rules.delete(
+            rule_id=0,
+            resource_id=0,
         )
-        assert resource is None
+        assert rule is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.delete(
-            0,
+        response = client.cdn.cdn_resources.rules.with_raw_response.delete(
+            rule_id=0,
+            resource_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert resource is None
+        rule = response.parse()
+        assert rule is None
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.delete(
-            0,
+        with client.cdn.cdn_resources.rules.with_streaming_response.delete(
+            rule_id=0,
+            resource_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = response.parse()
-            assert resource is None
+            rule = response.parse()
+            assert rule is None
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
-        resource = client.cdn.resources.get(
-            0,
+        rule = client.cdn.cdn_resources.rules.get(
+            rule_id=0,
+            resource_id=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.get(
-            0,
+        response = client.cdn.cdn_resources.rules.with_raw_response.get(
+            rule_id=0,
+            resource_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.get(
-            0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_prefetch(self, client: Gcore) -> None:
-        resource = client.cdn.resources.prefetch(
-            resource_id=0,
-            paths=["/test.jpg", "test1.jpg"],
-        )
-        assert resource is None
-
-    @parametrize
-    def test_raw_response_prefetch(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.prefetch(
-            resource_id=0,
-            paths=["/test.jpg", "test1.jpg"],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert resource is None
-
-    @parametrize
-    def test_streaming_response_prefetch(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.prefetch(
-            resource_id=0,
-            paths=["/test.jpg", "test1.jpg"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_prevalidate_ssl_le_certificate(self, client: Gcore) -> None:
-        resource = client.cdn.resources.prevalidate_ssl_le_certificate(
-            0,
-        )
-        assert resource is None
-
-    @parametrize
-    def test_raw_response_prevalidate_ssl_le_certificate(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.prevalidate_ssl_le_certificate(
-            0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert resource is None
-
-    @parametrize
-    def test_streaming_response_prevalidate_ssl_le_certificate(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.prevalidate_ssl_le_certificate(
-            0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_purge_overload_1(self, client: Gcore) -> None:
-        resource = client.cdn.resources.purge(
-            resource_id=0,
-        )
-        assert resource is None
-
-    @parametrize
-    def test_method_purge_with_all_params_overload_1(self, client: Gcore) -> None:
-        resource = client.cdn.resources.purge(
-            resource_id=0,
-            urls=["/some-url.jpg", "/img/example.jpg"],
-        )
-        assert resource is None
-
-    @parametrize
-    def test_raw_response_purge_overload_1(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.purge(
-            resource_id=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert resource is None
-
-    @parametrize
-    def test_streaming_response_purge_overload_1(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.purge(
+        with client.cdn.cdn_resources.rules.with_streaming_response.get(
+            rule_id=0,
             resource_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_purge_overload_2(self, client: Gcore) -> None:
-        resource = client.cdn.resources.purge(
-            resource_id=0,
-        )
-        assert resource is None
-
-    @parametrize
-    def test_method_purge_with_all_params_overload_2(self, client: Gcore) -> None:
-        resource = client.cdn.resources.purge(
-            resource_id=0,
-            paths=["/images/*", "/videos/*"],
-        )
-        assert resource is None
-
-    @parametrize
-    def test_raw_response_purge_overload_2(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.purge(
-            resource_id=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert resource is None
-
-    @parametrize
-    def test_streaming_response_purge_overload_2(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.purge(
-            resource_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_purge_overload_3(self, client: Gcore) -> None:
-        resource = client.cdn.resources.purge(
-            resource_id=0,
-        )
-        assert resource is None
-
-    @parametrize
-    def test_method_purge_with_all_params_overload_3(self, client: Gcore) -> None:
-        resource = client.cdn.resources.purge(
-            resource_id=0,
-            paths=["string"],
-        )
-        assert resource is None
-
-    @parametrize
-    def test_raw_response_purge_overload_3(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.purge(
-            resource_id=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert resource is None
-
-    @parametrize
-    def test_streaming_response_purge_overload_3(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.purge(
-            resource_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = response.parse()
-            assert resource is None
+            rule = response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_replace(self, client: Gcore) -> None:
-        resource = client.cdn.resources.replace(
+        rule = client.cdn.cdn_resources.rules.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_method_replace_with_all_params(self, client: Gcore) -> None:
-        resource = client.cdn.resources.replace(
+        rule = client.cdn.cdn_resources.rules.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
             active=True,
-            description="My resource",
-            name="Resource for images",
+            name="My first rule",
             options={
                 "allowed_http_methods": {
                     "enabled": True,
@@ -1126,10 +889,6 @@ class TestResources:
                 "host_header": {
                     "enabled": True,
                     "value": "host.com",
-                },
-                "http3_enabled": {
-                    "enabled": True,
-                    "value": True,
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -1263,22 +1022,6 @@ class TestResources:
                         "Header-Two": "Value 2",
                     },
                 },
-                "tls_versions": {
-                    "enabled": True,
-                    "value": ["SSLv3", "TLSv1.3"],
-                },
-                "use_default_le_chain": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_dns01_le_challenge": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_rsa_le_cert": {
-                    "enabled": True,
-                    "value": True,
-                },
                 "user_agent_acl": {
                     "enabled": True,
                     "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
@@ -1293,67 +1036,66 @@ class TestResources:
                     "value": True,
                 },
             },
-            origin_protocol="HTTPS",
-            proxy_ssl_ca=None,
-            proxy_ssl_data=None,
-            proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
-            ssl_data=192,
-            ssl_enabled=False,
-            waap_api_domain_enabled=True,
+            origin_group=None,
+            override_origin_protocol="HTTPS",
+            weight=1,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_raw_response_replace(self, client: Gcore) -> None:
-        response = client.cdn.resources.with_raw_response.replace(
+        response = client.cdn.cdn_resources.rules.with_raw_response.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_replace(self, client: Gcore) -> None:
-        with client.cdn.resources.with_streaming_response.replace(
+        with client.cdn.cdn_resources.rules.with_streaming_response.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
+            rule = response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncResources:
+class TestAsyncRules:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        rule = await async_client.cdn.cdn_resources.rules.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        rule = await async_client.cdn.cdn_resources.rules.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
             active=True,
-            description="My resource",
-            name="Resource for images",
             options={
                 "allowed_http_methods": {
                     "enabled": True,
@@ -1472,10 +1214,6 @@ class TestAsyncResources:
                 "host_header": {
                     "enabled": True,
                     "value": "host.com",
-                },
-                "http3_enabled": {
-                    "enabled": True,
-                    "value": True,
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -1609,22 +1347,6 @@ class TestAsyncResources:
                         "Header-Two": "Value 2",
                     },
                 },
-                "tls_versions": {
-                    "enabled": True,
-                    "value": ["SSLv3", "TLSv1.3"],
-                },
-                "use_default_le_chain": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_dns01_le_challenge": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_rsa_le_cert": {
-                    "enabled": True,
-                    "value": True,
-                },
                 "user_agent_acl": {
                     "enabled": True,
                     "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
@@ -1639,62 +1361,57 @@ class TestAsyncResources:
                     "value": True,
                 },
             },
-            origin_protocol="HTTPS",
-            primary_resource=None,
-            proxy_ssl_ca=None,
-            proxy_ssl_data=None,
-            proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
-            ssl_data=192,
-            ssl_enabled=False,
-            waap_api_domain_enabled=True,
+            origin_group=None,
+            override_origin_protocol="HTTPS",
+            weight=1,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        response = await async_client.cdn.cdn_resources.rules.with_raw_response.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = await response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.create(
-            cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
+        async with async_client.cdn.cdn_resources.rules.with_streaming_response.create(
+            resource_id=0,
+            name="My first rule",
+            rule="/folder/images/*.png",
+            rule_type=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = await response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
+            rule = await response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.update(
+        rule = await async_client.cdn.cdn_resources.rules.update(
+            rule_id=0,
             resource_id=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.update(
+        rule = await async_client.cdn.cdn_resources.rules.update(
+            rule_id=0,
             resource_id=0,
             active=True,
-            description="My resource",
-            name="Resource for images",
+            name="My first rule",
             options={
                 "allowed_http_methods": {
                     "enabled": True,
@@ -1813,10 +1530,6 @@ class TestAsyncResources:
                 "host_header": {
                     "enabled": True,
                     "value": "host.com",
-                },
-                "http3_enabled": {
-                    "enabled": True,
-                    "value": True,
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -1950,22 +1663,6 @@ class TestAsyncResources:
                         "Header-Two": "Value 2",
                     },
                 },
-                "tls_versions": {
-                    "enabled": True,
-                    "value": ["SSLv3", "TLSv1.3"],
-                },
-                "use_default_le_chain": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_dns01_le_challenge": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_rsa_le_cert": {
-                    "enabled": True,
-                    "value": True,
-                },
                 "user_agent_acl": {
                     "enabled": True,
                     "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
@@ -1980,350 +1677,158 @@ class TestAsyncResources:
                     "value": True,
                 },
             },
-            origin_group=132,
-            origin_protocol="HTTPS",
-            proxy_ssl_ca=None,
-            proxy_ssl_data=None,
-            proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
-            ssl_data=192,
-            ssl_enabled=False,
+            origin_group=None,
+            override_origin_protocol="HTTPS",
+            rule="/folder/images/*.png",
+            rule_type=0,
+            weight=1,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.update(
+        response = await async_client.cdn.cdn_resources.rules.with_raw_response.update(
+            rule_id=0,
             resource_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = await response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
-    @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.update(
+        async with async_client.cdn.cdn_resources.rules.with_streaming_response.update(
+            rule_id=0,
             resource_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = await response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
+            rule = await response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.list()
-        assert_matches_type(CDNResourceList, resource, path=["response"])
-
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.list(
-            cname="cname",
-            deleted=True,
-            enabled=True,
-            max_created="max_created",
-            min_created="min_created",
-            origin_group=0,
-            rules="rules",
-            secondary_hostnames="secondaryHostnames",
-            shield_dc="shield_dc",
-            shielded=True,
-            ssl_data=0,
-            ssl_data_in=0,
-            ssl_enabled=True,
-            status="active",
-            suspend=True,
-            vp_enabled=True,
+        rule = await async_client.cdn.cdn_resources.rules.list(
+            0,
         )
-        assert_matches_type(CDNResourceList, resource, path=["response"])
+        assert_matches_type(RuleListResponse, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.list()
+        response = await async_client.cdn.cdn_resources.rules.with_raw_response.list(
+            0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert_matches_type(CDNResourceList, resource, path=["response"])
+        rule = await response.parse()
+        assert_matches_type(RuleListResponse, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.list() as response:
+        async with async_client.cdn.cdn_resources.rules.with_streaming_response.list(
+            0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = await response.parse()
-            assert_matches_type(CDNResourceList, resource, path=["response"])
+            rule = await response.parse()
+            assert_matches_type(RuleListResponse, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.delete(
-            0,
+        rule = await async_client.cdn.cdn_resources.rules.delete(
+            rule_id=0,
+            resource_id=0,
         )
-        assert resource is None
+        assert rule is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.delete(
-            0,
+        response = await async_client.cdn.cdn_resources.rules.with_raw_response.delete(
+            rule_id=0,
+            resource_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert resource is None
+        rule = await response.parse()
+        assert rule is None
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.delete(
-            0,
+        async with async_client.cdn.cdn_resources.rules.with_streaming_response.delete(
+            rule_id=0,
+            resource_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = await response.parse()
-            assert resource is None
+            rule = await response.parse()
+            assert rule is None
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.get(
-            0,
+        rule = await async_client.cdn.cdn_resources.rules.get(
+            rule_id=0,
+            resource_id=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.get(
-            0,
+        response = await async_client.cdn.cdn_resources.rules.with_raw_response.get(
+            rule_id=0,
+            resource_id=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = await response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.get(
-            0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = await response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_prefetch(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.prefetch(
-            resource_id=0,
-            paths=["/test.jpg", "test1.jpg"],
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_raw_response_prefetch(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.prefetch(
-            resource_id=0,
-            paths=["/test.jpg", "test1.jpg"],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert resource is None
-
-    @parametrize
-    async def test_streaming_response_prefetch(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.prefetch(
-            resource_id=0,
-            paths=["/test.jpg", "test1.jpg"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = await response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_prevalidate_ssl_le_certificate(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.prevalidate_ssl_le_certificate(
-            0,
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_raw_response_prevalidate_ssl_le_certificate(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.prevalidate_ssl_le_certificate(
-            0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert resource is None
-
-    @parametrize
-    async def test_streaming_response_prevalidate_ssl_le_certificate(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.prevalidate_ssl_le_certificate(
-            0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = await response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_purge_overload_1(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.purge(
-            resource_id=0,
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_method_purge_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.purge(
-            resource_id=0,
-            urls=["/some-url.jpg", "/img/example.jpg"],
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_raw_response_purge_overload_1(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.purge(
-            resource_id=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert resource is None
-
-    @parametrize
-    async def test_streaming_response_purge_overload_1(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.purge(
+        async with async_client.cdn.cdn_resources.rules.with_streaming_response.get(
+            rule_id=0,
             resource_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = await response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_purge_overload_2(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.purge(
-            resource_id=0,
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_method_purge_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.purge(
-            resource_id=0,
-            paths=["/images/*", "/videos/*"],
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_raw_response_purge_overload_2(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.purge(
-            resource_id=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert resource is None
-
-    @parametrize
-    async def test_streaming_response_purge_overload_2(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.purge(
-            resource_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = await response.parse()
-            assert resource is None
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_purge_overload_3(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.purge(
-            resource_id=0,
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_method_purge_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.purge(
-            resource_id=0,
-            paths=["string"],
-        )
-        assert resource is None
-
-    @parametrize
-    async def test_raw_response_purge_overload_3(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.purge(
-            resource_id=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert resource is None
-
-    @parametrize
-    async def test_streaming_response_purge_overload_3(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.purge(
-            resource_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            resource = await response.parse()
-            assert resource is None
+            rule = await response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_replace(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.replace(
+        rule = await async_client.cdn.cdn_resources.rules.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
-        resource = await async_client.cdn.resources.replace(
+        rule = await async_client.cdn.cdn_resources.rules.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
             active=True,
-            description="My resource",
-            name="Resource for images",
+            name="My first rule",
             options={
                 "allowed_http_methods": {
                     "enabled": True,
@@ -2442,10 +1947,6 @@ class TestAsyncResources:
                 "host_header": {
                     "enabled": True,
                     "value": "host.com",
-                },
-                "http3_enabled": {
-                    "enabled": True,
-                    "value": True,
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -2579,22 +2080,6 @@ class TestAsyncResources:
                         "Header-Two": "Value 2",
                     },
                 },
-                "tls_versions": {
-                    "enabled": True,
-                    "value": ["SSLv3", "TLSv1.3"],
-                },
-                "use_default_le_chain": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_dns01_le_challenge": {
-                    "enabled": True,
-                    "value": True,
-                },
-                "use_rsa_le_cert": {
-                    "enabled": True,
-                    "value": True,
-                },
                 "user_agent_acl": {
                     "enabled": True,
                     "excepted_values": ["UserAgent Value", "~*.*bot.*", ""],
@@ -2609,39 +2094,38 @@ class TestAsyncResources:
                     "value": True,
                 },
             },
-            origin_protocol="HTTPS",
-            proxy_ssl_ca=None,
-            proxy_ssl_data=None,
-            proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
-            ssl_data=192,
-            ssl_enabled=False,
-            waap_api_domain_enabled=True,
+            origin_group=None,
+            override_origin_protocol="HTTPS",
+            weight=1,
         )
-        assert_matches_type(CDNResource, resource, path=["response"])
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cdn.resources.with_raw_response.replace(
+        response = await async_client.cdn.cdn_resources.rules.with_raw_response.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        resource = await response.parse()
-        assert_matches_type(CDNResource, resource, path=["response"])
+        rule = await response.parse()
+        assert_matches_type(CDNResourceRule, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
-        async with async_client.cdn.resources.with_streaming_response.replace(
+        async with async_client.cdn.cdn_resources.rules.with_streaming_response.replace(
+            rule_id=0,
             resource_id=0,
-            origin_group=132,
+            rule="/folder/images/*.png",
+            rule_type=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            resource = await response.parse()
-            assert_matches_type(CDNResource, resource, path=["response"])
+            rule = await response.parse()
+            assert_matches_type(CDNResourceRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
