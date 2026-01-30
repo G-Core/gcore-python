@@ -23,7 +23,7 @@ from ..._response import (
     async_to_custom_streamed_response_wrapper,
 )
 from ...types.cdn import log_list_params, log_download_params
-from ...pagination import SyncOffsetPageCdnLogs, AsyncOffsetPageCdnLogs
+from ...pagination import SyncOffsetPageCDNLogs, AsyncOffsetPageCDNLogs
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.cdn_log_entry import Data
 
@@ -110,7 +110,7 @@ class LogsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPageCdnLogs[Data]:
+    ) -> SyncOffsetPageCDNLogs[Data]:
         """
         Get CDN logs for up to 3 days starting today.
 
@@ -298,7 +298,7 @@ class LogsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/cdn/advanced/v1/logs",
-            page=SyncOffsetPageCdnLogs[Data],
+            page=SyncOffsetPageCDNLogs[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -761,7 +761,7 @@ class AsyncLogsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Data, AsyncOffsetPageCdnLogs[Data]]:
+    ) -> AsyncPaginator[Data, AsyncOffsetPageCDNLogs[Data]]:
         """
         Get CDN logs for up to 3 days starting today.
 
@@ -949,7 +949,7 @@ class AsyncLogsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/cdn/advanced/v1/logs",
-            page=AsyncOffsetPageCdnLogs[Data],
+            page=AsyncOffsetPageCDNLogs[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

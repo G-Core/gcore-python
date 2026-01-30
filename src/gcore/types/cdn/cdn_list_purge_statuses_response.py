@@ -5,6 +5,6 @@ from typing_extensions import TypeAlias
 
 from .purge_status import PurgeStatus
 
-__all__ = ["CdnListPurgeStatusesResponse"]
+__all__ = ["CDNListPurgeStatusesResponse"]
 
-CdnListPurgeStatusesResponse: TypeAlias = List[PurgeStatus]
+CDNListPurgeStatusesResponse: TypeAlias = List[PurgeStatus]

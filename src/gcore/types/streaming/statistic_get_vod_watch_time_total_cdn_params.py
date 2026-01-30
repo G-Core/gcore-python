@@ -6,10 +6,10 @@ from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["StatisticGetVodWatchTimeTotalCdnParams"]
+__all__ = ["StatisticGetVodWatchTimeTotalCDNParams"]
 
 
-class StatisticGetVodWatchTimeTotalCdnParams(TypedDict, total=False):
+class StatisticGetVodWatchTimeTotalCDNParams(TypedDict, total=False):
     client_user_id: int
     """Filter by field "client_user_id" """
 

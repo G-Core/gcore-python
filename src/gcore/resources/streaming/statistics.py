@@ -56,12 +56,12 @@ from ...types.streaming.views_by_country import ViewsByCountry
 from ...types.streaming.views_by_referer import ViewsByReferer
 from ...types.streaming.max_stream_series import MaxStreamSeries
 from ...types.streaming.views_by_hostname import ViewsByHostname
-from ...types.streaming.unique_viewers_cdn import UniqueViewersCdn
+from ...types.streaming.unique_viewers_cdn import UniqueViewersCDN
 from ...types.streaming.vod_statistics_series import VodStatisticsSeries
 from ...types.streaming.views_by_operating_system import ViewsByOperatingSystem
 from ...types.streaming.vod_total_stream_duration_series import VodTotalStreamDurationSeries
 from ...types.streaming.statistic_get_live_unique_viewers_response import StatisticGetLiveUniqueViewersResponse
-from ...types.streaming.statistic_get_vod_watch_time_total_cdn_response import StatisticGetVodWatchTimeTotalCdnResponse
+from ...types.streaming.statistic_get_vod_watch_time_total_cdn_response import StatisticGetVodWatchTimeTotalCDNResponse
 
 __all__ = ["StatisticsResource", "AsyncStatisticsResource"]
 
@@ -275,7 +275,7 @@ class StatisticsResource(SyncAPIResource):
                         "stream_id": stream_id,
                         "to": to,
                     },
-                    statistic_get_live_watch_time_cdn_params.StatisticGetLiveWatchTimeCdnParams,
+                    statistic_get_live_watch_time_cdn_params.StatisticGetLiveWatchTimeCDNParams,
                 ),
             ),
             cast_to=StreamSeries,
@@ -336,7 +336,7 @@ class StatisticsResource(SyncAPIResource):
                         "stream_id": stream_id,
                         "to": to,
                     },
-                    statistic_get_live_watch_time_total_cdn_params.StatisticGetLiveWatchTimeTotalCdnParams,
+                    statistic_get_live_watch_time_total_cdn_params.StatisticGetLiveWatchTimeTotalCDNParams,
                 ),
             ),
             cast_to=VodTotalStreamDurationSeries,
@@ -645,7 +645,7 @@ class StatisticsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UniqueViewersCdn:
+    ) -> UniqueViewersCDN:
         """Сounts the number of unique viewers of a video entity over CDN.
 
         It doesn't
@@ -726,10 +726,10 @@ class StatisticsResource(SyncAPIResource):
                         "id": id,
                         "type": type,
                     },
-                    statistic_get_unique_viewers_cdn_params.StatisticGetUniqueViewersCdnParams,
+                    statistic_get_unique_viewers_cdn_params.StatisticGetUniqueViewersCDNParams,
                 ),
             ),
-            cast_to=UniqueViewersCdn,
+            cast_to=UniqueViewersCDN,
         )
 
     def get_views(
@@ -1356,7 +1356,7 @@ class StatisticsResource(SyncAPIResource):
                         "granularity": granularity,
                         "slug": slug,
                     },
-                    statistic_get_vod_unique_viewers_cdn_params.StatisticGetVodUniqueViewersCdnParams,
+                    statistic_get_vod_unique_viewers_cdn_params.StatisticGetVodUniqueViewersCDNParams,
                 ),
             ),
             cast_to=VodStatisticsSeries,
@@ -1425,7 +1425,7 @@ class StatisticsResource(SyncAPIResource):
                         "slug": slug,
                         "to": to,
                     },
-                    statistic_get_vod_watch_time_cdn_params.StatisticGetVodWatchTimeCdnParams,
+                    statistic_get_vod_watch_time_cdn_params.StatisticGetVodWatchTimeCDNParams,
                 ),
             ),
             cast_to=VodStatisticsSeries,
@@ -1444,7 +1444,7 @@ class StatisticsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StatisticGetVodWatchTimeTotalCdnResponse:
+    ) -> StatisticGetVodWatchTimeTotalCDNResponse:
         """Calculates the total duration of video watching in minutes.
 
         Views of only those
@@ -1486,10 +1486,10 @@ class StatisticsResource(SyncAPIResource):
                         "slug": slug,
                         "to": to,
                     },
-                    statistic_get_vod_watch_time_total_cdn_params.StatisticGetVodWatchTimeTotalCdnParams,
+                    statistic_get_vod_watch_time_total_cdn_params.StatisticGetVodWatchTimeTotalCDNParams,
                 ),
             ),
-            cast_to=StatisticGetVodWatchTimeTotalCdnResponse,
+            cast_to=StatisticGetVodWatchTimeTotalCDNResponse,
         )
 
 
@@ -1702,7 +1702,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                         "stream_id": stream_id,
                         "to": to,
                     },
-                    statistic_get_live_watch_time_cdn_params.StatisticGetLiveWatchTimeCdnParams,
+                    statistic_get_live_watch_time_cdn_params.StatisticGetLiveWatchTimeCDNParams,
                 ),
             ),
             cast_to=StreamSeries,
@@ -1763,7 +1763,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                         "stream_id": stream_id,
                         "to": to,
                     },
-                    statistic_get_live_watch_time_total_cdn_params.StatisticGetLiveWatchTimeTotalCdnParams,
+                    statistic_get_live_watch_time_total_cdn_params.StatisticGetLiveWatchTimeTotalCDNParams,
                 ),
             ),
             cast_to=VodTotalStreamDurationSeries,
@@ -2072,7 +2072,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UniqueViewersCdn:
+    ) -> UniqueViewersCDN:
         """Сounts the number of unique viewers of a video entity over CDN.
 
         It doesn't
@@ -2153,10 +2153,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
                         "id": id,
                         "type": type,
                     },
-                    statistic_get_unique_viewers_cdn_params.StatisticGetUniqueViewersCdnParams,
+                    statistic_get_unique_viewers_cdn_params.StatisticGetUniqueViewersCDNParams,
                 ),
             ),
-            cast_to=UniqueViewersCdn,
+            cast_to=UniqueViewersCDN,
         )
 
     async def get_views(
@@ -2783,7 +2783,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                         "granularity": granularity,
                         "slug": slug,
                     },
-                    statistic_get_vod_unique_viewers_cdn_params.StatisticGetVodUniqueViewersCdnParams,
+                    statistic_get_vod_unique_viewers_cdn_params.StatisticGetVodUniqueViewersCDNParams,
                 ),
             ),
             cast_to=VodStatisticsSeries,
@@ -2852,7 +2852,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                         "slug": slug,
                         "to": to,
                     },
-                    statistic_get_vod_watch_time_cdn_params.StatisticGetVodWatchTimeCdnParams,
+                    statistic_get_vod_watch_time_cdn_params.StatisticGetVodWatchTimeCDNParams,
                 ),
             ),
             cast_to=VodStatisticsSeries,
@@ -2871,7 +2871,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StatisticGetVodWatchTimeTotalCdnResponse:
+    ) -> StatisticGetVodWatchTimeTotalCDNResponse:
         """Calculates the total duration of video watching in minutes.
 
         Views of only those
@@ -2913,10 +2913,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
                         "slug": slug,
                         "to": to,
                     },
-                    statistic_get_vod_watch_time_total_cdn_params.StatisticGetVodWatchTimeTotalCdnParams,
+                    statistic_get_vod_watch_time_total_cdn_params.StatisticGetVodWatchTimeTotalCDNParams,
                 ),
             ),
-            cast_to=StatisticGetVodWatchTimeTotalCdnResponse,
+            cast_to=StatisticGetVodWatchTimeTotalCDNResponse,
         )
 
 

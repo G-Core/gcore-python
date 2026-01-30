@@ -11,23 +11,23 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import (
     AwsRegions,
-    CdnAccount,
+    CDNAccount,
     AlibabaRegions,
-    CdnAccountLimits,
-    CdnAvailableFeatures,
-    CdnListPurgeStatusesResponse,
+    CDNAccountLimits,
+    CDNAvailableFeatures,
+    CDNListPurgeStatusesResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestCdn:
+class TestCDN:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_get_account_limits(self, client: Gcore) -> None:
         cdn = client.cdn.get_account_limits()
-        assert_matches_type(CdnAccountLimits, cdn, path=["response"])
+        assert_matches_type(CDNAccountLimits, cdn, path=["response"])
 
     @parametrize
     def test_raw_response_get_account_limits(self, client: Gcore) -> None:
@@ -36,7 +36,7 @@ class TestCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = response.parse()
-        assert_matches_type(CdnAccountLimits, cdn, path=["response"])
+        assert_matches_type(CDNAccountLimits, cdn, path=["response"])
 
     @parametrize
     def test_streaming_response_get_account_limits(self, client: Gcore) -> None:
@@ -45,14 +45,14 @@ class TestCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = response.parse()
-            assert_matches_type(CdnAccountLimits, cdn, path=["response"])
+            assert_matches_type(CDNAccountLimits, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_get_account_overview(self, client: Gcore) -> None:
         cdn = client.cdn.get_account_overview()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     def test_raw_response_get_account_overview(self, client: Gcore) -> None:
@@ -61,7 +61,7 @@ class TestCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = response.parse()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     def test_streaming_response_get_account_overview(self, client: Gcore) -> None:
@@ -70,14 +70,14 @@ class TestCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = response.parse()
-            assert_matches_type(CdnAccount, cdn, path=["response"])
+            assert_matches_type(CDNAccount, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_get_available_features(self, client: Gcore) -> None:
         cdn = client.cdn.get_available_features()
-        assert_matches_type(CdnAvailableFeatures, cdn, path=["response"])
+        assert_matches_type(CDNAvailableFeatures, cdn, path=["response"])
 
     @parametrize
     def test_raw_response_get_available_features(self, client: Gcore) -> None:
@@ -86,7 +86,7 @@ class TestCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = response.parse()
-        assert_matches_type(CdnAvailableFeatures, cdn, path=["response"])
+        assert_matches_type(CDNAvailableFeatures, cdn, path=["response"])
 
     @parametrize
     def test_streaming_response_get_available_features(self, client: Gcore) -> None:
@@ -95,7 +95,7 @@ class TestCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = response.parse()
-            assert_matches_type(CdnAvailableFeatures, cdn, path=["response"])
+            assert_matches_type(CDNAvailableFeatures, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +152,7 @@ class TestCdn:
     @parametrize
     def test_method_list_purge_statuses(self, client: Gcore) -> None:
         cdn = client.cdn.list_purge_statuses()
-        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+        assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     def test_method_list_purge_statuses_with_all_params(self, client: Gcore) -> None:
@@ -165,7 +165,7 @@ class TestCdn:
             status="status",
             to_created="to_created",
         )
-        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+        assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     def test_raw_response_list_purge_statuses(self, client: Gcore) -> None:
@@ -174,7 +174,7 @@ class TestCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = response.parse()
-        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+        assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     def test_streaming_response_list_purge_statuses(self, client: Gcore) -> None:
@@ -183,21 +183,21 @@ class TestCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = response.parse()
-            assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+            assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update_account(self, client: Gcore) -> None:
         cdn = client.cdn.update_account()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     def test_method_update_account_with_all_params(self, client: Gcore) -> None:
         cdn = client.cdn.update_account(
             utilization_level=1111,
         )
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     def test_raw_response_update_account(self, client: Gcore) -> None:
@@ -206,7 +206,7 @@ class TestCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = response.parse()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     def test_streaming_response_update_account(self, client: Gcore) -> None:
@@ -215,12 +215,12 @@ class TestCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = response.parse()
-            assert_matches_type(CdnAccount, cdn, path=["response"])
+            assert_matches_type(CDNAccount, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncCdn:
+class TestAsyncCDN:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
@@ -228,7 +228,7 @@ class TestAsyncCdn:
     @parametrize
     async def test_method_get_account_limits(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.get_account_limits()
-        assert_matches_type(CdnAccountLimits, cdn, path=["response"])
+        assert_matches_type(CDNAccountLimits, cdn, path=["response"])
 
     @parametrize
     async def test_raw_response_get_account_limits(self, async_client: AsyncGcore) -> None:
@@ -237,7 +237,7 @@ class TestAsyncCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = await response.parse()
-        assert_matches_type(CdnAccountLimits, cdn, path=["response"])
+        assert_matches_type(CDNAccountLimits, cdn, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_account_limits(self, async_client: AsyncGcore) -> None:
@@ -246,14 +246,14 @@ class TestAsyncCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = await response.parse()
-            assert_matches_type(CdnAccountLimits, cdn, path=["response"])
+            assert_matches_type(CDNAccountLimits, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_get_account_overview(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.get_account_overview()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     async def test_raw_response_get_account_overview(self, async_client: AsyncGcore) -> None:
@@ -262,7 +262,7 @@ class TestAsyncCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = await response.parse()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_account_overview(self, async_client: AsyncGcore) -> None:
@@ -271,14 +271,14 @@ class TestAsyncCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = await response.parse()
-            assert_matches_type(CdnAccount, cdn, path=["response"])
+            assert_matches_type(CDNAccount, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_get_available_features(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.get_available_features()
-        assert_matches_type(CdnAvailableFeatures, cdn, path=["response"])
+        assert_matches_type(CDNAvailableFeatures, cdn, path=["response"])
 
     @parametrize
     async def test_raw_response_get_available_features(self, async_client: AsyncGcore) -> None:
@@ -287,7 +287,7 @@ class TestAsyncCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = await response.parse()
-        assert_matches_type(CdnAvailableFeatures, cdn, path=["response"])
+        assert_matches_type(CDNAvailableFeatures, cdn, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_available_features(self, async_client: AsyncGcore) -> None:
@@ -296,7 +296,7 @@ class TestAsyncCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = await response.parse()
-            assert_matches_type(CdnAvailableFeatures, cdn, path=["response"])
+            assert_matches_type(CDNAvailableFeatures, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,7 +353,7 @@ class TestAsyncCdn:
     @parametrize
     async def test_method_list_purge_statuses(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_purge_statuses()
-        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+        assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     async def test_method_list_purge_statuses_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -366,7 +366,7 @@ class TestAsyncCdn:
             status="status",
             to_created="to_created",
         )
-        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+        assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     async def test_raw_response_list_purge_statuses(self, async_client: AsyncGcore) -> None:
@@ -375,7 +375,7 @@ class TestAsyncCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = await response.parse()
-        assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+        assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
     @parametrize
     async def test_streaming_response_list_purge_statuses(self, async_client: AsyncGcore) -> None:
@@ -384,21 +384,21 @@ class TestAsyncCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = await response.parse()
-            assert_matches_type(CdnListPurgeStatusesResponse, cdn, path=["response"])
+            assert_matches_type(CDNListPurgeStatusesResponse, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update_account(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.update_account()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     async def test_method_update_account_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.update_account(
             utilization_level=1111,
         )
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     async def test_raw_response_update_account(self, async_client: AsyncGcore) -> None:
@@ -407,7 +407,7 @@ class TestAsyncCdn:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn = await response.parse()
-        assert_matches_type(CdnAccount, cdn, path=["response"])
+        assert_matches_type(CDNAccount, cdn, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_account(self, async_client: AsyncGcore) -> None:
@@ -416,6 +416,6 @@ class TestAsyncCdn:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn = await response.parse()
-            assert_matches_type(CdnAccount, cdn, path=["response"])
+            assert_matches_type(CDNAccount, cdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -1919,7 +1919,7 @@ from gcore.types.streaming import (
     StorageSeries,
     StreamSeries,
     UniqueViewers,
-    UniqueViewersCdn,
+    UniqueViewersCDN,
     Views,
     ViewsByBrowser,
     ViewsByCountry,
@@ -1931,7 +1931,7 @@ from gcore.types.streaming import (
     VodStatisticsSeries,
     VodTotalStreamDurationSeries,
     StatisticGetLiveUniqueViewersResponse,
-    StatisticGetVodWatchTimeTotalCdnResponse,
+    StatisticGetVodWatchTimeTotalCDNResponse,
 )
 ```
 
@@ -1946,7 +1946,7 @@ Methods:
 - <code title="get /streaming/statistics/storage">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_storage_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_storage_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/storage_series.py">StorageSeries</a></code>
 - <code title="get /streaming/statistics/stream">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_stream_series</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_stream_series_params.py">params</a>) -> <a href="./src/gcore/types/streaming/stream_series.py">StreamSeries</a></code>
 - <code title="get /streaming/statistics/uniqs">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_unique_viewers</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_unique_viewers_params.py">params</a>) -> <a href="./src/gcore/types/streaming/unique_viewers.py">UniqueViewers</a></code>
-- <code title="get /streaming/statistics/cdn/uniqs">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_unique_viewers_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_unique_viewers_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/unique_viewers_cdn.py">UniqueViewersCdn</a></code>
+- <code title="get /streaming/statistics/cdn/uniqs">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_unique_viewers_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_unique_viewers_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/unique_viewers_cdn.py">UniqueViewersCDN</a></code>
 - <code title="get /streaming/statistics/views">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_views</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_views_params.py">params</a>) -> <a href="./src/gcore/types/streaming/views.py">Views</a></code>
 - <code title="get /streaming/statistics/browsers">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_views_by_browsers</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_views_by_browsers_params.py">params</a>) -> <a href="./src/gcore/types/streaming/views_by_browser.py">ViewsByBrowser</a></code>
 - <code title="get /streaming/statistics/countries">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_views_by_country</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_views_by_country_params.py">params</a>) -> <a href="./src/gcore/types/streaming/views_by_country.py">ViewsByCountry</a></code>
@@ -1959,7 +1959,7 @@ Methods:
 - <code title="get /streaming/statistics/vod/transcoding_duration">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_vod_transcoding_duration</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_vod_transcoding_duration_params.py">params</a>) -> <a href="./src/gcore/types/streaming/vod_statistics_series.py">VodStatisticsSeries</a></code>
 - <code title="get /streaming/statistics/vod/viewers">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_vod_unique_viewers_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_vod_unique_viewers_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/vod_statistics_series.py">VodStatisticsSeries</a></code>
 - <code title="get /streaming/statistics/vod/watching_duration">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_vod_watch_time_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_vod_watch_time_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/vod_statistics_series.py">VodStatisticsSeries</a></code>
-- <code title="get /streaming/statistics/vod/watching_duration/total">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_vod_watch_time_total_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_vod_watch_time_total_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/statistic_get_vod_watch_time_total_cdn_response.py">StatisticGetVodWatchTimeTotalCdnResponse</a></code>
+- <code title="get /streaming/statistics/vod/watching_duration/total">client.streaming.statistics.<a href="./src/gcore/resources/streaming/statistics.py">get_vod_watch_time_total_cdn</a>(\*\*<a href="src/gcore/types/streaming/statistic_get_vod_watch_time_total_cdn_params.py">params</a>) -> <a href="./src/gcore/types/streaming/statistic_get_vod_watch_time_total_cdn_response.py">StatisticGetVodWatchTimeTotalCDNResponse</a></code>
 
 # Security
 
@@ -2275,7 +2275,7 @@ Methods:
 - <code title="delete /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy">client.storage.buckets.policy.<a href="./src/gcore/resources/storage/buckets/policy.py">delete</a>(bucket_name, \*, storage_id) -> None</code>
 - <code title="get /storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy">client.storage.buckets.policy.<a href="./src/gcore/resources/storage/buckets/policy.py">get</a>(bucket_name, \*, storage_id) -> <a href="./src/gcore/types/storage/buckets/policy_get_response.py">PolicyGetResponse</a></code>
 
-# Cdn
+# CDN
 
 Types:
 
@@ -2283,43 +2283,43 @@ Types:
 from gcore.types.cdn import (
     AlibabaRegions,
     AwsRegions,
-    CdnAccount,
-    CdnAccountLimits,
-    CdnAvailableFeatures,
+    CDNAccount,
+    CDNAccountLimits,
+    CDNAvailableFeatures,
     PurgeStatus,
-    CdnListPurgeStatusesResponse,
+    CDNListPurgeStatusesResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /cdn/clients/me/limits">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_limits</a>() -> <a href="./src/gcore/types/cdn/cdn_account_limits.py">CdnAccountLimits</a></code>
-- <code title="get /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_overview</a>() -> <a href="./src/gcore/types/cdn/cdn_account.py">CdnAccount</a></code>
-- <code title="get /cdn/clients/me/features">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_available_features</a>() -> <a href="./src/gcore/types/cdn/cdn_available_features.py">CdnAvailableFeatures</a></code>
+- <code title="get /cdn/clients/me/limits">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_limits</a>() -> <a href="./src/gcore/types/cdn/cdn_account_limits.py">CDNAccountLimits</a></code>
+- <code title="get /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_overview</a>() -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
+- <code title="get /cdn/clients/me/features">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_available_features</a>() -> <a href="./src/gcore/types/cdn/cdn_available_features.py">CDNAvailableFeatures</a></code>
 - <code title="get /cdn/alibaba_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_alibaba_regions</a>() -> <a href="./src/gcore/types/cdn/alibaba_regions.py">AlibabaRegions</a></code>
 - <code title="get /cdn/aws_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_aws_regions</a>() -> <a href="./src/gcore/types/cdn/aws_regions.py">AwsRegions</a></code>
-- <code title="get /cdn/purge_statuses">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_purge_statuses</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_purge_statuses_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_list_purge_statuses_response.py">CdnListPurgeStatusesResponse</a></code>
-- <code title="patch /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">update_account</a>(\*\*<a href="src/gcore/types/cdn/cdn_update_account_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_account.py">CdnAccount</a></code>
+- <code title="get /cdn/purge_statuses">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_purge_statuses</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_purge_statuses_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_list_purge_statuses_response.py">CDNListPurgeStatusesResponse</a></code>
+- <code title="patch /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">update_account</a>(\*\*<a href="src/gcore/types/cdn/cdn_update_account_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
 
 ## Resources
 
 Types:
 
 ```python
-from gcore.types.cdn import CdnResource, CdnResourceList
+from gcore.types.cdn import CDNResource, CDNResourceList
 ```
 
 Methods:
 
-- <code title="post /cdn/resources">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">create</a>(\*\*<a href="src/gcore/types/cdn/resource_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CdnResource</a></code>
-- <code title="patch /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">update</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CdnResource</a></code>
-- <code title="get /cdn/resources">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">list</a>(\*\*<a href="src/gcore/types/cdn/resource_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource_list.py">CdnResourceList</a></code>
+- <code title="post /cdn/resources">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">create</a>(\*\*<a href="src/gcore/types/cdn/resource_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
+- <code title="patch /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">update</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
+- <code title="get /cdn/resources">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">list</a>(\*\*<a href="src/gcore/types/cdn/resource_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource_list.py">CDNResourceList</a></code>
 - <code title="delete /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">delete</a>(resource_id) -> None</code>
-- <code title="get /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CdnResource</a></code>
+- <code title="get /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
 - <code title="post /cdn/resources/{resource_id}/prefetch">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">prefetch</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_prefetch_params.py">params</a>) -> None</code>
 - <code title="post /cdn/resources/{resource_id}/ssl/le/pre-validate">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">prevalidate_ssl_le_certificate</a>(resource_id) -> None</code>
 - <code title="post /cdn/resources/{resource_id}/purge">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">purge</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_purge_params.py">params</a>) -> None</code>
-- <code title="put /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CdnResource</a></code>
+- <code title="put /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
 
 ### Shield
 
@@ -2339,17 +2339,17 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn.resources import CdnResourceRule, RuleListResponse
+from gcore.types.cdn.resources import CDNResourceRule, RuleListResponse
 ```
 
 Methods:
 
-- <code title="post /cdn/resources/{resource_id}/rules">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">create</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CdnResourceRule</a></code>
-- <code title="patch /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">update</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CdnResourceRule</a></code>
+- <code title="post /cdn/resources/{resource_id}/rules">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">create</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
+- <code title="patch /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">update</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="get /cdn/resources/{resource_id}/rules">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">list</a>(resource_id) -> <a href="./src/gcore/types/cdn/resources/rule_list_response.py">RuleListResponse</a></code>
 - <code title="delete /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">delete</a>(rule_id, \*, resource_id) -> None</code>
-- <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CdnResourceRule</a></code>
-- <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CdnResourceRule</a></code>
+- <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
+- <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 
 ## Shields
 
@@ -2437,25 +2437,25 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn import CdnAuditLogEntry
+from gcore.types.cdn import CDNAuditLogEntry
 ```
 
 Methods:
 
-- <code title="get /cdn/activity_log/requests">client.cdn.audit_logs.<a href="./src/gcore/resources/cdn/audit_logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/audit_log_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">SyncOffsetPage[CdnAuditLogEntry]</a></code>
-- <code title="get /cdn/activity_log/requests/{log_id}">client.cdn.audit_logs.<a href="./src/gcore/resources/cdn/audit_logs.py">get</a>(log_id) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">CdnAuditLogEntry</a></code>
+- <code title="get /cdn/activity_log/requests">client.cdn.audit_logs.<a href="./src/gcore/resources/cdn/audit_logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/audit_log_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">SyncOffsetPage[CDNAuditLogEntry]</a></code>
+- <code title="get /cdn/activity_log/requests/{log_id}">client.cdn.audit_logs.<a href="./src/gcore/resources/cdn/audit_logs.py">get</a>(log_id) -> <a href="./src/gcore/types/cdn/cdn_audit_log_entry.py">CDNAuditLogEntry</a></code>
 
 ## Logs
 
 Types:
 
 ```python
-from gcore.types.cdn import CdnLogEntry
+from gcore.types.cdn import CDNLogEntry
 ```
 
 Methods:
 
-- <code title="get /cdn/advanced/v1/logs">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/log_list_params.py">params</a>) -> SyncOffsetPageCdnLogs[Data]</code>
+- <code title="get /cdn/advanced/v1/logs">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs.py">list</a>(\*\*<a href="src/gcore/types/cdn/log_list_params.py">params</a>) -> SyncOffsetPageCDNLogs[Data]</code>
 - <code title="get /cdn/advanced/v1/logs/download">client.cdn.logs.<a href="./src/gcore/resources/cdn/logs.py">download</a>(\*\*<a href="src/gcore/types/cdn/log_download_params.py">params</a>) -> BinaryAPIResponse</code>
 
 ## LogsUploader
@@ -2564,12 +2564,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn import CdnMetrics, CdnMetricsGroups, CdnMetricsValues
+from gcore.types.cdn import CDNMetrics, CDNMetricsGroups, CDNMetricsValues
 ```
 
 Methods:
 
-- <code title="post /cdn/advanced/v1/metrics">client.cdn.metrics.<a href="./src/gcore/resources/cdn/metrics.py">list</a>(\*\*<a href="src/gcore/types/cdn/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_metrics.py">CdnMetrics</a></code>
+- <code title="post /cdn/advanced/v1/metrics">client.cdn.metrics.<a href="./src/gcore/resources/cdn/metrics.py">list</a>(\*\*<a href="src/gcore/types/cdn/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_metrics.py">CDNMetrics</a></code>
 
 ## IPRanges
 

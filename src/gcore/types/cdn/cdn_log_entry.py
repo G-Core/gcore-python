@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["CdnLogEntry", "Data", "Meta"]
+__all__ = ["CDNLogEntry", "Data", "Meta"]
 
 
 class Data(BaseModel):
@@ -64,7 +64,7 @@ class Meta(BaseModel):
     """Total number of records which match given parameters."""
 
 
-class CdnLogEntry(BaseModel):
+class CDNLogEntry(BaseModel):
     data: Optional[List[Data]] = None
     """Contains requested logs."""
 

@@ -5,10 +5,10 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["StatisticGetVodWatchTimeTotalCdnResponse", "StatisticGetVodWatchTimeTotalCdnResponseItem"]
+__all__ = ["StatisticGetVodWatchTimeTotalCDNResponse", "StatisticGetVodWatchTimeTotalCDNResponseItem"]
 
 
-class StatisticGetVodWatchTimeTotalCdnResponseItem(BaseModel):
+class StatisticGetVodWatchTimeTotalCDNResponseItem(BaseModel):
     client: int
 
     duration: int
@@ -19,4 +19,4 @@ class StatisticGetVodWatchTimeTotalCdnResponseItem(BaseModel):
     slug: Optional[str] = None
 
 
-StatisticGetVodWatchTimeTotalCdnResponse: TypeAlias = List[StatisticGetVodWatchTimeTotalCdnResponseItem]
+StatisticGetVodWatchTimeTotalCDNResponse: TypeAlias = List[StatisticGetVodWatchTimeTotalCDNResponseItem]

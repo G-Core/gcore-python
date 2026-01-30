@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["CdnUpdateAccountParams"]
+__all__ = ["CDNUpdateAccountParams"]
 
 
-class CdnUpdateAccountParams(TypedDict, total=False):
+class CDNUpdateAccountParams(TypedDict, total=False):
     utilization_level: int
     """CDN traffic usage limit in gigabytes.
 

@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["CdnAuditLogEntry", "Action"]
+__all__ = ["CDNAuditLogEntry", "Action"]
 
 
 class Action(BaseModel):
@@ -25,7 +25,7 @@ class Action(BaseModel):
     """JSON representation of object before the request."""
 
 
-class CdnAuditLogEntry(BaseModel):
+class CDNAuditLogEntry(BaseModel):
     id: Optional[int] = None
     """Activity logs record ID."""
 

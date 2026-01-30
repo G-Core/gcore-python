@@ -105,7 +105,7 @@ from .resources.resources import (
     AsyncResourcesResourceWithStreamingResponse,
 )
 from ...types.cdn.aws_regions import AwsRegions
-from ...types.cdn.cdn_account import CdnAccount
+from ...types.cdn.cdn_account import CDNAccount
 from .trusted_ca_certificates import (
     TrustedCaCertificatesResource,
     AsyncTrustedCaCertificatesResource,
@@ -123,14 +123,14 @@ from .logs_uploader.logs_uploader import (
     LogsUploaderResourceWithStreamingResponse,
     AsyncLogsUploaderResourceWithStreamingResponse,
 )
-from ...types.cdn.cdn_account_limits import CdnAccountLimits
-from ...types.cdn.cdn_available_features import CdnAvailableFeatures
-from ...types.cdn.cdn_list_purge_statuses_response import CdnListPurgeStatusesResponse
+from ...types.cdn.cdn_account_limits import CDNAccountLimits
+from ...types.cdn.cdn_available_features import CDNAvailableFeatures
+from ...types.cdn.cdn_list_purge_statuses_response import CDNListPurgeStatusesResponse
 
-__all__ = ["CdnResource", "AsyncCdnResource"]
+__all__ = ["CDNResource", "AsyncCDNResource"]
 
 
-class CdnResource(SyncAPIResource):
+class CDNResource(SyncAPIResource):
     @cached_property
     def resources(self) -> ResourcesResource:
         return ResourcesResource(self._client)
@@ -184,23 +184,23 @@ class CdnResource(SyncAPIResource):
         return IPRangesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> CdnResourceWithRawResponse:
+    def with_raw_response(self) -> CDNResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return CdnResourceWithRawResponse(self)
+        return CDNResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CdnResourceWithStreamingResponse:
+    def with_streaming_response(self) -> CDNResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return CdnResourceWithStreamingResponse(self)
+        return CDNResourceWithStreamingResponse(self)
 
     def get_account_limits(
         self,
@@ -211,14 +211,14 @@ class CdnResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAccountLimits:
+    ) -> CDNAccountLimits:
         """Get information about CDN service limits."""
         return self._get(
             "/cdn/clients/me/limits",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAccountLimits,
+            cast_to=CDNAccountLimits,
         )
 
     def get_account_overview(
@@ -230,14 +230,14 @@ class CdnResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAccount:
+    ) -> CDNAccount:
         """Get information about CDN service."""
         return self._get(
             "/cdn/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAccount,
+            cast_to=CDNAccount,
         )
 
     def get_available_features(
@@ -249,14 +249,14 @@ class CdnResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAvailableFeatures:
+    ) -> CDNAvailableFeatures:
         """Get information about available CDN features."""
         return self._get(
             "/cdn/clients/me/features",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAvailableFeatures,
+            cast_to=CDNAvailableFeatures,
         )
 
     def list_alibaba_regions(
@@ -313,7 +313,7 @@ class CdnResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnListPurgeStatusesResponse:
+    ) -> CDNListPurgeStatusesResponse:
         """
         Get purges history.
 
@@ -386,10 +386,10 @@ class CdnResource(SyncAPIResource):
                         "status": status,
                         "to_created": to_created,
                     },
-                    cdn_list_purge_statuses_params.CdnListPurgeStatusesParams,
+                    cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
                 ),
             ),
-            cast_to=CdnListPurgeStatusesResponse,
+            cast_to=CDNListPurgeStatusesResponse,
         )
 
     def update_account(
@@ -402,7 +402,7 @@ class CdnResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAccount:
+    ) -> CDNAccount:
         """
         Change information about CDN service.
 
@@ -422,16 +422,16 @@ class CdnResource(SyncAPIResource):
         return self._patch(
             "/cdn/clients/me",
             body=maybe_transform(
-                {"utilization_level": utilization_level}, cdn_update_account_params.CdnUpdateAccountParams
+                {"utilization_level": utilization_level}, cdn_update_account_params.CDNUpdateAccountParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAccount,
+            cast_to=CDNAccount,
         )
 
 
-class AsyncCdnResource(AsyncAPIResource):
+class AsyncCDNResource(AsyncAPIResource):
     @cached_property
     def resources(self) -> AsyncResourcesResource:
         return AsyncResourcesResource(self._client)
@@ -485,23 +485,23 @@ class AsyncCdnResource(AsyncAPIResource):
         return AsyncIPRangesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCdnResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncCDNResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncCdnResourceWithRawResponse(self)
+        return AsyncCDNResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCdnResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncCDNResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncCdnResourceWithStreamingResponse(self)
+        return AsyncCDNResourceWithStreamingResponse(self)
 
     async def get_account_limits(
         self,
@@ -512,14 +512,14 @@ class AsyncCdnResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAccountLimits:
+    ) -> CDNAccountLimits:
         """Get information about CDN service limits."""
         return await self._get(
             "/cdn/clients/me/limits",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAccountLimits,
+            cast_to=CDNAccountLimits,
         )
 
     async def get_account_overview(
@@ -531,14 +531,14 @@ class AsyncCdnResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAccount:
+    ) -> CDNAccount:
         """Get information about CDN service."""
         return await self._get(
             "/cdn/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAccount,
+            cast_to=CDNAccount,
         )
 
     async def get_available_features(
@@ -550,14 +550,14 @@ class AsyncCdnResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAvailableFeatures:
+    ) -> CDNAvailableFeatures:
         """Get information about available CDN features."""
         return await self._get(
             "/cdn/clients/me/features",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAvailableFeatures,
+            cast_to=CDNAvailableFeatures,
         )
 
     async def list_alibaba_regions(
@@ -614,7 +614,7 @@ class AsyncCdnResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnListPurgeStatusesResponse:
+    ) -> CDNListPurgeStatusesResponse:
         """
         Get purges history.
 
@@ -687,10 +687,10 @@ class AsyncCdnResource(AsyncAPIResource):
                         "status": status,
                         "to_created": to_created,
                     },
-                    cdn_list_purge_statuses_params.CdnListPurgeStatusesParams,
+                    cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
                 ),
             ),
-            cast_to=CdnListPurgeStatusesResponse,
+            cast_to=CDNListPurgeStatusesResponse,
         )
 
     async def update_account(
@@ -703,7 +703,7 @@ class AsyncCdnResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAccount:
+    ) -> CDNAccount:
         """
         Change information about CDN service.
 
@@ -723,17 +723,17 @@ class AsyncCdnResource(AsyncAPIResource):
         return await self._patch(
             "/cdn/clients/me",
             body=await async_maybe_transform(
-                {"utilization_level": utilization_level}, cdn_update_account_params.CdnUpdateAccountParams
+                {"utilization_level": utilization_level}, cdn_update_account_params.CDNUpdateAccountParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAccount,
+            cast_to=CDNAccount,
         )
 
 
-class CdnResourceWithRawResponse:
-    def __init__(self, cdn: CdnResource) -> None:
+class CDNResourceWithRawResponse:
+    def __init__(self, cdn: CDNResource) -> None:
         self._cdn = cdn
 
         self.get_account_limits = to_raw_response_wrapper(
@@ -811,8 +811,8 @@ class CdnResourceWithRawResponse:
         return IPRangesResourceWithRawResponse(self._cdn.ip_ranges)
 
 
-class AsyncCdnResourceWithRawResponse:
-    def __init__(self, cdn: AsyncCdnResource) -> None:
+class AsyncCDNResourceWithRawResponse:
+    def __init__(self, cdn: AsyncCDNResource) -> None:
         self._cdn = cdn
 
         self.get_account_limits = async_to_raw_response_wrapper(
@@ -890,8 +890,8 @@ class AsyncCdnResourceWithRawResponse:
         return AsyncIPRangesResourceWithRawResponse(self._cdn.ip_ranges)
 
 
-class CdnResourceWithStreamingResponse:
-    def __init__(self, cdn: CdnResource) -> None:
+class CDNResourceWithStreamingResponse:
+    def __init__(self, cdn: CDNResource) -> None:
         self._cdn = cdn
 
         self.get_account_limits = to_streamed_response_wrapper(
@@ -969,8 +969,8 @@ class CdnResourceWithStreamingResponse:
         return IPRangesResourceWithStreamingResponse(self._cdn.ip_ranges)
 
 
-class AsyncCdnResourceWithStreamingResponse:
-    def __init__(self, cdn: AsyncCdnResource) -> None:
+class AsyncCDNResourceWithStreamingResponse:
+    def __init__(self, cdn: AsyncCDNResource) -> None:
         self._cdn = cdn
 
         self.get_account_limits = async_to_streamed_response_wrapper(

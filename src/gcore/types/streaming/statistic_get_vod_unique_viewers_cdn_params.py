@@ -6,10 +6,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["StatisticGetVodUniqueViewersCdnParams"]
+__all__ = ["StatisticGetVodUniqueViewersCDNParams"]
 
 
-class StatisticGetVodUniqueViewersCdnParams(TypedDict, total=False):
+class StatisticGetVodUniqueViewersCDNParams(TypedDict, total=False):
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Start of time frame. Format is date time in ISO 8601"""
 

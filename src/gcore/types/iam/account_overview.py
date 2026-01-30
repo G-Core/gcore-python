@@ -10,21 +10,21 @@ from ..._models import BaseModel
 __all__ = [
     "AccountOverview",
     "FreeFeatures",
-    "FreeFeaturesCdn",
+    "FreeFeaturesCDN",
     "FreeFeaturesCloud",
     "FreeFeaturesDDOS",
     "FreeFeaturesDNS",
     "FreeFeaturesStorage",
     "FreeFeaturesStreaming",
     "PaidFeatures",
-    "PaidFeaturesCdn",
+    "PaidFeaturesCDN",
     "PaidFeaturesCloud",
     "PaidFeaturesDDOS",
     "PaidFeaturesDNS",
     "PaidFeaturesStorage",
     "PaidFeaturesStreaming",
     "ServiceStatuses",
-    "ServiceStatusesCdn",
+    "ServiceStatusesCDN",
     "ServiceStatusesCloud",
     "ServiceStatusesDDOS",
     "ServiceStatusesDNS",
@@ -35,7 +35,7 @@ __all__ = [
 ]
 
 
-class FreeFeaturesCdn(BaseModel):
+class FreeFeaturesCDN(BaseModel):
     """Feature object."""
 
     create_date: Optional[str] = None
@@ -154,7 +154,7 @@ class FreeFeatures(BaseModel):
     An object of arrays which contains information about free features available for the requested account.
     """
 
-    cdn: Optional[List[FreeFeaturesCdn]] = FieldInfo(alias="CDN", default=None)
+    cdn: Optional[List[FreeFeaturesCDN]] = FieldInfo(alias="CDN", default=None)
 
     cloud: Optional[List[FreeFeaturesCloud]] = FieldInfo(alias="CLOUD", default=None)
 
@@ -167,7 +167,7 @@ class FreeFeatures(BaseModel):
     streaming: Optional[List[FreeFeaturesStreaming]] = FieldInfo(alias="STREAMING", default=None)
 
 
-class PaidFeaturesCdn(BaseModel):
+class PaidFeaturesCDN(BaseModel):
     """Feature object."""
 
     create_date: Optional[str] = None
@@ -286,7 +286,7 @@ class PaidFeatures(BaseModel):
     An object of arrays which contains information about paid features available for the requested account.
     """
 
-    cdn: Optional[List[PaidFeaturesCdn]] = FieldInfo(alias="CDN", default=None)
+    cdn: Optional[List[PaidFeaturesCDN]] = FieldInfo(alias="CDN", default=None)
 
     cloud: Optional[List[PaidFeaturesCloud]] = FieldInfo(alias="CLOUD", default=None)
 
@@ -299,7 +299,7 @@ class PaidFeatures(BaseModel):
     streaming: Optional[List[PaidFeaturesStreaming]] = FieldInfo(alias="STREAMING", default=None)
 
 
-class ServiceStatusesCdn(BaseModel):
+class ServiceStatusesCDN(BaseModel):
     enabled: Optional[bool] = None
     """`true` - service is available in the Control Panel."""
 
@@ -352,7 +352,7 @@ class ServiceStatuses(BaseModel):
     An object of arrays which contains information about all services available for the requested account.
     """
 
-    cdn: Optional[ServiceStatusesCdn] = FieldInfo(alias="CDN", default=None)
+    cdn: Optional[ServiceStatusesCDN] = FieldInfo(alias="CDN", default=None)
 
     cloud: Optional[ServiceStatusesCloud] = FieldInfo(alias="CLOUD", default=None)
 
