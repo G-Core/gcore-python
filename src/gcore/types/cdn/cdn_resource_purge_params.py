@@ -7,7 +7,7 @@ from typing_extensions import TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["ResourcePurgeParams", "PurgeByURL", "PurgeByPattern", "PurgeAllCache"]
+__all__ = ["CDNResourcePurgeParams", "PurgeByURL", "PurgeByPattern", "PurgeAllCache"]
 
 
 class PurgeByURL(TypedDict, total=False):
@@ -68,4 +68,4 @@ class PurgeAllCache(TypedDict, total=False):
     """
 
 
-ResourcePurgeParams: TypeAlias = Union[PurgeByURL, PurgeByPattern, PurgeAllCache]
+CDNResourcePurgeParams: TypeAlias = Union[PurgeByURL, PurgeByPattern, PurgeAllCache]

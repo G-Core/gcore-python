@@ -34,21 +34,21 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....types.cdn import (
-    resource_list_params,
-    resource_purge_params,
-    resource_create_params,
-    resource_update_params,
-    resource_replace_params,
-    resource_prefetch_params,
+    cdn_resource_list_params,
+    cdn_resource_purge_params,
+    cdn_resource_create_params,
+    cdn_resource_update_params,
+    cdn_resource_replace_params,
+    cdn_resource_prefetch_params,
 )
 from ...._base_client import make_request_options
 from ....types.cdn.cdn_resource import CDNResource
 from ....types.cdn.cdn_resource_list import CDNResourceList
 
-__all__ = ["ResourcesResource", "AsyncResourcesResource"]
+__all__ = ["CDNResourcesResource", "AsyncCDNResourcesResource"]
 
 
-class ResourcesResource(SyncAPIResource):
+class CDNResourcesResource(SyncAPIResource):
     @cached_property
     def shield(self) -> ShieldResource:
         return ShieldResource(self._client)
@@ -58,23 +58,23 @@ class ResourcesResource(SyncAPIResource):
         return RulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ResourcesResourceWithRawResponse:
+    def with_raw_response(self) -> CDNResourcesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return ResourcesResourceWithRawResponse(self)
+        return CDNResourcesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ResourcesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> CDNResourcesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return ResourcesResourceWithStreamingResponse(self)
+        return CDNResourcesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -85,7 +85,7 @@ class ResourcesResource(SyncAPIResource):
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
-        options: resource_create_params.Options | Omit = omit,
+        options: cdn_resource_create_params.Options | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         primary_resource: Optional[int] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
@@ -220,7 +220,7 @@ class ResourcesResource(SyncAPIResource):
                     "ssl_enabled": ssl_enabled,
                     "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
-                resource_create_params.ResourceCreateParams,
+                cdn_resource_create_params.CDNResourceCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -235,7 +235,7 @@ class ResourcesResource(SyncAPIResource):
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
-        options: resource_update_params.Options | Omit = omit,
+        options: cdn_resource_update_params.Options | Omit = omit,
         origin_group: int | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
@@ -343,7 +343,7 @@ class ResourcesResource(SyncAPIResource):
                     "ssl_data": ssl_data,
                     "ssl_enabled": ssl_enabled,
                 },
-                resource_update_params.ResourceUpdateParams,
+                cdn_resource_update_params.CDNResourceUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -484,7 +484,7 @@ class ResourcesResource(SyncAPIResource):
                         "suspend": suspend,
                         "vp_enabled": vp_enabled,
                     },
-                    resource_list_params.ResourceListParams,
+                    cdn_resource_list_params.CDNResourceListParams,
                 ),
             ),
             cast_to=CDNResourceList,
@@ -604,7 +604,7 @@ class ResourcesResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/cdn/resources/{resource_id}/prefetch",
-            body=maybe_transform({"paths": paths}, resource_prefetch_params.ResourcePrefetchParams),
+            body=maybe_transform({"paths": paths}, cdn_resource_prefetch_params.CDNResourcePrefetchParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -817,7 +817,7 @@ class ResourcesResource(SyncAPIResource):
                     "urls": urls,
                     "paths": paths,
                 },
-                resource_purge_params.ResourcePurgeParams,
+                cdn_resource_purge_params.CDNResourcePurgeParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -833,7 +833,7 @@ class ResourcesResource(SyncAPIResource):
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
-        options: resource_replace_params.Options | Omit = omit,
+        options: cdn_resource_replace_params.Options | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
         proxy_ssl_data: Optional[int] | Omit = omit,
@@ -949,7 +949,7 @@ class ResourcesResource(SyncAPIResource):
                     "ssl_enabled": ssl_enabled,
                     "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
-                resource_replace_params.ResourceReplaceParams,
+                cdn_resource_replace_params.CDNResourceReplaceParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -958,7 +958,7 @@ class ResourcesResource(SyncAPIResource):
         )
 
 
-class AsyncResourcesResource(AsyncAPIResource):
+class AsyncCDNResourcesResource(AsyncAPIResource):
     @cached_property
     def shield(self) -> AsyncShieldResource:
         return AsyncShieldResource(self._client)
@@ -968,23 +968,23 @@ class AsyncResourcesResource(AsyncAPIResource):
         return AsyncRulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncResourcesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncCDNResourcesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncResourcesResourceWithRawResponse(self)
+        return AsyncCDNResourcesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncResourcesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncCDNResourcesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncResourcesResourceWithStreamingResponse(self)
+        return AsyncCDNResourcesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -995,7 +995,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
-        options: resource_create_params.Options | Omit = omit,
+        options: cdn_resource_create_params.Options | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         primary_resource: Optional[int] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
@@ -1130,7 +1130,7 @@ class AsyncResourcesResource(AsyncAPIResource):
                     "ssl_enabled": ssl_enabled,
                     "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
-                resource_create_params.ResourceCreateParams,
+                cdn_resource_create_params.CDNResourceCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1145,7 +1145,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
-        options: resource_update_params.Options | Omit = omit,
+        options: cdn_resource_update_params.Options | Omit = omit,
         origin_group: int | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
@@ -1253,7 +1253,7 @@ class AsyncResourcesResource(AsyncAPIResource):
                     "ssl_data": ssl_data,
                     "ssl_enabled": ssl_enabled,
                 },
-                resource_update_params.ResourceUpdateParams,
+                cdn_resource_update_params.CDNResourceUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1394,7 +1394,7 @@ class AsyncResourcesResource(AsyncAPIResource):
                         "suspend": suspend,
                         "vp_enabled": vp_enabled,
                     },
-                    resource_list_params.ResourceListParams,
+                    cdn_resource_list_params.CDNResourceListParams,
                 ),
             ),
             cast_to=CDNResourceList,
@@ -1514,7 +1514,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/cdn/resources/{resource_id}/prefetch",
-            body=await async_maybe_transform({"paths": paths}, resource_prefetch_params.ResourcePrefetchParams),
+            body=await async_maybe_transform({"paths": paths}, cdn_resource_prefetch_params.CDNResourcePrefetchParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1727,7 +1727,7 @@ class AsyncResourcesResource(AsyncAPIResource):
                     "urls": urls,
                     "paths": paths,
                 },
-                resource_purge_params.ResourcePurgeParams,
+                cdn_resource_purge_params.CDNResourcePurgeParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1743,7 +1743,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
-        options: resource_replace_params.Options | Omit = omit,
+        options: cdn_resource_replace_params.Options | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
         proxy_ssl_data: Optional[int] | Omit = omit,
@@ -1859,7 +1859,7 @@ class AsyncResourcesResource(AsyncAPIResource):
                     "ssl_enabled": ssl_enabled,
                     "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
-                resource_replace_params.ResourceReplaceParams,
+                cdn_resource_replace_params.CDNResourceReplaceParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1868,165 +1868,165 @@ class AsyncResourcesResource(AsyncAPIResource):
         )
 
 
-class ResourcesResourceWithRawResponse:
-    def __init__(self, resources: ResourcesResource) -> None:
-        self._resources = resources
+class CDNResourcesResourceWithRawResponse:
+    def __init__(self, cdn_resources: CDNResourcesResource) -> None:
+        self._cdn_resources = cdn_resources
 
         self.create = to_raw_response_wrapper(
-            resources.create,
+            cdn_resources.create,
         )
         self.update = to_raw_response_wrapper(
-            resources.update,
+            cdn_resources.update,
         )
         self.list = to_raw_response_wrapper(
-            resources.list,
+            cdn_resources.list,
         )
         self.delete = to_raw_response_wrapper(
-            resources.delete,
+            cdn_resources.delete,
         )
         self.get = to_raw_response_wrapper(
-            resources.get,
+            cdn_resources.get,
         )
         self.prefetch = to_raw_response_wrapper(
-            resources.prefetch,
+            cdn_resources.prefetch,
         )
         self.prevalidate_ssl_le_certificate = to_raw_response_wrapper(
-            resources.prevalidate_ssl_le_certificate,
+            cdn_resources.prevalidate_ssl_le_certificate,
         )
         self.purge = to_raw_response_wrapper(
-            resources.purge,
+            cdn_resources.purge,
         )
         self.replace = to_raw_response_wrapper(
-            resources.replace,
+            cdn_resources.replace,
         )
 
     @cached_property
     def shield(self) -> ShieldResourceWithRawResponse:
-        return ShieldResourceWithRawResponse(self._resources.shield)
+        return ShieldResourceWithRawResponse(self._cdn_resources.shield)
 
     @cached_property
     def rules(self) -> RulesResourceWithRawResponse:
-        return RulesResourceWithRawResponse(self._resources.rules)
+        return RulesResourceWithRawResponse(self._cdn_resources.rules)
 
 
-class AsyncResourcesResourceWithRawResponse:
-    def __init__(self, resources: AsyncResourcesResource) -> None:
-        self._resources = resources
+class AsyncCDNResourcesResourceWithRawResponse:
+    def __init__(self, cdn_resources: AsyncCDNResourcesResource) -> None:
+        self._cdn_resources = cdn_resources
 
         self.create = async_to_raw_response_wrapper(
-            resources.create,
+            cdn_resources.create,
         )
         self.update = async_to_raw_response_wrapper(
-            resources.update,
+            cdn_resources.update,
         )
         self.list = async_to_raw_response_wrapper(
-            resources.list,
+            cdn_resources.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            resources.delete,
+            cdn_resources.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            resources.get,
+            cdn_resources.get,
         )
         self.prefetch = async_to_raw_response_wrapper(
-            resources.prefetch,
+            cdn_resources.prefetch,
         )
         self.prevalidate_ssl_le_certificate = async_to_raw_response_wrapper(
-            resources.prevalidate_ssl_le_certificate,
+            cdn_resources.prevalidate_ssl_le_certificate,
         )
         self.purge = async_to_raw_response_wrapper(
-            resources.purge,
+            cdn_resources.purge,
         )
         self.replace = async_to_raw_response_wrapper(
-            resources.replace,
+            cdn_resources.replace,
         )
 
     @cached_property
     def shield(self) -> AsyncShieldResourceWithRawResponse:
-        return AsyncShieldResourceWithRawResponse(self._resources.shield)
+        return AsyncShieldResourceWithRawResponse(self._cdn_resources.shield)
 
     @cached_property
     def rules(self) -> AsyncRulesResourceWithRawResponse:
-        return AsyncRulesResourceWithRawResponse(self._resources.rules)
+        return AsyncRulesResourceWithRawResponse(self._cdn_resources.rules)
 
 
-class ResourcesResourceWithStreamingResponse:
-    def __init__(self, resources: ResourcesResource) -> None:
-        self._resources = resources
+class CDNResourcesResourceWithStreamingResponse:
+    def __init__(self, cdn_resources: CDNResourcesResource) -> None:
+        self._cdn_resources = cdn_resources
 
         self.create = to_streamed_response_wrapper(
-            resources.create,
+            cdn_resources.create,
         )
         self.update = to_streamed_response_wrapper(
-            resources.update,
+            cdn_resources.update,
         )
         self.list = to_streamed_response_wrapper(
-            resources.list,
+            cdn_resources.list,
         )
         self.delete = to_streamed_response_wrapper(
-            resources.delete,
+            cdn_resources.delete,
         )
         self.get = to_streamed_response_wrapper(
-            resources.get,
+            cdn_resources.get,
         )
         self.prefetch = to_streamed_response_wrapper(
-            resources.prefetch,
+            cdn_resources.prefetch,
         )
         self.prevalidate_ssl_le_certificate = to_streamed_response_wrapper(
-            resources.prevalidate_ssl_le_certificate,
+            cdn_resources.prevalidate_ssl_le_certificate,
         )
         self.purge = to_streamed_response_wrapper(
-            resources.purge,
+            cdn_resources.purge,
         )
         self.replace = to_streamed_response_wrapper(
-            resources.replace,
+            cdn_resources.replace,
         )
 
     @cached_property
     def shield(self) -> ShieldResourceWithStreamingResponse:
-        return ShieldResourceWithStreamingResponse(self._resources.shield)
+        return ShieldResourceWithStreamingResponse(self._cdn_resources.shield)
 
     @cached_property
     def rules(self) -> RulesResourceWithStreamingResponse:
-        return RulesResourceWithStreamingResponse(self._resources.rules)
+        return RulesResourceWithStreamingResponse(self._cdn_resources.rules)
 
 
-class AsyncResourcesResourceWithStreamingResponse:
-    def __init__(self, resources: AsyncResourcesResource) -> None:
-        self._resources = resources
+class AsyncCDNResourcesResourceWithStreamingResponse:
+    def __init__(self, cdn_resources: AsyncCDNResourcesResource) -> None:
+        self._cdn_resources = cdn_resources
 
         self.create = async_to_streamed_response_wrapper(
-            resources.create,
+            cdn_resources.create,
         )
         self.update = async_to_streamed_response_wrapper(
-            resources.update,
+            cdn_resources.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            resources.list,
+            cdn_resources.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            resources.delete,
+            cdn_resources.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            resources.get,
+            cdn_resources.get,
         )
         self.prefetch = async_to_streamed_response_wrapper(
-            resources.prefetch,
+            cdn_resources.prefetch,
         )
         self.prevalidate_ssl_le_certificate = async_to_streamed_response_wrapper(
-            resources.prevalidate_ssl_le_certificate,
+            cdn_resources.prevalidate_ssl_le_certificate,
         )
         self.purge = async_to_streamed_response_wrapper(
-            resources.purge,
+            cdn_resources.purge,
         )
         self.replace = async_to_streamed_response_wrapper(
-            resources.replace,
+            cdn_resources.replace,
         )
 
     @cached_property
     def shield(self) -> AsyncShieldResourceWithStreamingResponse:
-        return AsyncShieldResourceWithStreamingResponse(self._resources.shield)
+        return AsyncShieldResourceWithStreamingResponse(self._cdn_resources.shield)
 
     @cached_property
     def rules(self) -> AsyncRulesResourceWithStreamingResponse:
-        return AsyncRulesResourceWithStreamingResponse(self._resources.rules)
+        return AsyncRulesResourceWithStreamingResponse(self._cdn_resources.rules)

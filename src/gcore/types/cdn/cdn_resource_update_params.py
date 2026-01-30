@@ -9,7 +9,7 @@ from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = [
-    "ResourceUpdateParams",
+    "CDNResourceUpdateParams",
     "Options",
     "OptionsAllowedHTTPMethods",
     "OptionsBotProtection",
@@ -71,7 +71,7 @@ __all__ = [
 ]
 
 
-class ResourceUpdateParams(TypedDict, total=False):
+class CDNResourceUpdateParams(TypedDict, total=False):
     active: bool
     """Enables or disables a CDN resource.
 

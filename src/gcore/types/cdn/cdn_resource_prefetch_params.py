@@ -6,10 +6,10 @@ from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["ResourcePrefetchParams"]
+__all__ = ["CDNResourcePrefetchParams"]
 
 
-class ResourcePrefetchParams(TypedDict, total=False):
+class CDNResourcePrefetchParams(TypedDict, total=False):
     paths: Required[SequenceNotStr[str]]
     """Paths to files that should be pre-populated to the CDN.
 
