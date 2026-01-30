@@ -50,7 +50,7 @@ class Gcore(SyncAPIClient):
     security: security.SecurityResource
     dns: dns.DNSResource
     storage: storage.StorageResource
-    cdn: cdn.CdnResource
+    cdn: cdn.CDNResource
     with_raw_response: GcoreWithRawResponse
     with_streaming_response: GcoreWithStreamedResponse
 
@@ -143,7 +143,7 @@ class Gcore(SyncAPIClient):
         self.security = security.SecurityResource(self)
         self.dns = dns.DNSResource(self)
         self.storage = storage.StorageResource(self)
-        self.cdn = cdn.CdnResource(self)
+        self.cdn = cdn.CDNResource(self)
         self.with_raw_response = GcoreWithRawResponse(self)
         self.with_streaming_response = GcoreWithStreamedResponse(self)
 
@@ -287,7 +287,7 @@ class AsyncGcore(AsyncAPIClient):
     security: security.AsyncSecurityResource
     dns: dns.AsyncDNSResource
     storage: storage.AsyncStorageResource
-    cdn: cdn.AsyncCdnResource
+    cdn: cdn.AsyncCDNResource
     with_raw_response: AsyncGcoreWithRawResponse
     with_streaming_response: AsyncGcoreWithStreamedResponse
 
@@ -380,7 +380,7 @@ class AsyncGcore(AsyncAPIClient):
         self.security = security.AsyncSecurityResource(self)
         self.dns = dns.AsyncDNSResource(self)
         self.storage = storage.AsyncStorageResource(self)
-        self.cdn = cdn.AsyncCdnResource(self)
+        self.cdn = cdn.AsyncCDNResource(self)
         self.with_raw_response = AsyncGcoreWithRawResponse(self)
         self.with_streaming_response = AsyncGcoreWithStreamedResponse(self)
 
@@ -525,7 +525,7 @@ class GcoreWithRawResponse:
         self.security = security.SecurityResourceWithRawResponse(client.security)
         self.dns = dns.DNSResourceWithRawResponse(client.dns)
         self.storage = storage.StorageResourceWithRawResponse(client.storage)
-        self.cdn = cdn.CdnResourceWithRawResponse(client.cdn)
+        self.cdn = cdn.CDNResourceWithRawResponse(client.cdn)
 
 
 class AsyncGcoreWithRawResponse:
@@ -538,7 +538,7 @@ class AsyncGcoreWithRawResponse:
         self.security = security.AsyncSecurityResourceWithRawResponse(client.security)
         self.dns = dns.AsyncDNSResourceWithRawResponse(client.dns)
         self.storage = storage.AsyncStorageResourceWithRawResponse(client.storage)
-        self.cdn = cdn.AsyncCdnResourceWithRawResponse(client.cdn)
+        self.cdn = cdn.AsyncCDNResourceWithRawResponse(client.cdn)
 
 
 class GcoreWithStreamedResponse:
@@ -551,7 +551,7 @@ class GcoreWithStreamedResponse:
         self.security = security.SecurityResourceWithStreamingResponse(client.security)
         self.dns = dns.DNSResourceWithStreamingResponse(client.dns)
         self.storage = storage.StorageResourceWithStreamingResponse(client.storage)
-        self.cdn = cdn.CdnResourceWithStreamingResponse(client.cdn)
+        self.cdn = cdn.CDNResourceWithStreamingResponse(client.cdn)
 
 
 class AsyncGcoreWithStreamedResponse:
@@ -564,7 +564,7 @@ class AsyncGcoreWithStreamedResponse:
         self.security = security.AsyncSecurityResourceWithStreamingResponse(client.security)
         self.dns = dns.AsyncDNSResourceWithStreamingResponse(client.dns)
         self.storage = storage.AsyncStorageResourceWithStreamingResponse(client.storage)
-        self.cdn = cdn.AsyncCdnResourceWithStreamingResponse(client.cdn)
+        self.cdn = cdn.AsyncCDNResourceWithStreamingResponse(client.cdn)
 
 
 Client = Gcore
