@@ -17,8 +17,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cdn.resources import shield_replace_params
-from ....types.cdn.resources.origin_shielding import OriginShielding
+from ....types.cdn.cdn_resources import shield_replace_params
+from ....types.cdn.cdn_resources.origin_shielding import OriginShielding
 
 __all__ = ["ShieldResource", "AsyncShieldResource"]
 

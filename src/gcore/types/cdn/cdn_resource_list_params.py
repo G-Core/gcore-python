@@ -6,10 +6,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["ResourceListParams"]
+__all__ = ["CDNResourceListParams"]
 
 
-class ResourceListParams(TypedDict, total=False):
+class CDNResourceListParams(TypedDict, total=False):
     cname: str
     """Delivery domain (CNAME) of the CDN resource."""
 

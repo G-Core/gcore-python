@@ -9,7 +9,7 @@ from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = [
-    "ResourceReplaceParams",
+    "CDNResourceCreateParams",
     "Options",
     "OptionsAllowedHTTPMethods",
     "OptionsBotProtection",
@@ -71,7 +71,19 @@ __all__ = [
 ]
 
 
-class ResourceReplaceParams(TypedDict, total=False):
+class CDNResourceCreateParams(TypedDict, total=False):
+    cname: Required[str]
+    """Delivery domains that will be used for content delivery through a CDN.
+
+    Delivery domains should be added to your DNS settings.
+    """
+
+    origin: Required[str]
+    """IP address or domain name of the origin and the port, if custom port is used.
+
+    You can use either the `origin` or `originGroup` parameter in the request.
+    """
+
     origin_group: Required[Annotated[int, PropertyInfo(alias="originGroup")]]
     """Origin group ID with which the CDN resource is associated.
 
@@ -111,6 +123,16 @@ class ResourceReplaceParams(TypedDict, total=False):
       origin source should be available for the CDN both through HTTP and HTTPS).
 
     If protocol is not specified, HTTP is used to connect to an origin server.
+    """
+
+    primary_resource: Optional[int]
+    """
+    ID of the main CDN resource which has a shared caching zone with a reserve CDN
+    resource.
+
+    If the parameter is not empty, then the current CDN resource is the reserve. You
+    cannot change some options, create rules, set up origin shielding, or use the
+    reserve CDN resource for Streaming.
     """
 
     proxy_ssl_ca: Optional[int]

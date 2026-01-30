@@ -16,13 +16,13 @@ from .shield import (
     ShieldResourceWithStreamingResponse,
     AsyncShieldResourceWithStreamingResponse,
 )
-from .resources import (
-    ResourcesResource,
-    AsyncResourcesResource,
-    ResourcesResourceWithRawResponse,
-    AsyncResourcesResourceWithRawResponse,
-    ResourcesResourceWithStreamingResponse,
-    AsyncResourcesResourceWithStreamingResponse,
+from .cdn_resources import (
+    CDNResourcesResource,
+    AsyncCDNResourcesResource,
+    CDNResourcesResourceWithRawResponse,
+    AsyncCDNResourcesResourceWithRawResponse,
+    CDNResourcesResourceWithStreamingResponse,
+    AsyncCDNResourcesResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -38,10 +38,10 @@ __all__ = [
     "AsyncRulesResourceWithRawResponse",
     "RulesResourceWithStreamingResponse",
     "AsyncRulesResourceWithStreamingResponse",
-    "ResourcesResource",
-    "AsyncResourcesResource",
-    "ResourcesResourceWithRawResponse",
-    "AsyncResourcesResourceWithRawResponse",
-    "ResourcesResourceWithStreamingResponse",
-    "AsyncResourcesResourceWithStreamingResponse",
+    "CDNResourcesResource",
+    "AsyncCDNResourcesResource",
+    "CDNResourcesResourceWithRawResponse",
+    "AsyncCDNResourcesResourceWithRawResponse",
+    "CDNResourcesResourceWithStreamingResponse",
+    "AsyncCDNResourcesResourceWithStreamingResponse",
 ]

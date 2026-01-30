@@ -2301,7 +2301,7 @@ Methods:
 - <code title="get /cdn/purge_statuses">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_purge_statuses</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_purge_statuses_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_list_purge_statuses_response.py">CDNListPurgeStatusesResponse</a></code>
 - <code title="patch /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">update_account</a>(\*\*<a href="src/gcore/types/cdn/cdn_update_account_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
 
-## Resources
+## CDNResources
 
 Types:
 
@@ -2311,45 +2311,45 @@ from gcore.types.cdn import CDNResource, CDNResourceList
 
 Methods:
 
-- <code title="post /cdn/resources">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">create</a>(\*\*<a href="src/gcore/types/cdn/resource_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
-- <code title="patch /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">update</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
-- <code title="get /cdn/resources">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">list</a>(\*\*<a href="src/gcore/types/cdn/resource_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource_list.py">CDNResourceList</a></code>
-- <code title="delete /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">delete</a>(resource_id) -> None</code>
-- <code title="get /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
-- <code title="post /cdn/resources/{resource_id}/prefetch">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">prefetch</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_prefetch_params.py">params</a>) -> None</code>
-- <code title="post /cdn/resources/{resource_id}/ssl/le/pre-validate">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">prevalidate_ssl_le_certificate</a>(resource_id) -> None</code>
-- <code title="post /cdn/resources/{resource_id}/purge">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">purge</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_purge_params.py">params</a>) -> None</code>
-- <code title="put /cdn/resources/{resource_id}">client.cdn.resources.<a href="./src/gcore/resources/cdn/resources/resources.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resource_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
+- <code title="post /cdn/resources">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">create</a>(\*\*<a href="src/gcore/types/cdn/cdn_resource_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
+- <code title="patch /cdn/resources/{resource_id}">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">update</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resource_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
+- <code title="get /cdn/resources">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">list</a>(\*\*<a href="src/gcore/types/cdn/cdn_resource_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource_list.py">CDNResourceList</a></code>
+- <code title="delete /cdn/resources/{resource_id}">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">delete</a>(resource_id) -> None</code>
+- <code title="get /cdn/resources/{resource_id}">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
+- <code title="post /cdn/resources/{resource_id}/prefetch">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">prefetch</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resource_prefetch_params.py">params</a>) -> None</code>
+- <code title="post /cdn/resources/{resource_id}/ssl/le/pre-validate">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">prevalidate_ssl_le_certificate</a>(resource_id) -> None</code>
+- <code title="post /cdn/resources/{resource_id}/purge">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">purge</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resource_purge_params.py">params</a>) -> None</code>
+- <code title="put /cdn/resources/{resource_id}">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resource_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
 
 ### Shield
 
 Types:
 
 ```python
-from gcore.types.cdn.resources import OriginShielding, OriginShieldingReplaced
+from gcore.types.cdn.cdn_resources import OriginShielding, OriginShieldingReplaced
 ```
 
 Methods:
 
-- <code title="get /cdn/resources/{resource_id}/shielding_v2">client.cdn.resources.shield.<a href="./src/gcore/resources/cdn/resources/shield.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/resources/origin_shielding.py">OriginShielding</a></code>
-- <code title="put /cdn/resources/{resource_id}/shielding_v2">client.cdn.resources.shield.<a href="./src/gcore/resources/cdn/resources/shield.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resources/shield_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/origin_shielding_replaced.py">object</a></code>
+- <code title="get /cdn/resources/{resource_id}/shielding_v2">client.cdn.cdn_resources.shield.<a href="./src/gcore/resources/cdn/cdn_resources/shield.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/origin_shielding.py">OriginShielding</a></code>
+- <code title="put /cdn/resources/{resource_id}/shielding_v2">client.cdn.cdn_resources.shield.<a href="./src/gcore/resources/cdn/cdn_resources/shield.py">replace</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/shield_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/origin_shielding_replaced.py">object</a></code>
 
 ### Rules
 
 Types:
 
 ```python
-from gcore.types.cdn.resources import CDNResourceRule, RuleListResponse
+from gcore.types.cdn.cdn_resources import CDNResourceRule, RuleListResponse
 ```
 
 Methods:
 
-- <code title="post /cdn/resources/{resource_id}/rules">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">create</a>(resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
-- <code title="patch /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">update</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
-- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">list</a>(resource_id) -> <a href="./src/gcore/types/cdn/resources/rule_list_response.py">RuleListResponse</a></code>
-- <code title="delete /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">delete</a>(rule_id, \*, resource_id) -> None</code>
-- <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
-- <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.resources.rules.<a href="./src/gcore/resources/cdn/resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resources/cdn_resource_rule.py">CDNResourceRule</a></code>
+- <code title="post /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">create</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
+- <code title="patch /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">update</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
+- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">list</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/rule_list_response.py">RuleListResponse</a></code>
+- <code title="delete /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">delete</a>(rule_id, \*, resource_id) -> None</code>
+- <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
+- <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 
 ## Shields
 
