@@ -42,8 +42,8 @@ from ....types.cdn import (
     resource_prefetch_params,
 )
 from ...._base_client import make_request_options
-from ....types.cdn.cdn_resource import CdnResource
-from ....types.cdn.cdn_resource_list import CdnResourceList
+from ....types.cdn.cdn_resource import CDNResource
+from ....types.cdn.cdn_resource_list import CDNResourceList
 
 __all__ = ["ResourcesResource", "AsyncResourcesResource"]
 
@@ -101,7 +101,7 @@ class ResourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Create CDN resource
 
@@ -225,7 +225,7 @@ class ResourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
     def update(
@@ -250,7 +250,7 @@ class ResourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Change CDN resource
 
@@ -348,7 +348,7 @@ class ResourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
     def list(
@@ -376,7 +376,7 @@ class ResourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceList:
+    ) -> CDNResourceList:
         """
         Get information about all CDN resources in your account.
 
@@ -487,7 +487,7 @@ class ResourcesResource(SyncAPIResource):
                     resource_list_params.ResourceListParams,
                 ),
             ),
-            cast_to=CdnResourceList,
+            cast_to=CDNResourceList,
         )
 
     def delete(
@@ -542,7 +542,7 @@ class ResourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Get CDN resource details
 
@@ -560,7 +560,7 @@ class ResourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
     def prefetch(
@@ -848,7 +848,7 @@ class ResourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Change CDN resource
 
@@ -954,7 +954,7 @@ class ResourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
 
@@ -1011,7 +1011,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Create CDN resource
 
@@ -1135,7 +1135,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
     async def update(
@@ -1160,7 +1160,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Change CDN resource
 
@@ -1258,7 +1258,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
     async def list(
@@ -1286,7 +1286,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceList:
+    ) -> CDNResourceList:
         """
         Get information about all CDN resources in your account.
 
@@ -1397,7 +1397,7 @@ class AsyncResourcesResource(AsyncAPIResource):
                     resource_list_params.ResourceListParams,
                 ),
             ),
-            cast_to=CdnResourceList,
+            cast_to=CDNResourceList,
         )
 
     async def delete(
@@ -1452,7 +1452,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Get CDN resource details
 
@@ -1470,7 +1470,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
     async def prefetch(
@@ -1758,7 +1758,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResource:
+    ) -> CDNResource:
         """
         Change CDN resource
 
@@ -1864,7 +1864,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResource,
+            cast_to=CDNResource,
         )
 
 

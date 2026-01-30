@@ -5,10 +5,10 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["CdnMetricsValues", "CdnMetricsValueItem"]
+__all__ = ["CDNMetricsValues", "CDNMetricsValueItem"]
 
 
-class CdnMetricsValueItem(BaseModel):
+class CDNMetricsValueItem(BaseModel):
     metric: Optional[float] = None
     """Metrics value."""
 
@@ -16,4 +16,4 @@ class CdnMetricsValueItem(BaseModel):
     """Start timestamp of interval."""
 
 
-CdnMetricsValues: TypeAlias = List[CdnMetricsValueItem]
+CDNMetricsValues: TypeAlias = List[CDNMetricsValueItem]

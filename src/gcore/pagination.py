@@ -22,11 +22,11 @@ __all__ = [
     "AsyncPageStreamingAI",
     "SyncPageStreaming",
     "AsyncPageStreaming",
-    "SyncOffsetPageCdn",
-    "AsyncOffsetPageCdn",
-    "OffsetPageCdnLogsMeta",
-    "SyncOffsetPageCdnLogs",
-    "AsyncOffsetPageCdnLogs",
+    "SyncOffsetPageCDN",
+    "AsyncOffsetPageCDN",
+    "OffsetPageCDNLogsMeta",
+    "SyncOffsetPageCDNLogs",
+    "AsyncOffsetPageCDNLogs",
 ]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
@@ -364,7 +364,7 @@ class AsyncPageStreaming(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         )
 
 
-class SyncOffsetPageCdn(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+class SyncOffsetPageCDN(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     items: List[_T]
 
     @override
@@ -395,7 +395,7 @@ class SyncOffsetPageCdn(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         )
 
 
-class AsyncOffsetPageCdn(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+class AsyncOffsetPageCDN(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     items: List[_T]
 
     @override
@@ -426,13 +426,13 @@ class AsyncOffsetPageCdn(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         )
 
 
-class OffsetPageCdnLogsMeta(BaseModel):
+class OffsetPageCDNLogsMeta(BaseModel):
     count: Optional[int] = None
 
 
-class SyncOffsetPageCdnLogs(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+class SyncOffsetPageCDNLogs(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     data: List[_T]
-    meta: Optional[OffsetPageCdnLogsMeta] = None
+    meta: Optional[OffsetPageCDNLogsMeta] = None
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -463,9 +463,9 @@ class SyncOffsetPageCdnLogs(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         return None
 
 
-class AsyncOffsetPageCdnLogs(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+class AsyncOffsetPageCDNLogs(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     data: List[_T]
-    meta: Optional[OffsetPageCdnLogsMeta] = None
+    meta: Optional[OffsetPageCDNLogsMeta] = None
 
     @override
     def _get_page_items(self) -> List[_T]:

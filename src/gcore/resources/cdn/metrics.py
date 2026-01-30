@@ -18,7 +18,7 @@ from ..._response import (
 )
 from ...types.cdn import metric_list_params
 from ..._base_client import make_request_options
-from ...types.cdn.cdn_metrics import CdnMetrics
+from ...types.cdn.cdn_metrics import CDNMetrics
 
 __all__ = ["MetricsResource", "AsyncMetricsResource"]
 
@@ -58,7 +58,7 @@ class MetricsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnMetrics:
+    ) -> CDNMetrics:
         """
         Get CDN metrics
 
@@ -197,7 +197,7 @@ class MetricsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnMetrics,
+            cast_to=CDNMetrics,
         )
 
 
@@ -236,7 +236,7 @@ class AsyncMetricsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnMetrics:
+    ) -> CDNMetrics:
         """
         Get CDN metrics
 
@@ -375,7 +375,7 @@ class AsyncMetricsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnMetrics,
+            cast_to=CDNMetrics,
         )
 
 

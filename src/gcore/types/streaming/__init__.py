@@ -37,7 +37,7 @@ from .views_by_hostname import ViewsByHostname as ViewsByHostname
 from .create_video_param import CreateVideoParam as CreateVideoParam
 from .player_list_params import PlayerListParams as PlayerListParams
 from .stream_list_params import StreamListParams as StreamListParams
-from .unique_viewers_cdn import UniqueViewersCdn as UniqueViewersCdn
+from .unique_viewers_cdn import UniqueViewersCDN as UniqueViewersCDN
 from .ai_task_list_params import AITaskListParams as AITaskListParams
 from .subtitle_base_param import SubtitleBaseParam as SubtitleBaseParam
 from .video_create_params import VideoCreateParams as VideoCreateParams
@@ -102,38 +102,38 @@ from .statistic_get_max_streams_series_params import (
     StatisticGetMaxStreamsSeriesParams as StatisticGetMaxStreamsSeriesParams,
 )
 from .statistic_get_unique_viewers_cdn_params import (
-    StatisticGetUniqueViewersCdnParams as StatisticGetUniqueViewersCdnParams,
+    StatisticGetUniqueViewersCDNParams as StatisticGetUniqueViewersCDNParams,
 )
 from .statistic_get_vod_storage_volume_params import (
     StatisticGetVodStorageVolumeParams as StatisticGetVodStorageVolumeParams,
 )
 from .statistic_get_vod_watch_time_cdn_params import (
-    StatisticGetVodWatchTimeCdnParams as StatisticGetVodWatchTimeCdnParams,
+    StatisticGetVodWatchTimeCDNParams as StatisticGetVodWatchTimeCDNParams,
 )
 from .statistic_get_live_unique_viewers_params import (
     StatisticGetLiveUniqueViewersParams as StatisticGetLiveUniqueViewersParams,
 )
 from .statistic_get_live_watch_time_cdn_params import (
-    StatisticGetLiveWatchTimeCdnParams as StatisticGetLiveWatchTimeCdnParams,
+    StatisticGetLiveWatchTimeCDNParams as StatisticGetLiveWatchTimeCDNParams,
 )
 from .statistic_get_live_unique_viewers_response import (
     StatisticGetLiveUniqueViewersResponse as StatisticGetLiveUniqueViewersResponse,
 )
 from .statistic_get_vod_unique_viewers_cdn_params import (
-    StatisticGetVodUniqueViewersCdnParams as StatisticGetVodUniqueViewersCdnParams,
+    StatisticGetVodUniqueViewersCDNParams as StatisticGetVodUniqueViewersCDNParams,
 )
 from .statistic_get_vod_transcoding_duration_params import (
     StatisticGetVodTranscodingDurationParams as StatisticGetVodTranscodingDurationParams,
 )
 from .statistic_get_vod_watch_time_total_cdn_params import (
-    StatisticGetVodWatchTimeTotalCdnParams as StatisticGetVodWatchTimeTotalCdnParams,
+    StatisticGetVodWatchTimeTotalCDNParams as StatisticGetVodWatchTimeTotalCDNParams,
 )
 from .statistic_get_live_watch_time_total_cdn_params import (
-    StatisticGetLiveWatchTimeTotalCdnParams as StatisticGetLiveWatchTimeTotalCdnParams,
+    StatisticGetLiveWatchTimeTotalCDNParams as StatisticGetLiveWatchTimeTotalCDNParams,
 )
 from .statistic_get_views_by_operating_system_params import (
     StatisticGetViewsByOperatingSystemParams as StatisticGetViewsByOperatingSystemParams,
 )
 from .statistic_get_vod_watch_time_total_cdn_response import (
-    StatisticGetVodWatchTimeTotalCdnResponse as StatisticGetVodWatchTimeTotalCdnResponse,
+    StatisticGetVodWatchTimeTotalCDNResponse as StatisticGetVodWatchTimeTotalCDNResponse,
 )

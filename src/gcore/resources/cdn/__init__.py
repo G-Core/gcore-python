@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .cdn import (
-    CdnResource,
-    AsyncCdnResource,
-    CdnResourceWithRawResponse,
-    AsyncCdnResourceWithRawResponse,
-    CdnResourceWithStreamingResponse,
-    AsyncCdnResourceWithStreamingResponse,
+    CDNResource,
+    AsyncCDNResource,
+    CDNResourceWithRawResponse,
+    AsyncCDNResourceWithRawResponse,
+    CDNResourceWithStreamingResponse,
+    AsyncCDNResourceWithStreamingResponse,
 )
 from .logs import (
     LogsResource,
@@ -192,10 +192,10 @@ __all__ = [
     "AsyncIPRangesResourceWithRawResponse",
     "IPRangesResourceWithStreamingResponse",
     "AsyncIPRangesResourceWithStreamingResponse",
-    "CdnResource",
-    "AsyncCdnResource",
-    "CdnResourceWithRawResponse",
-    "AsyncCdnResourceWithRawResponse",
-    "CdnResourceWithStreamingResponse",
-    "AsyncCdnResourceWithStreamingResponse",
+    "CDNResource",
+    "AsyncCDNResource",
+    "CDNResourceWithRawResponse",
+    "AsyncCDNResourceWithRawResponse",
+    "CDNResourceWithStreamingResponse",
+    "AsyncCDNResourceWithStreamingResponse",
 ]

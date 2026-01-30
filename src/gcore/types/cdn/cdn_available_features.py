@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["CdnAvailableFeatures", "FreeFeature", "PaidFeature"]
+__all__ = ["CDNAvailableFeatures", "FreeFeature", "PaidFeature"]
 
 
 class FreeFeature(BaseModel):
@@ -35,7 +35,7 @@ class PaidFeature(BaseModel):
     """Internal feature activation ID."""
 
 
-class CdnAvailableFeatures(BaseModel):
+class CDNAvailableFeatures(BaseModel):
     id: Optional[int] = None
     """Account ID."""
 

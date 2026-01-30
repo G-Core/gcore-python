@@ -3,11 +3,11 @@
 from typing import Optional
 
 from ..._models import BaseModel
-from .cdn_metrics_values import CdnMetricsValues
+from .cdn_metrics_values import CDNMetricsValues
 
-__all__ = ["CdnMetricsGroups"]
+__all__ = ["CDNMetricsGroups"]
 
 
-class CdnMetricsGroups(BaseModel):
-    group: Optional[CdnMetricsValues] = None
+class CDNMetricsGroups(BaseModel):
+    group: Optional[CDNMetricsValues] = None
     """List of requested metrics sorted by timestamp in ascending order."""

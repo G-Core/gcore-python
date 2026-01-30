@@ -4,15 +4,15 @@ from typing import Union, Optional
 from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
-from .cdn_metrics_groups import CdnMetricsGroups
-from .cdn_metrics_values import CdnMetricsValues
+from .cdn_metrics_groups import CDNMetricsGroups
+from .cdn_metrics_values import CDNMetricsValues
 
-__all__ = ["CdnMetrics", "Data"]
+__all__ = ["CDNMetrics", "Data"]
 
-Data: TypeAlias = Union[CdnMetricsValues, CdnMetricsGroups]
+Data: TypeAlias = Union[CDNMetricsValues, CDNMetricsGroups]
 
 
-class CdnMetrics(BaseModel):
+class CDNMetrics(BaseModel):
     data: Optional[Data] = None
     """
     If no grouping was requested then "data" holds an array of metric values. If at

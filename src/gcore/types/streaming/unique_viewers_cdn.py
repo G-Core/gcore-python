@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["UniqueViewersCdn", "Data"]
+__all__ = ["UniqueViewersCDN", "Data"]
 
 
 class Data(BaseModel):
@@ -13,5 +13,5 @@ class Data(BaseModel):
     uniqs: int
 
 
-class UniqueViewersCdn(BaseModel):
+class UniqueViewersCDN(BaseModel):
     data: Optional[List[Data]] = None

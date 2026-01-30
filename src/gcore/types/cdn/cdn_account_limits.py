@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["CdnAccountLimits"]
+__all__ = ["CDNAccountLimits"]
 
 
-class CdnAccountLimits(BaseModel):
+class CDNAccountLimits(BaseModel):
     id: Optional[int] = None
     """Account ID."""
 

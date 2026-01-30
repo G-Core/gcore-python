@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["CdnListPurgeStatusesParams"]
+__all__ = ["CDNListPurgeStatusesParams"]
 
 
-class CdnListPurgeStatusesParams(TypedDict, total=False):
+class CDNListPurgeStatusesParams(TypedDict, total=False):
     cname: str
     """Purges associated with a specific resource CNAME.
 
