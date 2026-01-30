@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.31.0 (2026-01-30)
+
+Full Changelog: [v0.30.0...v0.31.0](https://github.com/G-Core/gcore-python/compare/v0.30.0...v0.31.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cdn:** rename resource to cdn_resource
+* **api:** change type casing from Cdn* to CDN*
+
+### Features
+
+* **api:** aggregated API specs update ([cd35cbf](https://github.com/G-Core/gcore-python/commit/cd35cbf266cf598045a8a4f8ebf3cf7cd8340092))
+* **api:** aggregated API specs update ([a7076d0](https://github.com/G-Core/gcore-python/commit/a7076d04fa78e4ea71b148ef8c10d0013536e904))
+* **api:** manual upload of aggregated API specs ([47734d2](https://github.com/G-Core/gcore-python/commit/47734d2b4fcd22875d2ec80b2b0453600b912eca))
+* **api:** refactor(cdn)!: change type casing from Cdn* to CDN* ([4ea3f5c](https://github.com/G-Core/gcore-python/commit/4ea3f5c23afe085bf5c8b25dadfb1bcd1899edfe))
+* **client:** add custom JSON encoder for extended type support ([b0c58f9](https://github.com/G-Core/gcore-python/commit/b0c58f9f042c3e67b63d99bded8179c943d29711))
+
+
+### Bug Fixes
+
+* **client:** internal references to CDN types ([13f5d35](https://github.com/G-Core/gcore-python/commit/13f5d3512b170ee9db3757768cbafb44831c61c4))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([a2328c0](https://github.com/G-Core/gcore-python/commit/a2328c02b6d94f8af8cdeb7dbc72d81f1e2d17d0))
+
+
+### Refactors
+
+* **cdn:** rename resource to cdn_resource ([aff2220](https://github.com/G-Core/gcore-python/commit/aff2220ee6c6d14566007e54136de563fa5df3e8))
+
 ## 0.30.0 (2026-01-22)
 
 Full Changelog: [v0.29.0...v0.30.0](https://github.com/G-Core/gcore-python/compare/v0.29.0...v0.30.0)
