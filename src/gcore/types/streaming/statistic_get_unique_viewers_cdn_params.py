@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["StatisticGetUniqueViewersCdnParams"]
+__all__ = ["StatisticGetUniqueViewersCDNParams"]
 
 
-class StatisticGetUniqueViewersCdnParams(TypedDict, total=False):
+class StatisticGetUniqueViewersCDNParams(TypedDict, total=False):
     date_from: Required[str]
     """Start of time frame. Format is date time in ISO 8601."""
 

@@ -32,7 +32,7 @@ from ._base_client import (
 
 if TYPE_CHECKING:
     from .resources import cdn, dns, iam, waap, cloud, storage, fastedge, security, streaming
-    from .resources.cdn.cdn import CdnResource, AsyncCdnResource
+    from .resources.cdn.cdn import CDNResource, AsyncCDNResource
     from .resources.dns.dns import DNSResource, AsyncDNSResource
     from .resources.iam.iam import IamResource, AsyncIamResource
     from .resources.waap.waap import WaapResource, AsyncWaapResource
@@ -176,10 +176,10 @@ class Gcore(SyncAPIClient):
         return StorageResource(self)
 
     @cached_property
-    def cdn(self) -> CdnResource:
-        from .resources.cdn import CdnResource
+    def cdn(self) -> CDNResource:
+        from .resources.cdn import CDNResource
 
-        return CdnResource(self)
+        return CDNResource(self)
 
     @cached_property
     def with_raw_response(self) -> GcoreWithRawResponse:
@@ -451,10 +451,10 @@ class AsyncGcore(AsyncAPIClient):
         return AsyncStorageResource(self)
 
     @cached_property
-    def cdn(self) -> AsyncCdnResource:
-        from .resources.cdn import AsyncCdnResource
+    def cdn(self) -> AsyncCDNResource:
+        from .resources.cdn import AsyncCDNResource
 
-        return AsyncCdnResource(self)
+        return AsyncCDNResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncGcoreWithRawResponse:
@@ -650,10 +650,10 @@ class GcoreWithRawResponse:
         return StorageResourceWithRawResponse(self._client.storage)
 
     @cached_property
-    def cdn(self) -> cdn.CdnResourceWithRawResponse:
-        from .resources.cdn import CdnResourceWithRawResponse
+    def cdn(self) -> cdn.CDNResourceWithRawResponse:
+        from .resources.cdn import CDNResourceWithRawResponse
 
-        return CdnResourceWithRawResponse(self._client.cdn)
+        return CDNResourceWithRawResponse(self._client.cdn)
 
 
 class AsyncGcoreWithRawResponse:
@@ -711,10 +711,10 @@ class AsyncGcoreWithRawResponse:
         return AsyncStorageResourceWithRawResponse(self._client.storage)
 
     @cached_property
-    def cdn(self) -> cdn.AsyncCdnResourceWithRawResponse:
-        from .resources.cdn import AsyncCdnResourceWithRawResponse
+    def cdn(self) -> cdn.AsyncCDNResourceWithRawResponse:
+        from .resources.cdn import AsyncCDNResourceWithRawResponse
 
-        return AsyncCdnResourceWithRawResponse(self._client.cdn)
+        return AsyncCDNResourceWithRawResponse(self._client.cdn)
 
 
 class GcoreWithStreamedResponse:
@@ -772,10 +772,10 @@ class GcoreWithStreamedResponse:
         return StorageResourceWithStreamingResponse(self._client.storage)
 
     @cached_property
-    def cdn(self) -> cdn.CdnResourceWithStreamingResponse:
-        from .resources.cdn import CdnResourceWithStreamingResponse
+    def cdn(self) -> cdn.CDNResourceWithStreamingResponse:
+        from .resources.cdn import CDNResourceWithStreamingResponse
 
-        return CdnResourceWithStreamingResponse(self._client.cdn)
+        return CDNResourceWithStreamingResponse(self._client.cdn)
 
 
 class AsyncGcoreWithStreamedResponse:
@@ -833,10 +833,10 @@ class AsyncGcoreWithStreamedResponse:
         return AsyncStorageResourceWithStreamingResponse(self._client.storage)
 
     @cached_property
-    def cdn(self) -> cdn.AsyncCdnResourceWithStreamingResponse:
-        from .resources.cdn import AsyncCdnResourceWithStreamingResponse
+    def cdn(self) -> cdn.AsyncCDNResourceWithStreamingResponse:
+        from .resources.cdn import AsyncCDNResourceWithStreamingResponse
 
-        return AsyncCdnResourceWithStreamingResponse(self._client.cdn)
+        return AsyncCDNResourceWithStreamingResponse(self._client.cdn)
 
 
 Client = Gcore

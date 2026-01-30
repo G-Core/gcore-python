@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .cdn_resource import CdnResource
+from .cdn_resource import CDNResource
 
-__all__ = ["CdnResourceList"]
+__all__ = ["CDNResourceList"]
 
-CdnResourceList: TypeAlias = List[CdnResource]
+CDNResourceList: TypeAlias = List[CDNResource]

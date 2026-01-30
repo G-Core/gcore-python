@@ -4,7 +4,7 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["CdnAccount", "Service"]
+__all__ = ["CDNAccount", "Service"]
 
 
 class Service(BaseModel):
@@ -38,7 +38,7 @@ class Service(BaseModel):
     """Date of the last CDN service status update (ISO 8601/RFC 3339 format, UTC.)"""
 
 
-class CdnAccount(BaseModel):
+class CDNAccount(BaseModel):
     id: Optional[int] = None
     """Account ID."""
 

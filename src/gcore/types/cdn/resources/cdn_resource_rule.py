@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 from ...._models import BaseModel
 
 __all__ = [
-    "CdnResourceRule",
+    "CDNResourceRule",
     "Options",
     "OptionsAllowedHTTPMethods",
     "OptionsBotProtection",
@@ -1868,7 +1868,7 @@ class Options(BaseModel):
     """Enables or disables WebSockets connections to an origin server."""
 
 
-class CdnResourceRule(BaseModel):
+class CDNResourceRule(BaseModel):
     id: Optional[int] = None
     """Rule ID."""
 

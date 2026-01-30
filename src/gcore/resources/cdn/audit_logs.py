@@ -17,7 +17,7 @@ from ..._response import (
 from ...types.cdn import audit_log_list_params
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.cdn.cdn_audit_log_entry import CdnAuditLogEntry
+from ...types.cdn.cdn_audit_log_entry import CDNAuditLogEntry
 
 __all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]
 
@@ -62,7 +62,7 @@ class AuditLogsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[CdnAuditLogEntry]:
+    ) -> SyncOffsetPage[CDNAuditLogEntry]:
         """
         Get information about all CDN activity logs records.
 
@@ -126,7 +126,7 @@ class AuditLogsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/cdn/activity_log/requests",
-            page=SyncOffsetPage[CdnAuditLogEntry],
+            page=SyncOffsetPage[CDNAuditLogEntry],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,7 +149,7 @@ class AuditLogsResource(SyncAPIResource):
                     audit_log_list_params.AuditLogListParams,
                 ),
             ),
-            model=CdnAuditLogEntry,
+            model=CDNAuditLogEntry,
         )
 
     def get(
@@ -162,7 +162,7 @@ class AuditLogsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAuditLogEntry:
+    ) -> CDNAuditLogEntry:
         """
         Get information about CDN activity logs record.
 
@@ -182,7 +182,7 @@ class AuditLogsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAuditLogEntry,
+            cast_to=CDNAuditLogEntry,
         )
 
 
@@ -226,7 +226,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CdnAuditLogEntry, AsyncOffsetPage[CdnAuditLogEntry]]:
+    ) -> AsyncPaginator[CDNAuditLogEntry, AsyncOffsetPage[CDNAuditLogEntry]]:
         """
         Get information about all CDN activity logs records.
 
@@ -290,7 +290,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/cdn/activity_log/requests",
-            page=AsyncOffsetPage[CdnAuditLogEntry],
+            page=AsyncOffsetPage[CDNAuditLogEntry],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -313,7 +313,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
                     audit_log_list_params.AuditLogListParams,
                 ),
             ),
-            model=CdnAuditLogEntry,
+            model=CDNAuditLogEntry,
         )
 
     async def get(
@@ -326,7 +326,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnAuditLogEntry:
+    ) -> CDNAuditLogEntry:
         """
         Get information about CDN activity logs record.
 
@@ -346,7 +346,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnAuditLogEntry,
+            cast_to=CDNAuditLogEntry,
         )
 
 

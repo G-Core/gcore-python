@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .cdn_resource_rule import CdnResourceRule
+from .cdn_resource_rule import CDNResourceRule
 
 __all__ = ["RuleListResponse"]
 
-RuleListResponse: TypeAlias = List[CdnResourceRule]
+RuleListResponse: TypeAlias = List[CDNResourceRule]

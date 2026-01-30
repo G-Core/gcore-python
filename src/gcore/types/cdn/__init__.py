@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from .ssl_detail import SslDetail as SslDetail
 from .aws_regions import AwsRegions as AwsRegions
-from .cdn_account import CdnAccount as CdnAccount
-from .cdn_metrics import CdnMetrics as CdnMetrics
-from .cdn_resource import CdnResource as CdnResource
+from .cdn_account import CDNAccount as CDNAccount
+from .cdn_metrics import CDNMetrics as CDNMetrics
+from .cdn_resource import CDNResource as CDNResource
 from .purge_status import PurgeStatus as PurgeStatus
-from .cdn_log_entry import CdnLogEntry as CdnLogEntry
+from .cdn_log_entry import CDNLogEntry as CDNLogEntry
 from .origin_groups import OriginGroups as OriginGroups
 from .rule_template import RuleTemplate as RuleTemplate
 from .ca_certificate import CaCertificate as CaCertificate
@@ -17,17 +17,17 @@ from .alibaba_regions import AlibabaRegions as AlibabaRegions
 from .log_list_params import LogListParams as LogListParams
 from .ssl_detail_list import SslDetailList as SslDetailList
 from .network_capacity import NetworkCapacity as NetworkCapacity
-from .cdn_resource_list import CdnResourceList as CdnResourceList
-from .cdn_account_limits import CdnAccountLimits as CdnAccountLimits
-from .cdn_metrics_groups import CdnMetricsGroups as CdnMetricsGroups
-from .cdn_metrics_values import CdnMetricsValues as CdnMetricsValues
+from .cdn_resource_list import CDNResourceList as CDNResourceList
+from .cdn_account_limits import CDNAccountLimits as CDNAccountLimits
+from .cdn_metrics_groups import CDNMetricsGroups as CDNMetricsGroups
+from .cdn_metrics_values import CDNMetricsValues as CDNMetricsValues
 from .metric_list_params import MetricListParams as MetricListParams
 from .origin_groups_list import OriginGroupsList as OriginGroupsList
 from .rule_template_list import RuleTemplateList as RuleTemplateList
 from .ssl_request_status import SslRequestStatus as SslRequestStatus
 from .usage_series_stats import UsageSeriesStats as UsageSeriesStats
 from .ca_certificate_list import CaCertificateList as CaCertificateList
-from .cdn_audit_log_entry import CdnAuditLogEntry as CdnAuditLogEntry
+from .cdn_audit_log_entry import CDNAuditLogEntry as CDNAuditLogEntry
 from .log_download_params import LogDownloadParams as LogDownloadParams
 from .public_network_list import PublicNetworkList as PublicNetworkList
 from .ip_range_list_params import IPRangeListParams as IPRangeListParams
@@ -37,7 +37,7 @@ from .shield_list_response import ShieldListResponse as ShieldListResponse
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .logs_aggregated_stats import LogsAggregatedStats as LogsAggregatedStats
 from .resource_purge_params import ResourcePurgeParams as ResourcePurgeParams
-from .cdn_available_features import CdnAvailableFeatures as CdnAvailableFeatures
+from .cdn_available_features import CDNAvailableFeatures as CDNAvailableFeatures
 from .resource_create_params import ResourceCreateParams as ResourceCreateParams
 from .resource_update_params import ResourceUpdateParams as ResourceUpdateParams
 from .certificate_list_params import CertificateListParams as CertificateListParams
@@ -47,7 +47,7 @@ from .ip_range_list_ips_params import IPRangeListIPsParams as IPRangeListIPsPara
 from .logs_uploader_validation import LogsUploaderValidation as LogsUploaderValidation
 from .origin_group_list_params import OriginGroupListParams as OriginGroupListParams
 from .resource_prefetch_params import ResourcePrefetchParams as ResourcePrefetchParams
-from .cdn_update_account_params import CdnUpdateAccountParams as CdnUpdateAccountParams
+from .cdn_update_account_params import CDNUpdateAccountParams as CDNUpdateAccountParams
 from .certificate_create_params import CertificateCreateParams as CertificateCreateParams
 from .resource_aggregated_stats import ResourceAggregatedStats as ResourceAggregatedStats
 from .certificate_replace_params import CertificateReplaceParams as CertificateReplaceParams
@@ -58,8 +58,8 @@ from .rule_template_create_params import RuleTemplateCreateParams as RuleTemplat
 from .rule_template_update_params import RuleTemplateUpdateParams as RuleTemplateUpdateParams
 from .rule_template_replace_params import RuleTemplateReplaceParams as RuleTemplateReplaceParams
 from .certificate_get_status_params import CertificateGetStatusParams as CertificateGetStatusParams
-from .cdn_list_purge_statuses_params import CdnListPurgeStatusesParams as CdnListPurgeStatusesParams
-from .cdn_list_purge_statuses_response import CdnListPurgeStatusesResponse as CdnListPurgeStatusesResponse
+from .cdn_list_purge_statuses_params import CDNListPurgeStatusesParams as CDNListPurgeStatusesParams
+from .cdn_list_purge_statuses_response import CDNListPurgeStatusesResponse as CDNListPurgeStatusesResponse
 from .trusted_ca_certificate_list_params import TrustedCaCertificateListParams as TrustedCaCertificateListParams
 from .trusted_ca_certificate_create_params import TrustedCaCertificateCreateParams as TrustedCaCertificateCreateParams
 from .trusted_ca_certificate_replace_params import (

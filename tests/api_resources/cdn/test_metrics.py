@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cdn import CdnMetrics
+from gcore.types.cdn import CDNMetrics
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestMetrics:
             metrics=["edge_status_2xx", "edge_status_3xx", "edge_status_4xx", "edge_status_5xx"],
             to="2021-06-15T00:00:00Z",
         )
-        assert_matches_type(CdnMetrics, metric, path=["response"])
+        assert_matches_type(CDNMetrics, metric, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -42,7 +42,7 @@ class TestMetrics:
             granularity="P1D",
             group_by=["cname"],
         )
-        assert_matches_type(CdnMetrics, metric, path=["response"])
+        assert_matches_type(CDNMetrics, metric, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -55,7 +55,7 @@ class TestMetrics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = response.parse()
-        assert_matches_type(CdnMetrics, metric, path=["response"])
+        assert_matches_type(CDNMetrics, metric, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -68,7 +68,7 @@ class TestMetrics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = response.parse()
-            assert_matches_type(CdnMetrics, metric, path=["response"])
+            assert_matches_type(CDNMetrics, metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +85,7 @@ class TestAsyncMetrics:
             metrics=["edge_status_2xx", "edge_status_3xx", "edge_status_4xx", "edge_status_5xx"],
             to="2021-06-15T00:00:00Z",
         )
-        assert_matches_type(CdnMetrics, metric, path=["response"])
+        assert_matches_type(CDNMetrics, metric, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -103,7 +103,7 @@ class TestAsyncMetrics:
             granularity="P1D",
             group_by=["cname"],
         )
-        assert_matches_type(CdnMetrics, metric, path=["response"])
+        assert_matches_type(CDNMetrics, metric, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -116,7 +116,7 @@ class TestAsyncMetrics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = await response.parse()
-        assert_matches_type(CdnMetrics, metric, path=["response"])
+        assert_matches_type(CDNMetrics, metric, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -129,6 +129,6 @@ class TestAsyncMetrics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = await response.parse()
-            assert_matches_type(CdnMetrics, metric, path=["response"])
+            assert_matches_type(CDNMetrics, metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True

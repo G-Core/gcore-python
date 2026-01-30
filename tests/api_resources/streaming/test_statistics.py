@@ -23,12 +23,12 @@ from gcore.types.streaming import (
     ViewsByReferer,
     MaxStreamSeries,
     ViewsByHostname,
-    UniqueViewersCdn,
+    UniqueViewersCDN,
     VodStatisticsSeries,
     ViewsByOperatingSystem,
     VodTotalStreamDurationSeries,
     StatisticGetLiveUniqueViewersResponse,
-    StatisticGetVodWatchTimeTotalCdnResponse,
+    StatisticGetVodWatchTimeTotalCDNResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -424,7 +424,7 @@ class TestStatistics:
             date_from="date_from",
             date_to="date_to",
         )
-        assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+        assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
     @parametrize
     def test_method_get_unique_viewers_cdn_with_all_params(self, client: Gcore) -> None:
@@ -434,7 +434,7 @@ class TestStatistics:
             id="id",
             type="live",
         )
-        assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+        assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
     @parametrize
     def test_raw_response_get_unique_viewers_cdn(self, client: Gcore) -> None:
@@ -446,7 +446,7 @@ class TestStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = response.parse()
-        assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+        assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
     @parametrize
     def test_streaming_response_get_unique_viewers_cdn(self, client: Gcore) -> None:
@@ -458,7 +458,7 @@ class TestStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = response.parse()
-            assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+            assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -912,7 +912,7 @@ class TestStatistics:
     @parametrize
     def test_method_get_vod_watch_time_total_cdn(self, client: Gcore) -> None:
         statistic = client.streaming.statistics.get_vod_watch_time_total_cdn()
-        assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+        assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
     @parametrize
     def test_method_get_vod_watch_time_total_cdn_with_all_params(self, client: Gcore) -> None:
@@ -922,7 +922,7 @@ class TestStatistics:
             slug="slug",
             to="to",
         )
-        assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+        assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
     @parametrize
     def test_raw_response_get_vod_watch_time_total_cdn(self, client: Gcore) -> None:
@@ -931,7 +931,7 @@ class TestStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = response.parse()
-        assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+        assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
     @parametrize
     def test_streaming_response_get_vod_watch_time_total_cdn(self, client: Gcore) -> None:
@@ -940,7 +940,7 @@ class TestStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = response.parse()
-            assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+            assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1339,7 +1339,7 @@ class TestAsyncStatistics:
             date_from="date_from",
             date_to="date_to",
         )
-        assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+        assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
     @parametrize
     async def test_method_get_unique_viewers_cdn_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -1349,7 +1349,7 @@ class TestAsyncStatistics:
             id="id",
             type="live",
         )
-        assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+        assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
     @parametrize
     async def test_raw_response_get_unique_viewers_cdn(self, async_client: AsyncGcore) -> None:
@@ -1361,7 +1361,7 @@ class TestAsyncStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = await response.parse()
-        assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+        assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_unique_viewers_cdn(self, async_client: AsyncGcore) -> None:
@@ -1373,7 +1373,7 @@ class TestAsyncStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = await response.parse()
-            assert_matches_type(UniqueViewersCdn, statistic, path=["response"])
+            assert_matches_type(UniqueViewersCDN, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1827,7 +1827,7 @@ class TestAsyncStatistics:
     @parametrize
     async def test_method_get_vod_watch_time_total_cdn(self, async_client: AsyncGcore) -> None:
         statistic = await async_client.streaming.statistics.get_vod_watch_time_total_cdn()
-        assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+        assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
     @parametrize
     async def test_method_get_vod_watch_time_total_cdn_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -1837,7 +1837,7 @@ class TestAsyncStatistics:
             slug="slug",
             to="to",
         )
-        assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+        assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
     @parametrize
     async def test_raw_response_get_vod_watch_time_total_cdn(self, async_client: AsyncGcore) -> None:
@@ -1846,7 +1846,7 @@ class TestAsyncStatistics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         statistic = await response.parse()
-        assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+        assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_vod_watch_time_total_cdn(self, async_client: AsyncGcore) -> None:
@@ -1855,6 +1855,6 @@ class TestAsyncStatistics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             statistic = await response.parse()
-            assert_matches_type(StatisticGetVodWatchTimeTotalCdnResponse, statistic, path=["response"])
+            assert_matches_type(StatisticGetVodWatchTimeTotalCDNResponse, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True

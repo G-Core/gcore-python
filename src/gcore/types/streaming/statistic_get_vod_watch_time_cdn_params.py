@@ -6,10 +6,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["StatisticGetVodWatchTimeCdnParams"]
+__all__ = ["StatisticGetVodWatchTimeCDNParams"]
 
 
-class StatisticGetVodWatchTimeCdnParams(TypedDict, total=False):
+class StatisticGetVodWatchTimeCDNParams(TypedDict, total=False):
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Start of the time period for counting minutes of watching.
 

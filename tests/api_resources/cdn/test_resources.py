@@ -10,8 +10,8 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import (
-    CdnResource,
-    CdnResourceList,
+    CDNResource,
+    CDNResourceList,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +27,7 @@ class TestResources:
             origin="example.com",
             origin_group=132,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -333,7 +333,7 @@ class TestResources:
             ssl_enabled=False,
             waap_api_domain_enabled=True,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -346,7 +346,7 @@ class TestResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -359,7 +359,7 @@ class TestResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -369,7 +369,7 @@ class TestResources:
         resource = client.cdn.resources.update(
             resource_id=0,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
@@ -673,7 +673,7 @@ class TestResources:
             ssl_data=192,
             ssl_enabled=False,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
@@ -685,7 +685,7 @@ class TestResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
@@ -697,14 +697,14 @@ class TestResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         resource = client.cdn.resources.list()
-        assert_matches_type(CdnResourceList, resource, path=["response"])
+        assert_matches_type(CDNResourceList, resource, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -726,7 +726,7 @@ class TestResources:
             suspend=True,
             vp_enabled=True,
         )
-        assert_matches_type(CdnResourceList, resource, path=["response"])
+        assert_matches_type(CDNResourceList, resource, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -735,7 +735,7 @@ class TestResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = response.parse()
-        assert_matches_type(CdnResourceList, resource, path=["response"])
+        assert_matches_type(CDNResourceList, resource, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -744,7 +744,7 @@ class TestResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = response.parse()
-            assert_matches_type(CdnResourceList, resource, path=["response"])
+            assert_matches_type(CDNResourceList, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -784,7 +784,7 @@ class TestResources:
         resource = client.cdn.resources.get(
             0,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -795,7 +795,7 @@ class TestResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -806,7 +806,7 @@ class TestResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -998,7 +998,7 @@ class TestResources:
             resource_id=0,
             origin_group=132,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_method_replace_with_all_params(self, client: Gcore) -> None:
@@ -1302,7 +1302,7 @@ class TestResources:
             ssl_enabled=False,
             waap_api_domain_enabled=True,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_raw_response_replace(self, client: Gcore) -> None:
@@ -1314,7 +1314,7 @@ class TestResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     def test_streaming_response_replace(self, client: Gcore) -> None:
@@ -1326,7 +1326,7 @@ class TestResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1343,7 +1343,7 @@ class TestAsyncResources:
             origin="example.com",
             origin_group=132,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -1649,7 +1649,7 @@ class TestAsyncResources:
             ssl_enabled=False,
             waap_api_domain_enabled=True,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -1662,7 +1662,7 @@ class TestAsyncResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = await response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -1675,7 +1675,7 @@ class TestAsyncResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = await response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1685,7 +1685,7 @@ class TestAsyncResources:
         resource = await async_client.cdn.resources.update(
             resource_id=0,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
@@ -1989,7 +1989,7 @@ class TestAsyncResources:
             ssl_data=192,
             ssl_enabled=False,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
@@ -2001,7 +2001,7 @@ class TestAsyncResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = await response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @pytest.mark.skip(reason="unexpected prism python test failures")
     @parametrize
@@ -2013,14 +2013,14 @@ class TestAsyncResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = await response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         resource = await async_client.cdn.resources.list()
-        assert_matches_type(CdnResourceList, resource, path=["response"])
+        assert_matches_type(CDNResourceList, resource, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -2042,7 +2042,7 @@ class TestAsyncResources:
             suspend=True,
             vp_enabled=True,
         )
-        assert_matches_type(CdnResourceList, resource, path=["response"])
+        assert_matches_type(CDNResourceList, resource, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -2051,7 +2051,7 @@ class TestAsyncResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = await response.parse()
-        assert_matches_type(CdnResourceList, resource, path=["response"])
+        assert_matches_type(CDNResourceList, resource, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -2060,7 +2060,7 @@ class TestAsyncResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = await response.parse()
-            assert_matches_type(CdnResourceList, resource, path=["response"])
+            assert_matches_type(CDNResourceList, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2100,7 +2100,7 @@ class TestAsyncResources:
         resource = await async_client.cdn.resources.get(
             0,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -2111,7 +2111,7 @@ class TestAsyncResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = await response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -2122,7 +2122,7 @@ class TestAsyncResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = await response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2314,7 +2314,7 @@ class TestAsyncResources:
             resource_id=0,
             origin_group=132,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -2618,7 +2618,7 @@ class TestAsyncResources:
             ssl_enabled=False,
             waap_api_domain_enabled=True,
         )
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
@@ -2630,7 +2630,7 @@ class TestAsyncResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource = await response.parse()
-        assert_matches_type(CdnResource, resource, path=["response"])
+        assert_matches_type(CDNResource, resource, path=["response"])
 
     @parametrize
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
@@ -2642,6 +2642,6 @@ class TestAsyncResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource = await response.parse()
-            assert_matches_type(CdnResource, resource, path=["response"])
+            assert_matches_type(CDNResource, resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True

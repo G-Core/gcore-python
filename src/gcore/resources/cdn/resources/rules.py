@@ -19,7 +19,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cdn.resources import rule_create_params, rule_update_params, rule_replace_params
-from ....types.cdn.resources.cdn_resource_rule import CdnResourceRule
+from ....types.cdn.resources.cdn_resource_rule import CDNResourceRule
 from ....types.cdn.resources.rule_list_response import RuleListResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
@@ -63,7 +63,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Create rule
 
@@ -147,7 +147,7 @@ class RulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
     def update(
@@ -169,7 +169,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Change rule
 
@@ -253,7 +253,7 @@ class RulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
     def list(
@@ -338,7 +338,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Get rule details
 
@@ -356,7 +356,7 @@ class RulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
     def replace(
@@ -378,7 +378,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Change rule
 
@@ -462,7 +462,7 @@ class RulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
 
@@ -504,7 +504,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Create rule
 
@@ -588,7 +588,7 @@ class AsyncRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
     async def update(
@@ -610,7 +610,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Change rule
 
@@ -694,7 +694,7 @@ class AsyncRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
     async def list(
@@ -779,7 +779,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Get rule details
 
@@ -797,7 +797,7 @@ class AsyncRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
     async def replace(
@@ -819,7 +819,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CdnResourceRule:
+    ) -> CDNResourceRule:
         """
         Change rule
 
@@ -903,7 +903,7 @@ class AsyncRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CdnResourceRule,
+            cast_to=CDNResourceRule,
         )
 
 
