@@ -28,6 +28,13 @@ class LoadBalancerPool(BaseModel):
     id: str
     """Pool ID"""
 
+    admin_state_up: bool
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. Defaults to true.
+    """
+
     ca_secret_id: Optional[str] = None
     """Secret ID of CA certificate bundle"""
 

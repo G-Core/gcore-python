@@ -10,10 +10,13 @@ __all__ = ["PoolUpdateParams"]
 
 class PoolUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     cluster_name: Required[str]
+    """Cluster name"""
 
     auto_healing_enabled: Optional[bool]
     """Enable/disable auto healing"""

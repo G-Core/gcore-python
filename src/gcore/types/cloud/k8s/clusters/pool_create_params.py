@@ -10,8 +10,10 @@ __all__ = ["PoolCreateParams"]
 
 class PoolCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     flavor_id: Required[str]
     """Flavor ID"""
