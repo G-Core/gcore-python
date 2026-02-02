@@ -20,16 +20,16 @@ class TestK8S:
     @parametrize
     def test_method_list_versions(self, client: Gcore) -> None:
         k8s = client.cloud.k8s.list_versions(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterVersionList, k8s, path=["response"])
 
     @parametrize
     def test_raw_response_list_versions(self, client: Gcore) -> None:
         response = client.cloud.k8s.with_raw_response.list_versions(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -40,8 +40,8 @@ class TestK8S:
     @parametrize
     def test_streaming_response_list_versions(self, client: Gcore) -> None:
         with client.cloud.k8s.with_streaming_response.list_versions(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -60,16 +60,16 @@ class TestAsyncK8S:
     @parametrize
     async def test_method_list_versions(self, async_client: AsyncGcore) -> None:
         k8s = await async_client.cloud.k8s.list_versions(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterVersionList, k8s, path=["response"])
 
     @parametrize
     async def test_raw_response_list_versions(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.with_raw_response.list_versions(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -80,8 +80,8 @@ class TestAsyncK8S:
     @parametrize
     async def test_streaming_response_list_versions(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.with_streaming_response.list_versions(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

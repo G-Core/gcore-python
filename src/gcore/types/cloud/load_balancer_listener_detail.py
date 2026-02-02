@@ -23,6 +23,13 @@ class LoadBalancerListenerDetail(BaseModel):
     id: str
     """Load balancer listener ID"""
 
+    admin_state_up: bool
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. Defaults to true.
+    """
+
     allowed_cidrs: Optional[List[str]] = None
     """Network CIDRs from which service will be accessible"""
 

@@ -26,8 +26,10 @@ __all__ = [
 
 class ClusterUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     add_ons: AddOns
     """Cluster add-ons configuration"""
@@ -131,6 +133,8 @@ class AddOnsSlurmK8SClusterSlurmAddonEnableV2Serializer(TypedDict, total=False):
 
     Each Slurm worker node will be backed by a Pod scheduled on one of cluster's GPU
     nodes.
+
+    Note: Downscaling (reducing worker count) is not supported.
     """
 
 

@@ -82,6 +82,13 @@ class Healthmonitor(TypedDict, total=False):
     type: Required[LbHealthMonitorType]
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
+    admin_state_up: bool
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. Defaults to true.
+    """
+
     expected_codes: Optional[str]
     """Expected HTTP response codes.
 
@@ -118,8 +125,7 @@ class Member(TypedDict, total=False):
     """Administrative state of the resource.
 
     When set to true, the resource is enabled and operational. When set to false,
-    the resource is disabled and will not process traffic. When null is passed, the
-    value is skipped and defaults to true.
+    the resource is disabled and will not process traffic. Defaults to true.
     """
 
     backup: bool
