@@ -59,6 +59,8 @@ class ConfigUnionMember2(BaseModel):
 
     directory: Optional[str] = None
 
+    endpoint: Optional[str] = None
+
     region: Optional[str] = None
 
 
