@@ -166,6 +166,7 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        admin_state_up: bool | Omit = omit,
         allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
         connection_limit: int | Omit = omit,
         name: str | Omit = omit,
@@ -191,6 +192,10 @@ class ListenersResource(SyncAPIResource):
           region_id: Region ID
 
           listener_id: Listener ID
+
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. Defaults to true.
 
           allowed_cidrs: Network CIDRs from which service will be accessible
 
@@ -233,6 +238,7 @@ class ListenersResource(SyncAPIResource):
             f"/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}",
             body=maybe_transform(
                 {
+                    "admin_state_up": admin_state_up,
                     "allowed_cidrs": allowed_cidrs,
                     "connection_limit": connection_limit,
                     "name": name,
@@ -547,6 +553,7 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        admin_state_up: bool | Omit = omit,
         allowed_cidrs: Optional[SequenceNotStr[str]] | Omit = omit,
         connection_limit: int | Omit = omit,
         name: str | Omit = omit,
@@ -572,6 +579,10 @@ class AsyncListenersResource(AsyncAPIResource):
           region_id: Region ID
 
           listener_id: Listener ID
+
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. Defaults to true.
 
           allowed_cidrs: Network CIDRs from which service will be accessible
 
@@ -614,6 +625,7 @@ class AsyncListenersResource(AsyncAPIResource):
             f"/cloud/v2/lblisteners/{project_id}/{region_id}/{listener_id}",
             body=await async_maybe_transform(
                 {
+                    "admin_state_up": admin_state_up,
                     "allowed_cidrs": allowed_cidrs,
                     "connection_limit": connection_limit,
                     "name": name,

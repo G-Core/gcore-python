@@ -180,6 +180,7 @@ class PoolsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        admin_state_up: bool | Omit = omit,
         ca_secret_id: Optional[str] | Omit = omit,
         crl_secret_id: Optional[str] | Omit = omit,
         healthmonitor: Optional[pool_update_params.Healthmonitor] | Omit = omit,
@@ -226,6 +227,10 @@ class PoolsResource(SyncAPIResource):
 
           pool_id: Pool ID
 
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. Defaults to true.
+
           ca_secret_id: Secret ID of CA certificate bundle
 
           crl_secret_id: Secret ID of CA revocation list file
@@ -270,6 +275,7 @@ class PoolsResource(SyncAPIResource):
             f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
             body=maybe_transform(
                 {
+                    "admin_state_up": admin_state_up,
                     "ca_secret_id": ca_secret_id,
                     "crl_secret_id": crl_secret_id,
                     "healthmonitor": healthmonitor,
@@ -578,6 +584,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        admin_state_up: bool | Omit = omit,
         ca_secret_id: Optional[str] | Omit = omit,
         crl_secret_id: Optional[str] | Omit = omit,
         healthmonitor: Optional[pool_update_params.Healthmonitor] | Omit = omit,
@@ -624,6 +631,10 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           pool_id: Pool ID
 
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. Defaults to true.
+
           ca_secret_id: Secret ID of CA certificate bundle
 
           crl_secret_id: Secret ID of CA revocation list file
@@ -668,6 +679,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
             body=await async_maybe_transform(
                 {
+                    "admin_state_up": admin_state_up,
                     "ca_secret_id": ca_secret_id,
                     "crl_secret_id": crl_secret_id,
                     "healthmonitor": healthmonitor,

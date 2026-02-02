@@ -9,8 +9,10 @@ __all__ = ["NodeListParams"]
 
 class NodeListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     with_ddos: bool
     """Include DDoS profile information if set to true. Default is false."""

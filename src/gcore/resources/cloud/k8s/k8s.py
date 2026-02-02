@@ -79,6 +79,10 @@ class K8SResource(SyncAPIResource):
         List available k8s cluster versions for creation
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -144,6 +148,10 @@ class AsyncK8SResource(AsyncAPIResource):
         List available k8s cluster versions for creation
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
