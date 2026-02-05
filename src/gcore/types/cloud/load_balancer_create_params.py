@@ -344,7 +344,7 @@ class Listener(TypedDict, total=False):
     pools: Iterable[ListenerPool]
     """Member pools"""
 
-    secret_id: str
+    secret_id: Literal[""]
     """
     ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
     PROMETHEUS listener

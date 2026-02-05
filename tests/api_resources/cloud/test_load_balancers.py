@@ -101,7 +101,7 @@ class TestLoadBalancers:
                             "timeout_member_data": 0,
                         }
                     ],
-                    "secret_id": "f2e734d0-fa2b-42c2-ad33-4c6db5101e00",
+                    "secret_id": "",
                     "sni_secret_id": ["f2e734d0-fa2b-42c2-ad33-4c6db5101e00", "eb121225-7ded-4ff3-ae1f-599e145dd7cb"],
                     "timeout_client_data": 50000,
                     "timeout_member_connect": 50000,
@@ -568,7 +568,7 @@ class TestAsyncLoadBalancers:
                             "timeout_member_data": 0,
                         }
                     ],
-                    "secret_id": "f2e734d0-fa2b-42c2-ad33-4c6db5101e00",
+                    "secret_id": "",
                     "sni_secret_id": ["f2e734d0-fa2b-42c2-ad33-4c6db5101e00", "eb121225-7ded-4ff3-ae1f-599e145dd7cb"],
                     "timeout_client_data": 50000,
                     "timeout_member_connect": 50000,
