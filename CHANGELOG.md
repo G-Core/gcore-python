@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.32.0 (2026-02-06)
+
+Full Changelog: [v0.31.0...v0.32.0](https://github.com/G-Core/gcore-python/compare/v0.31.0...v0.32.0)
+
+### Features
+
+* **api:** aggregated API specs update ([65973ea](https://github.com/G-Core/gcore-python/commit/65973ea8e16ca432498ef3772e47e9927c92a03d))
+* **api:** aggregated API specs update ([732e36f](https://github.com/G-Core/gcore-python/commit/732e36f7509e3036b7800a809f14f364d47d9138))
+* **api:** aggregated API specs update ([3b5292a](https://github.com/G-Core/gcore-python/commit/3b5292a5403a6cfa880072fbbb8dde2ca311f0bd))
+* **api:** aggregated API specs update ([9bf5580](https://github.com/G-Core/gcore-python/commit/9bf55800ab1b90ac5f82e406b31fd61a5225afd9))
+
+
+### Bug Fixes
+
+* **types:** correctly define false enum ([d5b033c](https://github.com/G-Core/gcore-python/commit/d5b033ca9bd2e52d248b979f739124b5a5c4de72))
+
 ## 0.31.0 (2026-01-30)
 
 Full Changelog: [v0.30.0...v0.31.0](https://github.com/G-Core/gcore-python/compare/v0.30.0...v0.31.0)
