@@ -44,10 +44,7 @@ class TestApps:
             },
             secrets={"foo": {"id": 0}},
             status=0,
-            stores={
-                "country_allow": 1,
-                "ip_block": 2,
-            },
+            stores={"foo": {"id": 0}},
             template=0,
         )
         assert_matches_type(AppShort, app, path=["response"])
@@ -98,10 +95,7 @@ class TestApps:
             },
             secrets={"foo": {"id": 0}},
             status=0,
-            stores={
-                "country_allow": 1,
-                "ip_block": 2,
-            },
+            stores={"foo": {"id": 0}},
             template=0,
         )
         assert_matches_type(AppShort, app, path=["response"])
@@ -259,10 +253,7 @@ class TestApps:
                 },
                 "secrets": {"foo": {"id": 0}},
                 "status": 0,
-                "stores": {
-                    "country_allow": 1,
-                    "ip_block": 2,
-                },
+                "stores": {"foo": {"id": 0}},
                 "template": 0,
             },
         )
@@ -321,10 +312,7 @@ class TestAsyncApps:
             },
             secrets={"foo": {"id": 0}},
             status=0,
-            stores={
-                "country_allow": 1,
-                "ip_block": 2,
-            },
+            stores={"foo": {"id": 0}},
             template=0,
         )
         assert_matches_type(AppShort, app, path=["response"])
@@ -375,10 +363,7 @@ class TestAsyncApps:
             },
             secrets={"foo": {"id": 0}},
             status=0,
-            stores={
-                "country_allow": 1,
-                "ip_block": 2,
-            },
+            stores={"foo": {"id": 0}},
             template=0,
         )
         assert_matches_type(AppShort, app, path=["response"])
@@ -536,10 +521,7 @@ class TestAsyncApps:
                 },
                 "secrets": {"foo": {"id": 0}},
                 "status": 0,
-                "stores": {
-                    "country_allow": 1,
-                    "ip_block": 2,
-                },
+                "stores": {"foo": {"id": 0}},
                 "template": 0,
             },
         )

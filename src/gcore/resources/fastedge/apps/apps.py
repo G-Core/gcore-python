@@ -70,7 +70,7 @@ class AppsResource(SyncAPIResource):
         rsp_headers: Dict[str, str] | Omit = omit,
         secrets: Dict[str, app_create_params.Secrets] | Omit = omit,
         status: int | Omit = omit,
-        stores: Dict[str, int] | Omit = omit,
+        stores: Dict[str, app_create_params.Stores] | Omit = omit,
         template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -108,7 +108,7 @@ class AppsResource(SyncAPIResource):
               4 - daily call limit exceeded
               5 - suspended
 
-          stores: KV stores for the app
+          stores: Application edge stores
 
           template: Template ID
 
@@ -157,7 +157,7 @@ class AppsResource(SyncAPIResource):
         rsp_headers: Dict[str, str] | Omit = omit,
         secrets: Dict[str, app_update_params.Secrets] | Omit = omit,
         status: int | Omit = omit,
-        stores: Dict[str, int] | Omit = omit,
+        stores: Dict[str, app_update_params.Stores] | Omit = omit,
         template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -195,7 +195,7 @@ class AppsResource(SyncAPIResource):
               4 - daily call limit exceeded
               5 - suspended
 
-          stores: KV stores for the app
+          stores: Application edge stores
 
           template: Template ID
 
@@ -463,7 +463,7 @@ class AsyncAppsResource(AsyncAPIResource):
         rsp_headers: Dict[str, str] | Omit = omit,
         secrets: Dict[str, app_create_params.Secrets] | Omit = omit,
         status: int | Omit = omit,
-        stores: Dict[str, int] | Omit = omit,
+        stores: Dict[str, app_create_params.Stores] | Omit = omit,
         template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -501,7 +501,7 @@ class AsyncAppsResource(AsyncAPIResource):
               4 - daily call limit exceeded
               5 - suspended
 
-          stores: KV stores for the app
+          stores: Application edge stores
 
           template: Template ID
 
@@ -550,7 +550,7 @@ class AsyncAppsResource(AsyncAPIResource):
         rsp_headers: Dict[str, str] | Omit = omit,
         secrets: Dict[str, app_update_params.Secrets] | Omit = omit,
         status: int | Omit = omit,
-        stores: Dict[str, int] | Omit = omit,
+        stores: Dict[str, app_update_params.Stores] | Omit = omit,
         template: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -588,7 +588,7 @@ class AsyncAppsResource(AsyncAPIResource):
               4 - daily call limit exceeded
               5 - suspended
 
-          stores: KV stores for the app
+          stores: Application edge stores
 
           template: Template ID
 

@@ -1658,21 +1658,15 @@ Methods:
 Types:
 
 ```python
-from gcore.types.fastedge import (
-    KvStore,
-    KvStoreShort,
-    KvStoreStats,
-    KvStoreListResponse,
-    KvStoreGetResponse,
-)
+from gcore.types.fastedge import KvStore, KvStoreShort, KvStoreCreateResponse, KvStoreListResponse
 ```
 
 Methods:
 
-- <code title="post /fastedge/v1/kv">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">create</a>(\*\*<a href="src/gcore/types/fastedge/kv_store_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/kv_store.py">KvStore</a></code>
+- <code title="post /fastedge/v1/kv">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">create</a>(\*\*<a href="src/gcore/types/fastedge/kv_store_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/kv_store_create_response.py">KvStoreCreateResponse</a></code>
 - <code title="get /fastedge/v1/kv">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">list</a>(\*\*<a href="src/gcore/types/fastedge/kv_store_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/kv_store_list_response.py">KvStoreListResponse</a></code>
 - <code title="delete /fastedge/v1/kv/{id}">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">delete</a>(id) -> None</code>
-- <code title="get /fastedge/v1/kv/{id}">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/kv_store_get_response.py">KvStoreGetResponse</a></code>
+- <code title="get /fastedge/v1/kv/{id}">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">get</a>(id) -> <a href="./src/gcore/types/fastedge/kv_store.py">KvStore</a></code>
 - <code title="put /fastedge/v1/kv/{id}">client.fastedge.kv_stores.<a href="./src/gcore/resources/fastedge/kv_stores.py">replace</a>(id, \*\*<a href="src/gcore/types/fastedge/kv_store_replace_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/kv_store.py">KvStore</a></code>
 
 # Streaming

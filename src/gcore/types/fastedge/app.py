@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["App", "Secrets"]
+__all__ = ["App", "Secrets", "Stores"]
 
 
 class Secrets(BaseModel):
@@ -20,6 +20,19 @@ class Secrets(BaseModel):
 
     name: Optional[str] = None
     """The unique name of the secret."""
+
+
+class Stores(BaseModel):
+    """Application stores"""
+
+    id: int
+    """The identifier of the store"""
+
+    name: str
+    """The name of the store"""
+
+    comment: Optional[str] = None
+    """A description of the store"""
 
 
 class App(BaseModel):
@@ -70,8 +83,8 @@ class App(BaseModel):
     5 - suspended
     """
 
-    stores: Optional[Dict[str, int]] = None
-    """KV stores for the app"""
+    stores: Optional[Dict[str, Stores]] = None
+    """Application edge stores"""
 
     template: Optional[int] = None
     """Template ID"""
