@@ -8,7 +8,7 @@ __all__ = ["TemplateParameterParam"]
 
 
 class TemplateParameterParam(TypedDict, total=False):
-    data_type: Required[Literal["string", "number", "date", "time", "secret"]]
+    data_type: Required[Literal["string", "number", "date", "time", "secret", "store"]]
     """Parameter type"""
 
     mandatory: Required[bool]

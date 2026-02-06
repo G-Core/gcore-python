@@ -11,8 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.fastedge import (
     KvStore,
-    KvStoreGetResponse,
     KvStoreListResponse,
+    KvStoreCreateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -23,37 +23,44 @@ class TestKvStores:
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        kv_store = client.fastedge.kv_stores.create()
-        assert_matches_type(KvStore, kv_store, path=["response"])
+        kv_store = client.fastedge.kv_stores.create(
+            name="name",
+        )
+        assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.create(
+            name="name",
             byod={
                 "prefix": "prefix",
                 "url": "url",
             },
             comment="comment",
         )
-        assert_matches_type(KvStore, kv_store, path=["response"])
+        assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.fastedge.kv_stores.with_raw_response.create()
+        response = client.fastedge.kv_stores.with_raw_response.create(
+            name="name",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         kv_store = response.parse()
-        assert_matches_type(KvStore, kv_store, path=["response"])
+        assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.fastedge.kv_stores.with_streaming_response.create() as response:
+        with client.fastedge.kv_stores.with_streaming_response.create(
+            name="name",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             kv_store = response.parse()
-            assert_matches_type(KvStore, kv_store, path=["response"])
+            assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -66,6 +73,8 @@ class TestKvStores:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.list(
             app_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
 
@@ -125,7 +134,7 @@ class TestKvStores:
         kv_store = client.fastedge.kv_stores.get(
             0,
         )
-        assert_matches_type(KvStoreGetResponse, kv_store, path=["response"])
+        assert_matches_type(KvStore, kv_store, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -136,7 +145,7 @@ class TestKvStores:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         kv_store = response.parse()
-        assert_matches_type(KvStoreGetResponse, kv_store, path=["response"])
+        assert_matches_type(KvStore, kv_store, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -147,7 +156,7 @@ class TestKvStores:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             kv_store = response.parse()
-            assert_matches_type(KvStoreGetResponse, kv_store, path=["response"])
+            assert_matches_type(KvStore, kv_store, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,6 +164,7 @@ class TestKvStores:
     def test_method_replace(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.replace(
             id=0,
+            name="name",
         )
         assert_matches_type(KvStore, kv_store, path=["response"])
 
@@ -162,6 +172,7 @@ class TestKvStores:
     def test_method_replace_with_all_params(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.replace(
             id=0,
+            name="name",
             byod={
                 "prefix": "prefix",
                 "url": "url",
@@ -174,6 +185,7 @@ class TestKvStores:
     def test_raw_response_replace(self, client: Gcore) -> None:
         response = client.fastedge.kv_stores.with_raw_response.replace(
             id=0,
+            name="name",
         )
 
         assert response.is_closed is True
@@ -185,6 +197,7 @@ class TestKvStores:
     def test_streaming_response_replace(self, client: Gcore) -> None:
         with client.fastedge.kv_stores.with_streaming_response.replace(
             id=0,
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -202,37 +215,44 @@ class TestAsyncKvStores:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        kv_store = await async_client.fastedge.kv_stores.create()
-        assert_matches_type(KvStore, kv_store, path=["response"])
+        kv_store = await async_client.fastedge.kv_stores.create(
+            name="name",
+        )
+        assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.create(
+            name="name",
             byod={
                 "prefix": "prefix",
                 "url": "url",
             },
             comment="comment",
         )
-        assert_matches_type(KvStore, kv_store, path=["response"])
+        assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.fastedge.kv_stores.with_raw_response.create()
+        response = await async_client.fastedge.kv_stores.with_raw_response.create(
+            name="name",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         kv_store = await response.parse()
-        assert_matches_type(KvStore, kv_store, path=["response"])
+        assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.fastedge.kv_stores.with_streaming_response.create() as response:
+        async with async_client.fastedge.kv_stores.with_streaming_response.create(
+            name="name",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             kv_store = await response.parse()
-            assert_matches_type(KvStore, kv_store, path=["response"])
+            assert_matches_type(KvStoreCreateResponse, kv_store, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -245,6 +265,8 @@ class TestAsyncKvStores:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.list(
             app_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
 
@@ -304,7 +326,7 @@ class TestAsyncKvStores:
         kv_store = await async_client.fastedge.kv_stores.get(
             0,
         )
-        assert_matches_type(KvStoreGetResponse, kv_store, path=["response"])
+        assert_matches_type(KvStore, kv_store, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -315,7 +337,7 @@ class TestAsyncKvStores:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         kv_store = await response.parse()
-        assert_matches_type(KvStoreGetResponse, kv_store, path=["response"])
+        assert_matches_type(KvStore, kv_store, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -326,7 +348,7 @@ class TestAsyncKvStores:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             kv_store = await response.parse()
-            assert_matches_type(KvStoreGetResponse, kv_store, path=["response"])
+            assert_matches_type(KvStore, kv_store, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,6 +356,7 @@ class TestAsyncKvStores:
     async def test_method_replace(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.replace(
             id=0,
+            name="name",
         )
         assert_matches_type(KvStore, kv_store, path=["response"])
 
@@ -341,6 +364,7 @@ class TestAsyncKvStores:
     async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.replace(
             id=0,
+            name="name",
             byod={
                 "prefix": "prefix",
                 "url": "url",
@@ -353,6 +377,7 @@ class TestAsyncKvStores:
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
         response = await async_client.fastedge.kv_stores.with_raw_response.replace(
             id=0,
+            name="name",
         )
 
         assert response.is_closed is True
@@ -364,6 +389,7 @@ class TestAsyncKvStores:
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
         async with async_client.fastedge.kv_stores.with_streaming_response.replace(
             id=0,
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

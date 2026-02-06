@@ -8,6 +8,9 @@ __all__ = ["KvStoreReplaceParams", "Byod"]
 
 
 class KvStoreReplaceParams(TypedDict, total=False):
+    name: Required[str]
+    """A name of the store"""
+
     byod: Byod
     """BYOD (Bring Your Own Data) settings"""
 

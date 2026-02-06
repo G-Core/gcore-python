@@ -15,7 +15,6 @@ from .binary_short import BinaryShort as BinaryShort
 from .secret_short import SecretShort as SecretShort
 from .duration_stats import DurationStats as DurationStats
 from .kv_store_short import KvStoreShort as KvStoreShort
-from .kv_store_stats import KvStoreStats as KvStoreStats
 from .template_short import TemplateShort as TemplateShort
 from .app_list_params import AppListParams as AppListParams
 from .app_create_params import AppCreateParams as AppCreateParams
@@ -31,7 +30,6 @@ from .secret_delete_params import SecretDeleteParams as SecretDeleteParams
 from .secret_list_response import SecretListResponse as SecretListResponse
 from .secret_update_params import SecretUpdateParams as SecretUpdateParams
 from .template_list_params import TemplateListParams as TemplateListParams
-from .kv_store_get_response import KvStoreGetResponse as KvStoreGetResponse
 from .secret_replace_params import SecretReplaceParams as SecretReplaceParams
 from .kv_store_create_params import KvStoreCreateParams as KvStoreCreateParams
 from .kv_store_list_response import KvStoreListResponse as KvStoreListResponse
@@ -40,6 +38,7 @@ from .template_create_params import TemplateCreateParams as TemplateCreateParams
 from .template_delete_params import TemplateDeleteParams as TemplateDeleteParams
 from .kv_store_replace_params import KvStoreReplaceParams as KvStoreReplaceParams
 from .template_replace_params import TemplateReplaceParams as TemplateReplaceParams
+from .kv_store_create_response import KvStoreCreateResponse as KvStoreCreateResponse
 from .template_parameter_param import TemplateParameterParam as TemplateParameterParam
 from .statistic_get_call_series_params import StatisticGetCallSeriesParams as StatisticGetCallSeriesParams
 from .statistic_get_call_series_response import StatisticGetCallSeriesResponse as StatisticGetCallSeriesResponse

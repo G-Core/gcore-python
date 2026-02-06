@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["AppCreateParams", "Secrets"]
+__all__ = ["AppCreateParams", "Secrets", "Stores"]
 
 
 class AppCreateParams(TypedDict, total=False):
@@ -44,8 +44,8 @@ class AppCreateParams(TypedDict, total=False):
     5 - suspended
     """
 
-    stores: Dict[str, int]
-    """KV stores for the app"""
+    stores: Dict[str, Stores]
+    """Application edge stores"""
 
     template: int
     """Template ID"""
@@ -56,3 +56,10 @@ class Secrets(TypedDict, total=False):
 
     id: Required[int]
     """The unique identifier of the secret."""
+
+
+class Stores(TypedDict, total=False):
+    """Application stores"""
+
+    id: Required[int]
+    """The identifier of the store"""
