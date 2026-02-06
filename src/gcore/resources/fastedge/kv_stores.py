@@ -17,8 +17,8 @@ from ..._response import (
 from ..._base_client import make_request_options
 from ...types.fastedge import kv_store_list_params, kv_store_create_params, kv_store_replace_params
 from ...types.fastedge.kv_store import KvStore
-from ...types.fastedge.kv_store_get_response import KvStoreGetResponse
 from ...types.fastedge.kv_store_list_response import KvStoreListResponse
+from ...types.fastedge.kv_store_create_response import KvStoreCreateResponse
 
 __all__ = ["KvStoresResource", "AsyncKvStoresResource"]
 
@@ -46,6 +46,7 @@ class KvStoresResource(SyncAPIResource):
     def create(
         self,
         *,
+        name: str,
         byod: kv_store_create_params.Byod | Omit = omit,
         comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -54,11 +55,13 @@ class KvStoresResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KvStore:
+    ) -> KvStoreCreateResponse:
         """
-        Add a new KV store
+        Add a new Edge store
 
         Args:
+          name: A name of the store
+
           byod: BYOD (Bring Your Own Data) settings
 
           comment: A description of the store
@@ -75,6 +78,7 @@ class KvStoresResource(SyncAPIResource):
             "/fastedge/v1/kv",
             body=maybe_transform(
                 {
+                    "name": name,
                     "byod": byod,
                     "comment": comment,
                 },
@@ -83,13 +87,15 @@ class KvStoresResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KvStore,
+            cast_to=KvStoreCreateResponse,
         )
 
     def list(
         self,
         *,
         app_id: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -98,10 +104,14 @@ class KvStoresResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreListResponse:
         """
-        List available stores
+        List available edge stores
 
         Args:
           app_id: App ID
+
+          limit: Limit for pagination
+
+          offset: Offset for pagination
 
           extra_headers: Send extra headers
 
@@ -118,7 +128,14 @@ class KvStoresResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"app_id": app_id}, kv_store_list_params.KvStoreListParams),
+                query=maybe_transform(
+                    {
+                        "app_id": app_id,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    kv_store_list_params.KvStoreListParams,
+                ),
             ),
             cast_to=KvStoreListResponse,
         )
@@ -165,9 +182,9 @@ class KvStoresResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KvStoreGetResponse:
+    ) -> KvStore:
         """
-        Get store by id
+        Get the edge store by id
 
         Args:
           extra_headers: Send extra headers
@@ -183,13 +200,14 @@ class KvStoresResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KvStoreGetResponse,
+            cast_to=KvStore,
         )
 
     def replace(
         self,
         id: int,
         *,
+        name: str,
         byod: kv_store_replace_params.Byod | Omit = omit,
         comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -203,6 +221,8 @@ class KvStoresResource(SyncAPIResource):
         Update a store
 
         Args:
+          name: A name of the store
+
           byod: BYOD (Bring Your Own Data) settings
 
           comment: A description of the store
@@ -219,6 +239,7 @@ class KvStoresResource(SyncAPIResource):
             f"/fastedge/v1/kv/{id}",
             body=maybe_transform(
                 {
+                    "name": name,
                     "byod": byod,
                     "comment": comment,
                 },
@@ -254,6 +275,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        name: str,
         byod: kv_store_create_params.Byod | Omit = omit,
         comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -262,11 +284,13 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KvStore:
+    ) -> KvStoreCreateResponse:
         """
-        Add a new KV store
+        Add a new Edge store
 
         Args:
+          name: A name of the store
+
           byod: BYOD (Bring Your Own Data) settings
 
           comment: A description of the store
@@ -283,6 +307,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
             "/fastedge/v1/kv",
             body=await async_maybe_transform(
                 {
+                    "name": name,
                     "byod": byod,
                     "comment": comment,
                 },
@@ -291,13 +316,15 @@ class AsyncKvStoresResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KvStore,
+            cast_to=KvStoreCreateResponse,
         )
 
     async def list(
         self,
         *,
         app_id: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -306,10 +333,14 @@ class AsyncKvStoresResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreListResponse:
         """
-        List available stores
+        List available edge stores
 
         Args:
           app_id: App ID
+
+          limit: Limit for pagination
+
+          offset: Offset for pagination
 
           extra_headers: Send extra headers
 
@@ -326,7 +357,14 @@ class AsyncKvStoresResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"app_id": app_id}, kv_store_list_params.KvStoreListParams),
+                query=await async_maybe_transform(
+                    {
+                        "app_id": app_id,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    kv_store_list_params.KvStoreListParams,
+                ),
             ),
             cast_to=KvStoreListResponse,
         )
@@ -373,9 +411,9 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KvStoreGetResponse:
+    ) -> KvStore:
         """
-        Get store by id
+        Get the edge store by id
 
         Args:
           extra_headers: Send extra headers
@@ -391,13 +429,14 @@ class AsyncKvStoresResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KvStoreGetResponse,
+            cast_to=KvStore,
         )
 
     async def replace(
         self,
         id: int,
         *,
+        name: str,
         byod: kv_store_replace_params.Byod | Omit = omit,
         comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -411,6 +450,8 @@ class AsyncKvStoresResource(AsyncAPIResource):
         Update a store
 
         Args:
+          name: A name of the store
+
           byod: BYOD (Bring Your Own Data) settings
 
           comment: A description of the store
@@ -427,6 +468,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
             f"/fastedge/v1/kv/{id}",
             body=await async_maybe_transform(
                 {
+                    "name": name,
                     "byod": byod,
                     "comment": comment,
                 },

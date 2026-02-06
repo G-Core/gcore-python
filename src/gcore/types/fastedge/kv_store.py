@@ -19,8 +19,8 @@ class Byod(BaseModel):
 
 
 class KvStore(BaseModel):
-    id: Optional[int] = None
-    """The unique identifier of the store"""
+    name: str
+    """A name of the store"""
 
     app_count: Optional[int] = None
     """The number of applications that use this store"""
@@ -31,5 +31,11 @@ class KvStore(BaseModel):
     comment: Optional[str] = None
     """A description of the store"""
 
-    updated: Optional[datetime] = None
-    """Last update time"""
+    revision: Optional[int] = None
+    """Current store revision (only for non-BYOD stores)"""
+
+    size: Optional[int] = None
+    """Total store size in bytes (zero for BYOD stores)"""
+
+    updated_at: Optional[datetime] = None
+    """Timestamp of last store revision (only for non-BYOD stores)"""

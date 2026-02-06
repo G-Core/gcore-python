@@ -56,6 +56,7 @@ class HealthMonitorsResource(SyncAPIResource):
         max_retries: int,
         api_timeout: int,
         type: LbHealthMonitorType,
+        admin_state_up: bool | Omit = omit,
         expected_codes: Optional[str] | Omit = omit,
         http_method: Optional[HTTPMethod] | Omit = omit,
         max_retries_down: int | Omit = omit,
@@ -87,6 +88,10 @@ class HealthMonitorsResource(SyncAPIResource):
           api_timeout: The maximum time to connect. Must be less than the delay value
 
           type: Health monitor type. Once health monitor is created, cannot be changed.
+
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. Defaults to true.
 
           expected_codes: Expected HTTP response codes. Can be a single code or a range of codes. Can only
               be used together with `HTTP` or `HTTPS` health monitor type. For example,
@@ -122,6 +127,7 @@ class HealthMonitorsResource(SyncAPIResource):
                     "max_retries": max_retries,
                     "api_timeout": api_timeout,
                     "type": type,
+                    "admin_state_up": admin_state_up,
                     "expected_codes": expected_codes,
                     "http_method": http_method,
                     "max_retries_down": max_retries_down,
@@ -215,6 +221,7 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         max_retries: int,
         api_timeout: int,
         type: LbHealthMonitorType,
+        admin_state_up: bool | Omit = omit,
         expected_codes: Optional[str] | Omit = omit,
         http_method: Optional[HTTPMethod] | Omit = omit,
         max_retries_down: int | Omit = omit,
@@ -246,6 +253,10 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
           api_timeout: The maximum time to connect. Must be less than the delay value
 
           type: Health monitor type. Once health monitor is created, cannot be changed.
+
+          admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
+              and operational. When set to false, the resource is disabled and will not
+              process traffic. Defaults to true.
 
           expected_codes: Expected HTTP response codes. Can be a single code or a range of codes. Can only
               be used together with `HTTP` or `HTTPS` health monitor type. For example,
@@ -281,6 +292,7 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
                     "max_retries": max_retries,
                     "api_timeout": api_timeout,
                     "type": type,
+                    "admin_state_up": admin_state_up,
                     "expected_codes": expected_codes,
                     "http_method": http_method,
                     "max_retries_down": max_retries_down,

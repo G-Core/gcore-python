@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
@@ -21,11 +20,11 @@ class K8SClusterKubeconfig(BaseModel):
     config: str
     """Cluster kubeconfig"""
 
-    host: str
-    """Cluster host"""
-
-    created_at: Optional[datetime] = None
+    created_at: datetime
     """Kubeconfig creation date"""
 
-    expires_at: Optional[datetime] = None
+    expires_at: datetime
     """Kubeconfig expiration date"""
+
+    host: str
+    """Cluster host"""

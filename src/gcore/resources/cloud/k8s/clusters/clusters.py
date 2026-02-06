@@ -111,6 +111,10 @@ class ClustersResource(SyncAPIResource):
         Create k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           keypair: The keypair of the cluster
 
           name: The name of the cluster
@@ -269,6 +273,12 @@ class ClustersResource(SyncAPIResource):
         Update k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           add_ons: Cluster add-ons configuration
 
           authentication: Authentication settings
@@ -386,6 +396,10 @@ class ClustersResource(SyncAPIResource):
         List k8s clusters
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -424,6 +438,12 @@ class ClustersResource(SyncAPIResource):
         Delete k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           volumes: Comma separated list of volume IDs to be deleted with the cluster
 
           extra_headers: Send extra headers
@@ -469,6 +489,12 @@ class ClustersResource(SyncAPIResource):
         Get k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -508,6 +534,12 @@ class ClustersResource(SyncAPIResource):
         Get k8s cluster CA certificate
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -547,6 +579,12 @@ class ClustersResource(SyncAPIResource):
         Get k8s cluster kubeconfig
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -586,6 +624,12 @@ class ClustersResource(SyncAPIResource):
         List available k8s cluster versions for upgrade
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -626,6 +670,12 @@ class ClustersResource(SyncAPIResource):
         Upgrade k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           version: Target k8s cluster version
 
           extra_headers: Send extra headers
@@ -714,6 +764,10 @@ class AsyncClustersResource(AsyncAPIResource):
         Create k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           keypair: The keypair of the cluster
 
           name: The name of the cluster
@@ -872,6 +926,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Update k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           add_ons: Cluster add-ons configuration
 
           authentication: Authentication settings
@@ -989,6 +1049,10 @@ class AsyncClustersResource(AsyncAPIResource):
         List k8s clusters
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1027,6 +1091,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Delete k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           volumes: Comma separated list of volume IDs to be deleted with the cluster
 
           extra_headers: Send extra headers
@@ -1072,6 +1142,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Get k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1111,6 +1187,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Get k8s cluster CA certificate
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1150,6 +1232,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Get k8s cluster kubeconfig
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1189,6 +1277,12 @@ class AsyncClustersResource(AsyncAPIResource):
         List available k8s cluster versions for upgrade
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1229,6 +1323,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Upgrade k8s cluster
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           version: Target k8s cluster version
 
           extra_headers: Send extra headers

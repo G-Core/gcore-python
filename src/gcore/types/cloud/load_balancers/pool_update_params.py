@@ -21,6 +21,13 @@ class PoolUpdateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
+    admin_state_up: bool
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. Defaults to true.
+    """
+
     ca_secret_id: Optional[str]
     """Secret ID of CA certificate bundle"""
 
@@ -77,6 +84,13 @@ class Healthmonitor(TypedDict, total=False):
     timeout: Required[int]
     """The maximum time to connect. Must be less than the delay value"""
 
+    admin_state_up: bool
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. Defaults to true.
+    """
+
     expected_codes: Optional[str]
     """Expected HTTP response codes.
 
@@ -116,8 +130,7 @@ class Member(TypedDict, total=False):
     """Administrative state of the resource.
 
     When set to true, the resource is enabled and operational. When set to false,
-    the resource is disabled and will not process traffic. When null is passed, the
-    value is skipped and defaults to true.
+    the resource is disabled and will not process traffic. Defaults to true.
     """
 
     backup: bool

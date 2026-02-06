@@ -17,6 +17,13 @@ class ListenerUpdateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
+    admin_state_up: bool
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. Defaults to true.
+    """
+
     allowed_cidrs: Optional[SequenceNotStr[str]]
     """Network CIDRs from which service will be accessible"""
 

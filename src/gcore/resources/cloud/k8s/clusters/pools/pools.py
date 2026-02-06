@@ -95,6 +95,12 @@ class PoolsResource(SyncAPIResource):
         Create k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           flavor_id: Flavor ID
 
           min_node_count: Minimum node count
@@ -185,6 +191,14 @@ class PoolsResource(SyncAPIResource):
         Update k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           auto_healing_enabled: Enable/disable auto healing
 
           labels: Labels applied to the cluster pool
@@ -249,6 +263,12 @@ class PoolsResource(SyncAPIResource):
         List k8s cluster pools
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -289,6 +309,14 @@ class PoolsResource(SyncAPIResource):
         Delete k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -408,6 +436,14 @@ class PoolsResource(SyncAPIResource):
         Get k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -451,6 +487,14 @@ class PoolsResource(SyncAPIResource):
         Resize k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           node_count: Target node count
 
           extra_headers: Send extra headers
@@ -534,6 +578,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         Create k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           flavor_id: Flavor ID
 
           min_node_count: Minimum node count
@@ -624,6 +674,14 @@ class AsyncPoolsResource(AsyncAPIResource):
         Update k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           auto_healing_enabled: Enable/disable auto healing
 
           labels: Labels applied to the cluster pool
@@ -688,6 +746,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         List k8s cluster pools
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -728,6 +792,14 @@ class AsyncPoolsResource(AsyncAPIResource):
         Delete k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -847,6 +919,14 @@ class AsyncPoolsResource(AsyncAPIResource):
         Get k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -890,6 +970,14 @@ class AsyncPoolsResource(AsyncAPIResource):
         Resize k8s cluster pool
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           node_count: Target node count
 
           extra_headers: Send extra headers

@@ -27,8 +27,10 @@ __all__ = [
 
 class ClusterCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     keypair: Required[str]
     """The keypair of the cluster"""
@@ -211,6 +213,8 @@ class AddOnsSlurm(TypedDict, total=False):
 
     Each Slurm worker node will be backed by a Pod scheduled on one of cluster's GPU
     nodes.
+
+    Note: Downscaling (reducing worker count) is not supported.
     """
 
 

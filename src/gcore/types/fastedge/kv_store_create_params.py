@@ -8,6 +8,9 @@ __all__ = ["KvStoreCreateParams", "Byod"]
 
 
 class KvStoreCreateParams(TypedDict, total=False):
+    name: Required[str]
+    """A name of the store"""
+
     byod: Byod
     """BYOD (Bring Your Own Data) settings"""
 

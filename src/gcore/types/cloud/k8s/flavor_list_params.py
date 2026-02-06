@@ -9,11 +9,16 @@ __all__ = ["FlavorListParams"]
 
 class FlavorListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     exclude_gpu: bool
-    """Set to false to include GPU flavors. Default is True."""
+    """Set to true to exclude GPU flavors. Default is false."""
+
+    include_capacity: bool
+    """Set to true to include flavor capacity. Default is False."""
 
     include_prices: bool
     """Set to true to include flavor prices. Default is False."""

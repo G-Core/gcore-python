@@ -81,7 +81,7 @@ class MembersResource(SyncAPIResource):
 
           admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
               and operational. When set to false, the resource is disabled and will not
-              process traffic. When null is passed, the value is skipped and defaults to true.
+              process traffic. Defaults to true.
 
           backup: Set to true if the member is a backup member, to which traffic will be sent
               exclusively when all non-backup members will be unreachable. It allows to
@@ -261,7 +261,7 @@ class AsyncMembersResource(AsyncAPIResource):
 
           admin_state_up: Administrative state of the resource. When set to true, the resource is enabled
               and operational. When set to false, the resource is disabled and will not
-              process traffic. When null is passed, the value is skipped and defaults to true.
+              process traffic. Defaults to true.
 
           backup: Set to true if the member is a backup member, to which traffic will be sent
               exclusively when all non-backup members will be unreachable. It allows to

@@ -47,6 +47,7 @@ class FlavorsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         exclude_gpu: bool | Omit = omit,
+        include_capacity: bool | Omit = omit,
         include_prices: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -62,7 +63,13 @@ class FlavorsResource(SyncAPIResource):
         price values as 0. If you get Pricing Error contact the support
 
         Args:
-          exclude_gpu: Set to false to include GPU flavors. Default is True.
+          project_id: Project ID
+
+          region_id: Region ID
+
+          exclude_gpu: Set to true to exclude GPU flavors. Default is false.
+
+          include_capacity: Set to true to include flavor capacity. Default is False.
 
           include_prices: Set to true to include flavor prices. Default is False.
 
@@ -88,6 +95,7 @@ class FlavorsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "exclude_gpu": exclude_gpu,
+                        "include_capacity": include_capacity,
                         "include_prices": include_prices,
                     },
                     flavor_list_params.FlavorListParams,
@@ -123,6 +131,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         exclude_gpu: bool | Omit = omit,
+        include_capacity: bool | Omit = omit,
         include_prices: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,7 +147,13 @@ class AsyncFlavorsResource(AsyncAPIResource):
         price values as 0. If you get Pricing Error contact the support
 
         Args:
-          exclude_gpu: Set to false to include GPU flavors. Default is True.
+          project_id: Project ID
+
+          region_id: Region ID
+
+          exclude_gpu: Set to true to exclude GPU flavors. Default is false.
+
+          include_capacity: Set to true to include flavor capacity. Default is False.
 
           include_prices: Set to true to include flavor prices. Default is False.
 
@@ -164,6 +179,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "exclude_gpu": exclude_gpu,
+                        "include_capacity": include_capacity,
                         "include_prices": include_prices,
                     },
                     flavor_list_params.FlavorListParams,

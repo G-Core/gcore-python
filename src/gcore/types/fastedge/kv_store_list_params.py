@@ -10,3 +10,9 @@ __all__ = ["KvStoreListParams"]
 class KvStoreListParams(TypedDict, total=False):
     app_id: int
     """App ID"""
+
+    limit: int
+    """Limit for pagination"""
+
+    offset: int
+    """Offset for pagination"""

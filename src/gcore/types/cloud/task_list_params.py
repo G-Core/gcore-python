@@ -89,7 +89,8 @@ class TaskListParams(TypedDict, total=False):
     'hard_reboot_gpu_virtual_server', 'hard_reboot_vm', 'patch_caas_container',
     'patch_dbaas_postgres_cluster', 'patch_faas_function', 'patch_faas_namespace',
     'patch_lblistener', 'patch_lbpool', 'put_into_server_group', 'put_l7rule',
-    'rebuild_bm', 'rebuild_gpu_baremetal_node', 'remove_from_server_group',
+    'rebuild_bm', 'rebuild_gpu_baremetal_cluster', 'rebuild_gpu_baremetal_node',
+    'rebuild_gpu_baremetal_server', 'remove_from_server_group',
     'replace_lbmetadata', 'resize_k8s_cluster_v2', 'resize_loadbalancer',
     'resize_vm', 'resume_vm', 'revert_volume', 'soft_reboot_gpu_baremetal_server',
     'soft_reboot_gpu_virtual_cluster', 'soft_reboot_gpu_virtual_server',
@@ -99,9 +100,10 @@ class TaskListParams(TypedDict, total=False):
     'sync_private_flavors', 'update_ddos_profile', 'update_floating_ip',
     'update_inference_application', 'update_inference_instance',
     'update_k8s_cluster_v2', 'update_l7policy', 'update_lbmetadata',
-    'update_port_allowed_address_pairs', 'update_router', 'update_security_group',
-    'update_sfs', 'update_tags_gpu_virtual_cluster', 'upgrade_k8s_cluster_v2',
-    'upscale_ai_cluster_gpu', 'upscale_gpu_virtual_cluster']
+    'update_loadbalancer', 'update_port_allowed_address_pairs', 'update_router',
+    'update_security_group', 'update_sfs', 'update_tags_gpu_virtual_cluster',
+    'upgrade_k8s_cluster_v2', 'upscale_ai_cluster_gpu',
+    'upscale_gpu_virtual_cluster']
     """
 
     to_timestamp: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

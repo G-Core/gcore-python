@@ -48,6 +48,8 @@ class AddOnsSlurm(BaseModel):
 
     Each Slurm worker node is backed by a Pod scheduled on one of cluster's GPU
     nodes.
+
+    Note: Downscaling (reducing worker count) is not supported.
     """
 
 

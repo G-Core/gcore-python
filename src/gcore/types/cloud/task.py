@@ -148,8 +148,10 @@ class Task(BaseModel):
     detailed_state: Optional[
         Literal[
             "CLUSTER_CLEAN_UP",
+            "CLUSTER_REBUILD",
             "CLUSTER_RESIZE",
             "CLUSTER_RESUME",
+            "CLUSTER_SERVER_REBUILD",
             "CLUSTER_SUSPEND",
             "ERROR",
             "FINISHED",

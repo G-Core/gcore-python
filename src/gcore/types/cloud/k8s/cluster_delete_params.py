@@ -9,8 +9,10 @@ __all__ = ["ClusterDeleteParams"]
 
 class ClusterDeleteParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     volumes: str
     """Comma separated list of volume IDs to be deleted with the cluster"""

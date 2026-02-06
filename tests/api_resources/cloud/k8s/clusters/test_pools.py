@@ -25,9 +25,9 @@ class TestPools:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -37,9 +37,9 @@ class TestPools:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -59,9 +59,9 @@ class TestPools:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.pools.with_raw_response.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -75,9 +75,9 @@ class TestPools:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.pools.with_streaming_response.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -95,8 +95,8 @@ class TestPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.create(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
                 flavor_id="g1-standard-1-2",
                 min_node_count=3,
                 name="my-pool",
@@ -105,20 +105,20 @@ class TestPools:
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
         assert_matches_type(K8SClusterPool, pool, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             auto_healing_enabled=True,
             labels={"my-label": "foo"},
             max_node_count=3,
@@ -131,10 +131,10 @@ class TestPools:
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.pools.with_raw_response.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
 
         assert response.is_closed is True
@@ -145,10 +145,10 @@ class TestPools:
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.pools.with_streaming_response.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -162,35 +162,35 @@ class TestPools:
     def test_path_params_update(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.update(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.update(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
             )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.list(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.pools.with_raw_response.list(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -201,9 +201,9 @@ class TestPools:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.pools.with_streaming_response.list(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -218,27 +218,27 @@ class TestPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.list(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.delete(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.pools.with_raw_response.delete(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
 
         assert response.is_closed is True
@@ -249,10 +249,10 @@ class TestPools:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.pools.with_streaming_response.delete(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -266,18 +266,18 @@ class TestPools:
     def test_path_params_delete(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.delete(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.delete(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
             )
 
     @parametrize
@@ -335,20 +335,20 @@ class TestPools:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.get(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
         assert_matches_type(K8SClusterPool, pool, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.pools.with_raw_response.get(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
 
         assert response.is_closed is True
@@ -359,10 +359,10 @@ class TestPools:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.pools.with_streaming_response.get(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -376,27 +376,27 @@ class TestPools:
     def test_path_params_get(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.get(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.get(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
             )
 
     @parametrize
     def test_method_resize(self, client: Gcore) -> None:
         pool = client.cloud.k8s.clusters.pools.resize(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             node_count=2,
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
@@ -404,10 +404,10 @@ class TestPools:
     @parametrize
     def test_raw_response_resize(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.pools.with_raw_response.resize(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             node_count=2,
         )
 
@@ -419,10 +419,10 @@ class TestPools:
     @parametrize
     def test_streaming_response_resize(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.pools.with_streaming_response.resize(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             node_count=2,
         ) as response:
             assert not response.is_closed
@@ -437,9 +437,9 @@ class TestPools:
     def test_path_params_resize(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.resize(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
                 node_count=2,
             )
@@ -447,9 +447,9 @@ class TestPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             client.cloud.k8s.clusters.pools.with_raw_response.resize(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
                 node_count=2,
             )
 
@@ -462,9 +462,9 @@ class TestAsyncPools:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -474,9 +474,9 @@ class TestAsyncPools:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -496,9 +496,9 @@ class TestAsyncPools:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.pools.with_raw_response.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -512,9 +512,9 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.pools.with_streaming_response.create(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             flavor_id="g1-standard-1-2",
             min_node_count=3,
             name="my-pool",
@@ -532,8 +532,8 @@ class TestAsyncPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.create(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
                 flavor_id="g1-standard-1-2",
                 min_node_count=3,
                 name="my-pool",
@@ -542,20 +542,20 @@ class TestAsyncPools:
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
         assert_matches_type(K8SClusterPool, pool, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             auto_healing_enabled=True,
             labels={"my-label": "foo"},
             max_node_count=3,
@@ -568,10 +568,10 @@ class TestAsyncPools:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.pools.with_raw_response.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
 
         assert response.is_closed is True
@@ -582,10 +582,10 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.pools.with_streaming_response.update(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -599,35 +599,35 @@ class TestAsyncPools:
     async def test_path_params_update(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.update(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.update(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.list(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.pools.with_raw_response.list(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -638,9 +638,9 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.pools.with_streaming_response.list(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -655,27 +655,27 @@ class TestAsyncPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.list(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.delete(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.pools.with_raw_response.delete(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
 
         assert response.is_closed is True
@@ -686,10 +686,10 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.pools.with_streaming_response.delete(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -703,18 +703,18 @@ class TestAsyncPools:
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.delete(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.delete(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
             )
 
     @parametrize
@@ -772,20 +772,20 @@ class TestAsyncPools:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.get(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
         assert_matches_type(K8SClusterPool, pool, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.pools.with_raw_response.get(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         )
 
         assert response.is_closed is True
@@ -796,10 +796,10 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.pools.with_streaming_response.get(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -813,27 +813,27 @@ class TestAsyncPools:
     async def test_path_params_get(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.get(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.get(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
             )
 
     @parametrize
     async def test_method_resize(self, async_client: AsyncGcore) -> None:
         pool = await async_client.cloud.k8s.clusters.pools.resize(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             node_count=2,
         )
         assert_matches_type(TaskIDList, pool, path=["response"])
@@ -841,10 +841,10 @@ class TestAsyncPools:
     @parametrize
     async def test_raw_response_resize(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.pools.with_raw_response.resize(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             node_count=2,
         )
 
@@ -856,10 +856,10 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_resize(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.pools.with_streaming_response.resize(
-            pool_name="pool_name",
-            project_id=0,
-            region_id=0,
-            cluster_name="cluster_name",
+            pool_name="my-pool",
+            project_id=1,
+            region_id=7,
+            cluster_name="my-cluster",
             node_count=2,
         ) as response:
             assert not response.is_closed
@@ -874,9 +874,9 @@ class TestAsyncPools:
     async def test_path_params_resize(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.resize(
-                pool_name="pool_name",
-                project_id=0,
-                region_id=0,
+                pool_name="my-pool",
+                project_id=1,
+                region_id=7,
                 cluster_name="",
                 node_count=2,
             )
@@ -884,8 +884,8 @@ class TestAsyncPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_name` but received ''"):
             await async_client.cloud.k8s.clusters.pools.with_raw_response.resize(
                 pool_name="",
-                project_id=0,
-                region_id=0,
-                cluster_name="cluster_name",
+                project_id=1,
+                region_id=7,
+                cluster_name="my-cluster",
                 node_count=2,
             )

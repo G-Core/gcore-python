@@ -78,6 +78,8 @@ class ConfigS3OssConfig(TypedDict, total=False):
 
     directory: Optional[str]
 
+    endpoint: Optional[str]
+
     region: Optional[str]
 
 

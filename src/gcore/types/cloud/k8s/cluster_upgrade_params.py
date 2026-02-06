@@ -9,8 +9,10 @@ __all__ = ["ClusterUpgradeParams"]
 
 class ClusterUpgradeParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     version: Required[str]
     """Target k8s cluster version"""

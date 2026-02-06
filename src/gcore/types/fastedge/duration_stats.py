@@ -29,4 +29,4 @@ class DurationStats(BaseModel):
     """90% percentile duration in usec"""
 
     time: datetime
-    """Beginning ot reporting slot"""
+    """Beginning of reporting slot"""

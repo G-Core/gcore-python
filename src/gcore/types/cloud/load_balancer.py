@@ -62,6 +62,13 @@ class LoadBalancer(BaseModel):
     id: str
     """Load balancer ID"""
 
+    admin_state_up: bool
+    """Administrative state of the resource.
+
+    When set to true, the resource is enabled and operational. When set to false,
+    the resource is disabled and will not process traffic. Defaults to true.
+    """
+
     created_at: datetime
     """Datetime when the load balancer was created"""
 

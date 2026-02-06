@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
 from ..lb_listener_protocol import LbListenerProtocol
@@ -48,7 +48,7 @@ class ListenerCreateParams(TypedDict, total=False):
     Only used with HTTP or `TERMINATED_HTTPS` protocols.
     """
 
-    secret_id: str
+    secret_id: Literal[""]
     """
     ID of the secret where PKCS12 file is stored for `TERMINATED_HTTPS` or
     PROMETHEUS listener

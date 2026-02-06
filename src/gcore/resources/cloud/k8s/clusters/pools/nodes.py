@@ -60,6 +60,14 @@ class NodesResource(SyncAPIResource):
         List k8s cluster pool nodes
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           with_ddos: Include DDoS profile information if set to true. Default is false.
 
           extra_headers: Send extra headers
@@ -110,6 +118,16 @@ class NodesResource(SyncAPIResource):
         pool size.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -177,6 +195,14 @@ class AsyncNodesResource(AsyncAPIResource):
         List k8s cluster pool nodes
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
           with_ddos: Include DDoS profile information if set to true. Default is false.
 
           extra_headers: Send extra headers
@@ -227,6 +253,16 @@ class AsyncNodesResource(AsyncAPIResource):
         pool size.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          pool_name: Pool name
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

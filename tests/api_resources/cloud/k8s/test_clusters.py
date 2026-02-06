@@ -26,8 +26,8 @@ class TestClusters:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -44,8 +44,8 @@ class TestClusters:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -133,8 +133,8 @@ class TestClusters:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -155,8 +155,8 @@ class TestClusters:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -179,18 +179,18 @@ class TestClusters:
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             add_ons={
                 "slurm": {
                     "enabled": True,
@@ -250,9 +250,9 @@ class TestClusters:
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -263,9 +263,9 @@ class TestClusters:
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -280,23 +280,23 @@ class TestClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.with_raw_response.update(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterList, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -307,8 +307,8 @@ class TestClusters:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -321,28 +321,28 @@ class TestClusters:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
-            volumes="volumes",
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
+            volumes="550e8400-e29b-41d4-a716-446655440000",
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -353,9 +353,9 @@ class TestClusters:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -370,25 +370,25 @@ class TestClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.with_raw_response.delete(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.get(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SCluster, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.get(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -399,9 +399,9 @@ class TestClusters:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.get(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -416,25 +416,25 @@ class TestClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.with_raw_response.get(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     def test_method_get_certificate(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.get_certificate(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterCertificate, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_get_certificate(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.get_certificate(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -445,9 +445,9 @@ class TestClusters:
     @parametrize
     def test_streaming_response_get_certificate(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.get_certificate(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -462,25 +462,25 @@ class TestClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.with_raw_response.get_certificate(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     def test_method_get_kubeconfig(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.get_kubeconfig(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterKubeconfig, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_get_kubeconfig(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.get_kubeconfig(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -491,9 +491,9 @@ class TestClusters:
     @parametrize
     def test_streaming_response_get_kubeconfig(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.get_kubeconfig(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -508,25 +508,25 @@ class TestClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.with_raw_response.get_kubeconfig(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     def test_method_list_versions_for_upgrade(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.list_versions_for_upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
 
     @parametrize
     def test_raw_response_list_versions_for_upgrade(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.list_versions_for_upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -537,9 +537,9 @@ class TestClusters:
     @parametrize
     def test_streaming_response_list_versions_for_upgrade(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.list_versions_for_upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -554,16 +554,16 @@ class TestClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.with_raw_response.list_versions_for_upgrade(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     def test_method_upgrade(self, client: Gcore) -> None:
         cluster = client.cloud.k8s.clusters.upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             version="v1.28.1",
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
@@ -571,9 +571,9 @@ class TestClusters:
     @parametrize
     def test_raw_response_upgrade(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             version="v1.28.1",
         )
 
@@ -585,9 +585,9 @@ class TestClusters:
     @parametrize
     def test_streaming_response_upgrade(self, client: Gcore) -> None:
         with client.cloud.k8s.clusters.with_streaming_response.upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             version="v1.28.1",
         ) as response:
             assert not response.is_closed
@@ -603,8 +603,8 @@ class TestClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             client.cloud.k8s.clusters.with_raw_response.upgrade(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
                 version="v1.28.1",
             )
 
@@ -617,8 +617,8 @@ class TestAsyncClusters:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -635,8 +635,8 @@ class TestAsyncClusters:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -724,8 +724,8 @@ class TestAsyncClusters:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -746,8 +746,8 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             keypair="some_keypair",
             name="string",
             pools=[
@@ -770,18 +770,18 @@ class TestAsyncClusters:
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             add_ons={
                 "slurm": {
                     "enabled": True,
@@ -841,9 +841,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -854,9 +854,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.update(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -871,23 +871,23 @@ class TestAsyncClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.with_raw_response.update(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterList, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -898,8 +898,8 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -912,28 +912,28 @@ class TestAsyncClusters:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
-            volumes="volumes",
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
+            volumes="550e8400-e29b-41d4-a716-446655440000",
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -944,9 +944,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.delete(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -961,25 +961,25 @@ class TestAsyncClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.with_raw_response.delete(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.get(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SCluster, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.get(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -990,9 +990,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.get(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1007,25 +1007,25 @@ class TestAsyncClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.with_raw_response.get(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     async def test_method_get_certificate(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.get_certificate(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterCertificate, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_get_certificate(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.get_certificate(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -1036,9 +1036,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_get_certificate(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.get_certificate(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1053,25 +1053,25 @@ class TestAsyncClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.with_raw_response.get_certificate(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     async def test_method_get_kubeconfig(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.get_kubeconfig(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterKubeconfig, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_get_kubeconfig(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.get_kubeconfig(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -1082,9 +1082,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_get_kubeconfig(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.get_kubeconfig(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1099,25 +1099,25 @@ class TestAsyncClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.with_raw_response.get_kubeconfig(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     async def test_method_list_versions_for_upgrade(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.list_versions_for_upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
 
     @parametrize
     async def test_raw_response_list_versions_for_upgrade(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.list_versions_for_upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -1128,9 +1128,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_list_versions_for_upgrade(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.list_versions_for_upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1145,16 +1145,16 @@ class TestAsyncClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.with_raw_response.list_versions_for_upgrade(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
     async def test_method_upgrade(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.k8s.clusters.upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             version="v1.28.1",
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
@@ -1162,9 +1162,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_raw_response_upgrade(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.k8s.clusters.with_raw_response.upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             version="v1.28.1",
         )
 
@@ -1176,9 +1176,9 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_upgrade(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.k8s.clusters.with_streaming_response.upgrade(
-            cluster_name="cluster_name",
-            project_id=0,
-            region_id=0,
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
             version="v1.28.1",
         ) as response:
             assert not response.is_closed
@@ -1194,7 +1194,7 @@ class TestAsyncClusters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_name` but received ''"):
             await async_client.cloud.k8s.clusters.with_raw_response.upgrade(
                 cluster_name="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
                 version="v1.28.1",
             )
