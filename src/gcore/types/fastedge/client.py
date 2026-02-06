@@ -19,20 +19,11 @@ class Client(BaseModel):
     app_count: int
     """Actual allowed number of apps"""
 
-    app_limit: int
-    """Max allowed number of apps"""
-
     daily_consumption: int
     """Actual number of calls for all apps during the current day (UTC)"""
 
-    daily_limit: int
-    """Max allowed calls for all apps during a day (UTC)"""
-
     hourly_consumption: int
     """Actual number of calls for all apps during the current hour"""
-
-    hourly_limit: int
-    """Max allowed calls for all apps during an hour"""
 
     monthly_consumption: int
     """Actual number of calls for all apps during the current calendar month (UTC)"""

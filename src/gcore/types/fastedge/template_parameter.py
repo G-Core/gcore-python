@@ -9,7 +9,7 @@ __all__ = ["TemplateParameter"]
 
 
 class TemplateParameter(BaseModel):
-    data_type: Literal["string", "number", "date", "time", "secret"]
+    data_type: Literal["string", "number", "date", "time", "secret", "store"]
     """Parameter type"""
 
     mandatory: bool
