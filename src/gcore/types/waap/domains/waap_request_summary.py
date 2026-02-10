@@ -22,11 +22,20 @@ class WaapRequestSummary(BaseModel):
     country: str
     """Country code"""
 
+    decision: Literal["passed", "allowed", "monitored", "blocked", ""]
+    """The decision made for processing the request through the WAAP."""
+
     domain: str
     """Domain name"""
 
+    domain_id: int
+    """Domain ID"""
+
     method: str
     """HTTP method"""
+
+    optional_action: Literal["captcha", "challenge", ""]
+    """An optional action that may be applied in addition to the primary decision."""
 
     organization: str
     """Organization"""
