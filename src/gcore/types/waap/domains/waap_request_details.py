@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -196,3 +196,9 @@ class WaapRequestDetails(BaseModel):
 
     user_agent: UserAgent
     """User agent"""
+
+    decision: Optional[Literal["passed", "allowed", "monitored", "blocked", ""]] = None
+    """The decision made for processing the request through the WAAP."""
+
+    optional_action: Optional[Literal["captcha", "challenge", ""]] = None
+    """An optional action that may be applied in addition to the primary decision."""

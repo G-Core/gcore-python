@@ -270,30 +270,35 @@ class TestStatistics:
 
     @parametrize
     def test_method_get_traffic_series(self, client: Gcore) -> None:
-        statistic = client.waap.domains.statistics.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            statistic = client.waap.domains.statistics.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+            )
+
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
     @parametrize
     def test_method_get_traffic_series_with_all_params(self, client: Gcore) -> None:
-        statistic = client.waap.domains.statistics.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-            end="2024-04-14T12:00:00Z",
-        )
+        with pytest.warns(DeprecationWarning):
+            statistic = client.waap.domains.statistics.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+                end="2024-04-14T12:00:00Z",
+            )
+
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
     @parametrize
     def test_raw_response_get_traffic_series(self, client: Gcore) -> None:
-        response = client.waap.domains.statistics.with_raw_response.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.waap.domains.statistics.with_raw_response.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -302,16 +307,17 @@ class TestStatistics:
 
     @parametrize
     def test_streaming_response_get_traffic_series(self, client: Gcore) -> None:
-        with client.waap.domains.statistics.with_streaming_response.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.waap.domains.statistics.with_streaming_response.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            statistic = response.parse()
-            assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
+                statistic = response.parse()
+                assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -563,30 +569,35 @@ class TestAsyncStatistics:
 
     @parametrize
     async def test_method_get_traffic_series(self, async_client: AsyncGcore) -> None:
-        statistic = await async_client.waap.domains.statistics.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            statistic = await async_client.waap.domains.statistics.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+            )
+
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
     @parametrize
     async def test_method_get_traffic_series_with_all_params(self, async_client: AsyncGcore) -> None:
-        statistic = await async_client.waap.domains.statistics.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-            end="2024-04-14T12:00:00Z",
-        )
+        with pytest.warns(DeprecationWarning):
+            statistic = await async_client.waap.domains.statistics.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+                end="2024-04-14T12:00:00Z",
+            )
+
         assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
     @parametrize
     async def test_raw_response_get_traffic_series(self, async_client: AsyncGcore) -> None:
-        response = await async_client.waap.domains.statistics.with_raw_response.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.waap.domains.statistics.with_raw_response.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -595,15 +606,16 @@ class TestAsyncStatistics:
 
     @parametrize
     async def test_streaming_response_get_traffic_series(self, async_client: AsyncGcore) -> None:
-        async with async_client.waap.domains.statistics.with_streaming_response.get_traffic_series(
-            domain_id=1,
-            resolution="daily",
-            start="2024-04-13T00:00:00+01:00",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.waap.domains.statistics.with_streaming_response.get_traffic_series(
+                domain_id=1,
+                resolution="daily",
+                start="2024-04-13T00:00:00+01:00",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            statistic = await response.parse()
-            assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
+                statistic = await response.parse()
+                assert_matches_type(StatisticGetTrafficSeriesResponse, statistic, path=["response"])
 
         assert cast(Any, response.is_closed) is True

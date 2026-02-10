@@ -407,6 +407,7 @@ class StatisticsResource(SyncAPIResource):
             model=WaapRequestSummary,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get_traffic_series(
         self,
         domain_id: int,
@@ -421,10 +422,11 @@ class StatisticsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetTrafficSeriesResponse:
-        """
-        Retrieves a comprehensive report on a domain's traffic statistics based on
-        Clickhouse. The report includes details such as API requests, blocked events,
-        error counts, and many more traffic-related metrics.
+        """Deprecated.
+
+        Use
+        [GET /v1/analytics/traffic](/docs/api-reference/waap/analytics/get-traffic-data)
+        instead.
 
         Args:
           domain_id: The domain ID
@@ -833,6 +835,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
             model=WaapRequestSummary,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get_traffic_series(
         self,
         domain_id: int,
@@ -847,10 +850,11 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetTrafficSeriesResponse:
-        """
-        Retrieves a comprehensive report on a domain's traffic statistics based on
-        Clickhouse. The report includes details such as API requests, blocked events,
-        error counts, and many more traffic-related metrics.
+        """Deprecated.
+
+        Use
+        [GET /v1/analytics/traffic](/docs/api-reference/waap/analytics/get-traffic-data)
+        instead.
 
         Args:
           domain_id: The domain ID
@@ -911,8 +915,10 @@ class StatisticsResourceWithRawResponse:
                 statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_traffic_series = to_raw_response_wrapper(
-            statistics.get_traffic_series,
+        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -937,8 +943,10 @@ class AsyncStatisticsResourceWithRawResponse:
                 statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_traffic_series = async_to_raw_response_wrapper(
-            statistics.get_traffic_series,
+        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -963,8 +971,10 @@ class StatisticsResourceWithStreamingResponse:
                 statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_traffic_series = to_streamed_response_wrapper(
-            statistics.get_traffic_series,
+        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -989,6 +999,8 @@ class AsyncStatisticsResourceWithStreamingResponse:
                 statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_traffic_series = async_to_streamed_response_wrapper(
-            statistics.get_traffic_series,
+        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
+            )
         )
