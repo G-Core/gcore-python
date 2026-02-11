@@ -2114,10 +2114,7 @@ class CDNResource(BaseModel):
     """
 
     origin_group: Optional[int] = FieldInfo(alias="originGroup", default=None)
-    """Origin group ID with which the CDN resource is associated.
-
-    You can use either the `origin` or `originGroup` parameter in the request.
-    """
+    """Origin group ID with which the CDN resource is associated."""
 
     origin_group_name: Optional[str] = FieldInfo(alias="originGroup_name", default=None)
     """Origin group name."""

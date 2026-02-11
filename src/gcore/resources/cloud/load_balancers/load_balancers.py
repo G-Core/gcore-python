@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
@@ -238,6 +239,7 @@ class LoadBalancersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         load_balancer_id: str,
@@ -260,6 +262,9 @@ class LoadBalancersResource(SyncAPIResource):
         type and/or modify load balancer tags. The request will only process the fields
         that are provided in the request body. Any fields that are not included will
         remain unchanged.
+
+        Please use PATCH `/v2/loadbalancers/{project_id}/{region_id}/{load_balancer_id}`
+        instead
 
         Args:
           project_id: Project ID
@@ -792,6 +797,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         load_balancer_id: str,
@@ -814,6 +820,9 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         type and/or modify load balancer tags. The request will only process the fields
         that are provided in the request body. Any fields that are not included will
         remain unchanged.
+
+        Please use PATCH `/v2/loadbalancers/{project_id}/{region_id}/{load_balancer_id}`
+        instead
 
         Args:
           project_id: Project ID
@@ -1203,8 +1212,10 @@ class LoadBalancersResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             load_balancers.create,
         )
-        self.update = to_raw_response_wrapper(
-            load_balancers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                load_balancers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             load_balancers.list,
@@ -1254,8 +1265,10 @@ class AsyncLoadBalancersResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             load_balancers.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            load_balancers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                load_balancers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             load_balancers.list,
@@ -1305,8 +1318,10 @@ class LoadBalancersResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             load_balancers.create,
         )
-        self.update = to_streamed_response_wrapper(
-            load_balancers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                load_balancers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             load_balancers.list,
@@ -1356,8 +1371,10 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             load_balancers.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            load_balancers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                load_balancers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             load_balancers.list,
