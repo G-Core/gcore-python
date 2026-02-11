@@ -211,13 +211,13 @@ class APIPathsResource(SyncAPIResource):
 
           api_version: Filter by the API version
 
-          http_scheme: The different HTTP schemes an API path can have
+          http_scheme: Filter by the HTTP version of the API path
 
           ids: Filter by the path ID
 
           limit: Number of items to return
 
-          method: The different methods an API path can have
+          method: Filter by the API RESTful method
 
           offset: Number of items to skip
 
@@ -225,7 +225,7 @@ class APIPathsResource(SyncAPIResource):
 
           path: Filter by the path. Supports '\\**' as a wildcard character
 
-          source: The different sources an API path can have
+          source: Filter by the source of the discovered API
 
           status: Filter by the status of the discovered API path
 
@@ -529,13 +529,13 @@ class AsyncAPIPathsResource(AsyncAPIResource):
 
           api_version: Filter by the API version
 
-          http_scheme: The different HTTP schemes an API path can have
+          http_scheme: Filter by the HTTP version of the API path
 
           ids: Filter by the path ID
 
           limit: Number of items to return
 
-          method: The different methods an API path can have
+          method: Filter by the API RESTful method
 
           offset: Number of items to skip
 
@@ -543,7 +543,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
 
           path: Filter by the path. Supports '\\**' as a wildcard character
 
-          source: The different sources an API path can have
+          source: Filter by the source of the discovered API
 
           status: Filter by the status of the discovered API path
 

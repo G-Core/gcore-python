@@ -35,7 +35,7 @@ class APIDiscoveryListScanResultsParams(TypedDict, total=False):
     """Sort the response by given field."""
 
     status: Optional[Literal["SUCCESS", "FAILURE", "IN_PROGRESS"]]
-    """The different statuses a task result can have"""
+    """Filter by the status of the scan"""
 
     type: Optional[Literal["TRAFFIC_SCAN", "API_DESCRIPTION_FILE_SCAN"]]
-    """The different types of scans that can be performed"""
+    """Filter by the path of the scan type"""
