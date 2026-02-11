@@ -144,7 +144,7 @@ async def get_router(*, client: AsyncGcore, router_id: str) -> None:
 
 async def update_router(*, client: AsyncGcore, router_id: str) -> None:
     print("\n=== UPDATE ROUTER ===")
-    router = await client.cloud.networks.routers.update(router_id=router_id, name="gcore-go-example-updated")
+    router = await client.cloud.networks.routers.update(router_id=router_id, name="gcore-go-example-updated")  # pyright: ignore[reportDeprecated]
     print(f"Updated router: ID={router.id}, name={router.name}")
     print("========================")
 
