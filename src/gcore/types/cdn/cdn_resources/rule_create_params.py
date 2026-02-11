@@ -470,7 +470,7 @@ class OptionsFastedgeOnRequestBody(TypedDict, total=False):
 
 class OptionsFastedgeOnRequestHeaders(TypedDict, total=False):
     """
-    Allows to configure FastEdge application that will be called to handle request headers as soon as CDN receives incoming HTTP request.
+    Allows to configure FastEdge application that will be called to handle request headers as soon as CDN receives incoming HTTP request, **before cache**.
     """
 
     app_id: Required[str]
@@ -565,7 +565,7 @@ class OptionsFastedge(TypedDict, total=False):
     on_request_headers: OptionsFastedgeOnRequestHeaders
     """
     Allows to configure FastEdge application that will be called to handle request
-    headers as soon as CDN receives incoming HTTP request.
+    headers as soon as CDN receives incoming HTTP request, **before cache**.
     """
 
     on_response_body: OptionsFastedgeOnResponseBody
