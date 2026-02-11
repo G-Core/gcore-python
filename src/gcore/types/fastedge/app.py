@@ -28,11 +28,11 @@ class Stores(BaseModel):
     id: int
     """The identifier of the store"""
 
-    name: str
-    """The name of the store"""
-
     comment: Optional[str] = None
     """A description of the store"""
+
+    name: Optional[str] = None
+    """The name of the store"""
 
 
 class App(BaseModel):
