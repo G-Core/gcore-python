@@ -18,7 +18,7 @@ class APIPathListParams(TypedDict, total=False):
     """Filter by the API version"""
 
     http_scheme: Optional[Literal["HTTP", "HTTPS"]]
-    """The different HTTP schemes an API path can have"""
+    """Filter by the HTTP version of the API path"""
 
     ids: Optional[SequenceNotStr[str]]
     """Filter by the path ID"""
@@ -27,7 +27,7 @@ class APIPathListParams(TypedDict, total=False):
     """Number of items to return"""
 
     method: Optional[Literal["GET", "POST", "PUT", "PATCH", "DELETE", "TRACE", "HEAD", "OPTIONS"]]
-    """The different methods an API path can have"""
+    """Filter by the API RESTful method"""
 
     offset: int
     """Number of items to skip"""
@@ -58,7 +58,7 @@ class APIPathListParams(TypedDict, total=False):
     """Filter by the path. Supports '\\**' as a wildcard character"""
 
     source: Optional[Literal["API_DESCRIPTION_FILE", "TRAFFIC_SCAN", "USER_DEFINED"]]
-    """The different sources an API path can have"""
+    """Filter by the source of the discovered API"""
 
     status: Optional[List[Literal["CONFIRMED_API", "POTENTIAL_API", "NOT_API", "DELISTED_API"]]]
     """Filter by the status of the discovered API path"""
