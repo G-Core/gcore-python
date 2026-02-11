@@ -78,18 +78,6 @@ class CDNResourceCreateParams(TypedDict, total=False):
     Delivery domains should be added to your DNS settings.
     """
 
-    origin: Required[str]
-    """IP address or domain name of the origin and the port, if custom port is used.
-
-    You can use either the `origin` or `originGroup` parameter in the request.
-    """
-
-    origin_group: Required[Annotated[int, PropertyInfo(alias="originGroup")]]
-    """Origin group ID with which the CDN resource is associated.
-
-    You can use either the `origin` or `originGroup` parameter in the request.
-    """
-
     active: bool
     """Enables or disables a CDN resource.
 
@@ -110,6 +98,20 @@ class CDNResourceCreateParams(TypedDict, total=False):
 
     In case of `null` value the option is not added to the CDN resource. Option may
     inherit its value from the global account settings.
+    """
+
+    origin: str
+    """IP address or domain name of the origin and the port, if custom port is used.
+
+    Exactly one of `origin` or `originGroup` must be provided during resource
+    creation.
+    """
+
+    origin_group: Annotated[int, PropertyInfo(alias="originGroup")]
+    """Origin group ID with which the CDN resource is associated.
+
+    Exactly one of `origin` or `originGroup` must be provided during resource
+    creation.
     """
 
     origin_protocol: Annotated[Literal["HTTP", "HTTPS", "MATCH"], PropertyInfo(alias="originProtocol")]

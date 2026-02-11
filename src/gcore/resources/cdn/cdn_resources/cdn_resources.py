@@ -80,12 +80,12 @@ class CDNResourcesResource(SyncAPIResource):
         self,
         *,
         cname: str,
-        origin: str,
-        origin_group: int,
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
         options: cdn_resource_create_params.Options | Omit = omit,
+        origin: str | Omit = omit,
+        origin_group: int | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         primary_resource: Optional[int] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
@@ -110,14 +110,6 @@ class CDNResourcesResource(SyncAPIResource):
 
               Delivery domains should be added to your DNS settings.
 
-          origin: IP address or domain name of the origin and the port, if custom port is used.
-
-              You can use either the `origin` or `originGroup` parameter in the request.
-
-          origin_group: Origin group ID with which the CDN resource is associated.
-
-              You can use either the `origin` or `originGroup` parameter in the request.
-
           active: Enables or disables a CDN resource.
 
               Possible values:
@@ -133,6 +125,16 @@ class CDNResourcesResource(SyncAPIResource):
 
               In case of `null` value the option is not added to the CDN resource. Option may
               inherit its value from the global account settings.
+
+          origin: IP address or domain name of the origin and the port, if custom port is used.
+
+              Exactly one of `origin` or `originGroup` must be provided during resource
+              creation.
+
+          origin_group: Origin group ID with which the CDN resource is associated.
+
+              Exactly one of `origin` or `originGroup` must be provided during resource
+              creation.
 
           origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
@@ -204,12 +206,12 @@ class CDNResourcesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "cname": cname,
-                    "origin": origin,
-                    "origin_group": origin_group,
                     "active": active,
                     "description": description,
                     "name": name,
                     "options": options,
+                    "origin": origin,
+                    "origin_group": origin_group,
                     "origin_protocol": origin_protocol,
                     "primary_resource": primary_resource,
                     "proxy_ssl_ca": proxy_ssl_ca,
@@ -272,8 +274,6 @@ class CDNResourcesResource(SyncAPIResource):
               inherit its value from the global account settings.
 
           origin_group: Origin group ID with which the CDN resource is associated.
-
-              You can use either the `origin` or `originGroup` parameter in the request.
 
           origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
@@ -855,8 +855,6 @@ class CDNResourcesResource(SyncAPIResource):
         Args:
           origin_group: Origin group ID with which the CDN resource is associated.
 
-              You can use either the `origin` or `originGroup` parameter in the request.
-
           active: Enables or disables a CDN resource.
 
               Possible values:
@@ -990,12 +988,12 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         self,
         *,
         cname: str,
-        origin: str,
-        origin_group: int,
         active: bool | Omit = omit,
         description: str | Omit = omit,
         name: Optional[str] | Omit = omit,
         options: cdn_resource_create_params.Options | Omit = omit,
+        origin: str | Omit = omit,
+        origin_group: int | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         primary_resource: Optional[int] | Omit = omit,
         proxy_ssl_ca: Optional[int] | Omit = omit,
@@ -1020,14 +1018,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               Delivery domains should be added to your DNS settings.
 
-          origin: IP address or domain name of the origin and the port, if custom port is used.
-
-              You can use either the `origin` or `originGroup` parameter in the request.
-
-          origin_group: Origin group ID with which the CDN resource is associated.
-
-              You can use either the `origin` or `originGroup` parameter in the request.
-
           active: Enables or disables a CDN resource.
 
               Possible values:
@@ -1043,6 +1033,16 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               In case of `null` value the option is not added to the CDN resource. Option may
               inherit its value from the global account settings.
+
+          origin: IP address or domain name of the origin and the port, if custom port is used.
+
+              Exactly one of `origin` or `originGroup` must be provided during resource
+              creation.
+
+          origin_group: Origin group ID with which the CDN resource is associated.
+
+              Exactly one of `origin` or `originGroup` must be provided during resource
+              creation.
 
           origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
@@ -1114,12 +1114,12 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "cname": cname,
-                    "origin": origin,
-                    "origin_group": origin_group,
                     "active": active,
                     "description": description,
                     "name": name,
                     "options": options,
+                    "origin": origin,
+                    "origin_group": origin_group,
                     "origin_protocol": origin_protocol,
                     "primary_resource": primary_resource,
                     "proxy_ssl_ca": proxy_ssl_ca,
@@ -1182,8 +1182,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
               inherit its value from the global account settings.
 
           origin_group: Origin group ID with which the CDN resource is associated.
-
-              You can use either the `origin` or `originGroup` parameter in the request.
 
           origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
@@ -1764,8 +1762,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
         Args:
           origin_group: Origin group ID with which the CDN resource is associated.
-
-              You can use either the `origin` or `originGroup` parameter in the request.
 
           active: Enables or disables a CDN resource.
 

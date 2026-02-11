@@ -73,10 +73,7 @@ __all__ = [
 
 class CDNResourceReplaceParams(TypedDict, total=False):
     origin_group: Required[Annotated[int, PropertyInfo(alias="originGroup")]]
-    """Origin group ID with which the CDN resource is associated.
-
-    You can use either the `origin` or `originGroup` parameter in the request.
-    """
+    """Origin group ID with which the CDN resource is associated."""
 
     active: bool
     """Enables or disables a CDN resource.
