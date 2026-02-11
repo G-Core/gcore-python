@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.32.0 (2026-02-11)
+
+Full Changelog: [v0.31.0...v0.32.0](https://github.com/G-Core/gcore-python/compare/v0.31.0...v0.32.0)
+
+### Features
+
+* **api:** aggregated API specs update ([a87437e](https://github.com/G-Core/gcore-python/commit/a87437e0d582d22c1f4f29bd585c7f757dcb4021))
+* **api:** aggregated API specs update ([c9079e1](https://github.com/G-Core/gcore-python/commit/c9079e1461f0e43df0bae0150a37c48febe557aa))
+* **api:** aggregated API specs update ([d0391a2](https://github.com/G-Core/gcore-python/commit/d0391a2bc77db00787ab6ebdaa46540f0a09fb4f))
+* **api:** aggregated API specs update ([65973ea](https://github.com/G-Core/gcore-python/commit/65973ea8e16ca432498ef3772e47e9927c92a03d))
+* **api:** aggregated API specs update ([732e36f](https://github.com/G-Core/gcore-python/commit/732e36f7509e3036b7800a809f14f364d47d9138))
+* **api:** aggregated API specs update ([3b5292a](https://github.com/G-Core/gcore-python/commit/3b5292a5403a6cfa880072fbbb8dde2ca311f0bd))
+* **api:** aggregated API specs update ([9bf5580](https://github.com/G-Core/gcore-python/commit/9bf55800ab1b90ac5f82e406b31fd61a5225afd9))
+
+
+### Bug Fixes
+
+* **cloud:** fix type in create_and_poll signature of load balancer listeners ([#146](https://github.com/G-Core/gcore-python/issues/146)) ([f99858a](https://github.com/G-Core/gcore-python/commit/f99858a1864e0142781c51f877c080a3b3f417cd))
+* **fastedge:** remove readOnly name from app_store required fields ([b373e1a](https://github.com/G-Core/gcore-python/commit/b373e1a1b1dcc27962f61af8fc11047f79938801))
+* **types:** correctly define false enum ([d5b033c](https://github.com/G-Core/gcore-python/commit/d5b033ca9bd2e52d248b979f739124b5a5c4de72))
+
+
+### Chores
+
+* **api:** minor updates ([b999f2c](https://github.com/G-Core/gcore-python/commit/b999f2c9623fa690a14fbc826aa51cb030121e47))
+* **internal:** bump dependencies ([e5a7288](https://github.com/G-Core/gcore-python/commit/e5a7288a0957da491df6c2cedb2275cbe7d99e11))
+* **internal:** fix lint error on Python 3.14 ([60245d0](https://github.com/G-Core/gcore-python/commit/60245d056b32bc23783f135102fe2acfe6627f88))
+
 ## 0.31.0 (2026-01-30)
 
 Full Changelog: [v0.30.0...v0.31.0](https://github.com/G-Core/gcore-python/compare/v0.30.0...v0.31.0)
