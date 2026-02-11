@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable, Optional
 
 import httpx
@@ -108,6 +109,7 @@ class RoutersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         router_id: str,
@@ -126,8 +128,8 @@ class RoutersResource(SyncAPIResource):
     ) -> Router:
         """Update the configuration of an existing router.
 
-        **Deprecated**: Use PATCH
-        /v2/routers/{`project_id`}/{`region_id`}/{`router_id`}
+        **Deprecated**: Use
+        `PATCH /v2/routers/{project_id}/{region_id}/{router_id}` instead.
 
         Args:
           external_gateway_info: New external gateway.
@@ -477,6 +479,7 @@ class AsyncRoutersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         router_id: str,
@@ -495,8 +498,8 @@ class AsyncRoutersResource(AsyncAPIResource):
     ) -> Router:
         """Update the configuration of an existing router.
 
-        **Deprecated**: Use PATCH
-        /v2/routers/{`project_id`}/{`region_id`}/{`router_id`}
+        **Deprecated**: Use
+        `PATCH /v2/routers/{project_id}/{region_id}/{router_id}` instead.
 
         Args:
           external_gateway_info: New external gateway.
@@ -778,8 +781,10 @@ class RoutersResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             routers.create,
         )
-        self.update = to_raw_response_wrapper(
-            routers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                routers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             routers.list,
@@ -805,8 +810,10 @@ class AsyncRoutersResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             routers.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            routers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                routers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             routers.list,
@@ -832,8 +839,10 @@ class RoutersResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             routers.create,
         )
-        self.update = to_streamed_response_wrapper(
-            routers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                routers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             routers.list,
@@ -859,8 +868,10 @@ class AsyncRoutersResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             routers.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            routers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                routers.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             routers.list,

@@ -24,8 +24,6 @@ class TestCDNResources:
     def test_method_create(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 
@@ -33,8 +31,6 @@ class TestCDNResources:
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
             active=True,
             description="My resource",
             name="Resource for images",
@@ -323,6 +319,8 @@ class TestCDNResources:
                     "value": True,
                 },
             },
+            origin="example.com",
+            origin_group=132,
             origin_protocol="HTTPS",
             primary_resource=None,
             proxy_ssl_ca=None,
@@ -339,8 +337,6 @@ class TestCDNResources:
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cdn.cdn_resources.with_raw_response.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
         )
 
         assert response.is_closed is True
@@ -352,8 +348,6 @@ class TestCDNResources:
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cdn.cdn_resources.with_streaming_response.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1340,8 +1334,6 @@ class TestAsyncCDNResources:
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 
@@ -1349,8 +1341,6 @@ class TestAsyncCDNResources:
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
             active=True,
             description="My resource",
             name="Resource for images",
@@ -1639,6 +1629,8 @@ class TestAsyncCDNResources:
                     "value": True,
                 },
             },
+            origin="example.com",
+            origin_group=132,
             origin_protocol="HTTPS",
             primary_resource=None,
             proxy_ssl_ca=None,
@@ -1655,8 +1647,6 @@ class TestAsyncCDNResources:
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.cdn_resources.with_raw_response.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
         )
 
         assert response.is_closed is True
@@ -1668,8 +1658,6 @@ class TestAsyncCDNResources:
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.cdn_resources.with_streaming_response.create(
             cname="cdn.site.com",
-            origin="example.com",
-            origin_group=132,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

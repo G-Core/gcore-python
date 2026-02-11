@@ -15,6 +15,8 @@ from gcore.types.cloud import (
     LoadBalancer,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -159,38 +161,43 @@ class TestLoadBalancers:
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        load_balancer = client.cloud.load_balancers.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-        )
+        with pytest.warns(DeprecationWarning):
+            load_balancer = client.cloud.load_balancers.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+            )
+
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        load_balancer = client.cloud.load_balancers.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-            logging={
-                "destination_region_id": 1,
-                "enabled": True,
-                "retention_policy": {"period": 45},
-                "topic_name": "my-log-name",
-            },
-            name="some_name",
-            preferred_connectivity="L2",
-            tags={"foo": "my-tag-value"},
-        )
+        with pytest.warns(DeprecationWarning):
+            load_balancer = client.cloud.load_balancers.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+                logging={
+                    "destination_region_id": 1,
+                    "enabled": True,
+                    "retention_policy": {"period": 45},
+                    "topic_name": "my-log-name",
+                },
+                name="some_name",
+                preferred_connectivity="L2",
+                tags={"foo": "my-tag-value"},
+            )
+
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        response = client.cloud.load_balancers.with_raw_response.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.load_balancers.with_raw_response.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -199,27 +206,29 @@ class TestLoadBalancers:
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with client.cloud.load_balancers.with_streaming_response.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.load_balancers.with_streaming_response.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            load_balancer = response.parse()
-            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+                load_balancer = response.parse()
+                assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
-            client.cloud.load_balancers.with_raw_response.update(
-                load_balancer_id="",
-                project_id=1,
-                region_id=7,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+                client.cloud.load_balancers.with_raw_response.update(
+                    load_balancer_id="",
+                    project_id=1,
+                    region_id=7,
+                )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
@@ -626,38 +635,43 @@ class TestAsyncLoadBalancers:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        load_balancer = await async_client.cloud.load_balancers.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-        )
+        with pytest.warns(DeprecationWarning):
+            load_balancer = await async_client.cloud.load_balancers.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+            )
+
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        load_balancer = await async_client.cloud.load_balancers.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-            logging={
-                "destination_region_id": 1,
-                "enabled": True,
-                "retention_policy": {"period": 45},
-                "topic_name": "my-log-name",
-            },
-            name="some_name",
-            preferred_connectivity="L2",
-            tags={"foo": "my-tag-value"},
-        )
+        with pytest.warns(DeprecationWarning):
+            load_balancer = await async_client.cloud.load_balancers.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+                logging={
+                    "destination_region_id": 1,
+                    "enabled": True,
+                    "retention_policy": {"period": 45},
+                    "topic_name": "my-log-name",
+                },
+                name="some_name",
+                preferred_connectivity="L2",
+                tags={"foo": "my-tag-value"},
+            )
+
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.load_balancers.with_raw_response.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.load_balancers.with_raw_response.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -666,27 +680,29 @@ class TestAsyncLoadBalancers:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.load_balancers.with_streaming_response.update(
-            load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
-            project_id=1,
-            region_id=7,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.load_balancers.with_streaming_response.update(
+                load_balancer_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
+                project_id=1,
+                region_id=7,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            load_balancer = await response.parse()
-            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
+                load_balancer = await response.parse()
+                assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
-            await async_client.cloud.load_balancers.with_raw_response.update(
-                load_balancer_id="",
-                project_id=1,
-                region_id=7,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+                await async_client.cloud.load_balancers.with_raw_response.update(
+                    load_balancer_id="",
+                    project_id=1,
+                    region_id=7,
+                )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:

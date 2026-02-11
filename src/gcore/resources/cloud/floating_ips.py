@@ -382,10 +382,10 @@ class FloatingIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        Assign floating IP to instance or loadbalancer
+        Assign floating IP to instance or loadbalancer.
 
-        **Deprecated**: Use PATCH
-        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+        **Deprecated**: Use
+        `PATCH /v2/floatingips/{project_id}/{region_id}/{floating_ip_id}` instead.
 
         Args:
           project_id: Project ID
@@ -487,8 +487,8 @@ class FloatingIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        **Deprecated**: Use PATCH
-        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+        **Deprecated**: Use
+        `PATCH /v2/floatingips/{project_id}/{region_id}/{floating_ip_id}` instead.
 
         Args:
           project_id: Project ID
@@ -1005,10 +1005,10 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        Assign floating IP to instance or loadbalancer
+        Assign floating IP to instance or loadbalancer.
 
-        **Deprecated**: Use PATCH
-        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+        **Deprecated**: Use
+        `PATCH /v2/floatingips/{project_id}/{region_id}/{floating_ip_id}` instead.
 
         Args:
           project_id: Project ID
@@ -1110,8 +1110,8 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIP:
         """
-        **Deprecated**: Use PATCH
-        /v2/floatingips/{`project_id`}/{`region_id`}/{`floating_ip_id`} instead
+        **Deprecated**: Use
+        `PATCH /v2/floatingips/{project_id}/{region_id}/{floating_ip_id}` instead.
 
         Args:
           project_id: Project ID

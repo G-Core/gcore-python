@@ -95,10 +95,7 @@ class CDNResourceUpdateParams(TypedDict, total=False):
     """
 
     origin_group: Annotated[int, PropertyInfo(alias="originGroup")]
-    """Origin group ID with which the CDN resource is associated.
-
-    You can use either the `origin` or `originGroup` parameter in the request.
-    """
+    """Origin group ID with which the CDN resource is associated."""
 
     origin_protocol: Annotated[Literal["HTTP", "HTTPS", "MATCH"], PropertyInfo(alias="originProtocol")]
     """Protocol used by CDN servers to request content from an origin source.
