@@ -167,9 +167,9 @@ class APIDiscoveryResource(SyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          status: The different statuses a task result can have
+          status: Filter by the status of the scan
 
-          type: The different types of scans that can be performed
+          type: Filter by the path of the scan type
 
           extra_headers: Send extra headers
 
@@ -485,9 +485,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          status: The different statuses a task result can have
+          status: Filter by the status of the scan
 
-          type: The different types of scans that can be performed
+          type: Filter by the path of the scan type
 
           extra_headers: Send extra headers
 
