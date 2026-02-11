@@ -59,7 +59,7 @@ def get_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
 
 def update_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== UPDATE LOAD BALANCER ===")
-    lb = client.cloud.load_balancers.update(load_balancer_id=load_balancer_id, name="gcore-go-example-updated")
+    lb = client.cloud.load_balancers.update(load_balancer_id=load_balancer_id, name="gcore-go-example-updated")  # pyright: ignore[reportDeprecated]
     print(f"Updated load balancer: ID={lb.id}, name={lb.name}")
     print("========================")
 
