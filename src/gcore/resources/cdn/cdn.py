@@ -71,14 +71,6 @@ from .certificates import (
     CertificatesResourceWithStreamingResponse,
     AsyncCertificatesResourceWithStreamingResponse,
 )
-from .client_config import (
-    ClientConfigResource,
-    AsyncClientConfigResource,
-    ClientConfigResourceWithRawResponse,
-    AsyncClientConfigResourceWithRawResponse,
-    ClientConfigResourceWithStreamingResponse,
-    AsyncClientConfigResourceWithStreamingResponse,
-)
 from .origin_groups import (
     OriginGroupsResource,
     AsyncOriginGroupsResource,
@@ -190,10 +182,6 @@ class CDNResource(SyncAPIResource):
     @cached_property
     def ip_ranges(self) -> IPRangesResource:
         return IPRangesResource(self._client)
-
-    @cached_property
-    def client_config(self) -> ClientConfigResource:
-        return ClientConfigResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CDNResourceWithRawResponse:
@@ -495,10 +483,6 @@ class AsyncCDNResource(AsyncAPIResource):
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResource:
         return AsyncIPRangesResource(self._client)
-
-    @cached_property
-    def client_config(self) -> AsyncClientConfigResource:
-        return AsyncClientConfigResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCDNResourceWithRawResponse:
@@ -826,10 +810,6 @@ class CDNResourceWithRawResponse:
     def ip_ranges(self) -> IPRangesResourceWithRawResponse:
         return IPRangesResourceWithRawResponse(self._cdn.ip_ranges)
 
-    @cached_property
-    def client_config(self) -> ClientConfigResourceWithRawResponse:
-        return ClientConfigResourceWithRawResponse(self._cdn.client_config)
-
 
 class AsyncCDNResourceWithRawResponse:
     def __init__(self, cdn: AsyncCDNResource) -> None:
@@ -908,10 +888,6 @@ class AsyncCDNResourceWithRawResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithRawResponse:
         return AsyncIPRangesResourceWithRawResponse(self._cdn.ip_ranges)
-
-    @cached_property
-    def client_config(self) -> AsyncClientConfigResourceWithRawResponse:
-        return AsyncClientConfigResourceWithRawResponse(self._cdn.client_config)
 
 
 class CDNResourceWithStreamingResponse:
@@ -992,10 +968,6 @@ class CDNResourceWithStreamingResponse:
     def ip_ranges(self) -> IPRangesResourceWithStreamingResponse:
         return IPRangesResourceWithStreamingResponse(self._cdn.ip_ranges)
 
-    @cached_property
-    def client_config(self) -> ClientConfigResourceWithStreamingResponse:
-        return ClientConfigResourceWithStreamingResponse(self._cdn.client_config)
-
 
 class AsyncCDNResourceWithStreamingResponse:
     def __init__(self, cdn: AsyncCDNResource) -> None:
@@ -1074,7 +1046,3 @@ class AsyncCDNResourceWithStreamingResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithStreamingResponse:
         return AsyncIPRangesResourceWithStreamingResponse(self._cdn.ip_ranges)
-
-    @cached_property
-    def client_config(self) -> AsyncClientConfigResourceWithStreamingResponse:
-        return AsyncClientConfigResourceWithStreamingResponse(self._cdn.client_config)
