@@ -2577,17 +2577,3 @@ Methods:
 
 - <code title="get /cdn/public-net-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list</a>(\*\*<a href="src/gcore/types/cdn/ip_range_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_network_list.py">PublicNetworkList</a></code>
 - <code title="get /cdn/public-ip-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list_ips</a>(\*\*<a href="src/gcore/types/cdn/ip_range_list_ips_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_ip_list.py">PublicIPList</a></code>
-
-## ClientConfig
-
-Types:
-
-```python
-from gcore.types.cdn import CDNClientConfig
-```
-
-Methods:
-
-- <code title="patch /cdn/clients/me">client.cdn.client_config.<a href="./src/gcore/resources/cdn/client_config.py">update</a>(\*\*<a href="src/gcore/types/cdn/client_config_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
-- <code title="get /cdn/clients/me">client.cdn.client_config.<a href="./src/gcore/resources/cdn/client_config.py">get</a>() -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
-- <code title="put /cdn/clients/me">client.cdn.client_config.<a href="./src/gcore/resources/cdn/client_config.py">replace</a>(\*\*<a href="src/gcore/types/cdn/client_config_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
