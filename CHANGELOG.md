@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.33.0 (2026-02-13)
+
+Full Changelog: [v0.32.0...v0.33.0](https://github.com/G-Core/gcore-python/compare/v0.32.0...v0.33.0)
+
+### Features
+
+* **api:** aggregated API specs update ([d6b782c](https://github.com/G-Core/gcore-python/commit/d6b782c24f6534edc3c2013d644e0d5f9fdffac5))
+* **api:** revert(cdn): remove client_config subresource ([#207](https://github.com/G-Core/gcore-python/issues/207)) ([6bc418a](https://github.com/G-Core/gcore-python/commit/6bc418acdcfed56957b6c571ee2f6f29efa3663e))
+* **cdn:** add client_config subresource for terraform ([5359417](https://github.com/G-Core/gcore-python/commit/535941718238395cdfc524c0bc5b59b4109fd8d1))
+
+
+### Chores
+
+* format all `api.md` files ([6f7ec77](https://github.com/G-Core/gcore-python/commit/6f7ec778e65dce7a413619b85df204268f26d178))
+
 ## 0.32.0 (2026-02-11)
 
 Full Changelog: [v0.31.0...v0.32.0](https://github.com/G-Core/gcore-python/compare/v0.31.0...v0.32.0)
