@@ -64,6 +64,7 @@ class PoliciesResource(SyncAPIResource):
         format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
+        log_sample_rate: float | Omit = omit,
         name: str | Omit = omit,
         retry_interval_minutes: int | Omit = omit,
         rotate_interval_minutes: int | Omit = omit,
@@ -116,6 +117,14 @@ class PoliciesResource(SyncAPIResource):
 
           include_shield_logs: Include logs from origin shielding in the upload.
 
+          log_sample_rate: Sampling rate for logs. A value between 0 and 1 that determines the fraction of
+              log entries to collect.
+
+              - **1** - collect all logs (default).
+              - **0.5** - collect approximately 50% of logs.
+              - **0** - collect no logs (effectively disables logging without removing the
+                policy).
+
           name: Name of the policy.
 
           retry_interval_minutes: Interval in minutes to retry failed uploads.
@@ -152,6 +161,7 @@ class PoliciesResource(SyncAPIResource):
                     "format_type": format_type,
                     "include_empty_logs": include_empty_logs,
                     "include_shield_logs": include_shield_logs,
+                    "log_sample_rate": log_sample_rate,
                     "name": name,
                     "retry_interval_minutes": retry_interval_minutes,
                     "rotate_interval_minutes": rotate_interval_minutes,
@@ -181,6 +191,7 @@ class PoliciesResource(SyncAPIResource):
         format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
+        log_sample_rate: float | Omit = omit,
         name: str | Omit = omit,
         retry_interval_minutes: int | Omit = omit,
         rotate_interval_minutes: int | Omit = omit,
@@ -233,6 +244,14 @@ class PoliciesResource(SyncAPIResource):
 
           include_shield_logs: Include logs from origin shielding in the upload.
 
+          log_sample_rate: Sampling rate for logs. A value between 0 and 1 that determines the fraction of
+              log entries to collect.
+
+              - **1** - collect all logs (default).
+              - **0.5** - collect approximately 50% of logs.
+              - **0** - collect no logs (effectively disables logging without removing the
+                policy).
+
           name: Name of the policy.
 
           retry_interval_minutes: Interval in minutes to retry failed uploads.
@@ -269,6 +288,7 @@ class PoliciesResource(SyncAPIResource):
                     "format_type": format_type,
                     "include_empty_logs": include_empty_logs,
                     "include_shield_logs": include_shield_logs,
+                    "log_sample_rate": log_sample_rate,
                     "name": name,
                     "retry_interval_minutes": retry_interval_minutes,
                     "rotate_interval_minutes": rotate_interval_minutes,
@@ -431,6 +451,7 @@ class PoliciesResource(SyncAPIResource):
         format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
+        log_sample_rate: float | Omit = omit,
         name: str | Omit = omit,
         retry_interval_minutes: int | Omit = omit,
         rotate_interval_minutes: int | Omit = omit,
@@ -483,6 +504,14 @@ class PoliciesResource(SyncAPIResource):
 
           include_shield_logs: Include logs from origin shielding in the upload.
 
+          log_sample_rate: Sampling rate for logs. A value between 0 and 1 that determines the fraction of
+              log entries to collect.
+
+              - **1** - collect all logs (default).
+              - **0.5** - collect approximately 50% of logs.
+              - **0** - collect no logs (effectively disables logging without removing the
+                policy).
+
           name: Name of the policy.
 
           retry_interval_minutes: Interval in minutes to retry failed uploads.
@@ -519,6 +548,7 @@ class PoliciesResource(SyncAPIResource):
                     "format_type": format_type,
                     "include_empty_logs": include_empty_logs,
                     "include_shield_logs": include_shield_logs,
+                    "log_sample_rate": log_sample_rate,
                     "name": name,
                     "retry_interval_minutes": retry_interval_minutes,
                     "rotate_interval_minutes": rotate_interval_minutes,
@@ -568,6 +598,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
+        log_sample_rate: float | Omit = omit,
         name: str | Omit = omit,
         retry_interval_minutes: int | Omit = omit,
         rotate_interval_minutes: int | Omit = omit,
@@ -620,6 +651,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           include_shield_logs: Include logs from origin shielding in the upload.
 
+          log_sample_rate: Sampling rate for logs. A value between 0 and 1 that determines the fraction of
+              log entries to collect.
+
+              - **1** - collect all logs (default).
+              - **0.5** - collect approximately 50% of logs.
+              - **0** - collect no logs (effectively disables logging without removing the
+                policy).
+
           name: Name of the policy.
 
           retry_interval_minutes: Interval in minutes to retry failed uploads.
@@ -656,6 +695,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "format_type": format_type,
                     "include_empty_logs": include_empty_logs,
                     "include_shield_logs": include_shield_logs,
+                    "log_sample_rate": log_sample_rate,
                     "name": name,
                     "retry_interval_minutes": retry_interval_minutes,
                     "rotate_interval_minutes": rotate_interval_minutes,
@@ -685,6 +725,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
+        log_sample_rate: float | Omit = omit,
         name: str | Omit = omit,
         retry_interval_minutes: int | Omit = omit,
         rotate_interval_minutes: int | Omit = omit,
@@ -737,6 +778,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           include_shield_logs: Include logs from origin shielding in the upload.
 
+          log_sample_rate: Sampling rate for logs. A value between 0 and 1 that determines the fraction of
+              log entries to collect.
+
+              - **1** - collect all logs (default).
+              - **0.5** - collect approximately 50% of logs.
+              - **0** - collect no logs (effectively disables logging without removing the
+                policy).
+
           name: Name of the policy.
 
           retry_interval_minutes: Interval in minutes to retry failed uploads.
@@ -773,6 +822,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "format_type": format_type,
                     "include_empty_logs": include_empty_logs,
                     "include_shield_logs": include_shield_logs,
+                    "log_sample_rate": log_sample_rate,
                     "name": name,
                     "retry_interval_minutes": retry_interval_minutes,
                     "rotate_interval_minutes": rotate_interval_minutes,
@@ -935,6 +985,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         format_type: Literal["json", ""] | Omit = omit,
         include_empty_logs: bool | Omit = omit,
         include_shield_logs: bool | Omit = omit,
+        log_sample_rate: float | Omit = omit,
         name: str | Omit = omit,
         retry_interval_minutes: int | Omit = omit,
         rotate_interval_minutes: int | Omit = omit,
@@ -987,6 +1038,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           include_shield_logs: Include logs from origin shielding in the upload.
 
+          log_sample_rate: Sampling rate for logs. A value between 0 and 1 that determines the fraction of
+              log entries to collect.
+
+              - **1** - collect all logs (default).
+              - **0.5** - collect approximately 50% of logs.
+              - **0** - collect no logs (effectively disables logging without removing the
+                policy).
+
           name: Name of the policy.
 
           retry_interval_minutes: Interval in minutes to retry failed uploads.
@@ -1023,6 +1082,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "format_type": format_type,
                     "include_empty_logs": include_empty_logs,
                     "include_shield_logs": include_shield_logs,
+                    "log_sample_rate": log_sample_rate,
                     "name": name,
                     "retry_interval_minutes": retry_interval_minutes,
                     "rotate_interval_minutes": rotate_interval_minutes,
