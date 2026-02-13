@@ -66,6 +66,17 @@ class LogsUploaderPolicy(BaseModel):
     include_shield_logs: Optional[bool] = None
     """Include logs from origin shielding in the upload."""
 
+    log_sample_rate: Optional[float] = None
+    """Sampling rate for logs.
+
+    A value between 0 and 1 that determines the fraction of log entries to collect.
+
+    - **1** - collect all logs (default).
+    - **0.5** - collect approximately 50% of logs.
+    - **0** - collect no logs (effectively disables logging without removing the
+      policy).
+    """
+
     name: Optional[str] = None
     """Name of the policy."""
 
