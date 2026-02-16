@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Optional
 from typing_extensions import Literal
 
@@ -44,6 +45,7 @@ class RulesResource(SyncAPIResource):
         """
         return RulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         group_id: str,
@@ -93,6 +95,9 @@ class RulesResource(SyncAPIResource):
     ) -> SecurityGroupRule:
         """
         Add a new rule to an existing security group.
+
+        **Deprecated** Use
+        `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules` instead.
 
         Args:
           project_id: Project ID
@@ -152,6 +157,7 @@ class RulesResource(SyncAPIResource):
             cast_to=SecurityGroupRule,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         rule_id: str,
@@ -167,6 +173,10 @@ class RulesResource(SyncAPIResource):
     ) -> None:
         """
         Delete a specific rule from a security group.
+
+        **Deprecated** Use
+        `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules/<rule_id>`
+        instead.
 
         Args:
           project_id: Project ID
@@ -198,6 +208,7 @@ class RulesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def replace(
         self,
         rule_id: str,
@@ -248,6 +259,11 @@ class RulesResource(SyncAPIResource):
     ) -> SecurityGroupRule:
         """
         Update the configuration of an existing security group rule.
+
+        **Deprecated** Use
+        `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules/<rule_id>` to
+        delete and `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules` to
+        create a new rule.
 
         Args:
           project_id: Project ID
@@ -333,6 +349,7 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         return AsyncRulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         group_id: str,
@@ -382,6 +399,9 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> SecurityGroupRule:
         """
         Add a new rule to an existing security group.
+
+        **Deprecated** Use
+        `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules` instead.
 
         Args:
           project_id: Project ID
@@ -441,6 +461,7 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=SecurityGroupRule,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         rule_id: str,
@@ -456,6 +477,10 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> None:
         """
         Delete a specific rule from a security group.
+
+        **Deprecated** Use
+        `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules/<rule_id>`
+        instead.
 
         Args:
           project_id: Project ID
@@ -487,6 +512,7 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def replace(
         self,
         rule_id: str,
@@ -537,6 +563,11 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> SecurityGroupRule:
         """
         Update the configuration of an existing security group rule.
+
+        **Deprecated** Use
+        `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules/<rule_id>` to
+        delete and `/v2/security_groups/<project_id>/<region_id>/<group_id>/rules` to
+        create a new rule.
 
         Args:
           project_id: Project ID
@@ -606,14 +637,20 @@ class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
-        self.create = to_raw_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.replace = to_raw_response_wrapper(
-            rules.replace,
+        self.replace = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.replace,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -621,14 +658,20 @@ class AsyncRulesResourceWithRawResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
-        self.create = async_to_raw_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.replace = async_to_raw_response_wrapper(
-            rules.replace,
+        self.replace = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.replace,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -636,14 +679,20 @@ class RulesResourceWithStreamingResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
-        self.create = to_streamed_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.replace = to_streamed_response_wrapper(
-            rules.replace,
+        self.replace = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.replace,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -651,12 +700,18 @@ class AsyncRulesResourceWithStreamingResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
-        self.create = async_to_streamed_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.replace = async_to_streamed_response_wrapper(
-            rules.replace,
+        self.replace = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.replace,  # pyright: ignore[reportDeprecated],
+            )
         )

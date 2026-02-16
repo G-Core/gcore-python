@@ -52,3 +52,6 @@ class BaremetalFlavor(BaseModel):
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
     """Price status for the UI"""
+
+    reserved_capacity: Optional[int] = None
+    """Number of available instances of given flavor from reservations"""

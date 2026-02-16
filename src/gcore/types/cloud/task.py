@@ -98,6 +98,9 @@ class CreatedResources(BaseModel):
     secrets: Optional[List[str]] = None
     """IDs of created secrets"""
 
+    security_group_rules: Optional[List[str]] = None
+    """IDs of created security group rules"""
+
     security_groups: Optional[List[str]] = None
     """IDs of created security groups"""
 

@@ -36,7 +36,7 @@ class TestFirewallRules:
         firewall_rule = client.waap.domains.firewall_rules.create(
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,
@@ -107,7 +107,7 @@ class TestFirewallRules:
             rule_id=0,
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,
@@ -364,7 +364,7 @@ class TestAsyncFirewallRules:
         firewall_rule = await async_client.waap.domains.firewall_rules.create(
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,
@@ -435,7 +435,7 @@ class TestAsyncFirewallRules:
             rule_id=0,
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,

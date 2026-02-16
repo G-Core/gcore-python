@@ -36,14 +36,14 @@ class TestCustomRules:
         custom_rule = client.waap.domains.custom_rules.create(
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,
                 },
-                "captcha": {},
-                "handshake": {},
-                "monitor": {},
+                "captcha": {"foo": "bar"},
+                "handshake": {"foo": "bar"},
+                "monitor": {"foo": "bar"},
                 "tag": {"tags": ["string"]},
             },
             conditions=[
@@ -185,14 +185,14 @@ class TestCustomRules:
             rule_id=0,
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,
                 },
-                "captcha": {},
-                "handshake": {},
-                "monitor": {},
+                "captcha": {"foo": "bar"},
+                "handshake": {"foo": "bar"},
+                "monitor": {"foo": "bar"},
                 "tag": {"tags": ["string"]},
             },
             conditions=[
@@ -520,14 +520,14 @@ class TestAsyncCustomRules:
         custom_rule = await async_client.waap.domains.custom_rules.create(
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,
                 },
-                "captcha": {},
-                "handshake": {},
-                "monitor": {},
+                "captcha": {"foo": "bar"},
+                "handshake": {"foo": "bar"},
+                "monitor": {"foo": "bar"},
                 "tag": {"tags": ["string"]},
             },
             conditions=[
@@ -669,14 +669,14 @@ class TestAsyncCustomRules:
             rule_id=0,
             domain_id=1,
             action={
-                "allow": {},
+                "allow": {"foo": "bar"},
                 "block": {
                     "action_duration": "12h",
                     "status_code": 403,
                 },
-                "captcha": {},
-                "handshake": {},
-                "monitor": {},
+                "captcha": {"foo": "bar"},
+                "handshake": {"foo": "bar"},
+                "monitor": {"foo": "bar"},
                 "tag": {"tags": ["string"]},
             },
             conditions=[

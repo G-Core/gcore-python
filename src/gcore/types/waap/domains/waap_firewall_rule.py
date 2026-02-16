@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -28,8 +28,8 @@ class ActionBlock(BaseModel):
 class Action(BaseModel):
     """The action that the rule takes when triggered"""
 
-    allow: Optional[object] = None
-    """The WAAP allowed the request"""
+    allow: Optional[Dict[str, object]] = None
+    """The WAAP allows the request"""
 
     block: Optional[ActionBlock] = None
     """
