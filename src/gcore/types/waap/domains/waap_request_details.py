@@ -188,6 +188,9 @@ class WaapRequestDetails(BaseModel):
     scheme: str
     """The HTTP scheme of the request that generated an event"""
 
+    session_id: str
+    """The session ID associated with the request."""
+
     session_request_count: str
     """The number requests in session"""
 
