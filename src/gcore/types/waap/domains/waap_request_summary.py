@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -68,3 +69,6 @@ class WaapRequestSummary(BaseModel):
 
     user_agent_client: str
     """Client from parsed User agent header"""
+
+    session_id: Optional[str] = None
+    """The session ID associated with the request."""
