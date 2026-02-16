@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -62,8 +62,8 @@ class Action(BaseModel):
     Only one action can be set per rule.
     """
 
-    allow: Optional[object] = None
-    """The WAAP allowed the request"""
+    allow: Optional[Dict[str, object]] = None
+    """The WAAP allows the request"""
 
     block: Optional[ActionBlock] = None
     """
@@ -71,14 +71,14 @@ class Action(BaseModel):
     action duration.
     """
 
-    captcha: Optional[object] = None
-    """The WAAP presented the user with a captcha"""
+    captcha: Optional[Dict[str, object]] = None
+    """The WAAP presents the user with a captcha"""
 
-    handshake: Optional[object] = None
-    """The WAAP performed automatic browser validation"""
+    handshake: Optional[Dict[str, object]] = None
+    """The WAAP performs automatic browser validation"""
 
-    monitor: Optional[object] = None
-    """The WAAP monitored the request but took no action"""
+    monitor: Optional[Dict[str, object]] = None
+    """The WAAP monitors the request but takes no action"""
 
     tag: Optional[ActionTag] = None
     """WAAP tag action gets a list of tags to tag the request scope with"""

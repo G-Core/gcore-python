@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
@@ -85,8 +85,8 @@ class ActionTag(TypedDict, total=False):
 class Action(TypedDict, total=False):
     """The action that a WAAP rule takes when triggered."""
 
-    allow: object
-    """The WAAP allowed the request"""
+    allow: Dict[str, object]
+    """The WAAP allows the request"""
 
     block: ActionBlock
     """
@@ -94,14 +94,14 @@ class Action(TypedDict, total=False):
     action duration.
     """
 
-    captcha: object
-    """The WAAP presented the user with a captcha"""
+    captcha: Dict[str, object]
+    """The WAAP presents the user with a captcha"""
 
-    handshake: object
-    """The WAAP performed automatic browser validation"""
+    handshake: Dict[str, object]
+    """The WAAP performs automatic browser validation"""
 
-    monitor: object
-    """The WAAP monitored the request but took no action"""
+    monitor: Dict[str, object]
+    """The WAAP monitors the request but takes no action"""
 
     tag: ActionTag
     """WAAP tag action gets a list of tags to tag the request scope with"""

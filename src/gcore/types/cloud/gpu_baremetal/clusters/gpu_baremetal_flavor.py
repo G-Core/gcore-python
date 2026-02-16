@@ -68,7 +68,7 @@ class GPUBaremetalFlavorSerializerWithoutPrice(BaseModel):
     """Flavor architecture type"""
 
     capacity: int
-    """Number of available instances of given flavor"""
+    """Number of available instances of given flavor for the client"""
 
     disabled: bool
     """If the flavor is disabled, new resources cannot be created using this flavor."""
@@ -82,12 +82,15 @@ class GPUBaremetalFlavorSerializerWithoutPrice(BaseModel):
     name: str
     """Flavor name"""
 
+    reserved_capacity: int
+    """Number of available instances of given flavor from reservations"""
+
     supported_features: GPUBaremetalFlavorSerializerWithoutPriceSupportedFeatures
     """Set of enabled features based on the flavor's type and configuration"""
 
 
 class GPUBaremetalFlavorSerializerWithPricesHardwareDescription(BaseModel):
-    """Additional virtual hardware description"""
+    """Additional bare metal hardware description"""
 
     cpu: str
     """Human-readable CPU description"""
@@ -151,13 +154,13 @@ class GPUBaremetalFlavorSerializerWithPrices(BaseModel):
     """Flavor architecture type"""
 
     capacity: int
-    """Number of available instances of given flavor"""
+    """Number of available instances of given flavor for the client"""
 
     disabled: bool
     """If the flavor is disabled, new resources cannot be created using this flavor."""
 
     hardware_description: GPUBaremetalFlavorSerializerWithPricesHardwareDescription
-    """Additional virtual hardware description"""
+    """Additional bare metal hardware description"""
 
     hardware_properties: GPUBaremetalFlavorSerializerWithPricesHardwareProperties
     """Additional bare metal hardware properties"""
@@ -167,6 +170,9 @@ class GPUBaremetalFlavorSerializerWithPrices(BaseModel):
 
     price: GPUBaremetalFlavorSerializerWithPricesPrice
     """Flavor price"""
+
+    reserved_capacity: int
+    """Number of available instances of given flavor from reservations"""
 
     supported_features: GPUBaremetalFlavorSerializerWithPricesSupportedFeatures
     """Set of enabled features based on the flavor's type and configuration"""
