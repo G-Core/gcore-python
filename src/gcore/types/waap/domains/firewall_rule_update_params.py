@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["FirewallRuleUpdateParams", "Action", "ActionBlock", "Condition", "ConditionIP", "ConditionIPRange"]
@@ -48,8 +48,8 @@ class ActionBlock(TypedDict, total=False):
 class Action(TypedDict, total=False):
     """The action that a firewall rule takes when triggered"""
 
-    allow: Optional[object]
-    """The WAAP allowed the request"""
+    allow: Optional[Dict[str, object]]
+    """The WAAP allows the request"""
 
     block: Optional[ActionBlock]
     """
