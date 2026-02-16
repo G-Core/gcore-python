@@ -90,7 +90,7 @@ async def delete_security_group(*, client: AsyncGcore, security_group_id: str) -
 
 async def create_security_group_rule(*, client: AsyncGcore, security_group_id: str) -> str:
     print("\n=== CREATE SECURITY GROUP RULE ===")
-    rule = await client.cloud.security_groups.rules.create(
+    rule = await client.cloud.security_groups.rules.create(  # pyright: ignore[reportDeprecated]
         group_id=security_group_id,
         direction="ingress",
         protocol="tcp",
@@ -107,7 +107,7 @@ async def create_security_group_rule(*, client: AsyncGcore, security_group_id: s
 
 async def replace_security_group_rule(*, client: AsyncGcore, rule_id: str, security_group_id: str) -> str:
     print("\n=== REPLACE SECURITY GROUP RULE ===")
-    rule = await client.cloud.security_groups.rules.replace(
+    rule = await client.cloud.security_groups.rules.replace(  # pyright: ignore[reportDeprecated]
         rule_id=rule_id,
         direction="ingress",
         security_group_id=security_group_id,
@@ -125,7 +125,7 @@ async def replace_security_group_rule(*, client: AsyncGcore, rule_id: str, secur
 
 async def delete_security_group_rule(*, client: AsyncGcore, rule_id: str) -> None:
     print("\n=== DELETE SECURITY GROUP RULE ===")
-    await client.cloud.security_groups.rules.delete(rule_id=rule_id)
+    await client.cloud.security_groups.rules.delete(rule_id=rule_id)  # pyright: ignore[reportDeprecated]
     print(f"Deleted security group rule: ID={rule_id}")
     print("========================")
 

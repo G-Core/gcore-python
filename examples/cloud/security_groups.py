@@ -87,7 +87,7 @@ def delete_security_group(*, client: Gcore, security_group_id: str) -> None:
 
 def create_security_group_rule(*, client: Gcore, security_group_id: str) -> str:
     print("\n=== CREATE SECURITY GROUP RULE ===")
-    rule = client.cloud.security_groups.rules.create(
+    rule = client.cloud.security_groups.rules.create(  # pyright: ignore[reportDeprecated]
         group_id=security_group_id,
         direction="ingress",
         protocol="tcp",
@@ -104,7 +104,7 @@ def create_security_group_rule(*, client: Gcore, security_group_id: str) -> str:
 
 def replace_security_group_rule(*, client: Gcore, rule_id: str, security_group_id: str) -> str:
     print("\n=== REPLACE SECURITY GROUP RULE ===")
-    rule = client.cloud.security_groups.rules.replace(
+    rule = client.cloud.security_groups.rules.replace(  # pyright: ignore[reportDeprecated]
         rule_id=rule_id,
         direction="ingress",
         security_group_id=security_group_id,
@@ -122,7 +122,7 @@ def replace_security_group_rule(*, client: Gcore, rule_id: str, security_group_i
 
 def delete_security_group_rule(*, client: Gcore, rule_id: str) -> None:
     print("\n=== DELETE SECURITY GROUP RULE ===")
-    client.cloud.security_groups.rules.delete(rule_id=rule_id)
+    client.cloud.security_groups.rules.delete(rule_id=rule_id)  # pyright: ignore[reportDeprecated]
     print(f"Deleted security group rule: ID={rule_id}")
     print("========================")
 
