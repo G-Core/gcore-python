@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["NetworkCreateParams"]
@@ -21,7 +20,7 @@ class NetworkCreateParams(TypedDict, total=False):
     create_router: bool
     """Defaults to True"""
 
-    tags: Dict[str, str]
+    tags: object
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

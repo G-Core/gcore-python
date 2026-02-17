@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -78,7 +78,7 @@ class NetworksResource(SyncAPIResource):
         region_id: int | None = None,
         name: str,
         create_router: bool | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type: Literal["vlan", "vxlan"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -419,7 +419,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         region_id: int | None = None,
         name: str,
         create_router: bool | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type: Literal["vlan", "vxlan"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
