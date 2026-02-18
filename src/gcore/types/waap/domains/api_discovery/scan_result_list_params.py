@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["APIDiscoveryListScanResultsParams"]
+__all__ = ["ScanResultListParams"]
 
 
-class APIDiscoveryListScanResultsParams(TypedDict, total=False):
+class ScanResultListParams(TypedDict, total=False):
     limit: int
     """Number of items to return"""
 

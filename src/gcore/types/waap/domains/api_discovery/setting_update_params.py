@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Annotated, TypedDict
 
-from ...._utils import PropertyInfo
+from ....._utils import PropertyInfo
 
-__all__ = ["APIDiscoveryUpdateSettingsParams"]
+__all__ = ["SettingUpdateParams"]
 
 
-class APIDiscoveryUpdateSettingsParams(TypedDict, total=False):
+class SettingUpdateParams(TypedDict, total=False):
     description_file_location: Annotated[Optional[str], PropertyInfo(alias="descriptionFileLocation")]
     """The URL of the API description file.
 

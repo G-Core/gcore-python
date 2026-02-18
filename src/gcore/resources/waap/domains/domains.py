@@ -59,14 +59,6 @@ from .custom_rules import (
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.waap import domain_list_params, domain_update_params
-from .api_discovery import (
-    APIDiscoveryResource,
-    AsyncAPIDiscoveryResource,
-    APIDiscoveryResourceWithRawResponse,
-    AsyncAPIDiscoveryResourceWithRawResponse,
-    APIDiscoveryResourceWithStreamingResponse,
-    AsyncAPIDiscoveryResourceWithStreamingResponse,
-)
 from .advanced_rules import (
     AdvancedRulesResource,
     AsyncAdvancedRulesResource,
@@ -99,6 +91,14 @@ from .insight_silences import (
     AsyncInsightSilencesResourceWithRawResponse,
     InsightSilencesResourceWithStreamingResponse,
     AsyncInsightSilencesResourceWithStreamingResponse,
+)
+from .api_discovery.api_discovery import (
+    APIDiscoveryResource,
+    AsyncAPIDiscoveryResource,
+    APIDiscoveryResourceWithRawResponse,
+    AsyncAPIDiscoveryResourceWithRawResponse,
+    APIDiscoveryResourceWithStreamingResponse,
+    AsyncAPIDiscoveryResourceWithStreamingResponse,
 )
 from ....types.waap.waap_policy_mode import WaapPolicyMode
 from ....types.waap.waap_summary_domain import WaapSummaryDomain
