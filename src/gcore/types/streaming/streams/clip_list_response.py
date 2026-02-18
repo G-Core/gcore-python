@@ -5,6 +5,6 @@ from typing_extensions import TypeAlias
 
 from .clip import Clip
 
-__all__ = ["StreamListClipsResponse"]
+__all__ = ["ClipListResponse"]
 
-StreamListClipsResponse: TypeAlias = List[Clip]
+ClipListResponse: TypeAlias = List[Clip]
