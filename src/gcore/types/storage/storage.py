@@ -65,7 +65,7 @@ class Storage(BaseModel):
     reseller_id: int
     """Reseller technical client ID associated with the client"""
 
-    type: Literal["sftp", "s3"]
+    type: Literal["sftp", "s3_compatible"]
     """
     Storage protocol type - either S3-compatible object storage or SFTP file
     transfer

@@ -11,6 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.storage.buckets import BucketCors
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -19,27 +21,32 @@ class TestCors:
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        cor = client.storage.buckets.cors.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            cor = client.storage.buckets.cors.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
+
         assert cor is None
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
-        cor = client.storage.buckets.cors.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-            allowed_origins=["https://example.com", "https://app.example.com", "*"],
-        )
+        with pytest.warns(DeprecationWarning):
+            cor = client.storage.buckets.cors.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+                allowed_origins=["https://example.com", "https://app.example.com", "*"],
+            )
+
         assert cor is None
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.storage.buckets.cors.with_raw_response.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.storage.buckets.cors.with_raw_response.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -48,40 +55,45 @@ class TestCors:
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.storage.buckets.cors.with_streaming_response.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.storage.buckets.cors.with_streaming_response.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            cor = response.parse()
-            assert cor is None
+                cor = response.parse()
+                assert cor is None
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            client.storage.buckets.cors.with_raw_response.create(
-                bucket_name="",
-                storage_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                client.storage.buckets.cors.with_raw_response.create(
+                    bucket_name="",
+                    storage_id=0,
+                )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
-        cor = client.storage.buckets.cors.get(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            cor = client.storage.buckets.cors.get(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
+
         assert_matches_type(BucketCors, cor, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
-        response = client.storage.buckets.cors.with_raw_response.get(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.storage.buckets.cors.with_raw_response.get(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -90,25 +102,27 @@ class TestCors:
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
-        with client.storage.buckets.cors.with_streaming_response.get(
-            bucket_name="bucket_name",
-            storage_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.storage.buckets.cors.with_streaming_response.get(
+                bucket_name="bucket_name",
+                storage_id=0,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            cor = response.parse()
-            assert_matches_type(BucketCors, cor, path=["response"])
+                cor = response.parse()
+                assert_matches_type(BucketCors, cor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            client.storage.buckets.cors.with_raw_response.get(
-                bucket_name="",
-                storage_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                client.storage.buckets.cors.with_raw_response.get(
+                    bucket_name="",
+                    storage_id=0,
+                )
 
 
 class TestAsyncCors:
@@ -118,27 +132,32 @@ class TestAsyncCors:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        cor = await async_client.storage.buckets.cors.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            cor = await async_client.storage.buckets.cors.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
+
         assert cor is None
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
-        cor = await async_client.storage.buckets.cors.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-            allowed_origins=["https://example.com", "https://app.example.com", "*"],
-        )
+        with pytest.warns(DeprecationWarning):
+            cor = await async_client.storage.buckets.cors.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+                allowed_origins=["https://example.com", "https://app.example.com", "*"],
+            )
+
         assert cor is None
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.storage.buckets.cors.with_raw_response.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.storage.buckets.cors.with_raw_response.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -147,40 +166,45 @@ class TestAsyncCors:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.storage.buckets.cors.with_streaming_response.create(
-            bucket_name="bucket_name",
-            storage_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.storage.buckets.cors.with_streaming_response.create(
+                bucket_name="bucket_name",
+                storage_id=0,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            cor = await response.parse()
-            assert cor is None
+                cor = await response.parse()
+                assert cor is None
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            await async_client.storage.buckets.cors.with_raw_response.create(
-                bucket_name="",
-                storage_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                await async_client.storage.buckets.cors.with_raw_response.create(
+                    bucket_name="",
+                    storage_id=0,
+                )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
-        cor = await async_client.storage.buckets.cors.get(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            cor = await async_client.storage.buckets.cors.get(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
+
         assert_matches_type(BucketCors, cor, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
-        response = await async_client.storage.buckets.cors.with_raw_response.get(
-            bucket_name="bucket_name",
-            storage_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.storage.buckets.cors.with_raw_response.get(
+                bucket_name="bucket_name",
+                storage_id=0,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -189,22 +213,24 @@ class TestAsyncCors:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
-        async with async_client.storage.buckets.cors.with_streaming_response.get(
-            bucket_name="bucket_name",
-            storage_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.storage.buckets.cors.with_streaming_response.get(
+                bucket_name="bucket_name",
+                storage_id=0,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            cor = await response.parse()
-            assert_matches_type(BucketCors, cor, path=["response"])
+                cor = await response.parse()
+                assert_matches_type(BucketCors, cor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            await async_client.storage.buckets.cors.with_raw_response.get(
-                bucket_name="",
-                storage_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                await async_client.storage.buckets.cors.with_raw_response.get(
+                    bucket_name="",
+                    storage_id=0,
+                )

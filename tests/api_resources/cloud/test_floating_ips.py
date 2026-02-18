@@ -86,7 +86,7 @@ class TestFloatingIPs:
             region_id=1,
             fixed_ip_address="192.168.10.15",
             port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-            tags={},
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
 
@@ -453,7 +453,7 @@ class TestAsyncFloatingIPs:
             region_id=1,
             fixed_ip_address="192.168.10.15",
             port_id="ee2402d0-f0cd-4503-9b75-69be1d11c5f1",
-            tags={},
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, floating_ip, path=["response"])
 

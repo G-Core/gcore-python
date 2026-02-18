@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -41,6 +43,7 @@ class CredentialsResource(SyncAPIResource):
         """
         return CredentialsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def recreate(
         self,
         storage_id: int,
@@ -60,6 +63,11 @@ class CredentialsResource(SyncAPIResource):
         """
         Generates new access credentials for the storage (S3 keys for S3 storage, SFTP
         password for SFTP storage).
+
+        Deprecated: Use POST
+        /provisioning/v3/storages/`s3_compatible`/{`storage_id`}/credentials/reset for
+        S3 storage or PATCH /provisioning/v3/storages/sftp/{`storage_id`}/credentials
+        for SFTP storage instead.
 
         Args:
           extra_headers: Send extra headers
@@ -109,6 +117,7 @@ class AsyncCredentialsResource(AsyncAPIResource):
         """
         return AsyncCredentialsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def recreate(
         self,
         storage_id: int,
@@ -128,6 +137,11 @@ class AsyncCredentialsResource(AsyncAPIResource):
         """
         Generates new access credentials for the storage (S3 keys for S3 storage, SFTP
         password for SFTP storage).
+
+        Deprecated: Use POST
+        /provisioning/v3/storages/`s3_compatible`/{`storage_id`}/credentials/reset for
+        S3 storage or PATCH /provisioning/v3/storages/sftp/{`storage_id`}/credentials
+        for SFTP storage instead.
 
         Args:
           extra_headers: Send extra headers
@@ -161,8 +175,10 @@ class CredentialsResourceWithRawResponse:
     def __init__(self, credentials: CredentialsResource) -> None:
         self._credentials = credentials
 
-        self.recreate = to_raw_response_wrapper(
-            credentials.recreate,
+        self.recreate = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                credentials.recreate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -170,8 +186,10 @@ class AsyncCredentialsResourceWithRawResponse:
     def __init__(self, credentials: AsyncCredentialsResource) -> None:
         self._credentials = credentials
 
-        self.recreate = async_to_raw_response_wrapper(
-            credentials.recreate,
+        self.recreate = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                credentials.recreate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -179,8 +197,10 @@ class CredentialsResourceWithStreamingResponse:
     def __init__(self, credentials: CredentialsResource) -> None:
         self._credentials = credentials
 
-        self.recreate = to_streamed_response_wrapper(
-            credentials.recreate,
+        self.recreate = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                credentials.recreate,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -188,6 +208,8 @@ class AsyncCredentialsResourceWithStreamingResponse:
     def __init__(self, credentials: AsyncCredentialsResource) -> None:
         self._credentials = credentials
 
-        self.recreate = async_to_streamed_response_wrapper(
-            credentials.recreate,
+        self.recreate = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                credentials.recreate,  # pyright: ignore[reportDeprecated],
+            )
         )

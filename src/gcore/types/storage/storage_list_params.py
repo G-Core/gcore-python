@@ -35,5 +35,5 @@ class StorageListParams(TypedDict, total=False):
     status: Literal["active", "suspended", "deleted", "pending"]
     """Filter by storage status"""
 
-    type: Literal["s3", "sftp"]
+    type: Literal["s3_compatible", "sftp"]
     """Filter by storage type"""

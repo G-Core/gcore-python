@@ -507,7 +507,7 @@ class TestClusters:
             project_id=1,
             region_id=7,
             action="update_tags",
-            tags={},
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
@@ -518,7 +518,7 @@ class TestClusters:
             project_id=1,
             region_id=7,
             action="update_tags",
-            tags={},
+            tags={"foo": "my-tag-value"},
         )
 
         assert response.is_closed is True
@@ -533,7 +533,7 @@ class TestClusters:
             project_id=1,
             region_id=7,
             action="update_tags",
-            tags={},
+            tags={"foo": "my-tag-value"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -551,7 +551,7 @@ class TestClusters:
                 project_id=1,
                 region_id=7,
                 action="update_tags",
-                tags={},
+                tags={"foo": "my-tag-value"},
             )
 
     @parametrize
@@ -1146,7 +1146,7 @@ class TestAsyncClusters:
             project_id=1,
             region_id=7,
             action="update_tags",
-            tags={},
+            tags={"foo": "my-tag-value"},
         )
         assert_matches_type(TaskIDList, cluster, path=["response"])
 
@@ -1157,7 +1157,7 @@ class TestAsyncClusters:
             project_id=1,
             region_id=7,
             action="update_tags",
-            tags={},
+            tags={"foo": "my-tag-value"},
         )
 
         assert response.is_closed is True
@@ -1172,7 +1172,7 @@ class TestAsyncClusters:
             project_id=1,
             region_id=7,
             action="update_tags",
-            tags={},
+            tags={"foo": "my-tag-value"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1190,7 +1190,7 @@ class TestAsyncClusters:
                 project_id=1,
                 region_id=7,
                 action="update_tags",
-                tags={},
+                tags={"foo": "my-tag-value"},
             )
 
     @parametrize

@@ -14,18 +14,10 @@ class Tag(BaseModel):
     """
 
     key: str
-    """Tag key.
-
-    Maximum 255 characters. Cannot contain spaces, tabs, newlines, empty string or
-    '=' character.
-    """
+    """Tag key. The maximum size for a key is 255 characters."""
 
     read_only: bool
     """If true, the tag is read-only and cannot be modified by the user"""
 
     value: str
-    """Tag value.
-
-    Maximum 255 characters. Cannot contain spaces, tabs, newlines, empty string or
-    '=' character.
-    """
+    """Tag value. The maximum size for a value is 255 characters."""
