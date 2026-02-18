@@ -7,7 +7,6 @@ from .waap_ip_info import WaapIPInfo as WaapIPInfo
 from .waap_top_url import WaapTopURL as WaapTopURL
 from .waap_rule_set import WaapRuleSet as WaapRuleSet
 from .tag_list_params import TagListParams as TagListParams
-from .waap_policy_mode import WaapPolicyMode as WaapPolicyMode
 from .waap_top_session import WaapTopSession as WaapTopSession
 from .waap_insight_type import WaapInsightType as WaapInsightType
 from .waap_organization import WaapOrganization as WaapOrganization

@@ -7,6 +7,7 @@ from .waap_api_path import WaapAPIPath as WaapAPIPath
 from .waap_ddos_info import WaapDDOSInfo as WaapDDOSInfo
 from .waap_custom_rule import WaapCustomRule as WaapCustomRule
 from .waap_ddos_attack import WaapDDOSAttack as WaapDDOSAttack
+from .waap_policy_mode import WaapPolicyMode as WaapPolicyMode
 from .waap_advanced_rule import WaapAdvancedRule as WaapAdvancedRule
 from .waap_firewall_rule import WaapFirewallRule as WaapFirewallRule
 from .api_path_group_list import APIPathGroupList as APIPathGroupList

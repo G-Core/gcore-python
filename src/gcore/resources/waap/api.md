@@ -32,7 +32,6 @@ from gcore.types.waap import (
     WaapDomainAPISettings,
     WaapDomainDDOSSettings,
     WaapDomainSettingsModel,
-    WaapPolicyMode,
     WaapRuleSet,
     WaapSummaryDomain,
     DomainListRuleSetsResponse,
@@ -46,7 +45,18 @@ Methods:
 - <code title="delete /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">delete</a>(domain_id) -> None</code>
 - <code title="get /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_detailed_domain.py">WaapDetailedDomain</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/rule-sets">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list_rule_sets</a>(domain_id) -> <a href="./src/gcore/types/waap/domain_list_rule_sets_response.py">DomainListRuleSetsResponse</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/policies/{policy_id}/toggle">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">toggle_policy</a>(policy_id, \*, domain_id) -> <a href="./src/gcore/types/waap/waap_policy_mode.py">WaapPolicyMode</a></code>
+
+### Policies
+
+Types:
+
+```python
+from gcore.types.waap.domains import WaapPolicyMode
+```
+
+Methods:
+
+- <code title="patch /waap/v1/domains/{domain_id}/policies/{policy_id}/toggle">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">toggle</a>(policy_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_policy_mode.py">WaapPolicyMode</a></code>
 
 ### Settings
 
