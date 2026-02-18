@@ -11,10 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncPageStreaming, AsyncPageStreaming
 from gcore.types.streaming import (
-    Clip,
     Video,
     Stream,
-    StreamListClipsResponse,
     StreamStartRecordingResponse,
 )
 
@@ -229,51 +227,6 @@ class TestStreams:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_create_clip(self, client: Gcore) -> None:
-        stream = client.streaming.streams.create_clip(
-            stream_id=0,
-            duration=0,
-        )
-        assert_matches_type(Clip, stream, path=["response"])
-
-    @parametrize
-    def test_method_create_clip_with_all_params(self, client: Gcore) -> None:
-        stream = client.streaming.streams.create_clip(
-            stream_id=0,
-            duration=0,
-            expiration=0,
-            start=0,
-            vod_required=True,
-        )
-        assert_matches_type(Clip, stream, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_clip(self, client: Gcore) -> None:
-        response = client.streaming.streams.with_raw_response.create_clip(
-            stream_id=0,
-            duration=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        stream = response.parse()
-        assert_matches_type(Clip, stream, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_clip(self, client: Gcore) -> None:
-        with client.streaming.streams.with_streaming_response.create_clip(
-            stream_id=0,
-            duration=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            stream = response.parse()
-            assert_matches_type(Clip, stream, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
     def test_method_get(self, client: Gcore) -> None:
         stream = client.streaming.streams.get(
             0,
@@ -301,37 +254,6 @@ class TestStreams:
 
             stream = response.parse()
             assert_matches_type(Stream, stream, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_list_clips(self, client: Gcore) -> None:
-        stream = client.streaming.streams.list_clips(
-            0,
-        )
-        assert_matches_type(StreamListClipsResponse, stream, path=["response"])
-
-    @parametrize
-    def test_raw_response_list_clips(self, client: Gcore) -> None:
-        response = client.streaming.streams.with_raw_response.list_clips(
-            0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        stream = response.parse()
-        assert_matches_type(StreamListClipsResponse, stream, path=["response"])
-
-    @parametrize
-    def test_streaming_response_list_clips(self, client: Gcore) -> None:
-        with client.streaming.streams.with_streaming_response.list_clips(
-            0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            stream = response.parse()
-            assert_matches_type(StreamListClipsResponse, stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -608,51 +530,6 @@ class TestAsyncStreams:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_clip(self, async_client: AsyncGcore) -> None:
-        stream = await async_client.streaming.streams.create_clip(
-            stream_id=0,
-            duration=0,
-        )
-        assert_matches_type(Clip, stream, path=["response"])
-
-    @parametrize
-    async def test_method_create_clip_with_all_params(self, async_client: AsyncGcore) -> None:
-        stream = await async_client.streaming.streams.create_clip(
-            stream_id=0,
-            duration=0,
-            expiration=0,
-            start=0,
-            vod_required=True,
-        )
-        assert_matches_type(Clip, stream, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_clip(self, async_client: AsyncGcore) -> None:
-        response = await async_client.streaming.streams.with_raw_response.create_clip(
-            stream_id=0,
-            duration=0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        stream = await response.parse()
-        assert_matches_type(Clip, stream, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_clip(self, async_client: AsyncGcore) -> None:
-        async with async_client.streaming.streams.with_streaming_response.create_clip(
-            stream_id=0,
-            duration=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            stream = await response.parse()
-            assert_matches_type(Clip, stream, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         stream = await async_client.streaming.streams.get(
             0,
@@ -680,37 +557,6 @@ class TestAsyncStreams:
 
             stream = await response.parse()
             assert_matches_type(Stream, stream, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_list_clips(self, async_client: AsyncGcore) -> None:
-        stream = await async_client.streaming.streams.list_clips(
-            0,
-        )
-        assert_matches_type(StreamListClipsResponse, stream, path=["response"])
-
-    @parametrize
-    async def test_raw_response_list_clips(self, async_client: AsyncGcore) -> None:
-        response = await async_client.streaming.streams.with_raw_response.list_clips(
-            0,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        stream = await response.parse()
-        assert_matches_type(StreamListClipsResponse, stream, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_list_clips(self, async_client: AsyncGcore) -> None:
-        async with async_client.streaming.streams.with_streaming_response.list_clips(
-            0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            stream = await response.parse()
-            assert_matches_type(StreamListClipsResponse, stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

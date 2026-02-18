@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .clips import (
+    ClipsResource,
+    AsyncClipsResource,
+    ClipsResourceWithRawResponse,
+    AsyncClipsResourceWithRawResponse,
+    ClipsResourceWithStreamingResponse,
+    AsyncClipsResourceWithStreamingResponse,
+)
 from .overlays import (
     OverlaysResource,
     AsyncOverlaysResource,
@@ -27,22 +35,19 @@ from ...._response import (
 )
 from ....pagination import SyncPageStreaming, AsyncPageStreaming
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.streaming import (
-    stream_list_params,
-    stream_create_params,
-    stream_update_params,
-    stream_create_clip_params,
-)
-from ....types.streaming.clip import Clip
+from ....types.streaming import stream_list_params, stream_create_params, stream_update_params
 from ....types.streaming.video import Video
 from ....types.streaming.stream import Stream
-from ....types.streaming.stream_list_clips_response import StreamListClipsResponse
 from ....types.streaming.stream_start_recording_response import StreamStartRecordingResponse
 
 __all__ = ["StreamsResource", "AsyncStreamsResource"]
 
 
 class StreamsResource(SyncAPIResource):
+    @cached_property
+    def clips(self) -> ClipsResource:
+        return ClipsResource(self._client)
+
     @cached_property
     def overlays(self) -> OverlaysResource:
         return OverlaysResource(self._client)
@@ -446,149 +451,6 @@ class StreamsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def create_clip(
-        self,
-        stream_id: int,
-        *,
-        duration: int,
-        expiration: int | Omit = omit,
-        start: int | Omit = omit,
-        vod_required: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Clip:
-        """
-        Create an instant clip from on-going live stream.
-
-        Instant clips are applicable in cases where there is no time to wait for the
-        broadcast to be completed and recorded. For example, for quickly cutting
-        highlights in sport events, or cutting an important moment in the news or live
-        performance.
-
-        DVR function must be enabled for clip recording. If the DVR is disabled, the
-        response will be error 422.
-
-        Instant clip becomes available for viewing in the following formats:
-
-        - HLS .m3u8,
-        - MP4,
-        - VOD in video hosting with a permanent link to watch video.
-
-        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
-
-        **Clip lifetime:**
-
-        Instant clips are a copy of the stream, created from a live stream. They are
-        stored in memory for a limited time, after which the clip ceases to exist and
-        you will receive a 404 on the link.
-
-        Limits that you should keep in mind:
-
-        - The clip's lifespan is controlled by `expiration` parameter.
-        - The default expiration value is 1 hour. The value can be set from 1 minute to
-          4 hours.
-        - If you want a video for longer or permanent viewing, then create a regular VOD
-          based on the clip. This way you can use the clip's link for the first time,
-          and immediately after the transcoded version is ready, you can change by
-          yourself it to a permanent link of VOD.
-        - The clip becomes available only after it is completely copied from the live
-          stream. So the clip will be available after `start + duration` exact time. If
-          you try to request it before this time, the response will be error code 425
-          "Too Early".
-
-        **Cutting a clip from a source:**
-
-        In order to use clips recording feature, DVR must be enabled for a stream:
-        "dvr_enabled: true". The DVR serves as a source for creating clips:
-
-        - By default live stream DVR is set to 1 hour (3600 seconds). You can create an
-          instant clip using any segment of this time period by specifying the desired
-          start time and duration.
-        - If you create a clip, but the DVR expires, the clip will still exist for the
-          specified time as a copy of the stream.
-
-        **Getting permanent VOD:**
-
-        To get permanent VOD version of a live clip use this parameter when making a
-        request to create a clip: `vod_required: true`.
-
-        Later, when the clip is ready, grab `video_id` value from the response and query
-        the video by regular GET /video/{id} method.
-
-        Args:
-          duration: Requested segment duration in seconds to be cut.
-
-              Please, note that cutting is based on the idea of instantly creating a clip,
-              instead of precise timing. So final segment may be:
-
-              - Less than the specified value if there is less data in the DVR than the
-                requested segment.
-              - Greater than the specified value, because segment is aligned to the first and
-                last key frames of already stored fragment in DVR, this way -1 and +1 chunks
-                can be added to left and right.
-
-              Duration of cutted segment cannot be greater than DVR duration for this stream.
-              Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
-
-          expiration: Expire time of the clip via a public link.
-
-              Unix timestamp in seconds, absolute value.
-
-              This is the time how long the instant clip will be stored in the server memory
-              and can be accessed via public HLS/MP4 links. Download and/or use the instant
-              clip before this time expires.
-
-              After the time has expired, the clip is deleted from memory and is no longer
-              available via the link. You need to create a new segment, or use
-              `vod_required: true` attribute.
-
-              If value is omitted, then expiration is counted as +3600 seconds (1 hour) to the
-              end of the clip (i.e. `unix timestamp = <start> + <duration> + 3600`).
-
-              Allowed range: 1m <= expiration <= 4h.
-
-              Example:
-              `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
-
-          start: Starting point of the segment to cut.
-
-              Unix timestamp in seconds, absolute value. Example:
-              `24.05.2024 14:00:00 (GMT) is Unix timestamp = 1716559200`
-
-              If a value from the past is specified, it is used as the starting point for the
-              segment to cut. If the value is omitted, then clip will start from now.
-
-          vod_required: Indicates if video needs to be stored also as permanent VOD
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._put(
-            f"/streaming/streams/{stream_id}/clip_recording",
-            body=maybe_transform(
-                {
-                    "duration": duration,
-                    "expiration": expiration,
-                    "start": start,
-                    "vod_required": vod_required,
-                },
-                stream_create_clip_params.StreamCreateClipParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Clip,
-        )
-
     def get(
         self,
         stream_id: int,
@@ -618,57 +480,6 @@ class StreamsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Stream,
-        )
-
-    def list_clips(
-        self,
-        stream_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StreamListClipsResponse:
-        """
-        Get list of non expired instant clips for a stream.
-
-        You can now use both MP4 just-in-time packager and HLS for all clips. Get URLs
-        from "hls_master" and "mp4_master".
-
-        **How to download renditions of clips:**
-
-        URLs contain "master" alias by default, which means maximum available quality
-        from ABR set (based on height metadata). There is also possibility to access
-        individual bitrates from ABR ladder. That works for both HLS and MP4. You can
-        replace manually "master" to a value from renditions list in order to get exact
-        bitrate/quality from the set. Example:
-
-        - HLS 720p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
-        - HLS 720p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.m3u8`
-        - MP4 360p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.mp4`
-        - MP4 360p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.mp4`
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/streaming/streams/{stream_id}/clip_recording",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=StreamListClipsResponse,
         )
 
     def start_recording(
@@ -781,6 +592,10 @@ class StreamsResource(SyncAPIResource):
 
 
 class AsyncStreamsResource(AsyncAPIResource):
+    @cached_property
+    def clips(self) -> AsyncClipsResource:
+        return AsyncClipsResource(self._client)
+
     @cached_property
     def overlays(self) -> AsyncOverlaysResource:
         return AsyncOverlaysResource(self._client)
@@ -1184,149 +999,6 @@ class AsyncStreamsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def create_clip(
-        self,
-        stream_id: int,
-        *,
-        duration: int,
-        expiration: int | Omit = omit,
-        start: int | Omit = omit,
-        vod_required: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Clip:
-        """
-        Create an instant clip from on-going live stream.
-
-        Instant clips are applicable in cases where there is no time to wait for the
-        broadcast to be completed and recorded. For example, for quickly cutting
-        highlights in sport events, or cutting an important moment in the news or live
-        performance.
-
-        DVR function must be enabled for clip recording. If the DVR is disabled, the
-        response will be error 422.
-
-        Instant clip becomes available for viewing in the following formats:
-
-        - HLS .m3u8,
-        - MP4,
-        - VOD in video hosting with a permanent link to watch video.
-
-        ![HTML Overlays](https://demo-files.gvideo.io/apidocs/clip_recording_mp4_hls.gif)
-
-        **Clip lifetime:**
-
-        Instant clips are a copy of the stream, created from a live stream. They are
-        stored in memory for a limited time, after which the clip ceases to exist and
-        you will receive a 404 on the link.
-
-        Limits that you should keep in mind:
-
-        - The clip's lifespan is controlled by `expiration` parameter.
-        - The default expiration value is 1 hour. The value can be set from 1 minute to
-          4 hours.
-        - If you want a video for longer or permanent viewing, then create a regular VOD
-          based on the clip. This way you can use the clip's link for the first time,
-          and immediately after the transcoded version is ready, you can change by
-          yourself it to a permanent link of VOD.
-        - The clip becomes available only after it is completely copied from the live
-          stream. So the clip will be available after `start + duration` exact time. If
-          you try to request it before this time, the response will be error code 425
-          "Too Early".
-
-        **Cutting a clip from a source:**
-
-        In order to use clips recording feature, DVR must be enabled for a stream:
-        "dvr_enabled: true". The DVR serves as a source for creating clips:
-
-        - By default live stream DVR is set to 1 hour (3600 seconds). You can create an
-          instant clip using any segment of this time period by specifying the desired
-          start time and duration.
-        - If you create a clip, but the DVR expires, the clip will still exist for the
-          specified time as a copy of the stream.
-
-        **Getting permanent VOD:**
-
-        To get permanent VOD version of a live clip use this parameter when making a
-        request to create a clip: `vod_required: true`.
-
-        Later, when the clip is ready, grab `video_id` value from the response and query
-        the video by regular GET /video/{id} method.
-
-        Args:
-          duration: Requested segment duration in seconds to be cut.
-
-              Please, note that cutting is based on the idea of instantly creating a clip,
-              instead of precise timing. So final segment may be:
-
-              - Less than the specified value if there is less data in the DVR than the
-                requested segment.
-              - Greater than the specified value, because segment is aligned to the first and
-                last key frames of already stored fragment in DVR, this way -1 and +1 chunks
-                can be added to left and right.
-
-              Duration of cutted segment cannot be greater than DVR duration for this stream.
-              Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
-
-          expiration: Expire time of the clip via a public link.
-
-              Unix timestamp in seconds, absolute value.
-
-              This is the time how long the instant clip will be stored in the server memory
-              and can be accessed via public HLS/MP4 links. Download and/or use the instant
-              clip before this time expires.
-
-              After the time has expired, the clip is deleted from memory and is no longer
-              available via the link. You need to create a new segment, or use
-              `vod_required: true` attribute.
-
-              If value is omitted, then expiration is counted as +3600 seconds (1 hour) to the
-              end of the clip (i.e. `unix timestamp = <start> + <duration> + 3600`).
-
-              Allowed range: 1m <= expiration <= 4h.
-
-              Example:
-              `24.05.2024 14:00:00 (GMT) + 60 seconds of duration + 3600 seconds of expiration = 24.05.2024 15:01:00 (GMT) is Unix timestamp = 1716562860`
-
-          start: Starting point of the segment to cut.
-
-              Unix timestamp in seconds, absolute value. Example:
-              `24.05.2024 14:00:00 (GMT) is Unix timestamp = 1716559200`
-
-              If a value from the past is specified, it is used as the starting point for the
-              segment to cut. If the value is omitted, then clip will start from now.
-
-          vod_required: Indicates if video needs to be stored also as permanent VOD
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._put(
-            f"/streaming/streams/{stream_id}/clip_recording",
-            body=await async_maybe_transform(
-                {
-                    "duration": duration,
-                    "expiration": expiration,
-                    "start": start,
-                    "vod_required": vod_required,
-                },
-                stream_create_clip_params.StreamCreateClipParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Clip,
-        )
-
     async def get(
         self,
         stream_id: int,
@@ -1356,57 +1028,6 @@ class AsyncStreamsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Stream,
-        )
-
-    async def list_clips(
-        self,
-        stream_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StreamListClipsResponse:
-        """
-        Get list of non expired instant clips for a stream.
-
-        You can now use both MP4 just-in-time packager and HLS for all clips. Get URLs
-        from "hls_master" and "mp4_master".
-
-        **How to download renditions of clips:**
-
-        URLs contain "master" alias by default, which means maximum available quality
-        from ABR set (based on height metadata). There is also possibility to access
-        individual bitrates from ABR ladder. That works for both HLS and MP4. You can
-        replace manually "master" to a value from renditions list in order to get exact
-        bitrate/quality from the set. Example:
-
-        - HLS 720p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.m3u8`
-        - HLS 720p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.m3u8`
-        - MP4 360p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_master.mp4`
-        - MP4 360p:
-          `https://CID.domain.com/rec/111_1000/rec_d7bsli54p8n4_qsid42_media_1_360.mp4`
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/streaming/streams/{stream_id}/clip_recording",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=StreamListClipsResponse,
         )
 
     async def start_recording(
@@ -1537,14 +1158,8 @@ class StreamsResourceWithRawResponse:
         self.clear_dvr = to_raw_response_wrapper(
             streams.clear_dvr,
         )
-        self.create_clip = to_raw_response_wrapper(
-            streams.create_clip,
-        )
         self.get = to_raw_response_wrapper(
             streams.get,
-        )
-        self.list_clips = to_raw_response_wrapper(
-            streams.list_clips,
         )
         self.start_recording = to_raw_response_wrapper(
             streams.start_recording,
@@ -1552,6 +1167,10 @@ class StreamsResourceWithRawResponse:
         self.stop_recording = to_raw_response_wrapper(
             streams.stop_recording,
         )
+
+    @cached_property
+    def clips(self) -> ClipsResourceWithRawResponse:
+        return ClipsResourceWithRawResponse(self._streams.clips)
 
     @cached_property
     def overlays(self) -> OverlaysResourceWithRawResponse:
@@ -1577,14 +1196,8 @@ class AsyncStreamsResourceWithRawResponse:
         self.clear_dvr = async_to_raw_response_wrapper(
             streams.clear_dvr,
         )
-        self.create_clip = async_to_raw_response_wrapper(
-            streams.create_clip,
-        )
         self.get = async_to_raw_response_wrapper(
             streams.get,
-        )
-        self.list_clips = async_to_raw_response_wrapper(
-            streams.list_clips,
         )
         self.start_recording = async_to_raw_response_wrapper(
             streams.start_recording,
@@ -1592,6 +1205,10 @@ class AsyncStreamsResourceWithRawResponse:
         self.stop_recording = async_to_raw_response_wrapper(
             streams.stop_recording,
         )
+
+    @cached_property
+    def clips(self) -> AsyncClipsResourceWithRawResponse:
+        return AsyncClipsResourceWithRawResponse(self._streams.clips)
 
     @cached_property
     def overlays(self) -> AsyncOverlaysResourceWithRawResponse:
@@ -1617,14 +1234,8 @@ class StreamsResourceWithStreamingResponse:
         self.clear_dvr = to_streamed_response_wrapper(
             streams.clear_dvr,
         )
-        self.create_clip = to_streamed_response_wrapper(
-            streams.create_clip,
-        )
         self.get = to_streamed_response_wrapper(
             streams.get,
-        )
-        self.list_clips = to_streamed_response_wrapper(
-            streams.list_clips,
         )
         self.start_recording = to_streamed_response_wrapper(
             streams.start_recording,
@@ -1632,6 +1243,10 @@ class StreamsResourceWithStreamingResponse:
         self.stop_recording = to_streamed_response_wrapper(
             streams.stop_recording,
         )
+
+    @cached_property
+    def clips(self) -> ClipsResourceWithStreamingResponse:
+        return ClipsResourceWithStreamingResponse(self._streams.clips)
 
     @cached_property
     def overlays(self) -> OverlaysResourceWithStreamingResponse:
@@ -1657,14 +1272,8 @@ class AsyncStreamsResourceWithStreamingResponse:
         self.clear_dvr = async_to_streamed_response_wrapper(
             streams.clear_dvr,
         )
-        self.create_clip = async_to_streamed_response_wrapper(
-            streams.create_clip,
-        )
         self.get = async_to_streamed_response_wrapper(
             streams.get,
-        )
-        self.list_clips = async_to_streamed_response_wrapper(
-            streams.list_clips,
         )
         self.start_recording = async_to_streamed_response_wrapper(
             streams.start_recording,
@@ -1672,6 +1281,10 @@ class AsyncStreamsResourceWithStreamingResponse:
         self.stop_recording = async_to_streamed_response_wrapper(
             streams.stop_recording,
         )
+
+    @cached_property
+    def clips(self) -> AsyncClipsResourceWithStreamingResponse:
+        return AsyncClipsResourceWithStreamingResponse(self._streams.clips)
 
     @cached_property
     def overlays(self) -> AsyncOverlaysResourceWithStreamingResponse:

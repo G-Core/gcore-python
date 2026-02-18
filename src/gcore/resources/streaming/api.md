@@ -177,12 +177,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.streaming import (
-    Clip,
-    Stream,
-    StreamListClipsResponse,
-    StreamStartRecordingResponse,
-)
+from gcore.types.streaming import Stream, StreamStartRecordingResponse
 ```
 
 Methods:
@@ -192,11 +187,22 @@ Methods:
 - <code title="get /streaming/streams">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">list</a>(\*\*<a href="src/gcore/types/streaming/stream_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/stream.py">SyncPageStreaming[Stream]</a></code>
 - <code title="delete /streaming/streams/{stream_id}">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">delete</a>(stream_id) -> None</code>
 - <code title="put /streaming/streams/{stream_id}/dvr_cleanup">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">clear_dvr</a>(stream_id) -> None</code>
-- <code title="put /streaming/streams/{stream_id}/clip_recording">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">create_clip</a>(stream_id, \*\*<a href="src/gcore/types/streaming/stream_create_clip_params.py">params</a>) -> <a href="./src/gcore/types/streaming/clip.py">Clip</a></code>
 - <code title="get /streaming/streams/{stream_id}">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">get</a>(stream_id) -> <a href="./src/gcore/types/streaming/stream.py">Stream</a></code>
-- <code title="get /streaming/streams/{stream_id}/clip_recording">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">list_clips</a>(stream_id) -> <a href="./src/gcore/types/streaming/stream_list_clips_response.py">StreamListClipsResponse</a></code>
 - <code title="put /streaming/streams/{stream_id}/start_recording">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">start_recording</a>(stream_id) -> <a href="./src/gcore/types/streaming/stream_start_recording_response.py">StreamStartRecordingResponse</a></code>
 - <code title="put /streaming/streams/{stream_id}/stop_recording">client.streaming.streams.<a href="./src/gcore/resources/streaming/streams/streams.py">stop_recording</a>(stream_id) -> <a href="./src/gcore/types/streaming/video.py">Video</a></code>
+
+### Clips
+
+Types:
+
+```python
+from gcore.types.streaming.streams import Clip, ClipListResponse
+```
+
+Methods:
+
+- <code title="put /streaming/streams/{stream_id}/clip_recording">client.streaming.streams.clips.<a href="./src/gcore/resources/streaming/streams/clips.py">create</a>(stream_id, \*\*<a href="src/gcore/types/streaming/streams/clip_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/streams/clip.py">Clip</a></code>
+- <code title="get /streaming/streams/{stream_id}/clip_recording">client.streaming.streams.clips.<a href="./src/gcore/resources/streaming/streams/clips.py">list</a>(stream_id) -> <a href="./src/gcore/types/streaming/streams/clip_list_response.py">ClipListResponse</a></code>
 
 ### Overlays
 

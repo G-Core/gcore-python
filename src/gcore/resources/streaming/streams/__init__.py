@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .clips import (
+    ClipsResource,
+    AsyncClipsResource,
+    ClipsResourceWithRawResponse,
+    AsyncClipsResourceWithRawResponse,
+    ClipsResourceWithStreamingResponse,
+    AsyncClipsResourceWithStreamingResponse,
+)
 from .streams import (
     StreamsResource,
     AsyncStreamsResource,
@@ -18,6 +26,12 @@ from .overlays import (
 )
 
 __all__ = [
+    "ClipsResource",
+    "AsyncClipsResource",
+    "ClipsResourceWithRawResponse",
+    "AsyncClipsResourceWithRawResponse",
+    "ClipsResourceWithStreamingResponse",
+    "AsyncClipsResourceWithStreamingResponse",
     "OverlaysResource",
     "AsyncOverlaysResource",
     "OverlaysResourceWithRawResponse",

@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from .clip import Clip as Clip
 from .overlay import Overlay as Overlay
+from .clip_create_params import ClipCreateParams as ClipCreateParams
+from .clip_list_response import ClipListResponse as ClipListResponse
 from .overlay_create_params import OverlayCreateParams as OverlayCreateParams
 from .overlay_list_response import OverlayListResponse as OverlayListResponse
 from .overlay_update_params import OverlayUpdateParams as OverlayUpdateParams
