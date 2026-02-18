@@ -16,32 +16,32 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.cdn import ip_range_list_params
+from ...types.cdn import ip_list_params
 from ..._base_client import make_request_options
-from ...types.cdn.public_network_list import PublicNetworkList
+from ...types.cdn.public_ip_list import PublicIPList
 
-__all__ = ["IPRangesResource", "AsyncIPRangesResource"]
+__all__ = ["IPsResource", "AsyncIPsResource"]
 
 
-class IPRangesResource(SyncAPIResource):
+class IPsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IPRangesResourceWithRawResponse:
+    def with_raw_response(self) -> IPsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return IPRangesResourceWithRawResponse(self)
+        return IPsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IPRangesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> IPsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return IPRangesResourceWithStreamingResponse(self)
+        return IPsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -54,13 +54,14 @@ class IPRangesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicNetworkList:
+    ) -> PublicIPList:
         """
-        Get all CDN networks that can be used to pull content from your origin.
+        Get all IP addresses of CDN servers that can be used to pull content from your
+        origin.
 
-        This list is updated periodically. If you want to use network from this list to
-        configure IP ACL on your origin, you need to independently monitor its
-        relevance. We recommend using a script for automatically update IP ACL.
+        This list is updated periodically. If you want to use IP from this list to
+        configure IP ACL in your origin, you need to independently monitor its
+        relevance. We recommend using a script to automatically update IP ACL.
 
         This request does not require authorization.
 
@@ -81,37 +82,37 @@ class IPRangesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            "/cdn/public-net-list",
+            "/cdn/public-ip-list",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"format": format}, ip_range_list_params.IPRangeListParams),
+                query=maybe_transform({"format": format}, ip_list_params.IPListParams),
             ),
-            cast_to=PublicNetworkList,
+            cast_to=PublicIPList,
         )
 
 
-class AsyncIPRangesResource(AsyncAPIResource):
+class AsyncIPsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIPRangesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncIPsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncIPRangesResourceWithRawResponse(self)
+        return AsyncIPsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIPRangesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncIPsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncIPRangesResourceWithStreamingResponse(self)
+        return AsyncIPsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -124,13 +125,14 @@ class AsyncIPRangesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicNetworkList:
+    ) -> PublicIPList:
         """
-        Get all CDN networks that can be used to pull content from your origin.
+        Get all IP addresses of CDN servers that can be used to pull content from your
+        origin.
 
-        This list is updated periodically. If you want to use network from this list to
-        configure IP ACL on your origin, you need to independently monitor its
-        relevance. We recommend using a script for automatically update IP ACL.
+        This list is updated periodically. If you want to use IP from this list to
+        configure IP ACL in your origin, you need to independently monitor its
+        relevance. We recommend using a script to automatically update IP ACL.
 
         This request does not require authorization.
 
@@ -151,49 +153,49 @@ class AsyncIPRangesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            "/cdn/public-net-list",
+            "/cdn/public-ip-list",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"format": format}, ip_range_list_params.IPRangeListParams),
+                query=await async_maybe_transform({"format": format}, ip_list_params.IPListParams),
             ),
-            cast_to=PublicNetworkList,
+            cast_to=PublicIPList,
         )
 
 
-class IPRangesResourceWithRawResponse:
-    def __init__(self, ip_ranges: IPRangesResource) -> None:
-        self._ip_ranges = ip_ranges
+class IPsResourceWithRawResponse:
+    def __init__(self, ips: IPsResource) -> None:
+        self._ips = ips
 
         self.list = to_raw_response_wrapper(
-            ip_ranges.list,
+            ips.list,
         )
 
 
-class AsyncIPRangesResourceWithRawResponse:
-    def __init__(self, ip_ranges: AsyncIPRangesResource) -> None:
-        self._ip_ranges = ip_ranges
+class AsyncIPsResourceWithRawResponse:
+    def __init__(self, ips: AsyncIPsResource) -> None:
+        self._ips = ips
 
         self.list = async_to_raw_response_wrapper(
-            ip_ranges.list,
+            ips.list,
         )
 
 
-class IPRangesResourceWithStreamingResponse:
-    def __init__(self, ip_ranges: IPRangesResource) -> None:
-        self._ip_ranges = ip_ranges
+class IPsResourceWithStreamingResponse:
+    def __init__(self, ips: IPsResource) -> None:
+        self._ips = ips
 
         self.list = to_streamed_response_wrapper(
-            ip_ranges.list,
+            ips.list,
         )
 
 
-class AsyncIPRangesResourceWithStreamingResponse:
-    def __init__(self, ip_ranges: AsyncIPRangesResource) -> None:
-        self._ip_ranges = ip_ranges
+class AsyncIPsResourceWithStreamingResponse:
+    def __init__(self, ips: AsyncIPsResource) -> None:
+        self._ips = ips
 
         self.list = async_to_streamed_response_wrapper(
-            ip_ranges.list,
+            ips.list,
         )
