@@ -12,6 +12,7 @@ from .cdn_log_entry import CDNLogEntry as CDNLogEntry
 from .origin_groups import OriginGroups as OriginGroups
 from .rule_template import RuleTemplate as RuleTemplate
 from .ca_certificate import CaCertificate as CaCertificate
+from .ip_list_params import IPListParams as IPListParams
 from .public_ip_list import PublicIPList as PublicIPList
 from .alibaba_regions import AlibabaRegions as AlibabaRegions
 from .log_list_params import LogListParams as LogListParams
@@ -39,7 +40,6 @@ from .cdn_available_features import CDNAvailableFeatures as CDNAvailableFeatures
 from .certificate_list_params import CertificateListParams as CertificateListParams
 from .shield_aggregated_stats import ShieldAggregatedStats as ShieldAggregatedStats
 from .cdn_resource_list_params import CDNResourceListParams as CDNResourceListParams
-from .ip_range_list_ips_params import IPRangeListIPsParams as IPRangeListIPsParams
 from .logs_uploader_validation import LogsUploaderValidation as LogsUploaderValidation
 from .origin_group_list_params import OriginGroupListParams as OriginGroupListParams
 from .cdn_resource_purge_params import CDNResourcePurgeParams as CDNResourcePurgeParams

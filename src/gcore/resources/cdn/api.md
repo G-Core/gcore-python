@@ -299,10 +299,21 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn import PublicIPList, PublicNetworkList
+from gcore.types.cdn import PublicNetworkList
 ```
 
 Methods:
 
 - <code title="get /cdn/public-net-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list</a>(\*\*<a href="src/gcore/types/cdn/ip_range_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_network_list.py">PublicNetworkList</a></code>
-- <code title="get /cdn/public-ip-list">client.cdn.ip_ranges.<a href="./src/gcore/resources/cdn/ip_ranges.py">list_ips</a>(\*\*<a href="src/gcore/types/cdn/ip_range_list_ips_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_ip_list.py">PublicIPList</a></code>
+
+## IPs
+
+Types:
+
+```python
+from gcore.types.cdn import PublicIPList
+```
+
+Methods:
+
+- <code title="get /cdn/public-ip-list">client.cdn.ips.<a href="./src/gcore/resources/cdn/ips.py">list</a>(\*\*<a href="src/gcore/types/cdn/ip_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_ip_list.py">PublicIPList</a></code>
