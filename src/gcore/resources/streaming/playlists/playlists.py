@@ -7,27 +7,38 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .videos import (
+    VideosResource,
+    AsyncVideosResource,
+    VideosResourceWithRawResponse,
+    AsyncVideosResourceWithRawResponse,
+    VideosResourceWithStreamingResponse,
+    AsyncVideosResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ...._utils import maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncPageStreaming, AsyncPageStreaming
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.streaming import playlist_list_params, playlist_create_params, playlist_update_params
-from ...types.streaming.playlist import Playlist
-from ...types.streaming.playlist_created import PlaylistCreated
-from ...types.streaming.playlist_list_videos_response import PlaylistListVideosResponse
+from ....pagination import SyncPageStreaming, AsyncPageStreaming
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.streaming import playlist_list_params, playlist_create_params, playlist_update_params
+from ....types.streaming.playlist import Playlist
+from ....types.streaming.playlist_created import PlaylistCreated
 
 __all__ = ["PlaylistsResource", "AsyncPlaylistsResource"]
 
 
 class PlaylistsResource(SyncAPIResource):
+    @cached_property
+    def videos(self) -> VideosResource:
+        return VideosResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> PlaylistsResourceWithRawResponse:
         """
@@ -486,39 +497,12 @@ class PlaylistsResource(SyncAPIResource):
             cast_to=Playlist,
         )
 
-    def list_videos(
-        self,
-        playlist_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlaylistListVideosResponse:
-        """
-        Shows ordered array of playlist videos
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/streaming/playlists/{playlist_id}/videos",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PlaylistListVideosResponse,
-        )
-
 
 class AsyncPlaylistsResource(AsyncAPIResource):
+    @cached_property
+    def videos(self) -> AsyncVideosResource:
+        return AsyncVideosResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncPlaylistsResourceWithRawResponse:
         """
@@ -977,37 +961,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             cast_to=Playlist,
         )
 
-    async def list_videos(
-        self,
-        playlist_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlaylistListVideosResponse:
-        """
-        Shows ordered array of playlist videos
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/streaming/playlists/{playlist_id}/videos",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PlaylistListVideosResponse,
-        )
-
 
 class PlaylistsResourceWithRawResponse:
     def __init__(self, playlists: PlaylistsResource) -> None:
@@ -1028,9 +981,10 @@ class PlaylistsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             playlists.get,
         )
-        self.list_videos = to_raw_response_wrapper(
-            playlists.list_videos,
-        )
+
+    @cached_property
+    def videos(self) -> VideosResourceWithRawResponse:
+        return VideosResourceWithRawResponse(self._playlists.videos)
 
 
 class AsyncPlaylistsResourceWithRawResponse:
@@ -1052,9 +1006,10 @@ class AsyncPlaylistsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             playlists.get,
         )
-        self.list_videos = async_to_raw_response_wrapper(
-            playlists.list_videos,
-        )
+
+    @cached_property
+    def videos(self) -> AsyncVideosResourceWithRawResponse:
+        return AsyncVideosResourceWithRawResponse(self._playlists.videos)
 
 
 class PlaylistsResourceWithStreamingResponse:
@@ -1076,9 +1031,10 @@ class PlaylistsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             playlists.get,
         )
-        self.list_videos = to_streamed_response_wrapper(
-            playlists.list_videos,
-        )
+
+    @cached_property
+    def videos(self) -> VideosResourceWithStreamingResponse:
+        return VideosResourceWithStreamingResponse(self._playlists.videos)
 
 
 class AsyncPlaylistsResourceWithStreamingResponse:
@@ -1100,6 +1056,7 @@ class AsyncPlaylistsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             playlists.get,
         )
-        self.list_videos = async_to_streamed_response_wrapper(
-            playlists.list_videos,
-        )
+
+    @cached_property
+    def videos(self) -> AsyncVideosResourceWithStreamingResponse:
+        return AsyncVideosResourceWithStreamingResponse(self._playlists.videos)
