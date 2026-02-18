@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .playlist_video import PlaylistVideo
+from ..playlist_video import PlaylistVideo
 
-__all__ = ["PlaylistListVideosResponse"]
+__all__ = ["VideoListResponse"]
 
-PlaylistListVideosResponse: TypeAlias = List[PlaylistVideo]
+VideoListResponse: TypeAlias = List[PlaylistVideo]
