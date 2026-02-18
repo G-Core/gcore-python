@@ -21,11 +21,11 @@ class StorageCreateParams(TypedDict, total=False):
     must be less than 256 characters.
     """
 
-    type: Required[Literal["sftp", "s3"]]
+    type: Required[Literal["sftp", "s3_compatible"]]
     """Storage protocol type.
 
-    Choose 's3' for S3-compatible object storage with API access, or `sftp` for SFTP
-    file transfer protocol.
+    Choose 's3_compatible' for S3-compatible object storage with API access, or
+    `sftp` for SFTP file transfer protocol.
     """
 
     generate_sftp_password: bool

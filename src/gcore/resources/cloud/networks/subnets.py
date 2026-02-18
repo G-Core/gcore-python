@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -64,7 +64,7 @@ class SubnetsResource(SyncAPIResource):
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
         ip_version: IPVersion | Omit = omit,
         router_id_to_connect: Optional[str] | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -524,7 +524,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
         ip_version: IPVersion | Omit = omit,
         router_id_to_connect: Optional[str] | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

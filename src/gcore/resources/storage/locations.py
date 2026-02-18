@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -42,6 +44,7 @@ class LocationsResource(SyncAPIResource):
         """
         return LocationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -57,7 +60,8 @@ class LocationsResource(SyncAPIResource):
         """Returns available storage locations where you can create storages.
 
         Each location
-        represents a geographic region with specific data center facilities.
+        represents a geographic region with specific data center facilities. Deprecated,
+        use GET /provisioning/v3/locations instead.
 
         Args:
           extra_headers: Send extra headers
@@ -108,6 +112,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         """
         return AsyncLocationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -123,7 +128,8 @@ class AsyncLocationsResource(AsyncAPIResource):
         """Returns available storage locations where you can create storages.
 
         Each location
-        represents a geographic region with specific data center facilities.
+        represents a geographic region with specific data center facilities. Deprecated,
+        use GET /provisioning/v3/locations instead.
 
         Args:
           extra_headers: Send extra headers
@@ -158,8 +164,10 @@ class LocationsResourceWithRawResponse:
     def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
-        self.list = to_raw_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -167,8 +175,10 @@ class AsyncLocationsResourceWithRawResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
-        self.list = async_to_raw_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -176,8 +186,10 @@ class LocationsResourceWithStreamingResponse:
     def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
-        self.list = to_streamed_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -185,6 +197,8 @@ class AsyncLocationsResourceWithStreamingResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
-        self.list = async_to_streamed_response_wrapper(
-            locations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                locations.list,  # pyright: ignore[reportDeprecated],
+            )
         )

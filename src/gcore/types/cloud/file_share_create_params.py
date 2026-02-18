@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -37,7 +37,7 @@ class CreateStandardFileShareSerializer(TypedDict, total=False):
     access: Iterable[CreateStandardFileShareSerializerAccess]
     """Access Rules"""
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -94,7 +94,7 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     share_settings: CreateVastFileShareSerializerShareSettings
     """Configuration settings for the share"""
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

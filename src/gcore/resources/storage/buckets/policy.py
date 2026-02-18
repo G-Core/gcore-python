@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
@@ -39,6 +41,7 @@ class PolicyResource(SyncAPIResource):
         """
         return PolicyResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         bucket_name: str,
@@ -57,6 +60,10 @@ class PolicyResource(SyncAPIResource):
         bucket suitable for static website hosting, public file sharing, or CDN
         integration. Only grants read access - users cannot upload, modify, or delete
         objects without proper authentication.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        {"public": true}} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -78,6 +85,7 @@ class PolicyResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         bucket_name: str,
@@ -95,6 +103,10 @@ class PolicyResource(SyncAPIResource):
         accessible only with proper authentication credentials. After this operation,
         anonymous users will no longer be able to access bucket contents via HTTP
         requests.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        {"public": false}} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -116,6 +128,7 @@ class PolicyResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         bucket_name: str,
@@ -131,6 +144,10 @@ class PolicyResource(SyncAPIResource):
         """
         Returns whether the S3 bucket is currently configured for public read access.
         Shows if anonymous users can download objects from the bucket via HTTP requests.
+
+        Deprecated: Use GET
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead, which
+        returns policy status along with CORS and lifecycle configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -172,6 +189,7 @@ class AsyncPolicyResource(AsyncAPIResource):
         """
         return AsyncPolicyResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         bucket_name: str,
@@ -190,6 +208,10 @@ class AsyncPolicyResource(AsyncAPIResource):
         bucket suitable for static website hosting, public file sharing, or CDN
         integration. Only grants read access - users cannot upload, modify, or delete
         objects without proper authentication.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        {"public": true}} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -211,6 +233,7 @@ class AsyncPolicyResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         bucket_name: str,
@@ -228,6 +251,10 @@ class AsyncPolicyResource(AsyncAPIResource):
         accessible only with proper authentication credentials. After this operation,
         anonymous users will no longer be able to access bucket contents via HTTP
         requests.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        {"public": false}} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -249,6 +276,7 @@ class AsyncPolicyResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         bucket_name: str,
@@ -264,6 +292,10 @@ class AsyncPolicyResource(AsyncAPIResource):
         """
         Returns whether the S3 bucket is currently configured for public read access.
         Shows if anonymous users can download objects from the bucket via HTTP requests.
+
+        Deprecated: Use GET
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead, which
+        returns policy status along with CORS and lifecycle configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -289,14 +321,20 @@ class PolicyResourceWithRawResponse:
     def __init__(self, policy: PolicyResource) -> None:
         self._policy = policy
 
-        self.create = to_raw_response_wrapper(
-            policy.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                policy.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            policy.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                policy.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            policy.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                policy.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -304,14 +342,20 @@ class AsyncPolicyResourceWithRawResponse:
     def __init__(self, policy: AsyncPolicyResource) -> None:
         self._policy = policy
 
-        self.create = async_to_raw_response_wrapper(
-            policy.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                policy.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            policy.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                policy.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            policy.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                policy.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -319,14 +363,20 @@ class PolicyResourceWithStreamingResponse:
     def __init__(self, policy: PolicyResource) -> None:
         self._policy = policy
 
-        self.create = to_streamed_response_wrapper(
-            policy.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                policy.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            policy.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                policy.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            policy.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                policy.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -334,12 +384,18 @@ class AsyncPolicyResourceWithStreamingResponse:
     def __init__(self, policy: AsyncPolicyResource) -> None:
         self._policy = policy
 
-        self.create = async_to_streamed_response_wrapper(
-            policy.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                policy.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            policy.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                policy.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            policy.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                policy.get,  # pyright: ignore[reportDeprecated],
+            )
         )

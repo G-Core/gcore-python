@@ -22,5 +22,5 @@ class Location(BaseModel):
     title: str
     """Human-readable title for the location"""
 
-    type: Literal["s3", "sftp"]
+    type: Literal["s3_compatible", "sftp"]
     """Storage protocol type supported in this location"""

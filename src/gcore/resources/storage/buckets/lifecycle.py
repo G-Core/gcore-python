@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -40,6 +42,7 @@ class LifecycleResource(SyncAPIResource):
         """
         return LifecycleResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         bucket_name: str,
@@ -60,6 +63,10 @@ class LifecycleResource(SyncAPIResource):
         storage costs and meet compliance requirements. This applies a global lifecycle
         rule to the entire bucket - all existing and future objects will be subject to
         the expiration policy.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
+        {"lifecycle": {"expiration_days": N}} instead.
 
         Args:
           expiration_days: Number of days after which objects will be automatically deleted from the
@@ -86,6 +93,7 @@ class LifecycleResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         bucket_name: str,
@@ -101,6 +109,10 @@ class LifecycleResource(SyncAPIResource):
         """
         Removes all lifecycle rules from an S3 bucket, disabling automatic object
         expiration. Objects will no longer be automatically deleted based on age.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
+        {"lifecycle": {"expiration_days": null}} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -143,6 +155,7 @@ class AsyncLifecycleResource(AsyncAPIResource):
         """
         return AsyncLifecycleResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         bucket_name: str,
@@ -163,6 +176,10 @@ class AsyncLifecycleResource(AsyncAPIResource):
         storage costs and meet compliance requirements. This applies a global lifecycle
         rule to the entire bucket - all existing and future objects will be subject to
         the expiration policy.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
+        {"lifecycle": {"expiration_days": N}} instead.
 
         Args:
           expiration_days: Number of days after which objects will be automatically deleted from the
@@ -191,6 +208,7 @@ class AsyncLifecycleResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         bucket_name: str,
@@ -206,6 +224,10 @@ class AsyncLifecycleResource(AsyncAPIResource):
         """
         Removes all lifecycle rules from an S3 bucket, disabling automatic object
         expiration. Objects will no longer be automatically deleted based on age.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
+        {"lifecycle": {"expiration_days": null}} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -232,11 +254,15 @@ class LifecycleResourceWithRawResponse:
     def __init__(self, lifecycle: LifecycleResource) -> None:
         self._lifecycle = lifecycle
 
-        self.create = to_raw_response_wrapper(
-            lifecycle.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                lifecycle.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            lifecycle.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                lifecycle.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -244,11 +270,15 @@ class AsyncLifecycleResourceWithRawResponse:
     def __init__(self, lifecycle: AsyncLifecycleResource) -> None:
         self._lifecycle = lifecycle
 
-        self.create = async_to_raw_response_wrapper(
-            lifecycle.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                lifecycle.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            lifecycle.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                lifecycle.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -256,11 +286,15 @@ class LifecycleResourceWithStreamingResponse:
     def __init__(self, lifecycle: LifecycleResource) -> None:
         self._lifecycle = lifecycle
 
-        self.create = to_streamed_response_wrapper(
-            lifecycle.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                lifecycle.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            lifecycle.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                lifecycle.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -268,9 +302,13 @@ class AsyncLifecycleResourceWithStreamingResponse:
     def __init__(self, lifecycle: AsyncLifecycleResource) -> None:
         self._lifecycle = lifecycle
 
-        self.create = async_to_streamed_response_wrapper(
-            lifecycle.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                lifecycle.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            lifecycle.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                lifecycle.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
