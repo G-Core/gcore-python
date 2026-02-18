@@ -211,6 +211,7 @@ class StorageResource(SyncAPIResource):
             cast_to=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -238,6 +239,9 @@ class StorageResource(SyncAPIResource):
         Response format: count: total number of storages matching the filter
         (independent of pagination) results: the current page of storages according to
         limit/offset
+
+        Deprecated: Use GET /v4/`object_storages` for S3 storages or GET
+        /v4/`sftp_storages` for SFTP storages instead.
 
         Args:
           id: Filter by storage ID
@@ -332,6 +336,7 @@ class StorageResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         storage_id: int,
@@ -346,6 +351,9 @@ class StorageResource(SyncAPIResource):
         """
         Retrieves detailed information about a specific storage including its
         configuration, credentials, and current status.
+
+        Deprecated: Use GET /v4/`object_storages`/{`storage_id`} for S3 storages or GET
+        /v4/`sftp_storages`/{`storage_id`} for SFTP storages instead.
 
         Args:
           extra_headers: Send extra headers
@@ -405,6 +413,7 @@ class StorageResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def restore(
         self,
         storage_id: int,
@@ -420,6 +429,9 @@ class StorageResource(SyncAPIResource):
         """
         Restores a previously deleted S3 storage if it was deleted within the last 2
         weeks. SFTP storages cannot be restored.
+
+        Deprecated: Use POST
+        /provisioning/v3/storages/`s3_compatible`/{`storage_id`}/restore instead.
 
         Args:
           extra_headers: Send extra headers
@@ -639,6 +651,7 @@ class AsyncStorageResource(AsyncAPIResource):
             cast_to=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -666,6 +679,9 @@ class AsyncStorageResource(AsyncAPIResource):
         Response format: count: total number of storages matching the filter
         (independent of pagination) results: the current page of storages according to
         limit/offset
+
+        Deprecated: Use GET /v4/`object_storages` for S3 storages or GET
+        /v4/`sftp_storages` for SFTP storages instead.
 
         Args:
           id: Filter by storage ID
@@ -760,6 +776,7 @@ class AsyncStorageResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         storage_id: int,
@@ -774,6 +791,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         Retrieves detailed information about a specific storage including its
         configuration, credentials, and current status.
+
+        Deprecated: Use GET /v4/`object_storages`/{`storage_id`} for S3 storages or GET
+        /v4/`sftp_storages`/{`storage_id`} for SFTP storages instead.
 
         Args:
           extra_headers: Send extra headers
@@ -833,6 +853,7 @@ class AsyncStorageResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def restore(
         self,
         storage_id: int,
@@ -848,6 +869,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         Restores a previously deleted S3 storage if it was deleted within the last 2
         weeks. SFTP storages cannot be restored.
+
+        Deprecated: Use POST
+        /provisioning/v3/storages/`s3_compatible`/{`storage_id`}/restore instead.
 
         Args:
           extra_headers: Send extra headers
@@ -929,24 +953,30 @@ class StorageResourceWithRawResponse:
                 storage.update,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = to_raw_response_wrapper(
-            storage.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 storage.delete,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get = to_raw_response_wrapper(
-            storage.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.get,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.restore = to_raw_response_wrapper(
-            storage.restore,
+        self.restore = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.restore,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -985,24 +1015,30 @@ class AsyncStorageResourceWithRawResponse:
                 storage.update,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = async_to_raw_response_wrapper(
-            storage.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 storage.delete,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get = async_to_raw_response_wrapper(
-            storage.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.get,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.restore = async_to_raw_response_wrapper(
-            storage.restore,
+        self.restore = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.restore,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -1041,24 +1077,30 @@ class StorageResourceWithStreamingResponse:
                 storage.update,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = to_streamed_response_wrapper(
-            storage.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 storage.delete,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get = to_streamed_response_wrapper(
-            storage.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.get,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.restore = to_streamed_response_wrapper(
-            storage.restore,
+        self.restore = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.restore,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -1097,24 +1139,30 @@ class AsyncStorageResourceWithStreamingResponse:
                 storage.update,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = async_to_streamed_response_wrapper(
-            storage.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 storage.delete,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get = async_to_streamed_response_wrapper(
-            storage.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.get,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.restore = async_to_streamed_response_wrapper(
-            storage.restore,
+        self.restore = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.restore,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
