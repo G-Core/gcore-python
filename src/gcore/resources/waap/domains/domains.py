@@ -15,6 +15,14 @@ from .insights import (
     InsightsResourceWithStreamingResponse,
     AsyncInsightsResourceWithStreamingResponse,
 )
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -100,7 +108,6 @@ from .api_discovery.api_discovery import (
     APIDiscoveryResourceWithStreamingResponse,
     AsyncAPIDiscoveryResourceWithStreamingResponse,
 )
-from ....types.waap.waap_policy_mode import WaapPolicyMode
 from ....types.waap.waap_summary_domain import WaapSummaryDomain
 from ....types.waap.waap_detailed_domain import WaapDetailedDomain
 from ....types.waap.domain_list_rule_sets_response import DomainListRuleSetsResponse
@@ -109,6 +116,10 @@ __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
 
 class DomainsResource(SyncAPIResource):
+    @cached_property
+    def policies(self) -> PoliciesResource:
+        return PoliciesResource(self._client)
+
     @cached_property
     def settings(self) -> SettingsResource:
         return SettingsResource(self._client)
@@ -371,46 +382,12 @@ class DomainsResource(SyncAPIResource):
             cast_to=DomainListRuleSetsResponse,
         )
 
-    def toggle_policy(
-        self,
-        policy_id: str,
-        *,
-        domain_id: int,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WaapPolicyMode:
-        """
-        Modify the activation state of a policy associated with a domain
-
-        Args:
-          domain_id: The domain ID
-
-          policy_id: The ID of the policy to toggle
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not policy_id:
-            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return self._patch(
-            f"/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=WaapPolicyMode,
-        )
-
 
 class AsyncDomainsResource(AsyncAPIResource):
+    @cached_property
+    def policies(self) -> AsyncPoliciesResource:
+        return AsyncPoliciesResource(self._client)
+
     @cached_property
     def settings(self) -> AsyncSettingsResource:
         return AsyncSettingsResource(self._client)
@@ -673,44 +650,6 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=DomainListRuleSetsResponse,
         )
 
-    async def toggle_policy(
-        self,
-        policy_id: str,
-        *,
-        domain_id: int,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WaapPolicyMode:
-        """
-        Modify the activation state of a policy associated with a domain
-
-        Args:
-          domain_id: The domain ID
-
-          policy_id: The ID of the policy to toggle
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not policy_id:
-            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return await self._patch(
-            f"/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=WaapPolicyMode,
-        )
-
 
 class DomainsResourceWithRawResponse:
     def __init__(self, domains: DomainsResource) -> None:
@@ -731,9 +670,10 @@ class DomainsResourceWithRawResponse:
         self.list_rule_sets = to_raw_response_wrapper(
             domains.list_rule_sets,
         )
-        self.toggle_policy = to_raw_response_wrapper(
-            domains.toggle_policy,
-        )
+
+    @cached_property
+    def policies(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self._domains.policies)
 
     @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
@@ -795,9 +735,10 @@ class AsyncDomainsResourceWithRawResponse:
         self.list_rule_sets = async_to_raw_response_wrapper(
             domains.list_rule_sets,
         )
-        self.toggle_policy = async_to_raw_response_wrapper(
-            domains.toggle_policy,
-        )
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self._domains.policies)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
@@ -859,9 +800,10 @@ class DomainsResourceWithStreamingResponse:
         self.list_rule_sets = to_streamed_response_wrapper(
             domains.list_rule_sets,
         )
-        self.toggle_policy = to_streamed_response_wrapper(
-            domains.toggle_policy,
-        )
+
+    @cached_property
+    def policies(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self._domains.policies)
 
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
@@ -923,9 +865,10 @@ class AsyncDomainsResourceWithStreamingResponse:
         self.list_rule_sets = async_to_streamed_response_wrapper(
             domains.list_rule_sets,
         )
-        self.toggle_policy = async_to_streamed_response_wrapper(
-            domains.toggle_policy,
-        )
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self._domains.policies)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
