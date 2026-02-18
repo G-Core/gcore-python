@@ -22,9 +22,9 @@ def main() -> None:
 def create_storage(*, client: Gcore) -> int:
     print("\n=== CREATE STORAGE ===")
     name = f"example-s3-storage-{int(time.time())}"
-    storage = client.storage.create(
+    storage = client.storage.create( # pyright: ignore[reportDeprecated]
         name=name,
-        type="s3",
+        type="s3_compatible",
         location="s-ed1",
     )
     print(f"Created Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}")
@@ -57,7 +57,7 @@ def get_storage(*, client: Gcore, storage_id: int) -> None:
 
 def update_storage(*, client: Gcore, storage_id: int) -> None:
     print("\n=== UPDATE STORAGE ===")
-    storage = client.storage.update(
+    storage = client.storage.update( # pyright: ignore[reportDeprecated]
         storage_id=storage_id,
         expires="30 days",
     )
@@ -67,7 +67,7 @@ def update_storage(*, client: Gcore, storage_id: int) -> None:
 
 def delete_storage(*, client: Gcore, storage_id: int) -> None:
     print("\n=== DELETE STORAGE ===")
-    client.storage.delete(storage_id=storage_id)
+    client.storage.delete(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(f"Storage {storage_id} deleted successfully")
     print("======================")
 

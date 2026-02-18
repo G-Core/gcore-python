@@ -31,9 +31,9 @@ def main() -> None:
 def create_s3_storage(*, client: Gcore) -> int:
     print("\n=== CREATE S3 STORAGE ===")
     storage_name = f"s3-bucket-example-{int(time.time())}"
-    storage = client.storage.create(
+    storage = client.storage.create( # pyright: ignore[reportDeprecated]
         name=storage_name,
-        type="s3",
+        type="s3_compatible",
         location="s-ed1",
     )
     print(f"Created Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}")
@@ -66,7 +66,7 @@ def create_bucket(*, client: Gcore, storage_id: int) -> str:
     print("\n=== CREATE BUCKET ===")
     timestamp = int(time.time())
     bucket_name = f"example-bucket-{timestamp}"
-    client.storage.buckets.create(
+    client.storage.buckets.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
     )
@@ -77,7 +77,7 @@ def create_bucket(*, client: Gcore, storage_id: int) -> str:
 
 def list_buckets(*, client: Gcore, storage_id: int) -> None:
     print("\n=== LIST BUCKETS ===")
-    buckets = client.storage.buckets.list(storage_id=storage_id)
+    buckets = client.storage.buckets.list(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     for count, bucket in enumerate(buckets, 1):
         lifecycle_info = f", Lifecycle: {bucket.lifecycle} days" if bucket.lifecycle and bucket.lifecycle > 0 else ""
         print(f"  {count}. Bucket: Name={bucket.name}{lifecycle_info}")
@@ -86,7 +86,7 @@ def list_buckets(*, client: Gcore, storage_id: int) -> None:
 
 def set_bucket_lifecycle(*, client: Gcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== SET BUCKET LIFECYCLE ===")
-    client.storage.buckets.lifecycle.create(
+    client.storage.buckets.lifecycle.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
         expiration_days=30,
@@ -97,7 +97,7 @@ def set_bucket_lifecycle(*, client: Gcore, storage_id: int, bucket_name: str) ->
 
 def set_bucket_cors(*, client: Gcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== SET BUCKET CORS ===")
-    client.storage.buckets.cors.create(
+    client.storage.buckets.cors.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
         allowed_origins=["*"],
@@ -108,7 +108,7 @@ def set_bucket_cors(*, client: Gcore, storage_id: int, bucket_name: str) -> None
 
 def set_bucket_policy(*, client: Gcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== SET BUCKET POLICY ===")
-    client.storage.buckets.policy.create(
+    client.storage.buckets.policy.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
     )
@@ -118,7 +118,7 @@ def set_bucket_policy(*, client: Gcore, storage_id: int, bucket_name: str) -> No
 
 def delete_bucket(*, client: Gcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== DELETE BUCKET ===")
-    client.storage.buckets.delete(
+    client.storage.buckets.delete( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
     )
@@ -128,7 +128,7 @@ def delete_bucket(*, client: Gcore, storage_id: int, bucket_name: str) -> None:
 
 def delete_storage(*, client: Gcore, storage_id: int) -> None:
     print("\n=== DELETE STORAGE ===")
-    client.storage.delete(storage_id=storage_id)
+    client.storage.delete(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(f"Storage {storage_id} deleted successfully")
     print("======================")
 
