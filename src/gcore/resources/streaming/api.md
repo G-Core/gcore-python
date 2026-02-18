@@ -106,22 +106,28 @@ Methods:
 Types:
 
 ```python
-from gcore.types.streaming import (
-    Playlist,
-    PlaylistCreated,
-    PlaylistVideo,
-    PlaylistListVideosResponse,
-)
+from gcore.types.streaming import Playlist, PlaylistCreated, PlaylistVideo
 ```
 
 Methods:
 
-- <code title="post /streaming/playlists">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists.py">create</a>(\*\*<a href="src/gcore/types/streaming/playlist_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist_created.py">PlaylistCreated</a></code>
-- <code title="patch /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists.py">update</a>(playlist_id, \*\*<a href="src/gcore/types/streaming/playlist_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist.py">Playlist</a></code>
-- <code title="get /streaming/playlists">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists.py">list</a>(\*\*<a href="src/gcore/types/streaming/playlist_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist.py">SyncPageStreaming[Playlist]</a></code>
-- <code title="delete /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists.py">delete</a>(playlist_id) -> None</code>
-- <code title="get /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists.py">get</a>(playlist_id) -> <a href="./src/gcore/types/streaming/playlist.py">Playlist</a></code>
-- <code title="get /streaming/playlists/{playlist_id}/videos">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists.py">list_videos</a>(playlist_id) -> <a href="./src/gcore/types/streaming/playlist_list_videos_response.py">PlaylistListVideosResponse</a></code>
+- <code title="post /streaming/playlists">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">create</a>(\*\*<a href="src/gcore/types/streaming/playlist_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist_created.py">PlaylistCreated</a></code>
+- <code title="patch /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">update</a>(playlist_id, \*\*<a href="src/gcore/types/streaming/playlist_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist.py">Playlist</a></code>
+- <code title="get /streaming/playlists">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">list</a>(\*\*<a href="src/gcore/types/streaming/playlist_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist.py">SyncPageStreaming[Playlist]</a></code>
+- <code title="delete /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">delete</a>(playlist_id) -> None</code>
+- <code title="get /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">get</a>(playlist_id) -> <a href="./src/gcore/types/streaming/playlist.py">Playlist</a></code>
+
+### Videos
+
+Types:
+
+```python
+from gcore.types.streaming.playlists import VideoListResponse
+```
+
+Methods:
+
+- <code title="get /streaming/playlists/{playlist_id}/videos">client.streaming.playlists.videos.<a href="./src/gcore/resources/streaming/playlists/videos.py">list</a>(playlist_id) -> <a href="./src/gcore/types/streaming/playlists/video_list_response.py">VideoListResponse</a></code>
 
 ## Videos
 

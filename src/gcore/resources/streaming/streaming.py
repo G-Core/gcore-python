@@ -19,14 +19,6 @@ from .ai_tasks import (
     AsyncAITasksResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .playlists import (
-    PlaylistsResource,
-    AsyncPlaylistsResource,
-    PlaylistsResourceWithRawResponse,
-    AsyncPlaylistsResourceWithRawResponse,
-    PlaylistsResourceWithStreamingResponse,
-    AsyncPlaylistsResourceWithStreamingResponse,
-)
 from .restreams import (
     RestreamsResource,
     AsyncRestreamsResource,
@@ -83,6 +75,14 @@ from .streams.streams import (
     AsyncStreamsResourceWithRawResponse,
     StreamsResourceWithStreamingResponse,
     AsyncStreamsResourceWithStreamingResponse,
+)
+from .playlists.playlists import (
+    PlaylistsResource,
+    AsyncPlaylistsResource,
+    PlaylistsResourceWithRawResponse,
+    AsyncPlaylistsResourceWithRawResponse,
+    PlaylistsResourceWithStreamingResponse,
+    AsyncPlaylistsResourceWithStreamingResponse,
 )
 
 __all__ = ["StreamingResource", "AsyncStreamingResource"]
