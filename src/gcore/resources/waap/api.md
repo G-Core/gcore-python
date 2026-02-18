@@ -85,20 +85,44 @@ Methods:
 
 ### APIDiscovery
 
+#### ScanResults
+
 Types:
 
 ```python
-from gcore.types.waap.domains import WaapAPIDiscoverySettings, WaapAPIScanResult, WaapTaskID
+from gcore.types.waap.domains.api_discovery import WaapAPIScanResult
 ```
 
 Methods:
 
-- <code title="get /waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}">client.waap.domains.api_discovery.<a href="./src/gcore/resources/waap/domains/api_discovery.py">get_scan_result</a>(scan_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_api_scan_result.py">WaapAPIScanResult</a></code>
-- <code title="get /waap/v1/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.<a href="./src/gcore/resources/waap/domains/api_discovery.py">get_settings</a>(domain_id) -> <a href="./src/gcore/types/waap/domains/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
-- <code title="get /waap/v1/domains/{domain_id}/api-discovery/scan-results">client.waap.domains.api_discovery.<a href="./src/gcore/resources/waap/domains/api_discovery.py">list_scan_results</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery_list_scan_results_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_api_scan_result.py">SyncOffsetPage[WaapAPIScanResult]</a></code>
-- <code title="post /waap/v1/domains/{domain_id}/api-discovery/scan">client.waap.domains.api_discovery.<a href="./src/gcore/resources/waap/domains/api_discovery.py">scan_openapi</a>(domain_id) -> <a href="./src/gcore/types/waap/domains/waap_task_id.py">WaapTaskID</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.<a href="./src/gcore/resources/waap/domains/api_discovery.py">update_settings</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery_update_settings_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
-- <code title="post /waap/v1/domains/{domain_id}/api-discovery/upload">client.waap.domains.api_discovery.<a href="./src/gcore/resources/waap/domains/api_discovery.py">upload_openapi</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery_upload_openapi_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_task_id.py">WaapTaskID</a></code>
+- <code title="get /waap/v1/domains/{domain_id}/api-discovery/scan-results">client.waap.domains.api_discovery.scan_results.<a href="./src/gcore/resources/waap/domains/api_discovery/scan_results.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery/scan_result_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_scan_result.py">SyncOffsetPage[WaapAPIScanResult]</a></code>
+- <code title="get /waap/v1/domains/{domain_id}/api-discovery/scan-results/{scan_id}">client.waap.domains.api_discovery.scan_results.<a href="./src/gcore/resources/waap/domains/api_discovery/scan_results.py">get</a>(scan_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_scan_result.py">WaapAPIScanResult</a></code>
+
+#### OpenAPI
+
+Types:
+
+```python
+from gcore.types.waap.domains.api_discovery import WaapTaskID
+```
+
+Methods:
+
+- <code title="post /waap/v1/domains/{domain_id}/api-discovery/scan">client.waap.domains.api_discovery.openapi.<a href="./src/gcore/resources/waap/domains/api_discovery/openapi.py">scan</a>(domain_id) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_task_id.py">WaapTaskID</a></code>
+- <code title="post /waap/v1/domains/{domain_id}/api-discovery/upload">client.waap.domains.api_discovery.openapi.<a href="./src/gcore/resources/waap/domains/api_discovery/openapi.py">upload</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery/openapi_upload_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_task_id.py">WaapTaskID</a></code>
+
+#### Settings
+
+Types:
+
+```python
+from gcore.types.waap.domains.api_discovery import WaapAPIDiscoverySettings
+```
+
+Methods:
+
+- <code title="patch /waap/v1/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.settings.<a href="./src/gcore/resources/waap/domains/api_discovery/settings.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery/setting_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
+- <code title="get /waap/v1/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.settings.<a href="./src/gcore/resources/waap/domains/api_discovery/settings.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
 
 ### Insights
 

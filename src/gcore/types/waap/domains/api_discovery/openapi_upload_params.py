@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["APIDiscoveryUploadOpenAPIParams"]
+__all__ = ["OpenAPIUploadParams"]
 
 
-class APIDiscoveryUploadOpenAPIParams(TypedDict, total=False):
+class OpenAPIUploadParams(TypedDict, total=False):
     file_data: Required[str]
     """Base64 representation of the description file.
 
