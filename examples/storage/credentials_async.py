@@ -31,9 +31,9 @@ async def main() -> None:
 async def create_s3_storage(*, client: AsyncGcore) -> int:
     print("\n=== CREATE S3 STORAGE ===")
     s3_name = f"s3-creds-example-{int(time.time())}"
-    storage = await client.storage.create(
+    storage = await client.storage.create( # pyright: ignore[reportDeprecated]
         name=s3_name,
-        type="s3",
+        type="s3_compatible",
         location="s-ed1",
     )
     print(f"Created Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}")
@@ -48,7 +48,7 @@ async def create_s3_storage(*, client: AsyncGcore) -> int:
 async def create_sftp_storage(*, client: AsyncGcore) -> int:
     print("\n=== CREATE SFTP STORAGE ===")
     sftp_name = f"sftp-ex-{int(time.time()) % 1000000}"
-    storage = await client.storage.create(
+    storage = await client.storage.create( # pyright: ignore[reportDeprecated]
         name=sftp_name,
         type="sftp",
         location="ams",
@@ -91,7 +91,7 @@ async def get_storage(*, client: AsyncGcore, storage_id: int) -> None:
 
 async def generate_s3_keys(*, client: AsyncGcore, s3_storage_id: int) -> None:
     print("\n=== GENERATE S3 KEYS ===")
-    storage = await client.storage.credentials.recreate(
+    storage = await client.storage.credentials.recreate( # pyright: ignore[reportDeprecated]
         storage_id=s3_storage_id,
         generate_s3_keys=True,
     )
@@ -104,7 +104,7 @@ async def generate_s3_keys(*, client: AsyncGcore, s3_storage_id: int) -> None:
 
 async def generate_sftp_password(*, client: AsyncGcore, sftp_storage_id: int) -> None:
     print("\n=== GENERATE SFTP PASSWORD ===")
-    storage = await client.storage.credentials.recreate(
+    storage = await client.storage.credentials.recreate( # pyright: ignore[reportDeprecated]
         storage_id=sftp_storage_id,
         generate_sftp_password=True,
     )
@@ -116,7 +116,7 @@ async def generate_sftp_password(*, client: AsyncGcore, sftp_storage_id: int) ->
 async def set_custom_sftp_password(*, client: AsyncGcore, sftp_storage_id: int) -> None:
     print("\n=== SET CUSTOM SFTP PASSWORD ===")
     custom_password = "MyNewSecurePassword456!"
-    await client.storage.credentials.recreate(
+    await client.storage.credentials.recreate( # pyright: ignore[reportDeprecated]
         storage_id=sftp_storage_id,
         sftp_password=custom_password,
     )
@@ -126,7 +126,7 @@ async def set_custom_sftp_password(*, client: AsyncGcore, sftp_storage_id: int) 
 
 async def delete_sftp_password(*, client: AsyncGcore, sftp_storage_id: int) -> None:
     print("\n=== DELETE SFTP PASSWORD ===")
-    await client.storage.credentials.recreate(
+    await client.storage.credentials.recreate( # pyright: ignore[reportDeprecated]
         storage_id=sftp_storage_id,
         delete_sftp_password=True,
     )
@@ -137,7 +137,7 @@ async def delete_sftp_password(*, client: AsyncGcore, sftp_storage_id: int) -> N
 async def delete_storage(*, client: AsyncGcore, storage_id: int) -> None:
     """Delete a single storage"""
     print("\n=== DELETE STORAGE ===")
-    await client.storage.delete(storage_id=storage_id)
+    await client.storage.delete(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(f"Storage {storage_id} deleted successfully")
     print("======================")
 

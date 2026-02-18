@@ -30,9 +30,9 @@ async def main() -> None:
 async def create_s3_storage(*, client: AsyncGcore) -> int:
     print("\n=== CREATE S3 STORAGE ===")
     storage_name = f"s3-bucket-example-{int(time.time())}"
-    storage = await client.storage.create(
+    storage = await client.storage.create( # pyright: ignore[reportDeprecated]
         name=storage_name,
-        type="s3",
+        type="s3_compatible",
         location="s-ed1",
     )
     print(f"Created Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}")
@@ -65,7 +65,7 @@ async def create_bucket(*, client: AsyncGcore, storage_id: int) -> str:
     print("\n=== CREATE BUCKET ===")
     timestamp = int(time.time())
     bucket_name = f"example-bucket-{timestamp}"
-    await client.storage.buckets.create(
+    await client.storage.buckets.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
     )
@@ -77,7 +77,7 @@ async def create_bucket(*, client: AsyncGcore, storage_id: int) -> str:
 async def list_buckets(*, client: AsyncGcore, storage_id: int) -> None:
     print("\n=== LIST BUCKETS ===")
     count = 1
-    async for bucket in client.storage.buckets.list(storage_id=storage_id):
+    async for bucket in client.storage.buckets.list(storage_id=storage_id): # pyright: ignore[reportDeprecated]
         lifecycle_info = f", Lifecycle: {bucket.lifecycle} days" if bucket.lifecycle and bucket.lifecycle > 0 else ""
         print(f"  {count}. Bucket: Name={bucket.name}{lifecycle_info}")
         count += 1
@@ -86,7 +86,7 @@ async def list_buckets(*, client: AsyncGcore, storage_id: int) -> None:
 
 async def set_bucket_lifecycle(*, client: AsyncGcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== SET BUCKET LIFECYCLE ===")
-    await client.storage.buckets.lifecycle.create(
+    await client.storage.buckets.lifecycle.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
         expiration_days=30,
@@ -97,7 +97,7 @@ async def set_bucket_lifecycle(*, client: AsyncGcore, storage_id: int, bucket_na
 
 async def set_bucket_cors(*, client: AsyncGcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== SET BUCKET CORS ===")
-    await client.storage.buckets.cors.create(
+    await client.storage.buckets.cors.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
         allowed_origins=["*"],
@@ -108,7 +108,7 @@ async def set_bucket_cors(*, client: AsyncGcore, storage_id: int, bucket_name: s
 
 async def set_bucket_policy(*, client: AsyncGcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== SET BUCKET POLICY ===")
-    await client.storage.buckets.policy.create(
+    await client.storage.buckets.policy.create( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
     )
@@ -118,7 +118,7 @@ async def set_bucket_policy(*, client: AsyncGcore, storage_id: int, bucket_name:
 
 async def delete_bucket(*, client: AsyncGcore, storage_id: int, bucket_name: str) -> None:
     print("\n=== DELETE BUCKET ===")
-    await client.storage.buckets.delete(
+    await client.storage.buckets.delete( # pyright: ignore[reportDeprecated]
         bucket_name=bucket_name,
         storage_id=storage_id,
     )
@@ -128,7 +128,7 @@ async def delete_bucket(*, client: AsyncGcore, storage_id: int, bucket_name: str
 
 async def delete_storage(*, client: AsyncGcore, storage_id: int) -> None:
     print("\n=== DELETE STORAGE ===")
-    await client.storage.delete(storage_id=storage_id)
+    await client.storage.delete(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(f"Storage {storage_id} deleted successfully")
     print("======================")
 

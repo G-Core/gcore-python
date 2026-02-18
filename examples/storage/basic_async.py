@@ -23,9 +23,9 @@ async def main() -> None:
 async def create_storage(*, client: AsyncGcore) -> int:
     print("\n=== CREATE STORAGE ===")
     name = f"example-s3-storage-{int(time.time())}"
-    storage = await client.storage.create(
+    storage = await client.storage.create( # pyright: ignore[reportDeprecated]
         name=name,
-        type="s3",
+        type="s3_compatible",
         location="s-ed1",
     )
     print(f"Created Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}")
@@ -60,7 +60,7 @@ async def get_storage(*, client: AsyncGcore, storage_id: int) -> None:
 
 async def update_storage(*, client: AsyncGcore, storage_id: int) -> None:
     print("\n=== UPDATE STORAGE ===")
-    storage = await client.storage.update(
+    storage = await client.storage.update( # pyright: ignore[reportDeprecated]
         storage_id=storage_id,
         expires="30 days",
     )
@@ -70,7 +70,7 @@ async def update_storage(*, client: AsyncGcore, storage_id: int) -> None:
 
 async def delete_storage(*, client: AsyncGcore, storage_id: int) -> None:
     print("\n=== DELETE STORAGE ===")
-    await client.storage.delete(storage_id=storage_id)
+    await client.storage.delete(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(f"Storage {storage_id} deleted successfully")
     print("======================")
 
