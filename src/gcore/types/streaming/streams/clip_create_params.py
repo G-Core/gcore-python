@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["StreamCreateClipParams"]
+__all__ = ["ClipCreateParams"]
 
 
-class StreamCreateClipParams(TypedDict, total=False):
+class ClipCreateParams(TypedDict, total=False):
     duration: Required[int]
     """Requested segment duration in seconds to be cut.
 
