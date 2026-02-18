@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -143,7 +143,7 @@ class LoadBalancersResource(SyncAPIResource):
         name: str | Omit = omit,
         name_template: str | Omit = omit,
         preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         vip_ip_family: InterfaceIPFamily | Omit = omit,
         vip_network_id: str | Omit = omit,
         vip_port_id: str | Omit = omit,
@@ -701,7 +701,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         name: str | Omit = omit,
         name_template: str | Omit = omit,
         preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         vip_ip_family: InterfaceIPFamily | Omit = omit,
         vip_network_id: str | Omit = omit,
         vip_port_id: str | Omit = omit,

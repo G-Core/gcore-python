@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from ...._types import SequenceNotStr
@@ -60,7 +60,7 @@ class SubnetCreateParams(TypedDict, total=False):
     find a router created during network creation.
     """
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

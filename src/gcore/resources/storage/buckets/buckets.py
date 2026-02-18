@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from .cors import (
@@ -78,6 +80,7 @@ class BucketsResource(SyncAPIResource):
         """
         return BucketsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         bucket_name: str,
@@ -94,6 +97,9 @@ class BucketsResource(SyncAPIResource):
 
         Only applicable to S3-compatible
         storages.
+
+        Deprecated: Use POST /provisioning/v3/storages/{`storage_id`}/buckets with
+        {"name": "bucket-name"} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -115,6 +121,7 @@ class BucketsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         storage_id: int,
@@ -133,6 +140,10 @@ class BucketsResource(SyncAPIResource):
 
         Response format: count: total number of buckets (independent of pagination)
         results: current page of buckets according to limit/offset
+
+        Deprecated: Use GET
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} for individual
+        bucket details instead.
 
         Args:
           limit: Max number of records in response
@@ -166,6 +177,7 @@ class BucketsResource(SyncAPIResource):
             model=Bucket,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         bucket_name: str,
@@ -182,6 +194,9 @@ class BucketsResource(SyncAPIResource):
 
         All objects in the bucket will be
         automatically deleted before the bucket is removed.
+
+        Deprecated: Use DELETE
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -236,6 +251,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         return AsyncBucketsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         bucket_name: str,
@@ -252,6 +268,9 @@ class AsyncBucketsResource(AsyncAPIResource):
 
         Only applicable to S3-compatible
         storages.
+
+        Deprecated: Use POST /provisioning/v3/storages/{`storage_id`}/buckets with
+        {"name": "bucket-name"} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -273,6 +292,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         storage_id: int,
@@ -291,6 +311,10 @@ class AsyncBucketsResource(AsyncAPIResource):
 
         Response format: count: total number of buckets (independent of pagination)
         results: current page of buckets according to limit/offset
+
+        Deprecated: Use GET
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} for individual
+        bucket details instead.
 
         Args:
           limit: Max number of records in response
@@ -324,6 +348,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             model=Bucket,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         bucket_name: str,
@@ -340,6 +365,9 @@ class AsyncBucketsResource(AsyncAPIResource):
 
         All objects in the bucket will be
         automatically deleted before the bucket is removed.
+
+        Deprecated: Use DELETE
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -366,14 +394,20 @@ class BucketsResourceWithRawResponse:
     def __init__(self, buckets: BucketsResource) -> None:
         self._buckets = buckets
 
-        self.create = to_raw_response_wrapper(
-            buckets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                buckets.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            buckets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                buckets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            buckets.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                buckets.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -393,14 +427,20 @@ class AsyncBucketsResourceWithRawResponse:
     def __init__(self, buckets: AsyncBucketsResource) -> None:
         self._buckets = buckets
 
-        self.create = async_to_raw_response_wrapper(
-            buckets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                buckets.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            buckets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                buckets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            buckets.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                buckets.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -420,14 +460,20 @@ class BucketsResourceWithStreamingResponse:
     def __init__(self, buckets: BucketsResource) -> None:
         self._buckets = buckets
 
-        self.create = to_streamed_response_wrapper(
-            buckets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                buckets.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            buckets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                buckets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            buckets.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                buckets.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -447,14 +493,20 @@ class AsyncBucketsResourceWithStreamingResponse:
     def __init__(self, buckets: AsyncBucketsResource) -> None:
         self._buckets = buckets
 
-        self.create = async_to_streamed_response_wrapper(
-            buckets.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                buckets.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            buckets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                buckets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            buckets.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                buckets.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing_extensions import Literal
 
 import httpx
@@ -92,12 +93,13 @@ class StorageResource(SyncAPIResource):
         """
         return StorageResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
         location: str,
         name: str,
-        type: Literal["sftp", "s3"],
+        type: Literal["sftp", "s3_compatible"],
         generate_sftp_password: bool | Omit = omit,
         sftp_password: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -111,6 +113,9 @@ class StorageResource(SyncAPIResource):
         Creates a new storage instance (S3 or SFTP) in the specified location and
         returns the storage details including credentials.
 
+        Deprecated: Use POST /provisioning/v3/storages/`s3_compatible` for S3 storage or
+        POST /provisioning/v3/storages/sftp for SFTP storage instead.
+
         Args:
           location: Geographic location where the storage will be provisioned. Each location
               represents a specific data center region.
@@ -118,8 +123,8 @@ class StorageResource(SyncAPIResource):
           name: Unique storage name identifier. Must contain only letters, numbers, dashes, and
               underscores. Cannot be empty and must be less than 256 characters.
 
-          type: Storage protocol type. Choose 's3' for S3-compatible object storage with API
-              access, or `sftp` for SFTP file transfer protocol.
+          type: Storage protocol type. Choose 's3_compatible' for S3-compatible object storage
+              with API access, or `sftp` for SFTP file transfer protocol.
 
           generate_sftp_password: Automatically generate a secure password for SFTP storage access. Only
               applicable when type is `sftp`. When `true`, a random password will be generated
@@ -155,6 +160,7 @@ class StorageResource(SyncAPIResource):
             cast_to=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         storage_id: int,
@@ -172,6 +178,9 @@ class StorageResource(SyncAPIResource):
 
         Used for
         SFTP storages.
+
+        Deprecated: Use PATCH /provisioning/v3/storages/sftp/{`storage_id`} for SFTP
+        storage updates instead.
 
         Args:
           expires: Duration when the storage should expire in format like "1 years 6 months 2 weeks
@@ -214,7 +223,7 @@ class StorageResource(SyncAPIResource):
         order_direction: Literal["asc", "desc"] | Omit = omit,
         show_deleted: bool | Omit = omit,
         status: Literal["active", "suspended", "deleted", "pending"] | Omit = omit,
-        type: Literal["s3", "sftp"] | Omit = omit,
+        type: Literal["s3_compatible", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,6 +295,7 @@ class StorageResource(SyncAPIResource):
             model=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         storage_id: int,
@@ -300,6 +310,9 @@ class StorageResource(SyncAPIResource):
         """Permanently deletes a storage and all its data.
 
         This action cannot be undone.
+
+        Deprecated: Use DELETE /provisioning/v3/storages/`s3_compatible`/{`storage_id`}
+        or DELETE /provisioning/v3/storages/sftp/{`storage_id`} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -351,6 +364,7 @@ class StorageResource(SyncAPIResource):
             cast_to=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def link_ssh_key(
         self,
         key_id: int,
@@ -367,6 +381,11 @@ class StorageResource(SyncAPIResource):
         Associates an SSH public key with an SFTP storage, enabling passwordless
         authentication. Only works with SFTP storage types - not applicable to
         S3-compatible storage.
+
+        Deprecated: Use PATCH /provisioning/v3/storages/sftp/{`storage_id`} with
+        `ssh_key_ids` array or PATCH
+        /provisioning/v3/storages/sftp/{`storage_id`}/credentials with `ssh_key_ids`
+        array instead.
 
         Args:
           extra_headers: Send extra headers
@@ -424,6 +443,7 @@ class StorageResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def unlink_ssh_key(
         self,
         key_id: int,
@@ -440,6 +460,11 @@ class StorageResource(SyncAPIResource):
         Removes SSH key association from an SFTP storage, disabling passwordless
         authentication for that key. The key itself remains available for other
         storages.
+
+        Deprecated: Use PATCH /provisioning/v3/storages/sftp/{`storage_id`} with
+        `ssh_key_ids` array or PATCH
+        /provisioning/v3/storages/sftp/{`storage_id`}/credentials with `ssh_key_ids`
+        array instead.
 
         Args:
           extra_headers: Send extra headers
@@ -496,12 +521,13 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         return AsyncStorageResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
         location: str,
         name: str,
-        type: Literal["sftp", "s3"],
+        type: Literal["sftp", "s3_compatible"],
         generate_sftp_password: bool | Omit = omit,
         sftp_password: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -515,6 +541,9 @@ class AsyncStorageResource(AsyncAPIResource):
         Creates a new storage instance (S3 or SFTP) in the specified location and
         returns the storage details including credentials.
 
+        Deprecated: Use POST /provisioning/v3/storages/`s3_compatible` for S3 storage or
+        POST /provisioning/v3/storages/sftp for SFTP storage instead.
+
         Args:
           location: Geographic location where the storage will be provisioned. Each location
               represents a specific data center region.
@@ -522,8 +551,8 @@ class AsyncStorageResource(AsyncAPIResource):
           name: Unique storage name identifier. Must contain only letters, numbers, dashes, and
               underscores. Cannot be empty and must be less than 256 characters.
 
-          type: Storage protocol type. Choose 's3' for S3-compatible object storage with API
-              access, or `sftp` for SFTP file transfer protocol.
+          type: Storage protocol type. Choose 's3_compatible' for S3-compatible object storage
+              with API access, or `sftp` for SFTP file transfer protocol.
 
           generate_sftp_password: Automatically generate a secure password for SFTP storage access. Only
               applicable when type is `sftp`. When `true`, a random password will be generated
@@ -559,6 +588,7 @@ class AsyncStorageResource(AsyncAPIResource):
             cast_to=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         storage_id: int,
@@ -576,6 +606,9 @@ class AsyncStorageResource(AsyncAPIResource):
 
         Used for
         SFTP storages.
+
+        Deprecated: Use PATCH /provisioning/v3/storages/sftp/{`storage_id`} for SFTP
+        storage updates instead.
 
         Args:
           expires: Duration when the storage should expire in format like "1 years 6 months 2 weeks
@@ -618,7 +651,7 @@ class AsyncStorageResource(AsyncAPIResource):
         order_direction: Literal["asc", "desc"] | Omit = omit,
         show_deleted: bool | Omit = omit,
         status: Literal["active", "suspended", "deleted", "pending"] | Omit = omit,
-        type: Literal["s3", "sftp"] | Omit = omit,
+        type: Literal["s3_compatible", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -690,6 +723,7 @@ class AsyncStorageResource(AsyncAPIResource):
             model=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         storage_id: int,
@@ -704,6 +738,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """Permanently deletes a storage and all its data.
 
         This action cannot be undone.
+
+        Deprecated: Use DELETE /provisioning/v3/storages/`s3_compatible`/{`storage_id`}
+        or DELETE /provisioning/v3/storages/sftp/{`storage_id`} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -755,6 +792,7 @@ class AsyncStorageResource(AsyncAPIResource):
             cast_to=Storage,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def link_ssh_key(
         self,
         key_id: int,
@@ -771,6 +809,11 @@ class AsyncStorageResource(AsyncAPIResource):
         Associates an SSH public key with an SFTP storage, enabling passwordless
         authentication. Only works with SFTP storage types - not applicable to
         S3-compatible storage.
+
+        Deprecated: Use PATCH /provisioning/v3/storages/sftp/{`storage_id`} with
+        `ssh_key_ids` array or PATCH
+        /provisioning/v3/storages/sftp/{`storage_id`}/credentials with `ssh_key_ids`
+        array instead.
 
         Args:
           extra_headers: Send extra headers
@@ -830,6 +873,7 @@ class AsyncStorageResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def unlink_ssh_key(
         self,
         key_id: int,
@@ -846,6 +890,11 @@ class AsyncStorageResource(AsyncAPIResource):
         Removes SSH key association from an SFTP storage, disabling passwordless
         authentication for that key. The key itself remains available for other
         storages.
+
+        Deprecated: Use PATCH /provisioning/v3/storages/sftp/{`storage_id`} with
+        `ssh_key_ids` array or PATCH
+        /provisioning/v3/storages/sftp/{`storage_id`}/credentials with `ssh_key_ids`
+        array instead.
 
         Args:
           extra_headers: Send extra headers
@@ -870,29 +919,39 @@ class StorageResourceWithRawResponse:
     def __init__(self, storage: StorageResource) -> None:
         self._storage = storage
 
-        self.create = to_raw_response_wrapper(
-            storage.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_raw_response_wrapper(
-            storage.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             storage.list,
         )
-        self.delete = to_raw_response_wrapper(
-            storage.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_raw_response_wrapper(
             storage.get,
         )
-        self.link_ssh_key = to_raw_response_wrapper(
-            storage.link_ssh_key,
+        self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.restore = to_raw_response_wrapper(
             storage.restore,
         )
-        self.unlink_ssh_key = to_raw_response_wrapper(
-            storage.unlink_ssh_key,
+        self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                storage.unlink_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -916,29 +975,39 @@ class AsyncStorageResourceWithRawResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
         self._storage = storage
 
-        self.create = async_to_raw_response_wrapper(
-            storage.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_raw_response_wrapper(
-            storage.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             storage.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            storage.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_raw_response_wrapper(
             storage.get,
         )
-        self.link_ssh_key = async_to_raw_response_wrapper(
-            storage.link_ssh_key,
+        self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.restore = async_to_raw_response_wrapper(
             storage.restore,
         )
-        self.unlink_ssh_key = async_to_raw_response_wrapper(
-            storage.unlink_ssh_key,
+        self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                storage.unlink_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -962,29 +1031,39 @@ class StorageResourceWithStreamingResponse:
     def __init__(self, storage: StorageResource) -> None:
         self._storage = storage
 
-        self.create = to_streamed_response_wrapper(
-            storage.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_streamed_response_wrapper(
-            storage.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             storage.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            storage.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_streamed_response_wrapper(
             storage.get,
         )
-        self.link_ssh_key = to_streamed_response_wrapper(
-            storage.link_ssh_key,
+        self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.restore = to_streamed_response_wrapper(
             storage.restore,
         )
-        self.unlink_ssh_key = to_streamed_response_wrapper(
-            storage.unlink_ssh_key,
+        self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                storage.unlink_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -1008,29 +1087,39 @@ class AsyncStorageResourceWithStreamingResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
         self._storage = storage
 
-        self.create = async_to_streamed_response_wrapper(
-            storage.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_streamed_response_wrapper(
-            storage.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             storage.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            storage.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_streamed_response_wrapper(
             storage.get,
         )
-        self.link_ssh_key = async_to_streamed_response_wrapper(
-            storage.link_ssh_key,
+        self.link_ssh_key = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.link_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.restore = async_to_streamed_response_wrapper(
             storage.restore,
         )
-        self.unlink_ssh_key = async_to_streamed_response_wrapper(
-            storage.unlink_ssh_key,
+        self.unlink_ssh_key = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                storage.unlink_ssh_key,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

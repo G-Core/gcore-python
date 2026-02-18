@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
@@ -41,6 +43,7 @@ class CorsResource(SyncAPIResource):
         """
         return CorsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         bucket_name: str,
@@ -58,6 +61,10 @@ class CorsResource(SyncAPIResource):
         Configures Cross-Origin Resource Sharing (CORS) rules for an S3 bucket, allowing
         web applications from specified domains to access bucket resources directly from
         browsers.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"cors":
+        {"allowed_origins": [...]}} instead.
 
         Args:
           allowed_origins: List of allowed origins for CORS requests
@@ -82,6 +89,7 @@ class CorsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         bucket_name: str,
@@ -98,6 +106,10 @@ class CorsResource(SyncAPIResource):
         Retrieves the current Cross-Origin Resource Sharing (CORS) configuration for an
         S3 bucket, showing which domains are allowed to access the bucket from web
         browsers.
+
+        Deprecated: Use GET
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead, which
+        returns CORS along with policy and lifecycle configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -139,6 +151,7 @@ class AsyncCorsResource(AsyncAPIResource):
         """
         return AsyncCorsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         bucket_name: str,
@@ -156,6 +169,10 @@ class AsyncCorsResource(AsyncAPIResource):
         Configures Cross-Origin Resource Sharing (CORS) rules for an S3 bucket, allowing
         web applications from specified domains to access bucket resources directly from
         browsers.
+
+        Deprecated: Use PATCH
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"cors":
+        {"allowed_origins": [...]}} instead.
 
         Args:
           allowed_origins: List of allowed origins for CORS requests
@@ -180,6 +197,7 @@ class AsyncCorsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         bucket_name: str,
@@ -196,6 +214,10 @@ class AsyncCorsResource(AsyncAPIResource):
         Retrieves the current Cross-Origin Resource Sharing (CORS) configuration for an
         S3 bucket, showing which domains are allowed to access the bucket from web
         browsers.
+
+        Deprecated: Use GET
+        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead, which
+        returns CORS along with policy and lifecycle configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -221,11 +243,15 @@ class CorsResourceWithRawResponse:
     def __init__(self, cors: CorsResource) -> None:
         self._cors = cors
 
-        self.create = to_raw_response_wrapper(
-            cors.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                cors.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            cors.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                cors.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -233,11 +259,15 @@ class AsyncCorsResourceWithRawResponse:
     def __init__(self, cors: AsyncCorsResource) -> None:
         self._cors = cors
 
-        self.create = async_to_raw_response_wrapper(
-            cors.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                cors.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            cors.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                cors.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -245,11 +275,15 @@ class CorsResourceWithStreamingResponse:
     def __init__(self, cors: CorsResource) -> None:
         self._cors = cors
 
-        self.create = to_streamed_response_wrapper(
-            cors.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                cors.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            cors.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                cors.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -257,9 +291,13 @@ class AsyncCorsResourceWithStreamingResponse:
     def __init__(self, cors: AsyncCorsResource) -> None:
         self._cors = cors
 
-        self.create = async_to_streamed_response_wrapper(
-            cors.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                cors.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            cors.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                cors.get,  # pyright: ignore[reportDeprecated],
+            )
         )

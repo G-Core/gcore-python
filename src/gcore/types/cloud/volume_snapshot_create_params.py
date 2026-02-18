@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Required, TypedDict
 
 __all__ = ["VolumeSnapshotCreateParams"]
@@ -21,7 +22,7 @@ class VolumeSnapshotCreateParams(TypedDict, total=False):
     description: str
     """Snapshot description"""
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
