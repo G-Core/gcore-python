@@ -22,7 +22,7 @@ class TestAPITokens:
         api_token = client.iam.api_tokens.create(
             client_id=0,
             client_user={},
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
         )
         assert_matches_type(APITokenCreated, api_token, path=["response"])
@@ -37,7 +37,7 @@ class TestAPITokens:
                     "name": "Administrators",
                 }
             },
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
             description="It's my token",
         )
@@ -48,7 +48,7 @@ class TestAPITokens:
         response = client.iam.api_tokens.with_raw_response.create(
             client_id=0,
             client_user={},
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
         )
 
@@ -62,7 +62,7 @@ class TestAPITokens:
         with client.iam.api_tokens.with_streaming_response.create(
             client_id=0,
             client_user={},
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
         ) as response:
             assert not response.is_closed
@@ -194,7 +194,7 @@ class TestAsyncAPITokens:
         api_token = await async_client.iam.api_tokens.create(
             client_id=0,
             client_user={},
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
         )
         assert_matches_type(APITokenCreated, api_token, path=["response"])
@@ -209,7 +209,7 @@ class TestAsyncAPITokens:
                     "name": "Administrators",
                 }
             },
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
             description="It's my token",
         )
@@ -220,7 +220,7 @@ class TestAsyncAPITokens:
         response = await async_client.iam.api_tokens.with_raw_response.create(
             client_id=0,
             client_user={},
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
         )
 
@@ -234,7 +234,7 @@ class TestAsyncAPITokens:
         async with async_client.iam.api_tokens.with_streaming_response.create(
             client_id=0,
             client_user={},
-            exp_date="2021-01-01 12:00:00+00:00",
+            exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
         ) as response:
             assert not response.is_closed
