@@ -6,10 +6,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["IPRangeListIPsParams"]
+__all__ = ["IPListParams"]
 
 
-class IPRangeListIPsParams(TypedDict, total=False):
+class IPListParams(TypedDict, total=False):
     format: Literal["json", "plain"]
     """
     Optional format override. When set, this takes precedence over the `Accept`

@@ -4,6 +4,14 @@ from __future__ import annotations
 
 import httpx
 
+from .ips import (
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
+)
 from .logs import (
     LogsResource,
     AsyncLogsResource,
@@ -182,6 +190,10 @@ class CDNResource(SyncAPIResource):
     @cached_property
     def ip_ranges(self) -> IPRangesResource:
         return IPRangesResource(self._client)
+
+    @cached_property
+    def ips(self) -> IPsResource:
+        return IPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CDNResourceWithRawResponse:
@@ -483,6 +495,10 @@ class AsyncCDNResource(AsyncAPIResource):
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResource:
         return AsyncIPRangesResource(self._client)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResource:
+        return AsyncIPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCDNResourceWithRawResponse:
@@ -810,6 +826,10 @@ class CDNResourceWithRawResponse:
     def ip_ranges(self) -> IPRangesResourceWithRawResponse:
         return IPRangesResourceWithRawResponse(self._cdn.ip_ranges)
 
+    @cached_property
+    def ips(self) -> IPsResourceWithRawResponse:
+        return IPsResourceWithRawResponse(self._cdn.ips)
+
 
 class AsyncCDNResourceWithRawResponse:
     def __init__(self, cdn: AsyncCDNResource) -> None:
@@ -888,6 +908,10 @@ class AsyncCDNResourceWithRawResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithRawResponse:
         return AsyncIPRangesResourceWithRawResponse(self._cdn.ip_ranges)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResourceWithRawResponse:
+        return AsyncIPsResourceWithRawResponse(self._cdn.ips)
 
 
 class CDNResourceWithStreamingResponse:
@@ -968,6 +992,10 @@ class CDNResourceWithStreamingResponse:
     def ip_ranges(self) -> IPRangesResourceWithStreamingResponse:
         return IPRangesResourceWithStreamingResponse(self._cdn.ip_ranges)
 
+    @cached_property
+    def ips(self) -> IPsResourceWithStreamingResponse:
+        return IPsResourceWithStreamingResponse(self._cdn.ips)
+
 
 class AsyncCDNResourceWithStreamingResponse:
     def __init__(self, cdn: AsyncCDNResource) -> None:
@@ -1046,3 +1074,7 @@ class AsyncCDNResourceWithStreamingResponse:
     @cached_property
     def ip_ranges(self) -> AsyncIPRangesResourceWithStreamingResponse:
         return AsyncIPRangesResourceWithStreamingResponse(self._cdn.ip_ranges)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResourceWithStreamingResponse:
+        return AsyncIPsResourceWithStreamingResponse(self._cdn.ips)

@@ -8,6 +8,14 @@ from .cdn import (
     CDNResourceWithStreamingResponse,
     AsyncCDNResourceWithStreamingResponse,
 )
+from .ips import (
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
+)
 from .logs import (
     LogsResource,
     AsyncLogsResource,
@@ -192,6 +200,12 @@ __all__ = [
     "AsyncIPRangesResourceWithRawResponse",
     "IPRangesResourceWithStreamingResponse",
     "AsyncIPRangesResourceWithStreamingResponse",
+    "IPsResource",
+    "AsyncIPsResource",
+    "IPsResourceWithRawResponse",
+    "AsyncIPsResourceWithRawResponse",
+    "IPsResourceWithStreamingResponse",
+    "AsyncIPsResourceWithStreamingResponse",
     "CDNResource",
     "AsyncCDNResource",
     "CDNResourceWithRawResponse",
