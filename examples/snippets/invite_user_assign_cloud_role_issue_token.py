@@ -2,7 +2,7 @@ import os
 from datetime import datetime, timezone, timedelta
 
 from gcore import Gcore
-from gcore.types.iam.user_invite_params import UserRole
+from gcore.types.iam.user_invite_params import UserGroupParam
 from gcore.types.iam.api_token_create_params import ClientUser
 
 
@@ -21,7 +21,7 @@ def main() -> None:
 
     user_email = "john.doe@example.com"
     user_name = "John Doe"
-    user_role = UserRole(id=5, name="Engineers")
+    user_role = UserGroupParam(id=5, name="Engineers")
 
     # Step 1: Invite user via IAM
     invited_user = gcore.iam.users.invite(
