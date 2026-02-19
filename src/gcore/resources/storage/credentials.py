@@ -60,17 +60,14 @@ class CredentialsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
-        """Resets ALL access credentials for the storage.
+        """
+        Generates new access credentials for the storage (S3 keys for S3 storage, SFTP
+        password for SFTP storage).
 
-        For S3 storage this replaces all
-        existing access keys with a single new key pair. For SFTP storage this resets
-        the password.
-
-        Deprecated: Use POST /v4/`object_storages`/{`storage_id`}/`access_keys` to
-        create individual access keys, DELETE
-        /v4/`object_storages`/{`storage_id`}/`access_keys`/{`access_key`} to remove
-        specific keys, or PATCH /v4/`sftp_storages`/{`storage_id`}/credentials for SFTP
-        storage instead.
+        Deprecated: Use POST
+        /provisioning/v3/storages/`s3_compatible`/{`storage_id`}/credentials/reset for
+        S3 storage or PATCH /provisioning/v3/storages/sftp/{`storage_id`}/credentials
+        for SFTP storage instead.
 
         Args:
           extra_headers: Send extra headers
@@ -137,17 +134,14 @@ class AsyncCredentialsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Storage:
-        """Resets ALL access credentials for the storage.
+        """
+        Generates new access credentials for the storage (S3 keys for S3 storage, SFTP
+        password for SFTP storage).
 
-        For S3 storage this replaces all
-        existing access keys with a single new key pair. For SFTP storage this resets
-        the password.
-
-        Deprecated: Use POST /v4/`object_storages`/{`storage_id`}/`access_keys` to
-        create individual access keys, DELETE
-        /v4/`object_storages`/{`storage_id`}/`access_keys`/{`access_key`} to remove
-        specific keys, or PATCH /v4/`sftp_storages`/{`storage_id`}/credentials for SFTP
-        storage instead.
+        Deprecated: Use POST
+        /provisioning/v3/storages/`s3_compatible`/{`storage_id`}/credentials/reset for
+        S3 storage or PATCH /provisioning/v3/storages/sftp/{`storage_id`}/credentials
+        for SFTP storage instead.
 
         Args:
           extra_headers: Send extra headers
