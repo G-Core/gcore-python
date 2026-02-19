@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from gcore.types.iam import AccountOverview
+from gcore.types.iam import AccountOverview, AuthType, UserGroup, UserLanguage
 ```
 
 Methods:
@@ -15,7 +15,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.iam import APIToken, APITokenCreated, APITokenList
+from gcore.types.iam import APIToken, APITokenClientUser, APITokenCreated, APITokenList
 ```
 
 Methods:
@@ -30,13 +30,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.iam import User, UserDetailed, UserInvite, UserUpdated
+from gcore.types.iam import User, UserInvited, UserType
 ```
 
 Methods:
 
-- <code title="patch /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">update</a>(user_id, \*\*<a href="src/gcore/types/iam/user_update_params.py">params</a>) -> <a href="./src/gcore/types/iam/user_updated.py">UserUpdated</a></code>
+- <code title="patch /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">update</a>(user_id, \*\*<a href="src/gcore/types/iam/user_update_params.py">params</a>) -> <a href="./src/gcore/types/iam/user.py">User</a></code>
 - <code title="get /iam/users">client.iam.users.<a href="./src/gcore/resources/iam/users.py">list</a>(\*\*<a href="src/gcore/types/iam/user_list_params.py">params</a>) -> <a href="./src/gcore/types/iam/user.py">SyncOffsetPage[User]</a></code>
 - <code title="delete /iam/clients/{clientId}/client-users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">delete</a>(user_id, \*, client_id) -> None</code>
-- <code title="get /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">get</a>(user_id) -> <a href="./src/gcore/types/iam/user_detailed.py">UserDetailed</a></code>
-- <code title="post /iam/clients/invite_user">client.iam.users.<a href="./src/gcore/resources/iam/users.py">invite</a>(\*\*<a href="src/gcore/types/iam/user_invite_params.py">params</a>) -> <a href="./src/gcore/types/iam/user_invite.py">UserInvite</a></code>
+- <code title="get /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">get</a>(user_id) -> <a href="./src/gcore/types/iam/user.py">User</a></code>
+- <code title="post /iam/clients/invite_user">client.iam.users.<a href="./src/gcore/resources/iam/users.py">invite</a>(\*\*<a href="src/gcore/types/iam/user_invite_params.py">params</a>) -> <a href="./src/gcore/types/iam/user_invited.py">UserInvited</a></code>

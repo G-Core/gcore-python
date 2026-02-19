@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 import httpx
 
@@ -17,13 +16,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.iam import user_list_params, user_invite_params, user_update_params
+from ...types.iam import UserLanguage, user_list_params, user_invite_params, user_update_params
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.user import User
-from ...types.iam.user_invite import UserInvite
-from ...types.iam.user_updated import UserUpdated
-from ...types.iam.user_detailed import UserDetailed
+from ...types.iam.auth_type import AuthType
+from ...types.iam.user_invited import UserInvited
+from ...types.iam.user_language import UserLanguage
+from ...types.iam.user_group_param import UserGroupParam
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -52,9 +52,9 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]],
+        auth_types: List[AuthType],
         email: str,
-        lang: Literal["de", "en", "ru", "zh", "az"],
+        lang: UserLanguage,
         name: Optional[str],
         phone: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -63,7 +63,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserUpdated:
+    ) -> User:
         """This method updates user's details.
 
         Args:
@@ -104,7 +104,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserUpdated,
+            cast_to=User,
         )
 
     def list(
@@ -203,7 +203,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserDetailed:
+    ) -> User:
         """
         Get user's details
 
@@ -221,7 +221,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserDetailed,
+            cast_to=User,
         )
 
     def invite(
@@ -229,8 +229,8 @@ class UsersResource(SyncAPIResource):
         *,
         client_id: int,
         email: str,
-        user_role: user_invite_params.UserRole,
-        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
+        user_role: UserGroupParam,
+        lang: UserLanguage | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -238,7 +238,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserInvite:
+    ) -> UserInvited:
         """Invite a user to the account.
 
         User will receive an email.
@@ -281,7 +281,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserInvite,
+            cast_to=UserInvited,
         )
 
 
@@ -309,9 +309,9 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[Literal["password", "sso", "github", "google-oauth2"]],
+        auth_types: List[AuthType],
         email: str,
-        lang: Literal["de", "en", "ru", "zh", "az"],
+        lang: UserLanguage,
         name: Optional[str],
         phone: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -320,7 +320,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserUpdated:
+    ) -> User:
         """This method updates user's details.
 
         Args:
@@ -361,7 +361,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserUpdated,
+            cast_to=User,
         )
 
     def list(
@@ -460,7 +460,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserDetailed:
+    ) -> User:
         """
         Get user's details
 
@@ -478,7 +478,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserDetailed,
+            cast_to=User,
         )
 
     async def invite(
@@ -486,8 +486,8 @@ class AsyncUsersResource(AsyncAPIResource):
         *,
         client_id: int,
         email: str,
-        user_role: user_invite_params.UserRole,
-        lang: Literal["de", "en", "ru", "zh", "az"] | Omit = omit,
+        user_role: UserGroupParam,
+        lang: UserLanguage | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -495,7 +495,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserInvite:
+    ) -> UserInvited:
         """Invite a user to the account.
 
         User will receive an email.
@@ -538,7 +538,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserInvite,
+            cast_to=UserInvited,
         )
 
 
