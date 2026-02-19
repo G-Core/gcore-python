@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .auth_type import AuthType
+from .user_type import UserType
+from .user_group import UserGroup
+from .user_language import UserLanguage
 
-__all__ = ["User", "ClientAndRole", "Group"]
+__all__ = ["User", "ClientAndRole"]
 
 
 class ClientAndRole(BaseModel):
@@ -20,22 +23,6 @@ class ClientAndRole(BaseModel):
     """User role in this client."""
 
 
-class Group(BaseModel):
-    id: Optional[int] = None
-    """Group's ID: Possible values are:
-
-    - 1 - Administrators* 2 - Users* 5 - Engineers* 3009 - Purge and Prefetch only
-      (API+Web)* 3022 - Purge and Prefetch only (API)
-    """
-
-    name: Optional[
-        Literal[
-            "Users", "Administrators", "Engineers", "Purge and Prefetch only (API)", "Purge and Prefetch only (API+Web)"
-        ]
-    ] = None
-    """Group's name."""
-
-
 class User(BaseModel):
     id: int
     """User's ID."""
@@ -47,7 +34,7 @@ class User(BaseModel):
     - `false` – user did not confirm the email.
     """
 
-    auth_types: List[Literal["password", "sso", "github", "google-oauth2"]]
+    auth_types: List[AuthType]
     """System field. List of auth types available for the account."""
 
     client: float
@@ -65,7 +52,7 @@ class User(BaseModel):
     email: str
     """User's email address."""
 
-    groups: List[Group]
+    groups: List[UserGroup]
     """User's group in the current account.
 
     IAM supports 5 groups:
@@ -80,7 +67,7 @@ class User(BaseModel):
     is_active: bool
     """User activity flag."""
 
-    lang: Literal["de", "en", "ru", "zh", "az"]
+    lang: UserLanguage
     """User's language.
 
     Defines language of the control panel and email messages.
@@ -105,5 +92,5 @@ class User(BaseModel):
     - `false` – user disabled two-step verification.
     """
 
-    user_type: Literal["common", "reseller", "seller"]
+    user_type: UserType
     """User's type."""

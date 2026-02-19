@@ -2,10 +2,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["UserInvite"]
+__all__ = ["UserInvited"]
 
 
-class UserInvite(BaseModel):
+class UserInvited(BaseModel):
     status: str
     """Status of the invitation."""
 
