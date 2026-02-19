@@ -6,6 +6,9 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from .auth_type import AuthType
+from .user_group import UserGroup
+from .user_language import UserLanguage
 
 __all__ = [
     "AccountOverview",
@@ -31,7 +34,6 @@ __all__ = [
     "ServiceStatusesStorage",
     "ServiceStatusesStreaming",
     "User",
-    "UserGroup",
 ]
 
 
@@ -365,22 +367,6 @@ class ServiceStatuses(BaseModel):
     streaming: Optional[ServiceStatusesStreaming] = FieldInfo(alias="STREAMING", default=None)
 
 
-class UserGroup(BaseModel):
-    id: Optional[int] = None
-    """Group's ID: Possible values are:
-
-    - 1 - Administrators* 2 - Users* 5 - Engineers* 3009 - Purge and Prefetch only
-      (API+Web)* 3022 - Purge and Prefetch only (API)
-    """
-
-    name: Optional[
-        Literal[
-            "Users", "Administrators", "Engineers", "Purge and Prefetch only (API)", "Purge and Prefetch only (API+Web)"
-        ]
-    ] = None
-    """Group's name."""
-
-
 class User(BaseModel):
     id: Optional[int] = None
     """User's ID."""
@@ -392,7 +378,7 @@ class User(BaseModel):
     - `false` – user did not confirm the email.
     """
 
-    auth_types: Optional[List[Literal["password", "sso", "github", "google-oauth2"]]] = None
+    auth_types: Optional[List[AuthType]] = None
     """System field. List of auth types available for the account."""
 
     client: Optional[float] = None
@@ -419,7 +405,7 @@ class User(BaseModel):
     - Purge and Prefetch only (API+Web)
     """
 
-    lang: Optional[Literal["de", "en", "ru", "zh", "az"]] = None
+    lang: Optional[UserLanguage] = None
     """User's language.
 
     Defines language of the control panel and email messages.

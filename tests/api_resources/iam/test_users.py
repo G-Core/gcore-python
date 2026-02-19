@@ -11,9 +11,7 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.iam import (
     User,
-    UserInvite,
-    UserUpdated,
-    UserDetailed,
+    UserInvited,
 )
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
@@ -33,7 +31,7 @@ class TestUsers:
             name="name",
             phone="phone",
         )
-        assert_matches_type(UserUpdated, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
@@ -49,7 +47,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(UserUpdated, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
@@ -65,7 +63,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(UserUpdated, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +139,7 @@ class TestUsers:
         user = client.iam.users.get(
             0,
         )
-        assert_matches_type(UserDetailed, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -152,7 +150,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(UserDetailed, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -163,7 +161,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(UserDetailed, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -174,7 +172,7 @@ class TestUsers:
             email="dev@stainless.com",
             user_role={},
         )
-        assert_matches_type(UserInvite, user, path=["response"])
+        assert_matches_type(UserInvited, user, path=["response"])
 
     @parametrize
     def test_method_invite_with_all_params(self, client: Gcore) -> None:
@@ -188,7 +186,7 @@ class TestUsers:
             lang="de",
             name="name",
         )
-        assert_matches_type(UserInvite, user, path=["response"])
+        assert_matches_type(UserInvited, user, path=["response"])
 
     @parametrize
     def test_raw_response_invite(self, client: Gcore) -> None:
@@ -201,7 +199,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(UserInvite, user, path=["response"])
+        assert_matches_type(UserInvited, user, path=["response"])
 
     @parametrize
     def test_streaming_response_invite(self, client: Gcore) -> None:
@@ -214,7 +212,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(UserInvite, user, path=["response"])
+            assert_matches_type(UserInvited, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,7 +232,7 @@ class TestAsyncUsers:
             name="name",
             phone="phone",
         )
-        assert_matches_type(UserUpdated, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
@@ -250,7 +248,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(UserUpdated, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
@@ -266,7 +264,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(UserUpdated, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,7 +340,7 @@ class TestAsyncUsers:
         user = await async_client.iam.users.get(
             0,
         )
-        assert_matches_type(UserDetailed, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -353,7 +351,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(UserDetailed, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -364,7 +362,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(UserDetailed, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -375,7 +373,7 @@ class TestAsyncUsers:
             email="dev@stainless.com",
             user_role={},
         )
-        assert_matches_type(UserInvite, user, path=["response"])
+        assert_matches_type(UserInvited, user, path=["response"])
 
     @parametrize
     async def test_method_invite_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -389,7 +387,7 @@ class TestAsyncUsers:
             lang="de",
             name="name",
         )
-        assert_matches_type(UserInvite, user, path=["response"])
+        assert_matches_type(UserInvited, user, path=["response"])
 
     @parametrize
     async def test_raw_response_invite(self, async_client: AsyncGcore) -> None:
@@ -402,7 +400,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(UserInvite, user, path=["response"])
+        assert_matches_type(UserInvited, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_invite(self, async_client: AsyncGcore) -> None:
@@ -415,6 +413,6 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(UserInvite, user, path=["response"])
+            assert_matches_type(UserInvited, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True

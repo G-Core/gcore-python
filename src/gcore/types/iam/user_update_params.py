@@ -3,19 +3,22 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .auth_type import AuthType
+from .user_language import UserLanguage
 
 __all__ = ["UserUpdateParams"]
 
 
 class UserUpdateParams(TypedDict, total=False):
-    auth_types: Required[List[Literal["password", "sso", "github", "google-oauth2"]]]
+    auth_types: Required[List[AuthType]]
     """System field. List of auth types available for the account."""
 
     email: Required[str]
     """User's email address."""
 
-    lang: Required[Literal["de", "en", "ru", "zh", "az"]]
+    lang: Required[UserLanguage]
     """User's language.
 
     Defines language of the control panel and email messages.

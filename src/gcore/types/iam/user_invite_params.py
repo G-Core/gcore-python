@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["UserInviteParams", "UserRole"]
+from .user_language import UserLanguage
+from .user_group_param import UserGroupParam
+
+__all__ = ["UserInviteParams"]
 
 
 class UserInviteParams(TypedDict, total=False):
@@ -14,9 +17,9 @@ class UserInviteParams(TypedDict, total=False):
     email: Required[str]
     """User email."""
 
-    user_role: Required[UserRole]
+    user_role: Required[UserGroupParam]
 
-    lang: Literal["de", "en", "ru", "zh", "az"]
+    lang: UserLanguage
     """User's language.
 
     Defines language of the control panel and email messages.
@@ -24,17 +27,3 @@ class UserInviteParams(TypedDict, total=False):
 
     name: str
     """User name."""
-
-
-class UserRole(TypedDict, total=False):
-    id: int
-    """Group's ID: Possible values are:
-
-    - 1 - Administrators* 2 - Users* 5 - Engineers* 3009 - Purge and Prefetch only
-      (API+Web)* 3022 - Purge and Prefetch only (API)
-    """
-
-    name: Literal[
-        "Users", "Administrators", "Engineers", "Purge and Prefetch only (API)", "Purge and Prefetch only (API+Web)"
-    ]
-    """Group's name."""
