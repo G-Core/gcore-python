@@ -45,7 +45,7 @@ class TestVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"foo": "my-tag-value"},
+            tags={},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -107,7 +107,7 @@ class TestVolumes:
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
             size=10,
-            tags={"foo": "my-tag-value"},
+            tags={},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -166,7 +166,7 @@ class TestVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"foo": "my-tag-value"},
+            tags={},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -219,7 +219,7 @@ class TestVolumes:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "my-tag-value"},
+            tags={},
         )
         assert_matches_type(Volume, volume, path=["response"])
 
@@ -701,7 +701,7 @@ class TestAsyncVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"foo": "my-tag-value"},
+            tags={},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -763,7 +763,7 @@ class TestAsyncVolumes:
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
             size=10,
-            tags={"foo": "my-tag-value"},
+            tags={},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -822,7 +822,7 @@ class TestAsyncVolumes:
             attachment_tag="device-tag",
             instance_id_to_attach_to="88f3e0bd-ca86-4cf7-be8b-dd2988e23c2d",
             lifecycle_policy_ids=[1, 2],
-            tags={"foo": "my-tag-value"},
+            tags={},
             type_name="standard",
         )
         assert_matches_type(TaskIDList, volume, path=["response"])
@@ -875,7 +875,7 @@ class TestAsyncVolumes:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "my-tag-value"},
+            tags={},
         )
         assert_matches_type(Volume, volume, path=["response"])
 

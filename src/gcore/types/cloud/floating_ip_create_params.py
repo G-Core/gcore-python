@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["FloatingIPCreateParams"]
@@ -27,7 +27,7 @@ class FloatingIPCreateParams(TypedDict, total=False):
     If provided, the floating IP will be immediately attached to the specified port.
     """
 
-    tags: Dict[str, str]
+    tags: object
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
