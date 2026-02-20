@@ -20,7 +20,7 @@ from ...._response import (
 from ...._base_client import make_request_options
 from ....types.cdn.cdn_resources import rule_create_params, rule_update_params, rule_replace_params
 from ....types.cdn.cdn_resources.cdn_resource_rule import CDNResourceRule
-from ....types.cdn.cdn_resources.rule_list_response import RuleListResponse
+from ....types.cdn.cdn_resources.cdn_resource_rule_list import CDNResourceRuleList
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -266,7 +266,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RuleListResponse:
+    ) -> CDNResourceRuleList:
         """
         Get rules list
 
@@ -284,7 +284,7 @@ class RulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RuleListResponse,
+            cast_to=CDNResourceRuleList,
         )
 
     def delete(
@@ -707,7 +707,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RuleListResponse:
+    ) -> CDNResourceRuleList:
         """
         Get rules list
 
@@ -725,7 +725,7 @@ class AsyncRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RuleListResponse,
+            cast_to=CDNResourceRuleList,
         )
 
     async def delete(

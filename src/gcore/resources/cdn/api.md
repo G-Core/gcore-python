@@ -62,14 +62,14 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn.cdn_resources import CDNResourceRule, RuleListResponse
+from gcore.types.cdn.cdn_resources import CDNResourceRule, CDNResourceRuleList
 ```
 
 Methods:
 
 - <code title="post /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">create</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="patch /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">update</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
-- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">list</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/rule_list_response.py">RuleListResponse</a></code>
+- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">list</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule_list.py">CDNResourceRuleList</a></code>
 - <code title="delete /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">delete</a>(rule_id, \*, resource_id) -> None</code>
 - <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>

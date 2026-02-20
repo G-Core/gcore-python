@@ -5,6 +5,6 @@ from typing_extensions import TypeAlias
 
 from .cdn_resource_rule import CDNResourceRule
 
-__all__ = ["RuleListResponse"]
+__all__ = ["CDNResourceRuleList"]
 
-RuleListResponse: TypeAlias = List[CDNResourceRule]
+CDNResourceRuleList: TypeAlias = List[CDNResourceRule]
