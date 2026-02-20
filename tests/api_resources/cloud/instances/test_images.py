@@ -38,7 +38,7 @@ class TestImages:
             name="my-image",
             os_type="linux",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={},
         )
         assert_matches_type(Image, image, path=["response"])
 
@@ -373,7 +373,7 @@ class TestAsyncImages:
             name="my-image",
             os_type="linux",
             ssh_key="allow",
-            tags={"foo": "my-tag-value"},
+            tags={},
         )
         assert_matches_type(Image, image, path=["response"])
 

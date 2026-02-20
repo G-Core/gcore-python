@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
@@ -71,7 +71,7 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     specification.
     """
 
-    tags: Dict[str, str]
+    tags: object
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
