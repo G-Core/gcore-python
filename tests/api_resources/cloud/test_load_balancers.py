@@ -185,7 +185,7 @@ class TestLoadBalancers:
                 },
                 name="some_name",
                 preferred_connectivity="L2",
-                tags={"foo": "my-tag-value"},
+                tags={},
             )
 
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
@@ -659,7 +659,7 @@ class TestAsyncLoadBalancers:
                 },
                 name="some_name",
                 preferred_connectivity="L2",
-                tags={"foo": "my-tag-value"},
+                tags={},
             )
 
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])

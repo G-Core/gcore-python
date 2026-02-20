@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -75,7 +75,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type_name: Literal["standard"] | Omit = omit,
         volume_type: Literal["default_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,7 +134,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type_name: Literal["vast"] | Omit = omit,
         volume_type: Literal["vast_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -192,7 +192,7 @@ class FileSharesResource(SyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type_name: Literal["standard"] | Literal["vast"] | Omit = omit,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | Omit = omit,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
@@ -552,7 +552,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type_name: Literal["standard"] | Omit = omit,
         volume_type: Literal["default_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -611,7 +611,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type_name: Literal["vast"] | Omit = omit,
         volume_type: Literal["vast_share_type"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -669,7 +669,7 @@ class AsyncFileSharesResource(AsyncAPIResource):
         protocol: Literal["NFS"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: object | Omit = omit,
         type_name: Literal["standard"] | Literal["vast"] | Omit = omit,
         volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | Omit = omit,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,

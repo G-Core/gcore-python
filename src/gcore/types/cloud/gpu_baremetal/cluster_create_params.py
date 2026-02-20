@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -42,7 +42,7 @@ class ClusterCreateParams(TypedDict, total=False):
     servers_settings: Required[ServersSettings]
     """Configuration settings for the servers in the cluster"""
 
-    tags: Dict[str, str]
+    tags: object
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
