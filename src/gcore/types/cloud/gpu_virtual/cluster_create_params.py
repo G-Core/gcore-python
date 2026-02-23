@@ -42,7 +42,7 @@ class ClusterCreateParams(TypedDict, total=False):
     servers_settings: Required[ServersSettings]
     """Configuration settings for the servers in the cluster"""
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
