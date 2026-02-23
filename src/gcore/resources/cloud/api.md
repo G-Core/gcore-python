@@ -443,9 +443,8 @@ Methods:
 
 Methods:
 
-- <code title="post /cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/rules">client.cloud.security_groups.rules.<a href="./src/gcore/resources/cloud/security_groups/rules.py">create</a>(group_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_groups/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/security_group_rule.py">SecurityGroupRule</a></code>
-- <code title="delete /cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}">client.cloud.security_groups.rules.<a href="./src/gcore/resources/cloud/security_groups/rules.py">delete</a>(rule_id, \*, project_id, region_id) -> None</code>
-- <code title="put /cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}">client.cloud.security_groups.rules.<a href="./src/gcore/resources/cloud/security_groups/rules.py">replace</a>(rule_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_groups/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/security_group_rule.py">SecurityGroupRule</a></code>
+- <code title="post /cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules">client.cloud.security_groups.rules.<a href="./src/gcore/resources/cloud/security_groups/rules.py">create</a>(group_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/security_groups/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="delete /cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules/{rule_id}">client.cloud.security_groups.rules.<a href="./src/gcore/resources/cloud/security_groups/rules.py">delete</a>(rule_id, \*, project_id, region_id, group_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 ## Users
 
