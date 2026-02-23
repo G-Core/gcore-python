@@ -86,7 +86,7 @@ class TestNetworks:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "string"},
+            tags={},
         )
         assert_matches_type(Network, network, path=["response"])
 
@@ -338,7 +338,7 @@ class TestAsyncNetworks:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "string"},
+            tags={},
         )
         assert_matches_type(Network, network, path=["response"])
 

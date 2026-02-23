@@ -36,7 +36,7 @@ _T = TypeVar("_T")
 
 class SyncOffsetPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     results: List[_T]
-    count: Optional[int] = None
+    count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -55,8 +55,6 @@ class SyncOffsetPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         current_count = offset + length
 
         count = self.count
-        if count is None:
-            return None
 
         if current_count < count:
             return PageInfo(params={"offset": current_count})
@@ -66,7 +64,7 @@ class SyncOffsetPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
 class AsyncOffsetPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     results: List[_T]
-    count: Optional[int] = None
+    count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -85,8 +83,6 @@ class AsyncOffsetPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         current_count = offset + length
 
         count = self.count
-        if count is None:
-            return None
 
         if current_count < count:
             return PageInfo(params={"offset": current_count})
@@ -96,7 +92,7 @@ class AsyncOffsetPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
 class SyncOffsetPageFastedgeApps(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     apps: List[_T]
-    count: Optional[int] = None
+    count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -115,8 +111,6 @@ class SyncOffsetPageFastedgeApps(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         current_count = offset + length
 
         count = self.count
-        if count is None:
-            return None
 
         if current_count < count:
             return PageInfo(params={"offset": current_count})
@@ -126,7 +120,7 @@ class SyncOffsetPageFastedgeApps(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
 class AsyncOffsetPageFastedgeApps(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     apps: List[_T]
-    count: Optional[int] = None
+    count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -145,8 +139,6 @@ class AsyncOffsetPageFastedgeApps(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         current_count = offset + length
 
         count = self.count
-        if count is None:
-            return None
 
         if current_count < count:
             return PageInfo(params={"offset": current_count})
@@ -156,7 +148,7 @@ class AsyncOffsetPageFastedgeApps(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
 class SyncOffsetPageFastedgeTemplates(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     templates: List[_T]
-    count: Optional[int] = None
+    count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -175,8 +167,6 @@ class SyncOffsetPageFastedgeTemplates(BaseSyncPage[_T], BasePage[_T], Generic[_T
         current_count = offset + length
 
         count = self.count
-        if count is None:
-            return None
 
         if current_count < count:
             return PageInfo(params={"offset": current_count})
@@ -186,7 +176,7 @@ class SyncOffsetPageFastedgeTemplates(BaseSyncPage[_T], BasePage[_T], Generic[_T
 
 class AsyncOffsetPageFastedgeTemplates(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     templates: List[_T]
-    count: Optional[int] = None
+    count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -205,8 +195,6 @@ class AsyncOffsetPageFastedgeTemplates(BaseAsyncPage[_T], BasePage[_T], Generic[
         current_count = offset + length
 
         count = self.count
-        if count is None:
-            return None
 
         if current_count < count:
             return PageInfo(params={"offset": current_count})
@@ -216,7 +204,7 @@ class AsyncOffsetPageFastedgeTemplates(BaseAsyncPage[_T], BasePage[_T], Generic[
 
 class SyncOffsetPageFastedgeAppLogs(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     logs: List[_T]
-    total_count: Optional[int] = None
+    total_count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -235,8 +223,6 @@ class SyncOffsetPageFastedgeAppLogs(BaseSyncPage[_T], BasePage[_T], Generic[_T])
         current_count = offset + length
 
         total_count = self.total_count
-        if total_count is None:
-            return None
 
         if current_count < total_count:
             return PageInfo(params={"offset": current_count})
@@ -246,7 +232,7 @@ class SyncOffsetPageFastedgeAppLogs(BaseSyncPage[_T], BasePage[_T], Generic[_T])
 
 class AsyncOffsetPageFastedgeAppLogs(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     logs: List[_T]
-    total_count: Optional[int] = None
+    total_count: int
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -265,8 +251,6 @@ class AsyncOffsetPageFastedgeAppLogs(BaseAsyncPage[_T], BasePage[_T], Generic[_T
         current_count = offset + length
 
         total_count = self.total_count
-        if total_count is None:
-            return None
 
         if current_count < total_count:
             return PageInfo(params={"offset": current_count})
