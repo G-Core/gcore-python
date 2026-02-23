@@ -125,7 +125,7 @@ class InstancesResource(SyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
         servergroup_id: str | Omit = omit,
         ssh_key_name: Optional[str] | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         user_data: str | Omit = omit,
         username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1544,7 +1544,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
         servergroup_id: str | Omit = omit,
         ssh_key_name: Optional[str] | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         user_data: str | Omit = omit,
         username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

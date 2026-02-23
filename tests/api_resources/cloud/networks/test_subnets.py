@@ -110,7 +110,7 @@ class TestSubnets:
                 }
             ],
             name="some_name",
-            tags={},
+            tags={"foo": "string"},
         )
         assert_matches_type(Subnet, subnet, path=["response"])
 
@@ -389,7 +389,7 @@ class TestAsyncSubnets:
                 }
             ],
             name="some_name",
-            tags={},
+            tags={"foo": "string"},
         )
         assert_matches_type(Subnet, subnet, path=["response"])
 

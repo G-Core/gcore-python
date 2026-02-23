@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 
 import httpx
 
@@ -71,7 +71,7 @@ class SecurityGroupsResource(SyncAPIResource):
         name: str,
         description: str | Omit = omit,
         rules: Iterable[security_group_create_params.Rule] | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -629,7 +629,7 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         name: str,
         description: str | Omit = omit,
         rules: Iterable[security_group_create_params.Rule] | Omit = omit,
-        tags: object | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
