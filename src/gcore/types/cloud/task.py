@@ -12,13 +12,16 @@ class CreatedResources(BaseModel):
     """If the task creates resources, this field will contain their IDs"""
 
     ai_clusters: Optional[List[str]] = None
-    """IDs of created AI clusters"""
+    """Deprecated, use 'clusters' instead. IDs of created GPU clusters"""
 
     api_keys: Optional[List[str]] = None
     """IDs of created API keys"""
 
     caas_containers: Optional[List[str]] = None
     """IDs of created CaaS containers"""
+
+    clusters: Optional[List[str]] = None
+    """IDs of created GPU clusters"""
 
     ddos_profiles: Optional[List[int]] = None
     """IDs of created ddos protection profiles"""
