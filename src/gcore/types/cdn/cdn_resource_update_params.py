@@ -32,6 +32,7 @@ __all__ = [
     "OptionsForceReturn",
     "OptionsForceReturnTimeInterval",
     "OptionsForwardHostHeader",
+    "OptionsGrpcPassthrough",
     "OptionsGzipOn",
     "OptionsHostHeader",
     "OptionsHttp3Enabled",
@@ -705,6 +706,26 @@ class OptionsForwardHostHeader(TypedDict, total=False):
 
     `hostHeader` and `forward_host_header` options cannot be enabled simultaneously.
     """
+
+    enabled: Required[bool]
+    """Controls the option state.
+
+    Possible values:
+
+    - **true** - Option is enabled.
+    - **false** - Option is disabled.
+    """
+
+    value: Required[bool]
+    """Possible values:
+
+    - **true** - Option is enabled.
+    - **false** - Option is disabled.
+    """
+
+
+class OptionsGrpcPassthrough(TypedDict, total=False):
+    """Enables gRPC pass-through for the CDN resource."""
 
     enabled: Required[bool]
     """Controls the option state.
@@ -1858,6 +1879,9 @@ class Options(TypedDict, total=False):
 
     `hostHeader` and `forward_host_header` options cannot be enabled simultaneously.
     """
+
+    grpc_passthrough: Optional[OptionsGrpcPassthrough]
+    """Enables gRPC pass-through for the CDN resource."""
 
     gzip_on: Annotated[Optional[OptionsGzipOn], PropertyInfo(alias="gzipOn")]
     """Compresses content with gzip on the CDN end.

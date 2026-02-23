@@ -145,6 +145,10 @@ class TestCDNResources:
                     "enabled": False,
                     "value": False,
                 },
+                "grpc_passthrough": {
+                    "enabled": True,
+                    "value": True,
+                },
                 "gzip_on": {
                     "enabled": True,
                     "value": True,
@@ -483,6 +487,10 @@ class TestCDNResources:
                 "forward_host_header": {
                     "enabled": False,
                     "value": False,
+                },
+                "grpc_passthrough": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "gzip_on": {
                     "enabled": True,
@@ -1113,6 +1121,10 @@ class TestCDNResources:
                     "enabled": False,
                     "value": False,
                 },
+                "grpc_passthrough": {
+                    "enabled": True,
+                    "value": True,
+                },
                 "gzip_on": {
                     "enabled": True,
                     "value": True,
@@ -1455,6 +1467,10 @@ class TestAsyncCDNResources:
                     "enabled": False,
                     "value": False,
                 },
+                "grpc_passthrough": {
+                    "enabled": True,
+                    "value": True,
+                },
                 "gzip_on": {
                     "enabled": True,
                     "value": True,
@@ -1793,6 +1809,10 @@ class TestAsyncCDNResources:
                 "forward_host_header": {
                     "enabled": False,
                     "value": False,
+                },
+                "grpc_passthrough": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "gzip_on": {
                     "enabled": True,
@@ -2422,6 +2442,10 @@ class TestAsyncCDNResources:
                 "forward_host_header": {
                     "enabled": False,
                     "value": False,
+                },
+                "grpc_passthrough": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "gzip_on": {
                     "enabled": True,
