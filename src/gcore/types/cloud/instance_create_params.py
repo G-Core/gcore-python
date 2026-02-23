@@ -114,7 +114,7 @@ class InstanceCreateParams(TypedDict, total=False):
     [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
     """
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -398,7 +398,7 @@ class VolumeCreateInstanceCreateNewVolumeSerializer(TypedDict, total=False):
     If not specified, a name will be generated automatically.
     """
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -459,7 +459,7 @@ class VolumeCreateInstanceCreateVolumeFromImageSerializer(TypedDict, total=False
     - For basic VMs: the size is set automatically based on the flavor.
     """
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -513,7 +513,7 @@ class VolumeCreateInstanceCreateVolumeFromSnapshotSerializer(TypedDict, total=Fa
     If not specified, a name will be generated automatically.
     """
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -559,7 +559,7 @@ class VolumeCreateInstanceCreateVolumeFromApptemplateSerializer(TypedDict, total
     size: int
     """Volume size in GiB."""
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -604,7 +604,7 @@ class VolumeCreateInstanceExistingVolumeSerializer(TypedDict, total=False):
     delete_on_termination: bool
     """Set to `true` to automatically delete the volume when the instance is deleted."""
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
