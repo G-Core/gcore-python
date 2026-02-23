@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SecurityGroupCreateParams", "Rule"]
@@ -24,7 +24,7 @@ class SecurityGroupCreateParams(TypedDict, total=False):
     rules: Iterable[Rule]
     """Security group rules"""
 
-    tags: object
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

@@ -137,7 +137,7 @@ class TestInstances:
             project_id=0,
             region_id=0,
             name="instance_name",
-            tags={},
+            tags={"foo": "string"},
         )
         assert_matches_type(Instance, instance, path=["response"])
 
@@ -1007,7 +1007,7 @@ class TestAsyncInstances:
             project_id=0,
             region_id=0,
             name="instance_name",
-            tags={},
+            tags={"foo": "string"},
         )
         assert_matches_type(Instance, instance, path=["response"])
 
