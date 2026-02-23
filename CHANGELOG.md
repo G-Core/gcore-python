@@ -1,5 +1,62 @@
 # Changelog
 
+## 0.34.0 (2026-02-23)
+
+Full Changelog: [v0.33.0...v0.34.0](https://github.com/G-Core/gcore-python/compare/v0.33.0...v0.34.0)
+
+### ⚠ BREAKING CHANGES
+
+* **iam:** rename models and update examples
+* **iam:** rename models and update examples
+* **waap:** move domains.toggle_policy to domains.policies.toggle
+* **waap:** split api_discovery methods into scan_results, openapi, and settings subresources
+* **streaming:** move streams clip methods to streams.clips
+* **streaming:** move playlists.list_videos to playlists.videos.list
+* **cdn:** move ip_ranges.list_ips to ips.list
+
+### Features
+
+* **api:** aggregated API specs update ([39acbb8](https://github.com/G-Core/gcore-python/commit/39acbb811cad1725b4396ef6ede094ef4c4c5e02))
+* **api:** aggregated API specs update ([ebf5798](https://github.com/G-Core/gcore-python/commit/ebf57985fa967cc5f8abd167ba09110a7c832950))
+* **api:** aggregated API specs update ([0deadd1](https://github.com/G-Core/gcore-python/commit/0deadd1591cdf99fa6c8dc62d3c239b5d7aa7587))
+* **api:** aggregated API specs update ([507f04d](https://github.com/G-Core/gcore-python/commit/507f04d10f8307628092b91d0333fb1682d829eb))
+* **api:** aggregated API specs update ([dc25cc7](https://github.com/G-Core/gcore-python/commit/dc25cc76e4dd199daa6ff8128d1e03ee8f42ffbf))
+* **api:** aggregated API specs update ([34d65c1](https://github.com/G-Core/gcore-python/commit/34d65c17e2438ba6ab5d60907936eb5d12181a31))
+* **api:** aggregated API specs update ([079e24c](https://github.com/G-Core/gcore-python/commit/079e24cd6522792e9d841a2e0f408e21e617e05e))
+* **api:** aggregated API specs update ([9255354](https://github.com/G-Core/gcore-python/commit/925535479aea739b6abbd1fa76ea892d342fc355))
+* **api:** manual updates ([15d9e1a](https://github.com/G-Core/gcore-python/commit/15d9e1aaa61c40d63fbe4d7a7e62c5b81ddebe7d))
+* **cdn:** enable terraform generation for cdn rules ([4724ee3](https://github.com/G-Core/gcore-python/commit/4724ee3468cadb989bdc0b99e79de4b243e870f8))
+* **cloud:** add create_and_poll/delete_and_poll for security group rules ([#151](https://github.com/G-Core/gcore-python/issues/151)) ([b0934b4](https://github.com/G-Core/gcore-python/commit/b0934b4bdcf62c3af24356dcf28aedb10e5c175a))
+* **cloud:** enable terraform for security group rules (v2) ([9cd0f53](https://github.com/G-Core/gcore-python/commit/9cd0f536ca121d44af097dda1a1f14f77f3293bf))
+
+
+### Bug Fixes
+
+* **api:** revert unnecessary changes to additionalProperties ([fd60fa5](https://github.com/G-Core/gcore-python/commit/fd60fa500bfbcfd29d77da460801a2b45c7c416f))
+* **client:** mark count in offset pagination as required ([889d7fd](https://github.com/G-Core/gcore-python/commit/889d7fd6d71b00e549a1f31a09ccc1cf7797540c))
+* **cloud:** keep v1 replace method for security group rules ([6611ee4](https://github.com/G-Core/gcore-python/commit/6611ee4adae0a5c428e147c8cc56b363d4f789b0))
+* **cloud:** unset correct envs in scripts/test ([7443a58](https://github.com/G-Core/gcore-python/commit/7443a589d5daccf5bb96e44703126299b0af405d))
+* **storage:** update storage type and ignore deprecation in examples ([df7fbed](https://github.com/G-Core/gcore-python/commit/df7fbed9dca33894eaf3111bf7d87b0a1aa16977))
+* **waap:** split api_discovery methods into scan_results, openapi, and settings subresources ([b1c884f](https://github.com/G-Core/gcore-python/commit/b1c884f463f33289b820eb5565ac9d7d74afbb2f))
+
+
+### Chores
+
+* **internal:** add request options to SSE classes ([7c4bdc6](https://github.com/G-Core/gcore-python/commit/7c4bdc6cbcfa8d8fa1a366c0f6090d290499a6f6))
+* **internal:** make `test_proxy_environment_variables` more resilient ([9e8214f](https://github.com/G-Core/gcore-python/commit/9e8214f50ae018ccd50ffaca2e5c6ca516f2a4a6))
+* **streaming:** skip Clip tests ([da190a9](https://github.com/G-Core/gcore-python/commit/da190a97f8f42fc930c4381b62e6e2230e9961a1))
+* update mock server docs ([4e4a1f8](https://github.com/G-Core/gcore-python/commit/4e4a1f8ea185a3f84be9c68839569002b8c08e2f))
+
+
+### Refactors
+
+* **cdn:** move ip_ranges.list_ips to ips.list ([d86c213](https://github.com/G-Core/gcore-python/commit/d86c21322c7ea98ba5ada8ddb6e93843ac2c7719))
+* **iam:** rename models and update examples ([2da7f85](https://github.com/G-Core/gcore-python/commit/2da7f85bd5944349aec34c473638a3c30f3a9f23))
+* **iam:** rename models and update examples ([9dce180](https://github.com/G-Core/gcore-python/commit/9dce180a6be142c2a75e12ce2978565d438694f9))
+* **streaming:** move playlists.list_videos to playlists.videos.list ([c156758](https://github.com/G-Core/gcore-python/commit/c156758df6af4bc9516794adf1ab984d7f17d29e))
+* **streaming:** move streams clip methods to streams.clips ([3618fc7](https://github.com/G-Core/gcore-python/commit/3618fc747692a6b6921ec82cba39180b6d99021a))
+* **waap:** move domains.toggle_policy to domains.policies.toggle ([e17429a](https://github.com/G-Core/gcore-python/commit/e17429ad3e37a2eef866b61833b1176cfac5b6d1))
+
 ## 0.33.0 (2026-02-16)
 
 Full Changelog: [v0.32.0...v0.33.0](https://github.com/G-Core/gcore-python/compare/v0.32.0...v0.33.0)
