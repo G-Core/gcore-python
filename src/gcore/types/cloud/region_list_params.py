@@ -8,6 +8,9 @@ __all__ = ["RegionListParams"]
 
 
 class RegionListParams(TypedDict, total=False):
+    display_name: str
+    """Filter regions by display name. Case-insensitive exact match."""
+
     limit: int
     """Limit the number of returned regions.
 
