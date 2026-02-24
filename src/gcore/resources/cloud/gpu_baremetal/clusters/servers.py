@@ -332,6 +332,62 @@ class ServersResource(SyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1,
         )
 
+    def rebuild(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Perform a rebuild operation on a bare metal GPU cluster server.
+
+        During the
+        rebuild process, the server receive a new image, SSH key, and user data.
+        Important: Before triggering a rebuild, the cluster must have updated server
+        settings to apply. These cluster settings must be patched using the following
+        endpoint: PATCH
+        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}/servers_settings'
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          server_id: Server unique identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return self._post(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
 
 class AsyncServersResource(AsyncAPIResource):
     @cached_property
@@ -638,6 +694,62 @@ class AsyncServersResource(AsyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1,
         )
 
+    async def rebuild(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Perform a rebuild operation on a bare metal GPU cluster server.
+
+        During the
+        rebuild process, the server receive a new image, SSH key, and user data.
+        Important: Before triggering a rebuild, the cluster must have updated server
+        settings to apply. These cluster settings must be patched using the following
+        endpoint: PATCH
+        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}/servers_settings'
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          server_id: Server unique identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return await self._post(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
 
 class ServersResourceWithRawResponse:
     def __init__(self, servers: ServersResource) -> None:
@@ -657,6 +769,9 @@ class ServersResourceWithRawResponse:
         )
         self.reboot = to_raw_response_wrapper(
             servers.reboot,
+        )
+        self.rebuild = to_raw_response_wrapper(
+            servers.rebuild,
         )
 
 
@@ -679,6 +794,9 @@ class AsyncServersResourceWithRawResponse:
         self.reboot = async_to_raw_response_wrapper(
             servers.reboot,
         )
+        self.rebuild = async_to_raw_response_wrapper(
+            servers.rebuild,
+        )
 
 
 class ServersResourceWithStreamingResponse:
@@ -700,6 +818,9 @@ class ServersResourceWithStreamingResponse:
         self.reboot = to_streamed_response_wrapper(
             servers.reboot,
         )
+        self.rebuild = to_streamed_response_wrapper(
+            servers.rebuild,
+        )
 
 
 class AsyncServersResourceWithStreamingResponse:
@@ -720,4 +841,7 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.reboot = async_to_streamed_response_wrapper(
             servers.reboot,
+        )
+        self.rebuild = async_to_streamed_response_wrapper(
+            servers.rebuild,
         )
