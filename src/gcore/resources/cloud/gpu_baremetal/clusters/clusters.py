@@ -668,9 +668,9 @@ class ClustersResource(SyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        if not task.created_resources or not task.created_resources.ai_clusters:
+        if not task.created_resources or not task.created_resources.clusters:
             raise ValueError("No cluster was created")
-        cluster_id = task.created_resources.ai_clusters[0]
+        cluster_id = task.created_resources.clusters[0]
         return self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
@@ -1387,9 +1387,9 @@ class AsyncClustersResource(AsyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        if not task.created_resources or not task.created_resources.ai_clusters:
+        if not task.created_resources or not task.created_resources.clusters:
             raise ValueError("No cluster was created")
-        cluster_id = task.created_resources.ai_clusters[0]
+        cluster_id = task.created_resources.clusters[0]
         return await self.get(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
