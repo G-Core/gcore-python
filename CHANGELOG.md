@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.35.0 (2026-02-24)
+
+Full Changelog: [v0.34.0...v0.35.0](https://github.com/G-Core/gcore-python/compare/v0.34.0...v0.35.0)
+
+### Features
+
+* add /release skill ([90db06d](https://github.com/G-Core/gcore-python/commit/90db06dccfcfd8dcc044818d89f851d97df4b7be))
+* **api:** aggregated API specs update ([46ef334](https://github.com/G-Core/gcore-python/commit/46ef3348dcfd5ca7c1ecd8dd5f8ea9f8d46d230d))
+
+
+### Bug Fixes
+
+* **cloud:** get cluster_id from task created_resources.clusters ([b0d1b0d](https://github.com/G-Core/gcore-python/commit/b0d1b0dc11b92176083d7d467e28d1e52c253c7f))
+
 ## 0.34.0 (2026-02-23)
 
 Full Changelog: [v0.33.0...v0.34.0](https://github.com/G-Core/gcore-python/compare/v0.33.0...v0.34.0)
