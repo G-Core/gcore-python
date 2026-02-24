@@ -26,6 +26,7 @@ class TestRegions:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         region = client.cloud.regions.list(
+            display_name="Luxembourg",
             limit=100,
             offset=0,
             order_by="created_at.desc",
@@ -107,6 +108,7 @@ class TestAsyncRegions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         region = await async_client.cloud.regions.list(
+            display_name="Luxembourg",
             limit=100,
             offset=0,
             order_by="created_at.desc",

@@ -47,6 +47,7 @@ class RegionsResource(SyncAPIResource):
     def list(
         self,
         *,
+        display_name: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["created_at.asc", "created_at.desc", "display_name.asc", "display_name.desc"] | Omit = omit,
@@ -62,9 +63,11 @@ class RegionsResource(SyncAPIResource):
         """List regions
 
         Args:
-          limit: Limit the number of returned regions.
+          display_name: Filter regions by display name.
 
-        Falls back to default of 100 if not
+        Case-insensitive exact match.
+
+          limit: Limit the number of returned regions. Falls back to default of 100 if not
               specified. Limited by max limit value of 1000
 
           offset: Offset value is used to exclude the first set of records from the result
@@ -94,6 +97,7 @@ class RegionsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "display_name": display_name,
                         "limit": limit,
                         "offset": offset,
                         "order_by": order_by,
@@ -173,6 +177,7 @@ class AsyncRegionsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        display_name: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["created_at.asc", "created_at.desc", "display_name.asc", "display_name.desc"] | Omit = omit,
@@ -188,9 +193,11 @@ class AsyncRegionsResource(AsyncAPIResource):
         """List regions
 
         Args:
-          limit: Limit the number of returned regions.
+          display_name: Filter regions by display name.
 
-        Falls back to default of 100 if not
+        Case-insensitive exact match.
+
+          limit: Limit the number of returned regions. Falls back to default of 100 if not
               specified. Limited by max limit value of 1000
 
           offset: Offset value is used to exclude the first set of records from the result
@@ -220,6 +227,7 @@ class AsyncRegionsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "display_name": display_name,
                         "limit": limit,
                         "offset": offset,
                         "order_by": order_by,
