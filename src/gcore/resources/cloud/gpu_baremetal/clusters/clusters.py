@@ -31,7 +31,7 @@ from .servers import (
     ServersResourceWithStreamingResponse,
     AsyncServersResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from .interfaces import (
     InterfacesResource,
@@ -612,6 +612,69 @@ class ClustersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def update_servers_settings(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | Omit = omit,
+        servers_settings: cluster_update_servers_settings_params.ServersSettings | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        This operation only modifies cluster settings such as SSH key, image, and user
+        data. **It does NOT modify or rebuild any existing servers in the cluster.**
+
+        To apply these configuration changes to running servers, use the
+        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild`
+        endpoint.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          image_id: System image ID
+
+          servers_settings: Configuration settings for the servers in the cluster
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return self._patch(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers_settings",
+            body=maybe_transform(
+                {
+                    "image_id": image_id,
+                    "servers_settings": servers_settings,
+                },
+                cluster_update_servers_settings_params.ClusterUpdateServersSettingsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GPUBaremetalCluster,
+        )
+
     def create_and_poll(
         self,
         *,
@@ -630,7 +693,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
         Create a bare metal GPU cluster and wait for it to be ready.
@@ -678,9 +741,6 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        nodes: List[str],
-        image_id: Optional[str] | Omit = omit,
-        user_data: Optional[str] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -688,7 +748,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
         Rebuild a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
@@ -697,9 +757,6 @@ class ClustersResource(SyncAPIResource):
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
-            nodes=nodes,
-            image_id=image_id,
-            user_data=user_data,
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
@@ -739,7 +796,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
         Resize a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
@@ -1322,6 +1379,224 @@ class AsyncClustersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def update_servers_settings(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | Omit = omit,
+        servers_settings: cluster_update_servers_settings_params.ServersSettings | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        This operation only modifies cluster settings such as SSH key, image, and user
+        data. **It does NOT modify or rebuild any existing servers in the cluster.**
+
+        To apply these configuration changes to running servers, use the
+        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild`
+        endpoint.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          image_id: System image ID
+
+          servers_settings: Configuration settings for the servers in the cluster
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return await self._patch(
+            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers_settings",
+            body=await async_maybe_transform(
+                {
+                    "image_id": image_id,
+                    "servers_settings": servers_settings,
+                },
+                cluster_update_servers_settings_params.ClusterUpdateServersSettingsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GPUBaremetalCluster,
+        )
+
+    async def create_and_poll(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        image_id: str,
+        name: str,
+        servers_count: int,
+        servers_settings: cluster_create_params.ServersSettings,
+        tags: Dict[str, str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        Create a bare metal GPU cluster and wait for it to be ready.
+        """
+        response = await self.create(
+            project_id=project_id,
+            region_id=region_id,
+            flavor=flavor,
+            image_id=image_id,
+            name=name,
+            servers_count=servers_count,
+            servers_settings=servers_settings,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) != 1:
+            raise ValueError(f"Expected exactly one task to be created")
+        task = await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        if not task.created_resources or not task.created_resources.clusters:
+            raise ValueError("No cluster was created")
+        cluster_id = task.created_resources.clusters[0]
+        return await self.get(  # pyright: ignore[reportDeprecated]
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+    async def rebuild_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        Rebuild a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = await self.rebuild(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return await self.get(  # pyright: ignore[reportDeprecated]
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+    async def resize_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        instances_count: int,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        Resize a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = await self.resize(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            instances_count=instances_count,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return await self.get(  # pyright: ignore[reportDeprecated]
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
 
 
 class ClustersResourceWithRawResponse:
@@ -1355,7 +1630,18 @@ class ClustersResourceWithRawResponse:
         self.resize = to_raw_response_wrapper(
             clusters.resize,
         )
-
+        self.update_servers_settings = to_raw_response_wrapper(
+            clusters.update_servers_settings,
+        )
+        self.create_and_poll = to_raw_response_wrapper(
+            clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = to_raw_response_wrapper(
+            clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = to_raw_response_wrapper(
+            clusters.resize_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> InterfacesResourceWithRawResponse:
@@ -1405,7 +1691,18 @@ class AsyncClustersResourceWithRawResponse:
         self.resize = async_to_raw_response_wrapper(
             clusters.resize,
         )
-
+        self.update_servers_settings = async_to_raw_response_wrapper(
+            clusters.update_servers_settings,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = async_to_raw_response_wrapper(
+            clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = async_to_raw_response_wrapper(
+            clusters.resize_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> AsyncInterfacesResourceWithRawResponse:
@@ -1455,7 +1752,18 @@ class ClustersResourceWithStreamingResponse:
         self.resize = to_streamed_response_wrapper(
             clusters.resize,
         )
-
+        self.update_servers_settings = to_streamed_response_wrapper(
+            clusters.update_servers_settings,
+        )
+        self.create_and_poll = to_streamed_response_wrapper(
+            clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = to_streamed_response_wrapper(
+            clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = to_streamed_response_wrapper(
+            clusters.resize_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> InterfacesResourceWithStreamingResponse:
@@ -1505,7 +1813,18 @@ class AsyncClustersResourceWithStreamingResponse:
         self.resize = async_to_streamed_response_wrapper(
             clusters.resize,
         )
-
+        self.update_servers_settings = async_to_streamed_response_wrapper(
+            clusters.update_servers_settings,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            clusters.create_and_poll,
+        )
+        self.rebuild_and_poll = async_to_streamed_response_wrapper(
+            clusters.rebuild_and_poll,
+        )
+        self.resize_and_poll = async_to_streamed_response_wrapper(
+            clusters.resize_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> AsyncInterfacesResourceWithStreamingResponse:
