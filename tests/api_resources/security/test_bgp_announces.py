@@ -26,7 +26,10 @@ class TestBgpAnnounces:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         bgp_announce = client.security.bgp_announces.list(
             announced=True,
-            origin="STATIC",
+            client_id=1,
+            limit=1,
+            offset=0,
+            origin=["STATIC", "DYNAMIC"],
             site="x",
         )
         assert_matches_type(BgpAnnounceListResponse, bgp_announce, path=["response"])
@@ -64,7 +67,7 @@ class TestBgpAnnounces:
         bgp_announce = client.security.bgp_announces.toggle(
             announce="192.9.9.1/32",
             enabled=True,
-            client_id=0,
+            client_id=1,
         )
         assert_matches_type(object, bgp_announce, path=["response"])
 
@@ -109,7 +112,10 @@ class TestAsyncBgpAnnounces:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         bgp_announce = await async_client.security.bgp_announces.list(
             announced=True,
-            origin="STATIC",
+            client_id=1,
+            limit=1,
+            offset=0,
+            origin=["STATIC", "DYNAMIC"],
             site="x",
         )
         assert_matches_type(BgpAnnounceListResponse, bgp_announce, path=["response"])
@@ -147,7 +153,7 @@ class TestAsyncBgpAnnounces:
         bgp_announce = await async_client.security.bgp_announces.toggle(
             announce="192.9.9.1/32",
             enabled=True,
-            client_id=0,
+            client_id=1,
         )
         assert_matches_type(object, bgp_announce, path=["response"])
 

@@ -10,7 +10,10 @@ __all__ = ["BgpAnnounceToggleParams"]
 
 class BgpAnnounceToggleParams(TypedDict, total=False):
     announce: Required[str]
+    """IP network to announce"""
 
     enabled: Required[bool]
+    """Whether the announcement is enabled"""
 
     client_id: Optional[int]
+    """A positive integer ID"""
