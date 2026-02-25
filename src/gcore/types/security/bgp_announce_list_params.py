@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["BgpAnnounceListParams"]
@@ -11,6 +11,13 @@ __all__ = ["BgpAnnounceListParams"]
 class BgpAnnounceListParams(TypedDict, total=False):
     announced: Optional[bool]
 
-    origin: Optional[Literal["STATIC", "DYNAMIC"]]
+    client_id: Optional[int]
+    """A positive integer ID"""
+
+    limit: Optional[int]
+
+    offset: Optional[int]
+
+    origin: Optional[List[Literal["STATIC", "DYNAMIC", "IAAS", "PROTECTED_NETWORK", "EDGE_PROXY"]]]
 
     site: Optional[str]
