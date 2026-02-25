@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -48,7 +48,10 @@ class BgpAnnouncesResource(SyncAPIResource):
         self,
         *,
         announced: Optional[bool] | Omit = omit,
-        origin: Optional[Literal["STATIC", "DYNAMIC"]] | Omit = omit,
+        client_id: Optional[int] | Omit = omit,
+        limit: Optional[int] | Omit = omit,
+        offset: Optional[int] | Omit = omit,
+        origin: Optional[List[Literal["STATIC", "DYNAMIC", "IAAS", "PROTECTED_NETWORK", "EDGE_PROXY"]]] | Omit = omit,
         site: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -57,13 +60,13 @@ class BgpAnnouncesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BgpAnnounceListResponse:
-        """Get BGP announces filtered by parameters.
-
-        Shows announces in active profiles,
-        meaning that to get a non-empty response, the client must have at least one
-        active profile.
+        """
+        List BGP announces with optional filtering by site, origin, announcement status,
+        and client.
 
         Args:
+          client_id: A positive integer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -82,6 +85,9 @@ class BgpAnnouncesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "announced": announced,
+                        "client_id": client_id,
+                        "limit": limit,
+                        "offset": offset,
                         "origin": origin,
                         "site": site,
                     },
@@ -104,13 +110,16 @@ class BgpAnnouncesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Change BGP announces (it can be enabled or disabled, but not created or
-        updated).
-
-        Can be applied to already existing announces in active profiles,
-        meaning that the client must have at least one active profile.
+        """
+        Enable or disable BGP announces for a client.
 
         Args:
+          announce: IP network to announce
+
+          enabled: Whether the announcement is enabled
+
+          client_id: A positive integer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -163,7 +172,10 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
         self,
         *,
         announced: Optional[bool] | Omit = omit,
-        origin: Optional[Literal["STATIC", "DYNAMIC"]] | Omit = omit,
+        client_id: Optional[int] | Omit = omit,
+        limit: Optional[int] | Omit = omit,
+        offset: Optional[int] | Omit = omit,
+        origin: Optional[List[Literal["STATIC", "DYNAMIC", "IAAS", "PROTECTED_NETWORK", "EDGE_PROXY"]]] | Omit = omit,
         site: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -172,13 +184,13 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BgpAnnounceListResponse:
-        """Get BGP announces filtered by parameters.
-
-        Shows announces in active profiles,
-        meaning that to get a non-empty response, the client must have at least one
-        active profile.
+        """
+        List BGP announces with optional filtering by site, origin, announcement status,
+        and client.
 
         Args:
+          client_id: A positive integer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -197,6 +209,9 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "announced": announced,
+                        "client_id": client_id,
+                        "limit": limit,
+                        "offset": offset,
                         "origin": origin,
                         "site": site,
                     },
@@ -219,13 +234,16 @@ class AsyncBgpAnnouncesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Change BGP announces (it can be enabled or disabled, but not created or
-        updated).
-
-        Can be applied to already existing announces in active profiles,
-        meaning that the client must have at least one active profile.
+        """
+        Enable or disable BGP announces for a client.
 
         Args:
+          announce: IP network to announce
+
+          enabled: Whether the announcement is enabled
+
+          client_id: A positive integer ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
