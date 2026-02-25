@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
-
-from .tag_update_map_param import TagUpdateMapParam
 
 __all__ = [
     "VolumeCreateParams",
@@ -49,7 +47,7 @@ class CreateVolumeFromImageSerializer(TypedDict, total=False):
     volume
     """
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -104,7 +102,7 @@ class CreateVolumeFromSnapshotSerializer(TypedDict, total=False):
     If specified, value must be equal to respective snapshot size
     """
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
@@ -153,7 +151,7 @@ class CreateNewVolumeSerializer(TypedDict, total=False):
     volume
     """
 
-    tags: TagUpdateMapParam
+    tags: Dict[str, str]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling
