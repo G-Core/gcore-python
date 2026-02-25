@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -69,7 +69,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | Omit = omit,
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,7 +138,7 @@ class VolumesResource(SyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         size: int | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -207,7 +207,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | Omit = omit,
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -276,7 +276,7 @@ class VolumesResource(SyncAPIResource):
         attachment_tag: str | Omit = omit,
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         snapshot_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1313,7 +1313,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | Omit = omit,
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1382,7 +1382,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         size: int | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1451,7 +1451,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | Omit = omit,
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1520,7 +1520,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         attachment_tag: str | Omit = omit,
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         snapshot_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
