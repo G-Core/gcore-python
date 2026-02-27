@@ -32,6 +32,8 @@ __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
 
 class SecretsResource(SyncAPIResource):
+    """Secret values that can be used in apps"""
+
     @cached_property
     def with_raw_response(self) -> SecretsResourceWithRawResponse:
         """
@@ -312,6 +314,8 @@ class SecretsResource(SyncAPIResource):
 
 
 class AsyncSecretsResource(AsyncAPIResource):
+    """Secret values that can be used in apps"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSecretsResourceWithRawResponse:
         """

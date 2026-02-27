@@ -35,6 +35,10 @@ __all__ = ["BinariesResource", "AsyncBinariesResource"]
 
 
 class BinariesResource(SyncAPIResource):
+    """
+    Binaries are WebAssembly executables that are actually executed when app is ran.
+    """
+
     @cached_property
     def with_raw_response(self) -> BinariesResourceWithRawResponse:
         """
@@ -171,6 +175,10 @@ class BinariesResource(SyncAPIResource):
 
 
 class AsyncBinariesResource(AsyncAPIResource):
+    """
+    Binaries are WebAssembly executables that are actually executed when app is ran.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncBinariesResourceWithRawResponse:
         """

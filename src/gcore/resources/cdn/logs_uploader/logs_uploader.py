@@ -35,14 +35,35 @@ __all__ = ["LogsUploaderResource", "AsyncLogsUploaderResource"]
 class LogsUploaderResource(SyncAPIResource):
     @cached_property
     def policies(self) -> PoliciesResource:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return PoliciesResource(self._client)
 
     @cached_property
     def targets(self) -> TargetsResource:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return TargetsResource(self._client)
 
     @cached_property
     def configs(self) -> ConfigsResource:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return ConfigsResource(self._client)
 
     @cached_property
@@ -68,14 +89,35 @@ class LogsUploaderResource(SyncAPIResource):
 class AsyncLogsUploaderResource(AsyncAPIResource):
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncPoliciesResource(self._client)
 
     @cached_property
     def targets(self) -> AsyncTargetsResource:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncTargetsResource(self._client)
 
     @cached_property
     def configs(self) -> AsyncConfigsResource:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncConfigsResource(self._client)
 
     @cached_property
@@ -104,14 +146,35 @@ class LogsUploaderResourceWithRawResponse:
 
     @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return PoliciesResourceWithRawResponse(self._logs_uploader.policies)
 
     @cached_property
     def targets(self) -> TargetsResourceWithRawResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return TargetsResourceWithRawResponse(self._logs_uploader.targets)
 
     @cached_property
     def configs(self) -> ConfigsResourceWithRawResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return ConfigsResourceWithRawResponse(self._logs_uploader.configs)
 
 
@@ -121,14 +184,35 @@ class AsyncLogsUploaderResourceWithRawResponse:
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncPoliciesResourceWithRawResponse(self._logs_uploader.policies)
 
     @cached_property
     def targets(self) -> AsyncTargetsResourceWithRawResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncTargetsResourceWithRawResponse(self._logs_uploader.targets)
 
     @cached_property
     def configs(self) -> AsyncConfigsResourceWithRawResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncConfigsResourceWithRawResponse(self._logs_uploader.configs)
 
 
@@ -138,14 +222,35 @@ class LogsUploaderResourceWithStreamingResponse:
 
     @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return PoliciesResourceWithStreamingResponse(self._logs_uploader.policies)
 
     @cached_property
     def targets(self) -> TargetsResourceWithStreamingResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return TargetsResourceWithStreamingResponse(self._logs_uploader.targets)
 
     @cached_property
     def configs(self) -> ConfigsResourceWithStreamingResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return ConfigsResourceWithStreamingResponse(self._logs_uploader.configs)
 
 
@@ -155,12 +260,33 @@ class AsyncLogsUploaderResourceWithStreamingResponse:
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncPoliciesResourceWithStreamingResponse(self._logs_uploader.policies)
 
     @cached_property
     def targets(self) -> AsyncTargetsResourceWithStreamingResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncTargetsResourceWithStreamingResponse(self._logs_uploader.targets)
 
     @cached_property
     def configs(self) -> AsyncConfigsResourceWithStreamingResponse:
+        """Logs uploader allows you to upload logs with desired format to desired storages.
+
+        Consists of three main parts:
+        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+        - **Targets** - destinations where logs are uploaded.
+        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
         return AsyncConfigsResourceWithStreamingResponse(self._logs_uploader.configs)

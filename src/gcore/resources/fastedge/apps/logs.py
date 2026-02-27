@@ -27,6 +27,10 @@ __all__ = ["LogsResource", "AsyncLogsResource"]
 
 
 class LogsResource(SyncAPIResource):
+    """
+    Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+    """
+
     @cached_property
     def with_raw_response(self) -> LogsResourceWithRawResponse:
         """
@@ -120,6 +124,10 @@ class LogsResource(SyncAPIResource):
 
 
 class AsyncLogsResource(AsyncAPIResource):
+    """
+    Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
         """

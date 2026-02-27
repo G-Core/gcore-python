@@ -23,6 +23,15 @@ __all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]
 
 
 class AuditLogsResource(SyncAPIResource):
+    """
+    Get the history of users requests to CDN.
+    It contains requests made both via the API and via the control panel.
+
+    The following methods are not tracked in the activity logs:
+    - HEAD
+    - OPTIONS
+    """
+
     @cached_property
     def with_raw_response(self) -> AuditLogsResourceWithRawResponse:
         """
@@ -187,6 +196,15 @@ class AuditLogsResource(SyncAPIResource):
 
 
 class AsyncAuditLogsResource(AsyncAPIResource):
+    """
+    Get the history of users requests to CDN.
+    It contains requests made both via the API and via the control panel.
+
+    The following methods are not tracked in the activity logs:
+    - HEAD
+    - OPTIONS
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAuditLogsResourceWithRawResponse:
         """

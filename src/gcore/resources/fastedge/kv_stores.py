@@ -24,6 +24,8 @@ __all__ = ["KvStoresResource", "AsyncKvStoresResource"]
 
 
 class KvStoresResource(SyncAPIResource):
+    """Key-value edge storage for apps"""
+
     @cached_property
     def with_raw_response(self) -> KvStoresResourceWithRawResponse:
         """
@@ -253,6 +255,8 @@ class KvStoresResource(SyncAPIResource):
 
 
 class AsyncKvStoresResource(AsyncAPIResource):
+    """Key-value edge storage for apps"""
+
     @cached_property
     def with_raw_response(self) -> AsyncKvStoresResourceWithRawResponse:
         """

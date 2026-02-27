@@ -141,12 +141,16 @@ class Gcore(SyncAPIClient):
 
     @cached_property
     def iam(self) -> IamResource:
+        """
+        Account management operations including authentication, password management, and account details.
+        """
         from .resources.iam import IamResource
 
         return IamResource(self)
 
     @cached_property
     def fastedge(self) -> FastedgeResource:
+        """Client-level settings and limits"""
         from .resources.fastedge import FastedgeResource
 
         return FastedgeResource(self)
@@ -416,12 +420,16 @@ class AsyncGcore(AsyncAPIClient):
 
     @cached_property
     def iam(self) -> AsyncIamResource:
+        """
+        Account management operations including authentication, password management, and account details.
+        """
         from .resources.iam import AsyncIamResource
 
         return AsyncIamResource(self)
 
     @cached_property
     def fastedge(self) -> AsyncFastedgeResource:
+        """Client-level settings and limits"""
         from .resources.fastedge import AsyncFastedgeResource
 
         return AsyncFastedgeResource(self)
@@ -615,12 +623,16 @@ class GcoreWithRawResponse:
 
     @cached_property
     def iam(self) -> iam.IamResourceWithRawResponse:
+        """
+        Account management operations including authentication, password management, and account details.
+        """
         from .resources.iam import IamResourceWithRawResponse
 
         return IamResourceWithRawResponse(self._client.iam)
 
     @cached_property
     def fastedge(self) -> fastedge.FastedgeResourceWithRawResponse:
+        """Client-level settings and limits"""
         from .resources.fastedge import FastedgeResourceWithRawResponse
 
         return FastedgeResourceWithRawResponse(self._client.fastedge)
@@ -676,12 +688,16 @@ class AsyncGcoreWithRawResponse:
 
     @cached_property
     def iam(self) -> iam.AsyncIamResourceWithRawResponse:
+        """
+        Account management operations including authentication, password management, and account details.
+        """
         from .resources.iam import AsyncIamResourceWithRawResponse
 
         return AsyncIamResourceWithRawResponse(self._client.iam)
 
     @cached_property
     def fastedge(self) -> fastedge.AsyncFastedgeResourceWithRawResponse:
+        """Client-level settings and limits"""
         from .resources.fastedge import AsyncFastedgeResourceWithRawResponse
 
         return AsyncFastedgeResourceWithRawResponse(self._client.fastedge)
@@ -737,12 +753,16 @@ class GcoreWithStreamedResponse:
 
     @cached_property
     def iam(self) -> iam.IamResourceWithStreamingResponse:
+        """
+        Account management operations including authentication, password management, and account details.
+        """
         from .resources.iam import IamResourceWithStreamingResponse
 
         return IamResourceWithStreamingResponse(self._client.iam)
 
     @cached_property
     def fastedge(self) -> fastedge.FastedgeResourceWithStreamingResponse:
+        """Client-level settings and limits"""
         from .resources.fastedge import FastedgeResourceWithStreamingResponse
 
         return FastedgeResourceWithStreamingResponse(self._client.fastedge)
@@ -798,12 +818,16 @@ class AsyncGcoreWithStreamedResponse:
 
     @cached_property
     def iam(self) -> iam.AsyncIamResourceWithStreamingResponse:
+        """
+        Account management operations including authentication, password management, and account details.
+        """
         from .resources.iam import AsyncIamResourceWithStreamingResponse
 
         return AsyncIamResourceWithStreamingResponse(self._client.iam)
 
     @cached_property
     def fastedge(self) -> fastedge.AsyncFastedgeResourceWithStreamingResponse:
+        """Client-level settings and limits"""
         from .resources.fastedge import AsyncFastedgeResourceWithStreamingResponse
 
         return AsyncFastedgeResourceWithStreamingResponse(self._client.fastedge)
