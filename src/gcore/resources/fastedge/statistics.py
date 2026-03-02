@@ -26,6 +26,8 @@ __all__ = ["StatisticsResource", "AsyncStatisticsResource"]
 
 
 class StatisticsResource(SyncAPIResource):
+    """Statistics of edge app use"""
+
     @cached_property
     def with_raw_response(self) -> StatisticsResourceWithRawResponse:
         """
@@ -163,6 +165,8 @@ class StatisticsResource(SyncAPIResource):
 
 
 class AsyncStatisticsResource(AsyncAPIResource):
+    """Statistics of edge app use"""
+
     @cached_property
     def with_raw_response(self) -> AsyncStatisticsResourceWithRawResponse:
         """

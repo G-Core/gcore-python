@@ -165,10 +165,23 @@ class CDNResource(SyncAPIResource):
 
     @cached_property
     def audit_logs(self) -> AuditLogsResource:
+        """
+        Get the history of users requests to CDN.
+        It contains requests made both via the API and via the control panel.
+
+        The following methods are not tracked in the activity logs:
+        - HEAD
+        - OPTIONS
+        """
         return AuditLogsResource(self._client)
 
     @cached_property
     def logs(self) -> LogsResource:
+        """Log viewer provides you with general information about CDN operation.
+
+        This information does not contain all possible
+        sets of fields and restricted by time. To receive full data, use Logs Uploader.
+        """
         return LogsResource(self._client)
 
     @cached_property
@@ -177,14 +190,29 @@ class CDNResource(SyncAPIResource):
 
     @cached_property
     def statistics(self) -> StatisticsResource:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return StatisticsResource(self._client)
 
     @cached_property
     def network_capacity(self) -> NetworkCapacityResource:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return NetworkCapacityResource(self._client)
 
     @cached_property
     def metrics(self) -> MetricsResource:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return MetricsResource(self._client)
 
     @cached_property
@@ -470,10 +498,23 @@ class AsyncCDNResource(AsyncAPIResource):
 
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResource:
+        """
+        Get the history of users requests to CDN.
+        It contains requests made both via the API and via the control panel.
+
+        The following methods are not tracked in the activity logs:
+        - HEAD
+        - OPTIONS
+        """
         return AsyncAuditLogsResource(self._client)
 
     @cached_property
     def logs(self) -> AsyncLogsResource:
+        """Log viewer provides you with general information about CDN operation.
+
+        This information does not contain all possible
+        sets of fields and restricted by time. To receive full data, use Logs Uploader.
+        """
         return AsyncLogsResource(self._client)
 
     @cached_property
@@ -482,14 +523,29 @@ class AsyncCDNResource(AsyncAPIResource):
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResource:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncStatisticsResource(self._client)
 
     @cached_property
     def network_capacity(self) -> AsyncNetworkCapacityResource:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncNetworkCapacityResource(self._client)
 
     @cached_property
     def metrics(self) -> AsyncMetricsResource:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncMetricsResource(self._client)
 
     @cached_property
@@ -800,10 +856,23 @@ class CDNResourceWithRawResponse:
 
     @cached_property
     def audit_logs(self) -> AuditLogsResourceWithRawResponse:
+        """
+        Get the history of users requests to CDN.
+        It contains requests made both via the API and via the control panel.
+
+        The following methods are not tracked in the activity logs:
+        - HEAD
+        - OPTIONS
+        """
         return AuditLogsResourceWithRawResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> LogsResourceWithRawResponse:
+        """Log viewer provides you with general information about CDN operation.
+
+        This information does not contain all possible
+        sets of fields and restricted by time. To receive full data, use Logs Uploader.
+        """
         return LogsResourceWithRawResponse(self._cdn.logs)
 
     @cached_property
@@ -812,14 +881,29 @@ class CDNResourceWithRawResponse:
 
     @cached_property
     def statistics(self) -> StatisticsResourceWithRawResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return StatisticsResourceWithRawResponse(self._cdn.statistics)
 
     @cached_property
     def network_capacity(self) -> NetworkCapacityResourceWithRawResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return NetworkCapacityResourceWithRawResponse(self._cdn.network_capacity)
 
     @cached_property
     def metrics(self) -> MetricsResourceWithRawResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return MetricsResourceWithRawResponse(self._cdn.metrics)
 
     @cached_property
@@ -883,10 +967,23 @@ class AsyncCDNResourceWithRawResponse:
 
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResourceWithRawResponse:
+        """
+        Get the history of users requests to CDN.
+        It contains requests made both via the API and via the control panel.
+
+        The following methods are not tracked in the activity logs:
+        - HEAD
+        - OPTIONS
+        """
         return AsyncAuditLogsResourceWithRawResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
+        """Log viewer provides you with general information about CDN operation.
+
+        This information does not contain all possible
+        sets of fields and restricted by time. To receive full data, use Logs Uploader.
+        """
         return AsyncLogsResourceWithRawResponse(self._cdn.logs)
 
     @cached_property
@@ -895,14 +992,29 @@ class AsyncCDNResourceWithRawResponse:
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithRawResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncStatisticsResourceWithRawResponse(self._cdn.statistics)
 
     @cached_property
     def network_capacity(self) -> AsyncNetworkCapacityResourceWithRawResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncNetworkCapacityResourceWithRawResponse(self._cdn.network_capacity)
 
     @cached_property
     def metrics(self) -> AsyncMetricsResourceWithRawResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncMetricsResourceWithRawResponse(self._cdn.metrics)
 
     @cached_property
@@ -966,10 +1078,23 @@ class CDNResourceWithStreamingResponse:
 
     @cached_property
     def audit_logs(self) -> AuditLogsResourceWithStreamingResponse:
+        """
+        Get the history of users requests to CDN.
+        It contains requests made both via the API and via the control panel.
+
+        The following methods are not tracked in the activity logs:
+        - HEAD
+        - OPTIONS
+        """
         return AuditLogsResourceWithStreamingResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> LogsResourceWithStreamingResponse:
+        """Log viewer provides you with general information about CDN operation.
+
+        This information does not contain all possible
+        sets of fields and restricted by time. To receive full data, use Logs Uploader.
+        """
         return LogsResourceWithStreamingResponse(self._cdn.logs)
 
     @cached_property
@@ -978,14 +1103,29 @@ class CDNResourceWithStreamingResponse:
 
     @cached_property
     def statistics(self) -> StatisticsResourceWithStreamingResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return StatisticsResourceWithStreamingResponse(self._cdn.statistics)
 
     @cached_property
     def network_capacity(self) -> NetworkCapacityResourceWithStreamingResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return NetworkCapacityResourceWithStreamingResponse(self._cdn.network_capacity)
 
     @cached_property
     def metrics(self) -> MetricsResourceWithStreamingResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return MetricsResourceWithStreamingResponse(self._cdn.metrics)
 
     @cached_property
@@ -1049,10 +1189,23 @@ class AsyncCDNResourceWithStreamingResponse:
 
     @cached_property
     def audit_logs(self) -> AsyncAuditLogsResourceWithStreamingResponse:
+        """
+        Get the history of users requests to CDN.
+        It contains requests made both via the API and via the control panel.
+
+        The following methods are not tracked in the activity logs:
+        - HEAD
+        - OPTIONS
+        """
         return AsyncAuditLogsResourceWithStreamingResponse(self._cdn.audit_logs)
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:
+        """Log viewer provides you with general information about CDN operation.
+
+        This information does not contain all possible
+        sets of fields and restricted by time. To receive full data, use Logs Uploader.
+        """
         return AsyncLogsResourceWithStreamingResponse(self._cdn.logs)
 
     @cached_property
@@ -1061,14 +1214,29 @@ class AsyncCDNResourceWithStreamingResponse:
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithStreamingResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncStatisticsResourceWithStreamingResponse(self._cdn.statistics)
 
     @cached_property
     def network_capacity(self) -> AsyncNetworkCapacityResourceWithStreamingResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncNetworkCapacityResourceWithStreamingResponse(self._cdn.network_capacity)
 
     @cached_property
     def metrics(self) -> AsyncMetricsResourceWithStreamingResponse:
+        """
+        Consumption statistics is updated in near real-time as a standard practice.
+        However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+        Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+        """
         return AsyncMetricsResourceWithStreamingResponse(self._cdn.metrics)
 
     @cached_property
