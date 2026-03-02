@@ -36,8 +36,26 @@ __all__ = ["IamResource", "AsyncIamResource"]
 
 
 class IamResource(SyncAPIResource):
+    """
+    Account management operations including authentication, password management, and account details.
+    """
+
     @cached_property
     def api_tokens(self) -> APITokensResource:
+        """
+        Use permanent API tokens for regular automated requests to services.
+        You can either set its validity period when creating it or issue a token for an unlimited time.
+        Please address the API documentation of the specific product in order to check if it supports API tokens.
+
+        Provide your APIKey in the Authorization header.
+
+        Example: ```curl -H "Authorization: APIKey 123$61b8e1e7a68c" https://api.gcore.com/iam/users/me```
+
+        Please note: When authorizing via SAML SSO, our system does not have any
+        information about permissions given to the user by the identity provider.
+        Even if the provider revokes the user's access rights, their tokens remain active.
+        Therefore, if necessary, the token will need to be deleted manually.
+        """
         return APITokensResource(self._client)
 
     @cached_property
@@ -84,8 +102,26 @@ class IamResource(SyncAPIResource):
 
 
 class AsyncIamResource(AsyncAPIResource):
+    """
+    Account management operations including authentication, password management, and account details.
+    """
+
     @cached_property
     def api_tokens(self) -> AsyncAPITokensResource:
+        """
+        Use permanent API tokens for regular automated requests to services.
+        You can either set its validity period when creating it or issue a token for an unlimited time.
+        Please address the API documentation of the specific product in order to check if it supports API tokens.
+
+        Provide your APIKey in the Authorization header.
+
+        Example: ```curl -H "Authorization: APIKey 123$61b8e1e7a68c" https://api.gcore.com/iam/users/me```
+
+        Please note: When authorizing via SAML SSO, our system does not have any
+        information about permissions given to the user by the identity provider.
+        Even if the provider revokes the user's access rights, their tokens remain active.
+        Therefore, if necessary, the token will need to be deleted manually.
+        """
         return AsyncAPITokensResource(self._client)
 
     @cached_property
@@ -141,6 +177,20 @@ class IamResourceWithRawResponse:
 
     @cached_property
     def api_tokens(self) -> APITokensResourceWithRawResponse:
+        """
+        Use permanent API tokens for regular automated requests to services.
+        You can either set its validity period when creating it or issue a token for an unlimited time.
+        Please address the API documentation of the specific product in order to check if it supports API tokens.
+
+        Provide your APIKey in the Authorization header.
+
+        Example: ```curl -H "Authorization: APIKey 123$61b8e1e7a68c" https://api.gcore.com/iam/users/me```
+
+        Please note: When authorizing via SAML SSO, our system does not have any
+        information about permissions given to the user by the identity provider.
+        Even if the provider revokes the user's access rights, their tokens remain active.
+        Therefore, if necessary, the token will need to be deleted manually.
+        """
         return APITokensResourceWithRawResponse(self._iam.api_tokens)
 
     @cached_property
@@ -158,6 +208,20 @@ class AsyncIamResourceWithRawResponse:
 
     @cached_property
     def api_tokens(self) -> AsyncAPITokensResourceWithRawResponse:
+        """
+        Use permanent API tokens for regular automated requests to services.
+        You can either set its validity period when creating it or issue a token for an unlimited time.
+        Please address the API documentation of the specific product in order to check if it supports API tokens.
+
+        Provide your APIKey in the Authorization header.
+
+        Example: ```curl -H "Authorization: APIKey 123$61b8e1e7a68c" https://api.gcore.com/iam/users/me```
+
+        Please note: When authorizing via SAML SSO, our system does not have any
+        information about permissions given to the user by the identity provider.
+        Even if the provider revokes the user's access rights, their tokens remain active.
+        Therefore, if necessary, the token will need to be deleted manually.
+        """
         return AsyncAPITokensResourceWithRawResponse(self._iam.api_tokens)
 
     @cached_property
@@ -175,6 +239,20 @@ class IamResourceWithStreamingResponse:
 
     @cached_property
     def api_tokens(self) -> APITokensResourceWithStreamingResponse:
+        """
+        Use permanent API tokens for regular automated requests to services.
+        You can either set its validity period when creating it or issue a token for an unlimited time.
+        Please address the API documentation of the specific product in order to check if it supports API tokens.
+
+        Provide your APIKey in the Authorization header.
+
+        Example: ```curl -H "Authorization: APIKey 123$61b8e1e7a68c" https://api.gcore.com/iam/users/me```
+
+        Please note: When authorizing via SAML SSO, our system does not have any
+        information about permissions given to the user by the identity provider.
+        Even if the provider revokes the user's access rights, their tokens remain active.
+        Therefore, if necessary, the token will need to be deleted manually.
+        """
         return APITokensResourceWithStreamingResponse(self._iam.api_tokens)
 
     @cached_property
@@ -192,6 +270,20 @@ class AsyncIamResourceWithStreamingResponse:
 
     @cached_property
     def api_tokens(self) -> AsyncAPITokensResourceWithStreamingResponse:
+        """
+        Use permanent API tokens for regular automated requests to services.
+        You can either set its validity period when creating it or issue a token for an unlimited time.
+        Please address the API documentation of the specific product in order to check if it supports API tokens.
+
+        Provide your APIKey in the Authorization header.
+
+        Example: ```curl -H "Authorization: APIKey 123$61b8e1e7a68c" https://api.gcore.com/iam/users/me```
+
+        Please note: When authorizing via SAML SSO, our system does not have any
+        information about permissions given to the user by the identity provider.
+        Even if the provider revokes the user's access rights, their tokens remain active.
+        Therefore, if necessary, the token will need to be deleted manually.
+        """
         return AsyncAPITokensResourceWithStreamingResponse(self._iam.api_tokens)
 
     @cached_property

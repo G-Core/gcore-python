@@ -31,6 +31,12 @@ __all__ = ["LogsResource", "AsyncLogsResource"]
 
 
 class LogsResource(SyncAPIResource):
+    """Log viewer provides you with general information about CDN operation.
+
+    This information does not contain all possible
+    sets of fields and restricted by time. To receive full data, use Logs Uploader.
+    """
+
     @cached_property
     def with_raw_response(self) -> LogsResourceWithRawResponse:
         """
@@ -682,6 +688,12 @@ class LogsResource(SyncAPIResource):
 
 
 class AsyncLogsResource(AsyncAPIResource):
+    """Log viewer provides you with general information about CDN operation.
+
+    This information does not contain all possible
+    sets of fields and restricted by time. To receive full data, use Logs Uploader.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
         """

@@ -33,6 +33,12 @@ __all__ = ["StatisticsResource", "AsyncStatisticsResource"]
 
 
 class StatisticsResource(SyncAPIResource):
+    """
+    Consumption statistics is updated in near real-time as a standard practice.
+    However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+    Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+    """
+
     @cached_property
     def with_raw_response(self) -> StatisticsResourceWithRawResponse:
         """
@@ -660,6 +666,12 @@ class StatisticsResource(SyncAPIResource):
 
 
 class AsyncStatisticsResource(AsyncAPIResource):
+    """
+    Consumption statistics is updated in near real-time as a standard practice.
+    However, the frequency of updates can vary, but they are typically available within a 24-hour period.
+    Exceptions, such as maintenance periods, may delay data beyond 24 hours until servers resume and fill in the missing statistics.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncStatisticsResourceWithRawResponse:
         """

@@ -68,28 +68,40 @@ __all__ = ["FastedgeResource", "AsyncFastedgeResource"]
 
 
 class FastedgeResource(SyncAPIResource):
+    """Client-level settings and limits"""
+
     @cached_property
     def templates(self) -> TemplatesResource:
+        """Application templates"""
         return TemplatesResource(self._client)
 
     @cached_property
     def secrets(self) -> SecretsResource:
+        """Secret values that can be used in apps"""
         return SecretsResource(self._client)
 
     @cached_property
     def binaries(self) -> BinariesResource:
+        """
+        Binaries are WebAssembly executables that are actually executed when app is ran.
+        """
         return BinariesResource(self._client)
 
     @cached_property
     def statistics(self) -> StatisticsResource:
+        """Statistics of edge app use"""
         return StatisticsResource(self._client)
 
     @cached_property
     def apps(self) -> AppsResource:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AppsResource(self._client)
 
     @cached_property
     def kv_stores(self) -> KvStoresResource:
+        """Key-value edge storage for apps"""
         return KvStoresResource(self._client)
 
     @cached_property
@@ -132,28 +144,40 @@ class FastedgeResource(SyncAPIResource):
 
 
 class AsyncFastedgeResource(AsyncAPIResource):
+    """Client-level settings and limits"""
+
     @cached_property
     def templates(self) -> AsyncTemplatesResource:
+        """Application templates"""
         return AsyncTemplatesResource(self._client)
 
     @cached_property
     def secrets(self) -> AsyncSecretsResource:
+        """Secret values that can be used in apps"""
         return AsyncSecretsResource(self._client)
 
     @cached_property
     def binaries(self) -> AsyncBinariesResource:
+        """
+        Binaries are WebAssembly executables that are actually executed when app is ran.
+        """
         return AsyncBinariesResource(self._client)
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResource:
+        """Statistics of edge app use"""
         return AsyncStatisticsResource(self._client)
 
     @cached_property
     def apps(self) -> AsyncAppsResource:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AsyncAppsResource(self._client)
 
     @cached_property
     def kv_stores(self) -> AsyncKvStoresResource:
+        """Key-value edge storage for apps"""
         return AsyncKvStoresResource(self._client)
 
     @cached_property
@@ -205,26 +229,36 @@ class FastedgeResourceWithRawResponse:
 
     @cached_property
     def templates(self) -> TemplatesResourceWithRawResponse:
+        """Application templates"""
         return TemplatesResourceWithRawResponse(self._fastedge.templates)
 
     @cached_property
     def secrets(self) -> SecretsResourceWithRawResponse:
+        """Secret values that can be used in apps"""
         return SecretsResourceWithRawResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> BinariesResourceWithRawResponse:
+        """
+        Binaries are WebAssembly executables that are actually executed when app is ran.
+        """
         return BinariesResourceWithRawResponse(self._fastedge.binaries)
 
     @cached_property
     def statistics(self) -> StatisticsResourceWithRawResponse:
+        """Statistics of edge app use"""
         return StatisticsResourceWithRawResponse(self._fastedge.statistics)
 
     @cached_property
     def apps(self) -> AppsResourceWithRawResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AppsResourceWithRawResponse(self._fastedge.apps)
 
     @cached_property
     def kv_stores(self) -> KvStoresResourceWithRawResponse:
+        """Key-value edge storage for apps"""
         return KvStoresResourceWithRawResponse(self._fastedge.kv_stores)
 
 
@@ -238,26 +272,36 @@ class AsyncFastedgeResourceWithRawResponse:
 
     @cached_property
     def templates(self) -> AsyncTemplatesResourceWithRawResponse:
+        """Application templates"""
         return AsyncTemplatesResourceWithRawResponse(self._fastedge.templates)
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
+        """Secret values that can be used in apps"""
         return AsyncSecretsResourceWithRawResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> AsyncBinariesResourceWithRawResponse:
+        """
+        Binaries are WebAssembly executables that are actually executed when app is ran.
+        """
         return AsyncBinariesResourceWithRawResponse(self._fastedge.binaries)
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithRawResponse:
+        """Statistics of edge app use"""
         return AsyncStatisticsResourceWithRawResponse(self._fastedge.statistics)
 
     @cached_property
     def apps(self) -> AsyncAppsResourceWithRawResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AsyncAppsResourceWithRawResponse(self._fastedge.apps)
 
     @cached_property
     def kv_stores(self) -> AsyncKvStoresResourceWithRawResponse:
+        """Key-value edge storage for apps"""
         return AsyncKvStoresResourceWithRawResponse(self._fastedge.kv_stores)
 
 
@@ -271,26 +315,36 @@ class FastedgeResourceWithStreamingResponse:
 
     @cached_property
     def templates(self) -> TemplatesResourceWithStreamingResponse:
+        """Application templates"""
         return TemplatesResourceWithStreamingResponse(self._fastedge.templates)
 
     @cached_property
     def secrets(self) -> SecretsResourceWithStreamingResponse:
+        """Secret values that can be used in apps"""
         return SecretsResourceWithStreamingResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> BinariesResourceWithStreamingResponse:
+        """
+        Binaries are WebAssembly executables that are actually executed when app is ran.
+        """
         return BinariesResourceWithStreamingResponse(self._fastedge.binaries)
 
     @cached_property
     def statistics(self) -> StatisticsResourceWithStreamingResponse:
+        """Statistics of edge app use"""
         return StatisticsResourceWithStreamingResponse(self._fastedge.statistics)
 
     @cached_property
     def apps(self) -> AppsResourceWithStreamingResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AppsResourceWithStreamingResponse(self._fastedge.apps)
 
     @cached_property
     def kv_stores(self) -> KvStoresResourceWithStreamingResponse:
+        """Key-value edge storage for apps"""
         return KvStoresResourceWithStreamingResponse(self._fastedge.kv_stores)
 
 
@@ -304,24 +358,34 @@ class AsyncFastedgeResourceWithStreamingResponse:
 
     @cached_property
     def templates(self) -> AsyncTemplatesResourceWithStreamingResponse:
+        """Application templates"""
         return AsyncTemplatesResourceWithStreamingResponse(self._fastedge.templates)
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
+        """Secret values that can be used in apps"""
         return AsyncSecretsResourceWithStreamingResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> AsyncBinariesResourceWithStreamingResponse:
+        """
+        Binaries are WebAssembly executables that are actually executed when app is ran.
+        """
         return AsyncBinariesResourceWithStreamingResponse(self._fastedge.binaries)
 
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithStreamingResponse:
+        """Statistics of edge app use"""
         return AsyncStatisticsResourceWithStreamingResponse(self._fastedge.statistics)
 
     @cached_property
     def apps(self) -> AsyncAppsResourceWithStreamingResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AsyncAppsResourceWithStreamingResponse(self._fastedge.apps)
 
     @cached_property
     def kv_stores(self) -> AsyncKvStoresResourceWithStreamingResponse:
+        """Key-value edge storage for apps"""
         return AsyncKvStoresResourceWithStreamingResponse(self._fastedge.kv_stores)

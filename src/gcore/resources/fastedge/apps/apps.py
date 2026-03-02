@@ -35,8 +35,15 @@ __all__ = ["AppsResource", "AsyncAppsResource"]
 
 
 class AppsResource(SyncAPIResource):
+    """
+    Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+    """
+
     @cached_property
     def logs(self) -> LogsResource:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return LogsResource(self._client)
 
     @cached_property
@@ -428,8 +435,15 @@ class AppsResource(SyncAPIResource):
 
 
 class AsyncAppsResource(AsyncAPIResource):
+    """
+    Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+    """
+
     @cached_property
     def logs(self) -> AsyncLogsResource:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AsyncLogsResource(self._client)
 
     @cached_property
@@ -845,6 +859,9 @@ class AppsResourceWithRawResponse:
 
     @cached_property
     def logs(self) -> LogsResourceWithRawResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return LogsResourceWithRawResponse(self._apps.logs)
 
 
@@ -873,6 +890,9 @@ class AsyncAppsResourceWithRawResponse:
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AsyncLogsResourceWithRawResponse(self._apps.logs)
 
 
@@ -901,6 +921,9 @@ class AppsResourceWithStreamingResponse:
 
     @cached_property
     def logs(self) -> LogsResourceWithStreamingResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return LogsResourceWithStreamingResponse(self._apps.logs)
 
 
@@ -929,4 +952,7 @@ class AsyncAppsResourceWithStreamingResponse:
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:
+        """
+        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        """
         return AsyncLogsResourceWithStreamingResponse(self._apps.logs)

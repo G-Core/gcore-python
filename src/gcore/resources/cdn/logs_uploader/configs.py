@@ -31,6 +31,14 @@ __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
 
 class ConfigsResource(SyncAPIResource):
+    """Logs uploader allows you to upload logs with desired format to desired storages.
+
+    Consists of three main parts:
+    - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+    - **Targets** - destinations where logs are uploaded.
+    - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+    """
+
     @cached_property
     def with_raw_response(self) -> ConfigsResourceWithRawResponse:
         """
@@ -382,6 +390,14 @@ class ConfigsResource(SyncAPIResource):
 
 
 class AsyncConfigsResource(AsyncAPIResource):
+    """Logs uploader allows you to upload logs with desired format to desired storages.
+
+    Consists of three main parts:
+    - **Policies** - rules that define which logs are uploaded and how they are uploaded.
+    - **Targets** - destinations where logs are uploaded.
+    - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncConfigsResourceWithRawResponse:
         """
