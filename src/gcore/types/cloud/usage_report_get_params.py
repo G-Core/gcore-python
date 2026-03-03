@@ -68,6 +68,26 @@ class UsageReportGetParams(TypedDict, total=False):
     offset: int
     """The response resources offset."""
 
+    order_by: List[
+        Literal[
+            "billing_value.asc",
+            "billing_value.desc",
+            "first_seen.asc",
+            "first_seen.desc",
+            "last_name.asc",
+            "last_name.desc",
+            "last_seen.asc",
+            "last_seen.desc",
+            "project.asc",
+            "project.desc",
+            "region.asc",
+            "region.desc",
+            "type.asc",
+            "type.desc",
+        ]
+    ]
+    """List of sorting criteria in 'field.direction' format."""
+
     projects: Optional[Iterable[int]]
     """List of project IDs"""
 
@@ -78,7 +98,10 @@ class UsageReportGetParams(TypedDict, total=False):
     """Extended filter for field filtering."""
 
     sorting: Iterable[Sorting]
-    """List of sorting filters (JSON objects) fields: project. directions: asc, desc."""
+    """
+    (DEPRECATED Use 'order_by' instead) List of sorting filters (JSON objects)
+    fields: project. directions: asc, desc.
+    """
 
     tags: Tags
     """Filter by tags"""
