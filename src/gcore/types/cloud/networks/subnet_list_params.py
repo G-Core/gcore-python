@@ -48,6 +48,14 @@ class SubnetListParams(TypedDict, total=False):
     directions (`name.asc`).
     """
 
+    owned_by: Literal["any", "project"]
+    """Controls which subnets are returned.
+
+    'project' (default) returns only subnets owned by the project. 'any' returns all
+    subnets from networks available to the project, including subnets from shared
+    networks.
+    """
+
     tag_key: SequenceNotStr[str]
     """Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2"""
 

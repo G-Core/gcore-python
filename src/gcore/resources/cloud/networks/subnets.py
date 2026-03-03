@@ -331,6 +331,7 @@ class SubnetsResource(SyncAPIResource):
             "updated_at.desc",
         ]
         | Omit = omit,
+        owned_by: Literal["any", "project"] | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -340,8 +341,11 @@ class SubnetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Subnet]:
-        """
-        List subnets
+        """Returns a list of subnets.
+
+        Use the `owned_by` query parameter to control which
+        subnets are returned: `project` (default) returns only subnets owned by the
+        project, `any` returns all subnets from networks available to the project.
 
         Args:
           project_id: Project ID
@@ -358,6 +362,10 @@ class SubnetsResource(SyncAPIResource):
           order_by: Ordering subnets list result by `name`, `created_at`, `updated_at`,
               `available_ips`, `total_ips`, and `cidr` (default) fields of the subnet and
               directions (`name.asc`).
+
+          owned_by: Controls which subnets are returned. 'project' (default) returns only subnets
+              owned by the project. 'any' returns all subnets from networks available to the
+              project, including subnets from shared networks.
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
@@ -389,6 +397,7 @@ class SubnetsResource(SyncAPIResource):
                         "network_id": network_id,
                         "offset": offset,
                         "order_by": order_by,
+                        "owned_by": owned_by,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
                     },
@@ -791,6 +800,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
             "updated_at.desc",
         ]
         | Omit = omit,
+        owned_by: Literal["any", "project"] | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -800,8 +810,11 @@ class AsyncSubnetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Subnet, AsyncOffsetPage[Subnet]]:
-        """
-        List subnets
+        """Returns a list of subnets.
+
+        Use the `owned_by` query parameter to control which
+        subnets are returned: `project` (default) returns only subnets owned by the
+        project, `any` returns all subnets from networks available to the project.
 
         Args:
           project_id: Project ID
@@ -818,6 +831,10 @@ class AsyncSubnetsResource(AsyncAPIResource):
           order_by: Ordering subnets list result by `name`, `created_at`, `updated_at`,
               `available_ips`, `total_ips`, and `cidr` (default) fields of the subnet and
               directions (`name.asc`).
+
+          owned_by: Controls which subnets are returned. 'project' (default) returns only subnets
+              owned by the project. 'any' returns all subnets from networks available to the
+              project, including subnets from shared networks.
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
@@ -849,6 +866,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
                         "network_id": network_id,
                         "offset": offset,
                         "order_by": order_by,
+                        "owned_by": owned_by,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
                     },

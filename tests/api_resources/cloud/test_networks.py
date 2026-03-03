@@ -140,10 +140,13 @@ class TestNetworks:
         network = client.cloud.networks.list(
             project_id=1,
             region_id=1,
+            external=True,
             limit=1000,
             name="my-network",
+            network_type="vlan",
             offset=0,
             order_by="created_at.desc",
+            owned_by="project",
             tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )
@@ -392,10 +395,13 @@ class TestAsyncNetworks:
         network = await async_client.cloud.networks.list(
             project_id=1,
             region_id=1,
+            external=True,
             limit=1000,
             name="my-network",
+            network_type="vlan",
             offset=0,
             order_by="created_at.desc",
+            owned_by="project",
             tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )

@@ -143,6 +143,9 @@ class LoadBalancer(BaseModel):
     vip_address: Optional[str] = None
     """Load balancer IP address"""
 
+    vip_fqdn: Optional[str] = None
+    """Fully qualified domain name for the load balancer VIP"""
+
     vip_ip_family: Optional[InterfaceIPFamily] = None
     """Load balancer IP family"""
 

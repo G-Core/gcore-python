@@ -168,6 +168,7 @@ class TestSubnets:
             network_id="b30d0de7-bca2-4c83-9c57-9e645bd2cc92",
             offset=0,
             order_by="name.asc",
+            owned_by="project",
             tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )
@@ -447,6 +448,7 @@ class TestAsyncSubnets:
             network_id="b30d0de7-bca2-4c83-9c57-9e645bd2cc92",
             offset=0,
             order_by="name.asc",
+            owned_by="project",
             tag_key=["key1", "key2"],
             tag_key_value="tag_key_value",
         )

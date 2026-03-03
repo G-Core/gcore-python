@@ -275,10 +275,13 @@ class NetworksResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        external: bool | Omit = omit,
         limit: int | Omit = omit,
         name: str | Omit = omit,
+        network_type: Literal["vlan", "vxlan"] | Omit = omit,
         offset: int | Omit = omit,
-        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc", "priority.desc"] | Omit = omit,
+        owned_by: Literal["any", "project"] | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -288,23 +291,37 @@ class NetworksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Network]:
-        """
-        List networks
+        """Returns a list of networks.
+
+        Use the `owned_by` query parameter to control which
+        networks are returned: `project` (default) returns only networks owned by the
+        project, `any` returns all networks the project can use, including shared
+        networks.
 
         Args:
           project_id: Project ID
 
           region_id: Region ID
 
+          external: Filter by external network status
+
           limit: Optional. Limit the number of returned items
 
           name: Filter networks by name
 
+          network_type: Filter by network type (vlan or vxlan)
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
-          order_by: Ordering networks list result by `name`, `created_at` fields of the network and
-              directions (`created_at.desc`).
+          order_by: Ordering networks list result by `name`, `created_at` or `priority` fields and
+              directions (e.g. `created_at.desc`). Default is `created_at.desc`. Use
+              `priority.desc` to sort by shared network priority (relevant when
+              `owned_by=any`).
+
+          owned_by: Controls which networks are returned. 'project' (default) returns only networks
+              owned by the project. 'any' returns all networks that the project can use,
+              including shared networks from other projects.
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
@@ -332,10 +349,13 @@ class NetworksResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "external": external,
                         "limit": limit,
                         "name": name,
+                        "network_type": network_type,
                         "offset": offset,
                         "order_by": order_by,
+                        "owned_by": owned_by,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
                     },
@@ -702,10 +722,13 @@ class AsyncNetworksResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        external: bool | Omit = omit,
         limit: int | Omit = omit,
         name: str | Omit = omit,
+        network_type: Literal["vlan", "vxlan"] | Omit = omit,
         offset: int | Omit = omit,
-        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc"] | Omit = omit,
+        order_by: Literal["created_at.asc", "created_at.desc", "name.asc", "name.desc", "priority.desc"] | Omit = omit,
+        owned_by: Literal["any", "project"] | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -715,23 +738,37 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Network, AsyncOffsetPage[Network]]:
-        """
-        List networks
+        """Returns a list of networks.
+
+        Use the `owned_by` query parameter to control which
+        networks are returned: `project` (default) returns only networks owned by the
+        project, `any` returns all networks the project can use, including shared
+        networks.
 
         Args:
           project_id: Project ID
 
           region_id: Region ID
 
+          external: Filter by external network status
+
           limit: Optional. Limit the number of returned items
 
           name: Filter networks by name
 
+          network_type: Filter by network type (vlan or vxlan)
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
 
-          order_by: Ordering networks list result by `name`, `created_at` fields of the network and
-              directions (`created_at.desc`).
+          order_by: Ordering networks list result by `name`, `created_at` or `priority` fields and
+              directions (e.g. `created_at.desc`). Default is `created_at.desc`. Use
+              `priority.desc` to sort by shared network priority (relevant when
+              `owned_by=any`).
+
+          owned_by: Controls which networks are returned. 'project' (default) returns only networks
+              owned by the project. 'any' returns all networks that the project can use,
+              including shared networks from other projects.
 
           tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
@@ -759,10 +796,13 @@ class AsyncNetworksResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "external": external,
                         "limit": limit,
                         "name": name,
+                        "network_type": network_type,
                         "offset": offset,
                         "order_by": order_by,
+                        "owned_by": owned_by,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
                     },
