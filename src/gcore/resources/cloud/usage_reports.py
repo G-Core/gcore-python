@@ -53,6 +53,25 @@ class UsageReportsResource(SyncAPIResource):
         enable_last_day: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        order_by: List[
+            Literal[
+                "billing_value.asc",
+                "billing_value.desc",
+                "first_seen.asc",
+                "first_seen.desc",
+                "last_name.asc",
+                "last_name.desc",
+                "last_seen.asc",
+                "last_seen.desc",
+                "project.asc",
+                "project.desc",
+                "region.asc",
+                "region.desc",
+                "type.asc",
+                "type.desc",
+            ]
+        ]
+        | Omit = omit,
         projects: Optional[Iterable[int]] | Omit = omit,
         regions: Iterable[int] | Omit = omit,
         schema_filter: usage_report_get_params.SchemaFilter | Omit = omit,
@@ -117,13 +136,16 @@ class UsageReportsResource(SyncAPIResource):
 
           offset: The response resources offset.
 
+          order_by: List of sorting criteria in 'field.direction' format.
+
           projects: List of project IDs
 
           regions: List of region IDs.
 
           schema_filter: Extended filter for field filtering.
 
-          sorting: List of sorting filters (JSON objects) fields: project. directions: asc, desc.
+          sorting: (DEPRECATED Use 'order_by' instead) List of sorting filters (JSON objects)
+              fields: project. directions: asc, desc.
 
           tags: Filter by tags
 
@@ -146,6 +168,7 @@ class UsageReportsResource(SyncAPIResource):
                     "enable_last_day": enable_last_day,
                     "limit": limit,
                     "offset": offset,
+                    "order_by": order_by,
                     "projects": projects,
                     "regions": regions,
                     "schema_filter": schema_filter,
@@ -190,6 +213,25 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         enable_last_day: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        order_by: List[
+            Literal[
+                "billing_value.asc",
+                "billing_value.desc",
+                "first_seen.asc",
+                "first_seen.desc",
+                "last_name.asc",
+                "last_name.desc",
+                "last_seen.asc",
+                "last_seen.desc",
+                "project.asc",
+                "project.desc",
+                "region.asc",
+                "region.desc",
+                "type.asc",
+                "type.desc",
+            ]
+        ]
+        | Omit = omit,
         projects: Optional[Iterable[int]] | Omit = omit,
         regions: Iterable[int] | Omit = omit,
         schema_filter: usage_report_get_params.SchemaFilter | Omit = omit,
@@ -254,13 +296,16 @@ class AsyncUsageReportsResource(AsyncAPIResource):
 
           offset: The response resources offset.
 
+          order_by: List of sorting criteria in 'field.direction' format.
+
           projects: List of project IDs
 
           regions: List of region IDs.
 
           schema_filter: Extended filter for field filtering.
 
-          sorting: List of sorting filters (JSON objects) fields: project. directions: asc, desc.
+          sorting: (DEPRECATED Use 'order_by' instead) List of sorting filters (JSON objects)
+              fields: project. directions: asc, desc.
 
           tags: Filter by tags
 
@@ -283,6 +328,7 @@ class AsyncUsageReportsResource(AsyncAPIResource):
                     "enable_last_day": enable_last_day,
                     "limit": limit,
                     "offset": offset,
+                    "order_by": order_by,
                     "projects": projects,
                     "regions": regions,
                     "schema_filter": schema_filter,

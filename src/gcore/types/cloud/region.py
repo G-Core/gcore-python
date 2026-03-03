@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -12,9 +12,9 @@ __all__ = ["Region", "Coordinates"]
 class Coordinates(BaseModel):
     """Coordinates of the region"""
 
-    latitude: Union[float, str]
+    latitude: str
 
-    longitude: Union[float, str]
+    longitude: str
 
 
 class Region(BaseModel):

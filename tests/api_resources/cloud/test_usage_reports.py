@@ -34,6 +34,7 @@ class TestUsageReports:
             enable_last_day=False,
             limit=10,
             offset=0,
+            order_by=["project.asc", "region.desc"],
             projects=[16, 17, 18, 19, 20],
             regions=[1, 2, 3],
             schema_filter={
@@ -119,6 +120,7 @@ class TestAsyncUsageReports:
             enable_last_day=False,
             limit=10,
             offset=0,
+            order_by=["project.asc", "region.desc"],
             projects=[16, 17, 18, 19, 20],
             regions=[1, 2, 3],
             schema_filter={
