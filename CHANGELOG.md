@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.36.0 (2026-03-03)
+
+Full Changelog: [v0.35.0...v0.36.0](https://github.com/G-Core/gcore-python/compare/v0.35.0...v0.36.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** update gpu baremetal endpoints to latest versions
+
+### Features
+
+* **api:** aggregated API specs update ([a93c782](https://github.com/G-Core/gcore-python/commit/a93c7824afaeafd8b1bc641fc7145ed38d3049fb))
+* **api:** aggregated API specs update ([394275c](https://github.com/G-Core/gcore-python/commit/394275c5f5937961bbd0fad0dc2d0b9ab22b8230))
+* **api:** aggregated API specs update ([b484f9c](https://github.com/G-Core/gcore-python/commit/b484f9c9aa4d3e54b42b49fbb06805d290ec2264))
+* **api:** aggregated API specs update ([0e36db9](https://github.com/G-Core/gcore-python/commit/0e36db93402657340c5c9f38263662ba0c905593))
+* **cloud:** update gpu baremetal endpoints to latest versions ([14512b9](https://github.com/G-Core/gcore-python/commit/14512b9907e7201e6b3f6a934dd84d0f277fc55c))
+
+
+### Bug Fixes
+
+* **cloud:** restore custom polling methods and missing wrappers for gpu baremetal ([3321a2f](https://github.com/G-Core/gcore-python/commit/3321a2f287f4a94aa88c738f09c5677e2c670ca9))
+
+
+### Chores
+
+* **docs:** add missing descriptions ([caa4cb6](https://github.com/G-Core/gcore-python/commit/caa4cb6e2a36f9c3ab7213480020421385c86e4e))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([cdfe354](https://github.com/G-Core/gcore-python/commit/cdfe3544b44f065624b5d7054873b291a54da836))
+
 ## 0.35.0 (2026-02-24)
 
 Full Changelog: [v0.34.0...v0.35.0](https://github.com/G-Core/gcore-python/compare/v0.34.0...v0.35.0)
