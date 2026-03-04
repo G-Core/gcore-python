@@ -36,7 +36,7 @@ __all__ = ["AppsResource", "AsyncAppsResource"]
 
 class AppsResource(SyncAPIResource):
     """
-    Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+    FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
     """
 
     @cached_property
@@ -436,7 +436,7 @@ class AppsResource(SyncAPIResource):
 
 class AsyncAppsResource(AsyncAPIResource):
     """
-    Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+    FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
     """
 
     @cached_property

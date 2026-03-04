@@ -32,6 +32,10 @@ __all__ = ["RrsetsResource", "AsyncRrsetsResource"]
 
 
 class RrsetsResource(SyncAPIResource):
+    """
+    DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+    """
+
     @cached_property
     def with_raw_response(self) -> RrsetsResourceWithRawResponse:
         """
@@ -463,6 +467,10 @@ class RrsetsResource(SyncAPIResource):
 
 
 class AsyncRrsetsResource(AsyncAPIResource):
+    """
+    DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRrsetsResourceWithRawResponse:
         """

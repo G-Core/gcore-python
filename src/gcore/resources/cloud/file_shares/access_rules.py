@@ -25,6 +25,10 @@ __all__ = ["AccessRulesResource", "AsyncAccessRulesResource"]
 
 
 class AccessRulesResource(SyncAPIResource):
+    """
+    File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+    """
+
     @cached_property
     def with_raw_response(self) -> AccessRulesResourceWithRawResponse:
         """
@@ -200,6 +204,10 @@ class AccessRulesResource(SyncAPIResource):
 
 
 class AsyncAccessRulesResource(AsyncAPIResource):
+    """
+    File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAccessRulesResourceWithRawResponse:
         """

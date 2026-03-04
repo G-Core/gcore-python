@@ -44,12 +44,22 @@ __all__ = ["NetworksResource", "AsyncNetworksResource"]
 
 
 class NetworksResource(SyncAPIResource):
+    """
+    Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+    """
+
     @cached_property
     def subnets(self) -> SubnetsResource:
+        """
+        Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+        """
         return SubnetsResource(self._client)
 
     @cached_property
     def routers(self) -> RoutersResource:
+        """
+        Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+        """
         return RoutersResource(self._client)
 
     @cached_property
@@ -491,12 +501,22 @@ class NetworksResource(SyncAPIResource):
 
 
 class AsyncNetworksResource(AsyncAPIResource):
+    """
+    Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+    """
+
     @cached_property
     def subnets(self) -> AsyncSubnetsResource:
+        """
+        Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+        """
         return AsyncSubnetsResource(self._client)
 
     @cached_property
     def routers(self) -> AsyncRoutersResource:
+        """
+        Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+        """
         return AsyncRoutersResource(self._client)
 
     @cached_property
@@ -965,10 +985,16 @@ class NetworksResourceWithRawResponse:
 
     @cached_property
     def subnets(self) -> SubnetsResourceWithRawResponse:
+        """
+        Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+        """
         return SubnetsResourceWithRawResponse(self._networks.subnets)
 
     @cached_property
     def routers(self) -> RoutersResourceWithRawResponse:
+        """
+        Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+        """
         return RoutersResourceWithRawResponse(self._networks.routers)
 
 
@@ -1000,10 +1026,16 @@ class AsyncNetworksResourceWithRawResponse:
 
     @cached_property
     def subnets(self) -> AsyncSubnetsResourceWithRawResponse:
+        """
+        Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+        """
         return AsyncSubnetsResourceWithRawResponse(self._networks.subnets)
 
     @cached_property
     def routers(self) -> AsyncRoutersResourceWithRawResponse:
+        """
+        Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+        """
         return AsyncRoutersResourceWithRawResponse(self._networks.routers)
 
 
@@ -1035,10 +1067,16 @@ class NetworksResourceWithStreamingResponse:
 
     @cached_property
     def subnets(self) -> SubnetsResourceWithStreamingResponse:
+        """
+        Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+        """
         return SubnetsResourceWithStreamingResponse(self._networks.subnets)
 
     @cached_property
     def routers(self) -> RoutersResourceWithStreamingResponse:
+        """
+        Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+        """
         return RoutersResourceWithStreamingResponse(self._networks.routers)
 
 
@@ -1070,8 +1108,14 @@ class AsyncNetworksResourceWithStreamingResponse:
 
     @cached_property
     def subnets(self) -> AsyncSubnetsResourceWithStreamingResponse:
+        """
+        Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+        """
         return AsyncSubnetsResourceWithStreamingResponse(self._networks.subnets)
 
     @cached_property
     def routers(self) -> AsyncRoutersResourceWithStreamingResponse:
+        """
+        Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+        """
         return AsyncRoutersResourceWithStreamingResponse(self._networks.routers)

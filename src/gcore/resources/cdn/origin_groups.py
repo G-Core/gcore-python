@@ -31,6 +31,10 @@ __all__ = ["OriginGroupsResource", "AsyncOriginGroupsResource"]
 
 
 class OriginGroupsResource(SyncAPIResource):
+    """
+    CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+    """
+
     @cached_property
     def with_raw_response(self) -> OriginGroupsResourceWithRawResponse:
         """
@@ -706,6 +710,10 @@ class OriginGroupsResource(SyncAPIResource):
 
 
 class AsyncOriginGroupsResource(AsyncAPIResource):
+    """
+    CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncOriginGroupsResourceWithRawResponse:
         """

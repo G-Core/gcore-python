@@ -74,8 +74,15 @@ __all__ = ["InstancesResource", "AsyncInstancesResource"]
 
 
 class InstancesResource(SyncAPIResource):
+    """
+    Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+    """
+
     @cached_property
     def flavors(self) -> FlavorsResource:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
         return FlavorsResource(self._client)
 
     @cached_property
@@ -84,6 +91,9 @@ class InstancesResource(SyncAPIResource):
 
     @cached_property
     def images(self) -> ImagesResource:
+        """
+        Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+        """
         return ImagesResource(self._client)
 
     @cached_property
@@ -1493,8 +1503,15 @@ class InstancesResource(SyncAPIResource):
 
 
 class AsyncInstancesResource(AsyncAPIResource):
+    """
+    Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+    """
+
     @cached_property
     def flavors(self) -> AsyncFlavorsResource:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
         return AsyncFlavorsResource(self._client)
 
     @cached_property
@@ -1503,6 +1520,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
     @cached_property
     def images(self) -> AsyncImagesResource:
+        """
+        Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+        """
         return AsyncImagesResource(self._client)
 
     @cached_property
@@ -2978,6 +2998,9 @@ class InstancesResourceWithRawResponse:
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithRawResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
         return FlavorsResourceWithRawResponse(self._instances.flavors)
 
     @cached_property
@@ -2986,6 +3009,9 @@ class InstancesResourceWithRawResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
+        """
+        Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+        """
         return ImagesResourceWithRawResponse(self._instances.images)
 
     @cached_property
@@ -3060,6 +3086,9 @@ class AsyncInstancesResourceWithRawResponse:
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
         return AsyncFlavorsResourceWithRawResponse(self._instances.flavors)
 
     @cached_property
@@ -3068,6 +3097,9 @@ class AsyncInstancesResourceWithRawResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
+        """
+        Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+        """
         return AsyncImagesResourceWithRawResponse(self._instances.images)
 
     @cached_property
@@ -3142,6 +3174,9 @@ class InstancesResourceWithStreamingResponse:
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithStreamingResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
         return FlavorsResourceWithStreamingResponse(self._instances.flavors)
 
     @cached_property
@@ -3150,6 +3185,9 @@ class InstancesResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
+        """
+        Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+        """
         return ImagesResourceWithStreamingResponse(self._instances.images)
 
     @cached_property
@@ -3224,6 +3262,9 @@ class AsyncInstancesResourceWithStreamingResponse:
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
         return AsyncFlavorsResourceWithStreamingResponse(self._instances.flavors)
 
     @cached_property
@@ -3232,6 +3273,9 @@ class AsyncInstancesResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
+        """
+        Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+        """
         return AsyncImagesResourceWithStreamingResponse(self._instances.images)
 
     @cached_property

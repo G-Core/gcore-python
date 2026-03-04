@@ -25,6 +25,10 @@ __all__ = ["RegionsResource", "AsyncRegionsResource"]
 
 
 class RegionsResource(SyncAPIResource):
+    """
+    Regions represent available Gcore cloud data centers with information about supported services and volume types.
+    """
+
     @cached_property
     def with_raw_response(self) -> RegionsResourceWithRawResponse:
         """
@@ -155,6 +159,10 @@ class RegionsResource(SyncAPIResource):
 
 
 class AsyncRegionsResource(AsyncAPIResource):
+    """
+    Regions represent available Gcore cloud data centers with information about supported services and volume types.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRegionsResourceWithRawResponse:
         """

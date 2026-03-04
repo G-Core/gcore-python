@@ -50,6 +50,10 @@ __all__ = ["ClustersResource", "AsyncClustersResource"]
 
 
 class ClustersResource(SyncAPIResource):
+    """
+    Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+    """
+
     @cached_property
     def nodes(self) -> NodesResource:
         return NodesResource(self._client)
@@ -703,6 +707,10 @@ class ClustersResource(SyncAPIResource):
 
 
 class AsyncClustersResource(AsyncAPIResource):
+    """
+    Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+    """
+
     @cached_property
     def nodes(self) -> AsyncNodesResource:
         return AsyncNodesResource(self._client)

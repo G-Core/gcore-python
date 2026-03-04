@@ -74,14 +74,23 @@ class InferenceResource(SyncAPIResource):
 
     @cached_property
     def deployments(self) -> DeploymentsResource:
+        """
+        Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+        """
         return DeploymentsResource(self._client)
 
     @cached_property
     def registry_credentials(self) -> RegistryCredentialsResource:
+        """
+        Registry credentials store authentication details for private container registries used by inference deployments.
+        """
         return RegistryCredentialsResource(self._client)
 
     @cached_property
     def secrets(self) -> SecretsResource:
+        """
+        Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
+        """
         return SecretsResource(self._client)
 
     @cached_property
@@ -138,14 +147,23 @@ class AsyncInferenceResource(AsyncAPIResource):
 
     @cached_property
     def deployments(self) -> AsyncDeploymentsResource:
+        """
+        Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+        """
         return AsyncDeploymentsResource(self._client)
 
     @cached_property
     def registry_credentials(self) -> AsyncRegistryCredentialsResource:
+        """
+        Registry credentials store authentication details for private container registries used by inference deployments.
+        """
         return AsyncRegistryCredentialsResource(self._client)
 
     @cached_property
     def secrets(self) -> AsyncSecretsResource:
+        """
+        Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
+        """
         return AsyncSecretsResource(self._client)
 
     @cached_property
@@ -209,14 +227,23 @@ class InferenceResourceWithRawResponse:
 
     @cached_property
     def deployments(self) -> DeploymentsResourceWithRawResponse:
+        """
+        Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+        """
         return DeploymentsResourceWithRawResponse(self._inference.deployments)
 
     @cached_property
     def registry_credentials(self) -> RegistryCredentialsResourceWithRawResponse:
+        """
+        Registry credentials store authentication details for private container registries used by inference deployments.
+        """
         return RegistryCredentialsResourceWithRawResponse(self._inference.registry_credentials)
 
     @cached_property
     def secrets(self) -> SecretsResourceWithRawResponse:
+        """
+        Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
+        """
         return SecretsResourceWithRawResponse(self._inference.secrets)
 
     @cached_property
@@ -242,14 +269,23 @@ class AsyncInferenceResourceWithRawResponse:
 
     @cached_property
     def deployments(self) -> AsyncDeploymentsResourceWithRawResponse:
+        """
+        Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+        """
         return AsyncDeploymentsResourceWithRawResponse(self._inference.deployments)
 
     @cached_property
     def registry_credentials(self) -> AsyncRegistryCredentialsResourceWithRawResponse:
+        """
+        Registry credentials store authentication details for private container registries used by inference deployments.
+        """
         return AsyncRegistryCredentialsResourceWithRawResponse(self._inference.registry_credentials)
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
+        """
+        Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
+        """
         return AsyncSecretsResourceWithRawResponse(self._inference.secrets)
 
     @cached_property
@@ -275,14 +311,23 @@ class InferenceResourceWithStreamingResponse:
 
     @cached_property
     def deployments(self) -> DeploymentsResourceWithStreamingResponse:
+        """
+        Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+        """
         return DeploymentsResourceWithStreamingResponse(self._inference.deployments)
 
     @cached_property
     def registry_credentials(self) -> RegistryCredentialsResourceWithStreamingResponse:
+        """
+        Registry credentials store authentication details for private container registries used by inference deployments.
+        """
         return RegistryCredentialsResourceWithStreamingResponse(self._inference.registry_credentials)
 
     @cached_property
     def secrets(self) -> SecretsResourceWithStreamingResponse:
+        """
+        Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
+        """
         return SecretsResourceWithStreamingResponse(self._inference.secrets)
 
     @cached_property
@@ -308,14 +353,23 @@ class AsyncInferenceResourceWithStreamingResponse:
 
     @cached_property
     def deployments(self) -> AsyncDeploymentsResourceWithStreamingResponse:
+        """
+        Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+        """
         return AsyncDeploymentsResourceWithStreamingResponse(self._inference.deployments)
 
     @cached_property
     def registry_credentials(self) -> AsyncRegistryCredentialsResourceWithStreamingResponse:
+        """
+        Registry credentials store authentication details for private container registries used by inference deployments.
+        """
         return AsyncRegistryCredentialsResourceWithStreamingResponse(self._inference.registry_credentials)
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
+        """
+        Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
+        """
         return AsyncSecretsResourceWithStreamingResponse(self._inference.secrets)
 
     @cached_property

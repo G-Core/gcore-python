@@ -27,7 +27,7 @@ __all__ = ["PlacementGroupsResource", "AsyncPlacementGroupsResource"]
 
 class PlacementGroupsResource(SyncAPIResource):
     """
-    Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+    Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
     """
 
     @cached_property
@@ -215,7 +215,7 @@ class PlacementGroupsResource(SyncAPIResource):
 
 class AsyncPlacementGroupsResource(AsyncAPIResource):
     """
-    Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+    Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
     """
 
     @cached_property

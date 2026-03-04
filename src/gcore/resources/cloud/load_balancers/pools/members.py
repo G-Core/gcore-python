@@ -24,6 +24,10 @@ __all__ = ["MembersResource", "AsyncMembersResource"]
 
 
 class MembersResource(SyncAPIResource):
+    """
+    Pool members represent backend instances that receive load-balanced traffic from a pool.
+    """
+
     @cached_property
     def with_raw_response(self) -> MembersResourceWithRawResponse:
         """
@@ -204,6 +208,10 @@ class MembersResource(SyncAPIResource):
 
 
 class AsyncMembersResource(AsyncAPIResource):
+    """
+    Pool members represent backend instances that receive load-balanced traffic from a pool.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncMembersResourceWithRawResponse:
         """

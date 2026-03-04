@@ -27,6 +27,8 @@ __all__ = ["ImagesResource", "AsyncImagesResource"]
 
 
 class ImagesResource(SyncAPIResource):
+    """GPU virtual images are custom boot images for virtual GPU cluster instances."""
+
     @cached_property
     def with_raw_response(self) -> ImagesResourceWithRawResponse:
         """
@@ -269,6 +271,8 @@ class ImagesResource(SyncAPIResource):
 
 
 class AsyncImagesResource(AsyncAPIResource):
+    """GPU virtual images are custom boot images for virtual GPU cluster instances."""
+
     @cached_property
     def with_raw_response(self) -> AsyncImagesResourceWithRawResponse:
         """

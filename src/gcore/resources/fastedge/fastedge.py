@@ -77,13 +77,15 @@ class FastedgeResource(SyncAPIResource):
 
     @cached_property
     def secrets(self) -> SecretsResource:
-        """Secret values that can be used in apps"""
+        """
+        FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+        """
         return SecretsResource(self._client)
 
     @cached_property
     def binaries(self) -> BinariesResource:
         """
-        Binaries are WebAssembly executables that are actually executed when app is ran.
+        FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
         """
         return BinariesResource(self._client)
 
@@ -95,7 +97,7 @@ class FastedgeResource(SyncAPIResource):
     @cached_property
     def apps(self) -> AppsResource:
         """
-        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
         """
         return AppsResource(self._client)
 
@@ -153,13 +155,15 @@ class AsyncFastedgeResource(AsyncAPIResource):
 
     @cached_property
     def secrets(self) -> AsyncSecretsResource:
-        """Secret values that can be used in apps"""
+        """
+        FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+        """
         return AsyncSecretsResource(self._client)
 
     @cached_property
     def binaries(self) -> AsyncBinariesResource:
         """
-        Binaries are WebAssembly executables that are actually executed when app is ran.
+        FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
         """
         return AsyncBinariesResource(self._client)
 
@@ -171,7 +175,7 @@ class AsyncFastedgeResource(AsyncAPIResource):
     @cached_property
     def apps(self) -> AsyncAppsResource:
         """
-        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
         """
         return AsyncAppsResource(self._client)
 
@@ -234,13 +238,15 @@ class FastedgeResourceWithRawResponse:
 
     @cached_property
     def secrets(self) -> SecretsResourceWithRawResponse:
-        """Secret values that can be used in apps"""
+        """
+        FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+        """
         return SecretsResourceWithRawResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> BinariesResourceWithRawResponse:
         """
-        Binaries are WebAssembly executables that are actually executed when app is ran.
+        FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
         """
         return BinariesResourceWithRawResponse(self._fastedge.binaries)
 
@@ -252,7 +258,7 @@ class FastedgeResourceWithRawResponse:
     @cached_property
     def apps(self) -> AppsResourceWithRawResponse:
         """
-        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
         """
         return AppsResourceWithRawResponse(self._fastedge.apps)
 
@@ -277,13 +283,15 @@ class AsyncFastedgeResourceWithRawResponse:
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
-        """Secret values that can be used in apps"""
+        """
+        FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+        """
         return AsyncSecretsResourceWithRawResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> AsyncBinariesResourceWithRawResponse:
         """
-        Binaries are WebAssembly executables that are actually executed when app is ran.
+        FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
         """
         return AsyncBinariesResourceWithRawResponse(self._fastedge.binaries)
 
@@ -295,7 +303,7 @@ class AsyncFastedgeResourceWithRawResponse:
     @cached_property
     def apps(self) -> AsyncAppsResourceWithRawResponse:
         """
-        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
         """
         return AsyncAppsResourceWithRawResponse(self._fastedge.apps)
 
@@ -320,13 +328,15 @@ class FastedgeResourceWithStreamingResponse:
 
     @cached_property
     def secrets(self) -> SecretsResourceWithStreamingResponse:
-        """Secret values that can be used in apps"""
+        """
+        FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+        """
         return SecretsResourceWithStreamingResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> BinariesResourceWithStreamingResponse:
         """
-        Binaries are WebAssembly executables that are actually executed when app is ran.
+        FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
         """
         return BinariesResourceWithStreamingResponse(self._fastedge.binaries)
 
@@ -338,7 +348,7 @@ class FastedgeResourceWithStreamingResponse:
     @cached_property
     def apps(self) -> AppsResourceWithStreamingResponse:
         """
-        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
         """
         return AppsResourceWithStreamingResponse(self._fastedge.apps)
 
@@ -363,13 +373,15 @@ class AsyncFastedgeResourceWithStreamingResponse:
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
-        """Secret values that can be used in apps"""
+        """
+        FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+        """
         return AsyncSecretsResourceWithStreamingResponse(self._fastedge.secrets)
 
     @cached_property
     def binaries(self) -> AsyncBinariesResourceWithStreamingResponse:
         """
-        Binaries are WebAssembly executables that are actually executed when app is ran.
+        FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
         """
         return AsyncBinariesResourceWithStreamingResponse(self._fastedge.binaries)
 
@@ -381,7 +393,7 @@ class AsyncFastedgeResourceWithStreamingResponse:
     @cached_property
     def apps(self) -> AsyncAppsResourceWithStreamingResponse:
         """
-        Apps are descriptions of edge apps, that reference the binary and may contain app-specific settings, such as environment variables.
+        FastEdge applications combine a WebAssembly binary with configuration, environment variables, and secrets for deployment at the CDN edge.
         """
         return AsyncAppsResourceWithStreamingResponse(self._fastedge.apps)
 

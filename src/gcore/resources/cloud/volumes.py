@@ -37,6 +37,10 @@ __all__ = ["VolumesResource", "AsyncVolumesResource"]
 
 
 class VolumesResource(SyncAPIResource):
+    """
+    Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+    """
+
     @cached_property
     def with_raw_response(self) -> VolumesResourceWithRawResponse:
         """
@@ -1281,6 +1285,10 @@ class VolumesResource(SyncAPIResource):
 
 
 class AsyncVolumesResource(AsyncAPIResource):
+    """
+    Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncVolumesResourceWithRawResponse:
         """

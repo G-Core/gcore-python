@@ -31,6 +31,10 @@ __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 
 
 class CertificatesResource(SyncAPIResource):
+    """
+    CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+    """
+
     @cached_property
     def with_raw_response(self) -> CertificatesResourceWithRawResponse:
         """
@@ -474,6 +478,10 @@ class CertificatesResource(SyncAPIResource):
 
 
 class AsyncCertificatesResource(AsyncAPIResource):
+    """
+    CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncCertificatesResourceWithRawResponse:
         """
