@@ -36,3 +36,5 @@ class DnssecUpdateResponse(BaseModel):
 
     public_key: Optional[str] = None
     """Represents the public key used in the DS record."""
+
+    uuid: Optional[str] = None
