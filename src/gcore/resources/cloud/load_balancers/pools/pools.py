@@ -45,12 +45,19 @@ __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
 
 class PoolsResource(SyncAPIResource):
+    """
+    Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+    """
+
     @cached_property
     def health_monitors(self) -> HealthMonitorsResource:
         return HealthMonitorsResource(self._client)
 
     @cached_property
     def members(self) -> MembersResource:
+        """
+        Pool members represent backend instances that receive load-balanced traffic from a pool.
+        """
         return MembersResource(self._client)
 
     @cached_property
@@ -449,12 +456,19 @@ class PoolsResource(SyncAPIResource):
 
 
 class AsyncPoolsResource(AsyncAPIResource):
+    """
+    Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+    """
+
     @cached_property
     def health_monitors(self) -> AsyncHealthMonitorsResource:
         return AsyncHealthMonitorsResource(self._client)
 
     @cached_property
     def members(self) -> AsyncMembersResource:
+        """
+        Pool members represent backend instances that receive load-balanced traffic from a pool.
+        """
         return AsyncMembersResource(self._client)
 
     @cached_property
@@ -878,6 +892,9 @@ class PoolsResourceWithRawResponse:
 
     @cached_property
     def members(self) -> MembersResourceWithRawResponse:
+        """
+        Pool members represent backend instances that receive load-balanced traffic from a pool.
+        """
         return MembersResourceWithRawResponse(self._pools.members)
 
 
@@ -907,6 +924,9 @@ class AsyncPoolsResourceWithRawResponse:
 
     @cached_property
     def members(self) -> AsyncMembersResourceWithRawResponse:
+        """
+        Pool members represent backend instances that receive load-balanced traffic from a pool.
+        """
         return AsyncMembersResourceWithRawResponse(self._pools.members)
 
 
@@ -936,6 +956,9 @@ class PoolsResourceWithStreamingResponse:
 
     @cached_property
     def members(self) -> MembersResourceWithStreamingResponse:
+        """
+        Pool members represent backend instances that receive load-balanced traffic from a pool.
+        """
         return MembersResourceWithStreamingResponse(self._pools.members)
 
 
@@ -965,4 +988,7 @@ class AsyncPoolsResourceWithStreamingResponse:
 
     @cached_property
     def members(self) -> AsyncMembersResourceWithStreamingResponse:
+        """
+        Pool members represent backend instances that receive load-balanced traffic from a pool.
+        """
         return AsyncMembersResourceWithStreamingResponse(self._pools.members)

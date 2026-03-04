@@ -27,6 +27,10 @@ __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
 
 class ProjectsResource(SyncAPIResource):
+    """
+    Projects are organizational units that group cloud resources for access control and billing.
+    """
+
     @cached_property
     def with_raw_response(self) -> ProjectsResourceWithRawResponse:
         """
@@ -281,6 +285,10 @@ class ProjectsResource(SyncAPIResource):
 
 
 class AsyncProjectsResource(AsyncAPIResource):
+    """
+    Projects are organizational units that group cloud resources for access control and billing.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncProjectsResourceWithRawResponse:
         """

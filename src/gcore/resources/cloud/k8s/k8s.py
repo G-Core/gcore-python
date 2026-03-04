@@ -42,6 +42,9 @@ class K8SResource(SyncAPIResource):
 
     @cached_property
     def clusters(self) -> ClustersResource:
+        """
+        Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+        """
         return ClustersResource(self._client)
 
     @cached_property
@@ -111,6 +114,9 @@ class AsyncK8SResource(AsyncAPIResource):
 
     @cached_property
     def clusters(self) -> AsyncClustersResource:
+        """
+        Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+        """
         return AsyncClustersResource(self._client)
 
     @cached_property
@@ -187,6 +193,9 @@ class K8SResourceWithRawResponse:
 
     @cached_property
     def clusters(self) -> ClustersResourceWithRawResponse:
+        """
+        Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+        """
         return ClustersResourceWithRawResponse(self._k8s.clusters)
 
 
@@ -204,6 +213,9 @@ class AsyncK8SResourceWithRawResponse:
 
     @cached_property
     def clusters(self) -> AsyncClustersResourceWithRawResponse:
+        """
+        Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+        """
         return AsyncClustersResourceWithRawResponse(self._k8s.clusters)
 
 
@@ -221,6 +233,9 @@ class K8SResourceWithStreamingResponse:
 
     @cached_property
     def clusters(self) -> ClustersResourceWithStreamingResponse:
+        """
+        Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+        """
         return ClustersResourceWithStreamingResponse(self._k8s.clusters)
 
 
@@ -238,4 +253,7 @@ class AsyncK8SResourceWithStreamingResponse:
 
     @cached_property
     def clusters(self) -> AsyncClustersResourceWithStreamingResponse:
+        """
+        Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
+        """
         return AsyncClustersResourceWithStreamingResponse(self._k8s.clusters)

@@ -79,10 +79,16 @@ class DNSResource(SyncAPIResource):
 
     @cached_property
     def zones(self) -> ZonesResource:
+        """
+        DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+        """
         return ZonesResource(self._client)
 
     @cached_property
     def network_mappings(self) -> NetworkMappingsResource:
+        """
+        DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+        """
         return NetworkMappingsResource(self._client)
 
     @cached_property
@@ -186,10 +192,16 @@ class AsyncDNSResource(AsyncAPIResource):
 
     @cached_property
     def zones(self) -> AsyncZonesResource:
+        """
+        DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+        """
         return AsyncZonesResource(self._client)
 
     @cached_property
     def network_mappings(self) -> AsyncNetworkMappingsResource:
+        """
+        DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+        """
         return AsyncNetworkMappingsResource(self._client)
 
     @cached_property
@@ -303,10 +315,16 @@ class DNSResourceWithRawResponse:
 
     @cached_property
     def zones(self) -> ZonesResourceWithRawResponse:
+        """
+        DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+        """
         return ZonesResourceWithRawResponse(self._dns.zones)
 
     @cached_property
     def network_mappings(self) -> NetworkMappingsResourceWithRawResponse:
+        """
+        DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+        """
         return NetworkMappingsResourceWithRawResponse(self._dns.network_mappings)
 
 
@@ -335,10 +353,16 @@ class AsyncDNSResourceWithRawResponse:
 
     @cached_property
     def zones(self) -> AsyncZonesResourceWithRawResponse:
+        """
+        DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+        """
         return AsyncZonesResourceWithRawResponse(self._dns.zones)
 
     @cached_property
     def network_mappings(self) -> AsyncNetworkMappingsResourceWithRawResponse:
+        """
+        DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+        """
         return AsyncNetworkMappingsResourceWithRawResponse(self._dns.network_mappings)
 
 
@@ -367,10 +391,16 @@ class DNSResourceWithStreamingResponse:
 
     @cached_property
     def zones(self) -> ZonesResourceWithStreamingResponse:
+        """
+        DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+        """
         return ZonesResourceWithStreamingResponse(self._dns.zones)
 
     @cached_property
     def network_mappings(self) -> NetworkMappingsResourceWithStreamingResponse:
+        """
+        DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+        """
         return NetworkMappingsResourceWithStreamingResponse(self._dns.network_mappings)
 
 
@@ -399,8 +429,14 @@ class AsyncDNSResourceWithStreamingResponse:
 
     @cached_property
     def zones(self) -> AsyncZonesResourceWithStreamingResponse:
+        """
+        DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+        """
         return AsyncZonesResourceWithStreamingResponse(self._dns.zones)
 
     @cached_property
     def network_mappings(self) -> AsyncNetworkMappingsResourceWithStreamingResponse:
+        """
+        DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+        """
         return AsyncNetworkMappingsResourceWithStreamingResponse(self._dns.network_mappings)

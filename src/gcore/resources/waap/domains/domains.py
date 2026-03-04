@@ -116,6 +116,10 @@ __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
 
 class DomainsResource(SyncAPIResource):
+    """
+    WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
+    """
+
     @cached_property
     def policies(self) -> PoliciesResource:
         return PoliciesResource(self._client)
@@ -384,6 +388,10 @@ class DomainsResource(SyncAPIResource):
 
 
 class AsyncDomainsResource(AsyncAPIResource):
+    """
+    WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
+    """
+
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
         return AsyncPoliciesResource(self._client)

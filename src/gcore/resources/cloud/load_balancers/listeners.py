@@ -35,6 +35,10 @@ __all__ = ["ListenersResource", "AsyncListenersResource"]
 
 
 class ListenersResource(SyncAPIResource):
+    """
+    Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+    """
+
     @cached_property
     def with_raw_response(self) -> ListenersResourceWithRawResponse:
         """
@@ -422,6 +426,10 @@ class ListenersResource(SyncAPIResource):
 
 
 class AsyncListenersResource(AsyncAPIResource):
+    """
+    Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncListenersResourceWithRawResponse:
         """

@@ -30,6 +30,10 @@ __all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
 
 class SubnetsResource(SyncAPIResource):
+    """
+    Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+    """
+
     @cached_property
     def with_raw_response(self) -> SubnetsResourceWithRawResponse:
         """
@@ -437,6 +441,10 @@ class SubnetsResource(SyncAPIResource):
 
 
 class AsyncSubnetsResource(AsyncAPIResource):
+    """
+    Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSubnetsResourceWithRawResponse:
         """

@@ -29,6 +29,10 @@ __all__ = ["NetworkMappingsResource", "AsyncNetworkMappingsResource"]
 
 
 class NetworkMappingsResource(SyncAPIResource):
+    """
+    DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+    """
+
     @cached_property
     def with_raw_response(self) -> NetworkMappingsResourceWithRawResponse:
         """
@@ -459,6 +463,10 @@ class NetworkMappingsResource(SyncAPIResource):
 
 
 class AsyncNetworkMappingsResource(AsyncAPIResource):
+    """
+    DNS network mappings associate CIDR ranges with network tags for private DNS resolution and traffic-based routing.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncNetworkMappingsResourceWithRawResponse:
         """

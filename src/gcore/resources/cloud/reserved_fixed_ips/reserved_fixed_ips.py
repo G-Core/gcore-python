@@ -41,6 +41,10 @@ __all__ = ["ReservedFixedIPsResource", "AsyncReservedFixedIPsResource"]
 
 
 class ReservedFixedIPsResource(SyncAPIResource):
+    """
+    Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+    """
+
     @cached_property
     def vip(self) -> VipResource:
         return VipResource(self._client)
@@ -505,6 +509,10 @@ class ReservedFixedIPsResource(SyncAPIResource):
 
 
 class AsyncReservedFixedIPsResource(AsyncAPIResource):
+    """
+    Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+    """
+
     @cached_property
     def vip(self) -> AsyncVipResource:
         return AsyncVipResource(self._client)

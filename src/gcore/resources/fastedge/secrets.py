@@ -32,7 +32,9 @@ __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
 
 class SecretsResource(SyncAPIResource):
-    """Secret values that can be used in apps"""
+    """
+    FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+    """
 
     @cached_property
     def with_raw_response(self) -> SecretsResourceWithRawResponse:
@@ -314,7 +316,9 @@ class SecretsResource(SyncAPIResource):
 
 
 class AsyncSecretsResource(AsyncAPIResource):
-    """Secret values that can be used in apps"""
+    """
+    FastEdge secrets store sensitive values such as API keys and tokens that can be referenced by FastEdge applications.
+    """
 
     @cached_property
     def with_raw_response(self) -> AsyncSecretsResourceWithRawResponse:
