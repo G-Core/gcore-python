@@ -27,6 +27,10 @@ __all__ = ["TrustedCaCertificatesResource", "AsyncTrustedCaCertificatesResource"
 
 
 class TrustedCaCertificatesResource(SyncAPIResource):
+    """
+    Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+    """
+
     @cached_property
     def with_raw_response(self) -> TrustedCaCertificatesResourceWithRawResponse:
         """
@@ -258,6 +262,10 @@ class TrustedCaCertificatesResource(SyncAPIResource):
 
 
 class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
+    """
+    Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncTrustedCaCertificatesResourceWithRawResponse:
         """

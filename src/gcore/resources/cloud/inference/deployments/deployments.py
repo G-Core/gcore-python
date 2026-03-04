@@ -36,6 +36,10 @@ __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
 
 class DeploymentsResource(SyncAPIResource):
+    """
+    Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+    """
+
     @cached_property
     def logs(self) -> LogsResource:
         return LogsResource(self._client)
@@ -735,6 +739,10 @@ class DeploymentsResource(SyncAPIResource):
 
 
 class AsyncDeploymentsResource(AsyncAPIResource):
+    """
+    Inference deployments run containerized ML models with configurable scaling, health probes, and GPU flavors.
+    """
+
     @cached_property
     def logs(self) -> AsyncLogsResource:
         return AsyncLogsResource(self._client)

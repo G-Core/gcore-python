@@ -54,12 +54,19 @@ __all__ = ["ZonesResource", "AsyncZonesResource"]
 
 
 class ZonesResource(SyncAPIResource):
+    """
+    DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+    """
+
     @cached_property
     def dnssec(self) -> DnssecResource:
         return DnssecResource(self._client)
 
     @cached_property
     def rrsets(self) -> RrsetsResource:
+        """
+        DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+        """
         return RrsetsResource(self._client)
 
     @cached_property
@@ -691,12 +698,19 @@ class ZonesResource(SyncAPIResource):
 
 
 class AsyncZonesResource(AsyncAPIResource):
+    """
+    DNS zones are authoritative containers for domain name records, with support for DNSSEC and SOA configuration.
+    """
+
     @cached_property
     def dnssec(self) -> AsyncDnssecResource:
         return AsyncDnssecResource(self._client)
 
     @cached_property
     def rrsets(self) -> AsyncRrsetsResource:
+        """
+        DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+        """
         return AsyncRrsetsResource(self._client)
 
     @cached_property
@@ -1371,6 +1385,9 @@ class ZonesResourceWithRawResponse:
 
     @cached_property
     def rrsets(self) -> RrsetsResourceWithRawResponse:
+        """
+        DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+        """
         return RrsetsResourceWithRawResponse(self._zones.rrsets)
 
 
@@ -1418,6 +1435,9 @@ class AsyncZonesResourceWithRawResponse:
 
     @cached_property
     def rrsets(self) -> AsyncRrsetsResourceWithRawResponse:
+        """
+        DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+        """
         return AsyncRrsetsResourceWithRawResponse(self._zones.rrsets)
 
 
@@ -1465,6 +1485,9 @@ class ZonesResourceWithStreamingResponse:
 
     @cached_property
     def rrsets(self) -> RrsetsResourceWithStreamingResponse:
+        """
+        DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+        """
         return RrsetsResourceWithStreamingResponse(self._zones.rrsets)
 
 
@@ -1512,4 +1535,7 @@ class AsyncZonesResourceWithStreamingResponse:
 
     @cached_property
     def rrsets(self) -> AsyncRrsetsResourceWithStreamingResponse:
+        """
+        DNS resource record sets (RRsets) define individual DNS records such as A, AAAA, CNAME, MX, and TXT with TTL and geo-balancing settings.
+        """
         return AsyncRrsetsResourceWithStreamingResponse(self._zones.rrsets)

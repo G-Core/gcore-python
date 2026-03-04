@@ -82,6 +82,7 @@ class ClustersResource(SyncAPIResource):
 
     @cached_property
     def images(self) -> ImagesResource:
+        """GPU bare metal images are custom boot images for bare metal GPU servers."""
         return ImagesResource(self._client)
 
     @cached_property
@@ -847,6 +848,7 @@ class AsyncClustersResource(AsyncAPIResource):
 
     @cached_property
     def images(self) -> AsyncImagesResource:
+        """GPU bare metal images are custom boot images for bare metal GPU servers."""
         return AsyncImagesResource(self._client)
 
     @cached_property
@@ -1657,6 +1659,7 @@ class ClustersResourceWithRawResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
+        """GPU bare metal images are custom boot images for bare metal GPU servers."""
         return ImagesResourceWithRawResponse(self._clusters.images)
 
 
@@ -1718,6 +1721,7 @@ class AsyncClustersResourceWithRawResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
+        """GPU bare metal images are custom boot images for bare metal GPU servers."""
         return AsyncImagesResourceWithRawResponse(self._clusters.images)
 
 
@@ -1779,6 +1783,7 @@ class ClustersResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
+        """GPU bare metal images are custom boot images for bare metal GPU servers."""
         return ImagesResourceWithStreamingResponse(self._clusters.images)
 
 
@@ -1840,4 +1845,5 @@ class AsyncClustersResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
+        """GPU bare metal images are custom boot images for bare metal GPU servers."""
         return AsyncImagesResourceWithStreamingResponse(self._clusters.images)

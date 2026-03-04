@@ -26,6 +26,10 @@ __all__ = ["SSHKeysResource", "AsyncSSHKeysResource"]
 
 
 class SSHKeysResource(SyncAPIResource):
+    """
+    SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+    """
+
     @cached_property
     def with_raw_response(self) -> SSHKeysResourceWithRawResponse:
         """
@@ -293,6 +297,10 @@ class SSHKeysResource(SyncAPIResource):
 
 
 class AsyncSSHKeysResource(AsyncAPIResource):
+    """
+    SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSSHKeysResourceWithRawResponse:
         """

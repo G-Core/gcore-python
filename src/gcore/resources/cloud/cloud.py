@@ -243,6 +243,9 @@ __all__ = ["CloudResource", "AsyncCloudResource"]
 class CloudResource(SyncAPIResource):
     @cached_property
     def projects(self) -> ProjectsResource:
+        """
+        Projects are organizational units that group cloud resources for access control and billing.
+        """
         return ProjectsResource(self._client)
 
     @cached_property
@@ -251,6 +254,9 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def regions(self) -> RegionsResource:
+        """
+        Regions represent available Gcore cloud data centers with information about supported services and volume types.
+        """
         return RegionsResource(self._client)
 
     @cached_property
@@ -259,10 +265,16 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def secrets(self) -> SecretsResource:
+        """
+        Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+        """
         return SecretsResource(self._client)
 
     @cached_property
     def ssh_keys(self) -> SSHKeysResource:
+        """
+        SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+        """
         return SSHKeysResource(self._client)
 
     @cached_property
@@ -271,18 +283,30 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def load_balancers(self) -> LoadBalancersResource:
+        """
+        Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+        """
         return LoadBalancersResource(self._client)
 
     @cached_property
     def reserved_fixed_ips(self) -> ReservedFixedIPsResource:
+        """
+        Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+        """
         return ReservedFixedIPsResource(self._client)
 
     @cached_property
     def networks(self) -> NetworksResource:
+        """
+        Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+        """
         return NetworksResource(self._client)
 
     @cached_property
     def volumes(self) -> VolumesResource:
+        """
+        Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+        """
         return VolumesResource(self._client)
 
     @cached_property
@@ -295,6 +319,9 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def security_groups(self) -> SecurityGroupsResource:
+        """
+        Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+        """
         return SecurityGroupsResource(self._client)
 
     @cached_property
@@ -308,7 +335,7 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def placement_groups(self) -> PlacementGroupsResource:
         """
-        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
         """
         return PlacementGroupsResource(self._client)
 
@@ -322,6 +349,9 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def file_shares(self) -> FileSharesResource:
+        """
+        File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+        """
         return FileSharesResource(self._client)
 
     @cached_property
@@ -338,6 +368,9 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def instances(self) -> InstancesResource:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
         return InstancesResource(self._client)
 
     @cached_property
@@ -387,6 +420,9 @@ class CloudResource(SyncAPIResource):
 class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def projects(self) -> AsyncProjectsResource:
+        """
+        Projects are organizational units that group cloud resources for access control and billing.
+        """
         return AsyncProjectsResource(self._client)
 
     @cached_property
@@ -395,6 +431,9 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def regions(self) -> AsyncRegionsResource:
+        """
+        Regions represent available Gcore cloud data centers with information about supported services and volume types.
+        """
         return AsyncRegionsResource(self._client)
 
     @cached_property
@@ -403,10 +442,16 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def secrets(self) -> AsyncSecretsResource:
+        """
+        Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+        """
         return AsyncSecretsResource(self._client)
 
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResource:
+        """
+        SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+        """
         return AsyncSSHKeysResource(self._client)
 
     @cached_property
@@ -415,18 +460,30 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def load_balancers(self) -> AsyncLoadBalancersResource:
+        """
+        Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+        """
         return AsyncLoadBalancersResource(self._client)
 
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResource:
+        """
+        Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+        """
         return AsyncReservedFixedIPsResource(self._client)
 
     @cached_property
     def networks(self) -> AsyncNetworksResource:
+        """
+        Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+        """
         return AsyncNetworksResource(self._client)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResource:
+        """
+        Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+        """
         return AsyncVolumesResource(self._client)
 
     @cached_property
@@ -439,6 +496,9 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResource:
+        """
+        Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+        """
         return AsyncSecurityGroupsResource(self._client)
 
     @cached_property
@@ -452,7 +512,7 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResource:
         """
-        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
         """
         return AsyncPlacementGroupsResource(self._client)
 
@@ -466,6 +526,9 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def file_shares(self) -> AsyncFileSharesResource:
+        """
+        File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+        """
         return AsyncFileSharesResource(self._client)
 
     @cached_property
@@ -482,6 +545,9 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def instances(self) -> AsyncInstancesResource:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
         return AsyncInstancesResource(self._client)
 
     @cached_property
@@ -534,6 +600,9 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def projects(self) -> ProjectsResourceWithRawResponse:
+        """
+        Projects are organizational units that group cloud resources for access control and billing.
+        """
         return ProjectsResourceWithRawResponse(self._cloud.projects)
 
     @cached_property
@@ -542,6 +611,9 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def regions(self) -> RegionsResourceWithRawResponse:
+        """
+        Regions represent available Gcore cloud data centers with information about supported services and volume types.
+        """
         return RegionsResourceWithRawResponse(self._cloud.regions)
 
     @cached_property
@@ -550,10 +622,16 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def secrets(self) -> SecretsResourceWithRawResponse:
+        """
+        Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+        """
         return SecretsResourceWithRawResponse(self._cloud.secrets)
 
     @cached_property
     def ssh_keys(self) -> SSHKeysResourceWithRawResponse:
+        """
+        SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+        """
         return SSHKeysResourceWithRawResponse(self._cloud.ssh_keys)
 
     @cached_property
@@ -562,18 +640,30 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def load_balancers(self) -> LoadBalancersResourceWithRawResponse:
+        """
+        Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+        """
         return LoadBalancersResourceWithRawResponse(self._cloud.load_balancers)
 
     @cached_property
     def reserved_fixed_ips(self) -> ReservedFixedIPsResourceWithRawResponse:
+        """
+        Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+        """
         return ReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
     def networks(self) -> NetworksResourceWithRawResponse:
+        """
+        Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+        """
         return NetworksResourceWithRawResponse(self._cloud.networks)
 
     @cached_property
     def volumes(self) -> VolumesResourceWithRawResponse:
+        """
+        Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+        """
         return VolumesResourceWithRawResponse(self._cloud.volumes)
 
     @cached_property
@@ -586,6 +676,9 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def security_groups(self) -> SecurityGroupsResourceWithRawResponse:
+        """
+        Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+        """
         return SecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
 
     @cached_property
@@ -599,7 +692,7 @@ class CloudResourceWithRawResponse:
     @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithRawResponse:
         """
-        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
         """
         return PlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
@@ -613,6 +706,9 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def file_shares(self) -> FileSharesResourceWithRawResponse:
+        """
+        File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+        """
         return FileSharesResourceWithRawResponse(self._cloud.file_shares)
 
     @cached_property
@@ -629,6 +725,9 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def instances(self) -> InstancesResourceWithRawResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
         return InstancesResourceWithRawResponse(self._cloud.instances)
 
     @cached_property
@@ -662,6 +761,9 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithRawResponse:
+        """
+        Projects are organizational units that group cloud resources for access control and billing.
+        """
         return AsyncProjectsResourceWithRawResponse(self._cloud.projects)
 
     @cached_property
@@ -670,6 +772,9 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithRawResponse:
+        """
+        Regions represent available Gcore cloud data centers with information about supported services and volume types.
+        """
         return AsyncRegionsResourceWithRawResponse(self._cloud.regions)
 
     @cached_property
@@ -678,10 +783,16 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
+        """
+        Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+        """
         return AsyncSecretsResourceWithRawResponse(self._cloud.secrets)
 
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResourceWithRawResponse:
+        """
+        SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+        """
         return AsyncSSHKeysResourceWithRawResponse(self._cloud.ssh_keys)
 
     @cached_property
@@ -690,18 +801,30 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def load_balancers(self) -> AsyncLoadBalancersResourceWithRawResponse:
+        """
+        Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+        """
         return AsyncLoadBalancersResourceWithRawResponse(self._cloud.load_balancers)
 
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithRawResponse:
+        """
+        Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+        """
         return AsyncReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
+        """
+        Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+        """
         return AsyncNetworksResourceWithRawResponse(self._cloud.networks)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResourceWithRawResponse:
+        """
+        Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+        """
         return AsyncVolumesResourceWithRawResponse(self._cloud.volumes)
 
     @cached_property
@@ -714,6 +837,9 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithRawResponse:
+        """
+        Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+        """
         return AsyncSecurityGroupsResourceWithRawResponse(self._cloud.security_groups)
 
     @cached_property
@@ -727,7 +853,7 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithRawResponse:
         """
-        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
         """
         return AsyncPlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
@@ -741,6 +867,9 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def file_shares(self) -> AsyncFileSharesResourceWithRawResponse:
+        """
+        File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+        """
         return AsyncFileSharesResourceWithRawResponse(self._cloud.file_shares)
 
     @cached_property
@@ -757,6 +886,9 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
         return AsyncInstancesResourceWithRawResponse(self._cloud.instances)
 
     @cached_property
@@ -790,6 +922,9 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def projects(self) -> ProjectsResourceWithStreamingResponse:
+        """
+        Projects are organizational units that group cloud resources for access control and billing.
+        """
         return ProjectsResourceWithStreamingResponse(self._cloud.projects)
 
     @cached_property
@@ -798,6 +933,9 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def regions(self) -> RegionsResourceWithStreamingResponse:
+        """
+        Regions represent available Gcore cloud data centers with information about supported services and volume types.
+        """
         return RegionsResourceWithStreamingResponse(self._cloud.regions)
 
     @cached_property
@@ -806,10 +944,16 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def secrets(self) -> SecretsResourceWithStreamingResponse:
+        """
+        Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+        """
         return SecretsResourceWithStreamingResponse(self._cloud.secrets)
 
     @cached_property
     def ssh_keys(self) -> SSHKeysResourceWithStreamingResponse:
+        """
+        SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+        """
         return SSHKeysResourceWithStreamingResponse(self._cloud.ssh_keys)
 
     @cached_property
@@ -818,18 +962,30 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def load_balancers(self) -> LoadBalancersResourceWithStreamingResponse:
+        """
+        Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+        """
         return LoadBalancersResourceWithStreamingResponse(self._cloud.load_balancers)
 
     @cached_property
     def reserved_fixed_ips(self) -> ReservedFixedIPsResourceWithStreamingResponse:
+        """
+        Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+        """
         return ReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
     def networks(self) -> NetworksResourceWithStreamingResponse:
+        """
+        Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+        """
         return NetworksResourceWithStreamingResponse(self._cloud.networks)
 
     @cached_property
     def volumes(self) -> VolumesResourceWithStreamingResponse:
+        """
+        Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+        """
         return VolumesResourceWithStreamingResponse(self._cloud.volumes)
 
     @cached_property
@@ -842,6 +998,9 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def security_groups(self) -> SecurityGroupsResourceWithStreamingResponse:
+        """
+        Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+        """
         return SecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
 
     @cached_property
@@ -855,7 +1014,7 @@ class CloudResourceWithStreamingResponse:
     @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithStreamingResponse:
         """
-        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
         """
         return PlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 
@@ -869,6 +1028,9 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def file_shares(self) -> FileSharesResourceWithStreamingResponse:
+        """
+        File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+        """
         return FileSharesResourceWithStreamingResponse(self._cloud.file_shares)
 
     @cached_property
@@ -885,6 +1047,9 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def instances(self) -> InstancesResourceWithStreamingResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
         return InstancesResourceWithStreamingResponse(self._cloud.instances)
 
     @cached_property
@@ -918,6 +1083,9 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithStreamingResponse:
+        """
+        Projects are organizational units that group cloud resources for access control and billing.
+        """
         return AsyncProjectsResourceWithStreamingResponse(self._cloud.projects)
 
     @cached_property
@@ -926,6 +1094,9 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def regions(self) -> AsyncRegionsResourceWithStreamingResponse:
+        """
+        Regions represent available Gcore cloud data centers with information about supported services and volume types.
+        """
         return AsyncRegionsResourceWithStreamingResponse(self._cloud.regions)
 
     @cached_property
@@ -934,10 +1105,16 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
+        """
+        Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+        """
         return AsyncSecretsResourceWithStreamingResponse(self._cloud.secrets)
 
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResourceWithStreamingResponse:
+        """
+        SSH key pairs provide secure authentication to cloud instances, supporting both generated and imported public keys.
+        """
         return AsyncSSHKeysResourceWithStreamingResponse(self._cloud.ssh_keys)
 
     @cached_property
@@ -946,18 +1123,30 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def load_balancers(self) -> AsyncLoadBalancersResourceWithStreamingResponse:
+        """
+        Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+        """
         return AsyncLoadBalancersResourceWithStreamingResponse(self._cloud.load_balancers)
 
     @cached_property
     def reserved_fixed_ips(self) -> AsyncReservedFixedIPsResourceWithStreamingResponse:
+        """
+        Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
+        """
         return AsyncReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
+        """
+        Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
+        """
         return AsyncNetworksResourceWithStreamingResponse(self._cloud.networks)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResourceWithStreamingResponse:
+        """
+        Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
+        """
         return AsyncVolumesResourceWithStreamingResponse(self._cloud.volumes)
 
     @cached_property
@@ -970,6 +1159,9 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def security_groups(self) -> AsyncSecurityGroupsResourceWithStreamingResponse:
+        """
+        Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+        """
         return AsyncSecurityGroupsResourceWithStreamingResponse(self._cloud.security_groups)
 
     @cached_property
@@ -983,7 +1175,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithStreamingResponse:
         """
-        Placement Groups allow you to specific a policy that determines whether Virtual Machines will be hosted on the same physical server or on different ones.
+        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
         """
         return AsyncPlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 
@@ -997,6 +1189,9 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def file_shares(self) -> AsyncFileSharesResourceWithStreamingResponse:
+        """
+        File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+        """
         return AsyncFileSharesResourceWithStreamingResponse(self._cloud.file_shares)
 
     @cached_property
@@ -1013,6 +1208,9 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
         return AsyncInstancesResourceWithStreamingResponse(self._cloud.instances)
 
     @cached_property

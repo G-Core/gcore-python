@@ -19,6 +19,9 @@ __all__ = ["GPUVirtualResource", "AsyncGPUVirtualResource"]
 class GPUVirtualResource(SyncAPIResource):
     @cached_property
     def clusters(self) -> ClustersResource:
+        """
+        GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+        """
         return ClustersResource(self._client)
 
     @cached_property
@@ -44,6 +47,9 @@ class GPUVirtualResource(SyncAPIResource):
 class AsyncGPUVirtualResource(AsyncAPIResource):
     @cached_property
     def clusters(self) -> AsyncClustersResource:
+        """
+        GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+        """
         return AsyncClustersResource(self._client)
 
     @cached_property
@@ -72,6 +78,9 @@ class GPUVirtualResourceWithRawResponse:
 
     @cached_property
     def clusters(self) -> ClustersResourceWithRawResponse:
+        """
+        GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+        """
         return ClustersResourceWithRawResponse(self._gpu_virtual.clusters)
 
 
@@ -81,6 +90,9 @@ class AsyncGPUVirtualResourceWithRawResponse:
 
     @cached_property
     def clusters(self) -> AsyncClustersResourceWithRawResponse:
+        """
+        GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+        """
         return AsyncClustersResourceWithRawResponse(self._gpu_virtual.clusters)
 
 
@@ -90,6 +102,9 @@ class GPUVirtualResourceWithStreamingResponse:
 
     @cached_property
     def clusters(self) -> ClustersResourceWithStreamingResponse:
+        """
+        GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+        """
         return ClustersResourceWithStreamingResponse(self._gpu_virtual.clusters)
 
 
@@ -99,4 +114,7 @@ class AsyncGPUVirtualResourceWithStreamingResponse:
 
     @cached_property
     def clusters(self) -> AsyncClustersResourceWithStreamingResponse:
+        """
+        GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+        """
         return AsyncClustersResourceWithStreamingResponse(self._gpu_virtual.clusters)

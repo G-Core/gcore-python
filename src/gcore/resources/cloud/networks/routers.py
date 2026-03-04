@@ -33,6 +33,10 @@ __all__ = ["RoutersResource", "AsyncRoutersResource"]
 
 
 class RoutersResource(SyncAPIResource):
+    """
+    Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+    """
+
     @cached_property
     def with_raw_response(self) -> RoutersResourceWithRawResponse:
         """
@@ -403,6 +407,10 @@ class RoutersResource(SyncAPIResource):
 
 
 class AsyncRoutersResource(AsyncAPIResource):
+    """
+    Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRoutersResourceWithRawResponse:
         """

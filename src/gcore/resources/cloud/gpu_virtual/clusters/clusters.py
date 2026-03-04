@@ -74,6 +74,10 @@ __all__ = ["ClustersResource", "AsyncClustersResource"]
 
 
 class ClustersResource(SyncAPIResource):
+    """
+    GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+    """
+
     @cached_property
     def servers(self) -> ServersResource:
         return ServersResource(self._client)
@@ -92,6 +96,7 @@ class ClustersResource(SyncAPIResource):
 
     @cached_property
     def images(self) -> ImagesResource:
+        """GPU virtual images are custom boot images for virtual GPU cluster instances."""
         return ImagesResource(self._client)
 
     @cached_property
@@ -719,6 +724,10 @@ class ClustersResource(SyncAPIResource):
 
 
 class AsyncClustersResource(AsyncAPIResource):
+    """
+    GPU virtual clusters provide managed virtual GPU servers with auto-scaling for parallel computation workloads.
+    """
+
     @cached_property
     def servers(self) -> AsyncServersResource:
         return AsyncServersResource(self._client)
@@ -737,6 +746,7 @@ class AsyncClustersResource(AsyncAPIResource):
 
     @cached_property
     def images(self) -> AsyncImagesResource:
+        """GPU virtual images are custom boot images for virtual GPU cluster instances."""
         return AsyncImagesResource(self._client)
 
     @cached_property
@@ -1404,6 +1414,7 @@ class ClustersResourceWithRawResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
+        """GPU virtual images are custom boot images for virtual GPU cluster instances."""
         return ImagesResourceWithRawResponse(self._clusters.images)
 
 
@@ -1448,6 +1459,7 @@ class AsyncClustersResourceWithRawResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
+        """GPU virtual images are custom boot images for virtual GPU cluster instances."""
         return AsyncImagesResourceWithRawResponse(self._clusters.images)
 
 
@@ -1492,6 +1504,7 @@ class ClustersResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
+        """GPU virtual images are custom boot images for virtual GPU cluster instances."""
         return ImagesResourceWithStreamingResponse(self._clusters.images)
 
 
@@ -1536,4 +1549,5 @@ class AsyncClustersResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
+        """GPU virtual images are custom boot images for virtual GPU cluster instances."""
         return AsyncImagesResourceWithStreamingResponse(self._clusters.images)

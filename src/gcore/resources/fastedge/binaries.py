@@ -36,7 +36,7 @@ __all__ = ["BinariesResource", "AsyncBinariesResource"]
 
 class BinariesResource(SyncAPIResource):
     """
-    Binaries are WebAssembly executables that are actually executed when app is ran.
+    FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
     """
 
     @cached_property
@@ -176,7 +176,7 @@ class BinariesResource(SyncAPIResource):
 
 class AsyncBinariesResource(AsyncAPIResource):
     """
-    Binaries are WebAssembly executables that are actually executed when app is ran.
+    FastEdge binaries are immutable WebAssembly modules that implement edge application logic.
     """
 
     @cached_property

@@ -34,6 +34,10 @@ __all__ = ["ImagesResource", "AsyncImagesResource"]
 
 
 class ImagesResource(SyncAPIResource):
+    """
+    Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+    """
+
     @cached_property
     def with_raw_response(self) -> ImagesResourceWithRawResponse:
         """
@@ -635,6 +639,10 @@ class ImagesResource(SyncAPIResource):
 
 
 class AsyncImagesResource(AsyncAPIResource):
+    """
+    Instance images are operating system images (public, private, or shared) used to boot cloud instances.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncImagesResourceWithRawResponse:
         """

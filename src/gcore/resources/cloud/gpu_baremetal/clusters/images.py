@@ -27,6 +27,8 @@ __all__ = ["ImagesResource", "AsyncImagesResource"]
 
 
 class ImagesResource(SyncAPIResource):
+    """GPU bare metal images are custom boot images for bare metal GPU servers."""
+
     @cached_property
     def with_raw_response(self) -> ImagesResourceWithRawResponse:
         """
@@ -375,6 +377,8 @@ class ImagesResource(SyncAPIResource):
 
 
 class AsyncImagesResource(AsyncAPIResource):
+    """GPU bare metal images are custom boot images for bare metal GPU servers."""
+
     @cached_property
     def with_raw_response(self) -> AsyncImagesResourceWithRawResponse:
         """

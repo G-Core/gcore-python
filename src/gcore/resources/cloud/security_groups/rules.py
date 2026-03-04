@@ -27,6 +27,10 @@ __all__ = ["RulesResource", "AsyncRulesResource"]
 
 
 class RulesResource(SyncAPIResource):
+    """
+    Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+    """
+
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
         """
@@ -468,6 +472,10 @@ class RulesResource(SyncAPIResource):
 
 
 class AsyncRulesResource(AsyncAPIResource):
+    """
+    Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
         """
