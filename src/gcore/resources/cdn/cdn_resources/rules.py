@@ -27,13 +27,7 @@ __all__ = ["RulesResource", "AsyncRulesResource"]
 
 class RulesResource(SyncAPIResource):
     """
-    Rules allow to set up custom settings for certain file types or paths.
-    By default, the rule inherits all options values from the related CDN resource.
-
-    Each option in rule settings can be in one of the following states:
-    - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-    - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-    - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+    CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
     """
 
     @cached_property
@@ -478,13 +472,7 @@ class RulesResource(SyncAPIResource):
 
 class AsyncRulesResource(AsyncAPIResource):
     """
-    Rules allow to set up custom settings for certain file types or paths.
-    By default, the rule inherits all options values from the related CDN resource.
-
-    Each option in rule settings can be in one of the following states:
-    - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-    - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-    - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+    CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
     """
 
     @cached_property

@@ -27,6 +27,10 @@ __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
 
 class SecretsResource(SyncAPIResource):
+    """
+    Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+    """
+
     @cached_property
     def with_raw_response(self) -> SecretsResourceWithRawResponse:
         """
@@ -296,6 +300,10 @@ class SecretsResource(SyncAPIResource):
 
 
 class AsyncSecretsResource(AsyncAPIResource):
+    """
+    Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSecretsResourceWithRawResponse:
         """

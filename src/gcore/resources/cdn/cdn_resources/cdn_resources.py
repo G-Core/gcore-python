@@ -56,13 +56,7 @@ class CDNResourcesResource(SyncAPIResource):
     @cached_property
     def rules(self) -> RulesResource:
         """
-        Rules allow to set up custom settings for certain file types or paths.
-        By default, the rule inherits all options values from the related CDN resource.
-
-        Each option in rule settings can be in one of the following states:
-        - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-        - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-        - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+        CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
         """
         return RulesResource(self._client)
 
@@ -973,13 +967,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
     @cached_property
     def rules(self) -> AsyncRulesResource:
         """
-        Rules allow to set up custom settings for certain file types or paths.
-        By default, the rule inherits all options values from the related CDN resource.
-
-        Each option in rule settings can be in one of the following states:
-        - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-        - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-        - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+        CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
         """
         return AsyncRulesResource(self._client)
 
@@ -1921,13 +1909,7 @@ class CDNResourcesResourceWithRawResponse:
     @cached_property
     def rules(self) -> RulesResourceWithRawResponse:
         """
-        Rules allow to set up custom settings for certain file types or paths.
-        By default, the rule inherits all options values from the related CDN resource.
-
-        Each option in rule settings can be in one of the following states:
-        - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-        - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-        - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+        CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
         """
         return RulesResourceWithRawResponse(self._cdn_resources.rules)
 
@@ -1971,13 +1953,7 @@ class AsyncCDNResourcesResourceWithRawResponse:
     @cached_property
     def rules(self) -> AsyncRulesResourceWithRawResponse:
         """
-        Rules allow to set up custom settings for certain file types or paths.
-        By default, the rule inherits all options values from the related CDN resource.
-
-        Each option in rule settings can be in one of the following states:
-        - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-        - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-        - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+        CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
         """
         return AsyncRulesResourceWithRawResponse(self._cdn_resources.rules)
 
@@ -2021,13 +1997,7 @@ class CDNResourcesResourceWithStreamingResponse:
     @cached_property
     def rules(self) -> RulesResourceWithStreamingResponse:
         """
-        Rules allow to set up custom settings for certain file types or paths.
-        By default, the rule inherits all options values from the related CDN resource.
-
-        Each option in rule settings can be in one of the following states:
-        - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-        - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-        - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+        CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
         """
         return RulesResourceWithStreamingResponse(self._cdn_resources.rules)
 
@@ -2071,12 +2041,6 @@ class AsyncCDNResourcesResourceWithStreamingResponse:
     @cached_property
     def rules(self) -> AsyncRulesResourceWithStreamingResponse:
         """
-        Rules allow to set up custom settings for certain file types or paths.
-        By default, the rule inherits all options values from the related CDN resource.
-
-        Each option in rule settings can be in one of the following states:
-        - **Inherit** - Option is not added to the rule. Option inherits its value from the CDN resource settings. In this case, the option value is **null**.
-        - **ON** - Option is added to the rule and enabled. Option values configured in the rule will override values from the CDN resource settings.
-        - **OFF** - Option is added to the rule and disabled. Option will be turned off.
+        CDN resource rules set custom caching, delivery, and security options for specific URL patterns or file types.
         """
         return AsyncRulesResourceWithStreamingResponse(self._cdn_resources.rules)

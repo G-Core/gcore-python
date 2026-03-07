@@ -40,8 +40,15 @@ __all__ = ["SecurityGroupsResource", "AsyncSecurityGroupsResource"]
 
 
 class SecurityGroupsResource(SyncAPIResource):
+    """
+    Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+    """
+
     @cached_property
     def rules(self) -> RulesResource:
+        """
+        Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+        """
         return RulesResource(self._client)
 
     @cached_property
@@ -598,8 +605,15 @@ class SecurityGroupsResource(SyncAPIResource):
 
 
 class AsyncSecurityGroupsResource(AsyncAPIResource):
+    """
+    Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
+    """
+
     @cached_property
     def rules(self) -> AsyncRulesResource:
+        """
+        Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+        """
         return AsyncRulesResource(self._client)
 
     @cached_property
@@ -1189,6 +1203,9 @@ class SecurityGroupsResourceWithRawResponse:
 
     @cached_property
     def rules(self) -> RulesResourceWithRawResponse:
+        """
+        Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+        """
         return RulesResourceWithRawResponse(self._security_groups.rules)
 
 
@@ -1226,6 +1243,9 @@ class AsyncSecurityGroupsResourceWithRawResponse:
 
     @cached_property
     def rules(self) -> AsyncRulesResourceWithRawResponse:
+        """
+        Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+        """
         return AsyncRulesResourceWithRawResponse(self._security_groups.rules)
 
 
@@ -1263,6 +1283,9 @@ class SecurityGroupsResourceWithStreamingResponse:
 
     @cached_property
     def rules(self) -> RulesResourceWithStreamingResponse:
+        """
+        Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+        """
         return RulesResourceWithStreamingResponse(self._security_groups.rules)
 
 
@@ -1300,4 +1323,7 @@ class AsyncSecurityGroupsResourceWithStreamingResponse:
 
     @cached_property
     def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        """
+        Security group rules define individual traffic permissions specifying protocol, port range, direction, and allowed sources.
+        """
         return AsyncRulesResourceWithStreamingResponse(self._security_groups.rules)

@@ -149,6 +149,9 @@ class CDNResource(SyncAPIResource):
 
     @cached_property
     def origin_groups(self) -> OriginGroupsResource:
+        """
+        CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+        """
         return OriginGroupsResource(self._client)
 
     @cached_property
@@ -157,10 +160,16 @@ class CDNResource(SyncAPIResource):
 
     @cached_property
     def certificates(self) -> CertificatesResource:
+        """
+        CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+        """
         return CertificatesResource(self._client)
 
     @cached_property
     def trusted_ca_certificates(self) -> TrustedCaCertificatesResource:
+        """
+        Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+        """
         return TrustedCaCertificatesResource(self._client)
 
     @cached_property
@@ -482,6 +491,9 @@ class AsyncCDNResource(AsyncAPIResource):
 
     @cached_property
     def origin_groups(self) -> AsyncOriginGroupsResource:
+        """
+        CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+        """
         return AsyncOriginGroupsResource(self._client)
 
     @cached_property
@@ -490,10 +502,16 @@ class AsyncCDNResource(AsyncAPIResource):
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResource:
+        """
+        CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+        """
         return AsyncCertificatesResource(self._client)
 
     @cached_property
     def trusted_ca_certificates(self) -> AsyncTrustedCaCertificatesResource:
+        """
+        Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+        """
         return AsyncTrustedCaCertificatesResource(self._client)
 
     @cached_property
@@ -840,6 +858,9 @@ class CDNResourceWithRawResponse:
 
     @cached_property
     def origin_groups(self) -> OriginGroupsResourceWithRawResponse:
+        """
+        CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+        """
         return OriginGroupsResourceWithRawResponse(self._cdn.origin_groups)
 
     @cached_property
@@ -848,10 +869,16 @@ class CDNResourceWithRawResponse:
 
     @cached_property
     def certificates(self) -> CertificatesResourceWithRawResponse:
+        """
+        CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+        """
         return CertificatesResourceWithRawResponse(self._cdn.certificates)
 
     @cached_property
     def trusted_ca_certificates(self) -> TrustedCaCertificatesResourceWithRawResponse:
+        """
+        Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+        """
         return TrustedCaCertificatesResourceWithRawResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property
@@ -951,6 +978,9 @@ class AsyncCDNResourceWithRawResponse:
 
     @cached_property
     def origin_groups(self) -> AsyncOriginGroupsResourceWithRawResponse:
+        """
+        CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+        """
         return AsyncOriginGroupsResourceWithRawResponse(self._cdn.origin_groups)
 
     @cached_property
@@ -959,10 +989,16 @@ class AsyncCDNResourceWithRawResponse:
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
+        """
+        CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+        """
         return AsyncCertificatesResourceWithRawResponse(self._cdn.certificates)
 
     @cached_property
     def trusted_ca_certificates(self) -> AsyncTrustedCaCertificatesResourceWithRawResponse:
+        """
+        Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+        """
         return AsyncTrustedCaCertificatesResourceWithRawResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property
@@ -1062,6 +1098,9 @@ class CDNResourceWithStreamingResponse:
 
     @cached_property
     def origin_groups(self) -> OriginGroupsResourceWithStreamingResponse:
+        """
+        CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+        """
         return OriginGroupsResourceWithStreamingResponse(self._cdn.origin_groups)
 
     @cached_property
@@ -1070,10 +1109,16 @@ class CDNResourceWithStreamingResponse:
 
     @cached_property
     def certificates(self) -> CertificatesResourceWithStreamingResponse:
+        """
+        CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+        """
         return CertificatesResourceWithStreamingResponse(self._cdn.certificates)
 
     @cached_property
     def trusted_ca_certificates(self) -> TrustedCaCertificatesResourceWithStreamingResponse:
+        """
+        Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+        """
         return TrustedCaCertificatesResourceWithStreamingResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property
@@ -1173,6 +1218,9 @@ class AsyncCDNResourceWithStreamingResponse:
 
     @cached_property
     def origin_groups(self) -> AsyncOriginGroupsResourceWithStreamingResponse:
+        """
+        CDN origin groups aggregate one or more origin servers with failover and load balancing for content delivery.
+        """
         return AsyncOriginGroupsResourceWithStreamingResponse(self._cdn.origin_groups)
 
     @cached_property
@@ -1181,10 +1229,16 @@ class AsyncCDNResourceWithStreamingResponse:
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        """
+        CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
+        """
         return AsyncCertificatesResourceWithStreamingResponse(self._cdn.certificates)
 
     @cached_property
     def trusted_ca_certificates(self) -> AsyncTrustedCaCertificatesResourceWithStreamingResponse:
+        """
+        Trusted CA certificates verify the authenticity of CDN origin servers during HTTPS connections.
+        """
         return AsyncTrustedCaCertificatesResourceWithStreamingResponse(self._cdn.trusted_ca_certificates)
 
     @cached_property

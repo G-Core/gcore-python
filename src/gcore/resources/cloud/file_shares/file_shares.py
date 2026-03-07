@@ -41,8 +41,15 @@ __all__ = ["FileSharesResource", "AsyncFileSharesResource"]
 
 
 class FileSharesResource(SyncAPIResource):
+    """
+    File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+    """
+
     @cached_property
     def access_rules(self) -> AccessRulesResource:
+        """
+        File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+        """
         return AccessRulesResource(self._client)
 
     @cached_property
@@ -566,8 +573,15 @@ class FileSharesResource(SyncAPIResource):
 
 
 class AsyncFileSharesResource(AsyncAPIResource):
+    """
+    File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
+    """
+
     @cached_property
     def access_rules(self) -> AsyncAccessRulesResource:
+        """
+        File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+        """
         return AsyncAccessRulesResource(self._client)
 
     @cached_property
@@ -1118,6 +1132,9 @@ class FileSharesResourceWithRawResponse:
 
     @cached_property
     def access_rules(self) -> AccessRulesResourceWithRawResponse:
+        """
+        File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+        """
         return AccessRulesResourceWithRawResponse(self._file_shares.access_rules)
 
 
@@ -1149,6 +1166,9 @@ class AsyncFileSharesResourceWithRawResponse:
 
     @cached_property
     def access_rules(self) -> AsyncAccessRulesResourceWithRawResponse:
+        """
+        File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+        """
         return AsyncAccessRulesResourceWithRawResponse(self._file_shares.access_rules)
 
 
@@ -1180,6 +1200,9 @@ class FileSharesResourceWithStreamingResponse:
 
     @cached_property
     def access_rules(self) -> AccessRulesResourceWithStreamingResponse:
+        """
+        File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+        """
         return AccessRulesResourceWithStreamingResponse(self._file_shares.access_rules)
 
 
@@ -1211,4 +1234,7 @@ class AsyncFileSharesResourceWithStreamingResponse:
 
     @cached_property
     def access_rules(self) -> AsyncAccessRulesResourceWithStreamingResponse:
+        """
+        File share access rules control which IP addresses can mount a file share and their permissions (read-only or read-write).
+        """
         return AsyncAccessRulesResourceWithStreamingResponse(self._file_shares.access_rules)

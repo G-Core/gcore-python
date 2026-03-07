@@ -22,6 +22,10 @@ __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
 
 class FlavorsResource(SyncAPIResource):
+    """
+    Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+    """
+
     @cached_property
     def with_raw_response(self) -> FlavorsResourceWithRawResponse:
         """
@@ -106,6 +110,10 @@ class FlavorsResource(SyncAPIResource):
 
 
 class AsyncFlavorsResource(AsyncAPIResource):
+    """
+    Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFlavorsResourceWithRawResponse:
         """

@@ -27,6 +27,10 @@ __all__ = ["RegistryCredentialsResource", "AsyncRegistryCredentialsResource"]
 
 
 class RegistryCredentialsResource(SyncAPIResource):
+    """
+    Registry credentials store authentication details for private container registries used by inference deployments.
+    """
+
     @cached_property
     def with_raw_response(self) -> RegistryCredentialsResourceWithRawResponse:
         """
@@ -295,6 +299,10 @@ class RegistryCredentialsResource(SyncAPIResource):
 
 
 class AsyncRegistryCredentialsResource(AsyncAPIResource):
+    """
+    Registry credentials store authentication details for private container registries used by inference deployments.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRegistryCredentialsResourceWithRawResponse:
         """

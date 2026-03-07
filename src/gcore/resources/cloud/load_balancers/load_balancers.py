@@ -88,6 +88,10 @@ __all__ = ["LoadBalancersResource", "AsyncLoadBalancersResource"]
 
 
 class LoadBalancersResource(SyncAPIResource):
+    """
+    Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+    """
+
     @cached_property
     def l7_policies(self) -> L7PoliciesResource:
         return L7PoliciesResource(self._client)
@@ -98,10 +102,16 @@ class LoadBalancersResource(SyncAPIResource):
 
     @cached_property
     def listeners(self) -> ListenersResource:
+        """
+        Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+        """
         return ListenersResource(self._client)
 
     @cached_property
     def pools(self) -> PoolsResource:
+        """
+        Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+        """
         return PoolsResource(self._client)
 
     @cached_property
@@ -840,6 +850,10 @@ class LoadBalancersResource(SyncAPIResource):
 
 
 class AsyncLoadBalancersResource(AsyncAPIResource):
+    """
+    Load balancers distribute incoming traffic across multiple instances with support for listeners, pools, and health monitoring.
+    """
+
     @cached_property
     def l7_policies(self) -> AsyncL7PoliciesResource:
         return AsyncL7PoliciesResource(self._client)
@@ -850,10 +864,16 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
     @cached_property
     def listeners(self) -> AsyncListenersResource:
+        """
+        Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+        """
         return AsyncListenersResource(self._client)
 
     @cached_property
     def pools(self) -> AsyncPoolsResource:
+        """
+        Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+        """
         return AsyncPoolsResource(self._client)
 
     @cached_property
@@ -1643,10 +1663,16 @@ class LoadBalancersResourceWithRawResponse:
 
     @cached_property
     def listeners(self) -> ListenersResourceWithRawResponse:
+        """
+        Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+        """
         return ListenersResourceWithRawResponse(self._load_balancers.listeners)
 
     @cached_property
     def pools(self) -> PoolsResourceWithRawResponse:
+        """
+        Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+        """
         return PoolsResourceWithRawResponse(self._load_balancers.pools)
 
     @cached_property
@@ -1708,10 +1734,16 @@ class AsyncLoadBalancersResourceWithRawResponse:
 
     @cached_property
     def listeners(self) -> AsyncListenersResourceWithRawResponse:
+        """
+        Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+        """
         return AsyncListenersResourceWithRawResponse(self._load_balancers.listeners)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithRawResponse:
+        """
+        Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+        """
         return AsyncPoolsResourceWithRawResponse(self._load_balancers.pools)
 
     @cached_property
@@ -1773,10 +1805,16 @@ class LoadBalancersResourceWithStreamingResponse:
 
     @cached_property
     def listeners(self) -> ListenersResourceWithStreamingResponse:
+        """
+        Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+        """
         return ListenersResourceWithStreamingResponse(self._load_balancers.listeners)
 
     @cached_property
     def pools(self) -> PoolsResourceWithStreamingResponse:
+        """
+        Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+        """
         return PoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
     @cached_property
@@ -1838,10 +1876,16 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
 
     @cached_property
     def listeners(self) -> AsyncListenersResourceWithStreamingResponse:
+        """
+        Load balancer listeners handle incoming traffic on specified protocols and ports, forwarding requests to backend pools.
+        """
         return AsyncListenersResourceWithStreamingResponse(self._load_balancers.listeners)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithStreamingResponse:
+        """
+        Load balancer pools group backend instances with a load balancing algorithm and health monitoring configuration.
+        """
         return AsyncPoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
     @cached_property
