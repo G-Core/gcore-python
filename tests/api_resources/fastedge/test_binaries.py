@@ -20,14 +20,14 @@ class TestBinaries:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         binary = client.fastedge.binaries.create(
-            b"raw file contents",
+            b"Example data",
         )
         assert_matches_type(BinaryShort, binary, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.fastedge.binaries.with_raw_response.create(
-            b"raw file contents",
+            b"Example data",
         )
 
         assert response.is_closed is True
@@ -38,7 +38,7 @@ class TestBinaries:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.fastedge.binaries.with_streaming_response.create(
-            b"raw file contents",
+            b"Example data",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,14 +144,14 @@ class TestAsyncBinaries:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         binary = await async_client.fastedge.binaries.create(
-            b"raw file contents",
+            b"Example data",
         )
         assert_matches_type(BinaryShort, binary, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.fastedge.binaries.with_raw_response.create(
-            b"raw file contents",
+            b"Example data",
         )
 
         assert response.is_closed is True
@@ -162,7 +162,7 @@ class TestAsyncBinaries:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.fastedge.binaries.with_streaming_response.create(
-            b"raw file contents",
+            b"Example data",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
