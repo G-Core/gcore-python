@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.37.0 (2026-03-09)
+
+Full Changelog: [v0.36.0...v0.37.0](https://github.com/G-Core/gcore-python/compare/v0.36.0...v0.37.0)
+
+### Features
+
+* add descriptions for all Terraform-enabled resources ([d802ff9](https://github.com/G-Core/gcore-python/commit/d802ff9777ba4f84ec0c7119745ba16d4b3415a3))
+* **api:** aggregated API specs update ([990421e](https://github.com/G-Core/gcore-python/commit/990421e11d813a6808af59712a8c48655cd15b34))
+* **api:** aggregated API specs update ([471fef6](https://github.com/G-Core/gcore-python/commit/471fef6b01e2dac4a54482d376cdb7613b0bc8da))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([f27a1a5](https://github.com/G-Core/gcore-python/commit/f27a1a59c629c1437e61e49dd352ca424610adc1))
+* **test:** do not count install time for mock server timeout ([fca27a6](https://github.com/G-Core/gcore-python/commit/fca27a6157f527eb6171149db7d6b1133877df2e))
+* update placeholder string ([5eacc92](https://github.com/G-Core/gcore-python/commit/5eacc925d581b8dd856329d815c94d4d40f0f355))
+
 ## 0.36.0 (2026-03-03)
 
 Full Changelog: [v0.35.0...v0.36.0](https://github.com/G-Core/gcore-python/compare/v0.35.0...v0.36.0)
