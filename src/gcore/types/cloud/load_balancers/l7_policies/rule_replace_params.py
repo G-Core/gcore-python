@@ -19,7 +19,7 @@ class RuleReplaceParams(TypedDict, total=False):
     l7policy_id: Required[str]
     """L7 policy ID"""
 
-    compare_type: Required[Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"]]
+    compare_type: Literal["CONTAINS", "ENDS_WITH", "EQUAL_TO", "REGEX", "STARTS_WITH"]
     """The comparison type for the L7 rule"""
 
     invert: bool
