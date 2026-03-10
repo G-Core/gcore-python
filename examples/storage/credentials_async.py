@@ -68,7 +68,7 @@ async def wait_for_storage_provisioning(
     """Wait for a single storage to be provisioned"""
     elapsed = 0
     while elapsed < max_wait:
-        storage = await client.storage.get(storage_id=storage_id)
+        storage = await client.storage.get(storage_id=storage_id) # pyright: ignore[reportDeprecated]
         if storage.provisioning_status == "ok":
             print(f"Storage {storage_id} is ready")
             return
@@ -81,7 +81,7 @@ async def wait_for_storage_provisioning(
 async def get_storage(*, client: AsyncGcore, storage_id: int) -> None:
     """Get and display details for a single storage"""
     print("\n=== GET STORAGE DETAILS ===")
-    storage = await client.storage.get(storage_id=storage_id)
+    storage = await client.storage.get(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(
         f"Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}, Status={storage.provisioning_status}"
     )

@@ -50,7 +50,7 @@ def wait_for_storage_provisioning(*, client: Gcore, storage_id: int) -> None:
     wait_interval = 2
     elapsed = 0
     while elapsed < max_wait:
-        storage = client.storage.get(storage_id=storage_id)
+        storage = client.storage.get(storage_id=storage_id) # pyright: ignore[reportDeprecated]
         if storage.provisioning_status == "ok":
             print(f"Storage {storage_id} is ready")
             print("=====================================")
