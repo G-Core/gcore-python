@@ -259,7 +259,6 @@ class TestRules:
             project_id=1,
             region_id=1,
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-            compare_type="REGEX",
         )
         assert_matches_type(TaskIDList, rule, path=["response"])
 
@@ -286,7 +285,6 @@ class TestRules:
             project_id=1,
             region_id=1,
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-            compare_type="REGEX",
         )
 
         assert response.is_closed is True
@@ -301,7 +299,6 @@ class TestRules:
             project_id=1,
             region_id=1,
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-            compare_type="REGEX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -319,7 +316,6 @@ class TestRules:
                 project_id=1,
                 region_id=1,
                 l7policy_id="",
-                compare_type="REGEX",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `l7rule_id` but received ''"):
@@ -328,7 +324,6 @@ class TestRules:
                 project_id=1,
                 region_id=1,
                 l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-                compare_type="REGEX",
             )
 
 
@@ -579,7 +574,6 @@ class TestAsyncRules:
             project_id=1,
             region_id=1,
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-            compare_type="REGEX",
         )
         assert_matches_type(TaskIDList, rule, path=["response"])
 
@@ -606,7 +600,6 @@ class TestAsyncRules:
             project_id=1,
             region_id=1,
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-            compare_type="REGEX",
         )
 
         assert response.is_closed is True
@@ -621,7 +614,6 @@ class TestAsyncRules:
             project_id=1,
             region_id=1,
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-            compare_type="REGEX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -639,7 +631,6 @@ class TestAsyncRules:
                 project_id=1,
                 region_id=1,
                 l7policy_id="",
-                compare_type="REGEX",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `l7rule_id` but received ''"):
@@ -648,5 +639,4 @@ class TestAsyncRules:
                 project_id=1,
                 region_id=1,
                 l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
-                compare_type="REGEX",
             )

@@ -65,8 +65,8 @@ class LifecycleResource(SyncAPIResource):
         the expiration policy.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
-        {"lifecycle": {"expiration_days": N}} instead.
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"lifecycle":
+        {"expiration_days": N}} instead.
 
         Args:
           expiration_days: Number of days after which objects will be automatically deleted from the
@@ -111,8 +111,8 @@ class LifecycleResource(SyncAPIResource):
         expiration. Objects will no longer be automatically deleted based on age.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
-        {"lifecycle": {"expiration_days": null}} instead.
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"lifecycle":
+        {"expiration_days": null}} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -178,8 +178,8 @@ class AsyncLifecycleResource(AsyncAPIResource):
         the expiration policy.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
-        {"lifecycle": {"expiration_days": N}} instead.
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"lifecycle":
+        {"expiration_days": N}} instead.
 
         Args:
           expiration_days: Number of days after which objects will be automatically deleted from the
@@ -226,8 +226,8 @@ class AsyncLifecycleResource(AsyncAPIResource):
         expiration. Objects will no longer be automatically deleted based on age.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with
-        {"lifecycle": {"expiration_days": null}} instead.
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"lifecycle":
+        {"expiration_days": null}} instead.
 
         Args:
           extra_headers: Send extra headers

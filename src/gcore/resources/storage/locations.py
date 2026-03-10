@@ -60,8 +60,8 @@ class LocationsResource(SyncAPIResource):
         """Returns available storage locations where you can create storages.
 
         Each location
-        represents a geographic region with specific data center facilities. Deprecated,
-        use GET /provisioning/v3/locations instead.
+        represents a geographic region with specific data center facilities. Deprecated:
+        Use GET /v4/locations instead.
 
         Args:
           extra_headers: Send extra headers
@@ -128,8 +128,8 @@ class AsyncLocationsResource(AsyncAPIResource):
         """Returns available storage locations where you can create storages.
 
         Each location
-        represents a geographic region with specific data center facilities. Deprecated,
-        use GET /provisioning/v3/locations instead.
+        represents a geographic region with specific data center facilities. Deprecated:
+        Use GET /v4/locations instead.
 
         Args:
           extra_headers: Send extra headers

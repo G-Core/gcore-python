@@ -62,7 +62,7 @@ class PolicyResource(SyncAPIResource):
         objects without proper authentication.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
         {"public": true}} instead.
 
         Args:
@@ -105,7 +105,7 @@ class PolicyResource(SyncAPIResource):
         requests.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
         {"public": false}} instead.
 
         Args:
@@ -145,9 +145,9 @@ class PolicyResource(SyncAPIResource):
         Returns whether the S3 bucket is currently configured for public read access.
         Shows if anonymous users can download objects from the bucket via HTTP requests.
 
-        Deprecated: Use GET
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead, which
-        returns policy status along with CORS and lifecycle configuration.
+        Deprecated: Use GET /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`}
+        instead, which returns policy status along with CORS and lifecycle
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -210,7 +210,7 @@ class AsyncPolicyResource(AsyncAPIResource):
         objects without proper authentication.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
         {"public": true}} instead.
 
         Args:
@@ -253,7 +253,7 @@ class AsyncPolicyResource(AsyncAPIResource):
         requests.
 
         Deprecated: Use PATCH
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} with {"policy":
         {"public": false}} instead.
 
         Args:
@@ -293,9 +293,9 @@ class AsyncPolicyResource(AsyncAPIResource):
         Returns whether the S3 bucket is currently configured for public read access.
         Shows if anonymous users can download objects from the bucket via HTTP requests.
 
-        Deprecated: Use GET
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead, which
-        returns policy status along with CORS and lifecycle configuration.
+        Deprecated: Use GET /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`}
+        instead, which returns policy status along with CORS and lifecycle
+        configuration.
 
         Args:
           extra_headers: Send extra headers
