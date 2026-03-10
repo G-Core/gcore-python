@@ -98,8 +98,8 @@ class BucketsResource(SyncAPIResource):
         Only applicable to S3-compatible
         storages.
 
-        Deprecated: Use POST /provisioning/v3/storages/{`storage_id`}/buckets with
-        {"name": "bucket-name"} instead.
+        Deprecated: Use POST /v4/`object_storages`/{`storage_id`}/buckets with {"name":
+        "bucket-name"} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -141,9 +141,8 @@ class BucketsResource(SyncAPIResource):
         Response format: count: total number of buckets (independent of pagination)
         results: current page of buckets according to limit/offset
 
-        Deprecated: Use GET
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} for individual
-        bucket details instead.
+        Deprecated: Use GET /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`}
+        for individual bucket details instead.
 
         Args:
           limit: Max number of records in response
@@ -196,7 +195,7 @@ class BucketsResource(SyncAPIResource):
         automatically deleted before the bucket is removed.
 
         Deprecated: Use DELETE
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead.
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -269,8 +268,8 @@ class AsyncBucketsResource(AsyncAPIResource):
         Only applicable to S3-compatible
         storages.
 
-        Deprecated: Use POST /provisioning/v3/storages/{`storage_id`}/buckets with
-        {"name": "bucket-name"} instead.
+        Deprecated: Use POST /v4/`object_storages`/{`storage_id`}/buckets with {"name":
+        "bucket-name"} instead.
 
         Args:
           extra_headers: Send extra headers
@@ -312,9 +311,8 @@ class AsyncBucketsResource(AsyncAPIResource):
         Response format: count: total number of buckets (independent of pagination)
         results: current page of buckets according to limit/offset
 
-        Deprecated: Use GET
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} for individual
-        bucket details instead.
+        Deprecated: Use GET /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`}
+        for individual bucket details instead.
 
         Args:
           limit: Max number of records in response
@@ -367,7 +365,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         automatically deleted before the bucket is removed.
 
         Deprecated: Use DELETE
-        /provisioning/v3/storages/{`storage_id`}/buckets/{`bucket_name`} instead.
+        /v4/`object_storages`/{`storage_id`}/buckets/{`bucket_name`} instead.
 
         Args:
           extra_headers: Send extra headers
