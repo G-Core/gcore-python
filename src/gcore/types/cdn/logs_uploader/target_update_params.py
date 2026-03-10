@@ -24,6 +24,11 @@ __all__ = [
     "ConfigHTTPConfigAuthConfig",
     "ConfigHTTPConfigRetry",
     "ConfigHTTPConfigRetryResponseAction",
+    "ConfigAzureBlobConfig",
+    "ConfigAzureBlobConfigAuth",
+    "ConfigAzureBlobConfigAuthConfig",
+    "ConfigAzureBlobConfigAuthConfigAccountKey",
+    "ConfigAzureBlobConfigAuthConfigToken",
 ]
 
 
@@ -37,7 +42,7 @@ class TargetUpdateParams(TypedDict, total=False):
     name: str
     """Name of the target."""
 
-    storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"]
+    storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"]
     """Type of storage for logs."""
 
 
@@ -239,6 +244,45 @@ class ConfigHTTPConfig(TypedDict, total=False):
     retry: ConfigHTTPConfigRetry
 
 
+class ConfigAzureBlobConfigAuthConfigAccountKey(TypedDict, total=False):
+    account_key: Required[str]
+    """Azure Blob Storage account key."""
+
+
+class ConfigAzureBlobConfigAuthConfigToken(TypedDict, total=False):
+    token: Required[str]
+    """Azure Blob Storage SAS token."""
+
+
+ConfigAzureBlobConfigAuthConfig: TypeAlias = Union[
+    ConfigAzureBlobConfigAuthConfigAccountKey, ConfigAzureBlobConfigAuthConfigToken
+]
+
+
+class ConfigAzureBlobConfigAuth(TypedDict, total=False):
+    config: Required[ConfigAzureBlobConfigAuthConfig]
+    """Authentication credentials."""
+
+    type: Required[Literal["shared_key", "sas_token"]]
+    """Authentication type."""
+
+
+class ConfigAzureBlobConfig(TypedDict, total=False):
+    account_name: Required[str]
+    """Azure Blob Storage account name."""
+
+    auth: Required[ConfigAzureBlobConfigAuth]
+
+    container_name: Required[str]
+    """Azure Blob Storage container name."""
+
+    directory: Optional[str]
+    """Directory path within the container."""
+
+    endpoint: Optional[str]
+    """Custom Azure Blob Storage endpoint URL."""
+
+
 Config: TypeAlias = Union[
     ConfigS3GcoreConfig,
     ConfigS3AmazonConfig,
@@ -248,4 +292,5 @@ Config: TypeAlias = Union[
     ConfigFtpConfig,
     ConfigSftpConfig,
     ConfigHTTPConfig,
+    ConfigAzureBlobConfig,
 ]
