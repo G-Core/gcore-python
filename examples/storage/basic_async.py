@@ -38,7 +38,7 @@ async def create_storage(*, client: AsyncGcore) -> int:
 
 async def list_storages(*, client: AsyncGcore) -> None:
     print("\n=== LIST STORAGES ===")
-    storages = client.storage.list()
+    storages = client.storage.list() # pyright: ignore[reportDeprecated]
     count = 1
     async for storage in storages:
         print(
@@ -50,7 +50,7 @@ async def list_storages(*, client: AsyncGcore) -> None:
 
 async def get_storage(*, client: AsyncGcore, storage_id: int) -> None:
     print("\n=== GET STORAGE ===")
-    storage = await client.storage.get(storage_id=storage_id)
+    storage = await client.storage.get(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(
         f"Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}, Status={storage.provisioning_status}"
     )
