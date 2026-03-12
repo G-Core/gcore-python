@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -12,7 +13,7 @@ class CredentialsKey(BaseModel):
     id: Optional[int] = None
     """Unique identifier for the SSH key"""
 
-    created_at: Optional[str] = None
+    created_at: Optional[datetime] = None
     """ISO 8601 timestamp when the SSH key was created"""
 
     name: Optional[str] = None
@@ -50,7 +51,7 @@ class Storage(BaseModel):
     client_id: int
     """Client identifier who owns this storage"""
 
-    created_at: str
+    created_at: datetime
     """ISO 8601 timestamp when the storage was created"""
 
     location: str
@@ -82,7 +83,7 @@ class Storage(BaseModel):
     custom_config_file: Optional[bool] = None
     """Whether custom configuration file is used for this storage"""
 
-    deleted_at: Optional[str] = None
+    deleted_at: Optional[datetime] = None
     """
     ISO 8601 timestamp when the storage was deleted (only present for deleted
     storages)
@@ -91,7 +92,7 @@ class Storage(BaseModel):
     disable_http: Optional[bool] = None
     """Whether HTTP access is disabled for this storage (HTTPS only)"""
 
-    expires: Optional[str] = None
+    expires: Optional[datetime] = None
     """ISO 8601 timestamp when the storage will expire (if set)"""
 
     rewrite_rules: Optional[Dict[str, str]] = None

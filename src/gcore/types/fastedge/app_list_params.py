@@ -16,24 +16,24 @@ class AppListParams(TypedDict, total=False):
     """
 
     binary: int
-    """Binary ID"""
+    """Filter by binary ID (shows apps using this binary)"""
 
     limit: int
-    """Limit for pagination"""
+    """Maximum number of results to return"""
 
     name: str
-    """Name of the app"""
+    """Filter by application name (case-insensitive partial match)"""
 
     offset: int
-    """Offset for pagination"""
+    """Number of results to skip for pagination"""
 
     ordering: Literal[
         "name", "-name", "status", "-status", "id", "-id", "template", "-template", "binary", "-binary", "plan", "-plan"
     ]
-    """Ordering"""
+    """Sort order. Use - prefix for descending (e.g., -name sorts by name descending)"""
 
     plan: int
-    """Plan ID"""
+    """Filter by plan ID"""
 
     status: int
     """
@@ -47,4 +47,4 @@ class AppListParams(TypedDict, total=False):
     """
 
     template: int
-    """Template ID"""
+    """Filter by template ID (shows apps created from this template)"""

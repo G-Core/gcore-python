@@ -22,7 +22,7 @@ class Byod(TypedDict, total=False):
     """BYOD (Bring Your Own Data) settings"""
 
     prefix: Required[str]
-    """Key prefix"""
+    """Key prefix to namespace your data within the external store"""
 
     url: Required[str]
-    """URL to connect to"""
+    """Connection URL for external storage service (Redis, PostgreSQL, etc.)"""

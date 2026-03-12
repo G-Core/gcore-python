@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -17,14 +17,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.fastedge import (
-    secret_list_params,
-    secret_create_params,
-    secret_delete_params,
-    secret_update_params,
-    secret_replace_params,
-)
-from ...types.fastedge.secret import Secret
+from ...types.fastedge import secret_list_params, secret_create_params
 from ...types.fastedge.secret_list_response import SecretListResponse
 from ...types.fastedge.secret_create_response import SecretCreateResponse
 
@@ -68,8 +61,10 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecretCreateResponse:
-        """
-        Add a new secret
+        """Create a new encrypted secret for use in edge applications.
+
+        Secrets are
+        encrypted with AES-256-GCM and can have multiple time-based slots for rotation.
 
         Args:
           name: The unique name of the secret.
@@ -102,54 +97,6 @@ class SecretsResource(SyncAPIResource):
             cast_to=SecretCreateResponse,
         )
 
-    def update(
-        self,
-        id: int,
-        *,
-        comment: str | Omit = omit,
-        name: str | Omit = omit,
-        secret_slots: Iterable[secret_update_params.SecretSlot] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Secret:
-        """
-        Update a secret
-
-        Args:
-          comment: A description or comment about the secret.
-
-          name: The unique name of the secret.
-
-          secret_slots: A list of secret slots associated with this secret.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._patch(
-            f"/fastedge/v1/secrets/{id}",
-            body=maybe_transform(
-                {
-                    "comment": comment,
-                    "name": name,
-                    "secret_slots": secret_slots,
-                },
-                secret_update_params.SecretUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Secret,
-        )
-
     def list(
         self,
         *,
@@ -162,8 +109,10 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecretListResponse:
-        """
-        List available secrets
+        """Retrieve encrypted secrets available to the authenticated client.
+
+        Secrets can be
+        filtered by application ID or name. Values are encrypted and require decryption.
 
         Args:
           app_id: App ID
@@ -194,124 +143,6 @@ class SecretsResource(SyncAPIResource):
                 ),
             ),
             cast_to=SecretListResponse,
-        )
-
-    def delete(
-        self,
-        id: int,
-        *,
-        force: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete a secret
-
-        Args:
-          force: Force delete secret even if it is used in slots
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            f"/fastedge/v1/secrets/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"force": force}, secret_delete_params.SecretDeleteParams),
-            ),
-            cast_to=NoneType,
-        )
-
-    def get(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Secret:
-        """
-        Get secret by id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/fastedge/v1/secrets/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Secret,
-        )
-
-    def replace(
-        self,
-        id: int,
-        *,
-        name: str,
-        comment: str | Omit = omit,
-        secret_slots: Iterable[secret_replace_params.SecretSlot] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Secret:
-        """
-        Update a secret
-
-        Args:
-          name: The unique name of the secret.
-
-          comment: A description or comment about the secret.
-
-          secret_slots: A list of secret slots associated with this secret.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._put(
-            f"/fastedge/v1/secrets/{id}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "comment": comment,
-                    "secret_slots": secret_slots,
-                },
-                secret_replace_params.SecretReplaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Secret,
         )
 
 
@@ -352,8 +183,10 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecretCreateResponse:
-        """
-        Add a new secret
+        """Create a new encrypted secret for use in edge applications.
+
+        Secrets are
+        encrypted with AES-256-GCM and can have multiple time-based slots for rotation.
 
         Args:
           name: The unique name of the secret.
@@ -386,54 +219,6 @@ class AsyncSecretsResource(AsyncAPIResource):
             cast_to=SecretCreateResponse,
         )
 
-    async def update(
-        self,
-        id: int,
-        *,
-        comment: str | Omit = omit,
-        name: str | Omit = omit,
-        secret_slots: Iterable[secret_update_params.SecretSlot] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Secret:
-        """
-        Update a secret
-
-        Args:
-          comment: A description or comment about the secret.
-
-          name: The unique name of the secret.
-
-          secret_slots: A list of secret slots associated with this secret.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._patch(
-            f"/fastedge/v1/secrets/{id}",
-            body=await async_maybe_transform(
-                {
-                    "comment": comment,
-                    "name": name,
-                    "secret_slots": secret_slots,
-                },
-                secret_update_params.SecretUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Secret,
-        )
-
     async def list(
         self,
         *,
@@ -446,8 +231,10 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecretListResponse:
-        """
-        List available secrets
+        """Retrieve encrypted secrets available to the authenticated client.
+
+        Secrets can be
+        filtered by application ID or name. Values are encrypted and require decryption.
 
         Args:
           app_id: App ID
@@ -480,124 +267,6 @@ class AsyncSecretsResource(AsyncAPIResource):
             cast_to=SecretListResponse,
         )
 
-    async def delete(
-        self,
-        id: int,
-        *,
-        force: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete a secret
-
-        Args:
-          force: Force delete secret even if it is used in slots
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            f"/fastedge/v1/secrets/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"force": force}, secret_delete_params.SecretDeleteParams),
-            ),
-            cast_to=NoneType,
-        )
-
-    async def get(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Secret:
-        """
-        Get secret by id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/fastedge/v1/secrets/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Secret,
-        )
-
-    async def replace(
-        self,
-        id: int,
-        *,
-        name: str,
-        comment: str | Omit = omit,
-        secret_slots: Iterable[secret_replace_params.SecretSlot] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Secret:
-        """
-        Update a secret
-
-        Args:
-          name: The unique name of the secret.
-
-          comment: A description or comment about the secret.
-
-          secret_slots: A list of secret slots associated with this secret.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._put(
-            f"/fastedge/v1/secrets/{id}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "comment": comment,
-                    "secret_slots": secret_slots,
-                },
-                secret_replace_params.SecretReplaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Secret,
-        )
-
 
 class SecretsResourceWithRawResponse:
     def __init__(self, secrets: SecretsResource) -> None:
@@ -606,20 +275,8 @@ class SecretsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             secrets.create,
         )
-        self.update = to_raw_response_wrapper(
-            secrets.update,
-        )
         self.list = to_raw_response_wrapper(
             secrets.list,
-        )
-        self.delete = to_raw_response_wrapper(
-            secrets.delete,
-        )
-        self.get = to_raw_response_wrapper(
-            secrets.get,
-        )
-        self.replace = to_raw_response_wrapper(
-            secrets.replace,
         )
 
 
@@ -630,20 +287,8 @@ class AsyncSecretsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             secrets.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            secrets.update,
-        )
         self.list = async_to_raw_response_wrapper(
             secrets.list,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            secrets.delete,
-        )
-        self.get = async_to_raw_response_wrapper(
-            secrets.get,
-        )
-        self.replace = async_to_raw_response_wrapper(
-            secrets.replace,
         )
 
 
@@ -654,20 +299,8 @@ class SecretsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             secrets.create,
         )
-        self.update = to_streamed_response_wrapper(
-            secrets.update,
-        )
         self.list = to_streamed_response_wrapper(
             secrets.list,
-        )
-        self.delete = to_streamed_response_wrapper(
-            secrets.delete,
-        )
-        self.get = to_streamed_response_wrapper(
-            secrets.get,
-        )
-        self.replace = to_streamed_response_wrapper(
-            secrets.replace,
         )
 
 
@@ -678,18 +311,6 @@ class AsyncSecretsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             secrets.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            secrets.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             secrets.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            secrets.delete,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            secrets.get,
-        )
-        self.replace = async_to_streamed_response_wrapper(
-            secrets.replace,
         )

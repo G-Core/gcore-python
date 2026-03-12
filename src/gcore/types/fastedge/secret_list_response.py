@@ -9,4 +9,7 @@ __all__ = ["SecretListResponse"]
 
 
 class SecretListResponse(BaseModel):
+    count: int
+    """Total number of secrets matching the filters"""
+
     secrets: List[SecretShort]
