@@ -13,16 +13,19 @@ __all__ = ["StatisticGetCallSeriesParams"]
 
 class StatisticGetCallSeriesParams(TypedDict, total=False):
     from_: Required[Annotated[Union[str, datetime], PropertyInfo(alias="from", format="iso8601")]]
-    """Reporting period start time, RFC3339 format"""
+    """Reporting period start time in RFC3339 format"""
 
     step: Required[int]
-    """Reporting granularity, in seconds"""
+    """Reporting time granularity in seconds.
+
+    Common values are 60 (1 minute), 300 (5 minutes), 3600 (1 hour).
+    """
 
     to: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """Reporting period end time (not included into reporting period), RFC3339 format"""
+    """Reporting period end time in RFC3339 format (exclusive)"""
 
     id: int
-    """App ID"""
+    """Filter statistics by specific application ID"""
 
     network: str
-    """Network name"""
+    """Filter statistics by edge network name"""

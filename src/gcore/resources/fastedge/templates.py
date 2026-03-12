@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -19,13 +19,7 @@ from ..._response import (
 )
 from ...pagination import SyncOffsetPageFastedgeTemplates, AsyncOffsetPageFastedgeTemplates
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.fastedge import (
-    template_list_params,
-    template_create_params,
-    template_delete_params,
-    template_replace_params,
-)
-from ...types.fastedge.template import Template
+from ...types.fastedge import template_list_params, template_create_params
 from ...types.fastedge.template_short import TemplateShort
 from ...types.fastedge.template_parameter_param import TemplateParameterParam
 
@@ -71,20 +65,22 @@ class TemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateShort:
         """
-        Add template
+        Create a new application template from an existing binary and configuration.
+        Templates can be shared with groups to enable collaborative application
+        development.
 
         Args:
-          binary_id: Binary ID
+          binary_id: ID of the WebAssembly binary to use for this template
 
-          name: Name of the template
+          name: Unique name for the template (used for identification and searching)
 
           owned: Is the template owned by user?
 
           params: Parameters
 
-          long_descr: Long description of the template
+          long_descr: Detailed markdown description explaining template features and usage
 
-          short_descr: Short description of the template
+          short_descr: Brief one-line description displayed in template listings
 
           extra_headers: Send extra headers
 
@@ -128,7 +124,9 @@ class TemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPageFastedgeTemplates[TemplateShort]:
         """
-        List app templates
+        Retrieve available application templates including system templates and
+        user-created templates. Templates provide pre-configured application settings
+        that can be reused for quick deployment.
 
         Args:
           api_type:
@@ -136,11 +134,12 @@ class TemplatesResource(SyncAPIResource):
               wasi-http - WASI with HTTP entry point
               proxy-wasm - Proxy-Wasm app, callable from CDN
 
-          limit: Limit for pagination
+          limit: Maximum number of results to return
 
-          offset: Offset for pagination
+          offset: Number of results to skip for pagination
 
-          only_mine: Only my templates
+          only_mine: When true, returns only templates created by the client. When false, includes
+              shared templates.
 
           extra_headers: Send extra headers
 
@@ -169,136 +168,6 @@ class TemplatesResource(SyncAPIResource):
                 ),
             ),
             model=TemplateShort,
-        )
-
-    def delete(
-        self,
-        id: int,
-        *,
-        force: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete template
-
-        Args:
-          force: Force template deletion even if it is shared to groups
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            f"/fastedge/v1/template/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"force": force}, template_delete_params.TemplateDeleteParams),
-            ),
-            cast_to=NoneType,
-        )
-
-    def get(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Template:
-        """
-        Get template details
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/fastedge/v1/template/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Template,
-        )
-
-    def replace(
-        self,
-        id: int,
-        *,
-        binary_id: int,
-        name: str,
-        owned: bool,
-        params: Iterable[TemplateParameterParam],
-        long_descr: str | Omit = omit,
-        short_descr: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TemplateShort:
-        """
-        Update template
-
-        Args:
-          binary_id: Binary ID
-
-          name: Name of the template
-
-          owned: Is the template owned by user?
-
-          params: Parameters
-
-          long_descr: Long description of the template
-
-          short_descr: Short description of the template
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._put(
-            f"/fastedge/v1/template/{id}",
-            body=maybe_transform(
-                {
-                    "binary_id": binary_id,
-                    "name": name,
-                    "owned": owned,
-                    "params": params,
-                    "long_descr": long_descr,
-                    "short_descr": short_descr,
-                },
-                template_replace_params.TemplateReplaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TemplateShort,
         )
 
 
@@ -341,20 +210,22 @@ class AsyncTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateShort:
         """
-        Add template
+        Create a new application template from an existing binary and configuration.
+        Templates can be shared with groups to enable collaborative application
+        development.
 
         Args:
-          binary_id: Binary ID
+          binary_id: ID of the WebAssembly binary to use for this template
 
-          name: Name of the template
+          name: Unique name for the template (used for identification and searching)
 
           owned: Is the template owned by user?
 
           params: Parameters
 
-          long_descr: Long description of the template
+          long_descr: Detailed markdown description explaining template features and usage
 
-          short_descr: Short description of the template
+          short_descr: Brief one-line description displayed in template listings
 
           extra_headers: Send extra headers
 
@@ -398,7 +269,9 @@ class AsyncTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TemplateShort, AsyncOffsetPageFastedgeTemplates[TemplateShort]]:
         """
-        List app templates
+        Retrieve available application templates including system templates and
+        user-created templates. Templates provide pre-configured application settings
+        that can be reused for quick deployment.
 
         Args:
           api_type:
@@ -406,11 +279,12 @@ class AsyncTemplatesResource(AsyncAPIResource):
               wasi-http - WASI with HTTP entry point
               proxy-wasm - Proxy-Wasm app, callable from CDN
 
-          limit: Limit for pagination
+          limit: Maximum number of results to return
 
-          offset: Offset for pagination
+          offset: Number of results to skip for pagination
 
-          only_mine: Only my templates
+          only_mine: When true, returns only templates created by the client. When false, includes
+              shared templates.
 
           extra_headers: Send extra headers
 
@@ -441,136 +315,6 @@ class AsyncTemplatesResource(AsyncAPIResource):
             model=TemplateShort,
         )
 
-    async def delete(
-        self,
-        id: int,
-        *,
-        force: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete template
-
-        Args:
-          force: Force template deletion even if it is shared to groups
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            f"/fastedge/v1/template/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"force": force}, template_delete_params.TemplateDeleteParams),
-            ),
-            cast_to=NoneType,
-        )
-
-    async def get(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Template:
-        """
-        Get template details
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/fastedge/v1/template/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Template,
-        )
-
-    async def replace(
-        self,
-        id: int,
-        *,
-        binary_id: int,
-        name: str,
-        owned: bool,
-        params: Iterable[TemplateParameterParam],
-        long_descr: str | Omit = omit,
-        short_descr: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TemplateShort:
-        """
-        Update template
-
-        Args:
-          binary_id: Binary ID
-
-          name: Name of the template
-
-          owned: Is the template owned by user?
-
-          params: Parameters
-
-          long_descr: Long description of the template
-
-          short_descr: Short description of the template
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._put(
-            f"/fastedge/v1/template/{id}",
-            body=await async_maybe_transform(
-                {
-                    "binary_id": binary_id,
-                    "name": name,
-                    "owned": owned,
-                    "params": params,
-                    "long_descr": long_descr,
-                    "short_descr": short_descr,
-                },
-                template_replace_params.TemplateReplaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TemplateShort,
-        )
-
 
 class TemplatesResourceWithRawResponse:
     def __init__(self, templates: TemplatesResource) -> None:
@@ -581,15 +325,6 @@ class TemplatesResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             templates.list,
-        )
-        self.delete = to_raw_response_wrapper(
-            templates.delete,
-        )
-        self.get = to_raw_response_wrapper(
-            templates.get,
-        )
-        self.replace = to_raw_response_wrapper(
-            templates.replace,
         )
 
 
@@ -603,15 +338,6 @@ class AsyncTemplatesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             templates.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            templates.delete,
-        )
-        self.get = async_to_raw_response_wrapper(
-            templates.get,
-        )
-        self.replace = async_to_raw_response_wrapper(
-            templates.replace,
-        )
 
 
 class TemplatesResourceWithStreamingResponse:
@@ -624,15 +350,6 @@ class TemplatesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             templates.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            templates.delete,
-        )
-        self.get = to_streamed_response_wrapper(
-            templates.get,
-        )
-        self.replace = to_streamed_response_wrapper(
-            templates.replace,
-        )
 
 
 class AsyncTemplatesResourceWithStreamingResponse:
@@ -644,13 +361,4 @@ class AsyncTemplatesResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             templates.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            templates.delete,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            templates.get,
-        )
-        self.replace = async_to_streamed_response_wrapper(
-            templates.replace,
         )

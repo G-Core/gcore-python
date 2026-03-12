@@ -9,10 +9,13 @@ __all__ = ["Secret", "SecretSlot"]
 
 class SecretSlot(BaseModel):
     slot: int
-    """Secret slot ID."""
+    """
+    Unix timestamp (seconds since epoch) indicating when this secret version becomes
+    active. Use for time-based secret rotation.
+    """
 
     checksum: Optional[str] = None
-    """A checksum of the secret value for integrity verification."""
+    """SHA-256 hash of the decrypted value for integrity verification (auto-generated)"""
 
 
 class Secret(BaseModel):

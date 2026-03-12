@@ -63,18 +63,21 @@ class StatisticsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetCallSeriesResponse:
         """
-        Call statistics
+        Retrieve aggregated call statistics for applications within a specified time
+        period. Data is aggregated by the specified step interval and can be filtered by
+        application ID and network.
 
         Args:
-          from_: Reporting period start time, RFC3339 format
+          from_: Reporting period start time in RFC3339 format
 
-          step: Reporting granularity, in seconds
+          step: Reporting time granularity in seconds. Common values are 60 (1 minute), 300 (5
+              minutes), 3600 (1 hour).
 
-          to: Reporting period end time (not included into reporting period), RFC3339 format
+          to: Reporting period end time in RFC3339 format (exclusive)
 
-          id: App ID
+          id: Filter statistics by specific application ID
 
-          network: Network name
+          network: Filter statistics by edge network name
 
           extra_headers: Send extra headers
 
@@ -121,18 +124,21 @@ class StatisticsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetDurationSeriesResponse:
         """
-        Execution duration statistics
+        Retrieve execution time statistics showing how long applications took to process
+        requests. Results are aggregated by the specified time interval and can be
+        filtered by app and network.
 
         Args:
-          from_: Reporting period start time, RFC3339 format
+          from_: Reporting period start time in RFC3339 format
 
-          step: Reporting granularity, in seconds
+          step: Reporting time granularity in seconds. Common values are 60 (1 minute), 300 (5
+              minutes), 3600 (1 hour).
 
-          to: Reporting period end time (not included into reporting period), RFC3339 format
+          to: Reporting period end time in RFC3339 format (exclusive)
 
-          id: App ID
+          id: Filter statistics by specific application ID
 
-          network: Network name
+          network: Filter statistics by edge network name
 
           extra_headers: Send extra headers
 
@@ -202,18 +208,21 @@ class AsyncStatisticsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetCallSeriesResponse:
         """
-        Call statistics
+        Retrieve aggregated call statistics for applications within a specified time
+        period. Data is aggregated by the specified step interval and can be filtered by
+        application ID and network.
 
         Args:
-          from_: Reporting period start time, RFC3339 format
+          from_: Reporting period start time in RFC3339 format
 
-          step: Reporting granularity, in seconds
+          step: Reporting time granularity in seconds. Common values are 60 (1 minute), 300 (5
+              minutes), 3600 (1 hour).
 
-          to: Reporting period end time (not included into reporting period), RFC3339 format
+          to: Reporting period end time in RFC3339 format (exclusive)
 
-          id: App ID
+          id: Filter statistics by specific application ID
 
-          network: Network name
+          network: Filter statistics by edge network name
 
           extra_headers: Send extra headers
 
@@ -260,18 +269,21 @@ class AsyncStatisticsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatisticGetDurationSeriesResponse:
         """
-        Execution duration statistics
+        Retrieve execution time statistics showing how long applications took to process
+        requests. Results are aggregated by the specified time interval and can be
+        filtered by app and network.
 
         Args:
-          from_: Reporting period start time, RFC3339 format
+          from_: Reporting period start time in RFC3339 format
 
-          step: Reporting granularity, in seconds
+          step: Reporting time granularity in seconds. Common values are 60 (1 minute), 300 (5
+              minutes), 3600 (1 hour).
 
-          to: Reporting period end time (not included into reporting period), RFC3339 format
+          to: Reporting period end time in RFC3339 format (exclusive)
 
-          id: App ID
+          id: Filter statistics by specific application ID
 
-          network: Network name
+          network: Filter statistics by edge network name
 
           extra_headers: Send extra headers
 
