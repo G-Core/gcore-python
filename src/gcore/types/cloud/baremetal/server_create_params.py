@@ -356,9 +356,6 @@ class DDOSProfileField(TypedDict, total=False):
     base_field: Optional[int]
     """Unique identifier of the DDoS protection field being configured"""
 
-    field_name: Optional[str]
-    """Human-readable name of the DDoS protection field being configured"""
-
     field_value: object
 
     value: Optional[str]
