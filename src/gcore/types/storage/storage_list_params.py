@@ -32,7 +32,7 @@ class StorageListParams(TypedDict, total=False):
     show_deleted: bool
     """Include deleted storages in the response"""
 
-    status: Literal["active", "suspended", "deleted", "pending"]
+    status: Literal["active", "creating", "ok", "updating", "deleting", "deleted"]
     """Filter by storage status"""
 
     type: Literal["s3_compatible", "sftp"]
