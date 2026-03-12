@@ -223,7 +223,7 @@ class StorageResource(SyncAPIResource):
         order_by: str | Omit = omit,
         order_direction: Literal["asc", "desc"] | Omit = omit,
         show_deleted: bool | Omit = omit,
-        status: Literal["active", "suspended", "deleted", "pending"] | Omit = omit,
+        status: Literal["active", "creating", "ok", "updating", "deleting", "deleted"] | Omit = omit,
         type: Literal["s3_compatible", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -658,7 +658,7 @@ class AsyncStorageResource(AsyncAPIResource):
         order_by: str | Omit = omit,
         order_direction: Literal["asc", "desc"] | Omit = omit,
         show_deleted: bool | Omit = omit,
-        status: Literal["active", "suspended", "deleted", "pending"] | Omit = omit,
+        status: Literal["active", "creating", "ok", "updating", "deleting", "deleted"] | Omit = omit,
         type: Literal["s3_compatible", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
