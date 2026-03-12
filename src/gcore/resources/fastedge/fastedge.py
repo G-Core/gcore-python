@@ -4,6 +4,14 @@ from __future__ import annotations
 
 import httpx
 
+from .apps import (
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
+)
 from .secrets import (
     SecretsResource,
     AsyncSecretsResource,
@@ -22,14 +30,6 @@ from .binaries import (
     AsyncBinariesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .apps.apps import (
-    AppsResource,
-    AsyncAppsResource,
-    AppsResourceWithRawResponse,
-    AsyncAppsResourceWithRawResponse,
-    AppsResourceWithStreamingResponse,
-    AsyncAppsResourceWithStreamingResponse,
-)
 from .kv_stores import (
     KvStoresResource,
     AsyncKvStoresResource,
@@ -135,7 +135,10 @@ class FastedgeResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Client:
-        """Get status and limits for the client"""
+        """
+        Retrieve the authenticated client's account status, resource quotas, and usage
+        limits. Shows current plan, available resources, and any active restrictions.
+        """
         return self._get(
             "/fastedge/v1/me",
             options=make_request_options(
@@ -213,7 +216,10 @@ class AsyncFastedgeResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Client:
-        """Get status and limits for the client"""
+        """
+        Retrieve the authenticated client's account status, resource quotas, and usage
+        limits. Shows current plan, available resources, and any active restrictions.
+        """
         return await self._get(
             "/fastedge/v1/me",
             options=make_request_options(

@@ -28,5 +28,14 @@ class BinaryShort(BaseModel):
     checksum: Optional[str] = None
     """MD5 hash of the binary"""
 
+    source: Optional[int] = None
+    """
+    Source language:
+    0 - unknown
+    1 - Rust
+    2 - JavaScript
+    3 - Go
+    """
+
     unref_since: Optional[str] = None
     """Not used since (UTC)"""

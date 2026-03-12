@@ -12,10 +12,10 @@ __all__ = ["TemplateCreateParams"]
 
 class TemplateCreateParams(TypedDict, total=False):
     binary_id: Required[int]
-    """Binary ID"""
+    """ID of the WebAssembly binary to use for this template"""
 
     name: Required[str]
-    """Name of the template"""
+    """Unique name for the template (used for identification and searching)"""
 
     owned: Required[bool]
     """Is the template owned by user?"""
@@ -24,7 +24,7 @@ class TemplateCreateParams(TypedDict, total=False):
     """Parameters"""
 
     long_descr: str
-    """Long description of the template"""
+    """Detailed markdown description explaining template features and usage"""
 
     short_descr: str
-    """Short description of the template"""
+    """Brief one-line description displayed in template listings"""

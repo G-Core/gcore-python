@@ -11,7 +11,6 @@ from ..._types import (
     Body,
     Query,
     Headers,
-    NoneType,
     NotGiven,
     BinaryTypes,
     FileContent,
@@ -27,7 +26,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.fastedge.binary import Binary
 from ...types.fastedge.binary_short import BinaryShort
 from ...types.fastedge.binary_list_response import BinaryListResponse
 
@@ -69,8 +67,11 @@ class BinariesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryShort:
-        """
-        Store compiled WASM binary
+        """Upload a compiled WebAssembly binary to the edge platform.
+
+        The binary is
+        automatically analyzed to detect its API type (WASI or Proxy-WASM) and stored
+        for use in applications. Maximum binary size is 100MB.
 
         Args:
           extra_headers: Send extra headers
@@ -101,76 +102,18 @@ class BinariesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryListResponse:
-        """List binaries"""
+        """Retrieve all WebAssembly binaries owned by the authenticated client.
+
+        Binaries
+        can be shared across multiple applications and include both WASI and Proxy-WASM
+        formats.
+        """
         return self._get(
             "/fastedge/v1/binaries",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BinaryListResponse,
-        )
-
-    def delete(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete a binary
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            f"/fastedge/v1/binaries/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    def get(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Binary:
-        """
-        Get binary
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/fastedge/v1/binaries/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Binary,
         )
 
 
@@ -209,8 +152,11 @@ class AsyncBinariesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryShort:
-        """
-        Store compiled WASM binary
+        """Upload a compiled WebAssembly binary to the edge platform.
+
+        The binary is
+        automatically analyzed to detect its API type (WASI or Proxy-WASM) and stored
+        for use in applications. Maximum binary size is 100MB.
 
         Args:
           extra_headers: Send extra headers
@@ -241,76 +187,18 @@ class AsyncBinariesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryListResponse:
-        """List binaries"""
+        """Retrieve all WebAssembly binaries owned by the authenticated client.
+
+        Binaries
+        can be shared across multiple applications and include both WASI and Proxy-WASM
+        formats.
+        """
         return await self._get(
             "/fastedge/v1/binaries",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BinaryListResponse,
-        )
-
-    async def delete(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete a binary
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            f"/fastedge/v1/binaries/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    async def get(
-        self,
-        id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Binary:
-        """
-        Get binary
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/fastedge/v1/binaries/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Binary,
         )
 
 
@@ -324,12 +212,6 @@ class BinariesResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             binaries.list,
         )
-        self.delete = to_raw_response_wrapper(
-            binaries.delete,
-        )
-        self.get = to_raw_response_wrapper(
-            binaries.get,
-        )
 
 
 class AsyncBinariesResourceWithRawResponse:
@@ -341,12 +223,6 @@ class AsyncBinariesResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             binaries.list,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            binaries.delete,
-        )
-        self.get = async_to_raw_response_wrapper(
-            binaries.get,
         )
 
 
@@ -360,12 +236,6 @@ class BinariesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             binaries.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            binaries.delete,
-        )
-        self.get = to_streamed_response_wrapper(
-            binaries.get,
-        )
 
 
 class AsyncBinariesResourceWithStreamingResponse:
@@ -377,10 +247,4 @@ class AsyncBinariesResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             binaries.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            binaries.delete,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            binaries.get,
         )
