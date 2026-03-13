@@ -7,6 +7,8 @@ from .image_list_params import ImageListParams as ImageListParams
 from .flavor_list_params import FlavorListParams as FlavorListParams
 from .server_list_params import ServerListParams as ServerListParams
 from .server_create_params import ServerCreateParams as ServerCreateParams
+from .server_delete_params import ServerDeleteParams as ServerDeleteParams
+from .server_update_params import ServerUpdateParams as ServerUpdateParams
 from .server_rebuild_params import ServerRebuildParams as ServerRebuildParams
 from .baremetal_fixed_address import BaremetalFixedAddress as BaremetalFixedAddress
 from .baremetal_floating_address import BaremetalFloatingAddress as BaremetalFloatingAddress
