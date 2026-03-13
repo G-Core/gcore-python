@@ -9,7 +9,11 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.fastedge import SecretListResponse, SecretCreateResponse
+from gcore.types.fastedge import (
+    Secret,
+    SecretListResponse,
+    SecretCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -63,6 +67,52 @@ class TestSecrets:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_update(self, client: Gcore) -> None:
+        secret = client.fastedge.secrets.update(
+            secret_id=0,
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gcore) -> None:
+        secret = client.fastedge.secrets.update(
+            secret_id=0,
+            comment="comment",
+            name="name",
+            secret_slots=[
+                {
+                    "slot": 1704067200,
+                    "value": "P@ssw0rd123!",
+                }
+            ],
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Gcore) -> None:
+        response = client.fastedge.secrets.with_raw_response.update(
+            secret_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = response.parse()
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Gcore) -> None:
+        with client.fastedge.secrets.with_streaming_response.update(
+            secret_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = response.parse()
+            assert_matches_type(Secret, secret, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_list(self, client: Gcore) -> None:
         secret = client.fastedge.secrets.list()
         assert_matches_type(SecretListResponse, secret, path=["response"])
@@ -92,6 +142,127 @@ class TestSecrets:
 
             secret = response.parse()
             assert_matches_type(SecretListResponse, secret, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_delete(self, client: Gcore) -> None:
+        secret = client.fastedge.secrets.delete(
+            secret_id=0,
+        )
+        assert secret is None
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Gcore) -> None:
+        secret = client.fastedge.secrets.delete(
+            secret_id=0,
+            force=True,
+        )
+        assert secret is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Gcore) -> None:
+        response = client.fastedge.secrets.with_raw_response.delete(
+            secret_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = response.parse()
+        assert secret is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Gcore) -> None:
+        with client.fastedge.secrets.with_streaming_response.delete(
+            secret_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = response.parse()
+            assert secret is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_get(self, client: Gcore) -> None:
+        secret = client.fastedge.secrets.get(
+            0,
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Gcore) -> None:
+        response = client.fastedge.secrets.with_raw_response.get(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = response.parse()
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Gcore) -> None:
+        with client.fastedge.secrets.with_streaming_response.get(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = response.parse()
+            assert_matches_type(Secret, secret, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace(self, client: Gcore) -> None:
+        secret = client.fastedge.secrets.replace(
+            secret_id=0,
+            body={},
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params(self, client: Gcore) -> None:
+        secret = client.fastedge.secrets.replace(
+            secret_id=0,
+            body={
+                "comment": "comment",
+                "name": "name",
+                "secret_slots": [
+                    {
+                        "slot": 1704067200,
+                        "value": "P@ssw0rd123!",
+                    }
+                ],
+            },
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace(self, client: Gcore) -> None:
+        response = client.fastedge.secrets.with_raw_response.replace(
+            secret_id=0,
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = response.parse()
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace(self, client: Gcore) -> None:
+        with client.fastedge.secrets.with_streaming_response.replace(
+            secret_id=0,
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = response.parse()
+            assert_matches_type(Secret, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -147,6 +318,52 @@ class TestAsyncSecrets:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.fastedge.secrets.update(
+            secret_id=0,
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.fastedge.secrets.update(
+            secret_id=0,
+            comment="comment",
+            name="name",
+            secret_slots=[
+                {
+                    "slot": 1704067200,
+                    "value": "P@ssw0rd123!",
+                }
+            ],
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
+        response = await async_client.fastedge.secrets.with_raw_response.update(
+            secret_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = await response.parse()
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
+        async with async_client.fastedge.secrets.with_streaming_response.update(
+            secret_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = await response.parse()
+            assert_matches_type(Secret, secret, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         secret = await async_client.fastedge.secrets.list()
         assert_matches_type(SecretListResponse, secret, path=["response"])
@@ -176,5 +393,126 @@ class TestAsyncSecrets:
 
             secret = await response.parse()
             assert_matches_type(SecretListResponse, secret, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.fastedge.secrets.delete(
+            secret_id=0,
+        )
+        assert secret is None
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.fastedge.secrets.delete(
+            secret_id=0,
+            force=True,
+        )
+        assert secret is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
+        response = await async_client.fastedge.secrets.with_raw_response.delete(
+            secret_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = await response.parse()
+        assert secret is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
+        async with async_client.fastedge.secrets.with_streaming_response.delete(
+            secret_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = await response.parse()
+            assert secret is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.fastedge.secrets.get(
+            0,
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
+        response = await async_client.fastedge.secrets.with_raw_response.get(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = await response.parse()
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
+        async with async_client.fastedge.secrets.with_streaming_response.get(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = await response.parse()
+            assert_matches_type(Secret, secret, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.fastedge.secrets.replace(
+            secret_id=0,
+            body={},
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
+        secret = await async_client.fastedge.secrets.replace(
+            secret_id=0,
+            body={
+                "comment": "comment",
+                "name": "name",
+                "secret_slots": [
+                    {
+                        "slot": 1704067200,
+                        "value": "P@ssw0rd123!",
+                    }
+                ],
+            },
+        )
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
+        response = await async_client.fastedge.secrets.with_raw_response.replace(
+            secret_id=0,
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        secret = await response.parse()
+        assert_matches_type(Secret, secret, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
+        async with async_client.fastedge.secrets.with_streaming_response.replace(
+            secret_id=0,
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            secret = await response.parse()
+            assert_matches_type(Secret, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True

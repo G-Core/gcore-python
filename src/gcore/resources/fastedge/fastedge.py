@@ -4,14 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .apps import (
-    AppsResource,
-    AsyncAppsResource,
-    AppsResourceWithRawResponse,
-    AsyncAppsResourceWithRawResponse,
-    AppsResourceWithStreamingResponse,
-    AsyncAppsResourceWithStreamingResponse,
-)
 from .secrets import (
     SecretsResource,
     AsyncSecretsResource,
@@ -30,6 +22,14 @@ from .binaries import (
     AsyncBinariesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .apps.apps import (
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
+)
 from .kv_stores import (
     KvStoresResource,
     AsyncKvStoresResource,
