@@ -86,21 +86,26 @@ class AppsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
-        """
-        Add a new app
+        """Create a new edge application from a WebAssembly binary.
+
+        The app is configured
+        with execution limits, environment variables, and network assignments. Apps
+        start in draft status (0) and must be explicitly enabled to receive traffic.
 
         Args:
-          binary: Binary ID
+          binary: ID of the WebAssembly binary to deploy
 
-          comment: App description
+          comment: Optional human-readable description of the application's purpose
 
-          debug: Switch on logging for 30 minutes (switched off by default)
+          debug: Enable verbose debug logging for 30 minutes. Automatically expires to prevent
+              performance impact.
 
           env: Environment variables
 
-          log: Logging channel (by default - kafka, which allows exploring logs with API)
+          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
+              'none' to disable logging.
 
-          name: App name
+          name: Unique application name (alphanumeric, hyphens allowed)
 
           rsp_headers: Extra headers to add to the response
 
@@ -111,8 +116,6 @@ class AppsResource(SyncAPIResource):
               0 - draft (inactive)
               1 - enabled
               2 - disabled
-              3 - hourly call limit exceeded
-              4 - daily call limit exceeded
               5 - suspended
 
           stores: Application edge stores
@@ -153,7 +156,7 @@ class AppsResource(SyncAPIResource):
 
     def update(
         self,
-        id: int,
+        app_id: int,
         *,
         binary: int | Omit = omit,
         comment: str | Omit = omit,
@@ -173,21 +176,25 @@ class AppsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
-        """
-        Update app
+        """Partially update an application's configuration.
+
+        Only the fields provided in the
+        request body will be modified; others remain unchanged.
 
         Args:
-          binary: Binary ID
+          binary: ID of the WebAssembly binary to deploy
 
-          comment: App description
+          comment: Optional human-readable description of the application's purpose
 
-          debug: Switch on logging for 30 minutes (switched off by default)
+          debug: Enable verbose debug logging for 30 minutes. Automatically expires to prevent
+              performance impact.
 
           env: Environment variables
 
-          log: Logging channel (by default - kafka, which allows exploring logs with API)
+          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
+              'none' to disable logging.
 
-          name: App name
+          name: Unique application name (alphanumeric, hyphens allowed)
 
           rsp_headers: Extra headers to add to the response
 
@@ -198,8 +205,6 @@ class AppsResource(SyncAPIResource):
               0 - draft (inactive)
               1 - enabled
               2 - disabled
-              3 - hourly call limit exceeded
-              4 - daily call limit exceeded
               5 - suspended
 
           stores: Application edge stores
@@ -215,7 +220,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             body=maybe_transform(
                 {
                     "binary": binary,
@@ -272,7 +277,9 @@ class AppsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPageFastedgeApps[AppShort]:
         """
-        List client's apps
+        Retrieve a paginated list of applications owned by the authenticated client.
+        Results can be filtered by name, API type, status, template, binary, or plan,
+        and sorted by various fields.
 
         Args:
           api_type:
@@ -280,17 +287,17 @@ class AppsResource(SyncAPIResource):
               wasi-http - WASI with HTTP entry point
               proxy-wasm - Proxy-Wasm app, callable from CDN
 
-          binary: Binary ID
+          binary: Filter by binary ID (shows apps using this binary)
 
-          limit: Limit for pagination
+          limit: Maximum number of results to return
 
-          name: Name of the app
+          name: Filter by application name (case-insensitive partial match)
 
-          offset: Offset for pagination
+          offset: Number of results to skip for pagination
 
-          ordering: Ordering
+          ordering: Sort order. Use - prefix for descending (e.g., -name sorts by name descending)
 
-          plan: Plan ID
+          plan: Filter by plan ID
 
           status:
               Status code:
@@ -301,7 +308,7 @@ class AppsResource(SyncAPIResource):
               4 - daily call limit exceeded
               5 - suspended
 
-          template: Template ID
+          template: Filter by template ID (shows apps created from this template)
 
           extra_headers: Send extra headers
 
@@ -339,7 +346,7 @@ class AppsResource(SyncAPIResource):
 
     def delete(
         self,
-        id: int,
+        app_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -348,8 +355,10 @@ class AppsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete app
+        """Permanently delete an application and remove it from all edge networks.
+
+        This
+        action cannot be undone. The associated binary is not deleted and can be reused.
 
         Args:
           extra_headers: Send extra headers
@@ -362,7 +371,7 @@ class AppsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -371,7 +380,7 @@ class AppsResource(SyncAPIResource):
 
     def get(
         self,
-        id: int,
+        app_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -381,7 +390,9 @@ class AppsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> App:
         """
-        Get app details
+        Retrieve complete configuration and metadata for a specific application.
+        Includes binary reference, plan limits, environment variables, and current
+        status.
 
         Args:
           extra_headers: Send extra headers
@@ -393,7 +404,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -402,7 +413,7 @@ class AppsResource(SyncAPIResource):
 
     def replace(
         self,
-        id: int,
+        app_id: int,
         *,
         body: app_replace_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -412,8 +423,10 @@ class AppsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
-        """
-        Update an app
+        """Replace the complete configuration of an existing application.
+
+        All fields must
+        be provided - use PATCH for partial updates.
 
         Args:
           extra_headers: Send extra headers
@@ -425,7 +438,7 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             body=maybe_transform(body, app_replace_params.AppReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -486,21 +499,26 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
-        """
-        Add a new app
+        """Create a new edge application from a WebAssembly binary.
+
+        The app is configured
+        with execution limits, environment variables, and network assignments. Apps
+        start in draft status (0) and must be explicitly enabled to receive traffic.
 
         Args:
-          binary: Binary ID
+          binary: ID of the WebAssembly binary to deploy
 
-          comment: App description
+          comment: Optional human-readable description of the application's purpose
 
-          debug: Switch on logging for 30 minutes (switched off by default)
+          debug: Enable verbose debug logging for 30 minutes. Automatically expires to prevent
+              performance impact.
 
           env: Environment variables
 
-          log: Logging channel (by default - kafka, which allows exploring logs with API)
+          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
+              'none' to disable logging.
 
-          name: App name
+          name: Unique application name (alphanumeric, hyphens allowed)
 
           rsp_headers: Extra headers to add to the response
 
@@ -511,8 +529,6 @@ class AsyncAppsResource(AsyncAPIResource):
               0 - draft (inactive)
               1 - enabled
               2 - disabled
-              3 - hourly call limit exceeded
-              4 - daily call limit exceeded
               5 - suspended
 
           stores: Application edge stores
@@ -553,7 +569,7 @@ class AsyncAppsResource(AsyncAPIResource):
 
     async def update(
         self,
-        id: int,
+        app_id: int,
         *,
         binary: int | Omit = omit,
         comment: str | Omit = omit,
@@ -573,21 +589,25 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
-        """
-        Update app
+        """Partially update an application's configuration.
+
+        Only the fields provided in the
+        request body will be modified; others remain unchanged.
 
         Args:
-          binary: Binary ID
+          binary: ID of the WebAssembly binary to deploy
 
-          comment: App description
+          comment: Optional human-readable description of the application's purpose
 
-          debug: Switch on logging for 30 minutes (switched off by default)
+          debug: Enable verbose debug logging for 30 minutes. Automatically expires to prevent
+              performance impact.
 
           env: Environment variables
 
-          log: Logging channel (by default - kafka, which allows exploring logs with API)
+          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
+              'none' to disable logging.
 
-          name: App name
+          name: Unique application name (alphanumeric, hyphens allowed)
 
           rsp_headers: Extra headers to add to the response
 
@@ -598,8 +618,6 @@ class AsyncAppsResource(AsyncAPIResource):
               0 - draft (inactive)
               1 - enabled
               2 - disabled
-              3 - hourly call limit exceeded
-              4 - daily call limit exceeded
               5 - suspended
 
           stores: Application edge stores
@@ -615,7 +633,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             body=await async_maybe_transform(
                 {
                     "binary": binary,
@@ -672,7 +690,9 @@ class AsyncAppsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AppShort, AsyncOffsetPageFastedgeApps[AppShort]]:
         """
-        List client's apps
+        Retrieve a paginated list of applications owned by the authenticated client.
+        Results can be filtered by name, API type, status, template, binary, or plan,
+        and sorted by various fields.
 
         Args:
           api_type:
@@ -680,17 +700,17 @@ class AsyncAppsResource(AsyncAPIResource):
               wasi-http - WASI with HTTP entry point
               proxy-wasm - Proxy-Wasm app, callable from CDN
 
-          binary: Binary ID
+          binary: Filter by binary ID (shows apps using this binary)
 
-          limit: Limit for pagination
+          limit: Maximum number of results to return
 
-          name: Name of the app
+          name: Filter by application name (case-insensitive partial match)
 
-          offset: Offset for pagination
+          offset: Number of results to skip for pagination
 
-          ordering: Ordering
+          ordering: Sort order. Use - prefix for descending (e.g., -name sorts by name descending)
 
-          plan: Plan ID
+          plan: Filter by plan ID
 
           status:
               Status code:
@@ -701,7 +721,7 @@ class AsyncAppsResource(AsyncAPIResource):
               4 - daily call limit exceeded
               5 - suspended
 
-          template: Template ID
+          template: Filter by template ID (shows apps created from this template)
 
           extra_headers: Send extra headers
 
@@ -739,7 +759,7 @@ class AsyncAppsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        id: int,
+        app_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -748,8 +768,10 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete app
+        """Permanently delete an application and remove it from all edge networks.
+
+        This
+        action cannot be undone. The associated binary is not deleted and can be reused.
 
         Args:
           extra_headers: Send extra headers
@@ -762,7 +784,7 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -771,7 +793,7 @@ class AsyncAppsResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: int,
+        app_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -781,7 +803,9 @@ class AsyncAppsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> App:
         """
-        Get app details
+        Retrieve complete configuration and metadata for a specific application.
+        Includes binary reference, plan limits, environment variables, and current
+        status.
 
         Args:
           extra_headers: Send extra headers
@@ -793,7 +817,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -802,7 +826,7 @@ class AsyncAppsResource(AsyncAPIResource):
 
     async def replace(
         self,
-        id: int,
+        app_id: int,
         *,
         body: app_replace_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -812,8 +836,10 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AppShort:
-        """
-        Update an app
+        """Replace the complete configuration of an existing application.
+
+        All fields must
+        be provided - use PATCH for partial updates.
 
         Args:
           extra_headers: Send extra headers
@@ -825,7 +851,7 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/fastedge/v1/apps/{id}",
+            f"/fastedge/v1/apps/{app_id}",
             body=await async_maybe_transform(body, app_replace_params.AppReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

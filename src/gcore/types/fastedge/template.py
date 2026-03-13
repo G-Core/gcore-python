@@ -13,10 +13,10 @@ class Template(BaseModel):
     """Wasm API type"""
 
     binary_id: int
-    """Binary ID"""
+    """ID of the WebAssembly binary to use for this template"""
 
     name: str
-    """Name of the template"""
+    """Unique name for the template (used for identification and searching)"""
 
     owned: bool
     """Is the template owned by user?"""
@@ -25,7 +25,7 @@ class Template(BaseModel):
     """Parameters"""
 
     long_descr: Optional[str] = None
-    """Long description of the template"""
+    """Detailed markdown description explaining template features and usage"""
 
     short_descr: Optional[str] = None
-    """Short description of the template"""
+    """Brief one-line description displayed in template listings"""

@@ -194,7 +194,8 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,6 +206,10 @@ class ClustersResource(SyncAPIResource):
         """
         Update the name of an existing virtual GPU cluster.
 
+        Update tags for a virtual GPU cluster (and apply to all its nodes) using JSON
+        Merge Patch semantics (RFC 7386). To add or update tags, provide key-value
+        pairs. To remove a tag, set its value to null.
+
         Args:
           project_id: Project ID
 
@@ -213,6 +218,28 @@ class ClustersResource(SyncAPIResource):
           cluster_id: Cluster unique identifier
 
           name: Cluster name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -230,7 +257,13 @@ class ClustersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._patch(
             f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
-            body=maybe_transform({"name": name}, cluster_update_params.ClusterUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                cluster_update_params.ClusterUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -391,7 +424,7 @@ class ClustersResource(SyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -430,7 +463,7 @@ class ClustersResource(SyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -469,7 +502,7 @@ class ClustersResource(SyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -508,7 +541,7 @@ class ClustersResource(SyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -518,68 +551,6 @@ class ClustersResource(SyncAPIResource):
           cluster_id: Cluster unique identifier
 
           action: Action name
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def action(
-        self,
-        cluster_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["update_tags"],
-        tags: Optional[TagUpdateMapParam],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """Perform a specific action on a virtual GPU cluster.
-
-        Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          cluster_id: Cluster unique identifier
-
-          action: Action name
-
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
-              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified.
-
-              **Examples:**
-
-              - **Add/update tags:**
-                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
-                updates existing ones.
-              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
-                tags are preserved).
-              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
-                specified tags.
-              - **Mixed operations:**
-                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
-                preserving other existing tags.
-              - **Replace all:** first delete existing tags with null values, then add new
-                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -610,7 +581,7 @@ class ClustersResource(SyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -633,7 +604,7 @@ class ClustersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["action"], ["action", "tags"], ["action", "servers_count"])
+    @required_args(["action"], ["action", "servers_count"])
     def action(
         self,
         cluster_id: str,
@@ -644,9 +615,7 @@ class ClustersResource(SyncAPIResource):
         | Literal["stop"]
         | Literal["soft_reboot"]
         | Literal["hard_reboot"]
-        | Literal["update_tags"]
         | Literal["resize"],
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
         servers_count: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -666,7 +635,6 @@ class ClustersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "action": action,
-                    "tags": tags,
                     "servers_count": servers_count,
                 },
                 cluster_action_params.ClusterActionParams,
@@ -844,7 +812,8 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        name: str,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -855,6 +824,10 @@ class AsyncClustersResource(AsyncAPIResource):
         """
         Update the name of an existing virtual GPU cluster.
 
+        Update tags for a virtual GPU cluster (and apply to all its nodes) using JSON
+        Merge Patch semantics (RFC 7386). To add or update tags, provide key-value
+        pairs. To remove a tag, set its value to null.
+
         Args:
           project_id: Project ID
 
@@ -863,6 +836,28 @@ class AsyncClustersResource(AsyncAPIResource):
           cluster_id: Cluster unique identifier
 
           name: Cluster name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -880,7 +875,13 @@ class AsyncClustersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._patch(
             f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
-            body=await async_maybe_transform({"name": name}, cluster_update_params.ClusterUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                cluster_update_params.ClusterUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1041,7 +1042,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -1080,7 +1081,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -1119,7 +1120,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -1158,7 +1159,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -1168,68 +1169,6 @@ class AsyncClustersResource(AsyncAPIResource):
           cluster_id: Cluster unique identifier
 
           action: Action name
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def action(
-        self,
-        cluster_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["update_tags"],
-        tags: Optional[TagUpdateMapParam],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """Perform a specific action on a virtual GPU cluster.
-
-        Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          cluster_id: Cluster unique identifier
-
-          action: Action name
-
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
-              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified.
-
-              **Examples:**
-
-              - **Add/update tags:**
-                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
-                updates existing ones.
-              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
-                tags are preserved).
-              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
-                specified tags.
-              - **Mixed operations:**
-                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
-                preserving other existing tags.
-              - **Replace all:** first delete existing tags with null values, then add new
-                ones in the same request.
 
           extra_headers: Send extra headers
 
@@ -1260,7 +1199,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """Perform a specific action on a virtual GPU cluster.
 
         Available actions: start,
-        stop, soft reboot, hard reboot, resize, update tags.
+        stop, soft reboot, hard reboot, resize
 
         Args:
           project_id: Project ID
@@ -1283,7 +1222,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["action"], ["action", "tags"], ["action", "servers_count"])
+    @required_args(["action"], ["action", "servers_count"])
     async def action(
         self,
         cluster_id: str,
@@ -1294,9 +1233,7 @@ class AsyncClustersResource(AsyncAPIResource):
         | Literal["stop"]
         | Literal["soft_reboot"]
         | Literal["hard_reboot"]
-        | Literal["update_tags"]
         | Literal["resize"],
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
         servers_count: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1316,7 +1253,6 @@ class AsyncClustersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "action": action,
-                    "tags": tags,
                     "servers_count": servers_count,
                 },
                 cluster_action_params.ClusterActionParams,

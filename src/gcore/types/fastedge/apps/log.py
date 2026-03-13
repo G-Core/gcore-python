@@ -10,19 +10,19 @@ __all__ = ["Log"]
 
 class Log(BaseModel):
     id: Optional[str] = None
-    """Id of the log"""
+    """Unique identifier for this log entry"""
 
     app_name: Optional[str] = None
-    """Name of the application"""
+    """Name of the application that generated this log"""
 
     client_ip: Optional[str] = None
-    """Client IP"""
+    """IP address of the client that triggered the log"""
 
     edge: Optional[str] = None
-    """Edge name"""
+    """Edge location where the log originated"""
 
     log: Optional[str] = None
-    """Log message"""
+    """The actual log message content"""
 
     timestamp: Optional[datetime] = None
-    """Timestamp of a log in RFC3339 format"""
+    """When the log was generated (RFC3339 format)"""

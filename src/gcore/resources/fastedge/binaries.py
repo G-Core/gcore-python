@@ -69,8 +69,11 @@ class BinariesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryShort:
-        """
-        Store compiled WASM binary
+        """Upload a compiled WebAssembly binary to the edge platform.
+
+        The binary is
+        automatically analyzed to detect its API type (WASI or Proxy-WASM) and stored
+        for use in applications. Maximum binary size is 100MB.
 
         Args:
           extra_headers: Send extra headers
@@ -101,7 +104,12 @@ class BinariesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryListResponse:
-        """List binaries"""
+        """Retrieve all WebAssembly binaries owned by the authenticated client.
+
+        Binaries
+        can be shared across multiple applications and include both WASI and Proxy-WASM
+        formats.
+        """
         return self._get(
             "/fastedge/v1/binaries",
             options=make_request_options(
@@ -112,7 +120,7 @@ class BinariesResource(SyncAPIResource):
 
     def delete(
         self,
-        id: int,
+        binary_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -121,8 +129,10 @@ class BinariesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a binary
+        """Delete a WebAssembly binary from the platform.
+
+        Note: Binaries currently in use
+        by applications cannot be deleted. Remove all application associations first.
 
         Args:
           extra_headers: Send extra headers
@@ -135,7 +145,7 @@ class BinariesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{binary_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -144,7 +154,7 @@ class BinariesResource(SyncAPIResource):
 
     def get(
         self,
-        id: int,
+        binary_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -154,7 +164,9 @@ class BinariesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Binary:
         """
-        Get binary
+        Retrieve complete information about a specific WebAssembly binary including
+        metadata and compiled content. Use this to download or inspect binaries before
+        using them in applications.
 
         Args:
           extra_headers: Send extra headers
@@ -166,7 +178,7 @@ class BinariesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{binary_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -209,8 +221,11 @@ class AsyncBinariesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryShort:
-        """
-        Store compiled WASM binary
+        """Upload a compiled WebAssembly binary to the edge platform.
+
+        The binary is
+        automatically analyzed to detect its API type (WASI or Proxy-WASM) and stored
+        for use in applications. Maximum binary size is 100MB.
 
         Args:
           extra_headers: Send extra headers
@@ -241,7 +256,12 @@ class AsyncBinariesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryListResponse:
-        """List binaries"""
+        """Retrieve all WebAssembly binaries owned by the authenticated client.
+
+        Binaries
+        can be shared across multiple applications and include both WASI and Proxy-WASM
+        formats.
+        """
         return await self._get(
             "/fastedge/v1/binaries",
             options=make_request_options(
@@ -252,7 +272,7 @@ class AsyncBinariesResource(AsyncAPIResource):
 
     async def delete(
         self,
-        id: int,
+        binary_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -261,8 +281,10 @@ class AsyncBinariesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a binary
+        """Delete a WebAssembly binary from the platform.
+
+        Note: Binaries currently in use
+        by applications cannot be deleted. Remove all application associations first.
 
         Args:
           extra_headers: Send extra headers
@@ -275,7 +297,7 @@ class AsyncBinariesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{binary_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -284,7 +306,7 @@ class AsyncBinariesResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: int,
+        binary_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -294,7 +316,9 @@ class AsyncBinariesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Binary:
         """
-        Get binary
+        Retrieve complete information about a specific WebAssembly binary including
+        metadata and compiled content. Use this to download or inspect binaries before
+        using them in applications.
 
         Args:
           extra_headers: Send extra headers
@@ -306,7 +330,7 @@ class AsyncBinariesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/binaries/{id}",
+            f"/fastedge/v1/binaries/{binary_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

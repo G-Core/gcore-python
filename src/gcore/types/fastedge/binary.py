@@ -20,6 +20,7 @@ class Binary(BaseModel):
     0 - unknown
     1 - Rust
     2 - JavaScript
+    3 - Go
     """
 
     status: int

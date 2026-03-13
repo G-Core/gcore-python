@@ -12,10 +12,10 @@ class Byod(BaseModel):
     """BYOD (Bring Your Own Data) settings"""
 
     prefix: str
-    """Key prefix"""
+    """Key prefix to namespace your data within the external store"""
 
     url: str
-    """URL to connect to"""
+    """Connection URL for external storage service (Redis, PostgreSQL, etc.)"""
 
 
 class KvStore(BaseModel):

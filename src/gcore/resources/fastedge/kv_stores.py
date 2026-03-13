@@ -58,8 +58,10 @@ class KvStoresResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreCreateResponse:
-        """
-        Add a new Edge store
+        """Create a new key-value storage store for edge applications.
+
+        Stores support
+        multiple data types: simple KV, sorted sets, and bloom filters.
 
         Args:
           name: A name of the store
@@ -105,15 +107,17 @@ class KvStoresResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreListResponse:
-        """
-        List available edge stores
+        """Retrieve key-value storage stores available to the authenticated client.
+
+        Stores
+        can contain KV pairs, sorted sets, or bloom filters for edge application data.
 
         Args:
-          app_id: App ID
+          app_id: Filter stores by application ID. Returns only stores associated with this app.
 
-          limit: Limit for pagination
+          limit: Maximum number of stores to return per page
 
-          offset: Offset for pagination
+          offset: Number of stores to skip for pagination
 
           extra_headers: Send extra headers
 
@@ -144,7 +148,7 @@ class KvStoresResource(SyncAPIResource):
 
     def delete(
         self,
-        id: int,
+        store_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -153,8 +157,10 @@ class KvStoresResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a store
+        """Permanently delete an edge storage store and all its data.
+
+        This action cannot be
+        undone; all keys and values will be lost.
 
         Args:
           extra_headers: Send extra headers
@@ -167,7 +173,7 @@ class KvStoresResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{store_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -176,7 +182,7 @@ class KvStoresResource(SyncAPIResource):
 
     def get(
         self,
-        id: int,
+        store_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -186,7 +192,8 @@ class KvStoresResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
-        Get the edge store by id
+        Retrieve complete configuration and metadata for a specific edge storage store.
+        Includes store type, size limits, and associated applications.
 
         Args:
           extra_headers: Send extra headers
@@ -198,7 +205,7 @@ class KvStoresResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{store_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -207,7 +214,7 @@ class KvStoresResource(SyncAPIResource):
 
     def replace(
         self,
-        id: int,
+        store_id: int,
         *,
         name: str,
         byod: kv_store_replace_params.Byod | Omit = omit,
@@ -220,7 +227,8 @@ class KvStoresResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
-        Update a store
+        Modify edge store configuration including name, description, and application
+        associations. Store type cannot be changed after creation.
 
         Args:
           name: A name of the store
@@ -238,7 +246,7 @@ class KvStoresResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{store_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -289,8 +297,10 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreCreateResponse:
-        """
-        Add a new Edge store
+        """Create a new key-value storage store for edge applications.
+
+        Stores support
+        multiple data types: simple KV, sorted sets, and bloom filters.
 
         Args:
           name: A name of the store
@@ -336,15 +346,17 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStoreListResponse:
-        """
-        List available edge stores
+        """Retrieve key-value storage stores available to the authenticated client.
+
+        Stores
+        can contain KV pairs, sorted sets, or bloom filters for edge application data.
 
         Args:
-          app_id: App ID
+          app_id: Filter stores by application ID. Returns only stores associated with this app.
 
-          limit: Limit for pagination
+          limit: Maximum number of stores to return per page
 
-          offset: Offset for pagination
+          offset: Number of stores to skip for pagination
 
           extra_headers: Send extra headers
 
@@ -375,7 +387,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
 
     async def delete(
         self,
-        id: int,
+        store_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -384,8 +396,10 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a store
+        """Permanently delete an edge storage store and all its data.
+
+        This action cannot be
+        undone; all keys and values will be lost.
 
         Args:
           extra_headers: Send extra headers
@@ -398,7 +412,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{store_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -407,7 +421,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: int,
+        store_id: int,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -417,7 +431,8 @@ class AsyncKvStoresResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
-        Get the edge store by id
+        Retrieve complete configuration and metadata for a specific edge storage store.
+        Includes store type, size limits, and associated applications.
 
         Args:
           extra_headers: Send extra headers
@@ -429,7 +444,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{store_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -438,7 +453,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
 
     async def replace(
         self,
-        id: int,
+        store_id: int,
         *,
         name: str,
         byod: kv_store_replace_params.Byod | Omit = omit,
@@ -451,7 +466,8 @@ class AsyncKvStoresResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KvStore:
         """
-        Update a store
+        Modify edge store configuration including name, description, and application
+        associations. Store type cannot be changed after creation.
 
         Args:
           name: A name of the store
@@ -469,7 +485,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/fastedge/v1/kv/{id}",
+            f"/fastedge/v1/kv/{store_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,

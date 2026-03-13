@@ -52,7 +52,7 @@ class LogsResource(SyncAPIResource):
 
     def list(
         self,
-        id: int,
+        app_id: int,
         *,
         client_ip: str | Omit = omit,
         edge: str | Omit = omit,
@@ -77,7 +77,8 @@ class LogsResource(SyncAPIResource):
 
           edge: Edge name
 
-          from_: Reporting period start time, RFC3339 format. Default 1 hour ago.
+          from_: Start of log retrieval period in RFC3339 format. Defaults to 1 hour ago if not
+              specified.
 
           limit: Limit for pagination
 
@@ -98,7 +99,7 @@ class LogsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/fastedge/v1/apps/{id}/logs",
+            f"/fastedge/v1/apps/{app_id}/logs",
             page=SyncOffsetPageFastedgeAppLogs[Log],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -149,7 +150,7 @@ class AsyncLogsResource(AsyncAPIResource):
 
     def list(
         self,
-        id: int,
+        app_id: int,
         *,
         client_ip: str | Omit = omit,
         edge: str | Omit = omit,
@@ -174,7 +175,8 @@ class AsyncLogsResource(AsyncAPIResource):
 
           edge: Edge name
 
-          from_: Reporting period start time, RFC3339 format. Default 1 hour ago.
+          from_: Start of log retrieval period in RFC3339 format. Defaults to 1 hour ago if not
+              specified.
 
           limit: Limit for pagination
 
@@ -195,7 +197,7 @@ class AsyncLogsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/fastedge/v1/apps/{id}/logs",
+            f"/fastedge/v1/apps/{app_id}/logs",
             page=AsyncOffsetPageFastedgeAppLogs[Log],
             options=make_request_options(
                 extra_headers=extra_headers,

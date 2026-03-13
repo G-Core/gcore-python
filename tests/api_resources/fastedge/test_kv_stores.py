@@ -33,8 +33,8 @@ class TestKvStores:
         kv_store = client.fastedge.kv_stores.create(
             name="name",
             byod={
-                "prefix": "prefix",
-                "url": "url",
+                "prefix": "app:prod:",
+                "url": "redis://redis.example.com:6379/0",
             },
             comment="comment",
         )
@@ -72,8 +72,8 @@ class TestKvStores:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.list(
-            app_id=0,
-            limit=0,
+            app_id=1,
+            limit=1,
             offset=0,
         )
         assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
@@ -163,7 +163,7 @@ class TestKvStores:
     @parametrize
     def test_method_replace(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.replace(
-            id=0,
+            store_id=0,
             name="name",
         )
         assert_matches_type(KvStore, kv_store, path=["response"])
@@ -171,11 +171,11 @@ class TestKvStores:
     @parametrize
     def test_method_replace_with_all_params(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.replace(
-            id=0,
+            store_id=0,
             name="name",
             byod={
-                "prefix": "prefix",
-                "url": "url",
+                "prefix": "app:prod:",
+                "url": "redis://redis.example.com:6379/0",
             },
             comment="comment",
         )
@@ -184,7 +184,7 @@ class TestKvStores:
     @parametrize
     def test_raw_response_replace(self, client: Gcore) -> None:
         response = client.fastedge.kv_stores.with_raw_response.replace(
-            id=0,
+            store_id=0,
             name="name",
         )
 
@@ -196,7 +196,7 @@ class TestKvStores:
     @parametrize
     def test_streaming_response_replace(self, client: Gcore) -> None:
         with client.fastedge.kv_stores.with_streaming_response.replace(
-            id=0,
+            store_id=0,
             name="name",
         ) as response:
             assert not response.is_closed
@@ -225,8 +225,8 @@ class TestAsyncKvStores:
         kv_store = await async_client.fastedge.kv_stores.create(
             name="name",
             byod={
-                "prefix": "prefix",
-                "url": "url",
+                "prefix": "app:prod:",
+                "url": "redis://redis.example.com:6379/0",
             },
             comment="comment",
         )
@@ -264,8 +264,8 @@ class TestAsyncKvStores:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.list(
-            app_id=0,
-            limit=0,
+            app_id=1,
+            limit=1,
             offset=0,
         )
         assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
@@ -355,7 +355,7 @@ class TestAsyncKvStores:
     @parametrize
     async def test_method_replace(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.replace(
-            id=0,
+            store_id=0,
             name="name",
         )
         assert_matches_type(KvStore, kv_store, path=["response"])
@@ -363,11 +363,11 @@ class TestAsyncKvStores:
     @parametrize
     async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.replace(
-            id=0,
+            store_id=0,
             name="name",
             byod={
-                "prefix": "prefix",
-                "url": "url",
+                "prefix": "app:prod:",
+                "url": "redis://redis.example.com:6379/0",
             },
             comment="comment",
         )
@@ -376,7 +376,7 @@ class TestAsyncKvStores:
     @parametrize
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
         response = await async_client.fastedge.kv_stores.with_raw_response.replace(
-            id=0,
+            store_id=0,
             name="name",
         )
 
@@ -388,7 +388,7 @@ class TestAsyncKvStores:
     @parametrize
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
         async with async_client.fastedge.kv_stores.with_streaming_response.replace(
-            id=0,
+            store_id=0,
             name="name",
         ) as response:
             assert not response.is_closed

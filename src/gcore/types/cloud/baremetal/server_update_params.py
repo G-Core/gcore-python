@@ -7,10 +7,10 @@ from typing_extensions import TypedDict
 
 from ..tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["ClusterUpdateParams"]
+__all__ = ["ServerUpdateParams"]
 
 
-class ClusterUpdateParams(TypedDict, total=False):
+class ServerUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
@@ -18,7 +18,7 @@ class ClusterUpdateParams(TypedDict, total=False):
     """Region ID"""
 
     name: str
-    """Cluster name"""
+    """Name"""
 
     tags: Optional[TagUpdateMapParam]
     """Update key-value tags using JSON Merge Patch semantics (RFC 7386).

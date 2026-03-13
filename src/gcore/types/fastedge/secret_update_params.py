@@ -21,7 +21,10 @@ class SecretUpdateParams(TypedDict, total=False):
 
 class SecretSlot(TypedDict, total=False):
     slot: Required[int]
-    """Secret slot ID."""
+    """
+    Unix timestamp (seconds since epoch) indicating when this secret version becomes
+    active. Use for time-based secret rotation.
+    """
 
     value: str
-    """The value of the secret."""
+    """The plaintext secret value. Will be encrypted with AES-256-GCM before storage."""

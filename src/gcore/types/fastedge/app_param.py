@@ -24,22 +24,29 @@ class Stores(TypedDict, total=False):
 
 class AppParam(TypedDict, total=False):
     binary: int
-    """Binary ID"""
+    """ID of the WebAssembly binary to deploy"""
 
     comment: str
-    """App description"""
+    """Optional human-readable description of the application's purpose"""
 
     debug: bool
-    """Switch on logging for 30 minutes (switched off by default)"""
+    """Enable verbose debug logging for 30 minutes.
+
+    Automatically expires to prevent performance impact.
+    """
 
     env: Dict[str, str]
     """Environment variables"""
 
     log: Optional[Literal["kafka", "none"]]
-    """Logging channel (by default - kafka, which allows exploring logs with API)"""
+    """Logging channel.
+
+    Use 'kafka' to enable log collection (queryable via API), or 'none' to disable
+    logging.
+    """
 
     name: str
-    """App name"""
+    """Unique application name (alphanumeric, hyphens allowed)"""
 
     rsp_headers: Dict[str, str]
     """Extra headers to add to the response"""
@@ -53,8 +60,6 @@ class AppParam(TypedDict, total=False):
     0 - draft (inactive)
     1 - enabled
     2 - disabled
-    3 - hourly call limit exceeded
-    4 - daily call limit exceeded
     5 - suspended
     """
 

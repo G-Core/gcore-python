@@ -16,10 +16,13 @@ class TemplateListParams(TypedDict, total=False):
     """
 
     limit: int
-    """Limit for pagination"""
+    """Maximum number of results to return"""
 
     offset: int
-    """Offset for pagination"""
+    """Number of results to skip for pagination"""
 
     only_mine: bool
-    """Only my templates"""
+    """When true, returns only templates created by the client.
+
+    When false, includes shared templates.
+    """

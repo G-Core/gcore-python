@@ -37,7 +37,7 @@ def create_storage(*, client: Gcore) -> int:
 
 def list_storages(*, client: Gcore) -> None:
     print("\n=== LIST STORAGES ===")
-    storages = client.storage.list()
+    storages = client.storage.list() # pyright: ignore[reportDeprecated]
     for count, storage in enumerate(storages, 1):
         print(
             f"  {count}. Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}, Status={storage.provisioning_status}"
@@ -47,7 +47,7 @@ def list_storages(*, client: Gcore) -> None:
 
 def get_storage(*, client: Gcore, storage_id: int) -> None:
     print("\n=== GET STORAGE ===")
-    storage = client.storage.get(storage_id=storage_id)
+    storage = client.storage.get(storage_id=storage_id) # pyright: ignore[reportDeprecated]
     print(
         f"Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}, Status={storage.provisioning_status}"
     )

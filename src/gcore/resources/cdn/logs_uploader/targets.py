@@ -63,7 +63,9 @@ class TargetsResource(SyncAPIResource):
         self,
         *,
         config: target_create_params.Config,
-        storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"],
+        storage_type: Literal[
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+        ],
         description: str | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -117,7 +119,9 @@ class TargetsResource(SyncAPIResource):
         config: target_update_params.Config | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
-        storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"]
+        storage_type: Literal[
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+        ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -282,7 +286,9 @@ class TargetsResource(SyncAPIResource):
         id: int,
         *,
         config: target_replace_params.Config,
-        storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"],
+        storage_type: Literal[
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+        ],
         description: str | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -393,7 +399,9 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         *,
         config: target_create_params.Config,
-        storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"],
+        storage_type: Literal[
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+        ],
         description: str | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -447,7 +455,9 @@ class AsyncTargetsResource(AsyncAPIResource):
         config: target_update_params.Config | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
-        storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"]
+        storage_type: Literal[
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+        ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -612,7 +622,9 @@ class AsyncTargetsResource(AsyncAPIResource):
         id: int,
         *,
         config: target_replace_params.Config,
-        storage_type: Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"],
+        storage_type: Literal[
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+        ],
         description: str | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

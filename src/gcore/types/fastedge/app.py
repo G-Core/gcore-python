@@ -40,10 +40,10 @@ class App(BaseModel):
     """Wasm API type"""
 
     binary: Optional[int] = None
-    """Binary ID"""
+    """ID of the WebAssembly binary to deploy"""
 
     comment: Optional[str] = None
-    """App description"""
+    """Optional human-readable description of the application's purpose"""
 
     debug_until: Optional[datetime] = None
     """When debugging finishes"""
@@ -52,10 +52,14 @@ class App(BaseModel):
     """Environment variables"""
 
     log: Optional[Literal["kafka", "none"]] = None
-    """Logging channel (by default - kafka, which allows exploring logs with API)"""
+    """Logging channel.
+
+    Use 'kafka' to enable log collection (queryable via API), or 'none' to disable
+    logging.
+    """
 
     name: Optional[str] = None
-    """App name"""
+    """Unique application name (alphanumeric, hyphens allowed)"""
 
     networks: Optional[List[str]] = None
     """Networks"""
@@ -78,8 +82,6 @@ class App(BaseModel):
     0 - draft (inactive)
     1 - enabled
     2 - disabled
-    3 - hourly call limit exceeded
-    4 - daily call limit exceeded
     5 - suspended
     """
 
@@ -93,4 +95,4 @@ class App(BaseModel):
     """Template name"""
 
     url: Optional[str] = None
-    """App URL"""
+    """Auto-generated URL where the application is accessible"""

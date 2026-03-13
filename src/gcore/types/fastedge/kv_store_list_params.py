@@ -9,10 +9,10 @@ __all__ = ["KvStoreListParams"]
 
 class KvStoreListParams(TypedDict, total=False):
     app_id: int
-    """App ID"""
+    """Filter stores by application ID. Returns only stores associated with this app."""
 
     limit: int
-    """Limit for pagination"""
+    """Maximum number of stores to return per page"""
 
     offset: int
-    """Offset for pagination"""
+    """Number of stores to skip for pagination"""

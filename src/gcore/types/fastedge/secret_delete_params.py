@@ -9,4 +9,4 @@ __all__ = ["SecretDeleteParams"]
 
 class SecretDeleteParams(TypedDict, total=False):
     force: bool
-    """Force delete secret even if it is used in slots"""
+    """When true, deletes secret even if used by applications. Defaults to false."""

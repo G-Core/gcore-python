@@ -39,8 +39,6 @@ class Client(BaseModel):
     Status code:
     1 - enabled
     2 - disabled
-    3 - hourly call limit exceeded
-    4 - daily call limit exceeded
     5 - suspended
     """
 

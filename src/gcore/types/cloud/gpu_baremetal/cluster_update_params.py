@@ -3,24 +3,24 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict
 
 from ..tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["ClusterActionParams"]
+__all__ = ["ClusterUpdateParams"]
 
 
-class ClusterActionParams(TypedDict, total=False):
+class ClusterUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
     region_id: int
     """Region ID"""
 
-    action: Required[Literal["update_tags"]]
-    """Action name"""
+    name: str
+    """Cluster name"""
 
-    tags: Required[Optional[TagUpdateMapParam]]
+    tags: Optional[TagUpdateMapParam]
     """Update key-value tags using JSON Merge Patch semantics (RFC 7386).
 
     Provide key-value pairs to add or update tags. Set tag values to `null` to

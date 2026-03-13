@@ -135,7 +135,10 @@ class FastedgeResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Client:
-        """Get status and limits for the client"""
+        """
+        Retrieve the authenticated client's account status, resource quotas, and usage
+        limits. Shows current plan, available resources, and any active restrictions.
+        """
         return self._get(
             "/fastedge/v1/me",
             options=make_request_options(
@@ -213,7 +216,10 @@ class AsyncFastedgeResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Client:
-        """Get status and limits for the client"""
+        """
+        Retrieve the authenticated client's account status, resource quotas, and usage
+        limits. Shows current plan, available resources, and any active restrictions.
+        """
         return await self._get(
             "/fastedge/v1/me",
             options=make_request_options(

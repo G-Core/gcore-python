@@ -9,4 +9,4 @@ __all__ = ["TemplateDeleteParams"]
 
 class TemplateDeleteParams(TypedDict, total=False):
     force: bool
-    """Force template deletion even if it is shared to groups"""
+    """When true, deletes template even if shared with groups. Defaults to false."""

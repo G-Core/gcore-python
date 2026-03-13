@@ -12,6 +12,7 @@ from .app_param import AppParam as AppParam
 from .app_short import AppShort as AppShort
 from .call_status import CallStatus as CallStatus
 from .binary_short import BinaryShort as BinaryShort
+from .secret_param import SecretParam as SecretParam
 from .secret_short import SecretShort as SecretShort
 from .duration_stats import DurationStats as DurationStats
 from .kv_store_short import KvStoreShort as KvStoreShort

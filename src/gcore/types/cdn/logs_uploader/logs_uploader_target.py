@@ -24,6 +24,11 @@ __all__ = [
     "ConfigHTTPConfigResponseRetryResponseAction",
     "ConfigHTTPConfigResponseUpload",
     "ConfigHTTPConfigResponseUploadResponseAction",
+    "ConfigAzureBlobConfigResponse",
+    "ConfigAzureBlobConfigResponseAuth",
+    "ConfigAzureBlobConfigResponseAuthConfig",
+    "ConfigAzureBlobConfigResponseAuthConfigAccountKey",
+    "ConfigAzureBlobConfigResponseAuthConfigToken",
     "Status",
 ]
 
@@ -186,6 +191,45 @@ class ConfigHTTPConfigResponse(BaseModel):
     upload: Optional[ConfigHTTPConfigResponseUpload] = None
 
 
+class ConfigAzureBlobConfigResponseAuthConfigAccountKey(BaseModel):
+    account_key: Optional[str] = None
+    """Masked secret value."""
+
+
+class ConfigAzureBlobConfigResponseAuthConfigToken(BaseModel):
+    token: Optional[str] = None
+    """Masked secret value."""
+
+
+ConfigAzureBlobConfigResponseAuthConfig: TypeAlias = Union[
+    ConfigAzureBlobConfigResponseAuthConfigAccountKey, ConfigAzureBlobConfigResponseAuthConfigToken
+]
+
+
+class ConfigAzureBlobConfigResponseAuth(BaseModel):
+    config: ConfigAzureBlobConfigResponseAuthConfig
+    """Authentication credentials. Secret fields are masked with '**\\****'."""
+
+    type: Literal["shared_key", "sas_token"]
+    """Authentication type."""
+
+
+class ConfigAzureBlobConfigResponse(BaseModel):
+    account_name: Optional[str] = None
+    """Azure Blob Storage account name."""
+
+    auth: Optional[ConfigAzureBlobConfigResponseAuth] = None
+
+    container_name: Optional[str] = None
+    """Azure Blob Storage container name."""
+
+    directory: Optional[str] = None
+    """Directory path within the container."""
+
+    endpoint: Optional[str] = None
+    """Custom Azure Blob Storage endpoint URL."""
+
+
 Config: TypeAlias = Union[
     ConfigS3GcoreConfigResponse,
     ConfigS3AmazonConfigResponse,
@@ -195,6 +239,7 @@ Config: TypeAlias = Union[
     ConfigBaseFtpConfig,
     ConfigSftpConfigResponse,
     ConfigHTTPConfigResponse,
+    ConfigAzureBlobConfigResponse,
 ]
 
 
@@ -234,9 +279,9 @@ class LogsUploaderTarget(BaseModel):
     Informs if the specified target is reachable.
     """
 
-    storage_type: Optional[Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http"]] = (
-        None
-    )
+    storage_type: Optional[
+        Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"]
+    ] = None
     """Type of storage for logs."""
 
     updated: Optional[datetime] = None

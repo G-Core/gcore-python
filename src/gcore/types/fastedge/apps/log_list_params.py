@@ -19,7 +19,10 @@ class LogListParams(TypedDict, total=False):
     """Edge name"""
 
     from_: Annotated[Union[str, datetime], PropertyInfo(alias="from", format="iso8601")]
-    """Reporting period start time, RFC3339 format. Default 1 hour ago."""
+    """Start of log retrieval period in RFC3339 format.
+
+    Defaults to 1 hour ago if not specified.
+    """
 
     limit: int
     """Limit for pagination"""

@@ -20,8 +20,15 @@ from ...._response import (
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloud.baremetal import server_list_params, server_create_params, server_rebuild_params
+from ....types.cloud.baremetal import (
+    server_list_params,
+    server_create_params,
+    server_delete_params,
+    server_update_params,
+    server_rebuild_params,
+)
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 from ....types.cloud.baremetal.baremetal_server import BaremetalServer
 
 __all__ = ["ServersResource", "AsyncServersResource"]
@@ -187,6 +194,84 @@ class ServersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def update(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BaremetalServer:
+        """
+        Rename bare metal server or update tags
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return self._patch(
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                server_update_params.ServerUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BaremetalServer,
+        )
+
     def list(
         self,
         *,
@@ -335,6 +420,118 @@ class ServersResource(SyncAPIResource):
                 ),
             ),
             model=BaremetalServer,
+        )
+
+    def delete(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        all_floating_ips: bool | Omit = omit,
+        floating_ip_ids: str | Omit = omit,
+        reserved_fixed_ip_ids: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Delete a bare metal server and it's associated resources
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          all_floating_ips: True if it is required to delete floating IPs assigned to the instance. Can't be
+              used with `floating_ip_ids`.
+
+          floating_ip_ids: Comma separated list of floating ids that should be deleted. Can't be used with
+              `all_floating_ips`.
+
+          reserved_fixed_ip_ids: Comma separated list of port IDs to be deleted with the instance
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return self._delete(
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "all_floating_ips": all_floating_ips,
+                        "floating_ip_ids": floating_ip_ids,
+                        "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
+                    },
+                    server_delete_params.ServerDeleteParams,
+                ),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def get(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BaremetalServer:
+        """
+        Retrieve detailed information about a specific baremetal instance.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return self._get(
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BaremetalServer,
         )
 
     def rebuild(
@@ -679,6 +876,84 @@ class AsyncServersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def update(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BaremetalServer:
+        """
+        Rename bare metal server or update tags
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return await self._patch(
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                server_update_params.ServerUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BaremetalServer,
+        )
+
     def list(
         self,
         *,
@@ -827,6 +1102,118 @@ class AsyncServersResource(AsyncAPIResource):
                 ),
             ),
             model=BaremetalServer,
+        )
+
+    async def delete(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        all_floating_ips: bool | Omit = omit,
+        floating_ip_ids: str | Omit = omit,
+        reserved_fixed_ip_ids: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Delete a bare metal server and it's associated resources
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          all_floating_ips: True if it is required to delete floating IPs assigned to the instance. Can't be
+              used with `floating_ip_ids`.
+
+          floating_ip_ids: Comma separated list of floating ids that should be deleted. Can't be used with
+              `all_floating_ips`.
+
+          reserved_fixed_ip_ids: Comma separated list of port IDs to be deleted with the instance
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return await self._delete(
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "all_floating_ips": all_floating_ips,
+                        "floating_ip_ids": floating_ip_ids,
+                        "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
+                    },
+                    server_delete_params.ServerDeleteParams,
+                ),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def get(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BaremetalServer:
+        """
+        Retrieve detailed information about a specific baremetal instance.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return await self._get(
+            f"/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BaremetalServer,
         )
 
     async def rebuild(
@@ -1018,8 +1405,17 @@ class ServersResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             servers.create,
         )
+        self.update = to_raw_response_wrapper(
+            servers.update,
+        )
         self.list = to_raw_response_wrapper(
             servers.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            servers.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            servers.get,
         )
         self.rebuild = to_raw_response_wrapper(
             servers.rebuild,
@@ -1039,8 +1435,17 @@ class AsyncServersResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             servers.create,
         )
+        self.update = async_to_raw_response_wrapper(
+            servers.update,
+        )
         self.list = async_to_raw_response_wrapper(
             servers.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            servers.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            servers.get,
         )
         self.rebuild = async_to_raw_response_wrapper(
             servers.rebuild,
@@ -1060,8 +1465,17 @@ class ServersResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             servers.create,
         )
+        self.update = to_streamed_response_wrapper(
+            servers.update,
+        )
         self.list = to_streamed_response_wrapper(
             servers.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            servers.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            servers.get,
         )
         self.rebuild = to_streamed_response_wrapper(
             servers.rebuild,
@@ -1081,8 +1495,17 @@ class AsyncServersResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             servers.create,
         )
+        self.update = async_to_streamed_response_wrapper(
+            servers.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             servers.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            servers.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            servers.get,
         )
         self.rebuild = async_to_streamed_response_wrapper(
             servers.rebuild,
