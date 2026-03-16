@@ -87,7 +87,7 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     """Containers gpu count limit"""
 
     caas_ram_size_limit: int
-    """MB memory count for containers limit"""
+    """MiB memory count for containers limit"""
 
     cluster_count_limit: int
     """K8s clusters count limit"""
@@ -111,7 +111,7 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     """Functions namespace count limit"""
 
     faas_ram_size_limit: int
-    """MB memory count for functions limit"""
+    """MiB memory count for functions limit"""
 
     firewall_count_limit: int
     """Firewalls Count limit"""
@@ -138,7 +138,7 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     """Images Count limit"""
 
     image_size_limit: int
-    """Images Size, GiB limit"""
+    """Images Size, bytes limit"""
 
     ipu_count_limit: int
     """IPU Count limit"""
@@ -153,7 +153,7 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     """Networks Count limit"""
 
     ram_limit: int
-    """RAM Size, GiB limit"""
+    """RAM Size, MiB limit"""
 
     region_id: int
     """Region ID"""
