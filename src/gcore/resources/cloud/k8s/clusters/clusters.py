@@ -16,6 +16,14 @@ from .nodes import (
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
+from .kubeconfig import (
+    KubeconfigResource,
+    AsyncKubeconfigResource,
+    KubeconfigResourceWithRawResponse,
+    AsyncKubeconfigResourceWithRawResponse,
+    KubeconfigResourceWithStreamingResponse,
+    AsyncKubeconfigResourceWithStreamingResponse,
+)
 from ....._compat import cached_property
 from .pools.pools import (
     PoolsResource,
@@ -43,7 +51,6 @@ from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.k8s.k8s_cluster import K8SCluster
 from .....types.cloud.k8s.k8s_cluster_list import K8SClusterList
 from .....types.cloud.k8s_cluster_version_list import K8SClusterVersionList
-from .....types.cloud.k8s.k8s_cluster_kubeconfig import K8SClusterKubeconfig
 from .....types.cloud.k8s.k8s_cluster_certificate import K8SClusterCertificate
 
 __all__ = ["ClustersResource", "AsyncClustersResource"]
@@ -53,6 +60,13 @@ class ClustersResource(SyncAPIResource):
     """
     Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
     """
+
+    @cached_property
+    def kubeconfig(self) -> KubeconfigResource:
+        """
+        Kubeconfig provides the necessary configuration and credentials to access a Kubernetes cluster using kubectl or other Kubernetes clients.
+        """
+        return KubeconfigResource(self._client)
 
     @cached_property
     def nodes(self) -> NodesResource:
@@ -566,51 +580,6 @@ class ClustersResource(SyncAPIResource):
             cast_to=K8SClusterCertificate,
         )
 
-    def get_kubeconfig(
-        self,
-        cluster_name: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterKubeconfig:
-        """
-        Get k8s cluster kubeconfig
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          cluster_name: Cluster name
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not cluster_name:
-            raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
-        return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=K8SClusterKubeconfig,
-        )
-
     def list_versions_for_upgrade(
         self,
         cluster_name: str,
@@ -710,6 +679,13 @@ class AsyncClustersResource(AsyncAPIResource):
     """
     Managed Kubernetes clusters with configurable worker node pools, networking, and cluster add-ons.
     """
+
+    @cached_property
+    def kubeconfig(self) -> AsyncKubeconfigResource:
+        """
+        Kubeconfig provides the necessary configuration and credentials to access a Kubernetes cluster using kubectl or other Kubernetes clients.
+        """
+        return AsyncKubeconfigResource(self._client)
 
     @cached_property
     def nodes(self) -> AsyncNodesResource:
@@ -1223,51 +1199,6 @@ class AsyncClustersResource(AsyncAPIResource):
             cast_to=K8SClusterCertificate,
         )
 
-    async def get_kubeconfig(
-        self,
-        cluster_name: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterKubeconfig:
-        """
-        Get k8s cluster kubeconfig
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          cluster_name: Cluster name
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not cluster_name:
-            raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
-        return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=K8SClusterKubeconfig,
-        )
-
     async def list_versions_for_upgrade(
         self,
         cluster_name: str,
@@ -1385,15 +1316,19 @@ class ClustersResourceWithRawResponse:
         self.get_certificate = to_raw_response_wrapper(
             clusters.get_certificate,
         )
-        self.get_kubeconfig = to_raw_response_wrapper(
-            clusters.get_kubeconfig,
-        )
         self.list_versions_for_upgrade = to_raw_response_wrapper(
             clusters.list_versions_for_upgrade,
         )
         self.upgrade = to_raw_response_wrapper(
             clusters.upgrade,
         )
+
+    @cached_property
+    def kubeconfig(self) -> KubeconfigResourceWithRawResponse:
+        """
+        Kubeconfig provides the necessary configuration and credentials to access a Kubernetes cluster using kubectl or other Kubernetes clients.
+        """
+        return KubeconfigResourceWithRawResponse(self._clusters.kubeconfig)
 
     @cached_property
     def nodes(self) -> NodesResourceWithRawResponse:
@@ -1426,15 +1361,19 @@ class AsyncClustersResourceWithRawResponse:
         self.get_certificate = async_to_raw_response_wrapper(
             clusters.get_certificate,
         )
-        self.get_kubeconfig = async_to_raw_response_wrapper(
-            clusters.get_kubeconfig,
-        )
         self.list_versions_for_upgrade = async_to_raw_response_wrapper(
             clusters.list_versions_for_upgrade,
         )
         self.upgrade = async_to_raw_response_wrapper(
             clusters.upgrade,
         )
+
+    @cached_property
+    def kubeconfig(self) -> AsyncKubeconfigResourceWithRawResponse:
+        """
+        Kubeconfig provides the necessary configuration and credentials to access a Kubernetes cluster using kubectl or other Kubernetes clients.
+        """
+        return AsyncKubeconfigResourceWithRawResponse(self._clusters.kubeconfig)
 
     @cached_property
     def nodes(self) -> AsyncNodesResourceWithRawResponse:
@@ -1467,15 +1406,19 @@ class ClustersResourceWithStreamingResponse:
         self.get_certificate = to_streamed_response_wrapper(
             clusters.get_certificate,
         )
-        self.get_kubeconfig = to_streamed_response_wrapper(
-            clusters.get_kubeconfig,
-        )
         self.list_versions_for_upgrade = to_streamed_response_wrapper(
             clusters.list_versions_for_upgrade,
         )
         self.upgrade = to_streamed_response_wrapper(
             clusters.upgrade,
         )
+
+    @cached_property
+    def kubeconfig(self) -> KubeconfigResourceWithStreamingResponse:
+        """
+        Kubeconfig provides the necessary configuration and credentials to access a Kubernetes cluster using kubectl or other Kubernetes clients.
+        """
+        return KubeconfigResourceWithStreamingResponse(self._clusters.kubeconfig)
 
     @cached_property
     def nodes(self) -> NodesResourceWithStreamingResponse:
@@ -1508,15 +1451,19 @@ class AsyncClustersResourceWithStreamingResponse:
         self.get_certificate = async_to_streamed_response_wrapper(
             clusters.get_certificate,
         )
-        self.get_kubeconfig = async_to_streamed_response_wrapper(
-            clusters.get_kubeconfig,
-        )
         self.list_versions_for_upgrade = async_to_streamed_response_wrapper(
             clusters.list_versions_for_upgrade,
         )
         self.upgrade = async_to_streamed_response_wrapper(
             clusters.upgrade,
         )
+
+    @cached_property
+    def kubeconfig(self) -> AsyncKubeconfigResourceWithStreamingResponse:
+        """
+        Kubeconfig provides the necessary configuration and credentials to access a Kubernetes cluster using kubectl or other Kubernetes clients.
+        """
+        return AsyncKubeconfigResourceWithStreamingResponse(self._clusters.kubeconfig)
 
     @cached_property
     def nodes(self) -> AsyncNodesResourceWithStreamingResponse:

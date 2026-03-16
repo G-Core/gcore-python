@@ -24,8 +24,22 @@ from .clusters import (
     ClustersResourceWithStreamingResponse,
     AsyncClustersResourceWithStreamingResponse,
 )
+from .kubeconfig import (
+    KubeconfigResource,
+    AsyncKubeconfigResource,
+    KubeconfigResourceWithRawResponse,
+    AsyncKubeconfigResourceWithRawResponse,
+    KubeconfigResourceWithStreamingResponse,
+    AsyncKubeconfigResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "KubeconfigResource",
+    "AsyncKubeconfigResource",
+    "KubeconfigResourceWithRawResponse",
+    "AsyncKubeconfigResourceWithRawResponse",
+    "KubeconfigResourceWithStreamingResponse",
+    "AsyncKubeconfigResourceWithStreamingResponse",
     "NodesResource",
     "AsyncNodesResource",
     "NodesResourceWithRawResponse",
