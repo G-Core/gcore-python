@@ -278,7 +278,9 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_id: int,
         *,
-        body: secret_replace_params.Body,
+        name: str,
+        comment: str | Omit = omit,
+        secret_slots: Iterable[secret_replace_params.SecretSlot] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -290,6 +292,12 @@ class SecretsResource(SyncAPIResource):
         Updates secret metadata and/or adds new time-based slots with encrypted values
 
         Args:
+          name: The unique name of the secret.
+
+          comment: A description or comment about the secret.
+
+          secret_slots: A list of secret slots associated with this secret.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -300,7 +308,14 @@ class SecretsResource(SyncAPIResource):
         """
         return self._put(
             f"/fastedge/v1/secrets/{secret_id}",
-            body=maybe_transform(body, secret_replace_params.SecretReplaceParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "comment": comment,
+                    "secret_slots": secret_slots,
+                },
+                secret_replace_params.SecretReplaceParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -555,7 +570,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_id: int,
         *,
-        body: secret_replace_params.Body,
+        name: str,
+        comment: str | Omit = omit,
+        secret_slots: Iterable[secret_replace_params.SecretSlot] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -567,6 +584,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         Updates secret metadata and/or adds new time-based slots with encrypted values
 
         Args:
+          name: The unique name of the secret.
+
+          comment: A description or comment about the secret.
+
+          secret_slots: A list of secret slots associated with this secret.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -577,7 +600,14 @@ class AsyncSecretsResource(AsyncAPIResource):
         """
         return await self._put(
             f"/fastedge/v1/secrets/{secret_id}",
-            body=await async_maybe_transform(body, secret_replace_params.SecretReplaceParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "comment": comment,
+                    "secret_slots": secret_slots,
+                },
+                secret_replace_params.SecretReplaceParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

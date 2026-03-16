@@ -79,7 +79,7 @@ class RequestedLimitsRegionalLimit(BaseModel):
     """Containers gpu count limit"""
 
     caas_ram_size_limit: Optional[int] = None
-    """MB memory count for containers limit"""
+    """MiB memory count for containers limit"""
 
     cluster_count_limit: Optional[int] = None
     """K8s clusters count limit"""
@@ -103,7 +103,7 @@ class RequestedLimitsRegionalLimit(BaseModel):
     """Functions namespace count limit"""
 
     faas_ram_size_limit: Optional[int] = None
-    """MB memory count for functions limit"""
+    """MiB memory count for functions limit"""
 
     firewall_count_limit: Optional[int] = None
     """Firewalls Count limit"""
@@ -130,7 +130,7 @@ class RequestedLimitsRegionalLimit(BaseModel):
     """Images Count limit"""
 
     image_size_limit: Optional[int] = None
-    """Images Size, GiB limit"""
+    """Images Size, bytes limit"""
 
     ipu_count_limit: Optional[int] = None
     """IPU Count limit"""
@@ -145,7 +145,7 @@ class RequestedLimitsRegionalLimit(BaseModel):
     """Networks Count limit"""
 
     ram_limit: Optional[int] = None
-    """RAM Size, GiB limit"""
+    """RAM Size, MiB limit"""
 
     region_id: Optional[int] = None
     """Region ID"""

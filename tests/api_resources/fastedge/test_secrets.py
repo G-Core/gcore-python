@@ -219,7 +219,7 @@ class TestSecrets:
     def test_method_replace(self, client: Gcore) -> None:
         secret = client.fastedge.secrets.replace(
             secret_id=0,
-            body={},
+            name="name",
         )
         assert_matches_type(Secret, secret, path=["response"])
 
@@ -227,16 +227,14 @@ class TestSecrets:
     def test_method_replace_with_all_params(self, client: Gcore) -> None:
         secret = client.fastedge.secrets.replace(
             secret_id=0,
-            body={
-                "comment": "comment",
-                "name": "name",
-                "secret_slots": [
-                    {
-                        "slot": 1704067200,
-                        "value": "P@ssw0rd123!",
-                    }
-                ],
-            },
+            name="name",
+            comment="comment",
+            secret_slots=[
+                {
+                    "slot": 1704067200,
+                    "value": "P@ssw0rd123!",
+                }
+            ],
         )
         assert_matches_type(Secret, secret, path=["response"])
 
@@ -244,7 +242,7 @@ class TestSecrets:
     def test_raw_response_replace(self, client: Gcore) -> None:
         response = client.fastedge.secrets.with_raw_response.replace(
             secret_id=0,
-            body={},
+            name="name",
         )
 
         assert response.is_closed is True
@@ -256,7 +254,7 @@ class TestSecrets:
     def test_streaming_response_replace(self, client: Gcore) -> None:
         with client.fastedge.secrets.with_streaming_response.replace(
             secret_id=0,
-            body={},
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -470,7 +468,7 @@ class TestAsyncSecrets:
     async def test_method_replace(self, async_client: AsyncGcore) -> None:
         secret = await async_client.fastedge.secrets.replace(
             secret_id=0,
-            body={},
+            name="name",
         )
         assert_matches_type(Secret, secret, path=["response"])
 
@@ -478,16 +476,14 @@ class TestAsyncSecrets:
     async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
         secret = await async_client.fastedge.secrets.replace(
             secret_id=0,
-            body={
-                "comment": "comment",
-                "name": "name",
-                "secret_slots": [
-                    {
-                        "slot": 1704067200,
-                        "value": "P@ssw0rd123!",
-                    }
-                ],
-            },
+            name="name",
+            comment="comment",
+            secret_slots=[
+                {
+                    "slot": 1704067200,
+                    "value": "P@ssw0rd123!",
+                }
+            ],
         )
         assert_matches_type(Secret, secret, path=["response"])
 
@@ -495,7 +491,7 @@ class TestAsyncSecrets:
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
         response = await async_client.fastedge.secrets.with_raw_response.replace(
             secret_id=0,
-            body={},
+            name="name",
         )
 
         assert response.is_closed is True
@@ -507,7 +503,7 @@ class TestAsyncSecrets:
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
         async with async_client.fastedge.secrets.with_streaming_response.replace(
             secret_id=0,
-            body={},
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

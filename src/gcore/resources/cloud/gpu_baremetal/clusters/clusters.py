@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
@@ -441,6 +442,7 @@ class ClustersResource(SyncAPIResource):
             cast_to=GPUBaremetalCluster,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def powercycle_all_servers(
         self,
         cluster_id: str,
@@ -455,7 +457,9 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
-        Stops and then starts all cluster servers, effectively performing a hard reboot.
+        Please use the
+        `/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action`
+        instead.
 
         Args:
           extra_headers: Send extra headers
@@ -480,6 +484,7 @@ class ClustersResource(SyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1List,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def reboot_all_servers(
         self,
         cluster_id: str,
@@ -494,7 +499,9 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
-        Reboot all bare metal GPU cluster servers
+        Please use the
+        `/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action`
+        instead.
 
         Args:
           extra_headers: Send extra headers
@@ -1209,6 +1216,7 @@ class AsyncClustersResource(AsyncAPIResource):
             cast_to=GPUBaremetalCluster,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def powercycle_all_servers(
         self,
         cluster_id: str,
@@ -1223,7 +1231,9 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
-        Stops and then starts all cluster servers, effectively performing a hard reboot.
+        Please use the
+        `/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action`
+        instead.
 
         Args:
           extra_headers: Send extra headers
@@ -1248,6 +1258,7 @@ class AsyncClustersResource(AsyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1List,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def reboot_all_servers(
         self,
         cluster_id: str,
@@ -1262,7 +1273,9 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1List:
         """
-        Reboot all bare metal GPU cluster servers
+        Please use the
+        `/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action`
+        instead.
 
         Args:
           extra_headers: Send extra headers
@@ -1624,11 +1637,15 @@ class ClustersResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             clusters.get,
         )
-        self.powercycle_all_servers = to_raw_response_wrapper(
-            clusters.powercycle_all_servers,
+        self.powercycle_all_servers = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                clusters.powercycle_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.reboot_all_servers = to_raw_response_wrapper(
-            clusters.reboot_all_servers,
+        self.reboot_all_servers = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.rebuild = to_raw_response_wrapper(
             clusters.rebuild,
@@ -1686,11 +1703,15 @@ class AsyncClustersResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             clusters.get,
         )
-        self.powercycle_all_servers = async_to_raw_response_wrapper(
-            clusters.powercycle_all_servers,
+        self.powercycle_all_servers = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                clusters.powercycle_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.reboot_all_servers = async_to_raw_response_wrapper(
-            clusters.reboot_all_servers,
+        self.reboot_all_servers = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.rebuild = async_to_raw_response_wrapper(
             clusters.rebuild,
@@ -1748,11 +1769,15 @@ class ClustersResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             clusters.get,
         )
-        self.powercycle_all_servers = to_streamed_response_wrapper(
-            clusters.powercycle_all_servers,
+        self.powercycle_all_servers = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                clusters.powercycle_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.reboot_all_servers = to_streamed_response_wrapper(
-            clusters.reboot_all_servers,
+        self.reboot_all_servers = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.rebuild = to_streamed_response_wrapper(
             clusters.rebuild,
@@ -1810,11 +1835,15 @@ class AsyncClustersResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             clusters.get,
         )
-        self.powercycle_all_servers = async_to_streamed_response_wrapper(
-            clusters.powercycle_all_servers,
+        self.powercycle_all_servers = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                clusters.powercycle_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.reboot_all_servers = async_to_streamed_response_wrapper(
-            clusters.reboot_all_servers,
+        self.reboot_all_servers = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.rebuild = async_to_streamed_response_wrapper(
             clusters.rebuild,
