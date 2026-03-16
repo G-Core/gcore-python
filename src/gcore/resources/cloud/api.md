@@ -1039,9 +1039,14 @@ Methods:
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">delete</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster.py">K8SCluster</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get_certificate</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_certificate.py">K8SClusterCertificate</a></code>
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get_kubeconfig</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_kubeconfig.py">K8SClusterKubeconfig</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list_versions_for_upgrade</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8SClusterVersionList</a></code>
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">upgrade</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_upgrade_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+#### Kubeconfig
+
+Methods:
+
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config">client.cloud.k8s.clusters.kubeconfig.<a href="./src/gcore/resources/cloud/k8s/clusters/kubeconfig.py">get</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_kubeconfig.py">K8SClusterKubeconfig</a></code>
 
 #### Nodes
 
