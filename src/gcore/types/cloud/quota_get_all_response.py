@@ -143,10 +143,10 @@ class RegionalQuota(BaseModel):
     """Containers gpu count usage"""
 
     caas_ram_size_limit: Optional[int] = None
-    """MB memory count for containers limit"""
+    """MiB memory count for containers limit"""
 
     caas_ram_size_usage: Optional[int] = None
-    """MB memory count for containers usage"""
+    """MiB memory count for containers usage"""
 
     cluster_count_limit: Optional[int] = None
     """K8s clusters count limit"""
@@ -191,10 +191,10 @@ class RegionalQuota(BaseModel):
     """Functions namespace count usage"""
 
     faas_ram_size_limit: Optional[int] = None
-    """MB memory count for functions limit"""
+    """MiB memory count for functions limit"""
 
     faas_ram_size_usage: Optional[int] = None
-    """MB memory count for functions usage"""
+    """MiB memory count for functions usage"""
 
     firewall_count_limit: Optional[int] = None
     """Firewalls Count limit"""
@@ -245,10 +245,10 @@ class RegionalQuota(BaseModel):
     """Images Count usage"""
 
     image_size_limit: Optional[int] = None
-    """Images Size, GiB limit"""
+    """Images Size, bytes limit"""
 
     image_size_usage: Optional[int] = None
-    """Images Size, GiB usage"""
+    """Images Size, bytes usage"""
 
     ipu_count_limit: Optional[int] = None
     """IPU Count limit"""
@@ -275,10 +275,10 @@ class RegionalQuota(BaseModel):
     """Networks Count usage"""
 
     ram_limit: Optional[int] = None
-    """RAM Size, GiB limit"""
+    """RAM Size, MiB limit"""
 
     ram_usage: Optional[int] = None
-    """RAM Size, GiB usage"""
+    """RAM Size, MiB usage"""
 
     region_id: Optional[int] = None
     """Region ID"""

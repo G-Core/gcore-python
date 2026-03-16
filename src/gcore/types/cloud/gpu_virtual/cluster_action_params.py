@@ -7,15 +7,15 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "ClusterActionParams",
-    "StartVirtualGPUClusterSerializer",
-    "StopVirtualGPUClusterSerializer",
-    "SoftRebootVirtualGPUClusterSerializer",
-    "HardRebootVirtualGPUClusterSerializer",
+    "StartGPUClusterSerializer",
+    "StopGPUClusterSerializer",
+    "SoftRebootGPUClusterSerializer",
+    "HardRebootGPUClusterSerializer",
     "ResizeVirtualGPUClusterSerializer",
 ]
 
 
-class StartVirtualGPUClusterSerializer(TypedDict, total=False):
+class StartGPUClusterSerializer(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
@@ -26,7 +26,7 @@ class StartVirtualGPUClusterSerializer(TypedDict, total=False):
     """Action name"""
 
 
-class StopVirtualGPUClusterSerializer(TypedDict, total=False):
+class StopGPUClusterSerializer(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
@@ -37,7 +37,7 @@ class StopVirtualGPUClusterSerializer(TypedDict, total=False):
     """Action name"""
 
 
-class SoftRebootVirtualGPUClusterSerializer(TypedDict, total=False):
+class SoftRebootGPUClusterSerializer(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
@@ -48,7 +48,7 @@ class SoftRebootVirtualGPUClusterSerializer(TypedDict, total=False):
     """Action name"""
 
 
-class HardRebootVirtualGPUClusterSerializer(TypedDict, total=False):
+class HardRebootGPUClusterSerializer(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
@@ -74,9 +74,9 @@ class ResizeVirtualGPUClusterSerializer(TypedDict, total=False):
 
 
 ClusterActionParams: TypeAlias = Union[
-    StartVirtualGPUClusterSerializer,
-    StopVirtualGPUClusterSerializer,
-    SoftRebootVirtualGPUClusterSerializer,
-    HardRebootVirtualGPUClusterSerializer,
+    StartGPUClusterSerializer,
+    StopGPUClusterSerializer,
+    SoftRebootGPUClusterSerializer,
+    HardRebootGPUClusterSerializer,
     ResizeVirtualGPUClusterSerializer,
 ]
