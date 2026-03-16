@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.38.0 (2026-03-16)
+
+Full Changelog: [v0.37.0...v0.38.0](https://github.com/G-Core/gcore-python/compare/v0.37.0...v0.38.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** make kubeconfig as k8s cluster subresource
+
+### Features
+
+* **api:** aggregated API specs update ([7750517](https://github.com/G-Core/gcore-python/commit/775051786c7e0518c8c921582738756aa1736192))
+* **api:** aggregated API specs update ([b150a8b](https://github.com/G-Core/gcore-python/commit/b150a8b912a9f3253f2d8138fa8c93f5530c331d))
+* **api:** aggregated API specs update ([c1fb24e](https://github.com/G-Core/gcore-python/commit/c1fb24e6132dcd89b9b84a2e369d327a57f187e2))
+* **api:** aggregated API specs update ([eb53954](https://github.com/G-Core/gcore-python/commit/eb5395427eae979ee0f64ebcc79aa11455cd3d62))
+* **api:** aggregated API specs update ([152f7b0](https://github.com/G-Core/gcore-python/commit/152f7b010e3de9e11b74fa0e9d25c2e3c46edd7c))
+* **api:** aggregated API specs update ([e203f21](https://github.com/G-Core/gcore-python/commit/e203f2110410c15524fabbf45c813cd7b7113308))
+* **cloud:** add get, update, delete methods to baremetal servers ([46de113](https://github.com/G-Core/gcore-python/commit/46de113fe4f394a353ea06199533b30c9fa42df9))
+* **cloud:** add update method to GPU Baremetal clusters ([3aaae61](https://github.com/G-Core/gcore-python/commit/3aaae61423f266ceca10a2a44aab05fb11875b9f))
+* **cloud:** make kubeconfig as k8s cluster subresource ([c918c1d](https://github.com/G-Core/gcore-python/commit/c918c1d4714daeab5da12c698c60f3830d7d675d))
+
+
+### Bug Fixes
+
+* **fastedge:** rename path parameters to match updated OpenAPI spec ([2c17154](https://github.com/G-Core/gcore-python/commit/2c17154346bd0f1663ecccadf5a444e0b21c6134))
+
+
+### Chores
+
+* **examples:** suppress pyright deprecation warnings in storage examples ([81806bb](https://github.com/G-Core/gcore-python/commit/81806bbe78c871a60e6ca613e7b24c3442293f90))
+* remove .vscode/ ([8490ade](https://github.com/G-Core/gcore-python/commit/8490ade7834974693fa6e9df0dd44edabe4050e7))
+
 ## 0.37.0 (2026-03-09)
 
 Full Changelog: [v0.36.0...v0.37.0](https://github.com/G-Core/gcore-python/compare/v0.36.0...v0.37.0)
