@@ -148,7 +148,6 @@ class ProjectsResource(SyncAPIResource):
     def list(
         self,
         *,
-        client_id: int | Omit = omit,
         include_deleted: bool | Omit = omit,
         limit: int | Omit = omit,
         name: str | Omit = omit,
@@ -167,8 +166,6 @@ class ProjectsResource(SyncAPIResource):
         ordered by various fields.
 
         Args:
-          client_id: Client ID filter for administrators.
-
           include_deleted: Whether to include deleted projects in the response.
 
           limit: Limit value is used to limit the number of records in the result
@@ -197,7 +194,6 @@ class ProjectsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "client_id": client_id,
                         "include_deleted": include_deleted,
                         "limit": limit,
                         "name": name,
@@ -406,7 +402,6 @@ class AsyncProjectsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        client_id: int | Omit = omit,
         include_deleted: bool | Omit = omit,
         limit: int | Omit = omit,
         name: str | Omit = omit,
@@ -425,8 +420,6 @@ class AsyncProjectsResource(AsyncAPIResource):
         ordered by various fields.
 
         Args:
-          client_id: Client ID filter for administrators.
-
           include_deleted: Whether to include deleted projects in the response.
 
           limit: Limit value is used to limit the number of records in the result
@@ -455,7 +448,6 @@ class AsyncProjectsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "client_id": client_id,
                         "include_deleted": include_deleted,
                         "limit": limit,
                         "name": name,

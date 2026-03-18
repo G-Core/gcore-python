@@ -8,9 +8,6 @@ __all__ = ["ProjectListParams"]
 
 
 class ProjectListParams(TypedDict, total=False):
-    client_id: int
-    """Client ID filter for administrators."""
-
     include_deleted: bool
     """Whether to include deleted projects in the response."""
 
