@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -77,7 +77,12 @@ class InterfacesResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -309,7 +314,12 @@ class InterfacesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform(
                 {
                     "ddos_profile": ddos_profile,
@@ -368,7 +378,12 @@ class InterfacesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform(
                 {
                     "ip_address": ip_address,
@@ -435,7 +450,12 @@ class AsyncInterfacesResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -667,7 +687,12 @@ class AsyncInterfacesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "ddos_profile": ddos_profile,
@@ -726,7 +751,12 @@ class AsyncInterfacesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "ip_address": ip_address,

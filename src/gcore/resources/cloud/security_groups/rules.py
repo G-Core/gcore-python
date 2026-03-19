@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -140,7 +140,12 @@ class RulesResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._post(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             body=maybe_transform(
                 {
                     "direction": direction,
@@ -205,7 +210,13 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules/{rule_id}",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules/{rule_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+                rule_id=rule_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -311,7 +322,12 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._put(
-            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+            path_template(
+                "/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+                project_id=project_id,
+                region_id=region_id,
+                rule_id=rule_id,
+            ),
             body=maybe_transform(
                 {
                     "direction": direction,
@@ -585,7 +601,12 @@ class AsyncRulesResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._post(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "direction": direction,
@@ -650,7 +671,13 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules/{rule_id}",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}/rules/{rule_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+                rule_id=rule_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -756,7 +783,12 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._put(
-            f"/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+            path_template(
+                "/cloud/v1/securitygrouprules/{project_id}/{region_id}/{rule_id}",
+                project_id=project_id,
+                region_id=region_id,
+                rule_id=rule_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "direction": direction,

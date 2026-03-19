@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -115,7 +115,12 @@ class ImagesResource(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._patch(
-            f"/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+            path_template(
+                "/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+                project_id=project_id,
+                region_id=region_id,
+                image_id=image_id,
+            ),
             body=maybe_transform(
                 {
                     "hw_firmware_type": hw_firmware_type,
@@ -181,7 +186,7 @@ class ImagesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/images/{project_id}/{region_id}",
+            path_template("/cloud/v1/images/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,7 +240,12 @@ class ImagesResource(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._delete(
-            f"/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+            path_template(
+                "/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+                project_id=project_id,
+                region_id=region_id,
+                image_id=image_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -344,7 +354,7 @@ class ImagesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/images/{project_id}/{region_id}",
+            path_template("/cloud/v1/images/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -463,7 +473,12 @@ class ImagesResource(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._get(
-            f"/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+            path_template(
+                "/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+                project_id=project_id,
+                region_id=region_id,
+                image_id=image_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -547,7 +562,9 @@ class ImagesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/downloadimage/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/downloadimage/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -720,7 +737,12 @@ class AsyncImagesResource(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._patch(
-            f"/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+            path_template(
+                "/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+                project_id=project_id,
+                region_id=region_id,
+                image_id=image_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "hw_firmware_type": hw_firmware_type,
@@ -786,7 +808,7 @@ class AsyncImagesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/images/{project_id}/{region_id}",
+            path_template("/cloud/v1/images/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -840,7 +862,12 @@ class AsyncImagesResource(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._delete(
-            f"/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+            path_template(
+                "/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+                project_id=project_id,
+                region_id=region_id,
+                image_id=image_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -949,7 +976,7 @@ class AsyncImagesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/images/{project_id}/{region_id}",
+            path_template("/cloud/v1/images/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -1068,7 +1095,12 @@ class AsyncImagesResource(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._get(
-            f"/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+            path_template(
+                "/cloud/v1/images/{project_id}/{region_id}/{image_id}",
+                project_id=project_id,
+                region_id=region_id,
+                image_id=image_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1152,7 +1184,9 @@ class AsyncImagesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/downloadimage/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/downloadimage/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,

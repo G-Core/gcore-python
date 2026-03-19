@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -104,7 +104,7 @@ class AdvancedRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            path_template("/waap/v1/domains/{domain_id}/advanced-rules", domain_id=domain_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -184,7 +184,9 @@ class AdvancedRulesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+            ),
             body=maybe_transform(
                 {
                     "action": action,
@@ -278,7 +280,7 @@ class AdvancedRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            path_template("/waap/v1/domains/{domain_id}/advanced-rules", domain_id=domain_id),
             page=SyncOffsetPage[WaapAdvancedRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -332,7 +334,9 @@ class AdvancedRulesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -368,7 +372,9 @@ class AdvancedRulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -410,7 +416,12 @@ class AdvancedRulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+                domain_id=domain_id,
+                rule_id=rule_id,
+                action=action,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -497,7 +508,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            path_template("/waap/v1/domains/{domain_id}/advanced-rules", domain_id=domain_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -577,7 +588,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+            ),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -671,7 +684,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/advanced-rules",
+            path_template("/waap/v1/domains/{domain_id}/advanced-rules", domain_id=domain_id),
             page=AsyncOffsetPage[WaapAdvancedRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -725,7 +738,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -761,7 +776,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -803,7 +820,12 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+                domain_id=domain_id,
+                rule_id=rule_id,
+                action=action,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

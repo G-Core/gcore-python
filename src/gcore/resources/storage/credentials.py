@@ -7,7 +7,7 @@ import typing_extensions
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -84,7 +84,7 @@ class CredentialsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/credentials",
+            path_template("/storage/provisioning/v1/storage/{storage_id}/credentials", storage_id=storage_id),
             body=maybe_transform(
                 {
                     "delete_sftp_password": delete_sftp_password,
@@ -163,7 +163,7 @@ class AsyncCredentialsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/credentials",
+            path_template("/storage/provisioning/v1/storage/{storage_id}/credentials", storage_id=storage_id),
             body=await async_maybe_transform(
                 {
                     "delete_sftp_password": delete_sftp_password,

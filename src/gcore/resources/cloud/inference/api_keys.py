@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -84,7 +84,7 @@ class APIKeysResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._post(
-            f"/cloud/v3/inference/{project_id}/api_keys",
+            path_template("/cloud/v3/inference/{project_id}/api_keys", project_id=project_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -135,7 +135,11 @@ class APIKeysResource(SyncAPIResource):
         if not api_key_name:
             raise ValueError(f"Expected a non-empty value for `api_key_name` but received {api_key_name!r}")
         return self._patch(
-            f"/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+            path_template(
+                "/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+                project_id=project_id,
+                api_key_name=api_key_name,
+            ),
             body=maybe_transform({"description": description}, api_key_update_params.APIKeyUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -178,7 +182,7 @@ class APIKeysResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/api_keys",
+            path_template("/cloud/v3/inference/{project_id}/api_keys", project_id=project_id),
             page=SyncOffsetPage[InferenceAPIKey],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -233,7 +237,11 @@ class APIKeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `api_key_name` but received {api_key_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+            path_template(
+                "/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+                project_id=project_id,
+                api_key_name=api_key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -273,7 +281,11 @@ class APIKeysResource(SyncAPIResource):
         if not api_key_name:
             raise ValueError(f"Expected a non-empty value for `api_key_name` but received {api_key_name!r}")
         return self._get(
-            f"/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+            path_template(
+                "/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+                project_id=project_id,
+                api_key_name=api_key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -340,7 +352,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._post(
-            f"/cloud/v3/inference/{project_id}/api_keys",
+            path_template("/cloud/v3/inference/{project_id}/api_keys", project_id=project_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -391,7 +403,11 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not api_key_name:
             raise ValueError(f"Expected a non-empty value for `api_key_name` but received {api_key_name!r}")
         return await self._patch(
-            f"/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+            path_template(
+                "/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+                project_id=project_id,
+                api_key_name=api_key_name,
+            ),
             body=await async_maybe_transform({"description": description}, api_key_update_params.APIKeyUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -434,7 +450,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/inference/{project_id}/api_keys",
+            path_template("/cloud/v3/inference/{project_id}/api_keys", project_id=project_id),
             page=AsyncOffsetPage[InferenceAPIKey],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -489,7 +505,11 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `api_key_name` but received {api_key_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+            path_template(
+                "/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+                project_id=project_id,
+                api_key_name=api_key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -529,7 +549,11 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not api_key_name:
             raise ValueError(f"Expected a non-empty value for `api_key_name` but received {api_key_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+            path_template(
+                "/cloud/v3/inference/{project_id}/api_keys/{api_key_name}",
+                project_id=project_id,
+                api_key_name=api_key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

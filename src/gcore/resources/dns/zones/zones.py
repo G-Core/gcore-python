@@ -25,7 +25,7 @@ from .rrsets import (
     AsyncRrsetsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -290,7 +290,7 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._delete(
-            f"/dns/v2/zones/{name}",
+            path_template("/dns/v2/zones/{name}", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -325,7 +325,7 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/analyze/{name}/delegation-status",
+            path_template("/dns/v2/analyze/{name}/delegation-status", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -358,7 +358,7 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._patch(
-            f"/dns/v2/zones/{name}/disable",
+            path_template("/dns/v2/zones/{name}/disable", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -391,7 +391,7 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._patch(
-            f"/dns/v2/zones/{name}/enable",
+            path_template("/dns/v2/zones/{name}/enable", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -424,7 +424,7 @@ class ZonesResource(SyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return self._get(
-            f"/dns/v2/zones/{zone_name}/export",
+            path_template("/dns/v2/zones/{zone_name}/export", zone_name=zone_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -457,7 +457,7 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/zones/{name}",
+            path_template("/dns/v2/zones/{name}", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -528,7 +528,7 @@ class ZonesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/zones/{name}/statistics",
+            path_template("/dns/v2/zones/{name}/statistics", name=name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -601,7 +601,7 @@ class ZonesResource(SyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return self._post(
-            f"/dns/v2/zones/{zone_name}/import",
+            path_template("/dns/v2/zones/{zone_name}/import", zone_name=zone_name),
             body=maybe_transform(body, zone_import_params.ZoneImportParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -674,7 +674,7 @@ class ZonesResource(SyncAPIResource):
         if not path_name:
             raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
         return self._put(
-            f"/dns/v2/zones/{path_name}",
+            path_template("/dns/v2/zones/{path_name}", path_name=path_name),
             body=maybe_transform(
                 {
                     "body_name": body_name,
@@ -934,7 +934,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._delete(
-            f"/dns/v2/zones/{name}",
+            path_template("/dns/v2/zones/{name}", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -969,7 +969,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/analyze/{name}/delegation-status",
+            path_template("/dns/v2/analyze/{name}/delegation-status", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1002,7 +1002,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._patch(
-            f"/dns/v2/zones/{name}/disable",
+            path_template("/dns/v2/zones/{name}/disable", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1035,7 +1035,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._patch(
-            f"/dns/v2/zones/{name}/enable",
+            path_template("/dns/v2/zones/{name}/enable", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1068,7 +1068,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return await self._get(
-            f"/dns/v2/zones/{zone_name}/export",
+            path_template("/dns/v2/zones/{zone_name}/export", zone_name=zone_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1101,7 +1101,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/zones/{name}",
+            path_template("/dns/v2/zones/{name}", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1172,7 +1172,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/zones/{name}/statistics",
+            path_template("/dns/v2/zones/{name}/statistics", name=name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1245,7 +1245,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
         return await self._post(
-            f"/dns/v2/zones/{zone_name}/import",
+            path_template("/dns/v2/zones/{zone_name}/import", zone_name=zone_name),
             body=await async_maybe_transform(body, zone_import_params.ZoneImportParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1318,7 +1318,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not path_name:
             raise ValueError(f"Expected a non-empty value for `path_name` but received {path_name!r}")
         return await self._put(
-            f"/dns/v2/zones/{path_name}",
+            path_template("/dns/v2/zones/{path_name}", path_name=path_name),
             body=await async_maybe_transform(
                 {
                     "body_name": body_name,

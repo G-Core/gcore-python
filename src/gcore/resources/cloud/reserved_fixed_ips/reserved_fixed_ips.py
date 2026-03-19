@@ -16,7 +16,7 @@ from .vip.vip import (
     AsyncVipResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -283,7 +283,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=maybe_transform(
                 {
                     "type": type,
@@ -337,7 +339,12 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=maybe_transform({"is_vip": is_vip}, reserved_fixed_ip_update_params.ReservedFixedIPUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -404,7 +411,9 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             page=SyncOffsetPage[ReservedFixedIP],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -461,7 +470,12 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._delete(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -500,7 +514,12 @@ class ReservedFixedIPsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1052,7 +1071,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=await async_maybe_transform(
                 {
                     "type": type,
@@ -1106,7 +1127,12 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=await async_maybe_transform(
                 {"is_vip": is_vip}, reserved_fixed_ip_update_params.ReservedFixedIPUpdateParams
             ),
@@ -1175,7 +1201,9 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             page=AsyncOffsetPage[ReservedFixedIP],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1232,7 +1260,12 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._delete(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1271,7 +1304,12 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

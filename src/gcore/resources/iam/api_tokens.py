@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -97,7 +97,7 @@ class APITokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/iam/clients/{client_id}/tokens",
+            path_template("/iam/clients/{client_id}/tokens", client_id=client_id),
             body=maybe_transform(
                 {
                     "client_user": client_user,
@@ -164,7 +164,7 @@ class APITokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/iam/clients/{client_id}/tokens",
+            path_template("/iam/clients/{client_id}/tokens", client_id=client_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -213,7 +213,7 @@ class APITokensResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/iam/clients/{client_id}/tokens/{token_id}",
+            path_template("/iam/clients/{client_id}/tokens/{token_id}", client_id=client_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -245,7 +245,7 @@ class APITokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/iam/clients/{client_id}/tokens/{token_id}",
+            path_template("/iam/clients/{client_id}/tokens/{token_id}", client_id=client_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -325,7 +325,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/iam/clients/{client_id}/tokens",
+            path_template("/iam/clients/{client_id}/tokens", client_id=client_id),
             body=await async_maybe_transform(
                 {
                     "client_user": client_user,
@@ -392,7 +392,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/iam/clients/{client_id}/tokens",
+            path_template("/iam/clients/{client_id}/tokens", client_id=client_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -441,7 +441,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/iam/clients/{client_id}/tokens/{token_id}",
+            path_template("/iam/clients/{client_id}/tokens/{token_id}", client_id=client_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -473,7 +473,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/iam/clients/{client_id}/tokens/{token_id}",
+            path_template("/iam/clients/{client_id}/tokens/{token_id}", client_id=client_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

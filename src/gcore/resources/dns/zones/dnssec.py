@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -69,7 +69,7 @@ class DnssecResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._patch(
-            f"/dns/v2/zones/{name}/dnssec",
+            path_template("/dns/v2/zones/{name}/dnssec", name=name),
             body=maybe_transform({"enabled": enabled}, dnssec_update_params.DnssecUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -103,7 +103,7 @@ class DnssecResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/zones/{name}/dnssec",
+            path_template("/dns/v2/zones/{name}/dnssec", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -158,7 +158,7 @@ class AsyncDnssecResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._patch(
-            f"/dns/v2/zones/{name}/dnssec",
+            path_template("/dns/v2/zones/{name}/dnssec", name=name),
             body=await async_maybe_transform({"enabled": enabled}, dnssec_update_params.DnssecUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -192,7 +192,7 @@ class AsyncDnssecResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/zones/{name}/dnssec",
+            path_template("/dns/v2/zones/{name}/dnssec", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

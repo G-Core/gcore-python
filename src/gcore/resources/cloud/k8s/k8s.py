@@ -13,6 +13,7 @@ from .flavors import (
     AsyncFlavorsResourceWithStreamingResponse,
 )
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -99,7 +100,9 @@ class K8SResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v2/k8s/{project_id}/{region_id}/create_versions",
+            path_template(
+                "/cloud/v2/k8s/{project_id}/{region_id}/create_versions", project_id=project_id, region_id=region_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -171,7 +174,9 @@ class AsyncK8SResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v2/k8s/{project_id}/{region_id}/create_versions",
+            path_template(
+                "/cloud/v2/k8s/{project_id}/{region_id}/create_versions", project_id=project_id, region_id=region_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

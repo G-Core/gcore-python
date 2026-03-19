@@ -24,7 +24,7 @@ from .shield import (
     AsyncShieldResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -330,7 +330,7 @@ class CDNResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             body=maybe_transform(
                 {
                     "active": active,
@@ -528,7 +528,7 @@ class CDNResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -559,7 +559,7 @@ class CDNResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -606,7 +606,7 @@ class CDNResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/resources/{resource_id}/prefetch",
+            path_template("/cdn/resources/{resource_id}/prefetch", resource_id=resource_id),
             body=maybe_transform({"paths": paths}, cdn_resource_prefetch_params.CDNResourcePrefetchParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -639,7 +639,7 @@ class CDNResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/resources/{resource_id}/ssl/le/pre-validate",
+            path_template("/cdn/resources/{resource_id}/ssl/le/pre-validate", resource_id=resource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -814,7 +814,7 @@ class CDNResourcesResource(SyncAPIResource):
     ) -> None:
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cdn/resources/{resource_id}/purge",
+            path_template("/cdn/resources/{resource_id}/purge", resource_id=resource_id),
             body=maybe_transform(
                 {
                     "urls": urls,
@@ -933,7 +933,7 @@ class CDNResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             body=maybe_transform(
                 {
                     "origin_group": origin_group,
@@ -1241,7 +1241,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             body=await async_maybe_transform(
                 {
                     "active": active,
@@ -1439,7 +1439,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1470,7 +1470,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1517,7 +1517,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/resources/{resource_id}/prefetch",
+            path_template("/cdn/resources/{resource_id}/prefetch", resource_id=resource_id),
             body=await async_maybe_transform({"paths": paths}, cdn_resource_prefetch_params.CDNResourcePrefetchParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1550,7 +1550,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/resources/{resource_id}/ssl/le/pre-validate",
+            path_template("/cdn/resources/{resource_id}/ssl/le/pre-validate", resource_id=resource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1725,7 +1725,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
     ) -> None:
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cdn/resources/{resource_id}/purge",
+            path_template("/cdn/resources/{resource_id}/purge", resource_id=resource_id),
             body=await async_maybe_transform(
                 {
                     "urls": urls,
@@ -1844,7 +1844,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/resources/{resource_id}",
+            path_template("/cdn/resources/{resource_id}", resource_id=resource_id),
             body=await async_maybe_transform(
                 {
                     "origin_group": origin_group,

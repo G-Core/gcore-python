@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -71,7 +72,12 @@ class CandidatePortsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -131,7 +137,12 @@ class AsyncCandidatePortsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/available_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

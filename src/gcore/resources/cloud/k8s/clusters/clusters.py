@@ -15,7 +15,7 @@ from .nodes import (
     AsyncNodesResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from .kubeconfig import (
     KubeconfigResource,
     AsyncKubeconfigResource,
@@ -238,7 +238,9 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=maybe_transform(
                 {
                     "keypair": keypair,
@@ -380,7 +382,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             body=maybe_transform(
                 {
                     "add_ons": add_ons,
@@ -431,7 +438,9 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -479,7 +488,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -528,7 +542,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -573,7 +592,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -618,7 +642,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -666,7 +695,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             body=maybe_transform({"version": version}, cluster_upgrade_params.ClusterUpgradeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -857,7 +891,9 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=await async_maybe_transform(
                 {
                     "keypair": keypair,
@@ -999,7 +1035,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "add_ons": add_ons,
@@ -1050,7 +1091,9 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1098,7 +1141,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1147,7 +1195,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1192,7 +1245,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1237,7 +1295,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1285,7 +1348,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             body=await async_maybe_transform({"version": version}, cluster_upgrade_params.ClusterUpgradeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -82,7 +82,12 @@ class NodesResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -138,7 +143,13 @@ class NodesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -207,7 +218,12 @@ class AsyncNodesResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -263,7 +279,13 @@ class AsyncNodesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

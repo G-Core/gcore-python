@@ -33,7 +33,7 @@ from .metrics import (
     AsyncMetricsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .interfaces import (
     InterfacesResource,
@@ -247,7 +247,7 @@ class InstancesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}",
+            path_template("/cloud/v2/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -409,7 +409,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._patch(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -565,7 +570,7 @@ class InstancesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/instances/{project_id}/{region_id}",
+            path_template("/cloud/v1/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             page=SyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -659,7 +664,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._delete(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -812,7 +822,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+            path_template(
+                "/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform(
                 {
                     "action": action,
@@ -982,7 +997,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform(
                 {"servergroup_id": servergroup_id},
                 instance_add_to_placement_group_params.InstanceAddToPlacementGroupParams,
@@ -1079,7 +1099,12 @@ class InstancesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -1125,7 +1150,12 @@ class InstancesResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1164,7 +1194,12 @@ class InstancesResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1220,7 +1255,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1262,7 +1302,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1309,7 +1354,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1393,7 +1443,12 @@ class InstancesResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform({"flavor_id": flavor_id}, instance_resize_params.InstanceResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1487,7 +1542,12 @@ class InstancesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -1676,7 +1736,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}",
+            path_template("/cloud/v2/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -1838,7 +1898,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._patch(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -1994,7 +2059,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/instances/{project_id}/{region_id}",
+            path_template("/cloud/v1/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             page=AsyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -2088,7 +2153,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._delete(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2241,7 +2311,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+            path_template(
+                "/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -2411,7 +2486,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform(
                 {"servergroup_id": servergroup_id},
                 instance_add_to_placement_group_params.InstanceAddToPlacementGroupParams,
@@ -2508,7 +2588,12 @@ class AsyncInstancesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -2554,7 +2639,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2593,7 +2683,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._post(
-            f"/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2649,7 +2744,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2691,7 +2791,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2738,7 +2843,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -2822,7 +2932,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform({"flavor_id": flavor_id}, instance_resize_params.InstanceResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -2916,7 +3031,12 @@ class AsyncInstancesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -134,7 +134,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/streaming/videos/{video_id}/subtitles",
+            path_template("/streaming/videos/{video_id}/subtitles", video_id=video_id),
             body=maybe_transform(body, subtitle_create_params.SubtitleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -188,7 +188,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            path_template("/streaming/videos/{video_id}/subtitles/{id}", video_id=video_id, id=id),
             body=maybe_transform(
                 {
                     "language": language,
@@ -227,7 +227,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/subtitles",
+            path_template("/streaming/videos/{video_id}/subtitles", video_id=video_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -260,7 +260,7 @@ class SubtitlesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            path_template("/streaming/videos/{video_id}/subtitles/{id}", video_id=video_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -292,7 +292,7 @@ class SubtitlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            path_template("/streaming/videos/{video_id}/subtitles/{id}", video_id=video_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -411,7 +411,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/streaming/videos/{video_id}/subtitles",
+            path_template("/streaming/videos/{video_id}/subtitles", video_id=video_id),
             body=await async_maybe_transform(body, subtitle_create_params.SubtitleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -465,7 +465,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            path_template("/streaming/videos/{video_id}/subtitles/{id}", video_id=video_id, id=id),
             body=await async_maybe_transform(
                 {
                     "language": language,
@@ -504,7 +504,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/subtitles",
+            path_template("/streaming/videos/{video_id}/subtitles", video_id=video_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -537,7 +537,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            path_template("/streaming/videos/{video_id}/subtitles/{id}", video_id=video_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -569,7 +569,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/streaming/videos/{video_id}/subtitles/{id}",
+            path_template("/streaming/videos/{video_id}/subtitles/{id}", video_id=video_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

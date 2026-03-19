@@ -15,7 +15,7 @@ from .rules import (
     AsyncRulesResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -123,7 +123,9 @@ class SecurityGroupsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -227,7 +229,12 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._patch(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             body=maybe_transform(
                 {
                     "description": description,
@@ -291,7 +298,9 @@ class SecurityGroupsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             page=SyncOffsetPage[SecurityGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -351,7 +360,12 @@ class SecurityGroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -399,7 +413,12 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             body=maybe_transform({"name": name}, security_group_copy_params.SecurityGroupCopyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -445,7 +464,12 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._get(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -490,7 +514,12 @@ class SecurityGroupsResource(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -688,7 +717,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -792,7 +823,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._patch(
-            f"/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}",
+            path_template(
+                "/cloud/v2/security_groups/{project_id}/{region_id}/{group_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -856,7 +892,9 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             page=AsyncOffsetPage[SecurityGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -916,7 +954,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -964,7 +1007,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/copy",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             body=await async_maybe_transform({"name": name}, security_group_copy_params.SecurityGroupCopyParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1010,7 +1058,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._get(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1055,7 +1108,12 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._post(
-            f"/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
+            path_template(
+                "/cloud/v1/securitygroups/{project_id}/{region_id}/{group_id}/revert",
+                project_id=project_id,
+                region_id=region_id,
+                group_id=group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

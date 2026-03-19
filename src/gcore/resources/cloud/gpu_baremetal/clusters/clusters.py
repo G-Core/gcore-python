@@ -33,7 +33,7 @@ from .servers import (
     AsyncServersResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from .interfaces import (
     InterfacesResource,
     AsyncInterfacesResource,
@@ -161,7 +161,9 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -247,7 +249,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._patch(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -307,7 +314,9 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             page=SyncOffsetPage[GPUBaremetalCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -378,7 +387,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._delete(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -435,7 +449,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -477,7 +496,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
+            path_template(
+                "/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -519,7 +543,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
+            path_template(
+                "/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -570,7 +599,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -614,7 +648,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
+            path_template(
+                "/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=maybe_transform({"instances_count": instances_count}, cluster_resize_params.ClusterResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -671,7 +710,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._patch(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers_settings",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers_settings",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=maybe_transform(
                 {
                     "image_id": image_id,
@@ -935,7 +979,9 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -1021,7 +1067,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._patch(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -1081,7 +1132,9 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             page=AsyncOffsetPage[GPUBaremetalCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1152,7 +1205,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._delete(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1209,7 +1267,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._get(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1251,7 +1314,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
+            path_template(
+                "/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/powercycle",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1293,7 +1361,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
+            path_template(
+                "/cloud/v2/ai/clusters/{project_id}/{region_id}/{cluster_id}/reboot",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1344,7 +1417,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1388,7 +1466,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
+            path_template(
+                "/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/resize",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=await async_maybe_transform(
                 {"instances_count": instances_count}, cluster_resize_params.ClusterResizeParams
             ),
@@ -1447,7 +1530,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._patch(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers_settings",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers_settings",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "image_id": image_id,

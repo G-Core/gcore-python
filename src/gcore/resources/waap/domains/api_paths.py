@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -84,7 +84,7 @@ class APIPathsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/api-paths",
+            path_template("/waap/v1/domains/{domain_id}/api-paths", domain_id=domain_id),
             body=maybe_transform(
                 {
                     "http_scheme": http_scheme,
@@ -143,7 +143,7 @@ class APIPathsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            path_template("/waap/v1/domains/{domain_id}/api-paths/{path_id}", domain_id=domain_id, path_id=path_id),
             body=maybe_transform(
                 {
                     "api_groups": api_groups,
@@ -238,7 +238,7 @@ class APIPathsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/api-paths",
+            path_template("/waap/v1/domains/{domain_id}/api-paths", domain_id=domain_id),
             page=SyncOffsetPage[WaapAPIPath],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -297,7 +297,7 @@ class APIPathsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            path_template("/waap/v1/domains/{domain_id}/api-paths/{path_id}", domain_id=domain_id, path_id=path_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -335,7 +335,7 @@ class APIPathsResource(SyncAPIResource):
         if not path_id:
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         return self._get(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            path_template("/waap/v1/domains/{domain_id}/api-paths/{path_id}", domain_id=domain_id, path_id=path_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -402,7 +402,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/api-paths",
+            path_template("/waap/v1/domains/{domain_id}/api-paths", domain_id=domain_id),
             body=await async_maybe_transform(
                 {
                     "http_scheme": http_scheme,
@@ -461,7 +461,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            path_template("/waap/v1/domains/{domain_id}/api-paths/{path_id}", domain_id=domain_id, path_id=path_id),
             body=await async_maybe_transform(
                 {
                     "api_groups": api_groups,
@@ -556,7 +556,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/api-paths",
+            path_template("/waap/v1/domains/{domain_id}/api-paths", domain_id=domain_id),
             page=AsyncOffsetPage[WaapAPIPath],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -615,7 +615,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            path_template("/waap/v1/domains/{domain_id}/api-paths/{path_id}", domain_id=domain_id, path_id=path_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -653,7 +653,7 @@ class AsyncAPIPathsResource(AsyncAPIResource):
         if not path_id:
             raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/api-paths/{path_id}",
+            path_template("/waap/v1/domains/{domain_id}/api-paths/{path_id}", domain_id=domain_id, path_id=path_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
