@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -72,7 +73,13 @@ class ArtifactsResource(SyncAPIResource):
         if not repository_name:
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                repository_name=repository_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -116,7 +123,14 @@ class ArtifactsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `digest` but received {digest!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                repository_name=repository_name,
+                digest=digest,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -177,7 +191,13 @@ class AsyncArtifactsResource(AsyncAPIResource):
         if not repository_name:
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                repository_name=repository_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -221,7 +241,14 @@ class AsyncArtifactsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `digest` but received {digest!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                repository_name=repository_name,
+                digest=digest,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

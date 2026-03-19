@@ -16,7 +16,7 @@ from .nodes import (
     AsyncNodesResourceWithStreamingResponse,
 )
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -142,7 +142,12 @@ class PoolsResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             body=maybe_transform(
                 {
                     "flavor_id": flavor_id,
@@ -228,7 +233,13 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             body=maybe_transform(
                 {
                     "auto_healing_enabled": auto_healing_enabled,
@@ -284,7 +295,12 @@ class PoolsResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -334,7 +350,13 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -399,7 +421,11 @@ class PoolsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits",
+                project_id=project_id,
+                region_id=region_id,
+            ),
             body=maybe_transform(
                 {
                     "flavor_id": flavor_id,
@@ -461,7 +487,13 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -514,7 +546,13 @@ class PoolsResource(SyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             body=maybe_transform({"node_count": node_count}, pool_resize_params.PoolResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -625,7 +663,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "flavor_id": flavor_id,
@@ -711,7 +754,13 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._patch(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "auto_healing_enabled": auto_healing_enabled,
@@ -767,7 +816,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -817,7 +871,13 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._delete(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -882,7 +942,11 @@ class AsyncPoolsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits",
+                project_id=project_id,
+                region_id=region_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "flavor_id": flavor_id,
@@ -944,7 +1008,13 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -997,7 +1067,13 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
         return await self._post(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/resize",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                pool_name=pool_name,
+            ),
             body=await async_maybe_transform({"node_count": node_count}, pool_resize_params.PoolResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -100,7 +100,12 @@ class VipResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=maybe_transform({"is_vip": is_vip}, vip_toggle_params.VipToggleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -172,7 +177,12 @@ class AsyncVipResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=await async_maybe_transform({"is_vip": is_vip}, vip_toggle_params.VipToggleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

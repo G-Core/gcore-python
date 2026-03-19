@@ -33,7 +33,7 @@ from .statuses import (
     AsyncStatusesResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from .listeners import (
     ListenersResource,
     AsyncListenersResource,
@@ -225,7 +225,9 @@ class LoadBalancersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -327,7 +329,12 @@ class LoadBalancersResource(SyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._patch(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=maybe_transform(
                 {
                     "logging": logging,
@@ -424,7 +431,9 @@ class LoadBalancersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             page=SyncOffsetPage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -488,7 +497,12 @@ class LoadBalancersResource(SyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._delete(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -536,7 +550,12 @@ class LoadBalancersResource(SyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/failover",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/failover",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=maybe_transform({"force": force}, load_balancer_failover_params.LoadBalancerFailoverParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -588,7 +607,12 @@ class LoadBalancersResource(SyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -646,7 +670,12 @@ class LoadBalancersResource(SyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/resize",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/resize",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=maybe_transform({"flavor": flavor}, load_balancer_resize_params.LoadBalancerResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -793,7 +822,9 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -895,7 +926,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._patch(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "logging": logging,
@@ -992,7 +1028,9 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}", project_id=project_id, region_id=region_id
+            ),
             page=AsyncOffsetPage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1056,7 +1094,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._delete(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1104,7 +1147,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/failover",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/failover",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=await async_maybe_transform(
                 {"force": force}, load_balancer_failover_params.LoadBalancerFailoverParams
             ),
@@ -1158,7 +1206,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._get(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1216,7 +1269,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/resize",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/resize",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=await async_maybe_transform({"flavor": flavor}, load_balancer_resize_params.LoadBalancerResizeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

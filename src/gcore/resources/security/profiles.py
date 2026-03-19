@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -172,7 +172,7 @@ class ProfilesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/security/iaas/v2/profiles/{id}",
+            path_template("/security/iaas/v2/profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -203,7 +203,7 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/security/iaas/v2/profiles/{id}",
+            path_template("/security/iaas/v2/profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -242,7 +242,7 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/security/iaas/v2/profiles/{id}/recreate",
+            path_template("/security/iaas/v2/profiles/{id}/recreate", id=id),
             body=maybe_transform(
                 {
                     "fields": fields,
@@ -292,7 +292,7 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/security/iaas/v2/profiles/{id}",
+            path_template("/security/iaas/v2/profiles/{id}", id=id),
             body=maybe_transform(
                 {
                     "fields": fields,
@@ -452,7 +452,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/security/iaas/v2/profiles/{id}",
+            path_template("/security/iaas/v2/profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -483,7 +483,7 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/security/iaas/v2/profiles/{id}",
+            path_template("/security/iaas/v2/profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -522,7 +522,7 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/security/iaas/v2/profiles/{id}/recreate",
+            path_template("/security/iaas/v2/profiles/{id}/recreate", id=id),
             body=await async_maybe_transform(
                 {
                     "fields": fields,
@@ -572,7 +572,7 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/security/iaas/v2/profiles/{id}",
+            path_template("/security/iaas/v2/profiles/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "fields": fields,

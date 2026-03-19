@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .locations import (
     LocationsResource,
@@ -197,7 +197,7 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/storage/provisioning/v2/storage/{storage_id}",
+            path_template("/storage/provisioning/v2/storage/{storage_id}", storage_id=storage_id),
             body=maybe_transform(
                 {
                     "expires": expires,
@@ -329,7 +329,7 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            path_template("/storage/provisioning/v1/storage/{storage_id}", storage_id=storage_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -365,7 +365,7 @@ class StorageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            path_template("/storage/provisioning/v1/storage/{storage_id}", storage_id=storage_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -404,7 +404,9 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link", storage_id=storage_id, key_id=key_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -441,7 +443,7 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/restore",
+            path_template("/storage/provisioning/v1/storage/{storage_id}/restore", storage_id=storage_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,7 +486,11 @@ class StorageResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+                storage_id=storage_id,
+                key_id=key_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -632,7 +638,7 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/storage/provisioning/v2/storage/{storage_id}",
+            path_template("/storage/provisioning/v2/storage/{storage_id}", storage_id=storage_id),
             body=await async_maybe_transform(
                 {
                     "expires": expires,
@@ -764,7 +770,7 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            path_template("/storage/provisioning/v1/storage/{storage_id}", storage_id=storage_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -800,7 +806,7 @@ class AsyncStorageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}",
+            path_template("/storage/provisioning/v1/storage/{storage_id}", storage_id=storage_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -839,7 +845,9 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/link", storage_id=storage_id, key_id=key_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -876,7 +884,7 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/restore",
+            path_template("/storage/provisioning/v1/storage/{storage_id}/restore", storage_id=storage_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -921,7 +929,11 @@ class AsyncStorageResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/key/{key_id}/unlink",
+                storage_id=storage_id,
+                key_id=key_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

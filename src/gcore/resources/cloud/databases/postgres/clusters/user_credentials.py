@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ......_types import Body, Query, Headers, NotGiven, not_given
+from ......_utils import path_template
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -76,7 +77,13 @@ class UserCredentialsResource(SyncAPIResource):
         if not username:
             raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
         return self._get(
-            f"/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+            path_template(
+                "/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                username=username,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -118,7 +125,13 @@ class UserCredentialsResource(SyncAPIResource):
         if not username:
             raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
         return self._post(
-            f"/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+            path_template(
+                "/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                username=username,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -183,7 +196,13 @@ class AsyncUserCredentialsResource(AsyncAPIResource):
         if not username:
             raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
         return await self._get(
-            f"/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+            path_template(
+                "/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                username=username,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -225,7 +244,13 @@ class AsyncUserCredentialsResource(AsyncAPIResource):
         if not username:
             raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
         return await self._post(
-            f"/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+            path_template(
+                "/cloud/v1/dbaas/postgres/clusters/{project_id}/{region_id}/{cluster_name}/users/{username}/credentials",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+                username=username,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -218,7 +218,7 @@ class NetworkMappingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._delete(
-            f"/dns/v2/network-mappings/{id}",
+            path_template("/dns/v2/network-mappings/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -256,7 +256,7 @@ class NetworkMappingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/dns/v2/network-mappings/{id}",
+            path_template("/dns/v2/network-mappings/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -298,7 +298,7 @@ class NetworkMappingsResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/dns/v2/network-mappings/{name}",
+            path_template("/dns/v2/network-mappings/{name}", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -447,7 +447,7 @@ class NetworkMappingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/dns/v2/network-mappings/{id}",
+            path_template("/dns/v2/network-mappings/{id}", id=id),
             body=maybe_transform(
                 {
                     "mapping": mapping,
@@ -652,7 +652,7 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._delete(
-            f"/dns/v2/network-mappings/{id}",
+            path_template("/dns/v2/network-mappings/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -690,7 +690,7 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/dns/v2/network-mappings/{id}",
+            path_template("/dns/v2/network-mappings/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -732,7 +732,7 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/dns/v2/network-mappings/{name}",
+            path_template("/dns/v2/network-mappings/{name}", name=name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -881,7 +881,7 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/dns/v2/network-mappings/{id}",
+            path_template("/dns/v2/network-mappings/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "mapping": mapping,

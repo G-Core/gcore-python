@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -94,7 +94,7 @@ class SSHKeysResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._post(
-            f"/cloud/v1/ssh_keys/{project_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}", project_id=project_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -145,7 +145,7 @@ class SSHKeysResource(SyncAPIResource):
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return self._patch(
-            f"/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}", project_id=project_id, ssh_key_id=ssh_key_id),
             body=maybe_transform({"shared_in_project": shared_in_project}, ssh_key_update_params.SSHKeyUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -194,7 +194,7 @@ class SSHKeysResource(SyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/ssh_keys/{project_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}", project_id=project_id),
             page=SyncOffsetPage[SSHKey],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -248,7 +248,7 @@ class SSHKeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}", project_id=project_id, ssh_key_id=ssh_key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -288,7 +288,7 @@ class SSHKeysResource(SyncAPIResource):
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return self._get(
-            f"/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}", project_id=project_id, ssh_key_id=ssh_key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -365,7 +365,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return await self._post(
-            f"/cloud/v1/ssh_keys/{project_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}", project_id=project_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -416,7 +416,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return await self._patch(
-            f"/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}", project_id=project_id, ssh_key_id=ssh_key_id),
             body=await async_maybe_transform(
                 {"shared_in_project": shared_in_project}, ssh_key_update_params.SSHKeyUpdateParams
             ),
@@ -467,7 +467,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/ssh_keys/{project_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}", project_id=project_id),
             page=AsyncOffsetPage[SSHKey],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -521,7 +521,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}", project_id=project_id, ssh_key_id=ssh_key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -561,7 +561,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         if not ssh_key_id:
             raise ValueError(f"Expected a non-empty value for `ssh_key_id` but received {ssh_key_id!r}")
         return await self._get(
-            f"/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}",
+            path_template("/cloud/v1/ssh_keys/{project_id}/{ssh_key_id}", project_id=project_id, ssh_key_id=ssh_key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

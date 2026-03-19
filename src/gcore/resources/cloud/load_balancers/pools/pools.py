@@ -15,7 +15,7 @@ from .members import (
     AsyncMembersResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -155,7 +155,7 @@ class PoolsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}",
+            path_template("/cloud/v1/lbpools/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=maybe_transform(
                 {
                     "lb_algorithm": lb_algorithm,
@@ -279,7 +279,12 @@ class PoolsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._patch(
-            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
+            path_template(
+                "/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             body=maybe_transform(
                 {
                     "admin_state_up": admin_state_up,
@@ -346,7 +351,7 @@ class PoolsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}",
+            path_template("/cloud/v1/lbpools/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -402,7 +407,12 @@ class PoolsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -447,7 +457,12 @@ class PoolsResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -566,7 +581,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}",
+            path_template("/cloud/v1/lbpools/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=await async_maybe_transform(
                 {
                     "lb_algorithm": lb_algorithm,
@@ -690,7 +705,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._patch(
-            f"/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
+            path_template(
+                "/cloud/v2/lbpools/{project_id}/{region_id}/{pool_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "admin_state_up": admin_state_up,
@@ -757,7 +777,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}",
+            path_template("/cloud/v1/lbpools/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -813,7 +833,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -858,7 +883,12 @@ class AsyncPoolsResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._get(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

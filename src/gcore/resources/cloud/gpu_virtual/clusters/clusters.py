@@ -40,7 +40,7 @@ from .volumes import (
     AsyncVolumesResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import required_args, maybe_transform, async_maybe_transform
+from ....._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .interfaces import (
     InterfacesResource,
     AsyncInterfacesResource,
@@ -171,7 +171,9 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             body=maybe_transform(
                 {
                     "flavor": flavor,
@@ -256,7 +258,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._patch(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -309,7 +316,9 @@ class ClustersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             page=SyncOffsetPage[GPUVirtualCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -385,7 +394,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._delete(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -631,7 +645,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._post(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/action",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=maybe_transform(
                 {
                     "action": action,
@@ -683,7 +702,12 @@ class ClustersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -789,7 +813,9 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             body=await async_maybe_transform(
                 {
                     "flavor": flavor,
@@ -874,7 +900,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._patch(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -927,7 +958,9 @@ class AsyncClustersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters", project_id=project_id, region_id=region_id
+            ),
             page=AsyncOffsetPage[GPUVirtualCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1003,7 +1036,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._delete(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1249,7 +1287,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._post(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/action",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -1301,7 +1344,12 @@ class AsyncClustersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return await self._get(
-            f"/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+            path_template(
+                "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

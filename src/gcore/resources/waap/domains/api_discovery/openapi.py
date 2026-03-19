@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -70,7 +70,7 @@ class OpenAPIResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan",
+            path_template("/waap/v1/domains/{domain_id}/api-discovery/scan", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -113,7 +113,7 @@ class OpenAPIResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/upload",
+            path_template("/waap/v1/domains/{domain_id}/api-discovery/upload", domain_id=domain_id),
             body=maybe_transform(
                 {
                     "file_data": file_data,
@@ -177,7 +177,7 @@ class AsyncOpenAPIResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/scan",
+            path_template("/waap/v1/domains/{domain_id}/api-discovery/scan", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -220,7 +220,7 @@ class AsyncOpenAPIResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/waap/v1/domains/{domain_id}/api-discovery/upload",
+            path_template("/waap/v1/domains/{domain_id}/api-discovery/upload", domain_id=domain_id),
             body=await async_maybe_transform(
                 {
                     "file_data": file_data,

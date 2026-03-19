@@ -7,7 +7,7 @@ from typing import List, Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -90,7 +90,7 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/iam/users/{user_id}",
+            path_template("/iam/users/{user_id}", user_id=user_id),
             body=maybe_transform(
                 {
                     "auth_types": auth_types,
@@ -186,7 +186,7 @@ class UsersResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/iam/clients/{client_id}/client-users/{user_id}",
+            path_template("/iam/clients/{client_id}/client-users/{user_id}", client_id=client_id, user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -217,7 +217,7 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/iam/users/{user_id}",
+            path_template("/iam/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -347,7 +347,7 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/iam/users/{user_id}",
+            path_template("/iam/users/{user_id}", user_id=user_id),
             body=await async_maybe_transform(
                 {
                     "auth_types": auth_types,
@@ -443,7 +443,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/iam/clients/{client_id}/client-users/{user_id}",
+            path_template("/iam/clients/{client_id}/client-users/{user_id}", client_id=client_id, user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -474,7 +474,7 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/iam/users/{user_id}",
+            path_template("/iam/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

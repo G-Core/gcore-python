@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -69,7 +70,12 @@ class RepositoriesResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -110,7 +116,13 @@ class RepositoriesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                repository_name=repository_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -168,7 +180,12 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -209,7 +226,13 @@ class AsyncRepositoriesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                repository_name=repository_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

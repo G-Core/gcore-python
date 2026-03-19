@@ -32,7 +32,7 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from .api_paths import (
     APIPathsResource,
     AsyncAPIPathsResource,
@@ -213,7 +213,7 @@ class DomainsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/waap/v1/domains/{domain_id}",
+            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
             body=maybe_transform({"status": status}, domain_update_params.DomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -313,7 +313,7 @@ class DomainsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/waap/v1/domains/{domain_id}",
+            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -346,7 +346,7 @@ class DomainsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}",
+            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -379,7 +379,7 @@ class DomainsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/rule-sets",
+            path_template("/waap/v1/domains/{domain_id}/rule-sets", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -485,7 +485,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/waap/v1/domains/{domain_id}",
+            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
             body=await async_maybe_transform({"status": status}, domain_update_params.DomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -585,7 +585,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/waap/v1/domains/{domain_id}",
+            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -618,7 +618,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}",
+            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -651,7 +651,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/rule-sets",
+            path_template("/waap/v1/domains/{domain_id}/rule-sets", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

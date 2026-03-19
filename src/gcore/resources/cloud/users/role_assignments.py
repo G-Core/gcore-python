@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -139,7 +139,7 @@ class RoleAssignmentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cloud/v1/users/assignments/{assignment_id}",
+            path_template("/cloud/v1/users/assignments/{assignment_id}", assignment_id=assignment_id),
             body=maybe_transform(
                 {
                     "role": role,
@@ -237,7 +237,7 @@ class RoleAssignmentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._delete(
-            f"/cloud/v1/users/assignments/{assignment_id}",
+            path_template("/cloud/v1/users/assignments/{assignment_id}", assignment_id=assignment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -354,7 +354,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cloud/v1/users/assignments/{assignment_id}",
+            path_template("/cloud/v1/users/assignments/{assignment_id}", assignment_id=assignment_id),
             body=await async_maybe_transform(
                 {
                     "role": role,
@@ -452,7 +452,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._delete(
-            f"/cloud/v1/users/assignments/{assignment_id}",
+            path_template("/cloud/v1/users/assignments/{assignment_id}", assignment_id=assignment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -23,7 +23,7 @@ from .policy import (
     AsyncPolicyResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from .lifecycle import (
     LifecycleResource,
     AsyncLifecycleResource,
@@ -114,7 +114,11 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -158,7 +162,7 @@ class BucketsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets",
+            path_template("/storage/provisioning/v2/storage/{storage_id}/s3/buckets", storage_id=storage_id),
             page=SyncOffsetPage[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -210,7 +214,11 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -284,7 +292,11 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -328,7 +340,7 @@ class AsyncBucketsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/storage/provisioning/v2/storage/{storage_id}/s3/buckets",
+            path_template("/storage/provisioning/v2/storage/{storage_id}/s3/buckets", storage_id=storage_id),
             page=AsyncOffsetPage[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -380,7 +392,11 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -97,7 +98,9 @@ class TemplatesResource(SyncAPIResource):
         if not application_name:
             raise ValueError(f"Expected a non-empty value for `application_name` but received {application_name!r}")
         return self._get(
-            f"/cloud/v3/inference/applications/catalog/{application_name}",
+            path_template(
+                "/cloud/v3/inference/applications/catalog/{application_name}", application_name=application_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -182,7 +185,9 @@ class AsyncTemplatesResource(AsyncAPIResource):
         if not application_name:
             raise ValueError(f"Expected a non-empty value for `application_name` but received {application_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/applications/catalog/{application_name}",
+            path_template(
+                "/cloud/v3/inference/applications/catalog/{application_name}", application_name=application_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

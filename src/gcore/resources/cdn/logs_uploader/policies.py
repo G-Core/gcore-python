@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -283,7 +283,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             body=maybe_transform(
                 {
                     "date_format": date_format,
@@ -388,7 +388,7 @@ class PoliciesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -419,7 +419,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -543,7 +543,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             body=maybe_transform(
                 {
                     "date_format": date_format,
@@ -825,7 +825,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "date_format": date_format,
@@ -930,7 +930,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -961,7 +961,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1085,7 +1085,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/logs_uploader/policies/{id}",
+            path_template("/cdn/logs_uploader/policies/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "date_format": date_format,
