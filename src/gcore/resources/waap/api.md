@@ -22,6 +22,26 @@ Methods:
 
 - <code title="get /waap/v1/statistics/series">client.waap.statistics.<a href="./src/gcore/resources/waap/statistics.py">get_usage_series</a>(\*\*<a href="src/gcore/types/waap/statistic_get_usage_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_statistics_series.py">WaapStatisticsSeries</a></code>
 
+## Analytics
+
+Types:
+
+```python
+from gcore.types.waap import (
+    WaapCompactTrafficMetrics,
+    WaapSimpleEventStatistics,
+    AnalyticsGetTrafficResponse,
+    AnalyticsGetTrafficFilteredResponse,
+)
+```
+
+Methods:
+
+- <code title="get /waap/v1/analytics/stats/{dimension}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_event_statistics</a>(dimension, \*\*<a href="src/gcore/types/waap/analytics_get_event_statistics_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_simple_event_statistics.py">WaapSimpleEventStatistics</a></code>
+- <code title="get /waap/v1/analytics/requests">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_requests</a>(\*\*<a href="src/gcore/types/waap/analytics_get_requests_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_request_summary.py">SyncOffsetPage[WaapRequestSummary]</a></code>
+- <code title="get /waap/v1/analytics/traffic">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_traffic</a>(\*\*<a href="src/gcore/types/waap/analytics_get_traffic_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_traffic_response.py">AnalyticsGetTrafficResponse</a></code>
+- <code title="get /waap/v1/analytics/traffic-filtered">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_traffic_filtered</a>(\*\*<a href="src/gcore/types/waap/analytics_get_traffic_filtered_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_traffic_filtered_response.py">AnalyticsGetTrafficFilteredResponse</a></code>
+
 ## Domains
 
 Types:
@@ -32,8 +52,10 @@ from gcore.types.waap import (
     WaapDomainAPISettings,
     WaapDomainDDOSSettings,
     WaapDomainSettingsModel,
+    WaapRequestSummary,
     WaapRuleSet,
     WaapSummaryDomain,
+    WaapTrafficMetrics,
     DomainListRuleSetsResponse,
 )
 ```
@@ -176,9 +198,6 @@ from gcore.types.waap.domains import (
     WaapDDOSInfo,
     WaapEventStatistics,
     WaapRequestDetails,
-    WaapRequestSummary,
-    WaapTrafficMetrics,
-    StatisticGetTrafficSeriesResponse,
 )
 ```
 
@@ -188,8 +207,6 @@ Methods:
 - <code title="get /waap/v1/domains/{domain_id}/ddos-info">client.waap.domains.statistics.<a href="./src/gcore/resources/waap/domains/statistics.py">get_ddos_info</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/statistic_get_ddos_info_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_ddos_info.py">SyncOffsetPage[WaapDDOSInfo]</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/stats">client.waap.domains.statistics.<a href="./src/gcore/resources/waap/domains/statistics.py">get_events_aggregated</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/statistic_get_events_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_event_statistics.py">WaapEventStatistics</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/requests/{request_id}/details">client.waap.domains.statistics.<a href="./src/gcore/resources/waap/domains/statistics.py">get_request_details</a>(request_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_request_details.py">WaapRequestDetails</a></code>
-- <code title="get /waap/v1/domains/{domain_id}/requests">client.waap.domains.statistics.<a href="./src/gcore/resources/waap/domains/statistics.py">get_requests_series</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/statistic_get_requests_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_request_summary.py">SyncOffsetPage[WaapRequestSummary]</a></code>
-- <code title="get /waap/v1/domains/{domain_id}/traffic">client.waap.domains.statistics.<a href="./src/gcore/resources/waap/domains/statistics.py">get_traffic_series</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/statistic_get_traffic_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/statistic_get_traffic_series_response.py">StatisticGetTrafficSeriesResponse</a></code>
 
 ### CustomRules
 

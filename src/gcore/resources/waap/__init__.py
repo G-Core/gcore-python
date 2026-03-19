@@ -40,6 +40,14 @@ from .insights import (
     InsightsResourceWithStreamingResponse,
     AsyncInsightsResourceWithStreamingResponse,
 )
+from .analytics import (
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
+)
 from .statistics import (
     StatisticsResource,
     AsyncStatisticsResource,
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncStatisticsResourceWithRawResponse",
     "StatisticsResourceWithStreamingResponse",
     "AsyncStatisticsResourceWithStreamingResponse",
+    "AnalyticsResource",
+    "AsyncAnalyticsResource",
+    "AnalyticsResourceWithRawResponse",
+    "AsyncAnalyticsResourceWithRawResponse",
+    "AnalyticsResourceWithStreamingResponse",
+    "AsyncAnalyticsResourceWithStreamingResponse",
     "DomainsResource",
     "AsyncDomainsResource",
     "DomainsResourceWithRawResponse",
