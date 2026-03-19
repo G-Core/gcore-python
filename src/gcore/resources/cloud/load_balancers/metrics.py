@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -87,7 +87,12 @@ class MetricsResource(SyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/metrics",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/metrics",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=maybe_transform(
                 {
                     "time_interval": time_interval,
@@ -166,7 +171,12 @@ class AsyncMetricsResource(AsyncAPIResource):
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._post(
-            f"/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/metrics",
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/{load_balancer_id}/metrics",
+                project_id=project_id,
+                region_id=region_id,
+                load_balancer_id=load_balancer_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "time_interval": time_interval,

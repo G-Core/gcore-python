@@ -7,6 +7,7 @@ import typing_extensions
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -78,7 +79,11 @@ class PolicyResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -121,7 +126,11 @@ class PolicyResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -161,7 +170,11 @@ class PolicyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -226,7 +239,11 @@ class AsyncPolicyResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -269,7 +286,11 @@ class AsyncPolicyResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -309,7 +330,11 @@ class AsyncPolicyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/policy",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

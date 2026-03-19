@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -94,7 +94,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-attacks",
+            path_template("/waap/v1/domains/{domain_id}/ddos-attacks", domain_id=domain_id),
             page=SyncOffsetPage[WaapDDOSAttack],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -157,7 +157,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-info",
+            path_template("/waap/v1/domains/{domain_id}/ddos-info", domain_id=domain_id),
             page=SyncOffsetPage[WaapDDOSInfo],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -223,7 +223,7 @@ class StatisticsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/waap/v1/domains/{domain_id}/stats",
+            path_template("/waap/v1/domains/{domain_id}/stats", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,7 +276,9 @@ class StatisticsResource(SyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get(
-            f"/waap/v1/domains/{domain_id}/requests/{request_id}/details",
+            path_template(
+                "/waap/v1/domains/{domain_id}/requests/{request_id}/details", domain_id=domain_id, request_id=request_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -345,7 +347,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-attacks",
+            path_template("/waap/v1/domains/{domain_id}/ddos-attacks", domain_id=domain_id),
             page=AsyncOffsetPage[WaapDDOSAttack],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -408,7 +410,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/ddos-info",
+            path_template("/waap/v1/domains/{domain_id}/ddos-info", domain_id=domain_id),
             page=AsyncOffsetPage[WaapDDOSInfo],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -474,7 +476,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/stats",
+            path_template("/waap/v1/domains/{domain_id}/stats", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -527,7 +529,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/requests/{request_id}/details",
+            path_template(
+                "/waap/v1/domains/{domain_id}/requests/{request_id}/details", domain_id=domain_id, request_id=request_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -135,7 +135,12 @@ class MembersResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             body=maybe_transform(
                 {
                     "address": address,
@@ -199,7 +204,13 @@ class MembersResource(SyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+                member_id=member_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -319,7 +330,12 @@ class AsyncMembersResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._post(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "address": address,
@@ -383,7 +399,13 @@ class AsyncMembersResource(AsyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._delete(
-            f"/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+            path_template(
+                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+                member_id=member_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

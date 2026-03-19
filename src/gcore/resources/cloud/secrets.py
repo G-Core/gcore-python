@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -90,7 +90,7 @@ class SecretsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/secrets/{project_id}/{region_id}",
+            path_template("/cloud/v1/secrets/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             page=SyncOffsetPage[Secret],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -146,7 +146,12 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._delete(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            path_template(
+                "/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+                project_id=project_id,
+                region_id=region_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -191,7 +196,12 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._get(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            path_template(
+                "/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+                project_id=project_id,
+                region_id=region_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -240,7 +250,7 @@ class SecretsResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v2/secrets/{project_id}/{region_id}",
+            path_template("/cloud/v2/secrets/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -363,7 +373,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            f"/cloud/v1/secrets/{project_id}/{region_id}",
+            path_template("/cloud/v1/secrets/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             page=AsyncOffsetPage[Secret],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -419,7 +429,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._delete(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            path_template(
+                "/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+                project_id=project_id,
+                region_id=region_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -464,7 +479,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._get(
-            f"/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+            path_template(
+                "/cloud/v1/secrets/{project_id}/{region_id}/{secret_id}",
+                project_id=project_id,
+                region_id=region_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -513,7 +533,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v2/secrets/{project_id}/{region_id}",
+            path_template("/cloud/v2/secrets/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             body=await async_maybe_transform(
                 {
                     "name": name,

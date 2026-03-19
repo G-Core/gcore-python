@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -106,7 +106,7 @@ class InsightsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/insights",
+            path_template("/waap/v1/domains/{domain_id}/insights", domain_id=domain_id),
             page=SyncOffsetPage[WaapInsight],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -158,7 +158,9 @@ class InsightsResource(SyncAPIResource):
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
         return self._get(
-            f"/waap/v1/domains/{domain_id}/insights/{insight_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/insights/{insight_id}", domain_id=domain_id, insight_id=insight_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -199,7 +201,9 @@ class InsightsResource(SyncAPIResource):
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
         return self._put(
-            f"/waap/v1/domains/{domain_id}/insights/{insight_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/insights/{insight_id}", domain_id=domain_id, insight_id=insight_id
+            ),
             body=maybe_transform({"status": status}, insight_replace_params.InsightReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -289,7 +293,7 @@ class AsyncInsightsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/insights",
+            path_template("/waap/v1/domains/{domain_id}/insights", domain_id=domain_id),
             page=AsyncOffsetPage[WaapInsight],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -341,7 +345,9 @@ class AsyncInsightsResource(AsyncAPIResource):
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
         return await self._get(
-            f"/waap/v1/domains/{domain_id}/insights/{insight_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/insights/{insight_id}", domain_id=domain_id, insight_id=insight_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -382,7 +388,9 @@ class AsyncInsightsResource(AsyncAPIResource):
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
         return await self._put(
-            f"/waap/v1/domains/{domain_id}/insights/{insight_id}",
+            path_template(
+                "/waap/v1/domains/{domain_id}/insights/{insight_id}", domain_id=domain_id, insight_id=insight_id
+            ),
             body=await async_maybe_transform({"status": status}, insight_replace_params.InsightReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

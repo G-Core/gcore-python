@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -81,7 +82,12 @@ class KubeconfigResource(SyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -151,7 +157,12 @@ class AsyncKubeconfigResource(AsyncAPIResource):
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         return await self._get(
-            f"/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
+            path_template(
+                "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/config",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_name=cluster_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

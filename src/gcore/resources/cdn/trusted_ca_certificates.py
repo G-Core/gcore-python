@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -183,7 +183,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cdn/sslCertificates/{id}",
+            path_template("/cdn/sslCertificates/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -214,7 +214,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cdn/sslCertificates/{id}",
+            path_template("/cdn/sslCertificates/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,7 +250,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            f"/cdn/sslCertificates/{id}",
+            path_template("/cdn/sslCertificates/{id}", id=id),
             body=maybe_transform(
                 {"name": name}, trusted_ca_certificate_replace_params.TrustedCaCertificateReplaceParams
             ),
@@ -418,7 +418,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cdn/sslCertificates/{id}",
+            path_template("/cdn/sslCertificates/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -449,7 +449,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cdn/sslCertificates/{id}",
+            path_template("/cdn/sslCertificates/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -485,7 +485,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            f"/cdn/sslCertificates/{id}",
+            path_template("/cdn/sslCertificates/{id}", id=id),
             body=await async_maybe_transform(
                 {"name": name}, trusted_ca_certificate_replace_params.TrustedCaCertificateReplaceParams
             ),

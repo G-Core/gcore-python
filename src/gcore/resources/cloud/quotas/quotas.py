@@ -13,6 +13,7 @@ from .requests import (
     AsyncRequestsResourceWithStreamingResponse,
 )
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -103,7 +104,9 @@ class QuotasResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v2/regional_quotas/{client_id}/{region_id}",
+            path_template(
+                "/cloud/v2/regional_quotas/{client_id}/{region_id}", client_id=client_id, region_id=region_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -136,7 +139,7 @@ class QuotasResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/cloud/v2/global_quotas/{client_id}",
+            path_template("/cloud/v2/global_quotas/{client_id}", client_id=client_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -218,7 +221,9 @@ class AsyncQuotasResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v2/regional_quotas/{client_id}/{region_id}",
+            path_template(
+                "/cloud/v2/regional_quotas/{client_id}/{region_id}", client_id=client_id, region_id=region_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -251,7 +256,7 @@ class AsyncQuotasResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/cloud/v2/global_quotas/{client_id}",
+            path_template("/cloud/v2/global_quotas/{client_id}", client_id=client_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

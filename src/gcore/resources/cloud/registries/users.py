@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -92,7 +92,12 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             body=maybe_transform(
                 {
                     "duration": duration,
@@ -145,7 +150,13 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._patch(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                user_id=user_id,
+            ),
             body=maybe_transform(
                 {
                     "duration": duration,
@@ -189,7 +200,12 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -228,7 +244,13 @@ class UsersResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                user_id=user_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -268,7 +290,12 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             body=maybe_transform({"users": users}, user_create_multiple_params.UserCreateMultipleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -307,7 +334,13 @@ class UsersResource(SyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                user_id=user_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -381,7 +414,12 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "duration": duration,
@@ -434,7 +472,13 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._patch(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                user_id=user_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "duration": duration,
@@ -478,7 +522,12 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._get(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -517,7 +566,13 @@ class AsyncUsersResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                user_id=user_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -557,7 +612,12 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+            ),
             body=await async_maybe_transform({"users": users}, user_create_multiple_params.UserCreateMultipleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -596,7 +656,13 @@ class AsyncUsersResource(AsyncAPIResource):
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            f"/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
+            path_template(
+                "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret",
+                project_id=project_id,
+                region_id=region_id,
+                registry_id=registry_id,
+                user_id=user_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

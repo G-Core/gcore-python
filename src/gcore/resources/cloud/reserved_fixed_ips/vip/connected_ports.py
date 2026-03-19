@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -73,7 +73,12 @@ class ConnectedPortsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -115,7 +120,12 @@ class ConnectedPortsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=maybe_transform({"port_ids": port_ids}, connected_port_add_params.ConnectedPortAddParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -158,7 +168,12 @@ class ConnectedPortsResource(SyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return self._put(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=maybe_transform({"port_ids": port_ids}, connected_port_replace_params.ConnectedPortReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -219,7 +234,12 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._get(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -261,7 +281,12 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._patch(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=await async_maybe_transform({"port_ids": port_ids}, connected_port_add_params.ConnectedPortAddParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -304,7 +329,12 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         if not port_id:
             raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
         return await self._put(
-            f"/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+            path_template(
+                "/cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
             body=await async_maybe_transform(
                 {"port_ids": port_ids}, connected_port_replace_params.ConnectedPortReplaceParams
             ),

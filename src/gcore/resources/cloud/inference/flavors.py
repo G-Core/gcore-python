@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -119,7 +119,7 @@ class FlavorsResource(SyncAPIResource):
         if not flavor_name:
             raise ValueError(f"Expected a non-empty value for `flavor_name` but received {flavor_name!r}")
         return self._get(
-            f"/cloud/v3/inference/flavors/{flavor_name}",
+            path_template("/cloud/v3/inference/flavors/{flavor_name}", flavor_name=flavor_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -224,7 +224,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         if not flavor_name:
             raise ValueError(f"Expected a non-empty value for `flavor_name` but received {flavor_name!r}")
         return await self._get(
-            f"/cloud/v3/inference/flavors/{flavor_name}",
+            path_template("/cloud/v3/inference/flavors/{flavor_name}", flavor_name=flavor_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

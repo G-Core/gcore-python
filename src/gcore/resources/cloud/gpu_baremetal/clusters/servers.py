@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -138,7 +138,12 @@ class ServersResource(SyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             page=SyncOffsetPage[GPUBaremetalClusterServer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -204,7 +209,13 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._delete(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
+            path_template(
+                "/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -247,7 +258,12 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -286,7 +302,12 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -325,7 +346,12 @@ class ServersResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -381,7 +407,13 @@ class ServersResource(SyncAPIResource):
         if not server_id:
             raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
         return self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                server_id=server_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -540,7 +572,12 @@ class AsyncServersResource(AsyncAPIResource):
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
         return self._get_api_list(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
             page=AsyncOffsetPage[GPUBaremetalClusterServer],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -606,7 +643,13 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._delete(
-            f"/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
+            path_template(
+                "/cloud/v1/ai/clusters/gpu/{project_id}/{region_id}/{cluster_id}/node/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -651,7 +694,12 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/get_console",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -690,7 +738,12 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -729,7 +782,12 @@ class AsyncServersResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
-            f"/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
+            path_template(
+                "/cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -785,7 +843,13 @@ class AsyncServersResource(AsyncAPIResource):
         if not server_id:
             raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
         return await self._post(
-            f"/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                server_id=server_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

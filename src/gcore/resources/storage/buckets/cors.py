@@ -7,7 +7,7 @@ import typing_extensions
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -81,7 +81,11 @@ class CorsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             body=maybe_transform({"allowed_origins": allowed_origins}, cor_create_params.CorCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -122,7 +126,11 @@ class CorsResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -188,7 +196,11 @@ class AsyncCorsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             body=await async_maybe_transform({"allowed_origins": allowed_origins}, cor_create_params.CorCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -229,7 +241,11 @@ class AsyncCorsResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+            path_template(
+                "/storage/provisioning/v1/storage/{storage_id}/s3/bucket/{bucket_name}/cors",
+                storage_id=storage_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
