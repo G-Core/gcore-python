@@ -156,9 +156,6 @@ class CDNResource(SyncAPIResource):
 
     @cached_property
     def rule_templates(self) -> RuleTemplatesResource:
-        """
-        CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
-        """
         return RuleTemplatesResource(self._client)
 
     @cached_property
@@ -501,9 +498,6 @@ class AsyncCDNResource(AsyncAPIResource):
 
     @cached_property
     def rule_templates(self) -> AsyncRuleTemplatesResource:
-        """
-        CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
-        """
         return AsyncRuleTemplatesResource(self._client)
 
     @cached_property
@@ -871,9 +865,6 @@ class CDNResourceWithRawResponse:
 
     @cached_property
     def rule_templates(self) -> RuleTemplatesResourceWithRawResponse:
-        """
-        CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
-        """
         return RuleTemplatesResourceWithRawResponse(self._cdn.rule_templates)
 
     @cached_property
@@ -994,9 +985,6 @@ class AsyncCDNResourceWithRawResponse:
 
     @cached_property
     def rule_templates(self) -> AsyncRuleTemplatesResourceWithRawResponse:
-        """
-        CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
-        """
         return AsyncRuleTemplatesResourceWithRawResponse(self._cdn.rule_templates)
 
     @cached_property
@@ -1117,9 +1105,6 @@ class CDNResourceWithStreamingResponse:
 
     @cached_property
     def rule_templates(self) -> RuleTemplatesResourceWithStreamingResponse:
-        """
-        CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
-        """
         return RuleTemplatesResourceWithStreamingResponse(self._cdn.rule_templates)
 
     @cached_property
@@ -1240,9 +1225,6 @@ class AsyncCDNResourceWithStreamingResponse:
 
     @cached_property
     def rule_templates(self) -> AsyncRuleTemplatesResourceWithStreamingResponse:
-        """
-        CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
-        """
         return AsyncRuleTemplatesResourceWithStreamingResponse(self._cdn.rule_templates)
 
     @cached_property
