@@ -22,6 +22,14 @@ from .insights import (
     AsyncInsightsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .analytics import (
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
+)
 from .statistics import (
     StatisticsResource,
     AsyncStatisticsResource,
@@ -87,6 +95,10 @@ class WaapResource(SyncAPIResource):
     @cached_property
     def statistics(self) -> StatisticsResource:
         return StatisticsResource(self._client)
+
+    @cached_property
+    def analytics(self) -> AnalyticsResource:
+        return AnalyticsResource(self._client)
 
     @cached_property
     def domains(self) -> DomainsResource:
@@ -162,6 +174,10 @@ class AsyncWaapResource(AsyncAPIResource):
     @cached_property
     def statistics(self) -> AsyncStatisticsResource:
         return AsyncStatisticsResource(self._client)
+
+    @cached_property
+    def analytics(self) -> AsyncAnalyticsResource:
+        return AsyncAnalyticsResource(self._client)
 
     @cached_property
     def domains(self) -> AsyncDomainsResource:
@@ -246,6 +262,10 @@ class WaapResourceWithRawResponse:
         return StatisticsResourceWithRawResponse(self._waap.statistics)
 
     @cached_property
+    def analytics(self) -> AnalyticsResourceWithRawResponse:
+        return AnalyticsResourceWithRawResponse(self._waap.analytics)
+
+    @cached_property
     def domains(self) -> DomainsResourceWithRawResponse:
         """
         WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
@@ -288,6 +308,10 @@ class AsyncWaapResourceWithRawResponse:
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithRawResponse:
         return AsyncStatisticsResourceWithRawResponse(self._waap.statistics)
+
+    @cached_property
+    def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
+        return AsyncAnalyticsResourceWithRawResponse(self._waap.analytics)
 
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithRawResponse:
@@ -334,6 +358,10 @@ class WaapResourceWithStreamingResponse:
         return StatisticsResourceWithStreamingResponse(self._waap.statistics)
 
     @cached_property
+    def analytics(self) -> AnalyticsResourceWithStreamingResponse:
+        return AnalyticsResourceWithStreamingResponse(self._waap.analytics)
+
+    @cached_property
     def domains(self) -> DomainsResourceWithStreamingResponse:
         """
         WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
@@ -376,6 +404,10 @@ class AsyncWaapResourceWithStreamingResponse:
     @cached_property
     def statistics(self) -> AsyncStatisticsResourceWithStreamingResponse:
         return AsyncStatisticsResourceWithStreamingResponse(self._waap.statistics)
+
+    @cached_property
+    def analytics(self) -> AsyncAnalyticsResourceWithStreamingResponse:
+        return AsyncAnalyticsResourceWithStreamingResponse(self._waap.analytics)
 
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
