@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -24,16 +23,12 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import (
     statistic_get_ddos_info_params,
     statistic_get_ddos_attacks_params,
-    statistic_get_traffic_series_params,
-    statistic_get_requests_series_params,
     statistic_get_events_aggregated_params,
 )
 from ....types.waap.domains.waap_ddos_info import WaapDDOSInfo
 from ....types.waap.domains.waap_ddos_attack import WaapDDOSAttack
 from ....types.waap.domains.waap_request_details import WaapRequestDetails
-from ....types.waap.domains.waap_request_summary import WaapRequestSummary
 from ....types.waap.domains.waap_event_statistics import WaapEventStatistics
-from ....types.waap.domains.statistic_get_traffic_series_response import StatisticGetTrafficSeriesResponse
 
 __all__ = ["StatisticsResource", "AsyncStatisticsResource"]
 
@@ -288,183 +283,6 @@ class StatisticsResource(SyncAPIResource):
             cast_to=WaapRequestDetails,
         )
 
-    @typing_extensions.deprecated("deprecated")
-    def get_requests_series(
-        self,
-        domain_id: int,
-        *,
-        start: str,
-        actions: List[Literal["allow", "block", "captcha", "handshake"]] | Omit = omit,
-        countries: SequenceNotStr[str] | Omit = omit,
-        end: Optional[str] | Omit = omit,
-        ip: str | Omit = omit,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        ordering: str | Omit = omit,
-        reference_id: str | Omit = omit,
-        security_rule_name: str | Omit = omit,
-        status_code: int | Omit = omit,
-        traffic_types: List[
-            Literal[
-                "policy_allowed",
-                "policy_blocked",
-                "custom_rule_allowed",
-                "custom_blocked",
-                "legit_requests",
-                "sanctioned",
-                "dynamic",
-                "api",
-                "static",
-                "ajax",
-                "redirects",
-                "monitor",
-                "err_40x",
-                "err_50x",
-                "passed_to_origin",
-                "timeout",
-                "other",
-                "ddos",
-                "legit",
-                "monitored",
-            ]
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[WaapRequestSummary]:
-        """Retrieve a domain's requests data.
-
-        Deprecated. Use
-        [GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
-        instead.
-
-        Args:
-          domain_id: The domain ID
-
-          start: Filter data items starting from a specified date in ISO 8601 format
-
-          actions: Filter the response by actions.
-
-          countries: Filter the response by country codes in ISO 3166-1 alpha-2 format.
-
-          end: Filter data items up to a specified end date in ISO 8601 format. If not
-              provided, defaults to the current date and time.
-
-          ip: Filter the response by IP.
-
-          limit: Number of items to return
-
-          offset: Number of items to skip
-
-          ordering: Sort the response by given field.
-
-          reference_id: Filter the response by reference ID.
-
-          security_rule_name: Filter the response by security rule name.
-
-          status_code: Filter the response by response code.
-
-          traffic_types: Filter the response by traffic types.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/requests",
-            page=SyncOffsetPage[WaapRequestSummary],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "start": start,
-                        "actions": actions,
-                        "countries": countries,
-                        "end": end,
-                        "ip": ip,
-                        "limit": limit,
-                        "offset": offset,
-                        "ordering": ordering,
-                        "reference_id": reference_id,
-                        "security_rule_name": security_rule_name,
-                        "status_code": status_code,
-                        "traffic_types": traffic_types,
-                    },
-                    statistic_get_requests_series_params.StatisticGetRequestsSeriesParams,
-                ),
-            ),
-            model=WaapRequestSummary,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    def get_traffic_series(
-        self,
-        domain_id: int,
-        *,
-        resolution: Literal["daily", "hourly", "minutely"],
-        start: str,
-        end: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StatisticGetTrafficSeriesResponse:
-        """Deprecated.
-
-        Use
-        [GET /v1/analytics/traffic](/docs/api-reference/waap/analytics/get-traffic-data)
-        instead.
-
-        Args:
-          domain_id: The domain ID
-
-          resolution: Specifies the granularity of the result data.
-
-          start: Filter data items starting from a specified date in ISO 8601 format
-
-          end: Filter data items up to a specified end date in ISO 8601 format. If not
-              provided, defaults to the current date and time.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/waap/v1/domains/{domain_id}/traffic",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "resolution": resolution,
-                        "start": start,
-                        "end": end,
-                    },
-                    statistic_get_traffic_series_params.StatisticGetTrafficSeriesParams,
-                ),
-            ),
-            cast_to=StatisticGetTrafficSeriesResponse,
-        )
-
 
 class AsyncStatisticsResource(AsyncAPIResource):
     @cached_property
@@ -716,183 +534,6 @@ class AsyncStatisticsResource(AsyncAPIResource):
             cast_to=WaapRequestDetails,
         )
 
-    @typing_extensions.deprecated("deprecated")
-    def get_requests_series(
-        self,
-        domain_id: int,
-        *,
-        start: str,
-        actions: List[Literal["allow", "block", "captcha", "handshake"]] | Omit = omit,
-        countries: SequenceNotStr[str] | Omit = omit,
-        end: Optional[str] | Omit = omit,
-        ip: str | Omit = omit,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        ordering: str | Omit = omit,
-        reference_id: str | Omit = omit,
-        security_rule_name: str | Omit = omit,
-        status_code: int | Omit = omit,
-        traffic_types: List[
-            Literal[
-                "policy_allowed",
-                "policy_blocked",
-                "custom_rule_allowed",
-                "custom_blocked",
-                "legit_requests",
-                "sanctioned",
-                "dynamic",
-                "api",
-                "static",
-                "ajax",
-                "redirects",
-                "monitor",
-                "err_40x",
-                "err_50x",
-                "passed_to_origin",
-                "timeout",
-                "other",
-                "ddos",
-                "legit",
-                "monitored",
-            ]
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WaapRequestSummary, AsyncOffsetPage[WaapRequestSummary]]:
-        """Retrieve a domain's requests data.
-
-        Deprecated. Use
-        [GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
-        instead.
-
-        Args:
-          domain_id: The domain ID
-
-          start: Filter data items starting from a specified date in ISO 8601 format
-
-          actions: Filter the response by actions.
-
-          countries: Filter the response by country codes in ISO 3166-1 alpha-2 format.
-
-          end: Filter data items up to a specified end date in ISO 8601 format. If not
-              provided, defaults to the current date and time.
-
-          ip: Filter the response by IP.
-
-          limit: Number of items to return
-
-          offset: Number of items to skip
-
-          ordering: Sort the response by given field.
-
-          reference_id: Filter the response by reference ID.
-
-          security_rule_name: Filter the response by security rule name.
-
-          status_code: Filter the response by response code.
-
-          traffic_types: Filter the response by traffic types.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            f"/waap/v1/domains/{domain_id}/requests",
-            page=AsyncOffsetPage[WaapRequestSummary],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "start": start,
-                        "actions": actions,
-                        "countries": countries,
-                        "end": end,
-                        "ip": ip,
-                        "limit": limit,
-                        "offset": offset,
-                        "ordering": ordering,
-                        "reference_id": reference_id,
-                        "security_rule_name": security_rule_name,
-                        "status_code": status_code,
-                        "traffic_types": traffic_types,
-                    },
-                    statistic_get_requests_series_params.StatisticGetRequestsSeriesParams,
-                ),
-            ),
-            model=WaapRequestSummary,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    async def get_traffic_series(
-        self,
-        domain_id: int,
-        *,
-        resolution: Literal["daily", "hourly", "minutely"],
-        start: str,
-        end: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StatisticGetTrafficSeriesResponse:
-        """Deprecated.
-
-        Use
-        [GET /v1/analytics/traffic](/docs/api-reference/waap/analytics/get-traffic-data)
-        instead.
-
-        Args:
-          domain_id: The domain ID
-
-          resolution: Specifies the granularity of the result data.
-
-          start: Filter data items starting from a specified date in ISO 8601 format
-
-          end: Filter data items up to a specified end date in ISO 8601 format. If not
-              provided, defaults to the current date and time.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/waap/v1/domains/{domain_id}/traffic",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "resolution": resolution,
-                        "start": start,
-                        "end": end,
-                    },
-                    statistic_get_traffic_series_params.StatisticGetTrafficSeriesParams,
-                ),
-            ),
-            cast_to=StatisticGetTrafficSeriesResponse,
-        )
-
 
 class StatisticsResourceWithRawResponse:
     def __init__(self, statistics: StatisticsResource) -> None:
@@ -909,16 +550,6 @@ class StatisticsResourceWithRawResponse:
         )
         self.get_request_details = to_raw_response_wrapper(
             statistics.get_request_details,
-        )
-        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
-            )
         )
 
 
@@ -938,16 +569,6 @@ class AsyncStatisticsResourceWithRawResponse:
         self.get_request_details = async_to_raw_response_wrapper(
             statistics.get_request_details,
         )
-        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
-            )
-        )
 
 
 class StatisticsResourceWithStreamingResponse:
@@ -966,16 +587,6 @@ class StatisticsResourceWithStreamingResponse:
         self.get_request_details = to_streamed_response_wrapper(
             statistics.get_request_details,
         )
-        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
-            )
-        )
 
 
 class AsyncStatisticsResourceWithStreamingResponse:
@@ -993,14 +604,4 @@ class AsyncStatisticsResourceWithStreamingResponse:
         )
         self.get_request_details = async_to_streamed_response_wrapper(
             statistics.get_request_details,
-        )
-        self.get_requests_series = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                statistics.get_requests_series,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.get_traffic_series = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                statistics.get_traffic_series,  # pyright: ignore[reportDeprecated],
-            )
         )

@@ -15,8 +15,6 @@ from .insight_list_params import InsightListParams as InsightListParams
 from .api_path_list_params import APIPathListParams as APIPathListParams
 from .waap_insight_silence import WaapInsightSilence as WaapInsightSilence
 from .waap_request_details import WaapRequestDetails as WaapRequestDetails
-from .waap_request_summary import WaapRequestSummary as WaapRequestSummary
-from .waap_traffic_metrics import WaapTrafficMetrics as WaapTrafficMetrics
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .waap_count_statistics import WaapCountStatistics as WaapCountStatistics
 from .waap_event_statistics import WaapEventStatistics as WaapEventStatistics
@@ -39,12 +37,7 @@ from .insight_silence_update_params import InsightSilenceUpdateParams as Insight
 from .statistic_get_ddos_info_params import StatisticGetDDOSInfoParams as StatisticGetDDOSInfoParams
 from .statistic_get_ddos_attacks_params import StatisticGetDDOSAttacksParams as StatisticGetDDOSAttacksParams
 from .custom_rule_delete_multiple_params import CustomRuleDeleteMultipleParams as CustomRuleDeleteMultipleParams
-from .statistic_get_traffic_series_params import StatisticGetTrafficSeriesParams as StatisticGetTrafficSeriesParams
 from .firewall_rule_delete_multiple_params import FirewallRuleDeleteMultipleParams as FirewallRuleDeleteMultipleParams
-from .statistic_get_requests_series_params import StatisticGetRequestsSeriesParams as StatisticGetRequestsSeriesParams
-from .statistic_get_traffic_series_response import (
-    StatisticGetTrafficSeriesResponse as StatisticGetTrafficSeriesResponse,
-)
 from .statistic_get_events_aggregated_params import (
     StatisticGetEventsAggregatedParams as StatisticGetEventsAggregatedParams,
 )

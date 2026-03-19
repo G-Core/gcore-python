@@ -5,6 +5,6 @@ from typing_extensions import TypeAlias
 
 from .waap_traffic_metrics import WaapTrafficMetrics
 
-__all__ = ["StatisticGetTrafficSeriesResponse"]
+__all__ = ["AnalyticsGetTrafficResponse"]
 
-StatisticGetTrafficSeriesResponse: TypeAlias = List[WaapTrafficMetrics]
+AnalyticsGetTrafficResponse: TypeAlias = List[WaapTrafficMetrics]
