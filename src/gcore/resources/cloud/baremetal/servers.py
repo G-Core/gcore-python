@@ -512,8 +512,11 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BaremetalServer:
-        """
-        Retrieve detailed information about a specific baremetal instance.
+        """Retrieve detailed information about a specific baremetal instance.
+
+        This endpoint
+        always returns `ddos_profile` (if present) and therefore always requires
+        `DDOS_READ`.
 
         Args:
           project_id: Project ID
@@ -1093,8 +1096,11 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BaremetalServer:
-        """
-        Retrieve detailed information about a specific baremetal instance.
+        """Retrieve detailed information about a specific baremetal instance.
+
+        This endpoint
+        always returns `ddos_profile` (if present) and therefore always requires
+        `DDOS_READ`.
 
         Args:
           project_id: Project ID

@@ -952,7 +952,6 @@ class InstancesResource(SyncAPIResource):
           `ddos_profile` field. Supported values:
         - `'en'` (default)
         - `'de'`
-        - `'ru'`
 
         Args:
           project_id: Project ID
@@ -2076,7 +2075,6 @@ class AsyncInstancesResource(AsyncAPIResource):
           `ddos_profile` field. Supported values:
         - `'en'` (default)
         - `'de'`
-        - `'ru'`
 
         Args:
           project_id: Project ID
