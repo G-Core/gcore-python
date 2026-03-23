@@ -1,5 +1,44 @@
 # Changelog
 
+## 0.39.0 (2026-03-23)
+
+Full Changelog: [v0.38.0...v0.39.0](https://github.com/G-Core/gcore-python/compare/v0.38.0...v0.39.0)
+
+### ⚠ BREAKING CHANGES
+
+* **waap:** replace deprecated domain-scoped traffic/requests endpoints with account-scoped analytics
+
+### Features
+
+* **api:** aggregated API specs update ([998707e](https://github.com/G-Core/gcore-python/commit/998707ec275cc269044a347c5b858d460e2ae491))
+* **api:** aggregated API specs update ([1617eb3](https://github.com/G-Core/gcore-python/commit/1617eb374498f1b445a8466163d42c4b49ff4ca5))
+* **api:** aggregated API specs update ([938f4ae](https://github.com/G-Core/gcore-python/commit/938f4aedb8f61a95628ceb111df6e716f3f8ca70))
+* **api:** Revert "feat(cdn): enable terraform support for cdn_rule_template" ([893f007](https://github.com/G-Core/gcore-python/commit/893f007fa4eb3323367748b55c21925e715de62a))
+* **cdn:** enable terraform support for cdn_rule_template ([bae5faf](https://github.com/G-Core/gcore-python/commit/bae5faff732a79d6bba81563075b61f7f4d450dd))
+* **cloud:** add create_and_poll and delete_and_poll methods for volume snapshots ([1c06cca](https://github.com/G-Core/gcore-python/commit/1c06ccaaf7d3256a1c33b53c6ca913700ed1da68))
+* **cloud:** add notification_threshold subresource to quotas ([7a2de37](https://github.com/G-Core/gcore-python/commit/7a2de3750cd3737cbbbc0ba0d3317c08368345a8))
+* **waap:** replace deprecated domain-scoped traffic/requests endpoints with account-scoped analytics ([4321632](https://github.com/G-Core/gcore-python/commit/43216323d5aa93acb990d6db686e785f730a9323))
+
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([b31cabd](https://github.com/G-Core/gcore-python/commit/b31cabd05d4a00b17843e50cb04cd19b213c7841))
+* **pydantic:** do not pass `by_alias` unless set ([5c6f9bc](https://github.com/G-Core/gcore-python/commit/5c6f9bcfbd18fc5e22a4afeafe91c8d6a9587cb1))
+* sanitize endpoint path params ([c4dbd22](https://github.com/G-Core/gcore-python/commit/c4dbd22cb198bc087fa998a4b090997dc4078103))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([9d190fe](https://github.com/G-Core/gcore-python/commit/9d190fe9d244981df99f5b9bd2183de0b8f0bd1b))
+* **internal:** update gitignore ([7aa0b60](https://github.com/G-Core/gcore-python/commit/7aa0b600257cc4c9ddf0d8ce3af1ac709a11f3ec))
+* **tests:** bump steady to v0.19.4 ([379eb58](https://github.com/G-Core/gcore-python/commit/379eb58258a9f5e24d9108ed1efdeb3c68f2a4f4))
+* **tests:** bump steady to v0.19.5 ([660410f](https://github.com/G-Core/gcore-python/commit/660410fc9038c0dc349911ba9def7e1fa2aad3a7))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([28a7208](https://github.com/G-Core/gcore-python/commit/28a7208e84d438e550556f8b41c1dca8f6283b95))
+
 ## 0.38.0 (2026-03-16)
 
 Full Changelog: [v0.37.0...v0.38.0](https://github.com/G-Core/gcore-python/compare/v0.37.0...v0.38.0)
