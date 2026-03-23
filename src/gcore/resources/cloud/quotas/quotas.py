@@ -23,6 +23,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from .notification_threshold import (
+    NotificationThresholdResource,
+    AsyncNotificationThresholdResource,
+    NotificationThresholdResourceWithRawResponse,
+    AsyncNotificationThresholdResourceWithRawResponse,
+    NotificationThresholdResourceWithStreamingResponse,
+    AsyncNotificationThresholdResourceWithStreamingResponse,
+)
 from ....types.cloud.quota_get_all_response import QuotaGetAllResponse
 from ....types.cloud.quota_get_global_response import QuotaGetGlobalResponse
 from ....types.cloud.quota_get_by_region_response import QuotaGetByRegionResponse
@@ -34,6 +42,10 @@ class QuotasResource(SyncAPIResource):
     @cached_property
     def requests(self) -> RequestsResource:
         return RequestsResource(self._client)
+
+    @cached_property
+    def notification_threshold(self) -> NotificationThresholdResource:
+        return NotificationThresholdResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> QuotasResourceWithRawResponse:
@@ -151,6 +163,10 @@ class AsyncQuotasResource(AsyncAPIResource):
     @cached_property
     def requests(self) -> AsyncRequestsResource:
         return AsyncRequestsResource(self._client)
+
+    @cached_property
+    def notification_threshold(self) -> AsyncNotificationThresholdResource:
+        return AsyncNotificationThresholdResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncQuotasResourceWithRawResponse:
@@ -282,6 +298,10 @@ class QuotasResourceWithRawResponse:
     def requests(self) -> RequestsResourceWithRawResponse:
         return RequestsResourceWithRawResponse(self._quotas.requests)
 
+    @cached_property
+    def notification_threshold(self) -> NotificationThresholdResourceWithRawResponse:
+        return NotificationThresholdResourceWithRawResponse(self._quotas.notification_threshold)
+
 
 class AsyncQuotasResourceWithRawResponse:
     def __init__(self, quotas: AsyncQuotasResource) -> None:
@@ -300,6 +320,10 @@ class AsyncQuotasResourceWithRawResponse:
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithRawResponse:
         return AsyncRequestsResourceWithRawResponse(self._quotas.requests)
+
+    @cached_property
+    def notification_threshold(self) -> AsyncNotificationThresholdResourceWithRawResponse:
+        return AsyncNotificationThresholdResourceWithRawResponse(self._quotas.notification_threshold)
 
 
 class QuotasResourceWithStreamingResponse:
@@ -320,6 +344,10 @@ class QuotasResourceWithStreamingResponse:
     def requests(self) -> RequestsResourceWithStreamingResponse:
         return RequestsResourceWithStreamingResponse(self._quotas.requests)
 
+    @cached_property
+    def notification_threshold(self) -> NotificationThresholdResourceWithStreamingResponse:
+        return NotificationThresholdResourceWithStreamingResponse(self._quotas.notification_threshold)
+
 
 class AsyncQuotasResourceWithStreamingResponse:
     def __init__(self, quotas: AsyncQuotasResource) -> None:
@@ -338,3 +366,7 @@ class AsyncQuotasResourceWithStreamingResponse:
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithStreamingResponse:
         return AsyncRequestsResourceWithStreamingResponse(self._quotas.requests)
+
+    @cached_property
+    def notification_threshold(self) -> AsyncNotificationThresholdResourceWithStreamingResponse:
+        return AsyncNotificationThresholdResourceWithStreamingResponse(self._quotas.notification_threshold)

@@ -129,6 +129,20 @@ Methods:
 - <code title="delete /cloud/v2/limits_request/{request_id}">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">delete</a>(request_id) -> None</code>
 - <code title="get /cloud/v2/limits_request/{request_id}">client.cloud.quotas.requests.<a href="./src/gcore/resources/cloud/quotas/requests.py">get</a>(request_id) -> <a href="./src/gcore/types/cloud/quotas/request_get_response.py">RequestGetResponse</a></code>
 
+### NotificationThreshold
+
+Types:
+
+```python
+from gcore.types.cloud.quotas import NotificationThreshold
+```
+
+Methods:
+
+- <code title="put /cloud/v2/client_quotas/{client_id}/notification_threshold">client.cloud.quotas.notification_threshold.<a href="./src/gcore/resources/cloud/quotas/notification_threshold.py">update</a>(client_id, \*\*<a href="src/gcore/types/cloud/quotas/notification_threshold_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/quotas/notification_threshold.py">NotificationThreshold</a></code>
+- <code title="delete /cloud/v2/client_quotas/{client_id}/notification_threshold">client.cloud.quotas.notification_threshold.<a href="./src/gcore/resources/cloud/quotas/notification_threshold.py">delete</a>(client_id) -> None</code>
+- <code title="get /cloud/v2/client_quotas/{client_id}/notification_threshold">client.cloud.quotas.notification_threshold.<a href="./src/gcore/resources/cloud/quotas/notification_threshold.py">get</a>(client_id) -> <a href="./src/gcore/types/cloud/quotas/notification_threshold.py">NotificationThreshold</a></code>
+
 ## Secrets
 
 Types:
