@@ -72,7 +72,9 @@ class FastedgeResource(SyncAPIResource):
 
     @cached_property
     def templates(self) -> TemplatesResource:
-        """Application templates"""
+        """
+        FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+        """
         return TemplatesResource(self._client)
 
     @cached_property
@@ -153,7 +155,9 @@ class AsyncFastedgeResource(AsyncAPIResource):
 
     @cached_property
     def templates(self) -> AsyncTemplatesResource:
-        """Application templates"""
+        """
+        FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+        """
         return AsyncTemplatesResource(self._client)
 
     @cached_property
@@ -239,7 +243,9 @@ class FastedgeResourceWithRawResponse:
 
     @cached_property
     def templates(self) -> TemplatesResourceWithRawResponse:
-        """Application templates"""
+        """
+        FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+        """
         return TemplatesResourceWithRawResponse(self._fastedge.templates)
 
     @cached_property
@@ -284,7 +290,9 @@ class AsyncFastedgeResourceWithRawResponse:
 
     @cached_property
     def templates(self) -> AsyncTemplatesResourceWithRawResponse:
-        """Application templates"""
+        """
+        FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+        """
         return AsyncTemplatesResourceWithRawResponse(self._fastedge.templates)
 
     @cached_property
@@ -329,7 +337,9 @@ class FastedgeResourceWithStreamingResponse:
 
     @cached_property
     def templates(self) -> TemplatesResourceWithStreamingResponse:
-        """Application templates"""
+        """
+        FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+        """
         return TemplatesResourceWithStreamingResponse(self._fastedge.templates)
 
     @cached_property
@@ -374,7 +384,9 @@ class AsyncFastedgeResourceWithStreamingResponse:
 
     @cached_property
     def templates(self) -> AsyncTemplatesResourceWithStreamingResponse:
-        """Application templates"""
+        """
+        FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+        """
         return AsyncTemplatesResourceWithStreamingResponse(self._fastedge.templates)
 
     @cached_property
