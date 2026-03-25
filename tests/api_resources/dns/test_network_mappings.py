@@ -158,6 +158,7 @@ class TestNetworkMappings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="DNS-2948: OpenAPI spec has ambiguous overlapping path templates {id} vs {name}")
     @parametrize
     def test_method_get_by_name(self, client: Gcore) -> None:
         network_mapping = client.dns.network_mappings.get_by_name(
@@ -165,6 +166,7 @@ class TestNetworkMappings:
         )
         assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="DNS-2948: OpenAPI spec has ambiguous overlapping path templates {id} vs {name}")
     @parametrize
     def test_raw_response_get_by_name(self, client: Gcore) -> None:
         response = client.dns.network_mappings.with_raw_response.get_by_name(
@@ -176,6 +178,7 @@ class TestNetworkMappings:
         network_mapping = response.parse()
         assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="DNS-2948: OpenAPI spec has ambiguous overlapping path templates {id} vs {name}")
     @parametrize
     def test_streaming_response_get_by_name(self, client: Gcore) -> None:
         with client.dns.network_mappings.with_streaming_response.get_by_name(
@@ -409,6 +412,7 @@ class TestAsyncNetworkMappings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="DNS-2948: OpenAPI spec has ambiguous overlapping path templates {id} vs {name}")
     @parametrize
     async def test_method_get_by_name(self, async_client: AsyncGcore) -> None:
         network_mapping = await async_client.dns.network_mappings.get_by_name(
@@ -416,6 +420,7 @@ class TestAsyncNetworkMappings:
         )
         assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="DNS-2948: OpenAPI spec has ambiguous overlapping path templates {id} vs {name}")
     @parametrize
     async def test_raw_response_get_by_name(self, async_client: AsyncGcore) -> None:
         response = await async_client.dns.network_mappings.with_raw_response.get_by_name(
@@ -427,6 +432,7 @@ class TestAsyncNetworkMappings:
         network_mapping = await response.parse()
         assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="DNS-2948: OpenAPI spec has ambiguous overlapping path templates {id} vs {name}")
     @parametrize
     async def test_streaming_response_get_by_name(self, async_client: AsyncGcore) -> None:
         async with async_client.dns.network_mappings.with_streaming_response.get_by_name(
