@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestUsers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="IMP-1903: OpenAPI spec PATCH requires PUT-only fields")
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         user = client.iam.users.update(
@@ -33,6 +34,7 @@ class TestUsers:
         )
         assert_matches_type(User, user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1903: OpenAPI spec PATCH requires PUT-only fields")
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.iam.users.with_raw_response.update(
@@ -49,6 +51,7 @@ class TestUsers:
         user = response.parse()
         assert_matches_type(User, user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1903: OpenAPI spec PATCH requires PUT-only fields")
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.iam.users.with_streaming_response.update(
@@ -67,11 +70,13 @@ class TestUsers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         user = client.iam.users.list()
         assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         user = client.iam.users.list(
@@ -80,6 +85,7 @@ class TestUsers:
         )
         assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.iam.users.with_raw_response.list()
@@ -89,6 +95,7 @@ class TestUsers:
         user = response.parse()
         assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.iam.users.with_streaming_response.list() as response:
@@ -222,6 +229,7 @@ class TestAsyncUsers:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="IMP-1903: OpenAPI spec PATCH requires PUT-only fields")
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         user = await async_client.iam.users.update(
@@ -234,6 +242,7 @@ class TestAsyncUsers:
         )
         assert_matches_type(User, user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1903: OpenAPI spec PATCH requires PUT-only fields")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.iam.users.with_raw_response.update(
@@ -250,6 +259,7 @@ class TestAsyncUsers:
         user = await response.parse()
         assert_matches_type(User, user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1903: OpenAPI spec PATCH requires PUT-only fields")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.iam.users.with_streaming_response.update(
@@ -268,11 +278,13 @@ class TestAsyncUsers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         user = await async_client.iam.users.list()
         assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         user = await async_client.iam.users.list(
@@ -281,6 +293,7 @@ class TestAsyncUsers:
         )
         assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.iam.users.with_raw_response.list()
@@ -290,6 +303,7 @@ class TestAsyncUsers:
         user = await response.parse()
         assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
+    @pytest.mark.skip(reason="IMP-1904: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.iam.users.with_streaming_response.list() as response:

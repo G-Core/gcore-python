@@ -19,6 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestLogs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         log = client.fastedge.apps.logs.list(
@@ -26,6 +27,7 @@ class TestLogs:
         )
         assert_matches_type(SyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         log = client.fastedge.apps.logs.list(
@@ -41,6 +43,7 @@ class TestLogs:
         )
         assert_matches_type(SyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.fastedge.apps.logs.with_raw_response.list(
@@ -52,6 +55,7 @@ class TestLogs:
         log = response.parse()
         assert_matches_type(SyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.fastedge.apps.logs.with_streaming_response.list(
@@ -71,6 +75,7 @@ class TestAsyncLogs:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         log = await async_client.fastedge.apps.logs.list(
@@ -78,6 +83,7 @@ class TestAsyncLogs:
         )
         assert_matches_type(AsyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         log = await async_client.fastedge.apps.logs.list(
@@ -93,6 +99,7 @@ class TestAsyncLogs:
         )
         assert_matches_type(AsyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.fastedge.apps.logs.with_raw_response.list(
@@ -104,6 +111,7 @@ class TestAsyncLogs:
         log = await response.parse()
         assert_matches_type(AsyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 
+    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required fields in response schema")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.fastedge.apps.logs.with_streaming_response.list(
