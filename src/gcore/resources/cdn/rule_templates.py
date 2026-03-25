@@ -26,6 +26,10 @@ __all__ = ["RuleTemplatesResource", "AsyncRuleTemplatesResource"]
 
 
 class RuleTemplatesResource(SyncAPIResource):
+    """
+    CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
+    """
+
     @cached_property
     def with_raw_response(self) -> RuleTemplatesResourceWithRawResponse:
         """
@@ -395,6 +399,10 @@ class RuleTemplatesResource(SyncAPIResource):
 
 
 class AsyncRuleTemplatesResource(AsyncAPIResource):
+    """
+    CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRuleTemplatesResourceWithRawResponse:
         """
