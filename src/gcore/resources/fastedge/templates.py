@@ -33,7 +33,9 @@ __all__ = ["TemplatesResource", "AsyncTemplatesResource"]
 
 
 class TemplatesResource(SyncAPIResource):
-    """Application templates"""
+    """
+    FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+    """
 
     @cached_property
     def with_raw_response(self) -> TemplatesResourceWithRawResponse:
@@ -314,7 +316,9 @@ class TemplatesResource(SyncAPIResource):
 
 
 class AsyncTemplatesResource(AsyncAPIResource):
-    """Application templates"""
+    """
+    FastEdge templates encapsulate reusable configurations for FastEdge applications, including a WebAssembly binary reference and configurable parameters.
+    """
 
     @cached_property
     def with_raw_response(self) -> AsyncTemplatesResourceWithRawResponse:
