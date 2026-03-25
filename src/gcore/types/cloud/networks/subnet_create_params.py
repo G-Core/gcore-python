@@ -73,10 +73,10 @@ class SubnetCreateParams(TypedDict, total=False):
 
 class HostRoute(TypedDict, total=False):
     destination: Required[str]
-    """CIDR of destination IPv4 subnet."""
+    """CIDR of destination IPv4 or IPv6 subnet."""
 
     nexthop: Required[str]
     """
-    IPv4 address to forward traffic to if it's destination IP matches 'destination'
-    CIDR.
+    IPv4 or IPv6 address to forward traffic to if it's destination IP matches
+    'destination' CIDR.
     """
