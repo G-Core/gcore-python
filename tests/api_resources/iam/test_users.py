@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from gcore.types.iam import (
     User,
     UserInvited,
+    UserGetResponse,
 )
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
@@ -146,7 +147,7 @@ class TestUsers:
         user = client.iam.users.get(
             0,
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserGetResponse, user, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -157,7 +158,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserGetResponse, user, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -168,7 +169,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(User, user, path=["response"])
+            assert_matches_type(UserGetResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -354,7 +355,7 @@ class TestAsyncUsers:
         user = await async_client.iam.users.get(
             0,
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserGetResponse, user, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -365,7 +366,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserGetResponse, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -376,7 +377,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(User, user, path=["response"])
+            assert_matches_type(UserGetResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

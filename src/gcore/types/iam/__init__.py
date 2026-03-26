@@ -14,6 +14,7 @@ from .account_overview import AccountOverview as AccountOverview
 from .user_group_param import UserGroupParam as UserGroupParam
 from .user_list_params import UserListParams as UserListParams
 from .api_token_created import APITokenCreated as APITokenCreated
+from .user_get_response import UserGetResponse as UserGetResponse
 from .user_invite_params import UserInviteParams as UserInviteParams
 from .user_update_params import UserUpdateParams as UserUpdateParams
 from .api_token_list_params import APITokenListParams as APITokenListParams
