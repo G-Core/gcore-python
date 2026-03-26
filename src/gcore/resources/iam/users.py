@@ -24,6 +24,7 @@ from ...types.iam.auth_type import AuthType
 from ...types.iam.user_invited import UserInvited
 from ...types.iam.user_language import UserLanguage
 from ...types.iam.user_group_param import UserGroupParam
+from ...types.iam.user_get_response import UserGetResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -203,7 +204,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
+    ) -> UserGetResponse:
         """
         Get user's details
 
@@ -221,7 +222,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserGetResponse,
         )
 
     def invite(
@@ -460,7 +461,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
+    ) -> UserGetResponse:
         """
         Get user's details
 
@@ -478,7 +479,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserGetResponse,
         )
 
     async def invite(
