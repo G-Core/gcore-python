@@ -23,6 +23,10 @@ __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
 
 class FlavorsResource(SyncAPIResource):
+    """
+    Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+    """
+
     @cached_property
     def with_raw_response(self) -> FlavorsResourceWithRawResponse:
         """
@@ -128,6 +132,10 @@ class FlavorsResource(SyncAPIResource):
 
 
 class AsyncFlavorsResource(AsyncAPIResource):
+    """
+    Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFlavorsResourceWithRawResponse:
         """
