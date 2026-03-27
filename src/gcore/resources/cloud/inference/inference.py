@@ -70,6 +70,9 @@ __all__ = ["InferenceResource", "AsyncInferenceResource"]
 class InferenceResource(SyncAPIResource):
     @cached_property
     def flavors(self) -> FlavorsResource:
+        """
+        Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+        """
         return FlavorsResource(self._client)
 
     @cached_property
@@ -143,6 +146,9 @@ class InferenceResource(SyncAPIResource):
 class AsyncInferenceResource(AsyncAPIResource):
     @cached_property
     def flavors(self) -> AsyncFlavorsResource:
+        """
+        Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+        """
         return AsyncFlavorsResource(self._client)
 
     @cached_property
@@ -223,6 +229,9 @@ class InferenceResourceWithRawResponse:
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithRawResponse:
+        """
+        Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+        """
         return FlavorsResourceWithRawResponse(self._inference.flavors)
 
     @cached_property
@@ -265,6 +274,9 @@ class AsyncInferenceResourceWithRawResponse:
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
+        """
+        Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+        """
         return AsyncFlavorsResourceWithRawResponse(self._inference.flavors)
 
     @cached_property
@@ -307,6 +319,9 @@ class InferenceResourceWithStreamingResponse:
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithStreamingResponse:
+        """
+        Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+        """
         return FlavorsResourceWithStreamingResponse(self._inference.flavors)
 
     @cached_property
@@ -349,6 +364,9 @@ class AsyncInferenceResourceWithStreamingResponse:
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
+        """
+        Inference flavors define the GPU and CPU resource configurations available for inference deployments.
+        """
         return AsyncFlavorsResourceWithStreamingResponse(self._inference.flavors)
 
     @cached_property
