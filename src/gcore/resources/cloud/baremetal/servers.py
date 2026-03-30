@@ -35,6 +35,10 @@ __all__ = ["ServersResource", "AsyncServersResource"]
 
 
 class ServersResource(SyncAPIResource):
+    """
+    Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+    """
+
     @cached_property
     def with_raw_response(self) -> ServersResourceWithRawResponse:
         """
@@ -619,6 +623,10 @@ class ServersResource(SyncAPIResource):
 
 
 class AsyncServersResource(AsyncAPIResource):
+    """
+    Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncServersResourceWithRawResponse:
         """
