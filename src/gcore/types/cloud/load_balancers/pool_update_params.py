@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ..http_method import HTTPMethod
 from ..lb_algorithm import LbAlgorithm
@@ -91,6 +91,12 @@ class Healthmonitor(TypedDict, total=False):
     the resource is disabled and will not process traffic. Defaults to true.
     """
 
+    domain_name: Optional[str]
+    """Domain name for HTTP host header.
+
+    Can only be used together with `HTTP` or `HTTPS` health monitor type.
+    """
+
     expected_codes: Optional[str]
     """Expected HTTP response codes.
 
@@ -103,6 +109,13 @@ class Healthmonitor(TypedDict, total=False):
     """HTTP method.
 
     Can only be used together with `HTTP` or `HTTPS` health monitor type.
+    """
+
+    http_version: Optional[Literal["1.0", "1.1"]]
+    """HTTP version.
+
+    Can only be used together with `HTTP` or `HTTPS` health monitor type. Supported
+    values: 1.0, 1.1.
     """
 
     max_retries_down: int

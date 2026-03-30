@@ -41,8 +41,10 @@ class TestHealthMonitors:
             api_timeout=5,
             type="HTTP",
             admin_state_up=True,
+            domain_name="example.com",
             expected_codes="200,301,302",
             http_method="CONNECT",
+            http_version="1.1",
             max_retries_down=2,
             url_path="/",
         )
@@ -173,8 +175,10 @@ class TestAsyncHealthMonitors:
             api_timeout=5,
             type="HTTP",
             admin_state_up=True,
+            domain_name="example.com",
             expected_codes="200,301,302",
             http_method="CONNECT",
+            http_version="1.1",
             max_retries_down=2,
             url_path="/",
         )
