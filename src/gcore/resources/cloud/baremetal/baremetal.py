@@ -43,6 +43,9 @@ class BaremetalResource(SyncAPIResource):
 
     @cached_property
     def servers(self) -> ServersResource:
+        """
+        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        """
         return ServersResource(self._client)
 
     @cached_property
@@ -76,6 +79,9 @@ class AsyncBaremetalResource(AsyncAPIResource):
 
     @cached_property
     def servers(self) -> AsyncServersResource:
+        """
+        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        """
         return AsyncServersResource(self._client)
 
     @cached_property
@@ -112,6 +118,9 @@ class BaremetalResourceWithRawResponse:
 
     @cached_property
     def servers(self) -> ServersResourceWithRawResponse:
+        """
+        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        """
         return ServersResourceWithRawResponse(self._baremetal.servers)
 
 
@@ -129,6 +138,9 @@ class AsyncBaremetalResourceWithRawResponse:
 
     @cached_property
     def servers(self) -> AsyncServersResourceWithRawResponse:
+        """
+        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        """
         return AsyncServersResourceWithRawResponse(self._baremetal.servers)
 
 
@@ -146,6 +158,9 @@ class BaremetalResourceWithStreamingResponse:
 
     @cached_property
     def servers(self) -> ServersResourceWithStreamingResponse:
+        """
+        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        """
         return ServersResourceWithStreamingResponse(self._baremetal.servers)
 
 
@@ -163,4 +178,7 @@ class AsyncBaremetalResourceWithStreamingResponse:
 
     @cached_property
     def servers(self) -> AsyncServersResourceWithStreamingResponse:
+        """
+        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        """
         return AsyncServersResourceWithStreamingResponse(self._baremetal.servers)
