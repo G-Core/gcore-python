@@ -8,19 +8,17 @@ __all__ = ["Location"]
 
 
 class Location(BaseModel):
-    """LocationV2 represents location data for v2 API where title is a string"""
-
     address: str
-    """Full hostname/address for accessing the storage endpoint in this location"""
-
-    allow_for_new_storage: Literal["deny", "allow"]
-    """Indicates whether new storage can be created in this location"""
+    """Full hostname/address for accessing the storage endpoint."""
 
     name: str
-    """Location code (region identifier)"""
+    """Human-readable display name for the location."""
+
+    technical_name: str
+    """Internal technical identifier for the location"""
 
     title: str
-    """Human-readable title for the location"""
+    """Display title for the location (English). Null if no title is set."""
 
     type: Literal["s3_compatible", "sftp"]
-    """Storage protocol type supported in this location"""
+    """Storage type supported by this location"""

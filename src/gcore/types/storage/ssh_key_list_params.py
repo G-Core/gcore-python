@@ -4,14 +4,17 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["LocationListParams"]
+__all__ = ["SSHKeyListParams"]
 
 
-class LocationListParams(TypedDict, total=False):
+class SSHKeyListParams(TypedDict, total=False):
     limit: int
-    """Max number of records in response"""
+    """Maximum number of items to return"""
+
+    name: str
+    """Filter by name (partial match)"""
 
     offset: int
-    """Number of records to skip before beginning to return results"""
+    """Number of items to skip"""
 
     order_by: str

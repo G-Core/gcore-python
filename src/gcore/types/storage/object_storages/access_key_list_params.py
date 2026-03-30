@@ -4,12 +4,14 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["BucketListParams"]
+__all__ = ["AccessKeyListParams"]
 
 
-class BucketListParams(TypedDict, total=False):
+class AccessKeyListParams(TypedDict, total=False):
     limit: int
     """Max number of records in response"""
 
     offset: int
-    """Number of records to skip before beginning to write in response."""
+    """Number of records to skip before beginning to return results"""
+
+    order_by: str
