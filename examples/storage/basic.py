@@ -15,59 +15,50 @@ def main() -> None:
     storage_id = create_storage(client=gcore)
     list_storages(client=gcore)
     get_storage(client=gcore, storage_id=storage_id)
-    update_storage(client=gcore, storage_id=storage_id)
     delete_storage(client=gcore, storage_id=storage_id)
 
 
 def create_storage(*, client: Gcore) -> int:
     print("\n=== CREATE STORAGE ===")
-    name = f"example-s3-storage-{int(time.time())}"
-    storage = client.storage.create( # pyright: ignore[reportDeprecated]
+    name = f"s3-basic-{int(time.time())}"
+    storage = client.storage.object_storages.create(
         name=name,
-        type="s3_compatible",
-        location="s-ed1",
+        location_name="s-ed1",
     )
-    print(f"Created Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}")
+    print(f"Created Storage: ID={storage.id}, Name={storage.name}, Location={storage.location_name}")
     print(f"Storage address: {storage.address}")
-    print(f"S3 Access Key: {storage.credentials.s3.access_key}")  # type: ignore[union-attr]
-    print(f"S3 Secret Key: {storage.credentials.s3.secret_key}")  # type: ignore[union-attr]
+
+    # Display S3 credentials
+    if storage.access_keys:
+        print(f"S3 Access Key: {storage.access_keys[0].access_key}")
+        print(f"S3 Secret Key: {storage.access_keys[0].secret_key}")
+
     print("======================")
     return storage.id
 
 
 def list_storages(*, client: Gcore) -> None:
     print("\n=== LIST STORAGES ===")
-    storages = client.storage.list() # pyright: ignore[reportDeprecated]
-    for count, storage in enumerate(storages, 1):
+    for count, storage in enumerate(client.storage.object_storages.list(), 1):
         print(
-            f"  {count}. Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}, Status={storage.provisioning_status}"
+            f"  {count}. Storage: ID={storage.id}, Name={storage.name}, Location={storage.location_name}, Status={storage.provisioning_status}"
         )
     print("=====================")
 
 
 def get_storage(*, client: Gcore, storage_id: int) -> None:
     print("\n=== GET STORAGE ===")
-    storage = client.storage.get(storage_id=storage_id) # pyright: ignore[reportDeprecated]
+    storage = client.storage.object_storages.get(storage_id=storage_id)
     print(
-        f"Storage: ID={storage.id}, Name={storage.name}, Type={storage.type}, Location={storage.location}, Status={storage.provisioning_status}"
+        f"Storage: ID={storage.id}, Name={storage.name}, Location={storage.location_name}, Status={storage.provisioning_status}"
     )
-    print(f"Address: {storage.address}, Created: {storage.created_at}, Can Restore: {storage.can_restore}")
+    print(f"Address: {storage.address}, Created: {storage.created_at}")
     print("===================")
-
-
-def update_storage(*, client: Gcore, storage_id: int) -> None:
-    print("\n=== UPDATE STORAGE ===")
-    storage = client.storage.update( # pyright: ignore[reportDeprecated]
-        storage_id=storage_id,
-        expires="30 days",
-    )
-    print(f"Updated Storage: ID={storage.id}, Expires: {storage.expires}")
-    print("======================")
 
 
 def delete_storage(*, client: Gcore, storage_id: int) -> None:
     print("\n=== DELETE STORAGE ===")
-    client.storage.delete(storage_id=storage_id) # pyright: ignore[reportDeprecated]
+    client.storage.object_storages.delete(storage_id=storage_id)
     print(f"Storage {storage_id} deleted successfully")
     print("======================")
 
