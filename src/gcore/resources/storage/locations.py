@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
-
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -44,12 +42,12 @@ class LocationsResource(SyncAPIResource):
         """
         return LocationsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        order_by: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,13 +55,16 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Location]:
-        """Returns available storage locations where you can create storages.
+        """Returns storage locations where you can create new storages.
 
-        Each location
-        represents a geographic region with specific data center facilities. Deprecated:
-        Use GET /v4/locations instead.
+        Only locations
+        currently accepting new storage creation are returned.
 
         Args:
+          limit: Max number of records in response
+
+          offset: Number of records to skip before beginning to return results
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -73,7 +74,7 @@ class LocationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/storage/provisioning/v2/locations",
+            "/storage/v4/locations",
             page=SyncOffsetPage[Location],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -84,6 +85,7 @@ class LocationsResource(SyncAPIResource):
                     {
                         "limit": limit,
                         "offset": offset,
+                        "order_by": order_by,
                     },
                     location_list_params.LocationListParams,
                 ),
@@ -112,12 +114,12 @@ class AsyncLocationsResource(AsyncAPIResource):
         """
         return AsyncLocationsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        order_by: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,13 +127,16 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Location, AsyncOffsetPage[Location]]:
-        """Returns available storage locations where you can create storages.
+        """Returns storage locations where you can create new storages.
 
-        Each location
-        represents a geographic region with specific data center facilities. Deprecated:
-        Use GET /v4/locations instead.
+        Only locations
+        currently accepting new storage creation are returned.
 
         Args:
+          limit: Max number of records in response
+
+          offset: Number of records to skip before beginning to return results
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -141,7 +146,7 @@ class AsyncLocationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/storage/provisioning/v2/locations",
+            "/storage/v4/locations",
             page=AsyncOffsetPage[Location],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -152,6 +157,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     {
                         "limit": limit,
                         "offset": offset,
+                        "order_by": order_by,
                     },
                     location_list_params.LocationListParams,
                 ),
@@ -164,10 +170,8 @@ class LocationsResourceWithRawResponse:
     def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                locations.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_raw_response_wrapper(
+            locations.list,
         )
 
 
@@ -175,10 +179,8 @@ class AsyncLocationsResourceWithRawResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                locations.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_raw_response_wrapper(
+            locations.list,
         )
 
 
@@ -186,10 +188,8 @@ class LocationsResourceWithStreamingResponse:
     def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                locations.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_streamed_response_wrapper(
+            locations.list,
         )
 
 
@@ -197,8 +197,6 @@ class AsyncLocationsResourceWithStreamingResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                locations.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_streamed_response_wrapper(
+            locations.list,
         )
