@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.40.0 (2026-03-30)
+
+Full Changelog: [v0.39.0...v0.40.0](https://github.com/G-Core/gcore-python/compare/v0.39.0...v0.40.0)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** storage resource restructured — methods moved from storage.* to storage.object_storages.* and storage.sftp_storages.*, credentials.recreate replaced by access_keys CRUD, bucket subresources (cors, lifecycle, policy) removed in favor of buckets.update, link_ssh_key/unlink_ssh_key removed in favor of ssh_keys resource.
+
+### Features
+
+* **api:** aggregated API specs update ([d45ea8c](https://github.com/G-Core/gcore-python/commit/d45ea8c11bf7bd8c583df0261721e2e9c5424984))
+* **api:** aggregated API specs update ([473a08b](https://github.com/G-Core/gcore-python/commit/473a08b6bd90d7f7b134060b389a622b1659a13d))
+* **api:** aggregated API specs update ([07228a2](https://github.com/G-Core/gcore-python/commit/07228a2d29b1fb8f4c2b1a41c0369f944ba503ed))
+* **api:** feat(storage)!: migrate storage endpoints from v1-v3 to v4 ([ee3dd69](https://github.com/G-Core/gcore-python/commit/ee3dd69632d57395fcc1fce3b954ff20765df9f1))
+* **cdn:** enable terraform support for cdn_rule_template ([e6e4283](https://github.com/G-Core/gcore-python/commit/e6e428388751914c243d937c152cd28ea19d8320))
+* **cloud:** enable Terraform data source for inference flavors ([aa3b08d](https://github.com/G-Core/gcore-python/commit/aa3b08d8777b307b79982eaa55dd98a0c61cda6d))
+* **examples:** update storage examples for v4 API ([422c9c9](https://github.com/G-Core/gcore-python/commit/422c9c97a6afb8ae226af315ff8870440712de4e))
+* **fastedge:** enable fastedge_template for Terraform ([5e9dab6](https://github.com/G-Core/gcore-python/commit/5e9dab60da36beb8438b295fabbef4e2ad2e220e))
+* **internal:** implement indices array format for query and form serialization ([270614e](https://github.com/G-Core/gcore-python/commit/270614e31a2d6bb7cc31d4182b1f4544e0f3ec5a))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([5277f95](https://github.com/G-Core/gcore-python/commit/5277f95a3de9c67fa39dc5e611d8315a624bae45))
+* **tests:** bump steady to v0.19.6 ([ba47f6b](https://github.com/G-Core/gcore-python/commit/ba47f6be3548421482c401a94c2f8ea481ffcb0d))
+* **tests:** bump steady to v0.19.7 ([7767e13](https://github.com/G-Core/gcore-python/commit/7767e1315ca81c246fa32663455731f9191a5d12))
+* **tests:** skip tests failing due to OpenAPI spec issues ([0e83fd1](https://github.com/G-Core/gcore-python/commit/0e83fd19bb738c95d4f563257d2d29bba560c26e))
+
 ## 0.39.0 (2026-03-23)
 
 Full Changelog: [v0.38.0...v0.39.0](https://github.com/G-Core/gcore-python/compare/v0.38.0...v0.39.0)
