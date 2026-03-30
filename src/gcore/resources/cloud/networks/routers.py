@@ -78,7 +78,10 @@ class RoutersResource(SyncAPIResource):
         Args:
           name: name of router
 
-          external_gateway_info
+          external_gateway_info: External gateway configuration. Use type 'default' to let the platform
+              automatically select the external network, or type 'manual' to specify a
+              particular external network via `network_id`. If omitted, the router is created
+              without an external gateway.
 
           interfaces: List of interfaces to attach to router immediately after creation.
 
@@ -136,7 +139,9 @@ class RoutersResource(SyncAPIResource):
         `PATCH /v2/routers/{project_id}/{region_id}/{router_id}` instead.
 
         Args:
-          external_gateway_info: New external gateway.
+          external_gateway_info: New external gateway configuration. Only type 'manual' is accepted on update, so
+              you must provide the `network_id` of the external network. Set to null to remove
+              the external gateway.
 
           name: New name of router
 
@@ -477,7 +482,10 @@ class AsyncRoutersResource(AsyncAPIResource):
         Args:
           name: name of router
 
-          external_gateway_info
+          external_gateway_info: External gateway configuration. Use type 'default' to let the platform
+              automatically select the external network, or type 'manual' to specify a
+              particular external network via `network_id`. If omitted, the router is created
+              without an external gateway.
 
           interfaces: List of interfaces to attach to router immediately after creation.
 
@@ -535,7 +543,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         `PATCH /v2/routers/{project_id}/{region_id}/{router_id}` instead.
 
         Args:
-          external_gateway_info: New external gateway.
+          external_gateway_info: New external gateway configuration. Only type 'manual' is accepted on update, so
+              you must provide the `network_id` of the external network. Set to null to remove
+              the external gateway.
 
           name: New name of router
 

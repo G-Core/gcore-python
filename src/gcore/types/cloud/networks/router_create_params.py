@@ -24,6 +24,12 @@ class RouterCreateParams(TypedDict, total=False):
     """name of router"""
 
     external_gateway_info: Optional[ExternalGatewayInfo]
+    """External gateway configuration.
+
+    Use type 'default' to let the platform automatically select the external
+    network, or type 'manual' to specify a particular external network via
+    `network_id`. If omitted, the router is created without an external gateway.
+    """
 
     interfaces: Optional[Iterable[Interface]]
     """List of interfaces to attach to router immediately after creation."""
@@ -34,13 +40,17 @@ class RouterCreateParams(TypedDict, total=False):
 
 class ExternalGatewayInfoRouterExternalManualGwSerializer(TypedDict, total=False):
     network_id: Required[str]
-    """id of the external network."""
+    """ID of the external network to connect the router to."""
 
     enable_snat: bool
     """Is SNAT enabled. Defaults to true."""
 
     type: Literal["manual"]
-    """must be 'manual'."""
+    """Gateway type.
+
+    Use 'manual' to explicitly specify which external network the router connects to
+    via `network_id`. Required for PATCH/update operations.
+    """
 
 
 class ExternalGatewayInfoRouterExternalDefaultGwSerializer(TypedDict, total=False):
@@ -48,7 +58,11 @@ class ExternalGatewayInfoRouterExternalDefaultGwSerializer(TypedDict, total=Fals
     """Is SNAT enabled. Defaults to true."""
 
     type: Literal["default"]
-    """must be 'default'."""
+    """Gateway type.
+
+    Use 'default' to let the platform automatically select the external network for
+    the router's region. No `network_id` is needed. Only valid on create.
+    """
 
 
 ExternalGatewayInfo: TypeAlias = Union[

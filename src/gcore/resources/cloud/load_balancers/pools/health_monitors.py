@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -57,8 +58,10 @@ class HealthMonitorsResource(SyncAPIResource):
         api_timeout: int,
         type: LbHealthMonitorType,
         admin_state_up: bool | Omit = omit,
+        domain_name: Optional[str] | Omit = omit,
         expected_codes: Optional[str] | Omit = omit,
         http_method: Optional[HTTPMethod] | Omit = omit,
+        http_version: Optional[Literal["1.0", "1.1"]] | Omit = omit,
         max_retries_down: int | Omit = omit,
         url_path: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -93,12 +96,18 @@ class HealthMonitorsResource(SyncAPIResource):
               and operational. When set to false, the resource is disabled and will not
               process traffic. Defaults to true.
 
+          domain_name: Domain name for HTTP host header. Can only be used together with `HTTP` or
+              `HTTPS` health monitor type.
+
           expected_codes: Expected HTTP response codes. Can be a single code or a range of codes. Can only
               be used together with `HTTP` or `HTTPS` health monitor type. For example,
               200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
 
           http_method: HTTP method. Can only be used together with `HTTP` or `HTTPS` health monitor
               type.
+
+          http_version: HTTP version. Can only be used together with `HTTP` or `HTTPS` health monitor
+              type. Supported values: 1.0, 1.1.
 
           max_retries_down: Number of failures before the member is switched to ERROR state.
 
@@ -133,8 +142,10 @@ class HealthMonitorsResource(SyncAPIResource):
                     "api_timeout": api_timeout,
                     "type": type,
                     "admin_state_up": admin_state_up,
+                    "domain_name": domain_name,
                     "expected_codes": expected_codes,
                     "http_method": http_method,
+                    "http_version": http_version,
                     "max_retries_down": max_retries_down,
                     "url_path": url_path,
                 },
@@ -232,8 +243,10 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
         api_timeout: int,
         type: LbHealthMonitorType,
         admin_state_up: bool | Omit = omit,
+        domain_name: Optional[str] | Omit = omit,
         expected_codes: Optional[str] | Omit = omit,
         http_method: Optional[HTTPMethod] | Omit = omit,
+        http_version: Optional[Literal["1.0", "1.1"]] | Omit = omit,
         max_retries_down: int | Omit = omit,
         url_path: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -268,12 +281,18 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
               and operational. When set to false, the resource is disabled and will not
               process traffic. Defaults to true.
 
+          domain_name: Domain name for HTTP host header. Can only be used together with `HTTP` or
+              `HTTPS` health monitor type.
+
           expected_codes: Expected HTTP response codes. Can be a single code or a range of codes. Can only
               be used together with `HTTP` or `HTTPS` health monitor type. For example,
               200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
 
           http_method: HTTP method. Can only be used together with `HTTP` or `HTTPS` health monitor
               type.
+
+          http_version: HTTP version. Can only be used together with `HTTP` or `HTTPS` health monitor
+              type. Supported values: 1.0, 1.1.
 
           max_retries_down: Number of failures before the member is switched to ERROR state.
 
@@ -308,8 +327,10 @@ class AsyncHealthMonitorsResource(AsyncAPIResource):
                     "api_timeout": api_timeout,
                     "type": type,
                     "admin_state_up": admin_state_up,
+                    "domain_name": domain_name,
                     "expected_codes": expected_codes,
                     "http_method": http_method,
+                    "http_version": http_version,
                     "max_retries_down": max_retries_down,
                     "url_path": url_path,
                 },

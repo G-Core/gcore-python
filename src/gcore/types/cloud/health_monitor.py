@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .http_method import HTTPMethod
@@ -24,6 +25,18 @@ class HealthMonitor(BaseModel):
 
     delay: int
     """The time, in seconds, between sending probes to members"""
+
+    domain_name: Optional[str] = None
+    """Domain name for HTTP host header.
+
+    Can only be used together with `HTTP` or `HTTPS` health monitor type.
+    """
+
+    http_version: Optional[Literal["1.0", "1.1"]] = None
+    """HTTP version.
+
+    Can only be used together with `HTTP` or `HTTPS` health monitor type.
+    """
 
     max_retries: int
     """Number of successes before the member is switched to ONLINE state"""

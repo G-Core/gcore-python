@@ -14,7 +14,11 @@ class RouterUpdateParams(TypedDict, total=False):
     region_id: int
 
     external_gateway_info: Optional[ExternalGatewayInfo]
-    """New external gateway."""
+    """New external gateway configuration.
+
+    Only type 'manual' is accepted on update, so you must provide the `network_id`
+    of the external network. Set to null to remove the external gateway.
+    """
 
     name: Optional[str]
     """New name of router"""
@@ -24,16 +28,23 @@ class RouterUpdateParams(TypedDict, total=False):
 
 
 class ExternalGatewayInfo(TypedDict, total=False):
-    """New external gateway."""
+    """New external gateway configuration.
+
+    Only type 'manual' is accepted on update, so you must provide the `network_id` of the external network. Set to null to remove the external gateway.
+    """
 
     network_id: Required[str]
-    """id of the external network."""
+    """ID of the external network to connect the router to."""
 
     enable_snat: bool
     """Is SNAT enabled. Defaults to true."""
 
     type: Literal["manual"]
-    """must be 'manual'."""
+    """Gateway type.
+
+    Use 'manual' to explicitly specify which external network the router connects to
+    via `network_id`. Required for PATCH/update operations.
+    """
 
 
 class Route(TypedDict, total=False):
