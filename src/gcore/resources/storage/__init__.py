@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .buckets import (
-    BucketsResource,
-    AsyncBucketsResource,
-    BucketsResourceWithRawResponse,
-    AsyncBucketsResourceWithRawResponse,
-    BucketsResourceWithStreamingResponse,
-    AsyncBucketsResourceWithStreamingResponse,
-)
 from .storage import (
     StorageResource,
     AsyncStorageResource,
@@ -15,6 +7,14 @@ from .storage import (
     AsyncStorageResourceWithRawResponse,
     StorageResourceWithStreamingResponse,
     AsyncStorageResourceWithStreamingResponse,
+)
+from .ssh_keys import (
+    SSHKeysResource,
+    AsyncSSHKeysResource,
+    SSHKeysResourceWithRawResponse,
+    AsyncSSHKeysResourceWithRawResponse,
+    SSHKeysResourceWithStreamingResponse,
+    AsyncSSHKeysResourceWithStreamingResponse,
 )
 from .locations import (
     LocationsResource,
@@ -32,13 +32,21 @@ from .statistics import (
     StatisticsResourceWithStreamingResponse,
     AsyncStatisticsResourceWithStreamingResponse,
 )
-from .credentials import (
-    CredentialsResource,
-    AsyncCredentialsResource,
-    CredentialsResourceWithRawResponse,
-    AsyncCredentialsResourceWithRawResponse,
-    CredentialsResourceWithStreamingResponse,
-    AsyncCredentialsResourceWithStreamingResponse,
+from .sftp_storages import (
+    SftpStoragesResource,
+    AsyncSftpStoragesResource,
+    SftpStoragesResourceWithRawResponse,
+    AsyncSftpStoragesResourceWithRawResponse,
+    SftpStoragesResourceWithStreamingResponse,
+    AsyncSftpStoragesResourceWithStreamingResponse,
+)
+from .object_storages import (
+    ObjectStoragesResource,
+    AsyncObjectStoragesResource,
+    ObjectStoragesResourceWithRawResponse,
+    AsyncObjectStoragesResourceWithRawResponse,
+    ObjectStoragesResourceWithStreamingResponse,
+    AsyncObjectStoragesResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -48,24 +56,30 @@ __all__ = [
     "AsyncLocationsResourceWithRawResponse",
     "LocationsResourceWithStreamingResponse",
     "AsyncLocationsResourceWithStreamingResponse",
+    "ObjectStoragesResource",
+    "AsyncObjectStoragesResource",
+    "ObjectStoragesResourceWithRawResponse",
+    "AsyncObjectStoragesResourceWithRawResponse",
+    "ObjectStoragesResourceWithStreamingResponse",
+    "AsyncObjectStoragesResourceWithStreamingResponse",
+    "SftpStoragesResource",
+    "AsyncSftpStoragesResource",
+    "SftpStoragesResourceWithRawResponse",
+    "AsyncSftpStoragesResourceWithRawResponse",
+    "SftpStoragesResourceWithStreamingResponse",
+    "AsyncSftpStoragesResourceWithStreamingResponse",
+    "SSHKeysResource",
+    "AsyncSSHKeysResource",
+    "SSHKeysResourceWithRawResponse",
+    "AsyncSSHKeysResourceWithRawResponse",
+    "SSHKeysResourceWithStreamingResponse",
+    "AsyncSSHKeysResourceWithStreamingResponse",
     "StatisticsResource",
     "AsyncStatisticsResource",
     "StatisticsResourceWithRawResponse",
     "AsyncStatisticsResourceWithRawResponse",
     "StatisticsResourceWithStreamingResponse",
     "AsyncStatisticsResourceWithStreamingResponse",
-    "CredentialsResource",
-    "AsyncCredentialsResource",
-    "CredentialsResourceWithRawResponse",
-    "AsyncCredentialsResourceWithRawResponse",
-    "CredentialsResourceWithStreamingResponse",
-    "AsyncCredentialsResourceWithStreamingResponse",
-    "BucketsResource",
-    "AsyncBucketsResource",
-    "BucketsResourceWithRawResponse",
-    "AsyncBucketsResourceWithRawResponse",
-    "BucketsResourceWithStreamingResponse",
-    "AsyncBucketsResourceWithStreamingResponse",
     "StorageResource",
     "AsyncStorageResource",
     "StorageResourceWithRawResponse",
