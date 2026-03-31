@@ -59,6 +59,7 @@ class LogsResource(SyncAPIResource):
         from_: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        request_id: str | Omit = omit,
         search: str | Omit = omit,
         sort: Literal["desc", "asc"] | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
@@ -73,7 +74,7 @@ class LogsResource(SyncAPIResource):
         List logs for the app
 
         Args:
-          client_ip: Search by client IP
+          client_ip: Search by client IP address
 
           edge: Edge name
 
@@ -83,6 +84,8 @@ class LogsResource(SyncAPIResource):
           limit: Limit for pagination
 
           offset: Offset for pagination
+
+          request_id: Search by request ID
 
           search: Search string
 
@@ -113,6 +116,7 @@ class LogsResource(SyncAPIResource):
                         "from_": from_,
                         "limit": limit,
                         "offset": offset,
+                        "request_id": request_id,
                         "search": search,
                         "sort": sort,
                         "to": to,
@@ -157,6 +161,7 @@ class AsyncLogsResource(AsyncAPIResource):
         from_: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        request_id: str | Omit = omit,
         search: str | Omit = omit,
         sort: Literal["desc", "asc"] | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
@@ -171,7 +176,7 @@ class AsyncLogsResource(AsyncAPIResource):
         List logs for the app
 
         Args:
-          client_ip: Search by client IP
+          client_ip: Search by client IP address
 
           edge: Edge name
 
@@ -181,6 +186,8 @@ class AsyncLogsResource(AsyncAPIResource):
           limit: Limit for pagination
 
           offset: Offset for pagination
+
+          request_id: Search by request ID
 
           search: Search string
 
@@ -211,6 +218,7 @@ class AsyncLogsResource(AsyncAPIResource):
                         "from_": from_,
                         "limit": limit,
                         "offset": offset,
+                        "request_id": request_id,
                         "search": search,
                         "sort": sort,
                         "to": to,

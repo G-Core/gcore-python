@@ -25,11 +25,6 @@ class AppUpdateParams(TypedDict, total=False):
     """Environment variables"""
 
     log: Optional[Literal["kafka", "none"]]
-    """Logging channel.
-
-    Use 'kafka' to enable log collection (queryable via API), or 'none' to disable
-    logging.
-    """
 
     name: str
     """Unique application name (alphanumeric, hyphens allowed)"""

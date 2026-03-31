@@ -24,5 +24,8 @@ class Log(BaseModel):
     log: Optional[str] = None
     """The actual log message content"""
 
+    request_id: Optional[str] = None
+    """Request ID"""
+
     timestamp: Optional[datetime] = None
     """When the log was generated (RFC3339 format)"""

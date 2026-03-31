@@ -102,9 +102,6 @@ class AppsResource(SyncAPIResource):
 
           env: Environment variables
 
-          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
-              'none' to disable logging.
-
           name: Unique application name (alphanumeric, hyphens allowed)
 
           rsp_headers: Extra headers to add to the response
@@ -190,9 +187,6 @@ class AppsResource(SyncAPIResource):
               performance impact.
 
           env: Environment variables
-
-          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
-              'none' to disable logging.
 
           name: Unique application name (alphanumeric, hyphens allowed)
 
@@ -515,9 +509,6 @@ class AsyncAppsResource(AsyncAPIResource):
 
           env: Environment variables
 
-          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
-              'none' to disable logging.
-
           name: Unique application name (alphanumeric, hyphens allowed)
 
           rsp_headers: Extra headers to add to the response
@@ -603,9 +594,6 @@ class AsyncAppsResource(AsyncAPIResource):
               performance impact.
 
           env: Environment variables
-
-          log: Logging channel. Use 'kafka' to enable log collection (queryable via API), or
-              'none' to disable logging.
 
           name: Unique application name (alphanumeric, hyphens allowed)
 

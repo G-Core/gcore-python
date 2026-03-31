@@ -30,11 +30,12 @@ class TestLogs:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         log = client.fastedge.apps.logs.list(
             app_id=0,
-            client_ip="192.168.1.1",
+            client_ip="client_ip",
             edge="edge",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
             limit=0,
             offset=0,
+            request_id="request_id",
             search="search",
             sort="desc",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -82,11 +83,12 @@ class TestAsyncLogs:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         log = await async_client.fastedge.apps.logs.list(
             app_id=0,
-            client_ip="192.168.1.1",
+            client_ip="client_ip",
             edge="edge",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
             limit=0,
             offset=0,
+            request_id="request_id",
             search="search",
             sort="desc",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
