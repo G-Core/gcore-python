@@ -13,7 +13,7 @@ __all__ = ["LogListParams"]
 
 class LogListParams(TypedDict, total=False):
     client_ip: str
-    """Search by client IP"""
+    """Search by client IP address"""
 
     edge: str
     """Edge name"""
@@ -29,6 +29,9 @@ class LogListParams(TypedDict, total=False):
 
     offset: int
     """Offset for pagination"""
+
+    request_id: str
+    """Search by request ID"""
 
     search: str
     """Search string"""

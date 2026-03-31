@@ -52,11 +52,6 @@ class App(BaseModel):
     """Environment variables"""
 
     log: Optional[Literal["kafka", "none"]] = None
-    """Logging channel.
-
-    Use 'kafka' to enable log collection (queryable via API), or 'none' to disable
-    logging.
-    """
 
     name: Optional[str] = None
     """Unique application name (alphanumeric, hyphens allowed)"""
