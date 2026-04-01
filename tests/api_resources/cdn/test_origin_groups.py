@@ -24,7 +24,7 @@ class TestOriginGroups:
     def test_method_create_overload_1(self, client: Gcore) -> None:
         origin_group = client.cdn.origin_groups.create(
             name="YourOriginGroup",
-            sources=[{}, {}],
+            sources=[{"source": "yourwebsite.com"}],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
 
@@ -34,15 +34,12 @@ class TestOriginGroups:
             name="YourOriginGroup",
             sources=[
                 {
+                    "source": "yourwebsite.com",
                     "backup": False,
                     "enabled": True,
-                    "source": "yourwebsite.com",
-                },
-                {
-                    "backup": True,
-                    "enabled": True,
-                    "source": "1.2.3.4:5500",
-                },
+                    "host_header_override": None,
+                    "tag": "default",
+                }
             ],
             auth_type="none",
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
@@ -54,7 +51,7 @@ class TestOriginGroups:
     def test_raw_response_create_overload_1(self, client: Gcore) -> None:
         response = client.cdn.origin_groups.with_raw_response.create(
             name="YourOriginGroup",
-            sources=[{}, {}],
+            sources=[{"source": "yourwebsite.com"}],
         )
 
         assert response.is_closed is True
@@ -66,7 +63,7 @@ class TestOriginGroups:
     def test_streaming_response_create_overload_1(self, client: Gcore) -> None:
         with client.cdn.origin_groups.with_streaming_response.create(
             name="YourOriginGroup",
-            sources=[{}, {}],
+            sources=[{"source": "yourwebsite.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -164,9 +161,11 @@ class TestOriginGroups:
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
             sources=[
                 {
+                    "source": "yourdomain.com",
                     "backup": False,
                     "enabled": True,
-                    "source": "yourdomain.com",
+                    "host_header_override": None,
+                    "tag": "default",
                 }
             ],
             use_next=True,
@@ -353,7 +352,7 @@ class TestOriginGroups:
             auth_type="none",
             name="YourOriginGroup",
             path="",
-            sources=[{}],
+            sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -367,9 +366,11 @@ class TestOriginGroups:
             path="",
             sources=[
                 {
+                    "source": "yourdomain.com",
                     "backup": False,
                     "enabled": True,
-                    "source": "yourdomain.com",
+                    "host_header_override": None,
+                    "tag": "default",
                 }
             ],
             use_next=True,
@@ -384,7 +385,7 @@ class TestOriginGroups:
             auth_type="none",
             name="YourOriginGroup",
             path="",
-            sources=[{}],
+            sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
 
@@ -400,7 +401,7 @@ class TestOriginGroups:
             auth_type="none",
             name="YourOriginGroup",
             path="",
-            sources=[{}],
+            sources=[{"source": "yourdomain.com"}],
             use_next=True,
         ) as response:
             assert not response.is_closed
@@ -502,7 +503,7 @@ class TestAsyncOriginGroups:
     async def test_method_create_overload_1(self, async_client: AsyncGcore) -> None:
         origin_group = await async_client.cdn.origin_groups.create(
             name="YourOriginGroup",
-            sources=[{}, {}],
+            sources=[{"source": "yourwebsite.com"}],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
 
@@ -512,15 +513,12 @@ class TestAsyncOriginGroups:
             name="YourOriginGroup",
             sources=[
                 {
+                    "source": "yourwebsite.com",
                     "backup": False,
                     "enabled": True,
-                    "source": "yourwebsite.com",
-                },
-                {
-                    "backup": True,
-                    "enabled": True,
-                    "source": "1.2.3.4:5500",
-                },
+                    "host_header_override": None,
+                    "tag": "default",
+                }
             ],
             auth_type="none",
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
@@ -532,7 +530,7 @@ class TestAsyncOriginGroups:
     async def test_raw_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.origin_groups.with_raw_response.create(
             name="YourOriginGroup",
-            sources=[{}, {}],
+            sources=[{"source": "yourwebsite.com"}],
         )
 
         assert response.is_closed is True
@@ -544,7 +542,7 @@ class TestAsyncOriginGroups:
     async def test_streaming_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.origin_groups.with_streaming_response.create(
             name="YourOriginGroup",
-            sources=[{}, {}],
+            sources=[{"source": "yourwebsite.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -642,9 +640,11 @@ class TestAsyncOriginGroups:
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
             sources=[
                 {
+                    "source": "yourdomain.com",
                     "backup": False,
                     "enabled": True,
-                    "source": "yourdomain.com",
+                    "host_header_override": None,
+                    "tag": "default",
                 }
             ],
             use_next=True,
@@ -831,7 +831,7 @@ class TestAsyncOriginGroups:
             auth_type="none",
             name="YourOriginGroup",
             path="",
-            sources=[{}],
+            sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -845,9 +845,11 @@ class TestAsyncOriginGroups:
             path="",
             sources=[
                 {
+                    "source": "yourdomain.com",
                     "backup": False,
                     "enabled": True,
-                    "source": "yourdomain.com",
+                    "host_header_override": None,
+                    "tag": "default",
                 }
             ],
             use_next=True,
@@ -862,7 +864,7 @@ class TestAsyncOriginGroups:
             auth_type="none",
             name="YourOriginGroup",
             path="",
-            sources=[{}],
+            sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
 
@@ -878,7 +880,7 @@ class TestAsyncOriginGroups:
             auth_type="none",
             name="YourOriginGroup",
             path="",
-            sources=[{}],
+            sources=[{"source": "yourdomain.com"}],
             use_next=True,
         ) as response:
             assert not response.is_closed

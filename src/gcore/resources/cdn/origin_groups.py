@@ -76,8 +76,6 @@ class OriginGroupsResource(SyncAPIResource):
         Args:
           name: Origin group name.
 
-          sources: List of origin sources in the origin group.
-
           auth_type: Origin authentication type.
 
               Possible values:
@@ -273,8 +271,6 @@ class OriginGroupsResource(SyncAPIResource):
               - **`http_502`** - a origin returned a response with the code 502
               - **`http_503`** - a origin returned a response with the code 503
               - **`http_504`** - a origin returned a response with the code 504
-
-          sources: List of origin sources in the origin group.
 
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
@@ -558,8 +554,6 @@ class OriginGroupsResource(SyncAPIResource):
 
           path: Parameter is **deprecated**.
 
-          sources: List of origin sources in the origin group.
-
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
               specify cases in `proxy_next_upstream`.
@@ -754,8 +748,6 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
 
         Args:
           name: Origin group name.
-
-          sources: List of origin sources in the origin group.
 
           auth_type: Origin authentication type.
 
@@ -952,8 +944,6 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
               - **`http_502`** - a origin returned a response with the code 502
               - **`http_503`** - a origin returned a response with the code 503
               - **`http_504`** - a origin returned a response with the code 504
-
-          sources: List of origin sources in the origin group.
 
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
@@ -1236,8 +1226,6 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
           name: Origin group name.
 
           path: Parameter is **deprecated**.
-
-          sources: List of origin sources in the origin group.
 
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
