@@ -105,6 +105,14 @@ class TestCDN:
         assert_matches_type(AlibabaRegions, cdn, path=["response"])
 
     @parametrize
+    def test_method_list_alibaba_regions_with_all_params(self, client: Gcore) -> None:
+        cdn = client.cdn.list_alibaba_regions(
+            limit=1,
+            offset=0,
+        )
+        assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+    @parametrize
     def test_raw_response_list_alibaba_regions(self, client: Gcore) -> None:
         response = client.cdn.with_raw_response.list_alibaba_regions()
 
@@ -127,6 +135,14 @@ class TestCDN:
     @parametrize
     def test_method_list_aws_regions(self, client: Gcore) -> None:
         cdn = client.cdn.list_aws_regions()
+        assert_matches_type(AwsRegions, cdn, path=["response"])
+
+    @parametrize
+    def test_method_list_aws_regions_with_all_params(self, client: Gcore) -> None:
+        cdn = client.cdn.list_aws_regions(
+            limit=1,
+            offset=0,
+        )
         assert_matches_type(AwsRegions, cdn, path=["response"])
 
     @parametrize
@@ -306,6 +322,14 @@ class TestAsyncCDN:
         assert_matches_type(AlibabaRegions, cdn, path=["response"])
 
     @parametrize
+    async def test_method_list_alibaba_regions_with_all_params(self, async_client: AsyncGcore) -> None:
+        cdn = await async_client.cdn.list_alibaba_regions(
+            limit=1,
+            offset=0,
+        )
+        assert_matches_type(AlibabaRegions, cdn, path=["response"])
+
+    @parametrize
     async def test_raw_response_list_alibaba_regions(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.with_raw_response.list_alibaba_regions()
 
@@ -328,6 +352,14 @@ class TestAsyncCDN:
     @parametrize
     async def test_method_list_aws_regions(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_aws_regions()
+        assert_matches_type(AwsRegions, cdn, path=["response"])
+
+    @parametrize
+    async def test_method_list_aws_regions_with_all_params(self, async_client: AsyncGcore) -> None:
+        cdn = await async_client.cdn.list_aws_regions(
+            limit=1,
+            offset=0,
+        )
         assert_matches_type(AwsRegions, cdn, path=["response"])
 
     @parametrize

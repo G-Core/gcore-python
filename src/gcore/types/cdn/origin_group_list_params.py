@@ -17,8 +17,14 @@ class OriginGroupListParams(TypedDict, total=False):
     - **false** – Origin group does not have related CDN resources.
     """
 
+    limit: int
+    """Maximum number of items to return in the response. Cannot exceed 1000."""
+
     name: str
     """Origin group name."""
+
+    offset: int
+    """Number of items to skip from the beginning of the list."""
 
     sources: str
     """Origin sources (IP addresses or domains) in the origin group."""

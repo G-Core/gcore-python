@@ -133,6 +133,8 @@ class TestPolicies:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         policy = client.cdn.logs_uploader.policies.list(
             config_ids=[0],
+            limit=1,
+            offset=0,
             search="search",
         )
         assert_matches_type(LogsUploaderPolicyList, policy, path=["response"])
@@ -417,6 +419,8 @@ class TestAsyncPolicies:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         policy = await async_client.cdn.logs_uploader.policies.list(
             config_ids=[0],
+            limit=1,
+            offset=0,
             search="search",
         )
         assert_matches_type(LogsUploaderPolicyList, policy, path=["response"])

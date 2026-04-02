@@ -162,8 +162,21 @@ class NoneAuth(BaseModel):
     Origin group with host origins, or mixed host and S3 origins using inline `origin_type` and `config` in sources.
     """
 
-    id: Optional[int] = None
+    id: int
     """Origin group ID."""
+
+    name: str
+    """Origin group name."""
+
+    sources: List[NoneAuthSource]
+    """List of origin sources in the origin group.
+
+    Each entry can be a host origin or an S3 origin.
+
+    Host origins have a `source` field with the hostname or IP. S3 origins have
+    `origin_type: s3` and a `config` object with S3 credentials. Both types can be
+    mixed in the same origin group.
+    """
 
     auth_type: Optional[str] = None
     """Origin authentication type.
@@ -182,9 +195,6 @@ class NoneAuth(BaseModel):
     - **true** - Origin group has related CDN resources.
     - **false** - Origin group does not have related CDN resources.
     """
-
-    name: Optional[str] = None
-    """Origin group name."""
 
     path: Optional[str] = None
     """Parameter is **deprecated**."""
@@ -206,16 +216,6 @@ class NoneAuth(BaseModel):
     - **`http_502`** - a origin returned a response with the code 502
     - **`http_503`** - a origin returned a response with the code 503
     - **`http_504`** - a origin returned a response with the code 504
-    """
-
-    sources: Optional[List[NoneAuthSource]] = None
-    """List of origin sources in the origin group.
-
-    Each entry can be a host origin or an S3 origin.
-
-    Host origins have a `source` field with the hostname or IP. S3 origins have
-    `origin_type: s3` and a `config` object with S3 credentials. Both types can be
-    mixed in the same origin group.
     """
 
     use_next: Optional[bool] = None
@@ -280,17 +280,20 @@ class AwsSignatureV4Auth(BaseModel):
 
 
 class AwsSignatureV4(BaseModel):
-    id: Optional[int] = None
+    id: int
     """Origin group ID."""
 
-    auth: Optional[AwsSignatureV4Auth] = None
+    auth: AwsSignatureV4Auth
     """Credentials to access the private bucket."""
 
-    auth_type: Optional[str] = None
+    auth_type: str
     """Authentication type.
 
     **awsSignatureV4** value is used for S3 storage.
     """
+
+    name: str
+    """Origin group name."""
 
     has_related_resources: Optional[bool] = None
     """Defines whether the origin group has related CDN resources.
@@ -300,9 +303,6 @@ class AwsSignatureV4(BaseModel):
     - **true** - Origin group has related CDN resources.
     - **false** - Origin group does not have related CDN resources.
     """
-
-    name: Optional[str] = None
-    """Origin group name."""
 
     path: Optional[str] = None
     """Parameter is **deprecated**."""

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -104,6 +106,8 @@ class TrustedCaCertificatesResource(SyncAPIResource):
         self,
         *,
         automated: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         resource_id: int | Omit = omit,
         validity_not_after_lte: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -124,6 +128,10 @@ class TrustedCaCertificatesResource(SyncAPIResource):
               - **true** – Certificate was issued automatically.
               - **false** – Certificate was added by a user.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           resource_id: CDN resource ID for which the certificates are requested.
 
           validity_not_after_lte: Date and time when the certificate become untrusted (ISO 8601/RFC 3339 format,
@@ -139,23 +147,28 @@ class TrustedCaCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/cdn/sslCertificates",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "automated": automated,
-                        "resource_id": resource_id,
-                        "validity_not_after_lte": validity_not_after_lte,
-                    },
-                    trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
+        return cast(
+            CaCertificateList,
+            self._get(
+                "/cdn/sslCertificates",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "automated": automated,
+                            "limit": limit,
+                            "offset": offset,
+                            "resource_id": resource_id,
+                            "validity_not_after_lte": validity_not_after_lte,
+                        },
+                        trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
+                    ),
                 ),
+                cast_to=cast(Any, CaCertificateList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=CaCertificateList,
         )
 
     def delete(
@@ -339,6 +352,8 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
         self,
         *,
         automated: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         resource_id: int | Omit = omit,
         validity_not_after_lte: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -359,6 +374,10 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
               - **true** – Certificate was issued automatically.
               - **false** – Certificate was added by a user.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           resource_id: CDN resource ID for which the certificates are requested.
 
           validity_not_after_lte: Date and time when the certificate become untrusted (ISO 8601/RFC 3339 format,
@@ -374,23 +393,28 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/cdn/sslCertificates",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "automated": automated,
-                        "resource_id": resource_id,
-                        "validity_not_after_lte": validity_not_after_lte,
-                    },
-                    trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
+        return cast(
+            CaCertificateList,
+            await self._get(
+                "/cdn/sslCertificates",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "automated": automated,
+                            "limit": limit,
+                            "offset": offset,
+                            "resource_id": resource_id,
+                            "validity_not_after_lte": validity_not_after_lte,
+                        },
+                        trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
+                    ),
                 ),
+                cast_to=cast(Any, CaCertificateList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=CaCertificateList,
         )
 
     async def delete(

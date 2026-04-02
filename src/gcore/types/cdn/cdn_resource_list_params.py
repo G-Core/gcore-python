@@ -31,6 +31,9 @@ class CDNResourceListParams(TypedDict, total=False):
     - **false** - CDN resource is disabled.
     """
 
+    limit: int
+    """Maximum number of items to return in the response. Cannot exceed 1000."""
+
     max_created: str
     """
     Most recent date of CDN resource creation for which CDN resources should be
@@ -42,6 +45,9 @@ class CDNResourceListParams(TypedDict, total=False):
     Earliest date of CDN resource creation for which CDN resources should be
     returned (ISO 8601/RFC 3339 format, UTC.)
     """
+
+    offset: int
+    """Number of items to skip from the beginning of the list."""
 
     origin_group: Annotated[int, PropertyInfo(alias="originGroup")]
     """Origin group ID."""

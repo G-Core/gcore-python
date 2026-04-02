@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from .ips import (
@@ -70,7 +72,12 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.cdn import cdn_update_account_params, cdn_list_purge_statuses_params
+from ...types.cdn import (
+    cdn_update_account_params,
+    cdn_list_aws_regions_params,
+    cdn_list_purge_statuses_params,
+    cdn_list_alibaba_regions_params,
+)
 from .certificates import (
     CertificatesResource,
     AsyncCertificatesResource,
@@ -314,6 +321,8 @@ class CDNResource(SyncAPIResource):
     def list_alibaba_regions(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -321,18 +330,48 @@ class CDNResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AlibabaRegions:
-        """Get the list of Alibaba Cloud regions."""
-        return self._get(
-            "/cdn/alibaba_regions",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        """
+        Get the list of Alibaba Cloud regions.
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return cast(
+            AlibabaRegions,
+            self._get(
+                "/cdn/alibaba_regions",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        cdn_list_alibaba_regions_params.CDNListAlibabaRegionsParams,
+                    ),
+                ),
+                cast_to=cast(Any, AlibabaRegions),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=AlibabaRegions,
         )
 
     def list_aws_regions(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,13 +379,41 @@ class CDNResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AwsRegions:
-        """Get the list of Amazon AWS regions."""
-        return self._get(
-            "/cdn/aws_regions",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        """
+        Get the list of Amazon AWS regions.
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return cast(
+            AwsRegions,
+            self._get(
+                "/cdn/aws_regions",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        cdn_list_aws_regions_params.CDNListAwsRegionsParams,
+                    ),
+                ),
+                cast_to=cast(Any, AwsRegions),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=AwsRegions,
         )
 
     def list_purge_statuses(
@@ -421,27 +488,32 @@ class CDNResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/cdn/purge_statuses",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cname": cname,
-                        "from_created": from_created,
-                        "limit": limit,
-                        "offset": offset,
-                        "purge_type": purge_type,
-                        "status": status,
-                        "to_created": to_created,
-                    },
-                    cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
+        return cast(
+            CDNListPurgeStatusesResponse,
+            self._get(
+                "/cdn/purge_statuses",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "cname": cname,
+                            "from_created": from_created,
+                            "limit": limit,
+                            "offset": offset,
+                            "purge_type": purge_type,
+                            "status": status,
+                            "to_created": to_created,
+                        },
+                        cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, CDNListPurgeStatusesResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=CDNListPurgeStatusesResponse,
         )
 
     def update_account(
@@ -659,6 +731,8 @@ class AsyncCDNResource(AsyncAPIResource):
     async def list_alibaba_regions(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -666,18 +740,48 @@ class AsyncCDNResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AlibabaRegions:
-        """Get the list of Alibaba Cloud regions."""
-        return await self._get(
-            "/cdn/alibaba_regions",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        """
+        Get the list of Alibaba Cloud regions.
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return cast(
+            AlibabaRegions,
+            await self._get(
+                "/cdn/alibaba_regions",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        cdn_list_alibaba_regions_params.CDNListAlibabaRegionsParams,
+                    ),
+                ),
+                cast_to=cast(Any, AlibabaRegions),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=AlibabaRegions,
         )
 
     async def list_aws_regions(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -685,13 +789,41 @@ class AsyncCDNResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AwsRegions:
-        """Get the list of Amazon AWS regions."""
-        return await self._get(
-            "/cdn/aws_regions",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        """
+        Get the list of Amazon AWS regions.
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return cast(
+            AwsRegions,
+            await self._get(
+                "/cdn/aws_regions",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        cdn_list_aws_regions_params.CDNListAwsRegionsParams,
+                    ),
+                ),
+                cast_to=cast(Any, AwsRegions),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=AwsRegions,
         )
 
     async def list_purge_statuses(
@@ -766,27 +898,32 @@ class AsyncCDNResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/cdn/purge_statuses",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "cname": cname,
-                        "from_created": from_created,
-                        "limit": limit,
-                        "offset": offset,
-                        "purge_type": purge_type,
-                        "status": status,
-                        "to_created": to_created,
-                    },
-                    cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
+        return cast(
+            CDNListPurgeStatusesResponse,
+            await self._get(
+                "/cdn/purge_statuses",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "cname": cname,
+                            "from_created": from_created,
+                            "limit": limit,
+                            "offset": offset,
+                            "purge_type": purge_type,
+                            "status": status,
+                            "to_created": to_created,
+                        },
+                        cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, CDNListPurgeStatusesResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=CDNListPurgeStatusesResponse,
         )
 
     async def update_account(

@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import TypeAlias
+from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ShieldListResponse", "ShieldListResponseItem"]
+__all__ = ["ShieldListResponse"]
 
 
-class ShieldListResponseItem(BaseModel):
+class ShieldListResponse(BaseModel):
     id: Optional[int] = None
     """Origin shielding location ID."""
 
@@ -20,6 +19,3 @@ class ShieldListResponseItem(BaseModel):
 
     datacenter: Optional[str] = None
     """Name of origin shielding location datacenter."""
-
-
-ShieldListResponse: TypeAlias = List[ShieldListResponseItem]

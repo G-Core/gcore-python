@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -13,7 +14,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...types.cdn import shield_list_params
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.shield_list_response import ShieldListResponse
 
 __all__ = ["ShieldsResource", "AsyncShieldsResource"]
@@ -42,20 +45,48 @@ class ShieldsResource(SyncAPIResource):
     def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShieldListResponse:
-        """Get information about all origin shielding locations available in the account."""
-        return self._get(
+    ) -> SyncOffsetPage[ShieldListResponse]:
+        """
+        Get information about all origin shielding locations available in the account.
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
             "/cdn/shieldingpop_v2",
+            page=SyncOffsetPage[ShieldListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    shield_list_params.ShieldListParams,
+                ),
             ),
-            cast_to=ShieldListResponse,
+            model=ShieldListResponse,
         )
 
 
@@ -79,23 +110,51 @@ class AsyncShieldsResource(AsyncAPIResource):
         """
         return AsyncShieldsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShieldListResponse:
-        """Get information about all origin shielding locations available in the account."""
-        return await self._get(
+    ) -> AsyncPaginator[ShieldListResponse, AsyncOffsetPage[ShieldListResponse]]:
+        """
+        Get information about all origin shielding locations available in the account.
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
             "/cdn/shieldingpop_v2",
+            page=AsyncOffsetPage[ShieldListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    shield_list_params.ShieldListParams,
+                ),
             ),
-            cast_to=ShieldListResponse,
+            model=ShieldListResponse,
         )
 
 

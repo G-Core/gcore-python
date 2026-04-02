@@ -63,6 +63,8 @@ class TestTrustedCaCertificates:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         trusted_ca_certificate = client.cdn.trusted_ca_certificates.list(
             automated=True,
+            limit=1,
+            offset=0,
             resource_id=0,
             validity_not_after_lte="validity_not_after_lte",
         )
@@ -233,6 +235,8 @@ class TestAsyncTrustedCaCertificates:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         trusted_ca_certificate = await async_client.cdn.trusted_ca_certificates.list(
             automated=True,
+            limit=1,
+            offset=0,
             resource_id=0,
             validity_not_after_lte="validity_not_after_lte",
         )
