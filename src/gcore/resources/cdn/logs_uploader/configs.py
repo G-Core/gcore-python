@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Any, Iterable, cast
 
 import httpx
 
@@ -184,6 +184,8 @@ class ConfigsResource(SyncAPIResource):
     def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         resource_ids: Iterable[int] | Omit = omit,
         search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -197,6 +199,10 @@ class ConfigsResource(SyncAPIResource):
         Get list of logs uploader configs.
 
         Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           resource_ids: Filter by ids of CDN resources that are assigned to given config.
 
           search: Search by config name or id.
@@ -209,22 +215,29 @@ class ConfigsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/cdn/logs_uploader/configs",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "resource_ids": resource_ids,
-                        "search": search,
-                    },
-                    config_list_params.ConfigListParams,
+        return cast(
+            LogsUploaderConfigList,
+            self._get(
+                "/cdn/logs_uploader/configs",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                            "resource_ids": resource_ids,
+                            "search": search,
+                        },
+                        config_list_params.ConfigListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, LogsUploaderConfigList
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=LogsUploaderConfigList,
         )
 
     def delete(
@@ -543,6 +556,8 @@ class AsyncConfigsResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         resource_ids: Iterable[int] | Omit = omit,
         search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -556,6 +571,10 @@ class AsyncConfigsResource(AsyncAPIResource):
         Get list of logs uploader configs.
 
         Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           resource_ids: Filter by ids of CDN resources that are assigned to given config.
 
           search: Search by config name or id.
@@ -568,22 +587,29 @@ class AsyncConfigsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/cdn/logs_uploader/configs",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "resource_ids": resource_ids,
-                        "search": search,
-                    },
-                    config_list_params.ConfigListParams,
+        return cast(
+            LogsUploaderConfigList,
+            await self._get(
+                "/cdn/logs_uploader/configs",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                            "resource_ids": resource_ids,
+                            "search": search,
+                        },
+                        config_list_params.ConfigListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, LogsUploaderConfigList
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=LogsUploaderConfigList,
         )
 
     async def delete(

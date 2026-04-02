@@ -9,6 +9,12 @@ __all__ = ["ConfigListParams"]
 
 
 class ConfigListParams(TypedDict, total=False):
+    limit: int
+    """Maximum number of items to return in the response. Cannot exceed 1000."""
+
+    offset: int
+    """Number of items to skip from the beginning of the list."""
+
     resource_ids: Iterable[int]
     """Filter by ids of CDN resources that are assigned to given config."""
 

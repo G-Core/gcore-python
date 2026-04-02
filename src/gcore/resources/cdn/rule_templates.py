@@ -17,10 +17,15 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.cdn import rule_template_create_params, rule_template_update_params, rule_template_replace_params
-from ..._base_client import make_request_options
+from ...types.cdn import (
+    rule_template_list_params,
+    rule_template_create_params,
+    rule_template_update_params,
+    rule_template_replace_params,
+)
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.rule_template import RuleTemplate
-from ...types.cdn.rule_template_list import RuleTemplateList
 
 __all__ = ["RuleTemplatesResource", "AsyncRuleTemplatesResource"]
 
@@ -229,20 +234,48 @@ class RuleTemplatesResource(SyncAPIResource):
     def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RuleTemplateList:
-        """Get rule templates list"""
-        return self._get(
+    ) -> SyncOffsetPage[RuleTemplate]:
+        """
+        Get rule templates list
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
             "/cdn/resources/rule_templates",
+            page=SyncOffsetPage[RuleTemplate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_template_list_params.RuleTemplateListParams,
+                ),
             ),
-            cast_to=RuleTemplateList,
+            model=RuleTemplate,
         )
 
     def delete(
@@ -599,23 +632,51 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
             cast_to=RuleTemplate,
         )
 
-    async def list(
+    def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RuleTemplateList:
-        """Get rule templates list"""
-        return await self._get(
+    ) -> AsyncPaginator[RuleTemplate, AsyncOffsetPage[RuleTemplate]]:
+        """
+        Get rule templates list
+
+        Args:
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
             "/cdn/resources/rule_templates",
+            page=AsyncOffsetPage[RuleTemplate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_template_list_params.RuleTemplateListParams,
+                ),
             ),
-            cast_to=RuleTemplateList,
+            model=RuleTemplate,
         )
 
     async def delete(

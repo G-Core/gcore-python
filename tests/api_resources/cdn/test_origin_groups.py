@@ -258,7 +258,9 @@ class TestOriginGroups:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         origin_group = client.cdn.origin_groups.list(
             has_related_resources=True,
+            limit=1,
             name="name",
+            offset=0,
             sources="sources",
         )
         assert_matches_type(OriginGroupsList, origin_group, path=["response"])
@@ -737,7 +739,9 @@ class TestAsyncOriginGroups:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         origin_group = await async_client.cdn.origin_groups.list(
             has_related_resources=True,
+            limit=1,
             name="name",
+            offset=0,
             sources="sources",
         )
         assert_matches_type(OriginGroupsList, origin_group, path=["response"])

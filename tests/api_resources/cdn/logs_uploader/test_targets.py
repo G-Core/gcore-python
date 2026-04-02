@@ -150,6 +150,8 @@ class TestTargets:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         target = client.cdn.logs_uploader.targets.list(
             config_ids=[0],
+            limit=1,
+            offset=0,
             search="search",
         )
         assert_matches_type(LogsUploaderTargetList, target, path=["response"])
@@ -476,6 +478,8 @@ class TestAsyncTargets:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         target = await async_client.cdn.logs_uploader.targets.list(
             config_ids=[0],
+            limit=1,
+            offset=0,
             search="search",
         )
         assert_matches_type(LogsUploaderTargetList, target, path=["response"])

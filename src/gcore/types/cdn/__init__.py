@@ -25,6 +25,7 @@ from .cdn_metrics_values import CDNMetricsValues as CDNMetricsValues
 from .metric_list_params import MetricListParams as MetricListParams
 from .origin_groups_list import OriginGroupsList as OriginGroupsList
 from .rule_template_list import RuleTemplateList as RuleTemplateList
+from .shield_list_params import ShieldListParams as ShieldListParams
 from .ssl_request_status import SslRequestStatus as SslRequestStatus
 from .usage_series_stats import UsageSeriesStats as UsageSeriesStats
 from .ca_certificate_list import CaCertificateList as CaCertificateList
@@ -46,11 +47,13 @@ from .cdn_resource_purge_params import CDNResourcePurgeParams as CDNResourcePurg
 from .cdn_update_account_params import CDNUpdateAccountParams as CDNUpdateAccountParams
 from .certificate_create_params import CertificateCreateParams as CertificateCreateParams
 from .resource_aggregated_stats import ResourceAggregatedStats as ResourceAggregatedStats
+from .rule_template_list_params import RuleTemplateListParams as RuleTemplateListParams
 from .cdn_resource_create_params import CDNResourceCreateParams as CDNResourceCreateParams
 from .cdn_resource_update_params import CDNResourceUpdateParams as CDNResourceUpdateParams
 from .certificate_replace_params import CertificateReplaceParams as CertificateReplaceParams
 from .origin_group_create_params import OriginGroupCreateParams as OriginGroupCreateParams
 from .origin_group_update_params import OriginGroupUpdateParams as OriginGroupUpdateParams
+from .cdn_list_aws_regions_params import CDNListAwsRegionsParams as CDNListAwsRegionsParams
 from .cdn_resource_replace_params import CDNResourceReplaceParams as CDNResourceReplaceParams
 from .origin_group_replace_params import OriginGroupReplaceParams as OriginGroupReplaceParams
 from .rule_template_create_params import RuleTemplateCreateParams as RuleTemplateCreateParams
@@ -59,6 +62,7 @@ from .cdn_resource_prefetch_params import CDNResourcePrefetchParams as CDNResour
 from .rule_template_replace_params import RuleTemplateReplaceParams as RuleTemplateReplaceParams
 from .certificate_get_status_params import CertificateGetStatusParams as CertificateGetStatusParams
 from .cdn_list_purge_statuses_params import CDNListPurgeStatusesParams as CDNListPurgeStatusesParams
+from .cdn_list_alibaba_regions_params import CDNListAlibabaRegionsParams as CDNListAlibabaRegionsParams
 from .cdn_list_purge_statuses_response import CDNListPurgeStatusesResponse as CDNListPurgeStatusesResponse
 from .trusted_ca_certificate_list_params import TrustedCaCertificateListParams as TrustedCaCertificateListParams
 from .trusted_ca_certificate_create_params import TrustedCaCertificateCreateParams as TrustedCaCertificateCreateParams

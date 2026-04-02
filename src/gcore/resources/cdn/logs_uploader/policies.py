@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Any, Dict, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -316,6 +316,8 @@ class PoliciesResource(SyncAPIResource):
         self,
         *,
         config_ids: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -330,6 +332,10 @@ class PoliciesResource(SyncAPIResource):
         Args:
           config_ids: Filter by ids of related logs uploader configs that use given policy.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           search: Search by policy name or id.
 
           extra_headers: Send extra headers
@@ -340,22 +346,29 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/cdn/logs_uploader/policies",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "config_ids": config_ids,
-                        "search": search,
-                    },
-                    policy_list_params.PolicyListParams,
+        return cast(
+            LogsUploaderPolicyList,
+            self._get(
+                "/cdn/logs_uploader/policies",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "config_ids": config_ids,
+                            "limit": limit,
+                            "offset": offset,
+                            "search": search,
+                        },
+                        policy_list_params.PolicyListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, LogsUploaderPolicyList
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=LogsUploaderPolicyList,
         )
 
     def delete(
@@ -858,6 +871,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         *,
         config_ids: Iterable[int] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -872,6 +887,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           config_ids: Filter by ids of related logs uploader configs that use given policy.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           search: Search by policy name or id.
 
           extra_headers: Send extra headers
@@ -882,22 +901,29 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/cdn/logs_uploader/policies",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "config_ids": config_ids,
-                        "search": search,
-                    },
-                    policy_list_params.PolicyListParams,
+        return cast(
+            LogsUploaderPolicyList,
+            await self._get(
+                "/cdn/logs_uploader/policies",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "config_ids": config_ids,
+                            "limit": limit,
+                            "offset": offset,
+                            "search": search,
+                        },
+                        policy_list_params.PolicyListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, LogsUploaderPolicyList
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=LogsUploaderPolicyList,
         )
 
     async def delete(
