@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -360,8 +360,10 @@ class CDNResourcesResource(SyncAPIResource):
         cname: str | Omit = omit,
         deleted: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        limit: int | Omit = omit,
         max_created: str | Omit = omit,
         min_created: str | Omit = omit,
+        offset: int | Omit = omit,
         origin_group: int | Omit = omit,
         rules: str | Omit = omit,
         secondary_hostnames: str | Omit = omit,
@@ -400,11 +402,15 @@ class CDNResourcesResource(SyncAPIResource):
               - **true** - CDN resource is enabled.
               - **false** - CDN resource is disabled.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
           max_created: Most recent date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
 
           min_created: Earliest date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
+
+          offset: Number of items to skip from the beginning of the list.
 
           origin_group: Origin group ID.
 
@@ -461,36 +467,41 @@ class CDNResourcesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/cdn/resources",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cname": cname,
-                        "deleted": deleted,
-                        "enabled": enabled,
-                        "max_created": max_created,
-                        "min_created": min_created,
-                        "origin_group": origin_group,
-                        "rules": rules,
-                        "secondary_hostnames": secondary_hostnames,
-                        "shield_dc": shield_dc,
-                        "shielded": shielded,
-                        "ssl_data": ssl_data,
-                        "ssl_data_in": ssl_data_in,
-                        "ssl_enabled": ssl_enabled,
-                        "status": status,
-                        "suspend": suspend,
-                        "vp_enabled": vp_enabled,
-                    },
-                    cdn_resource_list_params.CDNResourceListParams,
+        return cast(
+            CDNResourceList,
+            self._get(
+                "/cdn/resources",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "cname": cname,
+                            "deleted": deleted,
+                            "enabled": enabled,
+                            "limit": limit,
+                            "max_created": max_created,
+                            "min_created": min_created,
+                            "offset": offset,
+                            "origin_group": origin_group,
+                            "rules": rules,
+                            "secondary_hostnames": secondary_hostnames,
+                            "shield_dc": shield_dc,
+                            "shielded": shielded,
+                            "ssl_data": ssl_data,
+                            "ssl_data_in": ssl_data_in,
+                            "ssl_enabled": ssl_enabled,
+                            "status": status,
+                            "suspend": suspend,
+                            "vp_enabled": vp_enabled,
+                        },
+                        cdn_resource_list_params.CDNResourceListParams,
+                    ),
                 ),
+                cast_to=cast(Any, CDNResourceList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=CDNResourceList,
         )
 
     def delete(
@@ -1271,8 +1282,10 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         cname: str | Omit = omit,
         deleted: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        limit: int | Omit = omit,
         max_created: str | Omit = omit,
         min_created: str | Omit = omit,
+        offset: int | Omit = omit,
         origin_group: int | Omit = omit,
         rules: str | Omit = omit,
         secondary_hostnames: str | Omit = omit,
@@ -1311,11 +1324,15 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
               - **true** - CDN resource is enabled.
               - **false** - CDN resource is disabled.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
           max_created: Most recent date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
 
           min_created: Earliest date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
+
+          offset: Number of items to skip from the beginning of the list.
 
           origin_group: Origin group ID.
 
@@ -1372,36 +1389,41 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/cdn/resources",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "cname": cname,
-                        "deleted": deleted,
-                        "enabled": enabled,
-                        "max_created": max_created,
-                        "min_created": min_created,
-                        "origin_group": origin_group,
-                        "rules": rules,
-                        "secondary_hostnames": secondary_hostnames,
-                        "shield_dc": shield_dc,
-                        "shielded": shielded,
-                        "ssl_data": ssl_data,
-                        "ssl_data_in": ssl_data_in,
-                        "ssl_enabled": ssl_enabled,
-                        "status": status,
-                        "suspend": suspend,
-                        "vp_enabled": vp_enabled,
-                    },
-                    cdn_resource_list_params.CDNResourceListParams,
+        return cast(
+            CDNResourceList,
+            await self._get(
+                "/cdn/resources",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "cname": cname,
+                            "deleted": deleted,
+                            "enabled": enabled,
+                            "limit": limit,
+                            "max_created": max_created,
+                            "min_created": min_created,
+                            "offset": offset,
+                            "origin_group": origin_group,
+                            "rules": rules,
+                            "secondary_hostnames": secondary_hostnames,
+                            "shield_dc": shield_dc,
+                            "shielded": shielded,
+                            "ssl_data": ssl_data,
+                            "ssl_data_in": ssl_data_in,
+                            "ssl_enabled": ssl_enabled,
+                            "status": status,
+                            "suspend": suspend,
+                            "vp_enabled": vp_enabled,
+                        },
+                        cdn_resource_list_params.CDNResourceListParams,
+                    ),
                 ),
+                cast_to=cast(Any, CDNResourceList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=CDNResourceList,
         )
 
     async def delete(

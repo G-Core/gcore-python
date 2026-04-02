@@ -111,6 +111,8 @@ class TestCertificates:
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         certificate = client.cdn.certificates.list(
             automated=True,
+            limit=1,
+            offset=0,
             resource_id=0,
             validity_not_after_lte="validity_not_after_lte",
         )
@@ -446,6 +448,8 @@ class TestAsyncCertificates:
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         certificate = await async_client.cdn.certificates.list(
             automated=True,
+            limit=1,
+            offset=0,
             resource_id=0,
             validity_not_after_lte="validity_not_after_lte",
         )

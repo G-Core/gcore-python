@@ -122,6 +122,8 @@ class TestConfigs:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         config = client.cdn.logs_uploader.configs.list(
+            limit=1,
+            offset=0,
             resource_ids=[0],
             search="search",
         )
@@ -400,6 +402,8 @@ class TestAsyncConfigs:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         config = await async_client.cdn.logs_uploader.configs.list(
+            limit=1,
+            offset=0,
             resource_ids=[0],
             search="search",
         )

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .origin_shielding import OriginShielding as OriginShielding
+from .rule_list_params import RuleListParams as RuleListParams
 from .cdn_resource_rule import CDNResourceRule as CDNResourceRule
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams

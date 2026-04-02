@@ -17,10 +17,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.cdn.cdn_resources import rule_create_params, rule_update_params, rule_replace_params
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.cdn.cdn_resources import rule_list_params, rule_create_params, rule_update_params, rule_replace_params
 from ....types.cdn.cdn_resources.cdn_resource_rule import CDNResourceRule
-from ....types.cdn.cdn_resources.cdn_resource_rule_list import CDNResourceRuleList
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -264,17 +264,24 @@ class RulesResource(SyncAPIResource):
         self,
         resource_id: int,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CDNResourceRuleList:
-        """
-        Get rules list
+    ) -> SyncOffsetPage[CDNResourceRule]:
+        """Get rules list
 
         Args:
+          limit: Maximum number of items to return in the response.
+
+        Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -283,12 +290,23 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
+            page=SyncOffsetPage[CDNResourceRule],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
             ),
-            cast_to=CDNResourceRuleList,
+            model=CDNResourceRule,
         )
 
     def delete(
@@ -705,21 +723,28 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=CDNResourceRule,
         )
 
-    async def list(
+    def list(
         self,
         resource_id: int,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CDNResourceRuleList:
-        """
-        Get rules list
+    ) -> AsyncPaginator[CDNResourceRule, AsyncOffsetPage[CDNResourceRule]]:
+        """Get rules list
 
         Args:
+          limit: Maximum number of items to return in the response.
+
+        Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -728,12 +753,23 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
+            page=AsyncOffsetPage[CDNResourceRule],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
             ),
-            cast_to=CDNResourceRuleList,
+            model=CDNResourceRule,
         )
 
     async def delete(

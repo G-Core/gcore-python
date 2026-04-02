@@ -404,7 +404,9 @@ class OriginGroupsResource(SyncAPIResource):
         self,
         *,
         has_related_resources: bool | Omit = omit,
+        limit: int | Omit = omit,
         name: str | Omit = omit,
+        offset: int | Omit = omit,
         sources: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -424,7 +426,11 @@ class OriginGroupsResource(SyncAPIResource):
               - **true** – Origin group has related CDN resources.
               - **false** – Origin group does not have related CDN resources.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
           name: Origin group name.
+
+          offset: Number of items to skip from the beginning of the list.
 
           sources: Origin sources (IP addresses or domains) in the origin group.
 
@@ -436,23 +442,28 @@ class OriginGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/cdn/origin_groups",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "has_related_resources": has_related_resources,
-                        "name": name,
-                        "sources": sources,
-                    },
-                    origin_group_list_params.OriginGroupListParams,
+        return cast(
+            OriginGroupsList,
+            self._get(
+                "/cdn/origin_groups",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "has_related_resources": has_related_resources,
+                            "limit": limit,
+                            "name": name,
+                            "offset": offset,
+                            "sources": sources,
+                        },
+                        origin_group_list_params.OriginGroupListParams,
+                    ),
                 ),
+                cast_to=cast(Any, OriginGroupsList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=OriginGroupsList,
         )
 
     def delete(
@@ -1077,7 +1088,9 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         self,
         *,
         has_related_resources: bool | Omit = omit,
+        limit: int | Omit = omit,
         name: str | Omit = omit,
+        offset: int | Omit = omit,
         sources: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1097,7 +1110,11 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
               - **true** – Origin group has related CDN resources.
               - **false** – Origin group does not have related CDN resources.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
           name: Origin group name.
+
+          offset: Number of items to skip from the beginning of the list.
 
           sources: Origin sources (IP addresses or domains) in the origin group.
 
@@ -1109,23 +1126,28 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/cdn/origin_groups",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "has_related_resources": has_related_resources,
-                        "name": name,
-                        "sources": sources,
-                    },
-                    origin_group_list_params.OriginGroupListParams,
+        return cast(
+            OriginGroupsList,
+            await self._get(
+                "/cdn/origin_groups",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "has_related_resources": has_related_resources,
+                            "limit": limit,
+                            "name": name,
+                            "offset": offset,
+                            "sources": sources,
+                        },
+                        origin_group_list_params.OriginGroupListParams,
+                    ),
                 ),
+                cast_to=cast(Any, OriginGroupsList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=OriginGroupsList,
         )
 
     async def delete(

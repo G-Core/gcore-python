@@ -17,6 +17,12 @@ class TrustedCaCertificateListParams(TypedDict, total=False):
     - **false** – Certificate was added by a user.
     """
 
+    limit: int
+    """Maximum number of items to return in the response. Cannot exceed 1000."""
+
+    offset: int
+    """Number of items to skip from the beginning of the list."""
+
     resource_id: int
     """CDN resource ID for which the certificates are requested."""
 

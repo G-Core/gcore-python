@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
 from typing_extensions import overload
 
 import httpx
@@ -189,6 +190,8 @@ class CertificatesResource(SyncAPIResource):
         self,
         *,
         automated: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         resource_id: int | Omit = omit,
         validity_not_after_lte: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -209,6 +212,10 @@ class CertificatesResource(SyncAPIResource):
               - **true** – Certificate was issued automatically.
               - **false** – Certificate was added by a user.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           resource_id: CDN resource ID for which certificates are requested.
 
           validity_not_after_lte: Date and time when the certificate become untrusted (ISO 8601/RFC 3339 format,
@@ -224,23 +231,28 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/cdn/sslData",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "automated": automated,
-                        "resource_id": resource_id,
-                        "validity_not_after_lte": validity_not_after_lte,
-                    },
-                    certificate_list_params.CertificateListParams,
+        return cast(
+            SslDetailList,
+            self._get(
+                "/cdn/sslData",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "automated": automated,
+                            "limit": limit,
+                            "offset": offset,
+                            "resource_id": resource_id,
+                            "validity_not_after_lte": validity_not_after_lte,
+                        },
+                        certificate_list_params.CertificateListParams,
+                    ),
                 ),
+                cast_to=cast(Any, SslDetailList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=SslDetailList,
         )
 
     def delete(
@@ -636,6 +648,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         *,
         automated: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         resource_id: int | Omit = omit,
         validity_not_after_lte: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -656,6 +670,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
               - **true** – Certificate was issued automatically.
               - **false** – Certificate was added by a user.
 
+          limit: Maximum number of items to return in the response. Cannot exceed 1000.
+
+          offset: Number of items to skip from the beginning of the list.
+
           resource_id: CDN resource ID for which certificates are requested.
 
           validity_not_after_lte: Date and time when the certificate become untrusted (ISO 8601/RFC 3339 format,
@@ -671,23 +689,28 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/cdn/sslData",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "automated": automated,
-                        "resource_id": resource_id,
-                        "validity_not_after_lte": validity_not_after_lte,
-                    },
-                    certificate_list_params.CertificateListParams,
+        return cast(
+            SslDetailList,
+            await self._get(
+                "/cdn/sslData",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "automated": automated,
+                            "limit": limit,
+                            "offset": offset,
+                            "resource_id": resource_id,
+                            "validity_not_after_lte": validity_not_after_lte,
+                        },
+                        certificate_list_params.CertificateListParams,
+                    ),
                 ),
+                cast_to=cast(Any, SslDetailList),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=SslDetailList,
         )
 
     async def delete(

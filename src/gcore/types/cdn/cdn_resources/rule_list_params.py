@@ -2,21 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Iterable
 from typing_extensions import TypedDict
 
-__all__ = ["TargetListParams"]
+__all__ = ["RuleListParams"]
 
 
-class TargetListParams(TypedDict, total=False):
-    config_ids: Iterable[int]
-    """Filter by ids of related logs uploader configs that use given target."""
-
+class RuleListParams(TypedDict, total=False):
     limit: int
     """Maximum number of items to return in the response. Cannot exceed 1000."""
 
     offset: int
     """Number of items to skip from the beginning of the list."""
-
-    search: str
-    """Search by target name or id."""
