@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.41.0 (2026-04-03)
+
+Full Changelog: [v0.40.0...v0.41.0](https://github.com/G-Core/gcore-python/compare/v0.40.0...v0.41.0)
+
+### Features
+
+* **api:** aggregated API specs update ([0a6812c](https://github.com/G-Core/gcore-python/commit/0a6812cd7efd5906a2e93c5e5fdf9daa3818a957))
+* **api:** aggregated API specs update ([6cee9d3](https://github.com/G-Core/gcore-python/commit/6cee9d3e8554f0417a635be879e7e316440b3b8f))
+* **api:** aggregated API specs update ([d40d2c7](https://github.com/G-Core/gcore-python/commit/d40d2c7b9713e6efd8b006134eaa51cf5f457d81))
+* **api:** aggregated API specs update ([7c3f529](https://github.com/G-Core/gcore-python/commit/7c3f5294def02deee6f7f0dfef7292873ae9b5a1))
+* **cloud:** add support for Baremetal servers in Terraform ([33f5cc2](https://github.com/G-Core/gcore-python/commit/33f5cc29ad63e5d9b0d6ab7c12a85059ffc1d985))
+
+
+### Bug Fixes
+
+* **iam:** inject default limit on users list to ensure paginated response ([6b2bf6a](https://github.com/G-Core/gcore-python/commit/6b2bf6ace50dd041db352ee575ccfae496e6d92e))
+
+
+### Chores
+
+* **tests:** bump steady to v0.20.1 ([5b0b1de](https://github.com/G-Core/gcore-python/commit/5b0b1de4864f44973f6c48ba38f35a84b3a8e37b))
+* **tests:** bump steady to v0.20.2 ([7f62464](https://github.com/G-Core/gcore-python/commit/7f62464cbf6c388fbb56d0f038353c1c976614a2))
+
 ## 0.40.0 (2026-03-30)
 
 Full Changelog: [v0.39.0...v0.40.0](https://github.com/G-Core/gcore-python/compare/v0.39.0...v0.40.0)
