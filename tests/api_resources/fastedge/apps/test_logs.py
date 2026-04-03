@@ -34,13 +34,13 @@ class TestLogs:
             app_id=0,
             client_ip="client_ip",
             edge="edge",
-            from_=parse_datetime("2019-12-27T18:11:19.117Z"),
+            from_=parse_datetime("2023-12-31T23:59:59Z"),
             limit=0,
             offset=0,
             request_id="request_id",
             search="search",
             sort="desc",
-            to=parse_datetime("2019-12-27T18:11:19.117Z"),
+            to=parse_datetime("2026-01-31T23:59:59Z"),
         )
         assert_matches_type(SyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 
@@ -91,13 +91,13 @@ class TestAsyncLogs:
             app_id=0,
             client_ip="client_ip",
             edge="edge",
-            from_=parse_datetime("2019-12-27T18:11:19.117Z"),
+            from_=parse_datetime("2023-12-31T23:59:59Z"),
             limit=0,
             offset=0,
             request_id="request_id",
             search="search",
             sort="desc",
-            to=parse_datetime("2019-12-27T18:11:19.117Z"),
+            to=parse_datetime("2026-01-31T23:59:59Z"),
         )
         assert_matches_type(AsyncOffsetPageFastedgeAppLogs[Log], log, path=["response"])
 

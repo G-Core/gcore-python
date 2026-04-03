@@ -33,8 +33,8 @@ class TestInstances:
             interfaces=[{"type": "external"}],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                 }
             ],
         )
@@ -56,11 +56,13 @@ class TestInstances:
             ],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                     "attachment_tag": "boot",
+                    "boot_index": 0,
                     "delete_on_termination": False,
                     "name": "boot-volume",
+                    "size": 50,
                     "tags": {"my-tag": "my-tag-value"},
                     "type_name": "ssd_hiiops",
                 }
@@ -88,8 +90,8 @@ class TestInstances:
             interfaces=[{"type": "external"}],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                 }
             ],
         )
@@ -108,8 +110,8 @@ class TestInstances:
             interfaces=[{"type": "external"}],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                 }
             ],
         ) as response:
@@ -903,8 +905,8 @@ class TestAsyncInstances:
             interfaces=[{"type": "external"}],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                 }
             ],
         )
@@ -926,11 +928,13 @@ class TestAsyncInstances:
             ],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                     "attachment_tag": "boot",
+                    "boot_index": 0,
                     "delete_on_termination": False,
                     "name": "boot-volume",
+                    "size": 50,
                     "tags": {"my-tag": "my-tag-value"},
                     "type_name": "ssd_hiiops",
                 }
@@ -958,8 +962,8 @@ class TestAsyncInstances:
             interfaces=[{"type": "external"}],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                 }
             ],
         )
@@ -978,8 +982,8 @@ class TestAsyncInstances:
             interfaces=[{"type": "external"}],
             volumes=[
                 {
-                    "size": 20,
-                    "source": "new-volume",
+                    "image_id": "e460e48c-6836-447e-bc9c-16fc4225d318",
+                    "source": "image",
                 }
             ],
         ) as response:
