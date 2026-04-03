@@ -58,7 +58,7 @@ class TestServers:
                     }
                 ],
             },
-            image_id="image_id",
+            image_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
             name="my-bare-metal",
             name_template="name_template",
             password="password",
@@ -422,7 +422,7 @@ class TestAsyncServers:
                     }
                 ],
             },
-            image_id="image_id",
+            image_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
             name="my-bare-metal",
             name_template="name_template",
             password="password",
