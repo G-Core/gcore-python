@@ -346,7 +346,7 @@ class ResourceResourceEgressTrafficSerializer(BaseModel):
     instance_name: Optional[str] = None
     """Name of the instance"""
 
-    instance_type: Literal["baremetal", "vm"]
+    instance_type: Literal["baremetal", "router", "vm"]
     """Type of the instance"""
 
     last_seen: datetime
@@ -1290,7 +1290,7 @@ class TotalTotalEgressTrafficReportItemSerializer(BaseModel):
     billing_value_unit: Literal["bytes"]
     """Unit of billing value"""
 
-    instance_type: Literal["baremetal", "vm"]
+    instance_type: Literal["baremetal", "router", "vm"]
     """Type of the instance"""
 
     region: int

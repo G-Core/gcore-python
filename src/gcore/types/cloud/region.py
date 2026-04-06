@@ -87,6 +87,9 @@ class Region(BaseModel):
     metrics_database_id: Optional[int] = None
     """Foreign key to Metrics database entity"""
 
+    slug: str
+    """Short, human-readable region identifier (e.g. luxembourg-2, santa-clara-1)."""
+
     state: Literal["ACTIVE", "DELETED", "DELETING", "DELETION_FAILED", "INACTIVE", "MAINTENANCE", "NEW"]
     """Region state"""
 

@@ -18,7 +18,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.cloud.baremetal import image_list_params
-from ....types.cloud.image_list import ImageList
+from ....types.cloud.baremetal.image_list_response import ImageListResponse
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
 
@@ -59,7 +59,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageList:
+    ) -> ImageListResponse:
         """Retrieve a list of available images for bare metal servers.
 
         The list can be
@@ -67,13 +67,17 @@ class ImagesResource(SyncAPIResource):
         not be owned by the project.
 
         Args:
-          include_prices: Show price
+          project_id: Project ID
+
+          region_id: Region ID
+
+          include_prices: Show price.
 
           private: Any value to show private images
 
-          tag_key: Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -107,7 +111,7 @@ class ImagesResource(SyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            cast_to=ImageListResponse,
         )
 
 
@@ -147,7 +151,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageList:
+    ) -> ImageListResponse:
         """Retrieve a list of available images for bare metal servers.
 
         The list can be
@@ -155,13 +159,17 @@ class AsyncImagesResource(AsyncAPIResource):
         not be owned by the project.
 
         Args:
-          include_prices: Show price
+          project_id: Project ID
+
+          region_id: Region ID
+
+          include_prices: Show price.
 
           private: Any value to show private images
 
-          tag_key: Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -195,7 +203,7 @@ class AsyncImagesResource(AsyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            cast_to=ImageListResponse,
         )
 
 

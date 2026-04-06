@@ -253,7 +253,7 @@ class ResultTotalEgressTrafficWithCostSerializer(BaseModel):
     err: Optional[str] = None
     """Error message"""
 
-    instance_type: Literal["baremetal", "vm"]
+    instance_type: Literal["baremetal", "router", "vm"]
     """Type of the instance"""
 
     region: int
