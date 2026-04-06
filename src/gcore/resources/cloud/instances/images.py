@@ -163,13 +163,17 @@ class ImagesResource(SyncAPIResource):
         by the project or are public/shared with the client.
 
         Args:
-          include_prices: Show price
+          project_id: Project ID
+
+          region_id: Region ID
+
+          include_prices: Show price.
 
           private: Any value to show private images
 
-          tag_key: Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -280,6 +284,10 @@ class ImagesResource(SyncAPIResource):
         an image from it.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Image name
 
           volume_id: Required if source is volume. Volume id
@@ -621,13 +629,17 @@ class AsyncImagesResource(AsyncAPIResource):
         by the project or are public/shared with the client.
 
         Args:
-          include_prices: Show price
+          project_id: Project ID
+
+          region_id: Region ID
+
+          include_prices: Show price.
 
           private: Any value to show private images
 
-          tag_key: Filter by tag keys.
+          tag_key: Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2
 
-          tag_key_value: Filter by tag key-value pairs. Must be a valid JSON string.
+          tag_key_value: Optional. Filter by tag key-value pairs.
 
           visibility: Image visibility. Globally visible images are public
 
@@ -738,6 +750,10 @@ class AsyncImagesResource(AsyncAPIResource):
         an image from it.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Image name
 
           volume_id: Required if source is volume. Volume id

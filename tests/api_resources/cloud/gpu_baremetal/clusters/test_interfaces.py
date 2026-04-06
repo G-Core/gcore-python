@@ -83,9 +83,8 @@ class TestInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
@@ -160,9 +159,8 @@ class TestInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
@@ -239,9 +237,8 @@ class TestInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
@@ -319,9 +316,8 @@ class TestInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
@@ -502,9 +498,8 @@ class TestAsyncInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
@@ -579,9 +574,8 @@ class TestAsyncInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
@@ -658,9 +652,8 @@ class TestAsyncInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
@@ -738,9 +731,8 @@ class TestAsyncInterfaces:
                 "fields": [
                     {
                         "base_field": 10,
-                        "field_name": "field_name",
                         "field_value": [45046, 45047],
-                        "value": None,
+                        "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",

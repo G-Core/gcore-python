@@ -48,7 +48,7 @@ class Commit(BaseModel):
     price_total: str
     """Total price for the reservation period for the full reserved amount"""
 
-    subscription_id: int
+    subscription_id: Optional[int] = None
     """Billing subscription ID for commit"""
 
 
