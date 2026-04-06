@@ -107,7 +107,6 @@ class TestClusters:
                     {
                         "base_field": 10,
                         "field_value": [45046, 45047],
-                        "value": None,
                     }
                 ],
                 "profile_template": 29,
@@ -231,7 +230,6 @@ class TestClusters:
                     {
                         "base_field": 10,
                         "field_value": [45046, 45047],
-                        "value": None,
                     }
                 ],
                 "profile_template": 29,
@@ -652,7 +650,6 @@ class TestAsyncClusters:
                     {
                         "base_field": 10,
                         "field_value": [45046, 45047],
-                        "value": None,
                     }
                 ],
                 "profile_template": 29,
@@ -776,7 +773,6 @@ class TestAsyncClusters:
                     {
                         "base_field": 10,
                         "field_value": [45046, 45047],
-                        "value": None,
                     }
                 ],
                 "profile_template": 29,

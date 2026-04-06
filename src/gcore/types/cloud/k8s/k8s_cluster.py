@@ -162,10 +162,7 @@ class DDOSProfileField(BaseModel):
     base_field: int
 
     field_value: Optional[object] = None
-    """Complex value. Only one of 'value' or 'field_value' must be specified"""
-
-    value: Optional[str] = None
-    """Basic value. Only one of 'value' or 'field_value' must be specified"""
+    """Complex value for the DDoS profile field"""
 
 
 class DDOSProfile(BaseModel):

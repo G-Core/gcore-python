@@ -11,20 +11,22 @@ __all__ = ["ImageListParams"]
 
 class ImageListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     include_prices: bool
-    """Show price"""
+    """Show price."""
 
     private: str
     """Any value to show private images"""
 
     tag_key: SequenceNotStr[str]
-    """Filter by tag keys."""
+    """Optional. Filter by tag keys. ?`tag_key`=key1&`tag_key`=key2"""
 
     tag_key_value: str
-    """Filter by tag key-value pairs. Must be a valid JSON string."""
+    """Optional. Filter by tag key-value pairs."""
 
     visibility: Literal["private", "public", "shared"]
     """Image visibility. Globally visible images are public"""

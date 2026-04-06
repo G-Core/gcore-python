@@ -51,14 +51,11 @@ class NewInterfaceExternalExtendSchemaWithDDOS(TypedDict, total=False):
 
 
 class NewInterfaceExternalExtendSchemaWithDdosddosProfileField(TypedDict, total=False):
-    base_field: Optional[int]
+    base_field: Required[int]
     """ID of DDoS profile field"""
 
-    field_name: Optional[str]
-    """Name of DDoS profile field"""
-
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value for the DDoS profile field"""
 
     value: Optional[str]
     """Basic type value. Only one of 'value' or 'field_value' must be specified."""
@@ -109,14 +106,11 @@ class NewInterfaceSpecificSubnetSchema(TypedDict, total=False):
 
 
 class NewInterfaceSpecificSubnetSchemaDDOSProfileField(TypedDict, total=False):
-    base_field: Optional[int]
+    base_field: Required[int]
     """ID of DDoS profile field"""
 
-    field_name: Optional[str]
-    """Name of DDoS profile field"""
-
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value for the DDoS profile field"""
 
     value: Optional[str]
     """Basic type value. Only one of 'value' or 'field_value' must be specified."""
@@ -170,14 +164,11 @@ class NewInterfaceAnySubnetSchema(TypedDict, total=False):
 
 
 class NewInterfaceAnySubnetSchemaDDOSProfileField(TypedDict, total=False):
-    base_field: Optional[int]
+    base_field: Required[int]
     """ID of DDoS profile field"""
 
-    field_name: Optional[str]
-    """Name of DDoS profile field"""
-
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value for the DDoS profile field"""
 
     value: Optional[str]
     """Basic type value. Only one of 'value' or 'field_value' must be specified."""
@@ -228,14 +219,11 @@ class NewInterfaceReservedFixedIPSchema(TypedDict, total=False):
 
 
 class NewInterfaceReservedFixedIPSchemaDDOSProfileField(TypedDict, total=False):
-    base_field: Optional[int]
+    base_field: Required[int]
     """ID of DDoS profile field"""
 
-    field_name: Optional[str]
-    """Name of DDoS profile field"""
-
     field_value: object
-    """Complex value. Only one of 'value' or 'field_value' must be specified."""
+    """Complex value for the DDoS profile field"""
 
     value: Optional[str]
     """Basic type value. Only one of 'value' or 'field_value' must be specified."""

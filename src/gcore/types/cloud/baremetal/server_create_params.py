@@ -353,13 +353,10 @@ Interface: TypeAlias = Union[
 
 
 class DDOSProfileField(TypedDict, total=False):
-    base_field: Optional[int]
+    base_field: Required[int]
     """Unique identifier of the DDoS protection field being configured"""
 
     field_value: object
-
-    value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
 
 
 class DDOSProfile(TypedDict, total=False):
