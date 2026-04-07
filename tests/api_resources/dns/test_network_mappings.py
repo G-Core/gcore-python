@@ -159,6 +159,44 @@ class TestNetworkMappings:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_get_by_name(self, client: Gcore) -> None:
+        network_mapping = client.dns.network_mappings.get_by_name(
+            "name",
+        )
+        assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_by_name(self, client: Gcore) -> None:
+        response = client.dns.network_mappings.with_raw_response.get_by_name(
+            "name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        network_mapping = response.parse()
+        assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_by_name(self, client: Gcore) -> None:
+        with client.dns.network_mappings.with_streaming_response.get_by_name(
+            "name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            network_mapping = response.parse()
+            assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get_by_name(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.dns.network_mappings.with_raw_response.get_by_name(
+                "",
+            )
+
+    @parametrize
     def test_method_import(self, client: Gcore) -> None:
         network_mapping = client.dns.network_mappings.import_()
         assert_matches_type(NetworkMappingImportResponse, network_mapping, path=["response"])
@@ -370,6 +408,44 @@ class TestAsyncNetworkMappings:
             assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get_by_name(self, async_client: AsyncGcore) -> None:
+        network_mapping = await async_client.dns.network_mappings.get_by_name(
+            "name",
+        )
+        assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_by_name(self, async_client: AsyncGcore) -> None:
+        response = await async_client.dns.network_mappings.with_raw_response.get_by_name(
+            "name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        network_mapping = await response.parse()
+        assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_by_name(self, async_client: AsyncGcore) -> None:
+        async with async_client.dns.network_mappings.with_streaming_response.get_by_name(
+            "name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            network_mapping = await response.parse()
+            assert_matches_type(DNSNetworkMapping, network_mapping, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get_by_name(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.dns.network_mappings.with_raw_response.get_by_name(
+                "",
+            )
 
     @parametrize
     async def test_method_import(self, async_client: AsyncGcore) -> None:
