@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -23,9 +23,9 @@ from ...types.cdn import (
     rule_template_update_params,
     rule_template_replace_params,
 )
-from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.cdn.rule_template import RuleTemplate
+from ...types.cdn.rule_template_list import RuleTemplateList
 
 __all__ = ["RuleTemplatesResource", "AsyncRuleTemplatesResource"]
 
@@ -242,7 +242,7 @@ class RuleTemplatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[RuleTemplate]:
+    ) -> RuleTemplateList:
         """
         Get rule templates list
 
@@ -259,23 +259,25 @@ class RuleTemplatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
-            "/cdn/resources/rule_templates",
-            page=SyncOffsetPage[RuleTemplate],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    rule_template_list_params.RuleTemplateListParams,
+        return cast(
+            RuleTemplateList,
+            self._get(
+                "/cdn/resources/rule_templates",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        rule_template_list_params.RuleTemplateListParams,
+                    ),
                 ),
+                cast_to=cast(Any, RuleTemplateList),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=RuleTemplate,
         )
 
     def delete(
@@ -632,7 +634,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
             cast_to=RuleTemplate,
         )
 
-    def list(
+    async def list(
         self,
         *,
         limit: int | Omit = omit,
@@ -643,7 +645,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RuleTemplate, AsyncOffsetPage[RuleTemplate]]:
+    ) -> RuleTemplateList:
         """
         Get rule templates list
 
@@ -660,23 +662,25 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
-            "/cdn/resources/rule_templates",
-            page=AsyncOffsetPage[RuleTemplate],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    rule_template_list_params.RuleTemplateListParams,
+        return cast(
+            RuleTemplateList,
+            await self._get(
+                "/cdn/resources/rule_templates",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        rule_template_list_params.RuleTemplateListParams,
+                    ),
                 ),
+                cast_to=cast(Any, RuleTemplateList),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=RuleTemplate,
         )
 
     async def delete(

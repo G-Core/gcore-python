@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -15,8 +17,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.cdn import shield_list_params
-from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.cdn.shield_list_response import ShieldListResponse
 
 __all__ = ["ShieldsResource", "AsyncShieldsResource"]
@@ -53,7 +54,7 @@ class ShieldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[ShieldListResponse]:
+    ) -> ShieldListResponse:
         """
         Get information about all origin shielding locations available in the account.
 
@@ -70,23 +71,27 @@ class ShieldsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
-            "/cdn/shieldingpop_v2",
-            page=SyncOffsetPage[ShieldListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    shield_list_params.ShieldListParams,
+        return cast(
+            ShieldListResponse,
+            self._get(
+                "/cdn/shieldingpop_v2",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        shield_list_params.ShieldListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, ShieldListResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=ShieldListResponse,
         )
 
 
@@ -110,7 +115,7 @@ class AsyncShieldsResource(AsyncAPIResource):
         """
         return AsyncShieldsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         limit: int | Omit = omit,
@@ -121,7 +126,7 @@ class AsyncShieldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ShieldListResponse, AsyncOffsetPage[ShieldListResponse]]:
+    ) -> ShieldListResponse:
         """
         Get information about all origin shielding locations available in the account.
 
@@ -138,23 +143,27 @@ class AsyncShieldsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
-            "/cdn/shieldingpop_v2",
-            page=AsyncOffsetPage[ShieldListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    shield_list_params.ShieldListParams,
+        return cast(
+            ShieldListResponse,
+            await self._get(
+                "/cdn/shieldingpop_v2",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        shield_list_params.ShieldListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, ShieldListResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=ShieldListResponse,
         )
 
 
