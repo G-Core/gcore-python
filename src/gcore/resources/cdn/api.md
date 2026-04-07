@@ -69,7 +69,7 @@ Methods:
 
 - <code title="post /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">create</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="patch /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">update</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
-- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">list</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">SyncOffsetPage[CDNResourceRule]</a></code>
+- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">list</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule_list.py">CDNResourceRuleList</a></code>
 - <code title="delete /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">delete</a>(rule_id, \*, resource_id) -> None</code>
 - <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
@@ -84,7 +84,7 @@ from gcore.types.cdn import ShieldListResponse
 
 Methods:
 
-- <code title="get /cdn/shieldingpop_v2">client.cdn.shields.<a href="./src/gcore/resources/cdn/shields.py">list</a>(\*\*<a href="src/gcore/types/cdn/shield_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/shield_list_response.py">SyncOffsetPage[ShieldListResponse]</a></code>
+- <code title="get /cdn/shieldingpop_v2">client.cdn.shields.<a href="./src/gcore/resources/cdn/shields.py">list</a>(\*\*<a href="src/gcore/types/cdn/shield_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/shield_list_response.py">ShieldListResponse</a></code>
 
 ## OriginGroups
 
@@ -115,7 +115,7 @@ Methods:
 
 - <code title="post /cdn/resources/rule_templates">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">create</a>(\*\*<a href="src/gcore/types/cdn/rule_template_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
 - <code title="patch /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">update</a>(rule_template_id, \*\*<a href="src/gcore/types/cdn/rule_template_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
-- <code title="get /cdn/resources/rule_templates">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">list</a>(\*\*<a href="src/gcore/types/cdn/rule_template_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">SyncOffsetPage[RuleTemplate]</a></code>
+- <code title="get /cdn/resources/rule_templates">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">list</a>(\*\*<a href="src/gcore/types/cdn/rule_template_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template_list.py">RuleTemplateList</a></code>
 - <code title="delete /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">delete</a>(rule_template_id) -> None</code>
 - <code title="get /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">get</a>(rule_template_id) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
 - <code title="put /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">replace</a>(rule_template_id, \*\*<a href="src/gcore/types/cdn/rule_template_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -17,10 +17,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ...._base_client import AsyncPaginator, make_request_options
+from ...._base_client import make_request_options
 from ....types.cdn.cdn_resources import rule_list_params, rule_create_params, rule_update_params, rule_replace_params
 from ....types.cdn.cdn_resources.cdn_resource_rule import CDNResourceRule
+from ....types.cdn.cdn_resources.cdn_resource_rule_list import CDNResourceRuleList
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -272,7 +272,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[CDNResourceRule]:
+    ) -> CDNResourceRuleList:
         """Get rules list
 
         Args:
@@ -290,23 +290,27 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
-            path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
-            page=SyncOffsetPage[CDNResourceRule],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    rule_list_params.RuleListParams,
+        return cast(
+            CDNResourceRuleList,
+            self._get(
+                path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        rule_list_params.RuleListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, CDNResourceRuleList
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=CDNResourceRule,
         )
 
     def delete(
@@ -723,7 +727,7 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=CDNResourceRule,
         )
 
-    def list(
+    async def list(
         self,
         resource_id: int,
         *,
@@ -735,7 +739,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CDNResourceRule, AsyncOffsetPage[CDNResourceRule]]:
+    ) -> CDNResourceRuleList:
         """Get rules list
 
         Args:
@@ -753,23 +757,27 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
-            path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
-            page=AsyncOffsetPage[CDNResourceRule],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    rule_list_params.RuleListParams,
+        return cast(
+            CDNResourceRuleList,
+            await self._get(
+                path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "limit": limit,
+                            "offset": offset,
+                        },
+                        rule_list_params.RuleListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, CDNResourceRuleList
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=CDNResourceRule,
         )
 
     async def delete(
