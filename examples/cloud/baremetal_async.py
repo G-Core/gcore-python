@@ -2,8 +2,8 @@ import asyncio
 from typing import List
 
 from gcore import AsyncGcore
-from gcore.types.cloud.image import Image
 from gcore.types.cloud.baremetal_flavor import BaremetalFlavor
+from gcore.types.cloud.baremetal.baremetal_image import BaremetalImage
 from gcore.types.cloud.baremetal.server_create_params import (
     InterfaceCreateBareMetalExternalInterfaceSerializer,
 )
@@ -83,7 +83,7 @@ async def list_flavors(*, client: AsyncGcore) -> List[BaremetalFlavor]:
     return flavors.results
 
 
-async def list_images(*, client: AsyncGcore) -> List[Image]:
+async def list_images(*, client: AsyncGcore) -> List[BaremetalImage]:
     print("\n=== LIST BAREMETAL IMAGES ===")
     images = await client.cloud.baremetal.images.list()
     _print_image_details(images.results)
@@ -111,7 +111,7 @@ def _print_flavor_details(flavors: List[BaremetalFlavor]) -> None:
         print(f"  ... and {len(flavors) - display_count} more flavors")
 
 
-def _print_image_details(images: List[Image]) -> None:
+def _print_image_details(images: List[BaremetalImage]) -> None:
     display_count = 3
     if len(images) < display_count:
         display_count = len(images)
@@ -136,15 +136,15 @@ def _get_smallest_flavor(flavors: List[BaremetalFlavor]) -> str:
     return smallest_flavor.flavor_id
 
 
-def _get_ubuntu_image(images: List[Image]) -> str:
+def _get_ubuntu_image(images: List[BaremetalImage]) -> str:
     return _get_os_image(images, "ubuntu")
 
 
-def _get_debian_image(images: List[Image]) -> str:
+def _get_debian_image(images: List[BaremetalImage]) -> str:
     return _get_os_image(images, "debian")
 
 
-def _get_os_image(images: List[Image], os_name: str) -> str:
+def _get_os_image(images: List[BaremetalImage], os_name: str) -> str:
     os_images = [img for img in images if os_name.lower() in img.name.lower()]
     if not os_images:
         linux_images = [img for img in images if img.os_type.lower() == "linux"]
