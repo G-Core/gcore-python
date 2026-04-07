@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+from .image import Image as Image
 from .metrics import Metrics as Metrics
+from .image_list import ImageList as ImageList
 from .metrics_list import MetricsList as MetricsList
 from .image_get_params import ImageGetParams as ImageGetParams
 from .image_list_params import ImageListParams as ImageListParams

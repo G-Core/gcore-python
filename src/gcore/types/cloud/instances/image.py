@@ -7,10 +7,10 @@ from typing_extensions import Literal
 from ..tag import Tag
 from ...._models import BaseModel
 
-__all__ = ["ImageListResponse", "Result"]
+__all__ = ["Image"]
 
 
-class Result(BaseModel):
+class Image(BaseModel):
     id: str
     """Image ID"""
 
@@ -49,8 +49,8 @@ class Result(BaseModel):
     hw_machine_type: Optional[Literal["pc", "q35"]] = None
     """A virtual chipset type."""
 
-    is_baremetal: Optional[bool] = None
-    """For bare metal servers this value is always set to true"""
+    is_baremetal: bool
+    """Set to true if the image will be used by bare metal servers."""
 
     min_disk: int
     """Minimal boot volume required"""
@@ -119,11 +119,3 @@ class Result(BaseModel):
 
     visibility: str
     """Image visibility. Globally visible images are public"""
-
-
-class ImageListResponse(BaseModel):
-    count: int
-    """Number of objects"""
-
-    results: List[Result]
-    """Objects"""

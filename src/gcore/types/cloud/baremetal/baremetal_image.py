@@ -4,13 +4,13 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .tag import Tag
-from ..._models import BaseModel
+from ..tag import Tag
+from ...._models import BaseModel
 
-__all__ = ["Image"]
+__all__ = ["BaremetalImage"]
 
 
-class Image(BaseModel):
+class BaremetalImage(BaseModel):
     id: str
     """Image ID"""
 
@@ -49,8 +49,8 @@ class Image(BaseModel):
     hw_machine_type: Optional[Literal["pc", "q35"]] = None
     """A virtual chipset type."""
 
-    is_baremetal: bool
-    """Set to true if the image will be used by bare metal servers."""
+    is_baremetal: Optional[bool] = None
+    """For bare metal servers this value is always set to true"""
 
     min_disk: int
     """Minimal boot volume required"""
