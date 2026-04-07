@@ -18,7 +18,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloud.image import Image
 from ....types.cloud.instances import (
     image_get_params,
     image_list_params,
@@ -26,8 +25,9 @@ from ....types.cloud.instances import (
     image_upload_params,
     image_create_from_volume_params,
 )
-from ....types.cloud.image_list import ImageList
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.instances.image import Image
+from ....types.cloud.instances.image_list import ImageList
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]

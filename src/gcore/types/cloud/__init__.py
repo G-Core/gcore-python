@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .tag import Tag as Tag
 from .task import Task as Task
-from .image import Image as Image
 from .route import Route as Route
 from .member import Member as Member
 from .region import Region as Region
@@ -22,7 +21,6 @@ from .snapshot import Snapshot as Snapshot
 from .gpu_image import GPUImage as GPUImage
 from .ip_ranges import IPRanges as IPRanges
 from .file_share import FileShare as FileShare
-from .image_list import ImageList as ImageList
 from .ip_version import IPVersion as IPVersion
 from .floating_ip import FloatingIP as FloatingIP
 from .http_method import HTTPMethod as HTTPMethod
