@@ -263,6 +263,48 @@ class NetworkMappingsResource(SyncAPIResource):
             cast_to=DNSNetworkMapping,
         )
 
+    def get_by_name(
+        self,
+        name: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DNSNetworkMapping:
+        """
+        Get network mapping by name.
+
+        Particular network mapping item info
+
+        Example of request:
+
+        ```
+        curl --location --request GET 'https://api.gcore.com/dns/v2/network-mappings/by-name/test-mapping' \\
+        --header 'Authorization: Bearer ...'
+        ```
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not name:
+            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        return self._get(
+            path_template("/dns/v2/network-mappings/by-name/{name}", name=name),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DNSNetworkMapping,
+        )
+
     def import_(
         self,
         *,
@@ -655,6 +697,48 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
             cast_to=DNSNetworkMapping,
         )
 
+    async def get_by_name(
+        self,
+        name: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DNSNetworkMapping:
+        """
+        Get network mapping by name.
+
+        Particular network mapping item info
+
+        Example of request:
+
+        ```
+        curl --location --request GET 'https://api.gcore.com/dns/v2/network-mappings/by-name/test-mapping' \\
+        --header 'Authorization: Bearer ...'
+        ```
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not name:
+            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        return await self._get(
+            path_template("/dns/v2/network-mappings/by-name/{name}", name=name),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DNSNetworkMapping,
+        )
+
     async def import_(
         self,
         *,
@@ -828,6 +912,9 @@ class NetworkMappingsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             network_mappings.get,
         )
+        self.get_by_name = to_raw_response_wrapper(
+            network_mappings.get_by_name,
+        )
         self.import_ = to_raw_response_wrapper(
             network_mappings.import_,
         )
@@ -851,6 +938,9 @@ class AsyncNetworkMappingsResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             network_mappings.get,
+        )
+        self.get_by_name = async_to_raw_response_wrapper(
+            network_mappings.get_by_name,
         )
         self.import_ = async_to_raw_response_wrapper(
             network_mappings.import_,
@@ -876,6 +966,9 @@ class NetworkMappingsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             network_mappings.get,
         )
+        self.get_by_name = to_streamed_response_wrapper(
+            network_mappings.get_by_name,
+        )
         self.import_ = to_streamed_response_wrapper(
             network_mappings.import_,
         )
@@ -899,6 +992,9 @@ class AsyncNetworkMappingsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             network_mappings.get,
+        )
+        self.get_by_name = async_to_streamed_response_wrapper(
+            network_mappings.get_by_name,
         )
         self.import_ = async_to_streamed_response_wrapper(
             network_mappings.import_,
