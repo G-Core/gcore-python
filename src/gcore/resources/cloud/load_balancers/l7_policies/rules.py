@@ -20,7 +20,7 @@ from ....._base_client import make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancer_l7_rule import LoadBalancerL7Rule
 from .....types.cloud.load_balancer_l7_rule_list import LoadBalancerL7RuleList
-from .....types.cloud.load_balancers.l7_policies import rule_create_params, rule_replace_params
+from .....types.cloud.load_balancers.l7_policies import rule_list_params, rule_create_params, rule_replace_params
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -139,6 +139,8 @@ class RulesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,6 +157,11 @@ class RulesResource(SyncAPIResource):
           region_id: Region ID
 
           l7policy_id: L7 policy ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -178,7 +185,17 @@ class RulesResource(SyncAPIResource):
                 l7policy_id=l7policy_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
             ),
             cast_to=LoadBalancerL7RuleList,
         )
@@ -674,6 +691,8 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -690,6 +709,11 @@ class AsyncRulesResource(AsyncAPIResource):
           region_id: Region ID
 
           l7policy_id: L7 policy ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -713,7 +737,17 @@ class AsyncRulesResource(AsyncAPIResource):
                 l7policy_id=l7policy_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
             ),
             cast_to=LoadBalancerL7RuleList,
         )

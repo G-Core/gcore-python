@@ -521,6 +521,16 @@ class TestL7Policies:
         assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        l7_policy = client.cloud.load_balancers.l7_policies.list(
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.l7_policies.with_raw_response.list(
             project_id=1,
@@ -1144,6 +1154,16 @@ class TestAsyncL7Policies:
         l7_policy = await async_client.cloud.load_balancers.l7_policies.list(
             project_id=1,
             region_id=1,
+        )
+        assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        l7_policy = await async_client.cloud.load_balancers.l7_policies.list(
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(LoadBalancerL7PolicyList, l7_policy, path=["response"])
 

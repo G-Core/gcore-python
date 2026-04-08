@@ -47,6 +47,8 @@ class FlavorsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +69,11 @@ class FlavorsResource(SyncAPIResource):
 
           include_prices: Set to true if the response should include flavor prices
 
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,7 +93,14 @@ class FlavorsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"include_prices": include_prices}, flavor_list_params.FlavorListParams),
+                query=maybe_transform(
+                    {
+                        "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    flavor_list_params.FlavorListParams,
+                ),
             ),
             cast_to=LoadBalancerFlavorList,
         )
@@ -118,6 +132,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,6 +153,11 @@ class AsyncFlavorsResource(AsyncAPIResource):
           region_id: Region ID
 
           include_prices: Set to true if the response should include flavor prices
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -158,7 +179,12 @@ class AsyncFlavorsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"include_prices": include_prices}, flavor_list_params.FlavorListParams
+                    {
+                        "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    flavor_list_params.FlavorListParams,
                 ),
             ),
             cast_to=LoadBalancerFlavorList,
