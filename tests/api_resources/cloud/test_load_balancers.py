@@ -28,6 +28,7 @@ class TestLoadBalancers:
         load_balancer = client.cloud.load_balancers.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
         )
         assert_matches_type(TaskIDList, load_balancer, path=["response"])
 
@@ -36,6 +37,7 @@ class TestLoadBalancers:
         load_balancer = client.cloud.load_balancers.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
             flavor="lb1-1-2",
             floating_ip={
                 "existing_floating_id": "c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
@@ -124,8 +126,6 @@ class TestLoadBalancers:
                 "retention_policy": {"period": 45},
                 "topic_name": "my-log-name",
             },
-            name="new_load_balancer",
-            name_template="lb_name_template",
             preferred_connectivity="L2",
             tags={"my-tag": "my-tag-value"},
             vip_ip_family="dual",
@@ -140,6 +140,7 @@ class TestLoadBalancers:
         response = client.cloud.load_balancers.with_raw_response.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
         )
 
         assert response.is_closed is True
@@ -152,6 +153,7 @@ class TestLoadBalancers:
         with client.cloud.load_balancers.with_streaming_response.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -504,6 +506,7 @@ class TestAsyncLoadBalancers:
         load_balancer = await async_client.cloud.load_balancers.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
         )
         assert_matches_type(TaskIDList, load_balancer, path=["response"])
 
@@ -512,6 +515,7 @@ class TestAsyncLoadBalancers:
         load_balancer = await async_client.cloud.load_balancers.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
             flavor="lb1-1-2",
             floating_ip={
                 "existing_floating_id": "c64e5db1-5f1f-43ec-a8d9-5090df85b82d",
@@ -600,8 +604,6 @@ class TestAsyncLoadBalancers:
                 "retention_policy": {"period": 45},
                 "topic_name": "my-log-name",
             },
-            name="new_load_balancer",
-            name_template="lb_name_template",
             preferred_connectivity="L2",
             tags={"my-tag": "my-tag-value"},
             vip_ip_family="dual",
@@ -616,6 +618,7 @@ class TestAsyncLoadBalancers:
         response = await async_client.cloud.load_balancers.with_raw_response.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
         )
 
         assert response.is_closed is True
@@ -628,6 +631,7 @@ class TestAsyncLoadBalancers:
         async with async_client.cloud.load_balancers.with_streaming_response.create(
             project_id=1,
             region_id=7,
+            name="new_load_balancer",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

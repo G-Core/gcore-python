@@ -38,6 +38,9 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
+    name: Required[str]
+    """Load balancer name."""
+
     flavor: str
     """Load balancer flavor name"""
 
@@ -52,15 +55,6 @@ class LoadBalancerCreateParams(TypedDict, total=False):
 
     logging: Logging
     """Logging configuration"""
-
-    name: str
-    """Load balancer name. Either `name` or `name_template` should be specified."""
-
-    name_template: str
-    """Load balancer name which will be changed by template.
-
-    Either `name` or `name_template` should be specified.
-    """
 
     preferred_connectivity: LoadBalancerMemberConnectivity
     """

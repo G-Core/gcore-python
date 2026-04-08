@@ -53,33 +53,34 @@ class Rule(TypedDict, total=False):
     port_range_min: Optional[int]
     """The minimum port number in the range that is matched by the security group rule"""
 
-    protocol: Literal[
-        "ah",
-        "any",
-        "dccp",
-        "egp",
-        "esp",
-        "gre",
-        "icmp",
-        "igmp",
-        "ipencap",
-        "ipip",
-        "ipv6-encap",
-        "ipv6-frag",
-        "ipv6-icmp",
-        "ipv6-nonxt",
-        "ipv6-opts",
-        "ipv6-route",
-        "ospf",
-        "pgm",
-        "rsvp",
-        "sctp",
-        "tcp",
-        "udp",
-        "udplite",
-        "vrrp",
+    protocol: Optional[
+        Literal[
+            "ah",
+            "dccp",
+            "egp",
+            "esp",
+            "gre",
+            "icmp",
+            "igmp",
+            "ipencap",
+            "ipip",
+            "ipv6-encap",
+            "ipv6-frag",
+            "ipv6-icmp",
+            "ipv6-nonxt",
+            "ipv6-opts",
+            "ipv6-route",
+            "ospf",
+            "pgm",
+            "rsvp",
+            "sctp",
+            "tcp",
+            "udp",
+            "udplite",
+            "vrrp",
+        ]
     ]
-    """Protocol"""
+    """V2 protocol enum without 'any'. Use null for all protocols instead."""
 
     remote_group_id: str
     """The remote group UUID to associate with this security group"""

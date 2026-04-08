@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["ListenerListParams"]
+__all__ = ["L7PolicyListParams"]
 
 
-class ListenerListParams(TypedDict, total=False):
+class L7PolicyListParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
@@ -17,14 +17,8 @@ class ListenerListParams(TypedDict, total=False):
     limit: int
     """Optional. Limit the number of returned items"""
 
-    load_balancer_id: str
-    """Load Balancer ID"""
-
     offset: int
     """Optional.
 
     Offset value is used to exclude the first set of records from the result
     """
-
-    show_stats: bool
-    """Show stats"""

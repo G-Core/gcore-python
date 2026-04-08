@@ -31,6 +31,8 @@ class TestFlavors:
             project_id=1,
             region_id=7,
             include_prices=True,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(LoadBalancerFlavorList, flavor, path=["response"])
 
@@ -80,6 +82,8 @@ class TestAsyncFlavors:
             project_id=1,
             region_id=7,
             include_prices=True,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(LoadBalancerFlavorList, flavor, path=["response"])
 

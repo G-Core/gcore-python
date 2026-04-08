@@ -272,7 +272,9 @@ class ListenersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        offset: int | Omit = omit,
         show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -289,7 +291,12 @@ class ListenersResource(SyncAPIResource):
 
           region_id: Region ID
 
+          limit: Optional. Limit the number of returned items
+
           load_balancer_id: Load Balancer ID
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           show_stats: Show stats
 
@@ -314,7 +321,9 @@ class ListenersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "limit": limit,
                         "load_balancer_id": load_balancer_id,
+                        "offset": offset,
                         "show_stats": show_stats,
                     },
                     listener_list_params.ListenerListParams,
@@ -678,7 +687,9 @@ class AsyncListenersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        offset: int | Omit = omit,
         show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -695,7 +706,12 @@ class AsyncListenersResource(AsyncAPIResource):
 
           region_id: Region ID
 
+          limit: Optional. Limit the number of returned items
+
           load_balancer_id: Load Balancer ID
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           show_stats: Show stats
 
@@ -720,7 +736,9 @@ class AsyncListenersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "limit": limit,
                         "load_balancer_id": load_balancer_id,
+                        "offset": offset,
                         "show_stats": show_stats,
                     },
                     listener_list_params.ListenerListParams,
