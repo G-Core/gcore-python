@@ -179,7 +179,9 @@ class NoneAuth(BaseModel):
     """
 
     auth_type: Optional[str] = None
-    """Origin authentication type.
+    """**Deprecated.** No longer necessary. Defaults to `none`.
+
+    Origin authentication type.
 
     Possible values:
 
@@ -197,7 +199,12 @@ class NoneAuth(BaseModel):
     """
 
     path: Optional[str] = None
-    """Parameter is **deprecated**."""
+    """**Deprecated.** No longer necessary.
+
+    Omit this field and the default origin path behavior will be used.
+
+    Origin path prefix.
+    """
 
     proxy_next_upstream: Optional[List[str]] = None
     """Defines cases when the request should be passed on to the next origin.
@@ -232,7 +239,11 @@ class NoneAuth(BaseModel):
 
 
 class AwsSignatureV4Auth(BaseModel):
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     s3_access_key_id: str
     """Access key ID for the S3 account.
@@ -280,14 +291,27 @@ class AwsSignatureV4Auth(BaseModel):
 
 
 class AwsSignatureV4(BaseModel):
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with `origin_type` and `config` instead.
+    """
+
     id: int
     """Origin group ID."""
 
     auth: AwsSignatureV4Auth
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     auth_type: str
-    """Authentication type.
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Authentication type.
 
     **awsSignatureV4** value is used for S3 storage.
     """
@@ -305,7 +329,12 @@ class AwsSignatureV4(BaseModel):
     """
 
     path: Optional[str] = None
-    """Parameter is **deprecated**."""
+    """**Deprecated.** No longer necessary.
+
+    Omit this field and the default origin path behavior will be used.
+
+    Origin path prefix.
+    """
 
     proxy_next_upstream: Optional[List[str]] = None
     """Defines cases when the request should be passed on to the next origin.

@@ -76,7 +76,9 @@ class OriginGroupsResource(SyncAPIResource):
         Args:
           name: Origin group name.
 
-          auth_type: Origin authentication type.
+          auth_type: **Deprecated.** No longer necessary. Defaults to `none`.
+
+              Origin authentication type.
 
               Possible values:
 
@@ -139,9 +141,15 @@ class OriginGroupsResource(SyncAPIResource):
         Create an origin group with one or more origin sources.
 
         Args:
-          auth: Credentials to access the private bucket.
+          auth: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
 
-          auth_type: Authentication type.
+              Credentials to access the private bucket.
+
+          auth_type: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
+
+              Authentication type.
 
               **awsSignatureV4** value is used for S3 storage.
 
@@ -246,14 +254,19 @@ class OriginGroupsResource(SyncAPIResource):
         Args:
           name: Origin group name.
 
-          auth_type: Origin authentication type.
+          auth_type: **Deprecated.** No longer necessary. Defaults to `none`.
+
+              Origin authentication type.
 
               Possible values:
 
               - **none** - Used for public origins.
               - **awsSignatureV4** - Used for S3 storage.
 
-          path: Parameter is **deprecated**.
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -313,15 +326,24 @@ class OriginGroupsResource(SyncAPIResource):
         Change origin group
 
         Args:
-          auth: Credentials to access the private bucket.
+          auth: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
 
-          auth_type: Authentication type.
+              Credentials to access the private bucket.
+
+          auth_type: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
+
+              Authentication type.
 
               **awsSignatureV4** value is used for S3 storage.
 
           name: Origin group name.
 
-          path: Parameter is **deprecated**.
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -537,11 +559,11 @@ class OriginGroupsResource(SyncAPIResource):
         self,
         origin_group_id: int,
         *,
-        auth_type: str,
         name: str,
-        path: str,
         sources: Iterable[origin_group_replace_params.NoneAuthSource],
         use_next: bool,
+        auth_type: str | Omit = omit,
+        path: str | Omit = omit,
         proxy_next_upstream: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -554,16 +576,7 @@ class OriginGroupsResource(SyncAPIResource):
         Change origin group
 
         Args:
-          auth_type: Origin authentication type.
-
-              Possible values:
-
-              - **none** - Used for public origins.
-              - **awsSignatureV4** - Used for S3 storage.
-
           name: Origin group name.
-
-          path: Parameter is **deprecated**.
 
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
@@ -573,6 +586,20 @@ class OriginGroupsResource(SyncAPIResource):
 
               - **true** - Option is enabled.
               - **false** - Option is disabled.
+
+          auth_type: **Deprecated.** No longer necessary. Defaults to `none`.
+
+              Origin authentication type.
+
+              Possible values:
+
+              - **none** - Used for public origins.
+              - **awsSignatureV4** - Used for S3 storage.
+
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -609,8 +636,8 @@ class OriginGroupsResource(SyncAPIResource):
         auth: origin_group_replace_params.AwsSignatureV4Auth,
         auth_type: str,
         name: str,
-        path: str,
         use_next: bool,
+        path: str | Omit = omit,
         proxy_next_upstream: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -623,15 +650,19 @@ class OriginGroupsResource(SyncAPIResource):
         Change origin group
 
         Args:
-          auth: Credentials to access the private bucket.
+          auth: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
 
-          auth_type: Authentication type.
+              Credentials to access the private bucket.
+
+          auth_type: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
+
+              Authentication type.
 
               **awsSignatureV4** value is used for S3 storage.
 
           name: Origin group name.
-
-          path: Parameter is **deprecated**.
 
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
@@ -641,6 +672,11 @@ class OriginGroupsResource(SyncAPIResource):
 
               - **true** - Option is enabled.
               - **false** - Option is disabled.
+
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -669,18 +705,16 @@ class OriginGroupsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["auth_type", "name", "path", "sources", "use_next"], ["auth", "auth_type", "name", "path", "use_next"]
-    )
+    @required_args(["name", "sources", "use_next"], ["auth", "auth_type", "name", "use_next"])
     def replace(
         self,
         origin_group_id: int,
         *,
-        auth_type: str,
         name: str,
-        path: str,
         sources: Iterable[origin_group_replace_params.NoneAuthSource] | Omit = omit,
         use_next: bool,
+        auth_type: str | Omit = omit,
+        path: str | Omit = omit,
         proxy_next_upstream: SequenceNotStr[str] | Omit = omit,
         auth: origin_group_replace_params.AwsSignatureV4Auth | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -696,11 +730,11 @@ class OriginGroupsResource(SyncAPIResource):
                 path_template("/cdn/origin_groups/{origin_group_id}", origin_group_id=origin_group_id),
                 body=maybe_transform(
                     {
-                        "auth_type": auth_type,
                         "name": name,
-                        "path": path,
                         "sources": sources,
                         "use_next": use_next,
+                        "auth_type": auth_type,
+                        "path": path,
                         "proxy_next_upstream": proxy_next_upstream,
                         "auth": auth,
                     },
@@ -760,7 +794,9 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         Args:
           name: Origin group name.
 
-          auth_type: Origin authentication type.
+          auth_type: **Deprecated.** No longer necessary. Defaults to `none`.
+
+              Origin authentication type.
 
               Possible values:
 
@@ -823,9 +859,15 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         Create an origin group with one or more origin sources.
 
         Args:
-          auth: Credentials to access the private bucket.
+          auth: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
 
-          auth_type: Authentication type.
+              Credentials to access the private bucket.
+
+          auth_type: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
+
+              Authentication type.
 
               **awsSignatureV4** value is used for S3 storage.
 
@@ -930,14 +972,19 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         Args:
           name: Origin group name.
 
-          auth_type: Origin authentication type.
+          auth_type: **Deprecated.** No longer necessary. Defaults to `none`.
+
+              Origin authentication type.
 
               Possible values:
 
               - **none** - Used for public origins.
               - **awsSignatureV4** - Used for S3 storage.
 
-          path: Parameter is **deprecated**.
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -997,15 +1044,24 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         Change origin group
 
         Args:
-          auth: Credentials to access the private bucket.
+          auth: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
 
-          auth_type: Authentication type.
+              Credentials to access the private bucket.
+
+          auth_type: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
+
+              Authentication type.
 
               **awsSignatureV4** value is used for S3 storage.
 
           name: Origin group name.
 
-          path: Parameter is **deprecated**.
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -1221,11 +1277,11 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         self,
         origin_group_id: int,
         *,
-        auth_type: str,
         name: str,
-        path: str,
         sources: Iterable[origin_group_replace_params.NoneAuthSource],
         use_next: bool,
+        auth_type: str | Omit = omit,
+        path: str | Omit = omit,
         proxy_next_upstream: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1238,16 +1294,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         Change origin group
 
         Args:
-          auth_type: Origin authentication type.
-
-              Possible values:
-
-              - **none** - Used for public origins.
-              - **awsSignatureV4** - Used for S3 storage.
-
           name: Origin group name.
-
-          path: Parameter is **deprecated**.
 
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
@@ -1257,6 +1304,20 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
 
               - **true** - Option is enabled.
               - **false** - Option is disabled.
+
+          auth_type: **Deprecated.** No longer necessary. Defaults to `none`.
+
+              Origin authentication type.
+
+              Possible values:
+
+              - **none** - Used for public origins.
+              - **awsSignatureV4** - Used for S3 storage.
+
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -1293,8 +1354,8 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         auth: origin_group_replace_params.AwsSignatureV4Auth,
         auth_type: str,
         name: str,
-        path: str,
         use_next: bool,
+        path: str | Omit = omit,
         proxy_next_upstream: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1307,15 +1368,19 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         Change origin group
 
         Args:
-          auth: Credentials to access the private bucket.
+          auth: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
 
-          auth_type: Authentication type.
+              Credentials to access the private bucket.
+
+          auth_type: **Deprecated.** To create S3 origins, configure them directly in sources with
+              `origin_type` and `config` instead.
+
+              Authentication type.
 
               **awsSignatureV4** value is used for S3 storage.
 
           name: Origin group name.
-
-          path: Parameter is **deprecated**.
 
           use_next: Defines whether to use the next origin from the origin group if origin responds
               with the cases specified in `proxy_next_upstream`. If you enable it, you must
@@ -1325,6 +1390,11 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
 
               - **true** - Option is enabled.
               - **false** - Option is disabled.
+
+          path: **Deprecated.** No longer necessary. Omit this field and the default origin path
+              behavior will be used.
+
+              Origin path prefix.
 
           proxy_next_upstream: Defines cases when the request should be passed on to the next origin.
 
@@ -1353,18 +1423,16 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["auth_type", "name", "path", "sources", "use_next"], ["auth", "auth_type", "name", "path", "use_next"]
-    )
+    @required_args(["name", "sources", "use_next"], ["auth", "auth_type", "name", "use_next"])
     async def replace(
         self,
         origin_group_id: int,
         *,
-        auth_type: str,
         name: str,
-        path: str,
         sources: Iterable[origin_group_replace_params.NoneAuthSource] | Omit = omit,
         use_next: bool,
+        auth_type: str | Omit = omit,
+        path: str | Omit = omit,
         proxy_next_upstream: SequenceNotStr[str] | Omit = omit,
         auth: origin_group_replace_params.AwsSignatureV4Auth | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1380,11 +1448,11 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
                 path_template("/cdn/origin_groups/{origin_group_id}", origin_group_id=origin_group_id),
                 body=await async_maybe_transform(
                     {
-                        "auth_type": auth_type,
                         "name": name,
-                        "path": path,
                         "sources": sources,
                         "use_next": use_next,
+                        "auth_type": auth_type,
+                        "path": path,
                         "proxy_next_upstream": proxy_next_upstream,
                         "auth": auth,
                     },

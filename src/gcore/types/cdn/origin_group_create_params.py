@@ -26,7 +26,9 @@ class NoneAuth(TypedDict, total=False):
     sources: Required[Iterable[NoneAuthSource]]
 
     auth_type: str
-    """Origin authentication type.
+    """**Deprecated.** No longer necessary. Defaults to `none`.
+
+    Origin authentication type.
 
     Possible values:
 
@@ -204,10 +206,19 @@ NoneAuthSource: TypeAlias = Union[NoneAuthSourceChangeHostSource, NoneAuthSource
 
 class AwsSignatureV4(TypedDict, total=False):
     auth: Required[AwsSignatureV4Auth]
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     auth_type: Required[str]
-    """Authentication type.
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Authentication type.
 
     **awsSignatureV4** value is used for S3 storage.
     """
@@ -248,7 +259,11 @@ class AwsSignatureV4(TypedDict, total=False):
 
 
 class AwsSignatureV4Auth(TypedDict, total=False):
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     s3_access_key_id: Required[str]
     """Access key ID for the S3 account.
