@@ -173,7 +173,9 @@ class TestListeners:
         listener = client.cloud.load_balancers.listeners.list(
             project_id=1,
             region_id=1,
+            limit=1000,
             load_balancer_id="00000000-0000-4000-8000-000000000000",
+            offset=0,
             show_stats=True,
         )
         assert_matches_type(LoadBalancerListenerList, listener, path=["response"])
@@ -478,7 +480,9 @@ class TestAsyncListeners:
         listener = await async_client.cloud.load_balancers.listeners.list(
             project_id=1,
             region_id=1,
+            limit=1000,
             load_balancer_id="00000000-0000-4000-8000-000000000000",
+            offset=0,
             show_stats=True,
         )
         assert_matches_type(LoadBalancerListenerList, listener, path=["response"])

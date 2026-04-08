@@ -315,8 +315,10 @@ class PoolsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         details: bool | Omit = omit,
+        limit: int | Omit = omit,
         listener_id: str | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -334,9 +336,14 @@ class PoolsResource(SyncAPIResource):
 
           details: Show members and Health Monitor details
 
+          limit: Optional. Limit the number of returned items
+
           listener_id: Listener ID
 
           load_balancer_id: Load Balancer ID
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -360,8 +367,10 @@ class PoolsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "details": details,
+                        "limit": limit,
                         "listener_id": listener_id,
                         "load_balancer_id": load_balancer_id,
+                        "offset": offset,
                     },
                     pool_list_params.PoolListParams,
                 ),
@@ -912,8 +921,10 @@ class AsyncPoolsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         details: bool | Omit = omit,
+        limit: int | Omit = omit,
         listener_id: str | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -931,9 +942,14 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           details: Show members and Health Monitor details
 
+          limit: Optional. Limit the number of returned items
+
           listener_id: Listener ID
 
           load_balancer_id: Load Balancer ID
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -957,8 +973,10 @@ class AsyncPoolsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "details": details,
+                        "limit": limit,
                         "listener_id": listener_id,
                         "load_balancer_id": load_balancer_id,
+                        "offset": offset,
                     },
                     pool_list_params.PoolListParams,
                 ),

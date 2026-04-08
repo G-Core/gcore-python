@@ -146,12 +146,11 @@ class LoadBalancersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        name: str,
         flavor: str | Omit = omit,
         floating_ip: load_balancer_create_params.FloatingIP | Omit = omit,
         listeners: Iterable[load_balancer_create_params.Listener] | Omit = omit,
         logging: load_balancer_create_params.Logging | Omit = omit,
-        name: str | Omit = omit,
-        name_template: str | Omit = omit,
         preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         vip_ip_family: InterfaceIPFamily | Omit = omit,
@@ -173,6 +172,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           region_id: Region ID
 
+          name: Load balancer name.
+
           flavor: Load balancer flavor name
 
           floating_ip: Floating IP configuration for assignment
@@ -181,11 +182,6 @@ class LoadBalancersResource(SyncAPIResource):
               listener).
 
           logging: Logging configuration
-
-          name: Load balancer name. Either `name` or `name_template` should be specified.
-
-          name_template: Load balancer name which will be changed by template. Either `name` or
-              `name_template` should be specified.
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members. L2 provides best performance, L3 provides less IPs usage. It is taking
@@ -230,12 +226,11 @@ class LoadBalancersResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
+                    "name": name,
                     "flavor": flavor,
                     "floating_ip": floating_ip,
                     "listeners": listeners,
                     "logging": logging,
-                    "name": name,
-                    "name_template": name_template,
                     "preferred_connectivity": preferred_connectivity,
                     "tags": tags,
                     "vip_ip_family": vip_ip_family,
@@ -937,12 +932,11 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        name: str,
         flavor: str | Omit = omit,
         floating_ip: load_balancer_create_params.FloatingIP | Omit = omit,
         listeners: Iterable[load_balancer_create_params.Listener] | Omit = omit,
         logging: load_balancer_create_params.Logging | Omit = omit,
-        name: str | Omit = omit,
-        name_template: str | Omit = omit,
         preferred_connectivity: LoadBalancerMemberConnectivity | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         vip_ip_family: InterfaceIPFamily | Omit = omit,
@@ -964,6 +958,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           region_id: Region ID
 
+          name: Load balancer name.
+
           flavor: Load balancer flavor name
 
           floating_ip: Floating IP configuration for assignment
@@ -972,11 +968,6 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               listener).
 
           logging: Logging configuration
-
-          name: Load balancer name. Either `name` or `name_template` should be specified.
-
-          name_template: Load balancer name which will be changed by template. Either `name` or
-              `name_template` should be specified.
 
           preferred_connectivity: Preferred option to establish connectivity between load balancer and its pools
               members. L2 provides best performance, L3 provides less IPs usage. It is taking
@@ -1021,12 +1012,11 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
+                    "name": name,
                     "flavor": flavor,
                     "floating_ip": floating_ip,
                     "listeners": listeners,
                     "logging": logging,
-                    "name": name,
-                    "name_template": name_template,
                     "preferred_connectivity": preferred_connectivity,
                     "tags": tags,
                     "vip_ip_family": vip_ip_family,

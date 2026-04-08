@@ -100,6 +100,17 @@ class TestRules:
         assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        rule = client.cloud.load_balancers.l7_policies.rules.list(
+            l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.load_balancers.l7_policies.rules.with_raw_response.list(
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
@@ -411,6 +422,17 @@ class TestAsyncRules:
             l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
             project_id=1,
             region_id=1,
+        )
+        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        rule = await async_client.cloud.load_balancers.l7_policies.rules.list(
+            l7policy_id="023f2e34-7806-443b-bfae-16c324569a3d",
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
 
