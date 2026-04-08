@@ -351,9 +351,7 @@ class TestOriginGroups:
     def test_method_replace_overload_1(self, client: Gcore) -> None:
         origin_group = client.cdn.origin_groups.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
@@ -363,9 +361,7 @@ class TestOriginGroups:
     def test_method_replace_with_all_params_overload_1(self, client: Gcore) -> None:
         origin_group = client.cdn.origin_groups.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[
                 {
                     "source": "yourdomain.com",
@@ -376,6 +372,8 @@ class TestOriginGroups:
                 }
             ],
             use_next=True,
+            auth_type="none",
+            path="",
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -384,9 +382,7 @@ class TestOriginGroups:
     def test_raw_response_replace_overload_1(self, client: Gcore) -> None:
         response = client.cdn.origin_groups.with_raw_response.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
@@ -400,9 +396,7 @@ class TestOriginGroups:
     def test_streaming_response_replace_overload_1(self, client: Gcore) -> None:
         with client.cdn.origin_groups.with_streaming_response.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[{"source": "yourdomain.com"}],
             use_next=True,
         ) as response:
@@ -426,7 +420,6 @@ class TestOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -445,8 +438,8 @@ class TestOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
+            path="",
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -463,7 +456,6 @@ class TestOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
         )
 
@@ -484,7 +476,6 @@ class TestOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
         ) as response:
             assert not response.is_closed
@@ -832,9 +823,7 @@ class TestAsyncOriginGroups:
     async def test_method_replace_overload_1(self, async_client: AsyncGcore) -> None:
         origin_group = await async_client.cdn.origin_groups.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
@@ -844,9 +833,7 @@ class TestAsyncOriginGroups:
     async def test_method_replace_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         origin_group = await async_client.cdn.origin_groups.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[
                 {
                     "source": "yourdomain.com",
@@ -857,6 +844,8 @@ class TestAsyncOriginGroups:
                 }
             ],
             use_next=True,
+            auth_type="none",
+            path="",
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -865,9 +854,7 @@ class TestAsyncOriginGroups:
     async def test_raw_response_replace_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.origin_groups.with_raw_response.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[{"source": "yourdomain.com"}],
             use_next=True,
         )
@@ -881,9 +868,7 @@ class TestAsyncOriginGroups:
     async def test_streaming_response_replace_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.origin_groups.with_streaming_response.replace(
             origin_group_id=0,
-            auth_type="none",
             name="YourOriginGroup",
-            path="",
             sources=[{"source": "yourdomain.com"}],
             use_next=True,
         ) as response:
@@ -907,7 +892,6 @@ class TestAsyncOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -926,8 +910,8 @@ class TestAsyncOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
+            path="",
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -944,7 +928,6 @@ class TestAsyncOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
         )
 
@@ -965,7 +948,6 @@ class TestAsyncOriginGroups:
             },
             auth_type="awsSignatureV4",
             name="YourOriginGroup",
-            path="",
             use_next=True,
         ) as response:
             assert not response.is_closed

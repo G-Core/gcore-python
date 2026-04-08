@@ -20,20 +20,8 @@ __all__ = [
 
 
 class NoneAuth(TypedDict, total=False):
-    auth_type: Required[str]
-    """Origin authentication type.
-
-    Possible values:
-
-    - **none** - Used for public origins.
-    - **awsSignatureV4** - Used for S3 storage.
-    """
-
     name: Required[str]
     """Origin group name."""
-
-    path: Required[str]
-    """Parameter is **deprecated**."""
 
     sources: Required[Iterable[NoneAuthSource]]
 
@@ -47,6 +35,25 @@ class NoneAuth(TypedDict, total=False):
 
     - **true** - Option is enabled.
     - **false** - Option is disabled.
+    """
+
+    auth_type: str
+    """**Deprecated.** No longer necessary. Defaults to `none`.
+
+    Origin authentication type.
+
+    Possible values:
+
+    - **none** - Used for public origins.
+    - **awsSignatureV4** - Used for S3 storage.
+    """
+
+    path: str
+    """**Deprecated.** No longer necessary.
+
+    Omit this field and the default origin path behavior will be used.
+
+    Origin path prefix.
     """
 
     proxy_next_upstream: SequenceNotStr[str]
@@ -207,19 +214,25 @@ NoneAuthSource: TypeAlias = Union[NoneAuthSourceChangeHostSource, NoneAuthSource
 
 class AwsSignatureV4(TypedDict, total=False):
     auth: Required[AwsSignatureV4Auth]
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     auth_type: Required[str]
-    """Authentication type.
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Authentication type.
 
     **awsSignatureV4** value is used for S3 storage.
     """
 
     name: Required[str]
     """Origin group name."""
-
-    path: Required[str]
-    """Parameter is **deprecated**."""
 
     use_next: Required[bool]
     """
@@ -231,6 +244,14 @@ class AwsSignatureV4(TypedDict, total=False):
 
     - **true** - Option is enabled.
     - **false** - Option is disabled.
+    """
+
+    path: str
+    """**Deprecated.** No longer necessary.
+
+    Omit this field and the default origin path behavior will be used.
+
+    Origin path prefix.
     """
 
     proxy_next_upstream: SequenceNotStr[str]
@@ -254,7 +275,11 @@ class AwsSignatureV4(TypedDict, total=False):
 
 
 class AwsSignatureV4Auth(TypedDict, total=False):
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     s3_access_key_id: Required[str]
     """Access key ID for the S3 account.

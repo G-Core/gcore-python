@@ -24,7 +24,9 @@ class NoneAuth(TypedDict, total=False):
     """Origin group name."""
 
     auth_type: str
-    """Origin authentication type.
+    """**Deprecated.** No longer necessary. Defaults to `none`.
+
+    Origin authentication type.
 
     Possible values:
 
@@ -33,7 +35,12 @@ class NoneAuth(TypedDict, total=False):
     """
 
     path: str
-    """Parameter is **deprecated**."""
+    """**Deprecated.** No longer necessary.
+
+    Omit this field and the default origin path behavior will be used.
+
+    Origin path prefix.
+    """
 
     proxy_next_upstream: SequenceNotStr[str]
     """Defines cases when the request should be passed on to the next origin.
@@ -207,10 +214,19 @@ NoneAuthSource: TypeAlias = Union[NoneAuthSourceChangeHostSource, NoneAuthSource
 
 class AwsSignatureV4(TypedDict, total=False):
     auth: AwsSignatureV4Auth
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     auth_type: str
-    """Authentication type.
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with
+    `origin_type` and `config` instead.
+
+    Authentication type.
 
     **awsSignatureV4** value is used for S3 storage.
     """
@@ -219,7 +235,12 @@ class AwsSignatureV4(TypedDict, total=False):
     """Origin group name."""
 
     path: str
-    """Parameter is **deprecated**."""
+    """**Deprecated.** No longer necessary.
+
+    Omit this field and the default origin path behavior will be used.
+
+    Origin path prefix.
+    """
 
     proxy_next_upstream: SequenceNotStr[str]
     """Defines cases when the request should be passed on to the next origin.
@@ -254,7 +275,11 @@ class AwsSignatureV4(TypedDict, total=False):
 
 
 class AwsSignatureV4Auth(TypedDict, total=False):
-    """Credentials to access the private bucket."""
+    """
+    **Deprecated.** To create S3 origins, configure them directly in sources with `origin_type` and `config` instead.
+
+    Credentials to access the private bucket.
+    """
 
     s3_access_key_id: Required[str]
     """Access key ID for the S3 account.
