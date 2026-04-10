@@ -110,7 +110,10 @@ class TestSecurityGroups:
                     "remote_ip_prefix": "10.0.0.0/8",
                 }
             ],
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(TaskIDList, security_group, path=["response"])
 
@@ -481,7 +484,10 @@ class TestAsyncSecurityGroups:
                     "remote_ip_prefix": "10.0.0.0/8",
                 }
             ],
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(TaskIDList, security_group, path=["response"])
 

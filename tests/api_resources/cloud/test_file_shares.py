@@ -174,7 +174,10 @@ class TestFileShares:
                 "path_length": "LCD",
                 "root_squash": True,
             },
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
@@ -562,7 +565,10 @@ class TestAsyncFileShares:
                 "path_length": "LCD",
                 "root_squash": True,
             },
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 

@@ -22,7 +22,7 @@ class TestPools:
         pool = client.cloud.load_balancers.pools.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
         )
@@ -33,7 +33,7 @@ class TestPools:
         pool = client.cloud.load_balancers.pools.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
             ca_secret_id="ca_secret_id",
@@ -95,7 +95,7 @@ class TestPools:
         response = client.cloud.load_balancers.pools.with_raw_response.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
         )
@@ -110,7 +110,7 @@ class TestPools:
         with client.cloud.load_balancers.pools.with_streaming_response.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
         ) as response:
@@ -153,7 +153,7 @@ class TestPools:
                 "type": "HTTP",
                 "url_path": "/",
             },
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             members=[
                 {
                     "address": "192.168.40.33",
@@ -369,7 +369,7 @@ class TestAsyncPools:
         pool = await async_client.cloud.load_balancers.pools.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
         )
@@ -380,7 +380,7 @@ class TestAsyncPools:
         pool = await async_client.cloud.load_balancers.pools.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
             ca_secret_id="ca_secret_id",
@@ -442,7 +442,7 @@ class TestAsyncPools:
         response = await async_client.cloud.load_balancers.pools.with_raw_response.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
         )
@@ -457,7 +457,7 @@ class TestAsyncPools:
         async with async_client.cloud.load_balancers.pools.with_streaming_response.create(
             project_id=1,
             region_id=1,
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             name="pool_name",
             protocol="HTTP",
         ) as response:
@@ -500,7 +500,7 @@ class TestAsyncPools:
                 "type": "HTTP",
                 "url_path": "/",
             },
-            lb_algorithm="LEAST_CONNECTIONS",
+            lb_algorithm="ROUND_ROBIN",
             members=[
                 {
                     "address": "192.168.40.33",
