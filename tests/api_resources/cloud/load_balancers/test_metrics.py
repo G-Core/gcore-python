@@ -24,7 +24,7 @@ class TestMetrics:
             project_id=1,
             region_id=7,
             time_interval=6,
-            time_unit="day",
+            time_unit="hour",
         )
         assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
@@ -35,7 +35,7 @@ class TestMetrics:
             project_id=1,
             region_id=7,
             time_interval=6,
-            time_unit="day",
+            time_unit="hour",
         )
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestMetrics:
             project_id=1,
             region_id=7,
             time_interval=6,
-            time_unit="day",
+            time_unit="hour",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +68,7 @@ class TestMetrics:
                 project_id=1,
                 region_id=7,
                 time_interval=6,
-                time_unit="day",
+                time_unit="hour",
             )
 
 
@@ -84,7 +84,7 @@ class TestAsyncMetrics:
             project_id=1,
             region_id=7,
             time_interval=6,
-            time_unit="day",
+            time_unit="hour",
         )
         assert_matches_type(LoadBalancerMetricsList, metric, path=["response"])
 
@@ -95,7 +95,7 @@ class TestAsyncMetrics:
             project_id=1,
             region_id=7,
             time_interval=6,
-            time_unit="day",
+            time_unit="hour",
         )
 
         assert response.is_closed is True
@@ -110,7 +110,7 @@ class TestAsyncMetrics:
             project_id=1,
             region_id=7,
             time_interval=6,
-            time_unit="day",
+            time_unit="hour",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -128,5 +128,5 @@ class TestAsyncMetrics:
                 project_id=1,
                 region_id=7,
                 time_interval=6,
-                time_unit="day",
+                time_unit="hour",
             )

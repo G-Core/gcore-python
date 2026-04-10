@@ -114,7 +114,10 @@ class TestServers:
             project_id=1,
             region_id=1,
             name="server_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(BaremetalServer, server, path=["response"])
 
@@ -477,7 +480,10 @@ class TestAsyncServers:
             project_id=1,
             region_id=1,
             name="server_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(BaremetalServer, server, path=["response"])
 

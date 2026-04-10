@@ -219,7 +219,10 @@ class TestVolumes:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Volume, volume, path=["response"])
 
@@ -875,7 +878,10 @@ class TestAsyncVolumes:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Volume, volume, path=["response"])
 
