@@ -86,7 +86,10 @@ class TestNetworks:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Network, network, path=["response"])
 
@@ -341,7 +344,10 @@ class TestAsyncNetworks:
             project_id=1,
             region_id=1,
             name="some_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Network, network, path=["response"])
 

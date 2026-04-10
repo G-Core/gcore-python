@@ -36,7 +36,7 @@ class TestReservedFixedIPs:
             project_id=0,
             region_id=0,
             type="external",
-            ip_family="dual",
+            ip_family="ipv4",
             is_vip=False,
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])
@@ -137,7 +137,7 @@ class TestReservedFixedIPs:
             region_id=0,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
-            ip_family="dual",
+            ip_family="ipv4",
             is_vip=False,
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])
@@ -481,7 +481,7 @@ class TestAsyncReservedFixedIPs:
             project_id=0,
             region_id=0,
             type="external",
-            ip_family="dual",
+            ip_family="ipv4",
             is_vip=False,
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])
@@ -582,7 +582,7 @@ class TestAsyncReservedFixedIPs:
             region_id=0,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
-            ip_family="dual",
+            ip_family="ipv4",
             is_vip=False,
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])

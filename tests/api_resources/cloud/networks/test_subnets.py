@@ -110,7 +110,10 @@ class TestSubnets:
                 }
             ],
             name="some_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Subnet, subnet, path=["response"])
 
@@ -390,7 +393,10 @@ class TestAsyncSubnets:
                 }
             ],
             name="some_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Subnet, subnet, path=["response"])
 

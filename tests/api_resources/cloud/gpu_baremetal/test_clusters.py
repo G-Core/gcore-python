@@ -124,7 +124,10 @@ class TestClusters:
             project_id=1,
             region_id=7,
             name="gpu-cluster-1",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(GPUBaremetalCluster, cluster, path=["response"])
 
@@ -679,7 +682,10 @@ class TestAsyncClusters:
             project_id=1,
             region_id=7,
             name="gpu-cluster-1",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(GPUBaremetalCluster, cluster, path=["response"])
 

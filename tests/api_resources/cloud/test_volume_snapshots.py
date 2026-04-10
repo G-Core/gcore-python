@@ -88,7 +88,10 @@ class TestVolumeSnapshots:
             project_id=1,
             region_id=1,
             name="my-backup-snapshot",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Snapshot, volume_snapshot, path=["response"])
 
@@ -295,7 +298,10 @@ class TestAsyncVolumeSnapshots:
             project_id=1,
             region_id=1,
             name="my-backup-snapshot",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Snapshot, volume_snapshot, path=["response"])
 

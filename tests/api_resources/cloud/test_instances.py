@@ -139,7 +139,10 @@ class TestInstances:
             project_id=0,
             region_id=0,
             name="instance_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Instance, instance, path=["response"])
 
@@ -1011,7 +1014,10 @@ class TestAsyncInstances:
             project_id=0,
             region_id=0,
             name="instance_name",
-            tags={"foo": "string"},
+            tags={
+                "my-tag": "my-tag-value",
+                "my-tag-to-remove": None,
+            },
         )
         assert_matches_type(Instance, instance, path=["response"])
 

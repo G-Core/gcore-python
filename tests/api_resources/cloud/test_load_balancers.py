@@ -128,7 +128,7 @@ class TestLoadBalancers:
             },
             preferred_connectivity="L2",
             tags={"my-tag": "my-tag-value"},
-            vip_ip_family="dual",
+            vip_ip_family="ipv4",
             vip_network_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
             vip_port_id="ff83e13a-b256-4be2-ba5d-028d3f0ab450",
             vip_subnet_id="4e7802d3-5023-44b8-b298-7726558fddf4",
@@ -189,7 +189,10 @@ class TestLoadBalancers:
                 },
                 name="some_name",
                 preferred_connectivity="L2",
-                tags={"foo": "string"},
+                tags={
+                    "my-tag": "my-tag-value",
+                    "my-tag-to-remove": None,
+                },
             )
 
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
@@ -606,7 +609,7 @@ class TestAsyncLoadBalancers:
             },
             preferred_connectivity="L2",
             tags={"my-tag": "my-tag-value"},
-            vip_ip_family="dual",
+            vip_ip_family="ipv4",
             vip_network_id="ac307687-31a4-4a11-a949-6bea1b2878f5",
             vip_port_id="ff83e13a-b256-4be2-ba5d-028d3f0ab450",
             vip_subnet_id="4e7802d3-5023-44b8-b298-7726558fddf4",
@@ -667,7 +670,10 @@ class TestAsyncLoadBalancers:
                 },
                 name="some_name",
                 preferred_connectivity="L2",
-                tags={"foo": "string"},
+                tags={
+                    "my-tag": "my-tag-value",
+                    "my-tag-to-remove": None,
+                },
             )
 
         assert_matches_type(LoadBalancer, load_balancer, path=["response"])
