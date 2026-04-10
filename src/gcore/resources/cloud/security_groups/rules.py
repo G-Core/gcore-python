@@ -362,7 +362,6 @@ class RulesResource(SyncAPIResource):
         port_range_min: Optional[int] | Omit = omit,
         protocol: Literal[
             "ah",
-            "any",
             "dccp",
             "egp",
             "esp",
@@ -824,7 +823,6 @@ class AsyncRulesResource(AsyncAPIResource):
         port_range_min: Optional[int] | Omit = omit,
         protocol: Literal[
             "ah",
-            "any",
             "dccp",
             "egp",
             "esp",
