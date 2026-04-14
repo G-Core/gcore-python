@@ -885,6 +885,52 @@ class ClustersResource(SyncAPIResource):
             timeout=timeout,
         )
 
+    def delete_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        all_floating_ips: bool | Omit = omit,
+        all_reserved_fixed_ips: bool | Omit = omit,
+        floating_ip_ids: SequenceNotStr[str] | Omit = omit,
+        reserved_fixed_ip_ids: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Delete a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = self.delete(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            all_floating_ips=all_floating_ips,
+            all_reserved_fixed_ips=all_reserved_fixed_ips,
+            floating_ip_ids=floating_ip_ids,
+            reserved_fixed_ip_ids=reserved_fixed_ip_ids,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) < 1:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+
 
 class AsyncClustersResource(AsyncAPIResource):
     @cached_property
@@ -1705,6 +1751,52 @@ class AsyncClustersResource(AsyncAPIResource):
             timeout=timeout,
         )
 
+    async def delete_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        all_floating_ips: bool | Omit = omit,
+        all_reserved_fixed_ips: bool | Omit = omit,
+        floating_ip_ids: SequenceNotStr[str] | Omit = omit,
+        reserved_fixed_ip_ids: SequenceNotStr[str] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Delete a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = await self.delete(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            all_floating_ips=all_floating_ips,
+            all_reserved_fixed_ips=all_reserved_fixed_ips,
+            floating_ip_ids=floating_ip_ids,
+            reserved_fixed_ip_ids=reserved_fixed_ip_ids,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) < 1:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+
 
 class ClustersResourceWithRawResponse:
     def __init__(self, clusters: ClustersResource) -> None:
@@ -1752,6 +1844,9 @@ class ClustersResourceWithRawResponse:
         )
         self.resize_and_poll = to_raw_response_wrapper(
             clusters.resize_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            clusters.delete_and_poll,
         )
 
     @cached_property
@@ -1819,6 +1914,9 @@ class AsyncClustersResourceWithRawResponse:
         self.resize_and_poll = async_to_raw_response_wrapper(
             clusters.resize_and_poll,
         )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            clusters.delete_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> AsyncInterfacesResourceWithRawResponse:
@@ -1885,6 +1983,9 @@ class ClustersResourceWithStreamingResponse:
         self.resize_and_poll = to_streamed_response_wrapper(
             clusters.resize_and_poll,
         )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            clusters.delete_and_poll,
+        )
 
     @cached_property
     def interfaces(self) -> InterfacesResourceWithStreamingResponse:
@@ -1950,6 +2051,9 @@ class AsyncClustersResourceWithStreamingResponse:
         )
         self.resize_and_poll = async_to_streamed_response_wrapper(
             clusters.resize_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            clusters.delete_and_poll,
         )
 
     @cached_property
