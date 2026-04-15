@@ -70,5 +70,11 @@ class WaapRequestSummary(BaseModel):
     user_agent_client: str
     """Client from parsed User agent header"""
 
+    http_version: Optional[str] = None
+    """HTTP version of request"""
+
+    scheme: Optional[str] = None
+    """The URI scheme of the request that generated an event"""
+
     session_id: Optional[str] = None
     """The session ID associated with the request."""

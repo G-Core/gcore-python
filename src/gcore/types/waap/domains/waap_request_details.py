@@ -186,7 +186,7 @@ class WaapRequestDetails(BaseModel):
     """Name of the triggered rule"""
 
     scheme: str
-    """The HTTP scheme of the request that generated an event"""
+    """The URI scheme of the request that generated an event"""
 
     session_id: str
     """The session ID associated with the request."""
