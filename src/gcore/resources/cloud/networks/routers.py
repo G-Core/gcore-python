@@ -76,6 +76,10 @@ class RoutersResource(SyncAPIResource):
         Create a new router with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: name of router
 
           external_gateway_info: External gateway configuration. Use type 'default' to let the platform
@@ -188,6 +192,7 @@ class RoutersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -200,9 +205,15 @@ class RoutersResource(SyncAPIResource):
         List all routers in the specified project and region.
 
         Args:
-          limit: Limit the number of returned routers
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Limit of items on a single page
+
+          name: Optional. Filter routers by name
+
+          offset: Offset in results list
 
           extra_headers: Send extra headers
 
@@ -227,6 +238,7 @@ class RoutersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                     },
                     router_list_params.RouterListParams,
@@ -480,6 +492,10 @@ class AsyncRoutersResource(AsyncAPIResource):
         Create a new router with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: name of router
 
           external_gateway_info: External gateway configuration. Use type 'default' to let the platform
@@ -592,6 +608,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -604,9 +621,15 @@ class AsyncRoutersResource(AsyncAPIResource):
         List all routers in the specified project and region.
 
         Args:
-          limit: Limit the number of returned routers
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Limit of items on a single page
+
+          name: Optional. Filter routers by name
+
+          offset: Offset in results list
 
           extra_headers: Send extra headers
 
@@ -631,6 +654,7 @@ class AsyncRoutersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                     },
                     router_list_params.RouterListParams,
