@@ -9,11 +9,16 @@ __all__ = ["RouterListParams"]
 
 class RouterListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     limit: int
-    """Limit the number of returned routers"""
+    """Limit of items on a single page"""
+
+    name: str
+    """Optional. Filter routers by name"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result"""
+    """Offset in results list"""
