@@ -28,6 +28,9 @@ class GPUVirtualClusterServer(BaseModel):
     flavor: str
     """Unique flavor identifier"""
 
+    has_pending_changes: bool
+    """True if there are pending (not yet applied) server settings changes"""
+
     image_id: Optional[str] = None
     """Server's image UUID"""
 

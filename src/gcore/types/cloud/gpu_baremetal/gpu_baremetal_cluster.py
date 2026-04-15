@@ -131,6 +131,11 @@ class GPUBaremetalCluster(BaseModel):
     flavor: str
     """Cluster flavor name"""
 
+    has_pending_changes: bool
+    """
+    True if any server in the cluster has pending (not yet applied) settings changes
+    """
+
     image_id: str
     """Image ID"""
 
