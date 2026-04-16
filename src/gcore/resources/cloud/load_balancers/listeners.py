@@ -274,6 +274,7 @@ class ListenersResource(SyncAPIResource):
         region_id: int | None = None,
         limit: int | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -294,6 +295,8 @@ class ListenersResource(SyncAPIResource):
           limit: Optional. Limit the number of returned items
 
           load_balancer_id: Load Balancer ID
+
+          name: Filter by name
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
@@ -323,6 +326,7 @@ class ListenersResource(SyncAPIResource):
                     {
                         "limit": limit,
                         "load_balancer_id": load_balancer_id,
+                        "name": name,
                         "offset": offset,
                         "show_stats": show_stats,
                     },
@@ -856,6 +860,7 @@ class AsyncListenersResource(AsyncAPIResource):
         region_id: int | None = None,
         limit: int | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         show_stats: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -876,6 +881,8 @@ class AsyncListenersResource(AsyncAPIResource):
           limit: Optional. Limit the number of returned items
 
           load_balancer_id: Load Balancer ID
+
+          name: Filter by name
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
@@ -905,6 +912,7 @@ class AsyncListenersResource(AsyncAPIResource):
                     {
                         "limit": limit,
                         "load_balancer_id": load_balancer_id,
+                        "name": name,
                         "offset": offset,
                         "show_stats": show_stats,
                     },
