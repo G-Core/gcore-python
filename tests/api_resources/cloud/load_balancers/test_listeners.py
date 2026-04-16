@@ -175,6 +175,7 @@ class TestListeners:
             region_id=1,
             limit=1000,
             load_balancer_id="00000000-0000-4000-8000-000000000000",
+            name="listener-name",
             offset=0,
             show_stats=True,
         )
@@ -482,6 +483,7 @@ class TestAsyncListeners:
             region_id=1,
             limit=1000,
             load_balancer_id="00000000-0000-4000-8000-000000000000",
+            name="listener-name",
             offset=0,
             show_stats=True,
         )
