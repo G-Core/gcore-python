@@ -1,5 +1,50 @@
 # Changelog
 
+## 0.42.0 (2026-04-17)
+
+Full Changelog: [v0.41.0...v0.42.0](https://github.com/G-Core/gcore-python/compare/v0.41.0...v0.42.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** remove deprecated cloud.inference.deployments.get_api_key
+
+### Features
+
+* **api:** aggregated API specs update ([284df4c](https://github.com/G-Core/gcore-python/commit/284df4cedcfac4b86c746c963fc69b5af183d014))
+* **api:** aggregated API specs update ([0110236](https://github.com/G-Core/gcore-python/commit/0110236e7efb9269398475d2500e078c599037f6))
+* **api:** aggregated API specs update ([51ad9c9](https://github.com/G-Core/gcore-python/commit/51ad9c97608b81a0358c3c8e06b3321cb331a06b))
+* **api:** aggregated API specs update ([eda0539](https://github.com/G-Core/gcore-python/commit/eda0539c7bac06e3451703469aabf50fb5290467))
+* **api:** aggregated API specs update ([01be2f5](https://github.com/G-Core/gcore-python/commit/01be2f5ba1c94daeff5e61a4672b9ff8b0bac7cc))
+* **api:** aggregated API specs update ([7beaf49](https://github.com/G-Core/gcore-python/commit/7beaf49ae0cd289d6a60a79de18ed722a9cbf088))
+* **api:** aggregated API specs update ([2f8fb0a](https://github.com/G-Core/gcore-python/commit/2f8fb0a0a1493b19a84a8d4fcb863ddfc2f66db8))
+* **api:** fix(cdn): harmonize pagination across CDN list endpoints ([c95a0b8](https://github.com/G-Core/gcore-python/commit/c95a0b8b047bb8f7370934fe35576648163e3a3e))
+* **cloud:** add delete_and_poll and examples for GPU baremetal clusters ([adc8f40](https://github.com/G-Core/gcore-python/commit/adc8f408f925862f13e19ac30c96684f40395aca))
+* **cloud:** add polling methods and examples for GPU virtual clusters ([1ed9b85](https://github.com/G-Core/gcore-python/commit/1ed9b85b772bd52971503e21a7e484af6812f5b4))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([0971eaa](https://github.com/G-Core/gcore-python/commit/0971eaa023789ebaf5baeae39f4977cba3cbab1d))
+* **cloud:** align polling methods with underlying base method ([4b99901](https://github.com/G-Core/gcore-python/commit/4b999011b48a859a6f95649246ac3a5ba67ff62e))
+* **dns:** update network-mappings get_by_name to new endpoint path ([de11047](https://github.com/G-Core/gcore-python/commit/de110478944f7c9dc61ac3481dba876912e05ff6))
+* ensure file data are only sent as 1 parameter ([16f4262](https://github.com/G-Core/gcore-python/commit/16f4262f6ca89edcefe0315c13963e2d84f945c2))
+* **examples:** update baremetal image examples to use BaremetalImage type ([7e924f8](https://github.com/G-Core/gcore-python/commit/7e924f830c234be00e8c6cb940fe59ff4629a626))
+
+
+### Chores
+
+* **cloud:** remove deprecated cloud.inference.deployments.get_api_key ([1bf3513](https://github.com/G-Core/gcore-python/commit/1bf3513b19eda2cd35230947dd36a1b09f66e419))
+
+
+### Documentation
+
+* update examples ([fa05d93](https://github.com/G-Core/gcore-python/commit/fa05d9370764f706015b7628abd3ba0f12f880d7))
+
+
+### Refactors
+
+* **cloud:** split instance and baremetal image models ([fce124a](https://github.com/G-Core/gcore-python/commit/fce124a98b3eb6cec5bbcb46e60e424b4c6da298))
+
 ## 0.41.0 (2026-04-03)
 
 Full Changelog: [v0.40.0...v0.41.0](https://github.com/G-Core/gcore-python/compare/v0.40.0...v0.41.0)
